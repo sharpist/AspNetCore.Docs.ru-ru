@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 2/25/2020
 uid: tutorials/first-web-api
-ms.openlocfilehash: 55dfc05b5c96f7fa060d537745bac969e92daa9b
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 7418e962076fae3ebdbb25381838757b09046578
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78644968"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80417664"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Учебник. Создание веб-API с помощью ASP.NET Core
 
@@ -135,7 +135,7 @@ ms.locfileid: "78644968"
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Нажмите клавиши CTRL+F5, чтобы запустить приложение. В браузере перейдите по следующему URL-адресу: [https://localhost:5001/WeatherForecast](https://localhost:5001/WeatherForecast).
+Нажмите клавиши CTRL+F5, чтобы запустить приложение. В браузере перейдите по следующему URL-адресу: `https://localhost:5001/WeatherForecast`.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
@@ -374,8 +374,8 @@ dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m 
 
 Протестируйте приложение, вызвав эти две конечные точки в браузере или в Postman. Пример:
 
-* [https://localhost:5001/api/TodoItems](https://localhost:5001/api/TodoItems)
-* [https://localhost:5001/api/TodoItems/1](https://localhost:5001/api/TodoItems/1)
+* `https://localhost:5001/api/TodoItems`
+* `https://localhost:5001/api/TodoItems/1`
 
 При вызове `GetTodoItems` возвращается примерно такой ответ:
 
@@ -606,7 +606,7 @@ DTO можно использовать для следующего:
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Нажмите клавиши CTRL+F5, чтобы запустить приложение. В браузере перейдите по следующему URL-адресу: [https://localhost:5001/api/values](https://localhost:5001/api/values).
+Нажмите клавиши CTRL+F5, чтобы запустить приложение. В браузере перейдите по следующему URL-адресу: `https://localhost:5001/api/values`.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 

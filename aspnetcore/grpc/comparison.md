@@ -8,12 +8,12 @@ ms.date: 12/05/2019
 no-loc:
 - SignalR
 uid: grpc/comparison
-ms.openlocfilehash: 8935e665dfd5d8f9afa002f475c202ec0f0ee657
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 2dff64f1f2d67b8a1e676acf6cf131b684099750
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78650794"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80405868"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Сравнение служб gRPC с API-интерфейсами HTTP
 
@@ -94,6 +94,9 @@ gRPC хорошо подходит для следующих сценариев:
 [gRPC-Web-](https://grpc.io/docs/tutorials/basic/web.html) — это дополнительная технология от команды gRPC, которая предоставляет ограниченную поддержку gRPC в браузере. gRPC-Web состоит из двух частей: клиент JavaScript, поддерживающий все современные браузеры, и прокси gRPC-Web на сервере. Клиент gRPC-Web вызывает прокси-сервер, и прокси-сервер пересылает запросы gRPC на сервер gRPC.
 
 gRPC-Web поддерживает не все возможности gRPC. Клиентская и двунаправленная потоковая передача не поддерживается, и существует ограниченная поддержка потоковой передачи сервера.
+
+> [!TIP]
+> .NET Core имеет экспериментальную поддержку для gRPC-Web. Дополнительные сведения см. по адресу <xref:grpc/browser>.
 
 ### <a name="not-human-readable"></a>Недоступно для чтения человеком
 

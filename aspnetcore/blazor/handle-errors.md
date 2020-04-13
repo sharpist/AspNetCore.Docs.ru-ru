@@ -5,17 +5,17 @@ description: Узнайте, как ASP.NET Core Blazor Blazor управляе�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 03/29/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: 2177edb9c3197588a9335f3d14495b86d5d53f65
-ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
+ms.openlocfilehash: 4fdaf7fb90d126b8f7f029aac3af49eec3b69e74
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/24/2020
-ms.locfileid: "80218925"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80382279"
 ---
 # <a name="handle-errors-in-aspnet-core-opno-locblazor-apps"></a>Обработка ошибок в приложениях ASP.NET Core Blazor
 
@@ -57,7 +57,28 @@ ms.locfileid: "80218925"
 </div>
 ```
 
-Элемент `blazor-error-ui` скрыт стилями, включенными в шаблоны Blazor, а затем отображается при возникновении ошибки.
+Элемент `blazor-error-ui` скрыт стилями, включенными в шаблоны Blazor (*wwwroot/css/site.css*), а затем отображается при возникновении ошибки:
+
+```css
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+```
 
 ## <a name="how-a-opno-locblazor-server-app-reacts-to-unhandled-exceptions"></a>Как приложение Blazor Server реагирует на необработанные исключения
 

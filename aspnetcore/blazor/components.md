@@ -5,17 +5,17 @@ description: Сведения о том, как создавать и испол
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/16/2020
+ms.date: 03/25/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: 7afc9250cdfb4b791ef939ead0f41b503d83fad8
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.openlocfilehash: bc1d07aef9cd60b89343a034168daa6754f4421b
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/18/2020
-ms.locfileid: "79511279"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80306509"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
@@ -301,6 +301,8 @@ public IDictionary<string, object> AdditionalAttributes { get; set; }
 
 > [!IMPORTANT]
 > Переменная `_loginDialog` заполняется только после отрисовки компонента, а ее выходные данные включают элемент `MyLoginDialog`. До этого момента ссылаться не на что. Для управления ссылками на компоненты после завершения отрисовки компонента используйте [методы OnAfterRenderAsync или OnAfterRender](xref:blazor/lifecycle#after-component-render).
+
+Сведения о ссылках на компоненты в цикле см. в разделе [Получение ссылок на несколько схожих дочерних компонентов (dotnet/aspnetcore #13358)](https://github.com/dotnet/aspnetcore/issues/13358).
 
 При записи ссылок на компоненты используется аналогичный синтаксис для [записи ссылок на элементы](xref:blazor/call-javascript-from-dotnet#capture-references-to-elements), это не функция взаимодействия JavaScript. Ссылки на компоненты не передаются в код JavaScript &mdash; они используются только в коде .NET.
 

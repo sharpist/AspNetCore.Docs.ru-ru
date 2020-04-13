@@ -5,17 +5,17 @@ description: Сведения о шаблонах приложений Blazor и
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2020
+ms.date: 03/26/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: acfa4b8a42cbd310c6fc6dc973573578e94ef999
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 71a9d9eee8637dda0b3cecac82ff96a0c3bfedb5
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78649450"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80320980"
 ---
 # <a name="aspnet-core-opno-locblazor-templates"></a>Шаблоны ASP.NET Core Blazor
 
@@ -58,18 +58,17 @@ ms.locfileid: "78649450"
     * скачивает среду выполнения .NET, приложение и его зависимости;
     * инициализирует среду выполнения для запуска приложения.
 
-* *Pages/_Host.cshtml* (Blazor Server) &ndash; корневая страница приложения, реализованная как страница Razor.
-  * При первом запросе любой страницы приложения эта страница преобразовывается для просмотра и возвращается в ответе.
-  * Загружается файл JavaScript `_framework/blazor.server.js`, который настраивает соединение SignalR в режиме реального времени между браузером и сервером.
-  * На странице Host указывается место отрисовки корневого компонента `App` (*App.razor*).
-
 * *App.razor* &ndash; корневой компонент приложения, который настраивает маршрутизацию на стороне клиента с помощью компонента <xref:Microsoft.AspNetCore.Components.Routing.Router>. Компонент `Router` перехватывает навигацию в браузере и отображает страницу, соответствующую запрошенному адресу.
 
-* Папка *Pages* &ndash; содержит маршрутизируемые компоненты и страницы ( *.razor*), составляющие приложение Blazor. Маршрут для каждой страницы указывается с помощью директивы [`@page`](xref:mvc/views/razor#page). Шаблон включает в себя следующие компоненты:
-  * `Index` (*Index.razor*) &ndash; реализует страницу Home;
+* Папка *Pages* &ndash; содержит маршрутизируемые компоненты и страницы ( *.razor*), составляющие приложение Blazor, а также корневую страницу Razor приложения Blazor Server. Маршрут для каждой страницы указывается с помощью директивы [`@page`](xref:mvc/views/razor#page). Шаблон включает в себя следующее:
+  * *_Host.cshtml* (Blazor Server) &ndash; корневая страница приложения, реализованная как страница Razor:
+    * При первом запросе любой страницы приложения эта страница преобразовывается для просмотра и возвращается в ответе.
+    * Загружается файл JavaScript `_framework/blazor.server.js`, который настраивает соединение SignalR в режиме реального времени между браузером и сервером.
+    * На странице Host указывается место отрисовки корневого компонента `App` (*App.razor*).
   * `Counter` (*Counter.razor*) &ndash; реализует страницу Counter;
   * `Error` (*Error.razor*, только в приложении Blazor Server) &ndash; отрисовывается, когда в приложении возникает необработанное исключение;
   * `FetchData` (*FetchData.razor*) &ndash; реализует страницу Fetch data.
+  * `Index` (*Index.razor*) &ndash; реализует страницу Home;
 
 * Папка *Shared* &ndash; содержит другие компоненты пользовательского интерфейса ( *.razor*), используемые приложением:
   * `MainLayout` (*MainLayout.razor*) &ndash; компонент макета приложения;

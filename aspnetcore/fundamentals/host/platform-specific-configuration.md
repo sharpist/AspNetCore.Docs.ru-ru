@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 uid: fundamentals/configuration/platform-specific-configuration
-ms.openlocfilehash: 71fd5cf1934b5374e0a393e055db23b98c03b62f
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: ac667b0205f5daad395d86fbe129beb509a044a6
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78647914"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80417626"
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Использование начальных сборок размещения в ASP.NET Core
 
@@ -429,7 +429,7 @@ dotnet nuget locals all --clear
 
 **Активация из сборки среды выполнения, развернутой в хранилище**
 
-1. В проекте *StartupDiagnostics* используется [PowerShell](/powershell/scripting/powershell-scripting) для изменения файла *StartupDiagnostics.deps.json*. PowerShell устанавливается по умолчанию в Windows начиная с Windows 7 с пакетом обновления 1 (SP1) и Windows Server 2008 R2 с пакетом обновления 1 (SP1). Для установки PowerShell на других платформах см. раздел [Установка Windows PowerShell](/powershell/scripting/setup/installing-powershell#powershell-core).
+1. В проекте *StartupDiagnostics* используется [PowerShell](/powershell/scripting/powershell-scripting) для изменения файла *StartupDiagnostics.deps.json*. PowerShell устанавливается по умолчанию в Windows начиная с Windows 7 с пакетом обновления 1 (SP1) и Windows Server 2008 R2 с пакетом обновления 1 (SP1). Для установки PowerShell на других платформах см. раздел [Установка разных версий PowerShell](/powershell/scripting/install/installing-powershell).
 1. Выполните сценарий *build.ps1*, находящийся в папке *RuntimeStore*. Скрипт выполняет следующее:
    * Генерирует пакет `StartupDiagnostics` в папке *obj\packages*.
    * Создает хранилище среды выполнения для `StartupDiagnostics` в папке *store*. Для размещения при запуске, развернутом в Windows, команда `dotnet store` в сценарии использует [идентификатор среды выполнения (RID)](/dotnet/core/rid-catalog) `win7-x64`. При выполнении размещения при запуске для другой среды выполнения укажите соответствующий RID в строке 37 скрипта. Хранилище среды выполнения для `StartupDiagnostics` позже будет перемещено в хранилище среды выполнения пользователя или системы на компьютере, где будет израсходована сборка. Пользовательское место установки хранилища среды выполнения для сборки `StartupDiagnostics` — *.dotnet/store/x64/netcoreapp3.0/startupdiagnostics/1.0.0/lib/netcoreapp3.0/StartupDiagnostics.dll*.
@@ -815,7 +815,7 @@ dotnet nuget locals all --clear
 
 **Активация из сборки среды выполнения, развернутой в хранилище**
 
-1. В проекте *StartupDiagnostics* используется [PowerShell](/powershell/scripting/powershell-scripting) для изменения файла *StartupDiagnostics.deps.json*. PowerShell устанавливается по умолчанию в Windows начиная с Windows 7 с пакетом обновления 1 (SP1) и Windows Server 2008 R2 с пакетом обновления 1 (SP1). Для установки PowerShell на других платформах см. раздел [Установка Windows PowerShell](/powershell/scripting/setup/installing-powershell#powershell-core).
+1. В проекте *StartupDiagnostics* используется [PowerShell](/powershell/scripting/powershell-scripting) для изменения файла *StartupDiagnostics.deps.json*. PowerShell устанавливается по умолчанию в Windows начиная с Windows 7 с пакетом обновления 1 (SP1) и Windows Server 2008 R2 с пакетом обновления 1 (SP1). Для установки PowerShell на других платформах см. раздел [Установка разных версий PowerShell](/powershell/scripting/install/installing-powershell).
 1. Выполните сценарий *build.ps1*, находящийся в папке *RuntimeStore*. Скрипт выполняет следующее:
    * Генерирует пакет `StartupDiagnostics` в папке *obj\packages*.
    * Создает хранилище среды выполнения для `StartupDiagnostics` в папке *store*. Для размещения при запуске, развернутом в Windows, команда `dotnet store` в сценарии использует [идентификатор среды выполнения (RID)](/dotnet/core/rid-catalog) `win7-x64`. При выполнении размещения при запуске для другой среды выполнения укажите соответствующий RID в строке 37 скрипта. Хранилище среды выполнения для `StartupDiagnostics` позже будет перемещено в хранилище среды выполнения пользователя или системы на компьютере, где будет израсходована сборка. Пользовательское место установки хранилища среды выполнения для сборки `StartupDiagnostics` — *.dotnet/store/x64/netcoreapp2.2/startupdiagnostics/1.0.0/lib/netcoreapp2.2/StartupDiagnostics.dll*.
