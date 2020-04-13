@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/8/2020
 uid: mvc/views/view-compilation
-ms.openlocfilehash: 7f329ffb4c63e8699663f49720145984bb8802fd
-ms.sourcegitcommit: 9a46e78c79d167e5fa0cddf89c1ef584e5fe1779
+ms.openlocfilehash: 0afd39fdb5a6f570e0e78ad54f6c436460bad3a6
+ms.sourcegitcommit: 6f1b516e0c899a49afe9a29044a2383ce2ada3c7
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/09/2020
-ms.locfileid: "80994611"
+ms.lasthandoff: 04/13/2020
+ms.locfileid: "81223963"
 ---
 # <a name="razor-file-compilation-in-aspnet-core"></a>Компиляция файлов Razor в ASP.NET Core
 
@@ -31,7 +31,7 @@ ms.locfileid: "80994611"
 
 1. Установите пакет [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet.
 
-1. обновите метод `Startup.ConfigureServices` в проекте, чтобы включить вызов `AddRazorRuntimeCompilation`. Пример:
+1. обновите метод `Startup.ConfigureServices` в проекте, чтобы включить вызов <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*>. Пример:
 
     ```csharp
     public void ConfigureServices(IServiceCollection services)
@@ -61,29 +61,15 @@ ms.locfileid: "80994611"
 
 1. обновите метод `Startup.ConfigureServices` в проекте, чтобы включить вызов `AddRazorRuntimeCompilation`. Условно выполните `AddRazorRuntimeCompilation`, чтобы он выполнялся только в режиме отладки, если для переменной `ASPNETCORE_ENVIRONMENT` задано значение `Development`:
 
-    ```csharp
-    public IWebHostEnvironment Env { get; set; }
-
-    public void ConfigureServices(IServiceCollection services)
-    {
-        IMvcBuilder builder = services.AddRazorPages();
-
-    #if DEBUG
-        if (Env.IsDevelopment())
-        {
-            builder.AddRazorRuntimeCompilation();
-        }
-    #endif
-
-        // code omitted for brevity
-    }
-    ```
+  [!code-csharp[](~/mvc/views/view-compilation/sample/Startup.cs?name=snippet)]
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
+* [RazorCompileOnBuild и RazorCompileOnPublish](xref:razor-pages/sdk#properties) свойства.
 * <xref:razor-pages/index>
 * <xref:mvc/views/overview>
 * <xref:razor-pages/sdk>
+* Пример [компиляции времени выполнения на GitHub](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/mvc/runtimecompilation) можно просмотреть пример, который показывает, что компиляция времени выполнения работает в разных проектах.
 
 ::: moniker-end
 
