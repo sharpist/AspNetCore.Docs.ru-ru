@@ -5,16 +5,16 @@ description: Узнайте, как в MVC ASP.NET Core используется
 ms.author: riande
 ms.date: 3/25/2020
 uid: mvc/controllers/routing
-ms.openlocfilehash: 74afd0a076ca8bd753000f547ef0a26308e8a884
-ms.sourcegitcommit: e8dc30453af8bbefcb61857987090d79230a461d
+ms.openlocfilehash: 9f7a26a482cb115697a0a3d7439c14a062677c92
+ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/11/2020
-ms.locfileid: "81123489"
+ms.lasthandoff: 04/14/2020
+ms.locfileid: "81277136"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Маршрутизация к действиям контроллера в ASP.NET Core
 
-[Райан Новак](https://github.com/rynowak), [Кирк Ларкин](https://twitter.com/serpent5), и [Рик Андерсон](https://twitter.com/RickAndMSFT)
+Авторы: [Райан Новак](https://github.com/rynowak) (Ryan Nowak), [Кирк Ларкин](https://twitter.com/serpent5) (Kirk Larkin) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -530,6 +530,7 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
 
 См [веб-документов MDN на Slug](https://developer.mozilla.org/docs/Glossary/Slug) для определения Slug.
 
+[!INCLUDE[](~/includes/regex.md)]
 <a name="routing-multiple-routes-ref-label"></a>
 
 ### <a name="multiple-attribute-routes"></a>Несколько маршрутов атрибутов
