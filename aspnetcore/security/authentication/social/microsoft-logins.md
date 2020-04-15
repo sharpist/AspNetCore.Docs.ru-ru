@@ -7,18 +7,18 @@ ms.custom: mvc
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 uid: security/authentication/microsoft-logins
-ms.openlocfilehash: 32315267e0672b0747917228f08591a15e4449f8
-ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
+ms.openlocfilehash: 12c86456dad86731b86487a3a4dd725f36677002
+ms.sourcegitcommit: f29a12486313e38e0163a643d8a97c8cecc7e871
 ms.translationtype: MT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 04/14/2020
-ms.locfileid: "81277253"
+ms.locfileid: "81384047"
 ---
 # <a name="microsoft-account-external-login-setup-with-aspnet-core"></a>Внешняя настройка входа в систему учетной записи Майкрософт с ASP.NET Core
 
 Авторы: [Валерий Новицкий](https://github.com/01binary) (Valeriy Novytskyy) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
-В этом примере показано, как дать возможность пользователям войти в систему со своей учетной записью Майкрософт с помощью проекта ASP.NET Core 3.0, созданного на [предыдущей странице.](xref:security/authentication/social/index)
+В этом примере показано, как дать возможность пользователям войти в систему с их работой, школой или личной учетной записью Майкрософт с помощью проекта ASP.NET Core 3.0, созданного на [предыдущей странице.](xref:security/authentication/social/index)
 
 ## <a name="create-the-app-in-microsoft-developer-portal"></a>Создание приложения на портале разработчиков Майкрософт
 
@@ -89,7 +89,7 @@ ms.locfileid: "81277253"
 * Если идентификация не настроена `services.AddIdentity` `ConfigureServices`при вызове, попытка проверки подлинности приведет к тому, что *опция ArgumentException: опция SignInScheme должна быть предоставлена.* Шаблон проекта, используемый в этом примере, гарантирует, что это сделано.
 * Если база данных сайта не была создана при применении первоначальной миграции, при *обработке ошибки запроса операция базы данных сработала.* Нажмите **Применить миграции** для создания базы данных и обновления, чтобы продолжить прошлое ошибки.
 
-## <a name="next-steps"></a>Дальнейшие действия
+## <a name="next-steps"></a>Следующие шаги
 
 * Эта статья показала, как вы можете проверить подлинность с Microsoft. Вы можете следовать аналогичному подходу к аутентификации с другими поставщиками, перечисленными на [предыдущей странице.](xref:security/authentication/social/index)
 
