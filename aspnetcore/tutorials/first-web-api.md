@@ -367,7 +367,7 @@ dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m 
 
 ## <a name="examine-the-get-methods"></a>Знакомство с методами GET
 
-Эти методы осуществляются через две конечные точки GET
+Эти методы осуществляются через две конечные точки GET:
 
 * `GET /api/TodoItems`
 * `GET /api/TodoItems/{id}`
