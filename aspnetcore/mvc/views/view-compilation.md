@@ -4,14 +4,14 @@ author: rick-anderson
 description: Узнайте, как происходит компиляция файлов Razor в приложении ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/13/2020
+ms.date: 04/14/2020
 uid: mvc/views/view-compilation
-ms.openlocfilehash: 67bbeb88cd944791b522900b69bd10cff38c9f3a
-ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
+ms.openlocfilehash: 3d871ab960de28a565280d9e4cb2c597832e2455
+ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/14/2020
-ms.locfileid: "81277277"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81440939"
 ---
 # <a name="razor-file-compilation-in-aspnet-core"></a>Компиляция файлов Razor в ASP.NET Core
 
@@ -83,13 +83,23 @@ dotnet new webapp --razor-runtime-compilation
 
 В классе проекта не требуется `Startup` никаких изменений кода. В runtime ASP.NET Core ищет [атрибут HostingStartup на уровне сборки](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) в `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. Атрибут `HostingStartup` определяет код запуска приложения для выполнения. Этот код запуска позволяет компиляцию времени выполнения.
 
+## <a name="enable-runtime-compilation-for-a-razor-class-library"></a>Включить компиляцию времени выполнения для библиотеки класса Razor
+
+Рассмотрим сценарий, в котором проект Razor Pages ссылается на [библиотеку класса Razor (RCL)](xref:razor-pages/ui-class) под названием *MyClassLib.* RCL содержит файл *_Layout.cshtml,* который потребляют все проекты MVC и Razor Pages вашей команды. Вы хотите включить компиляцию времени выполнения для файла *_Layout.cshtml* в этом RCL. Внести следующие изменения в проект Razor Pages:
+
+1. Включить компиляцию времени выполнения с инструкциями [в Условно мнимой компиляции времени выполнения в существующем проекте.](#conditionally-enable-runtime-compilation-in-an-existing-project)
+1. Настройка параметров компиляции времени выполнения в: `Startup.ConfigureServices`
+
+    [!code-csharp[](~/mvc/views/view-compilation/samples/3.1/Startup.cs?name=snippet_ConfigureServices&highlight=5-10)]
+
+    В предыдущем коде построен абсолютный путь к *MyClassLib* RCL. [API PhysicalFileProvider](xref:fundamentals/file-providers#physicalfileprovider) используется для поиска каталогов и файлов на этом абсолютном пути. Наконец, `PhysicalFileProvider` экземпляр добавляется в коллекцию поставщиков файлов, что позволяет получить доступ к файлам *.cshtml* rCL.
+
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * [RazorCompileOnBuild и RazorCompileOnPublish](xref:razor-pages/sdk#properties) свойства.
 * <xref:razor-pages/index>
 * <xref:mvc/views/overview>
 * <xref:razor-pages/sdk>
-* Пример [компиляции времени выполнения на GitHub](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/mvc/runtimecompilation) можно просмотреть пример, который показывает, что компиляция времени выполнения работает в проектах.
 
 ::: moniker-end
 

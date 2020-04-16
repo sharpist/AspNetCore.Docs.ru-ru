@@ -9,12 +9,12 @@ ms.date: 04/08/2020
 no-loc:
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: a99c1dd2aba6ef6ff925783762a98e2c81ed7225
-ms.sourcegitcommit: 9a46e78c79d167e5fa0cddf89c1ef584e5fe1779
+ms.openlocfilehash: 43b2cacf9f415ec422a00b28246f30c8ad74de29
+ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/09/2020
-ms.locfileid: "80994582"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81440861"
 ---
 # <a name="aspnet-core-opno-locsignalr-javascript-client"></a>ASP.NET SignalR основной клиент JavaScript
 
@@ -145,7 +145,7 @@ SignalRопределяет, какой метод клиента вызыват
 
 Цепочка `catch` метода до `start` конца метода для обработки ошибок на стороне клиента. Используйте `console.error` для вывода ошибок на консоль браузера.
 
-[!code-javascript[Error handling](javascript-client/sample/wwwroot/js/chat.js?range=49-51)]
+[!code-javascript[Error handling](javascript-client/sample/wwwroot/js/chat.js?range=50)]
 
 Настройка отслеживания журналов на стороне клиента путем передачи регистратора и типа события для входа при подключении. Сообщения регистрируются с указанным уровнем журнала и выше. Доступные уровни журнала следующие:
 
@@ -178,7 +178,7 @@ const connection = new signalR.HubConnectionBuilder()
 Перед началом любых попыток `HubConnection` повторного `HubConnectionState.Reconnecting` подключения, будет `onreconnecting` переход в состояние и `Disconnected` запустить его обратные вызовы вместо перехода к состоянию и запуска его `onclose` обратных вызовов, как `HubConnection` без автоматического переподключения настроены. Это дает возможность предупредить пользователей о потере соединения и отключить элементы пользовательного иного пользовательного идентимного.
 
 ```javascript
-connection.onreconnecting((error) => {
+connection.onreconnecting(error => {
     console.assert(connection.state === signalR.HubConnectionState.Reconnecting);
 
     document.getElementById("messageInput").disabled = true;
@@ -197,7 +197,7 @@ connection.onreconnecting((error) => {
 > Параметр `onreconnected` обратного вызова будет неопределенным, если `HubConnection` он был настроен, чтобы [пропустить переговоры.](xref:signalr/configuration#configure-client-options) `connectionId`
 
 ```javascript
-connection.onreconnected((connectionId) => {
+connection.onreconnected(connectionId => {
     console.assert(connection.state === signalR.HubConnectionState.Connected);
 
     document.getElementById("messageInput").disabled = false;
@@ -227,7 +227,7 @@ async function start() {
 Если клиент не успешно воссоединится в течение `HubConnection` первых четырех `Disconnected` попыток, будет переход к состоянию и огонь его [закрытых](/javascript/api/%40aspnet/signalr/hubconnection#onclose) обратных вызовов. Это дает возможность информировать пользователей о том, что подключение было навсегда утеряно, и рекомендует обновить страницу:
 
 ```javascript
-connection.onclose((error) => {
+connection.onclose(error => {
     console.assert(connection.state === signalR.HubConnectionState.Disconnected);
 
     document.getElementById("messageInput").disabled = true;
