@@ -9,13 +9,13 @@ metadata:
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 03/27/2020
-  ms.openlocfilehash: fb6d03616560649a336df8a624e7fb59006a7ea8
-  ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+  ms.date: 04/15/2020
+  ms.openlocfilehash: c0f987396a4bfcdbc8c189938125eb2a65dadc8a
+  ms.sourcegitcommit: d5d45d84fe488427d418de770000f7df44a08370
   ms.translationtype: HT
   ms.contentlocale: ru-RU
-  ms.lasthandoff: 04/06/2020
-  ms.locfileid: "80366640"
+  ms.lasthandoff: 04/17/2020
+  ms.locfileid: "81542422"
 highlightedContent:
   items:
   - title: Создание приложения ASP.NET Core на любой платформе за 5 минут
@@ -41,7 +41,7 @@ highlightedContent:
     url: tutorials/signalr.md
   - title: Создание первого веб-приложения MVC на основе данных
     itemType: get-started
-    url: tutorials/first-mvc-app/index.md
+    url: tutorials/first-mvc-app//start-mvc.md
 conceptualContent:
   title: Разработка приложений ASP.NET Core
   summary: Выбирайте между интерактивными веб-приложениями, веб-API, приложениями на базе шаблонов MVC, приложениями реального времени и многим другим.
@@ -184,13 +184,13 @@ conceptualContent:
   - title: Веб-приложения на основе данных
     summary: Создавайте веб-приложения, работающие на основе данных, в ASP.NET Core.
     links:
-    - url: tutorials/first-mvc-app/working-with-sql.md
+    - url: tutorials/first-mvc-app/start-mvc.md
       itemType: tutorial
       text: SQL в ASP.NET Core
     - url: blazor/data-binding.md
       itemType: concept
       text: Привязка данных к Blazor в ASP.NET Core
-    - url: tutorials/razor-pages/sql.md
+    - url: tutorials/razor-pages/razor-pages-start.md
       itemType: tutorial
       text: SQL Server Express и Razor Pages
     - url: data/ef-rp/intro.md
