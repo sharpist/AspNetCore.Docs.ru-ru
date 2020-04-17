@@ -1,41 +1,41 @@
 ---
-title: Авторизация на основе политик в ASP.NET Core
+title: Авторизация на основе политики в ASP.NET Core
 author: rick-anderson
-description: Узнайте, как создавать и использовать обработчики политик авторизации для применения требований к авторизации в приложении ASP.NET Core.
+description: Узнайте, как создавать и использовать обработчики политики авторизации для обеспечения выполнения требований авторизации в приложении ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/05/2019
+ms.date: 04/15/2020
 uid: security/authorization/policies
-ms.openlocfilehash: eeb5ddd63ef8177325b35e5a666aa5e9ab047057
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 66412a6020ea8f12427c8c5b466e1b2eedccf0f9
+ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652978"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81488765"
 ---
-# <a name="policy-based-authorization-in-aspnet-core"></a>Авторизация на основе политик в ASP.NET Core
+# <a name="policy-based-authorization-in-aspnet-core"></a>Авторизация на основе политики в ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
-В процессе [авторизации на основе ролей](xref:security/authorization/roles) и [авторизации на основе утверждений](xref:security/authorization/claims) используются требования, обработчик требований и предварительно настроенная политика. Эти стандартные блоки поддерживают выражение оценки авторизации в коде. Результатом является расширенная, повторно используемая, тестируемая структура авторизации.
+Под крышками [авторизация на основе ролей](xref:security/authorization/roles) и [авторизация на основе утверждений](xref:security/authorization/claims) используют требование, обработчик требований и предварительно настроенную политику. Эти строительные блоки поддерживают выражение оценок авторизации в коде. Результатом является более богатая, многоразовая, проверяемая структура авторизации.
 
-Политика авторизации состоит из одного или нескольких требований. Он регистрируется как часть конфигурации службы авторизации в методе `Startup.ConfigureServices`:
+Политика авторизации состоит из одного или нескольких требований. Он зарегистрирован как часть конфигурации службы `Startup.ConfigureServices` авторизации, в методе:
 
 [!code-csharp[](policies/samples/3.0PoliciesAuthApp1/Startup.cs?range=31-32,39-40,42-45, 53, 58)]
 
-В предыдущем примере создается политика "AtLeast21". Он имеет одно требование&mdash;, которое имеет минимальный возраст, который предоставляется в качестве параметра для требования.
+В предыдущем примере создается политика "AtLeast21". Он имеет одно&mdash;требование минимального возраста, которое поставляется в качестве параметра к требованию.
 
-## <a name="iauthorizationservice"></a>IAuthorizationService 
+## <a name="iauthorizationservice"></a>IАвторизацияСервис 
 
-Основная служба, определяющая успешность авторизации, <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>:
+Основная служба, определяющая успешное <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>авторизацию:
 
 [!code-csharp[](policies/samples/stubs/copy_of_IAuthorizationService.cs?highlight=24-25,48-49&name=snippet)]
 
-В приведенном выше коде показаны два метода [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
+В предыдущем коде освещаются два метода [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> — это служба маркеров без методов, а также механизм отслеживания успешности авторизации.
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>является службой маркеров без методов и механизмом отслеживания успешной авторизации.
 
-Каждый <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> отвечает за проверку соблюдения требований:
+Каждый из них <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> отвечает за проверку соответствия требованиям:
 <!--The following code is a copy/paste from 
 https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationHandler.cs -->
 
@@ -54,13 +54,13 @@ public interface IAuthorizationHandler
 }
 ```
 
-Класс <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> используется обработчиком для обозначения того, выполнены ли требования.
+Класс <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> — это то, что обработчик использует для обозначения того, были ли выполнены требования:
 
 ```csharp
  context.Succeed(requirement)
 ```
 
-В следующем коде показаны упрощенная реализация службы авторизации по умолчанию (и заметки с комментариями):
+Следующий код показывает упрощенную (и аннотированную комментариями) выполнение службы авторизации по умолчанию:
 
 ```csharp
 public async Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user, 
@@ -83,7 +83,7 @@ public async Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user,
 }
 ```
 
-В следующем коде показан типичный `ConfigureServices`:
+Следующий код показывает `ConfigureServices`типичный:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -105,91 +105,91 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Для авторизации используйте <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> или `[Authorize(Policy = "Something")]`.
+Использовать <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> `[Authorize(Policy = "Something")]` или для авторизации.
 
 ## <a name="applying-policies-to-mvc-controllers"></a>Применение политик к контроллерам MVC
 
-Если вы используете Razor Pages, см. раздел [применение политик к Razor Pages](#applying-policies-to-razor-pages) в этом документе.
+Если вы используете страницы Razor, в этом документе смотрите [применяющие политики к страницам Razor.](#applying-policies-to-razor-pages)
 
 Политики применяются к контроллерам с помощью атрибута `[Authorize]` с именем политики. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
-## <a name="applying-policies-to-razor-pages"></a>Применение политик к Razor Pages
+## <a name="applying-policies-to-razor-pages"></a>Применение политик на страницах Razor
 
-Политики применяются к Razor Pages с помощью атрибута `[Authorize]` с именем политики. Пример:
+Политики применяются к страницам `[Authorize]` Razor с помощью атрибута с именем политики. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
-Политики также можно применить к Razor Pages с помощью соглашения об [авторизации](xref:security/authorization/razor-pages-authorization).
+Политики также могут быть применены к Razor Pages с помощью [конвенции авторизации.](xref:security/authorization/razor-pages-authorization)
 
 ## <a name="requirements"></a>Требования
 
-Требование авторизации — это коллекция параметров данных, которую политика может использовать для вычисления текущего субъекта-пользователя. В нашей политике "AtLeast21" требование относится к одному параметру&mdash;минимального срока. Требование реализует [иаусоризатионрекуиремент](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirement), который является пустым интерфейсом маркера. Требование к параметризованному минимальному возрасту можно реализовать следующим образом:
+Требование авторизации — это набор параметров данных, которые политика может использовать для оценки текущего принципала пользователя. В нашей политике "AtLeast21" требование представляет&mdash;собой единый параметр минимального возраста. Требование реализует [IAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirement), который является пустым интерфейсом маркера. Параметризованное требование минимального возраста может быть выполнено следующим образом:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Requirements/MinimumAgeRequirement.cs?name=snippet_MinimumAgeRequirementClass)]
 
-Если политика авторизации содержит несколько требований к авторизации, все требования должны пройти, чтобы оценка политики прошла успешно. Иными словами, несколько требований к авторизации, добавленных в одну политику авторизации, обрабатываются **и** на основе.
+Если политика авторизации содержит несколько требований к авторизации, все требования должны пройти для того, чтобы оценка политики увенчалась успехом. Другими словами, несколько **требований** к авторизации, добавленные к единой политике авторизации, обрабатываются на идо.
 
 > [!NOTE]
-> Требование не обязательно должно иметь данные или свойства.
+> Требование не должно иметь данные или свойства.
 
 <a name="security-authorization-policies-based-authorization-handler"></a>
 
 ## <a name="authorization-handlers"></a>Обработчики авторизации
 
-Обработчик авторизации отвечает за оценку свойств требования. Обработчик авторизации оценивает требования к предоставленному [аусоризатионхандлерконтекст](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext) , чтобы определить, разрешен ли доступ.
+Обработчик авторизации отвечает за оценку свойств требования. Обработчик авторизации оценивает требования к предоставленному [авторизационномуконтексту,](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext) чтобы определить, разрешен ли доступ.
 
-Требование может иметь [несколько обработчиков](#security-authorization-policies-based-multiple-handlers). Обработчик может наследовать [AuthorizationHandler\<трекуиремент >](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandler-1), где `TRequirement` является требованием обработки. Кроме того, обработчик может реализовать [иаусоризатионхандлер](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationhandler) для обработки более чем одного типа требований.
+Требование может иметь [несколько обработчиков.](#security-authorization-policies-based-multiple-handlers) Обработчик может унаследовать [AuthorizationHandler\<TRequirement>, ](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandler-1)где `TRequirement` необходимо обработать требование. Кроме того, обработчик может реализовать [IAuthorizationHandler](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationhandler) для обработки нескольких типов требований.
 
-### <a name="use-a-handler-for-one-requirement"></a>Использование обработчика для одного требования
+### <a name="use-a-handler-for-one-requirement"></a>Используйте обработчик для одного требования
 
 <a name="security-authorization-handler-example"></a>
 
-Ниже приведен пример связи «один к одному», в которой обработчик минимального возраста использует одно требование:
+Ниже приводится пример отношений один к одному, в которых обработчик минимального возраста использует одно требование:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/MinimumAgeHandler.cs?name=snippet_MinimumAgeHandlerClass)]
 
-Приведенный выше код определяет, имеет ли текущий участник пользователя дату утверждения о рождении, выданного известным и надежным издателем. Авторизация не может произойти, если утверждение отсутствует, в этом случае возвращается завершенная задача. При наличии утверждения возраст пользователя вычисляется. Если пользователь соответствует минимальному возрасту, заданному требованием, авторизация считается успешной. После успешной авторизации `context.Succeed` вызывается с удовлетворенным требованием в качестве единственного параметра.
+Предыдущий код определяет, имеет ли текущий директор пользователя дату рождения, которая была выдана известным и доверенным эмитентом. Авторизация не может произойти, когда претензия отсутствует, и в этом случае завершенная задача возвращается. При предъявлении претензии рассчитывается возраст пользователя. Если пользователь соответствует минимальному возрасту, определенному требованием, авторизация считается успешной. Когда авторизация `context.Succeed` успешно, ссылается с удовлетворенным требованием в качестве единственного параметра.
 
-### <a name="use-a-handler-for-multiple-requirements"></a>Использование обработчика для нескольких требований
+### <a name="use-a-handler-for-multiple-requirements"></a>Используйте обработчик для нескольких требований
 
-Ниже приведен пример связи «один ко многим», в которой обработчик разрешений может управлять тремя различными типами требований:
+Ниже приводится пример отношения «один к много», в котором обработчик разрешений может обрабатывать три различных типа требований:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/PermissionHandler.cs?name=snippet_PermissionHandlerClass)]
 
-Предыдущий код проходит [пендингрекуирементс](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.pendingrequirements#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_PendingRequirements)&mdash;свойство, содержащее требования, не помеченные как неудачные. Для `ReadPermission` требования пользователь должен быть либо владельцем, либо спонсором для доступа к запрошенному ресурсу. В случае `EditPermission` или `DeletePermission` необходимо быть владельцем для доступа к запрошенному ресурсу.
+Предыдущий код пересекает [PendingRequirements](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.pendingrequirements#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_PendingRequirements)&mdash;свойство, содержащее требования, не отмеченные как успешные. Для `ReadPermission` требования пользователь должен быть либо владельцем, либо спонсором для доступа к запрашиваемому ресурсу. В случае требования `EditPermission` `DeletePermission` или требования он или она должны быть владельцем, чтобы получить доступ к запрашиваемому ресурсу.
 
 <a name="security-authorization-policies-based-handler-registration"></a>
 
-### <a name="handler-registration"></a>Регистрация обработчика
+### <a name="handler-registration"></a>Регистрация обработчиков
 
-Обработчики регистрируются в коллекции служб во время настройки. Пример:
+Обработчики регистрируются в коллекции служб во время конфигурации. Пример:
 
 [!code-csharp[](policies/samples/3.0PoliciesAuthApp1/Startup.cs?range=31-32,39-40,42-45, 53-55, 58)]
 
-Предыдущий код регистрирует `MinimumAgeHandler` как одноэлементный, вызывая `services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();`. Обработчики можно регистрировать с помощью любого встроенного [времени существования службы](xref:fundamentals/dependency-injection#service-lifetimes).
+Предыдущий код `MinimumAgeHandler` регистрируется как синглтон, `services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();`ссылаясь на . Обработчики могут быть зарегистрированы с помощью любого из встроенных [сроков службы.](xref:fundamentals/dependency-injection#service-lifetimes)
 
-## <a name="what-should-a-handler-return"></a>Что должен возвращать обработчик?
+## <a name="what-should-a-handler-return"></a>Что должен вернуть обработчик?
 
-Обратите внимание, что метод `Handle` в [примере обработчика](#security-authorization-handler-example) не возвращает значения. Как отображается состояние «успешно» или «сбой»?
+Обратите внимание, что метод в `Handle` [примере обработчика](#security-authorization-handler-example) не возвращает значения. Как указывается статус успеха или неудачи?
 
-* Обработчик указывает на успешное выполнение путем вызова `context.Succeed(IAuthorizationRequirement requirement)`, передавая требование, которое прошло проверку.
+* Обработчик указывает `context.Succeed(IAuthorizationRequirement requirement)`на успех, вызывая, передавая требование, которое было успешно проверено.
 
-* Обработчику обычно не требуется обработка ошибок, так как другие обработчики для такого же требования могут быть выполнены удачно.
+* Обработчику не нужно обрабатывать сбои в целом, так как другие обработчики для того же требования могут преуспеть.
 
-* Чтобы гарантировать сбой, даже если другие обработчики требований выполняются успешно, вызовите `context.Fail`.
+* Чтобы гарантировать сбой, даже если другие обработчики требований преуспевают, позвоните. `context.Fail`
 
-Если обработчик вызывает `context.Succeed` или `context.Fail`, все остальные обработчики все еще вызываются. Это позволяет создавать побочные эффекты, например ведение журнала, которое выполняется, даже если другой обработчик прошел проверку или не прошел требование. Если задано значение `false`, свойство [инвокехандлерсафтерфаилуре](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) (доступно в ASP.NET Core 1,1 и более поздних версиях) сокращено при выполнении обработчиков при вызове `context.Fail`. `InvokeHandlersAfterFailure` значение по умолчанию равно `true`, в этом случае вызываются все обработчики.
+Если обработчик вызывает `context.Succeed` или `context.Fail`все остальные обработчики по-прежнему вызываются. Это позволяет требованиям создавать побочные эффекты, такие как журналирование, что происходит, даже если другой обработчик успешно проверил или не выполнил требование. При наборе `false`в , [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) собственности (доступно в ASP.NET Core 1.1 и `context.Fail` более поздней) короткого замыкания исполнения обработчиков, когда называется. `InvokeHandlersAfterFailure`по умолчанию, `true`и в этом случае все обработчики называются.
 
 > [!NOTE]
-> Обработчики авторизации вызываются даже в случае сбоя проверки подлинности.
+> Обработчики авторизации вызываются даже при сбой аутентификации.
 
 <a name="security-authorization-policies-based-multiple-handlers"></a>
 
-## <a name="why-would-i-want-multiple-handlers-for-a-requirement"></a>Зачем требуется несколько обработчиков для требования?
+## <a name="why-would-i-want-multiple-handlers-for-a-requirement"></a>Зачем мне нужны несколько обработчиков для требования?
 
-В случаях, когда требуется, чтобы оценка была в **или** на основе, реализуйте несколько обработчиков для одного требования. Например, в корпорации Майкрософт есть дверцы, которые открываются только с карточками ключей. Если вы оставите свой ключ дома, секретарь выводит временную наклейку и открывает дверцу. В этом сценарии у вас будет одно требование, *буилдинжентри*, но несколько обработчиков, каждый из которых проанализировать одно требование.
+В тех случаях, когда вы хотите, чтобы оценка была на **или** основе, реализуем несколько обработчиков для одного требования. Например, у корпорации Майкрософт есть двери, которые открываются только с помощью ключевых карт. Если вы оставите ключ-карту дома, администратор напечатывает временную наклейку и откроет дверь для вас. В этом сценарии у вас будет одно требование, *BuildingEntry,* но несколько обработчиков, каждый из которых изучает одно требование.
 
 *BuildingEntryRequirement.cs*
 
@@ -203,23 +203,23 @@ public void ConfigureServices(IServiceCollection services)
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/TemporaryStickerHandler.cs?name=snippet_TemporaryStickerHandlerClass)]
 
-Убедитесь, что оба обработчика [зарегистрированы](xref:security/authorization/policies#security-authorization-policies-based-handler-registration). Если какой-либо из обработчиков будет выполнен после того, как политика вычислит `BuildingEntryRequirement`, оценка политики будет выполнена.
+Убедитесь, что оба обработчика [зарегистрированы.](xref:security/authorization/policies#security-authorization-policies-based-handler-registration) Если какой-либо обработчик `BuildingEntryRequirement`преуспевает, когда политика оценивает, оценка политики удается.
 
-## <a name="using-a-func-to-fulfill-a-policy"></a>Использование функции func для выполнения политики
+## <a name="using-a-func-to-fulfill-a-policy"></a>Использование func для выполнения политики
 
-Могут возникнуть ситуации, в которых выполнение политики может быть простым для выражения в коде. При настройке политики с помощью построителя `RequireAssertion` политики можно указать `Func<AuthorizationHandlerContext, bool>`.
+Возможны ситуации, в которых выполнение политики просто выразить в коде. При настройке политики `Func<AuthorizationHandlerContext, bool>` с программой-строителем `RequireAssertion` можно предоставить его.
 
-Например, Предыдущая `BadgeEntryHandler` может быть переписана следующим образом:
+Например, предыдущий `BadgeEntryHandler` можно было бы переписать следующим образом:
 
 [!code-csharp[](policies/samples/3.0PoliciesAuthApp1/Startup.cs?range=42-43,47-53)]
 
 ## <a name="accessing-mvc-request-context-in-handlers"></a>Доступ к контексту запроса MVC в обработчиках
 
-Метод `HandleRequirementAsync`, реализуемый в обработчике авторизации, имеет два параметра: `AuthorizationHandlerContext` и `TRequirement`, которые вы обрабатываете. Платформы, такие как MVC или Жаббр, могут добавлять любой объект в свойство `Resource` `AuthorizationHandlerContext` для передачи дополнительной информации.
+Метод, `HandleRequirementAsync` который вы реализуете в обработчике авторизации, имеет два параметра: an `AuthorizationHandlerContext` и вы обрабатываете. `TRequirement` Такие рамки, как MVC или Jabbr, могут `Resource` добавлять `AuthorizationHandlerContext` любой объект в свойство для передачи дополнительной информации.
 
-Например, MVC передает экземпляр [аусоризатионфилтерконтекст](/dotnet/api/?term=AuthorizationFilterContext) в свойство `Resource`. Это свойство предоставляет доступ к `HttpContext`, `RouteData`и всем остальным, предоставляемым MVC и Razor Pages.
+Например, MVC передает экземпляр [AuthorizationFilterContext](/dotnet/api/?term=AuthorizationFilterContext) в свойстве. `Resource` Это свойство `HttpContext`предоставляет `RouteData`доступ к , и все остальное, предоставляемые MVC и Razor Pages.
 
-Использование свойства `Resource` зависит от платформы. Использование сведений в свойстве `Resource` ограничивает политики авторизации определенными платформами. Необходимо привести свойство `Resource` с помощью ключевого слова `is`, а затем подтвердить успешное приведение, чтобы гарантировать, что код не завершится сбоем с `InvalidCastException` при запуске на других платформах:
+Использование `Resource` свойства является рамочной. Использование информации `Resource` в свойстве ограничивает ваши политики авторизации определенными инфраструктурами. Вы должны `Resource` бросить свойство с помощью ключевого `is` слова, а затем подтвердить, `InvalidCastException` что литые удалось обеспечить ваш код не сбой с при запуске на других средах:
 
 ```csharp
 // Requires the following import:
@@ -235,25 +235,25 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 
 ::: moniker range="< aspnetcore-3.0"
 
-В процессе [авторизации на основе ролей](xref:security/authorization/roles) и [авторизации на основе утверждений](xref:security/authorization/claims) используются требования, обработчик требований и предварительно настроенная политика. Эти стандартные блоки поддерживают выражение оценки авторизации в коде. Результатом является расширенная, повторно используемая, тестируемая структура авторизации.
+Под крышками [авторизация на основе ролей](xref:security/authorization/roles) и [авторизация на основе утверждений](xref:security/authorization/claims) используют требование, обработчик требований и предварительно настроенную политику. Эти строительные блоки поддерживают выражение оценок авторизации в коде. Результатом является более богатая, многоразовая, проверяемая структура авторизации.
 
-Политика авторизации состоит из одного или нескольких требований. Он регистрируется как часть конфигурации службы авторизации в методе `Startup.ConfigureServices`:
+Политика авторизации состоит из одного или нескольких требований. Он зарегистрирован как часть конфигурации службы `Startup.ConfigureServices` авторизации, в методе:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,66)]
 
-В предыдущем примере создается политика "AtLeast21". Он имеет одно требование&mdash;, которое имеет минимальный возраст, который предоставляется в качестве параметра для требования.
+В предыдущем примере создается политика "AtLeast21". Он имеет одно&mdash;требование минимального возраста, которое поставляется в качестве параметра к требованию.
 
-## <a name="iauthorizationservice"></a>IAuthorizationService 
+## <a name="iauthorizationservice"></a>IАвторизацияСервис 
 
-Основная служба, определяющая успешность авторизации, <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>:
+Основная служба, определяющая успешное <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>авторизацию:
 
 [!code-csharp[](policies/samples/stubs/copy_of_IAuthorizationService.cs?highlight=24-25,48-49&name=snippet)]
 
-В приведенном выше коде показаны два метода [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
+В предыдущем коде освещаются два метода [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> — это служба маркеров без методов, а также механизм отслеживания успешности авторизации.
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>является службой маркеров без методов и механизмом отслеживания успешной авторизации.
 
-Каждый <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> отвечает за проверку соблюдения требований:
+Каждый из них <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> отвечает за проверку соответствия требованиям:
 <!--The following code is a copy/paste from 
 https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationHandler.cs -->
 
@@ -272,13 +272,13 @@ public interface IAuthorizationHandler
 }
 ```
 
-Класс <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> используется обработчиком для обозначения того, выполнены ли требования.
+Класс <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> — это то, что обработчик использует для обозначения того, были ли выполнены требования:
 
 ```csharp
  context.Succeed(requirement)
 ```
 
-В следующем коде показаны упрощенная реализация службы авторизации по умолчанию (и заметки с комментариями):
+Следующий код показывает упрощенную (и аннотированную комментариями) выполнение службы авторизации по умолчанию:
 
 ```csharp
 public async Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user, 
@@ -301,7 +301,7 @@ public async Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user,
 }
 ```
 
-В следующем коде показан типичный `ConfigureServices`:
+Следующий код показывает `ConfigureServices`типичный:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -322,91 +322,91 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Для авторизации используйте <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> или `[Authorize(Policy = "Something")]`.
+Использовать <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> `[Authorize(Policy = "Something")]` или для авторизации.
 
 ## <a name="applying-policies-to-mvc-controllers"></a>Применение политик к контроллерам MVC
 
-Если вы используете Razor Pages, см. раздел [применение политик к Razor Pages](#applying-policies-to-razor-pages) в этом документе.
+Если вы используете страницы Razor, в этом документе смотрите [применяющие политики к страницам Razor.](#applying-policies-to-razor-pages)
 
 Политики применяются к контроллерам с помощью атрибута `[Authorize]` с именем политики. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
-## <a name="applying-policies-to-razor-pages"></a>Применение политик к Razor Pages
+## <a name="applying-policies-to-razor-pages"></a>Применение политик на страницах Razor
 
-Политики применяются к Razor Pages с помощью атрибута `[Authorize]` с именем политики. Пример:
+Политики применяются к страницам `[Authorize]` Razor с помощью атрибута с именем политики. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
-Политики также можно применить к Razor Pages с помощью соглашения об [авторизации](xref:security/authorization/razor-pages-authorization).
+Политики также могут быть применены к Razor Pages с помощью [конвенции авторизации.](xref:security/authorization/razor-pages-authorization)
 
 ## <a name="requirements"></a>Требования
 
-Требование авторизации — это коллекция параметров данных, которую политика может использовать для вычисления текущего субъекта-пользователя. В нашей политике "AtLeast21" требование относится к одному параметру&mdash;минимального срока. Требование реализует [иаусоризатионрекуиремент](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirement), который является пустым интерфейсом маркера. Требование к параметризованному минимальному возрасту можно реализовать следующим образом:
+Требование авторизации — это набор параметров данных, которые политика может использовать для оценки текущего принципала пользователя. В нашей политике "AtLeast21" требование представляет&mdash;собой единый параметр минимального возраста. Требование реализует [IAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirement), который является пустым интерфейсом маркера. Параметризованное требование минимального возраста может быть выполнено следующим образом:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Requirements/MinimumAgeRequirement.cs?name=snippet_MinimumAgeRequirementClass)]
 
-Если политика авторизации содержит несколько требований к авторизации, все требования должны пройти, чтобы оценка политики прошла успешно. Иными словами, несколько требований к авторизации, добавленных в одну политику авторизации, обрабатываются **и** на основе.
+Если политика авторизации содержит несколько требований к авторизации, все требования должны пройти для того, чтобы оценка политики увенчалась успехом. Другими словами, несколько **требований** к авторизации, добавленные к единой политике авторизации, обрабатываются на идо.
 
 > [!NOTE]
-> Требование не обязательно должно иметь данные или свойства.
+> Требование не должно иметь данные или свойства.
 
 <a name="security-authorization-policies-based-authorization-handler"></a>
 
 ## <a name="authorization-handlers"></a>Обработчики авторизации
 
-Обработчик авторизации отвечает за оценку свойств требования. Обработчик авторизации оценивает требования к предоставленному [аусоризатионхандлерконтекст](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext) , чтобы определить, разрешен ли доступ.
+Обработчик авторизации отвечает за оценку свойств требования. Обработчик авторизации оценивает требования к предоставленному [авторизационномуконтексту,](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext) чтобы определить, разрешен ли доступ.
 
-Требование может иметь [несколько обработчиков](#security-authorization-policies-based-multiple-handlers). Обработчик может наследовать [AuthorizationHandler\<трекуиремент >](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandler-1), где `TRequirement` является требованием обработки. Кроме того, обработчик может реализовать [иаусоризатионхандлер](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationhandler) для обработки более чем одного типа требований.
+Требование может иметь [несколько обработчиков.](#security-authorization-policies-based-multiple-handlers) Обработчик может унаследовать [AuthorizationHandler\<TRequirement>, ](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandler-1)где `TRequirement` необходимо обработать требование. Кроме того, обработчик может реализовать [IAuthorizationHandler](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationhandler) для обработки нескольких типов требований.
 
-### <a name="use-a-handler-for-one-requirement"></a>Использование обработчика для одного требования
+### <a name="use-a-handler-for-one-requirement"></a>Используйте обработчик для одного требования
 
 <a name="security-authorization-handler-example"></a>
 
-Ниже приведен пример связи «один к одному», в которой обработчик минимального возраста использует одно требование:
+Ниже приводится пример отношений один к одному, в которых обработчик минимального возраста использует одно требование:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/MinimumAgeHandler.cs?name=snippet_MinimumAgeHandlerClass)]
 
-Приведенный выше код определяет, имеет ли текущий участник пользователя дату утверждения о рождении, выданного известным и надежным издателем. Авторизация не может произойти, если утверждение отсутствует, в этом случае возвращается завершенная задача. При наличии утверждения возраст пользователя вычисляется. Если пользователь соответствует минимальному возрасту, заданному требованием, авторизация считается успешной. После успешной авторизации `context.Succeed` вызывается с удовлетворенным требованием в качестве единственного параметра.
+Предыдущий код определяет, имеет ли текущий директор пользователя дату рождения, которая была выдана известным и доверенным эмитентом. Авторизация не может произойти, когда претензия отсутствует, и в этом случае завершенная задача возвращается. При предъявлении претензии рассчитывается возраст пользователя. Если пользователь соответствует минимальному возрасту, определенному требованием, авторизация считается успешной. Когда авторизация `context.Succeed` успешно, ссылается с удовлетворенным требованием в качестве единственного параметра.
 
-### <a name="use-a-handler-for-multiple-requirements"></a>Использование обработчика для нескольких требований
+### <a name="use-a-handler-for-multiple-requirements"></a>Используйте обработчик для нескольких требований
 
-Ниже приведен пример связи «один ко многим», в которой обработчик разрешений может управлять тремя различными типами требований:
+Ниже приводится пример отношения «один к много», в котором обработчик разрешений может обрабатывать три различных типа требований:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/PermissionHandler.cs?name=snippet_PermissionHandlerClass)]
 
-Предыдущий код проходит [пендингрекуирементс](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.pendingrequirements#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_PendingRequirements)&mdash;свойство, содержащее требования, не помеченные как неудачные. Для `ReadPermission` требования пользователь должен быть либо владельцем, либо спонсором для доступа к запрошенному ресурсу. В случае `EditPermission` или `DeletePermission` необходимо быть владельцем для доступа к запрошенному ресурсу.
+Предыдущий код пересекает [PendingRequirements](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.pendingrequirements#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_PendingRequirements)&mdash;свойство, содержащее требования, не отмеченные как успешные. Для `ReadPermission` требования пользователь должен быть либо владельцем, либо спонсором для доступа к запрашиваемому ресурсу. В случае требования `EditPermission` `DeletePermission` или требования он или она должны быть владельцем, чтобы получить доступ к запрашиваемому ресурсу.
 
 <a name="security-authorization-policies-based-handler-registration"></a>
 
-### <a name="handler-registration"></a>Регистрация обработчика
+### <a name="handler-registration"></a>Регистрация обработчиков
 
-Обработчики регистрируются в коллекции служб во время настройки. Пример:
+Обработчики регистрируются в коллекции служб во время конфигурации. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,62-63,66)]
 
-Предыдущий код регистрирует `MinimumAgeHandler` как одноэлементный, вызывая `services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();`. Обработчики можно регистрировать с помощью любого встроенного [времени существования службы](xref:fundamentals/dependency-injection#service-lifetimes).
+Предыдущий код `MinimumAgeHandler` регистрируется как синглтон, `services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();`ссылаясь на . Обработчики могут быть зарегистрированы с помощью любого из встроенных [сроков службы.](xref:fundamentals/dependency-injection#service-lifetimes)
 
-## <a name="what-should-a-handler-return"></a>Что должен возвращать обработчик?
+## <a name="what-should-a-handler-return"></a>Что должен вернуть обработчик?
 
-Обратите внимание, что метод `Handle` в [примере обработчика](#security-authorization-handler-example) не возвращает значения. Как отображается состояние «успешно» или «сбой»?
+Обратите внимание, что метод в `Handle` [примере обработчика](#security-authorization-handler-example) не возвращает значения. Как указывается статус успеха или неудачи?
 
-* Обработчик указывает на успешное выполнение путем вызова `context.Succeed(IAuthorizationRequirement requirement)`, передавая требование, которое прошло проверку.
+* Обработчик указывает `context.Succeed(IAuthorizationRequirement requirement)`на успех, вызывая, передавая требование, которое было успешно проверено.
 
-* Обработчику обычно не требуется обработка ошибок, так как другие обработчики для такого же требования могут быть выполнены удачно.
+* Обработчику не нужно обрабатывать сбои в целом, так как другие обработчики для того же требования могут преуспеть.
 
-* Чтобы гарантировать сбой, даже если другие обработчики требований выполняются успешно, вызовите `context.Fail`.
+* Чтобы гарантировать сбой, даже если другие обработчики требований преуспевают, позвоните. `context.Fail`
 
-Если обработчик вызывает `context.Succeed` или `context.Fail`, все остальные обработчики все еще вызываются. Это позволяет создавать побочные эффекты, например ведение журнала, которое выполняется, даже если другой обработчик прошел проверку или не прошел требование. Если задано значение `false`, свойство [инвокехандлерсафтерфаилуре](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) (доступно в ASP.NET Core 1,1 и более поздних версиях) сокращено при выполнении обработчиков при вызове `context.Fail`. `InvokeHandlersAfterFailure` значение по умолчанию равно `true`, в этом случае вызываются все обработчики.
+Если обработчик вызывает `context.Succeed` или `context.Fail`все остальные обработчики по-прежнему вызываются. Это позволяет требованиям создавать побочные эффекты, такие как журналирование, что происходит, даже если другой обработчик успешно проверил или не выполнил требование. При наборе `false`в , [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) собственности (доступно в ASP.NET Core 1.1 и `context.Fail` более поздней) короткого замыкания исполнения обработчиков, когда называется. `InvokeHandlersAfterFailure`по умолчанию, `true`и в этом случае все обработчики называются.
 
 > [!NOTE]
-> Обработчики авторизации вызываются даже в случае сбоя проверки подлинности.
+> Обработчики авторизации вызываются даже при сбой аутентификации.
 
 <a name="security-authorization-policies-based-multiple-handlers"></a>
 
-## <a name="why-would-i-want-multiple-handlers-for-a-requirement"></a>Зачем требуется несколько обработчиков для требования?
+## <a name="why-would-i-want-multiple-handlers-for-a-requirement"></a>Зачем мне нужны несколько обработчиков для требования?
 
-В случаях, когда требуется, чтобы оценка была в **или** на основе, реализуйте несколько обработчиков для одного требования. Например, в корпорации Майкрософт есть дверцы, которые открываются только с карточками ключей. Если вы оставите свой ключ дома, секретарь выводит временную наклейку и открывает дверцу. В этом сценарии у вас будет одно требование, *буилдинжентри*, но несколько обработчиков, каждый из которых проанализировать одно требование.
+В тех случаях, когда вы хотите, чтобы оценка была на **или** основе, реализуем несколько обработчиков для одного требования. Например, у корпорации Майкрософт есть двери, которые открываются только с помощью ключевых карт. Если вы оставите ключ-карту дома, администратор напечатывает временную наклейку и откроет дверь для вас. В этом сценарии у вас будет одно требование, *BuildingEntry,* но несколько обработчиков, каждый из которых изучает одно требование.
 
 *BuildingEntryRequirement.cs*
 
@@ -420,23 +420,33 @@ public void ConfigureServices(IServiceCollection services)
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/TemporaryStickerHandler.cs?name=snippet_TemporaryStickerHandlerClass)]
 
-Убедитесь, что оба обработчика [зарегистрированы](xref:security/authorization/policies#security-authorization-policies-based-handler-registration). Если какой-либо из обработчиков будет выполнен после того, как политика вычислит `BuildingEntryRequirement`, оценка политики будет выполнена.
+Убедитесь, что оба обработчика [зарегистрированы.](xref:security/authorization/policies#security-authorization-policies-based-handler-registration) Если какой-либо обработчик `BuildingEntryRequirement`преуспевает, когда политика оценивает, оценка политики удается.
 
-## <a name="using-a-func-to-fulfill-a-policy"></a>Использование функции func для выполнения политики
+## <a name="using-a-func-to-fulfill-a-policy"></a>Использование func для выполнения политики
 
-Могут возникнуть ситуации, в которых выполнение политики может быть простым для выражения в коде. При настройке политики с помощью построителя `RequireAssertion` политики можно указать `Func<AuthorizationHandlerContext, bool>`.
+Возможны ситуации, в которых выполнение политики просто выразить в коде. При настройке политики `Func<AuthorizationHandlerContext, bool>` с программой-строителем `RequireAssertion` можно предоставить его.
 
-Например, Предыдущая `BadgeEntryHandler` может быть переписана следующим образом:
+Например, предыдущий `BadgeEntryHandler` можно было бы переписать следующим образом:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=50-51,55-61)]
 
 ## <a name="accessing-mvc-request-context-in-handlers"></a>Доступ к контексту запроса MVC в обработчиках
 
-Метод `HandleRequirementAsync`, реализуемый в обработчике авторизации, имеет два параметра: `AuthorizationHandlerContext` и `TRequirement`, которые вы обрабатываете. Платформы, такие как MVC или Жаббр, могут добавлять любой объект в свойство `Resource` `AuthorizationHandlerContext` для передачи дополнительной информации.
+Метод, `HandleRequirementAsync` который вы реализуете в обработчике авторизации, имеет два параметра: an `AuthorizationHandlerContext` и вы обрабатываете. `TRequirement` Такие рамки, как MVC или SignalR, могут `Resource` добавлять `AuthorizationHandlerContext` любой объект в свойство для передачи дополнительной информации.
 
-Например, MVC передает экземпляр [аусоризатионфилтерконтекст](/dotnet/api/?term=AuthorizationFilterContext) в свойство `Resource`. Это свойство предоставляет доступ к `HttpContext`, `RouteData`и всем остальным, предоставляемым MVC и Razor Pages.
+При использовании конечных точек авторизация обычно обрабатывается программой Authorization Middleware. В этом случае `Resource` свойство является <xref:Microsoft.AspNetCore.Http.Endpoint>экземпляром . Конечная точка может быть использована для зондирования базового ресурса, к которому вы перенаправляетесь. Пример:
 
-Использование свойства `Resource` зависит от платформы. Использование сведений в свойстве `Resource` ограничивает политики авторизации определенными платформами. Необходимо привести свойство `Resource` с помощью ключевого слова `is`, а затем подтвердить успешное приведение, чтобы гарантировать, что код не завершится сбоем с `InvalidCastException` при запуске на других платформах:
+```csharp
+if (context.Resource is Endpoint endpoint)
+{
+   var actionDescriptor = endpoint.Metadata.GetMetadata<ControllerActionDescriptor>();
+   ...
+}
+```
+
+При традиционной реутриации или при разрешении в качестве части фильтра авторизации MVC значение `Resource` является экземпляром. <xref:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext> Это свойство `HttpContext`предоставляет `RouteData`доступ к , и все остальное, предоставляемые MVC и Razor Pages.
+
+Использование `Resource` свойства является рамочной. Использование информации `Resource` в свойстве ограничивает ваши политики авторизации определенными инфраструктурами. Вы должны `Resource` бросить свойство с помощью ключевого `is` слова, а затем подтвердить, `InvalidCastException` что литые удалось обеспечить ваш код не сбой с при запуске на других средах:
 
 ```csharp
 // Requires the following import:
