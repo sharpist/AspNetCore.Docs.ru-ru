@@ -4,14 +4,14 @@ author: ardalis
 description: Сведения о форматировании данных отклика в веб-API ASP.NET Core.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 12/05/2019
+ms.date: 04/17/2020
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 908016720ade67a02ebe30d1dcb7929ad7592270
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 392e4905126ffb6801cc55055f1d511f5fa99dd1
+ms.sourcegitcommit: 3d07e21868dafc503530ecae2cfa18a7490b58a6
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653044"
+ms.lasthandoff: 04/18/2020
+ms.locfileid: "81642713"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Форматирование данных отклика в веб-API ASP.NET Core
 
@@ -25,13 +25,13 @@ ms.locfileid: "78653044"
 
 Некоторые типы результатов действий характерны для определенного формата, например <xref:Microsoft.AspNetCore.Mvc.JsonResult> и <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Действия могут возвращать результаты в определенном формате независимо от настроек клиента. Например, при возврате `JsonResult` возвращаются данные в формате JSON. При возврате `ContentResult` или строки возвращаются строковые данные в формате обычного текста.
 
-Действие не должно возвращать данные конкретного типа. ASP.NET Core поддерживает любое возвращаемое значение объекта.  Результаты из действий, возвращающих объекты, которые не являются типами <xref:Microsoft.AspNetCore.Mvc.IActionResult>, сериализуются с помощью соответствующей реализации <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>. Дополнительные сведения см. в разделе <xref:web-api/action-return-types>.
+Действие не должно возвращать данные конкретного типа. ASP.NET Core поддерживает любое возвращаемое значение объекта.  Результаты из действий, возвращающих объекты, которые не являются типами <xref:Microsoft.AspNetCore.Mvc.IActionResult>, сериализуются с помощью соответствующей реализации <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>. Для получения дополнительной информации см. <xref:web-api/action-return-types>.
 
 Встроенный вспомогательный метод <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> возвращает данные в формате JSON: [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_get)]
 
 Скачанный пример возвращает список авторов. При использовании средств разработчика в браузере (F12) или [Postman](https://www.getpostman.com/tools) с предыдущим кодом:
 
-* Отобразится заголовок ответа, содержащий **Content-Type:** `application/json; charset=utf-8`.
+* Отобразится заголовок ответа, содержащий **content-type:** `application/json; charset=utf-8`.
 * Отобразятся заголовки запросов. Например, заголовок `Accept`. Приведенный выше код игнорирует заголовок `Accept`.
 
 Чтобы возвратить данные в формате обычного текста, используйте <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content> и вспомогательный метод <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content>:
@@ -67,7 +67,7 @@ ms.locfileid: "78653044"
 
 В приведенном выше коде запрос допустимого псевдонима автора получает ответ `200 OK` с данными об авторе. Запрос недопустимого псевдонима возвращает ответ `204 No Content`.
 
-### <a name="the-accept-header"></a>Заголовок Accept.
+### <a name="the-accept-header"></a>Заголовок Accept
 
 *Согласование* содержимого выполняется только при наличии в запросе заголовка `Accept`. Если запрос содержит заголовок Accept, ASP.NET Core:
 
@@ -128,10 +128,10 @@ ms.locfileid: "78653044"
 services.AddControllers().AddJsonOptions(options =>
 {
     // Use the default property (Pascal) casing.
-    options.SerializerOptions.PropertyNamingPolicy = null;
+    options.JsonSerializerOptions.PropertyNamingPolicy = null;
 
     // Configure a custom converter.
-    options.SerializerOptions.Converters.Add(new MyCustomJsonConverter());
+    options.JsonSerializerOptions.Converters.Add(new MyCustomJsonConverter());
 });
 ```
 
@@ -149,7 +149,7 @@ public IActionResult Get()
 
 ### <a name="add-newtonsoftjson-based-json-format-support"></a>Добавление поддержки формата JSON на основе Newtonsoft.Json
 
-До выпуска версии ASP.NET Core 3.0 по умолчанию использовались форматировщики JSON, реализованные с помощью пакета `Newtonsoft.Json`. В ASP.NET Core 3.0 или более поздней версии форматировщики JSON по умолчанию основаны на `System.Text.Json`. Чтобы добавить поддержку форматировщиков и функций на основе `Newtonsoft.Json`, установите пакет NuGet [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) и настройте его в `Startup.ConfigureServices`.
+До выпуска версии ASP.NET Core 3.0 по умолчанию использовались форматировщики JSON, реализованные с помощью пакета `Newtonsoft.Json`. В ASP.NET Core 3.0 или более поздней версии форматировщики JSON по умолчанию основаны на `System.Text.Json`. Поддержка `Newtonsoft.Json` на основе многоликов и функций доступна путем установки [пакета Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet и настройки его в `Startup.ConfigureServices`.
 
 [!code-csharp[](./formatting/3.0sample/StartupNewtonsoftJson.cs?name=snippet)]
 
@@ -170,7 +170,7 @@ services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
 
     // Configure a custom converter
-    options.SerializerOptions.Converters.Add(new MyCustomJsonConverter());
+    options.SerializerSettings.Converters.Add(new MyCustomJsonConverter());
 });
 ```
 
@@ -206,11 +206,11 @@ public IActionResult Get()
 
 ### <a name="specify-a-format"></a>Указание формата
 
-Чтобы ограничить форматы ответа, примените фильтр [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute). Как и большинство [фильтров](xref:mvc/controllers/filters), `[Produces]` можно применить к действию, контроллеру или глобальной области.
+Чтобы ограничить форматы ответа, [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) примените фильтр. Как и большинство `[Produces]` [фильтров,](xref:mvc/controllers/filters)можно применять в действии, контроллере или глобальном объеме:
 
 [!code-csharp[](./formatting/3.0sample/Controllers/WeatherForecastController.cs?name=snippet)]
 
-Предыдущий фильтр [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute):
+Предыдущий [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) фильтр:
 
 * Заставляет все действия в контроллере возвращать ответы в формате JSON.
 * Если другие форматировщики настроены и клиент указывает другой формат, возвращается JSON.
@@ -246,7 +246,7 @@ public IActionResult Get()
 
 [!code-csharp[](./formatting/sample/Controllers/ProductsController.cs?name=snippet)]
 
-Этот маршрут позволяет задать запрошенный формат в качестве дополнительного расширения файла. Атрибут [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) проверяет наличие значения формата в `RouteData` и сопоставляет этот формат ответа с соответствующим форматировщиком при создании ответа.
+Этот маршрут позволяет задать запрошенный формат в качестве дополнительного расширения файла. Атрибут [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) проверяет наличие значения формата `RouteData` в и отображает формат ответа на соответствующий номер при создании ответа.
 
 |           Маршрут        |             Formatter              |
 |------------------------|------------------------------------|

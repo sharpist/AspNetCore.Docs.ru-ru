@@ -4,20 +4,20 @@ author: rick-anderson
 description: Узнайте, как CORS как стандарт для разрешения или отклонения запросов на кросс-происхождение в приложении ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/23/2020
+ms.date: 04/17/2020
 uid: security/cors
-ms.openlocfilehash: e7731fd967c206679ac93209fdb84f40367bea37
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 56a339d9018f619af38aecc6f4c2ff40c3c43d2f
+ms.sourcegitcommit: 3d07e21868dafc503530ecae2cfa18a7490b58a6
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440913"
+ms.lasthandoff: 04/18/2020
+ms.locfileid: "81642697"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Включить запросы cross-Origin (CORS) в ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[Рик Андерсон](https://twitter.com/RickAndMSFT) и [Кирк Ларкин](https://twitter.com/serpent5)
+Авторы: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson) и [Кирк Ларкин](https://twitter.com/serpent5) (Kirk Larkin)
 
 В этой статье показано, как включить CORS в ASP.NET приложение Core.
 
@@ -30,7 +30,7 @@ ms.locfileid: "81440913"
 * Позволяет серверу явно разрешать некоторые запросы кросс-происхождения, отклоняя другие.
 * Безопаснее и гибче, чем более ранние методы, такие как [JSONP](/dotnet/framework/wcf/samples/jsonp).
 
-[Просмотр или загрузка образца кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/Cors/WebAPI) [(как скачать)](xref:index#how-to-download-a-sample)
+[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/Cors/WebAPI) ([как скачивать](xref:index#how-to-download-a-sample))
 
 ## <a name="same-origin"></a>То же происхождение
 
@@ -71,7 +71,7 @@ CORS Middleware обрабатывает запросы по перекрест�
 Предыдущий код:
 
 * Устанавливает имя политики на `_myAllowSpecificOrigins`. Название политики является произвольным.
-* Вызывает <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> метод расширения и определяет `_myAllowSpecificOrigins` политику CORS. `UseCors`добавляет промежуточное программное обеспечение CORS.
+* Вызывает <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> метод расширения и определяет `_myAllowSpecificOrigins` политику CORS. `UseCors`добавляет промежуточное программное обеспечение CORS. Вызов `UseCors` должен быть размещен `UseRouting`после, `UseAuthorization`но до . Для получения дополнительной [Middleware order](xref:fundamentals/middleware/index#middleware-order)информации см.
 * Звонки <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> с [выражением лямбды](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Ламбда берет <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> предмет. [Параметры конфигурации,](#cors-policy-options)такие как `WithOrigins`, описаны позже в этой статье.
 * Включает `_myAllowSpecificOrigins` политику CORS для всех конечных точек контроллера. [См. конечную точку,](#ecors) чтобы применить политику CORS к определенным конечным точкам.
 
@@ -627,7 +627,7 @@ C:\Program Files\Git\mingw64\bin\
 * Позволяет серверу явно разрешать некоторые запросы кросс-происхождения, отклоняя другие.
 * Безопаснее и гибче, чем более ранние методы, такие как [JSONP](/dotnet/framework/wcf/samples/jsonp).
 
-[Просмотр или загрузка образца кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/sample) [(как скачать)](xref:index#how-to-download-a-sample)
+[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/sample) ([как скачивать](xref:index#how-to-download-a-sample))
 
 ## <a name="same-origin"></a>То же происхождение
 
