@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/14/2019
 uid: security/authorization/iauthorizationpolicyprovider
-ms.openlocfilehash: 2a8b189cc9f17529a962a1f9642c7bb199d5781b
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 2c67e25ff73bc8c3a5f3af4730a509b2385fc1cf
+ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440926"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81661773"
 ---
 # <a name="custom-authorization-policy-providers-using-iauthorizationpolicyprovider-in-aspnet-core"></a>Поставщики политики пользовательских авторизаций, использующие IAuthorizationPolicyProvider в ASP.NET Core 
 
@@ -25,7 +25,7 @@ ms.locfileid: "81440926"
 * Использование широкого спектра политик (например, для различных номеров или возрастов), поэтому нет смысла `AuthorizationOptions.AddPolicy` добавлять каждую индивидуальную политику авторизации с вызовом.
 * Создание политик в режиме выполнения на основе информации во внешнем источнике данных (например, в базе данных) или динамические определения требований к авторизации с помощью другого механизма.
 
-[Просмотр или загрузка примера кода](https://github.com/dotnet/AspNetCore/tree/release/2.2/src/Security/samples/CustomPolicyProvider) из [репозитория AspNetCore GitHub.](https://github.com/dotnet/AspNetCore) Загрузите файл репозивора dotnet/AspNetCore. Отстегните файл. Перейдите к папке проекта *src/Security/samples/CustomPolicyProvider.*
+[Просмотр или загрузка примера кода](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider) из [репозитория AspNetCore GitHub.](https://github.com/dotnet/AspNetCore) Загрузите файл репозивора dotnet/AspNetCore. Отстегните файл. Перейдите к папке проекта *src/Security/samples/CustomPolicyProvider.*
 
 ## <a name="customize-policy-retrieval"></a>Настройка поиска политики
 
@@ -183,4 +183,4 @@ public Task<AuthorizationPolicy> GetFallbackPolicyAsync() =>
 services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
 ```
 
-Полный `IAuthorizationPolicyProvider` пользовательский образец доступен в [репозитории dotnet/aspnetcore GitHub.](https://github.com/dotnet/aspnetcore/tree/ea555458dc61e04314598c25b3ab8c56362a5123/src/Security/samples/CustomPolicyProvider)
+Полный `IAuthorizationPolicyProvider` пользовательский образец доступен в [репозитории dotnet/aspnetcore GitHub.](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider)
