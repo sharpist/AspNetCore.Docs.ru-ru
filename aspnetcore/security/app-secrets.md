@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 4/20/2020
 uid: security/app-secrets
-ms.openlocfilehash: 9d4e59c003afc253971ee64fce523c7188d3582a
-ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
+ms.openlocfilehash: c62c5e59ad0a72506fb72bda82aa821a4f1719c8
+ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81661802"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81791590"
 ---
 # <a name="safe-storage-of-app-secrets-in-development-in-aspnet-core"></a>Безопасное хранение секретов приложений в разработке в ASP.NET Core
 
@@ -75,7 +75,7 @@ dotnet user-secrets init
 
 Предыдущая команда `UserSecretsId` добавляет элемент `PropertyGroup` в файл *.csproj.* По умолчанию внутренний `UserSecretsId` текст является GUID. Внутренний текст является произвольным, но уникальным для проекта.
 
-[!code-xml[](app-secrets/samples/2.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
+[!code-xml[](app-secrets/samples/3.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
 
 В Visual Studio нажмите правой кнопкой мыши на проект в Solution Explorer и выберите **«Управляйте секретами пользователя»** из контекстного меню. Этот жест `UserSecretsId` добавляет элемент, населенный GUID, в файл *.csproj.*
 
@@ -142,18 +142,17 @@ Visual Studio's **Manage User Secrets** жест открывает *secrets.jso
 
 [API ASP.NET Core Configuration](xref:fundamentals/configuration/index) предоставляет доступ к секретам секретного менеджера.
 
-В ASP.NET Core 2.0 или позже, источник конфигурации пользовательских <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> секретов автоматически добавляется в режиме разработки, когда проект требует инициализировать новый экземпляр узла с предварительно настроенными по умолчанию. `CreateDefaultBuilder`звонки, <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName> когда <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development>это:
+Источник конфигурации пользовательских секретов автоматически добавляется <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> в режиме разработки, когда проект требует инициализировать новый экземпляр узла с преднастроенными по умолчанию. `CreateDefaultBuilder`звонки, <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> когда <xref:Microsoft.Extensions.Hosting.EnvironmentName.Development>это:
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Program.cs?name=snippet_CreateHostBuilder&highlight=2)]
 
-Когда `CreateDefaultBuilder` не вызывается, добавить источник конфигурации <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> пользовательских `Startup` секретов явно, позвонив в конструкторе. Звоните `AddUserSecrets` только при запуске приложения в среде разработки, как показано в следующем примере:
+Когда `CreateDefaultBuilder` не вызывается, добавить источник конфигурации <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A>пользовательских секретов явно, позвонив. Звоните `AddUserSecrets` только при запуске приложения в среде разработки, как показано в следующем примере:
 
-[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup2.cs?name=snippet_StartupConstructor&highlight=12)]
+[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Program2.cs?name=snippet_Host&highlight=6-9)]
 
 Секреты пользователя могут быть `Configuration` получены через API:
 
-[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
-
+[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
 
 ## <a name="map-secrets-to-a-poco"></a>Карта секреты POCO
 
@@ -163,17 +162,17 @@ Visual Studio's **Manage User Secrets** жест открывает *secrets.jso
 
 Чтобы сопоставить предыдущие секреты с `Configuration` POCO, используйте функцию [связывания графика объекта](xref:fundamentals/configuration/index#bind-to-an-object-graph) API. Следующий код связывается `MovieSettings` с пользовательским POCO и получает доступ к значению `ServiceApiKey` свойства:
 
-[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
+[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
 
 `Movies:ConnectionString` Секреты `Movies:ServiceApiKey` и секреты отображаются в соответствующих свойствах в: `MovieSettings`
 
-[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
+[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
 
 ## <a name="string-replacement-with-secrets"></a>Замена строки секретами
 
 Хранение паролей в простом тексте является небезопасным. Например, строка подключения к базе данных, хранящаяся в *appsettings.json,* может включать пароль для указанного пользователя:
 
-[!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
+[!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
 Более безопасный подход заключается в хранении пароля в качестве секрета. Пример:
 
@@ -183,11 +182,11 @@ dotnet user-secrets set "DbPassword" "pass123"
 
 Удалите пару `Password` значения ключа из строки соединения в *appsettings.json*. Пример:
 
-[!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings.json?highlight=3)]
+[!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
 
 Значение секрета может быть установлено <xref:System.Data.SqlClient.SqlConnectionStringBuilder> на <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A> свойстве объекта для завершения строки соединения:
 
-[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=14-17)]
+[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=14-17)]
 
 ## <a name="list-the-secrets"></a>Перечислите секреты
 
@@ -388,15 +387,13 @@ Visual Studio's **Manage User Secrets** жест открывает *secrets.jso
 
 Если ваш проект нацелен на платформу .NET, установите пакет [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet.
 
-
 В ASP.NET Core 2.0 или позже, источник конфигурации пользовательских <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> секретов автоматически добавляется в режиме разработки, когда проект требует инициализировать новый экземпляр узла с предварительно настроенными по умолчанию. `CreateDefaultBuilder`звонки, <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName> когда <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development>это:
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Program.cs?name=snippet_CreateWebHostBuilder&highlight=2)]
 
-
 Когда `CreateDefaultBuilder` не вызывается, добавить источник конфигурации <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> пользовательских `Startup` секретов явно, позвонив в конструкторе. Звоните `AddUserSecrets` только при запуске приложения в среде разработки, как показано в следующем примере:
 
-[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=12)]
+[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup3.cs?name=snippet_StartupConstructor&highlight=12)]
 
 Секреты пользователя могут быть `Configuration` получены через API:
 
