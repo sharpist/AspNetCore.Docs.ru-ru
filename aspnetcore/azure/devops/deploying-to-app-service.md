@@ -6,12 +6,12 @@ ms.author: casoper
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: df41f296e9c4e1eff6e31d45b29ec30ee1e20cf4
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: d7ee3e42d320d35c2aaff6e097203c45289ec5b1
+ms.sourcegitcommit: fbdb8b9ab5a52656384b117ff6e7c92ae070813c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78646558"
+ms.lasthandoff: 04/13/2020
+ms.locfileid: "81228131"
 ---
 # <a name="deploy-an-app-to-app-service"></a>Развертывание приложения в службу приложений
 
@@ -85,7 +85,7 @@ ms.locfileid: "78646558"
 
     2\. Создайте группу ресурсов. Группы ресурсов предоставляют средства для агрегирования ресурсов Azure, которыми можно управлять как группой.
 
-    ```azure-cli
+    ```azurecli
     az group create --location centralus --name AzureTutorial
     ```
 
@@ -93,25 +93,25 @@ ms.locfileid: "78646558"
 
     В. Создайте план службы приложений уровня S1. План службы приложений — это группа веб-приложений, использующих одну и ту же ценовую категорию. Уровень S1 не является бесплатным, но он необходим для использования функции промежуточных слотов.
 
-    ```azure-cli
+    ```azurecli
     az appservice plan create --name $webappname --resource-group AzureTutorial --sku S1
     ```
 
     Г. Создайте ресурс веб-приложения с помощью плана службы приложений в той же группе ресурсов.
 
-    ```azure-cli
+    ```azurecli
     az webapp create --name $webappname --resource-group AzureTutorial --plan $webappname
     ```
 
     Д. Задайте учетные данные развертывания. Эти учетные данные развертывания применяются ко всем веб-приложениям в вашей подписке. Не используйте в имени пользователя специальные символы.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment user set --user-name REPLACE_WITH_USER_NAME --password REPLACE_WITH_PASSWORD
     ```
 
     f. Настройте веб-приложение на прием развертываний из локального репозитория Git и отобразите *URL-адрес развертывания Git*. **Запишите этот URL-адрес для дальнейшего использования**.
 
-    ```azure-cli
+    ```azurecli
     echo Git deployment URL: $(az webapp deployment source config-local-git --name $webappname --resource-group AzureTutorial --query url --output tsv)
     ```
 
@@ -170,13 +170,13 @@ Visual Studio выполнит сборку и развертывание при
 
     1\. Создайте слот развертывания с именем *staging*.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment slot create --name $webappname --resource-group AzureTutorial --slot staging
     ```
 
     2\. Настройте промежуточный слот для использования развертывания из локального репозитория Git и получите URL-адрес развертывания **staging**. **Запишите этот URL-адрес для дальнейшего использования**.
 
-    ```azure-cli
+    ```azurecli
     echo Git deployment URL for staging: $(az webapp deployment source config-local-git --name $webappname --resource-group AzureTutorial --slot staging --query url --output tsv)
     ```
 
@@ -216,7 +216,7 @@ Visual Studio выполнит сборку и развертывание при
 
 7. В Cloud Shell замените проверенный и испытанный промежуточный слот на рабочий.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment slot swap --name $webappname --resource-group AzureTutorial --slot staging
     ```
 

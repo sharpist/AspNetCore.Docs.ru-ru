@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/17/2020
 uid: fundamentals/logging/index
-ms.openlocfilehash: a3c63b738d3eaa51249475b88d78572038348a7a
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: b897d0d775da62a11f01a64f39b47b6c5abebc8b
+ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440744"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81791565"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Ведение журнала в .NET Core и ASP.NET Core
 
@@ -164,6 +164,23 @@ public class Program
 [!code-csharp[](index/samples/3.x/TodoApiSample/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
 
 Выделенный выше код — это функция `Func`, которая выполняется, когда контейнеру внедрения зависимостей впервые требуется создать экземпляр `MyService`. Таким образом можно обращаться к любым зарегистрированным службам.
+
+### <a name="create-logs-in-blazor-webassembly"></a>Создание журналов в Blazor WebAssembly
+
+Настройте ведение журналов в приложениях Blazor WebAssembly с помощью свойства `WebAssemblyHostBuilder.Logging` в `Program.Main`:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+
+...
+
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+builder.Logging.SetMinimumLevel(LogLevel.Debug);
+builder.Logging.AddProvider(new CustomLoggingProvider());
+```
+
+Свойство `Logging` имеет тип <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, поэтому все методы расширения, доступные в <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, также доступны в `Logging`.
 
 ### <a name="no-asynchronous-logger-methods"></a>Асинхронные методы ведения журналов не выполняются
 

@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: razor-pages/razor-pages-conventions
-ms.openlocfilehash: f45e327051aba54d1cab67148eb540fb1a5cc149
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 6124554d5f9859179edfb5c545cf0b082369c0c9
+ms.sourcegitcommit: 3d07e21868dafc503530ecae2cfa18a7490b58a6
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78651112"
+ms.lasthandoff: 04/18/2020
+ms.locfileid: "81642737"
 ---
 # <a name="razor-pages-route-and-app-conventions-in-aspnet-core"></a>Соглашения для маршрутов и приложений Razor Pages в ASP.NET Core
 
@@ -24,7 +24,7 @@ ms.locfileid: "78651112"
 
 Чтобы указать маршрут страницы, добавить сегменты маршрута или добавить параметры в маршрут, используйте директиву `@page` страницы. Дополнительные сведения см. в разделе [Пользовательские маршруты](xref:razor-pages/index#custom-routes).
 
-Существуют зарезервированные слова, которые нельзя использовать в качестве сегментов маршрутов или имен параметров. Дополнительные сведения см. в разделе [Маршрутизация: зарезервированные имена маршрутизации](xref:fundamentals/routing#reserved-routing-names).
+Существуют зарезервированные слова, которые нельзя использовать в качестве сегментов маршрутов или имен параметров. Дополнительные сведения см. в разделе [Маршрутизация: зарезервированные имена маршрутизации](xref:mvc/controllers/routing#reserved-routing-names).
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([как скачивать](xref:index#how-to-download-a-sample))
 
@@ -192,18 +192,11 @@ public void ConfigureServices(IServiceCollection services)
                     new SlugifyParameterTransformer()));
         });
 }
-
-public class SlugifyParameterTransformer : IOutboundParameterTransformer
-{
-    public string TransformOutbound(object value)
-    {
-        if (value == null) { return null; }
-
-        // Slugify value
-        return Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2").ToLower();
-    }
-}
 ```
+
+[!code-csharp[](~/mvc/controllers/routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet2)]
+
+[!INCLUDE[](~/includes/regex.md)]
 
 ## <a name="configure-a-page-route"></a>Настройка маршрута страницы
 

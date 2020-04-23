@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/1/2020
 uid: fundamentals/routing
-ms.openlocfilehash: 5742ac6879ce46e01247ddd2f8bfe3e3b8a2a02a
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 0fc89ccf15c14c67f284a7084a21159af300a195
+ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80751147"
+ms.lasthandoff: 04/14/2020
+ms.locfileid: "81277227"
 ---
 # <a name="routing-in-aspnet-core"></a>Маршрутизация в ASP.NET Core
 
@@ -454,6 +454,8 @@ ms.locfileid: "80751147"
 
 Сложные сегменты обрабатываются путем [нежадного](#greedy) сопоставления разделителей литералов справа налево. Например, `[Route("/a{b}c{d}")]` является сложным сегментом.
 Сложные сегменты работают определенным способом, который должен быть понятен для их успешного использования. В примере в этом разделе показано, почему сложные сегменты действительно хорошо работают только в том случае, если текст разделителя отсутствует в значениях параметров. Для более сложных случаев требуется использовать [регулярное выражение](/dotnet/standard/base-types/regular-expressions), а затем вручную извлечь значения.
+
+[!INCLUDE[](~/includes/regex.md)]
 
 Это сводка действий, выполняемых маршрутизацией с использованием шаблона `/a{b}c{d}` и URL-пути `/abcd`. `|` используется для визуализации принципа работы алгоритма.
 

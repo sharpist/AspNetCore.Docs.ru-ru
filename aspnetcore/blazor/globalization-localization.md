@@ -5,17 +5,17 @@ description: Узнайте, как сделать компоненты Razor д
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 04/14/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: aba62fa7b6285c8ba884652694f1ea3e3a66ed18
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 1b0db66b23c0caffc6b7c4e4af723c020609612a
+ms.sourcegitcommit: d5d45d84fe488427d418de770000f7df44a08370
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78644896"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81539665"
 ---
 # <a name="aspnet-core-opno-locblazor-globalization-and-localization"></a>Глобализация и локализация в ASP.NET Core Blazor
 
@@ -60,6 +60,18 @@ ms.locfileid: "78644896"
 
 ## <a name="localization"></a>Локализация
 
+### <a name="opno-locblazor-webassembly"></a>Blazor WebAssembly
+
+Приложения Blazor WebAssembly задают язык и региональные параметры с помощью [предпочитаемого языка пользователя](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages).
+
+Чтобы явно настроить язык и региональные параметры, задайте `CultureInfo.DefaultThreadCurrentCulture` и `CultureInfo.DefaultThreadCurrentUICulture` в `Program.Main`.
+
+По умолчанию конфигурация компоновщика Blazor для приложений Blazor WebAssembly исключает сведения об интернационализации, кроме явно запрошенных языковых стандартов. Дополнительные сведения и рекомендации по управлению поведением компоновщика см. в разделе <xref:host-and-deploy/blazor/configure-linker#configure-the-linker-for-internationalization>.
+
+Хотя язык и региональные параметры, выбираемые Blazor по умолчанию, могут быть достаточными для большинства пользователей, рекомендуется предоставить пользователям возможность указать предпочитаемый языковой стандарт. Пример приложения Blazor WebAssembly с выбором языка и региональных параметров см. в описании примера приложения локализации [LocSample](https://github.com/pranavkm/LocSample).
+
+### <a name="opno-locblazor-server"></a>Сервер Blazor
+
 Приложения Blazor Server локализуются с помощью [промежуточного слоя локализации](xref:fundamentals/localization#localization-middleware). ПО промежуточного слоя выбирает соответствующие языки и региональные параметры для пользователей, запрашивающих ресурсы из приложения.
 
 Язык и региональные параметры можно задать с помощью одного из следующих подходов.
@@ -69,11 +81,7 @@ ms.locfileid: "78644896"
 
 Дополнительные сведения и примеры см. в разделе <xref:fundamentals/localization>.
 
-### <a name="configure-the-linker-for-internationalization-opno-locblazor-webassembly"></a>Настройка компоновщика для интернационализации (Blazor WebAssembly)
-
-По умолчанию конфигурация компоновщика Blazor для приложений Blazor WebAssembly исключает сведения об интернационализации, кроме явно запрошенных языковых стандартов. Дополнительные сведения и рекомендации по управлению поведением компоновщика см. в разделе <xref:host-and-deploy/blazor/configure-linker#configure-the-linker-for-internationalization>.
-
-### <a name="cookies"></a>Файлы cookie
+#### <a name="cookies"></a>Файлы cookie
 
 Файл cookie локализации может запоминать язык и региональные параметры пользователя. Файл cookie создается методом `OnGet` на странице host приложения (*Pages/Host.cshtml.cs*). ПО промежуточного слоя локализации считывает файл cookie при последующих запросах, чтобы задать язык и региональные параметры пользователя. 
 
@@ -81,7 +89,7 @@ ms.locfileid: "78644896"
 
 Если язык и региональные параметры сохраняются в файле cookie с локализацией, то можно использовать любой метод для назначения языка и региональных параметров. Если у приложения уже есть установленная схема локализации для ASP.NET Core на стороне сервера, продолжайте использовать существующую инфраструктуру локализации приложения и задавайте файл cookie языка и региональных параметров для локализации в схеме приложения.
 
-В следующем примере показано, как задать текущий язык и региональные параметры в файле cookie, который можно прочитать в ПО промежуточного слоя локализации. Создайте файл *Pages/Host.cshtml.cs* со следующим содержимым в приложении Blazor Server:
+В следующем примере показано, как задать текущий язык и региональные параметры в файле cookie, который можно прочитать в ПО промежуточного слоя локализации. Создайте файл *Pages/_Host.cshtml.cs* со следующим содержимым в приложении Blazor Server:
 
 ```csharp
 public class HostModel : PageModel
@@ -107,9 +115,9 @@ public class HostModel : PageModel
 1. ПО промежуточного слоя для локализации считывает файл cookie и назначает язык и региональные параметры.
 1. Сеанс Blazor Server начинается с нужными языком и региональными параметрами.
 
-### <a name="provide-ui-to-choose-the-culture"></a>Предоставление пользовательского интерфейса для выбора языка и региональных параметров
+#### <a name="provide-ui-to-choose-the-culture"></a>Предоставление пользовательского интерфейса для выбора языка и региональных параметров
 
-Чтобы предоставить пользовательский интерфейс, позволяющий пользователю выбрать язык и региональные параметры, рекомендуется *подход на основе перенаправления*. Процесс аналогичен тому, что происходит в веб-приложении, когда пользователь пытается получить доступ к защищенному ресурсу, &mdash; пользователь перенаправляется на страницу входа, а затем обратно к исходному ресурсу. 
+Чтобы предоставить пользовательский интерфейс, позволяющий пользователю выбрать язык и региональные параметры, рекомендуется *подход на основе перенаправления*. Процесс аналогичен тому, что происходит в веб-приложении, когда пользователь пытается получить доступ к защищенному ресурсу. Пользователь перенаправляется на страницу входа, а затем обратно к исходному ресурсу. 
 
 Приложение сохраняет выбранный язык и региональные параметры пользователя с помощью перенаправления к контроллеру. Контроллер устанавливает выбранный язык и региональные параметры пользователя в файл cookie и перенаправляет пользователя обратно в исходный URI.
 
@@ -154,7 +162,7 @@ public class CultureController : Controller
     private void OnSelected(ChangeEventArgs e)
     {
         var culture = (string)e.Value;
-        var uri = new Uri(NavigationManager.Uri())
+        var uri = new Uri(NavigationManager.Uri)
             .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
         var query = $"?culture={Uri.EscapeDataString(culture)}&" +
             $"redirectUri={Uri.EscapeDataString(uri)}";

@@ -5,17 +5,17 @@ description: Узнайте, как использовать методы жиз
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 04/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/lifecycle
-ms.openlocfilehash: 831f575afa6ce11d06c016d43ecd1bb59d09eab6
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: e7450ad57acc87500bb977aa8349c6ee009e3bf4
+ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218912"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81791456"
 ---
 # <a name="aspnet-core-opno-locblazor-lifecycle"></a>Жизненный цикл ASP.NET Core Blazor
 
@@ -162,7 +162,7 @@ protected override bool ShouldRender()
 
 Даже при переопределении `ShouldRender` компонент всегда проходит первоначальную отрисовку.
 
-## <a name="state-changes"></a>Изменения состояний
+## <a name="state-changes"></a>Изменения состояния
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> уведомляет компонент о том, что его состояние изменилось. В соответствующих случаях вызов `StateHasChanged` приводит к повторной отрисовке компонента.
 
@@ -213,7 +213,7 @@ protected override bool ShouldRender()
 
 ## <a name="stateful-reconnection-after-prerendering"></a>Повторное подключение с отслеживанием состояния после предварительной отрисовки
 
-В приложении Blazor Server, если `RenderMode` имеет значение `ServerPrerendered`, компонент изначально отрисовывается статически как часть страницы. После того как браузер установит соединение с сервером, компонент отрисовывается *снова* и становится интерактивным. Если метод жизненного цикла [OnInitialized{Async}](xref:blazor/lifecycle#component-initialization-methods) для инициализации компонента присутствует, он выполняется *дважды*:
+В приложении Blazor Server, если `RenderMode` имеет значение `ServerPrerendered`, компонент изначально отрисовывается статически как часть страницы. После того как браузер установит соединение с сервером, компонент отрисовывается *снова* и становится интерактивным. Если метод жизненного цикла [OnInitialized{Async}](#component-initialization-methods) для инициализации компонента присутствует, он выполняется *дважды*:
 
 * Когда компонент предварительно отрисовывается статически.
 * После установления соединения с сервером.
