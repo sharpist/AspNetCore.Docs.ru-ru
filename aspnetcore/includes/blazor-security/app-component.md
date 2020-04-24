@@ -1,8 +1,8 @@
-<span data-ttu-id="3cd01-101">Компонент `App` (*app. Razor*) похож на компонент `App`, который находится в блазор Server Apps:</span><span class="sxs-lookup"><span data-stu-id="3cd01-101">The `App` component (*App.razor*) is similar to the `App` component found in Blazor Server apps:</span></span>
+<span data-ttu-id="510a2-101">Компонент (*app. Razor*) похож на компонент, `App` обнаруженный в приложениях блазор Server. `App`</span><span class="sxs-lookup"><span data-stu-id="510a2-101">The `App` component (*App.razor*) is similar to the `App` component found in Blazor Server apps:</span></span>
 
-* <span data-ttu-id="3cd01-102">Компонент `CascadingAuthenticationState` управляет предоставлением `AuthenticationState` остальным приложениям.</span><span class="sxs-lookup"><span data-stu-id="3cd01-102">The `CascadingAuthenticationState` component manages exposing the `AuthenticationState` to the rest of the app.</span></span>
-* <span data-ttu-id="3cd01-103">Компонент `AuthorizeRouteView` гарантирует, что текущий пользователь имеет право доступа к определенной странице или иным образом отображает компонент `RedirectToLogin`.</span><span class="sxs-lookup"><span data-stu-id="3cd01-103">The `AuthorizeRouteView` component makes sure that the current user is authorized to access a given page or otherwise renders the `RedirectToLogin` component.</span></span>
-* <span data-ttu-id="3cd01-104">Компонент `RedirectToLogin` управляет перенаправлением неавторизованных пользователей на страницу входа.</span><span class="sxs-lookup"><span data-stu-id="3cd01-104">The `RedirectToLogin` component manages redirecting unauthorized users to the login page.</span></span>
+* <span data-ttu-id="510a2-102">`CascadingAuthenticationState` Компонент управляет предоставлением `AuthenticationState` для остального приложения.</span><span class="sxs-lookup"><span data-stu-id="510a2-102">The `CascadingAuthenticationState` component manages exposing the `AuthenticationState` to the rest of the app.</span></span>
+* <span data-ttu-id="510a2-103">`AuthorizeRouteView` Компонент гарантирует, что текущий пользователь имеет право доступа к определенной странице или иным образом визуализирует `RedirectToLogin` компонент.</span><span class="sxs-lookup"><span data-stu-id="510a2-103">The `AuthorizeRouteView` component makes sure that the current user is authorized to access a given page or otherwise renders the `RedirectToLogin` component.</span></span>
+* <span data-ttu-id="510a2-104">`RedirectToLogin` Компонент управляет перенаправлением неавторизованных пользователей на страницу входа.</span><span class="sxs-lookup"><span data-stu-id="510a2-104">The `RedirectToLogin` component manages redirecting unauthorized users to the login page.</span></span>
 
 ```razor
 <CascadingAuthenticationState>
@@ -11,7 +11,17 @@
             <AuthorizeRouteView RouteData="@routeData" 
                 DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
-                    <RedirectToLogin />
+                    @if (!context.User.Identity.IsAuthenticated)
+                    {
+                        <RedirectToLogin />
+                    }
+                    else
+                    {
+                        <p>
+                            You are not authorized to access 
+                            this resource.
+                        </p>
+                    }
                 </NotAuthorized>
             </AuthorizeRouteView>
         </Found>
