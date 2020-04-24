@@ -5,16 +5,27 @@ description: Сведения о размещении приложений ASP.N
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/07/2020
+ms.date: 04/17/2020
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: 819c53f945c1e5bb2cedcef8fc39d4c8761e4549
-ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
+ms.openlocfilehash: 77f07ba89de4449c6d13006a5fd61499cb5cdfc0
+ms.sourcegitcommit: 3d07e21868dafc503530ecae2cfa18a7490b58a6
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/08/2020
-ms.locfileid: "80977032"
+ms.lasthandoff: 04/18/2020
+ms.locfileid: "81642753"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Размещение ASP.NET Core в Windows со службами IIS
+
+<!-- 
+
+    NOTE FOR 5.0
+    
+    When making the 5.0 version of this topic, remove the Hosting Bundle
+    direct download section from the (new) <5.0 & >2.2 version and modify 
+    the text and heading for the *Earlier versions of the installer* 
+    section. See the 2.2 version for an example.
+    
+-->
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -250,9 +261,9 @@ services.Configure<IISOptions>(options =>
 Получение более ранней версии установщика:
 
 1. Перейдите на страницу [загрузки .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-1. Щелкните нужную версию .NET Core.
+1. Выберите требуемую версию .NET Core.
 1. В столбце **Запуск приложений — среда выполнения** найдите строку, содержащую нужную версию среды выполнения .NET Core.
-1. Скачайте установщик по ссылке **Среда выполнения и пакет размещения**.
+1. Скачайте установщик по ссылке **Hosting Bundle** (Пакет размещения).
 
 > [!WARNING]
 > Некоторые установщики содержат версии выпусков, которые достигли конца своего жизненного цикла и больше не поддерживаются корпорацией Майкрософт. Дополнительные сведения см. в разделе [Политика поддержки](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
@@ -846,20 +857,12 @@ services.Configure<IISOptions>(options =>
 >
 > Если пакет размещения устанавливается после установки 64-разрядной (x 64) версии .NET Core, пакеты SDK могут не отображаться (см. раздел [Пакеты SDK .NET Core не обнаружены](xref:test/troubleshoot#no-net-core-sdks-were-detected)). Сведения об устранении проблемы см. в статье <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
 
-### <a name="direct-download-current-version"></a>Прямая загрузка (текущая версия)
-
-Скачайте установщик по следующей ссылке:
-
-[Текущий установщик пакета размещения .NET Core (прямая загрузка)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
-
-### <a name="earlier-versions-of-the-installer"></a>Более ранние версии установщика
-
-Получение более ранней версии установщика:
+### <a name="download"></a>Скачать
 
 1. Перейдите на страницу [загрузки .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-1. Щелкните нужную версию .NET Core.
+1. Выберите требуемую версию .NET Core.
 1. В столбце **Запуск приложений — среда выполнения** найдите строку, содержащую нужную версию среды выполнения .NET Core.
-1. Скачайте установщик по ссылке **Среда выполнения и пакет размещения**.
+1. Скачайте установщик по ссылке **Hosting Bundle** (Пакет размещения).
 
 > [!WARNING]
 > Некоторые установщики содержат версии выпусков, которые достигли конца своего жизненного цикла и больше не поддерживаются корпорацией Майкрософт. Дополнительные сведения см. в разделе [Политика поддержки](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
@@ -1422,20 +1425,12 @@ services.Configure<IISOptions>(options =>
 >
 > Если пакет размещения устанавливается после установки 64-разрядной (x 64) версии .NET Core, пакеты SDK могут не отображаться (см. раздел [Пакеты SDK .NET Core не обнаружены](xref:test/troubleshoot#no-net-core-sdks-were-detected)). Сведения об устранении проблемы см. в статье <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
 
-### <a name="direct-download-current-version"></a>Прямая загрузка (текущая версия)
-
-Скачайте установщик по следующей ссылке:
-
-[Текущий установщик пакета размещения .NET Core (прямая загрузка)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
-
-### <a name="earlier-versions-of-the-installer"></a>Более ранние версии установщика
-
-Получение более ранней версии установщика:
+### <a name="download"></a>Скачать
 
 1. Перейдите на страницу [загрузки .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-1. Щелкните нужную версию .NET Core.
+1. Выберите требуемую версию .NET Core.
 1. В столбце **Запуск приложений — среда выполнения** найдите строку, содержащую нужную версию среды выполнения .NET Core.
-1. Скачайте установщик по ссылке **Среда выполнения и пакет размещения**.
+1. Скачайте установщик по ссылке **Hosting Bundle** (Пакет размещения).
 
 > [!WARNING]
 > Некоторые установщики содержат версии выпусков, которые достигли конца своего жизненного цикла и больше не поддерживаются корпорацией Майкрософт. Дополнительные сведения см. в разделе [Политика поддержки](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
