@@ -1,47 +1,50 @@
 ---
-title: Защищайте Blazor автономное приложение ASP.NET Core WebAssembly с библиотекой аутентификации
+title: Защита автономного Blazor приложения ASP.NET Coreной сборки с помощью библиотеки проверки подлинности
 author: guardrex
 description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/08/2020
+ms.date: 04/23/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: 893fff10df37e1c2be549604f4cb83cd20049108
-ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
+ms.openlocfilehash: 043e4548ad6f40fdf1e6c27cd51946c7bf59a66e
+ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/08/2020
-ms.locfileid: "80977045"
+ms.lasthandoff: 04/24/2020
+ms.locfileid: "82110957"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-the-authentication-library"></a>Защищайте Blazor автономное приложение ASP.NET Core WebAssembly с библиотекой аутентификации
+# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-the-authentication-library"></a>Защита автономного Blazor приложения ASP.NET Coreной сборки с помощью библиотеки проверки подлинности
 
-[Хавьер Кальварро Нельсон](https://github.com/javiercn) и Люк [Лэйтам](https://github.com/guardrex)
+[Хавьер Калварро Воронков](https://github.com/javiercn) и [Люк ЛаСаМ](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
-*Для Active Directory Azure (AAD) и Azure Active Directory B2C (AAD B2C) не следуйте указаниям в этой теме. В этой таблице узлов содержимого смотрите темы AAD и AAD B2C.*
+> [!NOTE]
+> Рекомендации в этой статье применимы к предварительной версии 4 ASP.NET Core 3,2. Этот раздел будет обновлен для ознакомительной версии 5 в пятницу, 24 апреля.
 
-Чтобы создать Blazor автономное приложение WebAssembly, используюваее `Microsoft.AspNetCore.Components.WebAssembly.Authentication` библиотеку, выполните следующую команду в командной оболочке:
+*Для Azure Active Directory (AAD) и Azure Active Directory B2C (AAD B2C) не следуйте указаниям в этом разделе. См. разделы, посвященные AAD и AAD B2C, в этом узле оглавления.*
+
+Чтобы создать Blazor изолированное приложение для сборки, использующее `Microsoft.AspNetCore.Components.WebAssembly.Authentication` библиотеку, выполните в командной оболочке следующую команду:
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual
 ```
 
-Чтобы указать местона вывода, которое создает папку проекта, если она не существует, включите опцию вывода в команду с путем (например, `-o BlazorSample`). Имя папки также становится частью названия проекта.
+Чтобы указать расположение выходных данных, которое создает папку проекта, если она не существует, включите параметр OUTPUT в команду с путем (например, `-o BlazorSample`). Имя папки также станет частью имени проекта.
 
-В Visual Studio [создайте приложение Blazor WebAssembly](xref:blazor/get-started). Установите **аутентификацию** для **индивидуальных учетных записей пользователей** с помощью опции приложения **для пользователей Магазина.**
+В Visual Studio [ Blazor Создайте приложение сборки](xref:blazor/get-started). Настройте **проверку подлинности** для **отдельных учетных записей пользователей** с помощью параметра **сохранить учетные записи пользователей в приложении** .
 
-## <a name="authentication-package"></a>Пакет аутентификации
+## <a name="authentication-package"></a>Пакет проверки подлинности
 
-Когда приложение создается для использования индивидуальных учетных записей `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пользователей, приложение автоматически получает ссылку на пакет для пакета в файле проекта приложения. Пакет предоставляет набор примитивов, которые помогают приложению аутентифицировать пользователей и получать токены для вызова защищенных AIS.
+Когда приложение создается для использования отдельных учетных записей пользователей, приложение автоматически получает ссылку `Microsoft.AspNetCore.Components.WebAssembly.Authentication` на пакет в файле проекта приложения. Пакет предоставляет набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных интерфейсов API.
 
-При добавлении аутентификации в приложение вручную добавьте пакет в файл проекта приложения:
+При добавлении проверки подлинности в приложение вручную добавьте пакет в файл проекта приложения:
 
 ```xml
 <PackageReference 
@@ -49,11 +52,11 @@ dotnet new blazorwasm -au Individual
     Version="{VERSION}" />
 ```
 
-Замените `{VERSION}` в предыдущем пакете ссылку на версию `Microsoft.AspNetCore.Blazor.Templates` пакета, показанную <xref:blazor/get-started> в статье.
+Замените `{VERSION}` в предыдущей ссылке на пакет версией `Microsoft.AspNetCore.Blazor.Templates` пакета, показанного в этой <xref:blazor/get-started> статье.
 
-## <a name="authentication-service-support"></a>Поддержка службы аутентификации
+## <a name="authentication-service-support"></a>Поддержка службы проверки подлинности
 
-Поддержка аутентификации пользователей регистрируется `AddOidcAuthentication` в сервисном `Microsoft.AspNetCore.Components.WebAssembly.Authentication` контейнере с методом расширения, предусмотренным пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с поставщиком идентификационных данных (IP).
+Поддержка проверки подлинности пользователей регистрируется в контейнере службы с `AddOidcAuthentication` помощью метода расширения, предоставленного `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с поставщиком удостоверений (IP).
 
 *Program.cs*:
 
@@ -65,11 +68,11 @@ builder.Services.AddOidcAuthentication(options =>
 });
 ```
 
-Поддержка аутентификации автономных приложений предлагается с помощью Open ID Connect (OIDC). Метод `AddOidcAuthentication` принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения с помощью OIDC. Значения, необходимые для настройки приложения, могут быть получены с IP-адреса, совместимым с OIDC. Получить значения при регистрации приложения, которое обычно происходит в их интернет-портале.
+Поддержка проверки подлинности для автономных приложений предлагается с помощью Open ID Connect (OIDC). `AddOidcAuthentication` Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения с помощью OIDC. Значения, необходимые для настройки приложения, можно получить из IP-адреса, совместимого с OIDC. Получите значения при регистрации приложения, которое обычно происходит на веб-портале.
 
-## <a name="access-token-scopes"></a>Области маркеров доступа
+## <a name="access-token-scopes"></a>Области токенов доступа
 
-Шаблон Blazor WebAssembly не настраивает приложение автоматически, чтобы запросить токен доступа для защищенного API. Чтобы предоставить токен как часть потока ввоза, добавьте область к `OidcProviderOptions`примку токенов по умолчанию:
+Blazor Шаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API. Чтобы создать маркер в рамках потока входа, добавьте область в области токенов по умолчанию `OidcProviderOptions`:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -80,12 +83,12 @@ builder.Services.AddOidcAuthentication(options =>
 ```
 
 > [!NOTE]
-> Если портал Azure предоставляет область URI и **приложение выбрасывает необработанное исключение,** когда получает *401 несанкционированный* ответ от API, попробуйте использовать область URI, которая не включает схему и узел. Например, портал Azure может предоставить один из следующих форматов URI:
+> Если портал Azure предоставляет URI области, а **приложение создает необработанное исключение** при 401 получении от API *неавторизованного* ответа, попробуйте использовать URI области, который не включает схему и узел. Например, портал Azure может предоставить один из следующих форматов URI области:
 >
 > * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
 > * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
 >
-> Поставка области URI без схемы и хозяина:
+> Укажите URI области без схемы и узла:
 >
 > ```csharp
 > options.ProviderOptions.DefaultScopes.Add(
@@ -93,6 +96,10 @@ builder.Services.AddOidcAuthentication(options =>
 > ```
 
 Для получения дополнительной информации см. <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+
+<!--
+    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
+-->
 
 ## <a name="imports-file"></a>Файл импорта
 
@@ -106,15 +113,15 @@ builder.Services.AddOidcAuthentication(options =>
 
 [!INCLUDE[](~/includes/blazor-security/app-component.md)]
 
-## <a name="redirecttologin-component"></a>ПеренаправлениеКомпонентToLogin
+## <a name="redirecttologin-component"></a>Компонент Редиректтологин
 
 [!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
 
-## <a name="logindisplay-component"></a>Компонент LoginDisplay
+## <a name="logindisplay-component"></a>Компонент Логиндисплай
 
 [!INCLUDE[](~/includes/blazor-security/logindisplay-component.md)]
 
-## <a name="authentication-component"></a>Компонент аутентификации
+## <a name="authentication-component"></a>Компонент проверки подлинности
 
 [!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
 
@@ -122,4 +129,5 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* [Запрос дополнительных токенов доступа](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* <xref:security/blazor/webassembly/additional-scenarios>
+ 

@@ -1,36 +1,39 @@
 ---
-title: Защищайте Blazor ASP.NET приложение Core WebAssembly с помощью Identity Server
+title: Защита размещенного Blazor в ASP.NET Core приложения сборки с помощью Identity Server
 author: guardrex
-description: Для создания Blazor нового размещенного приложения с аутентификацией внутри Visual Studio, используюшего бэкэнд [IdentityServer](https://identityserver.io/)
+description: Создание нового Blazor размещенного приложения с проверкой подлинности в Visual Studio, использующей серверную часть [IdentityServer](https://identityserver.io/)
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/30/2020
+ms.date: 04/22/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-identity-server
-ms.openlocfilehash: 4c51200159ced16132e15bb4a1f0915ca0cf5945
-ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
+ms.openlocfilehash: f8de07e2e21ca19b5c4e95839e7b7e621c335ad0
+ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81791614"
+ms.lasthandoff: 04/24/2020
+ms.locfileid: "82110955"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-identity-server"></a>Защищайте Blazor ASP.NET приложение Core WebAssembly с помощью Identity Server
+# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-identity-server"></a>Защита размещенного Blazor в ASP.NET Core приложения сборки с помощью Identity Server
 
-[Хавьер Кальварро Нельсон](https://github.com/javiercn) и Люк [Лэйтам](https://github.com/guardrex)
+[Хавьер Калварро Воронков](https://github.com/javiercn) и [Люк ЛаСаМ](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
-Для создания Blazor нового размещенного приложения в Visual Studio, которое использует [IdentityServer](https://identityserver.io/) для аутентификации пользователей и вызовов API:
+> [!NOTE]
+> Рекомендации в этой статье применимы к предварительной версии 4 ASP.NET Core 3,2. Этот раздел будет обновлен для ознакомительной версии 5 в пятницу, 24 апреля.
 
-1. Используйте Visual Studio ** Blazor ** для создания нового приложения WebAssembly. Для получения дополнительной информации см. <xref:blazor/get-started>.
-1. В **журнале Blazor «Создание нового диалога приложений»** выберите **«Изменение** в разделе **аутентификация».**
-1. Выберите **индивидуальные учетные записи пользователей,** за которыми следует **OK**.
-1. Выберите **ASP.NET Core размещает** флажок в разделе **Advanced.**
+Чтобы создать новое Blazor размещенное приложение в Visual Studio, использующее [IdentityServer](https://identityserver.io/) для проверки подлинности пользователей и вызовов API:
+
+1. Создайте новое ** Blazor приложение сборки** с помощью Visual Studio. Для получения дополнительной информации см. <xref:blazor/get-started>.
+1. В диалоговом окне **Создание Blazor нового приложения** выберите **изменить** в разделе **Проверка подлинности** .
+1. Выберите **учетные записи отдельных пользователей** , а затем нажмите **кнопку ОК**.
+1. Установите флажок **ASP.NET Core размещено** в разделе **Дополнительно** .
 1. Нажмите кнопку **Создать**.
 
 Чтобы создать приложение в командной оболочке, выполните следующую команду:
@@ -39,15 +42,15 @@ ms.locfileid: "81791614"
 dotnet new blazorwasm -au Individual -ho
 ```
 
-Чтобы указать местона вывода, которое создает папку проекта, если она не существует, включите опцию вывода в команду с путем (например, `-o BlazorSample`). Имя папки также становится частью названия проекта.
+Чтобы указать расположение выходных данных, которое создает папку проекта, если она не существует, включите параметр OUTPUT в команду с путем (например, `-o BlazorSample`). Имя папки также станет частью имени проекта.
 
-## <a name="server-app-configuration"></a>Конфигурация приложения сервера
+## <a name="server-app-configuration"></a>Конфигурация серверного приложения
 
-В следующих разделах описаны дополнения к проекту при включении поддержки аутентификации.
+В следующих разделах описываются дополнения к проекту при включенной поддержке проверки подлинности.
 
 ### <a name="startup-class"></a>Класс Startup
 
-Класс `Startup` имеет следующие дополнения:
+`Startup` Класс имеет следующие дополнения:
 
 * В `Startup.ConfigureServices`:
 
@@ -61,14 +64,14 @@ dotnet new blazorwasm -au Individual -ho
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * IdentityServer с <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> дополнительным методом помощника, который настраивает некоторые ASP.NET основных конвенций по умолчанию поверх IdentityServer:
+  * IdentityServer с дополнительным <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> вспомогательным методом, который настраивает некоторые соглашения ASP.NET Core по умолчанию поверх IdentityServer:
 
     ```csharp
     services.AddIdentityServer()
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
     ```
 
-  * Аутентификация <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> с помощью дополнительного метода помощника, который настраивает приложение для проверки токенов JWT, производимых IdentityServer:
+  * Проверка подлинности <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> с помощью дополнительного вспомогательного метода, который настраивает приложение для проверки маркеров JWT, созданных IdentityServer:
 
     ```csharp
     services.AddAuthentication()
@@ -77,46 +80,46 @@ dotnet new blazorwasm -au Individual -ho
 
 * В `Startup.Configure`:
 
-  * Промежуточная проверка подлинности, которая отвечает за проверку учетных данных запроса и настройку пользователя в контексте запроса:
+  * По промежуточного слоя для проверки подлинности, которое отвечает за проверку учетных данных запроса и настройку пользователя в контексте запроса:
 
     ```csharp
     app.UseAuthentication();
     ```
 
-  * Промежуточное программное обеспечение IdentityServer, которое предоставляет конечные точки Open ID Connect (OIDC):
+  * По промежуточного слоя IdentityServer, которое предоставляет конечные точки Open ID Connect (OIDC):
 
     ```csharp
     app.UseIdentityServer();
     ```
 
-### <a name="addapiauthorization"></a>АддапиАвторизация
+### <a name="addapiauthorization"></a>аддапиаусоризатион
 
-Метод <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> помощника настраивает [IdentityServer](https://identityserver.io/) для ASP.NET основных сценариев. IdentityServer — это мощная и расширяемая платформа для решения проблем безопасности приложений. IdentityServer предоставляет ненужные сложности для наиболее распространенных сценариев. Следовательно, набор конвенций и параметров конфигурации предоставляется, что мы считаем хорошей отправной точкой. После изменения потребности в аутентификации вся мощь IdentityServer по-прежнему доступна для настройки аутентификации в соответствии с требованиями приложения.
+<xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> Вспомогательный метод настраивает [IdentityServer](https://identityserver.io/) для сценариев ASP.NET Core. IdentityServer — это мощная и расширяемая платформа для обработки проблем безопасности приложений. IdentityServer предоставляет ненужную сложность для наиболее распространенных сценариев. Следовательно, предусмотрен набор соглашений и параметров конфигурации, которые мы рассмотрим хорошей отправной точкой. После изменения требований к проверке подлинности все возможности IdentityServer по-прежнему доступны для настройки проверки подлинности в соответствии с требованиями приложения.
 
-### <a name="addidentityserverjwt"></a>AddIdentityServerJwt
+### <a name="addidentityserverjwt"></a>аддидентитисервержвт
 
-Метод <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> помощника настраивает схему политики для приложения в качестве обработчика аутентификации по умолчанию. Политика настроена таким образом, чтобы identity обрабатывал все запросы, `/Identity`направимые на любой подпуть в пространстве URL-адреса Identity. Обрабатывает <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> все остальные запросы. Кроме того, этот метод:
+<xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> Вспомогательный метод настраивает схему политики для приложения в качестве обработчика проверки подлинности по умолчанию. Политика настроена на разрешение идентификации для обработки всех запросов, направляемых по любому вложенному пути в пространстве `/Identity`URL-адресов удостоверений. <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> Обрабатывает все остальные запросы. Кроме того, этот метод:
 
-* Регистрирует ресурс `{APPLICATION NAME}API` API с IdentityServer с `{APPLICATION NAME}API`областью по умолчанию.
-* Настраивает JWT Bearer Token Middleware для проверки токенов, выпущенных IdentityServer для приложения.
+* Регистрирует ресурс `{APPLICATION NAME}API` API в IdentityServer с областью по умолчанию `{APPLICATION NAME}API`.
+* Настраивает промежуточное по для токена носителя JWT для проверки маркеров, выданных IdentityServer для приложения.
 
-### <a name="weatherforecastcontroller"></a>WeatherForecastController
+### <a name="weatherforecastcontroller"></a>веасерфорекастконтроллер
 
-В `WeatherForecastController` *(Controllers/WeatherForecastController.cs)* [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) атрибут применяется к классу. Атрибут указывает, что пользователь должен быть авторизован на основе политики по умолчанию для доступа к ресурсу. Политика авторизации по умолчанию настроена на использование схемы <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> проверки подлинности по умолчанию, которая настроена на схему политики, упомянутую ранее. Метод помощника настраивается <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> как обработчик по умолчанию для запросов в приложение.
+В `WeatherForecastController` (*Controllers/веасерфорекастконтроллер. CS*) [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) атрибут применяется к классу. Атрибут указывает, что пользователь должен быть санкционирован на основании политики по умолчанию для доступа к ресурсу. Политика авторизации по умолчанию настроена для использования схемы проверки подлинности по умолчанию, <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> которая настроена в схеме политики, упомянутой ранее. Вспомогательный метод настраивается в <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> качестве обработчика по умолчанию для запросов к приложению.
 
 ### <a name="applicationdbcontext"></a>ApplicationDbContext
 
-В `ApplicationDbContext` (*Data/ApplicationDbContext.cs),* <xref:Microsoft.EntityFrameworkCore.DbContext> то же самое используется в Identity, за исключением того, что он распространяется <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> на включение схемы для IdentityServer. Класс <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> является производным от <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
+В `ApplicationDbContext` (*Data/ApplicationDbContext. CS*) то же самое <xref:Microsoft.EntityFrameworkCore.DbContext> используется в удостоверении с исключением, которое оно расширяет <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> для включения схемы для IdentityServer. Класс <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> является производным от <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
 
-Чтобы получить полный контроль над схемой базы данных, наследуете от одного из доступных классов identity <xref:Microsoft.EntityFrameworkCore.DbContext> и назначайте контекст, чтобы включить схему идентификации, вызывая `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` в `OnModelCreating` методе.
+Чтобы получить полный контроль над схемой базы данных, наследуйте один из доступных классов <xref:Microsoft.EntityFrameworkCore.DbContext> удостоверений и настройте контекст для включения схемы идентификации путем вызова `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` `OnModelCreating` метода в методе.
 
-### <a name="oidcconfigurationcontroller"></a>OidcConfigurationController
+### <a name="oidcconfigurationcontroller"></a>оидкконфигуратионконтроллер
 
-В `OidcConfigurationController` *(Controllers/OidcConfigurationController.cs)* конечная точка клиента предназначена для обслуживания параметров OIDC.
+В `OidcConfigurationController` (*Controllers/оидкконфигуратионконтроллер. CS*) конечная точка клиента подготавливается для обслуживания параметров OIDC.
 
-### <a name="app-settings-files"></a>Файлы настроек приложения
+### <a name="app-settings-files"></a>Файлы параметров приложения
 
-В файле настроек приложения *(appsettings.json)* `IdentityServer` в корне проекта раздел описывает список настроенных клиентов. В следующем примере есть один клиент. Имя клиента соответствует названию приложения и отображается `ClientId` по конвенции к параметру OAuth. Профиль указывает на настроенный тип приложения. Профиль используется внутренне для управления конюмитами, упрощающие процесс настройки сервера. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
+В файле параметров приложения (*appSettings. JSON*) в корне проекта в `IdentityServer` разделе описывается список настроенных клиентов. В следующем примере есть один клиент. Имя клиента соответствует имени приложения и сопоставляется по соглашению с параметром OAuth `ClientId` . Профиль указывает на настраиваемый тип приложения. Профиль используется внутренне для обозначения соглашений, упрощающих процесс настройки сервера. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
 
 ```json
 "IdentityServer": {
@@ -128,7 +131,7 @@ dotnet new blazorwasm -au Individual -ho
 }
 ```
 
-В файле настроек среды разработки *(приложения. Development.json*) в корне `IdentityServer` проекта, в разделе описывается ключ, используемый для подписания токенов. <!-- When deploying to production, a key needs to be provisioned and deployed alongside the app, as explained in the [Deploy to production](#deploy-to-production) section. -->
+В файле параметров приложения среды разработки (*appSettings. Development. JSON*) в корне проекта `IdentityServer` раздел описывает ключ, используемый для подписи маркеров. <!-- When deploying to production, a key needs to be provisioned and deployed alongside the app, as explained in the [Deploy to production](#deploy-to-production) section. -->
 
 ```json
 "IdentityServer": {
@@ -140,11 +143,11 @@ dotnet new blazorwasm -au Individual -ho
 
 ## <a name="client-app-configuration"></a>Конфигурация клиентского приложения
 
-### <a name="authentication-package"></a>Пакет аутентификации
+### <a name="authentication-package"></a>Пакет проверки подлинности
 
-Когда приложение создается для использования`Individual`индивидуальных учетных записей пользователей (), приложение автоматически получает ссылку на `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пакет для пакета в файле проекта приложения. Пакет предоставляет набор примитивов, которые помогают приложению аутентифицировать пользователей и получать токены для вызова защищенных AIS.
+При создании приложения для использования отдельных учетных записей`Individual`пользователей приложение автоматически получает ссылку `Microsoft.AspNetCore.Components.WebAssembly.Authentication` на пакет в файле проекта приложения. Пакет предоставляет набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных интерфейсов API.
 
-При добавлении аутентификации в приложение вручную добавьте пакет в файл проекта приложения:
+При добавлении проверки подлинности в приложение вручную добавьте пакет в файл проекта приложения:
 
 ```xml
 <PackageReference 
@@ -152,17 +155,17 @@ dotnet new blazorwasm -au Individual -ho
     Version="{VERSION}" />
 ```
 
-Замените `{VERSION}` в предыдущем пакете ссылку на версию `Microsoft.AspNetCore.Blazor.Templates` пакета, показанную <xref:blazor/get-started> в статье.
+Замените `{VERSION}` в предыдущей ссылке на пакет версией `Microsoft.AspNetCore.Blazor.Templates` пакета, показанного в этой <xref:blazor/get-started> статье.
 
 ### <a name="api-authorization-support"></a>Поддержка авторизации API
 
-Поддержка аутентификации пользователей подключается к сервисному контейнеру методом расширения, предусмотренным `Microsoft.AspNetCore.Components.WebAssembly.Authentication` внутри пакета. Этот метод настраивает все службы, необходимые для взаимодействия приложения с существующей системой авторизации.
+Поддержка проверки подлинности пользователей подключается к контейнеру службы с помощью метода расширения, предоставляемого `Microsoft.AspNetCore.Components.WebAssembly.Authentication` в пакете. Этот метод настраивает все службы, необходимые для взаимодействия приложения с существующей системой авторизации.
 
 ```csharp
 builder.Services.AddApiAuthorization();
 ```
 
-По умолчанию он загружает конфигурацию `_configuration/{client-id}`для приложения по конвенции от . По конвенции идентификатор клиента устанавливается на имя сборки приложения. Этот URL может быть изменен, чтобы указать на отдельную конечную точку, вызовив перегрузку с опциями.
+По умолчанию конфигурация приложения загружается по соглашению из `_configuration/{client-id}`. По соглашению идентификатор клиента устанавливается в имя сборки приложения. Этот URL-адрес можно изменить, чтобы он указывал на отдельную конечную точку, вызвав перегрузку с параметрами.
 
 ### <a name="imports-file"></a>Файл импорта
 
@@ -176,21 +179,21 @@ builder.Services.AddApiAuthorization();
 
 [!INCLUDE[](~/includes/blazor-security/app-component.md)]
 
-### <a name="redirecttologin-component"></a>ПеренаправлениеКомпонентToLogin
+### <a name="redirecttologin-component"></a>Компонент Редиректтологин
 
 [!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
 
-### <a name="logindisplay-component"></a>Компонент LoginDisplay
+### <a name="logindisplay-component"></a>Компонент Логиндисплай
 
-Компонент `LoginDisplay` *(Общий/LoginDisplay.razor)* отображается `MainLayout` в компоненте *(Общий/MainLayout.razor)* и управляет следующим поведением:
+Компонент (*Shared/логиндисплай. Razor*) подготавливается к `MainLayout` просмотру в компоненте (*Shared/маинлайаут. Razor*) и управляет следующими поведениями: `LoginDisplay`
 
-* Для аутентифицированных пользователей:
-  * Отображает текущее имя пользователя.
-  * Предлагает ссылку на страницу профиля пользователя в ASP.NET Core Identity.
+* Для пользователей, прошедших проверку подлинности:
+  * Отображает имя текущего пользователя.
+  * Содержит ссылку на страницу профиля пользователя в ASP.NET Core удостоверение.
   * Предлагает кнопку для выхода из приложения.
 * Для анонимных пользователей:
   * Предлагает возможность регистрации.
-  * Предлагает возможность входа в систему.
+  * Предоставляет возможность входа в систему.
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
@@ -220,7 +223,7 @@ builder.Services.AddApiAuthorization();
 }
 ```
 
-### <a name="authentication-component"></a>Компонент аутентификации
+### <a name="authentication-component"></a>Компонент проверки подлинности
 
 [!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
 
@@ -228,9 +231,9 @@ builder.Services.AddApiAuthorization();
 
 [!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
 
-## <a name="run-the-app"></a>Запуск приложения
+## <a name="run-the-app"></a>Запустите приложение
 
-Выполнить приложение из проекта Server. При использовании Visual Studio выберите проект Server в **Solution Explorer** и выберите кнопку **Run** в панели инструментов или запустите приложение из меню **Debug.**
+Запустите приложение из серверного проекта. При использовании Visual Studio выберите серверный проект в **Обозреватель решений** и нажмите кнопку **выполнить** на панели инструментов или запустите приложение из меню **Отладка** .
 
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
 
@@ -238,4 +241,4 @@ builder.Services.AddApiAuthorization();
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* [Запрос дополнительных токенов доступа](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* <xref:security/blazor/webassembly/additional-scenarios>

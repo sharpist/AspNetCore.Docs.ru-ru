@@ -1,8 +1,8 @@
-Компонент `App` (*app. Razor*) похож на компонент `App`, который находится в блазор Server Apps:
+Компонент (*app. Razor*) похож на компонент, `App` обнаруженный в приложениях блазор Server. `App`
 
-* Компонент `CascadingAuthenticationState` управляет предоставлением `AuthenticationState` остальным приложениям.
-* Компонент `AuthorizeRouteView` гарантирует, что текущий пользователь имеет право доступа к определенной странице или иным образом отображает компонент `RedirectToLogin`.
-* Компонент `RedirectToLogin` управляет перенаправлением неавторизованных пользователей на страницу входа.
+* `CascadingAuthenticationState` Компонент управляет предоставлением `AuthenticationState` для остального приложения.
+* `AuthorizeRouteView` Компонент гарантирует, что текущий пользователь имеет право доступа к определенной странице или иным образом визуализирует `RedirectToLogin` компонент.
+* `RedirectToLogin` Компонент управляет перенаправлением неавторизованных пользователей на страницу входа.
 
 ```razor
 <CascadingAuthenticationState>
@@ -11,7 +11,17 @@
             <AuthorizeRouteView RouteData="@routeData" 
                 DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
-                    <RedirectToLogin />
+                    @if (!context.User.Identity.IsAuthenticated)
+                    {
+                        <RedirectToLogin />
+                    }
+                    else
+                    {
+                        <p>
+                            You are not authorized to access 
+                            this resource.
+                        </p>
+                    }
                 </NotAuthorized>
             </AuthorizeRouteView>
         </Found>

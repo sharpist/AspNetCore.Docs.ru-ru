@@ -1,148 +1,151 @@
 ---
-title: Защищайте Blazor ASP.NET Core WebAssembly размещает приложение с Помощью Активного каталога Azure B2C
+title: Обеспечение безопасности размещенного в ASP.NET Core Blazor приложения сборки Azure Active Directory B2C
 author: guardrex
 description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/09/2020
+ms.date: 04/23/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
-ms.openlocfilehash: e2bb0c1bd807d590331b714e3b80d8c4ab434e2f
-ms.sourcegitcommit: e8dc30453af8bbefcb61857987090d79230a461d
+ms.openlocfilehash: 45ef1e6599777a38da7db753a8868028f3134f4b
+ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/11/2020
-ms.locfileid: "81123471"
+ms.lasthandoff: 04/24/2020
+ms.locfileid: "82110984"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Защищайте Blazor ASP.NET Core WebAssembly размещает приложение с Помощью Активного каталога Azure B2C
+# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Обеспечение безопасности размещенного в ASP.NET Core Blazor приложения сборки Azure Active Directory B2C
 
-[Хавьер Кальварро Нельсон](https://github.com/javiercn) и Люк [Лэйтам](https://github.com/guardrex)
+[Хавьер Калварро Воронков](https://github.com/javiercn) и [Люк ЛаСаМ](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
-В этой статье описывается, как создать автономное приложение Blazor WebAssembly, использующее для проверки подлинности [Azure Active Directory (AAD) B2C.](/azure/active-directory-b2c/overview)
+> [!NOTE]
+> Рекомендации в этой статье применимы к предварительной версии 4 ASP.NET Core 3,2. Этот раздел будет обновлен для ознакомительной версии 5 в пятницу, 24 апреля.
+
+В этой статье описывается, как создать Blazor автономное приложение для сборки, использующее [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) для проверки подлинности.
 
 ## <a name="register-apps-in-aad-b2c-and-create-solution"></a>Регистрация приложений в AAD B2C и создание решения
 
 ### <a name="create-a-tenant"></a>Создание клиента
 
-Следуйте инструкциям в [учебном центре: Создайте арендатора Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-create-tenant) для создания арендатора AAD B2C и записи следующей информации:
+Следуйте указаниям в [руководстве по созданию клиента Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-create-tenant) для создания клиента AAD B2C и записи следующих сведений.
 
-* AAD B2C экземпляр (например, `https://contoso.b2clogin.com/`который включает в себя задний слэш)
-* AAD B2C Арендатор домена `contoso.onmicrosoft.com`(например, )
+* AAD B2C экземпляр (например, `https://contoso.b2clogin.com/`, включающий косую черту)
+* Домен клиента AAD B2C (например, `contoso.onmicrosoft.com`)
 
 ### <a name="register-a-server-api-app"></a>Регистрация приложения API сервера
 
-Следуйте инструкциям в [учебном центре: Зарегистрируйте приложение в Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) для регистрации приложения AAD для *приложения Server API* в зоне**регистрации приложений** **Azure Active Directory** > на портале Azure:
+Следуйте указаниям в [руководстве по регистрации приложения в Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) , чтобы зарегистрировать приложение AAD для *приложения API сервера* в области **Azure Active Directory** > **Регистрация приложений** портал Azure:
 
 1. Выберите **Новая регистрация**.
-1. Укажите **имя** приложения (например, ** Blazor Server AAD B2C).**
-1. Для **типов поддерживаемых учетных записей**выберите **учетные записи в любом каталоге организации или любом поставщике идентификационных данных. Для аутентификации пользователей с помощью Azure AD B2C.** (мультитенант) для этого опыта.
-1. *Приложение Server API* не требует **перенаправления URI** в этом сценарии, поэтому оставьте упаж вниз в **Веб** и не вводите перенаправление URI.
-1. Подтвердите, **Permissions** > что разрешение**на админ-концентратор для openid и offline_access разрешений** включено.
+1. Укажите **имя** приложения (например, ** Blazor AAD B2C сервера**).
+1. Для **поддерживаемых типов учетных записей**выберите **учетные записи в любом организационном каталоге или любом поставщике удостоверений. Для проверки подлинности пользователей с помощью Azure AD B2C.** (несколько клиентов) для этого интерфейса.
+1. В этом сценарии *приложению API сервера* не требуется **универсальный код ресурса (URI) перенаправления** , поэтому оставьте в раскрывающемся списке значение **Web** и не вводите URI перенаправления.
+1. Убедитесь, что **разрешения** > **на предоставление разрешений администратора OpenID Connect и offline_access** включены.
 1. Выберите **Зарегистрировать**.
 
-В **экспозиции API**:
+В **предоставление API**:
 
 1. Выберите **Добавить область**.
 1. Выберите **Сохранить и продолжить**.
 1. Укажите **имя области** (например, `API.Access`).
-1. Укажите **имя отображения согласия админа** (например, `Access API`).
-1. Укажите **описание согласия админа** (например, `Allows the app to access server app API endpoints.`).
-1. Подтвердите, что **государство** настроено на **включено.**
-1. Выберите **область добавления.**
+1. Укажите **Отображаемое имя согласия администратора** (например, `Access API`).
+1. Введите **Описание согласия администратора** (например, `Allows the app to access server app API endpoints.`).
+1. Убедитесь, что для **состояния** задано значение **включено**.
+1. Выберите **Добавить область**.
 
-Запишите следующую информацию:
+Запишите следующие сведения:
 
 * *Приложение API сервера* Идентификатор приложения (идентификатор клиента) (например, `11111111-1111-1111-1111-111111111111`)
-* App ID URI (например, `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111`, `api://11111111-1111-1111-1111-111111111111`или пользовательское значение, которое вы предоставили)
-* Идентификатор каталога (идентификатор арендатора) (например, `222222222-2222-2222-2222-222222222222`)
-* *Приложение API сервера* APP ID URI (например, `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111`портал Azure может по умолчанию значение для идентификатора клиента)
-* Сфера действия по `API.Access`умолчанию (например, )
+* URI идентификатора приложения (например `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111` `api://11111111-1111-1111-1111-111111111111`,, или предоставленное вами пользовательское значение)
+* Идентификатор каталога (идентификатор клиента) (например, `222222222-2222-2222-2222-222222222222`)
+* *Приложение API сервера* URI идентификатора приложения (например `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111`, портал Azure может по умолчанию присвоить значение идентификатору клиента)
+* Область по умолчанию (например `API.Access`,)
 
 ### <a name="register-a-client-app"></a>Регистрация клиентского приложения
 
-Следуйте инструкциям в [учебном центре: Зарегистрируйте приложение в Azure Active Directory B2C,](/azure/active-directory-b2c/tutorial-register-applications) чтобы снова зарегистрировать приложение AAD для *приложения Клиента* в зоне**регистрации приложений** **Azure Active Directory** > на портале Azure:
+Следуйте указаниям в [руководстве по регистрации приложения в Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) еще раз, чтобы зарегистрировать приложение AAD для *клиентского приложения* в области **Azure Active Directory** > **Регистрация приложений** портал Azure:
 
 1. Выберите **Новая регистрация**.
-1. Укажите **имя** приложения (например, ** Blazor Client AAD B2C).**
-1. Для **типов поддерживаемых учетных записей**выберите **учетные записи в любом каталоге организации или любом поставщике идентификационных данных. Для аутентификации пользователей с помощью Azure AD B2C.** (мультитенант) для этого опыта.
-1. Оставьте **перенаправить URI** упасть набор в **Интернет**, `https://localhost:5001/authentication/login-callback`и обеспечить перенаправление URI .
-1. Подтвердите, **Permissions** > что разрешение**на админ-концентратор для openid и offline_access разрешений** включено.
+1. Укажите **имя** приложения (например, ** Blazor AAD B2C клиента**).
+1. Для **поддерживаемых типов учетных записей**выберите **учетные записи в любом организационном каталоге или любом поставщике удостоверений. Для проверки подлинности пользователей с помощью Azure AD B2C.** (несколько клиентов) для этого интерфейса.
+1. Оставьте в раскрывающемся списке **URI перенаправления** значение **веб**и укажите универсальный код ресурса ( `https://localhost:5001/authentication/login-callback`URI) перенаправления для.
+1. Убедитесь, что **разрешения** > **на предоставление разрешений администратора OpenID Connect и offline_access** включены.
 1. Выберите **Зарегистрировать**.
 
-В**настройках платформы** >  **аутентификации** > **Web**:
+В > **конфигурации платформы** **проверки подлинности** > **веб-сайт**:
 
-1. Подтвердите, `https://localhost:5001/authentication/login-callback` что **redirect URI** присутствует.
-1. Для **неявного гранта**выберите флажки для **токенов Access** и **токенов ID.**
-1. Остальные по умолчанию для приложения приемлемы для этого опыта.
+1. Убедитесь, что `https://localhost:5001/authentication/login-callback` **URI перенаправления** имеется.
+1. Для **неявного предоставления**установите флажки для **маркеров доступа** и **маркеров идентификации**.
+1. Остальные значения по умолчанию для приложения приемлемы для этого интерфейса.
 1. Нажмите кнопку **Сохранить**.
 
-В **разрешениях API:**
+В **разрешениях API**:
 
-1. Подтвердите, что приложение имеет разрешение **Microsoft Graph** > **User.Read.**
-1. Выберите **Добавить разрешение,** за которым следуют **мои AA.**
-1. Выберите *приложение Server API* из столбца **«Имя»** (например, ** Blazor Server AAD B2C).**
-1. Откройте список **API.**
-1. Включить доступ к API (например, `API.Access`).
+1. Убедитесь, что приложение имеет **Microsoft Graph** > **пользователь. чтение** .
+1. Выберите **Добавить разрешение** , а затем — **Мои API**.
+1. Выберите *приложение API сервера* из столбца **имя** (например, ** Blazor Server AAD B2C**).
+1. Откройте список **API** .
+1. Разрешение доступа к API (например, `API.Access`).
 1. Выберите **Добавить разрешения**.
-1. Выберите **содержимое администратора Гранта для кнопки «TENANT NAME».** Выберите **Да** для подтверждения.
+1. Нажмите кнопку **предоставить содержимое администратора для {имя клиента}** . Выберите **Да** для подтверждения.
 
-В **домашних** > **Azure AD B2C** > **Потоки пользователей:**
+В **домашних** > **Azure AD B2C** > **пользовательских потоках**:
 
 [Создание потока пользователя для регистрации и входа в систему](/azure/active-directory-b2c/tutorial-create-user-flows)
 
-Как минимум, выберите атрибут **приложения Претензии** > **Display Name** для заполнения `context.User.Identity.Name` `LoginDisplay` компонента *(Общий/LoginDisplay.razor*).
+Для заполнения `context.User.Identity.Name` в `LoginDisplay` компоненте (*Shared/логиндисплай. Razor*) выберите по меньшей мере атрибут пользователя " > **Отображаемое имя** **утверждения приложения**".
 
-Запишите следующую информацию:
+Запишите следующие сведения:
 
-* Запись идентификатора *приложения клиента* (например, `33333333-3333-3333-3333-333333333333`ID клиента).
-* Запись регистрации и входе в пользовательское имя, созданное `B2C_1_signupsignin`для приложения (например, ).
+* Запишите идентификатор приложения *клиентского приложения* (идентификатор клиента) (например, `33333333-3333-3333-3333-333333333333`).
+* Запишите имя потока пользователя для регистрации и входа, созданное для приложения (например, `B2C_1_signupsignin`).
 
 ### <a name="create-the-app"></a>Создайте приложение
 
-Замените заполнителей в следующей команде информацией, записанной ранее, и выполните команду в командном корпусе:
+Замените заполнители в следующей команде на записанные ранее сведения и выполните команду в командной оболочке:
 
 ```dotnetcli
 dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{DOMAIN}" -ho -ssp "{SIGN UP OR SIGN IN POLICY}" --tenant-id "{TENANT ID}"
 ```
 
-Чтобы указать местона вывода, которое создает папку проекта, если она не существует, включите опцию вывода в команду с путем (например, `-o BlazorSample`). Имя папки также становится частью названия проекта.
+Чтобы указать расположение выходных данных, которое создает папку проекта, если она не существует, включите параметр OUTPUT в команду с путем (например, `-o BlazorSample`). Имя папки также станет частью имени проекта.
 
 > [!NOTE]
-> Передайте опцион App `app-id-uri` ID URI, но обратите внимание, что в клиентском приложении может потребоваться изменение конфигурации, описанное в разделе [прицелов доступа.](#access-token-scopes)
+> Передайте универсальный код ресурса (URI `app-id-uri` ) идентификатора приложения в параметр, но обратите внимание, что в клиентском приложении может потребоваться изменение конфигурации, которое описано в разделе [области действия маркера доступа](#access-token-scopes) .
 
-## <a name="server-app-configuration"></a>Конфигурация приложения сервера
+## <a name="server-app-configuration"></a>Конфигурация серверного приложения
 
-*Этот раздел относится к приложению **Server** решения.*
+*Этот раздел относится к **серверному** приложению решения.*
 
-### <a name="authentication-package"></a>Пакет аутентификации
+### <a name="authentication-package"></a>Пакет проверки подлинности
 
-Поддержка аутентификации и авторизации вызовов ASP.NET базовых `Microsoft.AspNetCore.Authentication.AzureADB2C.UI`Web AIS обеспечивается:
+Поддержка проверки подлинности и авторизации вызовов ASP.NET Core веб-интерфейсов API обеспечивается `Microsoft.AspNetCore.Authentication.AzureADB2C.UI`:
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" 
     Version="3.1.0" />
 ```
 
-### <a name="authentication-service-support"></a>Поддержка службы аутентификации
+### <a name="authentication-service-support"></a>Поддержка службы проверки подлинности
 
-Метод `AddAuthentication` настраивает службы аутентификации в приложении и настраивает обработчик JWT Bearer как метод аутентификации по умолчанию. Метод `AddAzureADB2CBearer` устанавливает определенные параметры в обработчике JWT Bearer, необходимые для проверки токенов, испускаемых B2C Active Directory:
+`AddAuthentication` Метод настраивает службы проверки подлинности в приложении и настраивает обработчик носителя JWT в качестве метода проверки подлинности по умолчанию. `AddAzureADB2CBearer` Метод настраивает определенные параметры в обработчике носителя JWT, который требуется для проверки маркеров, созданных Azure Active Directory B2C:
 
 ```csharp
 services.AddAuthentication(AzureADB2CDefaults.BearerAuthenticationScheme)
     .AddAzureADB2CBearer(options => Configuration.Bind("AzureAdB2C", options));
 ```
 
-`UseAuthentication`и `UseAuthorization` обеспечить, чтобы:
+`UseAuthentication`и `UseAuthorization` убедитесь, что:
 
-* Приложение пытается разобрать и проверить токены на входящих запросах.
-* Любой запрос, пытающихся получить доступ к защищенного ресурсу без надлежащих учетных данных, завершается неудачей.
+* Приложение пытается проанализировать и проверить маркеры в входящих запросах.
+* Любой запрос, пытающийся получить доступ к защищенному ресурсу без соответствующих учетных данных, завершится ошибкой.
 
 ```csharp
 app.UseAuthentication();
@@ -151,9 +154,9 @@ app.UseAuthorization();
 
 ### <a name="useridentityname"></a>User.Identity.Name
 
-По умолчанию, `User.Identity.Name` не заселен.
+По умолчанию значение `User.Identity.Name` не заполняется.
 
-Чтобы настроить приложение для получения значения `name` из типа претензии, назначь [TokenValidationParameters.NameClaimType](xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType) <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> в: `Startup.ConfigureServices`
+Чтобы настроить приложение для получения значения `name` из типа утверждения, настройте [TokenValidationParameters. намеклаимтипе](xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType) <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> в: `Startup.ConfigureServices`
 
 ```csharp
 services.Configure<JwtBearerOptions>(
@@ -165,7 +168,7 @@ services.Configure<JwtBearerOptions>(
 
 ### <a name="app-settings"></a>Параметры приложения
 
-Файл *appsettings.json* содержит параметры настройки обработчика носителя JWT, используемого для проверки токенов доступа.
+Файл *appSettings. JSON* содержит параметры для настройки обработчика носителя JWT, используемого для проверки маркеров доступа.
 
 ```json
 {
@@ -178,12 +181,12 @@ services.Configure<JwtBearerOptions>(
 }
 ```
 
-### <a name="weatherforecast-controller"></a>Контроллер WeatherForecast
+### <a name="weatherforecast-controller"></a>Контроллер Веасерфорекаст
 
-Контроллер WeatherForecast *(Контроллеры/WeatherForecastController.cs*) предоставляет защищенный `[Authorize]` API с атрибутом, применяемым к контроллеру. **Важно** понимать, что:
+Контроллер Веасерфорекаст (*Controllers/веасерфорекастконтроллер. CS*) предоставляет защищенный API с `[Authorize]` атрибутом, примененным к контроллеру. **Важно** понимать, что:
 
-* Атрибут `[Authorize]` в этом контроллере API является единственной вещью, которая защищает этот API от несанкционированного доступа.
-* Атрибут, `[Authorize]` используемый Blazor в приложении WebAssembly, служит только намеком на приложение о том, что пользователь должен быть авторизован для правильной работы приложения.
+* `[Authorize]` Атрибут в этом контроллере API является единственным, который защищает этот API от несанкционированного доступа.
+* `[Authorize]` Атрибут, используемый в Blazor приложении сборки, служит указанием для приложения, которое должно быть проверено для правильной работы приложения.
 
 ```csharp
 [Authorize]
@@ -201,26 +204,26 @@ public class WeatherForecastController : ControllerBase
 
 ## <a name="client-app-configuration"></a>Конфигурация клиентского приложения
 
-*Этот раздел относится к **клиенту** приложения решения.*
+*Этот раздел относится к **клиентскому** приложению решения.*
 
-### <a name="authentication-package"></a>Пакет аутентификации
+### <a name="authentication-package"></a>Пакет проверки подлинности
 
-Когда приложение создается для использования индивидуальной`IndividualB2C`учетной записи B2C ( ), приложение`Microsoft.Authentication.WebAssembly.Msal`автоматически получает ссылку на пакет для [библиотеки подлинности Майкрософт](/azure/active-directory/develop/msal-overview) ( ). Пакет предоставляет набор примитивов, которые помогают приложению аутентифицировать пользователей и получать токены для вызова защищенных AIS.
+При создании приложения для использования отдельной учетной записи B2C (`IndividualB2C`) приложение автоматически получает ссылку на пакет для [библиотеки проверки подлинности Майкрософт](/azure/active-directory/develop/msal-overview) (`Microsoft.Authentication.WebAssembly.Msal`). Пакет предоставляет набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных интерфейсов API.
 
-При добавлении аутентификации в приложение вручную добавьте пакет в файл проекта приложения:
+При добавлении проверки подлинности в приложение вручную добавьте пакет в файл проекта приложения:
 
 ```xml
 <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" 
     Version="{VERSION}" />
 ```
 
-Замените `{VERSION}` в предыдущем пакете ссылку на версию `Microsoft.AspNetCore.Blazor.Templates` пакета, показанную <xref:blazor/get-started> в статье.
+Замените `{VERSION}` в предыдущей ссылке на пакет версией `Microsoft.AspNetCore.Blazor.Templates` пакета, показанного в этой <xref:blazor/get-started> статье.
 
-Пакет `Microsoft.Authentication.WebAssembly.Msal` транзитно добавляет `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пакет в приложение.
+`Microsoft.Authentication.WebAssembly.Msal` Пакет будет транзитно добавлять `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пакет в приложение.
 
-### <a name="authentication-service-support"></a>Поддержка службы аутентификации
+### <a name="authentication-service-support"></a>Поддержка службы проверки подлинности
 
-Поддержка аутентификации пользователей регистрируется `AddMsalAuthentication` в сервисном `Microsoft.Authentication.WebAssembly.Msal` контейнере с методом расширения, предусмотренным пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с поставщиком идентификационных данных (IP).
+Поддержка проверки подлинности пользователей регистрируется в контейнере службы с `AddMsalAuthentication` помощью метода расширения, предоставленного `Microsoft.Authentication.WebAssembly.Msal` пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с поставщиком удостоверений (IP).
 
 *Program.cs*:
 
@@ -236,16 +239,16 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-Метод `AddMsalAuthentication` принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения. Значения, необходимые для настройки приложения, можно получить из конфигурации Azure Portal AAD при регистрации приложения.
+`AddMsalAuthentication` Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения. Значения, необходимые для настройки приложения, можно получить из конфигурации AAD на портале Azure при регистрации приложения.
 
-### <a name="access-token-scopes"></a>Области маркеров доступа
+### <a name="access-token-scopes"></a>Области токенов доступа
 
-Области маркеров доступа по умолчанию представляют собой список областей маркеров доступа, которые:
+Области токена доступа по умолчанию представляют собой список областей токенов доступа.
 
-* Включен по умолчанию в знак в запросе.
-* Используется для предоставления токена доступа сразу после проверки подлинности.
+* Включается по умолчанию в запросе на вход.
+* Используется для предоставления маркера доступа сразу после проверки подлинности.
 
-Все области должны принадлежать к одному и тому же приложению в правилах Active Directory Azure. Дополнительные области могут быть добавлены для дополнительных приложений API по мере необходимости:
+Все области должны принадлежать одному и тому же приложению для правил Azure Active Directory. При необходимости можно добавить дополнительные области для дополнительных приложений API:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -256,12 +259,12 @@ builder.Services.AddMsalAuthentication(options =>
 ```
 
 > [!NOTE]
-> Если портал Azure предоставляет область URI и **приложение выбрасывает необработанное исключение,** когда получает *401 несанкционированный* ответ от API, попробуйте использовать область URI, которая не включает схему и узел. Например, портал Azure может предоставить один из следующих форматов URI:
+> Если портал Azure предоставляет URI области, а **приложение создает необработанное исключение** при 401 получении от API *неавторизованного* ответа, попробуйте использовать URI области, который не включает схему и узел. Например, портал Azure может предоставить один из следующих форматов URI области:
 >
 > * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
 > * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
 >
-> Поставка области URI без схемы и хозяина:
+> Укажите URI области без схемы и узла:
 >
 > ```csharp
 > options.ProviderOptions.DefaultAccessTokenScopes.Add(
@@ -269,6 +272,10 @@ builder.Services.AddMsalAuthentication(options =>
 > ```
 
 Для получения дополнительной информации см. <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+
+<!--
+    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
+-->
 
 ### <a name="imports-file"></a>Файл импорта
 
@@ -282,15 +289,15 @@ builder.Services.AddMsalAuthentication(options =>
 
 [!INCLUDE[](~/includes/blazor-security/app-component.md)]
 
-### <a name="redirecttologin-component"></a>ПеренаправлениеКомпонентToLogin
+### <a name="redirecttologin-component"></a>Компонент Редиректтологин
 
 [!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
 
-### <a name="logindisplay-component"></a>Компонент LoginDisplay
+### <a name="logindisplay-component"></a>Компонент Логиндисплай
 
 [!INCLUDE[](~/includes/blazor-security/logindisplay-component.md)]
 
-### <a name="authentication-component"></a>Компонент аутентификации
+### <a name="authentication-component"></a>Компонент проверки подлинности
 
 [!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
 
@@ -300,7 +307,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 ## <a name="run-the-app"></a>Запустите приложение
 
-Выполнить приложение из проекта Server. При использовании Visual Studio выберите проект Server в **Solution Explorer** и выберите кнопку **Run** в панели инструментов или запустите приложение из меню **Debug.**
+Запустите приложение из серверного проекта. При использовании Visual Studio выберите серверный проект в **Обозреватель решений** и нажмите кнопку **выполнить** на панели инструментов или запустите приложение из меню **Отладка** .
 
 <!-- HOLD
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
@@ -312,7 +319,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* [Запрос дополнительных токенов доступа](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* <xref:security/blazor/webassembly/additional-scenarios>
 * <xref:security/authentication/azure-ad-b2c>
 * [Руководство по созданию клиента Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-create-tenant)
 * [Документация по платформе удостоверений Майкрософт](/azure/active-directory/develop/)

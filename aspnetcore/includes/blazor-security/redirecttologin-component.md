@@ -1,4 +1,4 @@
-Компонент `RedirectToLogin` (*Shared/редиректтологин. Razor*):
+`RedirectToLogin` Компонент (*Shared/редиректтологин. Razor*):
 
 * Управляет перенаправлением неавторизованных пользователей на страницу входа.
 * Сохраняет текущий URL-адрес, к которому пользователь пытается получить доступ, чтобы его можно было вернуть на эту страницу, если проверка подлинности прошла успешно.
@@ -9,7 +9,8 @@
 @code {
     protected override void OnInitialized()
     {
-        Navigation.NavigateTo($"authentication/login?returnUrl={Navigation.Uri}");
+        Navigation.NavigateTo(
+            $"authentication/login?returnUrl={Uri.EscapeDataString(Navigation.Uri)}");
     }
 }
 ```
