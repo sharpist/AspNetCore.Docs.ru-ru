@@ -5,17 +5,17 @@ description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/24/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
-ms.openlocfilehash: 7d1031d3eac0e1d6790ca946809038127eb59a73
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: 4ccf86550a520f1d001088859ef5909041178781
+ms.sourcegitcommit: 6d271f4b4c3cd1e82267f51d9bfb6de221c394fe
 ms.translationtype: MT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 04/24/2020
-ms.locfileid: "82111166"
+ms.locfileid: "82150000"
 ---
 # <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Защита автономного Blazor приложения ASP.NET Coreной сборки с помощью Azure Active Directory B2C
 
@@ -24,9 +24,6 @@ ms.locfileid: "82111166"
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> Рекомендации в этой статье применимы к предварительной версии 4 ASP.NET Core 3,2. Этот раздел будет обновлен для ознакомительной версии 5 в пятницу, 24 апреля.
 
 Чтобы создать Blazor изолированное приложение для сборки, использующее [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) для проверки подлинности:
 
@@ -83,19 +80,37 @@ ms.locfileid: "82111166"
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
 {
-    var authentication = options.ProviderOptions.Authentication;
-    authentication.Authority = 
-        "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}";
-    authentication.ClientId = "{CLIENT ID}";
-    authentication.ValidateAuthority = false;
+    builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
 });
 ```
 
-`AddMsalAuthentication` Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения. Значения, необходимые для настройки приложения, можно получить из конфигурации AAD на портале Azure при регистрации приложения.
+`AddMsalAuthentication` Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения. Значения, необходимые для настройки приложения, можно получить из конфигурации учетных записей Майкрософт при регистрации приложения.
+
+Конфигурация предоставляется файлом *wwwroot/appSettings. JSON* :
+
+```json
+{
+  "AzureAdB2C": {
+    "Authority": "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
+    "ClientId": "{CLIENT ID}"
+  }
+}
+```
+
+Пример.
+
+```json
+{
+  "AzureAdB2C": {
+    "Authority": "https://contoso.b2clogin.com/contoso.onmicrosoft.com/B2C_1_signupsignin1",
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd"
+  }
+}
+```
 
 ## <a name="access-token-scopes"></a>Области токенов доступа
 
-Blazor Шаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API. Чтобы подготавливать маркер в процессе входа, добавьте область в область маркера доступа по умолчанию для `MsalProviderOptions`:
+Blazor Шаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API. Чтобы настроить маркер доступа как часть потока входа, добавьте область в область маркера доступа по умолчанию для `MsalProviderOptions`:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -118,11 +133,10 @@ builder.Services.AddMsalAuthentication(options =>
 >     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
 > ```
 
-Для получения дополнительной информации см. <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+Дополнительные сведения см. в следующих разделах статьи *Дополнительные сценарии* :
 
-<!--
-    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
--->
+* [Запрос дополнительных маркеров доступа](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Присоединение маркеров к исходящим запросам](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
 
 ## <a name="imports-file"></a>Файл импорта
 

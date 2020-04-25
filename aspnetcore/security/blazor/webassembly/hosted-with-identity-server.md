@@ -5,17 +5,17 @@ description: Создание нового Blazor размещенного пр�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/22/2020
+ms.date: 04/24/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-identity-server
-ms.openlocfilehash: f8de07e2e21ca19b5c4e95839e7b7e621c335ad0
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: ffdcd30ae9ce5350113569a500e99cf8db82ad65
+ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
 ms.translationtype: MT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 04/24/2020
-ms.locfileid: "82110955"
+ms.locfileid: "82138614"
 ---
 # <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-identity-server"></a>Защита размещенного Blazor в ASP.NET Core приложения сборки с помощью Identity Server
 
@@ -24,9 +24,6 @@ ms.locfileid: "82110955"
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> Рекомендации в этой статье применимы к предварительной версии 4 ASP.NET Core 3,2. Этот раздел будет обновлен для ознакомительной версии 5 в пятницу, 24 апреля.
 
 Чтобы создать новое Blazor размещенное приложение в Visual Studio, использующее [IdentityServer](https://identityserver.io/) для проверки подлинности пользователей и вызовов API:
 
@@ -58,9 +55,11 @@ dotnet new blazorwasm -au Individual -ho
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+        options.UseSqlite(
+            Configuration.GetConnectionString("DefaultConnection")));
 
-    services.AddDefaultIdentity<ApplicationUser>()
+    services.AddDefaultIdentity<ApplicationUser>(options => 
+            options.SignIn.RequireConfirmedAccount = true)
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
@@ -90,6 +89,13 @@ dotnet new blazorwasm -au Individual -ho
 
     ```csharp
     app.UseIdentityServer();
+    ```
+
+  * По промежуточного слоя для проверки подлинности и авторизации:
+
+    ```csharp
+    app.UseAuthentication();
+    app.UseAuthorization();
     ```
 
 ### <a name="addapiauthorization"></a>аддапиаусоризатион
@@ -124,19 +130,9 @@ dotnet new blazorwasm -au Individual -ho
 ```json
 "IdentityServer": {
   "Clients": {
-    "BlazorApplicationWithAuthentication.Client": {
+    "{APP ASSEMBLY}.Client": {
       "Profile": "IdentityServerSPA"
     }
-  }
-}
-```
-
-В файле параметров приложения среды разработки (*appSettings. Development. JSON*) в корне проекта `IdentityServer` раздел описывает ключ, используемый для подписи маркеров. <!-- When deploying to production, a key needs to be provisioned and deployed alongside the app, as explained in the [Deploy to production](#deploy-to-production) section. -->
-
-```json
-"IdentityServer": {
-  "Key": {
-    "Type": "Development"
   }
 }
 ```
@@ -231,7 +227,7 @@ builder.Services.AddApiAuthorization();
 
 [!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
 
-## <a name="run-the-app"></a>Запустите приложение
+## <a name="run-the-app"></a>Запуск приложения
 
 Запустите приложение из серверного проекта. При использовании Visual Studio выберите серверный проект в **Обозреватель решений** и нажмите кнопку **выполнить** на панели инструментов или запустите приложение из меню **Отладка** .
 

@@ -1,9 +1,9 @@
 ## <a name="usermanager-and-signinmanager"></a>UserManager и SignInManager
 
-Установите тип требования идентификатора пользователя, когда требуется приложение Server:
+Задайте тип утверждения идентификатора пользователя, если требуется серверное приложение:
 
-* <xref:Microsoft.AspNetCore.Identity.UserManager%601>или <xref:Microsoft.AspNetCore.Identity.SignInManager%601> в конечном пункте API.
-* <xref:Microsoft.AspNetCore.Identity.IdentityUser>данные, такие как имя пользователя, адрес электронной почты или время окончания блокировки.
+* <xref:Microsoft.AspNetCore.Identity.UserManager%601>или <xref:Microsoft.AspNetCore.Identity.SignInManager%601> в КОНЕЧНОЙ точке API.
+* <xref:Microsoft.AspNetCore.Identity.IdentityUser>подробные сведения, например имя пользователя, адрес электронной почты или время окончания блокировки.
 
 В `Startup.ConfigureServices`:
 
@@ -12,7 +12,7 @@ services.Configure<IdentityOptions>(options =>
     options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 ```
 
-При `WeatherForecastController` вызове <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> метода `Get` приведены следующие журналы:
+<xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> При вызове `Get` метода регистрируются следующие `WeatherForecastController` журналы:
 
 ```csharp
 using System;
@@ -23,10 +23,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using BlazorAppIdentityServer.Server.Models;
-using BlazorAppIdentityServer.Shared;
+using {APP NAMESPACE}.Server.Models;
+using {APP NAMESPACE}.Shared;
 
-namespace BlazorAppIdentityServer.Server.Controllers
+namespace {APP NAMESPACE}.Server.Controllers
 {
     [Authorize]
     [ApiController]

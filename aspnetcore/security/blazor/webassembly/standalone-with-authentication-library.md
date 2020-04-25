@@ -5,17 +5,17 @@ description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/24/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: 043e4548ad6f40fdf1e6c27cd51946c7bf59a66e
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: 25aa7761b9c1acc72081653422e80cb004500573
+ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
 ms.translationtype: MT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 04/24/2020
-ms.locfileid: "82110957"
+ms.locfileid: "82138530"
 ---
 # <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-the-authentication-library"></a>Защита автономного Blazor приложения ASP.NET Coreной сборки с помощью библиотеки проверки подлинности
 
@@ -24,9 +24,6 @@ ms.locfileid: "82110957"
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> Рекомендации в этой статье применимы к предварительной версии 4 ASP.NET Core 3,2. Этот раздел будет обновлен для ознакомительной версии 5 в пятницу, 24 апреля.
 
 *Для Azure Active Directory (AAD) и Azure Active Directory B2C (AAD B2C) не следуйте указаниям в этом разделе. См. разделы, посвященные AAD и AAD B2C, в этом узле оглавления.*
 
@@ -63,16 +60,26 @@ dotnet new blazorwasm -au Individual
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
 {
-    options.ProviderOptions.Authority = "{AUTHORITY}";
-    options.ProviderOptions.ClientId = "{CLIENT ID}";
+    builder.Configuration.Bind("Local", options.ProviderOptions);
 });
+```
+
+Конфигурация предоставляется файлом *wwwroot/appSettings. JSON* :
+
+```json
+{
+    "Local": {
+        "Authority": "{AUTHORITY}",
+        "ClientId": "{CLIENT ID}"
+    }
+}
 ```
 
 Поддержка проверки подлинности для автономных приложений предлагается с помощью Open ID Connect (OIDC). `AddOidcAuthentication` Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения с помощью OIDC. Значения, необходимые для настройки приложения, можно получить из IP-адреса, совместимого с OIDC. Получите значения при регистрации приложения, которое обычно происходит на веб-портале.
 
 ## <a name="access-token-scopes"></a>Области токенов доступа
 
-Blazor Шаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API. Чтобы создать маркер в рамках потока входа, добавьте область в области токенов по умолчанию `OidcProviderOptions`:
+Blazor Шаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API. Чтобы настроить маркер доступа как часть потока входа, добавьте область в области токенов по умолчанию `OidcProviderOptions`:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -95,11 +102,10 @@ builder.Services.AddOidcAuthentication(options =>
 >     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
 > ```
 
-Для получения дополнительной информации см. <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+Дополнительные сведения см. в следующих разделах статьи *Дополнительные сценарии* :
 
-<!--
-    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
--->
+* [Запрос дополнительных маркеров доступа](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Присоединение маркеров к исходящим запросам](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
 
 ## <a name="imports-file"></a>Файл импорта
 
@@ -130,4 +136,3 @@ builder.Services.AddOidcAuthentication(options =>
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * <xref:security/blazor/webassembly/additional-scenarios>
- 

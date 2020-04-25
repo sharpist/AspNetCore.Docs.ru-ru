@@ -1,26 +1,25 @@
-Компонент `FetchData` показывает, как:
+В `FetchData` компоненте показано, как:
 
-* Предоставление токена доступа.
-* Используйте маркер доступа для вызова защищенного API ресурса в приложении *Server.*
+* Подготавливает маркер доступа.
+* Используйте маркер доступа для вызова API защищенных ресурсов в *серверном* приложении.
 
-Директива `@attribute [Authorize]` указывает системе авторизации Blazor WebAssembly, что пользователь должен быть уполномочен для посещения этого компонента. Наличие атрибута в приложении *«Клиент»* не препятствует вызову API на сервере без надлежащих учетных данных. Приложение *Server* также `[Authorize]` должно использоваться на соответствующих конечных точках, чтобы правильно защитить их.
+`@attribute [Authorize]` Директива указывает системе авторизации веб блазор, что пользователь должен быть авторизован для посещения этого компонента. Наличие атрибута в *клиентском* приложении не мешает вызову API на сервере без соответствующих учетных данных. *Серверное* приложение также должно использовать `[Authorize]` на соответствующих конечных точках для правильной защиты.
 
-`AuthenticationService.RequestAccessToken();`заботится о запросе маркера доступа, который может быть добавлен в запрос на вызов API. Если токен кэширован или служба может предоставить новый токен доступа без взаимодействия с пользователем, запрос маркера удается. В противном случае запрос маркера не удается.
+`AuthenticationService.RequestAccessToken();`позаботится о запросе маркера доступа, который можно добавить в запрос для вызова API. Если маркер кэшируется или служба может подготавливать новый маркер доступа без вмешательства пользователя, запрос маркера будет выполнен. В противном случае запрос маркера завершится ошибкой.
 
-Для того, чтобы получить фактический токен, чтобы включить в запрос, `tokenResult.TryGetToken(out var token)`приложение должно проверить, что запрос удалось, позвонив . 
+Чтобы получить фактический токен для включения в запрос, приложение должно проверить, что запрос прошел, вызвав метод `tokenResult.TryGetToken(out var token)`. 
 
-Если запрос был успешным, переменная токена заполняется токеном. Свойство `Value` токена предоставляет буквальную строку `Authorization` для включения в заголовок запроса.
+Если запрос был успешным, переменная маркера заполняется маркером доступа. `Value` Свойство маркера предоставляет строку литерала для включения в заголовок `Authorization` запроса.
 
-Если запрос не удалось, поскольку маркер не может быть подготовлен без взаимодействия с пользователем, результат маркера содержит URL-адрес перенаправления. Навигация по этому URL-адресу переносит пользователя на страницу входа и возвращается на текущую страницу после успешной проверки подлинности.
+Если запрос завершился ошибкой, так как не удалось подготовить маркер без взаимодействия с пользователем, результат маркера содержит URL-адрес перенаправления. При переходе по этому URL-адресу пользователь переходит на страницу входа и возвращается к текущей странице после успешной проверки подлинности.
 
 ```razor
 @page "/fetchdata"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@inject IAccessTokenProvider AuthenticationService
-@inject NavigationManager Navigation
-@using {APPLICATION NAMESPACE}.Shared
+@using {APP NAMESPACE}.Shared
 @attribute [Authorize]
+@inject HttpClient Http
 
 ...
 
@@ -29,25 +28,14 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri(Navigation.BaseUri);
-
-        var tokenResult = await AuthenticationService.RequestAccessToken();
-
-        if (tokenResult.TryGetToken(out var token))
+        try
         {
-            httpClient.DefaultRequestHeaders.Add("Authorization", 
-                $"Bearer {token.Value}");
-            forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>(
-                "WeatherForecast");
+            forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
         }
-        else
+        catch (AccessTokenNotAvailableException exception)
         {
-            Navigation.NavigateTo(tokenResult.RedirectUrl);
+            exception.Redirect();
         }
-
     }
 }
 ```
-
-Для получения дополнительной информации смотрите [состояние приложения «Сохранить» перед операцией проверки подлинности.](xref:security/blazor/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation)

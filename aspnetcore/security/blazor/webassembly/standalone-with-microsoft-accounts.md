@@ -5,17 +5,17 @@ description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/24/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-microsoft-accounts
-ms.openlocfilehash: a12cc8f94a97882e4a0ac3a6553628df4da2e82c
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: 95c16bcd8da22792b27b3aaaf8632b2206372270
+ms.sourcegitcommit: 6d271f4b4c3cd1e82267f51d9bfb6de221c394fe
 ms.translationtype: MT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 04/24/2020
-ms.locfileid: "82111192"
+ms.locfileid: "82150061"
 ---
 # <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-microsoft-accounts"></a>Защита автономного Blazor приложения ASP.NET Coreной сборки с помощью учетных записей Майкрософт
 
@@ -24,9 +24,6 @@ ms.locfileid: "82111192"
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> Рекомендации в этой статье применимы к предварительной версии 4 ASP.NET Core 3,2. Этот раздел будет обновлен для ознакомительной версии 5 в пятницу, 24 апреля.
 
 Чтобы создать изолированное приложение для веб- Blazor сборки, использующее [учетные записи Майкрософт с Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) для проверки подлинности:
 
@@ -86,17 +83,37 @@ ms.locfileid: "82111192"
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
 {
-    var authentication = options.ProviderOptions.Authentication;
-    authentication.Authority = "{AUTHORITY}";
-    authentication.ClientId = "{CLIENT ID}";
+    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
 });
 ```
 
 `AddMsalAuthentication` Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения. Значения, необходимые для настройки приложения, можно получить из конфигурации учетных записей Майкрософт при регистрации приложения.
 
+Конфигурация предоставляется файлом *wwwroot/appSettings. JSON* :
+
+```json
+{
+  "AzureAd": {
+    "Authority": "https://login.microsoftonline.com/common",
+    "ClientId": "{CLIENT ID}"
+  }
+}
+```
+
+Пример.
+
+```json
+{
+  "AzureAd": {
+    "Authority": "https://login.microsoftonline.com/common",
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd"
+  }
+}
+```
+
 ## <a name="access-token-scopes"></a>Области токенов доступа
 
-Blazor Шаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API. Чтобы подготавливать маркер в процессе входа, добавьте область в область маркера доступа по умолчанию для `MsalProviderOptions`:
+Blazor Шаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API. Чтобы настроить маркер доступа как часть потока входа, добавьте область в область маркера доступа по умолчанию для `MsalProviderOptions`:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -119,11 +136,10 @@ builder.Services.AddMsalAuthentication(options =>
 >     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
 > ```
 
-Для получения дополнительной информации см. <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+Дополнительные сведения см. в следующих разделах статьи *Дополнительные сценарии* :
 
-<!--
-    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
--->
+* [Запрос дополнительных маркеров доступа](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Присоединение маркеров к исходящим запросам](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
 
 ## <a name="imports-file"></a>Файл импорта
 

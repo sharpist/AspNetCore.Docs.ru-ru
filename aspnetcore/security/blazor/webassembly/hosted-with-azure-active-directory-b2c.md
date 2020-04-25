@@ -5,17 +5,17 @@ description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/24/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
-ms.openlocfilehash: 45ef1e6599777a38da7db753a8868028f3134f4b
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: 6f049906da4a1aa87f293f5ad1af19dad44f477a
+ms.sourcegitcommit: 6d271f4b4c3cd1e82267f51d9bfb6de221c394fe
 ms.translationtype: MT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 04/24/2020
-ms.locfileid: "82110984"
+ms.locfileid: "82150034"
 ---
 # <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Обеспечение безопасности размещенного в ASP.NET Core Blazor приложения сборки Azure Active Directory B2C
 
@@ -24,9 +24,6 @@ ms.locfileid: "82110984"
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> Рекомендации в этой статье применимы к предварительной версии 4 ASP.NET Core 3,2. Этот раздел будет обновлен для ознакомительной версии 5 в пятницу, 24 апреля.
 
 В этой статье описывается, как создать Blazor автономное приложение для сборки, использующее [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) для проверки подлинности.
 
@@ -130,7 +127,7 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" 
-    Version="3.1.0" />
+    Version="{VERSION}" />
 ```
 
 ### <a name="authentication-service-support"></a>Поддержка службы проверки подлинности
@@ -174,9 +171,22 @@ services.Configure<JwtBearerOptions>(
 {
   "AzureAd": {
     "Instance": "https://{ORGANIZATION}.b2clogin.com/",
-    "ClientId": "{API CLIENT ID}",
+    "ClientId": "{SERVER API APP CLIENT ID}",
     "Domain": "{DOMAIN}",
     "SignUpSignInPolicyId": "{SIGN UP OR SIGN IN POLICY}"
+  }
+}
+```
+
+Пример.
+
+```json
+{
+  "AzureAd": {
+    "Instance": "https://contoso.b2clogin.com/",
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "Domain": "contoso.onmicrosoft.com",
+    "SignUpSignInPolicyId": "B2C_1_signupsignin1",
   }
 }
 ```
@@ -223,6 +233,19 @@ public class WeatherForecastController : ControllerBase
 
 ### <a name="authentication-service-support"></a>Поддержка службы проверки подлинности
 
+Добавлена поддержка `HttpClient` экземпляров, включающая маркеры доступа при выполнении запросов к серверному проекту.
+
+*Program.cs*:
+
+```csharp
+builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", client => 
+        client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+    .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+
+builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
+    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
+```
+
 Поддержка проверки подлинности пользователей регистрируется в контейнере службы с `AddMsalAuthentication` помощью метода расширения, предоставленного `Microsoft.Authentication.WebAssembly.Msal` пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с поставщиком удостоверений (IP).
 
 *Program.cs*:
@@ -230,16 +253,36 @@ public class WeatherForecastController : ControllerBase
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
 {
-    var authentication = options.ProviderOptions.Authentication;
-    authentication.Authority = 
-        "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}";
-    authentication.ClientId = "{CLIENT ID}";
-    authentication.ValidateAuthority = false;
+    builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
     options.ProviderOptions.DefaultAccessTokenScopes.Add("{SCOPE URI}");
 });
 ```
 
 `AddMsalAuthentication` Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения. Значения, необходимые для настройки приложения, можно получить из конфигурации AAD на портале Azure при регистрации приложения.
+
+Конфигурация предоставляется файлом *wwwroot/appSettings. JSON* :
+
+```json
+{
+  "AzureAdB2C": {
+    "Authority": "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
+    "ClientId": "{CLIENT APP CLIENT ID}",
+    "ValidateAuthority": false
+  }
+}
+```
+
+Пример.
+
+```json
+{
+  "AzureAdB2C": {
+    "Authority": "https://contoso.b2clogin.com/contoso.onmicrosoft.com/B2C_1_signupsignin1",
+    "ClientId": "4369008b-21fa-427c-abaa-9b53bf58e538",
+    "ValidateAuthority": false
+  }
+}
+```
 
 ### <a name="access-token-scopes"></a>Области токенов доступа
 
@@ -271,11 +314,11 @@ builder.Services.AddMsalAuthentication(options =>
 >     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
 > ```
 
-Для получения дополнительной информации см. <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+Дополнительные сведения см. в следующих разделах статьи *Дополнительные сценарии* :
 
-<!--
-    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
--->
+* [Запрос дополнительных маркеров доступа](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Присоединение маркеров к исходящим запросам](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
+
 
 ### <a name="imports-file"></a>Файл импорта
 
@@ -305,7 +348,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 [!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
 
-## <a name="run-the-app"></a>Запустите приложение
+## <a name="run-the-app"></a>Запуск приложения
 
 Запустите приложение из серверного проекта. При использовании Visual Studio выберите серверный проект в **Обозреватель решений** и нажмите кнопку **выполнить** на панели инструментов или запустите приложение из меню **Отладка** .
 

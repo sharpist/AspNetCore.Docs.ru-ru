@@ -5,17 +5,17 @@ description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/24/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/additional-scenarios
-ms.openlocfilehash: 2dbb2bbd07c427c594a12b8037f35cfff2228191
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: cd1433d5716b9b595270209fa874a8cb93fdf699
+ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
 ms.translationtype: MT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 04/24/2020
-ms.locfileid: "82111179"
+ms.locfileid: "82138434"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Блазор дополнительные сценарии безопасности для сборки
 
@@ -24,9 +24,6 @@ ms.locfileid: "82111179"
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> Рекомендации в этой статье применимы к предварительной версии 4 ASP.NET Core 3,2. Этот раздел будет обновлен для ознакомительной версии 5 в пятницу, 24 апреля.
 
 ## <a name="request-additional-access-tokens"></a>Запрос дополнительных маркеров доступа
 
@@ -46,7 +43,7 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-`IAccessTokenProvider.RequestToken` Метод предоставляет перегрузку, которая позволяет приложению подготавливать маркер с заданным набором областей, как показано в следующем примере:
+`IAccessTokenProvider.RequestToken` Метод предоставляет перегрузку, которая позволяет приложению подготавливать маркер доступа с заданным набором областей, как показано в следующем примере:
 
 ```csharp
 var tokenResult = await AuthenticationService.RequestAccessToken(
@@ -93,7 +90,8 @@ builder.Services.AddHttpClient("BlazorWithIdentityApp1.ServerAPI",
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
         .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
-builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("BlazorWithIdentityApp1.ServerAPI"));
+builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
+    .CreateClient("BlazorWithIdentityApp1.ServerAPI"));
 ```
 
 При создании клиента с помощью `CreateClient` в предыдущем примере `HttpClient` передаются экземпляры, которые включают маркеры доступа при выполнении запросов к серверному проекту.
@@ -403,6 +401,71 @@ builder.Services.AddApiAuthorization(options => {
 | `authentication/profile`         | `<UserProfile>`         |
 | `authentication/register`        | `<Registering>`         |
 
+## <a name="customize-the-user"></a>Настройка пользователя
+
+Пользователи, привязанные к приложению, могут быть настроены. В следующем примере все пользователи, прошедшие проверку подлинности, получают `amr` утверждение для каждого из методов проверки подлинности пользователя.
+
+Создайте класс, расширяющий `RemoteUserAccount` класс:
+
+```csharp
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+public class OidcAccount : RemoteUserAccount
+{
+    [JsonPropertyName("amr")]
+    public string[] AuthenticationMethod { get; set; }
+}
+```
+
+Создайте фабрику, которая `AccountClaimsPrincipalFactory<TAccount>`расширяет:
+
+```csharp
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
+
+public class CustomAccountFactory 
+    : AccountClaimsPrincipalFactory<OidcAccount>
+{
+    public AccountClaimsPrincipalFactory(NavigationManager navigationManager, 
+        IAccessTokenProviderAccessor accessor) : base(accessor)
+    {
+    }
+  
+    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+        OidcAccount account, RemoteAuthenticationUserOptions options)
+    {
+        var initialUser = await base.CreateUserAsync(account, options);
+        
+        if (initialUser.Identity.IsAuthenticated)
+        {
+            foreach (var value in account.AuthenticationMethod)
+            {
+                ((ClaimsIdentity)initialUser.Identity)
+                    .AddClaim(new Claim("amr", value));
+            }
+        }
+           
+        return initialUser;
+    }
+}
+```
+
+Регистрация служб для использования `CustomAccountFactory`:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+...
+
+builder.Services.AddApiAuthorization<RemoteAuthenticationState, OidcAccount>()
+    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, OidcAccount, 
+        CustomAccountFactory>();
+```
+
 ## <a name="support-prerendering-with-authentication"></a>Поддержка предварительной отрисовки с помощью проверки подлинности
 
 Выполнив инструкции в одном из разделов, посвященных размещенным приложениям Blazor WebAssembly, выполните приведенные далее действия, чтобы создать приложение, которое:
@@ -451,7 +514,8 @@ public void ConfigureServices(IServiceCollection services)
     ...
 
     services.AddRazorPages();
-    services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
+    services.AddScoped<AuthenticationStateProvider, 
+        ServerAuthenticationStateProvider>();
     services.AddScoped<SignOutSessionStateManager>();
 
     Client.Program.ConfigureCommonServices(services);
@@ -477,7 +541,8 @@ app.UseEndpoints(endpoints =>
   <app>
       @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
       {
-          <component type="typeof(Wasm.Authentication.Client.App)" render-mode="Static" />
+          <component type="typeof(Wasm.Authentication.Client.App)" 
+              render-mode="Static" />
       }
       else
       {
