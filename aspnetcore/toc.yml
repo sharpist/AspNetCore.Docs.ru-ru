@@ -299,14 +299,14 @@
           uid: blazor/data-binding
         - name: Обработка событий
           uid: blazor/event-handling
+        - name: Жизненный цикл
+          uid: blazor/lifecycle
         - name: Шаблонные компоненты
           uid: blazor/templated-components
         - name: Интеграция компонентов
           uid: blazor/integrate-components
         - name: Глобализация и локализация
           uid: blazor/globalization-localization
-        - name: Жизненный цикл
-          uid: blazor/lifecycle
         - name: Макеты
           uid: blazor/layouts
         - name: Формы и проверка
