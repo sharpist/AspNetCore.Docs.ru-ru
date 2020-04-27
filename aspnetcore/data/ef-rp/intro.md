@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 uid: data/ef-rp/intro
-ms.openlocfilehash: 94783aa9014aef4c5f775fc8f36a2c3a7715e4b6
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 07faf5e596e7ea8b134d13caa0259c1e9d74ff1b
+ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78645802"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81661613"
 ---
 # <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pages с Entity Framework Core в ASP.NET Core: учебник 1 из 8
 
@@ -159,7 +159,7 @@ ms.locfileid: "78645802"
 
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Student.cs)]
 
-Свойство `ID` используется в качестве столбца первичного ключа в таблице базы данных, соответствующей этому классу. По умолчанию платформа EF Core интерпретирует в качестве первичного ключа свойство `ID` или `classnameID`. Поэтому альтернативным автоматически распознаваемым именем для первичного ключа класса `Student` является `StudentID`.
+Свойство `ID` используется в качестве столбца первичного ключа в таблице базы данных, соответствующей этому классу. По умолчанию платформа EF Core интерпретирует в качестве первичного ключа свойство `ID` или `classnameID`. Поэтому альтернативным автоматически распознаваемым именем для первичного ключа класса `Student` является `StudentID`. Дополнительные сведения см. в разделе [EF Core — Управление ключами](/ef/core/modeling/keys?tabs=data-annotations)
 
 Свойство `Enrollments` является [свойством навигации](/ef/core/modeling/relationships). Свойства навигации содержат другие сущности, связанные с этой сущностью. В этом случае свойство `Enrollments` сущности `Student` содержит все сущности `Enrollment`, которые связаны с этим учащимся. Например, если строка Student (Учащийся) в базе данных имеет две связанные строки Enrollment (Регистрация), свойство навигации `Enrollments` содержит две эти сущности Enrollment. 
 

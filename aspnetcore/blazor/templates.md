@@ -5,17 +5,17 @@ description: Сведения о шаблонах приложений Blazor и
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 04/19/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: 71a9d9eee8637dda0b3cecac82ff96a0c3bfedb5
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 0a4a508beeae3d7bc665372d925989aa4e34ad52
+ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80320980"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81661719"
 ---
 # <a name="aspnet-core-opno-locblazor-templates"></a>Шаблоны ASP.NET Core Blazor
 
@@ -31,6 +31,13 @@ ms.locfileid: "80320980"
 Дополнительные сведения о моделях размещения Blazor см. в статье <xref:blazor/hosting-models>.
 
 Пошаговые инструкции по созданию приложения Blazor на основе шаблона см. в статье <xref:blazor/get-started>.
+
+Параметры шаблона доступны при передаче параметра `--help` в команду CLI [DotNet New](/dotnet/core/tools/dotnet-new):
+
+```dotnetcli
+dotnet new blazorwasm --help
+dotnet new blazorserver --help
+```
 
 ## <a name="opno-locblazor-project-structure"></a>Структура проекта Blazor
 

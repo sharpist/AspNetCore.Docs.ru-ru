@@ -4,14 +4,14 @@ author: scottaddie
 description: Узнайте, как оптимизировать статические ресурсы в веб-приложении ASP.NET Core, применяя методы объединения и минификации.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/17/2019
+ms.date: 04/15/2020
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: a7a5c40d6c31c4416212c02c1b491dd794f2a1d3
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 670ac6a96c3affd2b2ac699836f536aea7d85ff3
+ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78646786"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81488693"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Объединение и минификация статических ресурсов в ASP.NET Core
 
@@ -63,7 +63,7 @@ ms.locfileid: "78646786"
 
 ## <a name="choose-a-bundling-and-minification-strategy"></a>Выбор стратегии объединения и минификации
 
-Шаблоны проектов MVC и Razor Pages предоставляют готовые решения для объединения и минификации, состоящие из файла конфигурации JSON. Сторонние средства, такие как запускатель задач [Grunt](xref:client-side/using-grunt), выполняют те же задачи, но с несколько более сложной реализацией. Сторонние средства отлично подходят в случаях, когда в рамках рабочего процесса разработки, помимо объединения и минификации, требуется другая обработка, &mdash; такая как контроль качества кода и оптимизация изображений. С помощью объединения и минификации во время разработки уменьшенные файлы создаются до развертывания приложения. Объединение и минификация до развертывания обеспечивают преимущества снижения нагрузки на сервер. Однако важно понимать, что объединение и минификация во время разработки повышает сложность сборки и применяется только со статическими файлами.
+Шаблоны проектов MVC и Razor Pages предоставляют решения для объединения и минификации, состоящие из файла конфигурации JSON. Сторонние средства, такие как запускатель задач [Grunt](xref:client-side/using-grunt), выполняют те же задачи, но с несколько более сложной реализацией. Сторонние средства отлично подходят в случаях, когда в рамках рабочего процесса разработки, помимо объединения и минификации, требуется другая обработка, &mdash; такая как контроль качества кода и оптимизация изображений. С помощью объединения и минификации во время разработки уменьшенные файлы создаются до развертывания приложения. Объединение и минификация до развертывания обеспечивают преимущества снижения нагрузки на сервер. Однако важно понимать, что объединение и минификация во время разработки повышает сложность сборки и применяется только со статическими файлами.
 
 ## <a name="configure-bundling-and-minification"></a>Настройка объединения и минификации
 
@@ -95,109 +95,6 @@ ms.locfileid: "78646786"
 * `includeInProject`. флаг, указывающий, добавлять ли созданные файлы в файл проекта. **Необязательный параметр**; *значение по умолчанию — false*
 * `sourceMap`. флаг, указывающий, создавать ли сопоставитель с исходным кодом для объединенного файла. **Необязательный параметр**; *значение по умолчанию — false*
 * `sourceMapRootPath`. корневой путь для хранения созданного файла сопоставителя с исходным кодом.
-
-## <a name="build-time-execution-of-bundling-and-minification"></a>Выполнение объединения и минификации во время сборки
-
-Пакет NuGet [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) обеспечивает выполнение объединения и минификации во время сборки. Пакет внедряет [целевые объекты MSBuild](/visualstudio/msbuild/msbuild-targets), которые выполняются во время сборки и очистки. Файл *bundleconfig.json* анализируется процессом сборки для получения выходных файлов на основе определенной конфигурации.
-
-> [!NOTE]
-> BuildBundlerMinifier принадлежит к проекту сообщества в GitHub, в отношении которого корпорация Майкрософт не предоставляет поддержку. О проблемах следует сообщать [сюда](https://github.com/madskristensen/BundlerMinifier/issues).
-
-# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
-
-Добавьте пакет *BuildBundlerMinifier* в свой проект.
-
-Выполните построение проекта. В окне вывода появится следующее:
-
-```console
-1>------ Build started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
-1>
-1>Bundler: Begin processing bundleconfig.json
-1>  Minified wwwroot/css/site.min.css
-1>  Minified wwwroot/js/site.min.js
-1>Bundler: Done processing bundleconfig.json
-1>BuildBundlerMinifierApp -> C:\BuildBundlerMinifierApp\bin\Debug\netcoreapp2.0\BuildBundlerMinifierApp.dll
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
-```
-
-Очистите проект. В окне вывода появится следующее:
-
-```console
-1>------ Clean started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
-1>
-1>Bundler: Cleaning output from bundleconfig.json
-1>Bundler: Done cleaning output file from bundleconfig.json
-========== Clean: 1 succeeded, 0 failed, 0 skipped ==========
-```
-
-# <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli)
-
-Добавьте пакет *BuildBundlerMinifier* в проект:
-
-```dotnetcli
-dotnet add package BuildBundlerMinifier
-```
-
-При использовании ASP.NET Core 1.x восстановите только что добавленный пакет:
-
-```dotnetcli
-dotnet restore
-```
-
-Скомпилируйте проект.
-
-```dotnetcli
-dotnet build
-```
-
-Появится следующее:
-
-```console
-Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-
-    Bundler: Begin processing bundleconfig.json
-    Bundler: Done processing bundleconfig.json
-    BuildBundlerMinifierApp -> C:\BuildBundlerMinifierApp\bin\Debug\netcoreapp2.0\BuildBundlerMinifierApp.dll
-```
-
-Очистите проект.
-
-```dotnetcli
-dotnet clean
-```
-
-Появится следующий результат:
-
-```console
-Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-
-  Bundler: Cleaning output from bundleconfig.json
-  Bundler: Done cleaning output file from bundleconfig.json
-```
-
----
-
-## <a name="ad-hoc-execution-of-bundling-and-minification"></a>Прямое выполнение объединения и минификации
-
-Задачи объединения и минификации можно выполнять напрямую, не создавая проект. Добавьте пакет NuGet [BundlerMinifier.Core](https://www.nuget.org/packages/BundlerMinifier.Core/) в свой проект:
-
-[!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=10)]
-
-> [!NOTE]
-> BundlerMinifier.Core принадлежит к проекту сообщества в GitHub, в отношении которого корпорация Майкрософт не предоставляет поддержку. О проблемах следует сообщать [сюда](https://github.com/madskristensen/BundlerMinifier/issues).
-
-Этот пакет расширяет .NET Core CLI для включения средства *dotnet-bundle*. Следующую команду можно выполнить в окне консоли диспетчера пакетов (PMC) или в командной оболочке:
-
-```dotnetcli
-dotnet bundle
-```
-
-> [!IMPORTANT]
-> Диспетчер пакетов NuGet добавляет зависимости в файл CSPROJ в качестве узлов `<PackageReference />`. Команда `dotnet bundle` регистрируется в .NET Core CLI только при использовании узла `<DotNetCliToolReference />`. Внесите соответствующие изменения в файл CSPROJ.
 
 ## <a name="add-files-to-workflow"></a>Добавление файлов в рабочий процесс
 
@@ -258,32 +155,7 @@ dotnet bundle
 
 В некоторых случаях для объединения и минификации рабочего процесса приложения требуется дополнительная обработка. Примеры: оптимизация изображений, отключение кэша и обработка ресурсов CDN. Для удовлетворения этих требований можно преобразовать рабочий процесс объединения и минификации для использования gulp.
 
-### <a name="use-the-bundler--minifier-extension"></a>Использование расширения Bundler & Minifier
-
-Расширение [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) в Visual Studio выполняет преобразование в gulp.
-
-> [!NOTE]
-> Расширение Bundler & Minifier принадлежит к проекту сообщества в GitHub, в отношении которого корпорация Майкрософт не предоставляет поддержку. О проблемах следует сообщать [сюда](https://github.com/madskristensen/BundlerMinifier/issues).
-
-Щелкните правой кнопкой мыши файл *bundleconfig.json* в обозревателе решений и выберите **Bundler & Minifier** > **Convert To Gulp** (Преобразовать в Gulp):
-
-![Пункт контекстного меню Convert To Gulp (Преобразовать в Gulp)](../client-side/bundling-and-minification/_static/convert-to-gulp.png)
-
-В проект добавляются файлы *gulpfile.js* и *package.json*. Устанавливаются вспомогательные пакеты [npm](https://www.npmjs.com/), перечисленные в разделе `devDependencies` файла *package.json*.
-
-Выполните следующую команду в окне PMC, чтобы установить CLI Gulp в качестве глобальной зависимости:
-
-```console
-npm i -g gulp-cli
-```
-
-Файл *gulpfile.js* считывает файл *bundleconfig.json* для получения входных данных, выходных данных и параметров.
-
-[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?range=1-12&highlight=10)]
-
-### <a name="convert-manually"></a>Преобразование вручную
-
-Если Visual Studio и (или) расширение Bundler & Minifier недоступны, выполните преобразование вручную.
+### <a name="manually-convert-the-bundling-and-minification-workflow-to-use-gulp"></a>Вручную преобразуйте рабочий процесс объединения и минификации для использования Gulp
 
 Добавьте в корневой каталог проекта файл *package.json* со следующим `devDependencies`:
 

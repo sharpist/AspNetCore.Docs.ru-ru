@@ -6,22 +6,22 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/15/2020
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: 31161d6841986cb0bd8080468e5d523d59400490
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: ced0cb7cbeed1b8811813a70035c2e0b42c3e35a
+ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80405925"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81440783"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Образы Docker для ASP.NET Core
 
 В этом руководстве показано, как запустить приложение ASP.NET Core в контейнерах Docker.
 
-Изучив это руководство, вы:
+В этом учебнике рассмотрены следующие задачи.
 > [!div class="checklist"]
 > * узнаете о создании образов Docker для Microsoft .NET Core;
 > * скачивание примера приложения ASP.NET Core;
-> * Запустите пример приложения локально.
+> * локальное выполнение примера приложения;
 > * выполнение примера приложения в контейнерах Linux;
 > * выполнение примера приложения в контейнерах Windows;
 > * локальная сборка и развертывание.
@@ -40,7 +40,7 @@ ms.locfileid: "80405925"
 
    Этот образ используется в этом примере для выполнения приложения. Этот образ содержит среду выполнения и библиотеки ASP.NET Core и оптимизирован для запуска приложений в рабочей среде. Образ нацелен на высокую скорость развертывания и запуска приложений, поэтому он сравнительно невелик, что позволяет оптимизировать производительность сети между реестром Docker и узлом Docker. В контейнер копируются только двоичные файлы и содержимое, необходимые для запуска приложений. Все содержимое готово к запуску, что гарантирует самый короткий срок от запуска `Docker run` до запуска приложения. В модели Docker динамическая компиляция кода не требуется.
 
-## <a name="prerequisites"></a>предварительные требования
+## <a name="prerequisites"></a>Предварительные требования
 ::: moniker range="< aspnetcore-3.0"
 
 * [Пакет SDK для .NET Core 2.2](https://dotnet.microsoft.com/download/dotnet-core)
@@ -54,7 +54,7 @@ ms.locfileid: "80405925"
 
 * Клиент Docker 18.03 или более поздней версии
 
-  * Дистрибутивы Linux
+  * Дистрибутивах Linux
     * [CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
     * [Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
     * [Fedora](https://docs.docker.com/install/linux/docker-ce/fedora/)
@@ -64,7 +64,7 @@ ms.locfileid: "80405925"
 
 * [Git](https://git-scm.com/download)
 
-## <a name="download-the-sample-app"></a>загрузка примера приложения;
+## <a name="download-the-sample-app"></a>Скачивание примера приложения
 
 * Скачайте пример, клонировав [репозиторий Docker для .NET Core](https://github.com/dotnet/dotnet-docker): 
 
@@ -142,7 +142,7 @@ ms.locfileid: "80405925"
 
 * Скопируйте IPv4-адрес контейнера (например 172.29.245.43) и вставьте его в адресную строку браузера, чтобы протестировать приложение.
 
-## <a name="build-and-deploy-manually"></a>локальная сборка и развертывание.
+## <a name="build-and-deploy-manually"></a>Локальная сборка и развертывание
 
 В некоторых сценариях вам потребуется развернуть приложение в контейнер, скопировав нужные для выполнения файлы приложения. В этом разделе показано, как развернуть приложение вручную.
 
@@ -262,9 +262,10 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 * [Пример ASP.NET Core для Docker](https://github.com/dotnet/dotnet-docker) (который используется в этом руководстве).
 * [Настройка ASP.NET Core для работы с прокси-серверами и подсистемами балансировки нагрузки](/aspnet/core/host-and-deploy/proxy-load-balancer)
 * [Работа со средствами Visual Studio для Docker](https://docs.microsoft.com/aspnet/core/publishing/visual-studio-tools-for-docker)
-* [Отладка с помощью Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers) 
+* [Отладка с помощью Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
+* [GC с использованием DOCKER и небольших контейнеров](xref:performance/memory#sc)
 
-## <a name="next-steps"></a>Дальнейшие действия
+## <a name="next-steps"></a>Следующие шаги
 
 Репозиторий Git помимо примера приложения содержит и документацию. Обзор ресурсов, доступных в этом репозитории, см. [в файле README](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md). Особый интерес представляют сведения о реализации протокола HTTPS:
 

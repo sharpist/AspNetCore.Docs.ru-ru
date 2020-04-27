@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: 671f68da2ea261cb8ae32a9d5ef875217859054d
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: f994cd1274bda9082a7cd8b637968b2769db1671
+ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78644884"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81661714"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Устранение неполадок ASP.NET Core в Службе приложений Azure и IIS
 
@@ -159,6 +159,15 @@ The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
 Модуль ANCM не запустился в течение заданного предельного времени запуска. По умолчанию время ожидания составляет 120 секунд.
 
 Эта ошибка может произойти, если на одном компьютере запускается много приложений. Обратите внимание на пики использования ЦП и памяти на сервере во время запуска. Возможно, потребуется регулировать процесс запуска нескольких приложений.
+
+### <a name="50038-ancm-application-dll-not-found"></a>500.38 ANCM Application DLL Not Found
+
+ANCM не удалось найти библиотеку DLL приложения, которая должна находиться рядом с исполняемым файлом.
+
+Эта ошибка возникает при размещении приложения, упакованного в виде [исполняемого файла с одним файлом](/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables) с помощью модели внутрипроцессного размещения. В модели внутрипроцессного процесса требуется, чтобы ANCM загружал приложение .NET Core в существующий процесс IIS. Этот сценарий не поддерживается моделью развертывания с одним файлом. Чтобы устранить эту ошибку, используйте **один** из следующих подходов в файле проекта приложения.
+
+1. Отключите публикацию с одним файлом, задав для свойства `PublishSingleFile` MSBuild значение `false`.
+1. Переключитесь на модель вне процесса размещения, задав для свойства `AspNetCoreHostingModel` MSBuild значение `OutOfProcess`.
 
 ### <a name="5025-process-failure"></a>502.5 Process Failure (ошибка процесса)
 
