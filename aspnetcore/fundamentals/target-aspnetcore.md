@@ -8,12 +8,12 @@ ms.date: 12/16/2019
 no-loc:
 - Blazor
 uid: fundamentals/target-aspnetcore
-ms.openlocfilehash: 72096fc2f03033dfe8325b5129e074913a2fbd1f
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 5374d7eec4334223a4bba7ee26cb6e2f208ed20b
+ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78646690"
+ms.lasthandoff: 04/08/2020
+ms.locfileid: "80977201"
 ---
 # <a name="use-aspnet-core-apis-in-a-class-library"></a>Использование интерфейсов API ASP.NET Core в библиотеке классов
 

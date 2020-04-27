@@ -5,17 +5,17 @@ description: Узнайте, как выполнять отладку прило
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 04/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: eaa67d63f6d15249885d78d3de197ae53e73f072
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 7273ae3d240de0b59a58069fdcc1880247379751
+ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80381875"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81661604"
 ---
 # <a name="debug-aspnet-core-opno-locblazor-webassembly"></a>Отладка ASP.NET Core Blazor WebAssembly
 
@@ -55,7 +55,7 @@ ms.locfileid: "80381875"
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Включение отладки для Visual Studio и Visual Studio Code
 
-Отладка включается автоматически для новых проектов, созданных с помощью шаблона проекта Blazor WebAssembly ASP.NET Core 3.2 (предварительная версия 3) или более поздней версии.
+Отладка включается автоматически для новых проектов, созданных с помощью шаблона проекта Blazor WebAssembly ASP.NET Core 3.2 (предварительная версия 3) или более поздней версии ([текущая версия 3.2 Preview 4](xref:blazor/get-started)).
 
 Чтобы включить отладку для существующего приложения Blazor WebAssembly, измените файл *launchSettings.json* в запускаемом проекте, включив в него следующее свойство `inspectUri` в каждом профиле запуска:
 
@@ -103,6 +103,8 @@ ms.locfileid: "80381875"
    ![Отладка сервера](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-server.png)
 
 1. Нажмите клавишу <kbd>F5</kbd> еще раз, чтобы продолжить выполнение и увидеть отрисовку таблицы с прогнозом погоды.
+
+<a id="vscode"></a>
 
 ## <a name="visual-studio-code"></a>Visual Studio Code
 

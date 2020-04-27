@@ -5,17 +5,17 @@ description: Узнайте, как вызывать методы .NET из фу
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/24/2020
+ms.date: 04/07/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: dbf44fe7923998c65119e42d97c304890fa95523
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: e2344dd15efd243a405373b6cf0362f28b48173a
+ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218795"
+ms.lasthandoff: 04/08/2020
+ms.locfileid: "80976954"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-opno-locblazor"></a>Вызов методов .NET из функций JavaScript в ASP.NET Core Blazor
 
@@ -270,11 +270,11 @@ function updateMessageCallerJS() {
 
 При наличии нескольких компонентов, каждый из которых содержит методы экземпляра, используйте вспомогательный класс для вызова методов экземпляра (как `Action`) для каждого компонента.
 
-Рассмотрим следующий пример:
+В следующем примере:
 
 * Компонент `JSInterop` содержит несколько компонентов `ListItem`.
 * Каждый компонент `ListItem` состоит из сообщения и кнопки.
-* При выборе кнопки компонента `ListItem` метод `ListItem` `UpdateMessage`изменяет текст элемента списка и скрывает кнопку.
+* При выборе кнопки компонента `ListItem` метод `UpdateMessage` `ListItem`изменяет текст элемента списка и скрывает кнопку.
 
 *MessageUpdateInvokeHelper.cs*:
 
@@ -359,6 +359,18 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 ```
 
 [!INCLUDE[Share interop code in a class library](~/includes/blazor-share-interop-code.md)]
+
+## <a name="avoid-circular-object-references"></a>Исключение циклических ссылок на объекты
+
+Объекты, содержащие циклические ссылки, не могут быть сериализованы на клиенте для:
+
+* вызовов метода .NET.
+* Вызов метода JavaScript из C#, если тип возвращаемого значения имеет циклические ссылки.
+
+Дополнительные сведения см. на следующих страницах:
+
+* [Циклические ссылки не поддерживаются, вторая серия (DotNet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525)
+* [Предложение. Добавить механизм для обработки циклических ссылок при сериализации (dotnet/runtime #30820)](https://github.com/dotnet/runtime/issues/30820)
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

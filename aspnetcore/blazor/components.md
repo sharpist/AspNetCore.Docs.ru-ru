@@ -5,21 +5,21 @@ description: Сведения о том, как создавать и испол
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/25/2020
+ms.date: 04/21/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: bc1d07aef9cd60b89343a034168daa6754f4421b
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 4434636992cb2506ef6525996690946f97c43764
+ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80306509"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81791493"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
-Авторы: [Люк Латэм](https://github.com/guardrex) (Luke Latham) и [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
+Авторы: [Люк Латэм (Luke Latham)](https://github.com/guardrex), [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и Тобиас Бартщ [(Tobias Bartsch)](https://www.aveo-solutions.com/)
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([как скачивать](xref:index#how-to-download-a-sample))
 
@@ -141,6 +141,9 @@ Blazor соответствует соглашению для приложени
 *Pages/ParentComponent.razor*:
 
 [!code-razor[](components/samples_snapshot/ParentComponent.razor?highlight=5-6)]
+
+> [!WARNING]
+> Не создавайте компоненты, записывающие их в собственные *параметры компонентов*, — используйте вместо этого закрытое поле. Дополнительные сведения см. в разделе [Не создавать компоненты, которые записываются в собственные свойства параметров](#dont-create-components-that-write-to-their-own-parameter-properties).
 
 ## <a name="child-content"></a>Дочернее содержимое
 
@@ -400,7 +403,7 @@ public class NotifierService
 
 Содержимое коллекции `People` может изменяться при вставке, удалении или повторном упорядочении записей. Когда компонент отрисовывается повторно, компонент `<DetailsEditor>` может измениться на получение других значений параметра `Details`. Это может усложнить повторную отрисовку. В некоторых случаях повторная отрисовка может привести к появлению заметных различий в поведении, таких как потеря фокуса элемента.
 
-Процесс сопоставления можно контролировать с помощью атрибута директивы `@key`. `@key` заставляет алгоритм сравнения гарантировать сохранение элементов или компонентов на основе значения ключа:
+Процесс сопоставления можно контролировать с помощью атрибута директивы [`@key`](xref:mvc/views/razor#key). `@key` заставляет алгоритм сравнения гарантировать сохранение элементов или компонентов на основе значения ключа:
 
 ```csharp
 @foreach (var person in People)
@@ -453,6 +456,99 @@ public class NotifierService
 * Уникальные идентификаторы (например, значения первичного ключа типа `int`, `string` или `Guid`).
 
 Убедитесь, что значения, используемые для `@key`, не конфликтуют. Если в одном родительском элементе обнаруживаются конфликтующие значения, Blazor выдает исключение, поскольку не может детерминированно сопоставлять старые элементы или компоненты с новыми. Используйте только уникальные значения, такие как экземпляры объекта или значения первичного ключа.
+
+## <a name="dont-create-components-that-write-to-their-own-parameter-properties"></a>Не создавать компоненты, которые записываются в собственные свойства параметров
+
+Параметры перезаписываются при следующих условиях.
+
+* Содержимое дочернего компонента подготавливается к просмотру с помощью `RenderFragment`.
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> вызывается в родительском компоненте.
+
+Параметры сбрасываются, так как родительский компонент перерисовывается при вызове <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>, а новые значения параметров передаются дочернему компоненту.
+
+Рассмотрим следующий компонент `Expander`, который:
+
+* преобразует дочернее содержимое;
+* переключает отображение дочернего содержимого с помощью параметра компонента.
+
+```razor
+<div @onclick="@Toggle">
+    Toggle (Expanded = @Expanded)
+
+    @if (Expanded)
+    {
+        @ChildContent
+    }
+</div>
+
+@code {
+    [Parameter]
+    public bool Expanded { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private void Toggle()
+    {
+        Expanded = !Expanded;
+    }
+}
+```
+
+Компонент `Expander` добавляется в родительский компонент, который может вызывать `StateHasChanged`:
+
+```razor
+<Expander Expanded="true">
+    <h1>Hello, world!</h1>
+</Expander>
+
+<Expander Expanded="true" />
+
+<button @onclick="@(() => StateHasChanged())">
+    Call StateHasChanged
+</button>
+```
+
+Изначально компоненты `Expander` работают независимо, когда их свойства `Expanded` переключаются. Дочерние компоненты сохраняют свои состояния, как и ожидалось. Когда в родительском элементе вызывается `StateHasChanged`, параметр `Expanded` первого дочернего компонента сбрасывается обратно к первоначальному значению (`true`). Значение `Expanded` второго компонента `Expander` не сбрасывается, так как во втором компоненте не отображается дочернее содержимое.
+
+Чтобы сохранить состояние в предыдущем сценарии, используйте *закрытое поле* в компоненте `Expander`, чтобы сохранить состояние переключения.
+
+Приведенный ниже компонент `Expander` делает следующее.
+
+* Принимает значение параметра компонента `Expanded` из родительского элемента.
+* Присваивает значение параметра компонента *закрытому полю* (`_expanded`) при [событии OnInitialized](xref:blazor/lifecycle#component-initialization-methods).
+* Использует закрытое поле для поддержания внутреннего состояния переключения.
+
+```razor
+<div @onclick="@Toggle">
+    Toggle (Expanded = @_expanded)
+
+    @if (_expanded)
+    {
+        @ChildContent
+    }
+</div>
+
+@code {
+    [Parameter]
+    public bool Expanded { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private bool _expanded;
+
+    protected override void OnInitialized()
+    {
+        _expanded = Expanded;
+    }
+
+    private void Toggle()
+    {
+        _expanded = !_expanded;
+    }
+}
+```
 
 ## <a name="partial-class-support"></a>Поддержка разделяемых классов
 
