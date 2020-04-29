@@ -10,14 +10,14 @@ no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/index
-ms.openlocfilehash: 04bbf20d1d848edfa98e719f316b790c812bfd95
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: ced8e90147b08bc75aec4534fdd8d8552506f88c
+ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80501314"
+ms.lasthandoff: 04/28/2020
+ms.locfileid: "82206103"
 ---
-# <a name="aspnet-core-opno-locblazor-authentication-and-authorization"></a>Проверка подлинности и авторизация в ASP.NET Core Blazor
+# <a name="aspnet-core-blazor-authentication-and-authorization"></a>Проверка подлинности и авторизация в ASP.NET Core Blazor
 
 Авторы: [Стив Сандерсон (Steve Sanderson)](https://github.com/SteveSandersonMS) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)
 
@@ -44,7 +44,7 @@ ASP.NET Core поддерживает настройку и администри
 
 Blazor использует существующие механизмы проверки подлинности ASP.NET Core для установления личности пользователя. Конкретный механизм зависит от того, как размещается приложение Blazor (приложение Blazor WebAssembly или серверное приложение Blazor).
 
-### <a name="opno-locblazor-webassembly-authentication"></a>Проверка подлинности в Blazor WebAssembly
+### <a name="blazor-webassembly-authentication"></a>Проверка подлинности в Blazor WebAssembly
 
 В приложениях Blazor WebAssembly проверку подлинности можно обойти, так как пользователь может изменять весь код на стороне клиента. Это же справедливо для всех технологий на стороне клиента, включая платформы одностраничного приложения JavaScript или собственных приложений для любой операционной системы.
 
@@ -57,11 +57,11 @@ Blazor использует существующие механизмы пров
 
 Дополнительные сведения о создании и настройке приложений см. в статье <xref:security/blazor/webassembly/index>.
 
-### <a name="opno-locblazor-server-authentication"></a>Проверка подлинности Blazor Server
+### <a name="blazor-server-authentication"></a>Проверка подлинности Blazor Server
 
 Серверные приложения Blazor работают через подключение в реальном времени, созданное с помощью SignalR. [Проверка подлинности в приложениях на основе SignalR](xref:signalr/authn-and-authz) выполняется при установлении подключения. Аутентификация может выполняться на основе файлов cookie или других маркеров носителя.
 
-Дополнительные сведения о создании и настройке приложений см. в статье <xref:security/blazor/server>.
+Дополнительные сведения о создании и настройке приложений см. в статье <xref:security/blazor/server/index>.
 
 ## <a name="authenticationstateprovider-service"></a>Служба AuthenticationStateProvider
 
@@ -468,7 +468,7 @@ Not authorized.
 >
 > Эти пространства имен можно предоставить глобально, добавив их в файл *_Imports.razor* приложения.
 
-## <a name="authorization-in-opno-locblazor-webassembly-apps"></a>Авторизация в приложениях Blazor WebAssembly
+## <a name="authorization-in-blazor-webassembly-apps"></a>Авторизация в приложениях Blazor WebAssembly
 
 В приложениях Blazor WebAssembly авторизацию можно обойти, так как пользователь может изменять весь код на стороне клиента. Это же справедливо для всех технологий на стороне клиента, включая платформы одностраничного приложения JavaScript или собственных приложений для любой операционной системы.
 
@@ -499,6 +499,5 @@ Not authorized.
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * <xref:security/index>
-* <xref:security/blazor/server>
 * <xref:security/authentication/windowsauth>
 * [Awesome Blazor: проверка подлинности](https://github.com/AdrienTorris/awesome-blazor#authentication) — ссылки на примеры от сообщества
