@@ -5,13 +5,13 @@ metadata:
   title: Документация по ASP.NET Core — новые возможности
   description: Узнайте о новом и измененном содержимом в документации по ASP.NET Core.
   ms.topic: landing-page
-  ms.date: 04/01/2020
-  ms.openlocfilehash: 4d1e63bafe1a40110c0b514fcaf0f1eb2f180722
-  ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+  ms.date: 04/26/2020
+  ms.openlocfilehash: 1650541ec9a6c6160f65ce1a3e83caf4b5cd092e
+  ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
   ms.translationtype: HT
   ms.contentlocale: ru-RU
-  ms.lasthandoff: 04/06/2020
-  ms.locfileid: "80538993"
+  ms.lasthandoff: 04/28/2020
+  ms.locfileid: "82206090"
 landingContent:
 - title: Поиск обновлений в документации по ASP.NET Core
   linkLists:
@@ -45,6 +45,12 @@ landingContent:
       url: https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md
     - text: Руководство для соавторов справочной документации по API ASP.NET Core
       url: https://github.com/dotnet/AspNetApiDocs/blob/master/CONTRIBUTING.md
+- title: Сообщество
+  linkLists:
+  - linkListType: whats-new
+    links:
+    - text: Сообщество
+      url: https://dotnet.microsoft.com/platform/community
 - title: Связанные страницы о новых возможностях
   linkLists:
   - linkListType: whats-new

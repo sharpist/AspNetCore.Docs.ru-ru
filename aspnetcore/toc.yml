@@ -348,7 +348,13 @@
                 - name: Дополнительные сценарии
                   uid: security/blazor/webassembly/additional-scenarios
             - name: Blazor Server
-              uid: security/blazor/server
+              items:
+                - name: Обзор
+                  uid: security/blazor/server/index
+                - name: Предотвращение угроз
+                  uid: security/blazor/server/threat-mitigation
+                - name: Дополнительные сценарии
+                  uid: security/blazor/server/additional-scenarios
             - name: Политика безопасности содержимого
               uid: security/blazor/content-security-policy
         - name: Управление состоянием
@@ -1135,7 +1141,13 @@
             - name: Дополнительные сценарии
               uid: security/blazor/webassembly/additional-scenarios
         - name: Blazor Server
-          uid: security/blazor/server
+          items:
+            - name: Обзор
+              uid: security/blazor/server/index
+            - name: Предотвращение угроз
+              uid: security/blazor/server/threat-mitigation
+            - name: Дополнительные сценарии
+              uid: security/blazor/server/additional-scenarios
         - name: Политика безопасности содержимого
           uid: security/blazor/content-security-policy
 - name: Производительность
