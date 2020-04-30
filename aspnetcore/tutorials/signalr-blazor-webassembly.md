@@ -5,17 +5,17 @@ description: Создание приложения чата, которое ис
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 04/23/2020
 no-loc:
 - Blazor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: c4843dc282e1978b39738e206ecc79ded87fcff9
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 78c5fbb8b91b934bcb34525672e9e26b6a95290e
+ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80306575"
+ms.lasthandoff: 04/24/2020
+ms.locfileid: "82111153"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Использование SignalR для ASP.NET Core с Blazor WebAssembly
 
@@ -61,7 +61,7 @@ ms.locfileid: "80306575"
 Если вы не используете предварительную версию 2 Visual Studio 16.6 и более позднюю, установите шаблон [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly). В период действия предварительной версии Blazor WebAssembly будет использоваться предварительная версия пакета [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/). В командной оболочке выполните следующую команду:
 
 ```dotnetcli
-dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
+dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview5.20216.8
 ```
 
 Следуйте указаниям по выбору инструментов:
@@ -168,7 +168,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
 
-## <a name="add-signalr-services-and-an-endpoint-for-the-signalr-hub"></a>Добавление служб и конечной точки SignalR для концентратора SignalR
+## <a name="add-services-and-an-endpoint-for-the-signalr-hub"></a>Добавьте службы и конечную точку для концентратора SignalR
 
 1. В проекте **BlazorSignalRApp.Server** откройте файл *Startup.cs*.
 
@@ -178,17 +178,15 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
    using BlazorSignalRApp.Server.Hubs;
    ```
 
-1. Добавьте службы SignalR в `Startup.ConfigureServices`:
+1. Добавьте службы SignalR и промежуточного ПО для компрессии ответа в `Startup.ConfigureServices`:
 
-   ```csharp
-   services.AddSignalR();
-   ```
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
 
-1. В `Startup.Configure` между конечными точками для маршрута контроллера по умолчанию и отката на стороне клиента добавьте конечную точку для концентратора:
+1. В `Startup.Configure` между конечными точками для контроллера и отката на стороне клиента добавьте конечную точку для концентратора:
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet&highlight=4)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_UseEndpoints&highlight=4)]
 
-## <a name="add-razor-component-code-for-chat"></a>Добавление кода компонента Razor для чата
+## <a name="add-razor-component-code-for-chat"></a>добавлять код компонента Razor для чата.
 
 1. В проекте **BlazorSignalRApp.Client** откройте файл *Pages/Index.razor*.
 
@@ -202,7 +200,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. В **обозревателе решений** выберите проект **BlazorSignalRApp.Server**. Нажмите клавиши **CTRL+F5**, чтобы запустить приложение без отладки.
+1. В **обозревателе решений** выберите проект **BlazorSignalRApp.Server**. Нажмите клавишу <kbd>F5</kbd>, чтобы запустить программу с отладкой, или <kbd>Ctrl</kbd>+<kbd>F5</kbd>, чтобы запустить ее без отладки.
 
 1. Скопируйте URL-адрес из адресной строки, откройте другой экземпляр или вкладку браузера и вставьте URL-адрес в адресную строку.
 
@@ -214,7 +212,13 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-1. Выберите на панели инструментов **Отладка** > **Запустить без отладки**.
+1. Когда VS Code предлагает создать профиль запуска для серверного приложения ( *. vscode/Launch. JSON*), запись `program` выглядит примерно так, как показано ниже, чтобы указать сборку приложения (`{APPLICATION NAME}.Server.dll`):
+
+   ```json
+   "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/{APPLICATION NAME}.Server.dll"
+   ```
+
+1. Нажмите клавишу <kbd>F5</kbd>, чтобы запустить программу с отладкой, или <kbd>Ctrl</kbd>+<kbd>F5</kbd>, чтобы запустить ее без отладки.
 
 1. Скопируйте URL-адрес из адресной строки, откройте другой экземпляр или вкладку браузера и вставьте URL-адрес в адресную строку.
 
@@ -226,7 +230,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-1. На боковой панели **Решение** выберите проект **BlazorSignalRApp.Server**. В меню выберите **Запуск** > **Запустить без отладки**.
+1. На боковой панели **Решение** выберите проект **BlazorSignalRApp.Server**. Нажмите клавишу <kbd>⌘</kbd>+<kbd>↩</kbd>**, чтобы запустить приложение с отладкой, или <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd>, чтобы запустить приложение без отладки.
 
 1. Скопируйте URL-адрес из адресной строки, откройте другой экземпляр или вкладку браузера и вставьте URL-адрес в адресную строку.
 

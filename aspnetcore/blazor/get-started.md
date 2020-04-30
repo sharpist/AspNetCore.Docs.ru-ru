@@ -5,17 +5,17 @@ description: Приступите к работе с Blazor, создав при
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/10/2020
+ms.date: 04/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: 89c7529d2b8ec97db731f7c7268e19937c398115
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.openlocfilehash: 2f10b00adce31c020d46d107c087159c17341beb
+ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/11/2020
-ms.locfileid: "79083239"
+ms.lasthandoff: 04/24/2020
+ms.locfileid: "82111075"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Начало работы с MVC ASP.NET Core Blazor
 
@@ -23,89 +23,115 @@ ms.locfileid: "79083239"
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Начало работы с Blazor:
+Чтобы приступить к работе с Blazor, следуйте указаниям по выбору инструментов:
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+1. Чтобы создать приложения Blazor Server, установите последнюю версию [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) с рабочей нагрузкой **ASP.NET и разработка веб-приложений**.
+
+   Чтобы создавать приложения Blazor Server и Blazor WebAssembly, установите последнюю предварительную версию [Visual Studio 2019](https://visualstudio.microsoft.com/vs/preview/) с рабочей нагрузкой **ASP.NET и разработка веб-приложений**.
+
+   Сведения о двух моделях размещения Blazor, *Blazor WebAssembly* и *Blazor Server*, см. в разделе <xref:blazor/hosting-models>.
+
+1. Установите шаблон предварительной версии [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly), выполнив следующую команду:
+
+   ```dotnetcli
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview5.20216.8
+   ```
+
+1. Создайте новый проект.
+
+1. Выберите **Приложение Blazor**. Выберите **Далее**.
+
+1. В поле **Имя проекта** укажите имя проекта или оставьте имя по умолчанию. Убедитесь, что для проекта правильно указано существующее **расположение** или укажите новое. Выберите **Создать**.
+
+1. Для работы с Blazor WebAssembly (предварительная версия 2 Visual Studio 16.6 или более поздней версии) выберите шаблон **Приложение WebAssembly Blazor**. Для работы с Blazor Server (Visual Studio 16.4 или более поздней версии) выберите шаблон **Серверное приложение Blazor**. Выберите **Создать**.
+
+1. Нажмите клавишу <kbd>Ctrl</kbd>+<kbd>F5</kbd> для запуска приложения.
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 1. Установите [пакет SDK для .NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
-1. Дополнительно установите шаблон [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly).
-   * Установите [пакет SDK для .NET Core 3.1.102 или более поздней версии (предварительная версия)](https://dotnet.microsoft.com/download/dotnet-core/3.1).
-   * В командной оболочке выполните следующую команду. В период действия предварительной версии Blazor WebAssembly будет использоваться предварительная версия пакета [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/).
+1. При необходимости установите шаблон предварительной версии [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly), выполнив следующую команду:
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview2.20160.5
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview5.20216.8
    ```
 
    > [!NOTE]
-   > Пакет SDK для .NET Core версии 3.1.102 или более поздней **обязательно** должен использовать шаблон Blazor WebAssembly 3.2, предварительная версия 2. Подтвердите установленную версию пакет SDK для .NET Core, запустив `dotnet --version` в командной оболочке.
+   > [Пакет SDK для .NET Core версии 3.1.201 или более поздней](https://dotnet.microsoft.com/download/dotnet-core/3.1) **обязательно** должен использовать шаблон Blazor WebAssembly 3.2, предварительная версия 4. Подтвердите установленную версию пакет SDK для .NET Core, запустив `dotnet --version` в командной оболочке.
 
-1. Следуйте указаниям по выбору инструментов:
+1. Установите [Visual Studio Code](https://code.visualstudio.com/).
 
-   # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+1. Установите актуальную версию [расширения C# для Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) и расширения [отладчика JavaScript (Nightly)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly), задав для `debug.javascript.usePreview` значение `true`.
 
-   1\. Установите [Visual Studio 2019 16.4 или более поздней версии](https://visualstudio.microsoft.com/vs/preview/) с рабочей нагрузкой **ASP.NET и веб-разработка**.
+1. Для работы с Blazor Server выполните следующую команду в командной оболочке:
 
-   2\. Создайте новый проект.
+   ```dotnetcli
+   dotnet new blazorserver -o WebApplication1
+   ```
 
-   3\. Выберите **Приложение Blazor**. Выберите **Далее**.
+   Для работы с Blazor WebAssembly выполните следующую команду в командной оболочке:
 
-   4\. В поле **Имя проекта** укажите имя проекта или оставьте имя по умолчанию. Убедитесь, что для проекта правильно указано существующее **расположение** или укажите новое. Выберите **Создать**.
+   ```dotnetcli
+   dotnet new blazorwasm -o WebApplication1
+   ```
 
-   5\. Для работы с Blazor WebAssembly выберите шаблон **Приложение WebAssembly Blazor**. Для работы с Blazor Server выберите шаблон **Серверное приложение Blazor**. Выберите **Создать**. Сведения о двух моделях размещения Blazor, *Blazor Server* и *Blazor WebAssembly*, см. в разделе <xref:blazor/hosting-models>. Если шаблон Blazor WebAssembly отсутствует, вернитесь к предыдущему шагу и переустановите шаблон.
+   Сведения о двух моделях размещения Blazor, *Blazor Server* и *Blazor WebAssembly*, см. в разделе <xref:blazor/hosting-models>.
 
-   6\. Нажмите клавишу **Ctrl**+**F5** для запуска приложения.
+1. Откройте папку *WebApplication1* в Visual Studio Code.
+
+1. Среда IDE запрашивает добавление ресурсов для сборки и отладки проекта. Выберите ответ **Да**.
+
+1. При использовании Blazor Server запустите приложение с помощью отладчика Visual Studio Code.
+
+   С помощью Blazor WebAssembly запустите конфигурацию **.NET Core Launch (Blazor Standalone**), а затем запустите браузер в конфигурации запуска **.NET Core Debug Blazor Web Assembly в Chrome** (эта конфигурация требует наличия Chrome). Для получения дополнительной информации см. <xref:blazor/debug#visual-studio-code>.
+
+1. В браузере перейдите на адрес `https://localhost:5001`.
+
+# <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
+
+Blazor Server поддерживается в Visual Studio для Mac. Blazor WebAssembly сейчас не поддерживается. Чтобы создавать приложения Blazor WebAssembly в macOS, следуйте указаниям на вкладке **.NET Core CLI**.
+
+1. Установите [Visual Studio для Mac](https://visualstudio.microsoft.com/vs/mac/).
+
+1. Выберите **Файл** > **Создать решение** или создайте **новый проект**.
+
+1. На боковой панели выберите **.NET Core** > **Приложение**.
+
+1. Выберите шаблон **Серверное приложение Blazor**. Выберите **Создать**.
+
+   Сведения о модели размещения Blazor Server см. в разделе <xref:blazor/hosting-models>.
+
+1. Задайте для параметра **Целевая платформа** значение **.NET Core 3.1** и нажмите кнопку **Далее**.
+
+1. В поле **Имя проекта** присвойте имя приложению `WebApplication1`. Выберите **Создать**.
+
+1. Выберите **Выполнить** > **Запуск без отладки**, чтобы запустить приложение *без отладчика*. Запустите приложение с помощью кнопки **Начать отладку**, чтобы запустить приложение *с отладчиком*.
+
+При появлении подтверждения доверия к сертификату разработки подтвердите доверие, чтобы продолжить.
+
+# <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli/)
+
+1. Установите [пакет SDK для .NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+
+1. При необходимости установите шаблон предварительной версии [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly), выполнив следующую команду:
+
+   ```dotnetcli
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview5.20216.8
+   ```
 
    > [!NOTE]
-   > Если вы установили расширение Visual Studio Blazor для предыдущей предварительной версии ASP.NET Core Blazor (предварительная версия 6 или более ранняя версия), можно удалить расширение. Установки шаблонов Blazor в командной оболочке теперь достаточно для отображения шаблонов в Visual Studio.
+   > [Пакет SDK для .NET Core версии 3.1.201 или более поздней](https://dotnet.microsoft.com/download/dotnet-core/3.1) **обязательно** должен использовать шаблон Blazor WebAssembly 3.2, предварительная версия 4. Подтвердите установленную версию пакет SDK для .NET Core, запустив `dotnet --version` в командной оболочке.
 
-   # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+1. Для работы с Blazor Server выполните следующую команду в командной оболочке:
 
-   1\. Установите [Visual Studio Code](https://code.visualstudio.com/).
-
-   2\. Установите актуальную версию [расширения C# для Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
-
-   3\. Для работы с Blazor WebAssembly выполните следующую команду в командной оболочке:
-
-      ```dotnetcli
-      dotnet new blazorwasm -o WebApplication1
-      ```
-
-      Для работы с Blazor Server выполните следующую команду в командной оболочке:
-
-      ```dotnetcli
-      dotnet new blazorserver -o WebApplication1
-      ```
-
-      Сведения о двух моделях размещения Blazor, *Blazor Server* и *Blazor WebAssembly*, см. в разделе <xref:blazor/hosting-models>.
-
-   4\. Откройте папку *WebApplication1* в Visual Studio Code.
-
-   5\. Для проекта Blazor Server среда IDE запрашивает добавление ресурсов для сборки и отладки проекта. Выберите ответ **Да**.
-
-   6\. При использовании серверного приложения Blazor запустите приложение с помощью отладчика Visual Studio Code. Если используется приложение WebAssembly Blazor, выполните `dotnet run` из папки проекта приложения.
-
-   7\. В браузере перейдите на адрес `https://localhost:5001`.
-
-   # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
-
-   1\. Установите [Visual Studio для Mac](https://visualstudio.microsoft.com/vs/mac/).
-
-   2\. Выберите **Файл** > **Создать решение** или создайте **новый проект**.
-
-   3\. На боковой панели выберите **.NET Core** > **Приложение**.
-
-   4\. Выберите шаблон **Серверное приложение Blazor**. В Visual Studio для Mac в данный момент доступен только шаблон Blazor Server. Для работы с Blazor WebAssembly следуйте инструкциям на вкладке **.NET Core CLI**. После выбора шаблона Blazor Server нажмите кнопку **Далее**. Сведения о двух моделях размещения Blazor, *Blazor Server* и *Blazor WebAssembly*, см. в разделе <xref:blazor/hosting-models>.
-
-   <!-- For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. -->
-
-   5\. Задайте для параметра **Целевая платформа** значение **.NET Core 3.1** и нажмите кнопку **Далее**.
-
-   6\. В поле **Имя проекта** присвойте имя приложению `WebApplication1`. Выберите **Создать**.
-
-   7\. Выберите **Выполнить** > **Запуск без отладки**, чтобы запустить приложение *без отладчика*. Запустите приложение с помощью кнопки **Начать отладку**, чтобы запустить приложение *с отладчиком*.
-
-   При появлении подтверждения доверия к сертификату разработки подтвердите доверие, чтобы продолжить.
-
-   # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli/)
+   ```dotnetcli
+   dotnet new blazorserver -o WebApplication1
+   cd WebApplication1
+   dotnet run
+   ```
 
    Для работы с Blazor WebAssembly выполните следующую команду в командной оболочке:
 
@@ -115,19 +141,11 @@ ms.locfileid: "79083239"
    dotnet run
    ```
 
-   Для работы с Blazor Server выполните следующую команду в командной оболочке:
-
-   ```dotnetcli
-   dotnet new blazorserver -o WebApplication1
-   cd WebApplication1
-   dotnet run
-   ```
-
    Сведения о двух моделях размещения Blazor, *Blazor Server* и *Blazor WebAssembly*, см. в разделе <xref:blazor/hosting-models>.
 
-   В браузере перейдите на адрес `https://localhost:5001`.
+1. В браузере перейдите на адрес `https://localhost:5001`.
 
-   ---
+---
 
 На вкладках на боковой панели доступно несколько страниц:
 
