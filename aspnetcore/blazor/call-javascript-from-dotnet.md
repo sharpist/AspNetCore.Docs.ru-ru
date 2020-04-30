@@ -10,14 +10,14 @@ no-loc:
 - Blazor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 0c6b6a0a8f88fa912523e7772fcd84ef4ce3b4ff
-ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
+ms.openlocfilehash: 380a14177d4bb8fa3de63a3c1cd9a39aeab13db3
+ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/08/2020
-ms.locfileid: "80977019"
+ms.lasthandoff: 04/28/2020
+ms.locfileid: "82205986"
 ---
-# <a name="call-javascript-functions-from-net-methods-in-aspnet-core-opno-locblazor"></a>Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor
+# <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor
 
 Авторы: [Хавьер Кальварро Нельсон](https://github.com/javiercn) (Javier Calvarro Nelson), [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
@@ -149,7 +149,7 @@ ms.locfileid: "80977019"
 
 Функции JavaScript, возвращающие значение [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) или [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined), вызываются с помощью метода `IJSRuntime.InvokeVoidAsync`.
 
-## <a name="detect-when-a-opno-locblazor-server-app-is-prerendering"></a>Обнаружение предварительной обработки в приложении Blazor Server
+## <a name="detect-when-a-blazor-server-app-is-prerendering"></a>Обнаружение предварительной обработки в приложении Blazor Server
  
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
 
@@ -458,7 +458,7 @@ namespace BlazorSample.Shared
       TimeSpan.FromSeconds({SECONDS}), new[] { "Arg1" });
   ```
 
-Дополнительные сведения о нехватке ресурсов см. в статье <xref:security/blazor/server>.
+Дополнительные сведения о нехватке ресурсов см. в статье <xref:security/blazor/server/threat-mitigation>.
 
 [!INCLUDE[Share interop code in a class library](~/includes/blazor-share-interop-code.md)]
 

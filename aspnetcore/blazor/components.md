@@ -10,12 +10,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: 4434636992cb2506ef6525996690946f97c43764
-ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
+ms.openlocfilehash: a9ae84c36716bfc07ae3cf86214e48ad24770401
+ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81791493"
+ms.lasthandoff: 04/28/2020
+ms.locfileid: "82205960"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
@@ -966,4 +966,4 @@ public class ThemeInfo
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* <xref:security/blazor/server> &ndash; содержит рекомендации по созданию приложений Blazor Server, которые должны состязаться в условиях нехватки ресурсов.
+* <xref:security/blazor/server/threat-mitigation> &ndash; содержит рекомендации по созданию приложений Blazor Server, которые должны состязаться в условиях нехватки ресурсов.
