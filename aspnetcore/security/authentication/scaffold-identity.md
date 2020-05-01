@@ -5,18 +5,18 @@ description: Узнайте, как сформировать удостовер�
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/15/2020
+ms.date: 5/1/2020
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: b3e077aeac11e62d9e992884100476f7be35b59a
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: ac95035b114274ddaa6ccb0b5b6e3da98885e39e
+ms.sourcegitcommit: 6318d2bdd63116e178c34492a904be85ec9ac108
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653716"
+ms.lasthandoff: 04/30/2020
+ms.locfileid: "82604731"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Удостоверение шаблона в ASP.NET Core проектах
 
-Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT)
+Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -30,13 +30,25 @@ ASP.NET Core предоставляет [ASP.NET Core удостоверение
 
 Службы необходимы при использовании [двухфакторной проверки подлинности](xref:security/authentication/identity-enable-qrcodes), [подтверждения учетной записи и восстановления пароля](xref:security/authentication/accconfirm), а также других функций безопасности с удостоверениями. Службы или заглушки служб не создаются при формировании удостоверений формирования шаблонов. Службы для включения этих функций необходимо добавить вручную. Например, см. статью [требование подтверждения по электронной почте](xref:security/authentication/accconfirm#require-email-confirmation).
 
-Этот документ содержит более полные инструкции, чем файл *скаффолдингреадме. txt* , который создается при запуске механизма формирования шаблонов.
+При формировании удостоверения с новым контекстом данных в проекте с существующими индивидуальными учетными записями:
+
+* В `Startup.ConfigureServices`удалите вызовы:
+  * `AddDbContext`
+  * `AddDefaultIdentity`
+
+Например, `AddDbContext` и `AddDefaultIdentity` комментарии в следующем коде:
+
+[!code-csharp[](scaffold-identity/3.1sample/StartupRemove.cs?name=snippet)]
+
+Предшествующий код записывает в комментарий код, который дублируется в *области/Identity/идентитихостингстартуп. cs.*
+
+Как правило, приложения, созданные с помощью отдельных учетных записей, ***не*** должны создавать новый контекст данных.
 
 ## <a name="scaffold-identity-into-an-empty-project"></a>Удостоверение шаблона в пустой проект
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Обновите класс `Startup` с помощью следующего кода:
+Обновите `Startup` класс с помощью кода, аналогичного следующему:
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
 
@@ -85,7 +97,7 @@ before dotnet ef database update
 
 ### <a name="enable-authentication"></a>Включить проверку подлинности
 
-Обновите класс `Startup` с помощью следующего кода:
+Обновите `Startup` класс с помощью кода, аналогичного следующему:
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupRP.cs?name=snippet)]
 
@@ -93,7 +105,7 @@ before dotnet ef database update
 
 ### <a name="layout-changes"></a>Изменения макета
 
-Необязательно: Добавьте часть имени для входа partial (`_LoginPartial`) в файл макета:
+Необязательно: Добавьте в файл макета`_LoginPartial`имя для входа partial ():
 
 [!code-html[Main](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
@@ -131,7 +143,7 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Необязательно: Добавьте часть имени для входа partial (`_LoginPartial`) в файл *views/Shared/_layout. cshtml* :
+Необязательно: Добавьте часть имени для`_LoginPartial`входа partial () в файл *views/shared/_layout. cshtml* :
 
 [!code-html[Main](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
@@ -141,7 +153,7 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-Обновите класс `Startup` с помощью следующего кода:
+Обновите `Startup` класс с помощью кода, аналогичного следующему:
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
 
@@ -177,7 +189,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
 
-Зарегистрируйте реализацию `IEmailSender`, например:
+Зарегистрируйте `IEmailSender` реализацию, например:
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
 
@@ -286,7 +298,7 @@ ASP.NET Core 2,1 и более поздних версий предоставл�
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Добавьте следующие выделенные вызовы в класс `Startup`:
+Добавьте следующие выделенные вызовы в `Startup` класс:
 
 [!code-csharp[](scaffold-identity/sample/StartupEmpty.cs?name=snippet1&highlight=5,20-23)]
 
@@ -327,7 +339,7 @@ dotnet ef database update
 
 ### <a name="enable-authentication"></a>Включить проверку подлинности
 
-В методе `Configure` класса `Startup` вызовите [усеаусентикатион](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) после `UseStaticFiles`:
+В `Configure` `Startup` методе класса вызовите [усеаусентикатион](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) после `UseStaticFiles`:
 
 [!code-csharp[](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
 
@@ -335,7 +347,7 @@ dotnet ef database update
 
 ### <a name="layout-changes"></a>Изменения макета
 
-Необязательно: Добавьте часть имени для входа partial (`_LoginPartial`) в файл макета:
+Необязательно: Добавьте в файл макета`_LoginPartial`имя для входа partial ():
 
 [!code-html[Main](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
 
@@ -373,7 +385,7 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Необязательно: Добавьте часть имени для входа partial (`_LoginPartial`) в файл *views/Shared/_layout. cshtml* :
+Необязательно: Добавьте часть имени для`_LoginPartial`входа partial () в файл *views/shared/_layout. cshtml* :
 
 [!code-html[](scaffold-identity/sample/_LayoutMvc.cshtml?highlight=37)]
 
@@ -421,7 +433,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
 
-Зарегистрируйте реализацию `IEmailSender`, например:
+Зарегистрируйте `IEmailSender` реализацию, например:
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
 
