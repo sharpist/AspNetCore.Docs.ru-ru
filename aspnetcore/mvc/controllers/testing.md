@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/07/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/controllers/testing
-ms.openlocfilehash: 597f1472bb30ae3b34fa98659c8c8bb464223e84
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 4deae7f7511e3ce94450bc06d5fc8dc77a94f212
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78654478"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767087"
 ---
 # <a name="unit-test-controller-logic-in-aspnet-core"></a>Модульное тестирование логики контроллера в ASP.NET Core
 
@@ -57,7 +63,7 @@ ms.locfileid: "78654478"
 
 Метод `HTTP POST Index` в контроллере Home проверяет следующее:
 
-* Если [ModelState. isvalid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) `false`, метод действия возвращает *400 неверного запроса* <xref:Microsoft.AspNetCore.Mvc.ViewResult> с соответствующими данными.
+* Если [ModelState. IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) имеет значение `false`, метод действия возвращает *400 неверного запроса* <xref:Microsoft.AspNetCore.Mvc.ViewResult> с соответствующими данными.
 * Если `ModelState.IsValid` имеет значение `true`:
   * вызывается метод `Add` для репозитория;
   * возвращается <xref:Microsoft.AspNetCore.Mvc.RedirectToActionResult> с правильными аргументами.
@@ -127,13 +133,13 @@ ms.locfileid: "78654478"
 
 ## <a name="test-actionresultt"></a>Тест ActionResult\<T>
 
-В ASP.NET Core 2.1 и более поздних версий [ActionResult\<T>](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) позволяет возвращать тип, производный от `ActionResult`, или произвольный тип.
+В ASP.NET Core 2,1 или более поздней версии [\<ActionResult T>](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) позволяет возвращать тип, производный `ActionResult` от или возвращающий конкретный тип.
 
 Пример приложения содержит метод, который возвращает `List<IdeaDTO>` для указанного сеанса `id`. Если сеанс `id` не существует, контроллер возвращает <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*>:
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Api/IdeasController.cs?name=snippet_ForSessionActionResult&highlight=10,21)]
 
-В `ForSessionActionResult` включены два теста контроллера `ApiIdeasControllerTests`.
+В `ApiIdeasControllerTests` включены два теста контроллера `ForSessionActionResult`.
 
 Первый из этих тестов проверяет, что контроллер возвращает `ActionResult`, но не возвращает несуществующий список идей для несуществующего сеанса `id`:
 
@@ -145,7 +151,7 @@ ms.locfileid: "78654478"
 Второй тест проверяет, что для допустимого сеанса `id` этот метод возвращает следующее:
 
 * `ActionResult` с типом `List<IdeaDTO>`;
-* Значение [ActionResult\<T>.Value](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) относится к типу `List<IdeaDTO>`.
+* [ActionResult\<T>. Значение](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) является `List<IdeaDTO>` типом.
 * первый элемент в списке является допустимой идеей, которая совпадает с первой идеей в макете сеанса (полученной с помощью вызова `GetTestSession`).
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ForSessionActionResult_ReturnsIdeasForSession&highlight=7-8,15-18)]
@@ -158,7 +164,7 @@ ms.locfileid: "78654478"
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Api/IdeasController.cs?name=snippet_CreateActionResult&highlight=9,16,29)]
 
-В `CreateActionResult` включены три теста `ApiIdeasControllerTests`.
+В `ApiIdeasControllerTests` включены три теста `CreateActionResult`.
 
 Первый из этих тестов позволяет проверить, возвращается ли <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*> для недопустимой модели.
 
@@ -171,8 +177,8 @@ ms.locfileid: "78654478"
 Последний тест позволяет проверить, выполняются ли для действительного сеанса `id` следующие условия:
 
 * Метод возвращает `ActionResult` с типом `BrainstormSession`.
-* Значение [ActionResult\<T>.Result](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) относится к типу <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>. `CreatedAtActionResult` аналогично ответу *201 — создан ресурс* с заголовком `Location`.
-* Значение [ActionResult\<T>.Value](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) относится к типу `BrainstormSession`.
+* [ActionResult\<T>. Результат](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) — <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>. `CreatedAtActionResult` аналогично ответу *201 — создан ресурс* с заголовком `Location`.
+* [ActionResult\<T>. Значение](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) является `BrainstormSession` типом.
 * Выполняется вызов макета `UpdateAsync(testSession)` для обновления сеанса. Вызов метода `Verifiable` проверяется выполнением `mockRepo.Verify()` в утверждениях.
 * Возвращаются два объекта `Idea` для сеанса.
 * Последний элемент (идея `Idea`, добавленная в макет с помощью вызова `UpdateAsync`) совпадает со значением `newIdea`, добавленным в сеанс в этом тесте.
@@ -220,7 +226,7 @@ ms.locfileid: "78654478"
 
 Метод `HTTP POST Index` в контроллере Home проверяет следующее:
 
-* Если [ModelState. isvalid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) `false`, метод действия возвращает *400 неверного запроса* <xref:Microsoft.AspNetCore.Mvc.ViewResult> с соответствующими данными.
+* Если [ModelState. IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) имеет значение `false`, метод действия возвращает *400 неверного запроса* <xref:Microsoft.AspNetCore.Mvc.ViewResult> с соответствующими данными.
 * Если `ModelState.IsValid` имеет значение `true`:
   * вызывается метод `Add` для репозитория;
   * возвращается <xref:Microsoft.AspNetCore.Mvc.RedirectToActionResult> с правильными аргументами.
@@ -290,13 +296,13 @@ ms.locfileid: "78654478"
 
 ## <a name="test-actionresultt"></a>Тест ActionResult\<T>
 
-В ASP.NET Core 2.1 и более поздних версий [ActionResult\<T>](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) позволяет возвращать тип, производный от `ActionResult`, или произвольный тип.
+В ASP.NET Core 2,1 или более поздней версии [\<ActionResult T>](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) позволяет возвращать тип, производный `ActionResult` от или возвращающий конкретный тип.
 
 Пример приложения содержит метод, который возвращает `List<IdeaDTO>` для указанного сеанса `id`. Если сеанс `id` не существует, контроллер возвращает <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*>:
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Api/IdeasController.cs?name=snippet_ForSessionActionResult&highlight=10,21)]
 
-В `ForSessionActionResult` включены два теста контроллера `ApiIdeasControllerTests`.
+В `ApiIdeasControllerTests` включены два теста контроллера `ForSessionActionResult`.
 
 Первый из этих тестов проверяет, что контроллер возвращает `ActionResult`, но не возвращает несуществующий список идей для несуществующего сеанса `id`:
 
@@ -308,7 +314,7 @@ ms.locfileid: "78654478"
 Второй тест проверяет, что для допустимого сеанса `id` этот метод возвращает следующее:
 
 * `ActionResult` с типом `List<IdeaDTO>`;
-* Значение [ActionResult\<T>.Value](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) относится к типу `List<IdeaDTO>`.
+* [ActionResult\<T>. Значение](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) является `List<IdeaDTO>` типом.
 * первый элемент в списке является допустимой идеей, которая совпадает с первой идеей в макете сеанса (полученной с помощью вызова `GetTestSession`).
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ForSessionActionResult_ReturnsIdeasForSession&highlight=7-8,15-18)]
@@ -321,7 +327,7 @@ ms.locfileid: "78654478"
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Api/IdeasController.cs?name=snippet_CreateActionResult&highlight=9,16,29)]
 
-В `CreateActionResult` включены три теста `ApiIdeasControllerTests`.
+В `ApiIdeasControllerTests` включены три теста `CreateActionResult`.
 
 Первый из этих тестов позволяет проверить, возвращается ли <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*> для недопустимой модели.
 
@@ -334,8 +340,8 @@ ms.locfileid: "78654478"
 Последний тест позволяет проверить, выполняются ли для действительного сеанса `id` следующие условия:
 
 * Метод возвращает `ActionResult` с типом `BrainstormSession`.
-* Значение [ActionResult\<T>.Result](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) относится к типу <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>. `CreatedAtActionResult` аналогично ответу *201 — создан ресурс* с заголовком `Location`.
-* Значение [ActionResult\<T>.Value](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) относится к типу `BrainstormSession`.
+* [ActionResult\<T>. Результат](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) — <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>. `CreatedAtActionResult` аналогично ответу *201 — создан ресурс* с заголовком `Location`.
+* [ActionResult\<T>. Значение](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) является `BrainstormSession` типом.
 * Выполняется вызов макета `UpdateAsync(testSession)` для обновления сеанса. Вызов метода `Verifiable` проверяется выполнением `mockRepo.Verify()` в утверждениях.
 * Возвращаются два объекта `Idea` для сеанса.
 * Последний элемент (идея `Idea`, добавленная в макет с помощью вызова `UpdateAsync`) совпадает со значением `newIdea`, добавленным в сеанс в этом тесте.
@@ -347,6 +353,6 @@ ms.locfileid: "78654478"
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * <xref:test/integration-tests>
-* [Создание и выполнение модульных тестов с помощью Visual Studio](/visualstudio/test/unit-test-your-code)
-* [MyTested.AspNetCore.Mvc — текучая библиотека тестирования для MVC ASP.NET Core](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; строго типизированная библиотека модульного тестирования с текучим интерфейсом для тестирования приложений MVC и веб-API. (*Не поддерживается и не обслуживается Майкрософт.* )
+* [Создание и запуск модульных тестов с помощью Visual Studio](/visualstudio/test/unit-test-your-code)
+* [MyTested.AspNetCore.Mvc — текучая библиотека тестирования для MVC ASP.NET Core](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; строго типизированная библиотека модульного тестирования с текучим интерфейсом для тестирования приложений MVC и веб-API. (*Не поддерживается и не обслуживается Майкрософт.*)
 

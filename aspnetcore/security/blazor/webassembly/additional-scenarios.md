@@ -5,17 +5,20 @@ description: Узнайте, как настроить Blazor сборку дл�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2020
+ms.date: 05/04/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/additional-scenarios
-ms.openlocfilehash: 093498c3e0d42430c66c66a0998bcc44f62d1e0d
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: e69b598431027aa540227b87dedfd091057a1af4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206155"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768173"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Блазор дополнительные сценарии безопасности для сборки
 
@@ -25,45 +28,6 @@ ms.locfileid: "82206155"
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
-## <a name="request-additional-access-tokens"></a>Запрос дополнительных маркеров доступа
-
-Большинству приложений требуется только маркер доступа для взаимодействия с защищенными ресурсами, которые они используют. В некоторых сценариях для взаимодействия с двумя и более ресурсами приложению может потребоваться несколько маркеров.
-
-В следующем примере дополнительные Azure Active Directory (AAD) Microsoft Graph области API необходимы приложениям для чтения данных пользователей и отправки почты. После добавления разрешений Microsoft Graph API на портале Azure AAD дополнительные области настраиваются в клиентском приложении (`Program.Main` *Program.CS*):
-
-```csharp
-builder.Services.AddMsalAuthentication(options =>
-{
-    ...
-
-    options.ProviderOptions.AdditionalScopesToConsent.Add(
-        "https://graph.microsoft.com/Mail.Send");
-    options.ProviderOptions.AdditionalScopesToConsent.Add(
-        "https://graph.microsoft.com/User.Read");
-}
-```
-
-`IAccessTokenProvider.RequestToken` Метод предоставляет перегрузку, которая позволяет приложению подготавливать маркер доступа с заданным набором областей, как показано в следующем примере:
-
-```csharp
-var tokenResult = await AuthenticationService.RequestAccessToken(
-    new AccessTokenRequestOptions
-    {
-        Scopes = new[] { "https://graph.microsoft.com/Mail.Send", 
-            "https://graph.microsoft.com/User.Read" }
-    });
-
-if (tokenResult.TryGetToken(out var token))
-{
-    ...
-}
-```
-
-`TryGetToken`возврата
-
-* `true`с помощью `token` для использования.
-* `false`значение, если маркер не извлекается.
-
 ## <a name="attach-tokens-to-outgoing-requests"></a>Присоединение маркеров к исходящим запросам
 
 `AuthorizationMessageHandler` Службу можно использовать с `HttpClient` для присоединения маркеров доступа к исходящим запросам. Токены получаются с помощью `IAccessTokenProvider` существующей службы. Если токен не может быть получен, `AccessTokenNotAvailableException` создается исключение. `AccessTokenNotAvailableException`содержит `Redirect` метод, который можно использовать для перехода пользователя к поставщику удостоверений для получения нового маркера. Для `AuthorizationMessageHandler` настройки можно использовать полномочные URL-адреса, области и URL-адрес возврата с `ConfigureHandler` помощью метода.
@@ -71,7 +35,7 @@ if (tokenResult.TryGetToken(out var token))
 В `AuthorizationMessageHandler` следующем примере `HttpClient` настраивается в `Program.Main` (*Program.CS*):
 
 ```csharp
-builder.Services.AddSingleton(sp =>
+builder.Services.AddTransient(sp =>
 {
     return new HttpClient(sp.GetRequiredService<AuthorizationMessageHandler>()
         .ConfigureHandler(
@@ -166,6 +130,156 @@ protected override async Task OnInitializedAsync()
     forecasts = await WeatherClient.GetWeatherForeacasts();
 }
 ```
+
+## <a name="request-additional-access-tokens"></a>Запрос дополнительных маркеров доступа
+
+Маркеры доступа могут быть получены вручную путем вызова `IAccessTokenProvider.RequestAccessToken`.
+
+В следующем примере дополнительные Azure Active Directory (AAD) Microsoft Graph области API необходимы приложениям для чтения данных пользователей и отправки почты. После добавления разрешений Microsoft Graph API на портале Azure AAD дополнительные области настраиваются в клиентском приложении (`Program.Main` *Program.CS*):
+
+```csharp
+builder.Services.AddMsalAuthentication(options =>
+{
+    ...
+
+    options.ProviderOptions.AdditionalScopesToConsent.Add(
+        "https://graph.microsoft.com/Mail.Send");
+    options.ProviderOptions.AdditionalScopesToConsent.Add(
+        "https://graph.microsoft.com/User.Read");
+}
+```
+
+`IAccessTokenProvider.RequestToken` Метод предоставляет перегрузку, которая позволяет приложению подготавливать маркер доступа с заданным набором областей, как показано в следующем примере:
+
+```csharp
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject IAccessTokenProvider TokenProvider
+
+...
+
+var tokenResult = await TokenProvider.RequestAccessToken(
+    new AccessTokenRequestOptions
+    {
+        Scopes = new[] { "https://graph.microsoft.com/Mail.Send", 
+            "https://graph.microsoft.com/User.Read" }
+    });
+
+if (tokenResult.TryGetToken(out var token))
+{
+    ...
+}
+```
+
+`TryGetToken`возврата
+
+* `true`с помощью `token` для использования.
+* `false`значение, если маркер не извлекается.
+
+## <a name="httpclient-and-httprequestmessage-with-fetch-api-request-options"></a>HttpClient и HttpRequestMessage с параметрами запроса API FETCH
+
+При выполнении в сборке Блазор в приложении [HttpClient](xref:fundamentals/http-requests) и <xref:System.Net.Http.HttpRequestMessage> может использоваться для настройки запросов. Например, можно указать метод HTTP и заголовки запроса. Следующий пример выполняет `POST` запрос к КОНЕЧНОЙ точке API To Do List на сервере и отображает текст ответа:
+
+```razor
+@page "/todorequest"
+@using System.Net.Http
+@using System.Net.Http.Headers
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject HttpClient Http
+@inject IAccessTokenProvider TokenProvider
+
+<h1>ToDo Request</h1>
+
+<button @onclick="PostRequest">Submit POST request</button>
+
+<p>Response body returned by the server:</p>
+
+<p>@_responseBody</p>
+
+@code {
+    private string _responseBody;
+
+    private async Task PostRequest()
+    {
+        var requestMessage = new HttpRequestMessage()
+        {
+            Method = new HttpMethod("POST"),
+            RequestUri = new Uri("https://localhost:10000/api/TodoItems"),
+            Content =
+                JsonContent.Create(new TodoItem
+                {
+                    Name = "My New Todo Item",
+                    IsComplete = false
+                })
+        };
+
+        var tokenResult = await TokenProvider.RequestAccessToken();
+
+        if (tokenResult.TryGetToken(out var token))
+        {
+            requestMessage.Headers.Authorization =
+                new AuthenticationHeaderValue("Bearer", token.Value);
+
+            requestMessage.Content.Headers.TryAddWithoutValidation(
+                "x-custom-header", "value");
+
+            var response = await Http.SendAsync(requestMessage);
+            var responseStatusCode = response.StatusCode;
+
+            _responseBody = await response.Content.ReadAsStringAsync();
+        }
+    }
+
+    public class TodoItem
+    {
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public bool IsComplete { get; set; }
+    }
+}
+```
+
+Реализация `HttpClient` [виндоворворкерглобалскопе. fetch ()](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch)в .NET-сборке использует. Выборка позволяет настроить несколько [параметров для конкретного запроса](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). 
+
+Параметры запроса HTTP FETCH можно настроить с помощью `HttpRequestMessage` методов расширения, приведенных в следующей таблице.
+
+| `HttpRequestMessage`метод расширения | Получение свойства запроса |
+| ------------------------------------- | ---------------------- |
+| `SetBrowserRequestCredentials`        | [информации](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
+| `SetBrowserRequestCache`              | [Мбайта](https://developer.mozilla.org/docs/Web/API/Request/cache) |
+| `SetBrowserRequestMode`               | [mode](https://developer.mozilla.org/docs/Web/API/Request/mode) |
+| `SetBrowserRequestIntegrity`          | [контроля](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
+
+Можно задать дополнительные параметры с помощью более универсального `SetBrowserRequestOption` метода расширения.
+ 
+HTTP-ответ обычно замещается в буфер приложения Блазор, чтобы обеспечить поддержку синхронных операций чтения содержимого ответа. Чтобы включить поддержку потоковой передачи ответов, используйте `SetBrowserResponseStreamingEnabled` метод расширения для запроса.
+
+Чтобы включить учетные данные в запрос между источниками, используйте `SetBrowserRequestCredentials` метод расширения:
+
+```csharp
+requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
+```
+
+Дополнительные сведения о возможностях API-получения см. в разделе [MDN Web документация: виндоворворкерглобалскопе. fetch ():P араметерс](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
+
+При отправке учетных данных (файлов cookie или заголовков авторизации `Authorization` ) в запросах CORS этот заголовок должен быть РАЗРЕШЕН политикой CORS.
+
+Следующая политика включает в себя настройку для:
+
+* Источники запроса (`http://localhost:5000`, `https://localhost:5001`).
+* Любой метод (глагол).
+* `Content-Type`и `Authorization` заголовки. Чтобы разрешить пользовательский заголовок (например, `x-custom-header`), выведите список заголовков при <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*>вызове метода.
+* Учетные данные, которые`credentials` `include`задаются кодом JavaScript на стороне клиента (свойство имеет значение).
+
+```csharp
+app.UseCors(policy => 
+    policy.WithOrigins("http://localhost:5000", "https://localhost:5001")
+    .AllowAnyMethod()
+    .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
+    .AllowCredentials());
+```
+
+Дополнительные сведения см. в <xref:security/cors> разделе и компоненте тестера HTTP-запросов примера приложения (*Components/хттпрекуесттестер. Razor*).
 
 ## <a name="handle-token-request-errors"></a>Обработку ошибок запросов маркера
 
@@ -309,7 +423,7 @@ protected override async Task OnInitializedAsync()
 
 По умолчанию `Microsoft.AspNetCore.Components.WebAssembly.Authentication` библиотека использует маршруты, показанные в следующей таблице, для представления различных состояний проверки подлинности.
 
-| Маршрут                            | Назначение |
+| Маршрут                            | Цель |
 | -------------------------------- | ------- |
 | `authentication/login`           | Активирует операцию входа. |
 | `authentication/login-callback`  | Обрабатывает результат любой операции входа. |
@@ -483,7 +597,7 @@ public class Program
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         builder.RootComponents.Add<App>("app");
 
-        builder.Services.AddSingleton(new HttpClient 
+        builder.Services.AddTransient(new HttpClient 
         {
             BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
         });
@@ -573,13 +687,13 @@ app.UseEndpoints(endpoints =>
 
 ### <a name="authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party"></a>Проверка подлинности пользователей в стороннем поставщике и вызов защищенных API на сервере узла и сторонних API
 
-Настройте удостоверение с помощью стороннего поставщика входа. Получите токены, необходимые для доступа к сторонним API, и сохраните их.
+Настройка Identity со сторонним поставщиком входа. Получите токены, необходимые для доступа к сторонним API, и сохраните их.
 
-При входе пользователя в систему удостоверение собирает токены доступа и обновления в рамках процесса проверки подлинности. На этом этапе существует несколько подходов для отправки вызовов API к сторонним API.
+При входе пользователя в систему Identity собирает маркеры доступа и обновления в рамках процесса проверки подлинности. На этом этапе существует несколько подходов для отправки вызовов API к сторонним API.
 
 #### <a name="use-a-server-access-token-to-retrieve-the-third-party-access-token"></a>Использование токена доступа сервера для получения стороннего токена доступа
 
-С помощью созданного на сервере токена доступа получите сторонний токен доступа из конечной точки API сервера. Затем воспользуйтесь сторонним токеном доступа для вызова ресурсов стороннего API непосредственно из удостоверения на клиенте.
+С помощью созданного на сервере токена доступа получите сторонний токен доступа из конечной точки API сервера. В нем используйте сторонний маркер доступа, чтобы вызывать сторонние ресурсы API непосредственно из Identity клиента.
 
 Этот вариант использовать не рекомендуется. Здесь сторонний токен доступа необходимо рассматривать так, как если бы он был создан для общедоступного клиента. С точки зрения использования OAuth у общедоступного приложения нет секрета клиента, так как оно не может считаться доверенным и надежно хранить секреты, а токен доступа создается для конфиденциального клиента. Конфиденциальный клиент — это клиент, у которого есть секрет клиента. Кроме того, предполагается, что он способен надежно хранить секреты.
 

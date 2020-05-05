@@ -4,13 +4,19 @@ author: isaac2004
 description: Здесь вы найдете указания по миграции существующих приложений MVC ASP.NET или веб-API на ASP.NET Core.web
 ms.author: scaddie
 ms.date: 10/18/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 68a45dc50e00bead564500a12509b62a4a193ec4
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 985c08e0994314cec8d52a6651681c93aca96514
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79511097"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766515"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Миграция с ASP.NET на ASP.NET Core
 
@@ -18,7 +24,7 @@ ms.locfileid: "79511097"
 
 Данная статья служит руководством по миграции приложений ASP.NET на ASP.NET Core.
 
-## <a name="prerequisites"></a>предварительные требования
+## <a name="prerequisites"></a>Предварительные требования
 
 [Пакет SDK для .NET Core 2.2 или более поздней версии](https://dotnet.microsoft.com/download)
 
