@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/24/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
-ms.openlocfilehash: 4ccf86550a520f1d001088859ef5909041178781
-ms.sourcegitcommit: 6d271f4b4c3cd1e82267f51d9bfb6de221c394fe
+ms.openlocfilehash: 0fb4f4176f214d6bf0c005838a0ccbe4487243f2
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82150000"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767978"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Защита автономного Blazor приложения ASP.NET Coreной сборки с помощью Azure Active Directory B2C
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Защита автономного Blazor приложения ASP.NET Coreной сборки с помощью Azure Active Directory B2C
 
 [Хавьер Калварро Воронков](https://github.com/javiercn) и [Люк ЛаСаМ](https://github.com/guardrex)
 
@@ -31,13 +34,13 @@ ms.locfileid: "82150000"
 
    * [Создайте клиент](/azure/active-directory-b2c/tutorial-create-tenant) &ndash; AAD B2C запишите следующие сведения:
 
-     1 \. AAD B2C экземпляр (например, `https://contoso.b2clogin.com/`, включающий косую черту)<br>
-     2 \. Домен клиента AAD B2C (например, `contoso.onmicrosoft.com`)
+     1\. AAD B2C экземпляр (например, `https://contoso.b2clogin.com/`, включающий косую черту)<br>
+     2\. Домен клиента AAD B2C (например, `contoso.onmicrosoft.com`)
 
    * [Регистрация веб-приложения](/azure/active-directory-b2c/tutorial-register-applications) &ndash; во время регистрации приложения делает следующее:
 
-     1 \. Задайте для параметра **веб-приложение или веб-API** значение **Да**.<br>
-     2 \. Установите для параметра **Разрешить неявный поток** значение **Да**.<br>
+     1\. Задайте для параметра **веб-приложение или веб-API** значение **Да**.<br>
+     2\. Установите для параметра **Разрешить неявный поток** значение **Да**.<br>
      3 \. Добавьте **URL-адрес ответа** `https://localhost:5001/authentication/login-callback`.
 
      Запишите идентификатор приложения (идентификатор клиента) (например, `11111111-1111-1111-1111-111111111111`).
@@ -73,7 +76,7 @@ ms.locfileid: "82150000"
 
 ## <a name="authentication-service-support"></a>Поддержка службы проверки подлинности
 
-Поддержка проверки подлинности пользователей регистрируется в контейнере службы с `AddMsalAuthentication` помощью метода расширения, предоставленного `Microsoft.Authentication.WebAssembly.Msal` пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с поставщиком удостоверений (IP).
+Поддержка проверки подлинности пользователей регистрируется в контейнере службы с `AddMsalAuthentication` помощью метода расширения, предоставленного `Microsoft.Authentication.WebAssembly.Msal` пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с Identity поставщиком (IP).
 
 *Program.cs*:
 

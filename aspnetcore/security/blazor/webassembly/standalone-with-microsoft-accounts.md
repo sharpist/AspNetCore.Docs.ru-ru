@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/24/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-microsoft-accounts
-ms.openlocfilehash: 95c16bcd8da22792b27b3aaaf8632b2206372270
-ms.sourcegitcommit: 6d271f4b4c3cd1e82267f51d9bfb6de221c394fe
+ms.openlocfilehash: 3ea2b7632fc41e1c8ad72292e45a93e081b6edbe
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82150061"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776159"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-microsoft-accounts"></a>Защита автономного Blazor приложения ASP.NET Coreной сборки с помощью учетных записей Майкрософт
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-microsoft-accounts"></a>Защита автономного Blazor приложения ASP.NET Coreной сборки с помощью учетных записей Майкрософт
 
 [Хавьер Калварро Воронков](https://github.com/javiercn) и [Люк ЛаСаМ](https://github.com/guardrex)
 
@@ -31,16 +34,16 @@ ms.locfileid: "82150061"
 
    Зарегистрируйте приложение AAD в области **Azure Active Directory** > **Регистрация приложений** портал Azure:
 
-   1 \. Укажите **имя** приложения (например, ** Blazor AAD клиента**).<br>
-   2 \. В списке **Поддерживаемые типы учетных записей**выберите **учетные записи в любом организационном каталоге**.<br>
+   1\. Укажите **имя** приложения (например, ** Blazor AAD клиента**).<br>
+   2\. В списке **Поддерживаемые типы учетных записей**выберите **учетные записи в любом организационном каталоге**.<br>
    3 \. Оставьте в раскрывающемся списке **URI перенаправления** значение **веб**и укажите универсальный код ресурса ( `https://localhost:5001/authentication/login-callback`URI) перенаправления для.<br>
    4 \. Отключите **разрешения** > **предоставление прав администратора для OpenID Connect и offline_access** .<br>
    5 \. Выберите **Зарегистрировать**.
 
    В > **конфигурации платформы** **проверки подлинности** > **веб-сайт**:
 
-   1 \. Убедитесь, что `https://localhost:5001/authentication/login-callback` **URI перенаправления** имеется.<br>
-   2 \. Для **неявного предоставления**установите флажки для **маркеров доступа** и **маркеров идентификации**.<br>
+   1\. Убедитесь, что `https://localhost:5001/authentication/login-callback` **URI перенаправления** имеется.<br>
+   2\. Для **неявного предоставления**установите флажки для **маркеров доступа** и **маркеров идентификации**.<br>
    3 \. Остальные значения по умолчанию для приложения приемлемы для этого интерфейса.<br>
    4 \. Нажмите кнопку **Сохранить**.
 
@@ -76,7 +79,7 @@ ms.locfileid: "82150061"
 
 ## <a name="authentication-service-support"></a>Поддержка службы проверки подлинности
 
-Поддержка проверки подлинности пользователей регистрируется в контейнере службы с `AddMsalAuthentication` помощью метода расширения, предоставленного `Microsoft.Authentication.WebAssembly.Msal` пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с поставщиком удостоверений (IP).
+Поддержка проверки подлинности пользователей регистрируется в контейнере службы с `AddMsalAuthentication` помощью метода расширения, предоставленного `Microsoft.Authentication.WebAssembly.Msal` пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с Identity поставщиком (IP).
 
 *Program.cs*:
 

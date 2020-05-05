@@ -4,19 +4,25 @@ author: rick-anderson
 description: Узнайте, как заменить machineKey в ASP.NET, чтобы позволить использовать новую и безопасную систему защиты данных.
 ms.author: riande
 ms.date: 04/06/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/compatibility/replacing-machinekey
-ms.openlocfilehash: 2317cb50cfe63226baf336ebfc5d681d1cebe5c6
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 72e736f820ec243a7ad1461fc70e2711ac8b76ee
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78655084"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777466"
 ---
 # <a name="replace-the-aspnet-machinekey-in-aspnet-core"></a>Замените ASP.NET machineKey в ASP.NET Core
 
 <a name="compatibility-replacing-machinekey"></a>
 
-Реализация элемента `<machineKey>` в ASP.NET [является заменяемой](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/). Это позволяет направлять большинство вызовов ASP.NET шифрования через механизм защиты данных с заменой, включая новую систему защиты данных.
+Реализация `<machineKey>` элемента в ASP.NET [является заменяемой](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/). Это позволяет направлять большинство вызовов ASP.NET шифрования через механизм защиты данных с заменой, включая новую систему защиты данных.
 
 ## <a name="package-installation"></a>Установка пакета
 
@@ -32,7 +38,7 @@ ms.locfileid: "78655084"
 ```
 
 >[!TIP]
-> Вы можете определить, активна ли новая система защиты данных, проверив такие поля, как `__VIEWSTATE`, которые должны начинаться с "CfDJ8", как показано в примере ниже. "CfDJ8" — это представление в формате Base64 заголовка Magic "09 F0 C9 F0", определяющего полезную нагрузку, защищенную системой защиты данных.
+> Вы можете определить, активна ли новая система защиты данных, проверив такие `__VIEWSTATE`поля, как, которые должны начинаться с "CfDJ8", как показано в примере ниже. "CfDJ8" — это представление в формате Base64 заголовка Magic "09 F0 C9 F0", определяющего полезную нагрузку, защищенную системой защиты данных.
 
 ```html
 <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="CfDJ8AWPr2EQPTBGs3L2GCZOpk...">
@@ -67,9 +73,9 @@ namespace DataProtectionDemo
 ```
 
 >[!TIP]
-> Вместо явного вызова SetApplicationName можно также использовать `<machineKey applicationName="my-app" ... />`. Это удобный механизм, позволяющий не заставлять разработчику создавать Датапротектионстартуп-производный тип, если все, что нужно настроить, задает имя приложения.
+> Можно также использовать `<machineKey applicationName="my-app" ... />` вместо явного вызова SetApplicationName. Это удобный механизм, позволяющий не заставлять разработчику создавать Датапротектионстартуп-производный тип, если все, что нужно настроить, задает имя приложения.
 
-Чтобы включить эту пользовательскую конфигурацию, вернитесь к Web. config и найдите элемент `<appSettings>`, который пакет установки добавляет в файл конфигурации. Он будет выглядеть, как в следующей разметке:
+Чтобы включить эту пользовательскую конфигурацию, вернитесь к Web. config и найдите `<appSettings>` элемент, который пакет установки добавляет в файл конфигурации. Он будет выглядеть, как в следующей разметке:
 
 ```xml
 <appSettings>

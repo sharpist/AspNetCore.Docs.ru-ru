@@ -1,5 +1,5 @@
 ---
-title: Защита размещенного Blazor в ASP.NET Core приложения сборки с помощью Identity Server
+title: Обеспечение безопасности размещенного в ASP.NET Core Blazor сборки приложения Identity с помощью сервера
 author: guardrex
 description: Создание нового Blazor размещенного приложения с проверкой подлинности в Visual Studio, использующей серверную часть [IdentityServer](https://identityserver.io/)
 monikerRange: '>= aspnetcore-3.1'
@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/24/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-identity-server
-ms.openlocfilehash: ffdcd30ae9ce5350113569a500e99cf8db82ad65
-ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
+ms.openlocfilehash: bf2298618e922df412e0742177afd390c4116388
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82138614"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768131"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-identity-server"></a>Защита размещенного Blazor в ASP.NET Core приложения сборки с помощью Identity Server
+# <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a>Обеспечение безопасности размещенного в ASP.NET Core Blazor сборки приложения Identity с помощью сервера
 
 [Хавьер Калварро Воронков](https://github.com/javiercn) и [Люк ЛаСаМ](https://github.com/guardrex)
 
@@ -51,7 +54,7 @@ dotnet new blazorwasm -au Individual -ho
 
 * В `Startup.ConfigureServices`:
 
-  * Удостоверение:
+  * Identity:
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
@@ -104,7 +107,7 @@ dotnet new blazorwasm -au Individual -ho
 
 ### <a name="addidentityserverjwt"></a>аддидентитисервержвт
 
-<xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> Вспомогательный метод настраивает схему политики для приложения в качестве обработчика проверки подлинности по умолчанию. Политика настроена на разрешение идентификации для обработки всех запросов, направляемых по любому вложенному пути в пространстве `/Identity`URL-адресов удостоверений. <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> Обрабатывает все остальные запросы. Кроме того, этот метод:
+<xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> Вспомогательный метод настраивает схему политики для приложения в качестве обработчика проверки подлинности по умолчанию. Политика настроена на разрешение Identity обработки всех запросов, направляемых по любому вложенному пути в пространстве Identity `/Identity`URL-адресов. <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> Обрабатывает все остальные запросы. Кроме того, этот метод:
 
 * Регистрирует ресурс `{APPLICATION NAME}API` API в IdentityServer с областью по умолчанию `{APPLICATION NAME}API`.
 * Настраивает промежуточное по для токена носителя JWT для проверки маркеров, выданных IdentityServer для приложения.
@@ -115,9 +118,9 @@ dotnet new blazorwasm -au Individual -ho
 
 ### <a name="applicationdbcontext"></a>ApplicationDbContext
 
-В `ApplicationDbContext` (*Data/ApplicationDbContext. CS*) то же самое <xref:Microsoft.EntityFrameworkCore.DbContext> используется в удостоверении с исключением, которое оно расширяет <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> для включения схемы для IdentityServer. Класс <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> является производным от <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
+`ApplicationDbContext` В (*Data/ApplicationDbContext. CS*) <xref:Microsoft.EntityFrameworkCore.DbContext> используется Identity то же, что и исключение, которое расширяется <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> для включения схемы для IdentityServer. Класс <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> является производным от <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
 
-Чтобы получить полный контроль над схемой базы данных, наследуйте один из доступных классов <xref:Microsoft.EntityFrameworkCore.DbContext> удостоверений и настройте контекст для включения схемы идентификации путем вызова `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` `OnModelCreating` метода в методе.
+Чтобы получить полный контроль над схемой базы данных, наследуйте один из доступных Identity <xref:Microsoft.EntityFrameworkCore.DbContext> классов и настройте контекст для включения Identity схемы путем вызова `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` `OnModelCreating` метода в методе.
 
 ### <a name="oidcconfigurationcontroller"></a>оидкконфигуратионконтроллер
 
@@ -185,7 +188,7 @@ builder.Services.AddApiAuthorization();
 
 * Для пользователей, прошедших проверку подлинности:
   * Отображает имя текущего пользователя.
-  * Содержит ссылку на страницу профиля пользователя в ASP.NET Core удостоверение.
+  * Содержит ссылку на страницу профиля пользователя в ASP.NET Core Identity.
   * Предлагает кнопку для выхода из приложения.
 * Для анонимных пользователей:
   * Предлагает возможность регистрации.
