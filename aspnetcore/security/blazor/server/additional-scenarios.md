@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 04/27/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/server/additional-scenarios
-ms.openlocfilehash: 1a3e5a215daedbb9b97c1924275701915806983e
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 95e9e57889fdbb5270f895874c9b8148ae4ca48d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206350"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772808"
 ---
 # <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>Дополнительные Blazor сценарии безопасности ASP.NET Core Server
 
@@ -23,9 +26,9 @@ ms.locfileid: "82206350"
 
 ## <a name="pass-tokens-to-a-blazor-server-app"></a>Передача маркеров в Blazor серверное приложение
 
-Токены, доступные за пределами компонентов Blazor Razor в серверном приложении, можно передать в компоненты с помощью подхода, описанного в этом разделе. Пример кода, включая полный `Startup.ConfigureServices` пример, см. в разделе [Передача токенов в приложение на стороне Blazor сервера](https://github.com/javiercn/blazor-server-aad-sample).
+Токены, доступные за Razor пределами Blazor компонентов серверного приложения, можно передавать в компоненты с помощью подхода, описанного в этом разделе. Пример кода, включая полный `Startup.ConfigureServices` пример, см. в разделе [Передача токенов в приложение на стороне Blazor сервера](https://github.com/javiercn/blazor-server-aad-sample).
 
-Проверка подлинности Blazor серверного приложения так же, как и для обычного Razor Pages или приложения MVC. Подготавливает и сохраняйте маркеры в файле cookie проверки подлинности. Пример:
+Проверяйте Blazor подлинность серверного приложения так же Razor , как обычные страницы или приложения MVC. Подготавливает и сохраняйте маркеры в файле cookie проверки подлинности. Например:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
