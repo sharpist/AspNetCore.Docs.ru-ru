@@ -5,13 +5,19 @@ description: Узнайте, как работает привязка модел
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 12/18/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: 19580768679f30131683717792252c03aade68f9
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 2e604cd1869ea077fc0465df91ec083b9db83763
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78654472"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768974"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Привязка модели в ASP.NET Core
 
@@ -23,10 +29,10 @@ ms.locfileid: "78654472"
 
 ## <a name="what-is-model-binding"></a>Что такое привязка модели
 
-Контроллеры и Razor Pages работают с данными, поступающими из HTTP-запросов. Например, данные о маршруте могут предоставлять ключ записи, а опубликованные поля формы могут предоставлять значения для свойств модели. Написание кода для получения этих значений и их преобразования из строк в типы .NET будет утомительной задачей с высоким риском ошибок. Привязка модели позволяет автоматизировать этот процесс. Система привязки модели:
+Контроллеры Razor и страницы работают с данными, поступающими из HTTP-запросов. Например, данные о маршруте могут предоставлять ключ записи, а опубликованные поля формы могут предоставлять значения для свойств модели. Написание кода для получения этих значений и их преобразования из строк в типы .NET будет утомительной задачей с высоким риском ошибок. Привязка модели позволяет автоматизировать этот процесс. Система привязки модели:
 
 * Извлекает данные из различных источников, таких как данные о маршруте, поля формы и строки запроса.
-* Предоставляет данные для контроллеров и страниц Razor в параметрах метода и открытых свойствах.
+* Предоставляет данные для контроллеров и Razor страниц в параметрах метода и общих свойствах.
 * Преобразует строковые данные в типы .NET.
 * Обновляет свойства сложных типов.
 
@@ -60,7 +66,7 @@ http://contoso.com/api/pets/2?DogsOnly=true
 Привязка модели попытается найти значения для следующих типов целевых объектов:
 
 * Параметры метода действия контроллера, к которому направлен запрос.
-* Параметры метода обработчика Razor Pages, к которому направлен запрос. 
+* Параметры метода обработчика Razor страниц, к которому направляется запрос. 
 * Открытые свойства контроллера или класса `PageModel`, если задано атрибутами.
 
 ### <a name="bindproperty-attribute"></a>Атрибут [BindProperty]
@@ -98,11 +104,11 @@ http://contoso.com/api/pets/2?DogsOnly=true
 
 Если источник по умолчанию неверен, используйте один из следующих атрибутов, чтобы указать источник:
 
-* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute): возвращает значения из строки запроса. 
-* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute): возвращает значения из данных маршрута.
-* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute): возвращает значения из опубликованных полей формы.
-* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute): возвращает значения из текста запроса.
-* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute): возвращает значения из заголовков HTTP.
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)— Получает значения из строки запроса. 
+* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)— Получает значения из данных маршрута.
+* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)— Получает значения из опубликованных полей формы.
+* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)— Получает значения из текста запроса.
+* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)— Получает значения из заголовков HTTP.
 
 Эти атрибуты:
 
@@ -149,8 +155,8 @@ public class Pet
 
 Исходные данные предоставляются системой привязки модели *поставщиками значений*. Вы можете записать и зарегистрировать пользовательские поставщики значений, которые получают данные для привязки модели из других источников. Например, вам могут потребоваться данные из файлов cookie или состояния сеанса. Для получения данных из нового источника:
 
-* Создайте класс, реализующий перехватчик `IValueProvider`.
-* Создайте класс, реализующий перехватчик `IValueProviderFactory`.
+* Создайте класс, реализующий `IValueProvider`.
+* Создайте класс, реализующий `IValueProviderFactory`.
 * Зарегистрируйте класс фабрики в `Startup.ConfigureServices`.
 
 Пример приложения включает пример [поставщика значений](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProvider.cs) и [фабрики](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProviderFactory.cs), которая получает значения из файлов cookie. Ниже приведен код регистрации в `Startup.ConfigureServices`:
@@ -168,7 +174,7 @@ public class Pet
 * Для сложных типов привязка модели создает экземпляр с помощью конструктора по умолчанию без задания свойств.
 * Массивы имеют значение `Array.Empty<T>()`, за исключением массивов `byte[]`, которые имеют значение `null`.
 
-Если состояние модели должно быть признано недействительным, когда в полях формы не найдены данные для свойства модели, используйте атрибут [`[BindRequired]`](#bindrequired-attribute).
+Если состояние модели должно быть недействительным, если в полях формы для свойства модели не найдено ничего, используйте [`[BindRequired]`](#bindrequired-attribute) атрибут.
 
 Обратите внимание, это поведение `[BindRequired]` применяется к привязке модели из опубликованных данных формы, а не к данным JSON или XML в тексте запроса. Данные основного текста запроса обрабатываются [форматировщиками входных данных](#input-formatters).
 
@@ -178,11 +184,11 @@ public class Pet
 
 В контроллере API с атрибутом `[ApiController]` недопустимое состояние модели приводит к автоматическому ответу HTTP 400.
 
-На странице Razor повторно отображается страница с сообщением об ошибке:
+На Razor странице повторно отобразите страницу с сообщением об ошибке:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-Проверка на стороне клиента перехватывает большинство неверных данных, которые в противном случае были бы отправлены в форму Razor Pages. Эта проверка затрудняет срабатывание выделенного выше кода. Пример приложения включает кнопку **Отправить с неверной датой**, которая помещает недопустимые данные в поле **Дата приема на работу** и отправляет форму. Эта кнопка показывает, как работает код для повторного отображения страницы, если возникла ошибка преобразования данных.
+Проверка на стороне клиента приводит к перехвату большинства недопустимых данных, которые в Razor противном случае были бы переданы в форму страниц. Эта проверка затрудняет срабатывание выделенного выше кода. Пример приложения включает кнопку **Отправить с неверной датой**, которая помещает недопустимые данные в поле **Дата приема на работу** и отправляет форму. Эта кнопка показывает, как работает код для повторного отображения страницы, если возникла ошибка преобразования данных.
 
 Когда страница отображается повторно приведенным выше кодом, недопустимые входные данные не отображаются в поле формы. Это связано с тем, что свойству модели задано значение NULL или значение по умолчанию. Недопустимые входные данные отображаются в сообщении об ошибке. Но если требуется повторно отобразить неправильные данные в поле формы, возможно, следует сделать свойство модели строкой и выполнить преобразование данных вручную.
 
@@ -195,14 +201,14 @@ public class Pet
 * [Boolean](xref:System.ComponentModel.BooleanConverter)
 * [Byte](xref:System.ComponentModel.ByteConverter), [SByte](xref:System.ComponentModel.SByteConverter)
 * [Char](xref:System.ComponentModel.CharConverter)
-* [DateTime](xref:System.ComponentModel.DateTimeConverter)
+* [Дата и время](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
-* [Decimal](xref:System.ComponentModel.DecimalConverter)
+* [Десятичное число](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
-* [Enum](xref:System.ComponentModel.EnumConverter)
+* [Перечисления](xref:System.ComponentModel.EnumConverter)
 * [Guid](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
-* [Один](xref:System.ComponentModel.SingleConverter)
+* [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [URI](xref:System.UriTypeConverter)
@@ -306,7 +312,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="collections"></a>Коллекции
 
-Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример:
+Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
 
 * Предположим, что параметром для привязки является массив с именем `selectedCourses`:
 
@@ -351,7 +357,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="dictionaries"></a>Словари
 
-Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример:
+Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
 
 * Предположим, что целевой параметр является `Dictionary<int, string>` с именем `selectedCourses`:
 
@@ -486,7 +492,7 @@ ASP.NET Core выбирает форматировщики входных дан
 
 <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> использует поставщиков значений для получения данных из текста формы, строки запроса и данных маршрута. `TryUpdateModelAsync` как правило: 
 
-* используется с приложениями Razor Pages и MVC, применяющими контроллеры и представления для предотвращения чрезмерной передачи данных;
+* Используется с Razor страницами и приложениями MVC с использованием контроллеров и представлений для предотвращения перебора.
 * не используется с веб-API, если только не используется из данных формы, строк запроса и данных маршрута. Конечные точки веб-API, которые используют JSON, применяют [форматировщики входных данных](#input-formatters) для десериализации текста запроса в объект.
 
 Дополнительные сведения см. в разделе [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateModelAsync).
@@ -509,10 +515,10 @@ ASP.NET Core выбирает форматировщики входных дан
 
 ## <a name="what-is-model-binding"></a>Что такое привязка модели
 
-Контроллеры и Razor Pages работают с данными, поступающими из HTTP-запросов. Например, данные о маршруте могут предоставлять ключ записи, а опубликованные поля формы могут предоставлять значения для свойств модели. Написание кода для получения этих значений и их преобразования из строк в типы .NET будет утомительной задачей с высоким риском ошибок. Привязка модели позволяет автоматизировать этот процесс. Система привязки модели:
+Контроллеры Razor и страницы работают с данными, поступающими из HTTP-запросов. Например, данные о маршруте могут предоставлять ключ записи, а опубликованные поля формы могут предоставлять значения для свойств модели. Написание кода для получения этих значений и их преобразования из строк в типы .NET будет утомительной задачей с высоким риском ошибок. Привязка модели позволяет автоматизировать этот процесс. Система привязки модели:
 
 * Извлекает данные из различных источников, таких как данные о маршруте, поля формы и строки запроса.
-* Предоставляет данные для контроллеров и страниц Razor в параметрах метода и открытых свойствах.
+* Предоставляет данные для контроллеров и Razor страниц в параметрах метода и общих свойствах.
 * Преобразует строковые данные в типы .NET.
 * Обновляет свойства сложных типов.
 
@@ -546,7 +552,7 @@ http://contoso.com/api/pets/2?DogsOnly=true
 Привязка модели попытается найти значения для следующих типов целевых объектов:
 
 * Параметры метода действия контроллера, к которому направлен запрос.
-* Параметры метода обработчика Razor Pages, к которому направлен запрос. 
+* Параметры метода обработчика Razor страниц, к которому направляется запрос. 
 * Открытые свойства контроллера или класса `PageModel`, если задано атрибутами.
 
 ### <a name="bindproperty-attribute"></a>Атрибут [BindProperty]
@@ -584,11 +590,11 @@ http://contoso.com/api/pets/2?DogsOnly=true
 
 Если источник по умолчанию неверен, используйте один из следующих атрибутов, чтобы указать источник:
 
-* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute): возвращает значения из строки запроса. 
-* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute): возвращает значения из данных маршрута.
-* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute): возвращает значения из опубликованных полей формы.
-* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute): возвращает значения из текста запроса.
-* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute): возвращает значения из заголовков HTTP.
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)— Получает значения из строки запроса. 
+* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)— Получает значения из данных маршрута.
+* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)— Получает значения из опубликованных полей формы.
+* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)— Получает значения из текста запроса.
+* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)— Получает значения из заголовков HTTP.
 
 Эти атрибуты:
 
@@ -635,8 +641,8 @@ public class Pet
 
 Исходные данные предоставляются системой привязки модели *поставщиками значений*. Вы можете записать и зарегистрировать пользовательские поставщики значений, которые получают данные для привязки модели из других источников. Например, вам могут потребоваться данные из файлов cookie или состояния сеанса. Для получения данных из нового источника:
 
-* Создайте класс, реализующий перехватчик `IValueProvider`.
-* Создайте класс, реализующий перехватчик `IValueProviderFactory`.
+* Создайте класс, реализующий `IValueProvider`.
+* Создайте класс, реализующий `IValueProviderFactory`.
 * Зарегистрируйте класс фабрики в `Startup.ConfigureServices`.
 
 Пример приложения включает пример [поставщика значений](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProvider.cs) и [фабрики](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProviderFactory.cs), которая получает значения из файлов cookie. Ниже приведен код регистрации в `Startup.ConfigureServices`:
@@ -654,7 +660,7 @@ public class Pet
 * Для сложных типов привязка модели создает экземпляр с помощью конструктора по умолчанию без задания свойств.
 * Массивы имеют значение `Array.Empty<T>()`, за исключением массивов `byte[]`, которые имеют значение `null`.
 
-Если состояние модели должно быть признано недействительным, когда в полях формы не найдены данные для свойства модели, используйте атрибут [`[BindRequired]`](#bindrequired-attribute).
+Если состояние модели должно быть недействительным, если в полях формы для свойства модели не найдено ничего, используйте [`[BindRequired]`](#bindrequired-attribute) атрибут.
 
 Обратите внимание, это поведение `[BindRequired]` применяется к привязке модели из опубликованных данных формы, а не к данным JSON или XML в тексте запроса. Данные основного текста запроса обрабатываются [форматировщиками входных данных](#input-formatters).
 
@@ -664,11 +670,11 @@ public class Pet
 
 В контроллере API с атрибутом `[ApiController]` недопустимое состояние модели приводит к автоматическому ответу HTTP 400.
 
-На странице Razor повторно отображается страница с сообщением об ошибке:
+На Razor странице повторно отобразите страницу с сообщением об ошибке:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-Проверка на стороне клиента перехватывает большинство неверных данных, которые в противном случае были бы отправлены в форму Razor Pages. Эта проверка затрудняет срабатывание выделенного выше кода. Пример приложения включает кнопку **Отправить с неверной датой**, которая помещает недопустимые данные в поле **Дата приема на работу** и отправляет форму. Эта кнопка показывает, как работает код для повторного отображения страницы, если возникла ошибка преобразования данных.
+Проверка на стороне клиента приводит к перехвату большинства недопустимых данных, которые в Razor противном случае были бы переданы в форму страниц. Эта проверка затрудняет срабатывание выделенного выше кода. Пример приложения включает кнопку **Отправить с неверной датой**, которая помещает недопустимые данные в поле **Дата приема на работу** и отправляет форму. Эта кнопка показывает, как работает код для повторного отображения страницы, если возникла ошибка преобразования данных.
 
 Когда страница отображается повторно приведенным выше кодом, недопустимые входные данные не отображаются в поле формы. Это связано с тем, что свойству модели задано значение NULL или значение по умолчанию. Недопустимые входные данные отображаются в сообщении об ошибке. Но если требуется повторно отобразить неправильные данные в поле формы, возможно, следует сделать свойство модели строкой и выполнить преобразование данных вручную.
 
@@ -681,14 +687,14 @@ public class Pet
 * [Boolean](xref:System.ComponentModel.BooleanConverter)
 * [Byte](xref:System.ComponentModel.ByteConverter), [SByte](xref:System.ComponentModel.SByteConverter)
 * [Char](xref:System.ComponentModel.CharConverter)
-* [DateTime](xref:System.ComponentModel.DateTimeConverter)
+* [Дата и время](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
-* [Decimal](xref:System.ComponentModel.DecimalConverter)
+* [Десятичное число](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
-* [Enum](xref:System.ComponentModel.EnumConverter)
+* [Перечисления](xref:System.ComponentModel.EnumConverter)
 * [Guid](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
-* [Один](xref:System.ComponentModel.SingleConverter)
+* [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [URI](xref:System.UriTypeConverter)
@@ -792,7 +798,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="collections"></a>Коллекции
 
-Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример:
+Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
 
 * Предположим, что параметром для привязки является массив с именем `selectedCourses`:
 
@@ -837,7 +843,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="dictionaries"></a>Словари
 
-Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример:
+Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
 
 * Предположим, что целевой параметр является `Dictionary<int, string>` с именем `selectedCourses`:
 

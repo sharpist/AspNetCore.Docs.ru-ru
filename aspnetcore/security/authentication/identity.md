@@ -1,16 +1,22 @@
 ---
-title: Введение в удостоверение на ASP.NET Core
+title: Identity Введение в ASP.NET Core
 author: rick-anderson
-description: Используйте удостоверение с приложением ASP.NET Core. Узнайте, как устанавливать требования к паролю (Рекуиредигит, Рекуиредленгс, Рекуиредуникуечарс и др.).
+description: Используйте Identity с приложением ASP.NET Core. Узнайте, как устанавливать требования к паролю (Рекуиредигит, Рекуиредленгс, Рекуиредуникуечарс и др.).
 ms.author: riande
 ms.date: 01/15/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 4bc5f206b3aee7c2d34055703acc5b6c5218f964
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: d596a8357c5c812b94950809eedf35718328747c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205947"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777011"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>Введение в удостоверение на ASP.NET Core
 
@@ -67,7 +73,7 @@ dotnet new webapp --auth Individual -uld -o WebApp1
 
 ---
 
-Созданный проект предоставляет [ASP.NET Core удостоверение](xref:security/authentication/identity) в виде [библиотеки классов Razor](xref:razor-pages/ui-class). Библиотека классов Razor Identity предоставляет конечные точки с `Identity` областью. Пример:
+Созданный проект предоставляет [ASP.NET Core удостоверение](xref:security/authentication/identity) в виде [библиотеки классов Razor](xref:razor-pages/ui-class). Библиотека классов Razor Identity предоставляет конечные точки с `Identity` областью. Например:
 
 * /идентити/аккаунт/логин
 * /идентити/аккаунт/логаут
@@ -230,7 +236,7 @@ dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --fil
 </Target>
 ```
 
-## <a name="next-steps"></a>Дальнейшие шаги
+## <a name="next-steps"></a>Next Steps
 
 * Сведения о настройке удостоверений с помощью SQLite см. в [этой статье о проблемах GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) .
 * [Настройка Identity](xref:security/authentication/identity-configuration)
@@ -287,7 +293,7 @@ dotnet new webapp --auth Individual -o WebApp1
 
 ---
 
-Созданный проект предоставляет [ASP.NET Core удостоверение](xref:security/authentication/identity) в виде [библиотеки классов Razor](xref:razor-pages/ui-class). Библиотека классов Razor Identity предоставляет конечные точки с `Identity` областью. Пример:
+Созданный проект предоставляет [ASP.NET Core удостоверение](xref:security/authentication/identity) в виде [библиотеки классов Razor](xref:razor-pages/ui-class). Библиотека классов Razor Identity предоставляет конечные точки с `Identity` областью. Например:
 
 * /идентити/аккаунт/логин
 * /идентити/аккаунт/логаут
@@ -391,39 +397,39 @@ dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --fil
 
 [!code-csharp[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 
-## <a name="test-identity"></a>Проверить удостоверение
+## <a name="test-identity"></a>ПроверьтеIdentity
 
-Шаблоны веб-проектов по умолчанию разрешают анонимный доступ к домашним страницам. Чтобы проверить удостоверение, [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) добавьте на страницу конфиденциальность.
+Шаблоны веб-проектов по умолчанию разрешают анонимный доступ к домашним страницам. Чтобы Identityпротестировать [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) , добавьте на страницу конфиденциальность.
 
 [!code-csharp[](identity/sample/WebApp1/Pages/Privacy.cshtml.cs?highlight=7)]
 
 Если вы вошли в систему, выйдите из нее. Запустите приложение и щелкните ссылку **Конфиденциальность** . Вы перейдете на страницу входа.
 
-### <a name="explore-identity"></a>Просмотр удостоверений
+### <a name="explore-identity"></a>ПросматриваемIdentity
 
-Более подробное изучение удостоверений:
+Более подробное изучение Identity :
 
 * [Создание полного источника идентификатора пользовательского интерфейса](xref:security/authentication/scaffold-identity#create-full-identity-ui-source)
 * Изучите источник каждой страницы и пошаговое выполнение отладчика.
 
-## <a name="identity-components"></a>Компоненты идентификации
+## <a name="identity-components"></a>IdentityКомпонента
 
-Все пакеты NuGet, зависящие от удостоверения, включены в пакет [Microsoft. AspNetCore. app метапакет](xref:fundamentals/metapackage-app).
+Все Identity зависимые пакеты NuGet включены в пакет [Microsoft. AspNetCore. app метапакет](xref:fundamentals/metapackage-app).
 
-Основным пакетом для удостоверения является [Microsoft. AspNetCore. Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/). Этот пакет содержит основной набор интерфейсов для ASP.NET Core удостоверения и включается в `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
+Основным пакетом для Identity является [Microsoft. AspNetCore.Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/) Этот пакет содержит основной набор интерфейсов для ASP.NET Core Identityи входит в состав. `Microsoft.AspNetCore.Identity.EntityFrameworkCore`
 
-## <a name="migrating-to-aspnet-core-identity"></a>Миграция на ASP.NET Core удостоверение
+## <a name="migrating-to-aspnet-core-identity"></a>Переход на ASP.NET CoreIdentity
 
-Дополнительные сведения и рекомендации по переносу существующего хранилища удостоверений см. в статье [Миграция проверки подлинности и удостоверений](xref:migration/identity).
+Дополнительные сведения и рекомендации по переносу существующего Identity хранилища см. в статье [Миграция проверки подлинности и Identity ](xref:migration/identity).
 
 ## <a name="setting-password-strength"></a>Установка силы пароля
 
 См. раздел [Конфигурация](#pw) для примера, который устанавливает минимальные требования к паролю.
 
-## <a name="next-steps"></a>Дальнейшие шаги
+## <a name="next-steps"></a>Next Steps
 
-* Сведения о настройке удостоверений с помощью SQLite см. в [этой статье о проблемах GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) .
-* [Настройка Identity](xref:security/authentication/identity-configuration)
+* Сведения о настройке Identity с помощью Sqlite см. в [этой статье о проблемах GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) .
+* [ВыбратьIdentity](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>
 * <xref:security/authentication/add-user-data>
 * <xref:security/authentication/identity-enable-qrcodes>

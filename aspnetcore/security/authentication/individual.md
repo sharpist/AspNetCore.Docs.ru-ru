@@ -4,19 +4,25 @@ author: rick-anderson
 description: Ознакомьтесь с статьями, основанными на ASP.NET Core проектах, созданных с учетными записями отдельных пользователей.
 ms.author: riande
 ms.date: 12/11/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/individual
-ms.openlocfilehash: 7ef0d5eabded61d04fb9fe7be384a663ad7ea5f4
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 26f53b6452e307bbd0816c1a3604f38b04c6af15
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651958"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768654"
 ---
 # <a name="articles-based-on-aspnet-core-projects-created-with-individual-user-accounts"></a>Статьи на основе проектов ASP.NET Core, созданных с учетными записями отдельных пользователей
 
 ASP.NET Core удостоверение включается в шаблоны проектов Visual Studio с параметром "индивидуальные учетные записи пользователей".
 
-Шаблоны проверки подлинности доступны в .NET Core CLI с `-au Individual`.
+Шаблоны проверки подлинности доступны в .NET Core CLI `-au Individual`с помощью:
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -42,7 +48,7 @@ dotnet new razor -au Individual
 
 ## <a name="no-authentication"></a>Без аутентификации
 
-Проверка подлинности указывается в .NET Core CLI с параметром `-au`. В Visual Studio диалоговое окно **Изменение проверки подлинности** доступно для новых веб-приложений. По умолчанию для новых веб-приложений в Visual Studio **Проверка подлинности не**выполняется.
+Проверка подлинности указывается в .NET Core CLI с `-au` параметром. В Visual Studio диалоговое окно **Изменение проверки подлинности** доступно для новых веб-приложений. По умолчанию для новых веб-приложений в Visual Studio **Проверка подлинности не**выполняется.
 
 Проекты, созданные без проверки подлинности:
 
@@ -53,7 +59,7 @@ dotnet new razor -au Individual
 
 ## <a name="windows-authentication"></a>Проверка подлинности Windows
 
-Для новых веб-приложений в .NET Core CLI указана проверка подлинности Windows с параметром `-au Windows`. В Visual Studio диалоговое окно **Изменение проверки подлинности** предоставляет параметры **проверки подлинности Windows** .
+Проверка подлинности Windows указана для новых веб-приложений в `-au Windows` .NET Core CLI с параметром. В Visual Studio диалоговое окно **Изменение проверки подлинности** предоставляет параметры **проверки подлинности Windows** .
 
 Если выбрана проверка подлинности Windows, приложение настроено для использования [модуля IIS проверки подлинности Windows](xref:host-and-deploy/iis/modules). Проверка подлинности Windows предназначена для веб-сайтов интрасети.
 
@@ -61,27 +67,27 @@ dotnet new razor -au Individual
 
 В следующей таблице приведены параметры проверки подлинности, доступные для новых веб-приложений.
 
-| Параметр | Тип проверки подлинности | Ссылка для получения дополнительных сведений |
+| Параметр | Тип проверки подлинности | Ссылка на дополнительные сведения |
  | ----------------- | ------------ | ---------- |
 | None            |  без аутентификации; | | 
 | Индивидуальное лицо      |  Индивидуальная проверка подлинности | <xref:security/authentication/identity>
-| IndividualB2C   |  Индивидуальная проверка подлинности, размещенная в облаке, с Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
-| синглеорг       |  Аутентификация в Организации для одного клиента | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| мултиорг        |  Проверка подлинности организации для нескольких клиентов | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| Windows         |  Проверка подлинности Windows | [Проверка подлинности Windows.](xref:security/authentication/windowsauth)
+| IndividualB2C   |  Индивидуальная проверка подлинности, размещенная в облаке, с Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
+| синглеорг       |  Корпоративная аутентификация для отдельного клиента | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| мултиорг        |  Корпоративная аутентификация для нескольких клиентов | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Windows         |  Проверка подлинности Windows | [Проверка подлинности Windows](xref:security/authentication/windowsauth)
 
 ## <a name="visual-studio-new-webapp-authentication-options"></a>Параметры проверки подлинности New webapp в Visual Studio
 
 В следующей таблице показаны параметры проверки подлинности, доступные при создании нового веб-приложения с помощью Visual Studio.
 
-| Параметр | Тип проверки подлинности | Ссылка для получения дополнительных сведений |
+| Параметр | Тип проверки подлинности | Ссылка на дополнительные сведения |
  | ----------------- | ------------ | ---------- |
 | None            |  без аутентификации; | | 
 | Индивидуальные учетные записи пользователей и хранение учетных записей пользователей в приложении |  Индивидуальная проверка подлинности | <xref:security/authentication/identity> |
-| Учетные записи отдельных пользователей и подключение к существующему хранилищу пользователей в облаке |  Индивидуальная проверка подлинности, размещенная в облаке, с Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
-| Рабочее или учебное облако/Единая Организация  |  Аутентификация в Организации для одного клиента | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| Рабочее или учебное облако/несколько Организации |  Проверка подлинности организации для нескольких клиентов | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| Windows         |  Проверка подлинности Windows | [Проверка подлинности Windows.](xref:security/authentication/windowsauth)
+| Учетные записи отдельных пользователей и подключение к существующему хранилищу пользователей в облаке |  Индивидуальная проверка подлинности, размещенная в облаке, с Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
+| Рабочее или учебное облако/Единая Организация  |  Корпоративная аутентификация для отдельного клиента | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Рабочее или учебное облако/несколько Организации |  Корпоративная аутентификация для нескольких клиентов | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Windows         |  Проверка подлинности Windows | [Проверка подлинности Windows](xref:security/authentication/windowsauth)
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

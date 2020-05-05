@@ -4,13 +4,19 @@ author: rick-anderson
 description: Узнайте, как в MVC ASP.NET Core используется ПО промежуточного слоя маршрутизации для сопоставления URL-адресов входящих запросов с действиями.
 ms.author: riande
 ms.date: 3/25/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 974a5e7653f2b71b124a96650733ff460e60637a
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 4208ef8fb7a9b10621f214f79679ff8d7fd83996
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206116"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775028"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Маршрутизация к действиям контроллера в ASP.NET Core
 
@@ -195,7 +201,9 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 ### <a name="conventional-routing-order"></a>Стандартный порядок маршрутизации
 
 Обычная маршрутизация соответствует только комбинации действий и контроллера, определенных приложением. Это предназначено для упрощения случаев, когда обычные маршруты перекрываются.
-Добавление маршрутов с <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>помощью <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>, и <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> автоматически назначает значение порядка своим конечным точкам в соответствии с порядком их вызова. Совпадает с более высоким приоритетом на маршруте, который отображается ранее. При маршрутизации на основе соглашений учитывается порядок. Как правило, маршруты с областями следует размещать раньше, так как они более специфичны, чем маршруты без области. [Выделенные традиционные маршруты](#dcr) с перехватывать все параметры `{*article}` маршрута, такие как, могут сделать маршрут слишком [жадным](xref:fundamentals/routing#greedy), то есть сопоставлять URL-адреса, которые вы хотели бы сопоставить с другими маршрутами. Помещайте жадные маршруты позже в таблице маршрутов, чтобы предотвратить жадные соответствия.
+Добавление маршрутов с <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>помощью <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>, и <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> автоматически назначает значение порядка своим конечным точкам в соответствии с порядком их вызова. Совпадает с более высоким приоритетом на маршруте, который отображается ранее. При маршрутизации на основе соглашений учитывается порядок. Как правило, маршруты с областями следует размещать раньше, так как они более специфичны, чем маршруты без области. [Выделенные традиционные маршруты](#dcr) с перекрестными параметрами маршрутов `{*article}` , например, могут сделать маршрут слишком [жадным](xref:fundamentals/routing#greedy), то есть сопоставлять URL-адреса, которые вы хотели бы сопоставить с другими маршрутами. Помещайте жадные маршруты позже в таблице маршрутов, чтобы предотвратить жадные соответствия.
+
+[!INCLUDE[](~/includes/catchall.md)]
 
 <a name="best"></a>
 
@@ -206,7 +214,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 * Выберите лучший кандидат.
 * Создание исключения.
 
-Пример:
+Например:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
@@ -463,7 +471,7 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
 * Приведенный выше код представляет собой пример или низкую структуру маршрутизации. Он использовался для иллюстрации `Order` свойства.
 * `Order` Свойство разрешает неоднозначность, но этот шаблон не может быть сопоставлен. Лучше удалить `[Route("Home")]` шаблон.
 
-См. раздел [соглашения о Razor Pages маршрутах и приложениях. порядок](xref:razor-pages/razor-pages-conventions#route-order) маршрута для получения сведений о порядке маршрутов с Razor Pages.
+См [ Razor . страницы соглашения о маршрутах и приложениях. порядок](xref:razor-pages/razor-pages-conventions#route-order) маршрута для получения сведений Razor о порядке маршрутов со страницами.
 
 В некоторых случаях возвращается ошибка HTTP 500 с неоднозначными маршрутами. Используйте [ведение журнала](xref:fundamentals/logging/index) , чтобы узнать, какие `AmbiguousMatchException`конечные точки вызывают.
 
@@ -744,13 +752,13 @@ result: /UrlGeneration/Destination
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/UrlGeneration2Controller.cs?name=snippet_1)]
 
-Следующий файл Razor создает ссылку HTML на `Destination_Route`:
+Следующий Razor файл создает ссылку HTML на `Destination_Route`:
 
 [!code-cshtml[](routing/samples/3.x/main/Views/Shared/MyLink.cshtml)]
 
 <a name="routing-gen-urls-html-ref-label"></a>
 
-### <a name="generate-urls-in-html-and-razor"></a>Создание URL-адресов в HTML и Razor
+### <a name="generate-urls-in-html-and-razor"></a>Создание URL-адресов в HTML иRazor
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper>предоставляет <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> методы [HTML. бегинформ](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) и [HTML. ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) для создания `<form>` элементов и `<a>` соответственно. Эти методы используют метод [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) для создания URL-адреса и принимают аналогичные аргументы. Эквивалентами методов `Url.RouteUrl` для `HtmlHelper` являются методы `Html.BeginRouteForm` и `Html.RouteLink`, которые имеют схожие функции.
 
@@ -1001,7 +1009,7 @@ app.UseMvc(routes =>
 
 ### <a name="disambiguating-actions"></a>Разрешение неоднозначности действий
 
-Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Пример:
+Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Например:
 
 ```csharp
 public class ProductsController : Controller
@@ -1212,7 +1220,7 @@ public class HomeController : Controller
 > [!TIP]
 > Старайтесь не использовать свойство `Order`. Если для правильной маршрутизации в пространстве URL-адресов требуются явно заданные значения порядка, скорее всего, это будет вызывать путаницу и в среде клиентов. Как правило, при маршрутизации с помощью атрибутов правильный маршрут выбирается посредством сопоставления URL-адресов. Если порядок по умолчанию для формирования URL-адресов не работает, использовать имя маршрута в качестве переопределения, как правило, проще, чем применять свойство `Order`.
 
-Средства маршрутизации в Razor Pages и контроллере MVC имеют общую реализацию. Сведения о порядке маршрутизации в Razor Pages см. в статье [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order) (Маршрутизация и соглашения в приложении Razor Pages: порядок маршрутизации).
+RazorМаршрутизация страниц и маршрутизация контроллера MVC совместно используют реализацию. Сведения о порядке маршрутов в разделах Razor страницы см. в разделе [ Razor Маршрутизация и соглашения о приложениях: порядок маршрутов](xref:razor-pages/razor-pages-conventions#route-order).
 
 <a name="routing-token-replacement-templates-ref-label"></a>
 

@@ -1,25 +1,31 @@
 ---
 title: Проверка модели в ASP.NET Core MVC
 author: rick-anderson
-description: Сведения о проверке модели в ASP.NET Core MVC и Razor Pages.
+description: Сведения о проверке модели в ASP.NET Core MVC и Razor страницах.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: 0e3d4f4705dbfdae00943de2d85c603b6762a2f8
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: a0f7c070514de26ae007526a5587c13d26d1eb1b
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205895"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777180"
 ---
-# <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Проверка модели в ASP.NET Core MVC и Razor Pages
+# <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Проверка модели в ASP.NET Core MVC и Razor страницах
 
 ::: moniker range=">= aspnetcore-3.0"
 
 Автор: [Кирк Ларкин (Kirk Larkin)](https://github.com/serpent5)
 
-В этой статье объясняется, как осуществлять проверки вводимых пользователем данных в приложении ASP.NET Core MVC или Razor Pages.
+В этой статье объясняется, как проверить ввод пользователя в ASP.NET Core приложении Razor MVC или Pages.
 
 [Просмотреть или скачать пример кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/samples) ([описание скачивания](xref:index#how-to-download-a-sample)).
 
@@ -27,7 +33,7 @@ ms.locfileid: "82205895"
 
 Состояние модели представляет ошибки, создаваемые двумя подсистемами: привязкой модели и проверкой модели. Ошибки [привязки модели](model-binding.md) обычно являются ошибками преобразования данных. Например, в целочисленном поле указывается "x". Проверка модели происходит после ее привязки. В процессе сообщается об ошибках несоответствия данных бизнес-правилам. Например, в поле, которое ожидает оценку от 1 до 5, указывается 0.
 
-Привязка и проверка модели происходят перед выполнением действия контроллера или метода обработчика Razor Pages. Веб-приложение отвечает за проверку `ModelState.IsValid` и реагирует соответствующим образом. Веб-приложения обычно повторно отображают страницы с сообщением об ошибке.
+Привязка модели и проверка модели выполняются до выполнения действия контроллера или метода обработчика Razor страниц. Веб-приложение отвечает за проверку `ModelState.IsValid` и реагирует соответствующим образом. Веб-приложения обычно повторно отображают страницы с сообщением об ошибке.
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=3-6)]
 
@@ -64,13 +70,13 @@ ms.locfileid: "82205895"
 
 ### <a name="error-messages"></a>Сообщения об ошибках
 
-Атрибуты проверки позволяют указать сообщение об ошибке, которое будет отображаться, если входные данные недопустимы. Пример:
+Атрибуты проверки позволяют указать сообщение об ошибке, которое будет отображаться, если входные данные недопустимы. Например:
 
 ```csharp
 [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
 ```
 
-На внутреннем уровне атрибуты вызывают `String.Format` с заполнителем для имени поля и иногда дополнительным заполнителями. Пример:
+На внутреннем уровне атрибуты вызывают `String.Format` с заполнителем для имени поля и иногда дополнительным заполнителями. Например:
 
 ```csharp
 [StringLength(8, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 6)]
@@ -367,7 +373,7 @@ $.get({
 
 ## <a name="disable-client-side-validation"></a>Отключение проверки на стороне клиента
 
-Следующий код отключает клиентскую проверку в Razor Pages:
+Следующий код отключает проверку клиента на Razor страницах:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Startup.cs?name=snippet_DisableClientValidation&highlight=2-5)]
 
@@ -376,7 +382,7 @@ $.get({
 * Закомментируйте ссылку на `_ValidationScriptsPartial` во всех файлах с расширением *CSHTML*.
 * Удалите содержимое файла *Pages\Shared\_ValidationScriptsPartial.cshtml*.
 
-Предыдущий подход не помешает проверке на стороне клиента библиотеки классов Razor для ASP.NET Core Identity. Для получения дополнительной информации см. <xref:security/authentication/scaffold-identity>.
+Предыдущий подход не помешает проверке на стороне клиента ASP.NET Core Identity Razor библиотеки классов. Для получения дополнительной информации см. <xref:security/authentication/scaffold-identity>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
@@ -387,7 +393,7 @@ $.get({
 
 ::: moniker range="< aspnetcore-3.0"
 
-В этой статье объясняется, как осуществлять проверки вводимых пользователем данных в приложении ASP.NET Core MVC или Razor Pages.
+В этой статье объясняется, как проверить ввод пользователя в ASP.NET Core приложении Razor MVC или Pages.
 
 [Просмотреть или скачать пример кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) ([описание скачивания](xref:index#how-to-download-a-sample)).
 
@@ -395,7 +401,7 @@ $.get({
 
 Состояние модели представляет ошибки, создаваемые двумя подсистемами: привязкой модели и проверкой модели. Ошибки, поступающие из [привязки модели](model-binding.md), чаще всего представляют собой ошибки преобразования данных (например, x вводится в поле, которое ожидает целое число). Проверка модели проводится после привязки модели и сообщает об ошибках, при которых данные не соответствуют бизнес-правилам (например, 0 вводится в поле, которое ожидает оценку от 1 до 5).
 
-Привязка модели и проверка модели происходят перед выполнением действия контроллера или метода обработчика Razor Pages. Веб-приложение отвечает за проверку `ModelState.IsValid` и реагирует соответствующим образом. Веб-приложения обычно повторно отображают страницы с сообщением об ошибке.
+Привязка и проверка модели выполняются до выполнения действия контроллера или метода обработчика Razor страниц. Веб-приложение отвечает за проверку `ModelState.IsValid` и реагирует соответствующим образом. Веб-приложения обычно повторно отображают страницы с сообщением об ошибке.
 
 [!code-csharp[](validation/samples_snapshot/2.x/Create.cshtml.cs?name=snippet&highlight=3-6)]
 
@@ -418,7 +424,7 @@ $.get({
 К встроенным атрибутам проверки относятся:
 
 * `[CreditCard]`: Проверяет, что свойство имеет формат кредитной карты.
-* `[Compare]`: Проверяет соответствие двух свойств в модели. Например, файл *Register.cshtml.cs* использует `[Compare]` для проверки совпадений двух введенных паролей. [Удостоверение шаблона](xref:security/authentication/scaffold-identity) для просмотра кода регистрации.
+* `[Compare]`: Проверяет соответствие двух свойств в модели. Например, файл *Register.cshtml.cs* использует `[Compare]` для проверки совпадений двух введенных паролей. Шаблон для просмотра кода регистрации. [ Identity ](xref:security/authentication/scaffold-identity)
 * `[EmailAddress]`: Проверяет, что свойство имеет формат электронной почты.
 * `[Phone]`: Проверяет, что свойство имеет формат номера телефона.
 * `[Range]`: Проверяет, попадает значение свойства в указанный диапазон.
@@ -434,13 +440,13 @@ $.get({
 
 ### <a name="error-messages"></a>Сообщения об ошибках
 
-Атрибуты проверки позволяют указать сообщение об ошибке, которое будет отображаться, если входные данные недопустимы. Пример:
+Атрибуты проверки позволяют указать сообщение об ошибке, которое будет отображаться, если входные данные недопустимы. Например:
 
 ```csharp
 [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
 ```
 
-На внутреннем уровне атрибуты вызывают `String.Format` с заполнителем для имени поля и иногда дополнительным заполнителями. Пример:
+На внутреннем уровне атрибуты вызывают `String.Format` с заполнителем для имени поля и иногда дополнительным заполнителями. Например:
 
 ```csharp
 [StringLength(8, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 6)]
@@ -742,7 +748,7 @@ $.get({
 
 [!code-csharp[](validation/samples_snapshot/2.x/Startup2.cs?name=snippet_DisableClientValidation)]
 
-В Razor Pages:
+И на Razor страницах:
 
 [!code-csharp[](validation/samples_snapshot/2.x/Startup3.cs?name=snippet_DisableClientValidation)]
 
