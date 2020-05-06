@@ -5,17 +5,20 @@ description: Сведения о проверке подлинности и ав
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 05/04/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/index
-ms.openlocfilehash: ced8e90147b08bc75aec4534fdd8d8552506f88c
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: d55880265ed1ceedf8f115412e5ac47309521239
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206103"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772899"
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>Проверка подлинности и авторизация в ASP.NET Core Blazor
 
@@ -246,7 +249,7 @@ builder.Services.AddAuthorizationCore();
 * есть ли у пользователя определенное *утверждение*;
 * выполняются ли требования *политики*.
 
-Каждый из этих аспектов применяется здесь так же, как в приложениях ASP.NET Core MVC или Razor Pages. Дополнительные сведения о безопасности в ASP.NET Core вы найдете в статьях [о безопасности и идентификации в ASP.NET Core](xref:security/index).
+Каждый из этих аспектов применяется здесь так же, как в приложениях ASP.NET Core MVC или Razor Pages. Дополнительные сведения о безопасности в ASP.NET Core вы найдете в статьях [о безопасности и Identity в ASP.NET Core](xref:security/index).
 
 ## <a name="authorizeview-component"></a>Компонент AuthorizeView
 
@@ -426,6 +429,7 @@ Not authorized.
 Если приложению нужно проверять правила авторизации в составе процедурной логики, используйте каскадный параметр с типом `Task<AuthenticationState>`, чтобы получить <xref:System.Security.Claims.ClaimsPrincipal> пользователя. `Task<AuthenticationState>` можно комбинировать для оценки политик с другими службами, например `IAuthorizationService`.
 
 ```razor
+@using Microsoft.AspNetCore.Authorization
 @inject IAuthorizationService AuthorizationService
 
 <button @onclick="@DoSomething">Do something important</button>

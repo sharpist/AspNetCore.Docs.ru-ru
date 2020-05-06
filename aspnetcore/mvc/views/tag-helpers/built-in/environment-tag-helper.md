@@ -5,21 +5,27 @@ description: Определенная в ASP.NET Core вспомогательн
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
-ms.openlocfilehash: 308e7db47104ebd4d6bb8d08c64f14bbd118898b
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 144cc8988ba5797265b38f0f7364f528e0dbb97e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653770"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777427"
 ---
 # <a name="environment-tag-helper-in-aspnet-core"></a>Вспомогательная функция тега среды в ASP.NET Core
 
 Авторы: [Питер Кельнер (Peter Kellner)](https://peterkellner.net) и [Хишам Бин Атея](https://twitter.com/hishambinateya) (Hisham Bin Ateya)
 
-Вспомогательная функция тега среды условно отрисовывает заключенное в нее содержимое с учетом текущей [среды размещения](xref:fundamentals/environments). Единственный атрибут вспомогательной функции тега среды, `names`, — это разделенный запятыми список имен сред. Если одно из указанных имен среды соответствует текущей среде, включенное содержимое подготавливается к просмотру.
+Вспомогательная функция тега среды условно визуализирует свое содержимое в соответствии с текущей [средой размещения](xref:fundamentals/environments). Единственный атрибут вспомогательной функции тега среды, `names`, — это разделенный запятыми список имен сред. Если одно из указанных имен среды соответствует текущей среде, включенное содержимое подготавливается к просмотру.
 
-Общие сведения о вспомогательных функциях тегов см. в разделе <xref:mvc/views/tag-helpers/intro>.
+Общие сведения о вспомогательных функциях тегов см. здесь: <xref:mvc/views/tag-helpers/intro>.
 
 ## <a name="environment-tag-helper-attributes"></a>Атрибуты вспомогательной функции тега среды
 
@@ -41,7 +47,7 @@ ms.locfileid: "78653770"
 
 ## <a name="include-and-exclude-attributes"></a>Атрибуты include и exclude
 
-`include` & `exclude` атрибуты элемент управления, который подготовит содержимое, на основе включенных или исключенных имен среды размещения.
+`include`& элемент управления атрибутами подготовит содержимое, основанное на включенных или исключенных именах среды `exclude` размещения.
 
 ### <a name="include"></a>include
 

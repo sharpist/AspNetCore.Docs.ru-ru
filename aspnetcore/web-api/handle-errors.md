@@ -6,19 +6,25 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: prkrishn
 ms.custom: mvc
 ms.date: 12/10/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/handle-errors
-ms.openlocfilehash: e445fb3d50973643c9cea60395d1ed02c2f5f675
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 7c641fb12e0d06ebd7bb3ce9f878f0469b4a3d8e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652396"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775067"
 ---
 # <a name="handle-errors-in-aspnet-core-web-apis"></a>Обработка ошибок в веб-API ASP.NET Core
 
 В этой статье описывается обработка и настройка обработки ошибок с помощью веб-API ASP.NET Core.
 
-[Просмотрите или скачайте пример кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/handle-errors/samples) ([как скачивать](xref:index#how-to-download-a-sample))
+[Просмотр или скачивание образца кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/handle-errors/samples) ([Загрузка](xref:index#how-to-download-a-sample))
 
 ## <a name="developer-exception-page"></a>Страница со сведениями об исключении для разработчика
 
@@ -68,7 +74,7 @@ Host: localhost:44312
 User-Agent: curl/7.55.1
 ```
 
-Чтобы вместо этого отображался отформатированный HTML-запрос, задайте для заголовка HTTP-запроса `Accept` тип носителя `text/html`. Пример:
+Чтобы вместо этого отображался отформатированный HTML-запрос, задайте для заголовка HTTP-запроса `Accept` тип носителя `text/html`. Например:
 
 ```bash
 curl -i -H "Accept: text/html" https://localhost:5001/weatherforecast/chicago
@@ -244,7 +250,7 @@ Date: Fri, 27 Sep 2019 16:55:37 GMT
 
 ## <a name="validation-failure-error-response"></a>Ответ в случае ошибки при сбое проверки
 
-В контроллерах веб-API MVC отвечает с помощью типа ответа <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> при сбое проверки модели. MVC использует результаты <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> для создания ответа в случае ошибки при сбое проверки. В следующем примере в <xref:Microsoft.AspNetCore.Mvc.SerializableError> для изменения типа ответа по умолчанию на `Startup.ConfigureServices` используется фабрика:
+В контроллерах веб-API MVC отвечает с помощью типа ответа <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> при сбое проверки модели. MVC использует результаты <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> для создания ответа в случае ошибки при сбое проверки. В следующем примере в `Startup.ConfigureServices` для изменения типа ответа по умолчанию на <xref:Microsoft.AspNetCore.Mvc.SerializableError> используется фабрика:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -284,7 +290,7 @@ Date: Fri, 27 Sep 2019 16:55:37 GMT
 
 ### <a name="implement-problemdetailsfactory"></a>Реализация ProblemDetailsFactory
 
-MVC создает все экземпляры `Microsoft.AspNetCore.Mvc.ProblemDetailsFactory` и <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> с помощью <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. Сюда относятся ответы при ошибках клиента, ответы в случае ошибок при сбое проверки, а также вспомогательные методы `Microsoft.AspNetCore.Mvc.ControllerBase.Problem` и <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem>.
+MVC создает все экземпляры <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> и <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> с помощью `Microsoft.AspNetCore.Mvc.ProblemDetailsFactory`. Сюда относятся ответы при ошибках клиента, ответы в случае ошибок при сбое проверки, а также вспомогательные методы `Microsoft.AspNetCore.Mvc.ControllerBase.Problem` и <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem>.
 
 Чтобы настроить ответ с подробными сведениями о проблемах, зарегистрируйте пользовательскую реализацию `ProblemDetailsFactory` в `Startup.ConfigureServices`:
 
@@ -308,7 +314,7 @@ public void ConfigureServices(IServiceCollection serviceCollection)
 
 ### <a name="use-apibehavioroptionsclienterrormapping"></a>Использование ApiBehaviorOptions.ClientErrorMapping
 
-Используйте свойство <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping%2A>, чтобы настроить содержимое ответа `ProblemDetails`. Например, следующий код в `Startup.ConfigureServices` обновляет свойство `type` для ответов 404:
+Используйте свойство <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping%2A>, чтобы настроить содержимое ответа `ProblemDetails`. Например, следующий код в `type` обновляет свойство `Startup.ConfigureServices` для ответов 404:
 
 ::: moniker-end
 

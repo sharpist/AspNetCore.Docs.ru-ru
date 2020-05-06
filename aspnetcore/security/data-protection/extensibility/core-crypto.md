@@ -4,20 +4,26 @@ author: rick-anderson
 description: Сведения о Иаусентикатеденкриптор, Иаусентикатеденкриптордескриптор, Иаусентикатеденкриптордескриптордесериализер и фабрике верхнего уровня.
 ms.author: riande
 ms.date: 08/11/2017
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/extensibility/core-crypto
-ms.openlocfilehash: a5f651e3313cc579b995b45905826a5bffcc241c
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: c63cc124e1893f23c18581841194fa66848a2a1e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653548"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776426"
 ---
 # <a name="core-cryptography-extensibility-in-aspnet-core"></a>Расширяемость ядра криптографии в ASP.NET Core
 
 <a name="data-protection-extensibility-core-crypto"></a>
 
 >[!WARNING]
-> Типы, реализующие любые из следующих интерфейсов должны быть потокобезопасными для нескольких клиентов.
+> Типы, реализующие любой из следующих интерфейсов, должны быть потокобезопасными для нескольких вызывающих объектов.
 
 <a name="data-protection-extensibility-core-crypto-iauthenticatedencryptor"></a>
 
@@ -41,7 +47,7 @@ ms.locfileid: "78653548"
 
 ## <a name="how-to-create-an-iauthenticatedencryptor"></a>Создание Иаусентикатеденкриптор
 
-# <a name="aspnet-core-2x"></a>[ASP.NET Core 2.x](#tab/aspnetcore2x)
+# <a name="aspnet-core-2x"></a>[ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Интерфейс **иаусентикатеденкрипторфактори** представляет тип, который знает, как создать экземпляр [иаусентикатеденкриптор](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-iauthenticatedencryptor) . Его API выглядит следующим образом.
 
@@ -102,7 +108,7 @@ byte[] roundTripped = encryptor2.Decrypt(new ArraySegment<byte>(ciphertext), aad
 
 ## <a name="iauthenticatedencryptordescriptor-aspnet-core-2x-only"></a>Иаусентикатеденкриптордескриптор (только ASP.NET Core 2. x)
 
-# <a name="aspnet-core-2x"></a>[ASP.NET Core 2.x](#tab/aspnetcore2x)
+# <a name="aspnet-core-2x"></a>[ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Интерфейс **иаусентикатеденкриптордескриптор** представляет тип, который знает, как экспортировать себя в XML. Его API выглядит следующим образом.
 
@@ -112,7 +118,7 @@ byte[] roundTripped = encryptor2.Decrypt(new ArraySegment<byte>(ciphertext), aad
 
 ---
 
-## <a name="xml-serialization"></a>Сериализация XML
+## <a name="xml-serialization"></a>XML-сериализация
 
 Основное различие между Иаусентикатеденкриптор и Иаусентикатеденкриптордескриптор заключается в том, что дескриптор знает, как создать шифратор и предоставить его допустимым аргументам. Рассмотрим Иаусентикатеденкриптор, реализация которого основывается на SymmetricAlgorithm и KeyedHashAlgorithm. Задание шифратора заключается в использовании этих типов, но не обязательно знает, откуда поступили эти типы, поэтому не может действительно записать правильное описание способа повторного создания, если приложение перезапускается. Дескриптор действует как более высокий уровень поверх этого. Поскольку дескриптору известно, как создать экземпляр шифратора (например, он знает, как создать необходимые алгоритмы), он может сериализовать этот набор знаний в XML-форме, чтобы экземпляр шифратора можно было повторно создать после сброса приложения.
 
@@ -120,10 +126,10 @@ byte[] roundTripped = encryptor2.Decrypt(new ArraySegment<byte>(ciphertext), aad
 
 Дескриптор можно сериализовать с помощью своей подпрограммы Експорттоксмл. Эта подпрограммы возвращает Ксмлсериализеддескрипторинфо, который содержит два свойства: представление XElement дескриптора и тип, который представляет [иаусентикатеденкриптордескриптордесериализер](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptordeserializer) , который можно использовать для восвыполнения этого дескриптора, учитывая соответствующий элемент XElement.
 
-Сериализованный дескриптор может содержать конфиденциальные сведения, такие как материал криптографического ключа. Система защиты данных имеет встроенную поддержку шифрования данных перед их сохранением в хранилище. Чтобы воспользоваться этим преимуществом, дескриптор должен пометить элемент, содержащий конфиденциальную информацию, именем атрибута "Рекуиресенкриптион" (xmlns "<http://schemas.asp.net/2015/03/dataProtection>"), значением "true".
+Сериализованный дескриптор может содержать конфиденциальные сведения, такие как материал криптографического ключа. Система защиты данных имеет встроенную поддержку шифрования данных перед их сохранением в хранилище. Чтобы воспользоваться этим преимуществом, дескриптор должен пометить элемент, содержащий конфиденциальную информацию, именем атрибута «Рекуиресенкриптион» (xmlns «<http://schemas.asp.net/2015/03/dataProtection>»), значением «true».
 
 >[!TIP]
-> Для установки этого атрибута существует вспомогательный API. Вызовите метод расширения XElement. Маркасрекуиресенкриптион (), расположенный в пространстве имен Microsoft. AspNetCore. Аусентикатеденкриптион. Конфигуратионмодел.
+> Для установки этого атрибута существует вспомогательный API. Вызовите метод расширения XElement. Маркасрекуиресенкриптион (), расположенный в пространстве имен Microsoft. AspNetCore.. Аусентикатеденкриптион. Конфигуратионмодел.
 
 Возможны также случаи, когда сериализованный дескриптор не содержит конфиденциальных сведений. Снова рассмотрите возможность использования криптографического ключа, хранящегося в HSM. Дескриптор не может записать ключевой материал при сериализации, так как HSM не будет предоставлять материал в виде открытого текста. Вместо этого дескриптор может записать версию ключа, упакованную в ключ (если HSM поддерживает экспорт), или собственный уникальный идентификатор HSM для ключа.
 
@@ -139,16 +145,16 @@ byte[] roundTripped = encryptor2.Decrypt(new ArraySegment<byte>(ciphertext), aad
 
 Типы, реализующие Иаусентикатеденкриптордескриптордесериализер, должны иметь один из следующих двух открытых конструкторов:
 
-* .ctor(IServiceProvider)
+* . ctor (IServiceProvider)
 
-* .ctor()
+* . ctor ()
 
 > [!NOTE]
 > Объект IServiceProvider, переданный в конструктор, может иметь значение null.
 
 ## <a name="the-top-level-factory"></a>Фабрика верхнего уровня
 
-# <a name="aspnet-core-2x"></a>[ASP.NET Core 2.x](#tab/aspnetcore2x)
+# <a name="aspnet-core-2x"></a>[ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Класс **алгорисмконфигуратион** представляет тип, который знает, как создавать экземпляры [иаусентикатеденкриптордескриптор](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptor) . Он предоставляет один API.
 

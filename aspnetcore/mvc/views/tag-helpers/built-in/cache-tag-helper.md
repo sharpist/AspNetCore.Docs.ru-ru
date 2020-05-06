@@ -5,13 +5,19 @@ description: Сведения об использовании вспомогат
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: db9e1a968588410f11e5f137dfdd4542df505ebc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: ced10a7b7b221188fdac2a4e3c54f66292110ece
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653308"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773946"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Вспомогательная функция тегов кэша в MVC-моделях ASP.NET Core
 
@@ -19,7 +25,7 @@ ms.locfileid: "78653308"
 
 Вспомогательная функция тегов кэша позволяет повысить производительность приложения ASP.NET Core за счет кэширования его содержимого во внутренний поставщик кэша ASP.NET Core.
 
-Общие сведения о вспомогательных функциях тегов см. в разделе <xref:mvc/views/tag-helpers/intro>.
+Общие сведения о вспомогательных функциях тегов см. здесь: <xref:mvc/views/tag-helpers/intro>.
 
 Приведенная ниже разметка Razor кэширует текущую дату:
 
@@ -33,13 +39,13 @@ ms.locfileid: "78653308"
 
 ### <a name="enabled"></a>Включено
 
-| Тип атрибута  | Примеры        | По умолчанию |
+| Тип атрибута  | Примеры        | Значение по умолчанию |
 | --------------- | --------------- | ------- |
-| Логическое         | `true`, `false` | `true`  |
+| логический         | `true`, `false` | `true`  |
 
-`enabled` определяет, кэшируется ли содержимое, охватываемое вспомогательной функцией тегов кэша. Значение по умолчанию — `true`. Если установлено значение `false`, выводимые данные **не** кэшируются.
+`enabled` определяет, кэшируется ли содержимое, охватываемое вспомогательной функцией тегов кэша. Значение по умолчанию — `true`. Если установлено значение `false`, выводимые данные **не** кэшируются.
 
-Пример
+Пример.
 
 ```cshtml
 <cache enabled="true">
@@ -65,13 +71,13 @@ ms.locfileid: "78653308"
 
 ### <a name="expires-after"></a>expires-after
 
-| Тип атрибута | Пример                      | По умолчанию    |
+| Тип атрибута | Пример                      | Значение по умолчанию    |
 | -------------- | ---------------------------- | ---------- |
 | `TimeSpan`     | `@TimeSpan.FromSeconds(120)` | 20 минут |
 
 `expires-after` задает интервал времени для кэширования содержимого с момента первого запроса.
 
-Пример
+Пример.
 
 ```cshtml
 <cache expires-after="@TimeSpan.FromSeconds(120)">
@@ -89,7 +95,7 @@ ms.locfileid: "78653308"
 
 Задает время, по истечении которого запись кэша следует удалить, если к ней не было обращений.
 
-Пример
+Пример.
 
 ```cshtml
 <cache expires-sliding="@TimeSpan.FromSeconds(60)">
@@ -101,7 +107,7 @@ ms.locfileid: "78653308"
 
 | Тип атрибута | Примеры                                    |
 | -------------- | ------------------------------------------- |
-| String         | `User-Agent`, `User-Agent,content-encoding` |
+| Строка         | `User-Agent`, `User-Agent,content-encoding` |
 
 `vary-by-header` принимает список разделенных запятыми значений заголовков, запускающих обновление кэша при их изменении.
 
@@ -117,7 +123,7 @@ ms.locfileid: "78653308"
 
 | Тип атрибута | Примеры             |
 | -------------- | -------------------- |
-| String         | `Make`, `Make,Model` |
+| Строка         | `Make`, `Make,Model` |
 
 `vary-by-query` принимает список разделенных запятыми <xref:Microsoft.AspNetCore.Http.IQueryCollection.Keys*> в строке запроса (<xref:Microsoft.AspNetCore.Http.HttpRequest.Query*>), запускающих обновление кэша при изменении значения любого указанного ключа.
 
@@ -133,13 +139,13 @@ ms.locfileid: "78653308"
 
 | Тип атрибута | Примеры             |
 | -------------- | -------------------- |
-| String         | `Make`, `Make,Model` |
+| Строка         | `Make`, `Make,Model` |
 
 `vary-by-route` принимает список разделенных запятыми имен параметров маршрута, запускающих обновление кэша при изменении значения параметра данных маршрута.
 
-Пример
+Пример.
 
-*Startup.cs*:
+*Startup.CS*:
 
 ```csharp
 routes.MapRoute(
@@ -147,7 +153,7 @@ routes.MapRoute(
     template: "{controller=Home}/{action=Index}/{Make?}/{Model?}");
 ```
 
-*Index.cshtml*:
+*Index. cshtml*:
 
 ```cshtml
 <cache vary-by-route="Make,Model">
@@ -159,7 +165,7 @@ routes.MapRoute(
 
 | Тип атрибута | Примеры                                                                         |
 | -------------- | -------------------------------------------------------------------------------- |
-| String         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
+| Строка         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
 
 `vary-by-cookie` принимает список разделенных запятыми имен cookie, запускающих обновление кэша при изменении их значений.
 
@@ -173,9 +179,9 @@ routes.MapRoute(
 
 ### <a name="vary-by-user"></a>vary-by-user
 
-| Тип атрибута  | Примеры        | По умолчанию |
+| Тип атрибута  | Примеры        | Значение по умолчанию |
 | --------------- | --------------- | ------- |
-| Логическое         | `true`, `false` | `true`  |
+| логический         | `true`, `false` | `true`  |
 
 `vary-by-user` указывает, следует ли сбрасывать кэш при изменении вошедшего в систему пользователя (или участника контекста). Текущий пользователь также называется участником контекста запроса и доступен для просмотра в представлении Razor с помощью ссылки на `@User.Identity.Name`.
 
@@ -193,7 +199,7 @@ routes.MapRoute(
 
 | Тип атрибута | Пример  |
 | -------------- | -------- |
-| String         | `@Model` |
+| Строка         | `@Model` |
 
 `vary-by` позволяет настраивать, какие данные кэшируются. Содержимое вспомогательной функции тегов кэша обновляется при изменении объекта, на который ссылается строковое значение атрибута. Часто этому атрибуту назначается объединенная строка значений модели. По сути, это приводит к ситуации, когда обновление любого из объединенных значений приводит к сбросу кэша.
 
@@ -212,7 +218,7 @@ public IActionResult Index(string myParam1, string myParam2, string myParam3)
 }
 ```
 
-*Index.cshtml*:
+*Index. cshtml*:
 
 ```cshtml
 <cache vary-by="@Model">
@@ -222,13 +228,13 @@ public IActionResult Index(string myParam1, string myParam2, string myParam3)
 
 ### <a name="priority"></a>priority
 
-| Тип атрибута      | Примеры                               | По умолчанию  |
+| Тип атрибута      | Примеры                               | Значение по умолчанию  |
 | ------------------- | -------------------------------------- | -------- |
 | `CacheItemPriority` | `High`, `Low`, `NeverRemove`, `Normal` | `Normal` |
 
 `priority` предоставляет встроенному поставщику кэша инструкции по удалению кэша. При нехватке памяти веб-сервер будет первыми удалять записи кэша с приоритетом `Low`.
 
-Пример
+Пример.
 
 ```cshtml
 <cache priority="High">

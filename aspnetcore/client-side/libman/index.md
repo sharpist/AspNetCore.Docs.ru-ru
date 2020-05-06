@@ -5,13 +5,19 @@ description: Узнайте, как установить ресурсы библ
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/14/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: client-side/libman/index
-ms.openlocfilehash: 87987446b7f2c625da90951510e697e06569ba36
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 8dc94bd8dc15eaf3b778a8bd2905fcce08398a95
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78644578"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82770497"
 ---
 # <a name="client-side-library-acquisition-in-aspnet-core-with-libman"></a>Получение библиотеки на стороне клиента в ASP.NET Core с LibMan
 
@@ -27,7 +33,7 @@ LibMan предоставляет следующие преимущества:
 * Дополнительные средства, такие как [Node.js](https://nodejs.org), [npm](https://www.npmjs.com) и [WebPack](https://webpack.js.org), не обязательны для получения подмножества файлов в библиотеке.
 * Файлы можно разместить в определенном расположении, не прибегая к задачам сборки или копированию файлов вручную.
 
-Дополнительные сведения о преимуществах LibMan смотрите в видео [Разработка современного веб-интерфейса в Visual Studio 2017: сегмент LibMan](https://channel9.msdn.com/Events/Build/2017/B8073#time=43m34s).
+Дополнительные сведения о преимуществах LibMan см. в видеоролике о [разработке современных веб-интерфейса в Visual Studio 2017, часть презентации, посвященная LibMan](https://channel9.msdn.com/Events/Build/2017/B8073#time=43m34s).
 
 LibMan не является системой управления пакетами. Если вы уже используете диспетчер пакетов, например npm или [yarn](https://yarnpkg.com), используйте его и дальше. LibMan не предназначен для замены этих средств.
 

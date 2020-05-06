@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/24/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/index
-ms.openlocfilehash: c096419f4866ea2f1db135594c4b88c89c7c90d1
-ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
+ms.openlocfilehash: e8ea5e6b6d7e28906e6109e6730ac25f190b4191
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82138421"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768004"
 ---
-# <a name="secure-aspnet-core-opno-locblazor-webassembly"></a>Защита ASP.NET Core Blazor WebAssembly
+# <a name="secure-aspnet-core-blazor-webassembly"></a>Защита ASP.NET Core Blazor WebAssembly
 
 Автор: [Javier Calvarro Nelson](https://github.com/javiercn) (Хавьер Кальварро Нельсон)
 
@@ -29,7 +32,7 @@ ms.locfileid: "82138421"
 
 ## <a name="authentication-library"></a>Библиотека проверки подлинности
 
-Blazor WebAssembly поддерживает проверку подлинности и авторизацию приложений с использованием OIDC с помощью библиотеки `Microsoft.AspNetCore.Components.WebAssembly.Authentication`. Библиотека предоставляет набор примитивов для простой проверки подлинности на серверных компонентах ASP.NET Core. Библиотека включает в себя ASP.NET Core Identity с поддержкой авторизации API на основе [сервера удостоверений](https://identityserver.io/). Библиотеку можно использовать для проверки подлинности любого стороннего поставщика удостоверений (IP), который поддерживает OIDC (их называют поставщиками OpenID (OP)).
+Blazor WebAssembly поддерживает проверку подлинности и авторизацию приложений с использованием OIDC с помощью библиотеки `Microsoft.AspNetCore.Components.WebAssembly.Authentication`. Библиотека предоставляет набор примитивов для простой проверки подлинности на серверных компонентах ASP.NET Core. Библиотека включает в себя ASP.NET Core Identity с поддержкой авторизации API на основе [сервера Identity](https://identityserver.io/). Библиотеку можно использовать для проверки подлинности любого стороннего поставщика Identity (IP), который поддерживает OIDC (их называют поставщиками OpenID (OP)).
 
 В основе поддержки проверки подлинности в Blazor WebAssembly лежит библиотека *oidc-client.js*, которая используется для управления сведениями о базовом протоколе проверки подлинности.
 

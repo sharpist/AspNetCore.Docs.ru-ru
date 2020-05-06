@@ -5,13 +5,19 @@ description: Узнайте, как использовать разные тип
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 02/03/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/action-return-types
-ms.openlocfilehash: 17e290d3aba4f724fcbd1693af371017c4d3f03a
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 4db553a61ca0eeabe35a08731295333f588ee0fc
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651238"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774946"
 ---
 # <a name="controller-action-return-types-in-aspnet-core-web-api"></a>Типы возвращаемых значений действий контроллера в веб-API ASP.NET Core
 
@@ -92,7 +98,7 @@ public IEnumerable<Product> GetOnSaleProducts() =>
 
 Тип возвращаемого значения <xref:Microsoft.AspNetCore.Mvc.IActionResult> можно использовать, если в действии допускаются несколько типов возвращаемого значения `ActionResult`. Типы `ActionResult` представляют различные коды состояния HTTP. Любой неабстрактный класс, унаследованный от квалификаторов `ActionResult` в виде допустимого типа возвращаемого значения. Некоторые распространенные типы возвращаемых значений в этой категории: <xref:Microsoft.AspNetCore.Mvc.BadRequestResult> (400), <xref:Microsoft.AspNetCore.Mvc.NotFoundResult> (404) и <xref:Microsoft.AspNetCore.Mvc.OkObjectResult> (200). Кроме того, удобные методы в классе <xref:Microsoft.AspNetCore.Mvc.ControllerBase> можно использовать для получения типов `ActionResult` из действия. Например, `return BadRequest();` — это сокращенная форма `return new BadRequestResult();`.
 
-Так как в типе действия есть несколько типов возвращаемого значения и путей, необходимо использовать атрибут [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute). Этот атрибут создает описательные сведения об ответе для страниц справки по веб-API, создаваемых с помощью таких инструментов, как [Swagger](xref:tutorials/web-api-help-pages-using-swagger). `[ProducesResponseType]` указывает известные типы и коды состояния HTTP, возвращаемые действием.
+Так как в этом типе действий существует несколько возвращаемых типов и путей, необходимо свободно использовать [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) атрибут. Этот атрибут создает описательные сведения об ответе для страниц справки по веб-API, создаваемых с помощью таких инструментов, как [Swagger](xref:tutorials/web-api-help-pages-using-swagger). `[ProducesResponseType]` указывает известные типы и коды состояния HTTP, возвращаемые действием.
 
 ### <a name="synchronous-action"></a>Синхронное действие
 
@@ -112,8 +118,8 @@ public IEnumerable<Product> GetOnSaleProducts() =>
 
 В предшествующем действии:
 
-* возвращается код состояния 404, если продукт, представленный `id`, не существует в базовом хранилище данных; вызывается удобный метод <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*> в качестве сокращения `return new NotFoundResult();`.
-* Код состояния 200 возвращается с объектом `Product`, если продукт не существует. вызывается удобный метод <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> в качестве сокращения `return new OkObjectResult(product);`.
+* возвращается код состояния 404, если продукт, представленный `id`, не существует в базовом хранилище данных; Удобный метод <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*> вызывается как сокращение для `return new NotFoundResult();`.
+* Код состояния 200 возвращается с объектом `Product`, если продукт не существует. Удобный метод <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> вызывается как сокращение для `return new OkObjectResult(product);`.
 
 ### <a name="asynchronous-action"></a>Асинхронное действие
 
@@ -133,7 +139,7 @@ public IEnumerable<Product> GetOnSaleProducts() =>
 
 В предшествующем действии:
 
-* Код состояния 400 возвращается, если описание продукта содержит строку XYZ Widget. вызывается удобный метод <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*> в качестве сокращения `return new BadRequestResult();`.
+* Код состояния 400 возвращается, если описание продукта содержит строку XYZ Widget. Удобный метод <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*> вызывается как сокращение для `return new BadRequestResult();`.
 * Код состояния 201 генерируется удобным методом <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> при создании продукта. В качестве альтернативы вызову `CreatedAtAction` можно использовать `return new CreatedAtActionResult(nameof(GetById), "Products", new { id = product.Id }, product);`. В этом пути к коду объект `Product` предоставляется в тексте ответа. Также предоставляется заголовок ответа `Location` с URL-адресом только что созданного продукта.
 
 Например, следующая модель указывает на то, что запросы должны включать свойства `Name` и `Description`. Если `Name` и `Description` не были указаны в запросе, происходит сбой проверки модели.
@@ -142,13 +148,13 @@ public IEnumerable<Product> GetOnSaleProducts() =>
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Если атрибут [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) применяется в ASP.NET Core 2.1 и более поздних версиях, ошибки при проверке модели приводят к коду состояния 400. Дополнительные сведения см. в разделе [Автоматические отклики HTTP 400](xref:web-api/index#automatic-http-400-responses).
+Если применяется [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) атрибут в ASP.NET Core 2,1 или более поздней версии, ошибки проверки модели приводят к коду состояния 400. Дополнительные сведения см. в разделе [Автоматические отклики HTTP 400](xref:web-api/index#automatic-http-400-responses).
 
 ## <a name="actionresultt-type"></a>Тип ActionResult\<T>
 
 ASP.NET Core 2.1 предоставляет тип возвращаемого значения [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) для действий контроллера веб-API. Он позволяет возвращать тип, производный от <xref:Microsoft.AspNetCore.Mvc.ActionResult> или [определенный тип](#specific-type). `ActionResult<T>` имеет следующие преимущества по сравнению с [типом IActionResult](#iactionresult-type):
 
-* Свойство [ атрибута `[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute)`Type` можно исключить. Например, `[ProducesResponseType(200, Type = typeof(Product))]` упрощается до `[ProducesResponseType(200)]`. Ожидаемый тип возвращаемого значения действия вместо этого выводится из `T` в `ActionResult<T>`.
+* `Type` Свойство [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) атрибута можно исключить. Например, `[ProducesResponseType(200, Type = typeof(Product))]` упрощается до `[ProducesResponseType(200)]`. Ожидаемый тип возвращаемого значения действия вместо этого выводится из `T` в `ActionResult<T>`.
 * [Операторы неявного приведения](/dotnet/csharp/language-reference/keywords/implicit) поддерживают преобразование `T` и `ActionResult` в `ActionResult<T>`. `T` преобразуется в <xref:Microsoft.AspNetCore.Mvc.ObjectResult>, то есть `return new ObjectResult(T);` упрощается до `return T;`.
 
 C# не поддерживает операторы неявных приведений в интерфейсах. Следовательно, для преобразования в конкретный тип необходимо использовать `ActionResult<T>`. Например, использование `IEnumerable` не работает в следующем примере:
@@ -183,7 +189,7 @@ public ActionResult<IEnumerable<Product>> Get() =>
 В предшествующем действии:
 
 * Код состояния 400 (<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>) возвращается средой выполнения ASP.NET Core, если:
-  * Атрибут [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) был применен, и проверка модели не пройдена.
+  * [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) Атрибут применен, и проверка модели завершается неудачно.
   * Описание продукта содержит XYZ Widget.
 * Код состояния 201 генерируется методом <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> при создании продукта. В этом пути к коду объект `Product` предоставляется в тексте ответа. Также предоставляется заголовок ответа `Location` с URL-адресом только что созданного продукта.
 

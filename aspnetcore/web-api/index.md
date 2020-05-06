@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 02/02/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/index
-ms.openlocfilehash: be88b8d58f1f660f3a815c395c210c05a7b4917c
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 5ea82d36d305b1f6ba58fba1b4c5bb4dca22f912
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78644650"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776530"
 ---
 # <a name="create-web-apis-with-aspnet-core"></a>Создание веб-API с помощью ASP.NET Core
 
@@ -64,7 +70,7 @@ ASP.NET Core поддерживает создание служб RESTful, та�
 
 Вот еще примеры доступных атрибутов.
 
-|attribute|Примечания|
+|Атрибут|Примечания|
 |---------|-----|
 |[`[Route]`](<xref:Microsoft.AspNetCore.Mvc.RouteAttribute>)      |Определяет шаблон URL-адреса для контроллера или действия.|
 |[`[Bind]`](<xref:Microsoft.AspNetCore.Mvc.BindAttribute>)        |Задает префикс и свойства, которые добавляются для привязки модели.|
@@ -254,9 +260,9 @@ if (!ModelState.IsValid)
 
 Атрибут источника привязки определяет расположение, в котором находится значение параметра действия. Существуют следующие атрибуты источника привязки.
 
-|attribute|Источник привязки |
+|Атрибут|Источник привязки |
 |---------|---------|
-|[`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)     | Тело запроса |
+|[`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)     | Текст запроса |
 |[`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)     | Данные формы в тексте запроса |
 |[`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) | Заголовок запроса |
 |[`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)   | Параметры строки запроса для запроса |
@@ -414,7 +420,7 @@ public IActionResult CreateProduct(Product product)
 
 В приведенном выше коде действие `CreateProduct` указывает тип содержимого `application/xml`. Запросы, направляемые в это действие, должны определять заголовок `Content-Type` `application/xml`. Запросы, не определяющие заголовок `Content-Type` `application/xml`, возвращают ответ [415 Unsupported Media Type](https://developer.mozilla.org/docs/Web/HTTP/Status/415) (неподдерживаемый тип данных).
 
-Атрибут `[Consumes]` также позволяет действию влиять на выбор с учетом типа содержимого входящего запроса, применяя ограничение типа. Рассмотрим следующий пример:
+Атрибут `[Consumes]` также позволяет действию влиять на выбор с учетом типа содержимого входящего запроса, применяя ограничение типа. Рассмотрим следующий пример.
 
 [!code-csharp[](index/samples/3.x/Controllers/ConsumesController.cs?name=snippet_Class)]
 

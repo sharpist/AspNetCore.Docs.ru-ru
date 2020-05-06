@@ -5,21 +5,27 @@ description: Узнайте, как перенести приложение non-
 ms.author: pakrym
 ms.custom: mvc
 ms.date: 01/04/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: migration/logging-nonaspnetcore
-ms.openlocfilehash: 2519ddc02cee5978483bcaef4341a52aad3ba2a6
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 3a84d53cb925a518f6c3e244dd342a3228a1fe17
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651880"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777063"
 ---
 # <a name="migrate-from-microsoftextensionslogging-21-to-22-or-30"></a>Миграция из Microsoft. Extensions. Logging 2,1 в 2,2 или 3,0
 
-В этой статье описаны общие шаги для миграции приложения non-ASP.NET Core, которое использует `Microsoft.Extensions.Logging` от 2,1 до 2,2 или 3,0.
+В этой статье описаны общие действия по переносу приложения non-ASP.NET Core, использующего `Microsoft.Extensions.Logging` от 2,1 до 2,2 или 3,0.
 
 ## <a name="21-to-22"></a>С версии 2.1 на 2.2
 
-Вручную создайте `ServiceCollection` и вызовите `AddLogging`.
+Создайте `ServiceCollection` и вызовите `AddLogging`вручную.
 
 2,1. Пример:
 

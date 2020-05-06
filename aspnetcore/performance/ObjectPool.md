@@ -5,19 +5,25 @@ description: Советы по повышению производительно
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.date: 04/11/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: performance/ObjectPool
-ms.openlocfilehash: 771f19e54a908b8b2cd85ff72f368f16e94a2310
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: f29d15fc1e2d2ad84526598be14638110f08614e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78654382"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774786"
 ---
 # <a name="object-reuse-with-objectpool-in-aspnet-core"></a>Повторное использование объектов с Обжектпул в ASP.NET Core
 
 [Стив Гордон](https://twitter.com/stevejgordon), [Райан Nowak)](https://github.com/rynowak)и [Рик Андерсон (](https://twitter.com/RickAndMSFT)
 
-<xref:Microsoft.Extensions.ObjectPool> является частью инфраструктуры ASP.NET Core, которая поддерживает повторное использование группы объектов в памяти, а не позволяет собирать объекты в мусор.
+<xref:Microsoft.Extensions.ObjectPool>является частью инфраструктуры ASP.NET Core, поддерживающей хранение группы объектов в памяти для повторного использования, а не разрешение сбора мусора для объектов.
 
 Пул объектов может потребоваться, если управляемые объекты являются:
 
@@ -25,7 +31,7 @@ ms.locfileid: "78654382"
 - Представляет некоторый ограниченный ресурс.
 - Используется в качестве прогнозируемых и часто используемых.
 
-Например, ASP.NET Core Framework использует пул объектов в некоторых местах для повторного использования экземпляров <xref:System.Text.StringBuilder>. `StringBuilder` выделяет собственные буферы для хранения символьных данных и управляет ими. ASP.NET Core регулярно используют `StringBuilder` для реализации функций, и их повторное использование обеспечивает выигрыш в производительности.
+Например, ASP.NET Core Framework использует пул объектов в некоторых местах для повторного использования <xref:System.Text.StringBuilder> экземпляров. `StringBuilder`выделяет собственные буферы для хранения символьных данных и управляет ими. ASP.NET Core регулярное `StringBuilder` использование для реализации функций и их повторное использование обеспечивает выигрыш в производительности.
 
 Пул объектов не всегда повышает производительность:
 
@@ -40,33 +46,33 @@ ms.locfileid: "78654382"
 
 ## <a name="concepts"></a>Основные понятия
 
-<xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> — базовый уровень абстракции пула объектов. Используется для получения и возврата объектов.
+<xref:Microsoft.Extensions.ObjectPool.ObjectPool`1>— абстракция базового пула объектов. Используется для получения и возврата объектов.
 
-<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601> — реализуйте его, чтобы настроить способ создания объекта и его *сброса* при возврате в пул. Это можно передать в пул объектов, который создается напрямую... НИ
+<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601>— Реализуйте его, чтобы настроить способ создания объекта и его *сброса* при возврате в пул. Это можно передать в пул объектов, который создается напрямую... НИ
 
-<xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*> выступает в качестве фабрики для создания пулов объектов.
+<xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*>выступает в качестве фабрики для создания пулов объектов.
 <!-- REview, there is no ObjectPoolProvider<T> -->
 
 Обжектпул можно использовать в приложении несколькими способами:
 
 * Создание экземпляра пула.
 * Регистрация пула в [внедрении зависимостей](xref:fundamentals/dependency-injection) (DI) в качестве экземпляра.
-* Регистрация `ObjectPoolProvider<>` в процессе внедрения и использование в качестве фабрики.
+* Регистрация `ObjectPoolProvider<>` в di и использование его в качестве фабрики.
 
 ## <a name="how-to-use-objectpool"></a>Как использовать Обжектпул
 
-Вызовите <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1>, чтобы получить объект и <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> для возврата объекта.  Нет необходимости возвращать каждый объект. Если не вернуть объект, он будет удален сборщиком мусора.
+Вызовите метод <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> , чтобы получить <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> объект и вернуть объект.  Нет необходимости возвращать каждый объект. Если не вернуть объект, он будет удален сборщиком мусора.
 
 ## <a name="objectpool-sample"></a>Пример Обжектпул
 
-Следующий код:
+В приведенном ниже коде
 
 * Добавляет `ObjectPoolProvider` в контейнер [внедрения зависимостей](xref:fundamentals/dependency-injection) (DI).
-* Добавляет и настраивает `ObjectPool<StringBuilder>` в контейнер DI.
+* Добавляет и настраивает `ObjectPool<StringBuilder>` контейнер di.
 * Добавляет `BirthdayMiddleware`.
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/Startup.cs?name=snippet)]
 
-Следующий код реализует `BirthdayMiddleware`
+Следующий код реализует`BirthdayMiddleware`
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/BirthdayMiddleware.cs?name=snippet)]

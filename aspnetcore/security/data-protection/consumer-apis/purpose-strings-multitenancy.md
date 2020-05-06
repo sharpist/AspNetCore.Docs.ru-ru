@@ -4,21 +4,27 @@ author: rick-anderson
 description: Сведения об иерархии строк назначения и использовании многофакторной связи, так как она относится к ASP.NET Core интерфейсам API защиты данных.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/consumer-apis/purpose-strings-multitenancy
-ms.openlocfilehash: 1133d40e7b325d58b3f70e7387494dae36ff8ac9
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 73edb8082d2df263bc1e6d73fee1360fa6840514
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78654022"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776777"
 ---
 # <a name="purpose-hierarchy-and-multi-tenancy-in-aspnet-core"></a>Иерархия целей и мультитенантность в ASP.NET Core
 
-Поскольку `IDataProtector` также неявно является `IDataProtectionProvider`, цели могут быть объединены в цепочку. В этом смысле `provider.CreateProtector([ "purpose1", "purpose2" ])` эквивалентен `provider.CreateProtector("purpose1").CreateProtector("purpose2")`.
+Так как `IDataProtector` объект также неявно является `IDataProtectionProvider`, цели могут быть объединены в цепочку. В этом смысле `provider.CreateProtector([ "purpose1", "purpose2" ])` эквивалентно `provider.CreateProtector("purpose1").CreateProtector("purpose2")`.
 
-Это позволяет некоторым интересным иерархическим связям через систему защиты данных. В предыдущем примере для [contoso. Messaging. секуремессаже](xref:security/data-protection/consumer-apis/purpose-strings#data-protection-contoso-purpose)компонент секуремессаже может вызвать `provider.CreateProtector("Contoso.Messaging.SecureMessage")` раз перед передним планом и кэшировать результат в закрытое поле `_myProvider`. Последующие предохранители можно создать с помощью вызовов `_myProvider.CreateProtector("User: username")`, и эти предохранители будут использоваться для защиты отдельных сообщений.
+Это позволяет некоторым интересным иерархическим связям через систему защиты данных. В предыдущем примере для [contoso. Messaging. секуремессаже](xref:security/data-protection/consumer-apis/purpose-strings#data-protection-contoso-purpose)компонент секуремессаже может вызываться `provider.CreateProtector("Contoso.Messaging.SecureMessage")` один раз перед передним планом и кэшировать результат в закрытое `_myProvider` поле. Затем можно создавать будущие предохранители с `_myProvider.CreateProtector("User: username")`помощью вызовов, а эти предохранители будут использоваться для защиты отдельных сообщений.
 
-Это также можно сделать зеркально. Рассмотрим единое логическое приложение, в котором размещается несколько клиентов (это кажется разумным), и каждый клиент может быть настроен с помощью собственной системы проверки подлинности и управления состоянием. У приложения-шаблона есть один главный поставщик, который вызывает `provider.CreateProtector("Tenant 1")` и `provider.CreateProtector("Tenant 2")`, чтобы предоставить каждому клиенту собственный изолированный сегмент системы защиты данных. Клиенты могут получить собственные индивидуальные предохранители, основываясь на их собственных нуждах, но независимо от того, насколько сложно они попытаются, не могут создавать предохранители, которые конфликтуют с любым другим клиентом в системе. Графическое представление представлено ниже.
+Это также можно сделать зеркально. Рассмотрим единое логическое приложение, в котором размещается несколько клиентов (это кажется разумным), и каждый клиент может быть настроен с помощью собственной системы проверки подлинности и управления состоянием. Приложение-шаблон имеет одного главного поставщика и вызывает `provider.CreateProtector("Tenant 1")` и `provider.CreateProtector("Tenant 2")` , чтобы предоставить каждому клиенту собственный изолированный срез системы защиты данных. Клиенты могут получить собственные индивидуальные предохранители, основываясь на их собственных нуждах, но независимо от того, насколько сложно они попытаются, не могут создавать предохранители, которые конфликтуют с любым другим клиентом в системе. Графическое представление представлено ниже.
 
 ![Многопользовательские цели](purpose-strings-multitenancy/_static/purposes-multi-tenancy.png)
 

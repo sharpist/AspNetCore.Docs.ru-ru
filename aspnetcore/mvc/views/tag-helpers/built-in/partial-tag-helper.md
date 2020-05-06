@@ -6,25 +6,31 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 04/06/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
-ms.openlocfilehash: 269be9ece674b39d03cb50720f4fb182c565a639
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: d3207969dfbeb9a81e0da88f38a38c6889bbfba9
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651970"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775873"
 ---
 # <a name="partial-tag-helper-in-aspnet-core"></a>Вспомогательная функция тега частичного представления в ASP.NET Core
 
 Автор: [Скотт Адди](https://github.com/scottaddie) (Scott Addie)
 
-Общие сведения о вспомогательных функциях тегов см. в разделе <xref:mvc/views/tag-helpers/intro>.
+Общие сведения о вспомогательных функциях тегов см. здесь: <xref:mvc/views/tag-helpers/intro>.
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
 ## <a name="overview"></a>Обзор
 
-Вспомогательная функция тега частичного представления используется для отрисовки [частичного представления](xref:mvc/views/partial) в приложениях Razor Pages и MVC. Примечания.
+Вспомогательная функция тега partial используется для отрисовки [частичного представления](xref:mvc/views/partial) на Razor страницах и приложениях MVC. Примечания.
 
 * Требуется ASP.NET Core 2.1 или более поздней версии.
 * Это альтернатива [синтаксиса вспомогательной функции HTML](xref:mvc/views/partial#reference-a-partial-view).
@@ -63,7 +69,7 @@ ms.locfileid: "78651970"
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Pages/Product.cshtml.cs?highlight=8)]
 
-## <a name="model"></a>model
+## <a name="model"></a>для базы данных модели
 
 Атрибут `model` присваивает экземпляр модели для передачи в частичное представление. Атрибут `model` нельзя использовать с атрибутом [for](#for).
 

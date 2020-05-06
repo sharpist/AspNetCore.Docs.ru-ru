@@ -4,13 +4,19 @@ author: ardalis
 description: Узнайте, как контроллеры MVC ASP.NET Core явным образом запрашивают зависимости с помощью конструкторов с внедрением зависимостей в ASP.NET Core.
 ms.author: riande
 ms.date: 02/24/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/controllers/dependency-injection
-ms.openlocfilehash: 202b62d4b30c5c61c407abdc8509a2a75e181cb6
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: a7df6a5fa2d49efc332c4684ea8192f143cdebf5
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652156"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775704"
 ---
 # <a name="dependency-injection-into-controllers-in-aspnet-core"></a>Внедрение зависимостей в контроллеры в ASP.NET Core
 
@@ -54,7 +60,7 @@ ms.locfileid: "78652156"
 
 Доступ к параметрам приложения или конфигурации из контроллера относится к типичным шаблонам. *Шаблон параметров*, описанный в разделе <xref:fundamentals/configuration/options>, является предпочтительным подходом для управления параметрами. Как правило, не следует напрямую внедрять <xref:Microsoft.Extensions.Configuration.IConfiguration> в контроллер.
 
-Создайте класс, представляющий параметры. Пример:
+Создайте класс, представляющий параметры. Например:
 
 [!code-csharp[](dependency-injection/sample/ControllerDI/Models/SampleWebSettings.cs?name=snippet)]
 

@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/index
-ms.openlocfilehash: 464d19bd63e1f0f06bd7d218e7644afde04a5672
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 796d7da76da6723ea996b57510da9c45ab21b3e7
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78644152"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775925"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Размещение и развертывание ASP.NET Core
 
@@ -34,7 +40,7 @@ ms.locfileid: "78644152"
 
 Приложения .NET Core могут публиковаться как *автономные развертывания* или *развертывания, зависящие от платформы*. Если приложение автономное, в папку *publish* добавляются файлы сборки, содержащие среду выполнения .NET. Если приложение зависит от платформы, файлы среды выполнения .NET не добавляются, так как приложение ссылается на версию .NET, установленную на сервере. По умолчанию используется модель развертывания с зависимостью от платформы. Дополнительные сведения см. в статье [Развертывание приложений .NET Core](/dotnet/core/deploying/).
 
-В дополнение к *EXE*- и *DLL*-файлам папка *публикации* для приложения ASP.NET Core обычно содержит файлы конфигурации, статические ресурсы и представления MVC. Дополнительные сведения см. в разделе <xref:host-and-deploy/directory-structure>.
+В дополнение к *EXE*- и *DLL*-файлам папка *публикации* для приложения ASP.NET Core обычно содержит файлы конфигурации, статические ресурсы и представления MVC. Для получения дополнительной информации см. <xref:host-and-deploy/directory-structure>.
 
 ## <a name="set-up-a-process-manager"></a>Настройка диспетчер процессов
 
@@ -44,7 +50,7 @@ ms.locfileid: "78644152"
   * [Nginx](xref:host-and-deploy/linux-nginx)
   * [Apache](xref:host-and-deploy/linux-apache)
 * Windows
-  * [IIS](xref:host-and-deploy/iis/index)
+  * [Службы IIS](xref:host-and-deploy/iis/index)
   * [Служба Windows](xref:host-and-deploy/windows-service)
 
 ## <a name="set-up-a-reverse-proxy"></a>Настройка обратного прокси-сервера
@@ -69,9 +75,9 @@ ms.locfileid: "78644152"
 
 ## <a name="publish-with-msdeploy-on-windows"></a>Публикация с помощью MSDeploy в Windows
 
-Инструкции о том, как опубликовать приложение с помощью профиля публикации Visual Studio или из командной строки Windows с помощью команды <xref:host-and-deploy/visual-studio-publish-profiles>dotnet msbuild[, см. в статье ](/dotnet/core/tools/dotnet-msbuild).
+Инструкции о том, как опубликовать приложение с помощью профиля публикации Visual Studio или из командной строки Windows с помощью команды [dotnet msbuild](/dotnet/core/tools/dotnet-msbuild), см. в статье <xref:host-and-deploy/visual-studio-publish-profiles>.
 
-## <a name="internet-information-services-iis"></a>Службы Internet Information Services (IIS)
+## <a name="internet-information-services-iis"></a>службы IIS
 
 Сведения о развертывании служб IIS с конфигурацией, предоставляемой файлом *web.config*, см. в статьях в разделе <xref:host-and-deploy/iis/index>.
 
@@ -81,11 +87,11 @@ ms.locfileid: "78644152"
 
 ## <a name="host-on-docker"></a>Размещение в Docker
 
-Дополнительные сведения см. в разделе <xref:host-and-deploy/docker/index>.
+Для получения дополнительной информации см. <xref:host-and-deploy/docker/index>.
 
 ## <a name="perform-health-checks"></a>Выполнение проверок работоспособности
 
-Используйте ПО промежуточного слоя для проверки работоспособности приложения и его зависимостей. Дополнительные сведения см. в разделе <xref:host-and-deploy/health-checks>.
+Используйте ПО промежуточного слоя для проверки работоспособности приложения и его зависимостей. Для получения дополнительной информации см. <xref:host-and-deploy/health-checks>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
@@ -112,7 +118,7 @@ ms.locfileid: "78644152"
 
 Приложения .NET Core могут публиковаться как *автономные развертывания* или *развертывания, зависящие от платформы*. Если приложение автономное, в папку *publish* добавляются файлы сборки, содержащие среду выполнения .NET. Если приложение зависит от платформы, файлы среды выполнения .NET не добавляются, так как приложение ссылается на версию .NET, установленную на сервере. По умолчанию используется модель развертывания с зависимостью от платформы. Дополнительные сведения см. в статье [Развертывание приложений .NET Core](/dotnet/core/deploying/).
 
-В дополнение к *EXE*- и *DLL*-файлам папка *публикации* для приложения ASP.NET Core обычно содержит файлы конфигурации, статические ресурсы и представления MVC. Дополнительные сведения см. в разделе <xref:host-and-deploy/directory-structure>.
+В дополнение к *EXE*- и *DLL*-файлам папка *публикации* для приложения ASP.NET Core обычно содержит файлы конфигурации, статические ресурсы и представления MVC. Для получения дополнительной информации см. <xref:host-and-deploy/directory-structure>.
 
 ## <a name="set-up-a-process-manager"></a>Настройка диспетчер процессов
 
@@ -122,7 +128,7 @@ ms.locfileid: "78644152"
   * [Nginx](xref:host-and-deploy/linux-nginx)
   * [Apache](xref:host-and-deploy/linux-apache)
 * Windows
-  * [IIS](xref:host-and-deploy/iis/index)
+  * [Службы IIS](xref:host-and-deploy/iis/index)
   * [Служба Windows](xref:host-and-deploy/windows-service)
 
 ## <a name="set-up-a-reverse-proxy"></a>Настройка обратного прокси-сервера
@@ -147,9 +153,9 @@ ms.locfileid: "78644152"
 
 ## <a name="publish-with-msdeploy-on-windows"></a>Публикация с помощью MSDeploy в Windows
 
-Инструкции о том, как опубликовать приложение с помощью профиля публикации Visual Studio или из командной строки Windows с помощью команды <xref:host-and-deploy/visual-studio-publish-profiles>dotnet msbuild[, см. в статье ](/dotnet/core/tools/dotnet-msbuild).
+Инструкции о том, как опубликовать приложение с помощью профиля публикации Visual Studio или из командной строки Windows с помощью команды [dotnet msbuild](/dotnet/core/tools/dotnet-msbuild), см. в статье <xref:host-and-deploy/visual-studio-publish-profiles>.
 
-## <a name="internet-information-services-iis"></a>Службы Internet Information Services (IIS)
+## <a name="internet-information-services-iis"></a>службы IIS
 
 Сведения о развертывании служб IIS с конфигурацией, предоставляемой файлом *web.config*, см. в статьях в разделе <xref:host-and-deploy/iis/index>.
 
@@ -159,7 +165,7 @@ ms.locfileid: "78644152"
 
 ## <a name="host-on-docker"></a>Размещение в Docker
 
-Дополнительные сведения см. в разделе <xref:host-and-deploy/docker/index>.
+Для получения дополнительной информации см. <xref:host-and-deploy/docker/index>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
