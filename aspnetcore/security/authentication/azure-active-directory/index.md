@@ -5,33 +5,39 @@ description: Ознакомьтесь с разделами, связанным�
 ms.author: riande
 ms.date: 01/21/2020
 ms.custom: mvc, seodec18
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/azure-active-directory/index
-ms.openlocfilehash: 7829a062d4727238addca051d0599438c99e90dc
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 823f027245774433244f6de078a26f97a998086d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78644404"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777362"
 ---
-# <a name="azure-active-directory-with-aspnet-core"></a><span data-ttu-id="9f05f-103">Azure Active Directory с ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="9f05f-103">Azure Active Directory with ASP.NET Core</span></span>
+# <a name="azure-active-directory-with-aspnet-core"></a><span data-ttu-id="03944-103">Azure Active Directory с ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="03944-103">Azure Active Directory with ASP.NET Core</span></span>
 
-<span data-ttu-id="9f05f-104">В этих учебниках и примерах демонстрируется проверка подлинности в ASP.NET Core с помощью платформы удостоверений Майкрософт и Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="9f05f-104">These tutorials and samples demonstrate authentication in ASP.NET Core using Microsoft identity platform and Azure Active Directory.</span></span> <span data-ttu-id="9f05f-105">Дополнительные учебники и примеры использования ASP.NET Core с Azure AD см. в статье [Платформа удостоверений Майкрософт](/azure/active-directory/develop/).</span><span class="sxs-lookup"><span data-stu-id="9f05f-105">For additional tutorials and samples using ASP.NET Core with Azure AD, see [Microsoft identity platform](/azure/active-directory/develop/).</span></span>
+<span data-ttu-id="03944-104">В этих учебниках и примерах демонстрируется проверка подлинности в ASP.NET Core с помощью платформы удостоверений Майкрософт и Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="03944-104">These tutorials and samples demonstrate authentication in ASP.NET Core using Microsoft identity platform and Azure Active Directory.</span></span> <span data-ttu-id="03944-105">Дополнительные учебники и примеры использования ASP.NET Core с Azure AD см. в статье [Платформа удостоверений Майкрософт](/azure/active-directory/develop/).</span><span class="sxs-lookup"><span data-stu-id="03944-105">For additional tutorials and samples using ASP.NET Core with Azure AD, see [Microsoft identity platform](/azure/active-directory/develop/).</span></span>
 
-## <a name="application-scenarios"></a><span data-ttu-id="9f05f-106">Сценарии приложений</span><span class="sxs-lookup"><span data-stu-id="9f05f-106">Application Scenarios</span></span>
+## <a name="application-scenarios"></a><span data-ttu-id="03944-106">Сценарии приложений</span><span class="sxs-lookup"><span data-stu-id="03944-106">Application Scenarios</span></span>
 
-* [<span data-ttu-id="9f05f-107">Краткое руководство. Добавление входа через Майкрософт в веб-приложение ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="9f05f-107">Quickstart: Add sign-in with Microsoft to an ASP.NET Core web app</span></span>](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp)
-* [<span data-ttu-id="9f05f-108">Веб-приложение, которое реализует вход пользователей в систему</span><span class="sxs-lookup"><span data-stu-id="9f05f-108">Web app that signs in users</span></span>](/azure/active-directory/develop/scenario-web-app-sign-user-overview?tabs=aspnetcore)
-* [<span data-ttu-id="9f05f-109">Веб-приложение, вызывающее веб-API</span><span class="sxs-lookup"><span data-stu-id="9f05f-109">Web app that calls web APIs</span></span>](/azure/active-directory/develop/scenario-web-app-call-api-overview)
-* [<span data-ttu-id="9f05f-110">Защищенный веб-API</span><span class="sxs-lookup"><span data-stu-id="9f05f-110">Protected web API</span></span>](/azure/active-directory/develop/scenario-protected-web-api-overview)
-* [<span data-ttu-id="9f05f-111">Веб-API, вызывающий другие веб-API</span><span class="sxs-lookup"><span data-stu-id="9f05f-111">Web API that calls other web APIs</span></span>](/azure/active-directory/develop/scenario-web-api-call-api-overview)
-* [<span data-ttu-id="9f05f-112">Веб-приложение, которое реализует вход пользователей в систему с помощью Azure AD B2C</span><span class="sxs-lookup"><span data-stu-id="9f05f-112">Web app that signs in users with Azure AD B2C</span></span>](xref:security/authentication/azure-ad-b2c)
+* [<span data-ttu-id="03944-107">Краткое руководство. Добавление входа через Майкрософт в веб-приложение ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="03944-107">Quickstart: Add sign-in with Microsoft to an ASP.NET Core web app</span></span>](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp)
+* [<span data-ttu-id="03944-108">Веб-приложение, которое реализует вход пользователей в систему</span><span class="sxs-lookup"><span data-stu-id="03944-108">Web app that signs in users</span></span>](/azure/active-directory/develop/scenario-web-app-sign-user-overview?tabs=aspnetcore)
+* [<span data-ttu-id="03944-109">Веб-приложение, вызывающее веб-API</span><span class="sxs-lookup"><span data-stu-id="03944-109">Web app that calls web APIs</span></span>](/azure/active-directory/develop/scenario-web-app-call-api-overview)
+* [<span data-ttu-id="03944-110">Защищенный веб-API</span><span class="sxs-lookup"><span data-stu-id="03944-110">Protected web API</span></span>](/azure/active-directory/develop/scenario-protected-web-api-overview)
+* [<span data-ttu-id="03944-111">Веб-API, вызывающий другие веб-API</span><span class="sxs-lookup"><span data-stu-id="03944-111">Web API that calls other web APIs</span></span>](/azure/active-directory/develop/scenario-web-api-call-api-overview)
+* [<span data-ttu-id="03944-112">Веб-приложение, которое реализует вход пользователей в систему с помощью Azure AD B2C</span><span class="sxs-lookup"><span data-stu-id="03944-112">Web app that signs in users with Azure AD B2C</span></span>](xref:security/authentication/azure-ad-b2c)
 
-## <a name="samples"></a><span data-ttu-id="9f05f-113">Примеры</span><span class="sxs-lookup"><span data-stu-id="9f05f-113">Samples</span></span>
+## <a name="samples"></a><span data-ttu-id="03944-113">Примеры</span><span class="sxs-lookup"><span data-stu-id="03944-113">Samples</span></span>
 
-* <span data-ttu-id="9f05f-114">[Разрешите приложению ASP.NET Core реализовать вход пользователей в систему и вызывать веб-API с помощью Azure AD v2](/samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/enable-webapp-signin/):</span><span class="sxs-lookup"><span data-stu-id="9f05f-114">[Enable your ASP.NET Core app to sign-in users and call web APIs using Azure AD V2](/samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/enable-webapp-signin/):</span></span> 
-  * <span data-ttu-id="9f05f-115">Смотрите [ролик на эту тему](https://channel9.msdn.com/Events/Build/2018/THR5001)</span><span class="sxs-lookup"><span data-stu-id="9f05f-115">See [this associated video](https://channel9.msdn.com/Events/Build/2018/THR5001)</span></span>
+* <span data-ttu-id="03944-114">[Разрешите приложению ASP.NET Core реализовать вход пользователей в систему и вызывать веб-API с помощью Azure AD v2](/samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/enable-webapp-signin/):</span><span class="sxs-lookup"><span data-stu-id="03944-114">[Enable your ASP.NET Core app to sign-in users and call web APIs using Azure AD V2](/samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/enable-webapp-signin/):</span></span> 
+  * <span data-ttu-id="03944-115">Смотрите [ролик на эту тему](https://channel9.msdn.com/Events/Build/2018/THR5001)</span><span class="sxs-lookup"><span data-stu-id="03944-115">See [this associated video](https://channel9.msdn.com/Events/Build/2018/THR5001)</span></span>
 
-* <span data-ttu-id="9f05f-116">[Вызов веб-API ASP.NET Core 2.0 из приложения WPF с помощью Azure AD V2](/samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/calling-an-aspnet-core-web-api-from-a-wpf-application-using-azure-ad-v2/):</span><span class="sxs-lookup"><span data-stu-id="9f05f-116">[Calling an ASP.NET Core 2.0 Web API from a WPF application using Azure AD V2](/samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/calling-an-aspnet-core-web-api-from-a-wpf-application-using-azure-ad-v2/):</span></span> 
-  * <span data-ttu-id="9f05f-117">Смотрите [ролик на эту тему](https://channel9.msdn.com/Events/Build/2018/THR5000)</span><span class="sxs-lookup"><span data-stu-id="9f05f-117">See [this associated video](https://channel9.msdn.com/Events/Build/2018/THR5000)</span></span>
+* <span data-ttu-id="03944-116">[Вызов веб-API ASP.NET Core 2.0 из приложения WPF с помощью Azure AD V2](/samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/calling-an-aspnet-core-web-api-from-a-wpf-application-using-azure-ad-v2/):</span><span class="sxs-lookup"><span data-stu-id="03944-116">[Calling an ASP.NET Core 2.0 Web API from a WPF application using Azure AD V2](/samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/calling-an-aspnet-core-web-api-from-a-wpf-application-using-azure-ad-v2/):</span></span> 
+  * <span data-ttu-id="03944-117">Смотрите [ролик на эту тему](https://channel9.msdn.com/Events/Build/2018/THR5000)</span><span class="sxs-lookup"><span data-stu-id="03944-117">See [this associated video](https://channel9.msdn.com/Events/Build/2018/THR5000)</span></span>
 
-* [<span data-ttu-id="9f05f-118">ASP.NET Core API с Azure AD B2C</span><span class="sxs-lookup"><span data-stu-id="9f05f-118">An ASP.NET Core web API with Azure AD B2C</span></span>](https://azure.microsoft.com/resources/samples/active-directory-b2c-dotnetcore-webapi/)
+* [<span data-ttu-id="03944-118">ASP.NET Core API с Azure AD B2C</span><span class="sxs-lookup"><span data-stu-id="03944-118">An ASP.NET Core web API with Azure AD B2C</span></span>](https://azure.microsoft.com/resources/samples/active-directory-b2c-dotnetcore-webapi/)
