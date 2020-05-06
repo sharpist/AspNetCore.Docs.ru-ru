@@ -1,50 +1,56 @@
 ---
-title: Внешняя установка входной системы Twitter с ASP.NET Core
+title: Настройка внешнего входа в Twitter с помощью ASP.NET Core
 author: rick-anderson
-description: Этот учебник демонстрирует интеграцию аутентификации пользователя учетной записи Twitter в существующее приложение ASP.NET Core.
+description: В этом руководстве демонстрируется интеграция аутентификации пользователя учетной записи Twitter с существующим ASP.NET Core приложением.
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/twitter-logins
-ms.openlocfilehash: 1f5d667e905e49ae05f5aa31bd5b69ad126f6e28
-ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
+ms.openlocfilehash: c6498704214de5e805c9bf57033529d4acc5fd3e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/14/2020
-ms.locfileid: "81277292"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775795"
 ---
-# <a name="twitter-external-sign-in-setup-with-aspnet-core"></a>Внешняя установка входной системы Twitter с ASP.NET Core
+# <a name="twitter-external-sign-in-setup-with-aspnet-core"></a>Настройка внешнего входа в Twitter с помощью ASP.NET Core
 
 Авторы: [Валерий Новицкий](https://github.com/01binary) (Valeriy Novytskyy) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
-В этом примере показано, как дать возможность пользователям [войти в свою учетную запись Twitter с](https://dev.twitter.com/web/sign-in/desktop-browser) помощью образца ASP.NET проекта Core 3.0, созданного на [предыдущей странице.](xref:security/authentication/social/index)
+В этом примере показано, как разрешить пользователям [входить с помощью учетной записи Twitter](https://dev.twitter.com/web/sign-in/desktop-browser) , используя пример проекта ASP.NET Core 3,0, созданный на [предыдущей странице](xref:security/authentication/social/index).
 
-## <a name="create-the-app-in-twitter"></a>Создать приложение в Твиттере
+## <a name="create-the-app-in-twitter"></a>Создание приложения в Twitter
 
-* Добавьте в проект пакет [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter/3.0.0) NuGet.
+* Добавьте в проект пакет NuGet [Microsoft. AspNetCore. Authentication. Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter/3.0.0) .
 
-* Перейдите [https://apps.twitter.com/](https://apps.twitter.com/) и войти в систему. Если у вас еще нет учетной записи Twitter, используйте ссылку **[Sign up для](https://twitter.com/signup)** ее создания.
+* Перейдите к [https://apps.twitter.com/](https://apps.twitter.com/) и войдите. Если у вас еще нет учетной записи Twitter, используйте ссылку **[зарегистрироваться сейчас](https://twitter.com/signup)** , чтобы создать ее.
 
-* Выберите **Создать приложение**. Заполните **имя приложения**, **описание приложения** и общедоступный **веб-сайт** URI (это может быть временным, пока вы не зарегистрируете доменное имя):
+* Выберите **создать приложение**. Укажите **имя приложения**, **Описание приложения** и универсальный код ресурса (URI) общедоступного **веб-сайта** (это может быть временным, пока не будет зарегистрировано доменное имя):
 
-* Проверьте поле рядом **с включить войти в с Щебетать**
+* Установите флажок **включить вход с помощью Twitter** .
 
-* Microsoft.AspNetCore.Identity требует, чтобы пользователи имели адрес электронной почты по умолчанию. Перейдите на вкладку **«Разрешения»,** нажмите кнопку **«Отображить»** и проверьте поле рядом с **адресом электронной почты Запроса от пользователей.**
+* Microsoft. AspNetCore.Identity требует, чтобы по умолчанию у пользователей был адрес электронной почты. Перейдите на вкладку **разрешения** , нажмите кнопку " **изменить** " и установите флажок " **запросить адрес электронной почты у пользователей**".
 
-* Введите свой `/signin-twitter` URI развития с приложением к полю **URL-адресов Callback** (например: `https://webapp128.azurewebsites.net/signin-twitter`). Схема аутентификации Twitter, настроенная позже `/signin-twitter` в этом примере, будет автоматически обрабатывать запросы на маршруте для реализации потока OAuth.
+* Введите URI разработки с `/signin-twitter` добавлением в поле **URL-адреса обратного вызова** (например `https://webapp128.azurewebsites.net/signin-twitter`,). Схема проверки подлинности Twitter, настроенная далее в этом примере, `/signin-twitter` автоматически обрабатывает запросы по маршруту для реализации потока OAuth.
 
   > [!NOTE]
-  > Сегмент `/signin-twitter` URI устанавливается как обратный вызов по умолчанию поставщика аутентификации Twitter. Вы можете изменить по умолчанию обратный вызов URI при настройке Twitter аутентификации промежуточного через унаследованные [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) собственности [класса TwitterOptions.](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions)
+  > Сегмент `/signin-twitter` URI задается в качестве обратного вызова по умолчанию для поставщика проверки подлинности Twitter. URI обратного вызова по умолчанию можно изменить при настройке по промежуточного слоя проверки подлинности Twitter с помощью унаследованного свойства [ремотеаусентикатионоптионс. каллбаккпас](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) класса [твиттероптионс](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions) .
 
-* Заполните оставшуюся форму и выберите **Создать**. Отображаются новые сведения о приложении:
+* Заполните оставшуюся часть формы и выберите **создать**. Отобразятся сведения о новом приложении:
 
-## <a name="store-the-twitter-consumer-api-key-and-secret"></a>Храните ключ API-клавишу и секрет потребителя Twitter
+## <a name="store-the-twitter-consumer-api-key-and-secret"></a>Хранение ключа и секрета API потребителя Twitter
 
-Храните чувствительные настройки, такие как ключ API-исекретный ключ Twitter потребителя и секрет с [Secret Manager.](xref:security/app-secrets) Для этого примера используйте следующие шаги:
+Храните конфиденциальные параметры, такие как ключ API потребителя Twitter и секретный код, с помощью [диспетчера секретов](xref:security/app-secrets). Для этого примера выполните следующие действия.
 
-1. Инициализация проекта для тайного хранения в инструкции на [Включить секретного хранения](xref:security/app-secrets#enable-secret-storage).
-1. Храните чувствительные настройки в местном секретном магазине с ключами `Authentication:Twitter:ConsumerKey` секретов и: `Authentication:Twitter:ConsumerSecret`
+1. Инициализируйте проект для хранения секретных данных согласно инструкциям в разделе [Включение секретного хранилища](xref:security/app-secrets#enable-secret-storage).
+1. Храните конфиденциальные параметры в локальном хранилище секретов с помощью ключей `Authentication:Twitter:ConsumerKey` секретов `Authentication:Twitter:ConsumerSecret`и:
 
     ```dotnetcli
     dotnet user-secrets set "Authentication:Twitter:ConsumerAPIKey" "<consumer-api-key>"
@@ -53,11 +59,11 @@ ms.locfileid: "81277292"
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
-Эти маркеры можно найти на вкладке **«Ключи и токены доступа»** после создания нового приложения Twitter:
+Эти маркеры можно найти на вкладке **ключи и маркеры доступа** после создания нового приложения Twitter.
 
-## <a name="configure-twitter-authentication"></a>Настройка twitter аутентификации
+## <a name="configure-twitter-authentication"></a>Настройка проверки подлинности Twitter
 
-Добавьте службу `ConfigureServices` Twitter в метод в *Startup.cs* файле:
+Добавьте службу Twitter в `ConfigureServices` метод в файле *Startup.CS* :
 
 [!code-csharp[](~/security/authentication/social/social-code/3.x/StartupTwitter3x.cs?name=snippet&highlight=10-15)]
 
@@ -65,17 +71,17 @@ ms.locfileid: "81277292"
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
-Для получения дополнительной информации о вариантах конфигурации, поддерживаемых аутентификацией Twitter, можно ознакомиться с ссылкой на [API Twitter.](/dotnet/api/microsoft.aspnetcore.builder.twitteroptions) Это может быть использовано для запроса различной информации о пользователе.
+Дополнительные сведения о параметрах конфигурации, поддерживаемых проверкой подлинности в Twitter, см. в справочнике по API [твиттероптионс](/dotnet/api/microsoft.aspnetcore.builder.twitteroptions) . Это можно использовать для запроса различных сведений о пользователе.
 
-## <a name="sign-in-with-twitter"></a>Вопиюте с Twitter
+## <a name="sign-in-with-twitter"></a>Вход с помощью Twitter
 
-Запустите приложение и выберите **Войти в**. Появляется опция для вху-на-Айва с Twitter:
+Запустите приложение и выберите **Вход**. Появится возможность входа с помощью Twitter:
 
-Нажав на **Twitter** перенаправляет на Twitter для проверки подлинности:
+При щелчке **Twitter** в Twitter перенаправления для проверки подлинности:
 
-После ввода учетных данных Twitter, вы перенаправитесь обратно на веб-сайт, где вы можете настроить электронную почту.
+После ввода учетных данных Twitter вы будете перенаправлены на веб-сайт, на котором можно задать свой адрес электронной почты.
 
-Теперь вы вошли в систему с помощью учетных данных Twitter:
+Теперь вы выполнили вход с использованием учетных данных Twitter:
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
@@ -87,13 +93,13 @@ Rather in the twitter setup, you can provide an External sign-in homepage. The e
 
 ## <a name="troubleshooting"></a>Устранение неполадок
 
-* **ASP.NET core 2.x только:** Если идентификация не настроена `services.AddIdentity` `ConfigureServices`при вызове, попытка проверки подлинности приведет к тому, что *опция ArgumentException: опция SignInScheme должна быть предоставлена.* Шаблон проекта, используемый в этом примере, гарантирует, что это сделано.
-* Если база данных сайта не была создана при применении первоначальной миграции, при *обработке ошибки запроса операция базы данных сработала.* Нажмите **Применить миграции** для создания базы данных и обновления, чтобы продолжить прошлое ошибки.
+* **Только ASP.NET Core 2. x:** Если Identity параметр не настроен с `services.AddIdentity` помощью `ConfigureServices`вызова в, попытка проверки подлинности приведет к тому, что будет получено исключение *"сигнинсчеме"*. Шаблон проекта, используемый в этом образце, гарантирует, что это будет сделано.
+* Если база данных сайта не была создана с применением первоначальной миграции, то при обработке ошибки запроса возникнет *Ошибка операции с базой данных* . Выберите **Применить миграции** , чтобы создать базу данных и обновить, чтобы продолжить выполнение после ошибки.
 
 ## <a name="next-steps"></a>Дальнейшие действия
 
-* Эта статья показала, как вы можете проверить подлинность с Twitter. Вы можете следовать аналогичному подходу к аутентификации с другими поставщиками, перечисленными на [предыдущей странице.](xref:security/authentication/social/index)
+* В этой статье показано, как можно пройти проверку подлинности в Twitter. Аналогичный подход можно использовать для проверки подлинности с другими поставщиками, перечисленными на [предыдущей странице](xref:security/authentication/social/index).
 
-* Как только вы опубликуете свой веб-сайт в `ConsumerSecret` веб-приложении Azure, вы должны сбросить на портале разработчиков Twitter.
+* После публикации веб-сайта в веб-приложение Azure необходимо сбросить настройки `ConsumerSecret` на портале разработчика Twitter.
 
-* Установите `Authentication:Twitter:ConsumerKey` `Authentication:Twitter:ConsumerSecret` настройки приложения на портале Azure. Система конфигурации настроена на чтение ключей из переменных среды.
+* Задайте параметры `Authentication:Twitter:ConsumerKey` приложения `Authentication:Twitter:ConsumerSecret` и в портал Azure. Система конфигурации настроена на чтение ключей из переменных среды.
