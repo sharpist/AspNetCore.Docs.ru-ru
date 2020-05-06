@@ -1,20 +1,24 @@
 ---
-title: Поддерживаемые платформы ASP.NET Core SignalR
+title: Поддерживаемые SignalR платформы ASP.NET Core
 author: bradygaster
-description: Сведения о поддерживаемых платформах для ASP.NET Core SignalR.
+description: Дополнительные сведения о поддерживаемых платформах для SignalRASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: signalr/supported-platforms
-ms.openlocfilehash: 054965921c87c1a9be27e5ddaa8a87b0fa1f4113
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 70a05dabb95aaf561aa78d5c8b24b430c51bd973
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78655150"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772609"
 ---
 # <a name="aspnet-core-signalr-supported-platforms"></a>Платформы, поддерживаемые SignalR ASP.NET Core
 
@@ -28,17 +32,17 @@ SignalR для ASP.NET Core поддерживает любую серверну
 
 | Браузер                         | Версия         |
 | ------------------------------- | --------------- |
-| Microsoft Edge                  | Текущее&dagger; |
-| Mozilla Firefox                 | Текущее&dagger; |
-| Google Chrome; включает Android | Текущее&dagger; |
-| Обозревателе включает iOS            | Текущее&dagger; |
+| Microsoft Edge                  | Данном&dagger; |
+| Mozilla Firefox                 | Данном&dagger; |
+| Google Chrome; включает Android | Данном&dagger; |
+| Обозревателе включает iOS            | Данном&dagger; |
 | Microsoft Internet Explorer     | 11              |
 
-&dagger;*Current* относится к последней версии браузера.
+&dagger;*Current* ссылается на последнюю версию браузера.
 
 ## <a name="net-client"></a>Клиент .NET
 
-[Клиент .NET](xref:signalr/dotnet-client) выполняется на любой платформе, поддерживаемой ASP.NET Core. Например, [разработчики Xamarin могут использовать SignalR](https://github.com/aspnet/Announcements/issues/305) для создания приложений Android с помощью Xamarin. Android 8.4.0.1 и более поздних версий и приложений iOS с помощью Xamarin. iOS 11.14.0.4 и более поздних версий.
+[Клиент .NET](xref:signalr/dotnet-client) выполняется на любой платформе, поддерживаемой ASP.NET Core. Например, [разработчики Xamarin могут использовать SignalR ](https://github.com/aspnet/Announcements/issues/305) для создания приложений Android с помощью Xamarin. Android 8.4.0.1 и более поздних версий и приложений iOS с помощью Xamarin. iOS 11.14.0.4 и более поздних версий.
 
 Если сервер использует службы IIS, для транспорта WebSocket требуется IIS 8,0 или более поздняя версия на Windows Server 2012 или более поздней версии. Другие транспорты поддерживаются на всех платформах.
 
@@ -50,6 +54,6 @@ SignalR для ASP.NET Core поддерживает любую серверну
 
 Следующие клиенты доступны, но являются экспериментальными или неофициальными. В настоящее время они не поддерживаются и никогда не могут быть.
 
-* [C++компьютера](https://github.com/aspnet/SignalR-Client-Cpp)
+* [Клиент C++](https://github.com/aspnet/SignalR-Client-Cpp)
 
 * [Клиент SWIFT](https://github.com/moozzyk/SignalR-Client-Swift)

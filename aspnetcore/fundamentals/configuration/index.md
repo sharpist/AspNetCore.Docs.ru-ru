@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 3/29/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 7715adc9b39edd4f8a5882b2e60a1b5513fe400b
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: c2a7ef9c1523bc179524f328905f3a4b1460a1a5
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205999"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774500"
 ---
 # <a name="configuration-in-aspnet-core"></a>Конфигурация в .NET Core
 
@@ -1796,7 +1802,7 @@ public class Startup
 
 Для доступа к параметрам конфигурации на странице Razor Pages или в представлении MVC добавьте [использование директивы](xref:mvc/views/razor#using) ([Справочник по C#: использование директивы](/dotnet/csharp/language-reference/keywords/using-directive)) для [пространства имен Microsoft.Extensions.Configuration](xref:Microsoft.Extensions.Configuration) и вставьте <xref:Microsoft.Extensions.Configuration.IConfiguration> на страницу или в представление.
 
-На странице Razor Pages
+На странице Razor Pages:
 
 ```cshtml
 @page

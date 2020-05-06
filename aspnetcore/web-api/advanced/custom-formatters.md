@@ -4,19 +4,25 @@ author: rick-anderson
 description: Узнайте, как создавать и использовать пользовательские модули форматирования для веб-интерфейсов API в ASP.NET Core.
 ms.author: riande
 ms.date: 02/08/2017
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/advanced/custom-formatters
-ms.openlocfilehash: dd25cda460ba758cd07de094eaadd1f2d8c28657
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 0836fc288a015adb9a6223c5a2b681b1b03bded4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78654958"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777323"
 ---
 # <a name="custom-formatters-in-aspnet-core-web-api"></a>Пользовательские модули форматирования для веб-API в ASP.NET Core
 
 Автор: [Том Дикстра](https://github.com/tdykstra) (Tom Dykstra)
 
-ASP.NET Core MVC поддерживает обмен данными в веб-API с помощью форматировщиков ввода и вывода. Форматировщики ввода используются [привязкой модели](xref:mvc/models/model-binding). Форматировщики вывода используются для [форматирования откликов](xref:web-api/advanced/formatting).
+ASP.NET Core MVC поддерживает обмен данными в веб-API с помощью форматировщиков ввода и вывода. Форматировщики ввода используются [привязкой модели](xref:mvc/models/model-binding). Модули форматирования выходных данных используются для [форматирования ответов](xref:web-api/advanced/formatting).
 
 Платформа предоставляет встроенные форматировщики ввода и вывода для JSON и XML. Доступен только встроенный форматировщик вывода для обычного текста, но не форматировщик ввода для обычного текста.
 
@@ -86,7 +92,7 @@ ASP.NET Core MVC поддерживает обмен данными в веб-AP
 * Существуют производные классы, которые могут возвращаться во время выполнения.
 * Во время выполнения необходимо знать, какой производный класс был возвращен действием.
 
-Предположим, сигнатура метода действия возвращает тип `Person`, но может также возвращать типы `Student` и `Instructor`, производные от `Person`. Если модуль форматирования должен обрабатывать только объекты `Student`, проверьте тип свойства [Object](/dotnet/api/microsoft.aspnetcore.mvc.formatters.outputformattercanwritecontext.object#Microsoft_AspNetCore_Mvc_Formatters_OutputFormatterCanWriteContext_Object) в объекте контекста, предоставленном методу `CanWriteResult`. Обратите внимание на то, что если метод действия возвращает `CanWriteResult`, использовать `IActionResult` нет необходимости. В этом случае метод `CanWriteType` получает тип во время выполнения.
+Предположим, сигнатура метода действия возвращает тип `Person`, но может также возвращать типы `Student` и `Instructor`, производные от `Person`. Если модуль форматирования должен обрабатывать только объекты `Student`, проверьте тип свойства [Object](/dotnet/api/microsoft.aspnetcore.mvc.formatters.outputformattercanwritecontext.object#Microsoft_AspNetCore_Mvc_Formatters_OutputFormatterCanWriteContext_Object) в объекте контекста, предоставленном методу `CanWriteResult`. Обратите внимание на то, что если метод действия возвращает `IActionResult`, использовать `CanWriteResult` нет необходимости. В этом случае метод `CanWriteType` получает тип во время выполнения.
 
 <a id="read-write"></a>
 
@@ -115,7 +121,8 @@ BEGIN:VCARD
 VERSION:2.1
 N:Davolio;Nancy
 FN:Nancy Davolio
-UID:20293482-9240-4d68-b475-325df4a83728
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+uid:20293482-9240-4d68-b475-325df4a83728
 END:VCARD
 ```
 

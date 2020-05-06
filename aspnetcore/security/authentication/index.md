@@ -5,13 +5,19 @@ description: Узнайте, как работает проверка подли
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/03/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/index
-ms.openlocfilehash: 404904ecfa30d1fe7e47f0daaa423ddd6f1b06e8
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 4e47bd91ce15836035d3e8f0a8ceed264f308b22
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79434334"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768641"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>Общие сведения о проверке подлинности в ASP.NET Core
 
@@ -41,7 +47,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 Если используется множество схем, в политиках (или атрибутах) авторизации можно [указать конкретные схемы](xref:security/authorization/limitingidentitybyscheme), применяемые для проверки подлинности пользователя. В приведенном выше примере можно специально задать использование схемы на основе файлов cookie, указав ее имя (по умолчанию — `CookieAuthenticationDefaults.AuthenticationScheme`, однако при вызове `AddCookie` можно указать другое).
 
-В некоторых случаях `AddAuthentication` автоматически вызывается другими методами расширения. Например, при использовании [ASP.NET Core Identity](xref:security/authentication/identity) выполняется внутренний вызов `AddAuthentication`.
+В некоторых случаях `AddAuthentication` автоматически вызывается другими методами расширения. Например, при использовании [ASP.NET Core Identity](xref:security/authentication/identity) выполняется внутренний вызов `AddAuthentication`.
 
 ПО промежуточного слоя для проверки подлинности добавляется в `Startup.Configure` путем вызова метода расширения <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> в интерфейсе `IApplicationBuilder` приложения. Вызов `UseAuthentication` регистрирует ПО промежуточного слоя, использующее зарегистрированные ранее схемы проверки подлинности. Следует вызывать `UseAuthentication` перед вызовом любого ПО промежуточного слоя, требующего проверки подлинности пользователей. При использовании маршрутизации конечных точек метод `UseAuthentication` необходимо вызывать в следующем порядке:
 

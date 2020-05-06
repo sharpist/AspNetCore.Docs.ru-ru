@@ -1,19 +1,25 @@
 ---
-title: Настройка внешней учетной записи Google в ASP.NET Core
+title: Настройка внешнего входа Google в ASP.NET Core
 author: rick-anderson
-description: В этом учебнике показано интеграцию Google учетной записи пользователя и проверки подлинности в существующее приложение ASP.NET Core.
+description: В этом руководстве демонстрируется Интеграция проверки подлинности пользователя учетной записи Google с существующим ASP.NET Core приложением.
 ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 03/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/google-logins
-ms.openlocfilehash: a114d23c25201c9fe31ad0397efaf99fe98a312a
-ms.sourcegitcommit: 9b6e7f421c243963d5e419bdcfc5c4bde71499aa
+ms.openlocfilehash: 06a5cf77e47d9fc618fddf3a096001a4f31688be
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/21/2020
-ms.locfileid: "79989775"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776998"
 ---
-# <a name="google-external-login-setup-in-aspnet-core"></a>Настройка внешней учетной записи Google в ASP.NET Core
+# <a name="google-external-login-setup-in-aspnet-core"></a>Настройка внешнего входа Google в ASP.NET Core
 
 Авторы: [Валерий Новицкий](https://github.com/01binary) (Valeriy Novytskyy) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -33,7 +39,7 @@ ms.locfileid: "79989775"
 Храните конфиденциальные параметры, такие как идентификатор клиента Google и секретные значения, с помощью [диспетчера секретов](xref:security/app-secrets). Для этого примера выполните следующие действия.
 
 1. Инициализируйте проект для хранения секретных данных согласно инструкциям в разделе [Включение секретного хранилища](xref:security/app-secrets#enable-secret-storage).
-1. Храните конфиденциальные параметры в локальном хранилище секретов с секретными ключами `Authentication:Google:ClientId` и `Authentication:Google:ClientSecret`:
+1. Храните конфиденциальные параметры в локальном хранилище секретов с секретными `Authentication:Google:ClientId` ключами `Authentication:Google:ClientSecret`и:
 
     ```dotnetcli
     dotnet user-secrets set "Authentication:Google:ClientId" "<client-id>"
@@ -44,7 +50,7 @@ ms.locfileid: "79989775"
 
 Вы можете управлять учетными данными и использованием API в [консоли API](https://console.developers.google.com/apis/dashboard).
 
-## <a name="configure-google-authentication"></a>Настройка проверки подлинности Google
+## <a name="configure-google-authentication"></a>Как настроить приложение службы приложений для использования имени для входа Google
 
 Добавьте службу Google в `Startup.ConfigureServices`:
 
@@ -62,20 +68,20 @@ ms.locfileid: "79989775"
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
-Дополнительные сведения о параметрах конфигурации, поддерживаемых проверкой подлинности Google, см. в справочнике по API <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions>. Это может использоваться для запроса различные сведения о пользователе.
+Дополнительные сведения <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> о параметрах конфигурации, поддерживаемых проверкой подлинности Google, см. в справочнике по API. Это можно использовать для запроса различных сведений о пользователе.
 
 ## <a name="change-the-default-callback-uri"></a>Изменение URI обратного вызова по умолчанию
 
-Сегмент URI `/signin-google` задается в качестве обратного вызова по умолчанию для поставщика проверки подлинности Google. Вы можете изменить URI обратного вызова по умолчанию при настройке по промежуточного слоя для проверки подлинности Google с помощью унаследованного свойства [ремотеаусентикатионоптионс. каллбаккпас](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) класса [гуглеоптионс](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) .
+Сегмент `/signin-google` URI задается в качестве обратного вызова по умолчанию для поставщика проверки подлинности Google. Вы можете изменить URI обратного вызова по умолчанию при настройке по промежуточного слоя для проверки подлинности Google с помощью унаследованного свойства [ремотеаусентикатионоптионс. каллбаккпас](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) класса [гуглеоптионс](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) .
 
-## <a name="troubleshooting"></a>Диагностика
+## <a name="troubleshooting"></a>Устранение неполадок
 
 * Если вход не работает и вы не получаете никаких ошибок, переключитесь в режим разработки, чтобы упростить отладку.
-* Если удостоверение не настроено путем вызова `services.AddIdentity` в `ConfigureServices`, попытка проверить подлинность результатов в *ArgumentException: необходимо указать параметр "сигнинсчеме"* . Шаблон проекта, используемый в этом руководстве гарантирует, что это будет сделано.
+* Если Identity не настроен с помощью `services.AddIdentity` вызова `ConfigureServices`в, попытка проверки подлинности результатов в *ArgumentException: необходимо указать параметр "сигнинсчеме"*. Шаблон проекта, используемый в этом руководстве, гарантирует, что это будет сделано.
 * Если база данных сайта не была создана путем применения первоначальной миграции, то при обработке ошибки запроса возникнет *Ошибка операции с базой данных* . Выберите **Применить миграции** , чтобы создать базу данных, и обновите страницу, чтобы продолжить работу после ошибки.
 
-## <a name="next-steps"></a>Следующие шаги
+## <a name="next-steps"></a>Дальнейшие действия
 
-* В этой статье объясняется, как можно выполнить проверку подлинности с помощью Google. Аналогичный подход можно использовать для проверки подлинности с другими поставщиками, перечисленными на [предыдущей странице](xref:security/authentication/social/index).
-* После публикации приложения в Azure сбросьте `ClientSecret` в консоли Google API.
-* Задайте `Authentication:Google:ClientId` и `Authentication:Google:ClientSecret` в качестве параметров приложения в портал Azure. Система конфигурации предназначена для чтения разделов из переменных среды.
+* В этой статье показано, как можно пройти проверку подлинности в Google. Аналогичный подход можно использовать для проверки подлинности с другими поставщиками, перечисленными на [предыдущей странице](xref:security/authentication/social/index).
+* После публикации приложения в Azure сбросьте его `ClientSecret` в консоли Google API.
+* Задайте параметры `Authentication:Google:ClientId` приложения `Authentication:Google:ClientSecret` и в портал Azure. Система конфигурации настроена на чтение ключей из переменных среды.

@@ -4,13 +4,19 @@ author: ardalis
 description: Узнайте, как приступить к переносу проекта ASP.NET MVC для ASP.NET Core MVC.
 ms.author: riande
 ms.date: 04/06/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: migration/mvc
-ms.openlocfilehash: 6c9449fb43960d05db8aa6dcba64d3d830834cdb
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 59a10c002958e5f719dbd59686f21df69da5f43e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652552"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777050"
 ---
 # <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>Миграция с ASP.NET MVC на ASP.NET Core MVC
 
@@ -61,13 +67,13 @@ ms.locfileid: "78652552"
 
 ::: moniker-end
 
-`Microsoft.AspNetCore.Mvc` является платформой ASP.NET Core MVC. `Microsoft.AspNetCore.StaticFiles` является обработчиком статических файлов. Среда выполнения ASP.NET Core является модульной, и необходимо явно включить для обслуживания статических файлов (см. раздел [статические файлы](xref:fundamentals/static-files)).
+`Microsoft.AspNetCore.Mvc`является ASP.NET Core платформой MVC. `Microsoft.AspNetCore.StaticFiles`является обработчиком статических файлов. Среда выполнения ASP.NET Core является модульной, и необходимо явно включить для обслуживания статических файлов (см. раздел [статические файлы](xref:fundamentals/static-files)).
 
 * Откройте файл *Startup.CS* и измените код в соответствии со следующим кодом:
 
   [!code-csharp[](mvc/sample/Startup.cs?highlight=13,26-31)]
 
-Метод расширения `UseStaticFiles` добавляет обработчик статических файлов. Как упоминалось ранее, среда выполнения ASP.NET является модульной, и необходимо явно использовать для обслуживания статических файлов. Метод расширения `UseMvc` добавляет маршрутизацию. Дополнительные сведения см. в разделе Запуск и [Маршрутизация](xref:fundamentals/routing) [приложений](xref:fundamentals/startup) .
+Метод `UseStaticFiles` расширения добавляет обработчик статических файлов. Как упоминалось ранее, среда выполнения ASP.NET является модульной, и необходимо явно использовать для обслуживания статических файлов. Метод `UseMvc` расширения добавляет маршрутизацию. Дополнительные сведения см. в разделе Запуск и [Маршрутизация](xref:fundamentals/routing) [приложений](xref:fundamentals/startup) .
 
 ## <a name="add-a-controller-and-view"></a>Добавление контроллера и представления
 
@@ -83,7 +89,7 @@ ms.locfileid: "78652552"
 
 * Добавьте папки *Views/Home* .
 
-* Добавьте **представление Razor** с именем *index. cshtml* в папку *Views/Home* .
+* Добавьте ** Razor представление** с именем *index. cshtml* в папку *Views/Home* .
 
 ![Диалоговое окно ''Добавление нового элемента''](mvc/_static/view.png)
 
@@ -113,19 +119,19 @@ ms.locfileid: "78652552"
 
 * модели
 
-* Объединения
+* объединения
 
 * filters
 
-* Вход и выход (идентификация) (это делается в следующем руководстве).
+* Вход в систему Identity (это делается в следующем руководстве).
 
 ## <a name="controllers-and-views"></a>Контроллеры и представления
 
-* Скопируйте каждый из методов из `HomeController` MVC ASP.NET в новый `HomeController`. Обратите внимание, что в ASP.NET MVC тип возвращаемого значения метода действия контроллера встроенного шаблона — [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx); в ASP.NET Core MVC методы действия возвращают `IActionResult`. `ActionResult` реализует `IActionResult`, поэтому нет необходимости изменять тип возвращаемого значения методов действия.
+* Скопируйте каждый из методов из MVC `HomeController` ASP.NET в новый. `HomeController` Обратите внимание, что в ASP.NET MVC тип возвращаемого значения метода действия контроллера встроенного шаблона — [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx); в ASP.NET Core MVC вместо этого возвращаются `IActionResult` методы действия. `ActionResult`реализует `IActionResult`, поэтому нет необходимости изменять тип возвращаемого значения методов действия.
 
-* Скопируйте файлы представления Razor *About. cshtml*, *Contact. cshtml*и *index. cshtml* из проекта MVC ASP.NET в проект ASP.NET Core.
+* Скопируйте файлы представления *About. cshtml*, *Contact. cshtml*и *index. cshtml* Razor из проекта MVC ASP.NET в проект ASP.NET Core.
 
-* Запустите приложение ASP.NET Core и протестируйте каждый метод. Мы еще не выполнили миграцию файла макета или стилей, поэтому отображаемые представления содержат только содержимое в файлах представления. В файле макета не будут созданы ссылки для представлений `About` и `Contact`, поэтому их придется вызывать из браузера (замените **4492** на номер порта, используемый в проекте).
+* Запустите приложение ASP.NET Core и протестируйте каждый метод. Мы еще не выполнили миграцию файла макета или стилей, поэтому отображаемые представления содержат только содержимое в файлах представления. В файле макета не будут созданы ссылки для представлений `About` и `Contact` , поэтому их придется вызывать из браузера (замените **4492** на номер порта, используемый в проекте).
 
   * `http://localhost:4492/home/about`
 
@@ -155,15 +161,15 @@ ms.locfileid: "78652552"
 
 Откройте файл *_layout. cshtml* и внесите следующие изменения (завершенный код показан ниже):
 
-* Замените `@Styles.Render("~/Content/css")` `<link>`ным элементом для загрузки *начальной загрузки. CSS* (см. ниже).
+* Замените `@Styles.Render("~/Content/css")` на `<link>` элемент для загрузки *начальной загрузки. CSS* (см. ниже).
 
 * Удалите `@Scripts.Render("~/bundles/modernizr")`.
 
-* Закомментируйте `@Html.Partial("_LoginPartial")` строку (заключите линию в `@*...*@`). Дополнительные сведения см. [в статье миграция проверки подлинности и удостоверений в ASP.NET Core](xref:migration/identity)
+* Закомментируйте `@Html.Partial("_LoginPartial")` строку (заключите строку в `@*...*@`). Дополнительные сведения см. [в статье миграция проверки подлинности и Identity для ASP.NET Core](xref:migration/identity)
 
-* Замените `@Scripts.Render("~/bundles/jquery")` `<script>`ным элементом (см. ниже).
+* Замените `@Scripts.Render("~/bundles/jquery")` на `<script>` элемент (см. ниже).
 
-* Замените `@Scripts.Render("~/bundles/bootstrap")` `<script>`ным элементом (см. ниже).
+* Замените `@Scripts.Render("~/bundles/bootstrap")` на `<script>` элемент (см. ниже).
 
 Заменяющая разметка для включения начальной загрузки CSS:
 
@@ -196,7 +202,7 @@ ms.locfileid: "78652552"
 
 ## <a name="solve-http-500-errors"></a>Устранение ошибок HTTP 500
 
-Существует множество проблем, которые могут вызвать сообщение об ошибке HTTP 500, которое не содержит информации об источнике проблемы. Например, если файл *views/_ViewImports. cshtml* содержит пространство имен, которое не существует в проекте, вы получите ошибку HTTP 500. По умолчанию в ASP.NET Core приложениях расширение `UseDeveloperExceptionPage` добавляется в `IApplicationBuilder` и выполняется при *разработке*конфигурации. Это подробно описано в следующем коде:
+Существует множество проблем, которые могут вызвать сообщение об ошибке HTTP 500, которое не содержит информации об источнике проблемы. Например, если файл *views/_ViewImports. cshtml* содержит пространство имен, которое не существует в проекте, вы получите ошибку HTTP 500. По умолчанию в ASP.NET Core приложениях `UseDeveloperExceptionPage` расширение добавляется в `IApplicationBuilder` и выполняется при *разработке*конфигурации. Это подробно описано в следующем коде:
 
 [!code-csharp[](mvc/sample/Startup.cs?highlight=19-22)]
 

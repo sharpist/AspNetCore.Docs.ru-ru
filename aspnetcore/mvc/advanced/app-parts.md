@@ -1,28 +1,34 @@
 ---
-title: Совместное использование контроллеров, представлений, Razor Pages и других ресурсов с помощью частей приложений в ASP.NET Core
+title: Совместное использование контроллеров Razor , представлений, страниц и других приложений с частями приложения в ASP.NET Core
 author: rick-anderson
-description: Совместное использование контроллеров, представлений, Razor Pages и других ресурсов с помощью частей приложений в ASP.NET Core
+description: Совместное использование контроллеров Razor , представлений, страниц и других приложений с частями приложения в ASP.NET Core
 ms.author: riande
 ms.date: 11/11/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/extensibility/app-parts
-ms.openlocfilehash: 0156c94bc6d0b83d0e14b8ef49468cfdf106d7e6
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 68991a3df5e09b63dc52bdadae55f055a721ad3c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78654814"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774409"
 ---
-# <a name="share-controllers-views-razor-pages-and-more-with-application-parts"></a>Совместное использование контроллеров, представлений, Razor Pages и других ресурсов с помощью частей приложений
+# <a name="share-controllers-views-razor-pages-and-more-with-application-parts"></a>Совместное использование контроллеров Razor , представлений, страниц и других приложений с частями приложения
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT)
+Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts) ([как скачивать](xref:index#how-to-download-a-sample))
 
-*Часть приложения* — это абстракция для ресурсов приложения. Части приложений позволяют ASP.NET Core обнаруживать контроллеры, компоненты представлений, вспомогательные функции тегов, Razor Pages, источники компиляции Razor и другие ресурсы. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> является частью приложения. `AssemblyPart` инкапсулирует ссылку на сборку и предоставляет типы и ссылки на компиляцию.
+*Часть приложения* — это абстракция для ресурсов приложения. Части приложений позволяют ASP.NET Core обнаруживать контроллеры, просматривать компоненты, вспомогательные функции тегов, Razor страницы, источники компиляции Razor и многое другое. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> является частью приложения. `AssemblyPart` инкапсулирует ссылку на сборку и предоставляет типы и ссылки на компиляцию.
 
-[Поставщики компонентов](#fp) работают с частями приложения для заполнения компонентов приложения ASP.NET Core. Основной вариант использования частей приложения заключается в настройке приложения для обнаружения (или запрета загрузки) компонентов ASP.NET Core из сборки. Например, может потребоваться совместное использование общих функциональных возможностей несколькими приложениями. С помощью частей приложения можно совместно использовать сборку (библиотека DLL), содержащую контроллеры, представления, Razor Pages, источники компиляции Razor, вспомогательные функции тегов и другие ресурсы, с несколькими приложениями. Желательно предоставить общий доступ к сборке для дублирования кода в нескольких проектах.
+[Поставщики компонентов](#fp) работают с частями приложения для заполнения компонентов приложения ASP.NET Core. Основной вариант использования частей приложения заключается в настройке приложения для обнаружения (или запрета загрузки) компонентов ASP.NET Core из сборки. Например, может потребоваться совместное использование общих функциональных возможностей несколькими приложениями. С помощью частей приложения можно совместно использовать сборку (библиотеку DLL), содержащую контроллеры, Razor представления, страницы, источники компиляций Razor, вспомогательные функции тегов и многое другое, с несколькими приложениями. Желательно предоставить общий доступ к сборке для дублирования кода в нескольких проектах.
 
 Приложения ASP.NET Core загружают компоненты из <xref:System.Web.WebPages.ApplicationPart>. Класс <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> представляет часть приложения, поддерживаемую сборкой.
 
@@ -40,7 +46,7 @@ ms.locfileid: "78654814"
 
 ### <a name="include-views"></a>Включение представлений
 
-Чтобы включить представления в сборку, используйте [библиотеку классов Razor](xref:razor-pages/ui-class).
+Используйте [ Razor библиотеку классов](xref:razor-pages/ui-class) для включения представлений в сборку.
 
 ### <a name="prevent-loading-resources"></a>Запрет загрузки ресурсов
 
@@ -106,13 +112,13 @@ View Components:
 
 ::: moniker range="< aspnetcore-3.0"
 
-Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT)
+Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts) ([как скачивать](xref:index#how-to-download-a-sample))
 
-*Часть приложения* — это абстракция для ресурсов приложения. Части приложений позволяют ASP.NET Core обнаруживать контроллеры, компоненты представлений, вспомогательные функции тегов, Razor Pages, источники компиляции Razor и другие ресурсы. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) — это часть приложения. `AssemblyPart` инкапсулирует ссылку на сборку и предоставляет типы и ссылки на компиляцию.
+*Часть приложения* — это абстракция для ресурсов приложения. Части приложений позволяют ASP.NET Core обнаруживать контроллеры, просматривать компоненты, вспомогательные функции тегов, Razor страницы, источники компиляции Razor и многое другое. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) — это часть приложения. `AssemblyPart` инкапсулирует ссылку на сборку и предоставляет типы и ссылки на компиляцию.
 
-*Поставщики компонентов* работают с частями приложения для заполнения компонентов приложения ASP.NET Core. Основной вариант использования частей приложения заключается в настройке приложения для обнаружения (или запрета загрузки) компонентов ASP.NET Core из сборки. Например, может потребоваться совместное использование общих функциональных возможностей несколькими приложениями. С помощью частей приложения можно совместно использовать сборку (библиотека DLL), содержащую контроллеры, представления, Razor Pages, источники компиляции Razor, вспомогательные функции тегов и другие ресурсы, с несколькими приложениями. Желательно предоставить общий доступ к сборке для дублирования кода в нескольких проектах.
+*Поставщики компонентов* работают с частями приложения для заполнения компонентов приложения ASP.NET Core. Основной вариант использования частей приложения заключается в настройке приложения для обнаружения (или запрета загрузки) компонентов ASP.NET Core из сборки. Например, может потребоваться совместное использование общих функциональных возможностей несколькими приложениями. С помощью частей приложения можно совместно использовать сборку (библиотеку DLL), содержащую контроллеры, Razor представления, страницы, источники компиляций Razor, вспомогательные функции тегов и многое другое, с несколькими приложениями. Желательно предоставить общий доступ к сборке для дублирования кода в нескольких проектах.
 
 Приложения ASP.NET Core загружают компоненты из <xref:System.Web.WebPages.ApplicationPart>. Класс <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> представляет часть приложения, поддерживаемую сборкой.
 
@@ -130,13 +136,13 @@ View Components:
 
 ### <a name="include-views"></a>Включение представлений
 
-Чтобы включить представления в сборку, используйте [библиотеку классов Razor](xref:razor-pages/ui-class).
+Используйте [ Razor библиотеку классов](xref:razor-pages/ui-class) для включения представлений в сборку.
 
 ### <a name="prevent-loading-resources"></a>Запрет загрузки ресурсов
 
 Части приложения можно использовать для *запрета* загрузки ресурсов в определенной сборке или расположении. Добавьте или удалите элементы коллекции <xref:Microsoft.AspNetCore.Mvc.ApplicationParts>, чтобы скрыть ресурсы или сделать их доступными. Порядок записей в коллекции `ApplicationParts` не имеет значения. Настройте класс `ApplicationPartManager` перед его использованием для конфигурации служб в контейнере. Например, настройте класс `ApplicationPartManager` перед вызовом метода `AddControllersAsServices`. Вызовите метод `Remove` в коллекции `ApplicationParts`, чтобы удалить ресурс.
 
-В следующем коде для удаления <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> из приложения используется `MyDependentLibrary`: [!code-csharp[](./app-parts/sample1/WebAppParts/StartupRm.cs?name=snippet)]
+В следующем коде для удаления `MyDependentLibrary` из приложения используется <xref:Microsoft.AspNetCore.Mvc.ApplicationParts>: [!code-csharp[](./app-parts/sample1/WebAppParts/StartupRm.cs?name=snippet)]
 
 `ApplicationPartManager` содержит части для:
 
@@ -150,7 +156,7 @@ View Components:
 
 * [Контроллеры](/dotnet/api/microsoft.aspnetcore.mvc.controllers.controllerfeatureprovider)
 * [Вспомогательные функции тегов](/dotnet/api/microsoft.aspnetcore.mvc.razor.taghelpers.taghelperfeatureprovider)
-* [Компоненты представлений](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponents.viewcomponentfeatureprovider)
+* [Просмотр компонентов](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponents.viewcomponentfeatureprovider)
 
 Поставщики компонентов наследуют от <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider`1>, где `T` является типом компонента. Поставщики компонентов можно реализовать для любого из перечисленных выше типов компонентов. Порядок поставщиков компонентов в `ApplicationPartManager.FeatureProviders` может повлиять на поведение во время выполнения. Поставщики, добавленные позднее, могут реагировать на действия, выполняемые ранее добавленными поставщиками.
 

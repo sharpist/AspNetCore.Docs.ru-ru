@@ -1,20 +1,26 @@
 ---
-title: Управление ключами и время существования защиты данных в ASP.NET Core
+title: Управление ключами для защиты данных и время существования в ASP.NET Core
 author: rick-anderson
 description: Сведения об управлении ключами защиты данных и времени существования в ASP.NET Core.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/configuration/default-settings
-ms.openlocfilehash: 2f022a4c7519485fe629ce47c27d214c8c27d5bc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 1db5177230fd4076af080e208f094ce4d6537c62
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78655072"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777453"
 ---
-# <a name="data-protection-key-management-and-lifetime-in-aspnet-core"></a>Управление ключами и время существования защиты данных в ASP.NET Core
+# <a name="data-protection-key-management-and-lifetime-in-aspnet-core"></a>Управление ключами для защиты данных и время существования в ASP.NET Core
 
-Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT)
+Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 ## <a name="key-management"></a>Управление ключами
 
@@ -27,18 +33,18 @@ ms.locfileid: "78655072"
 
 1. Если профиль пользователя доступен, ключи сохраняются в папке *%локалаппдата%\асп.нет\датапротектион-Кэйс* Если операционной системой является Windows, ключи шифруются при хранении с помощью DPAPI.
 
-   Также необходимо включить атрибут [setProfileEnvironment](/iis/configuration/system.applicationhost/applicationpools/add/processmodel#configuration) пула приложений. Значение `setProfileEnvironment` по умолчанию — `true`. В некоторых сценариях (например, в ОС Windows) для параметра `setProfileEnvironment` установлено значение `false`. Если ключи не хранятся в каталоге профиля пользователя:
+   Также необходимо включить атрибут [setProfileEnvironment](/iis/configuration/system.applicationhost/applicationpools/add/processmodel#configuration) пула приложений. Значением свойства `setProfileEnvironment` по умолчанию является `true`. В некоторых сценариях (например, в ОС Windows) для параметра `setProfileEnvironment` установлено значение `false`. Если ключи не хранятся в каталоге профиля пользователя:
 
    1. Перейдите к папке *%windir%/system32/inetsrv/config*.
    1. Откройте файл *applicationHost.config*.
-   1. Найдите элемент `<system.applicationHost><applicationPools><applicationPoolDefaults><processModel>`.
+   1. Найдите элемент `<system.applicationHost><applicationPools><applicationPoolDefaults><processModel>` .
    1. Убедитесь, что атрибут `setProfileEnvironment` отсутствует и установлено значение по умолчанию `true`, или же явно задайте для атрибута значение `true`.
 
 1. Если приложение размещено в службах IIS, ключи сохраняются в реестре HKLM в специальном разделе реестра, доступен только учетной записи рабочего процесса. Неактивные ключи шифруются с помощью API защиты данных.
 
 1. Если ни одно из этих условий не найдено, ключи не сохраняются вне текущего процесса. При завершении работы процесса все созданные ключи теряются.
 
-Разработчик всегда находится в режиме полного доступа и может переопределить способ и место хранения ключей. Первые три приведенных выше параметра должны предоставлять хорошие значения по умолчанию для большинства приложений, аналогично тому, как ASP.NET **\<machineKey >** подпрограммы автоматического создания, которые работали в прошлом. Последним вариантом является единственный сценарий, в котором разработчику необходимо указать предварительную [конфигурацию](xref:security/data-protection/configuration/overview) , если требуется сохранение ключей, но этот откат выполняется только в редких ситуациях.
+Разработчик всегда находится в режиме полного доступа и может переопределить способ и место хранения ключей. Первые три параметра, приведенные выше, должны предоставлять оптимальные значения по умолчанию для большинства приложений, аналогично тому, как ASP.NET ** \<machineKey** подсистема автоматического создания под>работала в прошлом. Последним вариантом является единственный сценарий, в котором разработчику необходимо указать предварительную [конфигурацию](xref:security/data-protection/configuration/overview) , если требуется сохранение ключей, но этот откат выполняется только в редких ситуациях.
 
 При размещении в контейнере DOCKER ключи должны храниться в папке, которая является томом DOCKER (общий том или подключенный к узлу том, который сохраняется за пределами времени существования контейнера) или во внешнем поставщике, например [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) или [Redis](https://redis.io/). Внешний поставщик также полезен в сценариях веб-фермы, если приложения не могут получить доступ к общему сетевому тому (Дополнительные сведения см. в [персисткэйстофилесистем](xref:security/data-protection/configuration/overview#persistkeystofilesystem) ).
 

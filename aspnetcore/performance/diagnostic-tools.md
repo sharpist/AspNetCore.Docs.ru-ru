@@ -5,13 +5,19 @@ description: Полезные средства для диагностики п�
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.date: 04/11/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: performance/diagnostic-tools
-ms.openlocfilehash: d273897b9ad26d57eb94b196b58f14019a96d07d
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 82c724ec647dfe5547db775ebaf8c2479bb258bd
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78652474"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775860"
 ---
 # <a name="performance-diagnostic-tools"></a>Средства диагностики производительности
 
@@ -55,7 +61,7 @@ Application Insights можно использовать в различных �
 
 Вы можете узнать больше о PerfView и о том, как приступить к работе с видеоматериалами [PerfView](https://channel9.msdn.com/Series/PerfView-Tutorial) , либо прочитать руководство пользователя, доступное в средстве или [на сайте GitHub](https://github.com/Microsoft/perfview).
 
-## <a name="windows-performance-toolkit"></a>Набор средств производительности Windows
+## <a name="windows-performance-toolkit"></a>Windows Performance Toolkit
 
 [Windows Performance Toolkit](/windows-hardware/test/wpt/) (WPT) состоит из двух компонентов: средство записи производительности Windows (ЗВЧ) и анализатор производительности Windows (WPA). Средства предоставляют подробные профили производительности операционных систем и приложений Windows. WPT предоставляет более широкие возможности визуализации данных, но их сбор данных менее мощный, чем PerfView.
 

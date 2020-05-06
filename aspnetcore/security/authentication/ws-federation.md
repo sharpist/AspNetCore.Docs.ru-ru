@@ -12,18 +12,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/ws-federation
-ms.openlocfilehash: ce0c484e84bc2ddb4a1d287246c63663f3875924
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: fede3887ad7dacd40cf3bb5d1b785392a9bc1480
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768433"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850465"
 ---
 # <a name="authenticate-users-with-ws-federation-in-aspnet-core"></a>Проверка подлинности пользователей с помощью WS-Federation в ASP.NET Core
 
-В этом руководстве показано, как разрешить пользователям выполнять вход с помощью поставщика проверки подлинности WS-Federation, например службы федерации Active Directory (AD FS) (ADFS) или [Azure Active Directory](/azure/active-directory/) (AAD). В нем используется пример приложения ASP.NET Core 2,0, описанный в статье [Аутентификация Facebook, Google и внешнего поставщика](xref:security/authentication/social/index).
+В этом руководстве показано, как разрешить пользователям выполнять вход с помощью поставщика проверки подлинности WS-Federation, например службы федерации Active Directory (AD FS) (ADFS) или [Azure Active Directory](/azure/active-directory/) (AAD). В нем используется ASP.NET Core пример приложения, описанный в статье [Аутентификация Facebook, Google и внешнего поставщика](xref:security/authentication/social/index).
 
-Для приложений ASP.NET Core 2,0 поддержка WS-Federation обеспечивается [Microsoft. AspNetCore. Authentication. WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation). Этот компонент переносится из [Microsoft. Owin. Security. WsFederation](https://www.nuget.org/packages/Microsoft.Owin.Security.WsFederation) и разделяет многие механики этого компонента. Однако эти компоненты отличаются друг от друга несколькими важными способами.
+Для ASP.NET Core приложений Поддержка WS-Federation предоставляется службой [Microsoft. AspNetCore. Authentication. WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation). Этот компонент переносится из [Microsoft. Owin. Security. WsFederation](https://www.nuget.org/packages/Microsoft.Owin.Security.WsFederation) и разделяет многие механики этого компонента. Однако эти компоненты отличаются друг от друга несколькими важными способами.
 
 По умолчанию новое по промежуточного слоя:
 
@@ -88,7 +88,7 @@ ms.locfileid: "82768433"
 
 ## <a name="use-ws-federation-without-aspnet-core-identity"></a>Использование WS-Federation без ASP.NET CoreIdentity
 
-По промежуточного слоя WS-Federation можно использовать Identityбез. Например:
+По промежуточного слоя WS-Federation можно использовать Identityбез. Пример:
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](ws-federation/samples/StartupNon31.cs?name=snippet)]
 ::: moniker-end

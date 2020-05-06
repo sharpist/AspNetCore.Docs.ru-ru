@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: 86808e6bdd3bb669a62ad9e333b11df4c09a9cd3
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
+ms.openlocfilehash: d62889ba6dba6748ce3d047f0d37b3a904199496
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
+ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774643"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850439"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Проверка подлинности в облаке с помощью Azure Active Directory B2C в ASP.NET Core
 
@@ -36,12 +36,12 @@ ms.locfileid: "82774643"
 > * Создание ASP.NET Core веб-приложения, настроенного для использования клиента Azure AD B2C для проверки подлинности, с помощью Visual Studio
 > * Настройка политик, управляющих поведением клиента Azure AD B2C
 
-## <a name="prerequisites"></a>Предварительные условия
+## <a name="prerequisites"></a>Предварительные требования
 
 Для этого пошагового руководства необходимы следующие сведения.
 
-* [Подписка Microsoft Azure](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
+* [Подписка Microsoft Azure](https://azure.microsoft.com/free/dotnet/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 
 ## <a name="create-the-azure-active-directory-b2c-tenant"></a>Создание клиента Azure Active Directory B2C
 
@@ -60,7 +60,7 @@ ms.locfileid: "82774643"
 | **Разрешить неявный поток**       | Да                       |                                                                                                                                                                                                    |
 | **URL-адрес ответа**                 | `https://localhost:44300/signin-oidc` | URL-адреса ответа — это конечные точки, куда Azure AD B2C возвращает все токены, запрашиваемые вашим приложением. Visual Studio предоставляет URL-адрес ответа для использования. Пока введите `https://localhost:44300/signin-oidc` , чтобы заполнить форму. |
 | **URI кода приложения**                | Не указывайте               | Не требуется для работы с этим руководством.                                                                                                                                                                    |
-| **Включить собственный клиент**     | Нет                        |                                                                                                                                                                                                    |
+| **Включить собственный клиент**     | нет                        |                                                                                                                                                                                                    |
 
 > [!WARNING]
 > При настройке URL-адреса ответа, отличного от localhost, следует учитывать [ограничения, которые разрешены в списке URL-адресов ответа](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application). 
@@ -148,7 +148,7 @@ services.Configure<JwtBearerOptions>(
 
 После успешного входа в систему браузер перенаправляется в веб-приложение.
 
-![Успех](./azure-ad-b2c/_static/success.png)
+![Успешно](./azure-ad-b2c/_static/success.png)
 
 ## <a name="next-steps"></a>Дальнейшие действия
 
@@ -168,4 +168,4 @@ services.Configure<JwtBearerOptions>(
 * Настройте дополнительные поставщики удостоверений, такие как [Microsoft](/azure/active-directory-b2c/active-directory-b2c-setup-msa-app), [Facebook](/azure/active-directory-b2c/active-directory-b2c-setup-fb-app), [Google](/azure/active-directory-b2c/active-directory-b2c-setup-goog-app), [Amazon](/azure/active-directory-b2c/active-directory-b2c-setup-amzn-app), [Twitter](/azure/active-directory-b2c/active-directory-b2c-setup-twitter-app)и др.
 * [Используйте API Graph Azure AD](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-graph-dotnet) для получения дополнительных сведений о пользователе, таких как членство в группе, из клиента Azure AD B2C.
 * [Защита ASP.NET Core веб-API с помощью Azure AD B2C](https://azure.microsoft.com/resources/samples/active-directory-b2c-dotnetcore-webapi/).
-* [Вызов веб-API .NET из веб-приложения .NET с помощью Azure AD B2C](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-web-api-dotnet).
+* [Руководство. предоставление доступа к веб-API ASP.NET с помощью Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-web-api-dotnet).
