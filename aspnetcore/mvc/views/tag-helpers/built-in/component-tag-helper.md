@@ -1,34 +1,37 @@
 ---
-title: Помощник тега компонента в ASP.NET ядре
+title: Вспомогательная функция тега компонента в ASP.NET Core
 author: guardrex
 ms.author: riande
-description: Узнайте, как использовать ASP.NET core Component Tag Helper для визуализации компонентов Razor на страницах и представлениях.
+description: Узнайте, как использовать вспомогательную функцию тега компонента ASP.NET Core для Razor отрисовки компонентов на страницах и в представлениях.
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
-ms.openlocfilehash: aaa4b92a8912b4f52d861ed07432aa7cf3ca5240
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 4e003e5ed5e7863d8a218c0f02bb37e214e31910
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440965"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773933"
 ---
-# <a name="component-tag-helper-in-aspnet-core"></a>Помощник тега компонента в ASP.NET ядре
+# <a name="component-tag-helper-in-aspnet-core"></a>Вспомогательная функция тега компонента в ASP.NET Core
 
 Авторы: [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)
 
-Чтобы отобразить компонент со страницы или представления, используйте [Компонентный тег Helper.](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper)
+Чтобы отобразить компонент из страницы или представления, используйте [вспомогательную функцию тега компонента](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper).
 
-## <a name="prerequisites"></a>Предварительные требования
+## <a name="prerequisites"></a>Предварительные условия
 
-Следуйте инструкциям в *разделе Подготовка приложения к использованию компонентов на страницах и представлениях* в разделе статьи. <xref:blazor/integrate-components#prepare-the-app>
+Следуйте указаниям в разделе *Подготовка приложения к использованию компонентов в страницах и представлениях* <xref:blazor/integrate-components#prepare-the-app> статьи.
 
-## <a name="component-tag-helper"></a>Помощник тега компонента
+## <a name="component-tag-helper"></a>Вспомогательная функция тега компонента
 
-Следующий помощник тега компонента отображает `Counter` компонент на странице или представлении:
+Следующая вспомогательная функция тега Component визуализирует `Counter` компонент на странице или в представлении:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -39,9 +42,9 @@ ms.locfileid: "81440965"
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
 ```
 
-Предыдущий пример предполагает, `Counter` что компонент находится в папке *Страницы* приложения.
+В предыдущем примере предполагается, `Counter` что компонент находится в папке *pages* приложения.
 
-Помощник тега компонента также может передавать параметры компонентам. Рассмотрим `ColorfulCheckbox` следующий компонент, который устанавливает цвет и размер метки флажка:
+Вспомогательная функция тега компонента также может передавать параметры в компоненты. Рассмотрим следующий `ColorfulCheckbox` компонент, устанавливающий цвет и размер метки флажка:
 
 ```razor
 <label style="font-size:@(Size)px;color:@Color">
@@ -69,7 +72,7 @@ ms.locfileid: "81440965"
 }
 ```
 
-`Size` Параметры `Color` компонента могут`string``int`быть [установлены Помощником](xref:blazor/components#component-parameters) компонентного тега:
+`Size` [Параметры компонента](xref:blazor/components#component-parameters) (`int`) `Color` и`string`() могут быть заданы вспомогательной функцией тега компонента:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -81,9 +84,9 @@ ms.locfileid: "81440965"
     param-Size="14" param-Color="@("blue")" />
 ```
 
-Предыдущий пример предполагает, `ColorfulCheckbox` что компонент находится в папке *«Общая* часть» приложения.
+В предыдущем примере предполагается, `ColorfulCheckbox` что компонент находится в *общей* папке приложения.
 
-Следующий HTML отображается на странице или представлении:
+Следующий код HTML отображается на странице или в представлении:
 
 ```html
 <label style="font-size:24px;color:blue">
@@ -92,13 +95,13 @@ ms.locfileid: "81440965"
 </label>
 ```
 
-Прохождение цитируемого строки требует [явного выражения Razor,](xref:mvc/views/razor#explicit-razor-expressions)как показано в `param-Color` предыдущем примере. Поведение разбора бритвы `string` для значения типа не `param-*` применяется к атрибуту, поскольку атрибут является типом. `object`
+Для `param-Color` передачи строки в кавычках требуется [явное выражение Razor](xref:mvc/views/razor#explicit-razor-expressions), как показано в предыдущем примере. Поведение синтаксического анализа Razor для значения `string` типа не применяется к `param-*` атрибуту, так как атрибут является `object` типом.
 
-Тип параметра должен быть серийным JSON, что обычно означает, что тип должен иметь конструктор по умолчанию и свойства settable. Например, можно указать `Size` значение `Color` для и в предыдущем `Size` `Color` примере,`int` потому что типы и примитивные типы (и), `string`которые поддерживаются jSON serializer.
+Тип параметра должен быть сериализуемым JSON, что обычно означает, что тип должен иметь конструктор по умолчанию и устанавливаемые свойства. Например, можно указать значение для `Size` и `Color` в предыдущем примере, так как типы `Size` и `Color` являются примитивными типами (`int` и `string`), которые поддерживаются сериализатором JSON.
 
-В следующем примере объект класса передается компоненту:
+В следующем примере объект класса передается в компонент:
 
-*MyClass.cs*:
+*MyClass.CS*:
 
 ```csharp
 public class MyClass
@@ -114,7 +117,7 @@ public class MyClass
 
 **Класс должен иметь открытый конструктор без параметров.**
 
-*Общие/MyComponent.razor*:
+*Shared/MyComponent. Razor*:
 
 ```razor
 <h2>MyComponent</h2>
@@ -129,7 +132,7 @@ public class MyClass
 }
 ```
 
-*Страницы/MyPage.cshtml*:
+*Pages/MyPage. cshtml*:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -148,22 +151,22 @@ public class MyClass
     param-MyObject="@myObject" />
 ```
 
-Предыдущий пример предполагает, `MyComponent` что компонент находится в папке *«Общая* часть» приложения. `MyClass`находится в пространстве имен приложения`{APP ASSEMBLY}`().
+В предыдущем примере предполагается, `MyComponent` что компонент находится в *общей* папке приложения. `MyClass`находится в пространстве имен приложения (`{APP ASSEMBLY}`).
 
-<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>настраивает ли компонент:
+<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>Настраивает, является ли компонент:
 
 * Предварительно отображается на странице.
-* Отображается как статический HTML на странице или если он включает в себя необходимую информацию для загрузки приложения Blazor от агента пользователя.
+* Отображается как статический HTML на странице или включает необходимые сведения для начальной загрузки приложения Блазор из агента пользователя.
 
 | Режим рендеринга | Описание |
 | ----------- | ----------- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renders компонент в статический HTML и Blazor включает маркер для приложения Server. Когда пользователь-агент запускается, этот маркер используется Blazor для загрузки приложения. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Отображает маркер для Blazor приложения Server. Выход из компонента не включен. Когда пользователь-агент запускается, этот маркер используется Blazor для загрузки приложения. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Рендеринг компонента в статический HTML. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Преобразует компонент в статический HTML и включает маркер для Blazor серверного приложения. При запуске агента пользователя этот маркер используется для начальной загрузки Blazor приложения. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Отображает маркер для Blazor серверного приложения. Выходные данные компонента не включаются. При запуске агента пользователя этот маркер используется для начальной загрузки Blazor приложения. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Преобразует компонент в статический HTML. |
 
-Хотя страницы и представления могут использовать компоненты, обратное не соответствует действительности. Компоненты не могут использовать функции, связанные с представлением и страницей, такие как частичные представления и разделы. Чтобы использовать логику из частичного представления в компоненте, увечись логику частичного представления в компонент.
+Хотя страницы и представления могут использовать компоненты, наоборот это не так. Компоненты не могут использовать функции представления и страницы, такие как частичные представления и разделы. Чтобы использовать логику из частичного представления в компоненте, разнесите логику частичного представления в компонент.
 
-Рендеринг компонентов сервера со статической html-страницы не поддерживается.
+Отрисовка компонентов сервера из статической HTML-страницы не поддерживается.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

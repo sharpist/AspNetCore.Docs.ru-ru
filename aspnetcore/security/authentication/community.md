@@ -4,13 +4,19 @@ author: rick-anderson
 description: Обнаружение параметров проверки подлинности с открытым исходным кодом для ASP.NET Core.
 ms.author: riande
 ms.date: 10/28/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/community
-ms.openlocfilehash: 68c32515b7d789db86f60cd011632da5c1244c1f
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 425382781d6d35f6706aa9337280b0fdede4eac3
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78654178"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774630"
 ---
 # <a name="community-oss-authentication-options-for-aspnet-core"></a>Параметры проверки подлинности OSS сообщества для ASP.NET Core
 
@@ -20,7 +26,7 @@ ms.locfileid: "78654178"
 
 Список ниже сортируется в алфавитном порядке.
 
-| Имя | Description |
+| Имя | Описание |
 | ---- | ----------- |
 | [AspNet. Security. OpenIdConnect. Server (ASOS)](https://github.com/aspnet-contrib/AspNet.Security.OpenIdConnect.Server) | ASOS — Это высокоуровневая платформа OpenID Connect Connect Server для ASP.NET Core и OWIN/Katana. |
 | [Сервер глуу](https://gluu.org/) | Готовность предприятия, программное обеспечение с открытым кодом для идентификации, управления доступом (IAM) и единого входа (SSO). Дополнительные сведения см. в [документации по продукту глуу](https://gluu.org/docs/). |
