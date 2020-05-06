@@ -5,13 +5,19 @@ description: Сведения о встроенных вспомогательн
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: 5af532db35b858d157f61a6aca30f55d15e9ff1e
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.openlocfilehash: ba523fba60153e2ae804f5a875cfaa1aa8fffedd
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/16/2020
-ms.locfileid: "79416200"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82769106"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Вспомогательные функции тегов в формах в ASP.NET Core
 
@@ -25,9 +31,9 @@ ms.locfileid: "79416200"
 
 ## <a name="the-form-tag-helper"></a>Вспомогательная функция тега формы
 
-Вспомогательная функция тега [формы](https://www.w3.org/TR/html401/interact/forms.html):
+Вспомогательная функция тега [формы](https://www.w3.org/TR/html401/interact/forms.html) :
 
-* Создает значение атрибута HTML [\<FORM>](https://www.w3.org/TR/html401/interact/forms.html) `action` для действия контроллера MVC или именованного маршрута.
+* Создает HTML- [ \<форму>](https://www.w3.org/TR/html401/interact/forms.html) `action` значение атрибута для действия контроллера MVC или именованного маршрута.
 
 * Создает скрытый [токен проверки запроса](/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) для предотвращения подделки межсайтовых запросов (при использовании с атрибутом `[ValidateAntiForgeryToken]` в методе действия HTTP Post).
 
@@ -35,7 +41,7 @@ ms.locfileid: "79416200"
 
 * Располагает альтернативой вспомогательному методу HTML — `Html.BeginForm` и `Html.BeginRouteForm`.
 
-Пример:
+Образец.
 
 [!code-HTML[](working-with-forms/sample/final/Views/Demo/RegisterFormOnly.cshtml)]
 
@@ -69,11 +75,11 @@ ms.locfileid: "79416200"
 
 ## <a name="the-form-action-tag-helper"></a>Вспомогательная функция тега действий формы
 
-Вспомогательная функция тега действий формы создает атрибут `formaction` в созданном теге `<button ...>` или `<input type="image" ...>`. Атрибут `formaction` определяет, куда форма отправляет свои данные. Он выполняет привязку к элементам [\<input>](https://www.w3.org/wiki/HTML/Elements/input) типа `image` и элементам [\<button>](https://www.w3.org/wiki/HTML/Elements/button). Вспомогательная функция тега действий формы позволяет использовать несколько атрибутов `asp-` [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) для управления выходными данными ссылки `formaction` для соответствующего элемента.
+Вспомогательная функция тега действий формы создает атрибут `formaction` в созданном теге `<button ...>` или `<input type="image" ...>`. Атрибут `formaction` определяет, куда форма отправляет свои данные. Он привязывается к [ \<входным>](https://www.w3.org/wiki/HTML/Elements/input) элементам `image` типа и [ \<кнопки>](https://www.w3.org/wiki/HTML/Elements/button) элементов. Вспомогательная функция тега действия "форма" позволяет использовать несколько атрибутов [анчортагхелпер](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-` для управления `formaction` тем, какая ссылка создается для соответствующего элемента.
 
 Ниже перечислены поддерживаемые атрибуты [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) для управления значением `formaction`.
 
-|attribute|Описание|
+|Атрибут|Описание|
 |---|---|
 |[asp-controller](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-controller)|Имя контроллера.|
 |[asp-action](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-action)|Имя метода действия.|
@@ -161,7 +167,7 @@ public class HomeController : Controller
 
 ## <a name="the-input-tag-helper"></a>Вспомогательная функция тега входных данных
 
-Вспомогательная функция тега входных данных привязывает элемент HTML [\<input>](https://www.w3.org/wiki/HTML/Elements/input) к модели выражения в представлении Razor.
+Вспомогательная функция тега input привязывает [ \<входной элемент>](https://www.w3.org/wiki/HTML/Elements/input) HTML к выражению модели в представлении Razor.
 
 Синтаксис:
 
@@ -171,7 +177,7 @@ public class HomeController : Controller
 
 Вспомогательная функция тега входных данных:
 
-* Создает атрибуты HTML `id` и `name` для имени выражения, указанного в атрибуте `asp-for`. `asp-for="Property1.Property2"` равно `m => m.Property1.Property2`. Имя выражения совпадает со значением атрибута `asp-for`. Дополнительные сведения см. в разделе [Имена выражений](#expression-names) .
+* Создает атрибуты HTML `id` и `name` для имени выражения, указанного в атрибуте `asp-for`. `asp-for="Property1.Property2"` эквивалентно правилу `m => m.Property1.Property2`. Имя выражения совпадает со значением атрибута `asp-for`. Дополнительные сведения см. в разделе [Имена выражений](#expression-names) .
 
 * Задает значение атрибута HTML `type` на основе атрибутов типа модели и [заметок к данным](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter), примененным к свойству модели.
 
@@ -200,14 +206,14 @@ Type expected
 |---|---|
 |Bool|type="checkbox"|
 |Строка|type="text"|
-|DateTime|type=["datetime-local"](https://developer.mozilla.org/docs/Web/HTML/Element/input/datetime-local)|
+|Дата и время|type=["datetime-local"](https://developer.mozilla.org/docs/Web/HTML/Element/input/datetime-local)|
 |Byte|type="number"|
-|int|type="number"|
+|Int|type="number"|
 |Single, Double|type="number"|
 
 В следующей таблице приведены некоторые наиболее распространенные атрибуты [заметок к данным](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter), которые вспомогательная функция тега входных данных будет сопоставлять с определенными типами входных данных (указаны не все атрибуты проверки):
 
-|attribute|Тип входных данных|
+|Атрибут|Тип входных данных|
 |---|---|
 |[EmailAddress]|type="email"|
 |[Url]|type="url"|
@@ -217,7 +223,7 @@ Type expected
 |[DataType(DataType.Date)]|type="date"|
 |[DataType(DataType.Time)]|type="time"|
 
-Пример:
+Образец.
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/RegisterViewModel.cs)]
 
@@ -241,7 +247,7 @@ Type expected
    </form>
 ```
 
-Заметки данных применяются к свойствам `Email` и `Password`, создающим метаданные для модели. Вспомогательная функция тега входных данных использует метаданные модели и создает атрибуты `data-val-*` [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) (см. статью о [проверке модели](../models/validation.md)). Эти атрибуты описывают проверяющие элементы управления, присоединяемые к полям входных данных. Это обеспечивает ненавязчивую проверку HTML5 и [jQuery](https://jquery.com/). Ненавязчивые атрибуты имеют формат `data-val-rule="Error Message"`, где правило — это имя правила проверки (например, `data-val-required`, `data-val-email`, `data-val-maxlength` и т. д.). Если в атрибуте приводится сообщение об ошибке, оно отображается как значение атрибута `data-val-rule`. Также существуют атрибуты формы `data-val-ruleName-argumentName="argumentValue"`, которые содержат дополнительные сведения о правиле, например `data-val-maxlength-max="1024"`.
+Заметки данных применяются к свойствам `Email` и `Password`, создающим метаданные для модели. Вспомогательная функция тега входных данных использует метаданные модели и создает атрибуты [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) `data-val-*` (см. статью [Проверка модели](../models/validation.md)). Эти атрибуты описывают проверяющие элементы управления, присоединяемые к полям входных данных. Это обеспечивает ненавязчивую проверку HTML5 и [jQuery](https://jquery.com/). Ненавязчивые атрибуты имеют `data-val-rule="Error Message"`формат, где Rule — это имя правила проверки (например `data-val-required`, `data-val-email` `data-val-maxlength`, и т. д.). Если в атрибуте указано сообщение об ошибке, оно отображается как значение для `data-val-rule` атрибута. Также существуют атрибуты формы `data-val-ruleName-argumentName="argumentValue"`, которые содержат дополнительные сведения о правиле, например `data-val-maxlength-max="1024"`.
 
 ### <a name="html-helper-alternatives-to-input-tag-helper"></a>Альтернативы вспомогательного метода HTML вспомогательной функции тега входных данных
 
@@ -346,13 +352,13 @@ public IActionResult Edit(int id, int colorIndex)
 
 Вспомогательная функция тега `Textarea Tag Helper`аналогична вспомогательной функции тега входных данных.
 
-* Создает атрибуты `id` и `name`, а также атрибуты проверки данных из модели для элемента [\<textarea>](https://www.w3.org/wiki/HTML/Elements/textarea).
+* Создает атрибуты `id` и `name` и атрибуты проверки данных из модели для элемента [ \<textarea>](https://www.w3.org/wiki/HTML/Elements/textarea) .
 
 * Обеспечивает строгую типизацию.
 
-* Располагает альтернативой вспомогательному методу HTML — `Html.TextAreaFor`.
+* Располагает альтернативой вспомогательному методу HTML — `Html.TextAreaFor`.
 
-Пример:
+Образец.
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/DescriptionViewModel.cs)]
 
@@ -376,7 +382,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 ## <a name="the-label-tag-helper"></a>Вспомогательная функция тега метки
 
-* Позволяет создать заголовок метки и атрибут `for` в элементе [\<label>](https://www.w3.org/wiki/HTML/Elements/label) для имени выражения.
+* Создает заголовок и `for` атрибут метки в элементе [ \<Label>](https://www.w3.org/wiki/HTML/Elements/label) для имени выражения.
 
 * Располагает альтернативой вспомогательному методу HTML — `Html.LabelFor`.
 
@@ -388,7 +394,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 * Строгая типизация со свойством модели.
 
-Пример:
+Образец.
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/SimpleViewModel.cs)]
 
@@ -408,11 +414,11 @@ public IActionResult Edit(int id, int colorIndex)
 
 ### <a name="the-validation-message-tag-helper"></a>Вспомогательная функция тега сообщения о проверке
 
-* Добавляет атрибут `data-valmsg-for="property"` [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) в элемент [span](https://developer.mozilla.org/docs/Web/HTML/Element/span), который присоединяет сообщения об ошибках проверки к полю входных данных указанного свойства модели. При возникновении ошибки проверки на стороне клиента [jQuery](https://jquery.com/) отображает сообщение об ошибке в элементе `<span>`.
+* Добавляет атрибут [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) `data-valmsg-for="property"` к элементу [span](https://developer.mozilla.org/docs/Web/HTML/Element/span) , который прикрепляет сообщения об ошибках проверки в поле ввода указанного свойства модели.   При возникновении ошибки проверки на стороне клиента [jQuery](https://jquery.com/) отображает сообщение об ошибке в элементе `<span>`.
 
 * Проверка также выполняется на сервере. На клиентах может быть отключена поддержка JavaScript, поэтому некоторые проверки выполняются только на стороне сервера.
 
-* Располагает альтернативой вспомогательному методу HTML — `Html.ValidationMessageFor`.
+* Располагает альтернативой вспомогательному методу HTML — `Html.ValidationMessageFor`.
 
 `Validation Message Tag Helper` используется с атрибутом `asp-validation-for` в элементе HTML [span](https://developer.mozilla.org/docs/Web/HTML/Element/span).
 
@@ -454,7 +460,7 @@ public IActionResult Edit(int id, int colorIndex)
 |--- |--- |
 |ValidationSummary.All|Свойство и уровень модели|
 |ValidationSummary.ModelOnly|Модель|
-|ValidationSummary.None|Отсутствуют|
+|ValidationSummary.None|None|
 
 ### <a name="sample"></a>Пример
 
@@ -491,11 +497,11 @@ public IActionResult Edit(int id, int colorIndex)
 
 * Располагает альтернативой вспомогательному методу HTML — `Html.DropDownListFor` и `Html.ListBoxFor`.
 
-`Select Tag Helper` `asp-for` указывает имя свойства модели для элемента [select](https://www.w3.org/wiki/HTML/Elements/select), а `asp-items` указывает элементы [option](https://www.w3.org/wiki/HTML/Elements/option).  Пример:
+`Select Tag Helper` `asp-for` указывает имя свойства модели для элемента [select](https://www.w3.org/wiki/HTML/Elements/select), а `asp-items` указывает элементы [option](https://www.w3.org/wiki/HTML/Elements/option).  Например:
 
 [!code-HTML[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
 
-Пример:
+Образец.
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/CountryViewModel.cs)]
 
@@ -536,7 +542,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 Часто бывает удобно использовать `<select>` со свойством `enum` и создавать элементы `SelectListItem` из значений `enum`.
 
-Пример:
+Образец.
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/CountryEnumViewModel.cs?range=3-7)]
 
@@ -570,7 +576,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 ### <a name="option-group"></a>Группа параметров
 
-Элемент HTML [\<optgroup>](https://www.w3.org/wiki/HTML/Elements/optgroup) создается в том случае, если модель представления содержит один или несколько объектов `SelectListGroup`.
+Элемент HTML [ \<optgroup>](https://www.w3.org/wiki/HTML/Elements/optgroup) создается, когда модель представления содержит один или несколько `SelectListGroup` объектов.
 
 `CountryViewModelGroup` группирует элементы `SelectListItem` в группы "North America" и "Europe":
 
@@ -639,7 +645,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 [!code-HTML[](working-with-forms/sample/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
 
-Добавление элементов HTML [\<option>](https://www.w3.org/wiki/HTML/Elements/option) не ограничивается параметром *No selection* (Не выбрано). Например, следующее представление и метод действия создадут HTML, аналогичный приведенному выше коду:
+Добавление [ \<параметра HTML>](https://www.w3.org/wiki/HTML/Elements/option) элементы не ограничено вариантом *без выбора* . Например, следующее представление и метод действия создадут HTML, аналогичный приведенному выше коду:
 
 [!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?name=snippetNone)]
 

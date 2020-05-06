@@ -4,13 +4,19 @@ author: rick-anderson
 description: Сведения о реализации ASP.NET Core шифрования ключа защиты данных при хранении.
 ms.author: riande
 ms.date: 07/16/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/implementation/key-encryption-at-rest
-ms.openlocfilehash: 52c3137dbe467096364b42430c92aecc7c15e313
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: e68b8e09dbd876c6f0d37242ebaa415994b3b808
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78651634"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776933"
 ---
 # <a name="key-encryption-at-rest-in-aspnet-core"></a>Шифрование неактивных ключей в ASP.NET Core
 
@@ -23,7 +29,7 @@ ms.locfileid: "78651634"
 
 ## <a name="azure-key-vault"></a>Azure Key Vault
 
-Чтобы сохранить ключи в [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), настройте систему с помощью [протекткэйсвисазурекэйваулт](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) в классе `Startup`:
+Чтобы сохранить ключи в [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), настройте систему с помощью [протекткэйсвисазурекэйваулт](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) в `Startup` классе:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -100,7 +106,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Существует также перегрузка `ProtectKeysWithDpapiNG`без параметров. Используйте этот удобный метод, чтобы указать правило "SID = {CURRENT_ACCOUNT_SID}", где *CURRENT_ACCOUNT_SID* является идентификатором безопасности текущей учетной записи пользователя Windows:
+Также существует перегрузка без параметров `ProtectKeysWithDpapiNG`. Используйте этот удобный метод, чтобы указать правило "SID = {CURRENT_ACCOUNT_SID}", где *CURRENT_ACCOUNT_SID* является идентификатором безопасности текущей учетной записи пользователя Windows:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

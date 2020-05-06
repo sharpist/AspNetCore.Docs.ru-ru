@@ -4,13 +4,19 @@ author: ardalis
 description: ''
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/controllers/actions
-ms.openlocfilehash: 715a73863513870d1cbd522e75013d41830da1e7
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: b7c4d61c4a71939e84bdea180a2f77b6438b15d5
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78653350"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774201"
 ---
 # <a name="handle-requests-with-controllers-in-aspnet-core-mvc"></a>Обработка запросов с помощью контроллеров в ASP.NET Core MVC
 
@@ -37,7 +43,7 @@ ms.locfileid: "78653350"
 
 Контроллеры должны соответствовать [принципу явных зависимостей](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies). Существует несколько подходов к реализации этого принципа. Если нескольким действиям контроллера требуется одна служба, рекомендуется использовать [внедрение через конструктор](xref:mvc/controllers/dependency-injection#constructor-injection) для запроса этих зависимостей. Если служба требуется только одному методу действия, рекомендуется использовать [внедрение действий](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) для запроса зависимости.
 
-В рамках шаблона **M** **V** **C** контроллер отвечает за начальную обработку запроса и создание экземпляра модели. Как правило, бизнес-решения следует выполнять внутри модели.
+В рамках шаблона **M****V****C** контроллер отвечает за начальную обработку запроса и создание экземпляра модели. Как правило, бизнес-решения следует выполнять внутри модели.
 
 Контроллер принимает результат обработки модели (если он есть) и возвращает подходящее представление и связанные с ним данные или результат вызова API. Дополнительные сведения см. в разделах [Общие сведения о ASP.NET Core MVC](xref:mvc/overview) и [Начало работы с ASP.NET Core MVC и Visual Studio](xref:tutorials/first-mvc-app/start-mvc).
 
@@ -65,7 +71,7 @@ ms.locfileid: "78653350"
 
     Этот тип возвращает код состояния HTTP. К этому типу вспомогательных методов относятся `BadRequest`, `NotFound` и `Ok`. Например, при выполнении `return BadRequest();` создает код состояния 400. Если такие методы, как `BadRequest`, `NotFound` и `Ok`, перегружены, они больше не могут выступать в качестве ответчиков кода состояния HTTP, так как выполняется согласование содержимого.
 
-* **Перенаправление**
+* **Перенаправления**
 
     Этот тип возвращает перенаправление в действие или назначение (с помощью `Redirect`, `LocalRedirect`, `RedirectToAction` или `RedirectToRoute`). Например, `return RedirectToAction("Complete", new {id = 123});` перенаправляет `Complete`, передав анонимный объект.
 
@@ -77,7 +83,7 @@ ms.locfileid: "78653350"
 
 В этой категории есть два типа результатов: [представление](xref:mvc/views/overview) и [форматированный отклик](xref:web-api/advanced/formatting).
 
-* **View** (Вид)
+* **Вид**
 
     Этот тип возвращает представление, использующее модель для отрисовки HTML. Например, `return View(customer);` передает модель в представление для привязки данных.
 
