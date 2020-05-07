@@ -5,13 +5,19 @@ description: Узнайте, как переместить существующ�
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/25/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: grpc/migration
-ms.openlocfilehash: 451171a041f7bbb3711babd73d2fa2e245aadd28
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 1846195cc43aec703333e69f66380ddcabcf2ad4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78649372"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768826"
 ---
 # <a name="migrating-grpc-services-from-c-core-to-aspnet-core"></a>Миграция служб gRPC из C-Core в ASP.NET Core
 
@@ -63,7 +69,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Дополнительные сведения о настройке см. в разделе <xref:grpc/configuration>.
 
-## <a name="logging"></a>Logging
+## <a name="logging"></a>Ведение журнала
 
 Приложения на основе C-Core используют `GrpcEnvironment` для [настройки средства ведения журнала](https://grpc.io/grpc/csharp/api/Grpc.Core.GrpcEnvironment.html?q=size#Grpc_Core_GrpcEnvironment_SetLogger_Grpc_Core_Logging_ILogger_) в целях отладки. Стек ASP.NET Core обеспечивает эти функции с помощью [API ведения журнала](xref:fundamentals/logging/index). Например, средство ведения журнала можно добавить в службу gRPC посредством внедрения конструктора:
 

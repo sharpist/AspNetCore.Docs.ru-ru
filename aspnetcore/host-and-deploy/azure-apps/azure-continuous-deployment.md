@@ -5,13 +5,19 @@ description: Сведения о создании веб-приложения AS
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/azure-apps/azure-continuous-deployment
-ms.openlocfilehash: 3b344505739bb4292ed1683c73ff314b6e4e01e9
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 0b9f5f15403c7d18d68a41baa2a59582cf039f44
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78648112"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850569"
 ---
 # <a name="continuous-deployment-to-azure-with-visual-studio-and-git-with-aspnet-core"></a>Непрерывное развертывание ASP.NET Core в Azure с помощью Visual Studio и Git
 
@@ -24,7 +30,7 @@ ms.locfileid: "78648112"
 См. также статью [Create your first pipeline](/azure/devops/pipelines/get-started-yaml) (Создание первого конвейера), в которой объяснятеся, как настроить рабочий процесс непрерывной поставки (CD) для [Службы приложений Azure](/azure/app-service/app-service-web-overview) с помощью служб Azure DevOps. Azure Pipelines (служба, входящая в пакет Azure DevOps Services) упрощает настройку надежного конвейера развертывания с целью публикации обновлений для приложений, размещенных в Службе приложений Azure. Этот конвейер можно настроить на портале Azure для сборки, выполнения тестов, развертывания в промежуточном слоте и последующего развертывания в рабочей среде.
 
 > [!NOTE]
-> Для работы с этим руководством требуется учетная запись Microsoft Azure. Чтобы получить учетную запись, [активируйте преимущества подписчика MSDN](https://azure.microsoft.com/pricing/member-offers/credit-for-visual-studio-subscribers/?WT.mc_id=A261C142F) или [зарегистрируйтесь для получения бесплатной версии](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+> Для работы с этим руководством требуется учетная запись Microsoft Azure. Чтобы получить учетную запись, [активируйте преимущества подписчика MSDN](https://azure.microsoft.com/pricing/member-offers/credit-for-visual-studio-subscribers/?WT.mc_id=A261C142F) или [зарегистрируйтесь для получения бесплатной версии](https://azure.microsoft.com/free/dotnet/?WT.mc_id=A261C142F).
 
 ## <a name="prerequisites"></a>предварительные требования
 

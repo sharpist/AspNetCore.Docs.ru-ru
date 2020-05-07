@@ -665,6 +665,8 @@
       uid: test/razor-pages-tests
     - name: Контроллеры тестирования
       uid: mvc/controllers/testing
+    - name: Тестирование ПО промежуточного слоя
+      uid: test/middleware
     - name: Удаленная отладка
       href: /visualstudio/debugger/remote-debugging-azure
     - name: Отладка моментальных снимков

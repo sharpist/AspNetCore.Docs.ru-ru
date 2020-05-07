@@ -5,15 +5,21 @@ description: Дополнительные схемы обучения для Dev
 ms.author: casoper
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: azure/devops/next-steps
-ms.openlocfilehash: a775dc42551a43bcce72b5f9ca364ed00b1dc4e6
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 92401d45d36dd3b93d175e08a8fa8697217ca7c7
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647434"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766528"
 ---
-# <a name="next-steps"></a>Дальнейшие действия
+# <a name="next-steps"></a>Следующие шаги
 
 В этом руководстве вы создали конвейер DevOps для примера приложения ASP.NET Core. Поздравляем! Мы надеемся, что вы остались довольны обучением публикации веб-приложений ASP.NET Core в службе приложений Azure и автоматизации непрерывной интеграции изменений.
 
@@ -29,11 +35,11 @@ ms.locfileid: "78647434"
 
 [Cosmos DB](/azure/cosmos-db/) — это NoSQL многомодельная глобально распределенная служба баз данных. Доступны несколько интерфейсов API, в том числе API SQL (прежнее название — DocumentDB), Cassandra и MongoDB.
 
-## <a name="identity"></a>Удостоверение
+## Identity
 
 [Azure Active Directory](/azure/active-directory/) и [Azure Active Directory B2C](/azure/active-directory-b2c/) являются службами идентификации. Azure Active Directory предназначена для корпоративных сценариев и обеспечивает совместную работу Azure AD B2B ("бизнес-бизнес"), а Azure Active Directory B2C предназначена для сценариев "бизнес-клиент", включая вход через социальные сети.
 
-## <a name="mobile"></a>Мобильные приложения
+## <a name="mobile"></a>Мобильный
 
 [Центры уведомлений](/azure/notification-hubs/) — это многоплатформенная масштабируемая подсистема push-уведомлений, предназначенная для быстрой отправки миллионов сообщений в приложения, работающие на устройствах различных типов.
 

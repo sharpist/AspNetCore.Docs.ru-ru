@@ -5,13 +5,19 @@ description: Инструменты и файлы для скачивания, �
 ms.author: casoper
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: azure/devops/tools-and-downloads
-ms.openlocfilehash: 9c1042dd48b9167209b46e97a09e011b80e2609c
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 1917a329a5dcbe60542541cfcdc746799307e3d5
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79511149"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850413"
 ---
 # <a name="tools-and-downloads"></a>Инструменты и файлы для скачивания
 
@@ -21,7 +27,7 @@ ms.locfileid: "79511149"
 
 Требуются следующие подписки:
 
-* Azure &mdash; если у вас нет учетной записи, [зарегистрируйтесь для использования бесплатной пробной версии](https://azure.microsoft.com/free/).
+* Azure &mdash; если у вас нет учетной записи, [зарегистрируйтесь для использования бесплатной пробной версии](https://azure.microsoft.com/free/dotnet/).
 * Azure DevOps Services &mdash; порядок создания подписки Azure DevOps и организации описан в Главе 4.
 * GitHub &mdash; если у вас нет учетной записи, [зарегистрируйтесь бесплатно](https://github.com/join).
 

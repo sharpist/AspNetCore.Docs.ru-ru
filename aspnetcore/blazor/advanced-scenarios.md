@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 02/18/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/advanced-scenarios
-ms.openlocfilehash: 5edbbe36e8389bac0335594b1e4331aee1c02867
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 9f1e5ea4d883a027f40ac0eccc7a9bba1435139d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647416"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767204"
 ---
 # <a name="aspnet-core-blazor-advanced-scenarios"></a>Сложные сценарии ASP.NET Core Blazor
 
@@ -218,7 +221,7 @@ builder.AddContent(seq++, "Second");
 * Если порядковые номера задаются жестко, то для алгоритма сравнения требуется только, чтобы порядковые номера увеличивались. Начальное значение и пропуски несущественны. Кроме того, можно использовать номер строки кода в качестве порядкового номера или начать с нуля и увеличивать значение на единицы или сотни (или выбрать любой другой интервал). 
 * Blazor использует порядковые номера, а другие платформы пользовательского интерфейса для сравнения деревьев не используют их. Сравнение выполняется гораздо быстрее, если используются порядковые номера, и Blazor имеет преимущество этапа компиляции, который автоматически обрабатывает порядковые номера для разработчиков, создающих файлы *RAZOR*.
 
-## <a name="perform-large-data-transfers-in-opno-locblazor-server-apps"></a>Выполнение передачи больших объемов данных в приложениях Blazor Server
+## <a name="perform-large-data-transfers-in-blazor-server-apps"></a>Выполнение передачи больших объемов данных в приложениях Blazor Server
 
 В некоторых сценариях необходимо передавать большие объемы данных между JavaScript и Blazor. Как правило, передача больших данных происходит в следующих случаях:
 

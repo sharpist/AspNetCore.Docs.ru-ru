@@ -5,19 +5,25 @@ description: Ознакомьтесь с основными понятиями �
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/03/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: grpc/aspnetcore
-ms.openlocfilehash: 6107704a4b4d9c629a7abe907efd5b1932019130
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: c14ae1fb3c2e046ae577c63824eebb4411a6e804
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78651004"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776224"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>Службы gRPC в ASP.NET Core
 
 В этом документе показано, как приступить к работе со службами gRPC с помощью ASP.NET Core.
 
-## <a name="prerequisites"></a>предварительные требования
+## <a name="prerequisites"></a>Предварительные требования
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -53,7 +59,7 @@ ms.locfileid: "78651004"
 
 ### <a name="configure-grpc"></a>Настройка gRPC
 
-В *Startup.cs*:
+В файле *Startup.cs*:
 
 * gRPC включается с помощью метода `AddGrpc`.
 * Каждая служба gRPC добавляется в конвейер маршрутизации с помощью метода `MapGrpcService`.

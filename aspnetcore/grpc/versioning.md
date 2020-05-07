@@ -5,17 +5,23 @@ description: Узнайте, как управлять версиями служ
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 01/09/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: grpc/versioning
-ms.openlocfilehash: 9bd76009ba28a1abef25a98686afea6753d4a8f4
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: dcf089f1e5f27639d048e91ee3aa42c7da6d8398
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78649360"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775366"
 ---
 # <a name="versioning-grpc-services"></a>Управление версиями gRPC Services
 
-Автор: [Джеймс Ньютон-Кинг](https://twitter.com/jamesnk) (James Newton-King)
+Автор: [Джеймс Ньютон-Кинг (James Newton-King)](https://twitter.com/jamesnk)
 
 Новые функции, добавленные в приложение, могут требовать изменения служб gRPC, предоставляемых клиентам, и иногда это может приводить к непредвиденному поведению и сбоям. При изменении служб gRPC:
 

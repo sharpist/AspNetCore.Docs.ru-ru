@@ -4,13 +4,19 @@ author: hishamco
 description: Сведения о диагностике проблем локализации в приложениях ASP.NET Core.
 ms.author: riande
 ms.date: 01/24/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/troubleshoot-aspnet-core-localization
-ms.openlocfilehash: 229e274a22e170d984a16d3b1ee64ebc38c4ef77
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: f5c2be93be4f896b1822bf93deef24f091e30442
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647896"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774292"
 ---
 # <a name="troubleshoot-aspnet-core-localization"></a>Устранение неполадок локализации в ASP.NET Core
 
