@@ -62,7 +62,7 @@ ms.locfileid: "82776504"
 
 ## <a name="action-filter"></a>Фильтр действий
 
-Если требуется управление доступом к спискам надежных отправителей для конкретных контроллеров MVC или методов действий, используйте фильтр действий. Например:
+Если требуется управление доступом к спискам надежных отправителей для конкретных контроллеров MVC или методов действий, используйте фильтр действий. Пример:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckActionFilter.cs?name=snippet_ClassOnly)]
 
@@ -99,7 +99,7 @@ ms.locfileid: "82776504"
 
 ## <a name="razor-pages-filter"></a>RazorФильтр страниц
 
-Если требуется управлять доступом к спискам надежных отправителей Razor для приложения страниц, используйте Razor фильтр страниц. Например:
+Если требуется управлять доступом к спискам надежных отправителей Razor для приложения страниц, используйте Razor фильтр страниц. Пример:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckPageFilter.cs?name=snippet_ClassOnly)]
 
