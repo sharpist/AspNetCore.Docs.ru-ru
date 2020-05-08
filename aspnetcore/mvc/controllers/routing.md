@@ -20,7 +20,7 @@ ms.locfileid: "82775028"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Маршрутизация к действиям контроллера в ASP.NET Core
 
-Авторы: [Райан Новак](https://github.com/rynowak) (Ryan Nowak), [Кирк Ларкин](https://twitter.com/serpent5) (Kirk Larkin) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
+[Райан Nowak)](https://github.com/rynowak), [Kirk Ларкин](https://twitter.com/serpent5)и [Рик Андерсон (](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -214,7 +214,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 * Выберите лучший кандидат.
 * Создание исключения.
 
-Например:
+Пример:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
@@ -1009,7 +1009,7 @@ app.UseMvc(routes =>
 
 ### <a name="disambiguating-actions"></a>Разрешение неоднозначности действий
 
-Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Например:
+Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Пример:
 
 ```csharp
 public class ProductsController : Controller

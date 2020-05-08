@@ -75,12 +75,12 @@ ms.locfileid: "82775756"
 * `ContactManagerAuthorizationHandler`: Позволяет руководителям утверждать или отклонять контакты.
 * `ContactAdministratorsAuthorizationHandler`: Позволяет администраторам утверждать или отклонять контакты, а также изменять и удалять контакты.
 
-## <a name="prerequisites"></a>Предварительные условия
+## <a name="prerequisites"></a>Предварительные требования
 
 Этот учебник расширен. Вы должны быть знакомы с:
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
-* [Аутентификация](xref:security/authentication/identity)
+* [Authentication](xref:security/authentication/identity)
 * [Подтверждение учетной записи и восстановление пароля](xref:security/authentication/accconfirm)
 * [Авторизация](xref:security/authorization/introduction)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
@@ -316,7 +316,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 | Пользователь                | Заполнено приложением | Параметры                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | Нет                | Изменение или удаление собственных данных.                |
+| test@example.com    | нет                | Изменение или удаление собственных данных.                |
 | manager@contoso.com | Да               | Утвердите, отклоните и измените или удалите собственные данные. |
 | admin@contoso.com   | Да               | Утвердите или отклоните и измените или удалите все данные. |
 
@@ -411,12 +411,12 @@ dotnet ef database update
 * `ContactManagerAuthorizationHandler`: Позволяет руководителям утверждать или отклонять контакты.
 * `ContactAdministratorsAuthorizationHandler`: Позволяет администраторам утверждать или отклонять контакты, а также изменять и удалять контакты.
 
-## <a name="prerequisites"></a>Предварительные условия
+## <a name="prerequisites"></a>Предварительные требования
 
 Этот учебник расширен. Вы должны быть знакомы с:
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
-* [Аутентификация](xref:security/authentication/identity)
+* [Authentication](xref:security/authentication/identity)
 * [Подтверждение учетной записи и восстановление пароля](xref:security/authentication/accconfirm)
 * [Авторизация](xref:security/authorization/introduction)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
@@ -643,7 +643,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 | Пользователь                | Заполнено приложением | Параметры                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | Нет                | Изменение или удаление собственных данных.                |
+| test@example.com    | нет                | Изменение или удаление собственных данных.                |
 | manager@contoso.com | Да               | Утвердите, отклоните и измените или удалите собственные данные. |
 | admin@contoso.com   | Да               | Утвердите или отклоните и измените или удалите все данные. |
 
