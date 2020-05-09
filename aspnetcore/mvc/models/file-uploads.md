@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 0da9e124b884337c63dd91b06df60ef7ca89cf3e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b613ccd8df65e41b86793466a0ed5dc7bf7e8772
+ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774136"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82976757"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Передача файлов в ASP.NET Core
 
@@ -30,7 +30,7 @@ ms.locfileid: "82774136"
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([как скачивать](xref:index#how-to-download-a-sample))
 
-## <a name="security-considerations"></a>Замечания по безопасности
+## <a name="security-considerations"></a>Вопросы безопасности
 
 Необходимо соблюдать осторожность при предоставлении пользователям возможности отправки файлов на сервер. Злоумышленники могут попытаться:
 
@@ -189,7 +189,7 @@ ms.locfileid: "82774136"
 Для выполнения отправки формы в JavaScript для клиентов, которые [не поддерживают Fetch API](https://caniuse.com/#feat=fetch), используйте один из следующих подходов:
 
 * Используйте функцию Fetch Polyfill (например, [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Используйте `XMLHttpRequest`. Например:
+* Используйте `XMLHttpRequest`. Пример:
 
   ```javascript
   <script>
@@ -462,7 +462,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 ### <a name="file-extension-validation"></a>Проверка расширения файла
 
-Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Например:
+Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -759,7 +759,7 @@ The request filtering module is configured to deny a request that exceeds the re
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([как скачивать](xref:index#how-to-download-a-sample))
 
-## <a name="security-considerations"></a>Замечания по безопасности
+## <a name="security-considerations"></a>Вопросы безопасности
 
 Необходимо соблюдать осторожность при предоставлении пользователям возможности отправки файлов на сервер. Злоумышленники могут попытаться:
 
@@ -918,7 +918,7 @@ The request filtering module is configured to deny a request that exceeds the re
 Для выполнения отправки формы в JavaScript для клиентов, которые [не поддерживают Fetch API](https://caniuse.com/#feat=fetch), используйте один из следующих подходов:
 
 * Используйте функцию Fetch Polyfill (например, [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Используйте `XMLHttpRequest`. Например:
+* Используйте `XMLHttpRequest`. Пример:
 
   ```javascript
   <script>
@@ -1191,7 +1191,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 ### <a name="file-extension-validation"></a>Проверка расширения файла
 
-Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Например:
+Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -1478,7 +1478,7 @@ The request filtering module is configured to deny a request that exceeds the re
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* [Сток запросов HTTP-подключения](xref:fundamentals/servers/kestrel#http-connection-request-draining)
+* [Сток запросов HTTP-подключения](xref:fundamentals/servers/kestrel#http11-request-draining)
 * [Неограниченная отправка файлов](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 * [Безопасность Azure: кадр безопасности: Проверка входных данных | Способы их устранения](/azure/security/azure-security-threat-modeling-tool-input-validation)
 * [Шаблоны разработки в облаке Azure: шаблон камердинера Key](/azure/architecture/patterns/valet-key)
