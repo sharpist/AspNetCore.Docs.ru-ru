@@ -1,20 +1,26 @@
 ---
-title: Справочник по синтаксису Razor для ASP.NET Core
+title: Справочник по синтаксису Razor для ASP.NET Core
 author: rick-anderson
-description: Сведения о синтаксисе разметки Razor для внедрения в веб-страницы серверного кода.
+description: Сведения о Razor синтаксисе разметки для внедрения серверного кода на веб-страницы.
 ms.author: riande
 ms.date: 02/12/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: dd5c73be56ed0dafb759df2f5ff2eac1a3b5b09e
-ms.sourcegitcommit: d03905aadf5ceac39fff17706481af7f6c130411
+ms.openlocfilehash: 3e77b25e2660688d0040d47840e47dab8f260197
+ms.sourcegitcommit: 6c7a149168d2c4d747c36de210bfab3abd60809a
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/29/2020
-ms.locfileid: "80381765"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "83003193"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Справочник по синтаксису Razor для ASP.NET Core
 
-[Рик Андерсон](https://twitter.com/RickAndMSFT), [Тейлор Маллен](https://twitter.com/ntaylormullen), и [Дэн Викарил](https://github.com/Rabadash8820)
+По [Рик Андерсон (](https://twitter.com/RickAndMSFT), [Кузнецова Маллен](https://twitter.com/ntaylormullen)и " [викарел](https://github.com/Rabadash8820) "
 
 Razor — это синтаксис разметки для внедрения в веб-страницы серверного кода. Синтаксис Razor состоит из разметки Razor, C# и HTML. Файлы, содержащие Razor, обычно имеют расширение *CSHTML*. Razor также находится в файлах [компонентов Razor](xref:blazor/components) (*.razor*).
 
@@ -467,7 +473,7 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
 }
 ```
 
-Для компонентов `@code` Razor, является [`@functions`](#functions) псевдонимом `@functions`и рекомендуется более . Допускается более одного блока `@code`.
+Для компонентов Razor `@code` является псевдонимом [`@functions`](#functions) и рекомендуется для. `@functions` Допускается более одного блока `@code`.
 
 ::: moniker-end
 
@@ -633,7 +639,7 @@ public class _Views_Account_Login_cshtml : RazorPage<LoginViewModel>
 <div>The Login Email: @Model.Email</div>
 ```
 
-Директива `@model` задает тип свойства `Model`. Директива указывает `T` в `RazorPage<T>` — созданном классе, на основе которого создается производное представление. Если директива `@model` не указана, свойство `Model` имеет тип `dynamic`. Для получения дополнительной информации, [см Сильно @model набранные модели и ключевое слово](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
+Директива `@model` задает тип свойства `Model`. Директива указывает `T` в `RazorPage<T>` — созданном классе, на основе которого создается производное представление. Если директива `@model` не указана, свойство `Model` имеет тип `dynamic`. Дополнительные сведения см. [в @model разделе модели со строгой типизацией и ключевое слово](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
 
 ### <a name="namespace"></a>\@namespace
 
@@ -654,7 +660,7 @@ public class _Views_Account_Login_cshtml : RazorPage<LoginViewModel>
 
 | Страница                                        | Пространство имен                             |
 | ------------------------------------------- | ------------------------------------- |
-| *Pages/Index.cshtml*                        | `Hello.World`                         |
+| *Pages/index. cshtml*                        | `Hello.World`                         |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
 | *Pages/MorePages/EvenMorePages/Page.cshtml* | `Hello.World.MorePages.EvenMorePages` |
 
@@ -666,7 +672,7 @@ public class _Views_Account_Login_cshtml : RazorPage<LoginViewModel>
 
 | Страница                                        | Пространство имен               |
 | ------------------------------------------- | ----------------------- |
-| *Pages/Index.cshtml*                        | `Hello.World`           |
+| *Pages/index. cshtml*                        | `Hello.World`           |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
 | *Pages/MorePages/EvenMorePages/Page.cshtml* | `Another.Planet`        |
 
@@ -701,7 +707,7 @@ public class _Views_Account_Login_cshtml : RazorPage<LoginViewModel>
 
 ::: moniker range=">= aspnetcore-3.0"
 
-В [компонентах Razor](xref:blazor/components) `@using` также контролирует, какие компоненты находятся в области.
+В [компонентах Razor](xref:blazor/components) `@using` также определяет, какие компоненты находятся в области.
 
 ::: moniker-end
 
@@ -878,21 +884,21 @@ public class Pet
 | [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Удаляет из представления вспомогательные функции тегов, добавленные ранее. |
 | [`@tagHelperPrefix`](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Задает префикс тега, который активирует поддержку вспомогательной функции тега и ее использования в явном виде. |
 
-## <a name="razor-reserved-keywords"></a>Зарезервированные ключевые слова Razor
+## <a name="razor-reserved-keywords"></a>Razorзарезервированные ключевые слова
 
-### <a name="razor-keywords"></a>Ключевые слова Razor
+### <a name="razor-keywords"></a>Razorсловами
 
 * page (требуется ASP.NET Core 2.1 или более поздней версии)
 * namespace
 * functions
-* inherits
+* наследует
 * model
 * section
 * helper (сейчас не поддерживается в ASP.NET Core)
 
-В качестве escape-символа для ключевых слов Razor используется `@(Razor Keyword)` (например, `@(functions)`).
+RazorКлючевые слова экранированы `@(Razor Keyword)` с помощью (например `@(functions)`,).
 
-### <a name="c-razor-keywords"></a>Ключевые слова C# в Razor
+### <a name="c-razor-keywords"></a>Ключевые Razor слова C#
 
 * case
 * do
@@ -909,28 +915,28 @@ public class Pet
 * using
 * while
 
-Для ключевых слов C# в Razor требуется двойной escape-символ: `@(@C# Razor Keyword)` (например, `@(@case)`). Первый `@` предназначен для обхода синтаксического анализа Razor, а второй `@` — для обхода C#.
+Ключевые Razor слова C# должны быть двойным образом `@(@C# Razor Keyword)` экранированы с помощью `@(@case)`(например,). Первый `@` заключается в escape- Razor анализе. а второй `@` — для обхода C#.
 
-### <a name="reserved-keywords-not-used-by-razor"></a>Зарезервированные ключевые слова, не используемые в Razor
+### <a name="reserved-keywords-not-used-by-razor"></a>Зарезервированные ключевые слова не используютсяRazor
 
 * class
 
-## <a name="inspect-the-razor-c-class-generated-for-a-view"></a>Просмотр Razor-класса C#, созданного для представления
+## <a name="inspect-the-razor-c-class-generated-for-a-view"></a>Проверка класса Razor C#, созданного для представления
 
 ::: moniker range=">= aspnetcore-2.1"
 
-При использовании пакета SDK для .NET Core 2.1 или более поздней версии [пакет SDK для Razor](xref:razor-pages/sdk) обрабатывает компиляцию файлов Razor. При сборке проекта пакет SDK для Razor создает каталог *obj/<конфигурация_сборки>/<моникер_целевой_платформы>/Razor* в корневом каталоге проекта. Структура каталогов в каталоге *Razor* отражает структуру каталогов проекта.
+В [ Razor ](xref:razor-pages/sdk) пакет SDK для .NET Core 2,1 или более поздней версии пакет SDK обрабатывает Razor компиляцию файлов. При сборке проекта Razor пакет SDK создает *obj/<build_configuration>/<target_framework_moniker>/Razor * каталог в корневом каталоге проекта. Структура каталогов в *Razor* каталоге отражает структуру каталогов проекта.
 
-Рассмотрим следующую структуру каталогов в проекте ASP.NET Core 2.1 Razor Pages, предназначенном для .NET Core 2.1.
+Рассмотрим следующую структуру каталогов в проекте ASP.NET Core 2,1 Razor страниц, предназначенном для .net Core 2,1:
 
-* **Areas/**
-  * **Админ/**
-    * **Страницы/**
+* **Зон**
+  * **Группы**
+    * **См**
       * *Index.cshtml*
       * *Index.cshtml.cs*
-* **Страницы/**
-  * **Совместное)**
-    * *_Layout.cshtml*
+* **См**
+  * **Используемый**
+    * *_Layout. cshtml*
   * *_ViewImports.cshtml*
   * *_ViewStart.cshtml*
   * *Index.cshtml*
@@ -938,22 +944,22 @@ public class Pet
 
 При сборке проекта в конфигурации *Отладка* создается следующий каталог *obj*:
 
-* **obj/**
-  * **Дебаг/**
+* **расширением**
+  * **См**
     * **netcoreapp2.1/**
-      * **Бритва/**
-        * **Areas/**
-          * **Админ/**
-            * **Страницы/**
+      * **Razor/**
+        * **Зон**
+          * **Группы**
+            * **См**
               * *Index.g.cshtml.cs*
-        * **Страницы/**
-          * **Совместное)**
+        * **См**
+          * **Используемый**
             * *_Layout.g.cshtml.cs*
           * *_ViewImports.g.cshtml.cs*
           * *_ViewStart.g.cshtml.cs*
           * *Index.g.cshtml.cs*
 
-Чтобы просмотреть созданный класс для *Pages/Index.cshtml* откройте *obj/Debug/netcoreapp2.1/Razor/Pages/Index.g.cshtml.cs*.
+Чтобы просмотреть созданный класс для *pages/index. cshtml*, откройте объект *obj/Debug/netcoreapp 2.1Razor//Пажес/индекс.г.кштмл.КС*.
 
 ::: moniker-end
 
@@ -975,7 +981,7 @@ public class Pet
 
 ## <a name="view-lookups-and-case-sensitivity"></a>Поиск данных в представлениях и учет регистра
 
-Модуль представлений Razor позволяет искать в представлениях данные с учетом регистра. Однако фактический поиск зависит от используемой файловой системы.
+Обработчик Razor представлений выполняет поиск представлений с учетом регистра. Однако фактический поиск зависит от используемой файловой системы.
 
 * Источники в виде файлов:
   * В операционных системах, файловые системы которых не учитывают регистр (например, Windows), поиск поставщика физических файлов не зависит от регистра. Например, поиск по `return View("Test")` выводит совпадения */Views/Home/Test.cshtml*, */Views/home/test.cshtml* и другие варианты с различными сочетаниями регистра.
@@ -985,10 +991,10 @@ public class Pet
 Разработчикам рекомендуется использовать для файлов и каталогов тот же регистр, что и для:
 
 * имен областей, контроллеров и действий;
-* страниц Razor Pages.
+* RazorСм.
 
 Совпадающий регистр гарантирует, что развертываемые службы смогут находить свои представления вне зависимости от используемой файловой системы.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-[Введение в ASP.NET веб-программирования с использованием Razor Syntax](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) предоставляет множество образцов программирования с синтаксисом Razor.
+[Введение в веб-программирование ASP.NET с Razor использованием синтаксиса](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) предоставляет множество примеров программирования Razor с помощью синтаксиса.
