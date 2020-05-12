@@ -339,14 +339,16 @@
                   uid: security/blazor/webassembly/standalone-with-azure-active-directory
                 - name: Автономное развертывание с помощью AAD B2C
                   uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
-                - name: Размещенное развертывание с помощью Identity Server
-                  uid: security/blazor/webassembly/hosted-with-identity-server
                 - name: Размещенное развертывание с помощью AAD
                   uid: security/blazor/webassembly/hosted-with-azure-active-directory
                 - name: Размещенное развертывание с помощью AAD B2C
                   uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+                - name: Размещенное развертывание с помощью Identity Server
+                  uid: security/blazor/webassembly/hosted-with-identity-server
                 - name: Дополнительные сценарии
                   uid: security/blazor/webassembly/additional-scenarios
+                - name: Группы и роли AAD
+                  uid: security/blazor/webassembly/aad-groups-roles
             - name: Blazor Server
               items:
                 - name: Обзор
@@ -1134,14 +1136,16 @@
               uid: security/blazor/webassembly/standalone-with-azure-active-directory
             - name: Автономное развертывание с помощью AAD B2C
               uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
-            - name: Размещенное развертывание с помощью Identity Server
-              uid: security/blazor/webassembly/hosted-with-identity-server
             - name: Размещенное развертывание с помощью AAD
               uid: security/blazor/webassembly/hosted-with-azure-active-directory
             - name: Размещенное развертывание с помощью AAD B2C
               uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+            - name: Размещенное развертывание с помощью Identity Server
+              uid: security/blazor/webassembly/hosted-with-identity-server
             - name: Дополнительные сценарии
               uid: security/blazor/webassembly/additional-scenarios
+            - name: Группы и роли AAD
+              uid: security/blazor/webassembly/aad-groups-roles
         - name: Blazor Server
           items:
             - name: Обзор
