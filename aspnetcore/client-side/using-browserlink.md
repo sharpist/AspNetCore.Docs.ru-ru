@@ -6,56 +6,60 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 01/09/2020
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: client-side/using-browserlink
-ms.openlocfilehash: 19cc3c2ed91bd9e05df3c036123c78ecbf81fcc0
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 619d19ba90298b2455d4a558fea138c86a751f07
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647104"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773661"
 ---
-# <a name="browser-link-in-aspnet-core"></a><span data-ttu-id="d259d-103">Привязывание к браузеру в ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="d259d-103">Browser Link in ASP.NET Core</span></span>
+# <a name="browser-link-in-aspnet-core"></a><span data-ttu-id="1258a-103">Привязывание к браузеру в ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="1258a-103">Browser Link in ASP.NET Core</span></span>
 
-<span data-ttu-id="d259d-104">Авторы: [Николо Карандини (Nicolò Carandini)](https://github.com/ncarandini), [Майк Вассон (Mike Wasson)](https://github.com/MikeWasson) и [Том Дайкстра (Tom Dykstra)](https://github.com/tdykstra)</span><span class="sxs-lookup"><span data-stu-id="d259d-104">By [Nicolò Carandini](https://github.com/ncarandini), [Mike Wasson](https://github.com/MikeWasson), and [Tom Dykstra](https://github.com/tdykstra)</span></span>
+<span data-ttu-id="1258a-104">Авторы: [Николо Карандини (Nicolò Carandini)](https://github.com/ncarandini), [Майк Вассон (Mike Wasson)](https://github.com/MikeWasson) и [Том Дайкстра (Tom Dykstra)](https://github.com/tdykstra)</span><span class="sxs-lookup"><span data-stu-id="1258a-104">By [Nicolò Carandini](https://github.com/ncarandini), [Mike Wasson](https://github.com/MikeWasson), and [Tom Dykstra](https://github.com/tdykstra)</span></span>
 
-<span data-ttu-id="d259d-105">Привязывание к браузеру является компонентом Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="d259d-105">Browser Link is a Visual Studio feature.</span></span> <span data-ttu-id="d259d-106">Оно создает канал связи между средой разработки и одним или несколькими веб-браузерами.</span><span class="sxs-lookup"><span data-stu-id="d259d-106">It creates a communication channel between the development environment and one or more web browsers.</span></span> <span data-ttu-id="d259d-107">Можно использовать привязывание к браузеру для обновления веб-приложения одновременно в нескольких браузерах, что полезно для тестирования в разных браузерах.</span><span class="sxs-lookup"><span data-stu-id="d259d-107">You can use Browser Link to refresh your web app in several browsers at once, which is useful for cross-browser testing.</span></span>
+<span data-ttu-id="1258a-105">Привязывание к браузеру является компонентом Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="1258a-105">Browser Link is a Visual Studio feature.</span></span> <span data-ttu-id="1258a-106">Оно создает канал связи между средой разработки и одним или несколькими веб-браузерами.</span><span class="sxs-lookup"><span data-stu-id="1258a-106">It creates a communication channel between the development environment and one or more web browsers.</span></span> <span data-ttu-id="1258a-107">Можно использовать привязывание к браузеру для обновления веб-приложения одновременно в нескольких браузерах, что полезно для тестирования в разных браузерах.</span><span class="sxs-lookup"><span data-stu-id="1258a-107">You can use Browser Link to refresh your web app in several browsers at once, which is useful for cross-browser testing.</span></span>
 
-## <a name="browser-link-setup"></a><span data-ttu-id="d259d-108">Настройка привязывания к браузеру</span><span class="sxs-lookup"><span data-stu-id="d259d-108">Browser Link setup</span></span>
+## <a name="browser-link-setup"></a><span data-ttu-id="1258a-108">Настройка привязывания к браузеру</span><span class="sxs-lookup"><span data-stu-id="1258a-108">Browser Link setup</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<span data-ttu-id="d259d-109">Добавьте пакет [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) в проект.</span><span class="sxs-lookup"><span data-stu-id="d259d-109">Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project.</span></span> <span data-ttu-id="d259d-110">Для проектов ASP.NET Core Razor Pages или MVC также включите компиляцию в среде выполнения Razor (*CSHTML*), как описано в <xref:mvc/views/view-compilation>.</span><span class="sxs-lookup"><span data-stu-id="d259d-110">For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (*.cshtml*) files as described in <xref:mvc/views/view-compilation>.</span></span> <span data-ttu-id="d259d-111">Изменения синтаксиса Razor применяются только при включенной компиляции среды выполнения.</span><span class="sxs-lookup"><span data-stu-id="d259d-111">Razor syntax changes are applied only when runtime compilation has been enabled.</span></span>
+<span data-ttu-id="1258a-109">Добавьте пакет [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) в проект.</span><span class="sxs-lookup"><span data-stu-id="1258a-109">Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project.</span></span> <span data-ttu-id="1258a-110">Для проектов ASP.NET Core Razor Pages или MVC также включите компиляцию в среде выполнения Razor (*CSHTML*), как описано в <xref:mvc/views/view-compilation>.</span><span class="sxs-lookup"><span data-stu-id="1258a-110">For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (*.cshtml*) files as described in <xref:mvc/views/view-compilation>.</span></span> <span data-ttu-id="1258a-111">Изменения синтаксиса Razor применяются только при включенной компиляции среды выполнения.</span><span class="sxs-lookup"><span data-stu-id="1258a-111">Razor syntax changes are applied only when runtime compilation has been enabled.</span></span>
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
-<span data-ttu-id="d259d-112">При преобразовании проекта ASP.NET Core 2.0 в ASP.NET Core 2.1 и переходе к [метапакету Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) установите пакет [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) для функции привязывания к браузеру.</span><span class="sxs-lookup"><span data-stu-id="d259d-112">When converting an ASP.NET Core 2.0 project to ASP.NET Core 2.1 and transitioning to the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), install the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package for Browser Link functionality.</span></span> <span data-ttu-id="d259d-113">Шаблоны проектов ASP.NET Core 2.1 по умолчанию используют метапакет `Microsoft.AspNetCore.App`.</span><span class="sxs-lookup"><span data-stu-id="d259d-113">The ASP.NET Core 2.1 project templates use the `Microsoft.AspNetCore.App` metapackage by default.</span></span>
+<span data-ttu-id="1258a-112">При преобразовании проекта ASP.NET Core 2.0 в ASP.NET Core 2.1 и переходе к [метапакету Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) установите пакет [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) для функции привязывания к браузеру.</span><span class="sxs-lookup"><span data-stu-id="1258a-112">When converting an ASP.NET Core 2.0 project to ASP.NET Core 2.1 and transitioning to the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), install the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package for Browser Link functionality.</span></span> <span data-ttu-id="1258a-113">Шаблоны проектов ASP.NET Core 2.1 по умолчанию используют метапакет `Microsoft.AspNetCore.App`.</span><span class="sxs-lookup"><span data-stu-id="1258a-113">The ASP.NET Core 2.1 project templates use the `Microsoft.AspNetCore.App` metapackage by default.</span></span>
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-<span data-ttu-id="d259d-114">Шаблоны ASP.NET Core 2.0 **Веб-приложение**, **Пустой** и **Веб-API** используют [метапакет Microsoft.AspNetCore.All](xref:fundamentals/metapackage), который содержит ссылку на пакет для [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/).</span><span class="sxs-lookup"><span data-stu-id="d259d-114">The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** project templates use the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), which contains a package reference for [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/).</span></span> <span data-ttu-id="d259d-115">Поэтому использование метапакета `Microsoft.AspNetCore.All` не требует дальнейших действий, чтобы сделать привязывание к браузеру доступным для использования.</span><span class="sxs-lookup"><span data-stu-id="d259d-115">Therefore, using the `Microsoft.AspNetCore.All` metapackage requires no further action to make Browser Link available for use.</span></span>
+<span data-ttu-id="1258a-114">Шаблоны ASP.NET Core 2.0 **Веб-приложение**, **Пустой** и **Веб-API** используют [метапакет Microsoft.AspNetCore.All](xref:fundamentals/metapackage), который содержит ссылку на пакет для [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/).</span><span class="sxs-lookup"><span data-stu-id="1258a-114">The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** project templates use the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), which contains a package reference for [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/).</span></span> <span data-ttu-id="1258a-115">Поэтому использование метапакета `Microsoft.AspNetCore.All` не требует дальнейших действий, чтобы сделать привязывание к браузеру доступным для использования.</span><span class="sxs-lookup"><span data-stu-id="1258a-115">Therefore, using the `Microsoft.AspNetCore.All` metapackage requires no further action to make Browser Link available for use.</span></span>
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-1.1"
 
-<span data-ttu-id="d259d-116">Шаблон проекта ASP.NET Core 1.x **Веб-приложение** содержит ссылку на пакет для пакета [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/).</span><span class="sxs-lookup"><span data-stu-id="d259d-116">The ASP.NET Core 1.x **Web Application** project template has a package reference for the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package.</span></span> <span data-ttu-id="d259d-117">Для других типов проектов требуется добавить ссылку на пакет `Microsoft.VisualStudio.Web.BrowserLink`.</span><span class="sxs-lookup"><span data-stu-id="d259d-117">Other project types require you to add a package reference to `Microsoft.VisualStudio.Web.BrowserLink`.</span></span>
+<span data-ttu-id="1258a-116">Шаблон проекта ASP.NET Core 1.x **Веб-приложение** содержит ссылку на пакет для пакета [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/).</span><span class="sxs-lookup"><span data-stu-id="1258a-116">The ASP.NET Core 1.x **Web Application** project template has a package reference for the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package.</span></span> <span data-ttu-id="1258a-117">Для других типов проектов требуется добавить ссылку на пакет `Microsoft.VisualStudio.Web.BrowserLink`.</span><span class="sxs-lookup"><span data-stu-id="1258a-117">Other project types require you to add a package reference to `Microsoft.VisualStudio.Web.BrowserLink`.</span></span>
 
 ::: moniker-end
 
-### <a name="configuration"></a><span data-ttu-id="d259d-118">Параметр Configuration</span><span class="sxs-lookup"><span data-stu-id="d259d-118">Configuration</span></span>
+### <a name="configuration"></a><span data-ttu-id="1258a-118">Параметр Configuration</span><span class="sxs-lookup"><span data-stu-id="1258a-118">Configuration</span></span>
 
-<span data-ttu-id="d259d-119">Вызовите `Startup.Configure` в методе `UseBrowserLink`:</span><span class="sxs-lookup"><span data-stu-id="d259d-119">Call `UseBrowserLink` in the `Startup.Configure` method:</span></span>
+<span data-ttu-id="1258a-119">Вызовите `Startup.Configure` в методе `UseBrowserLink`:</span><span class="sxs-lookup"><span data-stu-id="1258a-119">Call `UseBrowserLink` in the `Startup.Configure` method:</span></span>
 
 ```csharp
 app.UseBrowserLink();
 ```
 
-<span data-ttu-id="d259d-120">Вызов `UseBrowserLink` обычно размещается в блоке `if`, который разрешает привязывание к браузеру только в среде разработки.</span><span class="sxs-lookup"><span data-stu-id="d259d-120">The `UseBrowserLink` call is typically placed inside an `if` block that only enables Browser Link in the Development environment.</span></span> <span data-ttu-id="d259d-121">Пример:</span><span class="sxs-lookup"><span data-stu-id="d259d-121">For example:</span></span>
+<span data-ttu-id="1258a-120">Вызов `UseBrowserLink` обычно размещается в блоке `if`, который разрешает привязывание к браузеру только в среде разработки.</span><span class="sxs-lookup"><span data-stu-id="1258a-120">The `UseBrowserLink` call is typically placed inside an `if` block that only enables Browser Link in the Development environment.</span></span> <span data-ttu-id="1258a-121">Пример:</span><span class="sxs-lookup"><span data-stu-id="1258a-121">For example:</span></span>
 
 ```csharp
 if (env.IsDevelopment())
@@ -65,72 +69,72 @@ if (env.IsDevelopment())
 }
 ```
 
-<span data-ttu-id="d259d-122">Для получения дополнительной информации см. <xref:fundamentals/environments>.</span><span class="sxs-lookup"><span data-stu-id="d259d-122">For more information, see <xref:fundamentals/environments>.</span></span>
+<span data-ttu-id="1258a-122">Для получения дополнительной информации см. <xref:fundamentals/environments>.</span><span class="sxs-lookup"><span data-stu-id="1258a-122">For more information, see <xref:fundamentals/environments>.</span></span>
 
-## <a name="how-to-use-browser-link"></a><span data-ttu-id="d259d-123">Использование привязывания к браузеру</span><span class="sxs-lookup"><span data-stu-id="d259d-123">How to use Browser Link</span></span>
+## <a name="how-to-use-browser-link"></a><span data-ttu-id="1258a-123">Использование привязывания к браузеру</span><span class="sxs-lookup"><span data-stu-id="1258a-123">How to use Browser Link</span></span>
 
-<span data-ttu-id="d259d-124">При открытии проекта ASP.NET Core в Visual Studio элемент управления панели инструментов "Привязывание к браузеру" отображается рядом с элементом управления **Целевой объект отладки**:</span><span class="sxs-lookup"><span data-stu-id="d259d-124">When you have an ASP.NET Core project open, Visual Studio shows the Browser Link toolbar control next to the **Debug Target** toolbar control:</span></span>
+<span data-ttu-id="1258a-124">При открытии проекта ASP.NET Core в Visual Studio элемент управления панели инструментов "Привязывание к браузеру" отображается рядом с элементом управления **Целевой объект отладки**:</span><span class="sxs-lookup"><span data-stu-id="1258a-124">When you have an ASP.NET Core project open, Visual Studio shows the Browser Link toolbar control next to the **Debug Target** toolbar control:</span></span>
 
 ![Раскрывающееся меню "Привязывание к браузеру"](using-browserlink/_static/browserLink-dropdown-menu.png)
 
-<span data-ttu-id="d259d-126">С помощью элемента управления панели инструментов "Привязывание к браузеру" можно:</span><span class="sxs-lookup"><span data-stu-id="d259d-126">From the Browser Link toolbar control, you can:</span></span>
+<span data-ttu-id="1258a-126">С помощью элемента управления панели инструментов "Привязывание к браузеру" можно:</span><span class="sxs-lookup"><span data-stu-id="1258a-126">From the Browser Link toolbar control, you can:</span></span>
 
-* <span data-ttu-id="d259d-127">Одновременно обновить веб-приложение в нескольких браузерах.</span><span class="sxs-lookup"><span data-stu-id="d259d-127">Refresh the web app in several browsers at once.</span></span>
-* <span data-ttu-id="d259d-128">Открыть **Панель мониторинга "Привязывание к браузеру"** .</span><span class="sxs-lookup"><span data-stu-id="d259d-128">Open the **Browser Link Dashboard**.</span></span>
-* <span data-ttu-id="d259d-129">Включить или отключить **привязывание к браузеру**.</span><span class="sxs-lookup"><span data-stu-id="d259d-129">Enable or disable **Browser Link**.</span></span> <span data-ttu-id="d259d-130">Примечание. По умолчанию в Visual Studio привязывание к браузеру отключено.</span><span class="sxs-lookup"><span data-stu-id="d259d-130">Note: Browser Link is disabled by default in Visual Studio.</span></span>
-* <span data-ttu-id="d259d-131">Включить или отключить [Автосинхронизацию в CSS](#enable-or-disable-css-auto-sync).</span><span class="sxs-lookup"><span data-stu-id="d259d-131">Enable or disable [CSS Auto-Sync](#enable-or-disable-css-auto-sync).</span></span>
+* <span data-ttu-id="1258a-127">Одновременно обновить веб-приложение в нескольких браузерах.</span><span class="sxs-lookup"><span data-stu-id="1258a-127">Refresh the web app in several browsers at once.</span></span>
+* <span data-ttu-id="1258a-128">Открыть **Панель мониторинга "Привязывание к браузеру"** .</span><span class="sxs-lookup"><span data-stu-id="1258a-128">Open the **Browser Link Dashboard**.</span></span>
+* <span data-ttu-id="1258a-129">Включить или отключить **привязывание к браузеру**.</span><span class="sxs-lookup"><span data-stu-id="1258a-129">Enable or disable **Browser Link**.</span></span> <span data-ttu-id="1258a-130">Примечание. По умолчанию в Visual Studio привязывание к браузеру отключено.</span><span class="sxs-lookup"><span data-stu-id="1258a-130">Note: Browser Link is disabled by default in Visual Studio.</span></span>
+* <span data-ttu-id="1258a-131">Включить или отключить [Автосинхронизацию в CSS](#enable-or-disable-css-auto-sync).</span><span class="sxs-lookup"><span data-stu-id="1258a-131">Enable or disable [CSS Auto-Sync](#enable-or-disable-css-auto-sync).</span></span>
 
-## <a name="refresh-the-web-app-in-several-browsers-at-once"></a><span data-ttu-id="d259d-132">Одновременное обновление веб-приложения в нескольких браузерах</span><span class="sxs-lookup"><span data-stu-id="d259d-132">Refresh the web app in several browsers at once</span></span>
+## <a name="refresh-the-web-app-in-several-browsers-at-once"></a><span data-ttu-id="1258a-132">Одновременное обновление веб-приложения в нескольких браузерах</span><span class="sxs-lookup"><span data-stu-id="1258a-132">Refresh the web app in several browsers at once</span></span>
 
-<span data-ttu-id="d259d-133">Чтобы выбрать один веб-браузер для запуска при запуске проекта, используйте раскрывающееся меню в элементе управления панели инструментов **Целевой объект отладки**:</span><span class="sxs-lookup"><span data-stu-id="d259d-133">To choose a single web browser to launch when starting the project, use the drop-down menu in the **Debug Target** toolbar control:</span></span>
+<span data-ttu-id="1258a-133">Чтобы выбрать один веб-браузер для запуска при запуске проекта, используйте раскрывающееся меню в элементе управления панели инструментов **Целевой объект отладки**:</span><span class="sxs-lookup"><span data-stu-id="1258a-133">To choose a single web browser to launch when starting the project, use the drop-down menu in the **Debug Target** toolbar control:</span></span>
 
 ![Раскрывающееся меню F5](using-browserlink/_static/debug-target-dropdown-menu.png)
 
-<span data-ttu-id="d259d-135">Чтобы открыть сразу несколько браузеров, выберите **Просмотреть с помощью...** из того же раскрывающегося списка.</span><span class="sxs-lookup"><span data-stu-id="d259d-135">To open multiple browsers at once, choose **Browse with...** from the same drop-down.</span></span> <span data-ttu-id="d259d-136">Удерживайте клавишу <kbd>CTRL</kbd>, чтобы выбрать нужные браузеры, а затем щелкните **Обзор**:</span><span class="sxs-lookup"><span data-stu-id="d259d-136">Hold down the <kbd>Ctrl</kbd> key to select the browsers you want, and then click **Browse**:</span></span>
+<span data-ttu-id="1258a-135">Чтобы открыть сразу несколько браузеров, выберите **Просмотреть с помощью...** из того же раскрывающегося списка.</span><span class="sxs-lookup"><span data-stu-id="1258a-135">To open multiple browsers at once, choose **Browse with...** from the same drop-down.</span></span> <span data-ttu-id="1258a-136">Удерживайте клавишу <kbd>CTRL</kbd>, чтобы выбрать нужные браузеры, а затем щелкните **Обзор**:</span><span class="sxs-lookup"><span data-stu-id="1258a-136">Hold down the <kbd>Ctrl</kbd> key to select the browsers you want, and then click **Browse**:</span></span>
 
 ![Одновременное открытие нескольких браузеров](using-browserlink/_static/open-many-browsers-at-once.png)
 
-<span data-ttu-id="d259d-138">На следующем снимке экрана показана Visual Studio с открытым представлением индекса и двумя открытыми браузерами:</span><span class="sxs-lookup"><span data-stu-id="d259d-138">The following screenshot shows Visual Studio with the Index view open and two open browsers:</span></span>
+<span data-ttu-id="1258a-138">На следующем снимке экрана показана Visual Studio с открытым представлением индекса и двумя открытыми браузерами:</span><span class="sxs-lookup"><span data-stu-id="1258a-138">The following screenshot shows Visual Studio with the Index view open and two open browsers:</span></span>
 
 ![Пример синхронизации с двумя браузерами](using-browserlink/_static/sync-with-two-browsers-example.png)
 
-<span data-ttu-id="d259d-140">Наведите указатель мыши на элемент управления панели инструментов "Привязывание к браузеру", чтобы просмотреть браузеры, подключенные к проекту:</span><span class="sxs-lookup"><span data-stu-id="d259d-140">Hover over the Browser Link toolbar control to see the browsers that are connected to the project:</span></span>
+<span data-ttu-id="1258a-140">Наведите указатель мыши на элемент управления панели инструментов "Привязывание к браузеру", чтобы просмотреть браузеры, подключенные к проекту:</span><span class="sxs-lookup"><span data-stu-id="1258a-140">Hover over the Browser Link toolbar control to see the browsers that are connected to the project:</span></span>
 
 ![Подсказка при наведении](using-browserlink/_static/hoover-tip.png)
 
-<span data-ttu-id="d259d-142">Измените представление индекса, и все подключенные браузеры будут обновлены при нажатии кнопки обновления для привязывания к браузеру:</span><span class="sxs-lookup"><span data-stu-id="d259d-142">Change the Index view, and all connected browsers are updated when you click the Browser Link refresh button:</span></span>
+<span data-ttu-id="1258a-142">Измените представление индекса, и все подключенные браузеры будут обновлены при нажатии кнопки обновления для привязывания к браузеру:</span><span class="sxs-lookup"><span data-stu-id="1258a-142">Change the Index view, and all connected browsers are updated when you click the Browser Link refresh button:</span></span>
 
 ![browsers-sync-to-changes](using-browserlink/_static/browsers-sync-to-changes.png)
 
-<span data-ttu-id="d259d-144">Привязывание к браузеру также работает с браузерами, которые вы запускаете не в Visual Studio и используете для перехода по URL-адресу приложения.</span><span class="sxs-lookup"><span data-stu-id="d259d-144">Browser Link also works with browsers that you launch from outside Visual Studio and navigate to the app URL.</span></span>
+<span data-ttu-id="1258a-144">Привязывание к браузеру также работает с браузерами, которые вы запускаете не в Visual Studio и используете для перехода по URL-адресу приложения.</span><span class="sxs-lookup"><span data-stu-id="1258a-144">Browser Link also works with browsers that you launch from outside Visual Studio and navigate to the app URL.</span></span>
 
-### <a name="the-browser-link-dashboard"></a><span data-ttu-id="d259d-145">Панель мониторинга привязывания к браузеру</span><span class="sxs-lookup"><span data-stu-id="d259d-145">The Browser Link Dashboard</span></span>
+### <a name="the-browser-link-dashboard"></a><span data-ttu-id="1258a-145">Панель мониторинга привязывания к браузеру</span><span class="sxs-lookup"><span data-stu-id="1258a-145">The Browser Link Dashboard</span></span>
 
-<span data-ttu-id="d259d-146">Чтобы управлять соединением с открытыми браузерами, откройте **Панель мониторинга привязывания к браузеру** в раскрывающемся меню "Привязывание к браузеру":</span><span class="sxs-lookup"><span data-stu-id="d259d-146">Open the **Browser Link Dashboard** window from the Browser Link drop down menu to manage the connection with open browsers:</span></span>
+<span data-ttu-id="1258a-146">Чтобы управлять соединением с открытыми браузерами, откройте **Панель мониторинга привязывания к браузеру** в раскрывающемся меню "Привязывание к браузеру":</span><span class="sxs-lookup"><span data-stu-id="1258a-146">Open the **Browser Link Dashboard** window from the Browser Link drop down menu to manage the connection with open browsers:</span></span>
 
 ![open-browserslink-dashboard](using-browserlink/_static/open-browserlink-dashboard.png)
 
-<span data-ttu-id="d259d-148">Если ни один браузер не подключен, можно запустить сеанс без отладки, выбрав **Просмотреть в браузере**:</span><span class="sxs-lookup"><span data-stu-id="d259d-148">If no browser is connected, you can start a non-debugging session by selecting the **View in Browser** link:</span></span>
+<span data-ttu-id="1258a-148">Если ни один браузер не подключен, можно запустить сеанс без отладки, выбрав **Просмотреть в браузере**:</span><span class="sxs-lookup"><span data-stu-id="1258a-148">If no browser is connected, you can start a non-debugging session by selecting the **View in Browser** link:</span></span>
 
 ![browserlink-dashboard-no-connections](using-browserlink/_static/browserlink-dashboard-no-connections.png)
 
-<span data-ttu-id="d259d-150">В противном случае отображаются подключенные браузеры с указанием пути к странице, отображаемой в каждом браузере:</span><span class="sxs-lookup"><span data-stu-id="d259d-150">Otherwise, the connected browsers are shown with the path to the page that each browser is showing:</span></span>
+<span data-ttu-id="1258a-150">В противном случае отображаются подключенные браузеры с указанием пути к странице, отображаемой в каждом браузере:</span><span class="sxs-lookup"><span data-stu-id="1258a-150">Otherwise, the connected browsers are shown with the path to the page that each browser is showing:</span></span>
 
 ![browserlink-dashboard-two-connections](using-browserlink/_static/browserlink-dashboard-two-connections.png)
 
-<span data-ttu-id="d259d-152">Можно также щелкнуть имя отдельного браузера, чтобы обновить только его.</span><span class="sxs-lookup"><span data-stu-id="d259d-152">You can also click on an individual browser name to refresh only that browser.</span></span>
+<span data-ttu-id="1258a-152">Можно также щелкнуть имя отдельного браузера, чтобы обновить только его.</span><span class="sxs-lookup"><span data-stu-id="1258a-152">You can also click on an individual browser name to refresh only that browser.</span></span>
 
-### <a name="enable-or-disable-browser-link"></a><span data-ttu-id="d259d-153">Включение или отключение привязывания к браузеру</span><span class="sxs-lookup"><span data-stu-id="d259d-153">Enable or disable Browser Link</span></span>
+### <a name="enable-or-disable-browser-link"></a><span data-ttu-id="1258a-153">Включение или отключение привязывания к браузеру</span><span class="sxs-lookup"><span data-stu-id="1258a-153">Enable or disable Browser Link</span></span>
 
-<span data-ttu-id="d259d-154">При повторном включении привязывания к браузеру после его отключения необходимо обновить браузеры, чтобы повторно подключить их.</span><span class="sxs-lookup"><span data-stu-id="d259d-154">When you re-enable Browser Link after disabling it, you must refresh the browsers to reconnect them.</span></span>
+<span data-ttu-id="1258a-154">При повторном включении привязывания к браузеру после его отключения необходимо обновить браузеры, чтобы повторно подключить их.</span><span class="sxs-lookup"><span data-stu-id="1258a-154">When you re-enable Browser Link after disabling it, you must refresh the browsers to reconnect them.</span></span>
 
-### <a name="enable-or-disable-css-auto-sync"></a><span data-ttu-id="d259d-155">Включение или отключение автосинхронизации в CSS</span><span class="sxs-lookup"><span data-stu-id="d259d-155">Enable or disable CSS Auto-Sync</span></span>
+### <a name="enable-or-disable-css-auto-sync"></a><span data-ttu-id="1258a-155">Включение или отключение автосинхронизации в CSS</span><span class="sxs-lookup"><span data-stu-id="1258a-155">Enable or disable CSS Auto-Sync</span></span>
 
-<span data-ttu-id="d259d-156">Когда автоматическая синхронизация в CSS включена, подключенные браузеры автоматически обновляются при внесении любых изменений в файлы CSS.</span><span class="sxs-lookup"><span data-stu-id="d259d-156">When CSS Auto-Sync is enabled, connected browsers are automatically refreshed when you make any change to CSS files.</span></span>
+<span data-ttu-id="1258a-156">Когда автоматическая синхронизация в CSS включена, подключенные браузеры автоматически обновляются при внесении любых изменений в файлы CSS.</span><span class="sxs-lookup"><span data-stu-id="1258a-156">When CSS Auto-Sync is enabled, connected browsers are automatically refreshed when you make any change to CSS files.</span></span>
 
-## <a name="how-it-works"></a><span data-ttu-id="d259d-157">Принцип работы</span><span class="sxs-lookup"><span data-stu-id="d259d-157">How it works</span></span>
+## <a name="how-it-works"></a><span data-ttu-id="1258a-157">Принцип работы</span><span class="sxs-lookup"><span data-stu-id="1258a-157">How it works</span></span>
 
-<span data-ttu-id="d259d-158">Для создания канала связи между Visual Studio и браузером привязывание к браузеру использует [SignalR](xref:signalr/introduction).</span><span class="sxs-lookup"><span data-stu-id="d259d-158">Browser Link uses [SignalR](xref:signalr/introduction) to create a communication channel between Visual Studio and the browser.</span></span> <span data-ttu-id="d259d-159">Если привязывание к браузеру включено, Visual Studio выступает в качестве сервера SignalR, к которому могут подключаться несколько клиентов (браузеров).</span><span class="sxs-lookup"><span data-stu-id="d259d-159">When Browser Link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to.</span></span> <span data-ttu-id="d259d-160">Привязывание к браузеру также регистрирует компонент ПО промежуточного слоя в конвейере запросов ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="d259d-160">Browser Link also registers a middleware component in the ASP.NET Core request pipeline.</span></span> <span data-ttu-id="d259d-161">Этот компонент внедряет специальные ссылки `<script>` в каждый запрос страницы с сервера.</span><span class="sxs-lookup"><span data-stu-id="d259d-161">This component injects special `<script>` references into every page request from the server.</span></span> <span data-ttu-id="d259d-162">Чтобы просмотреть ссылки на скрипты, выберите **Просмотреть источник** в браузере и прокрутите до конца содержимого тега `<body>`:</span><span class="sxs-lookup"><span data-stu-id="d259d-162">You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:</span></span>
+<span data-ttu-id="1258a-158">Для создания канала связи между Visual Studio и браузером привязывание к браузеру использует [SignalR](xref:signalr/introduction).</span><span class="sxs-lookup"><span data-stu-id="1258a-158">Browser Link uses [SignalR](xref:signalr/introduction) to create a communication channel between Visual Studio and the browser.</span></span> <span data-ttu-id="1258a-159">Если привязывание к браузеру включено, Visual Studio выступает в качестве сервера SignalR, к которому могут подключаться несколько клиентов (браузеров).</span><span class="sxs-lookup"><span data-stu-id="1258a-159">When Browser Link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to.</span></span> <span data-ttu-id="1258a-160">Привязывание к браузеру также регистрирует компонент ПО промежуточного слоя в конвейере запросов ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="1258a-160">Browser Link also registers a middleware component in the ASP.NET Core request pipeline.</span></span> <span data-ttu-id="1258a-161">Этот компонент внедряет специальные ссылки `<script>` в каждый запрос страницы с сервера.</span><span class="sxs-lookup"><span data-stu-id="1258a-161">This component injects special `<script>` references into every page request from the server.</span></span> <span data-ttu-id="1258a-162">Чтобы просмотреть ссылки на скрипты, выберите **Просмотреть источник** в браузере и прокрутите до конца содержимого тега `<body>`:</span><span class="sxs-lookup"><span data-stu-id="1258a-162">You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:</span></span>
 
 ```html
     <!-- Visual Studio Browser Link -->
@@ -142,6 +146,6 @@ if (env.IsDevelopment())
 </body>
 ```
 
-<span data-ttu-id="d259d-163">Исходные файлы не изменяются.</span><span class="sxs-lookup"><span data-stu-id="d259d-163">Your source files aren't modified.</span></span> <span data-ttu-id="d259d-164">Компонент ПО промежуточного слоя динамически вставляет ссылки на скрипты.</span><span class="sxs-lookup"><span data-stu-id="d259d-164">The middleware component injects the script references dynamically.</span></span>
+<span data-ttu-id="1258a-163">Исходные файлы не изменяются.</span><span class="sxs-lookup"><span data-stu-id="1258a-163">Your source files aren't modified.</span></span> <span data-ttu-id="1258a-164">Компонент ПО промежуточного слоя динамически вставляет ссылки на скрипты.</span><span class="sxs-lookup"><span data-stu-id="1258a-164">The middleware component injects the script references dynamically.</span></span>
 
-<span data-ttu-id="d259d-165">Так как на стороне браузера используется только код JavaScript, он работает во всех браузерах, которые поддерживаются SignalR, без использования подключаемого модуля браузера.</span><span class="sxs-lookup"><span data-stu-id="d259d-165">Because the browser-side code is all JavaScript, it works on all browsers that SignalR supports without requiring a browser plug-in.</span></span>
+<span data-ttu-id="1258a-165">Так как на стороне браузера используется только код JavaScript, он работает во всех браузерах, которые поддерживаются SignalR, без использования подключаемого модуля браузера.</span><span class="sxs-lookup"><span data-stu-id="1258a-165">Because the browser-side code is all JavaScript, it works on all browsers that SignalR supports without requiring a browser plug-in.</span></span>
