@@ -6,20 +6,24 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 12/05/2019
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: grpc/comparison
-ms.openlocfilehash: 2dff64f1f2d67b8a1e676acf6cf131b684099750
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: ab103adc20c5332f71d5f6e3348d0b14c69fce34
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80405868"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774708"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Сравнение служб gRPC с API-интерфейсами HTTP
 
-Автор: [Джеймс Ньютон-Кинг (James Newton-King)](https://twitter.com/jamesnk)
+Автор: [Джеймс Ньютон-Кинг](https://twitter.com/jamesnk) (James Newton-King)
 
-В этой статье объясняется, чем [службы gRPC](https://grpc.io/docs/guides/) отличаются от API HTTP (включая [веб-API](xref:web-api/index) ASP.NET Core). Важно правильно выбрать технологию для предоставления API для вашего приложения, и gRPC предлагает уникальные преимущества по сравнению с API HTTP. В этой статье обсуждаются сильные и слабые стороны gRPC и приводятся рекомендации по использованию gRPC вместо других технологий.
+В этой статье объясняется, чем [службы gRPC](https://grpc.io/docs/guides/) отличаются от API HTTP с JSON (включая [веб-API](xref:web-api/index) ASP.NET Core). Важно правильно выбрать технологию для предоставления API для вашего приложения, и gRPC предлагает уникальные преимущества по сравнению с API HTTP. В этой статье обсуждаются сильные и слабые стороны gRPC и приводятся рекомендации по использованию gRPC вместо других технологий.
 
 ## <a name="high-level-comparison"></a>Общее сравнение
 
@@ -46,6 +50,8 @@ gRPC предназначен для протокола HTTP/2, основной
 
 * Двоичное кадрирование и сжатие. Протокол HTTP/2 является компактным и эффективным при отправке и получении.
 * Мультиплексирование нескольких вызовов HTTP/2 через одно TCP-соединение. Мультиплексирование устраняет [блокировки очереди](https://en.wikipedia.org/wiki/Head-of-line_blocking).
+
+HTTP/2 поддерживается не только gRPC. Многие типы запросов, включая API HTTP с JSON, могут использовать HTTP/2, чтобы повысить производительность.
 
 ### <a name="code-generation"></a>Создание кода
 

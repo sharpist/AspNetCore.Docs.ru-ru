@@ -4,13 +4,19 @@ author: rick-anderson
 description: В этой статье описывается работа с базой данных и ASP.NET Core.
 ms.author: riande
 ms.date: 7/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: b5acb573f8fa39e5300ecdb359113d8697d78934
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 159588ec750f0ede534522aa9397fc2aefb58cd6
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78649516"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775613"
 ---
 # <a name="work-with-a-database-and-aspnet-core"></a>Работа с базой данных и ASP.NET Core
 
@@ -141,8 +147,8 @@ if (context.Movie.Any())
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 > [!div class="step-by-step"]
-> [Предыдущая тема. Шаблонные страницы Razor](xref:tutorials/razor-pages/page)
-> [Следующая тема. Обновление страниц](xref:tutorials/razor-pages/da1)
+> [Предыдущая статья. Сформированные страницы Razor Pages](xref:tutorials/razor-pages/page)
+> [Следующая статья. Изменение созданных страниц](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end
 
@@ -253,7 +259,7 @@ if (context.Movie.Any())
 
 Рабочее приложение не вызывает `Database.Migrate`. Он добавляется в предыдущем коде, чтобы предотвратить следующее исключение, если `Update-Database` не был запущен.
 
-SqlException: не удается открыть базу данных RazorPagesMovieContext-21, запрошенную при входе. Не удалось выполнить вход.
+SqlException: Не удается открыть базу данных "RazorPagesMovieContext-21", запрашиваемую именем входа. Сбой при входе.
 Сбой при входе в систему пользователя user name.
 
 ### <a name="test-the-app"></a>Тестирование приложения
@@ -297,7 +303,7 @@ SqlException: не удается открыть базу данных RazorPage
 * [Версия руководства на YouTube](https://youtu.be/A_5ff11sDHY)
 
 > [!div class="step-by-step"]
-> [Предыдущая тема. Шаблонные страницы Razor](xref:tutorials/razor-pages/page)
-> [Следующая тема. Обновление страниц](xref:tutorials/razor-pages/da1)
+> [Предыдущая статья. Сформированные страницы Razor Pages](xref:tutorials/razor-pages/page)
+> [Далее: Изменение созданных страниц](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end

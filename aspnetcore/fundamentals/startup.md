@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/startup
-ms.openlocfilehash: e3249df4b7388beeff13fe4b4e0ff481c35725c5
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 39fba5ccc99ec0ecf32df5681cfc025c52bc5469
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78651016"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776439"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Запуск приложения в ASP.NET Core
 
@@ -24,7 +30,7 @@ ms.locfileid: "78651016"
 
 ## <a name="the-startup-class"></a>Класс Startup
 
-Приложения ASP.NET Core используют класс `Startup`, который называется `Startup` по соглашению . Класс `Startup`:
+Приложения ASP.NET Core используют класс `Startup`, который по соглашению называется `Startup`. Класс `Startup`:
 
 * При необходимости содержит метод <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> для настройки *служб* приложения. Служба — многократно используемый компонент, обеспечивающий функциональность приложения. Службы *регистрируются* в `ConfigureServices` и используются в приложении с помощью [внедрения зависимостей (DI)](xref:fundamentals/dependency-injection) или <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
 * Содержит метод <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> для создания конвейера обработки запросов приложения.
@@ -42,7 +48,7 @@ ms.locfileid: "78651016"
 
 Узел предоставляет службы, которые доступны конструктору классов `Startup`. Приложение добавляет дополнительные службы через `ConfigureServices`. Как службы узла, так и службы приложения доступны в `Configure` и во всем приложении.
 
-При использовании `Startup`универсального узла[ (](xref:fundamentals/host/generic-host)) в конструктор <xref:Microsoft.Extensions.Hosting.IHostBuilder> могут внедряться только следующие типы служб:
+При использовании [универсального узла](xref:fundamentals/host/generic-host) (<xref:Microsoft.Extensions.Hosting.IHostBuilder>) в конструктор `Startup` могут внедряться только следующие типы служб:
 
 * <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>
 * <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
@@ -62,7 +68,7 @@ ms.locfileid: "78651016"
 
 Метод <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*>:
 
-* Необязательный параметр.
+* Необязательный элемент.
 * Вызывается узлом перед методом `Configure` для настройки служб приложения.
 * По соглашению используется для задания [параметров конфигурации](xref:fundamentals/configuration/index).
 
@@ -85,7 +91,7 @@ ms.locfileid: "78651016"
 * [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [перенаправления HTTPS](xref:security/enforcing-ssl);
 * [Статические файлы](xref:fundamentals/static-files)
-* ASP.NET Core [MVC](xref:mvc/overview) и [Razor Pages](xref:razor-pages/index).
+* ASP.NET Core [MVC](xref:mvc/overview) и [Razor Pages](xref:razor-pages/index)
 
 
 [!code-csharp[](startup/3.0_samples/StartupFilterSample/Startup.cs?name=snippet)]
@@ -96,7 +102,7 @@ ms.locfileid: "78651016"
 
 Каждый компонент ПО промежуточного слоя в конвейере запросов отвечает за вызов следующего компонента в конвейере или замыкает цепочку, если это необходимо.
 
-В сигнатуре метода `IWebHostEnvironment` могут быть указаны дополнительные службы, такие как `ILoggerFactory`, `ConfigureServices` или любые службы, определенные в `Configure`. Эти службы внедряются, если доступны.
+В сигнатуре метода `Configure` могут быть указаны дополнительные службы, такие как `IWebHostEnvironment`, `ILoggerFactory` или любые службы, определенные в `ConfigureServices`. Эти службы внедряются, если доступны.
 
 Дополнительные сведения об использовании `IApplicationBuilder` и порядке обработки ПО промежуточного слоя см. в статье <xref:fundamentals/middleware/index>.
 
@@ -143,7 +149,7 @@ ms.locfileid: "78651016"
 
 ## <a name="add-configuration-at-startup-from-an-external-assembly"></a>Добавление конфигурации из внешней сборки при запуске
 
-Реализация <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> позволяет при запуске добавлять в приложение улучшения из внешней сборки вне приложения класса `Startup`. Дополнительные сведения см. в разделе <xref:fundamentals/configuration/platform-specific-configuration>.
+Реализация <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> позволяет при запуске добавлять в приложение улучшения из внешней сборки вне приложения класса `Startup`. Для получения дополнительной информации см. <xref:fundamentals/configuration/platform-specific-configuration>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
@@ -159,7 +165,7 @@ ms.locfileid: "78651016"
 
 ## <a name="the-startup-class"></a>Класс Startup
 
-Приложения ASP.NET Core используют класс `Startup`, который называется `Startup` по соглашению . Класс `Startup`:
+Приложения ASP.NET Core используют класс `Startup`, который по соглашению называется `Startup`. Класс `Startup`:
 
 * При необходимости содержит метод <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> для настройки *служб* приложения. Служба — многократно используемый компонент, обеспечивающий функциональность приложения. Службы *регистрируются* в `ConfigureServices` и используются в приложении с помощью [внедрения зависимостей (DI)](xref:fundamentals/dependency-injection) или <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
 * Содержит метод <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> для создания конвейера обработки запросов приложения.
@@ -194,7 +200,7 @@ ms.locfileid: "78651016"
 
 Метод <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*>:
 
-* Необязательный параметр.
+* Необязательный элемент.
 * Вызывается узлом перед методом `Configure` для настройки служб приложения.
 * По соглашению используется для задания [параметров конфигурации](xref:fundamentals/configuration/index).
 
@@ -206,7 +212,7 @@ ms.locfileid: "78651016"
 
 Добавление служб в контейнер служб делает их доступными в приложении и в методе `Configure`. Службы разрешаются посредством [внедрения зависимостей](xref:fundamentals/dependency-injection) или из <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
 
-Подробнее о [ см. в сведениях о ](xref:mvc/compatibility-version)SetCompatibilityVersion`SetCompatibilityVersion`.
+Подробнее о `SetCompatibilityVersion` см. в сведениях о [SetCompatibilityVersion](xref:mvc/compatibility-version).
 
 ## <a name="the-configure-method"></a>Метод Configure
 
@@ -219,8 +225,8 @@ ms.locfileid: "78651016"
 * [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [перенаправления HTTPS](xref:security/enforcing-ssl);
 * [Статические файлы](xref:fundamentals/static-files)
-* ASP.NET Core [MVC](xref:mvc/overview) и [Razor Pages](xref:razor-pages/index).
-* [Общий регламент по защите данных (GDPR)](xref:security/gdpr)
+* ASP.NET Core [MVC](xref:mvc/overview) и [Razor Pages](xref:razor-pages/index)
+* [общего регламента по защите данных (GDPR)](xref:security/gdpr);
 
 [!code-csharp[](startup/sample_snapshot/Startup4.cs)]
 
@@ -228,7 +234,7 @@ ms.locfileid: "78651016"
 
 Каждый компонент ПО промежуточного слоя в конвейере запросов отвечает за вызов следующего компонента в конвейере или замыкает цепочку, если это необходимо.
 
-В сигнатуре метода `IHostingEnvironment` могут быть указаны дополнительные службы, такие как `ILoggerFactory`, `ConfigureServices` или любые службы, определенные в `Configure`. Эти службы внедряются, если доступны.
+В сигнатуре метода `Configure` могут быть указаны дополнительные службы, такие как `IHostingEnvironment`, `ILoggerFactory` или любые службы, определенные в `ConfigureServices`. Эти службы внедряются, если доступны.
 
 Дополнительные сведения об использовании `IApplicationBuilder` и порядке обработки ПО промежуточного слоя см. в статье <xref:fundamentals/middleware/index>.
 
@@ -275,7 +281,7 @@ ms.locfileid: "78651016"
 
 ## <a name="add-configuration-at-startup-from-an-external-assembly"></a>Добавление конфигурации из внешней сборки при запуске
 
-Реализация <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> позволяет при запуске добавлять в приложение улучшения из внешней сборки вне приложения класса `Startup`. Дополнительные сведения см. в разделе <xref:fundamentals/configuration/platform-specific-configuration>.
+Реализация <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> позволяет при запуске добавлять в приложение улучшения из внешней сборки вне приложения класса `Startup`. Для получения дополнительной информации см. <xref:fundamentals/configuration/platform-specific-configuration>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

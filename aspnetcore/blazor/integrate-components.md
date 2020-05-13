@@ -1,21 +1,24 @@
 ---
-title: Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages
+title: Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages
 author: guardrex
 description: Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 04/25/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/integrate-components
-ms.openlocfilehash: cf6056e0985d5433bddecac8dd183ca3f4c2af5b
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: eb4378223c40594ac52f50b7b890785067515555
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218938"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82771778"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages
 
@@ -23,7 +26,14 @@ ms.locfileid: "80218938"
 
 Компоненты Razor можно интегрировать в приложения MVC и Razor Pages. Одновременно с отрисовкой страницы или представления можно выполнять предварительную обработку компонентов.
 
-## <a name="prepare-the-app-to-use-components-in-pages-and-views"></a>Подготовка приложения к использованию компонентов на страницах и в представлениях
+После [подготовки приложения](#prepare-the-app) используйте рекомендации в следующих разделах в зависимости от требований приложения:
+
+* Маршрутизируемые компоненты &ndash; Для компонентов, напрямую маршрутизируемых из запросов пользователей. Следуйте этому руководству, когда посетители должны иметь возможность сделать HTTP-запрос в браузере для компонента с директивой [`@page`](xref:mvc/views/razor#page).
+  * [Использование маршрутизируемых компонентов в приложении Razor Pages](#use-routable-components-in-a-razor-pages-app)
+  * [Использование маршрутизируемых компонентов в приложении MVC](#use-routable-components-in-an-mvc-app)
+* [Преобразование компонентов страницы или представления](#render-components-from-a-page-or-view) &ndash; Для компонентов, напрямую маршрутизируемых из запросов пользователей. Следуйте этому руководству, когда приложение внедряет компоненты в существующие страницы и представления с помощью вспомогательной функции [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+
+## <a name="prepare-the-app"></a>Подготовка приложения
 
 Существующее приложение MVC или Razor Pages может интегрировать компоненты Razor в страницы и представления:
 
@@ -60,13 +70,13 @@ ms.locfileid: "80218938"
    @using MyAppNamespace
    ```
 
-1. В `Startup.ConfigureServices` зарегистрируйте службу Blazor Server.
+1. В `Startup.ConfigureServices` зарегистрируйте службу Blazor Server:
 
    ```csharp
    services.AddServerSideBlazor();
    ```
 
-1. В `Startup.Configure` добавьте конечную точку Blazor Hub в `app.UseEndpoints`.
+1. В `Startup.Configure` добавьте конечную точку Blazor Hub в `app.UseEndpoints`:
 
    ```csharp
    endpoints.MapBlazorHub();
@@ -80,7 +90,7 @@ ms.locfileid: "80218938"
 
 Для поддержки маршрутизируемых компонентов Razor в приложениях Razor Pages сделайте следующее:
 
-1. Следуйте указаниям в разделе [Подготовка приложения к использованию компонентов на страницах и в представлениях](#prepare-the-app-to-use-components-in-pages-and-views).
+1. Следуйте указаниям в разделе [подготовка приложений](#prepare-the-app).
 
 1. Добавьте файл *App.razor* в корневой каталог проекта со следующим содержимым:
 
@@ -113,6 +123,19 @@ ms.locfileid: "80218938"
 
    Для макета компоненты используют общий файл *_Layout.cshtml*.
 
+   Параметр <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> настраивает одно из следующих поведений компонента `App`:
+
+   * компонент предварительно преобразуется в страницу;
+   * компонент отображается как статический HTML на странице или включает необходимые сведения для начальной загрузки приложения Blazor из агента пользователя.
+
+   | Режим обработки | Описание |
+   | ----------- | ----------- |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Преобразует компонент `App` в статический HTML и включает метку приложения Blazor Server. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Отображает метку приложения Blazor Server. Выходные данные компонента `App` не включаются. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Преобразует компонент `App` в статический HTML. |
+
+   Дополнительные сведения о компоненте Tag Helper см. в разделе <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+
 1. Добавьте маршрут с низким приоритетом для страницы *_Host.cshtml* в конфигурацию конечной точки в `Startup.Configure`:
 
    ```csharp
@@ -134,7 +157,7 @@ ms.locfileid: "80218938"
    ...
    ```
 
-   Дополнительные сведения о пространствах имен см. в разделе [Пространства имен компонентов](#component-namespaces).
+Дополнительные сведения о пространствах имен см. в разделе [Пространства имен компонентов](#component-namespaces).
 
 ## <a name="use-routable-components-in-an-mvc-app"></a>Использование маршрутизируемых компонентов в приложении MVC
 
@@ -142,7 +165,7 @@ ms.locfileid: "80218938"
 
 Для поддержки маршрутизируемых компонентов Razor в приложениях MVC сделайте следующее:
 
-1. Следуйте указаниям в разделе [Подготовка приложения к использованию компонентов на страницах и в представлениях](#prepare-the-app-to-use-components-in-pages-and-views).
+1. Следуйте указаниям в разделе [подготовка приложений](#prepare-the-app).
 
 1. Добавьте файл *App.razor* в корневой каталог проекта со следующим содержимым:
 
@@ -173,6 +196,19 @@ ms.locfileid: "80218938"
    ```
 
    Для макета компоненты используют общий файл *_Layout.cshtml*.
+   
+   Параметр <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> настраивает одно из следующих поведений компонента `App`:
+
+   * компонент предварительно преобразуется в страницу;
+   * компонент отображается как статический HTML на странице или включает необходимые сведения для начальной загрузки приложения Blazor из агента пользователя.
+
+   | Режим обработки | Описание |
+   | ----------- | ----------- |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Преобразует компонент `App` в статический HTML и включает метку приложения Blazor Server. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Отображает метку приложения Blazor Server. Выходные данные компонента `App` не включаются. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Преобразует компонент `App` в статический HTML. |
+
+   Дополнительные сведения о компоненте Tag Helper см. в разделе <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 1. Добавьте действие в контроллер Home:
 
@@ -204,11 +240,66 @@ ms.locfileid: "80218938"
    ...
    ```
 
-   Дополнительные сведения о пространствах имен см. в разделе [Пространства имен компонентов](#component-namespaces).
+Дополнительные сведения о пространствах имен см. в разделе [Пространства имен компонентов](#component-namespaces).
+
+## <a name="render-components-from-a-page-or-view"></a>Отрисовка компонентов со страницы или представления
+
+*Этот раздел описывает добавление на страницы или в представления компонентов, не являющихся напрямую маршрутизируемыми из запросов пользователей.*
+
+Чтобы отрисовать компонент из страницы или представления, используйте [вспомогательную функцию тега компонента](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+
+### <a name="render-stateful-interactive-components"></a>Отрисовка интерактивных компонентов с отслеживанием состояния
+
+На страницу или в представление Razor можно добавить интерактивные компоненты с отслеживанием состояния.
+
+При отображении страницы или представления:
+
+* компонент предварительно отображается страницей или представлением;
+* исходное состояние компонента, используемое для предварительной визуализации, теряется;
+* новое состояние компонента создается при установке подключения SignalR.
+
+Следующая страница Razor визуализирует компонент `Counter`.
+
+```cshtml
+<h1>My Razor Page</h1>
+
+<component type="typeof(Counter)" render-mode="ServerPrerendered" 
+    param-InitialValue="InitialValue" />
+
+@functions {
+    [BindProperty(SupportsGet=true)]
+    public int InitialValue { get; set; }
+}
+```
+
+Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+
+### <a name="render-noninteractive-components"></a>Отрисовка неинтерактивных компонентов
+
+На следующей странице Razor компонент `Counter` статически подготавливается к просмотру с начальным значением, указанным с помощью формы. Так как этот компонент отображается статически, он не может быть интерактивным:
+
+```cshtml
+<h1>My Razor Page</h1>
+
+<form>
+    <input type="number" asp-for="InitialValue" />
+    <button type="submit">Set initial value</button>
+</form>
+
+<component type="typeof(Counter)" render-mode="Static" 
+    param-InitialValue="InitialValue" />
+
+@functions {
+    [BindProperty(SupportsGet=true)]
+    public int InitialValue { get; set; }
+}
+```
+
+Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ## <a name="component-namespaces"></a>Пространства имен компонентов
 
-При использовании настраиваемой папки для хранения компонентов приложения добавьте пространство имен, представляющее эту папку, на страницу или в представление либо в файл *_ViewImports.cshtml*. Рассмотрим следующий пример:
+При использовании настраиваемой папки для хранения компонентов приложения добавьте пространство имен, представляющее эту папку, на страницу или в представление либо в файл *_ViewImports.cshtml*. В следующем примере:
 
 * Измените `MyAppNamespace` на пространство имен приложения.
 * Если папка с именем *Components* не используется для хранения компонентов, измените `Components` на папку, где находятся компоненты.
@@ -219,16 +310,4 @@ ms.locfileid: "80218938"
 
 Файл *_ViewImports.cshtml* находится в папке *Pages* приложения Razor Pages или папке *Views* приложения MVC.
 
-Дополнительные сведения см. в разделе <xref:blazor/components#import-components>.
-
-## <a name="render-components-from-a-page-or-view"></a>Отрисовка компонентов со страницы или представления
-
-*Этот раздел описывает добавление на страницы или в представления компонентов, не являющихся напрямую маршрутизируемыми из запросов пользователей.*
-
-Чтобы отрисовать компонент из страницы или представления, используйте [вспомогательную функцию тега компонента](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
-
-Дополнительные сведения об отрисовке компонентов, состоянии компонентов и вспомогательной функции тегов `Component` см. в следующих статьях:
-
-* <xref:blazor/hosting-models>
-* <xref:blazor/hosting-model-configuration>
-* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
+Для получения дополнительной информации см. <xref:blazor/components#import-components>.

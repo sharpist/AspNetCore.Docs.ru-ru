@@ -1,16 +1,22 @@
 ---
-title: Сформированные страницы Razor Pages в ASP.NET Core
+title: Сформированные страницы Razor Pages в ASP.NET Core
 author: rick-anderson
 description: Описание страниц Razor Pages, созданных путем формирования шаблонов.
 ms.author: riande
 ms.date: 08/17/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: cec4295a2c08c89db0975808583f41c7d09bfc88
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 22afbc729cc73427b3d04bee379534cda38b39bd
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78648646"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774851"
 ---
 # <a name="scaffolded-razor-pages-in-aspnet-core"></a>Сформированные страницы Razor Pages в ASP.NET Core
 
@@ -355,7 +361,7 @@ Visual Studio для Mac выделяет тег `<form method="post">` полу
 
 Элемент `<form method="post">` представляет собой [вспомогательную функцию тега Form](xref:mvc/views/working-with-forms#the-form-tag-helper). Вспомогательная функция тега Form автоматически включает [маркер защиты от подделки](xref:security/anti-request-forgery).
 
-Ядро формирования шаблонов создает разметку Razor для каждого поля в модели (кроме ID) следующего вида:
+Ядро формирования шаблонов создает разметку Razor для каждого поля в модели (кроме ID) следующего вида.
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml?range=15-20)]
 

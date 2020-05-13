@@ -6,14 +6,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/06/2020
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: fundamentals/app-state
-ms.openlocfilehash: 706468d44ddabbd3a695dbb60aaf1be15fe166e2
-ms.sourcegitcommit: f9a5069577e8f7c53f8bcec9e13e117950f4f033
+ms.openlocfilehash: c29b58eb14a7962f53f2c8c48067de2f5872fded
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82558904"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774812"
 ---
 # <a name="session-and-state-management-in-aspnet-core"></a>Управление сеансами и состояниями в ASP.NET Core
 
@@ -408,7 +412,7 @@ ASP.NET Core сохраняет состояние сеанса, предост�
 * [SetInt32(ISession, String, Int32)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setint32)
 * [SetString(ISession, String, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setstring)
 
-В следующем примере извлекается значение сеанса для ключа `IndexModel.SessionKeyName` (`_Name` в примере приложения) на странице Razor Pages:
+В следующем примере извлекается значение сеанса для ключа `IndexModel.SessionKeyName` (`_Name` в примере приложения) на странице Razor Pages.
 
 ```csharp
 @page
@@ -436,7 +440,7 @@ Name: @HttpContext.Session.GetString(IndexModel.SessionKeyName)
 
 ## <a name="tempdata"></a>TempData
 
-ASP.NET Core предоставляет [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) Razor Pages или <xref:Microsoft.AspNetCore.Mvc.Controller.TempData> контроллера. Это свойство хранит данные до тех пор, пока они не будут прочитаны в другом запросе. Для проверки данных без удаления можно использовать методы [Keep(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) и [Peek(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) в конце запроса. [Keep()](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) помечает все элементы в словаре для хранения. `TempData` особенно удобно использовать для перенаправления, когда данные требуются для нескольких запросов. `TempData` реализуется поставщиками `TempData`, например, с помощью файлов cookie или состояния сеанса.
+ASP.NET Core предоставляет [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) Razor Pages или <xref:Microsoft.AspNetCore.Mvc.Controller.TempData> контроллера. Это свойство хранит данные до тех пор, пока они не будут прочитаны в другом запросе. Для проверки данных без удаления можно использовать методы [Keep(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) и [Peek(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) в конце запроса. [Keep()](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) помечает все элементы в словаре для хранения. `TempData` особенно удобно использовать для перенаправления, когда данные требуются для нескольких запросов. `TempData` реализуется поставщиками `TempData`, например, с помощью файлов cookie или состояния сеанса.
 
 ## <a name="tempdata-samples"></a>Примеры TempData
 

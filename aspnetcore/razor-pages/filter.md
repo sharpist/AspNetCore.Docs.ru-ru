@@ -1,27 +1,33 @@
 ---
-title: Методы фильтрации для Razor Pages в ASP.NET Core
+title: Методы фильтрации для Razor Pages в ASP.NET Core
 author: Rick-Anderson
-description: Описание способов создания методов фильтрации Razor Pages в ASP.NET Core.
+description: Описание способов создания методов фильтрации Razor Pages в ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 2/18/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: razor-pages/filter
-ms.openlocfilehash: cd772da8ed565bc779d8c6bcc7c9949a0c1c7c60
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 68962d5a3a49e52510d72899e7dead2c1983d8b6
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78648052"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775522"
 ---
-# <a name="filter-methods-for-razor-pages-in-aspnet-core"></a>Методы фильтрации для Razor Pages в ASP.NET Core
+# <a name="filter-methods-for-razor-pages-in-aspnet-core"></a>Методы фильтрации для Razor Pages в ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT)
+Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
-Фильтры Razor Pages [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) и [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) разрешают Razor Pages выполнять код до и после запуска обработчика Razor Pages. Фильтры страницы Razor похожи на [фильтры действий MVC ASP.NET Core](xref:mvc/controllers/filters#action-filters), но их нельзя применять к методам обработчика отдельной страницы.
+Фильтры Razor Pages [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) и [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) разрешают Razor Pages выполнять код до и после запуска обработчика Razor Pages. Фильтры страницы Razor похожи на [фильтры действий MVC ASP.NET Core](xref:mvc/controllers/filters#action-filters), но их нельзя применять к методам обработчика отдельной страницы.
 
-Фильтры страницы Razor:
+Фильтры страниц Razor:
 
 * Запускают код после выбора метода обработчика, но до привязки модели.
 * Запускают код до выполнения метода обработчика, но после привязки модели.
@@ -34,22 +40,22 @@ ms.locfileid: "78648052"
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/filter/3.1sample) ([как скачивать](xref:index#how-to-download-a-sample))
 
-Фильтры страницы Razor предоставляют следующие методы, которые могут применяться глобально или на уровне страницы:
+Фильтры страницы Razor предоставляют следующие методы, которые могут применяться глобально или на уровне страницы.
 
 * Синхронные методы:
 
-  * [OnPageHandlerSelected](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerselected?view=aspnetcore-2.0). Вызывается после выбора метода обработчика, но до привязки модели.
-  * [OnPageHandlerExecuting](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerexecuting?view=aspnetcore-2.0). Вызывается до выполнения метода обработчика, но после привязки модели.
-  * [OnPageHandlerExecuted](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerexecuted?view=aspnetcore-2.0). Вызывается после выполнения метода обработчика, но до результата действия.
+  * [OnPageHandlerSelected](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerselected?view=aspnetcore-2.0): вызывается после выбора метода обработчика, но до привязки модели.
+  * [OnPageHandlerExecuting](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerexecuting?view=aspnetcore-2.0): вызывается до выполнения метода обработчика, но после привязки модели.
+  * [OnPageHandlerExecuted](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerexecuted?view=aspnetcore-2.0): вызывается после выполнения метода обработчика, но до результата действия.
 
 * Асинхронные методы:
 
-  * [OnPageHandlerSelectionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerselectionasync?view=aspnetcore-2.0). Вызывается асинхронно после выбора метода обработчика, но до привязки модели.
-  * [OnPageHandlerExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerexecutionasync?view=aspnetcore-2.0). Вызывается асинхронно до вызова метода обработчика, но после привязки модели.
+  * [OnPageHandlerSelectionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerselectionasync?view=aspnetcore-2.0): вызывается асинхронно после выбора метода обработчика, но до привязки модели.
+  * [OnPageHandlerExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerexecutionasync?view=aspnetcore-2.0): вызывается асинхронно до вызова метода обработчика, но после привязки модели.
 
 Реализуйте синхронный **или** асинхронный интерфейс фильтра, но **не** оба варианта. Платформа сначала проверяет, реализует ли фильтр асинхронный интерфейс. Если да, вызывается он. В противном случае вызываются методы синхронного интерфейса. Если реализуются оба интерфейса, вызываются только асинхронные методы. Это же правило применяется к переопределению на страницах — реализуйте синхронную или асинхронную версию переопределения, но не обе сразу.
 
-## <a name="implement-razor-page-filters-globally"></a>Реализации фильтров страницы Razor глобально
+## <a name="implement-razor-page-filters-globally"></a>Реализация фильтров страницы Razor глобально
 
 В следующем коде реализуется фильтр `IAsyncPageFilter`:
 
@@ -75,7 +81,7 @@ ms.locfileid: "78648052"
 
 ## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>Реализация фильтров страницы Razor путем переопределения методов фильтра
 
-В следующем коде переопределяются асинхронные фильтры страницы Razor:
+В следующем коде переопределяются асинхронные фильтры страницы Razor.
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Index.cshtml.cs?name=snippet)]
 
@@ -109,11 +115,11 @@ ms.locfileid: "78648052"
 
 ::: moniker range="< aspnetcore-3.0"
 
-Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT)
+Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
-Фильтры Razor Pages [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) и [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) разрешают Razor Pages выполнять код до и после запуска обработчика Razor Pages. Фильтры страницы Razor похожи на [фильтры действий MVC ASP.NET Core](xref:mvc/controllers/filters#action-filters), но их нельзя применять к методам обработчика отдельной страницы.
+Фильтры Razor Pages [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) и [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) разрешают Razor Pages выполнять код до и после запуска обработчика Razor Pages. Фильтры страницы Razor похожи на [фильтры действий MVC ASP.NET Core](xref:mvc/controllers/filters#action-filters), но их нельзя применять к методам обработчика отдельной страницы.
 
-Фильтры страницы Razor:
+Фильтры страниц Razor:
 
 * Запускают код после выбора метода обработчика, но до привязки модели.
 * Запускают код до выполнения метода обработчика, но после привязки модели.
@@ -125,23 +131,23 @@ ms.locfileid: "78648052"
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/filter/sample/PageFilter) ([как скачивать](xref:index#how-to-download-a-sample))
 
-Фильтры страницы Razor предоставляют следующие методы, которые могут применяться глобально или на уровне страницы:
+Фильтры страницы Razor предоставляют следующие методы, которые могут применяться глобально или на уровне страницы.
 
 * Синхронные методы:
 
-  * [OnPageHandlerSelected](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerselected?view=aspnetcore-2.0). Вызывается после выбора метода обработчика, но до привязки модели.
-  * [OnPageHandlerExecuting](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerexecuting?view=aspnetcore-2.0). Вызывается до выполнения метода обработчика, но после привязки модели.
-  * [OnPageHandlerExecuted](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerexecuted?view=aspnetcore-2.0). Вызывается после выполнения метода обработчика, но до результата действия.
+  * [OnPageHandlerSelected](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerselected?view=aspnetcore-2.0): вызывается после выбора метода обработчика, но до привязки модели.
+  * [OnPageHandlerExecuting](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerexecuting?view=aspnetcore-2.0): вызывается до выполнения метода обработчика, но после привязки модели.
+  * [OnPageHandlerExecuted](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerexecuted?view=aspnetcore-2.0): вызывается после выполнения метода обработчика, но до результата действия.
 
 * Асинхронные методы:
 
-  * [OnPageHandlerSelectionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerselectionasync?view=aspnetcore-2.0). Вызывается асинхронно после выбора метода обработчика, но до привязки модели.
-  * [OnPageHandlerExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerexecutionasync?view=aspnetcore-2.0). Вызывается асинхронно до вызова метода обработчика, но после привязки модели.
+  * [OnPageHandlerSelectionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerselectionasync?view=aspnetcore-2.0): вызывается асинхронно после выбора метода обработчика, но до привязки модели.
+  * [OnPageHandlerExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerexecutionasync?view=aspnetcore-2.0): вызывается асинхронно до вызова метода обработчика, но после привязки модели.
 
 > [!NOTE]
 > Реализуйте **либо** синхронный, либо асинхронный вариант интерфейса фильтра, но не оба варианта. Платформа сначала проверяет, реализует ли фильтр асинхронный интерфейс. Если да, вызывается он. В противном случае вызываются методы синхронного интерфейса. Если реализуются оба интерфейса, вызываются только асинхронные методы. Это же правило применяется к переопределению на страницах — реализуйте синхронную или асинхронную версию переопределения, но не обе сразу.
 
-## <a name="implement-razor-page-filters-globally"></a>Реализации фильтров страницы Razor глобально
+## <a name="implement-razor-page-filters-globally"></a>Реализация фильтров страницы Razor глобально
 
 В следующем коде реализуется фильтр `IAsyncPageFilter`:
 
@@ -171,7 +177,7 @@ ms.locfileid: "78648052"
 
 ## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>Реализация фильтров страницы Razor путем переопределения методов фильтра
 
-В следующем коде переопределяются синхронные фильтры страницы Razor:
+В следующем коде переопределяются синхронные фильтры страницы Razor.
 
 [!code-csharp[Main](filter/sample/PageFilter/Pages/Index.cshtml.cs)]
 

@@ -7,14 +7,17 @@ ms.custom: mvc
 ms.date: 02/12/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: f375022ad3ebdea2990f626320ef295926f88c22
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 67fc972676549a02265035c129c513f11d303d51
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78648772"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774051"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>Новые возможности в ASP.NET Core 3.1
 
@@ -24,7 +27,7 @@ ms.locfileid: "78648772"
 
 Компоненты Razor теперь создаются как разделяемые классы. Код компонента Razor можно написать как файл кода программной части, определенный как разделяемый класс, вместо того чтобы определять весь код компонента в одном файле. Дополнительные сведения см. в разделе [Поддержка разделяемых классов](xref:blazor/components#partial-class-support).
 
-## <a name="opno-locblazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a>Вспомогательная функция тега компонента Blazor и передача параметров в компоненты верхнего уровня
+## <a name="blazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a>Вспомогательная функция тега компонента Blazor и передача параметров в компоненты верхнего уровня
 
 В Blazor с ASP.NET Core 3.0 компоненты отрисовывались как страницы и представления с помощью вспомогательной функции HTML (`Html.RenderComponentAsync`). В ASP.NET Core 3.1 компонент отрисовывается из страницы или представления с помощью новой вспомогательной функции тега компонента:
 
@@ -53,9 +56,9 @@ ms.locfileid: "78648772"
 
 ## <a name="breaking-changes-for-samesite-cookies"></a>Критические изменения для файлов cookie SameSite
 
-Поведение файлов cookie SameSite изменилось в соответствии с предстоящими изменениями в браузерах. Это может повлиять на сценарии проверки подлинности, такие как AzureAd, OpenIdConnect или WsFederation. Дополнительные сведения см. в разделе <xref:security/samesite>.
+Поведение файлов cookie SameSite изменилось в соответствии с предстоящими изменениями в браузерах. Это может повлиять на сценарии проверки подлинности, такие как AzureAd, OpenIdConnect или WsFederation. Для получения дополнительной информации см. <xref:security/samesite>.
 
-## <a name="prevent-default-actions-for-events-in-opno-locblazor-apps"></a>Запрет выполнения действий по умолчанию для событий в приложениях Blazor
+## <a name="prevent-default-actions-for-events-in-blazor-apps"></a>Запрет выполнения действий по умолчанию для событий в приложениях Blazor
 
 Используйте атрибут директивы `@on{EVENT}:preventDefault`, чтобы предотвратить выполнение действия по умолчанию для события. В следующем примере запрещается действие по умолчанию, отображающее символ клавиши в текстовом поле:
 
@@ -65,7 +68,7 @@ ms.locfileid: "78648772"
 
 Дополнительные сведения см. в разделе [Запрет действий по умолчанию](xref:blazor/event-handling#prevent-default-actions).
 
-## <a name="stop-event-propagation-in-opno-locblazor-apps"></a>Остановка распространения событий в приложениях Blazor
+## <a name="stop-event-propagation-in-blazor-apps"></a>Остановка распространения событий в приложениях Blazor
 
 Используйте атрибут директивы `@on{EVENT}:stopPropagation`, чтобы остановить распространение событий. В следующем примере при установке флажка события щелчка мышью из дочернего элемента `<div>` перестают распространяться в родительский элемент `<div>`:
 
@@ -85,7 +88,7 @@ ms.locfileid: "78648772"
 
 Дополнительные сведения см. в разделе [Отключение распространения событий](xref:blazor/event-handling#stop-event-propagation).
 
-## <a name="detailed-errors-during-opno-locblazor-app-development"></a>Подробные сведения об ошибках во время разработки приложений Blazor
+## <a name="detailed-errors-during-blazor-app-development"></a>Подробные сведения об ошибках во время разработки приложений Blazor
 
 Если во время разработки приложение Blazor работает неправильно, подробные сведения об ошибках в приложении могут помочь в устранении неполадок. При возникновении ошибки в приложении Blazor в нижней части экрана отображается золотистая полоска.
 

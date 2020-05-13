@@ -1,5 +1,5 @@
 ---
-title: Пакет SDK для Razor в ASP.NET Core
+title: ASP.NET Core Razor SDK
 author: Rick-Anderson
 description: Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.
 monikerRange: '>= aspnetcore-2.1'
@@ -8,13 +8,17 @@ ms.custom: mvc, seodec18
 ms.date: 03/26/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: razor-pages/sdk
-ms.openlocfilehash: 2284131ce2d45ec6bc01ce38f91e2c951b108605
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: a49f183c4c037a1654e79bdb672b758684137cbe
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80321001"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776738"
 ---
 # <a name="aspnet-core-razor-sdk"></a>Пакет SDK для Razor в ASP.NET Core
 
@@ -151,12 +155,12 @@ ms.locfileid: "80321001"
 | `CopyRazorGenerateFilesToPublishDirectory` | При значении `true` копирует элементы `RazorGenerate` (файлы *CSHTML*) в каталог публикации. Обычно опубликованному приложению не нужны файлы Razor, если они участвуют в компиляции во время сборки или публикации. По умолчанию — `false`. |
 | `CopyRefAssembliesToPublishDirectory` | При значении `true` копирует элементы базовой сборки в каталог публикации. Обычно опубликованному приложению не нужны базовые сборки, если компиляция Razor происходит во время сборки или публикации. Задайте значение `true`, если для опубликованного приложения требуется компиляция в среде выполнения. Например, задайте значение `true`, если приложение изменяет файлы *CSHTML* во время выполнения или использует внедренные представления. По умолчанию — `false`. |
 | `IncludeRazorContentInPack` | При значении `true` все элементы содержимого Razor (файлы *CSHTML*) помечаются для включения в создаваемый пакет NuGet. По умолчанию — `false`. |
-| `EmbedRazorGenerateSources` | При значении `true` добавляет элементы RazorGenerate ( *.cshtml*) в виде внедренных файлов к создаваемой сборке Razor. По умолчанию — `false`. |
+| `EmbedRazorGenerateSources` | При значении `true` элементы RazorGenerate (*CSHTML*) добавляются в виде внедренных файлов к создаваемой сборке Razor. По умолчанию — `false`. |
 | `UseRazorBuildServer` | При значении `true` использует серверный процесс постоянной сборки для разгрузки работы по созданию кода. По умолчанию используется значение `UseSharedCompilation`. |
 | `GenerateMvcApplicationPartsAssemblyAttributes` | При значении `true` пакет SDK создает дополнительные атрибуты, используемые MVC во время выполнения для обнаружения частей приложения. |
 | `DefaultWebContentItemExcludes` | Шаблон подстановки для элементов, которые должны быть исключены из группы элементов `Content` в проектах, предназначенных для веб-пакета или пакета SDK для Razor |
 | `ExcludeConfigFilesFromBuildOutput` | При значении `true` файлы *CONGIF* и *JSON* не копируются в выходной каталог сборки. |
-| `AddRazorSupportForMvc` | При значении `true` настраивает пакет SDK для Razor для добавления поддержки конфигурации MVC, которая необходима при создании приложений, содержащих представления MVC или Razor Pages. Это свойство неявно задано для проектов .NET Core 3.0 или более поздней версии, предназначенных для веб-пакета SDK |
+| `AddRazorSupportForMvc` | При значении `true` настраивается пакет SDK для Razor для добавления поддержки конфигурации MVC, которая необходима при создании приложений, содержащих представления MVC или Razor Pages. Это свойство неявно задано для проектов .NET Core 3.0 или более поздней версии, предназначенных для веб-пакета SDK |
 | `RazorLangVersion` | Используемая версия языка Razor. |
 
 ::: moniker-end
@@ -165,11 +169,11 @@ ms.locfileid: "80321001"
 
 ### <a name="targets"></a>Целевые объекты
 
-Пакет SDK для Razor определяет два основных целевых объекта:
+Пакет SDK для Razor определяет два основных целевых объекта.
 
 * `RazorGenerate`. Создает файлы *CS* из элементов `RazorGenerate`. Используйте свойство `RazorGenerateDependsOn`, чтобы указать дополнительные целевые объекты, которые могут выполняться до или после этого целевого объекта.
-* `RazorCompile`. Компилирует созданные файлы *CS* в сборку Razor. Используйте `RazorCompileDependsOn`, чтобы указать дополнительные целевые объекты, которые могут выполняться до или после этого целевого объекта.
-* `RazorComponentGenerate`. Создает файлы *CS* для элементов `RazorComponent`. Используйте свойство `RazorComponentGenerateDependsOn`, чтобы указать дополнительные целевые объекты, которые могут выполняться до или после этого целевого объекта.
+* `RazorCompile` &ndash;. Компилирует созданные файлы *CS* в сборку Razor. Используйте `RazorCompileDependsOn`, чтобы указать дополнительные целевые объекты, которые могут выполняться до или после этого целевого объекта.
+* `RazorComponentGenerate` &ndash;. Создает файлы *CS* для элементов `RazorComponent`. Используйте свойство `RazorComponentGenerateDependsOn`, чтобы указать дополнительные целевые объекты, которые могут выполняться до или после этого целевого объекта.
 
 ### <a name="runtime-compilation-of-razor-views"></a>Компиляция среды выполнения представлений Razor
 
@@ -179,7 +183,7 @@ ms.locfileid: "80321001"
 
 ## <a name="razor-language-version"></a>Версия языка Razor
 
-При использовании пакета SDK `Microsoft.NET.Sdk.Web` версия языка Razor выводится из целевой версии платформы приложения. Для проектов, предназначенных для SDK `Microsoft.NET.Sdk.Razor`, или в редких случаях, когда приложению требуется другая версия языка Razor, отличная от выводимого значения, можно настроить версию, задав свойство `<RazorLangVersion>` в файле проекта приложения:
+При использовании пакета SDK `Microsoft.NET.Sdk.Web` версия языка Razor выводится из целевой версии платформы приложения. Для проектов, предназначенных для SDK `Microsoft.NET.Sdk.Razor`, или в редких случаях, когда приложению требуется другая версия языка Razor, отличная от выводимого значения, можно настроить версию, задав свойство `<RazorLangVersion>` в файле проекта приложения.
 
 ```xml
 <PropertyGroup>

@@ -1,16 +1,22 @@
 ---
-title: Учебник. Начало работы с Razor Pages в ASP.NET Core
+title: Учебник. Начало работы с Razor Pages в ASP.NET Core
 author: rick-anderson
-description: В этой серии руководств объясняется, как использовать Razor Pages в ASP.NET Core. Узнайте, как создать модель, сгенерировать код для Razor Pages, использовать Entity Framework Core и SQL Server для доступа к данным, добавлять функции поиска и проверки ввода, а также использовать возможность миграции для обновления модели.
+description: В этой серии учебников объясняется, как использовать Razor Pages в ASP.NET Core. Узнайте, как создать модель, сгенерировать код для Razor Pages, использовать Entity Framework Core и SQL Server для доступа к данным, добавлять функции поиска и проверки ввода, а также использовать возможность миграции для обновления модели.
 ms.author: riande
 ms.date: 11/12/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 6e1d58ccd83f7d7c1083dc2bf9ce7476650812a1
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 8ed12b1778673962fe0b174e005bd6d8a7f54168
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78646906"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774877"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Учебник. Начало работы с Razor Pages в ASP.NET Core
 
@@ -325,7 +331,7 @@ ms.locfileid: "78646906"
 
 Содержит страницы Razor и вспомогательные файлы. Каждая страница Razor — это пара файлов.
 
-* Файл *.cshtml*, содержащий HTML-разметку с кодом C# и синтаксисом Razor.
+* Файл *CSHTML*, содержащий HTML-разметку с кодом C# и синтаксисом Razor.
 * Файл *. cshtml.cs*, содержащий код C#, который обрабатывает события страницы.
 
 Имена вспомогательных файлов начинаются с символа подчеркивания. Например, файл *_Layout.cshtml* настраивает элементы пользовательского интерфейса, общие для всех страниц. Этот файл настраивает меню навигации в верхней части страницы и уведомление об авторских правах в нижней части страницы. Для получения дополнительной информации см. <xref:mvc/views/layout>.

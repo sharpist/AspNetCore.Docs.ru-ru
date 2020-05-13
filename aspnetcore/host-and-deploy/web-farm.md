@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/web-farm
-ms.openlocfilehash: 316c87e5f49593c05991a94cbe5e55d175a49bb3
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 3474b6b1d85774a15a912efcb37ec8f206695eaf
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647344"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776361"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Размещение ASP.NET Core в веб-ферме
 
@@ -61,7 +67,7 @@ ms.locfileid: "78647344"
 | Сценарий | Зависит от &hellip; |
 | -------- | ------------------- |
 | Проверка подлинности | Защита данных (см. раздел <xref:security/data-protection/configuration/overview>).<br><br>Дополнительные сведения см. в разделах <xref:security/authentication/cookie> и <xref:security/cookie-sharing>. |
-| идентификации | Проверка подлинности и конфигурация базы данных.<br><br>Для получения дополнительной информации см. <xref:security/authentication/identity>. |
+| Identity | Проверка подлинности и конфигурация базы данных.<br><br>Для получения дополнительной информации см. <xref:security/authentication/identity>. |
 | Сеанс | Защита данных (зашифрованные файлы cookie) (см. раздел <xref:security/data-protection/configuration/overview>) и кэширование (см. раздел <xref:performance/caching/distributed>).<br><br>Дополнительные сведения см. в статье [Управление сеансом и состоянием: ASP.NET Core](xref:fundamentals/app-state#session-state). |
 | TempData | Защита данных (зашифрованные файлы cookie) (см. в <xref:security/data-protection/configuration/overview>) или в разделе "Сеанс" статьи [Управление сеансом и состоянием: ASP.NET Core](xref:fundamentals/app-state#session-state)).<br><br>Дополнительные сведения см. в статье [Управление сеансом и состоянием: ASP.NET Core](xref:fundamentals/app-state#tempdata). |
 | Защита от подделки | Защита данных (см. раздел <xref:security/data-protection/configuration/overview>).<br><br>Для получения дополнительной информации см. <xref:security/anti-request-forgery>. |
@@ -77,7 +83,7 @@ ms.locfileid: "78647344"
 Если **время от времени** возникают какие-либо из описанных далее симптомов, в большинстве случаев это связано с неправильной конфигурацией функции защиты данных или кэширования для среды веб-фермы.
 
 * Сбои при проверке подлинности &ndash; файл cookie проверки подлинности настроен неправильно или не может быть расшифрован. Сбои при попытке использования имен входа для OAuth (Facebook, Майкрософт, Twitter) или OpenIdConnect — попытки завершаются ошибкой "Не удалось выполнить корреляцию".
-* Сбои при попытке авторизации &ndash; удостоверение отсутствует.
+* Сбои при попытке авторизации &ndash; Identity отсутствует.
 * Отсутствие данных о состоянии сеанса.
 * Удаление кэшированных элементов.
 * Сбои свойства TempData.

@@ -5,17 +5,20 @@ description: Узнайте, как управлять компоновщико�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2020
+ms.date: 05/04/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: host-and-deploy/blazor/configure-linker
-ms.openlocfilehash: 109da5ef400c3b9d64ccf3ceb33a5387ea6b5618
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: b274752b375f68cca0c0a9adf9c146bc525d9eba
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218665"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775184"
 ---
 # <a name="configure-the-linker-for-aspnet-core-blazor"></a>Настройка компоновщика для ASP.NET Core Blazor
 
@@ -86,7 +89,7 @@ Blazor WebAssembly выполняет компоновку [промежуточ
 </linker>
 ```
 
-Дополнительные сведения см. в разделе [Примеры XML-файлов компоновки (репозиторий GitHub для mono/компоновщика)](https://github.com/mono/linker#link-xml-file-examples).
+Дополнительные сведения см. в разделе [Форматы данных (репозиторий GitHub для mono/компоновщика)](https://github.com/mono/linker/blob/master/docs/data-formats.md).
 
 ## <a name="add-an-xml-linker-configuration-file-to-a-library"></a>Добавление файла конфигурации компоновщика XML в библиотеку
 
@@ -106,11 +109,11 @@ Blazor WebAssembly выполняет компоновку [промежуточ
 
 По умолчанию конфигурация компоновщика Blazor для приложений Blazor WebAssembly исключает сведения об интернационализации, кроме явно запрошенных языковых стандартов. Удаление этих сборок уменьшает размер приложения.
 
-Чтобы указать, какие сборки I18N необходимо оставить, задайте свойство MSBuild `<MonoLinkerI18NAssemblies>` в файле проекта:
+Чтобы указать, какие сборки I18N необходимо оставить, задайте свойство MSBuild `<BlazorWebAssemblyI18NAssemblies>` в файле проекта:
 
 ```xml
 <PropertyGroup>
-  <MonoLinkerI18NAssemblies>{all|none|REGION1,REGION2,...}</MonoLinkerI18NAssemblies>
+  <BlazorWebAssemblyI18NAssemblies>{all|none|REGION1,REGION2,...}</BlazorWebAssemblyI18NAssemblies>
 </PropertyGroup>
 ```
 

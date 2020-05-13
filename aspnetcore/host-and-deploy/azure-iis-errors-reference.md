@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/azure-iis-errors-reference
-ms.openlocfilehash: 635c4cf6f12e62ca7e795b3b3b47e9445b945551
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 7b3454fbd891ca26d44125810a10eb3b3c2c3933
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79511604"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775210"
 ---
 # <a name="common-errors-reference-for-azure-app-service-and-iis-with-aspnet-core"></a>Справочник по общим ошибкам в Службе приложений Azure и службах IIS с ASP.NET Core
 
@@ -165,7 +171,7 @@ ms.locfileid: "79511604"
 
   См. дополнительные сведения об [установке пакета размещения .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
-* Убедитесь, что параметр **Пул приложений** > **Модель процесса** > **Удостоверение** имеет значение **ApplicationPoolIdentity** или что у пользовательского удостоверения есть нужные разрешения на доступ к папке развертывания приложения.
+* Убедитесь, что параметр **Пул приложений** > **Модель процесса** > **Identity** имеет значение **ApplicationPoolIdentity** или что у пользовательского удостоверения есть нужные разрешения на доступ к папке развертывания приложения.
 
 * Если вы удалили пакет размещения ASP.NET Core и установили его более раннюю версию, файл *applicationHost.config* не будет включать раздел модуля ASP.NET Core. Откройте файл *applicationHost.config* в папке *%windir%/System32/inetsrv/config* и найдите группу раздела `<configuration><configSections><sectionGroup name="system.webServer">`. Если раздел модуля ASP.NET Core отсутствует в группе раздела, добавьте его:
 
@@ -443,7 +449,7 @@ ms.locfileid: "79511604"
 
   См. дополнительные сведения об [установке пакета размещения .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
-* Убедитесь, что параметр **Пул приложений** > **Модель процесса** > **Удостоверение** имеет значение **ApplicationPoolIdentity** или что у пользовательского удостоверения есть нужные разрешения на доступ к папке развертывания приложения.
+* Убедитесь, что параметр **Пул приложений** > **Модель процесса** > **Identity** имеет значение **ApplicationPoolIdentity** или что у пользовательского удостоверения есть нужные разрешения на доступ к папке развертывания приложения.
 
 * Если вы удалили пакет размещения ASP.NET Core и установили его более раннюю версию, файл *applicationHost.config* не будет включать раздел модуля ASP.NET Core. Откройте файл *applicationHost.config* в папке *%windir%/System32/inetsrv/config* и найдите группу раздела `<configuration><configSections><sectionGroup name="system.webServer">`. Если раздел модуля ASP.NET Core отсутствует в группе раздела, добавьте его:
 

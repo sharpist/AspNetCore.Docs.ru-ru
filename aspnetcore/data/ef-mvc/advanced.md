@@ -6,13 +6,19 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/advanced
-ms.openlocfilehash: fc6f8d8c4ab09848cf316be2e522bf5ce3b9ac76
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 74153b9a185d382a3418dd9470ce6ca4c3c70041
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79416182"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773618"
 ---
 # <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Учебник. Сведения о сложных сценариях для ASP.NET MVC с EF Core
 
@@ -93,7 +99,7 @@ ms.locfileid: "79416182"
 
 В **обозревателе решений** щелкните правой кнопкой мыши папку *Views/Courses* и выберите **Добавить > Новый элемент**.
 
-В диалоговом окне **Добавление нового элемента** щелкните элемент **ASP.NET Core** в разделе **Установленные** в области слева, выберите **Представление Razor** и присвойте новому представлению имя *UpdateCourseCredits.cshtml*.
+В диалоговом окне **Добавление нового элемента** щелкните элемент **ASP.NET Core** в разделе **Установленные** в области слева, выберите **Представление Razor** и присвойте новому представлению имя *UpdateCourseCredits.cshtml*.
 
 В файле *Views/Courses/UpdateCourseCredits.cshtml* замените код шаблона следующим кодом:
 

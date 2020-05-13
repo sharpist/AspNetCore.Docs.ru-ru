@@ -4,17 +4,23 @@ author: rick-anderson
 description: Сведения об изменении созданных страниц в приложении ASP.NET Core.
 ms.author: riande
 ms.date: 12/20/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/da1
-ms.openlocfilehash: 0f6535462fe2d308825bf7289c10d2b0690cebd4
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: d9ab20b7ed4b394c154141efe3a94481efaf063c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650428"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774552"
 ---
 # <a name="update-the-generated-pages-in-an-aspnet-core-app"></a>Изменение созданных страниц в приложении ASP.NET Core
 
-Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT)
+Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -76,7 +82,7 @@ ms.locfileid: "78650428"
 
 * Задайте директиву страницы *Pages/Movies/Details.cshtml* как `@page "{id:int?}"`.
 * Установите точку останова `public async Task<IActionResult> OnGetAsync(int? id)` (в *Pages/Movies/Details.cshtml.cs*).
-* Перейдите на страницу `https://localhost:5001/Movies/Details/`.
+* Перейдите к `https://localhost:5001/Movies/Details/`.
 
 Из-за директивы `@page "{id:int}"` точка останова не достигается. Механизм маршрутизации возвращает ошибку HTTP 404. При использовании `@page "{id:int?}"` метод `OnGetAsync` возвращает `NotFound` (HTTP 404).
 
@@ -121,13 +127,13 @@ ms.locfileid: "78650428"
 * При наличии ошибок в состоянии модели (например, `ReleaseDate` невозможно преобразовать в дату) форма отображается повторно с предоставленными значениями.
 * Если ошибки модели отсутствуют, данные фильма сохраняются.
 
-Методы HTTP GET на страницах Razor Index, Create и Delete работают аналогично. Метод HTTP POST `OnPostAsync` на странице Razor Create работает аналогично методу `OnPostAsync` на странице Razor Edit.
+Методы HTTP GET на страницах Razor Index, Create и Delete работают аналогично. Метод HTTP POST `OnPostAsync` на странице Razor Create работает аналогично методу `OnPostAsync` на странице Razor Edit.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 > [!div class="step-by-step"]
-> [Предыдущая статья — "Работа с базой данных"](xref:tutorials/razor-pages/sql)
-> [Следующая статья — "Добавление поиска"](xref:tutorials/razor-pages/search)
+> [Предыдущая статья. Работа с базой данных](xref:tutorials/razor-pages/sql)
+> [Следующая статья. Добавление поиска](xref:tutorials/razor-pages/search)
 
 ::: moniker-end
 
@@ -189,7 +195,7 @@ ms.locfileid: "78650428"
 
 * Задайте директиву страницы *Pages/Movies/Details.cshtml* как `@page "{id:int?}"`.
 * Установите точку останова `public async Task<IActionResult> OnGetAsync(int? id)` (в *Pages/Movies/Details.cshtml.cs*).
-* Перейдите на страницу `https://localhost:5001/Movies/Details/`.
+* Перейдите к `https://localhost:5001/Movies/Details/`.
 
 Из-за директивы `@page "{id:int}"` точка останова не достигается. Механизм маршрутизации возвращает ошибку HTTP 404. При использовании `@page "{id:int?}"` метод `OnGetAsync` возвращает `NotFound` (HTTP 404).
 
@@ -234,7 +240,7 @@ ms.locfileid: "78650428"
 * При наличии ошибок в состоянии модели (например, `ReleaseDate` невозможно преобразовать в дату) форма отображается с предоставленными значениями.
 * Если ошибки модели отсутствуют, данные фильма сохраняются.
 
-Методы HTTP GET на страницах Razor Index, Create и Delete работают аналогично. Метод HTTP POST `OnPostAsync` на странице Razor Create работает аналогично методу `OnPostAsync` на странице Razor Edit.
+Методы HTTP GET на страницах Razor Index, Create и Delete работают аналогично. Метод HTTP POST `OnPostAsync` на странице Razor Create работает аналогично методу `OnPostAsync` на странице Razor Edit.
 
 В следующем учебнике будет добавлена функция поиска.
 
@@ -243,7 +249,7 @@ ms.locfileid: "78650428"
 * [Версия руководства на YouTube](https://youtu.be/yLnnleREMtQ)
 
 > [!div class="step-by-step"]
-> [Предыдущая статья — "Работа с базой данных"](xref:tutorials/razor-pages/sql)
-> [Следующая статья — "Добавление поиска"](xref:tutorials/razor-pages/search)
+> [Предыдущая статья. Работа с базой данных](xref:tutorials/razor-pages/sql)
+> [Следующая статья. Добавление поиска](xref:tutorials/razor-pages/search)
 
 ::: moniker-end

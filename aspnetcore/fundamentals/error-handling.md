@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/error-handling
-ms.openlocfilehash: 28b463bccfb8aff4d10b95aa9a984455b4f4b976
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: bbd16e2e045a24f018eb59b67dfdf50d9bed6f32
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647074"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775041"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Обработка ошибок в ASP.NET Core
 
@@ -53,7 +59,7 @@ ms.locfileid: "78647074"
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=5-9)]
 
-Шаблон приложения Razor Pages предоставляет страницу ошибки ( *.cshtml*) и класс <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> (`ErrorModel`) в папке *Pages*. Для приложения MVC шаблон проекта содержит метод действия при возникновении ошибки и представление ошибок. Ниже показан метод действия.
+Шаблон приложения Razor Pages предоставляет страницу ошибки (*CSHTML*) и класс <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> (`ErrorModel`) в папке *Pages*. Для приложения MVC шаблон проекта содержит метод действия при возникновении ошибки и представление ошибок. Ниже показан метод действия.
 
 ```csharp
 [AllowAnonymous]

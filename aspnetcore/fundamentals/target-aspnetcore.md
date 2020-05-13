@@ -7,13 +7,17 @@ ms.custom: mvc
 ms.date: 12/16/2019
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/target-aspnetcore
-ms.openlocfilehash: 5374d7eec4334223a4bba7ee26cb6e2f208ed20b
-ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
+ms.openlocfilehash: 85c0d850922b7118b101126c09b208b0db420f7e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/08/2020
-ms.locfileid: "80977201"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776491"
 ---
 # <a name="use-aspnet-core-apis-in-a-class-library"></a>Использование интерфейсов API ASP.NET Core в библиотеке классов
 
@@ -146,7 +150,7 @@ dotnet new razorclasslib -s
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-basic-library.csproj)]
 
-Если используется .NET Standard (для поддержки версий, предшествующих ASP.NET Core 3.x), добавьте ссылку на пакет [Microsoft.AspNetCore.Mvc.Razor](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor). Пакет `Microsoft.AspNetCore.Mvc.Razor` перемещен в общую платформу и поэтому больше не публикуется. Пример:
+Если используется .NET Standard (для поддержки версий, предшествующих ASP.NET Core 3.x), добавьте ссылку на пакет [Microsoft.AspNetCore.Mvc.Razor](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor). Пакет `Microsoft.AspNetCore.Mvc.Razor` перемещен в общую платформу и поэтому больше не публикуется. Пример:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netstandard2.0-tag-helpers-library.csproj)]
 
@@ -175,7 +179,7 @@ dotnet new razorclasslib -s
 Для предыдущего файла проекта:
 
 * Для всех потребителей добавляется пакет `Markdig`.
-* Для потребителей, использующих .NET Framework 4.6.1 или более поздней версии или .NET Core 2.x, добавляется ссылка на [Microsoft.AspNetCore.Mvc.Razor](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor). Версия 2.1.0 пакета работает с ASP.NET Core 2.2 из-за обратной совместимости.
+* Ссылка на [Microsoft.AspNetCore.Mvc.Razor](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor) добавляется для пользователей .NET Framework 4.6.1 или более поздней версии или .NET Core 2.x. Версия 2.1.0 пакета работает с ASP.NET Core 2.2 из-за обратной совместимости.
 * На общую платформу ссылаются потребители, использующие .NET Core 3.x. Пакет `Microsoft.AspNetCore.Mvc.Razor` включен в общую платформу.
 
 Кроме того, можно использовать .NET Standard 2.0 вместо .NET Core 2.1 и .NET Framework 4.6.1:

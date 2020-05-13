@@ -4,13 +4,19 @@ author: rick-anderson
 description: Узнайте, как добавить контроллер в простое приложение ASP.NET Core MVC.
 ms.author: riande
 ms.date: 08/05/2017
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: fb670902b0dafa7dce2b3372e550095387844936
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: ce6248854c738733f75c40ed8ec6100f35ab4971
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650776"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776315"
 ---
 # <a name="add-a-controller-to-an-aspnet-core-mvc-app"></a>Добавление контроллера в приложение MVC ASP.NET Core
 

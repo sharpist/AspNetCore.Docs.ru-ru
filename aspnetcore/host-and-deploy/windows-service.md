@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: 5cb61d330df7e15fbd54396207792596ae018fd3
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 4ad9086c60e58f89bdde4962d7487036df251cc1
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80417577"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776348"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Размещение ASP.NET Core в службе Windows
 
@@ -61,7 +67,7 @@ Host.CreateDefaultBuilder(args)
 Этот раздел сопровождают следующие примеры приложений:
 
 * Пример фоновой службы рабочих ролей &ndash; пример приложения, не являющегося веб-приложением, на основе [шаблона службы рабочих ролей](#worker-service-template), который использует [размещенные службы](xref:fundamentals/host/hosted-services) для фоновых задач.
-* Пример службы веб-приложений &ndash; пример веб-приложения Razor Pages, который выполняется как служба Windows с [размещенными службами](xref:fundamentals/host/hosted-services) для фоновых задач.
+* Пример службы веб-приложений &ndash;. Пример веб-приложения Razor Pages, который выполняется как служба Windows с [размещенными службами](xref:fundamentals/host/hosted-services) для фоновых задач.
 
 Рекомендации по MVC см. в статьях <xref:mvc/overview> и <xref:migration/22-to-30>.
 
@@ -71,7 +77,7 @@ Host.CreateDefaultBuilder(args)
 
 ### <a name="sdk"></a>SDK
 
-Для службы на основе веб-приложений, которая использует платформы MVC или Razor Pages, укажите веб-пакет SDK в файле проекта:
+Для службы на основе веб-приложений, которая использует платформы MVC или Razor Pages, укажите веб-пакет SDK в файле проекта.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -373,7 +379,7 @@ Remove-Service -Name {SERVICE NAME}
 
 ### <a name="sdk"></a>SDK
 
-Для службы на основе веб-приложений, которая использует платформы MVC или Razor Pages, укажите веб-пакет SDK в файле проекта:
+Для службы на основе веб-приложений, которая использует платформы MVC или Razor Pages, укажите веб-пакет SDK в файле проекта.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -707,7 +713,7 @@ CreateWebHostBuilder(args)
 
 ### <a name="sdk"></a>SDK
 
-Для службы на основе веб-приложений, которая использует платформы MVC или Razor Pages, укажите веб-пакет SDK в файле проекта:
+Для службы на основе веб-приложений, которая использует платформы MVC или Razor Pages, укажите веб-пакет SDK в файле проекта.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">

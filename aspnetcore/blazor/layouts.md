@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 02/12/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: 5b6e1c7ceb4a6e41230e31bbe379bde1bb0a8286
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 5c6771dd7249bfb8280ba20e1ce75967f279971c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647926"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82771589"
 ---
-# <a name="aspnet-core-opno-locblazor-layouts"></a>Макеты Blazor в ASP.NET Core
+# <a name="aspnet-core-blazor-layouts"></a>Макеты Blazor в ASP.NET Core
 
 Авторы: [Райнер Стропек](https://www.timecockpit.com) (Rainer Stropek) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
@@ -28,7 +31,7 @@ ms.locfileid: "78647926"
 Чтобы превратить *компонент* в *макет*, компонент:
 
 * Наследует от `LayoutComponentBase`, который определяет свойство `Body` для отображаемого содержимого внутри макета.
-* Использует синтаксис Razor `@Body` для указания расположения в разметке макета, в которой отображается содержимое.
+* Использует синтаксис `@Body` Razor для указания расположения в разметке макета, в которой отображается содержимое.
 
 В следующем примере кода показан шаблон Razor компонента макета *MainLayout.razor*. Макет наследует `LayoutComponentBase` и задает `@Body` между панелью навигации и нижним колонтитулом:
 
@@ -68,7 +71,7 @@ ms.locfileid: "78647926"
 
 * `MyCoolLayout`.
 * Все компоненты Razor в одной и той же папке и во всех вложенных папках.
-* Пространство имен `BlazorApp1.Data`.
+* Пространство имен `BlazorApp1.Data` .
  
 [!code-razor[](layouts/sample_snapshot/3.x/_Imports.razor)]
 
@@ -94,7 +97,7 @@ ms.locfileid: "78647926"
 
 ## <a name="share-a-razor-pages-layout-with-integrated-components"></a>Совместное использование макета Razor Pages с интегрированными компонентами
 
-Если маршрутизируемые компоненты интегрированы в приложение Razor Pages, общий макет приложения можно использовать с компонентами. Дополнительные сведения см. в разделе <xref:blazor/integrate-components>.
+Если маршрутизируемые компоненты интегрированы в приложение Razor Pages, общий макет приложения можно использовать с компонентами. Для получения дополнительной информации см. <xref:blazor/integrate-components>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

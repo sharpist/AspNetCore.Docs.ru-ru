@@ -5,17 +5,23 @@ description: Команда dotnet aspnet-codegenerator формирует ша�
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 07/04/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-ms.openlocfilehash: 1043a578f66d5bb57f4a81e9fe21afa5e3c37cb8
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 58f7aa30d3e916307437d56c61e80765ac0c21cf
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78649858"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766476"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
-Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT)
+Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 Команда `dotnet aspnet-codegenerator` запускает подсистему формирования шаблонов ASP.NET Core. Команда `dotnet aspnet-codegenerator` нужна только для командной строки. Она не требуется для формирования шаблонов в Visual Studio.
 
@@ -42,7 +48,7 @@ dotnet aspnet-codegenerator [arguments] [-p|--project] [-n|--nuget-package-dir] 
 dotnet aspnet-codegenerator [-h|--help]
 ```
 
-## <a name="description"></a>Description
+## <a name="description"></a>Описание
 
 Глобальная команда `dotnet aspnet-codegenerator` запускает генератор кода и подсистему формирования шаблонов ASP.NET Core.
 
@@ -55,10 +61,10 @@ dotnet aspnet-codegenerator [-h|--help]
 | Generator | Операция |
 | ----------------- | ------------ | 
 | площадь      | [Формирует шаблон области](/aspnet/core/mvc/controllers/areas) |
-  controller| [Формирует шаблон контроллера](/aspnet/core/tutorials/first-mvc-app/adding-model) |
-  identity  | [Формирует шаблон удостоверения](/aspnet/core/security/authentication/scaffold-identity) |
+  контроллер| [Формирует шаблон контроллера](/aspnet/core/tutorials/first-mvc-app/adding-model) |
+  удостоверение  | [Формирует шаблон удостоверения](/aspnet/core/security/authentication/scaffold-identity) |
   razorpage | [Формирует шаблоны страниц Razor Pages](/aspnet/core/tutorials/razor-pages/model) |
-  представление      | [Формирует шаблон представления](/aspnet/core/mvc/views/overview) |
+  view      | [Формирует шаблон представления](/aspnet/core/mvc/views/overview) |
 
 ## <a name="options"></a>Параметры
 
@@ -68,7 +74,7 @@ dotnet aspnet-codegenerator [-h|--help]
 
 `-c|--configuration {Debug|Release}`
 
-Определяет конфигурацию сборки. Значение по умолчанию — `Debug`.
+Определяет конфигурацию сборки. Значение по умолчанию — `Debug`.
 
 `-tfm|--target-framework`
 
@@ -96,9 +102,9 @@ dotnet aspnet-codegenerator [-h|--help]
 
 * Область
 * Контроллер
-* Удостоверение  
+* идентификации  
 * Razorpage
-* Представление
+* Просмотр
 
 <a name="area"></a>
 
@@ -113,8 +119,8 @@ dotnet aspnet-codegenerator [-h|--help]
 * *Области*
   * *AreaNameToGenerate*
     * *Контроллеры*
-    * *Data*
-    * *Модели*
+    * *Данные*
+    * *Models*
     * *Представления*
 
 <a name="ctl"></a>
@@ -127,7 +133,7 @@ dotnet aspnet-codegenerator [-h|--help]
 
 В таблице ниже перечислены параметры только для `aspnet-codegenerator controller`.
 
-| Параметр               | Description|
+| Параметр               | Описание|
 | ----------------- | ------------ |
 | --controllerName или -name | Имя контроллера. |
 | --useAsyncActions или -async | Создание асинхронных действий контроллера. |
@@ -135,13 +141,13 @@ dotnet aspnet-codegenerator [-h|--help]
 | --restWithNoViews или -api  | Создание контроллера с API в стиле REST. Используется `noViews`, а все параметры, связанные с представлением, игнорируются. |
 | --readWriteActions или -actions | Создание контроллера с действиями чтения и записи без модели. |
 
-Чтобы получить справку по команде `-h`, используйте параметр `aspnet-codegenerator controller`.
+Чтобы получить справку по команде `aspnet-codegenerator controller`, используйте параметр `-h`.
 
 ```dotnetcli
 dotnet aspnet-codegenerator controller -h
 ```
 
-Пример [ см. в разделе ](/aspnet/core/tutorials/razor-pages/model)Создание модели фильма`dotnet aspnet-codegenerator controller`.
+Пример `dotnet aspnet-codegenerator controller` см. в разделе [Создание модели фильма](/aspnet/core/tutorials/razor-pages/model).
 
 ### <a name="razorpage"></a>Razorpage
 
@@ -176,20 +182,20 @@ dotnet aspnet-codegenerator razorpage MyEdit Edit -m Movie -dc RazorPagesMovieCo
 
 В таблице ниже перечислены параметры только для `aspnet-codegenerator razorpage`.
 
-| Параметр               | Description|
+| Параметр               | Описание|
 | ----------------- | ------------ |
 |   --namespaceName или -namespace | Имя пространства имен, используемого для созданной модели PageModel. |
 | --partialView или -partial | Создание частичного представления. Если указан этот параметр, параметры макета -l и -udl игнорируются. |
 | --noPageModel или -npm | Параметр, при использовании которого не создается класс PageModel для пустого шаблона. |
 
-Чтобы получить справку по команде `-h`, используйте параметр `aspnet-codegenerator razorpage`.
+Чтобы получить справку по команде `aspnet-codegenerator razorpage`, используйте параметр `-h`.
 
 ```dotnetcli
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-Пример [ см. в разделе ](/aspnet/core/tutorials/razor-pages/model)Создание модели фильма`dotnet aspnet-codegenerator razorpage`.
+Пример `dotnet aspnet-codegenerator razorpage` см. в разделе [Создание модели фильма](/aspnet/core/tutorials/razor-pages/model).
 
-### <a name="identity"></a>Удостоверение
+### Identity
 
-См. статью [Удостоверение шаблона](/aspnet/core/security/authentication/scaffold-identity).
+См. [Формирование шаблонов Identity](/aspnet/core/security/authentication/scaffold-identity)

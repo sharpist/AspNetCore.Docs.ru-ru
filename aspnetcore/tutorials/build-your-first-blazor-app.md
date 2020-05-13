@@ -8,15 +8,19 @@ ms.custom: mvc
 ms.date: 03/20/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: 138057c2ceb9ed01bdf958c01f5cf2275387df23
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 5a5a56ee646cba21a883df2cf686cb1ccb18d7f9
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79989437"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776608"
 ---
-# <a name="build-your-first-opno-locblazor-app"></a>Создание первого приложения Blazor
+# <a name="build-your-first-blazor-app"></a>Создание первого приложения Blazor
 
 Авторы: [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)
 
@@ -38,7 +42,7 @@ ms.locfileid: "79989437"
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Counter1.razor)]
 
-   Пользовательский интерфейс компонента `Counter` определяется с помощью HTML. Логика динамического отображения (например выражения, циклы и условные выражения) добавляется с помощью встроенного синтаксиса C# под названием [Razor](xref:mvc/views/razor). HTML-разметка и логика отображения C# преобразуются в класс компонента во время сборки. Имя создаваемого класса .NET совпадает с именем файла.
+   Пользовательский интерфейс компонента `Counter` определяется с помощью HTML. Логика динамического отображения (например, выражения, циклы и условные выражения) добавляется с помощью встроенного синтаксиса C# под названием [Razor](xref:mvc/views/razor). HTML-разметка и логика отображения C# преобразуются в класс компонента во время сборки. Имя создаваемого класса .NET совпадает с именем файла.
 
    Элементы класса компонента определяются в блоке `@code`. В блоке `@code` указываются состояние (свойства, поля) и методы компонента для обработки событий или определения другой логики компонента. Эти элементы можно позднее включить в логику отображения компонента и обработки событий.
 
@@ -101,7 +105,7 @@ ms.locfileid: "79989437"
 
 ## <a name="dependency-injection"></a>Внедрение зависимостей
 
-### <a name="opno-locblazor-server-experience"></a>Взаимодействие с сервером Blazor
+### <a name="blazor-server-experience"></a>Взаимодействие с сервером Blazor
 
 Если вы используете серверное приложение Blazor, служба `WeatherForecastService` зарегистрирована как [отдельная](xref:fundamentals/dependency-injection#service-lifetimes) в `Startup.ConfigureServices`. Экземпляр этой службы предоставляется для всего приложения посредством [внедрения зависимостей (DI)](xref:fundamentals/dependency-injection):
 
@@ -117,7 +121,7 @@ ms.locfileid: "79989437"
 
 [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData2.razor?highlight=6)]
 
-### <a name="opno-locblazor-webassembly-experience"></a>Взаимодействие с WebAssembly Blazor
+### <a name="blazor-webassembly-experience"></a>Взаимодействие с WebAssembly Blazor
 
 Если вы работаете с приложением WebAssembly Blazor, внедряется `HttpClient` для получения данных прогноза погоды из файла *weather.json*, расположенного в папке *wwwroot/sample-data*.
 
@@ -133,7 +137,7 @@ ms.locfileid: "79989437"
 
 Добавьте в приложение новый компонент, представляющий собой простой список дел.
 
-1. Добавьте в приложение новый компонент Razor `Todo` в папке *Pages*. Щелкните в Visual Studio правой кнопкой мыши папку **Pages** и выберите пункт **Добавить** > **Создать элемент** > **Компонент Razor**. Присвойте файлу компонента имя *Todo.Razor*. В других средах разработки необходимо добавить в папку **Pages** пустой файл с именем *Todo.razor*.
+1. Добавьте в приложение новый компонент `Todo` Razor в папке *Pages*. Щелкните в Visual Studio правой кнопкой мыши папку **Pages** и выберите пункт **Добавить** > **Создать элемент** > **Компонент Razor** . Присвойте файлу компонента имя *Todo.Razor*. В других средах разработки необходимо добавить в папку **Pages** пустой файл с именем *Todo.razor*.
 
 1. Задайте начальную разметку компонента.
 

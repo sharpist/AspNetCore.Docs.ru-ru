@@ -5,17 +5,20 @@ description: Создание приложения чата, которое ис
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/30/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 78c5fbb8b91b934bcb34525672e9e26b6a95290e
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: 1579b92dbc9db08bfdc5572e5d4245bd18d50590
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82111153"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773792"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Использование SignalR для ASP.NET Core с Blazor WebAssembly
 
@@ -61,7 +64,7 @@ ms.locfileid: "82111153"
 Если вы не используете предварительную версию 2 Visual Studio 16.6 и более позднюю, установите шаблон [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly). В период действия предварительной версии Blazor WebAssembly будет использоваться предварительная версия пакета [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/). В командной оболочке выполните следующую команду:
 
 ```dotnetcli
-dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview5.20216.8
+dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
 ```
 
 Следуйте указаниям по выбору инструментов:

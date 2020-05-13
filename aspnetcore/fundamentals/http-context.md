@@ -5,14 +5,20 @@ description: Сведения о получении доступа к HttpContex
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/03/2019
+ms.date: 5/5/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/httpcontext
-ms.openlocfilehash: 8a7ee180380c42ea745c91b8e6a18c1baa820220
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 716e74551b95455c99abbac58b712f013acfde56
+ms.sourcegitcommit: d4527df91f2c15bbe1cbf5a541adbea5747897aa
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647014"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82852364"
 ---
 # <a name="access-httpcontext-in-aspnet-core"></a>Доступ к HttpContext в ASP.NET Core
 
@@ -20,7 +26,7 @@ ms.locfileid: "78647014"
 
 ## <a name="use-httpcontext-from-razor-pages"></a>Использование HttpContext через Razor Pages
 
-Класс Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> предоставляет свойство <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext>:
+Класс Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> предоставляет свойство <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext>.
 
 ```csharp
 public class AboutModel : PageModel
@@ -34,7 +40,7 @@ public class AboutModel : PageModel
 }
 ```
 
-## <a name="use-httpcontext-from-a-razor-view"></a>Использование HttpContext из представления Razor
+## <a name="use-httpcontext-from-a-razor-view"></a>Использование HttpContext через представление Razor
 
 Представления Razor предоставляют `HttpContext` непосредственно через свойство [RazorPage.Context](xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context). В следующем примере имя текущего пользователя в приложении интрасети извлекается с использованием проверки подлинности Windows:
 
@@ -109,7 +115,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker-end
 
-Рассмотрим следующий пример:
+В следующем примере:
 
 * `UserRepository` объявляет зависимость от `IHttpContextAccessor`.
 * Зависимость предоставляется, если внедрение зависимостей разрешает цепочку зависимостей и создает экземпляр класса `UserRepository`.
@@ -163,3 +169,8 @@ public class EmailController : Controller
         ...
     }
 }
+```
+
+## <a name="blazor-and-shared-state"></a>Blazor и общее состояние
+
+[!INCLUDE[](~/includes/blazor-security/blazor-shared-state.md)]

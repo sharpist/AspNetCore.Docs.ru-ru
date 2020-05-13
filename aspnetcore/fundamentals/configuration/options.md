@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/12/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/configuration/options
-ms.openlocfilehash: 756d3d57122642ab10ab671c9accb75975c3799d
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: efce2caf37534823016c12b298afd277bab22030
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78649990"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82769940"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>Шаблон параметров в ASP.NET Core
 
@@ -33,7 +39,7 @@ ms.locfileid: "78649990"
 
 ## <a name="options-interfaces"></a>Интерфейсы параметров
 
-<xref:Microsoft.Extensions.Options.IOptionsMonitor%601> используется для извлечения параметров и управления уведомлениями о параметрах для экземпляров `TOptions`. <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> поддерживает следующие сценарии:
+<xref:Microsoft.Extensions.Options.IOptionsMonitor%601> используется для извлечения параметров и управления уведомлениями о параметрах для экземпляров `TOptions`. <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> поддерживается в следующих сценариях:
 
 * уведомления об изменениях;
 * [именованные параметры](#named-options-support-with-iconfigurenamedoptions);
@@ -114,7 +120,7 @@ option1 = value1_from_json, option2 = -1
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example2)]
 
-Можно добавить несколько поставщиков конфигурации. Поставщики конфигурации доступны в пакетах NuGet и применяются в порядке регистрации. Дополнительные сведения см. в разделе <xref:fundamentals/configuration/index>.
+Можно добавить несколько поставщиков конфигурации. Поставщики конфигурации доступны в пакетах NuGet и применяются в порядке регистрации. Для получения дополнительной информации см. <xref:fundamentals/configuration/index>.
 
 При каждом вызове <xref:Microsoft.Extensions.Options.IConfigureOptions%601.Configure*> служба <xref:Microsoft.Extensions.Options.IConfigureOptions%601> добавляется в контейнер службы. В предыдущем примере значения `Option1` и `Option2` задаются в файле *appsettings.json*, однако значения `Option1` и `Option2` переопределяются настроенным делегатом.
 
@@ -166,7 +172,7 @@ subOption1 = subvalue1_from_json, subOption2 = 200
 
 Внедрите <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> в:
 
-* Страница Razor или представление MVC с директивой Razor [`@inject`](xref:mvc/views/razor#inject).
+* Страница Razor или представление MVC с директивой [`@inject`](xref:mvc/views/razor#inject) Razor.
 * Модель страницы или представления.
 
 Следующий пример из примера приложения внедряет <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> в модель страницы (*Pages/index.cshtml.cs*):
@@ -453,13 +459,13 @@ public void Configure(IApplicationBuilder app,
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>предварительные требования
+## <a name="prerequisites"></a>Предварительные требования
 
 Добавьте ссылку на [метапакет Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) или добавьте ссылку на пакет в пакет [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).
 
 ## <a name="options-interfaces"></a>Интерфейсы параметров
 
-<xref:Microsoft.Extensions.Options.IOptionsMonitor%601> используется для извлечения параметров и управления уведомлениями о параметрах для экземпляров `TOptions`. <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> поддерживает следующие сценарии:
+<xref:Microsoft.Extensions.Options.IOptionsMonitor%601> используется для извлечения параметров и управления уведомлениями о параметрах для экземпляров `TOptions`. <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> поддерживается в следующих сценариях:
 
 * уведомления об изменениях;
 * [именованные параметры](#named-options-support-with-iconfigurenamedoptions);
@@ -540,7 +546,7 @@ option1 = value1_from_json, option2 = -1
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example2)]
 
-Можно добавить несколько поставщиков конфигурации. Поставщики конфигурации доступны в пакетах NuGet и применяются в порядке регистрации. Дополнительные сведения см. в разделе <xref:fundamentals/configuration/index>.
+Можно добавить несколько поставщиков конфигурации. Поставщики конфигурации доступны в пакетах NuGet и применяются в порядке регистрации. Для получения дополнительной информации см. <xref:fundamentals/configuration/index>.
 
 При каждом вызове <xref:Microsoft.Extensions.Options.IConfigureOptions%601.Configure*> служба <xref:Microsoft.Extensions.Options.IConfigureOptions%601> добавляется в контейнер службы. В предыдущем примере значения `Option1` и `Option2` задаются в файле *appsettings.json*, однако значения `Option1` и `Option2` переопределяются настроенным делегатом.
 
@@ -592,7 +598,7 @@ subOption1 = subvalue1_from_json, subOption2 = 200
 
 Внедрите <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> в:
 
-* Страница Razor или представление MVC с директивой Razor [`@inject`](xref:mvc/views/razor#inject).
+* Страница Razor или представление MVC с директивой [`@inject`](xref:mvc/views/razor#inject) Razor.
 * Модель страницы или представления.
 
 Следующий пример из примера приложения внедряет <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> в модель страницы (*Pages/index.cshtml.cs*):
@@ -875,13 +881,13 @@ public void Configure(IApplicationBuilder app, IOptionsMonitor<MyOptions> option
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>предварительные требования
+## <a name="prerequisites"></a>Предварительные требования
 
 Добавьте ссылку на [метапакет Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) или добавьте ссылку на пакет в пакет [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).
 
 ## <a name="options-interfaces"></a>Интерфейсы параметров
 
-<xref:Microsoft.Extensions.Options.IOptionsMonitor%601> используется для извлечения параметров и управления уведомлениями о параметрах для экземпляров `TOptions`. <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> поддерживает следующие сценарии:
+<xref:Microsoft.Extensions.Options.IOptionsMonitor%601> используется для извлечения параметров и управления уведомлениями о параметрах для экземпляров `TOptions`. <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> поддерживается в следующих сценариях:
 
 * уведомления об изменениях;
 * [именованные параметры](#named-options-support-with-iconfigurenamedoptions);
@@ -962,7 +968,7 @@ option1 = value1_from_json, option2 = -1
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example2)]
 
-Можно добавить несколько поставщиков конфигурации. Поставщики конфигурации доступны в пакетах NuGet и применяются в порядке регистрации. Дополнительные сведения см. в разделе <xref:fundamentals/configuration/index>.
+Можно добавить несколько поставщиков конфигурации. Поставщики конфигурации доступны в пакетах NuGet и применяются в порядке регистрации. Для получения дополнительной информации см. <xref:fundamentals/configuration/index>.
 
 При каждом вызове <xref:Microsoft.Extensions.Options.IConfigureOptions%601.Configure*> служба <xref:Microsoft.Extensions.Options.IConfigureOptions%601> добавляется в контейнер службы. В предыдущем примере значения `Option1` и `Option2` задаются в файле *appsettings.json*, однако значения `Option1` и `Option2` переопределяются настроенным делегатом.
 

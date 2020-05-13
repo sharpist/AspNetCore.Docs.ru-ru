@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/14/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: 1b0db66b23c0caffc6b7c4e4af723c020609612a
-ms.sourcegitcommit: d5d45d84fe488427d418de770000f7df44a08370
+ms.openlocfilehash: b39695f8b506744b4af27a1d7e09bfac9594d7ca
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "81539665"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772495"
 ---
-# <a name="aspnet-core-opno-locblazor-globalization-and-localization"></a>Глобализация и локализация в ASP.NET Core Blazor
+# <a name="aspnet-core-blazor-globalization-and-localization"></a>Глобализация и локализация в ASP.NET Core Blazor
 
 Авторы: [Люк Латэм](https://github.com/guardrex) (Luke Latham) и [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
 
@@ -60,7 +63,7 @@ ms.locfileid: "81539665"
 
 ## <a name="localization"></a>Локализация
 
-### <a name="opno-locblazor-webassembly"></a>Blazor WebAssembly
+### <a name="blazor-webassembly"></a>Blazor WebAssembly
 
 Приложения Blazor WebAssembly задают язык и региональные параметры с помощью [предпочитаемого языка пользователя](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages).
 
@@ -70,7 +73,7 @@ ms.locfileid: "81539665"
 
 Хотя язык и региональные параметры, выбираемые Blazor по умолчанию, могут быть достаточными для большинства пользователей, рекомендуется предоставить пользователям возможность указать предпочитаемый языковой стандарт. Пример приложения Blazor WebAssembly с выбором языка и региональных параметров см. в описании примера приложения локализации [LocSample](https://github.com/pranavkm/LocSample).
 
-### <a name="opno-locblazor-server"></a>Сервер Blazor
+### <a name="blazor-server"></a>Сервер Blazor
 
 Приложения Blazor Server локализуются с помощью [промежуточного слоя локализации](xref:fundamentals/localization#localization-middleware). ПО промежуточного слоя выбирает соответствующие языки и региональные параметры для пользователей, запрашивающих ресурсы из приложения.
 

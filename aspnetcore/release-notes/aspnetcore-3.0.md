@@ -7,14 +7,17 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: 4886673a9b16b8be8d9a0b0d5c7002a91760544e
-ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
+ms.openlocfilehash: aa0b2b51632cff729449018f9823c38cc26ce612
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/08/2020
-ms.locfileid: "80976980"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774097"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>Новые возможности в ASP.NET Core 3.0
 
@@ -34,21 +37,21 @@ Blazor — это новая платформа в ASP.NET Core, предназ
 * маршрутизация на стороне клиента;
 * макеты компонентов;
 * поддержка внедрения зависимостей;
-* Формы и проверка
+* формы и проверка;
 * создание библиотек компонентов с помощью библиотек классов Razor;
-* Взаимодействие с JavaScript
+* взаимодействие с JavaScript.
 
 Для получения дополнительной информации см. <xref:blazor/index>.
 
-### <a name="opno-locblazor-server"></a>Сервер Blazor
+### <a name="blazor-server"></a>Сервер Blazor
 
 Blazor отделяет логику отображения компонентов от того, как применяются обновления пользовательского интерфейса. Сервер Blazor предоставляет поддержку размещения компонентов Razor на сервере в приложении ASP.NET Core. Обновления пользовательского интерфейса передаются через подключение SignalR. Серверное приложение Blazor поддерживается только в ASP.NET Core 3.0.
 
-### <a name="opno-locblazor-webassembly-preview"></a>WebAssembly Blazor (предварительная версия)
+### <a name="blazor-webassembly-preview"></a>WebAssembly Blazor (предварительная версия)
 
 Приложения Blazor можно также запускать напрямую в браузере с использованием среды выполнения .NET на основе WebAssembly. WebAssembly Blazor доступна в режиме предварительной версии и *не* поддерживается в ASP.NET Core 3.0. WebAssembly Blazor будет поддерживаться в будущем выпуске ASP.NET Core.
 
-### <a name="razor-components"></a>Компоненты Razor
+### <a name="razor-components"></a>составные части компонента Razor.
 
 Приложения Blazor создаются на основе компонентов. Компоненты — это автономные блоки пользовательского интерфейса, такие как страница, диалоговое окно или форма. Это обычные классы .NET, определяющие логику отрисовки пользовательского интерфейса и обработчики событий на стороне клиента. Многофункциональные интерактивные веб-приложения можно создавать без JavaScript.
 
@@ -317,14 +320,14 @@ ASP.NET Core 3.0 теперь по умолчанию использует <xre
 
 ## <a name="new-razor-directives"></a>Новые директивы Razor
 
-Следующий список содержит новые директивы Razor:
+Следующий список содержит новые директивы Razor.
 
 * [`@attribute`](xref:mvc/views/razor#attribute) — директива `@attribute` применяет этот атрибут к классу созданной страницы или представления. Например, `@attribute [Authorize]`.
 * [`@implements`](xref:mvc/views/razor#implements) — директива `@implements` реализует интерфейс для созданного класса. Например, `@implements IDisposable`.
 
 ## <a name="identityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a>IdentityServer4 поддерживает проверку подлинности и авторизацию для веб-API и одностраничных приложений
 
-ASP.NET Core 3.0 обеспечивает проверку подлинности в одностраничных приложениях с помощью поддержки авторизации веб-API. Удостоверение ASP.NET Core для проверки подлинности и хранения пользователей объединяется с [IdentityServer4](https://identityserver.io/) для реализации Open ID Connect.
+ASP.NET Core 3.0 обеспечивает проверку подлинности в одностраничных приложениях с помощью поддержки авторизации веб-API. ASP.NET Core Identity для проверки подлинности и хранения пользователей объединяется с [IdentityServer4](https://identityserver.io/) для реализации Open ID Connect.
 
 IdentityServer4 — это платформа OpenID Connect и OAuth 2.0 для ASP.NET Core 3.0. Она обеспечивает следующие функции безопасности:
 
@@ -395,7 +398,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 ## <a name="template-changes"></a>Изменения шаблонов
 
-В шаблонах веб-интерфейса (Razor Pages, MVC с контроллером и представлениями) удалены следующие элементы:
+В шаблонах веб-интерфейса (Razor Pages, MVC с контроллером и представлениями) удалены следующие элементы.
 
 * Пользовательского интерфейса согласия на файлы cookie больше нет. Сведения о включении функции согласия на файлы cookie в приложении, созданном с помощью шаблона ASP.NET Core 3.0, см. в статье <xref:security/gdpr>.
 * Для ссылки на скрипты и связанные статические ресурсы теперь используются локальные файлы, а не CDN. Дополнительные сведения см. в статье [3.0: Scripts and related static assets are now referenced as local files instead of using CDNs based on the current environment](https://github.com/dotnet/AspNetCore.Docs/issues/14350) (В версии 3.0 для ссылки на скрипты и связанные статические ресурсы теперь используются локальные файлы, а не CDN в зависимости от текущей среды) (№ 14350).

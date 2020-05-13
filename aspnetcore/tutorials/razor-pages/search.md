@@ -1,20 +1,26 @@
 ---
-title: Добавление поиска на страницы Razor ASP.NET Core
+title: Добавление поиска на страницы Razor ASP.NET Core
 author: rick-anderson
-description: Инструкции по добавлению поиска на страницы Razor ASP.NET Core
+description: Инструкции по добавлению поиска на страницы Razor ASP.NET Core
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: 8228207b0f37a6923b29891ac3115dd0be115501
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: baa5e1cb2098a60155a4196f0e602feeff04f102
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78651046"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775002"
 ---
-# <a name="add-search-to-aspnet-core-razor-pages"></a>Добавление поиска на страницы Razor ASP.NET Core
+# <a name="add-search-to-aspnet-core-razor-pages"></a>Добавление поиска на страницы Razor ASP.NET Core
 
-Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT)
+Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -114,8 +120,8 @@ var movies = from m in _context.Movie
 * [Версия руководства на YouTube](https://youtu.be/4B6pHtdyo08)
 
 > [!div class="step-by-step"]
-> [Предыдущая статья — "Обновление страниц"](xref:tutorials/razor-pages/da1)
-> [Следующая статья — "Добавление нового поля"](xref:tutorials/razor-pages/new-field)
+> [Предыдущая статья. Обновление страниц](xref:tutorials/razor-pages/da1)
+> [Следующая статья. Добавление нового поля](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end
 
@@ -217,7 +223,7 @@ var movies = from m in _context.Movie
 * [Версия руководства на YouTube](https://youtu.be/4B6pHtdyo08)
 
 > [!div class="step-by-step"]
-> [Предыдущая статья — "Обновление страниц"](xref:tutorials/razor-pages/da1)
-> [Следующая статья — "Добавление нового поля"](xref:tutorials/razor-pages/new-field)
+> [Предыдущая статья. Обновление страниц](xref:tutorials/razor-pages/da1)
+> [Следующая статья. Добавление нового поля](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end

@@ -1,17 +1,23 @@
 ---
-title: Добавление проверки на страницу Razor в ASP.NET Core
+title: Добавление проверки на странице Razor ASP.NET Core
 author: rick-anderson
-description: Практическое руководство по добавлению проверки на страницу Razor в ASP.NET Core.
+description: Практическое руководство по добавлению проверки на страницу Razor в ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: f283234ed8a32dc9b7904bc6fee1cc9c04741029
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 91f0ac5fcd607f2423f9fc4647413b2bbb2336fc
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650344"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773779"
 ---
 # <a name="add-validation-to-an-aspnet-core-razor-page"></a>Добавление проверки на страницу Razor в ASP.NET Core
 
@@ -211,7 +217,7 @@ CREATE TABLE [dbo].[Movie] (
 
 Сведения о развертывании в Azure, см. в разделе [Учебник: Создание приложения ASP.NET Core в Azure с подключением к базе данных SQL](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
 
-Благодарим вас за изучение общих сведений о страницах Razor. Отличным дополнением к этому руководству является руководство по [началу работы с Razor Pages и EF Core](xref:data/ef-rp/intro).
+Благодарим вас за изучение общих сведений о страницах Razor. Отличным дополнением к этому руководству является руководство по [началу работы с Razor Pages и EF Core](xref:data/ef-rp/intro).
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

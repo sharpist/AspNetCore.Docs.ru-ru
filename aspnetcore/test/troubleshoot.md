@@ -5,13 +5,19 @@ description: Устранение неполадок при возникнове
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: test/troubleshoot
-ms.openlocfilehash: 345967f08cf99ef5f18d0c9bcd59ab29c74454f1
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 74b494f6d16637a54ab7f1b5c0cf9fbb86248fe7
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79511513"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776621"
 ---
 # <a name="troubleshoot-and-debug-aspnet-core-projects"></a>Устранение неполадок и отладка проектов ASP.NET Core
 
@@ -75,7 +81,7 @@ ms.locfileid: "79511513"
 
 * Запрос — метод, схема, узел, свойство pathbase, путь, строка запроса, заголовки
 * Подключение — удаленный IP-адрес, удаленный порт, локальный IP-адрес, локальный порт, сертификат клиента
-* Идентификатор — имя, отображаемое имя
+* Identity &ndash;. Имя, отображаемое имя
 * Параметры конфигурации
 * Переменные среды
 

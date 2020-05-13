@@ -4,13 +4,19 @@ author: rick-anderson
 description: Добавление представления в простое приложение ASP.NET Core MVC
 ms.author: riande
 ms.date: 8/04/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: 5510fb6844452571ca764e21640f0bd16444c782
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: c89e0f0428fa7556fcd6b75cdfc1dd19109ec1c8
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78647788"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774604"
 ---
 # <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Добавление представления в приложение MVC ASP.NET Core
 
@@ -227,7 +233,7 @@ ms.locfileid: "78647788"
 
 ---
 
-Замените содержимое файла представления Razor *Views/HelloWorld/Index.cshtml* следующим:
+Замените содержимое файла представления Razor *Views/HelloWorld/Index.cshtml* следующим.
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 

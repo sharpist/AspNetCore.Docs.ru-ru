@@ -5,31 +5,284 @@ description: Сведения о конфигурации модели разм�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 05/04/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/hosting-model-configuration
-ms.openlocfilehash: bd44643877e45c5b48b0972bcc2f637fbc5d98f2
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 17ed43a12643f067da73658bec72400acbe1be43
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78646792"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772078"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>Конфигурация модели размещения ASP.NET Core Blazor
 
-Автор: [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
+Авторы: [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 В этой статье рассматривается конфигурация модели размещения.
 
-<!-- For future use:
+## <a name="blazor-webassembly"></a>Blazor WebAssembly
 
-## Blazor WebAssembly
+### <a name="environment"></a>Среда
 
--->
+При локальном запуске приложения среда по умолчанию имеет значение Development. При публикации приложения среда по умолчанию имеет значение Production.
+
+Размещенное приложение Blazor WebAssembly выбирает среду на сервере через прошивку, которая передает среду в браузер, добавляя заголовок `blazor-environment`. В заголовке содержится среда. Размещенное приложение Blazor и серверное приложение совместно используют одну и ту же среду. Дополнительные сведения, в том числе о настройке среды, см. на странице <xref:fundamentals/environments>.
+
+Для автономного приложения, выполняемого локально, сервер разработки добавляет заголовок `blazor-environment`, чтобы указать среду разработки. Чтобы указать среду для других сред размещения, добавьте заголовок `blazor-environment`.
+
+В следующем примере для IIS добавьте пользовательский заголовок в опубликованный *файл Web. config*. Файл *web.config* размещен в папке *bin/Release/{TARGET FRAMEWORK}/publish*:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <system.webServer>
+
+    ...
+
+    <httpProtocol>
+      <customHeaders>
+        <add name="blazor-environment" value="Staging" />
+      </customHeaders>
+    </httpProtocol>
+  </system.webServer>
+</configuration>
+```
+
+> [!NOTE]
+> Сведения об использовании пользовательского файла *web.config* для служб IIS, который не перезаписывается при публикации приложения в папку *Publish*, см. в разделе <xref:host-and-deploy/blazor/webassembly#use-a-custom-webconfig>.
+
+Чтобы получить среду приложения в компоненте, вставьте `IWebAssemblyHostEnvironment` и прочтите свойство `Environment`:
+
+```razor
+@page "/"
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@inject IWebAssemblyHostEnvironment HostEnvironment
+
+<h1>Environment example</h1>
+
+<p>Environment: @HostEnvironment.Environment</p>
+```
+
+Во время запуска `WebAssemblyHostBuilder` раскрывает `IWebAssemblyHostEnvironment` с помощью свойства `HostEnvironment`, которое позволяет разработчикам реализовать в своем коде логику для конкретной среды:
+
+```csharp
+if (builder.HostEnvironment.Environment == "Custom")
+{
+    ...
+};
+```
+
+Следующие удобные методы расширения допускают проверку текущей среды на признак среды разработки, тестирования, коммерческой среды или пользовательской среды:
+
+* `IsDevelopment()`
+* `IsProduction()`
+* `IsStaging()`
+* `IsEnvironment("{ENVIRONMENT NAME}")
+
+```csharp
+if (builder.HostEnvironment.IsStaging())
+{
+    ...
+};
+
+if (builder.HostEnvironment.IsEnvironment("Custom"))
+{
+    ...
+};
+```
+
+Свойство `IWebAssemblyHostEnvironment.BaseAddress` можно использовать во время запуска, если служба `NavigationManager` недоступна.
+
+### <a name="configuration"></a>Параметр Configuration
+
+Blazor WebAssembly загружает конфигурацию из следующих источников.
+
+* Файлы параметров приложения по умолчанию
+  * *wwwroot/appsettings.json*
+  * *wwwroot/appsettings.{ENVIRONMENT}.json*
+* Другие [поставщики конфигурации](xref:fundamentals/configuration/index), зарегистрированные приложением. Не все поставщики подходят для приложений Blazor WebAssembly. Сведения о том, какие поставщики поддерживаются для Blazor WebAssembly, можно найти в разделе [Поставщики конфигурации для Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).
+
+> [!WARNING]
+> Конфигурация в приложении Blazor WebAssembly видна пользователям. **Не храните учетные данные или секреты приложения в конфигурации.**
+
+Дополнительные сведения о поставщиках конфигурации см. в разделе <xref:fundamentals/configuration/index>.
+
+#### <a name="app-settings-configuration"></a>Конфигурация параметров приложения
+
+*wwwroot/appsettings.json*:
+
+```json
+{
+  "message": "Hello from config!"
+}
+```
+
+Внедрите экземпляр <xref:Microsoft.Extensions.Configuration.IConfiguration> в компонент для доступа к данным конфигурации:
+
+```razor
+@page "/"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<h1>Configuration example</h1>
+
+<p>Message: @Configuration["message"]</p>
+```
+
+#### <a name="provider-configuration"></a>Конфигурация поставщика
+
+В следующем примере используется <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> для предоставления дополнительной конфигурации.
+
+`Program.Main`.
+
+```csharp
+using Microsoft.Extensions.Configuration.Memory;
+
+...
+
+var vehicleData = new Dictionary<string, string>()
+{
+    { "color", "blue" },
+    { "type", "car" },
+    { "wheels:count", "3" },
+    { "wheels:brand", "Blazin" },
+    { "wheels:brand:type", "rally" },
+    { "wheels:year", "2008" },
+};
+
+var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
+
+...
+
+builder.Configuration.Add(memoryConfig);
+```
+
+Внедрите экземпляр <xref:Microsoft.Extensions.Configuration.IConfiguration> в компонент для доступа к данным конфигурации:
+
+```razor
+@page "/"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<h1>Configuration example</h1>
+
+<h2>Wheels</h2>
+
+<ul>
+    <li>Count: @Configuration["wheels:count"]</li>
+    <li>Brand: @Configuration["wheels:brand"]</li>
+    <li>Type: @Configuration["wheels:brand:type"]</li>
+    <li>Year: @Configuration["wheels:year"]</li>
+</ul>
+
+@code {
+    var wheelsSection = Configuration.GetSection("wheels");
+    
+    ...
+}
+```
+
+Для чтения других файлов конфигурации из папки *wwwroot* в конфигурацию используйте `HttpClient` для получения содержимого файла. При использовании этого подхода существующая регистрация службы `HttpClient` может использовать локальный клиент, созданный для чтения файла, как показано в следующем примере.
+
+*wwwroot/cars.json*:
+
+```json
+{
+    "size": "tiny"
+}
+```
+
+`Program.Main`.
+
+```csharp
+using Microsoft.Extensions.Configuration;
+
+...
+
+var client = new HttpClient()
+{
+    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+};
+
+builder.Services.AddTransient(sp => client);
+
+using var response = await client.GetAsync("cars.json");
+using var stream = await response.Content.ReadAsStreamAsync();
+
+builder.Configuration.AddJsonStream(stream);
+```
+
+#### <a name="authentication-configuration"></a>Конфигурация проверки подлинности
+
+*wwwroot/appsettings.json*:
+
+```json
+{
+  "AzureAD": {
+    "Authority": "https://login.microsoftonline.com/",
+    "ClientId": "aeaebf0f-d416-4d92-a08f-e1d5b51fc494"
+  }
+}
+```
+
+`Program.Main`.
+
+```csharp
+builder.Services.AddOidcAuthentication(options =>
+    builder.Configuration.Bind("AzureAD", options);
+```
+
+#### <a name="logging-configuration"></a>Конфигурация ведения журнала
+
+*wwwroot/appsettings.json*:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  }
+}
+```
+
+`Program.Main`.
+
+```csharp
+builder.Logging.AddConfiguration(
+    builder.Configuration.GetSection("Logging"));
+```
+
+#### <a name="host-builder-configuration"></a>Конфигурация построителя узлов
+
+`Program.Main`.
+
+```csharp
+var hostname = builder.Configuration["HostName"];
+```
+
+#### <a name="cached-configuration"></a>Кэшированная конфигурация
+
+Файлы конфигурации кэшируются для автономного использования. При использовании [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app) файлы конфигурации можно изменять только при создании развертывания. Изменение файлов конфигурации между развертываниями не работает по следующим причинам:
+
+* У пользователей есть кэшированные версии файлов, которые они продолжают использовать.
+* Файлы *service-worker.js* и *service-worker-assets.js* PWA должны быть перестроены при компиляции, что при следующем входе пользователя в сеть сообщает приложению о том, что приложение было развернуто повторно.
+
+Дополнительные сведения об обработке фоновых изменений с помощью PWA см. на странице <xref:blazor/progressive-web-app#background-updates>.
+
+### <a name="logging"></a>Ведение журнала
+
+Дополнительные сведения о поддержке ведения журнала Blazor WebAssembly см. в разделе <xref:fundamentals/logging/index#create-logs-in-blazor>.
 
 ## <a name="blazor-server"></a>Blazor Server
 
@@ -81,54 +334,7 @@ ms.locfileid: "78646792"
 
 Отрисовка компонентов сервера из статической HTML-страницы не поддерживается.
 
-### <a name="render-stateful-interactive-components-from-razor-pages-and-views"></a>Отображение интерактивных компонентов с отслеживанием состояния из страниц и представлений Razor
-
-На страницу или в представление Razor можно добавить интерактивные компоненты с отслеживанием состояния.
-
-При отображении страницы или представления:
-
-* компонент предварительно отображается страницей или представлением;
-* исходное состояние компонента, используемое для предварительной визуализации, теряется;
-* новое состояние компонента создается при установке подключения SignalR.
-
-Следующая страница Razor визуализирует компонент `Counter`.
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<component type="typeof(Counter)" render-mode="ServerPrerendered" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-### <a name="render-noninteractive-components-from-razor-pages-and-views"></a>Отображение неинтерактивных компонентов из страниц и представлений Razor
-
-На следующей странице Razor компонент `Counter` статически подготавливается к просмотру с начальным значением, указанным с помощью формы.
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<form>
-    <input type="number" asp-for="InitialValue" />
-    <button type="submit">Set initial value</button>
-</form>
-
-<component type="typeof(Counter)" render-mode="Static" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-Поскольку `MyComponent` отображается статически, компонент не может быть интерактивным.
-
-### <a name="configure-the-opno-locsignalr-client-for-opno-locblazor-server-apps"></a>Настройка клиента SignalR для приложений Blazor Server
+### <a name="configure-the-signalr-client-for-blazor-server-apps"></a>Настройка клиента SignalR для приложений Blazor Server
 
 Иногда необходимо настроить клиент SignalR, используемый приложениями Blazor Server. Например, может потребоваться настроить ведение журнала на клиенте SignalR для диагностики проблемы с подключением.
 
@@ -147,3 +353,7 @@ ms.locfileid: "78646792"
   });
 </script>
 ```
+
+### <a name="logging"></a>Ведение журнала
+
+Сведения о поддержке ведения журнала в Blazor Server см. в разделе <xref:fundamentals/logging/index#create-logs-in-blazor>.
