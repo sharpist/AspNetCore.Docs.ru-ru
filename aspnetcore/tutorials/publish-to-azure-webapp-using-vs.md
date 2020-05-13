@@ -5,13 +5,19 @@ description: Сведения о публикации приложения ASP.N
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/publish-to-azure-webapp-using-vs
-ms.openlocfilehash: 7fc3644df3dcb957f2537538aaa9506c6b38a480
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 634fb821ef0478dbcf57fdbb991a2e8bbb9402f1
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78648496"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777089"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio"></a>Публикация приложения ASP.NET Core в Azure с помощью Visual Studio
 
@@ -158,7 +164,7 @@ Visual Studio создает веб-приложение и SQL Server в Azure.
 
 ### <a name="update-the-app"></a>Обновление приложения
 
-* Измените страницу Razor *Pages/About.cshtml* и ее содержимое. Например, вы можете изменить абзац на "Hello ASP.NET Core!":
+* Измените страницу ** Pages/About.cshtmlRazor и ее содержимое. Например, вы можете изменить абзац на "Hello ASP.NET Core!":
 
     [!code-html[About](publish-to-azure-webapp-using-vs/sample/about.cshtml?highlight=9&range=1-9)]
 
