@@ -5,7 +5,7 @@ description: Узнайте, как настроить Blazor сборку дл�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/08/2020
+ms.date: 05/11/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/additional-scenarios
-ms.openlocfilehash: e8a088b3f1a4e0eb7d5d1c5c09ef53c4a2bd3628
-ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
+ms.openlocfilehash: d460f65e996f1f77136a426b03d6eb548d9e309e
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82976796"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153477"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Блазор дополнительные сценарии безопасности для сборки
 
@@ -30,9 +30,9 @@ ms.locfileid: "82976796"
 
 ## <a name="attach-tokens-to-outgoing-requests"></a>Присоединение маркеров к исходящим запросам
 
-`AuthorizationMessageHandler` Службу можно использовать с `HttpClient` для присоединения маркеров доступа к исходящим запросам. Токены получаются с помощью `IAccessTokenProvider` существующей службы. Если токен не может быть получен, `AccessTokenNotAvailableException` создается исключение. `AccessTokenNotAvailableException`содержит `Redirect` метод, который можно использовать для перехода пользователя к поставщику удостоверений для получения нового маркера. Для `AuthorizationMessageHandler` настройки можно использовать полномочные URL-адреса, области и URL-адрес возврата с `ConfigureHandler` помощью метода.
+`AuthorizationMessageHandler`Службу можно использовать с `HttpClient` для присоединения маркеров доступа к исходящим запросам. Токены получаются с помощью существующей `IAccessTokenProvider` службы. Если токен не может быть получен, `AccessTokenNotAvailableException` создается исключение. `AccessTokenNotAvailableException`содержит `Redirect` метод, который можно использовать для перехода пользователя к поставщику удостоверений для получения нового маркера. Для `AuthorizationMessageHandler` настройки можно использовать полномочные URL-адреса, области и URL-адрес возврата с помощью `ConfigureHandler` метода.
 
-В `AuthorizationMessageHandler` следующем примере `HttpClient` настраивается в `Program.Main` (*Program.CS*):
+В следующем примере `AuthorizationMessageHandler` настраивается `HttpClient` в `Program.Main` (*Program.CS*):
 
 ```csharp
 using System.Net.Http;
@@ -52,7 +52,7 @@ builder.Services.AddTransient(sp =>
 });
 ```
 
-Для удобства `BaseAddressAuthorizationMessageHandler` включается предварительно настроенный базовый адрес приложения в качестве разрешенного URL-адреса. Шаблоны Блазор, поддерживающие проверку подлинности, <xref:System.Net.Http.IHttpClientFactory> теперь используют в проекте API сервера для настройки <xref:System.Net.Http.HttpClient> с помощью: `BaseAddressAuthorizationMessageHandler`
+Для удобства `BaseAddressAuthorizationMessageHandler` включается предварительно настроенный базовый адрес приложения в качестве разрешенного URL-адреса. Шаблоны Блазор, поддерживающие проверку подлинности, теперь используют <xref:System.Net.Http.IHttpClientFactory> в проекте API сервера для настройки <xref:System.Net.Http.HttpClient> с помощью `BaseAddressAuthorizationMessageHandler` :
 
 ```csharp
 using System.Net.Http;
@@ -60,21 +60,23 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-builder.Services.AddHttpClient("BlazorWithIdentityApp1.ServerAPI", 
+builder.Services.AddHttpClient("BlazorWithIdentity.ServerAPI", 
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
         .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("BlazorWithIdentityApp1.ServerAPI"));
+    .CreateClient("BlazorWithIdentity.ServerAPI"));
 ```
 
 При создании клиента с помощью `CreateClient` в предыдущем примере <xref:System.Net.Http.HttpClient> передаются экземпляры, которые включают маркеры доступа при выполнении запросов к серверному проекту.
 
-Настроенный <xref:System.Net.Http.HttpClient> затем используется для выполнения запросов с помощью простого `try-catch` шаблона. Следующий `FetchData` компонент запрашивает данные прогноза погоды:
+Настроенный <xref:System.Net.Http.HttpClient> затем используется для выполнения запросов с помощью простого `try-catch` шаблона.
+
+`FetchData`Component (*pages/FetchData. Razor*):
 
 ```csharp
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@inject HttpClient Http
+@inject HttpClient Client
 
 ...
 
@@ -83,7 +85,7 @@ protected override async Task OnInitializedAsync()
     try
     {
         forecasts = 
-            await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+            await Client.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
     }
     catch (AccessTokenNotAvailableException exception)
     {
@@ -92,37 +94,36 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Кроме того, можно определить типизированный клиент, который обрабатывает все проблемы, связанные с получением маркеров HTTP и Token, в пределах одного класса:
+## <a name="typed-httpclient"></a>Типизированный HttpClient
 
-*WeatherClient.CS*:
+Можно определить типизированный клиент, который обрабатывает все проблемы получения HTTP и маркеров в рамках одного класса.
+
+*WeatherForecastClient.CS*:
 
 ```csharp
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using static {APP ASSEMBLY}.Data;
 
-public class WeatherClient
+public class WeatherForecastClient
 {
-    private readonly HttpClient httpClient;
+    private readonly HttpClient client;
  
-    public WeatherClient(HttpClient httpClient)
+    public WeatherForecastClient(HttpClient client)
     {
-        this.httpClient = httpClient;
+        this.client = client;
     }
  
-    public async Task<IEnumerable<WeatherForecast>> GetWeatherForeacasts()
+    public async Task<WeatherForecast[]> GetForecastAsync()
     {
-        IEnumerable<WeatherForecast> forecasts = new WeatherForecast[0];
+        var forecasts = new WeatherForecast[0];
 
         try
         {
-            forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>(
+            forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
                 "WeatherForecast");
-
-            ...
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -134,7 +135,7 @@ public class WeatherClient
 }
 ```
 
-*Program.cs*:
+`Program.Main`(*Program.CS*):
 
 ```csharp
 using System.Net.Http;
@@ -142,29 +143,80 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-builder.Services.AddHttpClient<WeatherClient>(
+builder.Services.AddHttpClient<WeatherForecastClient>(
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 ```
 
-*FetchData. Razor*:
+`FetchData`Component (*pages/FetchData. Razor*):
 
 ```razor
-@inject WeatherClient WeatherClient
+@inject WeatherForecastClient Client
 
 ...
 
 protected override async Task OnInitializedAsync()
 {
-    forecasts = await WeatherClient.GetWeatherForeacasts();
+    forecasts = await Client.GetForecastAsync();
 }
 ```
 
+## <a name="configure-the-httpclient-handler"></a>Настройка обработчика HttpClient
+
+Обработчик можно дополнительно настроить <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> для исходящих HTTP-запросов.
+
+`Program.Main`(*Program.CS*):
+
+```csharp
+builder.Services.AddHttpClient<WeatherForecastClient>(client => client.BaseAddress = new Uri("https://www.example.com/base"))
+    .AddHttpMessageHandler(sp => sp.GetRequiredService<AuthorizationMessageHandler>()
+    .ConfigureHandler(new [] { "https://www.example.com/base" },
+        scopes: new[] { "example.read", "example.write" }));
+```
+
+## <a name="unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client"></a>Запросы, не прошедшие проверку подлинности или неавторизованные веб-API в приложении с защищенным клиентом по умолчанию
+
+Если в приложении Блазор веб-сборки обычно используется безопасное значение по умолчанию <xref:System.Net.Http.HttpClient> , приложение также может выполнять неавторизованные или несанкционированные запросы к Web API, настроив именованную <xref:System.Net.Http.HttpClient> :
+
+`Program.Main`(*Program.CS*):
+
+```csharp
+builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient", 
+    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+```
+
+Приведенная выше регистрация является дополнением к существующей безопасной регистрации по умолчанию <xref:System.Net.Http.HttpClient> .
+
+Компонент создает <xref:System.Net.Http.HttpClient> из в <xref:System.Net.Http.IHttpClientFactory> для создания непроверенных или неавторизованных запросов:
+
+```razor
+@inject IHttpClientFactory ClientFactory
+
+...
+
+@code {
+    private WeatherForecast[] forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var client = ClientFactory.CreateClient("ServerAPI.NoAuthenticationClient");
+
+        forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
+            "WeatherForecastNoAuthentication");
+    }
+}
+```
+
+> [!NOTE]
+> Контроллер в API сервера `WeatherForecastNoAuthenticationController` для предыдущего примера не помечен [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) атрибутом.
+
 ## <a name="request-additional-access-tokens"></a>Запрос дополнительных маркеров доступа
 
-Маркеры доступа могут быть получены вручную путем вызова `IAccessTokenProvider.RequestAccessToken`.
+Маркеры доступа могут быть получены вручную путем вызова `IAccessTokenProvider.RequestAccessToken` .
 
-В следующем примере дополнительные Azure Active Directory (AAD) Microsoft Graph области API необходимы приложениям для чтения данных пользователей и отправки почты. После добавления разрешений Microsoft Graph API на портале Azure AAD дополнительные области настраиваются в клиентском приложении (`Program.Main` *Program.CS*):
+В следующем примере дополнительные Azure Active Directory (AAD) Microsoft Graph области API необходимы приложениям для чтения данных пользователей и отправки почты. После добавления разрешений Microsoft Graph API на портале Azure AAD дополнительные области настраиваются в клиентском приложении.
+
+`Program.Main`(*Program.CS*):
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -178,9 +230,11 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-`IAccessTokenProvider.RequestToken` Метод предоставляет перегрузку, которая позволяет приложению подготавливать маркер доступа с заданным набором областей, как показано в следующем примере:
+`IAccessTokenProvider.RequestToken`Метод предоставляет перегрузку, которая позволяет приложению подготавливать маркер доступа с заданным набором областей.
 
-```csharp
+В компоненте Razor:
+
+```razor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject IAccessTokenProvider TokenProvider
 
@@ -206,7 +260,7 @@ if (tokenResult.TryGetToken(out var token))
 
 ## <a name="httpclient-and-httprequestmessage-with-fetch-api-request-options"></a>HttpClient и HttpRequestMessage с параметрами запроса API FETCH
 
-При выполнении в сборке Блазор в приложении [HttpClient](xref:fundamentals/http-requests) и <xref:System.Net.Http.HttpRequestMessage> может использоваться для настройки запросов. Например, можно указать метод HTTP и заголовки запроса. Следующий пример выполняет `POST` запрос к КОНЕЧНОЙ точке API To Do List на сервере и отображает текст ответа:
+При выполнении в сборке Блазор в приложении [HttpClient](xref:fundamentals/http-requests) и <xref:System.Net.Http.HttpRequestMessage> может использоваться для настройки запросов. Например, можно указать метод HTTP и заголовки запроса. Следующий компонент выполняет запрос к `POST` конечной точке API To Do List на сервере и отображает текст ответа:
 
 ```razor
 @page "/todorequest"
@@ -291,14 +345,14 @@ requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 
 Дополнительные сведения о возможностях API-получения см. в разделе [MDN Web документация: виндоворворкерглобалскопе. fetch ():P араметерс](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
 
-При отправке учетных данных (файлов cookie или заголовков авторизации `Authorization` ) в запросах CORS этот заголовок должен быть РАЗРЕШЕН политикой CORS.
+При отправке учетных данных (файлов cookie или заголовков авторизации) в запросах CORS этот `Authorization` заголовок должен быть разрешен ПОЛИТИКОЙ CORS.
 
 Следующая политика включает в себя настройку для:
 
-* Источники запроса (`http://localhost:5000`, `https://localhost:5001`).
+* Источники запроса ( `http://localhost:5000` , `https://localhost:5001` ).
 * Любой метод (глагол).
-* `Content-Type`и `Authorization` заголовки. Чтобы разрешить пользовательский заголовок (например, `x-custom-header`), выведите список заголовков при <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*>вызове метода.
-* Учетные данные, которые`credentials` `include`задаются кодом JavaScript на стороне клиента (свойство имеет значение).
+* `Content-Type`и `Authorization` заголовки. Чтобы разрешить пользовательский заголовок (например, `x-custom-header` ), выведите список заголовков при вызове метода <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*> .
+* Учетные данные, которые задаются кодом JavaScript на стороне клиента ( `credentials` свойство имеет значение `include` ).
 
 ```csharp
 app.UseCors(policy => 
@@ -308,7 +362,7 @@ app.UseCors(policy =>
     .AllowCredentials());
 ```
 
-Дополнительные сведения см. в <xref:security/cors> разделе и компоненте тестера HTTP-запросов примера приложения (*Components/хттпрекуесттестер. Razor*).
+Дополнительные сведения см <xref:security/cors> . в разделе и компоненте тестера HTTP-запросов примера приложения (*Components/хттпрекуесттестер. Razor*).
 
 ## <a name="handle-token-request-errors"></a>Обработку ошибок запросов маркера
 
@@ -332,7 +386,7 @@ app.UseCors(policy =>
 
 При сбое запроса маркера необходимо решить, следует ли сохранить текущее состояние перед выполнением перенаправления. Существует несколько подходов, повышающих уровень сложности:
 
-* Сохранение текущего состояния страницы в хранилище сеансов. В `OnInitializeAsync`течение этого периода проверьте, можно ли восстановить состояние перед продолжением.
+* Сохранение текущего состояния страницы в хранилище сеансов. `OnInitializeAsync`В течение этого периода проверьте, можно ли восстановить состояние перед продолжением.
 * Добавьте параметр строки запроса и используйте его в качестве способа сигнализации приложению о необходимости повторного расконсервации ранее сохраненного состояния.
 * Добавьте параметр строки запроса с уникальным идентификатором для хранения данных в хранилище сеанса без риска конфликтов с другими элементами.
 
@@ -450,7 +504,7 @@ app.UseCors(policy =>
 
 ## <a name="customize-app-routes"></a>Настройка маршрутов приложений
 
-По умолчанию `Microsoft.AspNetCore.Components.WebAssembly.Authentication` библиотека использует маршруты, показанные в следующей таблице, для представления различных состояний проверки подлинности.
+По умолчанию `Microsoft.AspNetCore.Components.WebAssembly.Authentication` Библиотека использует маршруты, показанные в следующей таблице, для представления различных состояний проверки подлинности.
 
 | Маршрут                            | Назначение |
 | -------------------------------- | ------- |
@@ -464,9 +518,9 @@ app.UseCors(policy =>
 | `authentication/profile`         | Активирует операцию для изменения профиля пользователя. |
 | `authentication/register`        | Активирует операцию для регистрации нового пользователя. |
 
-Маршруты, показанные в предыдущей таблице, можно настроить с `RemoteAuthenticationOptions<TProviderOptions>.AuthenticationPaths`помощью. При настройке параметров для предоставления настраиваемых маршрутов убедитесь, что у приложения есть маршрут, который обрабатывает каждый путь.
+Маршруты, показанные в предыдущей таблице, можно настроить с помощью `RemoteAuthenticationOptions<TProviderOptions>.AuthenticationPaths` . При настройке параметров для предоставления настраиваемых маршрутов убедитесь, что у приложения есть маршрут, который обрабатывает каждый путь.
 
-В следующем примере все пути имеют префикс `/security`.
+В следующем примере все пути имеют префикс `/security` .
 
 `Authentication`Component (*pages/Authentication. Razor*):
 
@@ -498,7 +552,7 @@ builder.Services.AddApiAuthorization(options => {
 });
 ```
 
-Если требование вызывается для совершенно разных путей, задайте маршруты, как описано выше, и выполните `RemoteAuthenticatorView` визуализацию с помощью явного параметра Action:
+Если требование вызывается для совершенно разных путей, задайте маршруты, как описано выше, и выполните визуализацию `RemoteAuthenticatorView` с помощью явного параметра Action:
 
 ```razor
 @page "/register"
@@ -510,7 +564,7 @@ builder.Services.AddApiAuthorization(options => {
 
 ## <a name="customize-the-authentication-user-interface"></a>Настройка пользовательского интерфейса проверки подлинности
 
-`RemoteAuthenticatorView`включает набор элементов пользовательского интерфейса по умолчанию для каждого состояния проверки подлинности. Каждое состояние можно настроить путем передачи пользовательского `RenderFragment`. Для настройки отображаемого текста во время первоначального входа в систему может измениться следующим `RemoteAuthenticatorView` образом.
+`RemoteAuthenticatorView`включает набор элементов пользовательского интерфейса по умолчанию для каждого состояния проверки подлинности. Каждое состояние можно настроить путем передачи пользовательского `RenderFragment` . Для настройки отображаемого текста во время первоначального входа в систему может измениться `RemoteAuthenticatorView` следующим образом.
 
 `Authentication`Component (*pages/Authentication. Razor*):
 
@@ -561,7 +615,7 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-Создайте фабрику, которая `AccountClaimsPrincipalFactory<TAccount>`расширяет:
+Создайте фабрику, которая расширяет `AccountClaimsPrincipalFactory<TAccount>` :
 
 ```csharp
 using System.Security.Claims;

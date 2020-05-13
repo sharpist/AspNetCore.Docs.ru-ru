@@ -1,5 +1,5 @@
 ---
-title: Шифрование неактивных ключей в ASP.NET Core
+title: Шифрование неактивных ключей в Windows и Azure с помощью ASP.NET Core
 author: rick-anderson
 description: Сведения о реализации ASP.NET Core шифрования ключа защиты данных при хранении.
 ms.author: riande
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-encryption-at-rest
-ms.openlocfilehash: e68b8e09dbd876c6f0d37242ebaa415994b3b808
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c927c926212aeb1263d15fd3fdc753c377b2e305
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776933"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153570"
 ---
-# <a name="key-encryption-at-rest-in-aspnet-core"></a>Шифрование неактивных ключей в ASP.NET Core
+# <a name="key-encryption-at-rest-in-windows-and-azure-using-aspnet-core"></a>Шифрование неактивных ключей в Windows и Azure с помощью ASP.NET Core
 
 Система защиты данных [по умолчанию использует механизм обнаружения,](xref:security/data-protection/configuration/default-settings) чтобы определить способ шифрования неактивных криптографических ключей. Разработчик может переопределить механизм обнаружения и вручную указать способ шифрования неактивных ключей.
 
@@ -106,7 +106,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Также существует перегрузка без параметров `ProtectKeysWithDpapiNG`. Используйте этот удобный метод, чтобы указать правило "SID = {CURRENT_ACCOUNT_SID}", где *CURRENT_ACCOUNT_SID* является идентификатором безопасности текущей учетной записи пользователя Windows:
+Также существует перегрузка без параметров `ProtectKeysWithDpapiNG` . Используйте этот удобный метод, чтобы указать правило "SID = {CURRENT_ACCOUNT_SID}", где *CURRENT_ACCOUNT_SID* является идентификатором безопасности текущей учетной записи пользователя Windows:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

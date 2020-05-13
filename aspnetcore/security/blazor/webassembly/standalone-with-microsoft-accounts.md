@@ -1,11 +1,11 @@
 ---
-title: Защита автономного Blazor приложения ASP.NET Coreной сборки с помощью учетных записей Майкрософт
+title: Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью учетных записей Майкрософт
 author: guardrex
 description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/06/2020
+ms.date: 05/11/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,14 +13,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-microsoft-accounts
-ms.openlocfilehash: 6f884cbfc9ac50f38c415af522d3d09a3ef38712
-ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
+ms.openlocfilehash: 9fc93cc02129081ac6c777677a0c8d6397724e53
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82976848"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153579"
 ---
-# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-microsoft-accounts"></a>Защита автономного Blazor приложения ASP.NET Coreной сборки с помощью учетных записей Майкрософт
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-microsoft-accounts"></a>Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью учетных записей Майкрософт
 
 [Хавьер Калварро Воронков](https://github.com/javiercn) и [Люк ЛаСаМ](https://github.com/guardrex)
 
@@ -28,26 +28,26 @@ ms.locfileid: "82976848"
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
-Чтобы создать изолированное приложение для веб- Blazor сборки, использующее [учетные записи Майкрософт с Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) для проверки подлинности:
+Чтобы создать Blazor изолированное приложение для веб-сборки, использующее [учетные записи майкрософт с Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) для проверки подлинности:
 
 1. [Создание клиента AAD и веб-приложения](/azure/active-directory/develop/v2-overview)
 
-   Зарегистрируйте приложение AAD в области **Azure Active Directory** > **Регистрация приложений** портал Azure:
+   Зарегистрируйте приложение AAD в области **Azure Active Directory**  >  **Регистрация приложений** портал Azure:
 
    1\. Укажите **имя** приложения (например, ** Blazor AAD клиента**).<br>
    2\. В списке **Поддерживаемые типы учетных записей**выберите **учетные записи в любом организационном каталоге**.<br>
-   3 \. Оставьте в раскрывающемся списке **URI перенаправления** значение **веб**и укажите универсальный код ресурса ( `https://localhost:5001/authentication/login-callback`URI) перенаправления для.<br>
-   4 \. Отключите **разрешения** > **предоставление прав администратора для OpenID Connect и offline_access** .<br>
+   3 \. Оставьте в раскрывающемся списке **URI перенаправления** значение **веб**и укажите универсальный код ресурса (URI) перенаправления для `https://localhost:5001/authentication/login-callback` .<br>
+   4 \. Отключите **разрешения**  >  **предоставление прав администратора для OpenID Connect и offline_access** .<br>
    5 \. Выберите **Зарегистрировать**.
 
-   В > **конфигурации платформы** **проверки подлинности** > **веб-сайт**:
+   В конфигурации платформы **проверки подлинности**  >  **Platform configurations**  >  **веб-сайт**:
 
-   1\. Убедитесь, что `https://localhost:5001/authentication/login-callback` **URI перенаправления** имеется.<br>
+   1\. Убедитесь, что **URI перенаправления** `https://localhost:5001/authentication/login-callback` имеется.<br>
    2\. Для **неявного предоставления**установите флажки для **маркеров доступа** и **маркеров идентификации**.<br>
    3 \. Остальные значения по умолчанию для приложения приемлемы для этого интерфейса.<br>
    4 \. Нажмите кнопку **Сохранить**.
 
-   Запишите идентификатор приложения (идентификатор клиента) (например, `11111111-1111-1111-1111-111111111111`).
+   Запишите идентификатор приложения (идентификатор клиента) (например, `11111111-1111-1111-1111-111111111111` ).
 
 1. Замените заполнители в следующей команде на записанные ранее сведения и выполните команду в командной оболочке:
 
@@ -55,16 +55,16 @@ ms.locfileid: "82976848"
    dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "common"
    ```
 
-   Чтобы указать расположение выходных данных, которое создает папку проекта, если она не существует, включите параметр OUTPUT в команду с путем (например, `-o BlazorSample`). Имя папки также станет частью имени проекта.
+   Чтобы указать расположение выходных данных, которое создает папку проекта, если она не существует, включите параметр OUTPUT в команду с путем (например, `-o BlazorSample` ). Имя папки также станет частью имени проекта.
 
 После создания приложения вы сможете:
 
 * Войдите в приложение, используя учетную запись Майкрософт.
-* Запросите маркеры доступа для API-интерфейсов Майкрософт, используя Blazor тот же подход, что и для автономных приложений, при условии, что приложение настроено правильно. Дополнительные сведения см. [в разделе Краткое руководство. Настройка приложения для предоставления веб-API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
+* Запросите маркеры доступа для API-интерфейсов Майкрософт, используя тот же подход, что и для автономных Blazor приложений, при условии, что приложение настроено правильно. Дополнительные сведения см. [в разделе Краткое руководство. Настройка приложения для предоставления веб-API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
 
 ## <a name="authentication-package"></a>Пакет проверки подлинности
 
-При создании приложения для использования рабочих или учебных учетных записей`SingleOrg`приложение автоматически получает ссылку на пакет для [библиотеки проверки подлинности Майкрософт](/azure/active-directory/develop/msal-overview) (`Microsoft.Authentication.WebAssembly.Msal`). Пакет предоставляет набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных интерфейсов API.
+При создании приложения для использования рабочих или учебных учетных записей `SingleOrg` приложение автоматически получает ссылку на пакет для [библиотеки проверки подлинности Майкрософт](/azure/active-directory/develop/msal-overview) ( `Microsoft.Authentication.WebAssembly.Msal` ). Пакет предоставляет набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных интерфейсов API.
 
 При добавлении проверки подлинности в приложение вручную добавьте пакет в файл проекта приложения:
 
@@ -75,11 +75,11 @@ ms.locfileid: "82976848"
 
 Замените `{VERSION}` в предыдущей ссылке на пакет версией `Microsoft.AspNetCore.Blazor.Templates` пакета, показанного в этой <xref:blazor/get-started> статье.
 
-`Microsoft.Authentication.WebAssembly.Msal` Пакет будет транзитно добавлять `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пакет в приложение.
+`Microsoft.Authentication.WebAssembly.Msal`Пакет будет транзитно добавлять `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пакет в приложение.
 
 ## <a name="authentication-service-support"></a>Поддержка службы проверки подлинности
 
-Поддержка проверки подлинности пользователей регистрируется в контейнере службы с `AddMsalAuthentication` помощью метода расширения, предоставленного `Microsoft.Authentication.WebAssembly.Msal` пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с Identity поставщиком (IP).
+Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью `AddMsalAuthentication` метода расширения, предоставленного `Microsoft.Authentication.WebAssembly.Msal` пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с Identity поставщиком (IP).
 
 *Program.cs*:
 
@@ -90,7 +90,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-`AddMsalAuthentication` Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения. Значения, необходимые для настройки приложения, можно получить из конфигурации учетных записей Майкрософт при регистрации приложения.
+`AddMsalAuthentication`Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения. Значения, необходимые для настройки приложения, можно получить из конфигурации учетных записей Майкрософт при регистрации приложения.
 
 Конфигурация предоставляется файлом *wwwroot/appSettings. JSON* :
 
@@ -116,7 +116,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 ## <a name="access-token-scopes"></a>Области токенов доступа
 
-Blazor Шаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API. Чтобы настроить маркер доступа как часть потока входа, добавьте область в область маркера доступа по умолчанию для `MsalProviderOptions`:
+BlazorШаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API. Чтобы настроить маркер доступа как часть потока входа, добавьте область в область маркера доступа по умолчанию для `MsalProviderOptions` :
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -173,6 +173,7 @@ builder.Services.AddMsalAuthentication(options =>
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * <xref:security/blazor/webassembly/additional-scenarios>
+* [Запросы, не прошедшие проверку подлинности или неавторизованные веб-API в приложении с защищенным клиентом по умолчанию](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:security/blazor/webassembly/aad-groups-roles>
 * [Краткое руководство. Регистрация приложения с помощью платформы удостоверений Майкрософт](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal)
 * [Краткое руководство. Настройка приложения для предоставления веб-API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)

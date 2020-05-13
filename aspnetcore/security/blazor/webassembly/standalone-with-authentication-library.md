@@ -1,11 +1,11 @@
 ---
-title: Защита автономного Blazor приложения ASP.NET Coreной сборки с помощью библиотеки проверки подлинности
+title: Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью библиотеки проверки подлинности
 author: guardrex
 description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/24/2020
+ms.date: 05/11/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,14 +13,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: 6907a1213a6a9089e2aed885093c2fd38f972ad0
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 219364ef2e699ff1029536effd106a80ec02825c
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768056"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153412"
 ---
-# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Защита автономного Blazor приложения ASP.NET Coreной сборки с помощью библиотеки проверки подлинности
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью библиотеки проверки подлинности
 
 [Хавьер Калварро Воронков](https://github.com/javiercn) и [Люк ЛаСаМ](https://github.com/guardrex)
 
@@ -36,13 +36,13 @@ ms.locfileid: "82768056"
 dotnet new blazorwasm -au Individual
 ```
 
-Чтобы указать расположение выходных данных, которое создает папку проекта, если она не существует, включите параметр OUTPUT в команду с путем (например, `-o BlazorSample`). Имя папки также станет частью имени проекта.
+Чтобы указать расположение выходных данных, которое создает папку проекта, если она не существует, включите параметр OUTPUT в команду с путем (например, `-o BlazorSample` ). Имя папки также станет частью имени проекта.
 
-В Visual Studio [ Blazor Создайте приложение сборки](xref:blazor/get-started). Настройте **проверку подлинности** для **отдельных учетных записей пользователей** с помощью параметра **сохранить учетные записи пользователей в приложении** .
+В Visual Studio [Создайте Blazor приложение сборки](xref:blazor/get-started). Настройте **проверку подлинности** для **отдельных учетных записей пользователей** с помощью параметра **сохранить учетные записи пользователей в приложении** .
 
 ## <a name="authentication-package"></a>Пакет проверки подлинности
 
-Когда приложение создается для использования отдельных учетных записей пользователей, приложение автоматически получает ссылку `Microsoft.AspNetCore.Components.WebAssembly.Authentication` на пакет в файле проекта приложения. Пакет предоставляет набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных интерфейсов API.
+Когда приложение создается для использования отдельных учетных записей пользователей, приложение автоматически получает ссылку на пакет `Microsoft.AspNetCore.Components.WebAssembly.Authentication` в файле проекта приложения. Пакет предоставляет набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных интерфейсов API.
 
 При добавлении проверки подлинности в приложение вручную добавьте пакет в файл проекта приложения:
 
@@ -56,7 +56,7 @@ dotnet new blazorwasm -au Individual
 
 ## <a name="authentication-service-support"></a>Поддержка службы проверки подлинности
 
-Поддержка проверки подлинности пользователей регистрируется в контейнере службы с `AddOidcAuthentication` помощью метода расширения, предоставленного `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с Identity поставщиком (IP).
+Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью `AddOidcAuthentication` метода расширения, предоставленного `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с Identity поставщиком (IP).
 
 *Program.cs*:
 
@@ -78,11 +78,11 @@ builder.Services.AddOidcAuthentication(options =>
 }
 ```
 
-Поддержка проверки подлинности для автономных приложений предлагается с помощью Open ID Connect (OIDC). `AddOidcAuthentication` Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения с помощью OIDC. Значения, необходимые для настройки приложения, можно получить из IP-адреса, совместимого с OIDC. Получите значения при регистрации приложения, которое обычно происходит на веб-портале.
+Поддержка проверки подлинности для автономных приложений предлагается с помощью Open ID Connect (OIDC). `AddOidcAuthentication`Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения с помощью OIDC. Значения, необходимые для настройки приложения, можно получить из IP-адреса, совместимого с OIDC. Получите значения при регистрации приложения, которое обычно происходит на веб-портале.
 
 ## <a name="access-token-scopes"></a>Области токенов доступа
 
-Blazor Шаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API. Чтобы настроить маркер доступа как часть потока входа, добавьте область в области токенов по умолчанию `OidcProviderOptions`:
+BlazorШаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API. Чтобы настроить маркер доступа как часть потока входа, добавьте область в области токенов по умолчанию `OidcProviderOptions` :
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -139,3 +139,4 @@ builder.Services.AddOidcAuthentication(options =>
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * <xref:security/blazor/webassembly/additional-scenarios>
+* [Запросы, не прошедшие проверку подлинности или неавторизованные веб-API в приложении с защищенным клиентом по умолчанию](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)

@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: a8d38f17b066a0aa9a38b1bdfea3491f733cf1bc
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: cdf10cd26f3eb9af386f782475eeabbda50f0df9
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776881"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153348"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Поставщики хранилища ключей в ASP.NET Core
 
@@ -37,7 +37,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-`DirectoryInfo` Может указывать на каталог на локальном компьютере или на папку в общей сетевой папке. Если указывает на каталог на локальном компьютере (и сценарий заключается в том, что доступ к этому репозиторию требуется получить только для приложений на локальном компьютере), рассмотрите возможность использования [Windows DPAPI](xref:security/data-protection/implementation/key-encryption-at-rest) (в Windows) для шифрования неактивных ключей. В противном случае рассмотрите возможность использования [сертификата X. 509](xref:security/data-protection/implementation/key-encryption-at-rest) для шифрования неактивных ключей.
+`DirectoryInfo`Может указывать на каталог на локальном компьютере или на папку в общей сетевой папке. Если указывает на каталог на локальном компьютере (и сценарий заключается в том, что доступ к этому репозиторию требуется получить только для приложений на локальном компьютере), рассмотрите возможность использования [Windows DPAPI](xref:security/data-protection/implementation/key-encryption-at-rest) (в Windows) для шифрования неактивных ключей. В противном случае рассмотрите возможность использования [сертификата X. 509](xref:security/data-protection/implementation/key-encryption-at-rest) для шифрования неактивных ключей.
 
 ## <a name="azure-storage"></a>Хранилище Azure
 
@@ -143,17 +143,17 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="entity-framework-core"></a>Entity Framework Core
 
-Пакет [Microsoft. AspNetCore. Data Protection. EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore/) предоставляет механизм для хранения ключей защиты данных в базе данных с помощью Entity Framework Core. Пакет `Microsoft.AspNetCore.DataProtection.EntityFrameworkCore` NuGet необходимо добавить в файл проекта, но он не является частью файла [Microsoft. AspNetCore. app метапакет](xref:fundamentals/metapackage-app).
+Пакет [Microsoft. AspNetCore. Data Protection. EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore/) предоставляет механизм для хранения ключей защиты данных в базе данных с помощью Entity Framework Core. `Microsoft.AspNetCore.DataProtection.EntityFrameworkCore`Пакет NuGet необходимо добавить в файл проекта, но он не является частью файла [Microsoft. AspNetCore. app метапакет](xref:fundamentals/metapackage-app).
 
 Этот пакет позволяет совместно использовать ключи в нескольких экземплярах веб-приложения.
 
-Чтобы настроить поставщик EF Core, вызовите метод [>\<персисткэйстодбконтекст тконтекст](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) :
+Чтобы настроить поставщик EF Core, вызовите метод [ \<>персисткэйстодбконтекст тконтекст](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) :
 
 [!code-csharp[Main](key-storage-providers/sample/Startup.cs?name=snippet&highlight=13-20)]
 
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
-Универсальный параметр, `TContext`,, должен наследовать от [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) и реализовывать [идатапротектионкэйконтекст](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcore.idataprotectionkeycontext):
+Универсальный параметр, `TContext` ,, должен наследовать от [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) и реализовывать [идатапротектионкэйконтекст](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcore.idataprotectionkeycontext):
 
 [!code-csharp[Main](key-storage-providers/sample/MyKeysContext.cs)]
 
@@ -179,13 +179,13 @@ dotnet ef database update --context MyKeysContext
 
 ---
 
-`MyKeysContext`параметр `DbContext` определен в предыдущем примере кода. Если вы используете `DbContext` с другим именем, замените `DbContext` имя на. `MyKeysContext`
+`MyKeysContext`параметр `DbContext` определен в предыдущем примере кода. Если вы используете `DbContext` с другим именем, замените `DbContext` имя на `MyKeysContext` .
 
-`DataProtectionKeys` Класс или сущность принимает структуру, показанную в следующей таблице.
+`DataProtectionKeys`Класс или сущность принимает структуру, показанную в следующей таблице.
 
 | Свойство/поле | Тип CLR | Тип SQL              |
 | -------------- | -------- | --------------------- |
-| `Id`           | `int`    | `int`, PK, а не NULL   |
+| `Id`           | `int`    | `int`, PK, `IDENTITY(1,1)` , NOT NULL   |
 | `FriendlyName` | `string` | `nvarchar(MAX)`, null |
 | `Xml`          | `string` | `nvarchar(MAX)`, null |
 
