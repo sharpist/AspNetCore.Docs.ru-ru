@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/19/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: 0a4a508beeae3d7bc665372d925989aa4e34ad52
-ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
+ms.openlocfilehash: 705fa32ee72221b3c18653e9f3495b9cd61e9ad1
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81661719"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967432"
 ---
-# <a name="aspnet-core-opno-locblazor-templates"></a>Шаблоны ASP.NET Core Blazor
+# <a name="aspnet-core-blazor-templates"></a>Шаблоны ASP.NET Core Blazor
 
 Авторы: [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)
 
@@ -39,7 +42,7 @@ dotnet new blazorwasm --help
 dotnet new blazorserver --help
 ```
 
-## <a name="opno-locblazor-project-structure"></a>Структура проекта Blazor
+## <a name="blazor-project-structure"></a>Структура проекта Blazor
 
 Приложение Blazor, создаваемое на основе шаблона Blazor, состоит из следующих файлов и папок:
 
@@ -53,9 +56,9 @@ dotnet new blazorserver --help
 
 * *Startup.cs* (Blazor Server) &ndash; содержит логику запуска приложения. В классе `Startup` определены два метода:
 
-  * `ConfigureServices` &ndash; настраивает службы [внедрения зависимостей (DI)](xref:fundamentals/dependency-injection) для приложения. В приложениях Blazor Server службы добавляются путем вызова метода <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>. В контейнер службы добавляется служба `WeatherForecastService`, которая используется примером компонента `FetchData`.
+  * `ConfigureServices` &ndash; настраивает службы [внедрения зависимостей (DI)](xref:fundamentals/dependency-injection) для приложения. В приложениях Blazor Server службы добавляются путем вызова метода <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>. В контейнер службы добавляется служба `WeatherForecastService`, которая используется примером компонента `FetchData`.
   * `Configure` &ndash; настраивает конвейер обработки запросов для приложения.
-    * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> вызывается с целью настройки конечной точки для соединения в режиме реального времени с браузером. Соединение создается с помощью [SignalR](xref:signalr/introduction), платформы для добавления веб-функций реального времени в приложения.
+    * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> вызывается с целью настройки конечной точки для соединения в режиме реального времени с браузером. Соединение создается с помощью [SignalR](xref:signalr/introduction), платформы для добавления веб-функций реального времени в приложения.
     * [MapFallbackToPage("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) вызывается для настройки корневой страницы приложения (*Pages/_Host.cshtml*) и обеспечения навигации.
 
 * *wwwroot/index.html* (Blazor WebAssembly) &ndash; корневая страница приложения, реализованная как HTML-страница.
@@ -68,7 +71,7 @@ dotnet new blazorserver --help
 * *App.razor* &ndash; корневой компонент приложения, который настраивает маршрутизацию на стороне клиента с помощью компонента <xref:Microsoft.AspNetCore.Components.Routing.Router>. Компонент `Router` перехватывает навигацию в браузере и отображает страницу, соответствующую запрошенному адресу.
 
 * Папка *Pages* &ndash; содержит маршрутизируемые компоненты и страницы ( *.razor*), составляющие приложение Blazor, а также корневую страницу Razor приложения Blazor Server. Маршрут для каждой страницы указывается с помощью директивы [`@page`](xref:mvc/views/razor#page). Шаблон включает в себя следующее:
-  * *_Host.cshtml* (Blazor Server) &ndash; корневая страница приложения, реализованная как страница Razor:
+  * *_Host.cshtml* (Blazor Server) &ndash;. Корневая страница приложения, реализованная как страница Razor.
     * При первом запросе любой страницы приложения эта страница преобразовывается для просмотра и возвращается в ответе.
     * Загружается файл JavaScript `_framework/blazor.server.js`, который настраивает соединение SignalR в режиме реального времени между браузером и сервером.
     * На странице Host указывается место отрисовки корневого компонента `App` (*App.razor*).

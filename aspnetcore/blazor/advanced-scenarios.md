@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/advanced-scenarios
-ms.openlocfilehash: 9f1e5ea4d883a027f40ac0eccc7a9bba1435139d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b47e7b1d7ff148bb5a8d299d3d2089999f017863
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767204"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967341"
 ---
 # <a name="aspnet-core-blazor-advanced-scenarios"></a>Сложные сценарии ASP.NET Core Blazor
 
@@ -36,12 +36,12 @@ using Microsoft.AspNetCore.Components.Server.Circuits;
 
 public class TrackingCircuitHandler : CircuitHandler
 {
-    private HashSet<Circuit> _circuits = new HashSet<Circuit>();
+    private HashSet<Circuit> circuits = new HashSet<Circuit>();
 
     public override Task OnConnectionUpAsync(Circuit circuit, 
         CancellationToken cancellationToken)
     {
-        _circuits.Add(circuit);
+        circuits.Add(circuit);
 
         return Task.CompletedTask;
     }
@@ -49,12 +49,12 @@ public class TrackingCircuitHandler : CircuitHandler
     public override Task OnConnectionDownAsync(Circuit circuit, 
         CancellationToken cancellationToken)
     {
-        _circuits.Remove(circuit);
+        circuits.Remove(circuit);
 
         return Task.CompletedTask;
     }
 
-    public int ConnectedCircuits => _circuits.Count;
+    public int ConnectedCircuits => circuits.Count;
 }
 ```
 
@@ -258,29 +258,29 @@ using Microsoft.JSInterop;
 
 public class FileUploader : IDisposable
 {
-    private readonly IJSRuntime _jsRuntime;
-    private readonly int _segmentSize = 6144;
-    private readonly int _maxBase64SegmentSize = 8192;
-    private readonly DotNetObjectReference<FileUploader> _thisReference;
-    private List<IMemoryOwner<byte>> _uploadedSegments = 
+    private readonly IJSRuntime jsRuntime;
+    private readonly int segmentSize = 6144;
+    private readonly int maxBase64SegmentSize = 8192;
+    private readonly DotNetObjectReference<FileUploader> thisReference;
+    private List<IMemoryOwner<byte>> uploadedSegments = 
         new List<IMemoryOwner<byte>>();
 
     public FileUploader(IJSRuntime jsRuntime)
     {
-        _jsRuntime = jsRuntime;
+        this.jsRuntime = jsRuntime;
     }
 
     public async Task<Stream> ReceiveFile(string selector, int maxSize)
     {
         var fileSize = 
-            await _jsRuntime.InvokeAsync<int>("getFileSize", selector);
+            await jsRuntime.InvokeAsync<int>("getFileSize", selector);
 
         if (fileSize > maxSize)
         {
             return null;
         }
 
-        var numberOfSegments = Math.Floor(fileSize / (double)_segmentSize) + 1;
+        var numberOfSegments = Math.Floor(fileSize / (double)segmentSize) + 1;
         var lastSegmentBytes = 0;
         string base64EncodedSegment;
 
@@ -289,10 +289,10 @@ public class FileUploader : IDisposable
             try
             {
                 base64EncodedSegment = 
-                    await _jsRuntime.InvokeAsync<string>(
+                    await jsRuntime.InvokeAsync<string>(
                         "receiveSegment", i, selector);
 
-                if (base64EncodedSegment.Length < _maxBase64SegmentSize && 
+                if (base64EncodedSegment.Length < maxBase64SegmentSize && 
                     i < numberOfSegments - 1)
                 {
                     return null;
@@ -303,28 +303,28 @@ public class FileUploader : IDisposable
                 return null;
             }
 
-          var current = MemoryPool<byte>.Shared.Rent(_segmentSize);
+          var current = MemoryPool<byte>.Shared.Rent(segmentSize);
 
           if (!Convert.TryFromBase64String(base64EncodedSegment, 
-              current.Memory.Slice(0, _segmentSize).Span, out lastSegmentBytes))
+              current.Memory.Slice(0, segmentSize).Span, out lastSegmentBytes))
           {
               return null;
           }
 
-          _uploadedSegments.Add(current);
+          uploadedSegments.Add(current);
         }
 
-        var segments = _uploadedSegments;
-        _uploadedSegments = null;
+        var segments = uploadedSegments;
+        uploadedSegments = null;
 
-        return new SegmentedStream(segments, _segmentSize, lastSegmentBytes);
+        return new SegmentedStream(segments, segmentSize, lastSegmentBytes);
     }
 
     public void Dispose()
     {
-        if (_uploadedSegments != null)
+        if (uploadedSegments != null)
         {
-            foreach (var segment in _uploadedSegments)
+            foreach (var segment in uploadedSegments)
             {
                 segment.Dispose();
             }
@@ -335,13 +335,13 @@ public class FileUploader : IDisposable
 
 В предшествующем примере:
 
-* Для `_maxBase64SegmentSize` задано значение `8192`, которое вычисляется на основе `_maxBase64SegmentSize = _segmentSize * 4 / 3`.
-* Низкоуровневые API управления памятью .NET Core используются для хранения сегментов памяти на сервере в `_uploadedSegments`.
+* Для `maxBase64SegmentSize` задано значение `8192`, которое вычисляется на основе `maxBase64SegmentSize = segmentSize * 4 / 3`.
+* Низкоуровневые API управления памятью .NET Core используются для хранения сегментов памяти на сервере в `uploadedSegments`.
 * Для отправки через взаимодействие с JS используется метод `ReceiveFile`:
-  * Размер файла определяется в байтах с помощью взаимодействия JS с `_jsRuntime.InvokeAsync<FileInfo>('getFileSize', selector)`.
+  * Размер файла определяется в байтах с помощью взаимодействия JS с `jsRuntime.InvokeAsync<FileInfo>('getFileSize', selector)`.
   * Количество принимаемых сегментов вычисляется и сохраняется в `numberOfSegments`.
-  * Сегменты запрашиваются в цикле `for` через взаимодействие JS с `_jsRuntime.InvokeAsync<string>('receiveSegment', i, selector)`. Все сегменты, кроме последнего, должны иметь размер 8192 байт перед декодированием. Клиент должен отправлять данные эффективно.
-  * Для каждого полученного сегмента проверки выполняются перед декодированием с помощью <xref:System.Convert.TryFromBase64String*>.
+  * Сегменты запрашиваются в цикле `for` через взаимодействие JS с `jsRuntime.InvokeAsync<string>('receiveSegment', i, selector)`. Все сегменты, кроме последнего, должны иметь размер 8192 байт перед декодированием. Клиент должен отправлять данные эффективно.
+  * Для каждого полученного сегмента проверки выполняются перед декодированием с помощью <xref:System.Convert.TryFromBase64String%2A>.
   * Поток с данными возвращается в виде нового <xref:System.IO.Stream> (`SegmentedStream`) после завершения передачи.
 
 Класс сегментированного потока предоставляет список сегментов как недоступный для поиска <xref:System.IO.Stream> только для чтения:
@@ -354,15 +354,15 @@ using System.IO;
 
 public class SegmentedStream : Stream
 {
-    private readonly ReadOnlySequence<byte> _sequence;
-    private long _currentPosition = 0;
+    private readonly ReadOnlySequence<byte> sequence;
+    private long currentPosition = 0;
 
     public SegmentedStream(IList<IMemoryOwner<byte>> segments, int segmentSize, 
         int lastSegmentSize)
     {
         if (segments.Count == 1)
         {
-            _sequence = new ReadOnlySequence<byte>(
+            sequence = new ReadOnlySequence<byte>(
                 segments[0].Memory.Slice(0, lastSegmentSize));
             return;
         }
@@ -378,7 +378,7 @@ public class SegmentedStream : Stream
                 0, isLastSegment ? lastSegmentSize : segmentSize));
         }
 
-        _sequence = new ReadOnlySequence<byte>(
+        sequence = new ReadOnlySequence<byte>(
             sequenceSegment, 0, lastSegment, lastSegmentSize);
     }
 
@@ -390,11 +390,11 @@ public class SegmentedStream : Stream
 
     public override int Read(byte[] buffer, int offset, int count)
     {
-        var bytesToWrite = (int)(_currentPosition + count < _sequence.Length ? 
-            count : _sequence.Length - _currentPosition);
-        var data = _sequence.Slice(_currentPosition, bytesToWrite);
+        var bytesToWrite = (int)(currentPosition + count < sequence.Length ? 
+            count : sequence.Length - currentPosition);
+        var data = sequence.Slice(currentPosition, bytesToWrite);
         data.CopyTo(buffer.AsSpan(offset, bytesToWrite));
-        _currentPosition += bytesToWrite;
+        currentPosition += bytesToWrite;
 
         return bytesToWrite;
     }
