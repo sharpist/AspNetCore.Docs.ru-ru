@@ -27,6 +27,7 @@
     - name: "Новые возможности версии\_1.1"
       uid: aspnetcore-1.1
 - name: Учебники
+  displayName: tutorial
   items:
     - name: Веб-приложения
       items:
@@ -154,20 +155,19 @@
               uid: data/ef-mvc/inheritance
             - name: Дополнительные разделы
               uid: data/ef-mvc/advanced
-- name: Учебники (Microsoft Learn)
-  displayName: tutorial
-  items:
-    - name: Веб-приложения
-      displayName: 'tutorial, razor, razor pages, ui'
-      href: /learn/modules/create-razor-pages-aspnet-core/
-    - name: API веб-приложений
-      href: /learn/modules/build-web-api-net-core/
-    - name: Доступ к данным
-      displayName: 'tutorial, ef, entity framework'
-      href: /learn/modules/persist-data-ef-core/
-    - name: Безопасность веб-приложений
-      displayName: 'tutorial, identity'
-      href: /learn/modules/secure-aspnet-core-identity/
+    - name: Модули Microsoft Learn
+      items:
+        - name: Веб-приложения >>
+          displayName: 'tutorial, razor, razor pages, ui'
+          href: /learn/modules/create-razor-pages-aspnet-core/
+        - name: API веб-приложений >>
+          href: /learn/modules/build-web-api-net-core/
+        - name: Доступ к данным >>
+          displayName: 'tutorial, ef, entity framework'
+          href: /learn/modules/persist-data-ef-core/
+        - name: Безопасность веб-приложений >>
+          displayName: 'tutorial, identity'
+          href: /learn/modules/secure-aspnet-core-identity/
 - name: Основы
   items:
     - name: Обзор
