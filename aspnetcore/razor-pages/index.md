@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/index
-ms.openlocfilehash: 827a0df4c914fd012c55e6612a987713bfbaa5c2
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 6939d285838a6dd971f530c1d65d73273b5b14e7
+ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777219"
+ms.lasthandoff: 05/15/2020
+ms.locfileid: "83424566"
 ---
 # <a name="introduction-to-razor-pages-in-aspnet-core"></a>Введение в Razor Pages в ASP.NET Core
 
@@ -61,9 +61,7 @@ Razor Pages делает создание кодов сценариев для �
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-Из командной строки выполните команду `dotnet new webapp`.
-
-Откройте созданный файл *.csproj* в Visual Studio для Mac.
+Подробные инструкции по созданию проекта Razor Pages см. в статье [Начало работы с Razor Pages](xref:tutorials/razor-pages/razor-pages-start).
 
 ---
 
@@ -323,7 +321,7 @@ Razor Pages делает создание кодов сценариев для �
 
 ![Форма просмотра фильма с несколькими ошибками проверки jQuery на стороне клиента](~/tutorials/razor-pages/validation/_static/val.png)
 
-Дополнительные сведения можно найти в разделе 
+Дополнительные сведения можно найти в разделе
 
 * [Добавление проверки в приложение Movie](xref:tutorials/razor-pages/validation)
 * [Проверка модели в ASP.NET Core](xref:mvc/models/validation).
