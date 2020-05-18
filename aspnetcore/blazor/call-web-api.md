@@ -5,7 +5,7 @@ description: Узнайте, как вызывать веб-API из прило�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/04/2020
+ms.date: 05/11/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: d823db3688e05f6befefacc9f390e0dcdbf329a7
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7ed2d51c0d41a50a2e139d739a0a06cd9f392a83
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767152"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153502"
 ---
 # <a name="call-a-web-api-from-aspnet-core-blazor"></a>Вызов веб-API из ASP.NET Core Blazor
 
@@ -87,37 +87,37 @@ private class TodoItem
 
 * `GetFromJsonAsync` &ndash; Отправляет запрос HTTP GET и анализирует текст ответа JSON для создания объекта.
 
-  В следующем коде `_todoItems` отображаются компонентом. Метод `GetTodoItems` срабатывает после завершения подготовки компонента к просмотру ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)). Полный пример см. в примере приложения.
+  В следующем коде `todoItems` отображаются компонентом. Метод `GetTodoItems` срабатывает после завершения подготовки компонента к просмотру ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)). Полный пример см. в примере приложения.
 
   ```razor
   @using System.Net.Http
   @inject HttpClient Http
 
   @code {
-      private TodoItem[] _todoItems;
+      private TodoItem[] todoItems;
 
       protected override async Task OnInitializedAsync() => 
-          _todoItems = await Http.GetFromJsonAsync<TodoItem[]>("api/TodoItems");
+          todoItems = await Http.GetFromJsonAsync<TodoItem[]>("api/TodoItems");
   }
   ```
 
 * `PostAsJsonAsync` &ndash; Отправляет запрос HTTP POST, включая содержимое в кодировке JSON, и анализирует текст ответа JSON для создания объекта.
 
-  В следующем коде `_newItemName` предоставляется связанным элементом компонента. Метод `AddItem` активируется путем выбора элемента `<button>`. Полный пример см. в примере приложения.
+  В следующем коде `newItemName` предоставляется связанным элементом компонента. Метод `AddItem` активируется путем выбора элемента `<button>`. Полный пример см. в примере приложения.
 
   ```razor
   @using System.Net.Http
   @inject HttpClient Http
 
-  <input @bind="_newItemName" placeholder="New Todo Item" />
+  <input @bind="newItemName" placeholder="New Todo Item" />
   <button @onclick="@AddItem">Add</button>
 
   @code {
-      private string _newItemName;
+      private string newItemName;
 
       private async Task AddItem()
       {
-          var addItem = new TodoItem { Name = _newItemName, IsComplete = false };
+          var addItem = new TodoItem { Name = newItemName, IsComplete = false };
           await Http.PostAsJsonAsync("api/TodoItems", addItem);
       }
   }
@@ -131,28 +131,28 @@ private class TodoItem
 
 * `PutAsJsonAsync` &ndash; Отправляет запрос HTTP PUT, включая содержимое в кодировке JSON.
 
-  В следующем коде значения `_editItem` для `Name` и `IsCompleted` предоставляются связанными элементами компонента. Элемент `Id` задается, когда элемент выбирается в другой части пользовательского интерфейса и вызывается `EditItem`. Метод `SaveItem` активируется путем выбора элемента `<button>` "Save". Полный пример см. в примере приложения.
+  В следующем коде значения `editItem` для `Name` и `IsCompleted` предоставляются связанными элементами компонента. Элемент `Id` задается, когда элемент выбирается в другой части пользовательского интерфейса и вызывается `EditItem`. Метод `SaveItem` активируется путем выбора элемента `<button>` "Save". Полный пример см. в примере приложения.
 
   ```razor
   @using System.Net.Http
   @inject HttpClient Http
 
-  <input type="checkbox" @bind="_editItem.IsComplete" />
-  <input @bind="_editItem.Name" />
+  <input type="checkbox" @bind="editItem.IsComplete" />
+  <input @bind="editItem.Name" />
   <button @onclick="@SaveItem">Save</button>
 
   @code {
-      private TodoItem _editItem = new TodoItem();
+      private TodoItem editItem = new TodoItem();
 
       private void EditItem(long id)
       {
-          var editItem = _todoItems.Single(i => i.Id == id);
-          _editItem = new TodoItem { Id = editItem.Id, Name = editItem.Name, 
+          var editItem = todoItems.Single(i => i.Id == id);
+          editItem = new TodoItem { Id = editItem.Id, Name = editItem.Name, 
               IsComplete = editItem.IsComplete };
       }
 
       private async Task SaveItem() =>
-          await Http.PutAsJsonAsync($"api/TodoItems/{_editItem.Id}, _editItem);
+          await Http.PutAsJsonAsync($"api/TodoItems/{editItem.Id}, editItem);
   }
   ```
   
@@ -170,16 +170,142 @@ private class TodoItem
 @using System.Net.Http
 @inject HttpClient Http
 
-<input @bind="_id" />
+<input @bind="id" />
 <button @onclick="@DeleteItem">Delete</button>
 
 @code {
-    private long _id;
+    private long id;
 
     private async Task DeleteItem() =>
-        await Http.DeleteAsync($"api/TodoItems/{_id}");
+        await Http.DeleteAsync($"api/TodoItems/{id}");
 }
 ```
+
+## <a name="named-httpclient-with-ihttpclientfactory"></a>Именованный класс HttpClient с IHttpClientFactory
+
+Поддерживаются службы <xref:System.Net.Http.IHttpClientFactory> и конфигурация именованного класса <xref:System.Net.Http.HttpClient>.
+
+`Program.Main` (*Program.cs*):
+
+```csharp
+builder.Services.AddHttpClient("ServerAPI", client => 
+    client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+```
+
+Компонент `FetchData` (*Pages/FetchData.razor*):
+
+```razor
+@inject IHttpClientFactory ClientFactory
+
+...
+
+@code {
+    private WeatherForecast[] forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var client = ClientFactory.CreateClient("ServerAPI");
+
+        forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
+            "WeatherForecast");
+    }
+}
+```
+
+## <a name="typed-httpclient"></a>Типизированный класс HttpClient
+
+Для возврата данных из одной или нескольких конечных точек веб-API типизированный класс <xref:System.Net.Http.HttpClient> использует один или несколько экземпляров класса <xref:System.Net.Http.HttpClient> приложения (заданных по умолчанию или именованных).
+
+*WeatherForecastClient.cs*:
+
+```csharp
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+
+public class WeatherForecastClient
+{
+    private readonly HttpClient client;
+
+    public WeatherForecastClient(HttpClient client)
+    {
+        this.client = client;
+    }
+
+    public async Task<WeatherForecast[]> GetForecastAsync()
+    {
+        var forecasts = new WeatherForecast[0];
+    
+        try
+        {
+            forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
+                "WeatherForecast");
+        }
+        catch
+        {
+            ...
+        }
+    
+        return forecasts;
+    }
+}
+```
+
+`Program.Main` (*Program.cs*):
+
+```csharp
+builder.Services.AddHttpClient<WeatherForecastClient>(client => 
+    client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+```
+
+Компоненты внедряют типизированный класс `HttpClient` для вызова веб-API.
+
+Компонент `FetchData` (*Pages/FetchData.razor*):
+
+```razor
+@inject WeatherForecastClient Client
+
+...
+
+@code {
+    private WeatherForecast[] forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await Client.GetForecastAsync();
+    }
+}
+```
+
+## <a name="handle-errors"></a>Обработка ошибок
+
+Ошибки, возникающие во время взаимодействия с веб-API, могут обрабатываться кодом разработчика. Например, `GetFromJsonAsync` ожидает ответа JSON от API сервера с заголовком `Content-Type` типа `application/json`. Если формат ответа отличается от JSON, при проверке содержимого возникает исключение <xref:System.NotSupportedException>.
+
+В следующем примере показана неправильно написанная конечная точка URI для запроса данных прогноза погоды. URI должен иметь вид `WeatherForecast`, но отображается в вызове как `WeatherForcast` (без "e").
+
+Вызов `GetFromJsonAsync` ожидает возврата JSON, но сервер возвращает HTML для необработанного исключения на сервере с заголовком `Content-Type` типа `text/html`. Необработанное исключение возникает на сервере, так как путь не найден, а ПО промежуточного слоя не может обслуживать страницу или представление для запроса.
+
+Если выясняется, что содержимое ответа не является содержимым формата JSON, в методе `OnInitializedAsync` на клиенте возникает исключение <xref:System.NotSupportedException>. Исключение перехватывается в блоке `catch`, где пользовательская логика может зарегистрировать ошибку или вывести понятное сообщение об ошибке для пользователя:
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    try
+    {
+        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>(
+            "WeatherForcast");
+    }
+    catch (NotSupportedException exception)
+    {
+        ...
+    }
+}
+```
+
+> [!NOTE]
+> Предыдущий пример приведен только в качестве демонстрации. Серверное приложение веб-API можно настроить для возврата JSON, даже если не существует конечная точка или на сервере возникает необработанное исключение.
+
+Для получения дополнительной информации см. <xref:blazor/handle-errors>.
 
 ## <a name="cross-origin-resource-sharing-cors"></a>Общий доступ к ресурсам независимо от источника (CORS)
 
@@ -191,8 +317,7 @@ private class TodoItem
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* <xref:security/blazor/webassembly/index>
-* <xref:security/blazor/webassembly/additional-scenarios>
+* <xref:security/blazor/webassembly/additional-scenarios> &ndash; Сведения об использовании класса `HttpClient` для отправки безопасных запросов веб-API.
 * <xref:fundamentals/http-requests>
 * <xref:security/enforcing-ssl>
 * [Конфигурация конечных точек HTTPS Kestrel](xref:fundamentals/servers/kestrel#endpoint-configuration)

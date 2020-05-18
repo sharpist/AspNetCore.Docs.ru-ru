@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/26/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 4e990329b7ebcfc9cbbff8a3c9895604a22461d3
-ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
+ms.openlocfilehash: 3e31be02f21f8c28c1d98d47d9a744b3a8502253
+ms.sourcegitcommit: 6c7a149168d2c4d747c36de210bfab3abd60809a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81661699"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "83003181"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Внедрение зависимостей в ASP.NET Core
 
@@ -539,6 +545,12 @@ public void ConfigureServices(IServiceCollection services)
 Как и с любыми рекомендациями, у вас могут возникнуть ситуации, когда нужно отступить от одного из правил. Такие исключения случаются редко. Главным образом они связаны с особенностями самой платформы.
 
 Внедрение зависимостей является *альтернативой* для шаблонов доступа к статическим или глобальным объектам. Вы не сможете воспользоваться преимуществами внедрения зависимостей, если будете сочетать его с доступом к статическим объектам.
+
+## <a name="recommended-patterns-for-multi-tenancy-in-di"></a>Рекомендуемые подходы к мультитенантности при внедрении зависимостей
+
+Мультитенантность поддерживается в [Orchard Core](https://github.com/OrchardCMS/OrchardCore). Дополнительные сведения см. в [документации по Orchard Core](https://docs.orchardcore.net/en/dev/).
+
+Примеры создания модульных и мультитенантных приложений с использованием только Orchard Core Framework без каких-либо особых функций CMS см. по адресу https://github.com/OrchardCMS/OrchardCore.Samples.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

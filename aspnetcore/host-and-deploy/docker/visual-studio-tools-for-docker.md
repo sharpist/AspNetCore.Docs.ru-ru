@@ -5,13 +5,19 @@ description: Сведения о том, как упаковать в конте
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 09/12/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
-ms.openlocfilehash: ba79f0af8192ad9e8b263d4304ccc0df36c50f00
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 8b62e27033bf0b7c05a70050807970fe0c74e2f8
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440757"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967575"
 ---
 # <a name="visual-studio-container-tools-with-aspnet-core"></a>Использование средств Visual Studio для контейнеров с ASP.NET Core
 
@@ -84,7 +90,11 @@ Visual Studio 2017 и более поздних версий поддержив
 
 Visual Studio 2017 версии 15.7 или более ранние версии поддерживают [Docker Compose](https://docs.docker.com/compose/overview/) как единственное решение для оркестрации контейнеров. Для добавления артефактов Docker Compose необходимо последовательно выбрать **Добавить** > **Поддержка Docker**.
 
-Visual Studio 2017 версии 15.8 или более поздние версии поддерживают решение для оркестрации только когда это указано отдельно. В **Обозревателе решений** щелкните проект правой кнопкой мыши и выберите пункты **Добавить** > **Поддержка оркестратора контейнеров**. Доступны два варианта: [Docker Compose](#docker-compose) и [Service Fabric](#service-fabric).
+Visual Studio 2017 версии 15.8 или более поздние версии поддерживают решение для оркестрации только когда это указано отдельно. В **Обозревателе решений** щелкните проект правой кнопкой мыши и выберите пункты **Добавить** > **Поддержка оркестратора контейнеров**. Доступны следующие варианты: 
+
+* [Docker Compose](#docker-compose)
+* [Service Fabric](#service-fabric)
+* [Kubernetes/Helm ](https://helm.sh/)
 
 ### <a name="docker-compose"></a>Docker Compose
 

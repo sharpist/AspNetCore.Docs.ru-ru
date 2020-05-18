@@ -1,23 +1,26 @@
 ---
 title: Жизненный цикл ASP.NET Core Blazor
 author: guardrex
-description: Узнайте, как использовать методы жизненного цикла компонента Razor в приложениях ASP.NET Core Blazor.
+description: Узнайте, как использовать методы жизненного цикла компонента Razor в приложениях ASP.NET Core Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 05/07/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/lifecycle
-ms.openlocfilehash: e7450ad57acc87500bb977aa8349c6ee009e3bf4
-ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
+ms.openlocfilehash: 81699158a161d0e9c9621235840979ebcd634a7e
+ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81791456"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82976705"
 ---
-# <a name="aspnet-core-opno-locblazor-lifecycle"></a>Жизненный цикл ASP.NET Core Blazor
+# <a name="aspnet-core-blazor-lifecycle"></a>Жизненный цикл ASP.NET Core Blazor
 
 Авторы: [Люк Латэм](https://github.com/guardrex) (Luke Latham) и [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
 
@@ -27,7 +30,7 @@ ms.locfileid: "81791456"
 
 ### <a name="component-initialization-methods"></a>Методы инициализации компонента
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*> вызываются, когда компонент инициализируется после получения начальных параметров от родительского компонента. Используйте `OnInitializedAsync`, когда компонент выполняет асинхронную операцию и должен обновляться после завершения операции.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> вызываются, когда компонент инициализируется после получения начальных параметров от родительского компонента. Используйте `OnInitializedAsync`, когда компонент выполняет асинхронную операцию и должен обновляться после завершения операции.
 
 Для синхронной операции переопределите `OnInitialized`:
 
@@ -60,7 +63,7 @@ protected override async Task OnInitializedAsync()
 
 ### <a name="before-parameters-are-set"></a>До указания параметров
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*> задает параметры, предоставляемые родительским элементом компонента в дереве отрисовки:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> задает параметры, предоставляемые родительским элементом компонента в дереве отрисовки:
 
 ```csharp
 public override async Task SetParametersAsync(ParameterView parameters)
@@ -81,7 +84,7 @@ public override async Task SetParametersAsync(ParameterView parameters)
 
 ### <a name="after-parameters-are-set"></a>После указания параметров
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet*> вызываются:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> вызываются:
 
 * Когда компонент инициализируется и получил первый набор параметров от родительского компонента.
 * Когда родительский компонент повторно отрисовывается и предоставляет:
@@ -109,7 +112,7 @@ protected override void OnParametersSet()
 
 ### <a name="after-component-render"></a>После отрисовки компонента
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender*> вызываются после завершения отрисовки компонента. В этот момент указываются ссылки на элементы и компоненты. Используйте этот этап для выполнения дополнительных шагов инициализации с помощью отрисованного содержимого, например для активации сторонних библиотек JavaScript, которые работают с отрисованными элементами DOM.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> вызываются после завершения отрисовки компонента. В этот момент указываются ссылки на элементы и компоненты. Используйте этот этап для выполнения дополнительных шагов инициализации с помощью отрисованного содержимого, например для активации сторонних библиотек JavaScript, которые работают с отрисованными элементами DOM.
 
 Параметр `firstRender` для `OnAfterRenderAsync` и `OnAfterRender`:
 
@@ -147,7 +150,7 @@ protected override void OnAfterRender(bool firstRender)
 
 ### <a name="suppress-ui-refreshing"></a>Подавление обновления пользовательского интерфейса
 
-Переопределите <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender*>, чтобы отключить обновление пользовательского интерфейса. Если реализация возвращает `true`, пользовательский интерфейс обновляется:
+Переопределите <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, чтобы отключить обновление пользовательского интерфейса. Если реализация возвращает `true`, пользовательский интерфейс обновляется:
 
 ```csharp
 protected override bool ShouldRender()
@@ -164,7 +167,7 @@ protected override bool ShouldRender()
 
 ## <a name="state-changes"></a>Изменения состояния
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> уведомляет компонент о том, что его состояние изменилось. В соответствующих случаях вызов `StateHasChanged` приводит к повторной отрисовке компонента.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> уведомляет компонент о том, что его состояние изменилось. В соответствующих случаях вызов `StateHasChanged` приводит к повторной отрисовке компонента.
 
 ## <a name="handle-incomplete-async-actions-at-render"></a>Обработка незавершенных асинхронных действий при отрисовке
 
@@ -195,7 +198,7 @@ protected override bool ShouldRender()
 ```
 
 > [!NOTE]
-> Вызов <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> в `Dispose` не поддерживается. `StateHasChanged` может вызываться в процессе уничтожения отрисовщика, поэтому запрос обновлений пользовательского интерфейса на этом этапе не поддерживается.
+> Вызов <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> в `Dispose` не поддерживается. `StateHasChanged` может вызываться в процессе уничтожения отрисовщика, поэтому запрос обновлений пользовательского интерфейса на этом этапе не поддерживается.
 
 Отмена подписки на обработчики событий из событий .NET. В следующих примерах [формы Blazor](xref:blazor/forms-validation) показано, как отсоединить обработчик событий в методе `Dispose`.
 
@@ -231,7 +234,7 @@ protected override bool ShouldRender()
 ```csharp
 public class WeatherForecastService
 {
-    private static readonly string[] _summaries = new[]
+    private static readonly string[] summaries = new[]
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild",
         "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -262,7 +265,7 @@ public class WeatherForecastService
             {
                 Date = startDate.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
-                Summary = _summaries[rng.Next(_summaries.Length)]
+                Summary = summaries[rng.Next(summaries.Length)]
             }).ToArray();
         });
     }
@@ -274,3 +277,73 @@ public class WeatherForecastService
 ## <a name="detect-when-the-app-is-prerendering"></a>Обнаружение предварительной отрисовки приложения
 
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
+
+## <a name="cancelable-background-work"></a>Отменяемая фоновая операция
+
+Компоненты часто выполняют длительные фоновые операции, например осуществление сетевых вызовов (<xref:System.Net.Http.HttpClient>) и взаимодействие с базами данных. В целях экономии системных ресурсов в ряде ситуаций желательно отключить выполнение фоновых операций. Например, фоновые асинхронные операции не останавливаются автоматически, когда пользователь выходит из компонента.
+
+Ниже перечислены другие причины, по которым может потребоваться отмена фоновых рабочих элементов.
+
+* Выполнение фоновой задачи было начато с ошибочными входными данными или параметрами обработки.
+* Текущий набор выполняемых фоновых рабочих элементов должен быть заменен новым набором.
+* Необходимо изменить приоритет выполняемых в данный момент задач.
+* Необходимо завершить работу приложения, чтобы повторно развернуть его на сервере.
+* Ресурсы сервера становятся ограниченными, в связи с чем возникает необходимость в пересмотре сроков выполнения фоновых рабочих элементов.
+
+Чтобы реализовать механизм отменяемой фоновой операции в компоненте, выполните следующие действия.
+
+* Используйте <xref:System.Threading.CancellationTokenSource> и <xref:System.Threading.CancellationToken>.
+* При [удалении компонента](#component-disposal-with-idisposable) и в любой момент, когда требуется выполнить отмену путем отмены токена вручную, вызовите [CancellationTokenSource.Cancel](xref:System.Threading.CancellationTokenSource.Cancel%2A), чтобы сообщить о необходимости отмены фоновой операции.
+* После возврата асинхронного вызова вызовите <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A> для токена.
+
+В следующем примере:
+
+* `await Task.Delay(5000, cts.Token);` представляет длительную асинхронную фоновую операцию.
+* `BackgroundResourceMethod` представляет длительный фоновый метод, который не должен запускаться, если `Resource` удаляется перед вызовом метода.
+
+```razor
+@implements IDisposable
+@using System.Threading
+
+<button @onclick="LongRunningWork">Trigger long running work</button>
+
+@code {
+    private Resource resource = new Resource();
+    private CancellationTokenSource cts = new CancellationTokenSource();
+
+    protected async Task LongRunningWork()
+    {
+        await Task.Delay(5000, cts.Token);
+
+        cts.Token.ThrowIfCancellationRequested();
+        resource.BackgroundResourceMethod();
+    }
+
+    public void Dispose()
+    {
+        cts.Cancel();
+        cts.Dispose();
+        resource.Dispose();
+    }
+
+    private class Resource : IDisposable
+    {
+        private bool disposed;
+
+        public void BackgroundResourceMethod()
+        {
+            if (disposed)
+            {
+                throw new ObjectDisposedException(nameof(Resource));
+            }
+            
+            ...
+        }
+        
+        public void Dispose()
+        {
+            disposed = true;
+        }
+    }
+}
+```
