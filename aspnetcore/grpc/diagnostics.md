@@ -5,19 +5,13 @@ description: Сведения о сборе диагностики из прил
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 09/23/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
 uid: grpc/diagnostics
-ms.openlocfilehash: 15f68ced99bdaea9ce53db801a4b2a3bfef2f8dd
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 131144bf7a2c637eb2c1a1d5c54990dd4d429502
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774682"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80417520"
 ---
 # <a name="logging-and-diagnostics-in-grpc-on-net"></a>Ведение журнала и диагностика в gRPC на платформе .NET
 

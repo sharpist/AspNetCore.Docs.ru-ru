@@ -1,18 +1,7 @@
 ---
-title: 'Razor Pages с Entity Framework Core в ASP.NET Core: учебник 1 из 8'
-author: rick-anderson
-description: Сведения о том, как создать приложение Razor Pages с помощью Entity Framework Core
-ms.author: riande
-ms.custom: mvc, seodec18
-ms.date: 09/26/2019
-uid: data/ef-rp/intro
-ms.openlocfilehash: 07faf5e596e7ea8b134d13caa0259c1e9d74ff1b
-ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81661613"
+title: Razor Pages с Entity Framework Core в ASP.NET Core: учебник 1 из 8 author: rick-anderson description: Узнайте, как создать приложение Razor Pages с помощью Entity Framework ms.author: riande ms.custom: "mvc, seodec18" ms.date: 09/26/2019 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR] uid: data/ef-rp/intro
 ---
+
 # <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pages с Entity Framework Core в ASP.NET Core: учебник 1 из 8
 
 Авторы: [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
@@ -65,7 +54,6 @@ ms.locfileid: "81661613"
 
 Чтобы запустить приложение после скачивания готового проекта, выполните указанные ниже действия.
 
-* Удалите три файла и одну папку, в именах которых есть слово *SQLite*.
 * Выполните построение проекта.
 * В консоли диспетчера пакетов (PMC) выполните следующую команду:
 
@@ -83,6 +71,7 @@ ms.locfileid: "81661613"
 * Удалите файл *Startup.cs*, а файл *StartupSQLite.cs* переименуйте в *Startup.cs*.
 * Удалите файл *appSettings.json*, а файл *appSettingsSQLite.json* переименуйте в *appSettings.json*.
 * Удалите папку *Migrations*, а папку *MigrationsSQL* переименуйте в *Migrations*.
+* Выполните глобальный поиск `#if SQLiteVersion` и удалите `#if SQLiteVersion` и связанную инструкцию `#endif`.
 * Выполните построение проекта.
 * В командной строке в папке проекта выполните следующие команды:
 
@@ -367,7 +356,7 @@ ASP.NET Core поддерживает [внедрение зависимосте
 Метод `EnsureCreated` создает пустую базу данных. В этом разделе добавляется код, который заполняет базу данных тестовыми данными.
 
 Создайте файл *Data/DbInitializer.cs* со следующим кодом:
-
+<!-- next update, keep this file in the project and surround with #if -->
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/DbInitializer.cs)]
 
   Этот код проверяет наличие учащихся в базе данных. Если учащихся нет, в базу данных добавляются тестовые данные. Для повышения производительности тестовые данные создаются массивами, а не коллекциями `List<T>`.
