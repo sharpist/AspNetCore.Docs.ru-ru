@@ -5,7 +5,7 @@ description: Узнайте о защите приложений Blazor WebAssem
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/24/2020
+ms.date: 05/14/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/index
-ms.openlocfilehash: e8ea5e6b6d7e28906e6109e6730ac25f190b4191
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 153e88bb5bd99803f0ac4a0c50213e22a3278cad
+ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768004"
+ms.lasthandoff: 05/15/2020
+ms.locfileid: "83424524"
 ---
 # <a name="secure-aspnet-core-blazor-webassembly"></a>Защита ASP.NET Core Blazor WebAssembly
 
@@ -57,8 +57,22 @@ Blazor WebAssembly поддерживает проверку подлиннос�
 * Когда приложение Blazor WebAssembly загружает конечную точку обратного вызова входа (`/authentication/login-callback`), происходит обработка ответа проверки подлинности.
   * Если процесс проверки подлинности завершается успешно, пользователь проходит проверку подлинности и при необходимости перенаправляется по запрошенному исходному защищенному URL-адресу.
   * Если по какой-либо причине проверка подлинности завершается сбоем, пользователь направляется на страницу ошибки входа (`/authentication/login-failed`), и выводится сообщение об ошибке.
+  
+## <a name="implementation-guidance"></a>Рекомендации по реализации
 
-## <a name="additional-resources"></a>Дополнительные ресурсы
+Статьи в этом *обзоре* содержат сведения об аутентификации пользователей в приложениях WebAssembly Blazor для конкретных поставщиков.
 
-* Статьи в этом *обзоре* содержат сведения об аутентификации пользователей в приложениях WebAssembly Blazor для конкретных поставщиков.
-* <xref:security/blazor/webassembly/additional-scenarios>
+Автономные приложения Blazor WebAssembly:
+
+* [Общие рекомендации по использованию поставщиков OIDC и библиотеки проверки подлинности WebAssembly](xref:security/blazor/webassembly/standalone-with-authentication-library)
+* [Учетные записи Майкрософт](xref:security/blazor/webassembly/standalone-with-microsoft-accounts)
+* [Azure Active Directory (AAD)](xref:security/blazor/webassembly/standalone-with-azure-active-directory)
+* [Azure Active Directory (AAD) B2C](xref:security/blazor/webassembly/standalone-with-azure-active-directory-b2c)
+
+Размещенные приложения Blazor WebAssembly:
+
+* [Azure Active Directory (AAD)](xref:security/blazor/webassembly/hosted-with-azure-active-directory)
+* [Azure Active Directory (AAD) B2C](xref:security/blazor/webassembly/hosted-with-azure-active-directory-b2c)
+* [Сервер Identity](xref:security/blazor/webassembly/hosted-with-identity-server)
+
+Дополнительные рекомендации по настройке см. по этой ссылке: <xref:security/blazor/webassembly/additional-scenarios>.
