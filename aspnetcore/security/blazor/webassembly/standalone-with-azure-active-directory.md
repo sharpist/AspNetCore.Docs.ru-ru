@@ -1,85 +1,73 @@
 ---
-title: Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью Azure Active Directory
-author: guardrex
-description: ''
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/11/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: security/blazor/webassembly/standalone-with-azure-active-directory
-ms.openlocfilehash: 512fab439686e54b1d21576c7dad7b3cd320a8b1
-ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
-ms.translationtype: MT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83153595"
+<span data-ttu-id="f0ba9-101">Title: ' Защитите Blazor изолированное приложение ASP.NET Coreной сборки с помощью Azure Active Directory "author: описание: моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:</span><span class="sxs-lookup"><span data-stu-id="f0ba9-101">title: 'Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory' author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
+- <span data-ttu-id="f0ba9-102">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="f0ba9-102">'Blazor'</span></span>
+- <span data-ttu-id="f0ba9-103">'Identity'</span><span class="sxs-lookup"><span data-stu-id="f0ba9-103">'Identity'</span></span>
+- <span data-ttu-id="f0ba9-104">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="f0ba9-104">'Let's Encrypt'</span></span>
+- <span data-ttu-id="f0ba9-105">'Razor'</span><span class="sxs-lookup"><span data-stu-id="f0ba9-105">'Razor'</span></span>
+- <span data-ttu-id="f0ba9-106">' SignalR ' UID:</span><span class="sxs-lookup"><span data-stu-id="f0ba9-106">'SignalR' uid:</span></span> 
+
 ---
-# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory"></a><span data-ttu-id="8e479-102">Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="8e479-102">Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory</span></span>
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory"></a><span data-ttu-id="f0ba9-107">Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="f0ba9-107">Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory</span></span>
 
-<span data-ttu-id="8e479-103">[Хавьер Калварро Воронков](https://github.com/javiercn) и [Люк ЛаСаМ](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="8e479-103">By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="f0ba9-108">[Хавьер Калварро Воронков](https://github.com/javiercn) и [Люк ЛаСаМ](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="f0ba9-108">By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)</span></span>
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+<span data-ttu-id="f0ba9-109">Чтобы создать Blazor изолированное приложение для сборки, использующее [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) для проверки подлинности:</span><span class="sxs-lookup"><span data-stu-id="f0ba9-109">To create a Blazor WebAssembly standalone app that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication:</span></span>
 
-[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
+<span data-ttu-id="f0ba9-110">[Создание клиента AAD и веб-приложения](/azure/active-directory/develop/v2-overview):</span><span class="sxs-lookup"><span data-stu-id="f0ba9-110">[Create an AAD tenant and web application](/azure/active-directory/develop/v2-overview):</span></span>
 
-<span data-ttu-id="8e479-104">Чтобы создать Blazor изолированное приложение для сборки, использующее [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) для проверки подлинности:</span><span class="sxs-lookup"><span data-stu-id="8e479-104">To create a Blazor WebAssembly standalone app that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication:</span></span>
+<span data-ttu-id="f0ba9-111">Зарегистрируйте приложение AAD в области **Azure Active Directory**  >  **Регистрация приложений** портал Azure:</span><span class="sxs-lookup"><span data-stu-id="f0ba9-111">Register a AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:</span></span>
 
-<span data-ttu-id="8e479-105">[Создание клиента AAD и веб-приложения](/azure/active-directory/develop/v2-overview):</span><span class="sxs-lookup"><span data-stu-id="8e479-105">[Create an AAD tenant and web application](/azure/active-directory/develop/v2-overview):</span></span>
+1. <span data-ttu-id="f0ba9-112">Укажите **имя** приложения (например, \*\* Blazor автономное приложение AAD\*\*).</span><span class="sxs-lookup"><span data-stu-id="f0ba9-112">Provide a **Name** for the app (for example, **Blazor Standalone AAD**).</span></span>
+1. <span data-ttu-id="f0ba9-113">Выберите **Поддерживаемые типы учетных записей**.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-113">Choose a **Supported account types**.</span></span> <span data-ttu-id="f0ba9-114">Вы можете выбрать **учетные записи в этом каталоге организации только** для этого интерфейса.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-114">You may select **Accounts in this organizational directory only** for this experience.</span></span>
+1. <span data-ttu-id="f0ba9-115">Оставьте в раскрывающемся списке **URI перенаправления** значение **веб**и укажите следующий URI перенаправления: `https://localhost:{PORT}/authentication/login-callback` .</span><span class="sxs-lookup"><span data-stu-id="f0ba9-115">Leave the **Redirect URI** drop down set to **Web**, and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`.</span></span> <span data-ttu-id="f0ba9-116">Порт по умолчанию для приложения, работающего на Kestrel, — 5001.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-116">The default port for an app running on Kestrel is 5001.</span></span> <span data-ttu-id="f0ba9-117">Для IIS Express порт, созданный случайным образом, можно найти в свойствах приложения на панели **отладки** .</span><span class="sxs-lookup"><span data-stu-id="f0ba9-117">For IIS Express, the randomly generated port can be found in the app's properties in the **Debug** panel.</span></span>
+1. <span data-ttu-id="f0ba9-118">Отключите **разрешения**  >  **предоставление прав администратора для OpenID Connect и offline_access** .</span><span class="sxs-lookup"><span data-stu-id="f0ba9-118">Disable the **Permissions** > **Grant admin concent to openid and offline_access permissions** check box.</span></span>
+1. <span data-ttu-id="f0ba9-119">Выберите **Зарегистрировать**.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-119">Select **Register**.</span></span>
 
-<span data-ttu-id="8e479-106">Зарегистрируйте приложение AAD в области **Azure Active Directory**  >  **Регистрация приложений** портал Azure:</span><span class="sxs-lookup"><span data-stu-id="8e479-106">Register a AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:</span></span>
+<span data-ttu-id="f0ba9-120">Запишите следующие сведения:</span><span class="sxs-lookup"><span data-stu-id="f0ba9-120">Record the following information:</span></span>
 
-1. <span data-ttu-id="8e479-107">Укажите **имя** приложения (например, \*\* Blazor AAD клиента\*\*).</span><span class="sxs-lookup"><span data-stu-id="8e479-107">Provide a **Name** for the app (for example, **Blazor Client AAD**).</span></span>
-1. <span data-ttu-id="8e479-108">Выберите **Поддерживаемые типы учетных записей**.</span><span class="sxs-lookup"><span data-stu-id="8e479-108">Choose a **Supported account types**.</span></span> <span data-ttu-id="8e479-109">Вы можете выбрать **учетные записи в этом каталоге организации только** для этого интерфейса.</span><span class="sxs-lookup"><span data-stu-id="8e479-109">You may select **Accounts in this organizational directory only** for this experience.</span></span>
-1. <span data-ttu-id="8e479-110">Оставьте в раскрывающемся списке **URI перенаправления** значение **веб**и укажите универсальный код ресурса (URI) перенаправления для `https://localhost:5001/authentication/login-callback` .</span><span class="sxs-lookup"><span data-stu-id="8e479-110">Leave the **Redirect URI** drop down set to **Web**, and provide a redirect URI of `https://localhost:5001/authentication/login-callback`.</span></span>
-1. <span data-ttu-id="8e479-111">Отключите **разрешения**  >  **предоставление прав администратора для OpenID Connect и offline_access** .</span><span class="sxs-lookup"><span data-stu-id="8e479-111">Disable the **Permissions** > **Grant admin concent to openid and offline_access permissions** check box.</span></span>
-1. <span data-ttu-id="8e479-112">Выберите **Зарегистрировать**.</span><span class="sxs-lookup"><span data-stu-id="8e479-112">Select **Register**.</span></span>
+* <span data-ttu-id="f0ba9-121">Идентификатор приложения (идентификатор клиента) (например, `11111111-1111-1111-1111-111111111111` )</span><span class="sxs-lookup"><span data-stu-id="f0ba9-121">Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`)</span></span>
+* <span data-ttu-id="f0ba9-122">Идентификатор каталога (идентификатор клиента) (например, `22222222-2222-2222-2222-222222222222` )</span><span class="sxs-lookup"><span data-stu-id="f0ba9-122">Directory ID (Tenant ID) (for example, `22222222-2222-2222-2222-222222222222`)</span></span>
 
-<span data-ttu-id="8e479-113">В конфигурации платформы **проверки подлинности**  >  **Platform configurations**  >  **веб-сайт**:</span><span class="sxs-lookup"><span data-stu-id="8e479-113">In **Authentication** > **Platform configurations** > **Web**:</span></span>
+<span data-ttu-id="f0ba9-123">В конфигурации платформы **проверки подлинности**  >  **Platform configurations**  >  **веб-сайт**:</span><span class="sxs-lookup"><span data-stu-id="f0ba9-123">In **Authentication** > **Platform configurations** > **Web**:</span></span>
 
-1. <span data-ttu-id="8e479-114">Убедитесь, что **URI перенаправления** `https://localhost:5001/authentication/login-callback` имеется.</span><span class="sxs-lookup"><span data-stu-id="8e479-114">Confirm the **Redirect URI** of `https://localhost:5001/authentication/login-callback` is present.</span></span>
-1. <span data-ttu-id="8e479-115">Для **неявного предоставления**установите флажки для **маркеров доступа** и **маркеров идентификации**.</span><span class="sxs-lookup"><span data-stu-id="8e479-115">For **Implicit grant**, select the check boxes for **Access tokens** and **ID tokens**.</span></span>
-1. <span data-ttu-id="8e479-116">Остальные значения по умолчанию для приложения приемлемы для этого интерфейса.</span><span class="sxs-lookup"><span data-stu-id="8e479-116">The remaining defaults for the app are acceptable for this experience.</span></span>
-1. <span data-ttu-id="8e479-117">Нажмите кнопку **Сохранить**.</span><span class="sxs-lookup"><span data-stu-id="8e479-117">Select the **Save** button.</span></span>
+1. <span data-ttu-id="f0ba9-124">Убедитесь, что **URI перенаправления** `https://localhost:{PORT}/authentication/login-callback` имеется.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-124">Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.</span></span>
+1. <span data-ttu-id="f0ba9-125">Для **неявного предоставления**установите флажки для **маркеров доступа** и **маркеров идентификации**.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-125">For **Implicit grant**, select the check boxes for **Access tokens** and **ID tokens**.</span></span>
+1. <span data-ttu-id="f0ba9-126">Остальные значения по умолчанию для приложения приемлемы для этого интерфейса.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-126">The remaining defaults for the app are acceptable for this experience.</span></span>
+1. <span data-ttu-id="f0ba9-127">Нажмите кнопку **Сохранить**.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-127">Select the **Save** button.</span></span>
 
-<span data-ttu-id="8e479-118">Запишите следующие сведения:</span><span class="sxs-lookup"><span data-stu-id="8e479-118">Record the following information:</span></span>
-
-* <span data-ttu-id="8e479-119">Идентификатор приложения (идентификатор клиента) (например, `11111111-1111-1111-1111-111111111111` )</span><span class="sxs-lookup"><span data-stu-id="8e479-119">Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`)</span></span>
-* <span data-ttu-id="8e479-120">Идентификатор каталога (идентификатор клиента) (например, `22222222-2222-2222-2222-222222222222` )</span><span class="sxs-lookup"><span data-stu-id="8e479-120">Directory ID (Tenant ID) (for example, `22222222-2222-2222-2222-222222222222`)</span></span>
-
-<span data-ttu-id="8e479-121">Замените заполнители в следующей команде на записанные ранее сведения и выполните команду в командной оболочке:</span><span class="sxs-lookup"><span data-stu-id="8e479-121">Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:</span></span>
+<span data-ttu-id="f0ba9-128">Создайте приложение.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-128">Create the app.</span></span> <span data-ttu-id="f0ba9-129">Замените заполнители в следующей команде на записанные ранее сведения и выполните команду в командной оболочке:</span><span class="sxs-lookup"><span data-stu-id="f0ba9-129">Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:</span></span>
 
 ```dotnetcli
 dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "{TENANT ID}"
 ```
 
-<span data-ttu-id="8e479-122">Чтобы указать расположение выходных данных, которое создает папку проекта, если она не существует, включите параметр OUTPUT в команду с путем (например, `-o BlazorSample` ).</span><span class="sxs-lookup"><span data-stu-id="8e479-122">To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`).</span></span> <span data-ttu-id="8e479-123">Имя папки также станет частью имени проекта.</span><span class="sxs-lookup"><span data-stu-id="8e479-123">The folder name also becomes part of the project's name.</span></span>
+<span data-ttu-id="f0ba9-130">Чтобы указать расположение выходных данных, которое создает папку проекта, если она не существует, включите параметр OUTPUT в команду с путем (например, `-o BlazorSample` ).</span><span class="sxs-lookup"><span data-stu-id="f0ba9-130">To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`).</span></span> <span data-ttu-id="f0ba9-131">Имя папки также станет частью имени проекта.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-131">The folder name also becomes part of the project's name.</span></span>
 
-## <a name="authentication-package"></a><span data-ttu-id="8e479-124">Пакет проверки подлинности</span><span class="sxs-lookup"><span data-stu-id="8e479-124">Authentication package</span></span>
+<span data-ttu-id="f0ba9-132">После создания приложения вы сможете:</span><span class="sxs-lookup"><span data-stu-id="f0ba9-132">After creating the app, you should be able to:</span></span>
 
-<span data-ttu-id="8e479-125">При создании приложения для использования рабочих или учебных учетных записей `SingleOrg` приложение автоматически получает ссылку на пакет для [библиотеки проверки подлинности Майкрософт](/azure/active-directory/develop/msal-overview) ( `Microsoft.Authentication.WebAssembly.Msal` ).</span><span class="sxs-lookup"><span data-stu-id="8e479-125">When an app is created to use Work or School Accounts (`SingleOrg`), the app automatically receives a package reference for the [Microsoft Authentication Library](/azure/active-directory/develop/msal-overview) (`Microsoft.Authentication.WebAssembly.Msal`).</span></span> <span data-ttu-id="8e479-126">Пакет предоставляет набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных интерфейсов API.</span><span class="sxs-lookup"><span data-stu-id="8e479-126">The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.</span></span>
+* <span data-ttu-id="f0ba9-133">Войдите в приложение, используя учетную запись пользователя AAD.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-133">Log into the app using an AAD user account.</span></span>
+* <span data-ttu-id="f0ba9-134">Запрос маркеров доступа для API-интерфейсов Майкрософт.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-134">Request access tokens for Microsoft APIs.</span></span> <span data-ttu-id="f0ba9-135">Дополнительные сведения можно найти в разделе</span><span class="sxs-lookup"><span data-stu-id="f0ba9-135">For more information, see:</span></span>
+  * [<span data-ttu-id="f0ba9-136">Области токенов доступа</span><span class="sxs-lookup"><span data-stu-id="f0ba9-136">Access token scopes</span></span>](#access-token-scopes)
+  * <span data-ttu-id="f0ba9-137">[Краткое руководство. Настройка приложения для предоставления веб-API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).</span><span class="sxs-lookup"><span data-stu-id="f0ba9-137">[Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).</span></span>
 
-<span data-ttu-id="8e479-127">При добавлении проверки подлинности в приложение вручную добавьте пакет в файл проекта приложения:</span><span class="sxs-lookup"><span data-stu-id="8e479-127">If adding authentication to an app, manually add the package to the app's project file:</span></span>
+## <a name="authentication-package"></a><span data-ttu-id="f0ba9-138">Пакет проверки подлинности</span><span class="sxs-lookup"><span data-stu-id="f0ba9-138">Authentication package</span></span>
+
+<span data-ttu-id="f0ba9-139">При создании приложения для использования рабочих или учебных учетных записей `SingleOrg` приложение автоматически получает ссылку на пакет для [библиотеки проверки подлинности Майкрософт](/azure/active-directory/develop/msal-overview) ( `Microsoft.Authentication.WebAssembly.Msal` ).</span><span class="sxs-lookup"><span data-stu-id="f0ba9-139">When an app is created to use Work or School Accounts (`SingleOrg`), the app automatically receives a package reference for the [Microsoft Authentication Library](/azure/active-directory/develop/msal-overview) (`Microsoft.Authentication.WebAssembly.Msal`).</span></span> <span data-ttu-id="f0ba9-140">Пакет предоставляет набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных интерфейсов API.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-140">The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.</span></span>
+
+<span data-ttu-id="f0ba9-141">При добавлении проверки подлинности в приложение вручную добавьте пакет в файл проекта приложения:</span><span class="sxs-lookup"><span data-stu-id="f0ba9-141">If adding authentication to an app, manually add the package to the app's project file:</span></span>
 
 ```xml
 <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" 
-    Version="{VERSION}" />
+  Version="3.2.0" />
 ```
 
-<span data-ttu-id="8e479-128">Замените `{VERSION}` в предыдущей ссылке на пакет версией `Microsoft.AspNetCore.Blazor.Templates` пакета, показанного в этой <xref:blazor/get-started> статье.</span><span class="sxs-lookup"><span data-stu-id="8e479-128">Replace `{VERSION}` in the preceding package reference with the version of the `Microsoft.AspNetCore.Blazor.Templates` package shown in the <xref:blazor/get-started> article.</span></span>
+<span data-ttu-id="f0ba9-142">`Microsoft.Authentication.WebAssembly.Msal`Пакет будет транзитно добавлять `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пакет в приложение.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-142">The `Microsoft.Authentication.WebAssembly.Msal` package transitively adds the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package to the app.</span></span>
 
-<span data-ttu-id="8e479-129">`Microsoft.Authentication.WebAssembly.Msal`Пакет будет транзитно добавлять `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пакет в приложение.</span><span class="sxs-lookup"><span data-stu-id="8e479-129">The `Microsoft.Authentication.WebAssembly.Msal` package transitively adds the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package to the app.</span></span>
+## <a name="authentication-service-support"></a><span data-ttu-id="f0ba9-143">Поддержка службы проверки подлинности</span><span class="sxs-lookup"><span data-stu-id="f0ba9-143">Authentication service support</span></span>
 
-## <a name="authentication-service-support"></a><span data-ttu-id="8e479-130">Поддержка службы проверки подлинности</span><span class="sxs-lookup"><span data-stu-id="8e479-130">Authentication service support</span></span>
+<span data-ttu-id="f0ba9-144">Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью `AddMsalAuthentication` метода расширения, предоставленного `Microsoft.Authentication.WebAssembly.Msal` пакетом.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-144">Support for authenticating users is registered in the service container with the `AddMsalAuthentication` extension method provided by the `Microsoft.Authentication.WebAssembly.Msal` package.</span></span> <span data-ttu-id="f0ba9-145">Этот метод настраивает службы, необходимые для взаимодействия приложения с Identity поставщиком (IP).</span><span class="sxs-lookup"><span data-stu-id="f0ba9-145">This method sets up the services required for the app to interact with the Identity Provider (IP).</span></span>
 
-<span data-ttu-id="8e479-131">Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью `AddMsalAuthentication` метода расширения, предоставленного `Microsoft.Authentication.WebAssembly.Msal` пакетом.</span><span class="sxs-lookup"><span data-stu-id="8e479-131">Support for authenticating users is registered in the service container with the `AddMsalAuthentication` extension method provided by the `Microsoft.Authentication.WebAssembly.Msal` package.</span></span> <span data-ttu-id="8e479-132">Этот метод настраивает все службы, необходимые для взаимодействия приложения с Identity поставщиком (IP).</span><span class="sxs-lookup"><span data-stu-id="8e479-132">This method sets up all of the services required for the app to interact with the Identity Provider (IP).</span></span>
-
-<span data-ttu-id="8e479-133">*Program.cs*:</span><span class="sxs-lookup"><span data-stu-id="8e479-133">*Program.cs*:</span></span>
+<span data-ttu-id="f0ba9-146">*Program.cs*:</span><span class="sxs-lookup"><span data-stu-id="f0ba9-146">*Program.cs*:</span></span>
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -88,33 +76,35 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-<span data-ttu-id="8e479-134">`AddMsalAuthentication`Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения.</span><span class="sxs-lookup"><span data-stu-id="8e479-134">The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app.</span></span> <span data-ttu-id="8e479-135">Значения, необходимые для настройки приложения, можно получить из конфигурации учетных записей Майкрософт при регистрации приложения.</span><span class="sxs-lookup"><span data-stu-id="8e479-135">The values required for configuring the app can be obtained from the Microsoft Accounts configuration when you register the app.</span></span>
+<span data-ttu-id="f0ba9-147">`AddMsalAuthentication`Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-147">The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app.</span></span> <span data-ttu-id="f0ba9-148">Значения, необходимые для настройки приложения, можно получить из конфигурации AAD при регистрации приложения.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-148">The values required for configuring the app can be obtained from the AAD configuration when you register the app.</span></span>
 
-<span data-ttu-id="8e479-136">Конфигурация предоставляется файлом *wwwroot/appSettings. JSON* :</span><span class="sxs-lookup"><span data-stu-id="8e479-136">Configuration is supplied by the *wwwroot/appsettings.json* file:</span></span>
+<span data-ttu-id="f0ba9-149">Конфигурация предоставляется файлом *wwwroot/appSettings. JSON* :</span><span class="sxs-lookup"><span data-stu-id="f0ba9-149">Configuration is supplied by the *wwwroot/appsettings.json* file:</span></span>
 
 ```json
 {
   "AzureAd": {
     "Authority": "https://login.microsoftonline.com/{TENANT ID}",
-    "ClientId": "{CLIENT ID}"
+    "ClientId": "{CLIENT ID}",
+    "ValidateAuthority": true
   }
 }
 ```
 
-<span data-ttu-id="8e479-137">Пример</span><span class="sxs-lookup"><span data-stu-id="8e479-137">Example:</span></span>
+<span data-ttu-id="f0ba9-150">Пример.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-150">Example:</span></span>
 
 ```json
 {
   "AzureAd": {
     "Authority": "https://login.microsoftonline.com/e86c78e2-...-918e0565a45e",
-    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd"
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "ValidateAuthority": true
   }
 }
 ```
 
-## <a name="access-token-scopes"></a><span data-ttu-id="8e479-138">Области токенов доступа</span><span class="sxs-lookup"><span data-stu-id="8e479-138">Access token scopes</span></span>
+## <a name="access-token-scopes"></a><span data-ttu-id="f0ba9-151">Области токенов доступа</span><span class="sxs-lookup"><span data-stu-id="f0ba9-151">Access token scopes</span></span>
 
-<span data-ttu-id="8e479-139">BlazorШаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API.</span><span class="sxs-lookup"><span data-stu-id="8e479-139">The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API.</span></span> <span data-ttu-id="8e479-140">Чтобы настроить маркер доступа как часть потока входа, добавьте область в область маркера доступа по умолчанию для `MsalProviderOptions` :</span><span class="sxs-lookup"><span data-stu-id="8e479-140">To provision an access token as part of the sign-in flow, add the scope to the default access token scopes of the `MsalProviderOptions`:</span></span>
+<span data-ttu-id="f0ba9-152">BlazorШаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API.</span><span class="sxs-lookup"><span data-stu-id="f0ba9-152">The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API.</span></span> <span data-ttu-id="f0ba9-153">Чтобы настроить маркер доступа как часть потока входа, добавьте область в область маркера доступа по умолчанию для `MsalProviderOptions` :</span><span class="sxs-lookup"><span data-stu-id="f0ba9-153">To provision an access token as part of the sign-in flow, add the scope to the default access token scopes of the `MsalProviderOptions`:</span></span>
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -124,54 +114,43 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-> [!NOTE]
-> <span data-ttu-id="8e479-141">Если портал Azure предоставляет URI области, а **приложение создает необработанное исключение** при 401 получении от API *неавторизованного* ответа, попробуйте использовать URI области, который не включает схему и узел.</span><span class="sxs-lookup"><span data-stu-id="8e479-141">If the Azure portal provides a scope URI and **the app throws an unhandled exception** when it receives a *401 Unauthorized* response from the API, try using a scope URI that doesn't include the scheme and host.</span></span> <span data-ttu-id="8e479-142">Например, портал Azure может предоставить один из следующих форматов URI области:</span><span class="sxs-lookup"><span data-stu-id="8e479-142">For example, the Azure portal may provide one of the following scope URI formats:</span></span>
->
-> * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
-> * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
->
-> <span data-ttu-id="8e479-143">Укажите URI области без схемы и узла:</span><span class="sxs-lookup"><span data-stu-id="8e479-143">Supply the scope URI without the scheme and host:</span></span>
->
-> ```csharp
-> options.ProviderOptions.DefaultAccessTokenScopes.Add(
->     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
-> ```
+[!INCLUDE[](~/includes/blazor-security/azure-scope.md)]
 
-<span data-ttu-id="8e479-144">Дополнительные сведения см. в следующих разделах статьи *Дополнительные сценарии* :</span><span class="sxs-lookup"><span data-stu-id="8e479-144">For more information, see the following sections of the *Additional scenarios* article:</span></span>
+<span data-ttu-id="f0ba9-154">Дополнительные сведения см. в следующих разделах статьи *Дополнительные сценарии* :</span><span class="sxs-lookup"><span data-stu-id="f0ba9-154">For more information, see the following sections of the *Additional scenarios* article:</span></span>
 
-* [<span data-ttu-id="8e479-145">Запрос дополнительных маркеров доступа</span><span class="sxs-lookup"><span data-stu-id="8e479-145">Request additional access tokens</span></span>](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
-* [<span data-ttu-id="8e479-146">Присоединение маркеров к исходящим запросам</span><span class="sxs-lookup"><span data-stu-id="8e479-146">Attach tokens to outgoing requests</span></span>](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
+* [<span data-ttu-id="f0ba9-155">Запрос дополнительных маркеров доступа</span><span class="sxs-lookup"><span data-stu-id="f0ba9-155">Request additional access tokens</span></span>](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [<span data-ttu-id="f0ba9-156">Присоединение маркеров к исходящим запросам</span><span class="sxs-lookup"><span data-stu-id="f0ba9-156">Attach tokens to outgoing requests</span></span>](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
 
-## <a name="imports-file"></a><span data-ttu-id="8e479-147">Файл импорта</span><span class="sxs-lookup"><span data-stu-id="8e479-147">Imports file</span></span>
+## <a name="imports-file"></a><span data-ttu-id="f0ba9-157">Файл импорта</span><span class="sxs-lookup"><span data-stu-id="f0ba9-157">Imports file</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]
 
-## <a name="index-page"></a><span data-ttu-id="8e479-148">Страница индексации</span><span class="sxs-lookup"><span data-stu-id="8e479-148">Index page</span></span>
+## <a name="index-page"></a><span data-ttu-id="f0ba9-158">Страница индексации</span><span class="sxs-lookup"><span data-stu-id="f0ba9-158">Index page</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/index-page-msal.md)]
 
-## <a name="app-component"></a><span data-ttu-id="8e479-149">Компонент приложения</span><span class="sxs-lookup"><span data-stu-id="8e479-149">App component</span></span>
+## <a name="app-component"></a><span data-ttu-id="f0ba9-159">Компонент приложения</span><span class="sxs-lookup"><span data-stu-id="f0ba9-159">App component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/app-component.md)]
 
-## <a name="redirecttologin-component"></a><span data-ttu-id="8e479-150">Компонент Редиректтологин</span><span class="sxs-lookup"><span data-stu-id="8e479-150">RedirectToLogin component</span></span>
+## <a name="redirecttologin-component"></a><span data-ttu-id="f0ba9-160">Компонент Редиректтологин</span><span class="sxs-lookup"><span data-stu-id="f0ba9-160">RedirectToLogin component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
 
-## <a name="logindisplay-component"></a><span data-ttu-id="8e479-151">Компонент Логиндисплай</span><span class="sxs-lookup"><span data-stu-id="8e479-151">LoginDisplay component</span></span>
+## <a name="logindisplay-component"></a><span data-ttu-id="f0ba9-161">Компонент Логиндисплай</span><span class="sxs-lookup"><span data-stu-id="f0ba9-161">LoginDisplay component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/logindisplay-component.md)]
 
-## <a name="authentication-component"></a><span data-ttu-id="8e479-152">Компонент проверки подлинности</span><span class="sxs-lookup"><span data-stu-id="8e479-152">Authentication component</span></span>
+## <a name="authentication-component"></a><span data-ttu-id="f0ba9-162">Компонент проверки подлинности</span><span class="sxs-lookup"><span data-stu-id="f0ba9-162">Authentication component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
 
-## <a name="additional-resources"></a><span data-ttu-id="8e479-153">Дополнительные ресурсы</span><span class="sxs-lookup"><span data-stu-id="8e479-153">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="f0ba9-163">Дополнительные ресурсы</span><span class="sxs-lookup"><span data-stu-id="f0ba9-163">Additional resources</span></span>
 
 * <xref:security/blazor/webassembly/additional-scenarios>
-* [<span data-ttu-id="8e479-154">Запросы, не прошедшие проверку подлинности или неавторизованные веб-API в приложении с защищенным клиентом по умолчанию</span><span class="sxs-lookup"><span data-stu-id="8e479-154">Unauthenticated or unauthorized web API requests in an app with a secure default client</span></span>](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
+* [<span data-ttu-id="f0ba9-164">Запросы, не прошедшие проверку подлинности или неавторизованные веб-API в приложении с защищенным клиентом по умолчанию</span><span class="sxs-lookup"><span data-stu-id="f0ba9-164">Unauthenticated or unauthorized web API requests in an app with a secure default client</span></span>](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:security/blazor/webassembly/aad-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
-* [<span data-ttu-id="8e479-155">Документация по платформе удостоверений Майкрософт</span><span class="sxs-lookup"><span data-stu-id="8e479-155">Microsoft identity platform documentation</span></span>](/azure/active-directory/develop/)
+* [<span data-ttu-id="f0ba9-165">Документация по платформе удостоверений Майкрософт</span><span class="sxs-lookup"><span data-stu-id="f0ba9-165">Microsoft identity platform documentation</span></span>](/azure/active-directory/develop/)
