@@ -1,32 +1,15 @@
 ---
-title: Обеспечение безопасности Blazor размещенного в ASP.NET Core приложения сборки Azure Active Directory
-author: guardrex
-description: ''
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/11/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: security/blazor/webassembly/hosted-with-azure-active-directory
-ms.openlocfilehash: 6ff95f0c5c925cbafef2b997a6cb23aeb15ff1aa
-ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
-ms.translationtype: MT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83153964"
+Title: ' безопасное ASP.NET Core Blazor размещенное приложение сборки с помощью Azure Active Directory ' author: описание: моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory"></a>Обеспечение безопасности Blazor размещенного в ASP.NET Core приложения сборки Azure Active Directory
 
 [Хавьер Калварро Воронков](https://github.com/javiercn) и [Люк ЛаСаМ](https://github.com/guardrex)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
 В этой статье описывается создание [ Blazor размещенного приложения сборки](xref:blazor/hosting-models#blazor-webassembly) , которое использует [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) для проверки подлинности.
 
@@ -38,16 +21,22 @@ ms.locfileid: "83153964"
 
 ### <a name="register-a-server-api-app"></a>Регистрация приложения API сервера
 
-Следуйте указаниям в [кратком руководстве: регистрация приложения с помощью платформы удостоверений Майкрософт](/azure/active-directory/develop/quickstart-register-app) и последующих разделов Azure AAD, чтобы зарегистрировать приложение AAD для *приложения API сервера* в области **Azure Active Directory**  >  **Регистрация приложений** портал Azure:
+Следуйте указаниям в [кратком руководстве: регистрация приложения с помощью платформы удостоверений Майкрософт](/azure/active-directory/develop/quickstart-register-app) и последующих разделов Azure AAD, чтобы зарегистрировать приложение AAD для *приложения API сервера*:
 
-1. Выберите **Новая регистрация**.
+1. В **Azure Active Directory**  >  **Регистрация приложений**выберите пункт **Новая регистрация**.
 1. Укажите **имя** приложения (например, ** Blazor сервер AAD**).
 1. Выберите **Поддерживаемые типы учетных записей**. Для этого интерфейса можно выбрать **учетные записи только в этом каталоге Организации** (один клиент).
 1. В этом сценарии *приложению API сервера* не требуется **универсальный код ресурса (URI) перенаправления** , поэтому оставьте в раскрывающемся списке значение **Web** и не вводите URI перенаправления.
 1. Отключите **разрешения**  >  **предоставление прав администратора для OpenID Connect и offline_access** .
 1. Выберите **Зарегистрировать**.
 
-В окне **разрешения API**удалите разрешение **Microsoft Graph**  >  **пользователь. чтение** , так как приложению не требуется доступ для входа или профиля уер.
+Запишите следующие сведения:
+
+* *Приложение API сервера* Идентификатор приложения (идентификатор клиента) (например, `11111111-1111-1111-1111-111111111111` )
+* Идентификатор каталога (идентификатор клиента) (например, `222222222-2222-2222-2222-222222222222` )
+* Домен клиента AAD (например, `contoso.onmicrosoft.com` ) домен &ndash; доступен в качестве **домена издателя** в колонке **фирменной символики** портал Azure для зарегистрированного приложения.
+
+В окне **разрешения API**удалите разрешение **Microsoft Graph**  >  **пользователь. чтение** , так как приложению не требуется доступ для входа или профиля пользователя.
 
 В **предоставление API**:
 
@@ -61,26 +50,25 @@ ms.locfileid: "83153964"
 
 Запишите следующие сведения:
 
-* *Приложение API сервера* Идентификатор приложения (идентификатор клиента) (например, `11111111-1111-1111-1111-111111111111` )
 * URI идентификатора приложения (например,, `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111` `api://11111111-1111-1111-1111-111111111111` или предоставленное вами пользовательское значение)
-* Идентификатор каталога (идентификатор клиента) (например, `222222222-2222-2222-2222-222222222222` )
-* Домен клиента AAD (например, `contoso.onmicrosoft.com` )
 * Область по умолчанию (например, `API.Access` )
 
 ### <a name="register-a-client-app"></a>Регистрация клиентского приложения
 
-Следуйте указаниям в [кратком руководстве: регистрация приложения с помощью платформы удостоверений Майкрософт](/azure/active-directory/develop/quickstart-register-app) и последующих разделов Azure AAD, чтобы зарегистрировать приложение AAD для *клиентского приложения* в области **Azure Active Directory**  >  **Регистрация приложений** портал Azure:
+Следуйте указаниям в [кратком руководстве: регистрация приложения с помощью платформы удостоверений Майкрософт](/azure/active-directory/develop/quickstart-register-app) и последующих разделов Azure AAD для регистрации приложения AAD для *клиентского приложения*:
 
-1. Выберите **Новая регистрация**.
+1. В **Azure Active Directory**  >  **Регистрация приложений**выберите пункт **Новая регистрация**.
 1. Укажите **имя** приложения (например, ** Blazor AAD клиента**).
 1. Выберите **Поддерживаемые типы учетных записей**. Для этого интерфейса можно выбрать **учетные записи только в этом каталоге Организации** (один клиент).
-1. Оставьте в раскрывающемся списке **URI перенаправления** значение **веб**и укажите универсальный код ресурса (URI) перенаправления для `https://localhost:5001/authentication/login-callback` .
+1. Оставьте в раскрывающемся списке **URI перенаправления** значение **веб**и укажите следующий URI перенаправления: `https://localhost:{PORT}/authentication/login-callback` . Порт по умолчанию для приложения, работающего на Kestrel, — 5001. Для IIS Express порт, созданный случайным образом, можно найти в свойствах серверного приложения на панели **отладки** .
 1. Отключите **разрешения**  >  **предоставление прав администратора для OpenID Connect и offline_access** .
 1. Выберите **Зарегистрировать**.
 
+Запишите идентификатор приложения *клиентского приложения* (идентификатор клиента) (например, `33333333-3333-3333-3333-333333333333` ).
+
 В конфигурации платформы **проверки подлинности**  >  **Platform configurations**  >  **веб-сайт**:
 
-1. Убедитесь, что **URI перенаправления** `https://localhost:5001/authentication/login-callback` имеется.
+1. Убедитесь, что **URI перенаправления** `https://localhost:{PORT}/authentication/login-callback` имеется.
 1. Для **неявного предоставления**установите флажки для **маркеров доступа** и **маркеров идентификации**.
 1. Остальные значения по умолчанию для приложения приемлемы для этого интерфейса.
 1. Нажмите кнопку **Сохранить**.
@@ -95,14 +83,12 @@ ms.locfileid: "83153964"
 1. Выберите **Добавить разрешения**.
 1. Нажмите кнопку **предоставить содержимое администратора для {имя клиента}** . Нажмите кнопку **Да** для подтверждения.
 
-Запишите идентификатор приложения *клиентского приложения* (идентификатор клиента) (например, `33333333-3333-3333-3333-333333333333` ).
-
 ### <a name="create-the-app"></a>Создайте приложение
 
 Замените заполнители в следующей команде на записанные ранее сведения и выполните команду в командной оболочке:
 
 ```dotnetcli
-dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{DOMAIN}" -ho --tenant-id "{TENANT ID}"
+dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{TENANT DOMAIN}" -ho --tenant-id "{TENANT ID}"
 ```
 
 Чтобы указать расположение выходных данных, которое создает папку проекта, если она не существует, включите параметр OUTPUT в команду с путем (например, `-o BlazorSample` ). Имя папки также станет частью имени проекта.
@@ -120,7 +106,7 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" 
-    Version="{VERSION}" />
+  Version="3.2.0" />
 ```
 
 ### <a name="authentication-service-support"></a>Поддержка службы проверки подлинности
@@ -149,6 +135,10 @@ app.UseAuthorization();
 Чтобы настроить приложение для получения значения из `name` типа утверждения, настройте [TokenValidationParameters. намеклаимтипе](xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType) <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> в `Startup.ConfigureServices` :
 
 ```csharp
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+...
+
 services.Configure<JwtBearerOptions>(
     AzureADDefaults.JwtBearerAuthenticationScheme, options =>
     {
@@ -158,7 +148,7 @@ services.Configure<JwtBearerOptions>(
 
 ### <a name="app-settings"></a>Параметры приложения
 
-Файл *appSettings. JSON* содержит параметры для настройки обработчика носителя JWT, используемого для проверки маркеров доступа.
+Файл *appSettings. JSON* содержит параметры для настройки обработчика носителя JWT, используемого для проверки маркеров доступа:
 
 ```json
 {
@@ -171,7 +161,7 @@ services.Configure<JwtBearerOptions>(
 }
 ```
 
-Пример
+Пример.
 
 ```json
 {
@@ -217,10 +207,8 @@ public class WeatherForecastController : ControllerBase
 
 ```xml
 <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" 
-    Version="{VERSION}" />
+  Version="3.2.0" />
 ```
-
-Замените `{VERSION}` в предыдущей ссылке на пакет версией `Microsoft.AspNetCore.Blazor.Templates` пакета, показанного в этой <xref:blazor/get-started> статье.
 
 `Microsoft.Authentication.WebAssembly.Msal`Пакет будет транзитно добавлять `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пакет в приложение.
 
@@ -239,7 +227,7 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("{APP ASSEMBLY}.ServerAPI"));
 ```
 
-Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью `AddMsalAuthentication` метода расширения, предоставленного `Microsoft.Authentication.WebAssembly.Msal` пакетом. Этот метод настраивает все службы, необходимые для взаимодействия приложения с Identity поставщиком (IP).
+Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью `AddMsalAuthentication` метода расширения, предоставленного `Microsoft.Authentication.WebAssembly.Msal` пакетом. Этот метод настраивает службы, необходимые для взаимодействия приложения с Identity поставщиком (IP).
 
 *Program.cs*:
 
@@ -265,7 +253,7 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-Пример
+Пример.
 
 ```json
 {
@@ -294,18 +282,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-> [!NOTE]
-> Если портал Azure предоставляет URI области, а **приложение создает необработанное исключение** при 401 получении от API *неавторизованного* ответа, попробуйте использовать URI области, который не включает схему и узел. Например, портал Azure может предоставить один из следующих форматов URI области:
->
-> * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
-> * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
->
-> Укажите URI области без схемы и узла:
->
-> ```csharp
-> options.ProviderOptions.DefaultAccessTokenScopes.Add(
->     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
-> ```
+[!INCLUDE[](~/includes/blazor-security/azure-scope.md)]
 
 Дополнительные сведения см. в следующих разделах статьи *Дополнительные сценарии* :
 
@@ -341,9 +318,12 @@ builder.Services.AddMsalAuthentication(options =>
 
 [!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
 
-## <a name="run-the-app"></a>Запустите приложение
+## <a name="run-the-app"></a>Запуск приложения
 
-Запустите приложение из серверного проекта. При использовании Visual Studio выберите серверный проект в **Обозреватель решений** и нажмите кнопку **выполнить** на панели инструментов или запустите приложение из меню **Отладка** .
+Запустите приложение из серверного проекта. При использовании Visual Studio выполните одно из следующих действий.
+
+* Задайте раскрывающийся список **запускаемые проекты** на панели инструментов для *приложения API сервера* и нажмите кнопку **выполнить** .
+* Выберите серверный проект в **Обозреватель решений** и нажмите кнопку **выполнить** на панели инструментов или запустите приложение из меню **Отладка** .
 
 <!-- HOLD
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]

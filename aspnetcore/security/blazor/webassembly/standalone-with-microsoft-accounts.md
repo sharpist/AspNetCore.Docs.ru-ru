@@ -1,66 +1,51 @@
 ---
-title: Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью учетных записей Майкрософт
-author: guardrex
-description: ''
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/11/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: security/blazor/webassembly/standalone-with-microsoft-accounts
-ms.openlocfilehash: 9fc93cc02129081ac6c777677a0c8d6397724e53
-ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
-ms.translationtype: MT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83153579"
+Title: ' безопасное ASP.NET Core Blazor изолированное приложение веб-сборки с учетными записями Майкрософт: описание: моникерранже: MS. author: MS. Custom: MS. Date: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-microsoft-accounts"></a>Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью учетных записей Майкрософт
 
 [Хавьер Калварро Воронков](https://github.com/javiercn) и [Люк ЛаСаМ](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
 Чтобы создать Blazor изолированное приложение для веб-сборки, использующее [учетные записи майкрософт с Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) для проверки подлинности:
 
-1. [Создание клиента AAD и веб-приложения](/azure/active-directory/develop/v2-overview)
+[Создание клиента AAD и веб-приложения](/azure/active-directory/develop/v2-overview)
 
-   Зарегистрируйте приложение AAD в области **Azure Active Directory**  >  **Регистрация приложений** портал Azure:
+Зарегистрируйте приложение AAD в области **Azure Active Directory**  >  **Регистрация приложений** портал Azure:
 
-   1\. Укажите **имя** приложения (например, ** Blazor AAD клиента**).<br>
-   2\. В списке **Поддерживаемые типы учетных записей**выберите **учетные записи в любом организационном каталоге**.<br>
-   3 \. Оставьте в раскрывающемся списке **URI перенаправления** значение **веб**и укажите универсальный код ресурса (URI) перенаправления для `https://localhost:5001/authentication/login-callback` .<br>
-   4 \. Отключите **разрешения**  >  **предоставление прав администратора для OpenID Connect и offline_access** .<br>
-   5 \. Выберите **Зарегистрировать**.
+1. Укажите **имя** приложения (например, ** Blazor автономные учетные записи Microsoft AAD**).
+1. В списке **Поддерживаемые типы учетных записей**выберите **учетные записи в любом организационном каталоге**.
+1. Оставьте в раскрывающемся списке **URI перенаправления** значение **веб**и укажите следующий URI перенаправления: `https://localhost:{PORT}/authentication/login-callback` . Порт по умолчанию для приложения, работающего на Kestrel, — 5001. Для IIS Express порт, созданный случайным образом, можно найти в свойствах приложения на панели **отладки** .
+1. Отключите **разрешения**  >  **предоставление прав администратора для OpenID Connect и offline_access** .
+1. Выберите **Зарегистрировать**.
 
-   В конфигурации платформы **проверки подлинности**  >  **Platform configurations**  >  **веб-сайт**:
+Запишите идентификатор приложения (идентификатор клиента) (например, `11111111-1111-1111-1111-111111111111` ).
 
-   1\. Убедитесь, что **URI перенаправления** `https://localhost:5001/authentication/login-callback` имеется.<br>
-   2\. Для **неявного предоставления**установите флажки для **маркеров доступа** и **маркеров идентификации**.<br>
-   3 \. Остальные значения по умолчанию для приложения приемлемы для этого интерфейса.<br>
-   4 \. Нажмите кнопку **Сохранить**.
+В конфигурации платформы **проверки подлинности**  >  **Platform configurations**  >  **веб-сайт**:
 
-   Запишите идентификатор приложения (идентификатор клиента) (например, `11111111-1111-1111-1111-111111111111` ).
+1. Убедитесь, что **URI перенаправления** `https://localhost:{PORT}/authentication/login-callback` имеется.
+1. Для **неявного предоставления**установите флажки для **маркеров доступа** и **маркеров идентификации**.
+1. Остальные значения по умолчанию для приложения приемлемы для этого интерфейса.
+1. Нажмите кнопку **Сохранить**.
 
-1. Замените заполнители в следующей команде на записанные ранее сведения и выполните команду в командной оболочке:
+Создайте приложение. Замените заполнители в следующей команде на записанные ранее сведения и выполните в командной оболочке следующую команду:
 
-   ```dotnetcli
-   dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "common"
-   ```
+```dotnetcli
+dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "common"
+```
 
-   Чтобы указать расположение выходных данных, которое создает папку проекта, если она не существует, включите параметр OUTPUT в команду с путем (например, `-o BlazorSample` ). Имя папки также станет частью имени проекта.
+Чтобы указать расположение выходных данных, которое создает папку проекта, если она не существует, включите параметр OUTPUT в команду с путем (например, `-o BlazorSample` ). Имя папки также станет частью имени проекта.
 
 После создания приложения вы сможете:
 
-* Войдите в приложение, используя учетную запись Майкрософт.
-* Запросите маркеры доступа для API-интерфейсов Майкрософт, используя тот же подход, что и для автономных Blazor приложений, при условии, что приложение настроено правильно. Дополнительные сведения см. [в разделе Краткое руководство. Настройка приложения для предоставления веб-API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
+* Войдите в приложение, используя учетная запись Майкрософт.
+* Запрос маркеров доступа для API-интерфейсов Майкрософт. Дополнительные сведения можно найти в разделе
+  * [Области токенов доступа](#access-token-scopes)
+  * [Краткое руководство. Настройка приложения для предоставления веб-API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
 
 ## <a name="authentication-package"></a>Пакет проверки подлинности
 
@@ -70,10 +55,8 @@ ms.locfileid: "83153579"
 
 ```xml
 <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" 
-    Version="{VERSION}" />
+  Version="3.2.0" />
 ```
-
-Замените `{VERSION}` в предыдущей ссылке на пакет версией `Microsoft.AspNetCore.Blazor.Templates` пакета, показанного в этой <xref:blazor/get-started> статье.
 
 `Microsoft.Authentication.WebAssembly.Msal`Пакет будет транзитно добавлять `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пакет в приложение.
 
@@ -90,7 +73,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-`AddMsalAuthentication`Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения. Значения, необходимые для настройки приложения, можно получить из конфигурации учетных записей Майкрософт при регистрации приложения.
+`AddMsalAuthentication`Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения. Значения, необходимые для настройки приложения, можно получить из конфигурации AAD при регистрации приложения.
 
 Конфигурация предоставляется файлом *wwwroot/appSettings. JSON* :
 
@@ -98,18 +81,20 @@ builder.Services.AddMsalAuthentication(options =>
 {
   "AzureAd": {
     "Authority": "https://login.microsoftonline.com/common",
-    "ClientId": "{CLIENT ID}"
+    "ClientId": "{CLIENT ID}",
+    "ValidateAuthority": true
   }
 }
 ```
 
-Пример
+Пример.
 
 ```json
 {
   "AzureAd": {
     "Authority": "https://login.microsoftonline.com/common",
-    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd"
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "ValidateAuthority": true
   }
 }
 ```
@@ -126,18 +111,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-> [!NOTE]
-> Если портал Azure предоставляет URI области, а **приложение создает необработанное исключение** при 401 получении от API *неавторизованного* ответа, попробуйте использовать URI области, который не включает схему и узел. Например, портал Azure может предоставить один из следующих форматов URI области:
->
-> * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
-> * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
->
-> Укажите URI области без схемы и узла:
->
-> ```csharp
-> options.ProviderOptions.DefaultAccessTokenScopes.Add(
->     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
-> ```
+[!INCLUDE[](~/includes/blazor-security/azure-scope.md)]
 
 Дополнительные сведения см. в следующих разделах статьи *Дополнительные сценарии* :
 

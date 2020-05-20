@@ -1,24 +1,13 @@
 ---
-title: JsonPatch в веб-API ASP.NET Core
-author: rick-anderson
-description: Сведения об обработке запросов JSON Patch в веб-API ASP.NET Core.
-ms.author: riande
-ms.custom: mvc
-ms.date: 04/02/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: web-api/jsonpatch
-ms.openlocfilehash: 3a78fa268cce8cff10fedf5814d61ce0e5faaf4b
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766671"
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
 ---
+
 # <a name="jsonpatch-in-aspnet-core-web-api"></a>JsonPatch в веб-API ASP.NET Core
 
 Авторы: [Том Дикстра](https://github.com/tdykstra) (Tom Dykstra) и [Kirk Larkin](https://github.com/serpent5) (Кирк Ларкин)
@@ -31,8 +20,8 @@ ms.locfileid: "82766671"
 
 Чтобы включить поддержку исправления JSON в приложении, выполните следующие действия.
 
-1. Установить пакет NuGet [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/).
-1. Обновите `Startup.ConfigureServices` метод проекта для вызова <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*>. Например:
+1. Установите [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) пакет NuGet.
+1. Обновите метод проекта `Startup.ConfigureServices` для вызова <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*> . Пример:
 
     ```csharp
     services
@@ -48,11 +37,11 @@ ms.locfileid: "82766671"
 
 ## <a name="json-patch-addnewtonsoftjson-and-systemtextjson"></a>Исправление JSON, Аддневтонсофтжсон и System. Text. JSON
 
-`AddNewtonsoftJson``System.Text.Json`заменяет модули форматирования ввода и вывода, используемые для форматирования **всего** содержимого JSON. Чтобы добавить поддержку обновления JSON с помощью `Newtonsoft.Json`, при этом другие модули форматирования не меняются, обновите `Startup.ConfigureServices` метод проекта следующим образом:
+`AddNewtonsoftJson`заменяет `System.Text.Json` модули форматирования ввода и вывода, используемые для форматирования **всего** содержимого JSON. Чтобы добавить поддержку обновления JSON с помощью `Newtonsoft.Json` , при этом другие модули форматирования не меняются, обновите метод проекта следующим образом `Startup.ConfigureServices` :
 
 [!code-csharp[](jsonpatch/samples/3.0/WebApp1/Startup.cs?name=snippet)]
 
-Для приведенного выше кода `Microsoft.AspNetCore.Mvc.NewtonsoftJson` требуется пакет и следующие `using` инструкции:
+Для приведенного выше кода требуется `Microsoft.AspNetCore.Mvc.NewtonsoftJson` пакет и следующие `using` инструкции:
 
 [!code-csharp[](jsonpatch/samples/3.0/WebApp1/Startup.cs?name=snippet1)]
 
@@ -110,20 +99,150 @@ ms.locfileid: "82766671"
 
 Свойство [Path](https://tools.ietf.org/html/rfc6901) в объекте операции содержит косые черты между уровнями. Например, `"/address/zipCode"`.
 
-Для указания элементов массива используются числовые индексы, начиная с нуля. Первый элемент массива `addresses` будет обозначаться как `/addresses/0`. В `add` конец массива используйте дефис (`-`), а не номер индекса:. `/addresses/-`
+Для указания элементов массива используются числовые индексы, начиная с нуля. Первый элемент массива `addresses` будет обозначаться как `/addresses/0`. В `add` конец массива используйте дефис ( `-` ), а не номер индекса: `/addresses/-` .
 
 ### <a name="operations"></a>Операции
 
 В следующей таблице перечислены поддерживаемые операции, которые определены в [спецификации JSON Patch](https://tools.ietf.org/html/rfc6902).
 
 |Операция  | Примечания |
-|-----------|--------------------------------|
-| `add`     | Добавляет свойство или элемент массива. Для существующего свойства устанавливает значение.|
-| `remove`  | Удаляет свойство или элемент массива. |
-| `replace` | Действует так же, как `remove` с последующим `add` в том же расположении. |
-| `move`    | Действует так же, как `remove` из источника с последующим `add`, в котором указаны место назначения и значение из источника. |
-| `copy`    | Действует так же, как `add`, в котором указаны место назначения и значение из источника. |
-| `test`    | Возвращает успешный код состояния, если значение `path` совпадает с предоставленным `value`.|
+|---
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+------|---
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+----------------| | `add`     | Добавьте свойство или элемент массива. Для существующего свойства: Set value. | | `remove`  | Удалите свойство или элемент массива. | | `replace` | То же, что и `remove` , за `add` тем же расположением. | | `move`    | То же, что и `remove` источник, за которым следует `add` назначение, используя значение из источника. | | `copy`    | То же, что `add` и назначение, используя значение из источника. | | `test`    | Вернуть код состояния успеха, если указано значение в параметре `path` = `value` . |
 
 ## <a name="json-patch-in-aspnet-core"></a>Обновление JSON в ASP.NET Core
 
@@ -137,7 +256,7 @@ ms.locfileid: "82766671"
 * принимает `JsonPatchDocument<T>` обычно с указанием `[FromBody]`;
 * вызывает `ApplyTo` для целевого документа, чтобы применить изменения.
 
-Ниже приведен пример:
+Приведем пример:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -194,7 +313,7 @@ ms.locfileid: "82766671"
     * Если свойство может принимать значения NULL, ему присваивается значение NULL.
     * Если свойство не может принимать значения NULL, ему присваивается значение `default<T>`.
 
-В следующем образце документа исправления `CustomerName` устанавливается значение NULL и `Orders[0]`удаляются следующие значения:
+В следующем образце документа исправления устанавливается `CustomerName` значение NULL и удаляются `Orders[0]` следующие значения:
 
 [!code-json[](jsonpatch/samples/2.2/JSON/remove.json)]
 
@@ -202,7 +321,7 @@ ms.locfileid: "82766671"
 
 Эта операция функционально идентична операции `remove` с последующей `add`.
 
-В следующем образце документа исправления значение параметра `CustomerName` и заменяется `Orders[0]`новым `Order` объектом:
+В следующем образце документа исправления значение параметра `CustomerName` и заменяется `Orders[0]` новым `Order` объектом:
 
 [!code-json[](jsonpatch/samples/2.2/JSON/replace.json)]
 
@@ -245,7 +364,7 @@ ms.locfileid: "82766671"
 
 ## <a name="get-the-code"></a>Получение кода
 
-[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples). ([Как скачать](xref:index#how-to-download-a-sample)).
+[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples). ([Инструкция по скачиванию](xref:index#how-to-download-a-sample).)
 
 Чтобы проверить этот пример, запустите приложение и отправьте HTTP-запросы со следующими параметрами:
 
@@ -329,13 +448,143 @@ ms.locfileid: "82766671"
 В следующей таблице перечислены поддерживаемые операции, которые определены в [спецификации JSON Patch](https://tools.ietf.org/html/rfc6902).
 
 |Операция  | Примечания |
-|-----------|--------------------------------|
-| `add`     | Добавляет свойство или элемент массива. Для существующего свойства устанавливает значение.|
-| `remove`  | Удаляет свойство или элемент массива. |
-| `replace` | Действует так же, как `remove` с последующим `add` в том же расположении. |
-| `move`    | Действует так же, как `remove` из источника с последующим `add`, в котором указаны место назначения и значение из источника. |
-| `copy`    | Действует так же, как `add`, в котором указаны место назначения и значение из источника. |
-| `test`    | Возвращает успешный код состояния, если значение `path` совпадает с предоставленным `value`.|
+|---
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+------|---
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+-
+Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
+----------------| | `add`     | Добавьте свойство или элемент массива. Для существующего свойства: Set value. | | `remove`  | Удалите свойство или элемент массива. | | `replace` | То же, что и `remove` , за `add` тем же расположением. | | `move`    | То же, что и `remove` источник, за которым следует `add` назначение, используя значение из источника. | | `copy`    | То же, что `add` и назначение, используя значение из источника. | | `test`    | Вернуть код состояния успеха, если указано значение в параметре `path` = `value` . |
 
 ## <a name="jsonpatch-in-aspnet-core"></a>JsonPatch в ASP.NET Core
 
@@ -349,7 +598,7 @@ ms.locfileid: "82766671"
 * принимает `JsonPatchDocument<T>` обычно с указанием `[FromBody]`;
 * вызывает `ApplyTo` для целевого документа, чтобы применить изменения.
 
-Ниже приведен пример:
+Приведем пример:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -457,7 +706,7 @@ ms.locfileid: "82766671"
 
 ## <a name="get-the-code"></a>Получение кода
 
-[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([Как скачать](xref:index#how-to-download-a-sample)).
+[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([Инструкция по скачиванию](xref:index#how-to-download-a-sample).)
 
 Чтобы проверить этот пример, запустите приложение и отправьте HTTP-запросы со следующими параметрами:
 

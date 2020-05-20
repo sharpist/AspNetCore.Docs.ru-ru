@@ -1,11 +1,11 @@
 ---
-title: Дополнительные Blazor сценарии безопасности ASP.NET Core Server
+title: BlazorДополнительные сценарии безопасности ASP.NET Core Server
 author: guardrex
 description: Узнайте, как настроить Blazor сервер для дополнительных сценариев безопасности.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2020
+ms.date: 05/19/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,22 +13,22 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/server/additional-scenarios
-ms.openlocfilehash: 95e9e57889fdbb5270f895874c9b8148ae4ca48d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 9d26cde4d8964a8285241bb0158d8e6f8d5f8dbc
+ms.sourcegitcommit: 16b3abec1ed70f9a206f0cfa7cf6404eebaf693d
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82772808"
+ms.lasthandoff: 05/17/2020
+ms.locfileid: "83444078"
 ---
-# <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>Дополнительные Blazor сценарии безопасности ASP.NET Core Server
+# <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>BlazorДополнительные сценарии безопасности ASP.NET Core Server
 
 Автор: [Javier Calvarro Nelson](https://github.com/javiercn) (Хавьер Кальварро Нельсон)
 
 ## <a name="pass-tokens-to-a-blazor-server-app"></a>Передача маркеров в Blazor серверное приложение
 
-Токены, доступные за Razor пределами Blazor компонентов серверного приложения, можно передавать в компоненты с помощью подхода, описанного в этом разделе. Пример кода, включая полный `Startup.ConfigureServices` пример, см. в разделе [Передача токенов в приложение на стороне Blazor сервера](https://github.com/javiercn/blazor-server-aad-sample).
+Токены, доступные за пределами Razor компонентов Blazor серверного приложения, можно передавать в компоненты с помощью подхода, описанного в этом разделе. Пример кода, включая полный `Startup.ConfigureServices` пример, см. в разделе [Передача токенов в Blazor приложение на стороне сервера](https://github.com/javiercn/blazor-server-aad-sample).
 
-Проверяйте Blazor подлинность серверного приложения так же Razor , как обычные страницы или приложения MVC. Подготавливает и сохраняйте маркеры в файле cookie проверки подлинности. Например:
+Проверяйте подлинность Blazor серверного приложения так же, как обычные Razor страницы или приложения MVC. Подготавливает и сохраняйте маркеры в файле cookie проверки подлинности. Пример:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -56,7 +56,7 @@ public class InitialApplicationState
 }
 ```
 
-Определите службу поставщика маркеров с заданной **областью** , которую можно использовать Blazor в приложении для разрешения маркеров [путем внедрения зависимостей (DI)](xref:blazor/dependency-injection):
+Определите службу поставщика маркеров с заданной **областью** , которую можно использовать в Blazor приложении для разрешения маркеров [путем внедрения зависимостей (DI)](xref:blazor/dependency-injection):
 
 ```csharp
 public class TokenProvider
@@ -66,7 +66,7 @@ public class TokenProvider
 }
 ```
 
-В `Startup.ConfigureServices`службах добавьте службы для:
+В `Startup.ConfigureServices` службах добавьте службы для:
 
 * `IHttpClientFactory`
 * `TokenProvider`
@@ -76,7 +76,7 @@ services.AddHttpClient();
 services.AddScoped<TokenProvider>();
 ```
 
-В файле *_Host. cshtml* создайте экземпляр `InitialApplicationState` и передайте его в качестве параметра в приложение:
+В файле *_Host. cshtml* создайте экземпляр и `InitialApplicationState` передайте его в качестве параметра в приложение:
 
 ```cshtml
 @using Microsoft.AspNetCore.Authentication
@@ -147,3 +147,64 @@ public class WeatherForecastService
     }
 }
 ```
+
+## <a name="use-open-id-connect-oidc-v20-endpoints"></a>Использование конечных точек Open ID Connect (OIDC) версии 2.0
+
+Библиотека проверки подлинности и Blazor Шаблоны используют конечные точки Open ID Connect (OIDC) v 1.0. Чтобы использовать конечную точку версии 2.0, настройте <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> параметр в <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> :
+
+```csharp
+services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, 
+    options =>
+    {
+        options.Authority += "/v2.0";
+    }
+```
+
+Кроме того, параметр можно задать в файле параметров приложения (*appSettings. JSON*):
+
+```json
+{
+  "AzureAd": {
+    "Authority": "https://login.microsoftonline.com/common/oauth2/v2.0/",
+    ...
+  }
+}
+```
+
+Если переход на сегмент в центре сертификации не подходит для поставщика OIDC приложения, например с поставщиками, не являющимися владельцами AAD, задайте `Authority` свойство напрямую. Либо установите свойство в <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> или в файле параметров приложения с помощью `Authority` ключа.
+
+### <a name="code-changes"></a>Изменения в коде
+
+* Список утверждений в токене идентификатора изменяется для конечных точек версии 2.0. Дополнительные сведения см [. в статье Зачем обновлять платформу Microsoft Identity Platform (v 2.0)?](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison) в документации Azure.
+* Так как ресурсы указываются в URI области для конечных точек версии 2.0, удалите <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Resource?displayProperty=nameWithType> параметр свойства в <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> :
+
+  ```csharp
+  services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options => 
+      {
+          ...
+          options.Resource = "...";    // REMOVE THIS LINE
+          ...
+      }
+      ```
+
+  For more information, see [Scopes, not resources](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison#scopes-not-resources) in the Azure documentation.
+
+### App ID URI
+
+* When using v2.0 endpoints, APIs define an *App ID URI*, which is meant to represent a unique identifier for the API.
+* All scopes include the App ID URI as a prefix, and v2.0 endpoints emit access tokens with the App ID URI as the audience.
+* When using V2.0 endpoints, the client ID configured in the Server API changes from the API Application ID (Client ID) to the App ID URI.
+
+*appsettings.json*:
+
+```json
+{
+  "AzureAd": {
+    ...
+    "ClientId": "https://{TENANT}.onmicrosoft.com/{APP NAME}"
+    ...
+  }
+}
+```
+
+Вы можете найти URI идентификатора приложения для использования в описании регистрации приложения поставщика OIDC.

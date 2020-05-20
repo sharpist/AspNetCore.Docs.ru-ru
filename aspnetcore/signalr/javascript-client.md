@@ -1,36 +1,24 @@
 ---
-title: ASP.NET Core SignalR клиент JavaScript
-author: bradygaster
-description: Общие сведения о SignalR ASP.NET Core клиента JavaScript.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
-ms.custom: mvc
-ms.date: 04/08/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: signalr/javascript-client
-ms.openlocfilehash: 966e8e171752edb230f6da82203fd901b0fdeaab
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768946"
+Title: ' ASP.NET Core SignalR клиент JavaScript author: описание: ' обзор ASP.NET Core SignalR клиента JavaScript ".
+Моникерранже: MS. author: MS. Custom: MS. Дата: нет-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: 
+
 ---
 # <a name="aspnet-core-signalr-javascript-client"></a>ASP.NET Core SignalR клиент JavaScript
 
 Автор: [Рэйчел Аппель](https://twitter.com/rachelappel) (Rachel Appel)
 
-Клиентская SignalR библиотека ASP.NET Core JavaScript позволяет разработчикам вызывать код концентратора на стороне сервера.
+SignalRКлиентская библиотека ASP.NET Core JavaScript позволяет разработчикам вызывать код концентратора на стороне сервера.
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([как скачивать](xref:index#how-to-download-a-sample))
 
 ## <a name="install-the-signalr-client-package"></a>Установка SignalR клиентского пакета
 
-Клиентская библиотека SignalR JavaScript доставляется в виде пакета [NPM](https://www.npmjs.com/) . В следующих разделах описаны различные способы установки клиентской библиотеки.
+SignalRКлиентская библиотека JavaScript доставляется в виде пакета [NPM](https://www.npmjs.com/) . В следующих разделах описаны различные способы установки клиентской библиотеки.
 
 ### <a name="install-with-npm"></a>Установка с помощью NPM
 
@@ -43,7 +31,7 @@ npm init -y
 npm install @microsoft/signalr
 ```
 
-NPM устанавливает содержимое пакета в папку *node_modules\\ * . Создайте новую папку с именем *SignalR* в папке *wwwroot\\lib* . Скопируйте файл *SignalR. js* в папку *ввврут\либ\сигналр*
+NPM устанавливает содержимое пакета в папку *node_modules \\ @microsoft\signalr\dist\browser * . Создайте новую папку с именем *SignalR* в папке *wwwroot \\ lib* . Скопируйте файл *SignalR. js* в папку *ввврут\либ\сигналр*
 
 ::: moniker-end
 
@@ -54,11 +42,11 @@ npm init -y
 npm install @aspnet/signalr
 ```
 
-NPM устанавливает содержимое пакета в папку *node_modules\\ * . Создайте новую папку с именем *SignalR* в папке *wwwroot\\lib* . Скопируйте файл *SignalR. js* в папку *ввврут\либ\сигналр*
+NPM устанавливает содержимое пакета в папку *node_modules \\ @aspnet\signalr\dist\browser * . Создайте новую папку с именем *SignalR* в папке *wwwroot \\ lib* . Скопируйте файл *SignalR. js* в папку *ввврут\либ\сигналр*
 
 ::: moniker-end
 
-Сослаться на клиент SignalR JavaScript `<script>` в элементе. Например:
+Сослаться на SignalR клиент JavaScript в `<script>` элементе. Пример:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -66,7 +54,7 @@ NPM устанавливает содержимое пакета в папку *
 
 ### <a name="use-a-content-delivery-network-cdn"></a>Использование сети доставки содержимого (CDN)
 
-Чтобы использовать клиентскую библиотеку без необходимых компонентов NPM, сослаться на копию клиентской библиотеки, размещенную в CDN. Например:
+Чтобы использовать клиентскую библиотеку без необходимых компонентов NPM, сослаться на копию клиентской библиотеки, размещенную в CDN. Пример:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>
@@ -98,7 +86,7 @@ NPM устанавливает содержимое пакета в папку *
 
 Следующий код создает и запускает соединение. Имя центра не учитывает регистр.
 
-[!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=9-13,43-45)]
+[!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=9-13,28-51)]
 
 ### <a name="cross-origin-connections"></a>Подключения между источниками
 
@@ -110,29 +98,29 @@ NPM устанавливает содержимое пакета в папку *
 
 ## <a name="call-hub-methods-from-client"></a>Методы концентратора вызовов от клиента
 
-Клиенты JavaScript вызывают открытые методы на концентраторах с помощью метода [Invoke](/javascript/api/%40aspnet/signalr/hubconnection#invoke) [хубконнектион](/javascript/api/%40aspnet/signalr/hubconnection). `invoke` Метод принимает два аргумента:
+Клиенты JavaScript вызывают открытые методы на концентраторах с помощью метода [Invoke](/javascript/api/%40aspnet/signalr/hubconnection#invoke) [хубконнектион](/javascript/api/%40aspnet/signalr/hubconnection). `invoke`Метод принимает два аргумента:
 
-* Имя метода концентратора. В следующем примере имя метода в концентраторе — `SendMessage`.
-* Любые аргументы, определенные в методе концентратора. В следующем примере имя аргумента — `message`. В примере кода используется синтаксис функции стрелок, который поддерживается в текущих версиях всех основных браузеров, кроме Internet Explorer.
+* Имя метода концентратора. В следующем примере имя метода в концентраторе — `SendMessage` .
+* Любые аргументы, определенные в методе концентратора. В следующем примере имя аргумента — `message` . В примере кода используется синтаксис функции стрелок, который поддерживается в текущих версиях всех основных браузеров, кроме Internet Explorer.
 
   [!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=24)]
 
 > [!NOTE]
 > Если вы используете службу Azure SignalR в *бессерверном режиме*, вы не можете вызывать методы концентратора из клиента. Дополнительные сведения см. в [ SignalR документации по службе](/azure/azure-signalr/signalr-concept-serverless-development-config).
 
-`invoke` Метод возвращает [обещание](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)JavaScript. `Promise` Разрешение разрешается с возвращаемым значением (если таковое имеется), когда метод на сервере возвращает значение. Если метод на сервере вызывает ошибку, объект `Promise` отклоняется с сообщением об ошибке. Используйте методы `then` и `catch` для `Promise` самого себя, чтобы обрабатывали такие случаи `await` (или синтаксис).
+`invoke`Метод возвращает [обещание](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)JavaScript. `Promise`Разрешение разрешается с возвращаемым значением (если таковое имеется), когда метод на сервере возвращает значение. Если метод на сервере вызывает ошибку, объект `Promise` отклоняется с сообщением об ошибке. Используйте `then` методы и для `catch` `Promise` самого себя, чтобы обрабатывали такие случаи (или `await` синтаксис).
 
-`send` Метод возвращает код JavaScript `Promise`. `Promise` Разрешение разрешается, когда сообщение было отправлено на сервер. Если при отправке сообщения произошла ошибка, объект `Promise` отклоняется с сообщением об ошибке. Используйте методы `then` и `catch` для `Promise` самого себя, чтобы обрабатывали такие случаи `await` (или синтаксис).
+`send`Метод возвращает код JavaScript `Promise` . `Promise`Разрешение разрешается, когда сообщение было отправлено на сервер. Если при отправке сообщения произошла ошибка, объект `Promise` отклоняется с сообщением об ошибке. Используйте `then` методы и для `catch` `Promise` самого себя, чтобы обрабатывали такие случаи (или `await` синтаксис).
 
 > [!NOTE]
 > Использование `send` не ждет, пока сервер не получит сообщение. Следовательно, невозможно вернуть данные или ошибки с сервера.
 
 ## <a name="call-client-methods-from-hub"></a>Вызов методов клиента из концентратора
 
-Чтобы получить сообщения от концентратора, определите метод с помощью метода [On](/javascript/api/%40aspnet/signalr/hubconnection#on) класса `HubConnection`.
+Чтобы получить сообщения от концентратора, определите метод с помощью метода [On](/javascript/api/%40aspnet/signalr/hubconnection#on) класса `HubConnection` .
 
-* Имя клиентского метода JavaScript. В следующем примере имя метода — `ReceiveMessage`.
-* Аргументы, которые центр передает в метод. В следующем примере аргумент имеет `message`значение.
+* Имя клиентского метода JavaScript. В следующем примере имя метода — `ReceiveMessage` .
+* Аргументы, которые центр передает в метод. В следующем примере аргумент имеет значение `message` .
 
 [!code-javascript[Receive calls from hub](javascript-client/sample/wwwroot/js/chat.js?range=14-19)]
 
@@ -140,10 +128,10 @@ NPM устанавливает содержимое пакета в папку *
 
 [!code-csharp[Call client-side](javascript-client/sample/hubs/chathub.cs?range=8-11)]
 
-SignalRОпределяет, какой клиентский метод следует вызывать, сопоставляя имя и аргументы метода, `SendAsync` определенные `connection.on`в и.
+SignalRОпределяет, какой клиентский метод следует вызывать, сопоставляя имя и аргументы метода, определенные в `SendAsync` и `connection.on` .
 
 > [!NOTE]
-> Рекомендуется вызвать метод [Start](/javascript/api/%40aspnet/signalr/hubconnection#start) для `HubConnection` after `on`. Это гарантирует, что обработчики будут зарегистрированы до получения сообщений.
+> Рекомендуется вызвать метод [Start](/javascript/api/%40aspnet/signalr/hubconnection#start) для `HubConnection` After `on` . Это гарантирует, что обработчики будут зарегистрированы до получения сообщений.
 
 ## <a name="error-handling-and-logging"></a>Обработка ошибок и ведение журнала
 
@@ -153,10 +141,10 @@ SignalRОпределяет, какой клиентский метод след
 
 Настройте трассировку журнала на стороне клиента, передав средства ведения журнала и тип события в журнал, когда соединение установлено. Сообщения записываются с указанным уровнем ведения журнала и выше. Доступны следующие уровни ведения журнала:
 
-* `signalR.LogLevel.Error`&ndash; Сообщения об ошибках. Записывает `Error` только сообщения.
-* `signalR.LogLevel.Warning`&ndash; Предупреждающие сообщения о возможных ошибках. Журналы `Warning`и `Error` сообщения.
-* `signalR.LogLevel.Information`&ndash; Сообщения о состоянии без ошибок. Журналы `Information`, `Warning`и `Error` сообщения.
-* `signalR.LogLevel.Trace`&ndash; Сообщения трассировки. Заносит в журнал все данные, включая транспорт данных между концентратором и клиентом.
+* `signalR.LogLevel.Error`&ndash;Сообщения об ошибках. Записывает `Error` только сообщения.
+* `signalR.LogLevel.Warning`&ndash;Предупреждающие сообщения о возможных ошибках. Журналы `Warning` и `Error` сообщения.
+* `signalR.LogLevel.Information`&ndash;Сообщения о состоянии без ошибок. Журналы `Information` , `Warning` и `Error` сообщения.
+* `signalR.LogLevel.Trace`&ndash;Сообщения трассировки. Заносит в журнал все данные, включая транспорт данных между концентратором и клиентом.
 
 Чтобы настроить уровень ведения журнала, используйте метод [конфигурелоггинг](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) в [хубконнектионбуилдер](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) . Сообщения записываются в консоль браузера.
 
@@ -177,9 +165,9 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-Без каких бы то `withAutomaticReconnect()` ни было параметров, настраивает клиент на ожидание 0, 2, 10 и 30 секунд соответственно, прежде чем пытаться выполнить каждую попытку повторного подключения, останавливая после четырех неудачных попыток.
+Без каких бы то ни было параметров, `withAutomaticReconnect()` настраивает клиент на ожидание 0, 2, 10 и 30 секунд соответственно, прежде чем пытаться выполнить каждую попытку повторного подключения, останавливая после четырех неудачных попыток.
 
-Перед запуском всех попыток повторного `HubConnection` подключения компонент перейдет `HubConnectionState.Reconnecting` `onreconnecting` в состояние и порождает свои обратные вызовы вместо перехода в `Disconnected` состояние и запуска своих `onclose` обратных вызовов, например `HubConnection` , без автоматического повторного подключения. Это дает возможность предупредить пользователей о потере подключения и отключении элементов пользовательского интерфейса.
+Перед запуском всех попыток повторного подключения компонент `HubConnection` перейдет в `HubConnectionState.Reconnecting` состояние и порождает свои `onreconnecting` обратные вызовы вместо перехода в `Disconnected` состояние и запуска своих `onclose` обратных вызовов, например, `HubConnection` без автоматического повторного подключения. Это дает возможность предупредить пользователей о потере подключения и отключении элементов пользовательского интерфейса.
 
 ```javascript
 connection.onreconnecting(error => {
@@ -195,10 +183,10 @@ connection.onreconnecting(error => {
 
 Если клиент успешно повторно подключится в течение первых четырех попыток, компонент `HubConnection` вернется к `Connected` состоянию и порождает его `onreconnected` обратные вызовы. Это дает возможность информировать пользователей о повторном установлении соединения.
 
-Так как соединение выглядит совершенно не так, как и сервер, `connectionId` для `onreconnected` обратного вызова будет предоставлен новый объект.
+Так как соединение выглядит совершенно не так, как и сервер, `connectionId` для обратного вызова будет предоставлен новый объект `onreconnected` .
 
 > [!WARNING]
-> `connectionId` `HubConnection` Параметр `onreconnected` обратного вызова будет неопределенным, если был настроен на [пропуск согласования](xref:signalr/configuration#configure-client-options).
+> `onreconnected`Параметр обратного вызова `connectionId` будет неопределенным, если `HubConnection` был настроен на [пропуск согласования](xref:signalr/configuration#configure-client-options).
 
 ```javascript
 connection.onreconnected(connectionId => {
@@ -228,7 +216,7 @@ async function start() {
 };
 ```
 
-Если клиент не `HubConnection` будет успешно подключаться в течение первых четырех попыток, компонент перейдет `Disconnected` в состояние и порождает его обратные вызовы [OnClose](/javascript/api/%40aspnet/signalr/hubconnection#onclose) . Это дает возможность информировать пользователей о том, что подключение было безвозвратно утрачено, и рекомендует обновить страницу:
+Если клиент не будет успешно подключаться в течение первых четырех попыток, компонент `HubConnection` перейдет в `Disconnected` состояние и порождает его обратные вызовы [OnClose](/javascript/api/%40aspnet/signalr/hubconnection#onclose) . Это дает возможность информировать пользователей о том, что подключение было безвозвратно утрачено, и рекомендует обновить страницу:
 
 ```javascript
 connection.onclose(error => {
@@ -242,7 +230,7 @@ connection.onclose(error => {
 });
 ```
 
-Чтобы настроить настраиваемое число попыток повторного подключения перед отключением или изменением времени повторного подключения, принимает `withAutomaticReconnect` массив чисел, представляющих задержку в миллисекундах, прежде чем начинать каждую попытку повторного подключения.
+Чтобы настроить настраиваемое число попыток повторного подключения перед отключением или изменением времени повторного подключения, `withAutomaticReconnect` принимает массив чисел, представляющих задержку в миллисекундах, прежде чем начинать каждую попытку повторного подключения.
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -261,11 +249,11 @@ const connection = new signalR.HubConnectionBuilder()
 
 Затем пользовательское поведение снова рассходится от поведения по умолчанию, останавливаясь после третьей попытки повторного подключения, вместо того, чтобы предпринимать попытку повторного подключения еще через 30 секунд, как в конфигурации по умолчанию.
 
-Если требуется даже больший контроль над временем и числом попыток автоматического повторного подключения, `withAutomaticReconnect` принимает объект, реализующий `IRetryPolicy` интерфейс, который имеет единственный метод с именем `nextRetryDelayInMilliseconds`.
+Если требуется даже больший контроль над временем и числом попыток автоматического повторного подключения, `withAutomaticReconnect` принимает объект, реализующий `IRetryPolicy` интерфейс, который имеет единственный метод с именем `nextRetryDelayInMilliseconds` .
 
-`nextRetryDelayInMilliseconds`принимает один аргумент с типом `RetryContext`. `RetryContext` Имеет `previousRetryCount`три свойства:, `elapsedMilliseconds` и `retryReason` `number`, а —, `number` и `Error` соответственно. Перед первой попыткой повторного подключения обе `previousRetryCount` и `elapsedMilliseconds` будут равны нулю, и `retryReason` будет являться ошибкой, вызвавшей потерю соединения. После каждой неудачной попытки повтора значение `previousRetryCount` будет увеличено на единицу, `elapsedMilliseconds` будет обновлено с учетом времени, затраченного на повторное подключение к этому моменту в миллисекундах, и `retryReason` будет являться ошибкой, которая привела к сбою последней попытки повторного подключения.
+`nextRetryDelayInMilliseconds`принимает один аргумент с типом `RetryContext` . `RetryContext`Имеет три свойства: `previousRetryCount` , `elapsedMilliseconds` и, а `retryReason` — `number` , `number` и `Error` соответственно. Перед первой попыткой повторного подключения обе `previousRetryCount` и `elapsedMilliseconds` будут равны нулю, и `retryReason` будет являться ошибкой, вызвавшей потерю соединения. После каждой неудачной попытки повтора `previousRetryCount` значение будет увеличено на единицу, `elapsedMilliseconds` будет обновлено с учетом времени, затраченного на повторное подключение к этому моменту в миллисекундах, и `retryReason` будет являться ошибкой, которая привела к сбою последней попытки повторного подключения.
 
-`nextRetryDelayInMilliseconds`должен возвращать число, представляющее число миллисекунд ожидания перед следующей попыткой повторного подключения, или `null` значение, `HubConnection` если должно быть прервано повторное подключение.
+`nextRetryDelayInMilliseconds`должен возвращать число, представляющее число миллисекунд ожидания перед следующей попыткой повторного подключения, или `null` значение, если `HubConnection` должно быть прервано повторное подключение.
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -300,8 +288,8 @@ const connection = new signalR.HubConnectionBuilder()
 
 В следующем коде показан типичный способ повторного подключения вручную:
 
-1. Для запуска подключения создается функция (в данном `start` случае это функция).
-1. Вызовите `start` функцию в обработчике `onclose` событий соединения.
+1. Для запуска подключения создается функция (в данном случае это `start` функция).
+1. Вызовите `start` функцию в `onclose` обработчике событий соединения.
 
 [!code-javascript[Reconnect the JavaScript client](javascript-client/sample/wwwroot/js/chat.js?range=28-40)]
 
@@ -316,4 +304,4 @@ const connection = new signalR.HubConnectionBuilder()
 * [Клиент .NET](xref:signalr/dotnet-client)
 * [Публикация в Azure](xref:signalr/publish-to-azure-web-app)
 * [Запросы между источниками (CORS)](xref:security/cors)
-* [Документация SignalR , посвященная бессерверной службе Azure](/azure/azure-signalr/signalr-concept-serverless-development-config)
+* [SignalRДокументация, посвященная бессерверной службе Azure](/azure/azure-signalr/signalr-concept-serverless-development-config)
