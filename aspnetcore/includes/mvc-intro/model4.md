@@ -9,7 +9,7 @@
 | --useDefaultLayout | Макет по умолчанию следует использовать для представлений. |
 | --referenceScriptLibraries | Добавляет `_ValidationScriptsPartial` для страниц редактирования и создания |
 
-Чтобы получить справку по команде `h`, используйте коммутатор `aspnet-codegenerator controller`.
+Чтобы получить справку по команде `aspnet-codegenerator controller`, используйте коммутатор `h`.
 
 ```dotnetcli
 dotnet aspnet-codegenerator controller -h

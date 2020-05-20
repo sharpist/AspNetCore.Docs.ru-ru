@@ -8,7 +8,7 @@
 | -outDir | Относительный путь к папке выходных данных для создания представлений |
 | --referenceScriptLibraries | Добавляет `_ValidationScriptsPartial` для страниц редактирования и создания |
 
-Чтобы получить справку по команде `h`, используйте коммутатор `aspnet-codegenerator razorpage`.
+Чтобы получить справку по команде `aspnet-codegenerator razorpage`, используйте коммутатор `h`.
 
 ```dotnetcli
 dotnet aspnet-codegenerator razorpage -h
