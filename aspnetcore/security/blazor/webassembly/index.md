@@ -1,32 +1,16 @@
 ---
-title: Защита ASP.NET Core Blazor WebAssembly
-author: guardrex
-description: Узнайте о защите приложений Blazor WebAssemlby как одностраничных приложений (SPA).
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/14/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: security/blazor/webassembly/index
-ms.openlocfilehash: 153e88bb5bd99803f0ac4a0c50213e22a3278cad
-ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83424524"
+title: "Защита ASP.NET Core Blazor WebAssembly" автор: описание: "Узнайте о защите приложений Blazor WebAssemlby как одностраничных приложений (SPA)".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="secure-aspnet-core-blazor-webassembly"></a>Защита ASP.NET Core Blazor WebAssembly
 
 Автор: [Javier Calvarro Nelson](https://github.com/javiercn) (Хавьер Кальварро Нельсон)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
 Защита приложений Blazor WebAssembly обеспечивается аналогично защите одностраничных приложений (SPA). Существует несколько подходов к проверке подлинности пользователей в одностраничных приложениях, но наиболее распространенным и комплексным является использование реализации на основе [протокола OAuth 2.0](https://oauth.net/), например [Open ID Connect (OIDC)](https://openid.net/connect/).
 

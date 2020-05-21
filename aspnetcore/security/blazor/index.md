@@ -1,33 +1,16 @@
 ---
-title: Проверка подлинности и авторизация в ASP.NET Core Blazor
-author: guardrex
-description: Сведения о проверке подлинности и авторизации в Blazor.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/04/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: security/blazor/index
-ms.openlocfilehash: d55880265ed1ceedf8f115412e5ac47309521239
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82772899"
+title: "Проверка подлинности и авторизация в ASP.NET Core Blazor" автор: описание: "Сведения о проверке подлинности и авторизации в Blazor".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>Проверка подлинности и авторизация в ASP.NET Core Blazor
 
 Авторы: [Стив Сандерсон (Steve Sanderson)](https://github.com/SteveSandersonMS) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-> [!NOTE]
-> Для реализации рекомендаций, приведенных в этой статье по Blazor WebAssembly, требуется шаблон ASP.NET Core Blazor WebAssembly версии 3.2 или более поздней. Если вы не используете предварительную версию 2 Visual Studio 16.6 или более позднюю и хотите получить последний шаблон Blazor WebAssembly, см. раздел <xref:blazor/get-started>.
 
 ASP.NET Core поддерживает настройку и администрирование средств безопасности в приложениях Blazor.
 

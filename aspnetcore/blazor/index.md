@@ -1,24 +1,12 @@
 ---
-title: Введение в ASP.NET Core Blazor
-author: guardrex
-description: Узнайте больше об использовании ASP.NET Core Blazor для создания интерактивного клиентского веб-интерфейса с помощью .NET в приложении ASP.NET Core.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc, seoapril2019
-ms.date: 03/25/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/index
-ms.openlocfilehash: ced3e2cc0428fccf6f0b2eba7a3f045e07002234
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82771954"
+title: "Общие сведения о Blazor для ASP.NET Core" автор: описание: "Узнайте больше об использовании ASP.NET Core Blazor для создания интерактивного клиентского веб-интерфейса с помощью .NET в приложении ASP.NET Core".
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="introduction-to-aspnet-core-blazor"></a>Введение в ASP.NET Core Blazor
 
@@ -109,8 +97,6 @@ Welcome to your new app.
 Компоненты преобразуются в хранящееся в памяти представление модели DOM для браузера, которое называется *деревом отображения*, позволяя гибко и эффективно обновлять пользовательский интерфейс.
 
 ## <a name="blazor-webassembly"></a>Blazor WebAssembly
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Blazor WebAssembly — это платформа для одностраничных приложений, которая позволяет создавать интерактивные клиентские веб-приложения с помощью .NET. Blazor WebAssembly использует открытые веб-стандарты без подключаемых модулей или транскомпиляции кода. Эта платформа работает во всех современных веб-браузерах, в том числе на мобильных устройствах.
 

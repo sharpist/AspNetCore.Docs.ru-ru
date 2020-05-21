@@ -1,23 +1,11 @@
 ---
-title: Общие сведения об использовании gRPC на платформе .NET Core
-author: juntaoluo
-description: Узнайте об использовании служб gRPC с сервером Kestrel и стеком ASP.NET Core.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: johluo
-ms.date: 09/20/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: grpc/index
-ms.openlocfilehash: 2d7d683051fd1eb97f3f57d75bd582109166a6cd
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768852"
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="introduction-to-grpc-on-net-core"></a>Общие сведения об использовании gRPC на платформе .NET Core
 
@@ -36,6 +24,8 @@ ms.locfileid: "82768852"
 * упрощенных микрослужб, где важна эффективность;
 * многоязычных систем, где для разработки требуется несколько языков;
 * работающих в режиме реального времени служб типа "точка-точка", которые должны обрабатывать запросы и ответы потоковой передачи данных.
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="c-tooling-support-for-proto-files"></a>Средства C# для работы с файлами с расширением .proto
 
@@ -126,8 +116,6 @@ Console.WriteLine(response.Message);
 Клиент gRPC создается с помощью канала, который представляет длительное подключение к службе gRPC. Канал можно создать с помощью `GrpcChannel.ForAddress`.
 
 Дополнительные сведения о создании клиентов и вызове различных методов службы см. в статье <xref:grpc/client>.
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
