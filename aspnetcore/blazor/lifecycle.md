@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/lifecycle
-ms.openlocfilehash: 81699158a161d0e9c9621235840979ebcd634a7e
-ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
+ms.openlocfilehash: e4fcd86b6e6a84d9e34a83688f9fb80c6907e5f3
+ms.sourcegitcommit: e20653091c30e0768c4f960343e2c3dd658bba13
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82976705"
+ms.lasthandoff: 05/16/2020
+ms.locfileid: "83438919"
 ---
 # <a name="aspnet-core-blazor-lifecycle"></a>Жизненный цикл ASP.NET Core Blazor
 
@@ -50,7 +50,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Приложения Blazor Server, которые [предварительно отрисовывают свое содержимое](xref:blazor/hosting-model-configuration#render-mode), вызывают `OnInitializedAsync` **_дважды_** :
+Приложения Blazor Server, которые [предварительно отрисовывают свое содержимое](xref:blazor/hosting-model-configuration#render-mode), вызывают `OnInitializedAsync` **_дважды_**:
 
 * Один раз, когда компонент изначально отрисовывается статически как часть страницы.
 * Второй раз, когда браузер устанавливает соединение с сервером.
@@ -164,6 +164,8 @@ protected override bool ShouldRender()
 `ShouldRender` вызывается каждый раз при отрисовке компонента.
 
 Даже при переопределении `ShouldRender` компонент всегда проходит первоначальную отрисовку.
+
+Для получения дополнительной информации см. <xref:performance/blazor/webassembly-best-practices#avoid-unnecessary-component-renders>.
 
 ## <a name="state-changes"></a>Изменения состояния
 
