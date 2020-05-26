@@ -1,27 +1,17 @@
 ---
-title: Службы gRPC на языке C#
-author: juntaoluo
-description: Ознакомьтесь с основными понятиями при написании служб gRPC с помощью C#.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: johluo
-ms.date: 07/03/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: grpc/basics
-ms.openlocfilehash: a55ed90e7c854d1475b1f5d95347505fad0813ab
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774760"
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="grpc-services-with-c"></a>Службы gRPC на языке C\#
 
 Этот документ описывает понятия, необходимые для написания приложений [gRPC](https://grpc.io/docs/guides/) на C#. Рассматриваемые здесь темы применимы к приложениям gRPC как на основе [C-core](https://grpc.io/blog/grpc-stacks), так и на основе ASP.NET Core.
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="proto-file"></a>Файл PROTO
 
@@ -80,8 +70,6 @@ ms.locfileid: "82774760"
 [!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-9)]
 
 Аналогичным образом атрибуту присваивается значение `Client` в клиентских проектах.
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

@@ -4,7 +4,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 ---
 
@@ -101,7 +101,7 @@
 
 Для указания элементов массива используются числовые индексы, начиная с нуля. Первый элемент массива `addresses` будет обозначаться как `/addresses/0`. В `add` конец массива используйте дефис ( `-` ), а не номер индекса: `/addresses/-` .
 
-### <a name="operations"></a>Операции
+### <a name="operations"></a>Operations
 
 В следующей таблице перечислены поддерживаемые операции, которые определены в [спецификации JSON Patch](https://tools.ietf.org/html/rfc6902).
 
@@ -112,7 +112,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -120,7 +120,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -128,7 +128,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 ------|---
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -136,7 +136,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -144,7 +144,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -152,7 +152,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -160,7 +160,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -168,7 +168,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -176,7 +176,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -184,7 +184,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -192,7 +192,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -200,7 +200,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -208,7 +208,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -216,7 +216,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -224,7 +224,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -232,7 +232,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -240,7 +240,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 ----------------| | `add`     | Добавьте свойство или элемент массива. Для существующего свойства: Set value. | | `remove`  | Удалите свойство или элемент массива. | | `replace` | То же, что и `remove` , за `add` тем же расположением. | | `move`    | То же, что и `remove` источник, за которым следует `add` назначение, используя значение из источника. | | `copy`    | То же, что `add` и назначение, используя значение из источника. | | `test`    | Вернуть код состояния успеха, если указано значение в параметре `path` = `value` . |
 
@@ -443,7 +443,7 @@
 
 Для указания элементов массива используются числовые индексы, начиная с нуля. Первый элемент массива `addresses` будет обозначаться как `/addresses/0`. Чтобы применить `add` для последнего элемента массива, укажите дефис (-) вместо номера индекса: `/addresses/-`.
 
-### <a name="operations"></a>Операции
+### <a name="operations"></a>Operations
 
 В следующей таблице перечислены поддерживаемые операции, которые определены в [спецификации JSON Patch](https://tools.ietf.org/html/rfc6902).
 
@@ -454,7 +454,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -462,7 +462,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -470,7 +470,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 ------|---
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -478,7 +478,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -486,7 +486,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -494,7 +494,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -502,7 +502,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -510,7 +510,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -518,7 +518,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -526,7 +526,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -534,7 +534,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -542,7 +542,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -550,7 +550,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -558,7 +558,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -566,7 +566,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -574,7 +574,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 -
 Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
@@ -582,7 +582,7 @@
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 ----------------| | `add`     | Добавьте свойство или элемент массива. Для существующего свойства: Set value. | | `remove`  | Удалите свойство или элемент массива. | | `replace` | То же, что и `remove` , за `add` тем же расположением. | | `move`    | То же, что и `remove` источник, за которым следует `add` назначение, используя значение из источника. | | `copy`    | То же, что `add` и назначение, используя значение из источника. | | `test`    | Вернуть код состояния успеха, если указано значение в параметре `path` = `value` . |
 
