@@ -5,19 +5,13 @@ description: Сведения о сборе диагностики из прил
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 09/23/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
 uid: grpc/diagnostics
-ms.openlocfilehash: 33b2ee29830cd3012ff791c949c3a7c23a2e98c7
-ms.sourcegitcommit: 16b3abec1ed70f9a206f0cfa7cf6404eebaf693d
+ms.openlocfilehash: 131144bf7a2c637eb2c1a1d5c54990dd4d429502
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/17/2020
-ms.locfileid: "83444351"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80417520"
 ---
 # <a name="logging-and-diagnostics-in-grpc-on-net"></a>Ведение журнала и диагностика в gRPC на платформе .NET
 
@@ -52,7 +46,7 @@ gRPC добавляет журналы в категорию `Grpc`. Чтобы 
 
 * `Logging:LogLevel:Grpc` = `Debug`
 
-Сведения о задании вложенных значений конфигурации см. в документации по своей системе конфигурации. Так, при использовании переменных среды вместо символа `_` применяются два символа `:` (например, `Logging__LogLevel__Grpc`).
+Сведения о задании вложенных значений конфигурации см. в документации по своей системе конфигурации. Так, при использовании переменных среды вместо символа `:` применяются два символа `_` (например, `Logging__LogLevel__Grpc`).
 
 При сборе подробных диагностических данных для приложения мы рекомендуем использовать уровень `Debug`. На уровне `Trace` создаются очень подробные диагностические данные, которые редко требуются для диагностики проблем в приложении.
 
@@ -83,7 +77,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 #### <a name="as-a-console-app"></a>Консольное приложение
 
-В консольном приложении по умолчанию должно быть включено [средство ведения журнала консоли](xref:fundamentals/logging/index#console). Журналы gRPC будут выводиться в консоли.
+В консольном приложении по умолчанию должно быть включено [средство ведения журнала консоли](xref:fundamentals/logging/index#console-provider). Журналы gRPC будут выводиться в консоли.
 
 #### <a name="other-environments"></a>Другие среды
 

@@ -1,6 +1,6 @@
 Страница, созданная `Authentication` компонентом (*pages/Authentication. Razor*), определяет маршруты, необходимые для обработки различных стадий проверки подлинности.
 
-`RemoteAuthenticatorView` Компонент:
+<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView>Компонент:
 
 * Предоставляется пакетом [Microsoft. AspNetCore. Components. веб-сборка. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) .
 * Управляет выполнением соответствующих действий на каждом этапе проверки подлинности.

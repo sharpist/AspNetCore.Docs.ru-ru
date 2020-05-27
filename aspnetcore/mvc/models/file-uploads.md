@@ -1,24 +1,11 @@
 ---
-title: Передача файлов в ASP.NET Core
-author: rick-anderson
-description: Сведения об использовании привязки модели и потоковой передачи для передачи файлов в ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/03/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: mvc/models/file-uploads
-ms.openlocfilehash: b613ccd8df65e41b86793466a0ed5dc7bf7e8772
-ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
-ms.translationtype: MT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82976757"
+Заголовок: Автор: описание: Моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="upload-files-in-aspnet-core"></a>Передача файлов в ASP.NET Core
 
@@ -42,7 +29,7 @@ ms.locfileid: "82976757"
 
 * Передавайте файлы в выделенную область для отправки файлов, желательно не на системный диск. Использование выделенного расположения упрощает применение мер безопасности к отправленным файлам. Отключите разрешения на выполнение для расположения отправки файла.&dagger;
 * **Не** сохраняйте переданные файлы в дереве каталогов, где находится приложение.&dagger;
-* Используйте безопасное имя файла, определяемое приложением. Не используйте имя файла, предоставленное пользователем, или имя ненадежного файла отправленного файла. &dagger; HTML кодирует ненадежное имя файла при его отображении. Например, запись имени файла или отображение в пользовательском интерфейсе (Razor автоматически кодируется в формате HTML).
+* Используйте безопасное имя файла, определяемое приложением. Не используйте имя файла, предоставленное пользователем, или имя ненадежного файла отправленного файла. &dagger; HTML кодирует ненадежное имя файла при его отображении. Например, запись имени файла или отображение в пользовательском интерфейсе ( Razor автоматически кодируется в формате HTML).
 * Разрешите только утвержденные расширения файлов для спецификации на проектирование приложения.&dagger; <!-- * Check the file format signature to prevent a user from uploading a masqueraded file.&dagger; For example, don't permit a user to upload an *.exe* file with a *.txt* extension. Add this back when we get instructions how to do this.  -->
 * Убедитесь, что на сервере выполняются проверки на стороне клиента. &dagger; Проверки на стороне клиента легко обойти.
 * Проверьте размер отправленного файла. Установите максимальный предельный размер, чтобы предотвратить передачу больших объемов данных.&dagger;
@@ -119,7 +106,7 @@ ms.locfileid: "82976757"
 
 Для передачи небольших файлов можно применить составную форму или сформировать запрос POST на языке JavaScript.
 
-В следующем примере показано использование формы Razor страниц для передачи одного файла (*pages/буффередсинглефилеуплоадфисикал. cshtml* в примере приложения):
+В следующем примере показано использование Razor формы страниц для передачи одного файла (*pages/буффередсинглефилеуплоадфисикал. cshtml* в примере приложения):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -248,7 +235,7 @@ ms.locfileid: "82976757"
 > [!NOTE]
 > Привязка сопоставляет файлы форм по имени. Например, значение HTML `name` в `<input type="file" name="formFile">` должно соответствовать привязанному к C# параметру или свойству (`FormFile`). Дополнительные сведения см. в разделе [Сопоставление значения атрибута имени и имени параметра метода POST](#match-name-attribute-value-to-parameter-name-of-post-method).
 
-В следующем примере происходит следующее:
+Следующий пример:
 
 * Циклично отправляет один или несколько передаваемых файлов.
 * Использует метод [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*), чтобы вернуть полный путь к файлу, включая его имя. 
@@ -346,7 +333,7 @@ public class BufferedSingleFileUploadDb
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Http.IFormFile> можно использовать непосредственно как параметр метода действия или свойство модели привязки. В предыдущем примере используется свойство модели привязки.
 
-`FileUpload` Используется в форме Razor страниц:
+`FileUpload`Используется в Razor форме страниц:
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -420,7 +407,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Filters/ModelBinding.cs?name=snippet_DisableFormValueModelBindingAttribute)]
 
-`GenerateAntiforgeryTokenCookieAttribute` В примере приложения и `DisableFormValueModelBindingAttribute` применяются в качестве фильтров к моделям приложений страницы `/StreamedSingleFileUploadDb` и `/StreamedSingleFileUploadPhysical` в `Startup.ConfigureServices` с использованием [ Razor соглашений о страницах](xref:razor-pages/razor-pages-conventions).
+В примере приложения `GenerateAntiforgeryTokenCookieAttribute` и применяются в `DisableFormValueModelBindingAttribute` качестве фильтров к моделям приложений страницы `/StreamedSingleFileUploadDb` и `/StreamedSingleFileUploadPhysical` в `Startup.ConfigureServices` с использованием [ Razor соглашений о страницах](xref:razor-pages/razor-pages-conventions).
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Startup.cs?name=snippet_AddRazorPages&highlight=8-11,17-20)]
 
@@ -520,7 +507,7 @@ Razorавтоматически кодирует значения свойств
 }
 ```
 
-За Razorпределами <xref:System.Net.WebUtility.HtmlEncode*> , всегда следует содержимое имени файла из запроса пользователя.
+За пределами Razor , всегда следует <xref:System.Net.WebUtility.HtmlEncode*> содержимое имени файла из запроса пользователя.
 
 Во многих реализациях следует включать проверку существования файла. В противном случае файл перезаписывается файлом с тем же именем. Предоставьте дополнительную логику для соответствия спецификациям приложения.
 
@@ -563,7 +550,7 @@ if (formFile.Length > _fileSizeLimit)
 
 ### <a name="match-name-attribute-value-to-parameter-name-of-post-method"></a>Сопоставление значения атрибута имени и имени параметра метода POST
 
-В другихRazor формах, которые передают данные формы или используют JavaScript `FormData` непосредственно, имя, указанное в элементе формы, или `FormData` должно совпадать с именем параметра в действии контроллера.
+В других Razor формах, которые передают данные формы или используют JavaScript `FormData` непосредственно, имя, указанное в элементе формы, или `FormData` должно совпадать с именем параметра в действии контроллера.
 
 В следующем примере:
 
@@ -585,7 +572,7 @@ if (formFile.Length > _fileSizeLimit)
 
 Используйте соответствующее имя для параметра метода C# (`battlePlans`):
 
-* Для метода Razor обработчика страницы страниц с `Upload`именем:
+* Для Razor метода обработчика страницы страниц с именем `Upload` :
 
   ```csharp
   public async Task<IActionResult> OnPostUploadAsync(List<IFormFile> battlePlans)
@@ -616,7 +603,7 @@ public void ConfigureServices(IServiceCollection services)
 
 <xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> используется для настройки <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> для одной страницы или действия.
 
-В приложении Razor "страницы" примените фильтр с [соглашением](xref:razor-pages/razor-pages-conventions) в `Startup.ConfigureServices`:
+В Razor приложении "страницы" примените фильтр с [соглашением](xref:razor-pages/razor-pages-conventions) в `Startup.ConfigureServices` :
 
 ```csharp
 services.AddRazorPages()
@@ -633,7 +620,7 @@ services.AddRazorPages()
     });
 ```
 
-В приложении Razor "страницы" или в приложении MVC примените фильтр к модели страницы или методу действия:
+В Razor приложении "страницы" или в приложении MVC примените фильтр к модели страницы или методу действия:
 
 ```csharp
 // Set the limit to 256 MB
@@ -651,20 +638,20 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
-        .ConfigureKestrel((context, options) =>
-        {
-            // Handle requests up to 50 MB
-            options.Limits.MaxRequestBodySize = 52428800;
-        })
         .ConfigureWebHostDefaults(webBuilder =>
         {
-            webBuilder.UseStartup<Startup>();
+            webBuilder.ConfigureKestrel((context, options) =>
+            {
+                // Handle requests up to 50 MB
+                options.Limits.MaxRequestBodySize = 52428800;
+            })
+            .UseStartup<Startup>();
         });
 ```
 
 <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> используется для настройки [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) для одной страницы или действия.
 
-В приложении Razor "страницы" примените фильтр с [соглашением](xref:razor-pages/razor-pages-conventions) в `Startup.ConfigureServices`:
+В Razor приложении "страницы" примените фильтр с [соглашением](xref:razor-pages/razor-pages-conventions) в `Startup.ConfigureServices` :
 
 ```csharp
 services.AddRazorPages()
@@ -681,7 +668,7 @@ services.AddRazorPages()
     });
 ```
 
-В приложении Razor Pages или MVC примените фильтр к классу обработчика страницы или методу действия:
+В Razor приложении Pages или MVC примените фильтр к классу обработчика страницы или методу действия:
 
 ```csharp
 // Handle requests up to 50 MB
@@ -692,7 +679,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 }
 ```
 
-`RequestSizeLimitAttribute` Можно также применить с помощью [`@attribute`](xref:mvc/views/razor#attribute) Razor директивы:
+`RequestSizeLimitAttribute`Можно также применить с помощью [`@attribute`](xref:mvc/views/razor#attribute) Razor директивы:
 
 ```cshtml
 @attribute [RequestSizeLimitAttribute(52428800)]
@@ -771,7 +758,7 @@ The request filtering module is configured to deny a request that exceeds the re
 
 * Передавайте файлы в выделенную область для отправки файлов, желательно не на системный диск. Использование выделенного расположения упрощает применение мер безопасности к отправленным файлам. Отключите разрешения на выполнение для расположения отправки файла.&dagger;
 * **Не** сохраняйте переданные файлы в дереве каталогов, где находится приложение.&dagger;
-* Используйте безопасное имя файла, определяемое приложением. Не используйте имя файла, предоставленное пользователем, или имя ненадежного файла отправленного файла. &dagger; HTML кодирует ненадежное имя файла при его отображении. Например, запись имени файла или отображение в пользовательском интерфейсе (Razor автоматически кодируется в формате HTML).
+* Используйте безопасное имя файла, определяемое приложением. Не используйте имя файла, предоставленное пользователем, или имя ненадежного файла отправленного файла. &dagger; HTML кодирует ненадежное имя файла при его отображении. Например, запись имени файла или отображение в пользовательском интерфейсе ( Razor автоматически кодируется в формате HTML).
 * Разрешите только утвержденные расширения файлов для спецификации на проектирование приложения.&dagger; <!-- * Check the file format signature to prevent a user from uploading a masqueraded file.&dagger; For example, don't permit a user to upload an *.exe* file with a *.txt* extension. Add this back when we get instructions how to do this.  -->
 * Убедитесь, что на сервере выполняются проверки на стороне клиента. &dagger; Проверки на стороне клиента легко обойти.
 * Проверьте размер отправленного файла. Установите максимальный предельный размер, чтобы предотвратить передачу больших объемов данных.&dagger;
@@ -848,7 +835,7 @@ The request filtering module is configured to deny a request that exceeds the re
 
 Для передачи небольших файлов можно применить составную форму или сформировать запрос POST на языке JavaScript.
 
-В следующем примере показано использование формы Razor страниц для передачи одного файла (*pages/буффередсинглефилеуплоадфисикал. cshtml* в примере приложения):
+В следующем примере показано использование Razor формы страниц для передачи одного файла (*pages/буффередсинглефилеуплоадфисикал. cshtml* в примере приложения):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -977,7 +964,7 @@ The request filtering module is configured to deny a request that exceeds the re
 > [!NOTE]
 > Привязка сопоставляет файлы форм по имени. Например, значение HTML `name` в `<input type="file" name="formFile">` должно соответствовать привязанному к C# параметру или свойству (`FormFile`). Дополнительные сведения см. в разделе [Сопоставление значения атрибута имени и имени параметра метода POST](#match-name-attribute-value-to-parameter-name-of-post-method).
 
-В следующем примере происходит следующее:
+Следующий пример:
 
 * Циклично отправляет один или несколько передаваемых файлов.
 * Использует метод [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*), чтобы вернуть полный путь к файлу, включая его имя. 
@@ -1075,7 +1062,7 @@ public class BufferedSingleFileUploadDb
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Http.IFormFile> можно использовать непосредственно как параметр метода действия или свойство модели привязки. В предыдущем примере используется свойство модели привязки.
 
-`FileUpload` Используется в форме Razor страниц:
+`FileUpload`Используется в Razor форме страниц:
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -1149,7 +1136,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Filters/ModelBinding.cs?name=snippet_DisableFormValueModelBindingAttribute)]
 
-`GenerateAntiforgeryTokenCookieAttribute` В примере приложения и `DisableFormValueModelBindingAttribute` применяются в качестве фильтров к моделям приложений страницы `/StreamedSingleFileUploadDb` и `/StreamedSingleFileUploadPhysical` в `Startup.ConfigureServices` с использованием [ Razor соглашений о страницах](xref:razor-pages/razor-pages-conventions).
+В примере приложения `GenerateAntiforgeryTokenCookieAttribute` и применяются в `DisableFormValueModelBindingAttribute` качестве фильтров к моделям приложений страницы `/StreamedSingleFileUploadDb` и `/StreamedSingleFileUploadPhysical` в `Startup.ConfigureServices` с использованием [ Razor соглашений о страницах](xref:razor-pages/razor-pages-conventions).
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Startup.cs?name=snippet_AddMvc&highlight=8-11,17-20)]
 
@@ -1249,7 +1236,7 @@ Razorавтоматически кодирует значения свойств
 }
 ```
 
-За Razorпределами <xref:System.Net.WebUtility.HtmlEncode*> , всегда следует содержимое имени файла из запроса пользователя.
+За пределами Razor , всегда следует <xref:System.Net.WebUtility.HtmlEncode*> содержимое имени файла из запроса пользователя.
 
 Во многих реализациях следует включать проверку существования файла. В противном случае файл перезаписывается файлом с тем же именем. Предоставьте дополнительную логику для соответствия спецификациям приложения.
 
@@ -1292,7 +1279,7 @@ if (formFile.Length > _fileSizeLimit)
 
 ### <a name="match-name-attribute-value-to-parameter-name-of-post-method"></a>Сопоставление значения атрибута имени и имени параметра метода POST
 
-В другихRazor формах, которые передают данные формы или используют JavaScript `FormData` непосредственно, имя, указанное в элементе формы, или `FormData` должно совпадать с именем параметра в действии контроллера.
+В других Razor формах, которые передают данные формы или используют JavaScript `FormData` непосредственно, имя, указанное в элементе формы, или `FormData` должно совпадать с именем параметра в действии контроллера.
 
 В следующем примере:
 
@@ -1314,7 +1301,7 @@ if (formFile.Length > _fileSizeLimit)
 
 Используйте соответствующее имя для параметра метода C# (`battlePlans`):
 
-* Для метода Razor обработчика страницы страниц с `Upload`именем:
+* Для Razor метода обработчика страницы страниц с именем `Upload` :
 
   ```csharp
   public async Task<IActionResult> OnPostUploadAsync(List<IFormFile> battlePlans)
@@ -1345,7 +1332,7 @@ public void ConfigureServices(IServiceCollection services)
 
 <xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> используется для настройки <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> для одной страницы или действия.
 
-В приложении Razor "страницы" примените фильтр с [соглашением](xref:razor-pages/razor-pages-conventions) в `Startup.ConfigureServices`:
+В Razor приложении "страницы" примените фильтр с [соглашением](xref:razor-pages/razor-pages-conventions) в `Startup.ConfigureServices` :
 
 ```csharp
 services.AddMvc()
@@ -1363,7 +1350,7 @@ services.AddMvc()
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-В приложении Razor "страницы" или в приложении MVC примените фильтр к модели страницы или методу действия:
+В Razor приложении "страницы" или в приложении MVC примените фильтр к модели страницы или методу действия:
 
 ```csharp
 // Set the limit to 256 MB
@@ -1391,7 +1378,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> используется для настройки [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) для одной страницы или действия.
 
-В приложении Razor "страницы" примените фильтр с [соглашением](xref:razor-pages/razor-pages-conventions) в `Startup.ConfigureServices`:
+В Razor приложении "страницы" примените фильтр с [соглашением](xref:razor-pages/razor-pages-conventions) в `Startup.ConfigureServices` :
 
 ```csharp
 services.AddMvc()
@@ -1409,7 +1396,7 @@ services.AddMvc()
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-В приложении Razor Pages или MVC примените фильтр к классу обработчика страницы или методу действия:
+В Razor приложении Pages или MVC примените фильтр к классу обработчика страницы или методу действия:
 
 ```csharp
 // Handle requests up to 50 MB

@@ -4,7 +4,7 @@ Title: ' защита Blazor автономного приложения ASP.NET
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью библиотеки проверки подлинности
@@ -13,7 +13,7 @@ Title: ' защита Blazor автономного приложения ASP.NET
 
 *Для Azure Active Directory (AAD) и Azure Active Directory B2C (AAD B2C) не следуйте указаниям в этом разделе. См. разделы, посвященные AAD и AAD B2C, в этом узле оглавления.*
 
-Чтобы создать Blazor изолированное приложение для сборки, использующее `Microsoft.AspNetCore.Components.WebAssembly.Authentication` библиотеку, выполните в командной оболочке следующую команду:
+Чтобы создать Blazor изолированное приложение для веб-сборки, использующее библиотеку [Microsoft. AspNetCore. Components. Assembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) , выполните в командной оболочке следующую команду:
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual
@@ -25,7 +25,7 @@ dotnet new blazorwasm -au Individual
 
 ## <a name="authentication-package"></a>Пакет проверки подлинности
 
-Когда приложение создается для использования отдельных учетных записей пользователей, приложение автоматически получает ссылку на пакет `Microsoft.AspNetCore.Components.WebAssembly.Authentication` в файле проекта приложения. Пакет предоставляет набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных интерфейсов API.
+Когда приложение создается для использования отдельных учетных записей пользователей, оно автоматически получает ссылку на пакет для пакета [Microsoft. AspNetCore. Components. веб-сборки. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) в файле проекта приложения. Пакет предоставляет набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных интерфейсов API.
 
 При добавлении проверки подлинности в приложение вручную добавьте пакет в файл проекта приложения:
 
@@ -37,7 +37,7 @@ dotnet new blazorwasm -au Individual
 
 ## <a name="authentication-service-support"></a>Поддержка службы проверки подлинности
 
-Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью `AddOidcAuthentication` метода расширения, предоставленного `Microsoft.AspNetCore.Components.WebAssembly.Authentication` пакетом. Этот метод настраивает службы, необходимые для взаимодействия приложения с Identity поставщиком (IP).
+Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> метода расширения, предоставляемого пакетом [Microsoft. AspNetCore. Components. WebService. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) . Этот метод настраивает службы, необходимые для взаимодействия приложения с Identity поставщиком (IP).
 
 *Program.cs*:
 
@@ -59,11 +59,11 @@ builder.Services.AddOidcAuthentication(options =>
 }
 ```
 
-Поддержка проверки подлинности для автономных приложений предлагается с помощью Open ID Connect (OIDC). `AddOidcAuthentication`Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения с помощью OIDC. Значения, необходимые для настройки приложения, можно получить из IP-адреса, совместимого с OIDC. Получите значения при регистрации приложения, которое обычно происходит на веб-портале.
+Поддержка проверки подлинности для автономных приложений предлагается с помощью Open ID Connect (OIDC). <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A>Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения с помощью OIDC. Значения, необходимые для настройки приложения, можно получить из IP-адреса, совместимого с OIDC. Получите значения при регистрации приложения, которое обычно происходит на веб-портале.
 
 ## <a name="access-token-scopes"></a>Области токенов доступа
 
-BlazorШаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API. Чтобы настроить маркер доступа как часть потока входа, добавьте область в области токенов по умолчанию `OidcProviderOptions` :
+BlazorШаблон сборки не автоматически настраивает приложение для запроса маркера доступа для безопасного API. Чтобы настроить маркер доступа как часть потока входа, добавьте область в области токенов по умолчанию <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.OidcProviderOptions> :
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>

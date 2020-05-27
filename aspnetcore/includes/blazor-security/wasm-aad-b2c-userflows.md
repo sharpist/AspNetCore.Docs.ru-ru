@@ -1,5 +1,5 @@
-## <a name="custom-user-flows"></a>Пользовательские потоки пользователей
+## <a name="custom-user-flows"></a>Настраиваемые потоки пользователей
 
-Библиотека аутентификации Майкрософт ()`Microsoft.Authentication.WebAssembly.Msal`не поддерживает [потоки пользователей AAD B2C](/azure/active-directory-b2c/user-flow-overview) по умолчанию. Создавайте пользовательские потоки пользователей в коде разработчика.
+Библиотека проверки подлинности Майкрософт ( <xref:Microsoft.Authentication.WebAssembly.Msal> [пакет NuGet](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/)) не поддерживает [AAD B2C пользовательских потоков](/azure/active-directory-b2c/user-flow-overview) по умолчанию. Создание настраиваемых пользовательских потоков в коде разработчика.
 
-Для получения дополнительной информации о том, как [User flows in Azure Active Directory B2C](/azure/active-directory-b2c/user-flow-overview)создать задачу для пользовательского потока пользователей, см.
+Дополнительные сведения о том, как создать запрос для настраиваемого потока пользователя, см. [в разделе потоки пользователей в Azure Active Directory B2C](/azure/active-directory-b2c/user-flow-overview).

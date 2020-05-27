@@ -1,24 +1,12 @@
 ---
-title: BlazorДополнительные сценарии безопасности ASP.NET Core Server
-author: guardrex
-description: Узнайте, как настроить Blazor сервер для дополнительных сценариев безопасности.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/19/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: security/blazor/server/additional-scenarios
-ms.openlocfilehash: 9d26cde4d8964a8285241bb0158d8e6f8d5f8dbc
-ms.sourcegitcommit: 16b3abec1ed70f9a206f0cfa7cf6404eebaf693d
-ms.translationtype: MT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/17/2020
-ms.locfileid: "83444078"
+Title: ' ASP.NET Core Blazor Server дополнительные сценарии безопасности ' author: описание: ' сведения о настройке Blazor сервера для дополнительных сценариев безопасности '.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>BlazorДополнительные сценарии безопасности ASP.NET Core Server
 
@@ -171,7 +159,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme,
 }
 ```
 
-Если переход на сегмент в центре сертификации не подходит для поставщика OIDC приложения, например с поставщиками, не являющимися владельцами AAD, задайте `Authority` свойство напрямую. Либо установите свойство в <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> или в файле параметров приложения с помощью `Authority` ключа.
+Если переход на сегмент в центре сертификации не подходит для поставщика OIDC приложения, например с поставщиками, не являющимися владельцами AAD, задайте <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> свойство напрямую. Либо установите свойство в <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> или в файле параметров приложения с помощью <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> ключа.
 
 ### <a name="code-changes"></a>Изменения в коде
 
