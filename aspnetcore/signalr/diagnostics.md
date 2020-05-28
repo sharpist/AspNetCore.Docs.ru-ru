@@ -1,44 +1,32 @@
 ---
-title: Ведение журнала и диагностика в ASP.NET CoreSignalR
-author: anurse
-description: Узнайте, как собирать диагностические сведения из SignalR приложения ASP.NET Core.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: anurse
-ms.custom: signalr
-ms.date: 11/12/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: signalr/diagnostics
-ms.openlocfilehash: 0dda4fb55b1e2275d9cdb2af0b55824b12121dee
-ms.sourcegitcommit: 16b3abec1ed70f9a206f0cfa7cf6404eebaf693d
-ms.translationtype: MT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/17/2020
-ms.locfileid: "83444221"
+Title: "ведение журнала и диагностика в ASP.NET Core SignalR " Автор: описание: "Узнайте, как собирать диагностические сведения из SignalR приложения ASP.NET Core.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
-# <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Ведение журнала и диагностика в ASP.NET Core SignalR
+# <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Ведение журнала и диагностика в ASP.NET CoreSignalR
 
 [Эндрю Стантон-медперсонала](https://twitter.com/anurse)
 
-В этой статье приводятся рекомендации по сбору диагностических сведений из приложения ASP.NET Core SignalR для устранения проблем.
+В этой статье приводятся рекомендации по сбору диагностических сведений из SignalR приложения ASP.NET Core для решения проблем.
 
 ## <a name="server-side-logging"></a>Ведение журнала на стороне сервера
 
 > [!WARNING]
 > Журналы на стороне сервера могут содержать конфиденциальные сведения из приложения. **Никогда не** размещайте необработанные журналы из рабочих приложений на общедоступные форумы, такие как GitHub.
 
-Поскольку SignalR является частью ASP.NET Core, он использует систему ведения журнала ASP.NET Core. В конфигурации по умолчанию SignalR регистрирует очень мало информации, но это может быть настроено. Дополнительные сведения о настройке ведения журнала ASP.NET Core см. в документации по [ASP.NET Core ведению журнала](xref:fundamentals/logging/index#configuration) .
+Поскольку SignalR является частью ASP.NET Core, используется система ведения журнала ASP.NET Core. В конфигурации по умолчанию SignalR записывает в журнал очень мало информации, но это может быть настроено. Дополнительные сведения о настройке ведения журнала ASP.NET Core см. в документации по [ASP.NET Core ведению журнала](xref:fundamentals/logging/index#configuration) .
 
-SignalR использует две категории регистратора:
+SignalRиспользует две категории регистратора:
 
-* `Microsoft.AspNetCore.SignalR`&ndash;для журналов, связанных с протоколами концентраторов, активации концентраторов, вызова методов и других действий, связанных с концентратором.
-* `Microsoft.AspNetCore.Http.Connections`&ndash;для журналов, связанных с транспортами, такими как WebSockets, длительный опрос и события, отправленные сервером, и инфраструктуру SignalR низкого уровня.
+* `Microsoft.AspNetCore.SignalR`: Для журналов, связанных с протоколами концентраторов, активации концентраторов, вызова методов и других действий, связанных с концентратором.
+* `Microsoft.AspNetCore.Http.Connections`: Для журналов, связанных с транспортом, таких как WebSockets, длительный опрос, серверные события и инфраструктура низкого уровня SignalR .
 
-Чтобы включить подробные журналы из SignalR, настройте оба предыдущих префикса на `Debug` уровень в файле *appSettings. JSON* , добавив следующие элементы в `LogLevel` подраздел в `Logging` :
+Чтобы включить подробные журналы из SignalR , настройте оба предыдущих префикса на `Debug` уровень в файле *appSettings. JSON* , добавив следующие элементы в `LogLevel` подраздел в `Logging` :
 
 [!code-json[](diagnostics/logging-config.json?highlight=7-8)]
 
@@ -61,7 +49,7 @@ SignalR использует две категории регистратора:
 
 ### <a name="as-a-console-app-outside-iis"></a>Как консольное приложение за пределами IIS
 
-Если вы работаете в консольном приложении, [средство ведения журнала консоли](xref:fundamentals/logging/index#console) должно быть включено по умолчанию. Журналы SignalR отобразятся в консоли.
+Если вы работаете в консольном приложении, [средство ведения журнала консоли](xref:fundamentals/logging/index#console) должно быть включено по умолчанию. SignalRжурналы будут отображаться в консоли.
 
 ### <a name="within-iis-express-from-visual-studio"></a>В IIS Express из Visual Studio
 
@@ -89,14 +77,34 @@ Visual Studio отображает выходные данные журнала 
 В следующей таблице приведены уровни журнала, доступные для клиента JavaScript. Установка одного из этих значений уровня ведения журнала позволяет вести журнал на этом уровне и на всех уровнях, напревышающих его в таблице.
 
 | Level | Описание |
-| ----- | ----------- |
-| `None` | Сообщения не регистрируются. |
-| `Critical` | Сообщения, указывающие на сбой во всем приложении. |
-| `Error` | Сообщения, указывающие на сбой в текущей операции. |
-| `Warning` | Сообщения, указывающие на некритическую проблему. |
-| `Information` | Информационные сообщения. |
-| `Debug` | Диагностические сообщения, полезные для отладки. |
-| `Trace` | Очень подробные диагностические сообщения, предназначенные для диагностики конкретных проблем. |
+| ----- | ---
+Title: "ведение журнала и диагностика в ASP.NET Core SignalR " Автор: описание: "Узнайте, как собирать диагностические сведения из SignalR приложения ASP.NET Core.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+Title: "ведение журнала и диагностика в ASP.NET Core SignalR " Автор: описание: "Узнайте, как собирать диагностические сведения из SignalR приложения ASP.NET Core.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+Title: "ведение журнала и диагностика в ASP.NET Core SignalR " Автор: описание: "Узнайте, как собирать диагностические сведения из SignalR приложения ASP.NET Core.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | | `None` | Сообщения не регистрируются. | | `Critical` | Сообщения, указывающие на сбой во всем приложении. | | `Error` | Сообщения, указывающие на сбой в текущей операции. | | `Warning` | Сообщения, указывающие на некритическую проблему. | | `Information` | Информационные сообщения. | | `Debug` | Диагностические сообщения, полезные для отладки. | | `Trace` | Очень подробные диагностические сообщения, предназначенные для диагностики конкретных проблем. |
 
 После настройки уровня детализации журналы записываются в консоль браузера (или стандартные выходные данные в приложении NodeJS).
 

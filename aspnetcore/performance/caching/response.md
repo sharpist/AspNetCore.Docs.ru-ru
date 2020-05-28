@@ -1,23 +1,11 @@
 ---
-title: Кэширование ответов в ASP.NET Core
-author: rick-anderson
-description: Узнайте, как использовать кэширование ответов, чтобы снизить требования к пропускной способности и повысить производительность приложений ASP.NET Core.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.date: 11/04/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: performance/caching/response
-ms.openlocfilehash: 3e4bb9980c94f36319cf9b17e65a35ba0f77824e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776081"
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="response-caching-in-aspnet-core"></a>Кэширование ответов в ASP.NET Core
 
@@ -29,7 +17,7 @@ ms.locfileid: "82776081"
 
 [Атрибут респонсекаче](#responsecache-attribute) участвует в установках заголовков кэширования ответа. Клиенты и промежуточные прокси-серверы должны учитывать заголовки для кэширования ответов в [спецификации кэширования HTTP 1,1](https://tools.ietf.org/html/rfc7234).
 
-Для кэширования на стороне сервера, которое следует за спецификацией кэширования HTTP 1,1, используйте по [промежуточного слоя кэширование ответа](xref:performance/caching/middleware). По промежуточного слоя может <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> использовать свойства, чтобы повлиять на поведение кэширования на стороне сервера.
+Для кэширования на стороне сервера, которое следует за спецификацией кэширования HTTP 1,1, используйте по [промежуточного слоя кэширование ответа](xref:performance/caching/middleware). По промежуточного слоя может использовать <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> свойства, чтобы повлиять на поведение кэширования на стороне сервера.
 
 ## <a name="http-based-response-caching"></a>Кэширование ответов на основе HTTP
 
@@ -38,27 +26,488 @@ ms.locfileid: "82776081"
 Общие `Cache-Control` директивы показаны в следующей таблице.
 
 | Директива                                                       | Действие |
-| --------------------------------------------------------------- | ------ |
-| [public](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | Ответ может храниться в кэше. |
-| [private](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | Ответ не должен храниться в общем кэше. Частный кэш может хранить и повторно использовать ответ. |
-| [максимальный возраст](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | Клиент не принимает ответ, возраст которого превышает указанное число секунд. Примеры: `max-age=60` (60 секунд), `max-age=2592000` (1 месяц) |
-| [no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **В запросах**: кэш не должен использовать сохраненный ответ для удовлетворения запроса. Сервер источника повторно создает ответ для клиента, и по промежуточного слоя обновляет сохраненный ответ в своем кэше.<br><br>**В ответах**: ответ не должен использоваться для последующего запроса без проверки на сервере-источнике. |
-| [без магазина](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **В запросах**: кэш не должен сохранять запрос.<br><br>**В**ответах: кэш не должен хранить какую-либо часть ответа. |
+| ---
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-------------------------------- | Заголовок---: Автор: описание: Моникерранже: MS. author: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--- | | [общедоступная](https://tools.ietf.org/html/rfc7234#section-5.2.2.5) | Ответ может храниться в кэше. | | [частный](https://tools.ietf.org/html/rfc7234#section-5.2.2.6) | Ответ не должен храниться в общем кэше. Частный кэш может хранить и повторно использовать ответ. | | [max-age](https://tools.ietf.org/html/rfc7234#section-5.2.1.1) | Клиент не принимает ответ, возраст которого превышает указанное число секунд. Примеры: `max-age=60` (60 секунд), `max-age=2592000` (1 месяц) | | [без кэша](https://tools.ietf.org/html/rfc7234#section-5.2.1.4)  |  **В запросах**: кэш не должен использовать сохраненный ответ для удовлетворения запроса. Сервер источника повторно создает ответ для клиента, и по промежуточного слоя обновляет сохраненный ответ в своем кэше.<br><br>**В ответах**: ответ не должен использоваться для последующего запроса без проверки на сервере-источнике. | | [без магазина](https://tools.ietf.org/html/rfc7234#section-5.2.1.5)  |  **В запросах**: кэш не должен сохранять запрос.<br><br>**В**ответах: кэш не должен хранить какую-либо часть ответа. |
 
 Другие заголовки кэша, которые играют роль в кэшировании, показаны в следующей таблице.
 
 | Заголовок                                                     | Функция |
-| ---------------------------------------------------------- | -------- |
-| [Интервал](https://tools.ietf.org/html/rfc7234#section-5.1)     | Оценка количества времени в секундах с момента создания или успешной проверки ответа на сервере источника. |
-| [Истекает](https://tools.ietf.org/html/rfc7234#section-5.3) | Время, после которого ответ считается устаревшим. |
-| [Включают](https://tools.ietf.org/html/rfc7234#section-5.4)  | Существует для обеспечения обратной совместимости с кэшами HTTP/1.0 для настройки `no-cache` поведения. Если `Cache-Control` заголовок имеется, `Pragma` заголовок игнорируется. |
-| [Меняющие](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | Указывает, что кэшированный ответ не должен отправляться, если все `Vary` поля заголовка не совпадают как в исходном запросе, так и в новом запросе кэшированного ответа. |
+| ---
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+----------------------------- | Заголовок---: Автор: описание: Моникерранже: MS. author: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | | [Возраст](https://tools.ietf.org/html/rfc7234#section-5.1) | Оценка количества времени в секундах с момента создания или успешной проверки ответа на сервере источника. | | [Срок действия истекает](https://tools.ietf.org/html/rfc7234#section-5.3) | Время, после которого ответ считается устаревшим. | | [Pragma](https://tools.ietf.org/html/rfc7234#section-5.4) | Существует для обеспечения обратной совместимости с кэшами HTTP/1.0 для настройки `no-cache` поведения. Если `Cache-Control` заголовок имеется, `Pragma` заголовок игнорируется. | | [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4) | Указывает, что кэшированный ответ не должен отправляться, если все `Vary` поля заголовка не совпадают как в исходном запросе, так и в новом запросе кэшированного ответа. |
 
 ## <a name="http-based-caching-respects-request-cache-control-directives"></a>Директивы управления кэшем запросов для кэширования на основе HTTP
 
-[Спецификация кэширования HTTP 1,1 для заголовка Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2) требует, чтобы кэш учитывал допустимый `Cache-Control` заголовок, отправленный клиентом. Клиент может выполнять запросы со значением `no-cache` заголовка и принудительно выдавать серверу запрос на создание нового ответа для каждого запроса.
+[Спецификация кэширования HTTP 1,1 для заголовка Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2) требует, чтобы кэш учитывал допустимый `Cache-Control` заголовок, отправленный клиентом. Клиент может выполнять запросы со `no-cache` значением заголовка и принудительно выдавать серверу запрос на создание нового ответа для каждого запроса.
 
-Всегда учитывать заголовки запросов `Cache-Control` клиентов имеет смысл, если рассматривать цель кэширования HTTP. В официальной спецификации кэширование предназначено для уменьшения задержки и нагрузки на сети для удовлетворения запросов в сети клиентов, прокси и серверов. Это не обязательно способ управления нагрузкой на сервере-источнике.
+Всегда учитывать `Cache-Control` заголовки запросов клиентов имеет смысл, если рассматривать цель кэширования HTTP. В официальной спецификации кэширование предназначено для уменьшения задержки и нагрузки на сети для удовлетворения запросов в сети клиентов, прокси и серверов. Это не обязательно способ управления нагрузкой на сервере-источнике.
 
 При использовании по [промежуточного слоя для кэширования ответа](xref:performance/caching/middleware) разработчик не управляет этим поведением кэширования, поскольку по промежуточного слоя соответствует официальной спецификации кэширования. [Запланированные улучшения по промежуточного слоя](https://github.com/dotnet/AspNetCore/issues/2612) позволяют настроить по промежуточного слоя на игнорирование заголовка запроса `Cache-Control` при принятии решения о выполнении кэшированного ответа. Запланированные улучшения дают возможность лучше управлять нагрузкой сервера.
 
@@ -78,44 +527,232 @@ ms.locfileid: "82776081"
 
 ### <a name="cache-tag-helper"></a>Вспомогательная функция тега кэша
 
-Кэширование содержимого из представления MVC или страницы Razor с помощью вспомогательной функции тега кэша. Вспомогательная функция тега кэша использует кэширование в памяти для хранения данных.
+Кэширование содержимого из представления MVC или Razor страницы с вспомогательной функцией тега кэша. Вспомогательная функция тега кэша использует кэширование в памяти для хранения данных.
 
 Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>.
 
 ### <a name="distributed-cache-tag-helper"></a>Вспомогательная функция тега распределенного кэша
 
-Кэширование содержимого из представления MVC или Razor в распределенном облаке или в сценариях веб-фермы с помощью вспомогательной функции тега распределенного кэша. Вспомогательная функция тега распределенного кэша использует SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis)или [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) для хранения данных.
+Кэширование содержимого из представления MVC или Razor страницы в сценариях распределенного облака или веб-фермы с помощью вспомогательной функции тега распределенного кэша. Вспомогательная функция тега распределенного кэша использует SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis)или [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) для хранения данных.
 
 Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>.
 
 ## <a name="responsecache-attribute"></a>Атрибут Респонсекаче
 
-Указывает <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> параметры, необходимые для настройки соответствующих заголовков в кэшировании ответов.
+<xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>Указывает параметры, необходимые для настройки соответствующих заголовков в кэшировании ответов.
 
 > [!WARNING]
 > Отключите кэширование для содержимого, содержащего сведения для клиентов, прошедших проверку подлинности. Кэширование следует включать только для содержимого, которое не изменяется в зависимости от удостоверения пользователя или от того, вошел ли пользователь в систему.
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys>изменяет сохраненный ответ на значения заданного списка ключей запроса. Если указано одно значение `*` , по промежуточного слоя изменяет ответы всеми параметрами строки запроса.
 
-Для установки <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> свойства необходимо включить по [промежуточного слоя кэширования ответа](xref:performance/caching/middleware) . В противном случае выдается исключение времени выполнения. Отсутствует соответствующий заголовок HTTP для <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> свойства. Свойство является компонентом HTTP, обрабатываемым по промежуточного слоя кэширования ответа. Чтобы по промежуточного слоя обслуживать кэшированный ответ, строка запроса и значение строки запроса должны соответствовать предыдущему запросу. Например, рассмотрим последовательность запросов и результатов, показанных в следующей таблице.
+Для установки свойства необходимо включить по [промежуточного слоя кэширования ответа](xref:performance/caching/middleware) <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> . В противном случае выдается исключение времени выполнения. Отсутствует соответствующий заголовок HTTP для <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> Свойства. Свойство является компонентом HTTP, обрабатываемым по промежуточного слоя кэширования ответа. Чтобы по промежуточного слоя обслуживать кэшированный ответ, строка запроса и значение строки запроса должны соответствовать предыдущему запросу. Например, рассмотрим последовательность запросов и результатов, показанных в следующей таблице.
 
 | Запрос                          | Результат                    |
-| -------------------------------- | ------------------------- |
-| `http://example.com?key1=value1` | Возвращается с сервера. |
-| `http://example.com?key1=value1` | Возвращается из промежуточного слоя. |
-| `http://example.com?key1=value2` | Возвращается с сервера. |
+| ---
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---------------- | Заголовок---: Автор: описание: Моникерранже: MS. author: MS. Дата: No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------------- | | `http://example.com?key1=value1` | Возвращается с сервера. | | `http://example.com?key1=value1` | Возвращается из промежуточного слоя. | | `http://example.com?key1=value2` | Возвращается с сервера. |
 
 Первый запрос возвращается сервером и кэшируется по промежуточного слоя. Второй запрос возвращается по промежуточного слоя, так как строка запроса совпадает с предыдущим запросом. Третий запрос не находится в кэше по промежуточного слоя, так как значение строки запроса не соответствует предыдущему запросу.
 
-<xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> Используется для настройки и создания (через <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>) a `Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter`. Компонент `ResponseCacheFilter` выполняет работу по обновлению соответствующих HTTP-заголовков и функций ответа. Фильтр:
+<xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>Используется для настройки и создания (через <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> ) a `Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter` . `ResponseCacheFilter`Компонент выполняет работу по обновлению соответствующих HTTP-заголовков и функций ответа. Фильтр:
 
-* Удаляет все существующие заголовки для `Vary`, `Cache-Control`и `Pragma`.
-* Записывает соответствующие заголовки на основе свойств, <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>заданных в.
-* Обновляет компонент кэширования ответов HTTP, <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> Если задано значение.
+* Удаляет все существующие заголовки для `Vary` , `Cache-Control` и `Pragma` .
+* Записывает соответствующие заголовки на основе свойств, заданных в <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> .
+* Обновляет компонент кэширования ответов HTTP, если <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> задано значение.
 
 ### <a name="vary"></a>Меняющие
 
-Этот заголовок записывается только в <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByHeader> том случае, если задано свойство. Свойство, для которого задано значение `Vary` свойства. В следующем примере используется <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByHeader> свойство:
+Этот заголовок записывается только в том случае, если <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByHeader> задано свойство. Свойство, для которого задано `Vary` значение свойства. В следующем примере используется <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByHeader> свойство:
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache1.cshtml.cs?name=snippet)]
 
@@ -128,12 +765,12 @@ Vary: User-Agent
 
 ### <a name="nostore-and-locationnone"></a>\ Store и Location. None
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>переопределяет большинство других свойств. Если для `true`этого свойства задано значение, `Cache-Control` заголовок устанавливается в `no-store`значение. Если <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> параметр имеет значение `None`:
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>переопределяет большинство других свойств. Если для этого свойства задано значение `true` , `Cache-Control` заголовок устанавливается в значение `no-store` . Если <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> параметр имеет значение `None` :
 
 * `Cache-Control` задан как `no-store,no-cache`.
 * `Pragma` задан как `no-cache`.
 
-Если <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> параметр `false` имеет <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> значение `None`, `Cache-Control`а имеет `Pragma` значение, и `no-cache`, то для свойства задаются значения.
+Если <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> параметр имеет значение `false` <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> , а имеет значение, и, то `None` `Cache-Control` `Pragma` для свойства задаются значения `no-cache` .
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>обычно имеет значение `true` для страниц ошибок. Страница Cache2 в примере приложения создает заголовки ответа, указывающие клиенту не сохранять ответ.
 
@@ -148,13 +785,13 @@ Pragma: no-cache
 
 ### <a name="location-and-duration"></a>Расположение и длительность
 
-Чтобы включить кэширование <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> , необходимо задать положительное значение, которое <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> должно быть либо `Any` (по умолчанию) `Client`, либо. Платформа задает для `Cache-Control` заголовка значение Location, за которым следует `max-age` ответ.
+Чтобы включить кэширование, <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> необходимо задать положительное значение, которое <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> должно быть либо `Any` (по умолчанию), либо `Client` . Платформа задает `Cache-Control` для заголовка значение Location, за которым следует `max-age` ответ.
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>`Any` параметры `Client` и `Cache-Control` транслируются в значения заголовков `public` и `private`соответственно. Как указано в разделе "не [Store" и "Location. None](#nostore-and-locationnone) " `None` , параметр `Cache-Control` <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> задает `Pragma` для обоих `no-cache`заголовков и значение.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>параметры `Any` и `Client` транслируются в `Cache-Control` значения заголовков `public` и `private` соответственно. Как указано в разделе "не [Store" и "Location. None](#nostore-and-locationnone) ", параметр <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> `None` задает для обоих `Cache-Control` `Pragma` заголовков и значение `no-cache` .
 
-`Location.Any`(`Cache-Control` значение `public`) указывает, что *клиент или любой промежуточный прокси-сервер* может кэшировать значение, включая по [промежуточного слоя кэширования ответа](xref:performance/caching/middleware).
+`Location.Any`( `Cache-Control` значение `public` ) указывает, что *клиент или любой промежуточный прокси-сервер* может кэшировать значение, включая по [промежуточного слоя кэширования ответа](xref:performance/caching/middleware).
 
-`Location.Client`(`Cache-Control` значение `private`) указывает, что *только клиент* может кэшировать значение. Ни один промежуточный кэш не должен кэшировать значение, включая по [промежуточного слоя кэширования ответа](xref:performance/caching/middleware).
+`Location.Client`( `Cache-Control` значение `private` ) указывает, что *только клиент* может кэшировать значение. Ни один промежуточный кэш не должен кэшировать значение, включая по [промежуточного слоя кэширования ответа](xref:performance/caching/middleware).
 
 Заголовки управления кэшем просто предоставляют рекомендации клиентам и промежуточным прокси-серверам, когда и как кэшировать ответы. Нет никакой гарантии, что клиенты и прокси-серверы будут учитывать [спецификацию кэширования HTTP 1,1](https://tools.ietf.org/html/rfc7234). [Промежуточное расположение кэширования ответов](xref:performance/caching/middleware) всегда соответствует правилам кэширования, указанным в спецификации.
 
@@ -170,9 +807,9 @@ Cache-Control: public,max-age=10
 
 ### <a name="cache-profiles"></a>Профили кэша
 
-Вместо дублирования параметров кэша ответов во многих атрибутах действия контроллера, профили кэша можно настроить в качестве параметров при настройке MVC иRazor страниц в. `Startup.ConfigureServices` Значения, найденные в указанном профиле кэша, используются по умолчанию <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> и переопределяются любыми свойствами, заданными в атрибуте.
+Вместо дублирования параметров кэша ответов во многих атрибутах действия контроллера, профили кэша можно настроить в качестве параметров при настройке MVC и Razor страниц в `Startup.ConfigureServices` . Значения, найденные в указанном профиле кэша, используются по умолчанию <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> и переопределяются любыми свойствами, заданными в атрибуте.
 
-Настройка профиля кэша. В следующем примере показан 30-секундный профиль кэша в примере приложения `Startup.ConfigureServices`.
+Настройка профиля кэша. В следующем примере показан 30-секундный профиль кэша в примере приложения `Startup.ConfigureServices` .
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Startup.cs?name=snippet1)]
 
@@ -180,13 +817,13 @@ Cache-Control: public,max-age=10
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache4.cshtml.cs?name=snippet)]
 
-<xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> Можно применить к:
+<xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>Можно применить к:
 
-* RazorАтрибуты обработчиков страниц ( &ndash; классов) не могут применяться к методам обработчика.
+* RazorОбработчики страниц (классы): атрибуты не могут применяться к методам обработчика.
 * Контроллеры MVC (классы).
-* Атрибуты уровня метода (методы &ndash; ) MVC переопределяют параметры, указанные в атрибутах уровня класса.
+* Действия MVC (методы): атрибуты уровня метода переопределяют параметры, указанные в атрибутах уровня класса.
 
-Результирующий заголовок, примененный к ответу страницы Cache4 `Default30` в профиле кэша:
+Результирующий заголовок, примененный к ответу страницы Cache4 в `Default30` профиле кэша:
 
 ```
 Cache-Control: public,max-age=30

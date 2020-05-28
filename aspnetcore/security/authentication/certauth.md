@@ -1,27 +1,15 @@
 ---
-title: Настройка проверки подлинности сертификата в ASP.NET Core
-author: blowdart
-description: Узнайте, как настроить проверку подлинности сертификата в ASP.NET Core для IIS и HTTP. sys.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: bdorrans
-ms.date: 01/02/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: security/authentication/certauth
-ms.openlocfilehash: 2cee719014d57fa01b5e8b14edd703c192cfbe18
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776647"
+название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Настройка проверки подлинности сертификата в ASP.NET Core
 
-`Microsoft.AspNetCore.Authentication.Certificate`содержит реализацию, похожую на [проверку подлинности с помощью сертификата](https://tools.ietf.org/html/rfc5246#section-7.4.4) для ASP.NET Core. Проверка подлинности сертификата выполняется на уровне TLS, прежде чем он когда-либо получит ASP.NET Core. Точнее, это обработчик проверки подлинности, который проверяет сертификат, а затем предоставляет событие, в котором можно разрешить этот сертификат в `ClaimsPrincipal`. 
+`Microsoft.AspNetCore.Authentication.Certificate`содержит реализацию, похожую на [проверку подлинности с помощью сертификата](https://tools.ietf.org/html/rfc5246#section-7.4.4) для ASP.NET Core. Проверка подлинности сертификата выполняется на уровне TLS, прежде чем он когда-либо получит ASP.NET Core. Точнее, это обработчик проверки подлинности, который проверяет сертификат, а затем предоставляет событие, в котором можно разрешить этот сертификат в `ClaimsPrincipal` . 
 
 [Настройте узел](#configure-your-host-to-require-certificates) для проверки подлинности на основе сертификата, как IIS, Kestrel, веб-приложения Azure или любое другое приложение, которое вы используете.
 
@@ -38,11 +26,11 @@ ms.locfileid: "82776647"
 
 Получите HTTPS сертификат, примените его и [Настройте узел](#configure-your-host-to-require-certificates) так, чтобы он затребовал сертификаты.
 
-В веб-приложении добавьте ссылку на `Microsoft.AspNetCore.Authentication.Certificate` пакет. Затем в `Startup.ConfigureServices` методе вызовите `services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(...);` с вашими параметрами, предоставив делегат для `OnCertificateValidated` , чтобы выполнить дополнительную проверку сертификата клиента, отправляемого с запросами. Включите эту информацию в `ClaimsPrincipal` и установите ее в `context.Principal` свойстве.
+В веб-приложении добавьте ссылку на `Microsoft.AspNetCore.Authentication.Certificate` пакет. Затем в `Startup.ConfigureServices` методе вызовите `services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(...);` с вашими параметрами, предоставив делегат для, `OnCertificateValidated` чтобы выполнить дополнительную проверку сертификата клиента, отправляемого с запросами. Включите эту информацию в `ClaimsPrincipal` и установите ее в `context.Principal` свойстве.
 
-Если проверка подлинности завершается неудачно, этот обработчик возвращает `403 (Forbidden)` ответ `401 (Unauthorized)`, а не, как вы можете ожидать. Причина заключается в том, что проверка подлинности должна выполняться во время первоначального TLS-подключения. К моменту, когда он достигает обработчика, он слишком поздно. Невозможно обновить подключение между анонимным подключением и сертификатом.
+Если проверка подлинности завершается неудачно, этот обработчик возвращает `403 (Forbidden)` ответ, а не `401 (Unauthorized)` , как вы можете ожидать. Причина заключается в том, что проверка подлинности должна выполняться во время первоначального TLS-подключения. К моменту, когда он достигает обработчика, он слишком поздно. Невозможно обновить подключение между анонимным подключением и сертификатом.
 
-Кроме того `app.UseAuthentication();` , `Startup.Configure` добавьте в метод. В противном `HttpContext.User` случае не будет задано `ClaimsPrincipal` значение, созданное на основе сертификата. Например:
+Кроме того `app.UseAuthentication();` , добавьте в `Startup.Configure` метод. В противном случае `HttpContext.User` не будет задано значение, `ClaimsPrincipal` созданное на основе сертификата. Пример:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -65,13 +53,13 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 ## <a name="configure-certificate-validation"></a>Настройка проверки сертификата
 
-`CertificateAuthenticationOptions` Обработчик содержит некоторые встроенные проверки, которые являются минимальными проверками, которые следует выполнить с сертификатом. Каждый из этих параметров включен по умолчанию.
+`CertificateAuthenticationOptions`Обработчик содержит некоторые встроенные проверки, которые являются минимальными проверками, которые следует выполнить с сертификатом. Каждый из этих параметров включен по умолчанию.
 
 ### <a name="allowedcertificatetypes--chained-selfsigned-or-all-chained--selfsigned"></a>Алловедцертификатетипес = цепочка, Селфсигнед или все (цепочка | Селфсигнед)
 
 Значение по умолчанию — `CertificateTypes.Chained`.
 
-Эта проверка подтверждает, что разрешен только соответствующий тип сертификата. Если приложение использует самозаверяющие сертификаты, для этого параметра необходимо задать значение `CertificateTypes.All` или. `CertificateTypes.SelfSigned`
+Эта проверка подтверждает, что разрешен только соответствующий тип сертификата. Если приложение использует самозаверяющие сертификаты, для этого параметра необходимо задать значение `CertificateTypes.All` или `CertificateTypes.SelfSigned` .
 
 ### <a name="validatecertificateuse"></a>валидатецертификатеусе
 
@@ -111,8 +99,8 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 Обработчик имеет два события:
 
-* `OnAuthenticationFailed`&ndash; Вызывается, если исключение происходит во время проверки подлинности и позволяет реагировать.
-* `OnCertificateValidated`&ndash; Вызывается после проверки сертификата, прошли проверку и был создан участник по умолчанию. Это событие позволяет выполнять собственную проверку и дополнять или заменять субъект. Ниже приведены примеры.
+* `OnAuthenticationFailed`: Вызывается, если исключение происходит во время проверки подлинности и позволяет реагировать.
+* `OnCertificateValidated`: Вызывается после проверки сертификата, прошел проверку и создается участник по умолчанию. Это событие позволяет выполнять собственную проверку и дополнять или заменять субъект. Ниже приведены примеры.
   * Определение, известен ли сертификат службам.
   * Создание собственного участника. Рассмотрим следующий пример в `Startup.ConfigureServices`:
 
@@ -193,7 +181,7 @@ services.AddAuthentication(
     });
 ```
 
-По сути, проверка сертификата является проблемой авторизации. Добавление проверки, например, издателя или отпечатка в политике авторизации, а не внутри `OnCertificateValidated`, вполне приемлемо.
+По сути, проверка сертификата является проблемой авторизации. Добавление проверки, например, издателя или отпечатка в политике авторизации, а не внутри `OnCertificateValidated` , вполне приемлемо.
 
 ## <a name="configure-your-host-to-require-certificates"></a>Настройка узла для использования сертификатов
 
@@ -249,12 +237,12 @@ public static IHostBuilder CreateHostBuilder(string[] args)
 
 ### <a name="use-certificate-authentication-in-custom-web-proxies"></a>Использование проверки подлинности сертификатов в пользовательских веб-прокси
 
-`AddCertificateForwarding` Метод используется для указания:
+`AddCertificateForwarding`Метод используется для указания:
 
 * Имя заголовка клиента.
-* Способ загрузки сертификата (с помощью `HeaderConverter` свойства).
+* Способ загрузки сертификата (с помощью `HeaderConverter` Свойства).
 
-В пользовательских веб-прокси сертификат передается в виде пользовательского заголовка запроса, например `X-SSL-CERT`. Чтобы использовать его, Настройте переадресацию сертификатов `Startup.ConfigureServices`в:
+В пользовательских веб-прокси сертификат передается в виде пользовательского заголовка запроса, например `X-SSL-CERT` . Чтобы использовать его, Настройте переадресацию сертификатов в `Startup.ConfigureServices` :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -291,7 +279,7 @@ private static byte[] StringToByteArray(string hex)
 }
 ```
 
-Затем `Startup.Configure` метод добавляет по промежуточного слоя. `UseCertificateForwarding`вызывается перед вызовами функций `UseAuthentication` и `UseAuthorization`:
+`Startup.Configure`Затем метод добавляет по промежуточного слоя. `UseCertificateForwarding`вызывается перед вызовами функций `UseAuthentication` и `UseAuthorization` :
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -420,7 +408,7 @@ private async Task<JsonDocument> GetApiDataWithNamedClient()
 
 ### <a name="create-certificates-in-powershell"></a>Создание сертификатов в PowerShell
 
-Создание сертификатов — самая сложная часть настройки этого потока. Корневой сертификат можно создать с помощью командлета `New-SelfSignedCertificate` PowerShell. При создании сертификата используйте надежный пароль. Важно добавить `KeyUsageProperty` параметр и `KeyUsage` параметр, как показано ниже.
+Создание сертификатов — самая сложная часть настройки этого потока. Корневой сертификат можно создать с помощью `New-SelfSignedCertificate` командлета PowerShell. При создании сертификата используйте надежный пароль. Важно добавить `KeyUsageProperty` параметр и `KeyUsage` параметр, как показано ниже.
 
 #### <a name="create-root-ca"></a>Создать корневой ЦС
 
@@ -435,7 +423,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath roo
 ```
 
 > [!NOTE]
-> Значение `-DnsName` параметра должно соответствовать целевому объекту развертывания приложения. Например, "localhost" для разработки.
+> `-DnsName`Значение параметра должно соответствовать целевому объекту развертывания приложения. Например, "localhost" для разработки.
 
 #### <a name="install-in-the-trusted-root"></a>Установить в доверенном корневом каталоге
 
@@ -445,7 +433,7 @@ https://social.msdn.microsoft.com/Forums/SqlServer/5ed119ef-1704-4be4-8a4f-ef11d
 
 #### <a name="intermediate-certificate"></a>Промежуточный сертификат
 
-Теперь промежуточный сертификат можно создать на основе корневого сертификата. Это не является обязательным для всех вариантов использования, но может потребоваться создать несколько сертификатов или необходимо активировать или отключить группы сертификатов. `TextExtension` Параметр необходим для задания длины пути в базовых ограничениях сертификата.
+Теперь промежуточный сертификат можно создать на основе корневого сертификата. Это не является обязательным для всех вариантов использования, но может потребоваться создать несколько сертификатов или необходимо активировать или отключить группы сертификатов. `TextExtension`Параметр необходим для задания длины пути в базовых ограничениях сертификата.
 
 Затем промежуточный сертификат можно добавить в доверенный промежуточный сертификат в системе узла Windows.
 

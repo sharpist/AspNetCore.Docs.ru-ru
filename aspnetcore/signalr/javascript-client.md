@@ -1,11 +1,11 @@
 ---
 Title: ' ASP.NET Core SignalR клиент JavaScript author: описание: ' обзор ASP.NET Core SignalR клиента JavaScript ".
-Моникерранже: MS. author: MS. Custom: MS. Дата: нет-Loc:
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ' SignalR ' UID: 
+- ИД пользователя "SignalR": 
 
 ---
 # <a name="aspnet-core-signalr-javascript-client"></a>ASP.NET Core SignalR клиент JavaScript
@@ -141,10 +141,10 @@ SignalRОпределяет, какой клиентский метод след
 
 Настройте трассировку журнала на стороне клиента, передав средства ведения журнала и тип события в журнал, когда соединение установлено. Сообщения записываются с указанным уровнем ведения журнала и выше. Доступны следующие уровни ведения журнала:
 
-* `signalR.LogLevel.Error`&ndash;Сообщения об ошибках. Записывает `Error` только сообщения.
-* `signalR.LogLevel.Warning`&ndash;Предупреждающие сообщения о возможных ошибках. Журналы `Warning` и `Error` сообщения.
-* `signalR.LogLevel.Information`&ndash;Сообщения о состоянии без ошибок. Журналы `Information` , `Warning` и `Error` сообщения.
-* `signalR.LogLevel.Trace`&ndash;Сообщения трассировки. Заносит в журнал все данные, включая транспорт данных между концентратором и клиентом.
+* `signalR.LogLevel.Error`: Сообщения об ошибках. Записывает `Error` только сообщения.
+* `signalR.LogLevel.Warning`: Предупреждающие сообщения о возможных ошибках. Журналы `Warning` и `Error` сообщения.
+* `signalR.LogLevel.Information`: Сообщения о состоянии без ошибок. Журналы `Information` , `Warning` и `Error` сообщения.
+* `signalR.LogLevel.Trace`: Сообщения трассировки. Заносит в журнал все данные, включая транспорт данных между концентратором и клиентом.
 
 Чтобы настроить уровень ведения журнала, используйте метод [конфигурелоггинг](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) в [хубконнектионбуилдер](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) . Сообщения записываются в консоль браузера.
 

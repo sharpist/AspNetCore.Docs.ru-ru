@@ -1,23 +1,11 @@
 ---
-title: Общие сведения о безопасности ASP.NET Core
-author: rick-anderson
-description: Основные сведения о проверки подлинности, авторизации и безопасности в ASP.NET Core.
-ms.author: riande
-ms.custom: mvc
-ms.date: 10/24/2018
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: security/index
-ms.openlocfilehash: b507832e34ac850d2bd4e80bab3066e73ea2ad95
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776517"
+название: автор: описание: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="overview-of-aspnet-core-security"></a>Общие сведения о безопасности ASP.NET Core
 
@@ -25,7 +13,7 @@ ASP.NET Core позволяет разработчикам легко настр
 
 ## <a name="aspnet-core-security-features"></a>Функции безопасности в ASP.NET Core
 
-ASP.NET Core предоставляет множество средств и библиотек для защиты приложений, включая встроенные поставщики Identity, однако помимо них можно использовать сторонние службы удостоверений, такие как Facebook, LinkedIn и Twitter. В ASP.NET Core можно легко управлять секретами приложений, которые позволяют хранить и использовать конфиденциальные данные, не предоставляя их в коде.
+ASP.NET Core предоставляет множество средств и библиотек для защиты приложений, включая встроенные поставщики удостоверений, однако помимо них можно использовать сторонние службы удостоверений, такие как Facebook, LinkedIn или Twitter. В ASP.NET Core можно легко управлять секретами приложений, которые позволяют хранить и использовать конфиденциальные данные, не предоставляя их в коде.
 
 ## <a name="authentication-vs-authorization"></a>Проверка подлинности и Авторизация
 
