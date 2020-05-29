@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: ec2bc2867acdd1c9be42f77cb38be36abb8c8108
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
+ms.openlocfilehash: d7182594fbc22d056caff0864a053a0a92fa4e84
+ms.sourcegitcommit: e20653091c30e0768c4f960343e2c3dd658bba13
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967484"
+ms.lasthandoff: 05/16/2020
+ms.locfileid: "83438893"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>Формы и проверка ASP.NET Core Blazor
 
@@ -65,7 +65,7 @@ public class ExampleModel
 
 * Форма проверяет введенные пользователем данные в поле `name`, используя проверку, определенную в типе `ExampleModel`. Модель создается в блоке `@code` компонента и хранится в частном поле (`exampleModel`). Поле назначается атрибуту `Model` элемента `<EditForm>`.
 * Элемент `@bind-Value` компонента `InputText` привязывает:
-  * Свойство модели (`exampleModel.Name`) к свойству `Value` компонента `InputText`.
+  * Свойство модели (`exampleModel.Name`) к свойству `Value` компонента `InputText`. См. сведения о привязке свойств здесь: <xref:blazor/data-binding#parent-to-child-binding-with-component-parameters>.
   * Делегат события изменения к свойству `ValueChanged` компонента `InputText`.
 * Компонент `DataAnnotationsValidator` привязывает поддержку проверки с помощью заметок к данным.
 * Компонент `ValidationSummary` обобщает сообщения проверки.
@@ -202,7 +202,7 @@ public class Starship
 * Дополнительный код выполняется в зависимости от результатов проверки на стороне клиента и сервера путем проверки `isValid`.
 
 ```razor
-<EditForm EditContext="@editContext" OnSubmit="@HandleSubmit">
+<EditForm EditContext="@editContext" OnSubmit="HandleSubmit">
 
     ...
 

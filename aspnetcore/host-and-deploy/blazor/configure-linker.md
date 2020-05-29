@@ -1,30 +1,16 @@
 ---
-title: Настройка компоновщика для ASP.NET Core Blazor
-author: guardrex
-description: Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/04/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/blazor/configure-linker
-ms.openlocfilehash: b274752b375f68cca0c0a9adf9c146bc525d9eba
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775184"
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="configure-the-linker-for-aspnet-core-blazor"></a>Настройка компоновщика для ASP.NET Core Blazor
 
 Автор [Люк Латэм](https://github.com/guardrex) (Luke Latham)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Blazor WebAssembly выполняет компоновку [промежуточного языка (IL)](/dotnet/standard/managed-code#intermediate-language--execution) во время сборки, чтобы затем удалить ненужный IL из выходных сборок приложения. Компоновщик отключен при сборке в конфигурации отладки. Для включения компоновщика приложения должны быть построены в конфигурации выпуска. Мы рекомендуем создавать выпуск при развертывании приложений Blazor WebAssembly. 
 
@@ -32,7 +18,7 @@ Blazor WebAssembly выполняет компоновку [промежуточ
 
 Чтобы обеспечить правильную работу обрезанного приложения после его развертывания, важно часто тестировать сборки выпуска приложения при разработке.
 
-Компоновку для приложений Blazor можно настроить с помощью следующих функций MSBuild:
+Компоновку приложений Blazor можно настроить с помощью следующих функций MSBuild:
 
 * настройка компоновки глобально с помощью [свойства MSBuild](#control-linking-with-an-msbuild-property);
 * управлять компоновкой каждой сборки с помощью [файла конфигурации](#control-linking-with-a-configuration-file).
@@ -118,15 +104,146 @@ Blazor WebAssembly выполняет компоновку [промежуточ
 ```
 
 | Значение региона     | Сборка для одного региона    |
-| ---------------- | ----------------------- |
-| `all`            | Включены все сборки |
-| `cjk`            | *I18N.CJK.dll*          |
-| `mideast`        | *I18N.MidEast.dll*      |
-| `none` (по умолчанию) | Отсутствуют                    |
-| `other`          | *I18N.Other.dll*        |
-| `rare`           | *I18N.Rare.dll*         |
-| `west`           | *I18N.West.dll*         |
+| ---
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-------- | --- название: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Настройка компоновщика для ASP.NET Core Blazor' author: description: 'Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------------ | | `all`            | Включены все сборки | | `cjk`            | *I18N.CJK.dll*          | | `mideast`        | *I18N.MidEast.dll*      | | `none` (по умолчанию) | Нет                    | | `other`          | *I18N.Other.dll*        | | `rare`           | *I18N.Rare.dll*         | | `west`           | *I18N.West.dll*         |
 
 Для разделения нескольких значений используйте запятую (например, `mideast,west`).
 
 Дополнительные сведения см. на странице [I18N: библиотека платформы интернационализации Pnetlib (репозиторий mono/mono GitHub)](https://github.com/mono/mono/tree/master/mcs/class/I18N).
+
+## <a name="additional-resources"></a>Дополнительные ресурсы
+
+* <xref:performance/blazor/webassembly-best-practices#intermediate-language-il-linking>

@@ -1,30 +1,16 @@
 ---
-title: Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor
-author: guardrex
-description: Узнайте, как вызывать функции JavaScript из методов .NET в приложениях Blazor.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 04/07/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 064f504e94cd65862370d4551c6cb44210a8238f
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967302"
+title: 'Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor' author: description: 'Узнайте, как вызывать функции JavaScript из методов .NET в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor
 
 Авторы: [Хавьер Кальварро Нельсон](https://github.com/javiercn) (Javier Calvarro Nelson), [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Приложение Blazor может вызывать функции JavaScript из методов .NET и методы .NET из функций JavaScript. Такой подход называется *взаимодействием с JavaScript* (*JS*).
 

@@ -1,24 +1,11 @@
 ---
-title: Фоновые задачи с размещенными службами в ASP.NET Core
-author: rick-anderson
-description: Узнайте, как реализовать фоновые задачи с размещенными службами в ASP.NET Core.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/10/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/host/hosted-services
-ms.openlocfilehash: 9ffb91226368643d1e1526847ed32f5c93e31080
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775574"
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Фоновые задачи с размещенными службами в ASP.NET Core
 
@@ -56,7 +43,7 @@ ms.locfileid: "82775574"
 
 Интерфейс <xref:Microsoft.Extensions.Hosting.IHostedService> определяет два метода для объектов, которые управляются узлом:
 
-* [StartAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*) &ndash; `StartAsync` содержит логику для запуска фоновой задачи. `StartAsync`Первым*вызывается*:
+* [StartAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*) &ndash; `StartAsync` содержит логику для запуска фоновой задачи. *Первым* вызывается `StartAsync`:
 
   * Настраивается конвейер обработки запросов приложения (`Startup.Configure`).
   * Запускается сервер и активируется [IApplicationLifetime.ApplicationStarted](xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStarted*).
@@ -101,8 +88,8 @@ ms.locfileid: "82775574"
 
   Чтобы увеличить время ожидания завершения работы по умолчанию (пять секунд), установите следующие значения:
 
-  * <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> при использовании универсального узла. Дополнительные сведения см. в разделе <xref:fundamentals/host/generic-host#shutdown-timeout>.
-  * Параметр конфигурации узла для времени ожидания завершения работы при использовании веб-узла. Дополнительные сведения см. в разделе <xref:fundamentals/host/web-host#shutdown-timeout>.
+  * <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> при использовании универсального узла. Для получения дополнительной информации см. <xref:fundamentals/host/generic-host#shutdown-timeout>.
+  * Параметр конфигурации узла для времени ожидания завершения работы при использовании веб-узла. Для получения дополнительной информации см. <xref:fundamentals/host/web-host#shutdown-timeout>.
 
 Размещенная служба активируется при запуске приложения и нормально завершает работу при завершении работы приложения. Если во время выполнения задачи в фоновом режиме возникает ошибка, необходимо вызвать `Dispose`, даже если `StopAsync` не вызывается.
 
@@ -130,9 +117,9 @@ ms.locfileid: "82775574"
 
 Чтобы использовать [службы с заданной областью](xref:fundamentals/dependency-injection#service-lifetimes) в [BackgroundService](#backgroundservice-base-class), создайте область. Для размещенной службы по умолчанию не создается область.
 
-Служба фоновой задачи с заданной областью содержит логику фоновой задачи. Рассмотрим следующий пример:
+Служба фоновой задачи с заданной областью содержит логику фоновой задачи. В следующем примере:
 
-* Служба является асинхронной. Метод `DoWork` возвращает `Task`. В демонстрационных целях в методе `DoWork` ожидается задержка в десять секунд.
+* Служба является асинхронной. Метод `DoWork` возвращает значение `Task`. В демонстрационных целях в методе `DoWork` ожидается задержка в десять секунд.
 * В службу вставляется <xref:Microsoft.Extensions.Logging.ILogger>.
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/ScopedProcessingService.cs?name=snippet1)]
@@ -161,7 +148,7 @@ ms.locfileid: "82775574"
 
 Служба `MonitorLoop` обрабатывает задачи постановки в очередь для размещенной службы при выборе на устройстве ввода ключа `w`:
 
-* В службу `IBackgroundTaskQueue` внедряется `MonitorLoop`.
+* В службу `MonitorLoop` внедряется `IBackgroundTaskQueue`.
 * `IBackgroundTaskQueue.QueueBackgroundWorkItem` вызывается для постановки рабочего элемента в очередь:
 * Рабочий элемент имитирует долго выполняющуюся фоновую задачу:
   * Выполняется три 5-секундных задержки (`Task.Delay`).
@@ -173,7 +160,7 @@ ms.locfileid: "82775574"
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
 
-`MontiorLoop` запущен в `Program.Main`:
+`MonitorLoop` запущен в `Program.Main`:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet4)]
 
@@ -212,8 +199,8 @@ ms.locfileid: "82775574"
 
   Чтобы увеличить время ожидания завершения работы по умолчанию (пять секунд), установите следующие значения:
 
-  * <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> при использовании универсального узла. Дополнительные сведения см. в разделе <xref:fundamentals/host/generic-host#shutdown-timeout>.
-  * Параметр конфигурации узла для времени ожидания завершения работы при использовании веб-узла. Дополнительные сведения см. в разделе <xref:fundamentals/host/web-host#shutdown-timeout>.
+  * <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> при использовании универсального узла. Для получения дополнительной информации см. <xref:fundamentals/host/generic-host#shutdown-timeout>.
+  * Параметр конфигурации узла для времени ожидания завершения работы при использовании веб-узла. Для получения дополнительной информации см. <xref:fundamentals/host/web-host#shutdown-timeout>.
 
 Размещенная служба активируется при запуске приложения и нормально завершает работу при завершении работы приложения. Если во время выполнения задачи в фоновом режиме возникает ошибка, необходимо вызвать `Dispose`, даже если `StopAsync` не вызывается.
 

@@ -4,7 +4,7 @@ author: tratcher
 description: Узнайте, как протестировать ПО промежуточного слоя ASP.NET Core с помощью TestServer.
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/6/2019
+ms.date: 5/12/2020
 no-loc:
 - Blazor
 - Identity
@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/middleware
-ms.openlocfilehash: 06ff7167e32fbd613c18709e31ecd078b3dfc926
-ms.sourcegitcommit: 30fcf69556b6b6ec54a3879e280d5f61f018b48f
+ms.openlocfilehash: ea7fc0e889ab32cbaf23257b3e866519af0727aa
+ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/07/2020
-ms.locfileid: "82876425"
+ms.lasthandoff: 05/15/2020
+ms.locfileid: "83424540"
 ---
 # <a name="test-aspnet-core-middleware"></a>Тестирование ПО промежуточного слоя ASP.NET Core
 
@@ -114,3 +114,20 @@ public async Task TestMiddleware_ExpectedResponse()
 <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> разрешает прямую настройку объекта <xref:Microsoft.AspNetCore.Http.HttpContext> вместо использования абстракций <xref:System.Net.Http.HttpClient>. Используйте <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> для управления структурами, доступными только на сервере, например [HttpContext.Items](xref:Microsoft.AspNetCore.Http.HttpContext.Items) или [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features).
 
 Как и в предыдущем примере, где ожидалась ошибка *404 — не найдено*, проверьте противоположность каждой инструкции `Assert` в предыдущем тесте. Проверка покажет, что тест действительно завершается ошибкой, если ПО промежуточного слоя работает нормально. Убедившись, что тест дает ложноположительный результат, установите окончательные инструкции `Assert` для ожидаемых условий и значений теста. Запустите тест еще раз, чтобы убедиться, что он пройден.
+
+## <a name="testserver-limitations"></a>Ограничения TestServer
+
+TestServer:
+
+* используется для репликации поведения сервера для проверки ПО промежуточного слоя.
+* ***Не*** пытается выполнить репликацию всего поведения <xref:System.Net.Http.HttpClient>.
+* Пытается предоставить клиенту максимально возможный контроль над сервером и обеспечить максимальную возможность отслеживания того, что происходит на сервере. Например, он может вызывать исключения, которые обычно не вызываются `HttpClient`, чтобы напрямую передавать состояние сервера.
+* Не задает некоторые связанные с транспортом заголовки по умолчанию, так как они обычно не относятся к ПО промежуточного слоя. Дополнительные сведения см. в следующем разделе.
+
+### <a name="content-length-and-transfer-encoding-headers"></a>Заголовки Content-Length и Transfer-Encoding
+
+TestServer ***не*** задает связанные с транспортом запросы или заголовки ответа, такие как [Content-Length](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length) и [Transfer-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Transfer-Encoding). Приложения не должны зависеть от этих заголовков, так как их использование определяется клиентом, сценарием и протоколом. Если `Content-Length` и `Transfer-Encoding` требуются для тестирования конкретного сценария, их можно указать в тесте при создании <xref:System.Net.Http.HttpRequestMessage> или <xref:Microsoft.AspNetCore.Http.HttpContext>. См. сведения см. в следующих проблемах GitHub:
+
+* [dotnet/aspnetcore#21677](https://github.com/dotnet/aspnetcore/issues/21677)
+* [dotnet/aspnetcore#18463](https://github.com/dotnet/aspnetcore/issues/18463)
+* [dotnet/aspnetcore#13273](https://github.com/dotnet/aspnetcore/issues/13273)

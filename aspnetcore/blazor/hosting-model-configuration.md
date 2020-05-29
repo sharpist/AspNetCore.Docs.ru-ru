@@ -1,30 +1,16 @@
 ---
-title: Конфигурация модели размещения ASP.NET Core Blazor
-author: guardrex
-description: Сведения о конфигурации модели размещения Blazor, в том числе о том, как интегрировать компоненты Razor в Razor Pages и приложения MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/04/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/hosting-model-configuration
-ms.openlocfilehash: 17ed43a12643f067da73658bec72400acbe1be43
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82772078"
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>Конфигурация модели размещения ASP.NET Core Blazor
 
 Авторы: [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 В этой статье рассматривается конфигурация модели размещения.
 
@@ -34,7 +20,7 @@ ms.locfileid: "82772078"
 
 При локальном запуске приложения среда по умолчанию имеет значение Development. При публикации приложения среда по умолчанию имеет значение Production.
 
-Размещенное приложение Blazor WebAssembly выбирает среду на сервере через прошивку, которая передает среду в браузер, добавляя заголовок `blazor-environment`. В заголовке содержится среда. Размещенное приложение Blazor и серверное приложение совместно используют одну и ту же среду. Дополнительные сведения, в том числе о настройке среды, см. на странице <xref:fundamentals/environments>.
+Размещенное приложение Blazor WebAssembly выбирает среду на сервере через ПО промежуточного слоя, которое передает данные о среде в браузер, добавляя заголовок `blazor-environment`. В заголовке содержится среда. Размещенное приложение Blazor и серверное приложение совместно используют одну и ту же среду. Дополнительные сведения, в том числе о настройке среды, см. на странице <xref:fundamentals/environments>.
 
 Для автономного приложения, выполняемого локально, сервер разработки добавляет заголовок `blazor-environment`, чтобы указать среду разработки. Чтобы указать среду для других сред размещения, добавьте заголовок `blazor-environment`.
 
@@ -59,7 +45,7 @@ ms.locfileid: "82772078"
 > [!NOTE]
 > Сведения об использовании пользовательского файла *web.config* для служб IIS, который не перезаписывается при публикации приложения в папку *Publish*, см. в разделе <xref:host-and-deploy/blazor/webassembly#use-a-custom-webconfig>.
 
-Чтобы получить среду приложения в компоненте, вставьте `IWebAssemblyHostEnvironment` и прочтите свойство `Environment`:
+Чтобы получить среду приложения в компоненте, вставьте <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> и прочтите свойство <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment>:
 
 ```razor
 @page "/"
@@ -71,7 +57,7 @@ ms.locfileid: "82772078"
 <p>Environment: @HostEnvironment.Environment</p>
 ```
 
-Во время запуска `WebAssemblyHostBuilder` раскрывает `IWebAssemblyHostEnvironment` с помощью свойства `HostEnvironment`, которое позволяет разработчикам реализовать в своем коде логику для конкретной среды:
+Во время запуска <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> раскрывает <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> с помощью свойства <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment>, которое позволяет разработчикам реализовать в своем коде логику для конкретной среды:
 
 ```csharp
 if (builder.HostEnvironment.Environment == "Custom")
@@ -85,7 +71,7 @@ if (builder.HostEnvironment.Environment == "Custom")
 * `IsDevelopment()`
 * `IsProduction()`
 * `IsStaging()`
-* `IsEnvironment("{ENVIRONMENT NAME}")
+* `IsEnvironment("{ENVIRONMENT NAME}")`
 
 ```csharp
 if (builder.HostEnvironment.IsStaging())
@@ -99,16 +85,16 @@ if (builder.HostEnvironment.IsEnvironment("Custom"))
 };
 ```
 
-Свойство `IWebAssemblyHostEnvironment.BaseAddress` можно использовать во время запуска, если служба `NavigationManager` недоступна.
+Свойство <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> можно использовать во время запуска, если служба <xref:Microsoft.AspNetCore.Components.NavigationManager> недоступна.
 
 ### <a name="configuration"></a>Параметр Configuration
 
-Blazor WebAssembly загружает конфигурацию из следующих источников.
+Blazor WebAssembly загружает конфигурацию из следующих источников:
 
 * Файлы параметров приложения по умолчанию
   * *wwwroot/appsettings.json*
   * *wwwroot/appsettings.{ENVIRONMENT}.json*
-* Другие [поставщики конфигурации](xref:fundamentals/configuration/index), зарегистрированные приложением. Не все поставщики подходят для приложений Blazor WebAssembly. Сведения о том, какие поставщики поддерживаются для Blazor WebAssembly, можно найти в разделе [Поставщики конфигурации для Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).
+* Другие [поставщики конфигурации](xref:fundamentals/configuration/index), зарегистрированные приложением. Не все поставщики подходят для приложений Blazor WebAssembly. Сведения о том, какие поставщики поддерживаются для Blazor WebAssembly, можно найти в разделе [Поставщики конфигурации для Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).
 
 > [!WARNING]
 > Конфигурация в приложении Blazor WebAssembly видна пользователям. **Не храните учетные данные или секреты приложения в конфигурации.**
@@ -190,7 +176,7 @@ builder.Configuration.Add(memoryConfig);
 }
 ```
 
-Для чтения других файлов конфигурации из папки *wwwroot* в конфигурацию используйте `HttpClient` для получения содержимого файла. При использовании этого подхода существующая регистрация службы `HttpClient` может использовать локальный клиент, созданный для чтения файла, как показано в следующем примере.
+Для чтения других файлов конфигурации из папки *wwwroot* в конфигурацию используйте <xref:System.Net.Http.HttpClient> для получения содержимого файла. При использовании этого подхода существующая регистрация службы <xref:System.Net.Http.HttpClient> может использовать локальный клиент, созданный для чтения файла, как показано в следующем примере.
 
 *wwwroot/cars.json*:
 
@@ -226,9 +212,9 @@ builder.Configuration.AddJsonStream(stream);
 
 ```json
 {
-  "AzureAD": {
-    "Authority": "https://login.microsoftonline.com/",
-    "ClientId": "aeaebf0f-d416-4d92-a08f-e1d5b51fc494"
+  "Local": {
+    "Authority": "{AUTHORITY}",
+    "ClientId": "{CLIENT ID}"
   }
 }
 ```
@@ -237,7 +223,7 @@ builder.Configuration.AddJsonStream(stream);
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
-    builder.Configuration.Bind("AzureAD", options);
+    builder.Configuration.Bind("Local", options.ProviderOptions);
 ```
 
 #### <a name="logging-configuration"></a>Конфигурация ведения журнала
@@ -284,13 +270,13 @@ var hostname = builder.Configuration["HostName"];
 
 Дополнительные сведения о поддержке ведения журнала Blazor WebAssembly см. в разделе <xref:fundamentals/logging/index#create-logs-in-blazor>.
 
-## <a name="blazor-server"></a>Blazor Server
+## <a name="blazor-server"></a>Сервер Blazor
 
 ### <a name="reflect-the-connection-state-in-the-ui"></a>Отражение состояния соединения в пользовательском интерфейсе
 
 Когда клиент обнаруживает, что соединение было потеряно, пользовательский интерфейс по умолчанию отображается пользователю, в то время как клиент пытается восстановить соединение. Если происходит повторный сбой подключения, пользователю предоставляется возможность повторить попытку.
 
-Чтобы настроить пользовательский интерфейс, определите элемент с `id` равным `components-reconnect-modal` в блоке `<body>` страницы Razor *__Host.cshtml*.
+Чтобы настроить пользовательский интерфейс, определите значение `id` элемента `components-reconnect-modal` в блоке `<body>` страницы Razor *_Host.cshtml*.
 
 ```cshtml
 <div id="components-reconnect-modal">
@@ -301,15 +287,181 @@ var hostname = builder.Configuration["HostName"];
 В следующей таблице описаны классы CSS, применяемые к элементу `components-reconnect-modal`.
 
 | Класс CSS                       | Означает&hellip; |
-| ------------------------------- | ----------------- |
-| `components-reconnect-show`     | Потеря соединения. Клиент пытается повторно подключиться. Отобразить модальное окно. |
-| `components-reconnect-hide`     | Активное подключение к серверу восстановлено. Скрыть модальное окно. |
-| `components-reconnect-failed`   | Сбой повторного подключения, возможно, из-за сбоя сети. Чтобы повторить попытку подключения, вызовите метод `window.Blazor.reconnect()`. |
-| `components-reconnect-rejected` | Повторное подключение отклонено. Сервер был достигнут, но отклонил подключение, и состояние пользователя на сервере потеряно. Чтобы перезагрузить приложение, вызовите метод `location.reload()`. Это состояние соединения может появиться в следующих случаях:<ul><li>произошел сбой в цепи на стороне сервера;</li><li>клиент был отключен достаточно долго, чтобы сервер сбросил состояние пользователя. Экземпляры компонентов, с которыми взаимодействовал пользователь, удаляются;</li><li>сервер был перезагружен или был выполнен перезапуск рабочего процесса приложения.</li></ul> |
+| ---
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---------------- | --- название: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: Конфигурация модели размещения ASP.NET Core Blazor автор: описание: Сведения о конфигурации модели размещения Blazor и о том, как интегрировать компоненты Razor с Razor Pages и приложениями MVC.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--------- | | `components-reconnect-show`     | Прерванное подключение. Клиент пытается повторно подключиться. Отобразить модальное окно. | | `components-reconnect-hide`     | Активное подключение к серверу восстановлено. Скрыть модальное окно. | | `components-reconnect-failed`   | Сбой повторного подключения, возможно, из-за сбоя сети. Чтобы повторить попытку подключения, вызовите метод `window.Blazor.reconnect()`. | | `components-reconnect-rejected` | Повторное подключение отклонено. Сервер был достигнут, но отклонил подключение, и состояние пользователя на сервере потеряно. Чтобы перезагрузить приложение, вызовите метод `location.reload()`. Это состояние соединения может появиться в следующих случаях:<ul><li>произошел сбой в цепи на стороне сервера;</li><li>клиент был отключен достаточно долго, чтобы сервер сбросил состояние пользователя. Экземпляры компонентов, с которыми взаимодействовал пользователь, удаляются;</li><li>сервер был перезагружен или был выполнен перезапуск рабочего процесса приложения.</li></ul> |
 
 ### <a name="render-mode"></a>Режим обработки
 
-Приложения Blazor Server по умолчанию настроены на предварительную отрисовку пользовательского интерфейса на сервере, прежде чем будет установлено клиентское соединение с сервером. Это поведение настраивается на странице Razor *_Host.cshtml*.
+Приложения Blazor Server по умолчанию настроены на предварительную отрисовку пользовательского интерфейса на сервере, прежде чем будет установлено подключение клиента с сервером. Это поведение настраивается на странице Razor *_Host.cshtml*.
 
 ```cshtml
 <body>
@@ -321,16 +473,16 @@ var hostname = builder.Configuration["HostName"];
 </body>
 ```
 
-Параметр `RenderMode` настраивает одно из следующих поведений компонента:
+Параметр <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> настраивает одно из следующих поведений компонента:
 
 * компонент предварительно преобразуется в страницу;
 * компонент отображается как статический HTML на странице или включает необходимые сведения для начальной загрузки приложения Blazor из агента пользователя.
 
-| `RenderMode`        | Описание |
-| ------------------- | ----------- |
-| `ServerPrerendered` | Преобразует компонент в статический HTML и включает метку приложения Blazor Server. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
-| `Server`            | Отображает метку приложения Blazor Server. Выходные данные компонента не включаются. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
-| `Static`            | Преобразует компонент в статический HTML. |
+| <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> | Описание |
+| --- | --- |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Преобразует компонент в статический HTML и включает метку приложения Blazor Server. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Отображает метку приложения Blazor Server. Выходные данные компонента не включаются. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Преобразует компонент в статический HTML. |
 
 Отрисовка компонентов сервера из статической HTML-страницы не поддерживается.
 

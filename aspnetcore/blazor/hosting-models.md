@@ -1,30 +1,16 @@
 ---
-title: Модели размещения ASP.NET Core Blazor
-author: guardrex
-description: Общие сведения о моделях размещения Blazor WebAssembly и Blazor Server.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/31/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/hosting-models
-ms.openlocfilehash: 524fd015278d1a5f784fa306f077d06b865201c4
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82772091"
+title: 'Модели размещения ASP.NET Core Blazor' author: description: 'Узнайте о моделях размещения Blazor WebAssembly и Blazor Server.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Модели размещения ASP.NET Core Blazor
 
 Автор: [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Blazor — это веб-платформа, предназначенная для запуска на стороне клиента в браузере в среде выполнения .NET на основе [WebAssembly](https://webassembly.org/) ( *Blazor WebAssembly*) или на стороне сервера в ASP.NET Core ( *Blazor Server*). Независимо от модели размещения, модели приложений и модели компонентов *совпадают*.
 

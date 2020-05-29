@@ -1,34 +1,20 @@
 ---
-title: Внедрение зависимостей Blazor в ASP.NET Core
-author: guardrex
-description: Сведения о том, как приложения Blazor могут внедрять службы в компоненты.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/04/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/dependency-injection
-ms.openlocfilehash: e96698bd0bd8f3f3b290ba24bc8169efb16f1d03
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967536"
+title: 'Внедрение зависимостей ASP.NET Core Blazor' author: description: 'Узнайте, как приложения Blazor могут внедрять службы в компоненты.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>Внедрение зависимостей Blazor в ASP.NET Core
 
 Авторы: [Райнер Стропек](https://www.timecockpit.com) (Rainer Stropek) и [Майк Роусос](https://github.com/mjrousos) (Mike Rousos)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
 Blazor поддерживает [внедрение зависимостей](xref:fundamentals/dependency-injection). Приложения могут использовать встроенные службы, внедряя их в компоненты. Приложения также могут определять и регистрировать пользовательские службы и предоставлять к ним доступ в рамках всего приложения с помощью внедрения зависимостей.
 
-Внедрение зависимостей — это методика доступа к службам, настроенным в центральном расположении. Она может пригодиться в приложениях Blazor для следующих задач:
+Внедрение зависимостей — это методика доступа к службам, настроенным в центральном расположении. Она используется в приложениях Blazor для выполнения следующих задач:
 
 * Совместное использование одного экземпляра класса службы во множестве компонентов, называемого *одноэлементной* службой.
 * Отделение компонентов от конкретных классов служб с помощью абстракций ссылок. Например, рассмотрим интерфейс `IDataAccess` для доступа к данным в приложении. Этот интерфейс реализуется конкретным классом `DataAccess` и регистрируется в качестве службы в контейнере службы приложения. Когда компонент использует внедрение зависимостей для получения реализации `IDataAccess`, этот компонент не связывается с конкретным типом. Реализация может быть переключена, например, для реализации макета в модульных тестах.
@@ -38,10 +24,59 @@ Blazor поддерживает [внедрение зависимостей](xr
 Службы по умолчанию автоматически добавляются в коллекцию служб приложения.
 
 | Служба | Время существования | Описание |
-| ------- | -------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Временный | Предоставляет методы для отправки HTTP-запросов и получения HTTP-ответов от ресурса с заданным URI.<br><br>Экземпляр `HttpClient` в приложении Blazor WebAssembly использует браузер для обработки HTTP-трафика в фоновом режиме.<br><br>Приложения Blazor Server не включают `HttpClient`, по умолчанию настроенный в качестве службы. Предоставьте `HttpClient` приложению Blazor Server.<br><br>Для получения дополнительной информации см. <xref:blazor/call-web-api>. |
-| `IJSRuntime` | Одноэлементный (Blazor WebAssembly)<br>С заданной областью (Blazor Server) | Представляет экземпляр среды выполнения JavaScript, в которую отправляются вызовы JavaScript. Для получения дополнительной информации см. <xref:blazor/call-javascript-from-dotnet>. |
-| `NavigationManager` | Одноэлементный (Blazor WebAssembly)<br>С заданной областью (Blazor Server) | Содержит вспомогательные методы для работы с URI и состоянием навигации. Дополнительные сведения см. в разделе [URI и вспомогательные инструменты состояния навигации](xref:blazor/routing#uri-and-navigation-state-helpers). |
+| ---
+title: 'Внедрение зависимостей ASP.NET Core Blazor' author: description: 'Узнайте, как приложения Blazor могут внедрять службы в компоненты.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | --- название: 'Внедрение зависимостей ASP.NET Core Blazor' author: description: 'Узнайте, как приложения Blazor могут внедрять службы в компоненты.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Внедрение зависимостей ASP.NET Core Blazor' author: description: 'Узнайте, как приложения Blazor могут внедрять службы в компоненты.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | --- название: 'Внедрение зависимостей ASP.NET Core Blazor' author: description: 'Узнайте, как приложения Blazor могут внедрять службы в компоненты.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Внедрение зависимостей ASP.NET Core Blazor' author: description: 'Узнайте, как приложения Blazor могут внедрять службы в компоненты.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Внедрение зависимостей ASP.NET Core Blazor' author: description: 'Узнайте, как приложения Blazor могут внедрять службы в компоненты.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | | <xref:System.Net.Http.HttpClient> | Временная | Предоставляет методы для отправки HTTP-запросов и получения HTTP-ответов от ресурса с заданным URI.<br><br>Экземпляр `HttpClient` в приложении Blazor WebAssembly использует браузер для обработки HTTP-трафика в фоновом режиме.<br><br>Приложения Blazor Server не включают клиент `HttpClient`, по умолчанию настроенный в качестве службы. Предоставьте `HttpClient` приложению Blazor Server.<br><br>Для получения дополнительной информации см. <xref:blazor/call-web-api>. | | `IJSRuntime` | Отдельная (Blazor WebAssembly)<br>С областью действия (Blazor Server) | Представляет экземпляр среды выполнения JavaScript, в которую отправляются вызовы JavaScript. Для получения дополнительной информации см. <xref:blazor/call-javascript-from-dotnet>. | | `NavigationManager` | Отдельная (Blazor WebAssembly)<br>С областью действия (Blazor Server) | Содержит вспомогательные методы для работы с URI и состоянием навигации. Дополнительные сведения см. в разделе [URI и вспомогательные инструменты состояния навигации](xref:blazor/routing#uri-and-navigation-state-helpers). |
 
 Пользовательский поставщик услуг не предоставляет перечисленные в таблице службы по умолчанию автоматически. Если вы используете пользовательский поставщик услуг и нуждаетесь в какой-либо из служб, указанных в таблице, добавьте необходимые службы в новый поставщик услуг.
 
@@ -108,7 +143,7 @@ public class Program
 }
 ```
 
-### <a name="blazor-server"></a>Blazor Server
+### <a name="blazor-server"></a>Сервер Blazor
 
 После создания приложения изучите метод `Startup.ConfigureServices`:
 
@@ -133,10 +168,51 @@ public void ConfigureServices(IServiceCollection services)
 Для служб можно настроить параметры времени существования, указанные в следующей таблице.
 
 | Время существования | Описание |
-| -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | Сейчас в приложениях Blazor WebAssembly концепция областей внедрения зависимостей отсутствует. Службы, зарегистрированные как `Scoped`, работают аналогично службам `Singleton`. Однако модель размещения сервера Blazor поддерживает время существования `Scoped`. В приложениях Blazor Server регистрация службы с заданной областью ограничивается *соединением*. По этой причине использование служб с заданной областью предпочтительно для служб, которые должны быть ограничены текущим пользователем, даже если текущим намерением является запуск на стороне клиента в браузере. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | Система внедрения зависимостей создает *один экземпляр* службы. Все компоненты, для которых необходима служба `Singleton`, получают экземпляр той же службы. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Каждый раз, когда компонент получает экземпляр службы `Transient` из контейнера службы, он получает *новый экземпляр* этой службы. |
+| ---
+title: 'Внедрение зависимостей ASP.NET Core Blazor' author: description: 'Узнайте, как приложения Blazor могут внедрять службы в компоненты.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Внедрение зависимостей ASP.NET Core Blazor' author: description: 'Узнайте, как приложения Blazor могут внедрять службы в компоненты.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | --- название: 'Внедрение зависимостей ASP.NET Core Blazor' author: description: 'Узнайте, как приложения Blazor могут внедрять службы в компоненты.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Внедрение зависимостей ASP.NET Core Blazor' author: description: 'Узнайте, как приложения Blazor могут внедрять службы в компоненты.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Внедрение зависимостей ASP.NET Core Blazor' author: description: 'Узнайте, как приложения Blazor могут внедрять службы в компоненты.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> |  Сейчас в приложениях Blazor WebAssembly концепция областей внедрения зависимостей отсутствует. Службы, зарегистрированные как `Scoped`, работают аналогично службам `Singleton`. Однако модель размещения сервера Blazor поддерживает время существования `Scoped`. В приложениях Blazor Server регистрация службы с заданной областью ограничивается *соединением*. По этой причине использование служб с заданной областью предпочтительно для служб, которые должны быть ограничены текущим пользователем, даже если текущим намерением является запуск на стороне клиента в браузере. | | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | Система внедрения зависимостей создает *один экземпляр* службы. Все компоненты, для которых необходима служба `Singleton`, получают экземпляр той же службы. | | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Каждый раз, когда компонент получает экземпляр службы `Transient` из контейнера службы, он получает *новый экземпляр* этой службы. |
 
 Система внедрения зависимостей основана на системе внедрения зависимостей в ASP.NET Core. Для получения дополнительной информации см. <xref:fundamentals/dependency-injection>.
 
@@ -153,7 +229,7 @@ public void ConfigureServices(IServiceCollection services)
 
 В следующем примере показано, как использовать `@inject`. Служба, реализующая `Services.IDataAccess`, внедряется в свойство `DataRepository` компонента. Обратите внимание, что код использует только абстракцию `IDataAccess`:
 
-[!code-razor[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,23)]
+[!code-razor[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,20)]
 
 На внутреннем уровне создаваемое свойство (`DataRepository`) использует атрибут `InjectAttribute`. Как правило, этот атрибут не используется напрямую. Если базовый класс необходим для компонентов, а для базового класса также требуются обязательные свойства, добавьте `InjectAttribute` вручную:
 

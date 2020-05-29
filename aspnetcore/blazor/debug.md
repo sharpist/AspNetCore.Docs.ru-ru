@@ -1,30 +1,16 @@
 ---
-title: Отладка ASP.NET Core Blazor WebAssembly
-author: guardrex
-description: Узнайте, как выполнять отладку приложений Blazor.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 04/16/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/debug
-ms.openlocfilehash: 9acbb8e7b122a8d527d16ce33af01c2e7e7608bf
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767542"
+title: 'Отладка ASP.NET Core Blazor WebAssembly' author: description: 'Узнайте, как отлаживать приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>Отладка ASP.NET Core Blazor WebAssembly
 
 [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Приложения Blazor WebAssembly можно отлаживать с помощью средств разработки браузера в браузерах на основе Chromium (Edge/Chrome).  Кроме того, можно выполнить отладку приложения с помощью Visual Studio или Visual Studio Code.
 
@@ -58,8 +44,6 @@ ms.locfileid: "82767542"
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Включение отладки для Visual Studio и Visual Studio Code
 
-Отладка включается автоматически для новых проектов, созданных с помощью шаблона проекта Blazor WebAssembly ASP.NET Core 3.2 (предварительная версия 3) или более поздней версии ([текущая версия 3.2 Preview 4](xref:blazor/get-started)).
-
 Чтобы включить отладку для существующего приложения Blazor WebAssembly, измените файл *launchSettings.json* в запускаемом проекте, включив в него следующее свойство `inspectUri` в каждом профиле запуска:
 
 ```json
@@ -79,7 +63,6 @@ ms.locfileid: "82767542"
 
 Чтобы выполнить отладку приложения Blazor WebAssembly в Visual Studio, сделайте следующее:
 
-1. Убедитесь, что у вас [установлен последний предварительный выпуск Visual Studio 2019 16.6](https://visualstudio.com/preview) (предварительная версия 2 или более поздняя).
 1. Создайте размещенное приложение Blazor WebAssembly ASP.NET Core.
 1. Нажмите клавишу <kbd>F5</kbd>, чтобы запустить приложение в отладчике.
 1. Установите точку останова в *Counter.razor* в методе `IncrementCount`.

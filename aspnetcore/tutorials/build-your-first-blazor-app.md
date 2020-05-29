@@ -1,32 +1,26 @@
 ---
-title: Создание первого приложения Blazor
-author: guardrex
-description: Узнайте, как создать приложение Blazor по шагам.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/20/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: tutorials/first-blazor-app
-ms.openlocfilehash: 5a5a56ee646cba21a883df2cf686cb1ccb18d7f9
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776608"
+title: 'Создание первого приложения Blazor' author: description: 'Пошаговое создание приложения Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="build-your-first-blazor-app"></a>Создание первого приложения Blazor
 
 Авторы: [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+В этом учебнике показано, как создать и изменить приложение Blazor. Вы научитесь:
 
-В этом учебнике показано, как создать и изменить приложение Blazor.
+> [!div class="checklist"]
+> * создавать проект приложения Blazor со списком задач;
+> * изменять компоненты Razor;
+> * использовать обработку событий и привязку данных в компонентах;
+> * использовать внедрение зависимостей и маршрутизацию в приложении Blazor.
+
+Когда вы выполните задачи из этого руководства, у вас будет работающее приложение чата.
 
 ## <a name="build-components"></a>Сборка компонентов
 
@@ -127,7 +121,7 @@ ms.locfileid: "82776608"
 
 *Pages/FetchData.razor*:
 
-[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-8)]
+[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-9)]
 
 Цикл [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) используется для отображения каждого экземпляра прогноза в отдельной строке в таблице погоды.
 
@@ -213,6 +207,18 @@ ms.locfileid: "82776608"
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Todo.razor)]
 
 1. Скомпилируйте и запустите приложение. Добавьте элементы в список дел, чтобы протестировать новый код.
+
+## <a name="next-steps"></a>Следующие шаги
+
+В этом руководстве вы узнали, как:
+
+> [!div class="checklist"]
+> * создавать проект приложения Blazor со списком задач;
+> * изменять компоненты Razor;
+> * использовать обработку событий и привязку данных в компонентах;
+> * использовать внедрение зависимостей и маршрутизацию в приложении Blazor.
+
+Узнайте, как создавать и использовать компоненты.
 
 > [!div class="nextstepaction"]
 > <xref:blazor/components>

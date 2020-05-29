@@ -1,24 +1,11 @@
 ---
-title: Интеграционные тесты на платформе ASP.NET Core
-author: rick-anderson
-description: Узнайте, как с помощью интеграционных тестов можно проверить работу компонентов приложения на уровне инфраструктуры, включая базу данных, файловую систему и сеть.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 01/06/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: test/integration-tests
-ms.openlocfilehash: a01d2881133f39c1a26e4724ae25336c54746bc5
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766398"
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Интеграционные тесты на платформе ASP.NET Core
 
@@ -32,11 +19,11 @@ ms.locfileid: "82766398"
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
-В качестве примера используется приложение Razor Pages; также предполагается базовое понимание этого приложения. Если вы не знакомы с Razor Pages, см. следующие разделы:
+В качестве примера используется приложение Razor Pages (предполагается базовое понимание Razor Pages). Если вы не знакомы с Razor Pages, см. следующие разделы:
 
 * [Введение в Razor Pages](xref:razor-pages/index)
 * [Начало работы с Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-* [Модульные тесты страниц Razor](xref:test/razor-pages-tests)
+* [Модульные тесты Razor Pages](xref:test/razor-pages-tests)
 
 > [!NOTE]
 > Для тестирования одностраничных приложений мы рекомендуем инструмент типа [Selenium](https://www.seleniumhq.org/), с помощью которого можно автоматизировать браузер.
@@ -103,7 +90,7 @@ ms.locfileid: "82766398"
 > [!NOTE]
 > При создании тестового проекта для приложения отделяйте модульные тесты от интеграционных, помещая их в разные проекты. Это гарантирует, что компоненты тестирования инфраструктуры не будут случайно добавлены в модульные тесты. Разделение модульных и интеграционных тестов также позволяет контролировать, какой набор тестов выполняется.
 
-В сущности, между конфигурацией для тестов приложений Razor Pages и приложений MVC нет никаких отличий. Единственное отличие заключается в том, как именуются тесты. В приложении Razor Pages тесты конечных точек страницы обычно именуются по классу модели страницы (например, `IndexPageTests` для тестирования интеграции компонентов на странице Index). В приложении MVC тесты обычно организованы по классам контроллеров и именуются по контроллеру, который они проверяют (например, `HomeControllerTests` для тестирования интеграции компонентов на контроллере Home).
+В сущности, между конфигурацией для тестов приложений Razor Pages и приложений MVC нет никаких отличий. Единственное отличие заключается в том, как именуются тесты. В приложении Razor Pages тесты конечных точек страницы обычно именуются по классу модели страницы (например, `IndexPageTests` для тестирования интеграции компонентов на странице индекса). В приложении MVC тесты обычно организованы по классам контроллеров и именуются по контроллеру, который они проверяют (например, `HomeControllerTests` для тестирования интеграции компонентов на контроллере Home).
 
 ## <a name="test-app-prerequisites"></a>Проверка необходимых требований к приложению
 
@@ -155,6 +142,8 @@ ms.locfileid: "82766398"
    Заполнение базы данных в [примере приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) выполняется методом `InitializeDbForTests`. Этот метод описан в разделе [Пример интеграционных тестов: организация приложения для тестирования](#test-app-organization).
 
    Контекст базы данных ТС регистрируется в методе `Startup.ConfigureServices`. Обратный вызов `builder.ConfigureServices` тестового приложения выполняется *после* выполнения кода `Startup.ConfigureServices` приложения. Порядок выполнения является критическим изменением для [универсального узла](xref:fundamentals/host/generic-host) с выпуском ASP.NET Core 3.0. Чтобы использовать для тестов базу данных, отличную от базы данных приложения, необходимо заменить контекст базы данных приложения в `builder.ConfigureServices`.
+
+   В тестируемых системах, которые по-прежнему используют [веб-узел} (xref:fundamentals/host/web-host), обратный вызов `builder.ConfigureServices` тестового приложения выполняется *до* выполнения кода `Startup.ConfigureServices` тестируемой системы. Обратный вызов `builder.ConfigureTestServices` тестового приложения выполняется *позже*.
 
    Пример приложения находит дескриптор службы для контекста базы данных и использует дескриптор для удаления регистрации службы. Затем фабрика добавляет новый `ApplicationDbContext`, который использует базу данных в памяти для тестов.
 
@@ -213,11 +202,45 @@ ms.locfileid: "82766398"
 В следующей таблице показаны [WebApplicationFactoryClientOptions](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) по умолчанию, доступные при создании экземпляров `HttpClient`.
 
 | Параметр | Описание | Значение по умолчанию |
-| ------ | ----------- | ------- |
-| [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Возвращает или задает, должны ли экземпляры `HttpClient` автоматически следовать ответам перенаправления. | `true` |
-| [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Возвращает или задает базовый адрес экземпляров `HttpClient`. | `http://localhost` |
-| [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Возвращает или задает, должны ли экземпляры `HttpClient` обрабатывать файлы cookie. | `true` |
-| [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Возвращает или задает максимальное число ответов на перенаправление, которым должны следовать экземпляры `HttpClient`. | 7 |
+| ---
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | | [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Возвращает или задает значение, указывающее, должны ли экземпляры `HttpClient` автоматически следовать ответам перенаправления. | `true` | | [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Возвращает или задает базовый адрес экземпляров `HttpClient`. | `http://localhost` | | [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Возвращает или задает значение, указывающее, должны ли экземпляры `HttpClient` обрабатывать файлы cookie. | `true` | | [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Возвращает или задает максимальное число ответов на перенаправление, которым должны следовать экземпляры `HttpClient`. | 7 |
 
 Создайте класс `WebApplicationFactoryClientOptions` и передайте его в метод [CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient) (значения по умолчанию показаны в примере кода):
 
@@ -289,7 +312,7 @@ _client = _factory.CreateClient(clientOptions);
 * перенаправляет пользователя, не прошедшего проверку подлинности, на страницу входа;
 * возвращает содержимое для пользователя, прошедшего проверку подлинности.
 
-В ТС на странице `/SecurePage` используется соглашение [AuthorizePage](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizepage) для применения [AuthorizeFilter](/dotnet/api/microsoft.aspnetcore.mvc.authorization.authorizefilter) на странице. Дополнительные сведения см. в разделе [Соглашения проверки подлинности Razor Pages](xref:security/authorization/razor-pages-authorization#require-authorization-to-access-a-page).
+В ТС на странице `/SecurePage` используется соглашение [AuthorizePage](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizepage) для применения [AuthorizeFilter](/dotnet/api/microsoft.aspnetcore.mvc.authorization.authorizefilter) на странице. Дополнительные сведения см. в разделе [Соглашения проверки подлинности RazorPages](xref:security/authorization/razor-pages-authorization#require-authorization-to-access-a-page).
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet1)]
 
@@ -314,16 +337,23 @@ _client = _factory.CreateClient(clientOptions);
 
 ## <a name="set-the-environment"></a>Указание среды
 
-По умолчанию узел и среда приложений ТС настроены для использования среды Development. Чтобы переопределить среду ТС, выполните следующие действия.
+По умолчанию узел и среда приложений ТС настроены для использования среды Development. Чтобы переопределить среду ТС при использовании `IHostBuilder`, выполните следующие действия:
 
 * Задайте переменную среды `ASPNETCORE_ENVIRONMENT` (например, `Staging`, `Production` или другое настраиваемое значение, например `Testing`).
 * Переопределите `CreateHostBuilder` в тестовом приложении, чтобы считать переменные среды с префиксом `ASPNETCORE`.
 
 ```csharp
-protected override IHostBuilder CreateHostBuilder() => 
+protected override IHostBuilder CreateHostBuilder() =>
     base.CreateHostBuilder()
         .ConfigureHostConfiguration(
             config => config.AddEnvironmentVariables("ASPNETCORE"));
+```
+
+Если ТС использует веб-узел (`IWebHostBuilder`), переопределите `CreateWebHostBuilder`.
+
+```csharp
+protected override IWebHostBuilder CreateWebHostBuilder() =>
+    base.CreateWebHostBuilder().UseEnvironment("Testing");
 ```
 
 ## <a name="how-the-test-infrastructure-infers-the-app-content-root-path"></a>Определение тестовой инфраструктурой пути к корневому каталогу содержимого приложения
@@ -351,9 +381,78 @@ protected override IHostBuilder CreateHostBuilder() =>
 [Пример приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) состоит из двух приложений:
 
 | Приложение | каталог проекта; | Описание |
-| --- | ----------------- | ----------- |
-| Приложение для сообщений (ТС) | *src/RazorPagesProject* | Позволяет пользователю добавлять, удалять сообщения (по одному или все) и анализировать их. |
-| Тестирование приложения. | *tests/RazorPagesProject.Tests* | Используется для тестирования интеграции ТС. |
+| --- | ---
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--------- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | | Приложение для сообщений (ТС) | *src/RazorPagesProject* | Позволяет пользователю добавлять, удалять сообщения (по одному или все) и анализировать их. | | Тестовое приложение | *tests/RazorPagesProject.Tests* | Используется для тестирования интеграции ТС. |
 
 Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](https://visualstudio.microsoft.com). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в каталоге *tests/RazorPagesProject.Tests*.
 
@@ -363,7 +462,7 @@ dotnet test
 
 ### <a name="message-app-sut-organization"></a>Организация приложения для сообщений (ТС)
 
-ТС — это система сообщений Razor Pages со следующими характеристиками.
+Тестируемая система (ТС) — это система сообщений Razor Pages со следующими характеристиками:
 
 * Страница индекса приложения (*Pages/Index.cshtml* и *Pages/Index.cshtml.cs*) предоставляет методы пользовательского интерфейса и модели страницы для управления добавлением, удалением и анализом сообщений (поиск среднего числа слов на сообщение).
 * Сообщение описывается классом `Message` (*Data/Message.cs*) с двумя свойствами: `Id` (ключ) и `Text` (сообщение). Свойство `Text` является обязательным и ограничено 200 символами.
@@ -374,18 +473,93 @@ dotnet test
 
 &#8224;В разделе документации о EF [Тестирование с помощью InMemory](/ef/core/miscellaneous/testing/in-memory) объясняется, как использовать базу данных в памяти для тестов с помощью MSTest. В этом разделе используется платформа тестирования [xUnit](https://xunit.github.io/). Концепции тестирования и реализации тестов в разных платформах тестирования похожи, но не идентичны.
 
-Несмотря на то, что приложение не использует шаблон репозитория и не является эффективным примером [шаблона "единица работы" (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages поддерживает такие шаблоны разработки. Дополнительные сведения см. в разделах [Проектирование уровня сохраняемости инфраструктуры](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) и [Логика контроллера тестирования](/aspnet/core/mvc/controllers/testing) (пример реализует шаблон репозитория).
+Несмотря на то, что приложение не использует шаблон репозитория и не является эффективным примером [шаблона "единица работы" (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages поддерживает такие шаблоны разработки. Дополнительные сведения см. в разделах [Проектирование уровня сохраняемости инфраструктуры](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) и [Логика контроллера тестирования](/aspnet/core/mvc/controllers/testing) (пример реализует шаблон репозитория).
 
 ### <a name="test-app-organization"></a>Организация приложения для тестирования
 
 Тестовое приложение — это консольное приложение в папке *tests/RazorPagesProject.Tests*.
 
 | Каталог тестового приложения | Описание |
-| ------------------ | ----------- |
-| *AuthTests* | Содержит методы теста для:<ul><li>доступа к защищенной странице пользователя, не прошедшего проверку подлинности;</li><li>доступа к защищенной странице пользователя, прошедшего проверку подлинности с помощью макета <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>;</li><li>получения профиля пользователя GitHub и проверки имени входа пользователя профиля.</li></ul> |
-| *BasicTests* | Содержит метод теста для маршрутизации и типа содержимого. |
-| *IntegrationTests* | Содержит интеграционные тесты для страницы индекса с помощью настраиваемого класса `WebApplicationFactory`. |
-| *Helpers/Utilities* | <ul><li>*Utilities.cs* содержит метод `InitializeDbForTests`, используемый для заполнения базы данных тестовыми данными.</li><li>*HtmlHelpers.cs* предоставляет метод, возвращающий `IHtmlDocument` AngleSharp для использования методами теста.</li><li>*HttpClientExtensions.cs* предоставляет перегрузки для `SendAsync` для отправки запросов к ТС.</li></ul> |
+| ---
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--------- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | | *AuthTests* | Содержит методы теста для:<ul><li>доступа к защищенной странице пользователя, не прошедшего проверку подлинности;</li><li>доступа к защищенной странице пользователя, прошедшего проверку подлинности с помощью макета <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>;</li><li>получения профиля пользователя GitHub и проверки имени входа пользователя профиля.</li></ul> | | *BasicTests* | Содержит метод теста для маршрутизации и типа содержимого. | | *IntegrationTests* | Содержит интеграционные тесты для страницы индекса с использованием настраиваемого класса `WebApplicationFactory`. *Helpers/Utilities* | <ul><li>*Utilities.cs* содержит метод `InitializeDbForTests`, используемый для заполнения базы данных тестовыми данными.</li><li>*HtmlHelpers.cs* предоставляет метод, возвращающий `IHtmlDocument` AngleSharp для использования методами теста.</li><li>*HttpClientExtensions.cs* предоставляет перегрузки для `SendAsync` для отправки запросов к ТС.</li></ul> |
 
 Используемая платформа тестирования — [xUnit](https://xunit.github.io/). Интеграционные тесты выполняются с помощью [Microsoft.AspNetCore.TestHost](/dotnet/api/microsoft.aspnetcore.testhost), который включает [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver). Поскольку пакет [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) используется для настройки узла тестирования и тестового сервера, для пакетов `TestHost` и `TestServer` не требуются прямые ссылки на пакеты в файле проекта тестового приложения или конфигурации разработчика в тестовом приложении.
 
@@ -399,6 +573,8 @@ dotnet test
 
 Контекст базы данных ТС регистрируется в методе `Startup.ConfigureServices`. Обратный вызов `builder.ConfigureServices` тестового приложения выполняется *после* выполнения кода `Startup.ConfigureServices` приложения. Чтобы использовать для тестов другую базу данных, необходимо заменить контекст базы данных приложения в `builder.ConfigureServices`. Дополнительные сведения см. в разделе [Настройка WebApplicationFactory](#customize-webapplicationfactory).
 
+В тестируемых системах, которые по-прежнему используют [веб-узел} (xref:fundamentals/host/web-host), обратный вызов `builder.ConfigureServices` тестового приложения выполняется *до* выполнения кода `Startup.ConfigureServices` тестируемой системы. Обратный вызов `builder.ConfigureTestServices` тестового приложения выполняется *позже*.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -409,11 +585,11 @@ dotnet test
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
-В качестве примера используется приложение Razor Pages; также предполагается базовое понимание этого приложения. Если вы не знакомы с Razor Pages, см. следующие разделы:
+В качестве примера используется приложение Razor Pages (предполагается базовое понимание Razor Pages). Если вы не знакомы с Razor Pages, см. следующие разделы:
 
 * [Введение в Razor Pages](xref:razor-pages/index)
 * [Начало работы с Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-* [Модульные тесты страниц Razor](xref:test/razor-pages-tests)
+* [Модульные тесты Razor Pages](xref:test/razor-pages-tests)
 
 > [!NOTE]
 > Для тестирования одностраничных приложений мы рекомендуем инструмент типа [Selenium](https://www.seleniumhq.org/), с помощью которого можно автоматизировать браузер.
@@ -480,7 +656,7 @@ dotnet test
 > [!NOTE]
 > При создании тестового проекта для приложения отделяйте модульные тесты от интеграционных, помещая их в разные проекты. Это гарантирует, что компоненты тестирования инфраструктуры не будут случайно добавлены в модульные тесты. Разделение модульных и интеграционных тестов также позволяет контролировать, какой набор тестов выполняется.
 
-В сущности, между конфигурацией для тестов приложений Razor Pages и приложений MVC нет никаких отличий. Единственное отличие заключается в том, как именуются тесты. В приложении Razor Pages тесты конечных точек страницы обычно именуются по классу модели страницы (например, `IndexPageTests` для тестирования интеграции компонентов на странице Index). В приложении MVC тесты обычно организованы по классам контроллеров и именуются по контроллеру, который они проверяют (например, `HomeControllerTests` для тестирования интеграции компонентов на контроллере Home).
+В сущности, между конфигурацией для тестов приложений Razor Pages и приложений MVC нет никаких отличий. Единственное отличие заключается в том, как именуются тесты. В приложении Razor Pages тесты конечных точек страницы обычно именуются по классу модели страницы (например, `IndexPageTests` для тестирования интеграции компонентов на странице индекса). В приложении MVC тесты обычно организованы по классам контроллеров и именуются по контроллеру, который они проверяют (например, `HomeControllerTests` для тестирования интеграции компонентов на контроллере Home).
 
 ## <a name="test-app-prerequisites"></a>Проверка необходимых требований к приложению
 
@@ -519,7 +695,7 @@ dotnet test
 
 Конфигурацию веб-узла можно создать независимо от тестовых классов путем наследования от `WebApplicationFactory` для создания одной или нескольких пользовательских фабрик:
 
-1. Выполните наследование от `WebApplicationFactory` и переопределите [ConfigureWebHost](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.configurewebhost). [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) позволяет настраивать коллекцию служб с помощью [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices):
+1. Выполните наследование от `WebApplicationFactory` и переопределите [ConfigureWebHost](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.configurewebhost). [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) позволяет настраивать коллекцию служб с помощью команды [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices), которая выполняется перед командой `Startup.ConfigureServices` приложения. [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) позволяет переопределять и изменять зарегистрированные службы в коллекции служб с помощью команды [ConfigureTestServices](/dotnet/api/microsoft.aspnetcore.testhost.webhostbuilderextensions.configuretestservices).
 
    [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
 
@@ -567,11 +743,45 @@ dotnet test
 В следующей таблице показаны [WebApplicationFactoryClientOptions](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) по умолчанию, доступные при создании экземпляров `HttpClient`.
 
 | Параметр | Описание | Значение по умолчанию |
-| ------ | ----------- | ------- |
-| [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Возвращает или задает, должны ли экземпляры `HttpClient` автоматически следовать ответам перенаправления. | `true` |
-| [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Возвращает или задает базовый адрес экземпляров `HttpClient`. | `http://localhost` |
-| [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Возвращает или задает, должны ли экземпляры `HttpClient` обрабатывать файлы cookie. | `true` |
-| [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Возвращает или задает максимальное число ответов на перенаправление, которым должны следовать экземпляры `HttpClient`. | 7 |
+| ---
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | | [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Возвращает или задает значение, указывающее, должны ли экземпляры `HttpClient` автоматически следовать ответам перенаправления. | `true` | | [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Возвращает или задает базовый адрес экземпляров `HttpClient`. | `http://localhost` | | [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Возвращает или задает значение, указывающее, должны ли экземпляры `HttpClient` обрабатывать файлы cookie. | `true` | | [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Возвращает или задает максимальное число ответов на перенаправление, которым должны следовать экземпляры `HttpClient`. | 7 |
 
 Создайте класс `WebApplicationFactoryClientOptions` и передайте его в метод [CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient) (значения по умолчанию показаны в примере кода):
 
@@ -643,7 +853,7 @@ _client = _factory.CreateClient(clientOptions);
 * перенаправляет пользователя, не прошедшего проверку подлинности, на страницу входа;
 * возвращает содержимое для пользователя, прошедшего проверку подлинности.
 
-В ТС на странице `/SecurePage` используется соглашение [AuthorizePage](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizepage) для применения [AuthorizeFilter](/dotnet/api/microsoft.aspnetcore.mvc.authorization.authorizefilter) на странице. Дополнительные сведения см. в разделе [Соглашения проверки подлинности Razor Pages](xref:security/authorization/razor-pages-authorization#require-authorization-to-access-a-page).
+В ТС на странице `/SecurePage` используется соглашение [AuthorizePage](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizepage) для применения [AuthorizeFilter](/dotnet/api/microsoft.aspnetcore.mvc.authorization.authorizefilter) на странице. Дополнительные сведения см. в разделе [Соглашения проверки подлинности RazorPages](xref:security/authorization/razor-pages-authorization#require-authorization-to-access-a-page).
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet1)]
 
@@ -671,13 +881,38 @@ _client = _factory.CreateClient(clientOptions);
 По умолчанию узел и среда приложений ТС настроены для использования среды Development. Чтобы переопределить среду ТС, выполните следующие действия.
 
 * Задайте переменную среды `ASPNETCORE_ENVIRONMENT` (например, `Staging`, `Production` или другое настраиваемое значение, например `Testing`).
-* Переопределите `CreateHostBuilder` в тестовом приложении, чтобы считать переменные среды с префиксом `ASPNETCORE`.
+* Переопределите `CreateWebHostBuilder` в тестовом приложении, чтобы считать переменные среды `ASPNETCORE_ENVIRONMENT`.
 
 ```csharp
-protected override IHostBuilder CreateHostBuilder() => 
-    base.CreateHostBuilder()
-        .ConfigureHostConfiguration(
-            config => config.AddEnvironmentVariables("ASPNETCORE"));
+public class CustomWebApplicationFactory<TStartup> 
+    : WebApplicationFactory<TStartup> where TStartup: class
+{
+    protected override IWebHostBuilder CreateWebHostBuilder()
+    {
+        return base.CreateWebHostBuilder()
+            .UseEnvironment(
+                Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+    }
+
+    ...
+}
+```
+
+Среду также можно задать непосредственно в построителе узлов в пользовательском классе <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>.
+
+```csharp
+public class CustomWebApplicationFactory<TStartup> 
+    : WebApplicationFactory<TStartup> where TStartup: class
+{
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        builder.UseEnvironment(
+            Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+    
+        ...
+    }
+
+    ...
 ```
 
 ## <a name="how-the-test-infrastructure-infers-the-app-content-root-path"></a>Определение тестовой инфраструктурой пути к корневому каталогу содержимого приложения
@@ -715,9 +950,78 @@ protected override IHostBuilder CreateHostBuilder() =>
 [Пример приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) состоит из двух приложений:
 
 | Приложение | каталог проекта; | Описание |
-| --- | ----------------- | ----------- |
-| Приложение для сообщений (ТС) | *src/RazorPagesProject* | Позволяет пользователю добавлять, удалять сообщения (по одному или все) и анализировать их. |
-| Тестирование приложения. | *tests/RazorPagesProject.Tests* | Используется для тестирования интеграции ТС. |
+| --- | ---
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--------- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | | Приложение для сообщений (ТС) | *src/RazorPagesProject* | Позволяет пользователю добавлять, удалять сообщения (по одному или все) и анализировать их. | | Тестовое приложение | *tests/RazorPagesProject.Tests* | Используется для тестирования интеграции ТС. |
 
 Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](https://visualstudio.microsoft.com). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в каталоге *tests/RazorPagesProject.Tests*.
 
@@ -727,7 +1031,7 @@ dotnet test
 
 ### <a name="message-app-sut-organization"></a>Организация приложения для сообщений (ТС)
 
-ТС — это система сообщений Razor Pages со следующими характеристиками.
+Тестируемая система (ТС) — это система сообщений Razor Pages со следующими характеристиками:
 
 * Страница индекса приложения (*Pages/Index.cshtml* и *Pages/Index.cshtml.cs*) предоставляет методы пользовательского интерфейса и модели страницы для управления добавлением, удалением и анализом сообщений (поиск среднего числа слов на сообщение).
 * Сообщение описывается классом `Message` (*Data/Message.cs*) с двумя свойствами: `Id` (ключ) и `Text` (сообщение). Свойство `Text` является обязательным и ограничено 200 символами.
@@ -738,18 +1042,93 @@ dotnet test
 
 &#8224;В разделе документации о EF [Тестирование с помощью InMemory](/ef/core/miscellaneous/testing/in-memory) объясняется, как использовать базу данных в памяти для тестов с помощью MSTest. В этом разделе используется платформа тестирования [xUnit](https://xunit.github.io/). Концепции тестирования и реализации тестов в разных платформах тестирования похожи, но не идентичны.
 
-Несмотря на то, что приложение не использует шаблон репозитория и не является эффективным примером [шаблона "единица работы" (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages поддерживает такие шаблоны разработки. Дополнительные сведения см. в разделах [Проектирование уровня сохраняемости инфраструктуры](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) и [Логика контроллера тестирования](/aspnet/core/mvc/controllers/testing) (пример реализует шаблон репозитория).
+Несмотря на то, что приложение не использует шаблон репозитория и не является эффективным примером [шаблона "единица работы" (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages поддерживает такие шаблоны разработки. Дополнительные сведения см. в разделах [Проектирование уровня сохраняемости инфраструктуры](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) и [Логика контроллера тестирования](/aspnet/core/mvc/controllers/testing) (пример реализует шаблон репозитория).
 
 ### <a name="test-app-organization"></a>Организация приложения для тестирования
 
 Тестовое приложение — это консольное приложение в папке *tests/RazorPagesProject.Tests*.
 
 | Каталог тестового приложения | Описание |
-| ------------------ | ----------- |
-| *AuthTests* | Содержит методы теста для:<ul><li>доступа к защищенной странице пользователя, не прошедшего проверку подлинности;</li><li>доступа к защищенной странице пользователя, прошедшего проверку подлинности с помощью макета <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>;</li><li>получения профиля пользователя GitHub и проверки имени входа пользователя профиля.</li></ul> |
-| *BasicTests* | Содержит метод теста для маршрутизации и типа содержимого. |
-| *IntegrationTests* | Содержит интеграционные тесты для страницы индекса с помощью настраиваемого класса `WebApplicationFactory`. |
-| *Helpers/Utilities* | <ul><li>*Utilities.cs* содержит метод `InitializeDbForTests`, используемый для заполнения базы данных тестовыми данными.</li><li>*HtmlHelpers.cs* предоставляет метод, возвращающий `IHtmlDocument` AngleSharp для использования методами теста.</li><li>*HttpClientExtensions.cs* предоставляет перегрузки для `SendAsync` для отправки запросов к ТС.</li></ul> |
+| ---
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--------- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | | *AuthTests* | Содержит методы теста для:<ul><li>доступа к защищенной странице пользователя, не прошедшего проверку подлинности;</li><li>доступа к защищенной странице пользователя, прошедшего проверку подлинности с помощью макета <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>;</li><li>получения профиля пользователя GitHub и проверки имени входа пользователя профиля.</li></ul> | | *BasicTests* | Содержит метод теста для маршрутизации и типа содержимого. | | *IntegrationTests* | Содержит интеграционные тесты для страницы индекса с использованием настраиваемого класса `WebApplicationFactory`. *Helpers/Utilities* | <ul><li>*Utilities.cs* содержит метод `InitializeDbForTests`, используемый для заполнения базы данных тестовыми данными.</li><li>*HtmlHelpers.cs* предоставляет метод, возвращающий `IHtmlDocument` AngleSharp для использования методами теста.</li><li>*HttpClientExtensions.cs* предоставляет перегрузки для `SendAsync` для отправки запросов к ТС.</li></ul> |
 
 Используемая платформа тестирования — [xUnit](https://xunit.github.io/). Интеграционные тесты выполняются с помощью [Microsoft.AspNetCore.TestHost](/dotnet/api/microsoft.aspnetcore.testhost), который включает [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver). Поскольку пакет [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) используется для настройки узла тестирования и тестового сервера, для пакетов `TestHost` и `TestServer` не требуются прямые ссылки на пакеты в файле проекта тестового приложения или конфигурации разработчика в тестовом приложении.
 

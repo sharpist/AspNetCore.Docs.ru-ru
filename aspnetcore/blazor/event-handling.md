@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/event-handling
-ms.openlocfilehash: aa338bbe61eec14bc1e1b3606e11e26bfb0e6a09
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
+ms.openlocfilehash: 610cb9124f59ed07f1fe6193f92052b4513450c8
+ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967471"
+ms.lasthandoff: 05/15/2020
+ms.locfileid: "83424250"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>Обработка событий Blazor в ASP.NET Core
 
@@ -136,7 +136,7 @@ ms.locfileid: "82967471"
 
 ## <a name="eventcallback"></a>EventCallback
 
-Распространенным сценарием с вложенными компонентами является необходимость запускать метод родительского компонента при возникновении события дочернего компонента &mdash; например, когда в дочернем элементе возникает событие `onclick`. Чтобы обеспечить доступ к событиям в компонентах, используйте `EventCallback`. Родительский компонент может назначить метод обратного вызова `EventCallback` дочернего компонента.
+Распространенным сценарием с вложенными компонентами является запуск метода родительского компонента при возникновении события дочернего компонента, например, когда в дочернем элементе возникает событие `onclick`. Чтобы обеспечить доступ к событиям в компонентах, используйте `EventCallback`. Родительский компонент может назначить метод обратного вызова `EventCallback` дочернего компонента.
 
 В `ChildComponent` в примере приложения (*Components/ChildComponent.razor*) показано, как обработчик `onclick` кнопки настроен на получение делегата `EventCallback` из `ParentComponent` образца. `EventCallback` вводится с `MouseEventArgs`, что подходит для события `onclick` от периферийного устройства:
 

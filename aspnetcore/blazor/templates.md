@@ -1,30 +1,16 @@
 ---
-title: Шаблоны ASP.NET Core Blazor
-author: guardrex
-description: Сведения о шаблонах приложений Blazor и структуре проекта Blazor в ASP.NET Core.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 04/19/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/templates
-ms.openlocfilehash: 705fa32ee72221b3c18653e9f3495b9cd61e9ad1
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967432"
+title: 'Шаблоны ASP.NET Core Blazor' author: description: 'Узнайте о шаблонах приложений Blazor и структуре проекта Blazor в ASP.NET Core.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="aspnet-core-blazor-templates"></a>Шаблоны ASP.NET Core Blazor
 
 Авторы: [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Платформа Blazor предоставляет шаблоны разработки приложений для каждой из моделей размещения Blazor:
 

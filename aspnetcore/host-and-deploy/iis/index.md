@@ -1,24 +1,11 @@
 ---
-title: Размещение ASP.NET Core в Windows со службами IIS
-author: rick-anderson
-description: Сведения о размещении приложений ASP.NET Core в службах Windows Server Internet Information Services (IIS).
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 5/7/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/iis/index
-ms.openlocfilehash: c3841babe213a9a3f303b8f9b83a947fd33ad647
-ms.sourcegitcommit: 6c7a149168d2c4d747c36de210bfab3abd60809a
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "83003133"
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Размещение ASP.NET Core в Windows со службами IIS
 
@@ -147,11 +134,118 @@ services.Configure<IISServerOptions>(options =>
 ```
 
 | Параметр                         | Значение по умолчанию | Параметр |
-| ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | Если значение — `true`, сервер IIS задает свойство `HttpContext.User`, использующее [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, сервер только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения: [Проверка подлинности Windows](xref:security/authentication/windowsauth). |
-| `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
-| `AllowSynchronousIO`           | `false` | Разрешены ли синхронные операции ввода-вывода для `HttpContext.Request` и `HttpContext.Response`. |
-| `MaxRequestBodySize`           | `30000000`  | Возвращает или задает максимальный размер текста запроса для `HttpRequest`. Обратите внимание, что сами службы IIS ограничены параметром `maxAllowedContentLength`, который обрабатывается перед тем, как `MaxRequestBodySize` задается в `IISServerOptions`. Изменение `MaxRequestBodySize` не влияет на `maxAllowedContentLength`. Чтобы увеличить `maxAllowedContentLength`, добавьте запись в *web.config*, чтобы задать `maxAllowedContentLength` большее значение. Дополнительные сведения см. в разделе [Конфигурация](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | | `AutomaticAuthentication`      | `true`  | Если значение — `true`, сервер IIS задает свойство `HttpContext.User`, использующее [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, сервер только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения: [Проверка подлинности Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. | | `AllowSynchronousIO`           | `false` | Разрешены ли синхронные операции ввода-вывода для `HttpContext.Request` и `HttpContext.Response`. | | `MaxRequestBodySize`           | `30000000`  | Возвращает или задает максимальный размер текста запроса для `HttpRequest`. Обратите внимание, что сами службы IIS ограничены параметром `maxAllowedContentLength`, который обрабатывается перед тем, как `MaxRequestBodySize` задается в `IISServerOptions`. Изменение `MaxRequestBodySize` не влияет на `maxAllowedContentLength`. Чтобы увеличить `maxAllowedContentLength`, добавьте запись в *web.config*, чтобы задать `maxAllowedContentLength` большее значение. Дополнительные сведения см. в разделе [Конфигурация](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
 
 **Модель размещения вне процесса**
 
@@ -165,10 +259,118 @@ services.Configure<IISOptions>(options =>
 ```
 
 | Параметр                         | Значение по умолчанию | Параметр |
-| ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | Если значение — `true`, [ПО промежуточного слоя для интеграции IIS](#enable-the-iisintegration-components) задает свойство `HttpContext.User`, которое прошло [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, ПО промежуточного слоя только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения см. в статье о [проверке подлинности Windows](xref:security/authentication/windowsauth). |
-| `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
-| `ForwardClientCertificate`     | `true`  | Если значение — `true` и если присутствует заголовок запроса `MS-ASPNETCORE-CLIENTCERT`, происходит заполнение `HttpContext.Connection.ClientCertificate`. |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | | `AutomaticAuthentication`      | `true`  | Если значение — `true`, [ПО промежуточного слоя для интеграции IIS](#enable-the-iisintegration-components) задает свойство `HttpContext.User`, которое прошло [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, ПО промежуточного слоя только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения см. в статье о [проверке подлинности Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. | | `ForwardClientCertificate`     | `true`  | Если значение — `true` и если присутствует заголовок запроса `MS-ASPNETCORE-CLIENTCERT`, происходит заполнение `HttpContext.Connection.ClientCertificate`. |
 
 ### <a name="proxy-server-and-load-balancer-scenarios"></a>Сценарии использования прокси-сервера и подсистемы балансировки нагрузки
 
@@ -195,7 +397,7 @@ services.Configure<IISOptions>(options =>
 
 Файл *web.config* может содержать дополнительные параметры конфигурации IIS, управляющие активными модулями IIS. Сведения о модулях IIS, которые могут обрабатывать запросы к приложениям ASP.NET Core, см. в статье [Модули IIS](xref:host-and-deploy/iis/modules).
 
-Чтобы пакет SDK не преобразовывал файл *web.config*, добавьте в файл проекта свойство **\<IsTransformWebConfigDisabled>** .
+Чтобы пакет SDK не преобразовывал файл *web.config*, добавьте в файл проекта свойство **\<IsTransformWebConfigDisabled>** :
 
 ```xml
 <PropertyGroup>
@@ -209,7 +411,7 @@ services.Configure<IISOptions>(options =>
 
 Для корректной настройки [модуля ASP.NET Core](xref:host-and-deploy/aspnet-core-module) необходимо наличие файла *web.config* в [корневой папке содержимого](xref:fundamentals/index#content-root) развертываемого приложения (как правило, это основной путь приложения). Это расположение соответствует физическому пути веб-сайта, указанному в службах IIS. Файл *web.config* требуется в корне приложения, чтобы разрешить публикацию нескольких приложений с помощью веб-развертывания.
 
-По физическому пути приложения находятся файлы с конфиденциальной информацией: *\<имя_сборки>.runtimeconfig.json*, *\<имя_сборки>.xml* (комментарии к XML-документации) и *\<имя_сборки>.deps.json*. Когда файл *web.config* присутствует и сайт запускается нормально, службы IIS не обрабатывают запросы к этим файлам. Если файл *web.config* отсутствует, неправильно именован или не может настроить нормальный запуск сайта, службы IIS могут свободно передавать содержимое этих конфиденциальных файлов.
+По физическому пути приложения находятся файлы с конфиденциальной информацией: *\<assembly>.runtimeconfig.json*, *\<assembly>.xml* (комментарии к XML-документации) и *\<assembly>.deps.json*. Когда файл *web.config* присутствует и сайт запускается нормально, службы IIS не обрабатывают запросы к этим файлам. Если файл *web.config* отсутствует, неправильно именован или не может настроить нормальный запуск сайта, службы IIS могут свободно передавать содержимое этих конфиденциальных файлов.
 
 **Файл *web.config* должен постоянно находиться в развертывании, у этого файла должно быть правильное имя, и файл должен быть в состоянии настроить нормальный запуск сайта. Никогда не удаляйте файл *web.config* из развертывания в рабочей среде.**
 
@@ -232,7 +434,7 @@ services.Configure<IISOptions>(options =>
    ![Службы роли по умолчанию, выбранные на странице "Выбор служб ролей".](index/_static/role-services-ws2016.png)
 
    **Проверка подлинности Windows (необязательный компонент)**  
-   Чтобы включить проверку подлинности Windows, разверните такие узлы: **Веб-сервер** > **Безопасность**. Выберите компонент **Проверка подлинности Windows**. Дополнительные сведения см. в статьях [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) (Проверка подлинности Windows <windowsAuthentication>) и [Configure Windows authentication in an ASP.NET Core app](xref:security/authentication/windowsauth) (Настройка проверки подлинности Windows в приложении ASP.NET Core).
+   Чтобы включить проверку подлинности Windows, разверните такие узлы: **Веб-сервер** > **Безопасность**. Выберите компонент **Проверка подлинности Windows**. Дополнительные сведения см. в статьях [Проверка подлинности Windows \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) и [Настройка проверки подлинности Windows](xref:security/authentication/windowsauth).
 
    **Протокол WebSocket (необязательный компонент)**  
    Протокол WebSocket поддерживается в ASP.NET Core начиная с версии 1.1. Чтобы включить протокол WebSocket, разверните такие узлы: **Веб-сервер** > **Разработка приложений**. Выберите компонент **Протокол WebSocket**. Дополнительные сведения см. в разделе [Протокол WebSocket](xref:fundamentals/websockets).
@@ -254,7 +456,7 @@ services.Configure<IISOptions>(options =>
 1. В группе **Службы Интернета** оставьте компоненты по умолчанию или настройте компоненты IIS.
 
    **Проверка подлинности Windows (необязательный компонент)**  
-   Чтобы включить проверку подлинности Windows, разверните такие узлы: **Службы Интернета** > **Безопасность**. Выберите компонент **Проверка подлинности Windows**. Дополнительные сведения см. в статьях [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) (Проверка подлинности Windows <windowsAuthentication>) и [Configure Windows authentication in an ASP.NET Core app](xref:security/authentication/windowsauth) (Настройка проверки подлинности Windows в приложении ASP.NET Core).
+   Чтобы включить проверку подлинности Windows, разверните такие узлы: **Службы Интернета** > **Безопасность**. Выберите компонент **Проверка подлинности Windows**. Дополнительные сведения см. в статьях [Проверка подлинности Windows \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) и [Настройка проверки подлинности Windows](xref:security/authentication/windowsauth).
 
    **Протокол WebSocket (необязательный компонент)**  
    Протокол WebSocket поддерживается в ASP.NET Core начиная с версии 1.1. Чтобы включить протокол WebSocket, разверните такие узлы: **Службы Интернета** > **Компоненты разработки приложений**. Выберите компонент **Протокол WebSocket**. Дополнительные сведения см. в разделе [Протокол WebSocket](xref:fundamentals/websockets).
@@ -294,11 +496,11 @@ services.Configure<IISOptions>(options =>
 
 1. Запустите установщик на сервере. При запуске установщика из командной оболочки администратора доступны следующие параметры:
 
-   * `OPT_NO_ANCM=1` — пропуск установки модуля ASP.NET Core.
-   * `OPT_NO_RUNTIME=1` — пропуск установки среды выполнения .NET Core. Используется, когда на сервере размещаются только [автономные развертывания](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_SHAREDFX=1` — пропуск установки общей платформы ASP.NET (среды выполнения ASP.NET). Используется, когда на сервере размещаются только [автономные развертывания](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_X86=1` — пропуск установки сред выполнения x86. Этот параметр следует использовать, если вы наверняка не будете размещать 32-разрядные приложения. Если есть хоть малейшая возможность, что в будущем придется размещать и 32-разрядные, и 64-разрядные приложения, не указывайте этот параметр и установите обе среды выполнения.
-   * `OPT_NO_SHARED_CONFIG_CHECK=1` — отключение проверки использования общей конфигурации IIS, если файл общей конфигурации (*applicationHost.config*) находится на том же компьютере, что и установка IIS. *Доступен только для пакетных установщиков размещения ASP.NET Core 2.2 или более поздней версии.* Для получения дополнительной информации см. <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
+   * `OPT_NO_ANCM=1`. Пропуск установки модуля ASP.NET Core.
+   * `OPT_NO_RUNTIME=1`. Пропуск установки среды выполнения .NET Core. Используется, когда на сервере размещаются только [автономные развертывания](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_SHAREDFX=1`. Пропуск установки общей платформы ASP.NET (среды выполнения ASP.NET). Используется, когда на сервере размещаются только [автономные развертывания](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_X86=1`. Пропуск установки сред выполнения x86. Этот параметр следует использовать, если вы наверняка не будете размещать 32-разрядные приложения. Если есть хоть малейшая возможность, что в будущем придется размещать и 32-разрядные, и 64-разрядные приложения, не указывайте этот параметр и установите обе среды выполнения.
+   * `OPT_NO_SHARED_CONFIG_CHECK=1`. Отключение проверки использования общей конфигурации IIS, если файл общей конфигурации (*applicationHost.config*) находится на том же компьютере, что и установка IIS. *Доступен только для пакетных установщиков размещения ASP.NET Core 2.2 или более поздней версии.* Для получения дополнительной информации см. <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
 1. Перезапустите систему или выполните в командной оболочке следующие команды:
 
    ```console
@@ -352,7 +554,7 @@ net start w3svc
 
 1. Убедитесь в том, что удостоверение модели процесса имеет соответствующие разрешения.
 
-   При изменении удостоверения по умолчанию для пула приложений (**Модель процесса** > **Удостоверение**) с **ApplicationPoolIdentity** на другое, убедитесь, что у нового удостоверения есть соответствующие разрешения для доступа к папке приложения, базе данных и другим необходимым ресурсам. Например, пулу приложений требуются права на чтение и запись в папках, в которых приложение считывает и записывает файлы.
+   При изменении удостоверения по умолчанию для пула приложений (**Модель процесса** >  **Identity** ) с **ApplicationPoolIdentity** на другое, убедитесь, что у нового удостоверения есть соответствующие разрешения для доступа к папке приложения, базе данных и другим необходимым ресурсам. Например, пулу приложений требуются права на чтение и запись в папках, в которых приложение считывает и записывает файлы.
 
 **Настройка проверки подлинности Windows (необязательный этап)**  
 См. статью [Configure Windows authentication in an ASP.NET Core app](xref:security/authentication/windowsauth) (Настройка проверки подлинности Windows в приложении ASP.NET Core).
@@ -486,7 +688,7 @@ net start w3svc
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/iis/modules>
 
-Сведения о настройке переменных среды для отдельных приложений, выполняющихся в изолированных пулах приложений (такая возможность поддерживается в службах IIS начиная с версии 10.0), см. в справочной документации по службам IIS, в частности в разделе *AppCmd.exe* статьи [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) (Переменные среды <environmentVariables>).
+Сведения о настройке переменных среды для отдельных приложений, выполняющихся в изолированных пулах приложений (такая возможность поддерживается в службах IIS начиная с версии 10.0), см. в справочной документации по службам IIS, в частности в разделе *Команда AppCmd.exe* статьи [Переменные среды \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe).
 
 ## <a name="configuration-sections-of-webconfig"></a>Разделы конфигурации файла web.config
 
@@ -503,14 +705,14 @@ net start w3svc
 
 Модель размещения определяет изоляцию пула приложений:
 
-* Внутрипроцессное размещение &ndash; Приложения должны работать в отдельных пулах.
-* Внепроцессное размещение &ndash; Рекомендуем изолировать приложения друг от друга, запуская каждое из них в собственном пуле.
+* Внутрипроцессное размещение: Приложения должны выполняться в отдельных пулах.
+* Размещение вне процесса: Рекомендуем изолировать приложения друг от друга, запуская каждое из них в собственном пуле.
 
 В диалоговом окне **Добавление веб-сайта** IIS на каждое приложение по умолчанию задан один пул приложений. Если указано **Имя сайта**, оно автоматически переносится в текстовое поле **Пул приложений**. При добавлении веб-сайта создается пул приложений с именем сайта.
 
-## <a name="application-pool-identity"></a>Удостоверение пула приложений
+## <a name="application-pool-identity"></a>Identity пула приложений
 
-Учетная запись удостоверения пула приложений позволяет запускать приложение от имени уникальной учетной записи, не создавая домены или локальные учетные записи и не управляя ими. В службах IIS начиная с версии 8.0 рабочий процесс администратора IIS (WAS) создает виртуальную учетную запись с именем нового пула приложений и по умолчанию выполняет рабочие процессы пула приложений с помощью этой учетной записи. В консоли управления IIS в окне **Дополнительные параметры** для пула приложений должно быть выбрано **Удостоверение** **ApplicationPoolIdentity**.
+Учетная запись удостоверения пула приложений позволяет запускать приложение от имени уникальной учетной записи, не создавая домены или локальные учетные записи и не управляя ими. В службах IIS начиная с версии 8.0 рабочий процесс администратора IIS (WAS) создает виртуальную учетную запись с именем нового пула приложений и по умолчанию выполняет рабочие процессы пула приложений с помощью этой учетной записи. В консоли управления IIS в окне **Дополнительные параметры** пула приложений для **Identity** необходимо выбрать **ApplicationPoolIdentity**.
 
 ![Диалоговое окно дополнительных параметров для пула приложений](index/_static/apppool-identity.png)
 
@@ -572,8 +774,8 @@ ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
 
 Размещение в IIS с помощью модуля ASP.NET Core версии 2:
 
-* [Модуль инициализации приложений](#application-initialization-module) — приложение, размещенное [в процессе](#in-process-hosting-model) или [вне процесса](#out-of-process-hosting-model). Его можно настроить на автоматический запуск при перезапуске рабочего процесса или сервера.
-* [Время ожидания в режиме простоя](#idle-timeout) — приложение, размещенное [в процессе](#in-process-hosting-model), можно настроить на игнорирование времени ожидания в периоды неактивности.
+* [Модуль инициализации приложений](#application-initialization-module). Приложение, размещенное [в процессе](#in-process-hosting-model) или [вне процесса](#out-of-process-hosting-model), можно настроить на автоматический запуск при перезапуске рабочего процесса или сервера.
+* [Время ожидания в режиме простоя](#idle-timeout). Приложение, размещенное [в процессе](#in-process-hosting-model), можно настроить на игнорирование времени ожидания в периоды неактивности.
 
 ### <a name="application-initialization-module"></a>Модуль инициализации приложений
 
@@ -638,8 +840,8 @@ ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
 ### <a name="application-initialization-module-and-idle-timeout-additional-resources"></a>Дополнительные ресурсы по модулю инициализации приложений и времени ожидания в режиме простоя
 
 * [Инициализация приложений в IIS 8.0](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization)
-* [Инициализация приложений: элемент \<applicationInitialization>](/iis/configuration/system.webserver/applicationinitialization/).
-* [Параметры модели процессов для пула приложений: элемент \<processModel>](/iis/configuration/system.applicationhost/applicationpools/add/processmodel).
+* [Инициализация приложений \<applicationInitialization>](/iis/configuration/system.webserver/applicationinitialization/).
+* [Параметры модели процессов для пула приложений \<processModel>](/iis/configuration/system.applicationhost/applicationpools/add/processmodel).
 
 ## <a name="deployment-resources-for-iis-administrators"></a>Ресурсы развертывания для администраторов IIS
 
@@ -769,9 +971,118 @@ services.Configure<IISServerOptions>(options =>
 ```
 
 | Параметр                         | Значение по умолчанию | Параметр |
-| ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | Если значение — `true`, сервер IIS задает свойство `HttpContext.User`, использующее [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, сервер только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения: [Проверка подлинности Windows](xref:security/authentication/windowsauth). |
-| `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | | `AutomaticAuthentication`      | `true`  | Если значение — `true`, сервер IIS задает свойство `HttpContext.User`, использующее [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, сервер только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения: [Проверка подлинности Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
 
 **Модель размещения вне процесса**
 
@@ -785,10 +1096,118 @@ services.Configure<IISOptions>(options =>
 ```
 
 | Параметр                         | Значение по умолчанию | Параметр |
-| ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | Если значение — `true`, [ПО промежуточного слоя для интеграции IIS](#enable-the-iisintegration-components) задает свойство `HttpContext.User`, которое прошло [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, ПО промежуточного слоя только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения см. в статье о [проверке подлинности Windows](xref:security/authentication/windowsauth). |
-| `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
-| `ForwardClientCertificate`     | `true`  | Если значение — `true` и если присутствует заголовок запроса `MS-ASPNETCORE-CLIENTCERT`, происходит заполнение `HttpContext.Connection.ClientCertificate`. |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | | `AutomaticAuthentication`      | `true`  | Если значение — `true`, [ПО промежуточного слоя для интеграции IIS](#enable-the-iisintegration-components) задает свойство `HttpContext.User`, которое прошло [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, ПО промежуточного слоя только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения см. в статье о [проверке подлинности Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. | | `ForwardClientCertificate`     | `true`  | Если значение — `true` и если присутствует заголовок запроса `MS-ASPNETCORE-CLIENTCERT`, происходит заполнение `HttpContext.Connection.ClientCertificate`. |
 
 ### <a name="proxy-server-and-load-balancer-scenarios"></a>Сценарии использования прокси-сервера и подсистемы балансировки нагрузки
 
@@ -808,7 +1227,7 @@ services.Configure<IISOptions>(options =>
 
 Файл *web.config* может содержать дополнительные параметры конфигурации IIS, управляющие активными модулями IIS. Сведения о модулях IIS, которые могут обрабатывать запросы к приложениям ASP.NET Core, см. в статье [Модули IIS](xref:host-and-deploy/iis/modules).
 
-Чтобы пакет SDK не преобразовывал файл *web.config*, добавьте в файл проекта свойство **\<IsTransformWebConfigDisabled>** .
+Чтобы пакет SDK не преобразовывал файл *web.config*, добавьте в файл проекта свойство **\<IsTransformWebConfigDisabled>** :
 
 ```xml
 <PropertyGroup>
@@ -822,7 +1241,7 @@ services.Configure<IISOptions>(options =>
 
 Для корректной настройки [модуля ASP.NET Core](xref:host-and-deploy/aspnet-core-module) необходимо наличие файла *web.config* в [корневой папке содержимого](xref:fundamentals/index#content-root) развертываемого приложения (как правило, это основной путь приложения). Это расположение соответствует физическому пути веб-сайта, указанному в службах IIS. Файл *web.config* требуется в корне приложения, чтобы разрешить публикацию нескольких приложений с помощью веб-развертывания.
 
-По физическому пути приложения находятся файлы с конфиденциальной информацией: *\<имя_сборки>.runtimeconfig.json*, *\<имя_сборки>.xml* (комментарии к XML-документации) и *\<имя_сборки>.deps.json*. Когда файл *web.config* присутствует и сайт запускается нормально, службы IIS не обрабатывают запросы к этим файлам. Если файл *web.config* отсутствует, неправильно именован или не может настроить нормальный запуск сайта, службы IIS могут свободно передавать содержимое этих конфиденциальных файлов.
+По физическому пути приложения находятся файлы с конфиденциальной информацией: *\<assembly>.runtimeconfig.json*, *\<assembly>.xml* (комментарии к XML-документации) и *\<assembly>.deps.json*. Когда файл *web.config* присутствует и сайт запускается нормально, службы IIS не обрабатывают запросы к этим файлам. Если файл *web.config* отсутствует, неправильно именован или не может настроить нормальный запуск сайта, службы IIS могут свободно передавать содержимое этих конфиденциальных файлов.
 
 **Файл *web.config* должен постоянно находиться в развертывании, у этого файла должно быть правильное имя, и файл должен быть в состоянии настроить нормальный запуск сайта. Никогда не удаляйте файл *web.config* из развертывания в рабочей среде.**
 
@@ -845,7 +1264,7 @@ services.Configure<IISOptions>(options =>
    ![Службы роли по умолчанию, выбранные на странице "Выбор служб ролей".](index/_static/role-services-ws2016.png)
 
    **Проверка подлинности Windows (необязательный компонент)**  
-   Чтобы включить проверку подлинности Windows, разверните такие узлы: **Веб-сервер** > **Безопасность**. Выберите компонент **Проверка подлинности Windows**. Дополнительные сведения см. в статьях [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) (Проверка подлинности Windows <windowsAuthentication>) и [Configure Windows authentication in an ASP.NET Core app](xref:security/authentication/windowsauth) (Настройка проверки подлинности Windows в приложении ASP.NET Core).
+   Чтобы включить проверку подлинности Windows, разверните такие узлы: **Веб-сервер** > **Безопасность**. Выберите компонент **Проверка подлинности Windows**. Дополнительные сведения см. в статьях [Проверка подлинности Windows \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) и [Настройка проверки подлинности Windows](xref:security/authentication/windowsauth).
 
    **Протокол WebSocket (необязательный компонент)**  
    Протокол WebSocket поддерживается в ASP.NET Core начиная с версии 1.1. Чтобы включить протокол WebSocket, разверните такие узлы: **Веб-сервер** > **Разработка приложений**. Выберите компонент **Протокол WebSocket**. Дополнительные сведения см. в разделе [Протокол WebSocket](xref:fundamentals/websockets).
@@ -867,7 +1286,7 @@ services.Configure<IISOptions>(options =>
 1. В группе **Службы Интернета** оставьте компоненты по умолчанию или настройте компоненты IIS.
 
    **Проверка подлинности Windows (необязательный компонент)**  
-   Чтобы включить проверку подлинности Windows, разверните такие узлы: **Службы Интернета** > **Безопасность**. Выберите компонент **Проверка подлинности Windows**. Дополнительные сведения см. в статьях [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) (Проверка подлинности Windows <windowsAuthentication>) и [Configure Windows authentication in an ASP.NET Core app](xref:security/authentication/windowsauth) (Настройка проверки подлинности Windows в приложении ASP.NET Core).
+   Чтобы включить проверку подлинности Windows, разверните такие узлы: **Службы Интернета** > **Безопасность**. Выберите компонент **Проверка подлинности Windows**. Дополнительные сведения см. в статьях [Проверка подлинности Windows \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) и [Настройка проверки подлинности Windows](xref:security/authentication/windowsauth).
 
    **Протокол WebSocket (необязательный компонент)**  
    Протокол WebSocket поддерживается в ASP.NET Core начиная с версии 1.1. Чтобы включить протокол WebSocket, разверните такие узлы: **Службы Интернета** > **Компоненты разработки приложений**. Выберите компонент **Протокол WebSocket**. Дополнительные сведения см. в разделе [Протокол WebSocket](xref:fundamentals/websockets).
@@ -899,11 +1318,11 @@ services.Configure<IISOptions>(options =>
 
 1. Запустите установщик на сервере. При запуске установщика из командной оболочки администратора доступны следующие параметры:
 
-   * `OPT_NO_ANCM=1` — пропуск установки модуля ASP.NET Core.
-   * `OPT_NO_RUNTIME=1` — пропуск установки среды выполнения .NET Core. Используется, когда на сервере размещаются только [автономные развертывания](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_SHAREDFX=1` — пропуск установки общей платформы ASP.NET (среды выполнения ASP.NET). Используется, когда на сервере размещаются только [автономные развертывания](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_X86=1` — пропуск установки сред выполнения x86. Этот параметр следует использовать, если вы наверняка не будете размещать 32-разрядные приложения. Если есть хоть малейшая возможность, что в будущем придется размещать и 32-разрядные, и 64-разрядные приложения, не указывайте этот параметр и установите обе среды выполнения.
-   * `OPT_NO_SHARED_CONFIG_CHECK=1` — отключение проверки использования общей конфигурации IIS, если файл общей конфигурации (*applicationHost.config*) находится на том же компьютере, что и установка IIS. *Доступен только для пакетных установщиков размещения ASP.NET Core 2.2 или более поздней версии.* Для получения дополнительной информации см. <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
+   * `OPT_NO_ANCM=1`. Пропуск установки модуля ASP.NET Core.
+   * `OPT_NO_RUNTIME=1`. Пропуск установки среды выполнения .NET Core. Используется, когда на сервере размещаются только [автономные развертывания](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_SHAREDFX=1`. Пропуск установки общей платформы ASP.NET (среды выполнения ASP.NET). Используется, когда на сервере размещаются только [автономные развертывания](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_X86=1`. Пропуск установки сред выполнения x86. Этот параметр следует использовать, если вы наверняка не будете размещать 32-разрядные приложения. Если есть хоть малейшая возможность, что в будущем придется размещать и 32-разрядные, и 64-разрядные приложения, не указывайте этот параметр и установите обе среды выполнения.
+   * `OPT_NO_SHARED_CONFIG_CHECK=1`. Отключение проверки использования общей конфигурации IIS, если файл общей конфигурации (*applicationHost.config*) находится на том же компьютере, что и установка IIS. *Доступен только для пакетных установщиков размещения ASP.NET Core 2.2 или более поздней версии.* Для получения дополнительной информации см. <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
 1. Перезапустите систему или выполните в командной оболочке следующие команды:
 
    ```console
@@ -952,7 +1371,7 @@ ASP.NET Core наследует поведение наката для выпу�
 
 1. Убедитесь в том, что удостоверение модели процесса имеет соответствующие разрешения.
 
-   При изменении удостоверения по умолчанию для пула приложений (**Модель процесса** > **Удостоверение**) с **ApplicationPoolIdentity** на другое, убедитесь, что у нового удостоверения есть соответствующие разрешения для доступа к папке приложения, базе данных и другим необходимым ресурсам. Например, пулу приложений требуются права на чтение и запись в папках, в которых приложение считывает и записывает файлы.
+   При изменении удостоверения по умолчанию для пула приложений (**Модель процесса** >  **Identity** ) с **ApplicationPoolIdentity** на другое, убедитесь, что у нового удостоверения есть соответствующие разрешения для доступа к папке приложения, базе данных и другим необходимым ресурсам. Например, пулу приложений требуются права на чтение и запись в папках, в которых приложение считывает и записывает файлы.
 
 **Настройка проверки подлинности Windows (необязательный этап)**  
 См. статью [Configure Windows authentication in an ASP.NET Core app](xref:security/authentication/windowsauth) (Настройка проверки подлинности Windows в приложении ASP.NET Core).
@@ -1086,7 +1505,7 @@ ASP.NET Core наследует поведение наката для выпу�
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/iis/modules>
 
-Сведения о настройке переменных среды для отдельных приложений, выполняющихся в изолированных пулах приложений (такая возможность поддерживается в службах IIS начиная с версии 10.0), см. в справочной документации по службам IIS, в частности в разделе *AppCmd.exe* статьи [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) (Переменные среды <environmentVariables>).
+Сведения о настройке переменных среды для отдельных приложений, выполняющихся в изолированных пулах приложений (такая возможность поддерживается в службах IIS начиная с версии 10.0), см. в справочной документации по службам IIS, в частности в разделе *Команда AppCmd.exe* статьи [Переменные среды \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe).
 
 ## <a name="configuration-sections-of-webconfig"></a>Разделы конфигурации файла web.config
 
@@ -1103,14 +1522,14 @@ ASP.NET Core наследует поведение наката для выпу�
 
 Модель размещения определяет изоляцию пула приложений:
 
-* Внутрипроцессное размещение &ndash; Приложения должны работать в отдельных пулах.
-* Внепроцессное размещение &ndash; Рекомендуем изолировать приложения друг от друга, запуская каждое из них в собственном пуле.
+* Внутрипроцессное размещение: Приложения должны выполняться в отдельных пулах.
+* Размещение вне процесса: Рекомендуем изолировать приложения друг от друга, запуская каждое из них в собственном пуле.
 
 В диалоговом окне **Добавление веб-сайта** IIS на каждое приложение по умолчанию задан один пул приложений. Если указано **Имя сайта**, оно автоматически переносится в текстовое поле **Пул приложений**. При добавлении веб-сайта создается пул приложений с именем сайта.
 
-## <a name="application-pool-identity"></a>Удостоверение пула приложений
+## <a name="application-pool-identity"></a>Identity пула приложений
 
-Учетная запись удостоверения пула приложений позволяет запускать приложение от имени уникальной учетной записи, не создавая домены или локальные учетные записи и не управляя ими. В службах IIS начиная с версии 8.0 рабочий процесс администратора IIS (WAS) создает виртуальную учетную запись с именем нового пула приложений и по умолчанию выполняет рабочие процессы пула приложений с помощью этой учетной записи. В консоли управления IIS в окне **Дополнительные параметры** для пула приложений должно быть выбрано **Удостоверение** **ApplicationPoolIdentity**.
+Учетная запись удостоверения пула приложений позволяет запускать приложение от имени уникальной учетной записи, не создавая домены или локальные учетные записи и не управляя ими. В службах IIS начиная с версии 8.0 рабочий процесс администратора IIS (WAS) создает виртуальную учетную запись с именем нового пула приложений и по умолчанию выполняет рабочие процессы пула приложений с помощью этой учетной записи. В консоли управления IIS в окне **Дополнительные параметры** пула приложений для **Identity** необходимо выбрать **ApplicationPoolIdentity**.
 
 ![Диалоговое окно дополнительных параметров для пула приложений](index/_static/apppool-identity.png)
 
@@ -1172,8 +1591,8 @@ ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
 
 Размещение в IIS с помощью модуля ASP.NET Core версии 2:
 
-* [Модуль инициализации приложений](#application-initialization-module) — приложение, размещенное [в процессе](#in-process-hosting-model) или [вне процесса](#out-of-process-hosting-model). Его можно настроить на автоматический запуск при перезапуске рабочего процесса или сервера.
-* [Время ожидания в режиме простоя](#idle-timeout) — приложение, размещенное [в процессе](#in-process-hosting-model), можно настроить на игнорирование времени ожидания в периоды неактивности.
+* [Модуль инициализации приложений](#application-initialization-module). Приложение, размещенное [в процессе](#in-process-hosting-model) или [вне процесса](#out-of-process-hosting-model), можно настроить на автоматический запуск при перезапуске рабочего процесса или сервера.
+* [Время ожидания в режиме простоя](#idle-timeout). Приложение, размещенное [в процессе](#in-process-hosting-model), можно настроить на игнорирование времени ожидания в периоды неактивности.
 
 ### <a name="application-initialization-module"></a>Модуль инициализации приложений
 
@@ -1238,8 +1657,8 @@ ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
 ### <a name="application-initialization-module-and-idle-timeout-additional-resources"></a>Дополнительные ресурсы по модулю инициализации приложений и времени ожидания в режиме простоя
 
 * [Инициализация приложений в IIS 8.0](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization)
-* [Инициализация приложений: элемент \<applicationInitialization>](/iis/configuration/system.webserver/applicationinitialization/).
-* [Параметры модели процессов для пула приложений: элемент \<processModel>](/iis/configuration/system.applicationhost/applicationpools/add/processmodel).
+* [Инициализация приложений \<applicationInitialization>](/iis/configuration/system.webserver/applicationinitialization/).
+* [Параметры модели процессов для пула приложений \<processModel>](/iis/configuration/system.applicationhost/applicationpools/add/processmodel).
 
 ## <a name="deployment-resources-for-iis-administrators"></a>Ресурсы развертывания для администраторов IIS
 
@@ -1339,9 +1758,118 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 ### <a name="iis-options"></a>Параметры служб IIS
 
 | Параметр                         | Значение по умолчанию | Параметр |
-| ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | Если значение — `true`, сервер IIS задает свойство `HttpContext.User`, использующее [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, сервер только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения: [Проверка подлинности Windows](xref:security/authentication/windowsauth). |
-| `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | | `AutomaticAuthentication`      | `true`  | Если значение — `true`, сервер IIS задает свойство `HttpContext.User`, использующее [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, сервер только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения: [Проверка подлинности Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
 
 Чтобы настроить параметры IIS, включите конфигурацию служб для <xref:Microsoft.AspNetCore.Builder.IISOptions> в <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*>. В следующем примере приложению запрещается заполнение `HttpContext.Connection.ClientCertificate`:
 
@@ -1353,10 +1881,118 @@ services.Configure<IISOptions>(options =>
 ```
 
 | Параметр                         | Значение по умолчанию | Параметр |
-| ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | Если значение — `true`, [ПО промежуточного слоя для интеграции IIS](#enable-the-iisintegration-components) задает свойство `HttpContext.User`, которое прошло [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, ПО промежуточного слоя только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения см. в статье о [проверке подлинности Windows](xref:security/authentication/windowsauth). |
-| `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
-| `ForwardClientCertificate`     | `true`  | Если значение — `true` и если присутствует заголовок запроса `MS-ASPNETCORE-CLIENTCERT`, происходит заполнение `HttpContext.Connection.ClientCertificate`. |
+| ---
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | | `AutomaticAuthentication`      | `true`  | Если значение — `true`, [ПО промежуточного слоя для интеграции IIS](#enable-the-iisintegration-components) задает свойство `HttpContext.User`, которое прошло [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, ПО промежуточного слоя только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения см. в статье о [проверке подлинности Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. | | `ForwardClientCertificate`     | `true`  | Если значение — `true` и если присутствует заголовок запроса `MS-ASPNETCORE-CLIENTCERT`, происходит заполнение `HttpContext.Connection.ClientCertificate`. |
 
 ### <a name="proxy-server-and-load-balancer-scenarios"></a>Сценарии использования прокси-сервера и подсистемы балансировки нагрузки
 
@@ -1376,7 +2012,7 @@ services.Configure<IISOptions>(options =>
 
 Файл *web.config* может содержать дополнительные параметры конфигурации IIS, управляющие активными модулями IIS. Сведения о модулях IIS, которые могут обрабатывать запросы к приложениям ASP.NET Core, см. в статье [Модули IIS](xref:host-and-deploy/iis/modules).
 
-Чтобы пакет SDK не преобразовывал файл *web.config*, добавьте в файл проекта свойство **\<IsTransformWebConfigDisabled>** .
+Чтобы пакет SDK не преобразовывал файл *web.config*, добавьте в файл проекта свойство **\<IsTransformWebConfigDisabled>** :
 
 ```xml
 <PropertyGroup>
@@ -1390,7 +2026,7 @@ services.Configure<IISOptions>(options =>
 
 Для корректной настройки [модуля ASP.NET Core](xref:host-and-deploy/aspnet-core-module) необходимо наличие файла *web.config* в [корневой папке содержимого](xref:fundamentals/index#content-root) развертываемого приложения (как правило, это основной путь приложения). Это расположение соответствует физическому пути веб-сайта, указанному в службах IIS. Файл *web.config* требуется в корне приложения, чтобы разрешить публикацию нескольких приложений с помощью веб-развертывания.
 
-По физическому пути приложения находятся файлы с конфиденциальной информацией: *\<имя_сборки>.runtimeconfig.json*, *\<имя_сборки>.xml* (комментарии к XML-документации) и *\<имя_сборки>.deps.json*. Когда файл *web.config* присутствует и сайт запускается нормально, службы IIS не обрабатывают запросы к этим файлам. Если файл *web.config* отсутствует, неправильно именован или не может настроить нормальный запуск сайта, службы IIS могут свободно передавать содержимое этих конфиденциальных файлов.
+По физическому пути приложения находятся файлы с конфиденциальной информацией: *\<assembly>.runtimeconfig.json*, *\<assembly>.xml* (комментарии к XML-документации) и *\<assembly>.deps.json*. Когда файл *web.config* присутствует и сайт запускается нормально, службы IIS не обрабатывают запросы к этим файлам. Если файл *web.config* отсутствует, неправильно именован или не может настроить нормальный запуск сайта, службы IIS могут свободно передавать содержимое этих конфиденциальных файлов.
 
 **Файл *web.config* должен постоянно находиться в развертывании, у этого файла должно быть правильное имя, и файл должен быть в состоянии настроить нормальный запуск сайта. Никогда не удаляйте файл *web.config* из развертывания в рабочей среде.**
 
@@ -1413,7 +2049,7 @@ services.Configure<IISOptions>(options =>
    ![Службы роли по умолчанию, выбранные на странице "Выбор служб ролей".](index/_static/role-services-ws2016.png)
 
    **Проверка подлинности Windows (необязательный компонент)**  
-   Чтобы включить проверку подлинности Windows, разверните такие узлы: **Веб-сервер** > **Безопасность**. Выберите компонент **Проверка подлинности Windows**. Дополнительные сведения см. в статьях [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) (Проверка подлинности Windows <windowsAuthentication>) и [Configure Windows authentication in an ASP.NET Core app](xref:security/authentication/windowsauth) (Настройка проверки подлинности Windows в приложении ASP.NET Core).
+   Чтобы включить проверку подлинности Windows, разверните такие узлы: **Веб-сервер** > **Безопасность**. Выберите компонент **Проверка подлинности Windows**. Дополнительные сведения см. в статьях [Проверка подлинности Windows \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) и [Настройка проверки подлинности Windows](xref:security/authentication/windowsauth).
 
    **Протокол WebSocket (необязательный компонент)**  
    Протокол WebSocket поддерживается в ASP.NET Core начиная с версии 1.1. Чтобы включить протокол WebSocket, разверните такие узлы: **Веб-сервер** > **Разработка приложений**. Выберите компонент **Протокол WebSocket**. Дополнительные сведения см. в разделе [Протокол WebSocket](xref:fundamentals/websockets).
@@ -1435,7 +2071,7 @@ services.Configure<IISOptions>(options =>
 1. В группе **Службы Интернета** оставьте компоненты по умолчанию или настройте компоненты IIS.
 
    **Проверка подлинности Windows (необязательный компонент)**  
-   Чтобы включить проверку подлинности Windows, разверните такие узлы: **Службы Интернета** > **Безопасность**. Выберите компонент **Проверка подлинности Windows**. Дополнительные сведения см. в статьях [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) (Проверка подлинности Windows <windowsAuthentication>) и [Configure Windows authentication in an ASP.NET Core app](xref:security/authentication/windowsauth) (Настройка проверки подлинности Windows в приложении ASP.NET Core).
+   Чтобы включить проверку подлинности Windows, разверните такие узлы: **Службы Интернета** > **Безопасность**. Выберите компонент **Проверка подлинности Windows**. Дополнительные сведения см. в статьях [Проверка подлинности Windows \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) и [Настройка проверки подлинности Windows](xref:security/authentication/windowsauth).
 
    **Протокол WebSocket (необязательный компонент)**  
    Протокол WebSocket поддерживается в ASP.NET Core начиная с версии 1.1. Чтобы включить протокол WebSocket, разверните такие узлы: **Службы Интернета** > **Компоненты разработки приложений**. Выберите компонент **Протокол WebSocket**. Дополнительные сведения см. в разделе [Протокол WebSocket](xref:fundamentals/websockets).
@@ -1467,11 +2103,11 @@ services.Configure<IISOptions>(options =>
 
 1. Запустите установщик на сервере. При запуске установщика из командной оболочки администратора доступны следующие параметры:
 
-   * `OPT_NO_ANCM=1` — пропуск установки модуля ASP.NET Core.
-   * `OPT_NO_RUNTIME=1` — пропуск установки среды выполнения .NET Core. Используется, когда на сервере размещаются только [автономные развертывания](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_SHAREDFX=1` — пропуск установки общей платформы ASP.NET (среды выполнения ASP.NET). Используется, когда на сервере размещаются только [автономные развертывания](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_X86=1` — пропуск установки сред выполнения x86. Этот параметр следует использовать, если вы наверняка не будете размещать 32-разрядные приложения. Если есть хоть малейшая возможность, что в будущем придется размещать и 32-разрядные, и 64-разрядные приложения, не указывайте этот параметр и установите обе среды выполнения.
-   * `OPT_NO_SHARED_CONFIG_CHECK=1` — отключение проверки использования общей конфигурации IIS, если файл общей конфигурации (*applicationHost.config*) находится на том же компьютере, что и установка IIS. *Доступен только для пакетных установщиков размещения ASP.NET Core 2.2 или более поздней версии.* Для получения дополнительной информации см. <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
+   * `OPT_NO_ANCM=1`. Пропуск установки модуля ASP.NET Core.
+   * `OPT_NO_RUNTIME=1`. Пропуск установки среды выполнения .NET Core. Используется, когда на сервере размещаются только [автономные развертывания](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_SHAREDFX=1`. Пропуск установки общей платформы ASP.NET (среды выполнения ASP.NET). Используется, когда на сервере размещаются только [автономные развертывания](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_X86=1`. Пропуск установки сред выполнения x86. Этот параметр следует использовать, если вы наверняка не будете размещать 32-разрядные приложения. Если есть хоть малейшая возможность, что в будущем придется размещать и 32-разрядные, и 64-разрядные приложения, не указывайте этот параметр и установите обе среды выполнения.
+   * `OPT_NO_SHARED_CONFIG_CHECK=1`. Отключение проверки использования общей конфигурации IIS, если файл общей конфигурации (*applicationHost.config*) находится на том же компьютере, что и установка IIS. *Доступен только для пакетных установщиков размещения ASP.NET Core 2.2 или более поздней версии.* Для получения дополнительной информации см. <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
 1. Перезапустите систему или выполните в командной оболочке следующие команды:
 
    ```console
@@ -1687,7 +2323,7 @@ ASP.NET Core наследует поведение наката для выпу�
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/iis/modules>
 
-Сведения о настройке переменных среды для отдельных приложений, выполняющихся в изолированных пулах приложений (такая возможность поддерживается в службах IIS начиная с версии 10.0), см. в справочной документации по службам IIS, в частности в разделе *AppCmd.exe* статьи [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) (Переменные среды <environmentVariables>).
+Сведения о настройке переменных среды для отдельных приложений, выполняющихся в изолированных пулах приложений (такая возможность поддерживается в службах IIS начиная с версии 10.0), см. в справочной документации по службам IIS, в частности в разделе *Команда AppCmd.exe* статьи [Переменные среды \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe).
 
 ## <a name="configuration-sections-of-webconfig"></a>Разделы конфигурации файла web.config
 

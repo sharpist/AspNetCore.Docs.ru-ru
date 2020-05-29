@@ -1495,7 +1495,7 @@ using Microsoft.Extensions.Configuration;
 Дополнительные сведения см. в следующих разделах:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets> &ndash; содержит рекомендации по использованию переменных среды для хранения конфиденциальных данных. Менеджер секретов использует поставщик конфигурации файла для хранения конфиденциальных данных пользователя в файле JSON в локальной системе. Поставщик конфигурации файлов описан ниже в этом разделе.
+* <xref:security/app-secrets>. Содержит рекомендации по использованию переменных среды для хранения конфиденциальных данных. Менеджер секретов использует поставщик конфигурации файла для хранения конфиденциальных данных пользователя в файле JSON в локальной системе. Поставщик конфигурации файлов описан ниже в этом разделе.
 
 В [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) безопасно хранятся секреты приложений ASP.NET Core. Для получения дополнительной информации см. <xref:security/key-vault-configuration>.
 
@@ -2948,8 +2948,8 @@ API конфигурации имеет специальные правила о
 
 На сервере создается пользовательская переменная среды строки подключения:
 
-* Имя &ndash; `CUSTOMCONNSTR_ReleaseDB`
-* Значение &ndash; `Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True`
+* Имя: `CUSTOMCONNSTR_ReleaseDB`
+* Значение: `Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True`
 
 Если `IConfiguration` вставляется и назначается полю с именем `_config`, считайте значение:
 
@@ -3028,8 +3028,8 @@ key=value
 
 `AddJsonFile` автоматически вызывается дважды при инициализации нового построителя узла с `CreateDefaultBuilder`. Метод вызывается для загрузки конфигурации из:
 
-* *appsettings.json* &ndash; первым читается этот файл. Версия файла среды может переопределить значения, предоставленные *appsettings.json*.
-* *appsettings.{Environment}.json* &ndash; версия среды файла загружается на основе [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
+* *appsettings.json*: Этот файл считывается первым. Версия файла среды может переопределить значения, предоставленные *appsettings.json*.
+* *appsettings.{Environment}.json*: Версия среды файла загружается на основе [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
 
 Дополнительные сведения см. в разделе [Конфигурация по умолчанию](#default-configuration).
 
