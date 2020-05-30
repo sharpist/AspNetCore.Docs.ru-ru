@@ -1,10 +1,10 @@
 ---
-Title: ' Защитите Blazor изолированное приложение ASP.NET Coreной сборки с помощью Azure Active Directory B2C "author: описание: моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
+Title: ' безопасное ASP.NET Core Blazor автономное приложение сборки с помощью Azure Active Directory B2C ' author: гуардрекс Description: моникерранже: ' >= aspnetcore-3,1 ' MS. author: рианде MS. Custom: MVC MS. Date: 05/19/2020 No-Loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ИД пользователя "SignalR": 
+- ' SignalR ' UID: Security/блазор/Assembly/standalone-with-Azure-Active-Directory-B2C
 
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью Azure Active Directory B2C
@@ -22,7 +22,7 @@ Title: ' Защитите Blazor изолированное приложение
 * AAD B2C экземпляр (например, `https://contoso.b2clogin.com/` , включающий косую черту).
 * Домен клиента AAD B2C (например, `contoso.onmicrosoft.com` ).
 
-Чтобы зарегистрировать приложение AAD для *клиентского приложения*, следуйте указаниям в [руководстве по регистрации приложения в Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) .
+Следуйте указаниям в [руководстве по регистрации приложения в Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) еще раз, чтобы зарегистрировать приложение AAD для *клиентского приложения* , а затем выполните следующие действия.
 
 1. В **Azure Active Directory**  >  **Регистрация приложений**выберите пункт **Новая регистрация**.
 1. Укажите **имя** приложения (например, ** Blazor автономный AAD B2C**).
@@ -66,7 +66,7 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 После создания приложения вы сможете:
 
 * Войдите в приложение, используя учетную запись пользователя AAD.
-* Запрос маркеров доступа для API-интерфейсов Майкрософт. Дополнительные сведения см. в разделе:
+* Запрос маркеров доступа для API-интерфейсов Майкрософт. Дополнительные сведения можно найти в разделе
   * [Области токенов доступа](#access-token-scopes)
   * [Краткое руководство. Настройка приложения для предоставления веб-API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
 
@@ -110,7 +110,7 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-Пример
+Пример.
 
 ```json
 {
