@@ -27,9 +27,9 @@ ms.locfileid: "82775938"
 Преобразования файла *web.config* можно применять автоматически при публикации приложения на основе следующих данных:
 
 * [Конфигурация сборки](#build-configuration).
-* [Профиль](#profile)
+* [Profile](#profile)
 * [Среда](#environment)
-* [Custom](#custom)
+* [Пользовательский](#custom)
 
 Такие преобразования выполняются в любом из следующих сценариев создания *web.config*:
 
@@ -170,7 +170,7 @@ dotnet publish --configuration Release /p:EnvironmentName=Production
 </configuration>
 ```
 
-Это преобразование применяется, если в команду `CustomTransformFileName`dotnet publish[ передано свойство ](/dotnet/core/tools/dotnet-publish).
+Это преобразование применяется, если в команду [dotnet publish](/dotnet/core/tools/dotnet-publish) передано свойство `CustomTransformFileName`.
 
 ```dotnetcli
 dotnet publish --configuration Release /p:CustomTransformFileName=custom.transform

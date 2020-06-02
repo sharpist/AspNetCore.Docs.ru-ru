@@ -243,7 +243,7 @@ OWIN использует объект `IDictionary<string,object>` для пе�
 
 ### <a name="request-data-owin-v100"></a>Данные запроса (OWIN версии 1.0.0)
 
-| Клавиши               | Значение (тип) | Description |
+| Ключ               | Значение (тип) | Описание |
 | ----------------- | ------------ | ----------- |
 | owin.RequestScheme | `String` |  |
 | owin.RequestMethod  | `String` | |    
@@ -256,29 +256,29 @@ OWIN использует объект `IDictionary<string,object>` для пе�
 
 ### <a name="request-data-owin-v110"></a>Данные запроса (OWIN версии 1.1.0)
 
-| Клавиши               | Значение (тип) | Description |
+| Ключ               | Значение (тип) | Описание |
 | ----------------- | ------------ | ----------- |
-| owin.RequestId | `String` | Необязательно |
+| owin.RequestId | `String` | Необязательный |
 
 ### <a name="response-data-owin-v100"></a>Данные отклика (OWIN версии 1.0.0)
 
-| Клавиши               | Значение (тип) | Description |
+| Ключ               | Значение (тип) | Описание |
 | ----------------- | ------------ | ----------- |
-| owin.ResponseStatusCode | `int` | Необязательно |
-| owin.ResponseReasonPhrase | `String` | Необязательно |
+| owin.ResponseStatusCode | `int` | Необязательный |
+| owin.ResponseReasonPhrase | `String` | Необязательный |
 | owin.ResponseHeaders | `IDictionary<string,string[]>`  | |
 | owin.ResponseBody | `Stream`  | |
 
 ### <a name="other-data-owin-v100"></a>Другие данные (OWIN версии 1.0.0)
 
-| Клавиши               | Значение (тип) | Description |
+| Ключ               | Значение (тип) | Описание |
 | ----------------- | ------------ | ----------- |
 | owin.CallCancelled | `CancellationToken` |  |
 | owin.Version  | `String` | |   
 
 ### <a name="common-keys"></a>Общие ключи
 
-| Клавиши               | Значение (тип) | Description |
+| Ключ               | Значение (тип) | Описание |
 | ----------------- | ------------ | ----------- |
 | ssl.ClientCertificate | `X509Certificate` |  |
 | ssl.LoadClientCertAsync  | `Func<Task>` | |    
@@ -291,13 +291,13 @@ OWIN использует объект `IDictionary<string,object>` для пе�
 
 ### <a name="sendfiles-v030"></a>SendFiles версии 0.3.0
 
-| Клавиши               | Значение (тип) | Description |
+| Ключ               | Значение (тип) | Описание |
 | ----------------- | ------------ | ----------- |
 | sendfile.SendAsync | См. описание [сигнатуры делегата](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) | Для каждого запроса |
 
 ### <a name="opaque-v030"></a>Opaque версии 0.3.0
 
-| Клавиши               | Значение (тип) | Description |
+| Ключ               | Значение (тип) | Описание |
 | ----------------- | ------------ | ----------- |
 | opaque.Version | `String` |  |
 | opaque.Upgrade | `OpaqueUpgrade` | См. описание [сигнатуры делегата](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) |
@@ -306,7 +306,7 @@ OWIN использует объект `IDictionary<string,object>` для пе�
 
 ### <a name="websocket-v030"></a>WebSocket версии 0.3.0
 
-| Клавиши               | Значение (тип) | Description |
+| Ключ               | Значение (тип) | Описание |
 | ----------------- | ------------ | ----------- |
 | websocket.Version | `String` |  |
 | websocket.Accept | `WebSocketAccept` | См. описание [сигнатуры делегата](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) |
@@ -316,8 +316,8 @@ OWIN использует объект `IDictionary<string,object>` для пе�
 | websocket.ReceiveAsync | `WebSocketReceiveAsync` | См. описание [сигнатуры делегата](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
 | websocket.CloseAsync | `WebSocketCloseAsync` | См. описание [сигнатуры делегата](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
 | websocket.CallCancelled | `CancellationToken` |  |
-| websocket.ClientCloseStatus | `int` | Необязательно |
-| websocket.ClientCloseDescription | `String` | Необязательно |
+| websocket.ClientCloseStatus | `int` | Необязательный |
+| websocket.ClientCloseDescription | `String` | Необязательный |
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

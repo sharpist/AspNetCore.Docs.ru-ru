@@ -22,7 +22,7 @@ ms.locfileid: "82776211"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT)
+Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 Объект `MvcMovieContext` обрабатывает задачу подключения к базе данных и сопоставления объектов `Movie` с записями базы данных. Контекст базы данных регистрируется с помощью контейнера [внедрения зависимостей](xref:fundamentals/dependency-injection) в методе `ConfigureServices` в файле *Startup.cs*:
 
@@ -97,7 +97,7 @@ if (context.Movie.Any())
 
 ### <a name="add-the-seed-initializer"></a>Добавление инициализатора заполнения
 
-Замените содержимое файла *Program.cs* кодом, приведенным ниже.
+Замените содержимое *Program.cs* кодом из этого примера.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Program.cs)]
 
@@ -134,7 +134,7 @@ if (context.Movie.Any())
 
 ::: moniker range="< aspnetcore-3.0"
 
-Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT)
+Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 Объект `MvcMovieContext` обрабатывает задачу подключения к базе данных и сопоставления объектов `Movie` с записями базы данных. Контекст базы данных регистрируется с помощью контейнера [внедрения зависимостей](xref:fundamentals/dependency-injection) в методе `ConfigureServices` в файле *Startup.cs*:
 
@@ -209,7 +209,7 @@ if (context.Movie.Any())
 
 ### <a name="add-the-seed-initializer"></a>Добавление инициализатора заполнения
 
-Замените содержимое файла *Program.cs* кодом, приведенным ниже.
+Замените содержимое *Program.cs* кодом из этого примера.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Program.cs)]
 

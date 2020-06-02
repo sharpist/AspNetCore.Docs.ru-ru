@@ -21,7 +21,7 @@ ms.locfileid: "82777076"
 ---
 # <a name="add-a-new-field-to-an-aspnet-core-mvc-app"></a>Добавление нового поля в приложение MVC ASP.NET Core
 
-Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT)
+Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 В этом разделе [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations используется для выполнения следующих задач:
 
@@ -111,7 +111,7 @@ Command ⌘ + B
 
   ![Меню PMC](adding-model/_static/pmc.png)
 
-В PMC введите следующие команды.
+В PMC введите следующие команды:
 
 ```powershell
 Add-Migration Rating
@@ -128,7 +128,7 @@ Update-Database
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Удалите базу данных и используйте миграции для повторного создания базы данных. Чтобы удалить базу данных, удалите файл базы данных (*MvcMovie.db*). Затем выполните следующую команду `ef database update`:
+Удалите базу данных и используйте миграции для повторного создания базы данных. Чтобы удалить базу данных, удалите файл базы данных (*MvcMovie.db*). Затем выполните команду `ef database update`:
 
 ```dotnetcli
 dotnet ef database update

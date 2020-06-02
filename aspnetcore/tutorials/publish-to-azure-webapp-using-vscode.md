@@ -35,7 +35,7 @@ ms.locfileid: "82767848"
 
 - Создайте [бесплатную учетную запись Azure](https://azure.microsoft.com/free/dotnet/), если у вас ее нет.
 - Установите [пакет SDK для .NET Core](https://dotnet.microsoft.com/download).
-- Установите [Visual Studio Code](https://code.visualstudio.com/Download).
+- Установка [Visual Studio Code](https://code.visualstudio.com/Download)
   - Установите [расширение C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) для Visual Studio Code.
   - Установите [расширение службы приложений Azure](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice) для Visual Studio Code и настройте его перед продолжением
 
@@ -96,11 +96,11 @@ tasks.json
 
 Это служебные файлы, которые помогут вам создать веб-приложение .NET Core и выполнить его отладку.
 
-## <a name="run-the-app"></a>Запустите приложение
+## <a name="run-the-app"></a>Запуск приложения
 
 Перед развертыванием приложения в Azure убедитесь, что оно работает правильно на локальном компьютере.
 
-- Нажмите клавишу F5, чтобы запустить проект.
+- Нажмите клавишу F5, чтобы запустить проект.
 
 Веб-приложение начнет выполняться на новой вкладке браузера по умолчанию. Сразу после его запуска может появиться предупреждение о конфиденциальности. Это происходит потому, что ваше приложение запускается с помощью HTTP или HTTPS и оно переходит к конечной точке HTTPS по умолчанию.
 
@@ -117,15 +117,15 @@ tasks.json
 
 ![Структура папки публикации](publish-to-azure-webapp-using-vscode/_static/publish-folder.jpg)
 
-## <a name="publish-to-azure-app-service"></a>Опубликовать в Службе приложений Azure
+## <a name="publish-to-azure-app-service"></a>Публикация в службу приложений Azure
 
 Используя расширение службы приложений Azure для Visual Studio Code, выполните следующие действия, чтобы опубликовать веб-сайт непосредственно в службе приложений Azure.
 
 ### <a name="if-youre-creating-a-new-web-app"></a>При создании нового веб-приложения
 
-- Щелкните правой кнопкой мыши папку `publish` и выберите `Deploy to Web App...`.
+- Щелкните папку `publish` правой кнопкой мыши и выберите `Deploy to Web App...`.
 - Выберите подписку, в которой нужно создать веб-приложение.
-- Выберите `Create New Web App`
+- Выберите `Create New Web App`.
 - Введите имя веб-приложения.
 
 Расширение создаст веб-приложение и автоматически начнет развертывание пакета для приложения. После завершения развертывания щелкните `Browse Website`, чтобы проверить развертывание.
@@ -138,7 +138,7 @@ tasks.json
 
 ### <a name="if-youre-deploying-to-an-existing-web-app"></a>При развертывании в существующее веб-приложение
 
-- Щелкните правой кнопкой мыши папку `publish` и выберите `Deploy to Web App...`.
+- Щелкните папку `publish` правой кнопкой мыши и выберите `Deploy to Web App...`.
 - Выберите подписку, в которой находится существующее веб-приложение.
 - Выберите веб-приложение в списке.
 - Visual Studio Code выдаст запрос на перезапись существующего содержимого. Щелкните `Deploy` для подтверждения.
@@ -147,11 +147,11 @@ tasks.json
 
 ![Существующее веб-приложение успешно развернуто](publish-to-azure-webapp-using-vscode/_static/existing-webapp-deployed.jpg)
 
-## <a name="next-steps"></a>Дальнейшие действия
+## <a name="next-steps"></a>Следующие шаги
 
 - [Создание первого конвейера DevOps в Azure](/azure/devops/pipelines/create-first-pipeline)
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-- [Служба приложений Azure](/azure/app-service/app-service-web-overview)
-- [группы ресурсов Azure](/azure/azure-resource-manager/resource-group-overview#resource-groups).
+- [служба приложений Azure](/azure/app-service/app-service-web-overview);
+- [Группа ресурсов Azure](/azure/azure-resource-manager/resource-group-overview#resource-groups)

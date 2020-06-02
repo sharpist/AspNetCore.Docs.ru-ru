@@ -49,7 +49,7 @@ ms.locfileid: "82775483"
 
 [!code-csharp[](entity-framework-6/sample/EF6/SchoolContext.cs?name=snippet_Constructor)]
 
-Поскольку в контексте EF6 отсутствует конструктор без параметров, в проекте EF6 необходимо предоставить реализацию [IDbContextFactory](https://msdn.microsoft.com/library/hh506876). Средства командной строки EF6 будут находить и использовать эту реализацию для создания экземпляра контекста. Ниже приведен пример.
+Поскольку в контексте EF6 отсутствует конструктор без параметров, в проекте EF6 необходимо предоставить реализацию [IDbContextFactory](https://msdn.microsoft.com/library/hh506876). Средства командной строки EF6 будут находить и использовать эту реализацию для создания экземпляра контекста. Рассмотрим пример.
 
 [!code-csharp[](entity-framework-6/sample/EF6/SchoolContextFactory.cs?name=snippet_IDbContextFactory)]
 

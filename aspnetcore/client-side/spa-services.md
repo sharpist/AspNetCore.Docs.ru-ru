@@ -155,13 +155,13 @@ npm i -D aspnet-webpack
 
 ### <a name="webpack-dev-middleware-configuration"></a>Настройка ПО промежуточного слоя Webpack для разработки
 
-ПО промежуточного слоя Webpack для разработки регистрируется в конвейере HTTP-запросов с помощью следующего кода в методе *в файле*Startup.cs`Configure`:
+ПО промежуточного слоя Webpack для разработки регистрируется в конвейере HTTP-запросов с помощью следующего кода в методе `Configure` в файле *Startup.cs*:
 
 [!code-csharp[](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=snippet_WebpackMiddlewareRegistration&highlight=4)]
 
 Метод расширения `UseWebpackDevMiddleware` должен вызываться перед [регистрацией размещения статического файла](xref:fundamentals/static-files) с помощью метода расширения `UseStaticFiles`. В целях безопасности регистрировать ПО промежуточного слоя следует только при запуске приложения в режиме разработки.
 
-Свойство *в файле*webpack.config.js`output.publicPath` предписывает ПО промежуточного слоя отслеживать изменения в папке `dist`:
+Свойство `output.publicPath` в файле *webpack.config.js* предписывает ПО промежуточного слоя отслеживать изменения в папке `dist`:
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=6,13-16)]
 
@@ -213,7 +213,7 @@ npm i -S @angular/router
 
 ### <a name="routing-helpers-configuration"></a>Настройка вспомогательных методов маршрутизации
 
-В методе `MapSpaFallbackRoute` используется метод расширения `Configure`:
+В методе `Configure` используется метод расширения `MapSpaFallbackRoute`:
 
 [!code-csharp[](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=snippet_MvcRoutingTable&highlight=7-9)]
 
@@ -231,7 +231,7 @@ dotnet new --install Microsoft.AspNetCore.SpaTemplates::*
 
 Отобразится список доступных шаблонов SPA.
 
-| Шаблоны                                 | Краткое имя | Язык | Теги        |
+| Шаблоны                                 | Краткое имя | Язык | Tags        |
 | ------------------------------------------| :--------: | :------: | :---------: |
 | MVC ASP.NET Core с Angular             | angular    | [C#]     | MVC/Веб/SPA |
 | MVC ASP.NET Core с React.js            | react      | [C#]     | MVC/Веб/SPA |
@@ -247,10 +247,10 @@ dotnet new angular
 
 Существует два основных режима конфигурации среды выполнения:
 
-* **Development**.
+* **Разработка**:
   * включает сопоставители с исходным кодом для упрощения отладки;
   * не оптимизирует производительность кода на стороне клиента.
-* **Production**.
+* **Рабочая среда**:
   * исключает сопоставители с исходным кодом;
   * оптимизирует код на стороне клиента посредством объединения и минификации.
 
@@ -280,7 +280,7 @@ dotnet run
 
 В шаблонах SpaServices предварительно настроено выполнение тестов на стороне клиента с помощью [Karma](https://karma-runner.github.io/1.0/index.html) и [Jasmine](https://jasmine.github.io/). Jasmine — это популярная платформа модульного тестирования для JavaScript, а Karma — это средство запуска тестов. Средство Karma настроено для работы с [ПО промежуточного слоя Webpack для разработки](#webpack-dev-middleware), так что разработчику не нужно останавливать и снова запускать тест каждый раз, когда вносится изменение. Независимо от того, выполняется ли сам тестовый случай или код для тестового случая, тест проводится автоматически.
 
-Возьмем в качестве примера приложение Angular. В файле `CounterComponent`counter.component.spec.ts*уже имеется два тестовых случая Jasmine для*:
+Возьмем в качестве примера приложение Angular. В файле *counter.component.spec.ts* уже имеется два тестовых случая Jasmine для `CounterComponent`:
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/app/components/counter/counter.component.spec.ts?range=15-28)]
 

@@ -121,7 +121,7 @@ Swagger — это не зависящая от языка спецификац
 > [!NOTE]
 > На снимках экрана используется пользовательский интерфейс Swagger версии 2. Пример версии 3 см. в разделе [Пример Petstore](https://petstore.swagger.io/).
 
-## <a name="next-steps"></a>Дальнейшие действия
+## <a name="next-steps"></a>Следующие шаги
 
 * [Начало работы с Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 * [Начало работы с NSwag](xref:tutorials/get-started-with-nswag)
