@@ -1,31 +1,21 @@
 ---
-title: Миграция из Microsoft. Extensions. Logging 2,1 в 2,2 или 3,0
-author: pakrym
-description: Узнайте, как перенести приложение non-ASP.NET Core, использующее Microsoft. Extensions. Logging от 2,1 до 2,2 или 3,0.
-ms.author: pakrym
-ms.custom: mvc
-ms.date: 01/04/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: migration/logging-nonaspnetcore
-ms.openlocfilehash: 3a84d53cb925a518f6c3e244dd342a3228a1fe17
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777063"
+Title: миграция из Microsoft. Extensions. Logging 2,1 в 2,2 или 3,0 author: пакрим Description: Узнайте, как перенести приложение non-ASP.NET Core, использующее Microsoft. Extensions. Logging от 2,1 до 2,2 или 3,0.
+MS. author: пакрим MS. Custom: MVC MS. Дата: 01/04/2019 No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: миграция/ведение журнала-нонаспнеткоре
+
 ---
+
 # <a name="migrate-from-microsoftextensionslogging-21-to-22-or-30"></a>Миграция из Microsoft. Extensions. Logging 2,1 в 2,2 или 3,0
 
 В этой статье описаны общие действия по переносу приложения non-ASP.NET Core, использующего `Microsoft.Extensions.Logging` от 2,1 до 2,2 или 3,0.
 
 ## <a name="21-to-22"></a>С версии 2.1 на 2.2
 
-Создайте `ServiceCollection` и вызовите `AddLogging`вручную.
+Создайте `ServiceCollection` и вызовите вручную `AddLogging` .
 
 2,1. Пример:
 
@@ -53,7 +43,7 @@ using (var loggerFactory = serviceProvider.GetService<ILoggerFactory>())
 
 ## <a name="21-to-30"></a>от 2,1 до 3,0
 
-В 3,0 используйте `LoggingFactory.Create`.
+В 3,0 используйте `LoggingFactory.Create` .
 
 2,1. Пример:
 
@@ -77,4 +67,5 @@ using (var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole())
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-<xref:fundamentals/logging/index>
+* [Пакет NuGet Microsoft. Extensions. Logging. Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/).
+* <xref:fundamentals/logging/index>

@@ -1,23 +1,12 @@
 ---
-title: Типы возвращаемых значений действий контроллера в веб-API ASP.NET Core
-author: scottaddie
-description: Узнайте, как использовать разные типы возвращаемых значений методов действий контроллера в веб-API ASP.NET Core.
-ms.author: scaddie
-ms.custom: mvc
-ms.date: 02/03/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: web-api/action-return-types
-ms.openlocfilehash: 4db553a61ca0eeabe35a08731295333f588ee0fc
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774946"
+Title: типы возвращаемых действий контроллера в ASP.NET Core автор веб-API: скоттаддие Description: сведения об использовании различных типов возвращаемых методов действия контроллера в веб-API ASP.NET Core.
+MS. author: скаддие MS. Custom: MVC MS. Дата: 02/03/2020 No-Loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: Web-API/Action-Returns-Types
+
 ---
 # <a name="controller-action-return-types-in-aspnet-core-web-api"></a>Типы возвращаемых значений действий контроллера в веб-API ASP.NET Core
 
@@ -52,9 +41,9 @@ ASP.NET Core предоставляет следующие параметры д
 
 Если не известны условия, которые необходимо соблюдать при выполнении действия, конкретного типа будет достаточно. Предыдущее действие не принимает параметры, поэтому проверка ограничений параметров не требуется.
 
-Если в действии необходимо учитывать известные условия, используется несколько путей возврата. В этом случае рекомендуется комбинировать тип возвращаемого значения класса <xref:Microsoft.AspNetCore.Mvc.ActionResult> с примитивным или сложным типом возвращаемого значения. Для этого типа действия требуется [IActionResult](#iactionresult-type) или [ActionResult\<T >](#actionresultt-type).
+Если возможны множественные возвращаемые типы, то распространенным типом возвращаемого <xref:Microsoft.AspNetCore.Mvc.ActionResult> значения является примитивный или сложный тип. Для выполнения этого типа действий необходимы [IActionResult](#iactionresult-type) или [ActionResult \<T> ](#actionresultt-type) . В этом документе представлено несколько примеров с несколькими типами возвращаемых значений.
 
-### <a name="return-ienumerablet-or-iasyncenumerablet"></a>Получение IEnumerable\<T> или IAsyncEnumerable\<T>
+### <a name="return-ienumerablet-or-iasyncenumerablet"></a>Возврат IEnumerable \<T> или иасинценумерабле\<T>
 
 В ASP.NET Core 2.2 и более ранних версиях получение интерфейса <xref:System.Collections.Generic.IEnumerable%601> из действия приводит к тому, что сериализатор выполняет синхронную итерацию операции сбора. В результате вызовы блокируются, что может стать причиной перегрузки пула потоков. Представьте, что Entity Framework (EF) Core используется веб-API для доступа к данным. Во время сериализации выполняется синхронное перечисление для типа возвращаемого значения следующего действия:
 
@@ -148,13 +137,13 @@ public IEnumerable<Product> GetOnSaleProducts() =>
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Если применяется [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) атрибут в ASP.NET Core 2,1 или более поздней версии, ошибки проверки модели приводят к коду состояния 400. Дополнительные сведения см. в разделе [Автоматические отклики HTTP 400](xref:web-api/index#automatic-http-400-responses).
+Если [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) применяется атрибут в ASP.NET Core 2,1 или более поздней версии, ошибки проверки модели приводят к коду состояния 400. Дополнительные сведения см. в разделе [Автоматические отклики HTTP 400](xref:web-api/index#automatic-http-400-responses).
 
-## <a name="actionresultt-type"></a>Тип ActionResult\<T>
+## <a name="actionresultt-type"></a>\<T>Тип ActionResult
 
-ASP.NET Core 2.1 предоставляет тип возвращаемого значения [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) для действий контроллера веб-API. Он позволяет возвращать тип, производный от <xref:Microsoft.AspNetCore.Mvc.ActionResult> или [определенный тип](#specific-type). `ActionResult<T>` имеет следующие преимущества по сравнению с [типом IActionResult](#iactionresult-type):
+В ASP.NET Core 2,1 введен тип возвращаемого значения [ActionResult \<T> ](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) для действий контроллера веб-API. Он позволяет возвращать тип, производный от <xref:Microsoft.AspNetCore.Mvc.ActionResult> или [определенный тип](#specific-type). `ActionResult<T>` имеет следующие преимущества по сравнению с [типом IActionResult](#iactionresult-type):
 
-* `Type` Свойство [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) атрибута можно исключить. Например, `[ProducesResponseType(200, Type = typeof(Product))]` упрощается до `[ProducesResponseType(200)]`. Ожидаемый тип возвращаемого значения действия вместо этого выводится из `T` в `ActionResult<T>`.
+* [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) `Type` Свойство атрибута можно исключить. Например, `[ProducesResponseType(200, Type = typeof(Product))]` упрощается до `[ProducesResponseType(200)]`. Ожидаемый тип возвращаемого значения действия вместо этого выводится из `T` в `ActionResult<T>`.
 * [Операторы неявного приведения](/dotnet/csharp/language-reference/keywords/implicit) поддерживают преобразование `T` и `ActionResult` в `ActionResult<T>`. `T` преобразуется в <xref:Microsoft.AspNetCore.Mvc.ObjectResult>, то есть `return new ObjectResult(T);` упрощается до `return T;`.
 
 C# не поддерживает операторы неявных приведений в интерфейсах. Следовательно, для преобразования в конкретный тип необходимо использовать `ActionResult<T>`. Например, использование `IEnumerable` не работает в следующем примере:
@@ -189,7 +178,7 @@ public ActionResult<IEnumerable<Product>> Get() =>
 В предшествующем действии:
 
 * Код состояния 400 (<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>) возвращается средой выполнения ASP.NET Core, если:
-  * [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) Атрибут применен, и проверка модели завершается неудачно.
+  * [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute)Атрибут применен, и проверка модели завершается неудачно.
   * Описание продукта содержит XYZ Widget.
 * Код состояния 201 генерируется методом <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> при создании продукта. В этом пути к коду объект `Product` предоставляется в тексте ответа. Также предоставляется заголовок ответа `Location` с URL-адресом только что созданного продукта.
 

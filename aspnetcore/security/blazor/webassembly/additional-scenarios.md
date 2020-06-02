@@ -1,20 +1,88 @@
 ---
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
+Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: гуардрекс Description: ' сведения о настройке Blazor сборки для дополнительных сценариев безопасности '.
+Моникерранже: ' >= aspnetcore-3,1 ' MS. author: рианде MS. Custom: MVC MS. Дата: 06/01/2020 No-Loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ИД пользователя "SignalR": 
+- ' SignalR ' UID: Security/блазор/Assembly/дополнительные сценарии '
 
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor дополнительных сценариев безопасности для сборки
 
-Автор: [Javier Calvarro Nelson](https://github.com/javiercn) (Хавьер Кальварро Нельсон)
+[Хавьер Калварро Воронков](https://github.com/javiercn) и [Люк ЛаСаМ](https://github.com/guardrex)
 
 ## <a name="attach-tokens-to-outgoing-requests"></a>Присоединение маркеров к исходящим запросам
 
 <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>Службу можно использовать с <xref:System.Net.Http.HttpClient> для присоединения маркеров доступа к исходящим запросам. Токены получаются с помощью существующей <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider> службы. Если токен не может быть получен, <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> создается исключение. <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException>содержит <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException.Redirect%2A> метод, который можно использовать для перехода пользователя к поставщику удостоверений для получения нового маркера. Для <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> настройки можно использовать полномочные URL-адреса, области и URL-адрес возврата с помощью <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> метода.
+
+Используйте один из следующих подходов для настройки обработчика сообщений для исходящих запросов:
+
+* [Пользовательский класс аусоризатионмессажехандлер](#custom-authorizationmessagehandler-class) (*рекомендуется*)
+* [Настройка Аусоризатионмессажехандлер](#configure-authorizationmessagehandler)
+
+### <a name="custom-authorizationmessagehandler-class"></a>Пользовательский класс Аусоризатионмессажехандлер
+
+В следующем примере расширяется пользовательский класс <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> , который можно использовать для настройки <xref:System.Net.Http.HttpClient> :
+
+```csharp
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
+{
+    public CustomAuthorizationMessageHandler(IAccessTokenProvider provider, 
+        NavigationManager navigationManager)
+        : base(provider, navigationManager)
+    {
+        ConfigureHandler(
+            authorizedUrls: new[] { "https://www.example.com/base" },
+            scopes: new[] { "example.read", "example.write" });
+    }
+}
+```
+
+В `Program.Main` (*Program.CS*) <xref:System.Net.Http.HttpClient> Настройка настроена с помощью пользовательского обработчика сообщений авторизации:
+
+```csharp
+builder.Services.AddTransient<CustomAuthorizationMessageHandler>();
+
+builder.Services.AddHttpClient("ServerAPI",
+    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+        .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
+```
+
+Настроенный параметр <xref:System.Net.Http.HttpClient> используется для выполнения запросов с помощью шаблона [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) . Когда клиент создается с помощью <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> ([Microsoft. Extensions. http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) Package), <xref:System.Net.Http.HttpClient> передаются экземпляры, которые включают маркеры доступа при выполнении запросов к API сервера:
+
+```razor
+@inject IHttpClientFactory ClientFactory
+
+...
+
+@code {
+    private ExampleType[] examples;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var client = ClientFactory.CreateClient("ServerAPI");
+
+            examples = 
+                await client.GetFromJsonAsync<ExampleType[]>("{API METHOD}");
+
+            ...
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+        
+    }
+}
+```
+
+### <a name="configure-authorizationmessagehandler"></a>Настройка Аусоризатионмессажехандлер
 
 В следующем примере <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> настраивается <xref:System.Net.Http.HttpClient> в `Program.Main` (*Program.CS*):
 
@@ -28,7 +96,7 @@ builder.Services.AddTransient(sp =>
 {
     return new HttpClient(sp.GetRequiredService<AuthorizationMessageHandler>()
         .ConfigureHandler(
-            new [] { "https://www.example.com/base" },
+            authorizedUrls: new [] { "https://www.example.com/base" },
             scopes: new[] { "example.read", "example.write" }))
         {
             BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
@@ -36,7 +104,7 @@ builder.Services.AddTransient(sp =>
 });
 ```
 
-Для удобства <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> включается предварительно настроенный базовый адрес приложения в качестве разрешенного URL-адреса. Шаблоны сборки с поддержкой проверки подлинности Blazor теперь используют <xref:System.Net.Http.IHttpClientFactory> в проекте API сервера для настройки с помощью <xref:System.Net.Http.HttpClient> <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> :
+Для удобства <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> включается предварительно настроенный базовый адрес приложения в качестве разрешенного URL-адреса. Шаблоны веб-сборок с поддержкой проверки подлинности Blazor теперь используют <xref:System.Net.Http.IHttpClientFactory> (пакет[Microsoft. Extensions. http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) ) в проекте API сервера для настройки <xref:System.Net.Http.HttpClient> с помощью <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> :
 
 ```csharp
 using System.Net.Http;
@@ -44,21 +112,19 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-builder.Services.AddHttpClient("BlazorWithIdentity.ServerAPI", 
+builder.Services.AddHttpClient("ServerAPI", 
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
         .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("BlazorWithIdentity.ServerAPI"));
+    .CreateClient("ServerAPI"));
 ```
 
 При создании клиента с помощью <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> в предыдущем примере <xref:System.Net.Http.HttpClient> передаются экземпляры, которые включают маркеры доступа при выполнении запросов к серверному проекту.
 
-Настроенный <xref:System.Net.Http.HttpClient> затем используется для выполнения запросов с помощью простого шаблона [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) .
+Настроенный параметр <xref:System.Net.Http.HttpClient> используется для выполнения запросов с помощью шаблона [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) :
 
-Компонент `FetchData` (*Pages/FetchData.razor*):
-
-```csharp
+```razor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject HttpClient Client
 
@@ -66,10 +132,14 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
 
 protected override async Task OnInitializedAsync()
 {
+    private ExampleType[] examples;
+
     try
     {
-        forecasts = 
-            await Client.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+        examples = 
+            await Client.GetFromJsonAsync<ExampleType[]>("{API METHOD}");
+
+        ...
     }
     catch (AccessTokenNotAvailableException exception)
     {
@@ -171,7 +241,7 @@ builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient",
 
 Приведенная выше регистрация является дополнением к существующей безопасной регистрации по умолчанию <xref:System.Net.Http.HttpClient> .
 
-Компонент создает <xref:System.Net.Http.HttpClient> из в <xref:System.Net.Http.IHttpClientFactory> для создания непроверенных или неавторизованных запросов:
+Компонент создает <xref:System.Net.Http.HttpClient> из <xref:System.Net.Http.IHttpClientFactory> ([Microsoft. Extensions. http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) -пакет) для создания непроверенных или неавторизованных запросов:
 
 ```razor
 @inject IHttpClientFactory ClientFactory
@@ -491,141 +561,16 @@ app.UseCors(policy =>
 По умолчанию библиотека [Microsoft. AspNetCore. Components. веб-сборка. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) использует маршруты, приведенные в следующей таблице, для представления различных состояний проверки подлинности.
 
 | Маршрут                            | Назначение |
-| ---
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----------------- | Заголовок---: "ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки" author: Description: "Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----- | | `authentication/login`           | Активирует операцию входа. | | `authentication/login-callback`  | Обрабатывает результат любой операции входа. | | `authentication/login-failed`    | Отображает сообщения об ошибках при сбое операции входа по какой-либо причине. | | `authentication/logout`          | Активирует операцию выхода. | | `authentication/logout-callback` | Обрабатывает результат операции выхода. | | `authentication/logout-failed`   | Отображает сообщения об ошибках при сбое операции выхода по какой-либо причине. | | `authentication/logged-out`      | Указывает, что пользователь успешно выполнил выход. | | `authentication/profile`         | Активирует операцию для изменения профиля пользователя. | | `authentication/register`        | Активирует операцию для регистрации нового пользователя. |
+| -------------------------------- | ------- |
+| `authentication/login`           | Активирует операцию входа. |
+| `authentication/login-callback`  | Обрабатывает результат любой операции входа. |
+| `authentication/login-failed`    | Отображает сообщения об ошибках при сбое операции входа по какой-либо причине. |
+| `authentication/logout`          | Активирует операцию выхода. |
+| `authentication/logout-callback` | Обрабатывает результат операции выхода. |
+| `authentication/logout-failed`   | Отображает сообщения об ошибках при сбое операции выхода по какой-либо причине. |
+| `authentication/logged-out`      | Указывает, что пользователь успешно выполнил выход. |
+| `authentication/profile`         | Активирует операцию для изменения профиля пользователя. |
+| `authentication/register`        | Активирует операцию для регистрации нового пользователя. |
 
 Маршруты, показанные в предыдущей таблице, можно настроить с помощью <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationOptions%601.AuthenticationPaths%2A?displayProperty=nameWithType> . При настройке параметров для предоставления настраиваемых маршрутов убедитесь, что у приложения есть маршрут, который обрабатывает каждый путь.
 
@@ -696,213 +641,16 @@ builder.Services.AddApiAuthorization(options => {
 В <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> имеется один фрагмент, который можно использовать для каждого маршрута проверки подлинности, как показано в следующей таблице.
 
 | Маршрут                            | Fragment (Фрагмент)                |
-| ---
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----------------- | Заголовок---: "ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки" author: Description: "Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: Description: ' Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------------- | | `authentication/login`           | `<LoggingIn>`           | | `authentication/login-callback`  | `<CompletingLoggingIn>` | | `authentication/login-failed`    | `<LogInFailed>`         | | `authentication/logout`          | `<LogOut>`              | | `authentication/logout-callback` | `<CompletingLogOut>`    | | `authentication/logout-failed`   | `<LogOutFailed>`        | | `authentication/logged-out`      | `<LogOutSucceeded>`     | | `authentication/profile`         | `<UserProfile>`         | | `authentication/register`        | `<Registering>`         |
+| -------------------------------- | ----------------------- |
+| `authentication/login`           | `<LoggingIn>`           |
+| `authentication/login-callback`  | `<CompletingLoggingIn>` |
+| `authentication/login-failed`    | `<LogInFailed>`         |
+| `authentication/logout`          | `<LogOut>`              |
+| `authentication/logout-callback` | `<CompletingLogOut>`    |
+| `authentication/logout-failed`   | `<LogOutFailed>`        |
+| `authentication/logged-out`      | `<LogOutSucceeded>`     |
+| `authentication/profile`         | `<UserProfile>`         |
+| `authentication/register`        | `<Registering>`         |
 
 ## <a name="customize-the-user"></a>Настройка пользователя
 
