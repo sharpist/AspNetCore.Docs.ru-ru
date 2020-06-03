@@ -20,9 +20,9 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 
 ## <a name="static-net-method-call"></a>Вызов статического метода .NET
 
-Чтобы вызвать статический метод .NET из JavaScript, используйте функции `DotNet.invokeMethod` или `DotNet.invokeMethodAsync`. Передайте идентификатор статического метода, который необходимо вызвать, имя сборки, содержащей функцию, и любые аргументы. Асинхронная версия является предпочтительной для поддержки сценариев Blazor Server. Метод .NET должен быть открытым, статическим и иметь атрибут `[JSInvokable]`. Вызов открытых универсальных методов в настоящее время не поддерживается.
+Чтобы вызвать статический метод .NET из JavaScript, используйте функции `DotNet.invokeMethod` или `DotNet.invokeMethodAsync`. Передайте идентификатор статического метода, который необходимо вызвать, имя сборки, содержащей функцию, и любые аргументы. Асинхронная версия является предпочтительной для поддержки сценариев Blazor Server. Метод .NET должен быть открытым, статическим и иметь атрибут [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute). Вызов открытых универсальных методов в настоящее время не поддерживается.
 
-Пример приложения включает метод C#, возвращающий массив `int`. К методу применяется атрибут `JSInvokable`.
+Пример приложения включает метод C#, возвращающий массив `int`. К методу применяется атрибут [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute).
 
 *Pages/JsInterop.razor*:
 
@@ -57,7 +57,7 @@ Array(4) [ 1, 2, 3, 4 ]
 
 Четвертое значение массива помещается в массив (`data.push(4);`), возвращаемый методом `ReturnArrayAsync`.
 
-По умолчанию идентификатором метода является имя метода, но можно указать другой идентификатор с помощью конструктора `JSInvokableAttribute`:
+По умолчанию идентификатором метода является имя метода, но можно указать другой идентификатор с помощью атрибута конструктора [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute):
 
 ```csharp
 @code {
@@ -86,8 +86,8 @@ returnArrayAsyncJs: function () {
 Кроме того, из JavaScript можно вызывать методы экземпляра .NET. Для этого необходимо выполнить следующие действия.
 
 * Передайте в JavaScript экземпляр .NET по ссылке:
-  * Выполните статический вызов `DotNetObjectReference.Create`.
-  * Заключите экземпляр в экземпляр `DotNetObjectReference` и вызовите метод `Create` в экземпляре `DotNetObjectReference`. Удалите объекты `DotNetObjectReference` (пример приведен далее в этом разделе).
+  * Выполните статический вызов <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A?displayProperty=nameWithType>.
+  * Заключите экземпляр в экземпляр <xref:Microsoft.JSInterop.DotNetObjectReference> и вызовите метод <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> в экземпляре <xref:Microsoft.JSInterop.DotNetObjectReference>. Удалите объекты <xref:Microsoft.JSInterop.DotNetObjectReference> (пример приведен далее в этом разделе).
 * Вызовите методы экземпляра .NET в экземпляре с помощью функций `invokeMethod` или `invokeMethodAsync`. Экземпляр .NET можно также передать в качестве аргумента при вызове других методов .NET из JavaScript.
 
 > [!NOTE]
@@ -133,9 +133,9 @@ returnArrayAsyncJs: function () {
 Hello, Blazor!
 ```
 
-Чтобы избежать утечки памяти и разрешить сборку мусора для компонента, который создает метод `DotNetObjectReference`, используйте один из следующих подходов.
+Чтобы избежать утечки памяти и разрешить сборку мусора для компонента, который создает метод <xref:Microsoft.JSInterop.DotNetObjectReference>, используйте один из следующих подходов.
 
-* Удалите объект в классе, который создал экземпляр `DotNetObjectReference`.
+* Удалите объект в классе, который создал экземпляр <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
   ```csharp
   public class ExampleJsInterop : IDisposable
@@ -197,7 +197,7 @@ Hello, Blazor!
   }
   ```
 
-* Если компонент или класс не удаляет `DotNetObjectReference`, удалите объект в клиенте, вызвав `.dispose()`.
+* Если компонент или класс не удаляет <xref:Microsoft.JSInterop.DotNetObjectReference>, удалите объект в клиенте, вызвав `.dispose()`.
 
   ```javascript
   window.myFunction = (dotnetHelper) => {
@@ -211,7 +211,7 @@ Hello, Blazor!
 Порядок вызова методов .NET компонента
 
 * Используйте функцию `invokeMethod` или `invokeMethodAsync`, чтобы вызвать статический метод для компонента.
-* Статический метод компонента создает программу-оболочку вызова метода экземпляра в виде вызванного `Action`.
+* Статический метод компонента создает программу-оболочку вызова метода экземпляра в виде вызванного <xref:System.Action>.
 
 В JavaScript на стороне клиента:
 
@@ -257,11 +257,11 @@ function updateMessageCallerJS() {
 }
 ```
 
-При наличии нескольких компонентов, каждый из которых содержит методы экземпляра, используйте вспомогательный класс для вызова методов экземпляра (как `Action`) для каждого компонента.
+При наличии нескольких компонентов, каждый из которых содержит методы экземпляра, используйте вспомогательный класс для вызова методов экземпляра (как <xref:System.Action>) для каждого компонента.
 
 В следующем примере:
 
-* Компонент `JSInterop` содержит несколько компонентов `ListItem`.
+* Компонент `JSInteropExample` содержит несколько компонентов `ListItem`.
 * Каждый компонент `ListItem` состоит из сообщения и кнопки.
 * При выборе кнопки компонента `ListItem` метод `UpdateMessage` `ListItem`изменяет текст элемента списка и скрывает кнопку.
 
@@ -332,10 +332,10 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 }
 ```
 
-*Pages/JSInterop.razor*:
+*Pages/JSInteropExample.razor*:
 
 ```razor
-@page "/JSInterop"
+@page "/JSInteropExample"
 
 <h1>List of components</h1>
 

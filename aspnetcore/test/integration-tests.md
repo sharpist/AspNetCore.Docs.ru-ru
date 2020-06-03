@@ -143,7 +143,7 @@
 
    Контекст базы данных ТС регистрируется в методе `Startup.ConfigureServices`. Обратный вызов `builder.ConfigureServices` тестового приложения выполняется *после* выполнения кода `Startup.ConfigureServices` приложения. Порядок выполнения является критическим изменением для [универсального узла](xref:fundamentals/host/generic-host) с выпуском ASP.NET Core 3.0. Чтобы использовать для тестов базу данных, отличную от базы данных приложения, необходимо заменить контекст базы данных приложения в `builder.ConfigureServices`.
 
-   В тестируемых системах, которые по-прежнему используют [веб-узел} (xref:fundamentals/host/web-host), обратный вызов `builder.ConfigureServices` тестового приложения выполняется *до* выполнения кода `Startup.ConfigureServices` тестируемой системы. Обратный вызов `builder.ConfigureTestServices` тестового приложения выполняется *позже*.
+   В тестируемых системах, которые по-прежнему используют [веб-узел](xref:fundamentals/host/web-host), обратный вызов `builder.ConfigureServices` тестового приложения выполняется *до* выполнения кода `Startup.ConfigureServices` тестируемой системы. Обратный вызов `builder.ConfigureTestServices` тестового приложения выполняется *позже*.
 
    Пример приложения находит дескриптор службы для контекста базы данных и использует дескриптор для удаления регистрации службы. Затем фабрика добавляет новый `ApplicationDbContext`, который использует базу данных в памяти для тестов.
 
@@ -178,7 +178,7 @@
 
 Вспомогательные методы расширения `SendAsync` (*Helpers/HttpClientExtensions.cs*) и вспомогательный метод `GetDocumentAsync` (*Helpers/HtmlHelpers.cs*) в [примере приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) используют средство синтаксического анализа [AngleSharp](https://anglesharp.github.io/) для обработки защиты от подделки с помощью следующих методов:
 
-* `GetDocumentAsync` &ndash; получает [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) и возвращает `IHtmlDocument`. `GetDocumentAsync` использует фабрику, которая подготавливает *виртуальный ответ* на основе исходного `HttpResponseMessage`. Дополнительные сведения см. в [документации по AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
+* `GetDocumentAsync`. Получает [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) и возвращает `IHtmlDocument`. `GetDocumentAsync` использует фабрику, которая подготавливает *виртуальный ответ* на основе исходного `HttpResponseMessage`. Дополнительные сведения см. в [документации по AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
 * Методы расширения `SendAsync` для `HttpClient` составляют [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) и вызывают [SendAsync (HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) для отправки запросов к ТС. Перегрузки для `SendAsync` принимают HTML-форму (`IHtmlFormElement`) и следующие элементы:
   * Кнопка "Отправить" в форме (`IHtmlElement`)
   * Коллекция значений формы (`IEnumerable<KeyValuePair<string, string>>`)
@@ -573,7 +573,7 @@ dotnet test
 
 Контекст базы данных ТС регистрируется в методе `Startup.ConfigureServices`. Обратный вызов `builder.ConfigureServices` тестового приложения выполняется *после* выполнения кода `Startup.ConfigureServices` приложения. Чтобы использовать для тестов другую базу данных, необходимо заменить контекст базы данных приложения в `builder.ConfigureServices`. Дополнительные сведения см. в разделе [Настройка WebApplicationFactory](#customize-webapplicationfactory).
 
-В тестируемых системах, которые по-прежнему используют [веб-узел} (xref:fundamentals/host/web-host), обратный вызов `builder.ConfigureServices` тестового приложения выполняется *до* выполнения кода `Startup.ConfigureServices` тестируемой системы. Обратный вызов `builder.ConfigureTestServices` тестового приложения выполняется *позже*.
+В тестируемых системах, которые по-прежнему используют [веб-узел](xref:fundamentals/host/web-host), обратный вызов `builder.ConfigureServices` тестового приложения выполняется *до* выполнения кода `Startup.ConfigureServices` тестируемой системы. Обратный вызов `builder.ConfigureTestServices` тестового приложения выполняется *позже*.
 
 ::: moniker-end
 
@@ -719,7 +719,7 @@ dotnet test
 
 Вспомогательные методы расширения `SendAsync` (*Helpers/HttpClientExtensions.cs*) и вспомогательный метод `GetDocumentAsync` (*Helpers/HtmlHelpers.cs*) в [примере приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) используют средство синтаксического анализа [AngleSharp](https://anglesharp.github.io/) для обработки защиты от подделки с помощью следующих методов:
 
-* `GetDocumentAsync` &ndash; получает [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) и возвращает `IHtmlDocument`. `GetDocumentAsync` использует фабрику, которая подготавливает *виртуальный ответ* на основе исходного `HttpResponseMessage`. Дополнительные сведения см. в [документации по AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
+* `GetDocumentAsync`. Получает [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) и возвращает `IHtmlDocument`. `GetDocumentAsync` использует фабрику, которая подготавливает *виртуальный ответ* на основе исходного `HttpResponseMessage`. Дополнительные сведения см. в [документации по AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
 * Методы расширения `SendAsync` для `HttpClient` составляют [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) и вызывают [SendAsync (HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) для отправки запросов к ТС. Перегрузки для `SendAsync` принимают HTML-форму (`IHtmlFormElement`) и следующие элементы:
   * Кнопка "Отправить" в форме (`IHtmlElement`)
   * Коллекция значений формы (`IEnumerable<KeyValuePair<string, string>>`)

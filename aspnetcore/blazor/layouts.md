@@ -1,24 +1,12 @@
 ---
-title: Макеты Blazor в ASP.NET Core
-author: guardrex
-description: Узнайте, как создавать многократно используемые компоненты макета для Blazor приложений.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/12/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/layouts
-ms.openlocfilehash: 09cca9c4af23c35fdbc2ee92169913c960b0a68d
-ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83424324"
+title: Шаблоны ASP.NET Core Blazor автор: описание: Узнайте, как создавать многократно используемые компоненты макета для приложений Blazor.
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="aspnet-core-blazor-layouts"></a>Макеты Blazor в ASP.NET Core
 
@@ -30,10 +18,10 @@ ms.locfileid: "83424324"
 
 Чтобы превратить *компонент* в *макет*, компонент:
 
-* Наследует от `LayoutComponentBase`, который определяет свойство `Body` для отображаемого содержимого внутри макета.
+* Наследует от <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, который определяет свойство <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> для отображаемого содержимого внутри макета.
 * Использует синтаксис `@Body` Razor для указания расположения в разметке макета, в которой отображается содержимое.
 
-В следующем примере кода показан шаблон Razor компонента макета *MainLayout.razor*. Макет наследует `LayoutComponentBase` и задает `@Body` между панелью навигации и нижним колонтитулом:
+В следующем примере кода показан шаблон Razor компонента макета *MainLayout.razor*. Макет наследует <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> и задает `@Body` между панелью навигации и нижним колонтитулом:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MainLayout.razor?highlight=1,13)]
 
@@ -41,21 +29,21 @@ ms.locfileid: "83424324"
 
 ## <a name="default-layout"></a>Макет по умолчанию
 
-Укажите макет приложения по умолчанию в компоненте `Router` в файле *App.razor* приложения. Следующий компонент `Router`, предоставляемый шаблонами Blazor по умолчанию, задает для макета по умолчанию компонент `MainLayout`:
+Укажите макет приложения по умолчанию в компоненте <xref:Microsoft.AspNetCore.Components.Routing.Router> в файле *App.razor* приложения. Следующий компонент <xref:Microsoft.AspNetCore.Components.Routing.Router>, предоставляемый шаблонами Blazor по умолчанию, задает для макета по умолчанию компонент `MainLayout`:
 
 [!code-razor[](layouts/sample_snapshot/3.x/App1.razor?highlight=3)]
 
-Чтобы предоставить макет по умолчанию для содержимого `NotFound`, укажите `LayoutView` для содержимого `NotFound`:
+Чтобы предоставить макет по умолчанию для содержимого <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>, укажите <xref:Microsoft.AspNetCore.Components.LayoutView> для содержимого <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>:
 
 [!code-razor[](layouts/sample_snapshot/3.x/App2.razor?highlight=6-9)]
 
-Дополнительные сведения о компоненте `Router` см. в разделе <xref:blazor/routing>.
+Дополнительные сведения о компоненте <xref:Microsoft.AspNetCore.Components.Routing.Router> см. в разделе <xref:blazor/routing>.
 
 Указание макета в качестве макета по умолчанию в маршрутизаторе достаточно полезно, так как в этом случае его можно переопределить отдельно для каждого компонента или папки. Для настройки макета приложения по умолчанию предпочтительнее использовать маршрутизатор, поскольку это наиболее общий способ.
 
 ## <a name="specify-a-layout-in-a-component"></a>Указание макета в компоненте
 
-Используйте директиву Razor `@layout`, чтобы применить макет к компоненту. Компилятор преобразует `@layout` в `LayoutAttribute`, который применяется к классу компонента.
+Используйте директиву Razor `@layout`, чтобы применить макет к компоненту. Компилятор преобразует `@layout` в <xref:Microsoft.AspNetCore.Components.LayoutAttribute>, который применяется к классу компонента.
 
 Содержимое следующего компонента `MasterList` вставляется в `MasterLayout` в позиции `@Body`:
 

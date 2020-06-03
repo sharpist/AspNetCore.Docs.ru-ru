@@ -1,23 +1,11 @@
 ---
-title: Устранение неполадок и отладка проектов ASP.NET Core
-author: Rick-Anderson
-description: Устранение неполадок при возникновении ошибок и предупреждений в проектах ASP.NET Core.
-ms.author: riande
-ms.custom: mvc
-ms.date: 07/10/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: test/troubleshoot
-ms.openlocfilehash: 74b494f6d16637a54ab7f1b5c0cf9fbb86248fe7
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776621"
+название: автор: описание: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="troubleshoot-and-debug-aspnet-core-projects"></a>Устранение неполадок и отладка проектов ASP.NET Core
 
@@ -79,9 +67,9 @@ ms.locfileid: "82776621"
 
 Если приложение может отвечать на запросы, можно получить следующие данные из приложения с помощью ПО промежуточного слоя:
 
-* Запрос — метод, схема, узел, свойство pathbase, путь, строка запроса, заголовки
-* Подключение — удаленный IP-адрес, удаленный порт, локальный IP-адрес, локальный порт, сертификат клиента
-* Identity &ndash;. Имя, отображаемое имя
+* Запрос Метод, схема, узел, свойство pathbase, путь, строка запроса, заголовки
+* Подключение: Удаленный IP-адрес, удаленный порт, локальный IP-адрес, локальный порт, сертификат клиента
+* Identity: Name, display name
 * Параметры конфигурации
 * Переменные среды
 

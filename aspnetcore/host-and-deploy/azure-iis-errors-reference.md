@@ -1,24 +1,11 @@
 ---
-title: Справочник по общим ошибкам в Службе приложений Azure и службах IIS с ASP.NET Core
-author: rick-anderson
-description: Рекомендации по устранению распространенных ошибок при размещении приложений ASP.NET Core в службе приложений Azure и службах IIS.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/07/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/azure-iis-errors-reference
-ms.openlocfilehash: 7b3454fbd891ca26d44125810a10eb3b3c2c3933
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775210"
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="common-errors-reference-for-azure-app-service-and-iis-with-aspnet-core"></a>Справочник по общим ошибкам в Службе приложений Azure и службах IIS с ASP.NET Core
 
@@ -32,13 +19,13 @@ ms.locfileid: "82775210"
 
 * поведение обозревателя (код состояния и сообщение об ошибке);
 * записи в журнале событий приложения;
-  * Служба приложений Azure &ndash; см. статью <xref:test/troubleshoot-azure-iis>.
+  * Azure App Service: См. раздел <xref:test/troubleshoot-azure-iis>.
   * IIS
     1. В меню **Windows** нажмите кнопку **Пуск**, введите *Просмотр событий* и нажмите клавишу **ВВОД**.
     1. В открывшемся окне **Просмотр событий** на боковой панели разверните узлы **Журналы Windows** > **Приложения**.
 * Записи в журнале вывода stdout и отладки модуля ASP.NET Core
-  * Служба приложений Azure &ndash; см. статью <xref:test/troubleshoot-azure-iis>.
-  * IIS &ndash; следуйте инструкциям в разделах [Создание и перенаправление журнала](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) и [Расширенные журналы диагностики](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) в статье "Модуль ASP.NET Core".
+  * Azure App Service: См. раздел <xref:test/troubleshoot-azure-iis>.
+  * IIS. Следуйте инструкциям в разделах [Создание и перенаправление журнала](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) и [Расширенные журналы диагностики](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) в статье "Модуль ASP.NET Core".
 
 Сравните собранные данные с представленной здесь информацией о распространенных ошибках. Если вы найдете соответствие, выполните рекомендации по устранению неполадок.
 
@@ -211,7 +198,7 @@ ms.locfileid: "82775210"
 
   Если требуется конкретная среда выполнения, скачайте ее на странице [скачивания версий .NET](https://dotnet.microsoft.com/download/archives) и установите в системе. Завершите установку, перезагрузив систему или перезапустив службы IIS. Для этого выполните в командной строке команду **net stop was /y**, а затем — команду **net start w3svc**.
 
-## <a name="incorrect-arguments-of-aspnetcore-element"></a>Неверные аргументы элемента \<aspNetCore>
+## <a name="incorrect-arguments-of-aspnetcore-element"></a>Неправильные аргументы элемента \<aspNetCore>
 
 * **Браузер:** ошибка HTTP 500.0 — ошибка загрузки внутрипроцессного обработчика ANCM
 
@@ -257,7 +244,7 @@ ms.locfileid: "82775210"
 
 Убедитесь, что пул приложений не находится в состоянии *Остановлен*.
 
-## <a name="sub-application-includes-a-handlers-section"></a>Дочернее приложение имеет раздел \<handlers>
+## <a name="sub-application-includes-a-handlers-section"></a>Дочернее приложение включает раздел \<handlers>
 
 * **Браузер:** ошибка HTTP 500.19 — внутренняя ошибка сервера
 
@@ -271,7 +258,7 @@ ms.locfileid: "82775210"
 
 Убедитесь, что файл *web.config* дочернего приложения не содержит раздел `<handlers>` или что дочернее приложение не наследует обработчики родительского приложения.
 
-Раздел `<system.webServer>` файла *web.config* находится внутри элемента `<location>`. Значение `false` свойства <xref:System.Configuration.SectionInformation.InheritInChildApplications*> указывает, что параметры, заданные в элементе [\<расположение>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location), не наследуются приложениями, которые находятся во вложенном каталоге родительского приложения. Для получения дополнительной информации см. <xref:host-and-deploy/aspnet-core-module>.
+Раздел `<system.webServer>` файла *web.config* находится внутри элемента `<location>`. Значение `false` свойства <xref:System.Configuration.SectionInformation.InheritInChildApplications*> указывает, что параметры, заданные в элементе [\<location>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location), не наследуются приложениями, которые находятся во вложенном каталоге родительского приложения. Для получения дополнительной информации см. <xref:host-and-deploy/aspnet-core-module>.
 
 ## <a name="stdout-log-path-incorrect"></a>Неверный путь к журналу stdout
 
@@ -320,13 +307,13 @@ ms.locfileid: "82775210"
 
 * поведение обозревателя (код состояния и сообщение об ошибке);
 * записи в журнале событий приложения;
-  * Служба приложений Azure &ndash; см. статью <xref:test/troubleshoot-azure-iis>.
+  * Azure App Service: См. раздел <xref:test/troubleshoot-azure-iis>.
   * IIS
     1. В меню **Windows** нажмите кнопку **Пуск**, введите *Просмотр событий* и нажмите клавишу **ВВОД**.
     1. В открывшемся окне **Просмотр событий** на боковой панели разверните узлы **Журналы Windows** > **Приложения**.
 * Записи в журнале вывода stdout и отладки модуля ASP.NET Core
-  * Служба приложений Azure &ndash; см. статью <xref:test/troubleshoot-azure-iis>.
-  * IIS &ndash; следуйте инструкциям в разделах [Создание и перенаправление журнала](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) и [Расширенные журналы диагностики](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) в статье "Модуль ASP.NET Core".
+  * Azure App Service: См. раздел <xref:test/troubleshoot-azure-iis>.
+  * IIS. Следуйте инструкциям в разделах [Создание и перенаправление журнала](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) и [Расширенные журналы диагностики](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) в статье "Модуль ASP.NET Core".
 
 Сравните собранные данные с представленной здесь информацией о распространенных ошибках. Если вы найдете соответствие, выполните рекомендации по устранению неполадок.
 
@@ -487,7 +474,7 @@ ms.locfileid: "82775210"
 
   Если требуется конкретная среда выполнения, скачайте ее на странице [скачивания версий .NET](https://dotnet.microsoft.com/download/archives) и установите в системе. Завершите установку, перезагрузив систему или перезапустив службы IIS. Для этого выполните в командной строке команду **net stop was /y**, а затем — команду **net start w3svc**.
 
-## <a name="incorrect-arguments-of-aspnetcore-element"></a>Неверные аргументы элемента \<aspNetCore>
+## <a name="incorrect-arguments-of-aspnetcore-element"></a>Неправильные аргументы элемента \<aspNetCore>
 
 * **Браузер:** ошибка HTTP 502.5 — сбой процесса
 
@@ -517,7 +504,7 @@ ms.locfileid: "82775210"
 
 Убедитесь, что пул приложений не находится в состоянии *Остановлен*.
 
-## <a name="sub-application-includes-a-handlers-section"></a>Дочернее приложение имеет раздел \<handlers>
+## <a name="sub-application-includes-a-handlers-section"></a>Дочернее приложение включает раздел \<handlers>
 
 * **Браузер:** ошибка HTTP 500.19 — внутренняя ошибка сервера
 

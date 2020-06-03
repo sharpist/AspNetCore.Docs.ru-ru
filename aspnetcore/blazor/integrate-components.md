@@ -1,26 +1,14 @@
 ---
-title: Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages
-author: guardrex
-description: Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 04/25/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/integrate-components
-ms.openlocfilehash: eb4378223c40594ac52f50b7b890785067515555
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82771778"
+title: 'Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages' автор: описание: 'Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
-# <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages
+# <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages
 
 Авторы: [Люк Латэм](https://github.com/guardrex) (Luke Latham) и [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
 
@@ -28,10 +16,10 @@ ms.locfileid: "82771778"
 
 После [подготовки приложения](#prepare-the-app) используйте рекомендации в следующих разделах в зависимости от требований приложения:
 
-* Маршрутизируемые компоненты &ndash; Для компонентов, напрямую маршрутизируемых из запросов пользователей. Следуйте этому руководству, когда посетители должны иметь возможность сделать HTTP-запрос в браузере для компонента с директивой [`@page`](xref:mvc/views/razor#page).
+* Маршрутизируемые компоненты. Для компонентов, напрямую маршрутизируемых из запросов пользователей. Следуйте этому руководству, когда посетители должны иметь возможность сделать HTTP-запрос в браузере для компонента с директивой [`@page`](xref:mvc/views/razor#page).
   * [Использование маршрутизируемых компонентов в приложении Razor Pages](#use-routable-components-in-a-razor-pages-app)
   * [Использование маршрутизируемых компонентов в приложении MVC](#use-routable-components-in-an-mvc-app)
-* [Преобразование компонентов страницы или представления](#render-components-from-a-page-or-view) &ndash; Для компонентов, напрямую маршрутизируемых из запросов пользователей. Следуйте этому руководству, когда приложение внедряет компоненты в существующие страницы и представления с помощью вспомогательной функции [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+* [Отрисовка компонентов со страницы или представления.](#render-components-from-a-page-or-view) Для компонентов, которые не маршрутизируются напрямую из запросов пользователей. Следуйте этому руководству, когда приложение внедряет компоненты в существующие страницы и представления с помощью вспомогательной функции [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 ## <a name="prepare-the-app"></a>Подготовка приложения
 
@@ -70,13 +58,13 @@ ms.locfileid: "82771778"
    @using MyAppNamespace
    ```
 
-1. В `Startup.ConfigureServices` зарегистрируйте службу Blazor Server:
+1. В `Startup.ConfigureServices` зарегистрируйте службу Blazor Server.
 
    ```csharp
    services.AddServerSideBlazor();
    ```
 
-1. В `Startup.Configure` добавьте конечную точку Blazor Hub в `app.UseEndpoints`:
+1. В `Startup.Configure` добавьте конечную точку Blazor Hub в `app.UseEndpoints`.
 
    ```csharp
    endpoints.MapBlazorHub();
@@ -88,7 +76,7 @@ ms.locfileid: "82771778"
 
 *Этот раздел описывает добавление компонентов, напрямую маршрутизируемых из запросов пользователей.*
 
-Для поддержки маршрутизируемых компонентов Razor в приложениях Razor Pages сделайте следующее:
+Чтобы обеспечить поддержку маршрутизируемых компонентов Razor в приложениях Razor Pages:
 
 1. Следуйте указаниям в разделе [подготовка приложений](#prepare-the-app).
 
@@ -129,10 +117,60 @@ ms.locfileid: "82771778"
    * компонент отображается как статический HTML на странице или включает необходимые сведения для начальной загрузки приложения Blazor из агента пользователя.
 
    | Режим обработки | Описание |
-   | ----------- | ----------- |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Преобразует компонент `App` в статический HTML и включает метку приложения Blazor Server. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Отображает метку приложения Blazor Server. Выходные данные компонента `App` не включаются. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Преобразует компонент `App` в статический HTML. |
+   | ---
+title: 'Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages' автор: описание: 'Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages' автор: описание: 'Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages' автор: описание: 'Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | --- название: 'Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages' автор: описание: 'Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages' автор: описание: 'Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages' автор: описание: 'Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Преобразует компонент `App` в статический HTML и включает метку приложения Blazor Server. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Отображает метку приложения Blazor Server. Выходные данные компонента `App` не включаются. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Преобразует компонент `App` в статический HTML. |
 
    Дополнительные сведения о компоненте Tag Helper см. в разделе <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
@@ -203,10 +241,60 @@ ms.locfileid: "82771778"
    * компонент отображается как статический HTML на странице или включает необходимые сведения для начальной загрузки приложения Blazor из агента пользователя.
 
    | Режим обработки | Описание |
-   | ----------- | ----------- |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Преобразует компонент `App` в статический HTML и включает метку приложения Blazor Server. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Отображает метку приложения Blazor Server. Выходные данные компонента `App` не включаются. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Преобразует компонент `App` в статический HTML. |
+   | ---
+title: 'Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages' автор: описание: 'Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages' автор: описание: 'Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages' автор: описание: 'Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | --- название: 'Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages' автор: описание: 'Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages' автор: описание: 'Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages' автор: описание: 'Сведения о сценариях привязки к данным в компонентах и элементах модели DOM в приложениях Blazor.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Преобразует компонент `App` в статический HTML и включает метку приложения Blazor Server. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Отображает метку приложения Blazor Server. Выходные данные компонента `App` не включаются. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Преобразует компонент `App` в статический HTML. |
 
    Дополнительные сведения о компоненте Tag Helper см. в разделе <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 

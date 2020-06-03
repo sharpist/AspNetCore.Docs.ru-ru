@@ -76,7 +76,7 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 - 'Razor'
 - ИД пользователя "SignalR": 
 
------- | | <xref:System.Net.Http.HttpClient> | Временная | Предоставляет методы для отправки HTTP-запросов и получения HTTP-ответов от ресурса с заданным URI.<br><br>Экземпляр `HttpClient` в приложении Blazor WebAssembly использует браузер для обработки HTTP-трафика в фоновом режиме.<br><br>Приложения Blazor Server не включают клиент `HttpClient`, по умолчанию настроенный в качестве службы. Предоставьте `HttpClient` приложению Blazor Server.<br><br>Для получения дополнительной информации см. <xref:blazor/call-web-api>. | | `IJSRuntime` | Отдельная (Blazor WebAssembly)<br>С областью действия (Blazor Server) | Представляет экземпляр среды выполнения JavaScript, в которую отправляются вызовы JavaScript. Для получения дополнительной информации см. <xref:blazor/call-javascript-from-dotnet>. | | `NavigationManager` | Отдельная (Blazor WebAssembly)<br>С областью действия (Blazor Server) | Содержит вспомогательные методы для работы с URI и состоянием навигации. Дополнительные сведения см. в разделе [URI и вспомогательные инструменты состояния навигации](xref:blazor/routing#uri-and-navigation-state-helpers). |
+------ | | <xref:System.Net.Http.HttpClient> | Временная | Предоставляет методы для отправки HTTP-запросов и получения HTTP-ответов от ресурса с заданным URI.<br><br>Экземпляр <xref:System.Net.Http.HttpClient> в приложении Blazor WebAssembly использует браузер для обработки HTTP-трафика в фоновом режиме.<br><br>Приложения Blazor Server не включают клиент <xref:System.Net.Http.HttpClient>, по умолчанию настроенный в качестве службы. Предоставьте <xref:System.Net.Http.HttpClient> приложению Blazor Server.<br><br>Для получения дополнительной информации см. <xref:blazor/call-web-api>. | | <xref:Microsoft.JSInterop.IJSRuntime> | Отдельная (Blazor WebAssembly)<br>С областью действия (Blazor Server) | Представляет экземпляр среды выполнения JavaScript, в которую отправляются вызовы JavaScript. Для получения дополнительной информации см. <xref:blazor/call-javascript-from-dotnet>. | | <xref:Microsoft.AspNetCore.Components.NavigationManager> | Отдельная (Blazor WebAssembly)<br>С областью действия (Blazor Server) | Содержит вспомогательные методы для работы с URI и состоянием навигации. Дополнительные сведения см. в разделе [URI и вспомогательные инструменты состояния навигации](xref:blazor/routing#uri-and-navigation-state-helpers). |
 
 Пользовательский поставщик услуг не предоставляет перечисленные в таблице службы по умолчанию автоматически. Если вы используете пользовательский поставщик услуг и нуждаетесь в какой-либо из служб, указанных в таблице, добавьте необходимые службы в новый поставщик услуг.
 
@@ -154,7 +154,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-В метод `ConfigureServices` передается <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, представляющий собой список объектов дескриптора службы (<xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor>). Службы добавляются путем предоставления дескрипторов служб в коллекцию служб. В следующем примере показана концепция с интерфейсом `IDataAccess` и его конкретной реализацией `DataAccess`.
+В метод <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureServices%2A> передается <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, представляющий собой список объектов дескриптора службы (<xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor>). Службы добавляются путем предоставления дескрипторов служб в коллекцию служб. В следующем примере показана концепция с интерфейсом `IDataAccess` и его конкретной реализацией `DataAccess`.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -218,20 +218,20 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 
 ## <a name="request-a-service-in-a-component"></a>Запрос службы в компоненте
 
-После добавления служб в коллекцию служб внедрите их в компоненты, используя директиву [\@inject](xref:mvc/views/razor#inject) Razor. `@inject` имеет два параметра:
+После добавления служб в коллекцию служб внедрите их в компоненты, используя директиву [\@inject](xref:mvc/views/razor#inject) Razor. [`@inject`](xref:mvc/views/razor#inject) имеет два параметра.
 
-* Тип &ndash; тип внедряемой службы.
-* Свойство &ndash; имя свойства, получающего внедренную службу приложений. Свойство не требуется создавать вручную. Его создает компилятор.
+* Тип: тип внедряемой службы.
+* Свойство: имя свойства, получающего внедренную службу приложений. Свойство не требуется создавать вручную. Его создает компилятор.
 
 Для получения дополнительной информации см. <xref:mvc/views/dependency-injection>.
 
-Используйте несколько инструкций `@inject` для внедрения различных служб.
+Используйте несколько инструкций [`@inject`](xref:mvc/views/razor#inject) для внедрения различных служб.
 
-В следующем примере показано, как использовать `@inject`. Служба, реализующая `Services.IDataAccess`, внедряется в свойство `DataRepository` компонента. Обратите внимание, что код использует только абстракцию `IDataAccess`:
+В следующем примере показано, как использовать [`@inject`](xref:mvc/views/razor#inject). Служба, реализующая `Services.IDataAccess`, внедряется в свойство `DataRepository` компонента. Обратите внимание, что код использует только абстракцию `IDataAccess`:
 
 [!code-razor[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,20)]
 
-На внутреннем уровне создаваемое свойство (`DataRepository`) использует атрибут `InjectAttribute`. Как правило, этот атрибут не используется напрямую. Если базовый класс необходим для компонентов, а для базового класса также требуются обязательные свойства, добавьте `InjectAttribute` вручную:
+На внутреннем уровне создаваемое свойство (`DataRepository`) использует атрибут [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute). Как правило, этот атрибут не используется напрямую. Если базовый класс необходим для компонентов, а для базового класса также требуются обязательные свойства, добавьте атрибут [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) вручную:
 
 ```csharp
 public class ComponentBase : IComponent
@@ -243,7 +243,7 @@ public class ComponentBase : IComponent
 }
 ```
 
-В компонентах, производных от базового класса, директива `@inject` не требуется. `InjectAttribute` базового класса достаточно:
+В компонентах, производных от базового класса, директива [`@inject`](xref:mvc/views/razor#inject) не требуется. <xref:Microsoft.AspNetCore.Components.InjectAttribute> базового класса достаточно:
 
 ```razor
 @page "/demo"
@@ -254,7 +254,7 @@ public class ComponentBase : IComponent
 
 ## <a name="use-di-in-services"></a>Использование внедрения зависимостей в службах
 
-Для сложных служб могут потребоваться дополнительные службы. В предыдущем примере для `DataAccess` может потребоваться служба `HttpClient` по умолчанию. `@inject` (или `InjectAttribute`) невозможно использовать в службах. Вместо этого следует использовать *внедрения конструктора*. Необходимые службы добавляются путем добавления параметров в конструктор службы. Когда система внедрения зависимостей создает службу, она распознает необходимые службы в конструкторе и предоставляет их соответствующим образом.
+Для сложных служб могут потребоваться дополнительные службы. В предыдущем примере для `DataAccess` может потребоваться служба <xref:System.Net.Http.HttpClient> по умолчанию. [`@inject`](xref:mvc/views/razor#inject) (или атрибут [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute)) невозможно использовать в службах. Вместо этого следует использовать *внедрения конструктора*. Необходимые службы добавляются путем добавления параметров в конструктор службы. Когда система внедрения зависимостей создает службу, она распознает необходимые службы в конструкторе и предоставляет их соответствующим образом.
 
 ```csharp
 public class DataAccess : IDataAccess
@@ -278,16 +278,16 @@ public class DataAccess : IDataAccess
 
 В приложениях ASP.NET Core службы с заданной областью обычно ограничены текущим запросом. По завершении запроса все временные службы или службы с заданной областью удаляются системой внедрения зависимостей. В приложениях Blazor Server область запроса существует на протяжении всего клиентского соединения, что может привести к тому, что временные службы или службы с заданной областью будут работать намного дольше, чем ожидалось. В приложениях Blazor WebAssembly службы, зарегистрированные с ограниченным временем существования, рассматриваются как одноэлементные, поэтому они существуют дольше, чем службы с заданной областью в типичных приложениях ASP.NET Core.
 
-Подход, ограничивающий время существования службы в приложениях Blazor, заключается в использовании типа `OwningComponentBase`. `OwningComponentBase` является абстрактным типом, производным от `ComponentBase`, который создает область внедрения зависимостей, соответствующую времени существования компонента. Используя эту область, можно использовать службы внедрения зависимостей с ограниченным временем существования, заставляя их существовать так же долго, как и компонент. При удалении компонента также удаляются и службы из поставщика служб с заданной областью действия этого компонента. Это может быть полезно для служб, которые:
+Подход, ограничивающий время существования службы в приложениях Blazor, заключается в использовании типа <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. <xref:Microsoft.AspNetCore.Components.OwningComponentBase> является абстрактным типом, производным от <xref:Microsoft.AspNetCore.Components.ComponentBase>, который создает область внедрения зависимостей, соответствующую времени существования компонента. Используя эту область, можно использовать службы внедрения зависимостей с ограниченным временем существования, заставляя их существовать так же долго, как и компонент. При удалении компонента также удаляются и службы из поставщика служб с заданной областью действия этого компонента. Это может быть полезно для служб, которые:
 
 * требуется повторно использовать в компоненте, так как временное существование не подходит;
 * не должны совместно использоваться компонентами, так как одноэлементное время существования не подходит.
 
-Доступны две версии типа `OwningComponentBase`:
+Доступны две версии типа <xref:Microsoft.AspNetCore.Components.OwningComponentBase>:
 
-* `OwningComponentBase` является абстрактной высвобождаемой дочерней версией типа `ComponentBase` с защищенным свойством `ScopedServices` типа `IServiceProvider`. Этот поставщик можно использовать для разрешения служб, ограниченных временем существования компонента.
+* <xref:Microsoft.AspNetCore.Components.OwningComponentBase> является абстрактной высвобождаемой дочерней версией типа <xref:Microsoft.AspNetCore.Components.ComponentBase> с защищенным свойством <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> типа <xref:System.IServiceProvider>. Этот поставщик можно использовать для разрешения служб, ограниченных временем существования компонента.
 
-  Службы внедрения зависимостей, внедренные в компонент с помощью `@inject` или `InjectAttribute` (`[Inject]`), не создаются в области компонента. Чтобы использовать область компонента, необходимо разрешить службы с помощью `ScopedServices.GetRequiredService` или `ScopedServices.GetService`. Все службы, разрешенные с помощью поставщика `ScopedServices`, имеют свои зависимости из этой же области.
+  Службы внедрения зависимостей, внедренные в компонент с помощью атрибута [`@inject`](xref:mvc/views/razor#inject) или [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute), не создаются в области компонента. Чтобы использовать область компонента, необходимо разрешить службы с помощью <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> или <xref:System.IServiceProvider.GetService%2A>. Все службы, разрешенные с помощью поставщика <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices>, имеют свои зависимости из этой же области.
 
   ```razor
   @page "/preferences"
@@ -315,7 +315,7 @@ public class DataAccess : IDataAccess
   }
   ```
 
-* `OwningComponentBase<T>` является производным от `OwningComponentBase` и добавляет свойство `Service`, которое возвращает экземпляр `T` из поставщика внедрения зависимостей с заданной областью. Этот тип удобен для доступа к службам с заданной областью без использования экземпляра `IServiceProvider` при наличии одной основной службы, которую приложение запрашивает из контейнера внедрения зависимостей с использованием области компонента. Свойство `ScopedServices` доступно, поэтому при необходимости приложение может получить службы других типов.
+* <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> является производным от <xref:Microsoft.AspNetCore.Components.OwningComponentBase> и добавляет свойство <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A>, которое возвращает экземпляр `T` из поставщика внедрения зависимостей с заданной областью. Этот тип удобен для доступа к службам с заданной областью без использования экземпляра <xref:System.IServiceProvider> при наличии одной основной службы, которую приложение запрашивает из контейнера внедрения зависимостей с использованием области компонента. Свойство <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> доступно, поэтому при необходимости приложение может получить службы других типов.
 
   ```razor
   @page "/users"
@@ -334,16 +334,16 @@ public class DataAccess : IDataAccess
 
 ## <a name="use-of-entity-framework-dbcontext-from-di"></a>Использование DbContext Entity Framework из системы внедрения зависимостей
 
-Одним из распространенных типов службы, извлекаемым из системы внедрения зависимостей в веб-приложениях, являются объекты `DbContext` Entity Framework (EF). Регистрация служб EF с помощью `IServiceCollection.AddDbContext` добавляет `DbContext` в качестве службы с заданной областью по умолчанию. Регистрация в качестве службы с заданной областью может привести к проблемам в приложениях Blazor, так как это приводит к длительному существованию экземпляров `DbContext` и их совместному использованию в приложении. `DbContext` не является потокобезопасным и не должен использоваться параллельно.
+Одним из распространенных типов службы, извлекаемым из системы внедрения зависимостей в веб-приложениях, являются объекты <xref:Microsoft.EntityFrameworkCore.DbContext> Entity Framework (EF). Регистрация служб EF с помощью <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> добавляет <xref:Microsoft.EntityFrameworkCore.DbContext> в качестве службы с заданной областью по умолчанию. Регистрация в качестве службы с заданной областью может привести к проблемам в приложениях Blazor, так как это приводит к длительному существованию экземпляров <xref:Microsoft.EntityFrameworkCore.DbContext> и их совместному использованию в приложении. <xref:Microsoft.EntityFrameworkCore.DbContext> не является потокобезопасным и не должен использоваться параллельно.
 
-В зависимости от приложения использование `OwningComponentBase` для ограничения области `DbContext` одним компонентом *может* решить эту проблему. Если компонент не использует `DbContext` параллельно, достаточно создать производный компонент от `OwningComponentBase` и извлечь `DbContext` из `ScopedServices`, так как это гарантирует следующее:
+В зависимости от приложения использование <xref:Microsoft.AspNetCore.Components.OwningComponentBase> для ограничения области <xref:Microsoft.EntityFrameworkCore.DbContext> одним компонентом *может* решить эту проблему. Если компонент не использует <xref:Microsoft.EntityFrameworkCore.DbContext> параллельно, достаточно создать производный компонент от <xref:Microsoft.AspNetCore.Components.OwningComponentBase> и извлечь <xref:Microsoft.EntityFrameworkCore.DbContext> из <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices>, так как это гарантирует следующее:
 
-* Отдельные компоненты не используют `DbContext` совместно.
-* `DbContext` существует столько же, сколько и зависящий от него компонент.
+* Отдельные компоненты не используют <xref:Microsoft.EntityFrameworkCore.DbContext> совместно.
+* <xref:Microsoft.EntityFrameworkCore.DbContext> существует столько же, сколько и зависящий от него компонент.
 
-Если отдельный компонент может использовать `DbContext` параллельно (например, каждый раз, когда пользователь нажимает кнопку), даже использование `OwningComponentBase` не позволяет избежать проблем с параллельными операциями EF. В этом случае используйте разные `DbContext` для каждой логической операции EF. Вы можете использовать один из следующих подходов:
+Если отдельный компонент может использовать <xref:Microsoft.EntityFrameworkCore.DbContext> параллельно (например, каждый раз, когда пользователь нажимает кнопку), даже использование <xref:Microsoft.AspNetCore.Components.OwningComponentBase> не позволяет избежать проблем с параллельными операциями EF. В этом случае используйте разные <xref:Microsoft.EntityFrameworkCore.DbContext> для каждой логической операции EF. Вы можете использовать один из следующих подходов:
 
-* Создайте `DbContext` напрямую с использованием `DbContextOptions<TContext>` в качестве аргумента, который можно извлечь из системы внедрения зависимостей и является потокобезопасным.
+* Создайте <xref:Microsoft.EntityFrameworkCore.DbContext> напрямую с использованием <xref:Microsoft.EntityFrameworkCore.DbContextOptions%601> в качестве аргумента, который можно извлечь из системы внедрения зависимостей и является потокобезопасным.
 
     ```razor
     @page "/example"
@@ -377,8 +377,8 @@ public class DataAccess : IDataAccess
     }
     ```
 
-* Зарегистрируйте `DbContext` в контейнере службы с временным существованием:
-  * При регистрации контекста используйте `ServiceLifetime.Transient`. Метод расширения `AddDbContext` принимает два необязательных параметра типа `ServiceLifetime`. Чтобы использовать этот подход, только параметр `contextLifetime` должен иметь значение `ServiceLifetime.Transient`. `optionsLifetime` может иметь значение по умолчанию `ServiceLifetime.Scoped`.
+* Зарегистрируйте <xref:Microsoft.EntityFrameworkCore.DbContext> в контейнере службы с временным существованием:
+  * При регистрации контекста используйте <xref:Microsoft.OData.ServiceLifetime.Transient?displayProperty=nameWithType>. Метод расширения <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> принимает два необязательных параметра типа <xref:Microsoft.Extensions.DependencyInjection.ServiceLifetime>. Чтобы использовать этот подход, только параметр `contextLifetime` должен иметь значение <xref:Microsoft.OData.ServiceLifetime.Transient?displayProperty=nameWithType>. `optionsLifetime` может иметь значение по умолчанию <xref:Microsoft.OData.ServiceLifetime.Scoped?displayProperty=nameWithType>.
 
     ```csharp
     services.AddDbContext<AppDbContext>(options =>
@@ -386,7 +386,7 @@ public class DataAccess : IDataAccess
          ServiceLifetime.Transient);
     ```  
 
-  * Временный объект `DbContext` можно внедрить как обычный (с помощью `@inject`) в компоненты, которые не будут выполнять несколько операций EF параллельно. Те компоненты, которые могут выполнять несколько операций EF одновременно, могут запрашивать отдельные объекты `DbContext` для каждой параллельной операции с помощью `IServiceProvider.GetRequiredService`.
+  * Временный объект <xref:Microsoft.EntityFrameworkCore.DbContext> можно внедрить как обычный (с помощью [`@inject`](xref:mvc/views/razor#inject)) в компоненты, которые не будут выполнять несколько операций EF параллельно. Те компоненты, которые могут выполнять несколько операций EF одновременно, могут запрашивать отдельные объекты <xref:Microsoft.EntityFrameworkCore.DbContext> для каждой параллельной операции с помощью <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A>.
 
     ```razor
     @page "/example"

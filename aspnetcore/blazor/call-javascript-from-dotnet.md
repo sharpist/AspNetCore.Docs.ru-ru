@@ -18,11 +18,11 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([как скачивать](xref:index#how-to-download-a-sample))
 
-Для вызова JavaScript из .NET используйте абстракцию `IJSRuntime`. Чтобы выполнять вызовы взаимодействия с JS, внедрите абстракцию `IJSRuntime` в компонент. Метод `InvokeAsync<T>` принимает идентификатор функции JavaScript, которую нужно вызвать, вместе с любым числом аргументов, сериализуемых в JSON. Идентификатор функции задается относительно глобальной области (`window`). Если нужно вызвать функцию `window.someScope.someFunction`, идентификатором будет `someScope.someFunction`. Регистрировать функцию перед ее вызовом не требуется. Тип возвращаемого значения `T` также должен сериализоваться в JSON. Тип `T` должен соответствовать типу .NET, который лучше всего соответствует возвращаемому типу JSON.
+Для вызова JavaScript из .NET используйте абстракцию <xref:Microsoft.JSInterop.IJSRuntime>. Чтобы выполнять вызовы взаимодействия с JS, внедрите абстракцию <xref:Microsoft.JSInterop.IJSRuntime> в компонент. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> принимает идентификатор функции JavaScript, которую нужно вызвать, вместе с любым числом аргументов, сериализуемых в JSON. Идентификатор функции задается относительно глобальной области (`window`). Если нужно вызвать функцию `window.someScope.someFunction`, идентификатором будет `someScope.someFunction`. Регистрировать функцию перед ее вызовом не требуется. Тип возвращаемого значения `T` также должен сериализоваться в JSON. Тип `T` должен соответствовать типу .NET, который лучше всего соответствует возвращаемому типу JSON.
 
 Для приложений Blazor Server с включенной предварительной обработкой вызовы JavaScript невозможны во время первоначальной предварительной обработки. Вызовы взаимодействия с JavaScript должны быть отложены до тех пор, пока не будет установлено соединение с браузером. Дополнительные сведения см. в разделе [Обнаружение предварительной обработки в приложении Blazor Server](#detect-when-a-blazor-server-app-is-prerendering).
 
-Приведенный ниже пример основан на [TextDecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), декодере на базе JavaScript. В нем демонстрируется вызов функции JavaScript из метода C#. Функция JavaScript принимает массив байтов из метода C#, декодирует его и возвращает компоненту текст для отображения.
+Приведенный ниже пример основан на [TextDecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), декодере на базе JavaScript. В примере показано, как вызвать функцию JavaScript из метода C#, которая переносит требование из кода разработчика в существующий API JavaScript. Функция JavaScript принимает массив байтов из метода C#, декодирует его и возвращает компоненту текст для отображения.
 
 Внутри элемента `<head>` файла *wwwroot/index.html* (Blazor WebAssembly) или *Pages/_Host.cshtml* (Blazor Server) предоставьте функцию JavaScript, которая использует `TextDecoder` для декодирования переданного массива и возвращения декодированного значения:
 
@@ -43,17 +43,17 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 
 ## <a name="ijsruntime"></a>IJSRuntime
 
-Чтобы использовать абстракцию `IJSRuntime`, можно выбрать один из описанных ниже подходов.
+Чтобы использовать абстракцию <xref:Microsoft.JSInterop.IJSRuntime>, можно выбрать один из описанных ниже подходов.
 
-* Внедрите абстракцию `IJSRuntime` в компонент Razor ( *.razor*).
+* Внедрите абстракцию <xref:Microsoft.JSInterop.IJSRuntime> в компонент Razor ( *.razor*).
 
   [!code-razor[](call-javascript-from-dotnet/samples_snapshot/inject-abstraction.razor?highlight=1)]
 
-  Внутри элемента `<head>` файла *wwwroot/index.html* (Blazor WebAssembly) или *Pages/_Host.cshtml* (Blazor Server) предоставьте функцию JavaScript `handleTickerChanged`. Функция вызывается с помощью метода `IJSRuntime.InvokeVoidAsync` и не возвращает значения:
+  Внутри элемента `<head>` файла *wwwroot/index.html* (Blazor WebAssembly) или *Pages/_Host.cshtml* (Blazor Server) предоставьте функцию JavaScript `handleTickerChanged`. Функция вызывается с помощью метода <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> и не возвращает значения:
 
   [!code-html[](call-javascript-from-dotnet/samples_snapshot/index-script-handleTickerChanged1.html)]
 
-* Внедрите абстракцию `IJSRuntime` в класс ( *.cs*):
+* Внедрите абстракцию <xref:Microsoft.JSInterop.IJSRuntime> в класс ( *.cs*):
 
   [!code-csharp[](call-javascript-from-dotnet/samples_snapshot/inject-abstraction-class.cs?highlight=5)]
 
@@ -70,8 +70,8 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 
 В примере клиентского приложения, используемом в этой статье, приложению доступны две функции JavaScript, которые взаимодействуют с моделью DOM для получения вводимых пользователем данных и вывода приветственного сообщения:
 
-* `showPrompt` &ndash; создает запрос на ввод пользователем данных (имени пользователя) и возвращает имя вызвавшему объекту.
-* `displayWelcome` &ndash; назначает приветственное сообщение от вызывающего объекта объекту модели DOM со значением `id`, равным `welcome`.
+* `showPrompt`. Создает запрос на ввод пользователем данных (имени пользователя) и возвращает имя вызвавшему объекту.
+* `displayWelcome`. Назначает приветственное сообщение от вызывающего объекта объекту модели DOM со значением `id`, равным `welcome`.
 
 *wwwroot/exampleJsInterop.js*:
 
@@ -89,9 +89,9 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 
 Не помещайте тег `<script>` в файл компонента, так как тег `<script>` не может изменяться динамически.
 
-Методы .NET взаимодействуют с функциями JavaScript в файле *exampleJsInterop.js* путем вызова `IJSRuntime.InvokeAsync<T>`.
+Методы .NET взаимодействуют с функциями JavaScript в файле *exampleJsInterop.js* путем вызова <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>.
 
-Абстракция `IJSRuntime` является асинхронной для поддержки сценариев Blazor Server. В случае с приложением Blazor WebAssembly, если необходимо вызывать функцию JavaScript синхронно, выполните нисходящее приведение к `IJSInProcessRuntime` и вызовите `Invoke<T>` вместо этого. В большинстве библиотек взаимодействия с JS рекомендуется использовать асинхронные интерфейсы API, чтобы обеспечить доступность библиотек в любых сценариях.
+Абстракция <xref:Microsoft.JSInterop.IJSRuntime> является асинхронной для поддержки сценариев Blazor Server. В случае с приложением Blazor WebAssembly, если необходимо вызывать функцию JavaScript синхронно, выполните нисходящее приведение к <xref:Microsoft.JSInterop.IJSInProcessRuntime> и вызовите <xref:Microsoft.JSInterop.IJSInProcessRuntime.Invoke%2A> вместо этого. В большинстве библиотек взаимодействия с JS рекомендуется использовать асинхронные интерфейсы API, чтобы обеспечить доступность библиотек в любых сценариях.
 
 Пример приложения включает в себя компонент для демонстрации взаимодействия с JS. Он выполняет следующие действия:
 
@@ -136,7 +136,7 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 
 ## <a name="call-a-void-javascript-function"></a>Вызов функции void JavaScript
 
-Функции JavaScript, возвращающие значение [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) или [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined), вызываются с помощью метода `IJSRuntime.InvokeVoidAsync`.
+Функции JavaScript, возвращающие значение [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) или [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined), вызываются с помощью метода <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>.
 
 ## <a name="detect-when-a-blazor-server-app-is-prerendering"></a>Обнаружение предварительной обработки в приложении Blazor Server
  
@@ -149,7 +149,7 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 Для получения ссылок на элементы HTML в компоненте используйте описанный ниже подход.
 
 * Добавьте атрибут `@ref` к элементу HTML.
-* Определите поле типа `ElementReference`, имя которого совпадает со значением атрибута `@ref`.
+* Определите поле типа <xref:Microsoft.AspNetCore.Components.ElementReference>, имя которого совпадает со значением атрибута `@ref`.
 
 В следующем примере показано получение ссылки на элемент `username` `<input>`:
 
@@ -177,7 +177,7 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 >
 > Если при взаимодействии с JS содержимое элемента `MyList` изменяется и Blazor пытается применить изменения к элементу, эти изменения не будут соответствовать модели DOM.
 
-В случае с кодом .NET `ElementReference` является непрозрачным дескриптором. *Единственное*, что можно сделать с `ElementReference`, — передать в код JavaScript посредством взаимодействия с JS. При этом код на стороне JavaScript получает экземпляр `HTMLElement`, который может использоваться с обычными интерфейсами API DOM.
+В случае с кодом .NET <xref:Microsoft.AspNetCore.Components.ElementReference> является непрозрачным дескриптором. *Единственное*, что можно сделать с <xref:Microsoft.AspNetCore.Components.ElementReference>, — передать в код JavaScript посредством взаимодействия с JS. При этом код на стороне JavaScript получает экземпляр `HTMLElement`, который может использоваться с обычными интерфейсами API DOM.
 
 Например, в приведенном ниже коде определяется метод расширения .NET, который позволяет установить фокус на элемент.
 
@@ -191,11 +191,11 @@ window.exampleJsFunctions = {
 }
 ```
 
-Для вызова функции JavaScript, которая не возвращает значение, используйте метод `IJSRuntime.InvokeVoidAsync`. Следующий код устанавливает фокус на элементе для ввода имени пользователя, вызывая предыдущую функцию JavaScript с полученной ссылкой `ElementReference`:
+Для вызова функции JavaScript, которая не возвращает значение, используйте метод <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>. Следующий код устанавливает фокус на элементе для ввода имени пользователя, вызывая предыдущую функцию JavaScript с полученной ссылкой <xref:Microsoft.AspNetCore.Components.ElementReference>:
 
 [!code-razor[](call-javascript-from-dotnet/samples_snapshot/component1.razor?highlight=1,3,11-12)]
 
-Чтобы использовать метод расширения, создайте статический метод расширения, который принимает экземпляр `IJSRuntime`:
+Чтобы использовать метод расширения, создайте статический метод расширения, который принимает экземпляр <xref:Microsoft.JSInterop.IJSRuntime>:
 
 ```csharp
 public static async Task Focus(this ElementReference elementRef, IJSRuntime jsRuntime)
@@ -210,9 +210,9 @@ public static async Task Focus(this ElementReference elementRef, IJSRuntime jsRu
 [!code-razor[](call-javascript-from-dotnet/samples_snapshot/component2.razor?highlight=1-4,12)]
 
 > [!IMPORTANT]
-> Переменная `username` заполняется только после отрисовки компонента. Если в код JavaScript передается пустая ссылка `ElementReference`, он получает значение `null`. Для управления ссылками на элементы после завершения отрисовки компонента (для установки начального фокуса на элемент) используйте [метод жизненного цикла компонента OnAfterRenderAsync или OnAfterRender](xref:blazor/lifecycle#after-component-render).
+> Переменная `username` заполняется только после отрисовки компонента. Если в код JavaScript передается пустая ссылка <xref:Microsoft.AspNetCore.Components.ElementReference>, он получает значение `null`. Для управления ссылками на элементы после завершения отрисовки компонента (для установки начального фокуса на элемент) используйте [метод жизненного цикла компонента OnAfterRenderAsync или OnAfterRender](xref:blazor/lifecycle#after-component-render).
 
-При работе с универсальными типами и возврате значения используйте [ValueTask\<T>](xref:System.Threading.Tasks.ValueTask`1):
+При работе с универсальными типами и возврате значения используйте <xref:System.Threading.Tasks.ValueTask%601>:
 
 ```csharp
 public static ValueTask<T> GenericMethod<T>(this ElementReference elementRef, 
@@ -229,12 +229,12 @@ public static ValueTask<T> GenericMethod<T>(this ElementReference elementRef,
 
 ## <a name="reference-elements-across-components"></a>Ссылки на элементы между компонентами
 
-Ссылка `ElementReference` гарантированно действует только в методе `OnAfterRender` компонента (причем ссылка на элемент является `struct`), поэтому ссылка на элемент не может передаваться между компонентами.
+Ссылка <xref:Microsoft.AspNetCore.Components.ElementReference> гарантированно действует только в методе <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> компонента (причем ссылка на элемент является `struct`), поэтому ссылка на элемент не может передаваться между компонентами.
 
 Чтобы сделать ссылку на элемент доступной для других компонентов, родительский компонент может:
 
 * разрешить дочерним компонентам регистрировать обратные вызовы;
-* вызывать зарегистрированные обратные вызовы во время события `OnAfterRender` с помощью переданной ссылки на элемент. Такой подход позволяет дочерним компонентам взаимодействовать со ссылкой на элемент родительского компонента косвенным образом.
+* вызывать зарегистрированные обратные вызовы во время события <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> с помощью переданной ссылки на элемент. Такой подход позволяет дочерним компонентам взаимодействовать со ссылкой на элемент родительского компонента косвенным образом.
 
 Этот подход демонстрируется в приведенном ниже примере для Blazor WebAssembly.
 
@@ -431,7 +431,7 @@ namespace BlazorSample.Shared
 
 ## <a name="harden-js-interop-calls"></a>Повышение надежности вызовов взаимодействия с JS
 
-Взаимодействие с JS может завершаться сбоем из-за ошибок сети и в этом случае должно считаться ненадежным. По умолчанию в приложениях Blazor Server принято время ожидания вызовов взаимодействия с JS на сервере, равное одной минуте. Если для приложения допустимо более короткое время ожидания, например 10 секунд, установите его одним из указанных ниже способов.
+Взаимодействие с JS может завершаться сбоем из-за ошибок сети и в этом случае должно считаться ненадежным. По умолчанию в приложениях Blazor Server принято время ожидания вызовов взаимодействия с JS на сервере, равное одной минуте. Если для приложения допустимо более короткое время ожидания, установите его одним из указанных ниже способов.
 
 * Глобально в `Startup.ConfigureServices`:
 
@@ -449,7 +449,7 @@ namespace BlazorSample.Shared
 
 Дополнительные сведения о нехватке ресурсов см. в статье <xref:security/blazor/server/threat-mitigation>.
 
-[!INCLUDE[Share interop code in a class library](~/includes/blazor-share-interop-code.md)]
+[!INCLUDE[](~/includes/blazor-share-interop-code.md)]
 
 ## <a name="avoid-circular-object-references"></a>Исключение циклических ссылок на объекты
 

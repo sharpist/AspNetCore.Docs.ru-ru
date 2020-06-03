@@ -69,11 +69,11 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 
 ## <a name="component-parameters"></a>Параметры компонентов
 
-Компоненты также могут принимать параметры. Параметры для компонентов определяются с помощью открытых свойств в классе компонента с атрибутом `[Parameter]`. Используйте атрибуты, чтобы указать аргументы для компонента в разметке.
+Компоненты также могут принимать параметры. Параметры для компонентов определяются с помощью открытых свойств в классе компонента с атрибутом [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute). Используйте атрибуты, чтобы указать аргументы для компонента в разметке.
 
 1. Обновите код C# для `@code` в компоненте следующим образом:
 
-   * Добавьте открытое свойство `IncrementAmount` с атрибутом `[Parameter]`.
+   * Добавьте открытое свойство `IncrementAmount` с атрибутом [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute).
    * Изменение метод `IncrementCount`, чтобы он использовал свойство `IncrementAmount` при увеличении значения `currentCount`.
 
    *Pages/Counter.razor*:
@@ -105,7 +105,7 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 
 [!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-Директива `@inject` используется для внедрения экземпляра службы `WeatherForecastService` в компонент `FetchData`.
+Директива [`@inject`](xref:mvc/views/razor#inject) используется для внедрения экземпляра службы `WeatherForecastService` в компонент `FetchData`.
 
 *Pages/FetchData.razor*:
 
@@ -117,7 +117,7 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 
 ### <a name="blazor-webassembly-experience"></a>Взаимодействие с WebAssembly Blazor
 
-Если вы работаете с приложением WebAssembly Blazor, внедряется `HttpClient` для получения данных прогноза погоды из файла *weather.json*, расположенного в папке *wwwroot/sample-data*.
+Если вы работаете с приложением WebAssembly Blazor, внедряется <xref:System.Net.Http.HttpClient> для получения данных прогноза погоды из файла *weather.json*, расположенного в папке *wwwroot/sample-data*.
 
 *Pages/FetchData.razor*:
 

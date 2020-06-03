@@ -1,24 +1,11 @@
 ---
-title: Использование начальных сборок размещения в ASP.NET Core
-author: rick-anderson
-description: Узнайте, как улучшить приложение ASP.NET Core из внешней сборки, используя реализацию IHostingStartup.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc, seodec18
-ms.date: 09/26/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/configuration/platform-specific-configuration
-ms.openlocfilehash: afbffc752f9c184ef32c9518464a94a615828dab
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776582"
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Использование начальных сборок размещения в ASP.NET Core
 
@@ -242,7 +229,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 Ниже приведены варианты активации размещения при запуске:
 
-* [Хранилище среды выполнения](#runtime-store) &ndash; для активации не требуется ссылка во время компиляции. Пример приложения помещает начальную сборку размещения и файлы зависимостей в папку *deployment*, чтобы облегчить развертывание размещения при запуске в среде с несколькими компьютерами. Папка *deployment* также включает сценарий PowerShell, который создает или изменяет переменные среды в системе развертывания, чтобы включить размещение при запуске.
+* [Хранилище среды выполнения.](#runtime-store) Для активации не требуется ссылка во время компиляции. Пример приложения помещает начальную сборку размещения и файлы зависимостей в папку *deployment*, чтобы облегчить развертывание размещения при запуске в среде с несколькими компьютерами. Папка *deployment* также включает сценарий PowerShell, который создает или изменяет переменные среды в системе развертывания, чтобы включить размещение при запуске.
 * Ссылки во время компиляции, необходимые для активации
   * [Пакет NuGet](#nuget-package)
   * [Папка bin проекта](#project-bin-folder)
@@ -329,10 +316,10 @@ dotnet store --manifest store.manifest.csproj --runtime win7-x64 --output ./depl
 {ADDITIONAL DEPENDENCIES PATH}/shared/{SHARED FRAMEWORK NAME}/{SHARED FRAMEWORK VERSION}/{ENHANCEMENT ASSEMBLY NAME}.deps.json
 ```
 
-* `{ADDITIONAL DEPENDENCIES PATH}` &ndash; расположение, добавляемое к переменной среды `DOTNET_ADDITIONAL_DEPS`.
-* `{SHARED FRAMEWORK NAME}` &ndash; общая платформа, требуемая для этого файла дополнительных зависимостей.
-* `{SHARED FRAMEWORK VERSION}` &ndash; минимальная версия общей платформы.
-* `{ENHANCEMENT ASSEMBLY NAME}` &ndash; имя сборки расширения.
+* `{ADDITIONAL DEPENDENCIES PATH}`. Расположение, добавляемое к переменной среды `DOTNET_ADDITIONAL_DEPS`.
+* `{SHARED FRAMEWORK NAME}`. Общая платформа, требуемая для этого файла дополнительных зависимостей.
+* `{SHARED FRAMEWORK VERSION}`. Минимальная версия общей платформы.
+* `{ENHANCEMENT ASSEMBLY NAME}`. Имя сборки расширения.
 
 В примере приложения (проект *RuntimeStore*) файл дополнительных зависимостей помещается в следующее расположение:
 
@@ -376,8 +363,8 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/3.0.0/StartupDiagnosti
   * Расположение, доступное использующему проекту.
 * Файл зависимостей размещения при запуске становится доступным для расширенного приложения, как описано в разделе [Хранилище среды выполнения](#runtime-store) (без ссылок во время компиляции).
 * При нацеливании на .NET Framework сборка загружается в контексте загрузки по умолчанию, что для .NET Framework означает, что сборка находится в одном из следующих расположений:
-  * Базовый путь приложения &ndash; Папка *bin*, в которой находится исполняемый файл приложения ( *.exe*).
-  * Глобальный кэш сборок &ndash; В глобальном кэше сборок сохраняются сборки, которые могут использоваться несколькими приложениями .NET Framework. Дополнительные сведения см. в разделе [Практическое руководство. Установка сборки в глобальный кэш сборок](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) в документации по .NET Framework.
+  * Базовый путь приложения. Папка *bin*, в которой находится исполняемый файл приложения ( *.exe*).
+  * Глобальный кэш сборок. В глобальном кэше сборок сохраняются сборки, которые могут использоваться несколькими приложениями .NET Framework. Дополнительные сведения см. в разделе [Практическое руководство. Установка сборки в глобальный кэш сборок](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) в документации по .NET Framework.
 
 ## <a name="sample-code"></a>Пример кода
 
@@ -628,7 +615,7 @@ HostingStartupLibrary;HostingStartupPackage;StartupDiagnostics
 
 Ниже приведены варианты активации размещения при запуске:
 
-* [Хранилище среды выполнения](#runtime-store) &ndash; для активации не требуется ссылка во время компиляции. Пример приложения помещает начальную сборку размещения и файлы зависимостей в папку *deployment*, чтобы облегчить развертывание размещения при запуске в среде с несколькими компьютерами. Папка *deployment* также включает сценарий PowerShell, который создает или изменяет переменные среды в системе развертывания, чтобы включить размещение при запуске.
+* [Хранилище среды выполнения.](#runtime-store) Для активации не требуется ссылка во время компиляции. Пример приложения помещает начальную сборку размещения и файлы зависимостей в папку *deployment*, чтобы облегчить развертывание размещения при запуске в среде с несколькими компьютерами. Папка *deployment* также включает сценарий PowerShell, который создает или изменяет переменные среды в системе развертывания, чтобы включить размещение при запуске.
 * Ссылки во время компиляции, необходимые для активации
   * [Пакет NuGet](#nuget-package)
   * [Папка bin проекта](#project-bin-folder)
@@ -715,10 +702,10 @@ dotnet store --manifest store.manifest.csproj --runtime win7-x64 --output ./depl
 {ADDITIONAL DEPENDENCIES PATH}/shared/{SHARED FRAMEWORK NAME}/{SHARED FRAMEWORK VERSION}/{ENHANCEMENT ASSEMBLY NAME}.deps.json
 ```
 
-* `{ADDITIONAL DEPENDENCIES PATH}` &ndash; расположение, добавляемое к переменной среды `DOTNET_ADDITIONAL_DEPS`.
-* `{SHARED FRAMEWORK NAME}` &ndash; общая платформа, требуемая для этого файла дополнительных зависимостей.
-* `{SHARED FRAMEWORK VERSION}` &ndash; минимальная версия общей платформы.
-* `{ENHANCEMENT ASSEMBLY NAME}` &ndash; имя сборки расширения.
+* `{ADDITIONAL DEPENDENCIES PATH}`. Расположение, добавляемое к переменной среды `DOTNET_ADDITIONAL_DEPS`.
+* `{SHARED FRAMEWORK NAME}`. Общая платформа, требуемая для этого файла дополнительных зависимостей.
+* `{SHARED FRAMEWORK VERSION}`. Минимальная версия общей платформы.
+* `{ENHANCEMENT ASSEMBLY NAME}`. Имя сборки расширения.
 
 В примере приложения (проект *RuntimeStore*) файл дополнительных зависимостей помещается в следующее расположение:
 
@@ -762,8 +749,8 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnosti
   * Расположение, доступное использующему проекту.
 * Файл зависимостей размещения при запуске становится доступным для расширенного приложения, как описано в разделе [Хранилище среды выполнения](#runtime-store) (без ссылок во время компиляции).
 * При нацеливании на .NET Framework сборка загружается в контексте загрузки по умолчанию, что для .NET Framework означает, что сборка находится в одном из следующих расположений:
-  * Базовый путь приложения &ndash; Папка *bin*, в которой находится исполняемый файл приложения ( *.exe*).
-  * Глобальный кэш сборок &ndash; В глобальном кэше сборок сохраняются сборки, которые могут использоваться несколькими приложениями .NET Framework. Дополнительные сведения см. в разделе [Практическое руководство. Установка сборки в глобальный кэш сборок](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) в документации по .NET Framework.
+  * Базовый путь приложения. Папка *bin*, в которой находится исполняемый файл приложения ( *.exe*).
+  * Глобальный кэш сборок. В глобальном кэше сборок сохраняются сборки, которые могут использоваться несколькими приложениями .NET Framework. Дополнительные сведения см. в разделе [Практическое руководство. Установка сборки в глобальный кэш сборок](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) в документации по .NET Framework.
 
 ## <a name="sample-code"></a>Пример кода
 

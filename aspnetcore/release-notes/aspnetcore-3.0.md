@@ -1,23 +1,11 @@
 ---
-title: Новые возможности в ASP.NET Core 3.0
-author: rick-anderson
-description: Сведения о новых возможностях в ASP.NET Core 3.0.
-ms.author: riande
-ms.custom: mvc
-ms.date: 12/05/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: aspnetcore-3.0
-ms.openlocfilehash: aa0b2b51632cff729449018f9823c38cc26ce612
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774097"
+название: автор: описание: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>Новые возможности в ASP.NET Core 3.0
 
@@ -37,9 +25,9 @@ Blazor — это новая платформа в ASP.NET Core, предназ
 * маршрутизация на стороне клиента;
 * макеты компонентов;
 * поддержка внедрения зависимостей;
-* формы и проверка;
+* Формы и проверка
 * создание библиотек компонентов с помощью библиотек классов Razor;
-* взаимодействие с JavaScript.
+* Взаимодействие с JavaScript
 
 Для получения дополнительной информации см. <xref:blazor/index>.
 
@@ -76,9 +64,9 @@ Blazor отделяет логику отображения компоненто
 
 К функциям gRPC в ASP.NET Core 3.0 относятся:
 
-* [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) — платформа ASP.NET Core для размещения служб gRPC. gRPC в ASP.NET Core поддерживает интеграцию со стандартными возможностями ASP.NET Core, такими как ведение журнала, внедрение зависимостей, проверка подлинности и авторизация.
-* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) — клиент gRPC для .NET Core, созданный на основе знакомого компонента `HttpClient`.
-* [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) — интеграция клиента gRPC с `HttpClientFactory`.
+* [Grpc.AspNetCore.](https://www.nuget.org/packages/Grpc.AspNetCore) Платформа ASP.NET Core для размещения служб gRPC. gRPC в ASP.NET Core поддерживает интеграцию со стандартными возможностями ASP.NET Core, такими как ведение журнала, внедрение зависимостей, проверка подлинности и авторизация.
+* [Grpc.Net.Client.](https://www.nuget.org/packages/Grpc.Net.Client) Клиент gRPC для .NET Core, созданный на основе знакомого клиента `HttpClient`.
+* [Grpc.Net.ClientFactory.](https://www.nuget.org/packages/Grpc.Net.ClientFactory) Интеграция клиента gRPC с `HttpClientFactory`.
 
 Для получения дополнительной информации см. <xref:grpc/index>.
 
@@ -322,8 +310,8 @@ ASP.NET Core 3.0 теперь по умолчанию использует <xre
 
 Следующий список содержит новые директивы Razor.
 
-* [`@attribute`](xref:mvc/views/razor#attribute) — директива `@attribute` применяет этот атрибут к классу созданной страницы или представления. Например, `@attribute [Authorize]`.
-* [`@implements`](xref:mvc/views/razor#implements) — директива `@implements` реализует интерфейс для созданного класса. Например, `@implements IDisposable`.
+* [`@attribute`](xref:mvc/views/razor#attribute): Директива `@attribute` применяет этот атрибут к классу созданной страницы или представления. Например, `@attribute [Authorize]`.
+* [`@implements`](xref:mvc/views/razor#implements): Директива `@implements` реализует интерфейс для созданного класса. Например, `@implements IDisposable`.
 
 ## <a name="identityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a>IdentityServer4 поддерживает проверку подлинности и авторизацию для веб-API и одностраничных приложений
 

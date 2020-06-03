@@ -1,32 +1,20 @@
 ---
-title: ASP.NET Core Razor SDK
-author: Rick-Anderson
-description: Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc, seodec18
-ms.date: 03/26/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: razor-pages/sdk
-ms.openlocfilehash: a49f183c4c037a1654e79bdb672b758684137cbe
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776738"
+title: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
-# <a name="aspnet-core-razor-sdk"></a>Пакет SDK для Razor в ASP.NET Core
+# <a name="aspnet-core-razor-sdk"></a>ASP.NET Core Razor SDK
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 ## <a name="overview"></a>Обзор
 
-[!INCLUDE[](~/includes/2.1-SDK.md)] включает пакет SDK MSBuild `Microsoft.NET.Sdk.Razor` (пакет SDK Razor). Пакет SDK для Razor:
+[!INCLUDE[](~/includes/2.1-SDK.md)] включает пакет SDK MSBuild `Microsoft.NET.Sdk.Razor` (пакет SDK для Razor). Пакет SDK для Razor:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -56,13 +44,13 @@ ms.locfileid: "82776738"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Чтобы использовать пакет SDK для Razor для построения библиотек классов, содержащих представления Razor или Razor Pages, мы рекомендуем начать с шаблона проекта "Библиотека классов Razor" (RCL). Для RCL, который используется для сборки файлов Blazor (*RAZOR*), требуется ссылка на пакет [Microsoft.AspNetCore.Components](https://www.nuget.org/packages/Microsoft.AspNetCore.Components). RCL, который используется для сборки представлений или страниц Razor (файлы *CSHTML*), требует как минимум `netcoreapp3.0` или более поздней версии и имеет ссылку `FrameworkReference` на [метапакет Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) в файле проекта.
+Чтобы использовать пакет SDK для Razor для построения библиотек классов, содержащих представления Razor или Razor Pages, мы рекомендуем начать с шаблона проекта "Библиотека классов Razor" (RCL). Для RCL, который используется для сборки файлов Blazor (*RAZOR*), требуется ссылка на пакет [Microsoft.AspNetCore.Components](https://www.nuget.org/packages/Microsoft.AspNetCore.Components). RCL, который используется для сборки представлений или страниц Razor (файлы *CSHTML*), требует как минимум `netcoreapp3.0` или более поздней версии и имеет ссылку `FrameworkReference` на метапакет [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) в файле проекта.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-Использование пакета SDK для Razor для создания библиотеки классов с представлениями Razor или страницами Razor:
+Чтобы использовать пакет SDK для Razor для построения библиотек классов, содержащих представления Razor или страницы Razor:
 
 * Используйте `Microsoft.NET.Sdk.Razor` вместо `Microsoft.NET.Sdk`:
 
@@ -72,7 +60,7 @@ ms.locfileid: "82776738"
   </Project>
   ```
 
-* Обычно требуется ссылка на пакет `Microsoft.AspNetCore.Mvc` для получения дополнительных зависимостей, необходимых для сборки и компиляции страниц Razor Pages и представлений Razor. Как минимум, в проекте нужны ссылки на следующие пакеты:
+* Обычно требуется ссылка на пакет `Microsoft.AspNetCore.Mvc` для получения дополнительных зависимостей, необходимых для сборки и компиляции страниц Razor Pages и представлений Razor. Как минимум, в проекте нужны ссылки на следующие пакеты:
 
   * `Microsoft.AspNetCore.Razor.Design`
   * `Microsoft.AspNetCore.Mvc.Razor.Extensions`
@@ -110,58 +98,134 @@ ms.locfileid: "82776738"
 ::: moniker-end
 
 | Элементы | Описание |
-| ----- | ----------- |
-| `RazorGenerate` | Элементы (файлы *CSHTML*), которые являются входными данными для создания кода. |
-| `RazorComponent` | Элементы (файлы *RAZPR*), которые являются входными данными для создания кода компонентов Razor. |
-| `RazorCompile` | Элементы (файлы *CS*), которые являются входными данными для целей компиляции Razor. Используйте этот элемент `ItemGroup`, чтобы указать дополнительные файлы для компиляции в сборку Razor. |
-| `RazorTargetAssemblyAttribute` | Элементы, используемые для создания атрибутов для сборки Razor. Пример:  <br>`RazorAssemblyAttribute`<br>`Include="System.Reflection.AssemblyMetadataAttribute"`<br>`_Parameter1="BuildSource" _Parameter2="https://docs.microsoft.com/">` |
-| `RazorEmbeddedResource` | Элементы, добавленные в качестве внедренных ресурсов к созданной сборке Razor. |
+| ----- | ---
+title: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | | `RazorGenerate` | Элементы (файлы *CSHTML*), которые являются входными данными для создания кода. | | `RazorComponent` | Элементы (файлы *RAZPR*), которые являются входными данными для создания кода компонентов Razor. | | `RazorCompile` | Элементы (файлы *CS*), которые являются входными данными для целей компиляции Razor. Используйте этот элемент `ItemGroup`, чтобы указать дополнительные файлы для компиляции в сборку Razor. | | `RazorTargetAssemblyAttribute` | Элементы, используемые для создания атрибутов для сборки Razor. Пример:  <br>`RazorAssemblyAttribute`<br>`Include="System.Reflection.AssemblyMetadataAttribute"`<br>`_Parameter1="BuildSource" _Parameter2="https://docs.microsoft.com/">` | | `RazorEmbeddedResource` | Элементы, добавленные в качестве внедренных ресурсов к созданной сборке Razor. |
 
 ::: moniker range=">= aspnetcore-3.0"
 
 | Свойство. | Описание |
-| -------- | ----------- |
-| `RazorTargetName` | Имя файла (без расширения) для сборки, созданной Razor. |
-| `RazorOutputPath` | Выходной каталог Razor. |
-| `RazorCompileToolset` | Используется для определения набора инструментов для построения сборки Razor. Допустимые значения: `Implicit`, `RazorSDK` и `PrecompilationTool`. |
-| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Значение по умолчанию — `true`. Если указано значение `true`, включает файлы *WEB.CONFIG*, *JSON* и *CSHTML* в качестве содержимого проекта. При ссылке через `Microsoft.NET.Sdk.Web` также включает все файлы в *wwwroot* и файлы конфигурации. |
-| `EnableDefaultRazorGenerateItems` | При значении `true` включает файлы *.cshtml* из элементов `Content` в элементы `RazorGenerate`. |
-| `GenerateRazorTargetAssemblyInfo` | При значении `true` создает файл *CS* с атрибутами, заданными `RazorAssemblyAttribute`, и включает его в выходные данные компиляции. |
-| `EnableDefaultRazorTargetAssemblyInfoAttributes` | При значении `true` добавляет стандартный набор атрибутов сборки в `RazorAssemblyAttribute`. |
-| `CopyRazorGenerateFilesToPublishDirectory` | При значении `true` копирует элементы `RazorGenerate` (файлы *CSHTML*) в каталог публикации. Обычно опубликованному приложению не нужны файлы Razor, если они участвуют в компиляции во время сборки или публикации. По умолчанию — `false`. |
-| `PreserveCompilationReferences` | При значении `true` копирует элементы базовой сборки в каталог публикации. Обычно опубликованному приложению не нужны базовые сборки, если компиляция Razor происходит во время сборки или публикации. Задайте значение `true`, если для опубликованного приложения требуется компиляция в среде выполнения. Например, задайте значение `true`, если приложение изменяет файлы *CSHTML* во время выполнения или использует внедренные представления. По умолчанию — `false`. |
-| `IncludeRazorContentInPack` | При значении `true` все элементы содержимого Razor (файлы *CSHTML*) помечаются для включения в создаваемый пакет NuGet. По умолчанию — `false`. |
-| `EmbedRazorGenerateSources` | При значении `true` добавляет элементы RazorGenerate ( *.cshtml*) в виде внедренных файлов к создаваемой сборке Razor. По умолчанию — `false`. |
-| `UseRazorBuildServer` | При значении `true` использует серверный процесс постоянной сборки для разгрузки работы по созданию кода. По умолчанию используется значение `UseSharedCompilation`. |
-| `GenerateMvcApplicationPartsAssemblyAttributes` | При значении `true` пакет SDK создает дополнительные атрибуты, используемые MVC во время выполнения для обнаружения частей приложения. |
-| `DefaultWebContentItemExcludes` | Шаблон подстановки для элементов, которые должны быть исключены из группы элементов `Content` в проектах, предназначенных для веб-пакета или пакета SDK для Razor |
-| `ExcludeConfigFilesFromBuildOutput` | При значении `true` файлы *CONGIF* и *JSON* не копируются в выходной каталог сборки. |
-| `AddRazorSupportForMvc` | При значении `true` настраивает пакет SDK для Razor для добавления поддержки конфигурации MVC, которая необходима при создании приложений, содержащих представления MVC или Razor Pages. Это свойство неявно задано для проектов .NET Core 3.0 или более поздней версии, предназначенных для веб-пакета SDK |
-| `RazorLangVersion` | Используемая версия языка Razor. |
+| ---
+title: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | --- название: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | | `RazorTargetName` | Имя файла (без расширения) для сборки, созданной Razor. | | `RazorOutputPath` | Выходной каталог Razor. | | `RazorCompileToolset` | Используется для определения набора инструментов для построения сборки Razor. Допустимые значения: `Implicit`, `RazorSDK` и `PrecompilationTool`. | | [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Значение по умолчанию — `true`. Если указано значение `true`, включает файлы *WEB.CONFIG*, *JSON* и *CSHTML* в качестве содержимого проекта. При ссылке через `Microsoft.NET.Sdk.Web` также включает все файлы в *wwwroot* и файлы конфигурации. | | `EnableDefaultRazorGenerateItems` | При значении `true` включает файлы *.cshtml* из элементов `Content` в элементы `RazorGenerate`. | | `GenerateRazorTargetAssemblyInfo` | При значении `true` создает файл *CS* с атрибутами, заданными `RazorAssemblyAttribute`, и включает его в выходные данные компиляции. | | `EnableDefaultRazorTargetAssemblyInfoAttributes` | При значении `true` добавляет стандартный набор атрибутов сборки в `RazorAssemblyAttribute`. | | `CopyRazorGenerateFilesToPublishDirectory` | При значении `true` копирует элементы `RazorGenerate` (файлы *CSHTML*) в каталог публикации. Обычно опубликованному приложению не нужны файлы Razor, если они участвуют в компиляции во время сборки или публикации. По умолчанию — `false`. | | `PreserveCompilationReferences` | При значении `true` копирует элементы базовой сборки в каталог публикации. Обычно опубликованному приложению не нужны базовые сборки, если компиляция Razor происходит во время сборки или публикации. Задайте значение `true`, если для опубликованного приложения требуется компиляция в среде выполнения. Например, задайте значение `true`, если приложение изменяет файлы *CSHTML* во время выполнения или использует внедренные представления. По умолчанию — `false`. | | `IncludeRazorContentInPack` | При значении `true` все элементы содержимого Razor (файлы *CSHTML*) помечаются для включения в создаваемый пакет NuGet. По умолчанию — `false`. | | `EmbedRazorGenerateSources` | При значении `true` элементы RazorGenerate (*CSHTML*) добавляются в виде внедренных файлов к создаваемой сборке Razor. По умолчанию — `false`. | | `UseRazorBuildServer` | При значении `true` использует серверный процесс постоянной сборки для разгрузки работы по созданию кода. По умолчанию используется значение `UseSharedCompilation`. | | `GenerateMvcApplicationPartsAssemblyAttributes` | При значении `true` пакет SDK создает дополнительные атрибуты, используемые MVC во время выполнения для обнаружения частей приложения. | | `DefaultWebContentItemExcludes` | Стандартная маска для элементов, которые нужно исключить из группы элементов `Content` в проектах, предназначенных для Интернета или пакета SDK Razor | | `ExcludeConfigFilesFromBuildOutput` | Если `true`, файлы *CONFIG* и *JSON* не копируются в выходной каталог сборки. | | `AddRazorSupportForMvc` | При значении `true` настраивается пакет SDK для Razor для добавления поддержки конфигурации MVC, которая необходима при создании приложений, содержащих представления MVC или Razor Pages. Это свойство неявно задано для проектов .NET Core версии 3.0 или более поздних версий, предназначенных для Интернета или SDK | | `RazorLangVersion` | Версия целевого языка Razor. |
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
 | Свойство. | Описание |
-| -------- | ----------- |
-| `RazorTargetName` | Имя файла (без расширения) для сборки, созданной Razor. |
-| `RazorOutputPath` | Выходной каталог Razor. |
-| `RazorCompileToolset` | Используется для определения набора инструментов для построения сборки Razor. Допустимые значения: `Implicit`, `RazorSDK` и `PrecompilationTool`. |
-| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Значение по умолчанию — `true`. Если указано значение `true`, включает файлы *WEB.CONFIG*, *JSON* и *CSHTML* в качестве содержимого проекта. При ссылке через `Microsoft.NET.Sdk.Web` также включает все файлы в *wwwroot* и файлы конфигурации. |
-| `EnableDefaultRazorGenerateItems` | При значении `true` включает файлы *.cshtml* из элементов `Content` в элементы `RazorGenerate`. |
-| `GenerateRazorTargetAssemblyInfo` | При значении `true` создает файл *CS* с атрибутами, заданными `RazorAssemblyAttribute`, и включает его в выходные данные компиляции. |
-| `EnableDefaultRazorTargetAssemblyInfoAttributes` | При значении `true` добавляет стандартный набор атрибутов сборки в `RazorAssemblyAttribute`. |
-| `CopyRazorGenerateFilesToPublishDirectory` | При значении `true` копирует элементы `RazorGenerate` (файлы *CSHTML*) в каталог публикации. Обычно опубликованному приложению не нужны файлы Razor, если они участвуют в компиляции во время сборки или публикации. По умолчанию — `false`. |
-| `CopyRefAssembliesToPublishDirectory` | При значении `true` копирует элементы базовой сборки в каталог публикации. Обычно опубликованному приложению не нужны базовые сборки, если компиляция Razor происходит во время сборки или публикации. Задайте значение `true`, если для опубликованного приложения требуется компиляция в среде выполнения. Например, задайте значение `true`, если приложение изменяет файлы *CSHTML* во время выполнения или использует внедренные представления. По умолчанию — `false`. |
-| `IncludeRazorContentInPack` | При значении `true` все элементы содержимого Razor (файлы *CSHTML*) помечаются для включения в создаваемый пакет NuGet. По умолчанию — `false`. |
-| `EmbedRazorGenerateSources` | При значении `true` элементы RazorGenerate (*CSHTML*) добавляются в виде внедренных файлов к создаваемой сборке Razor. По умолчанию — `false`. |
-| `UseRazorBuildServer` | При значении `true` использует серверный процесс постоянной сборки для разгрузки работы по созданию кода. По умолчанию используется значение `UseSharedCompilation`. |
-| `GenerateMvcApplicationPartsAssemblyAttributes` | При значении `true` пакет SDK создает дополнительные атрибуты, используемые MVC во время выполнения для обнаружения частей приложения. |
-| `DefaultWebContentItemExcludes` | Шаблон подстановки для элементов, которые должны быть исключены из группы элементов `Content` в проектах, предназначенных для веб-пакета или пакета SDK для Razor |
-| `ExcludeConfigFilesFromBuildOutput` | При значении `true` файлы *CONGIF* и *JSON* не копируются в выходной каталог сборки. |
-| `AddRazorSupportForMvc` | При значении `true` настраивается пакет SDK для Razor для добавления поддержки конфигурации MVC, которая необходима при создании приложений, содержащих представления MVC или Razor Pages. Это свойство неявно задано для проектов .NET Core 3.0 или более поздней версии, предназначенных для веб-пакета SDK |
-| `RazorLangVersion` | Используемая версия языка Razor. |
+| ---
+title: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+---- | --- название: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: 'Пакет SDK ASP.NET Core Razor' автор: описание: 'Сведения о применении в ASP.NET Core функции Razor Pages, которая делает создание кодов сценариев для страниц проще и эффективнее по сравнению с MVC.'
+monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------ | | `RazorTargetName` | Имя файла (без расширения) для сборки, созданной Razor. | | `RazorOutputPath` | Выходной каталог Razor. | | `RazorCompileToolset` | Используется для определения набора инструментов для построения сборки Razor. Допустимые значения: `Implicit`, `RazorSDK` и `PrecompilationTool`. | | [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Значение по умолчанию — `true`. Если указано значение `true`, включает файлы *WEB.CONFIG*, *JSON* и *CSHTML* в качестве содержимого проекта. При ссылке через `Microsoft.NET.Sdk.Web` также включает все файлы в *wwwroot* и файлы конфигурации. | | `EnableDefaultRazorGenerateItems` | При значении `true` включает файлы *.cshtml* из элементов `Content` в элементы `RazorGenerate`. | | `GenerateRazorTargetAssemblyInfo` | При значении `true` создает файл *CS* с атрибутами, заданными `RazorAssemblyAttribute`, и включает его в выходные данные компиляции. | | `EnableDefaultRazorTargetAssemblyInfoAttributes` | При значении `true` добавляет стандартный набор атрибутов сборки в `RazorAssemblyAttribute`. | | `CopyRazorGenerateFilesToPublishDirectory` | При значении `true` копирует элементы `RazorGenerate` (файлы *CSHTML*) в каталог публикации. Обычно опубликованному приложению не нужны файлы Razor, если они участвуют в компиляции во время сборки или публикации. По умолчанию — `false`. | | `CopyRefAssembliesToPublishDirectory` | При значении `true` копирует элементы базовой сборки в каталог публикации. Обычно опубликованному приложению не нужны базовые сборки, если компиляция Razor происходит во время сборки или публикации. Задайте значение `true`, если для опубликованного приложения требуется компиляция в среде выполнения. Например, задайте значение `true`, если приложение изменяет файлы *CSHTML* во время выполнения или использует внедренные представления. По умолчанию — `false`. | | `IncludeRazorContentInPack` | При значении `true` все элементы содержимого Razor (файлы *CSHTML*) помечаются для включения в создаваемый пакет NuGet. По умолчанию — `false`. | | `EmbedRazorGenerateSources` | При значении `true` элементы RazorGenerate (*CSHTML*) добавляются в виде внедренных файлов к создаваемой сборке Razor. По умолчанию — `false`. | | `UseRazorBuildServer` | При значении `true` использует серверный процесс постоянной сборки для разгрузки работы по созданию кода. По умолчанию используется значение `UseSharedCompilation`. | | `GenerateMvcApplicationPartsAssemblyAttributes` | При значении `true` пакет SDK создает дополнительные атрибуты, используемые MVC во время выполнения для обнаружения частей приложения. | | `DefaultWebContentItemExcludes` | Стандартная маска для элементов, которые нужно исключить из группы элементов `Content` в проектах, предназначенных для Интернета или пакета SDK Razor | | `ExcludeConfigFilesFromBuildOutput` | Если `true`, файлы *CONFIG* и *JSON* не копируются в выходной каталог сборки. | | `AddRazorSupportForMvc` | При значении `true` настраивается пакет SDK для Razor для добавления поддержки конфигурации MVC, которая необходима при создании приложений, содержащих представления MVC или Razor Pages. Это свойство неявно задано для проектов .NET Core версии 3.0 или более поздних версий, предназначенных для Интернета или SDK | | `RazorLangVersion` | Версия целевого языка Razor. |
 
 ::: moniker-end
 
@@ -171,9 +235,9 @@ ms.locfileid: "82776738"
 
 Пакет SDK для Razor определяет два основных целевых объекта.
 
-* `RazorGenerate`. Создает файлы *CS* из элементов `RazorGenerate`. Используйте свойство `RazorGenerateDependsOn`, чтобы указать дополнительные целевые объекты, которые могут выполняться до или после этого целевого объекта.
-* `RazorCompile` &ndash;. Компилирует созданные файлы *CS* в сборку Razor. Используйте `RazorCompileDependsOn`, чтобы указать дополнительные целевые объекты, которые могут выполняться до или после этого целевого объекта.
-* `RazorComponentGenerate` &ndash;. Создает файлы *CS* для элементов `RazorComponent`. Используйте свойство `RazorComponentGenerateDependsOn`, чтобы указать дополнительные целевые объекты, которые могут выполняться до или после этого целевого объекта.
+* `RazorGenerate`. Код создает файлы *CS* из элементов `RazorGenerate`. Используйте свойство `RazorGenerateDependsOn`, чтобы указать дополнительные целевые объекты, которые могут выполняться до или после этого целевого объекта.
+* `RazorCompile`. Компилирует созданные файлы *CS* в сборку Razor. Используйте `RazorCompileDependsOn`, чтобы указать дополнительные целевые объекты, которые могут выполняться до или после этого целевого объекта.
+* `RazorComponentGenerate`. Код создает файлы *CS* для элементов `RazorComponent`. Используйте свойство `RazorComponentGenerateDependsOn`, чтобы указать дополнительные целевые объекты, которые могут выполняться до или после этого целевого объекта.
 
 ### <a name="runtime-compilation-of-razor-views"></a>Компиляция среды выполнения представлений Razor
 

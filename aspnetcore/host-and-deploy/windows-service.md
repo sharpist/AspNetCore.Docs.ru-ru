@@ -1,24 +1,11 @@
 ---
-title: Размещение ASP.NET Core в службе Windows
-author: rick-anderson
-description: Узнайте, как разместить приложение ASP.NET Core в службе Windows.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/07/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/windows-service
-ms.openlocfilehash: 4ad9086c60e58f89bdde4962d7487036df251cc1
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776348"
+название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Размещение ASP.NET Core в службе Windows
 
@@ -66,8 +53,8 @@ Host.CreateDefaultBuilder(args)
 
 Этот раздел сопровождают следующие примеры приложений:
 
-* Пример фоновой службы рабочих ролей &ndash; пример приложения, не являющегося веб-приложением, на основе [шаблона службы рабочих ролей](#worker-service-template), который использует [размещенные службы](xref:fundamentals/host/hosted-services) для фоновых задач.
-* Пример службы веб-приложений &ndash;. Пример веб-приложения Razor Pages, который выполняется как служба Windows с [размещенными службами](xref:fundamentals/host/hosted-services) для фоновых задач.
+* Пример фоновой службы рабочих ролей. Пример приложения, не являющегося веб-приложением, на основе [шаблона службы рабочих ролей](#worker-service-template), который использует [размещенные службы](xref:fundamentals/host/hosted-services) для фоновых задач.
+* Пример службы веб-приложений. Пример веб-приложения Razor Pages, который выполняется как служба Windows с [размещенными службами](xref:fundamentals/host/hosted-services) для фоновых задач.
 
 Рекомендации по MVC см. в статьях <xref:mvc/overview> и <xref:migration/22-to-30>.
 
@@ -115,7 +102,7 @@ Host.CreateDefaultBuilder(args)
 Чтобы выполнить публикацию для нескольких идентификаторов RID, сделайте следующее.
 
 * Укажите список идентификаторов RID, разделив их точкой с запятой.
-* Используйте имя свойства [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (во множественном числе).
+* Укажите имя свойства [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (множественное число).
 
 Дополнительные сведения см. в [каталоге RID для .NET Core](/dotnet/core/rid-catalog).
 
@@ -172,12 +159,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; — путь к папке приложения на узле (например, `d:\myservice`). Не включайте исполняемый файл приложения в путь. Завершающая косая черта не требуется.
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; —учетная запись пользователя службы (например, `Contoso\ServiceUser`).
-* `{SERVICE NAME}` &ndash; — имя службы (например, `MyService`).
-* `{EXE FILE PATH}` &ndash; — путь к исполняемому файлу приложения (например, `d:\myservice\myservice.exe`). Включите имя исполняемого файла с расширением.
-* `{DESCRIPTION}` &ndash; — описание службы (например, `My sample service`).
-* `{DISPLAY NAME}` &ndash; — отображаемое имя службы (например, `My Service`).
+* `{EXE PATH}`. Путь к папке приложения на узле (например, `d:\myservice`). Не включайте исполняемый файл приложения в путь. Завершающая косая черта не требуется.
+* `{DOMAIN OR COMPUTER NAME\USER}`. Учетная запись пользователя службы (например, `Contoso\ServiceUser`).
+* `{SERVICE NAME}`. Имя службы (например, `MyService`).
+* `{EXE FILE PATH}`. Путь к исполняемому файлу приложения (например, `d:\myservice\myservice.exe`). Включите имя исполняемого файла с расширением.
+* `{DESCRIPTION}`. Описание службы (например, `My sample service`).
+* `{DISPLAY NAME}`. Отображаемое имя службы (например, `My Service`).
 
 ### <a name="start-a-service"></a>Запуск службы
 
@@ -421,7 +408,7 @@ Remove-Service -Name {SERVICE NAME}
 Чтобы выполнить публикацию для нескольких идентификаторов RID, сделайте следующее.
 
 * Укажите список идентификаторов RID, разделив их точкой с запятой.
-* Используйте имя свойства [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (во множественном числе).
+* Укажите имя свойства [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (множественное число).
 
 Дополнительные сведения см. в [каталоге RID для .NET Core](/dotnet/core/rid-catalog).
 
@@ -484,12 +471,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; — путь к папке приложения на узле (например, `d:\myservice`). Не включайте исполняемый файл приложения в путь. Завершающая косая черта не требуется.
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; —учетная запись пользователя службы (например, `Contoso\ServiceUser`).
-* `{SERVICE NAME}` &ndash; — имя службы (например, `MyService`).
-* `{EXE FILE PATH}` &ndash; — путь к исполняемому файлу приложения (например, `d:\myservice\myservice.exe`). Включите имя исполняемого файла с расширением.
-* `{DESCRIPTION}` &ndash; — описание службы (например, `My sample service`).
-* `{DISPLAY NAME}` &ndash; — отображаемое имя службы (например, `My Service`).
+* `{EXE PATH}`. Путь к папке приложения на узле (например, `d:\myservice`). Не включайте исполняемый файл приложения в путь. Завершающая косая черта не требуется.
+* `{DOMAIN OR COMPUTER NAME\USER}`. Учетная запись пользователя службы (например, `Contoso\ServiceUser`).
+* `{SERVICE NAME}`. Имя службы (например, `MyService`).
+* `{EXE FILE PATH}`. Путь к исполняемому файлу приложения (например, `d:\myservice\myservice.exe`). Включите имя исполняемого файла с расширением.
+* `{DESCRIPTION}`. Описание службы (например, `My sample service`).
+* `{DISPLAY NAME}`. Отображаемое имя службы (например, `My Service`).
 
 ### <a name="start-a-service"></a>Запуск службы
 
@@ -758,7 +745,7 @@ CreateWebHostBuilder(args)
 Чтобы выполнить публикацию для нескольких идентификаторов RID, сделайте следующее.
 
 * Укажите список идентификаторов RID, разделив их точкой с запятой.
-* Используйте имя свойства [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (во множественном числе).
+* Укажите имя свойства [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (множественное число).
 
 Дополнительные сведения см. в [каталоге RID для .NET Core](/dotnet/core/rid-catalog).
 
@@ -821,12 +808,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; — путь к папке приложения на узле (например, `d:\myservice`). Не включайте исполняемый файл приложения в путь. Завершающая косая черта не требуется.
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; —учетная запись пользователя службы (например, `Contoso\ServiceUser`).
-* `{SERVICE NAME}` &ndash; — имя службы (например, `MyService`).
-* `{EXE FILE PATH}` &ndash; — путь к исполняемому файлу приложения (например, `d:\myservice\myservice.exe`). Включите имя исполняемого файла с расширением.
-* `{DESCRIPTION}` &ndash; — описание службы (например, `My sample service`).
-* `{DISPLAY NAME}` &ndash; — отображаемое имя службы (например, `My Service`).
+* `{EXE PATH}`. Путь к папке приложения на узле (например, `d:\myservice`). Не включайте исполняемый файл приложения в путь. Завершающая косая черта не требуется.
+* `{DOMAIN OR COMPUTER NAME\USER}`. Учетная запись пользователя службы (например, `Contoso\ServiceUser`).
+* `{SERVICE NAME}`. Имя службы (например, `MyService`).
+* `{EXE FILE PATH}`. Путь к исполняемому файлу приложения (например, `d:\myservice\myservice.exe`). Включите имя исполняемого файла с расширением.
+* `{DESCRIPTION}`. Описание службы (например, `My sample service`).
+* `{DISPLAY NAME}`. Отображаемое имя службы (например, `My Service`).
 
 ### <a name="start-a-service"></a>Запуск службы
 

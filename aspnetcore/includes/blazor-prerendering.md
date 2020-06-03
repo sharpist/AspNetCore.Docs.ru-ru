@@ -24,7 +24,7 @@
 }
 ```
 
-Для предыдущего примера кода предоставьте функцию JavaScript `setElementText` внутри элемента `<head>` файла *wwwroot/index.html* (Blazor WebAssembly) или *Pages/_Host.cshtml* (Blazor Server). Функция вызывается с помощью метода `IJSRuntime.InvokeVoidAsync` и не возвращает значение:
+Для предыдущего примера кода предоставьте функцию JavaScript `setElementText` внутри элемента `<head>` файла *wwwroot/index.html* (Blazor WebAssembly) или *Pages/_Host.cshtml* (Blazor Server). Функция вызывается с помощью метода <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> и не возвращает значение:
 
 ```html
 <script>
@@ -35,9 +35,9 @@
 > [!WARNING]
 > В предыдущем примере прямое изменение модели DOM показано только в демонстрационных целях. В большинстве сценариев выполнять непосредственное изменение модели DOM с помощью JavaScript не рекомендуется, поскольку JavaScript может повлиять на отслеживание изменений в Blazor.
 
-В следующем компоненте показано, как использовать взаимодействие с JavaScript в составе логики инициализации компонента, совместимое с предварительной отрисовкой. Компонент показывает, что обновление отрисовки можно активировать из `OnAfterRenderAsync`. В этом сценарии разработчику следует избегать создания бесконечного цикла.
+В следующем компоненте показано, как использовать взаимодействие с JavaScript в составе логики инициализации компонента, совместимое с предварительной отрисовкой. Компонент показывает, что обновление отрисовки можно активировать из <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>. В этом сценарии разработчику следует избегать создания бесконечного цикла.
 
-При вызове `JSRuntime.InvokeAsync` `ElementRef` используется только в методе `OnAfterRenderAsync`, а не в предыдущем методе жизненного цикла, так как элемент JavaScript появляется только после отрисовки компонента.
+При вызове <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWithType> `ElementRef` используется только в методе <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, а не в предыдущем методе жизненного цикла, так как элемент JavaScript появляется только после отрисовки компонента.
 
 Метод [StateHasChanged](xref:blazor/lifecycle#state-changes) вызывается для повторной отрисовки компонента с новым состоянием, полученным из вызова взаимодействия с JavaScript. Код не создает бесконечный цикл, так как метод `StateHasChanged` вызывается, только если `infoFromJs` имеет значение `null`.
 
@@ -72,7 +72,7 @@ Set value via JS interop call:
 }
 ```
 
-Для предыдущего примера кода предоставьте функцию JavaScript `setElementText` внутри элемента `<head>` файла *wwwroot/index.html* (Blazor WebAssembly) или *Pages/_Host.cshtml* (Blazor Server). Функция вызывается с помощью метода `IJSRuntime.InvokeAsync` и возвращает значение:
+Для предыдущего примера кода предоставьте функцию JavaScript `setElementText` внутри элемента `<head>` файла *wwwroot/index.html* (Blazor WebAssembly) или *Pages/_Host.cshtml* (Blazor Server). Функция вызывается с помощью метода <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> и возвращает значение:
 
 ```html
 <script>
