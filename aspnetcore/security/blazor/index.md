@@ -1,11 +1,11 @@
 ---
-title: "Проверка подлинности и авторизация в ASP.NET Core Blazor" автор: описание: "Сведения о проверке подлинности и авторизации в Blazor".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
+title: "Проверка подлинности и авторизация в ASP.NET Core Blazor" автор: guardrex описание: "Сведения о проверке подлинности и авторизации в Blazor".
+monikerRange: '>= aspnetcore-3.1' ms.автор: riande ms.custom: mvc ms.дата: 19.05.2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- ИД пользователя "SignalR": 
+- 'SignalR' uid: security/blazor/index
 
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>Проверка подлинности и авторизация в ASP.NET Core Blazor
@@ -454,14 +454,6 @@ Not authorized.
 > ```
 >
 > Эти пространства имен можно предоставить глобально, добавив их в файл *_Imports.razor* приложения.
-
-## <a name="authorization-in-blazor-webassembly-apps"></a>Авторизация в приложениях Blazor WebAssembly
-
-В приложениях Blazor WebAssembly авторизацию можно обойти, так как пользователь может изменять весь код на стороне клиента. Это же справедливо для всех технологий на стороне клиента, включая платформы одностраничного приложения JavaScript или собственных приложений для любой операционной системы.
-
-**Всегда выполняйте проверки авторизации на стороне сервера в конечных точках API, к которым обращается клиентское приложение.**
-
-Дополнительные сведения см. в статьях в документе <xref:security/blazor/webassembly/index>.
 
 ## <a name="troubleshoot-errors"></a>Устранение неполадок
 

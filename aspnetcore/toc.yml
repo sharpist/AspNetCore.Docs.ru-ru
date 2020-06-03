@@ -161,7 +161,11 @@
           displayName: 'tutorial, razor, razor pages, ui'
           href: /learn/modules/create-razor-pages-aspnet-core/
         - name: API веб-приложений >>
+          displayName: tutorial
           href: /learn/modules/build-web-api-net-core/
+        - name: Ориентированные на облако микрослужбы >>
+          displayName: 'tutorial, kubernetes, aks, acr, docker'
+          href: /learn/modules/microservices-aspnet-core/
         - name: Доступ к данным >>
           displayName: 'tutorial, ef, entity framework'
           href: /learn/modules/persist-data-ef-core/
