@@ -1,22 +1,11 @@
 ---
-title: Глобализация и локализация в ASP.NET Core
-author: rick-anderson
-description: Сведения о службах и ПО промежуточного слоя, предоставляемых ASP.NET Core для локализации содержимого на разные языки и для разных региональных параметров.
-ms.author: riande
-ms.date: 11/30/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/localization
-ms.openlocfilehash: 6a6179baedbb6e737335886457e9012ad463a2ba
-ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
-ms.translationtype: HT
-ms.contentlocale: ru-RU
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83153959"
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Глобализация и локализация в ASP.NET Core
 
@@ -40,7 +29,7 @@ ms.locfileid: "83153959"
 
 ## <a name="make-the-apps-content-localizable"></a>Обеспечение возможности локализации для содержимого приложения
 
-Интерфейсы <xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer`1> призваны повысить производительность при разработке локализованных приложений. Интерфейс `IStringLocalizer` использует классы [ResourceManager](/dotnet/api/system.resources.resourcemanager) и [ResourceReader](/dotnet/api/system.resources.resourcereader) для предоставления ресурсов, связанных с определенным языком и региональными параметрами, во время выполнения. Этот интерфейс имеет индексатор и интерфейс `IEnumerable` для возврата локализованных строк. `IStringLocalizer` не требует сохранять строки на языке по умолчанию в файле ресурсов. Вы можете разрабатывать приложение, предназначенное для локализации, не создавая файлы ресурсов на ранних этапах разработки. В приведенном ниже коде показано, как подготовить строку "About Title" для локализации.
+<xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer` uses the [ResourceManager](/dotnet/api/system.resources.resourcemanager) and [ResourceReader](/dotnet/api/system.resources.resourcereader) to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings. `IStringLocalizer` не требует сохранять строки на языке по умолчанию в файле ресурсов. Вы можете разрабатывать приложение, предназначенное для локализации, не создавая файлы ресурсов на ранних этапах разработки. В приведенном ниже коде показано, как подготовить строку "About Title" для локализации.
 
 [!code-csharp[](localization/sample/Localization/Controllers/AboutController.cs)]
 
@@ -81,8 +70,15 @@ ms.locfileid: "83153959"
 Файл ресурсов на французском языке может содержать следующие ресурсы:
 
 | Ключ | Значение |
-| ----- | ------ |
-| `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
+| ----- | ---
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--- | | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 Преобразованное для просмотра представление будет содержать разметку HTML из файла ресурсов.
 
@@ -155,10 +151,70 @@ ASP.NET Core позволяет указывать два значения яз�
 В образце проекта метод `ConfigureServices` присваивает свойству `ResourcesPath` значение "Resources", поэтому относительный путь к файлу ресурсов на французском языке для контроллера домашней страницы в проекте будет иметь вид *Resources/Controllers.HomeController.fr.resx*. Кроме того, для упорядочения файлов ресурсов можно использовать папки. Для контроллера домашней страницы путь будет иметь вид *Resources/Controllers/HomeController.fr.resx*. Если параметр `ResourcesPath` не используется, файл *RESX* будет находиться в базовом каталоге проекта. Файл ресурса для `HomeController` будет иметь имя *Controllers.HomeController.fr.resx*. Выбор соглашения об именовании на основе точечной нотации или пути зависит от того, как следует упорядочивать файлы ресурсов.
 
 | Имя ресурса | Точечная нотация или путь |
-| ------------   | ------------- |
-| Resources/Controllers.HomeController.fr.resx | Точки  |
-| Resources/Controllers/HomeController.fr.resx  | Path |
-|    |     |
+| ---
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------   | --- title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------- | | Resources/Controllers.HomeController.fr.resx | Точка  | | Resources/Controllers/HomeController.fr.resx  | Путь | |    |     |
 
 Файлы ресурсов, для которых используется директива `@inject IViewLocalizer` в представлениях Razor, следуют той же модели. Файлу ресурсов для представления может присваиваться имя на основе либо точечной нотации, либо пути. В файле ресурсов для представления Razor имитируется путь к связанному файлу представления. Допустим, свойству `ResourcesPath` присвоено значение "Resources". В этом случае файл ресурсов на французском языке, связанный с представлением *Views/Home/About.cshtml*, может иметь одно из следующих имен:
 
@@ -388,7 +444,7 @@ services.Configure<RequestLocalizationOptions>(options =>
 
 ## <a name="make-the-apps-content-localizable"></a>Обеспечение возможности локализации для содержимого приложения
 
-Интерфейсы <xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer`1> призваны повысить производительность при разработке локализованных приложений. Интерфейс `IStringLocalizer` использует классы [ResourceManager](/dotnet/api/system.resources.resourcemanager) и [ResourceReader](/dotnet/api/system.resources.resourcereader) для предоставления ресурсов, связанных с определенным языком и региональными параметрами, во время выполнения. Этот интерфейс имеет индексатор и интерфейс `IEnumerable` для возврата локализованных строк. `IStringLocalizer` не требует сохранять строки на языке по умолчанию в файле ресурсов. Вы можете разрабатывать приложение, предназначенное для локализации, не создавая файлы ресурсов на ранних этапах разработки. В приведенном ниже коде показано, как подготовить строку "About Title" для локализации.
+<xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer` uses the [ResourceManager](/dotnet/api/system.resources.resourcemanager) and [ResourceReader](/dotnet/api/system.resources.resourcereader) to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings. `IStringLocalizer` не требует сохранять строки на языке по умолчанию в файле ресурсов. Вы можете разрабатывать приложение, предназначенное для локализации, не создавая файлы ресурсов на ранних этапах разработки. В приведенном ниже коде показано, как подготовить строку "About Title" для локализации.
 
 [!code-csharp[](localization/sample/Localization/Controllers/AboutController.cs)]
 
@@ -429,8 +485,15 @@ services.Configure<RequestLocalizationOptions>(options =>
 Файл ресурсов на французском языке может содержать следующие ресурсы:
 
 | Ключ | Значение |
-| ----- | ------ |
-| `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
+| ----- | ---
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--- | | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 Преобразованное для просмотра представление будет содержать разметку HTML из файла ресурсов.
 
@@ -503,10 +566,70 @@ ASP.NET Core позволяет указывать два значения яз�
 В образце проекта метод `ConfigureServices` присваивает свойству `ResourcesPath` значение "Resources", поэтому относительный путь к файлу ресурсов на французском языке для контроллера домашней страницы в проекте будет иметь вид *Resources/Controllers.HomeController.fr.resx*. Кроме того, для упорядочения файлов ресурсов можно использовать папки. Для контроллера домашней страницы путь будет иметь вид *Resources/Controllers/HomeController.fr.resx*. Если параметр `ResourcesPath` не используется, файл *RESX* будет находиться в базовом каталоге проекта. Файл ресурса для `HomeController` будет иметь имя *Controllers.HomeController.fr.resx*. Выбор соглашения об именовании на основе точечной нотации или пути зависит от того, как следует упорядочивать файлы ресурсов.
 
 | Имя ресурса | Точечная нотация или путь |
-| ------------   | ------------- |
-| Resources/Controllers.HomeController.fr.resx | Точки  |
-| Resources/Controllers/HomeController.fr.resx  | Path |
-|    |     |
+| ---
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------   | --- title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------- | | Resources/Controllers.HomeController.fr.resx | Точка  | | Resources/Controllers/HomeController.fr.resx  | Путь | |    |     |
 
 Файлы ресурсов, для которых используется директива `@inject IViewLocalizer` в представлениях Razor, следуют той же модели. Файлу ресурсов для представления может присваиваться имя на основе либо точечной нотации, либо пути. В файле ресурсов для представления Razor имитируется путь к связанному файлу представления. Допустим, свойству `ResourcesPath` присвоено значение "Resources". В этом случае файл ресурсов на французском языке, связанный с представлением *Views/Home/About.cshtml*, может иметь одно из следующих имен:
 
@@ -735,7 +858,7 @@ services.Configure<RequestLocalizationOptions>(options =>
 
 ## <a name="make-the-apps-content-localizable"></a>Обеспечение возможности локализации для содержимого приложения
 
-Интерфейсы <xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer`1> призваны повысить производительность при разработке локализованных приложений. Интерфейс `IStringLocalizer` использует классы [ResourceManager](/dotnet/api/system.resources.resourcemanager) и [ResourceReader](/dotnet/api/system.resources.resourcereader) для предоставления ресурсов, связанных с определенным языком и региональными параметрами, во время выполнения. Этот интерфейс имеет индексатор и интерфейс `IEnumerable` для возврата локализованных строк. `IStringLocalizer` не требует сохранять строки на языке по умолчанию в файле ресурсов. Вы можете разрабатывать приложение, предназначенное для локализации, не создавая файлы ресурсов на ранних этапах разработки. В приведенном ниже коде показано, как подготовить строку "About Title" для локализации.
+<xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer` uses the [ResourceManager](/dotnet/api/system.resources.resourcemanager) and [ResourceReader](/dotnet/api/system.resources.resourcereader) to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings. `IStringLocalizer` не требует сохранять строки на языке по умолчанию в файле ресурсов. Вы можете разрабатывать приложение, предназначенное для локализации, не создавая файлы ресурсов на ранних этапах разработки. В приведенном ниже коде показано, как подготовить строку "About Title" для локализации.
 
 [!code-csharp[](localization/sample/Localization/Controllers/AboutController.cs)]
 
@@ -776,8 +899,15 @@ services.Configure<RequestLocalizationOptions>(options =>
 Файл ресурсов на французском языке может содержать следующие ресурсы:
 
 | Ключ | Значение |
-| ----- | ------ |
-| `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
+| ----- | ---
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+--- | | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 Преобразованное для просмотра представление будет содержать разметку HTML из файла ресурсов.
 
@@ -850,10 +980,70 @@ ASP.NET Core позволяет указывать два значения яз�
 В образце проекта метод `ConfigureServices` присваивает свойству `ResourcesPath` значение "Resources", поэтому относительный путь к файлу ресурсов на французском языке для контроллера домашней страницы в проекте будет иметь вид *Resources/Controllers.HomeController.fr.resx*. Кроме того, для упорядочения файлов ресурсов можно использовать папки. Для контроллера домашней страницы путь будет иметь вид *Resources/Controllers/HomeController.fr.resx*. Если параметр `ResourcesPath` не используется, файл *RESX* будет находиться в базовом каталоге проекта. Файл ресурса для `HomeController` будет иметь имя *Controllers.HomeController.fr.resx*. Выбор соглашения об именовании на основе точечной нотации или пути зависит от того, как следует упорядочивать файлы ресурсов.
 
 | Имя ресурса | Точечная нотация или путь |
-| ------------   | ------------- |
-| Resources/Controllers.HomeController.fr.resx | Точки  |
-| Resources/Controllers/HomeController.fr.resx  | Path |
-|    |     |
+| ---
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------   | --- title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+-
+title: author: description: ms.author: ms.date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ИД пользователя "SignalR": 
+
+------- | | Resources/Controllers.HomeController.fr.resx | Точка  | | Resources/Controllers/HomeController.fr.resx  | Путь | |    |     |
 
 Файлы ресурсов, для которых используется директива `@inject IViewLocalizer` в представлениях Razor, следуют той же модели. Файлу ресурсов для представления может присваиваться имя на основе либо точечной нотации, либо пути. В файле ресурсов для представления Razor имитируется путь к связанному файлу представления. Допустим, свойству `ResourcesPath` присвоено значение "Resources". В этом случае файл ресурсов на французском языке, связанный с представлением *Views/Home/About.cshtml*, может иметь одно из следующих имен:
 

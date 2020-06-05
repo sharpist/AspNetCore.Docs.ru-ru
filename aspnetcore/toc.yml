@@ -1168,7 +1168,7 @@
       uid: performance/performance-best-practices
     - name: Память и сборка мусора
       uid: performance/memory
-    - name: Кэширование откликов
+    - name: Кэширование
       items:
         - name: Обзор
           uid: performance/caching/response
