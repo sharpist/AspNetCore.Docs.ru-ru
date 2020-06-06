@@ -1,18 +1,22 @@
-## <a name="usermanager-and-signinmanager"></a><span data-ttu-id="0158d-101">UserManager и SignInManager</span><span class="sxs-lookup"><span data-stu-id="0158d-101">UserManager and SignInManager</span></span>
+## <a name="usermanager-and-signinmanager"></a><span data-ttu-id="20bc8-101">UserManager и SignInManager</span><span class="sxs-lookup"><span data-stu-id="20bc8-101">UserManager and SignInManager</span></span>
 
-<span data-ttu-id="0158d-102">Задайте тип утверждения идентификатора пользователя, если требуется серверное приложение:</span><span class="sxs-lookup"><span data-stu-id="0158d-102">Set the user identifier claim type when a Server app requires:</span></span>
+<span data-ttu-id="20bc8-102">Задайте тип утверждения идентификатора пользователя, если требуется серверное приложение:</span><span class="sxs-lookup"><span data-stu-id="20bc8-102">Set the user identifier claim type when a Server app requires:</span></span>
 
-* <span data-ttu-id="0158d-103"><xref:Microsoft.AspNetCore.Identity.UserManager%601>или <xref:Microsoft.AspNetCore.Identity.SignInManager%601> в КОНЕЧНОЙ точке API.</span><span class="sxs-lookup"><span data-stu-id="0158d-103"><xref:Microsoft.AspNetCore.Identity.UserManager%601> or <xref:Microsoft.AspNetCore.Identity.SignInManager%601> in an API endpoint.</span></span>
-* <span data-ttu-id="0158d-104"><xref:Microsoft.AspNetCore.Identity.IdentityUser>подробные сведения, например имя пользователя, адрес электронной почты или время окончания блокировки.</span><span class="sxs-lookup"><span data-stu-id="0158d-104"><xref:Microsoft.AspNetCore.Identity.IdentityUser> details, such as the user's name, email address, or lockout end time.</span></span>
+* <span data-ttu-id="20bc8-103"><xref:Microsoft.AspNetCore.Identity.UserManager%601>или <xref:Microsoft.AspNetCore.Identity.SignInManager%601> в конечной точке API.</span><span class="sxs-lookup"><span data-stu-id="20bc8-103"><xref:Microsoft.AspNetCore.Identity.UserManager%601> or <xref:Microsoft.AspNetCore.Identity.SignInManager%601> in an API endpoint.</span></span>
+* <span data-ttu-id="20bc8-104"><xref:Microsoft.AspNetCore.Identity.IdentityUser>подробные сведения, например имя пользователя, адрес электронной почты или время окончания блокировки.</span><span class="sxs-lookup"><span data-stu-id="20bc8-104"><xref:Microsoft.AspNetCore.Identity.IdentityUser> details, such as the user's name, email address, or lockout end time.</span></span>
 
-<span data-ttu-id="0158d-105">В `Startup.ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="0158d-105">In `Startup.ConfigureServices`:</span></span>
+<span data-ttu-id="20bc8-105">В `Startup.ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="20bc8-105">In `Startup.ConfigureServices`:</span></span>
 
 ```csharp
+using System.Security.Claims;
+
+...
+
 services.Configure<IdentityOptions>(options => 
     options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 ```
 
-<span data-ttu-id="0158d-106"><xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> При вызове `Get` метода регистрируются следующие `WeatherForecastController` журналы:</span><span class="sxs-lookup"><span data-stu-id="0158d-106">The following `WeatherForecastController` logs the <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> when the `Get` method is called:</span></span>
+<span data-ttu-id="20bc8-106">`WeatherForecastController` <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> При вызове метода регистрируются следующие журналы `Get` :</span><span class="sxs-lookup"><span data-stu-id="20bc8-106">The following `WeatherForecastController` logs the <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> when the `Get` method is called:</span></span>
 
 ```csharp
 using System;
@@ -33,7 +37,7 @@ namespace {APP NAMESPACE}.Server.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
         private static readonly string[] Summaries = new[]
         {
@@ -47,7 +51,7 @@ namespace {APP NAMESPACE}.Server.Controllers
             UserManager<ApplicationUser> userManager)
         {
             this.logger = logger;
-            _userManager = userManager;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -55,7 +59,7 @@ namespace {APP NAMESPACE}.Server.Controllers
         {
             var rng = new Random();
 
-            var user = await _userManager.GetUserAsync(User);
+            var user = await userManager.GetUserAsync(User);
 
             if (user != null)
             {
