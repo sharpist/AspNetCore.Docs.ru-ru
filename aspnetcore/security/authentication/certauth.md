@@ -1,17 +1,29 @@
 ---
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Настройка проверки подлинности сертификата в ASP.NET Core
+author: blowdart
+description: Узнайте, как настроить проверку подлинности сертификата в ASP.NET Core для IIS и HTTP. sys.
+monikerRange: '>= aspnetcore-3.0'
+ms.author: bdorrans
+ms.date: 01/02/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/authentication/certauth
+ms.openlocfilehash: 4511e253ea9487c5739162b9b0180e39eb3a1b9c
+ms.sourcegitcommit: 67eadd7bf28eae0b8786d85e90a7df811ffe5904
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84454614"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Настройка проверки подлинности сертификата в ASP.NET Core
 
-`Microsoft.AspNetCore.Authentication.Certificate`содержит реализацию, похожую на [проверку подлинности с помощью сертификата](https://tools.ietf.org/html/rfc5246#section-7.4.4) для ASP.NET Core. Проверка подлинности сертификата выполняется на уровне TLS, прежде чем он когда-либо получит ASP.NET Core. Точнее, это обработчик проверки подлинности, который проверяет сертификат, а затем предоставляет событие, в котором можно разрешить этот сертификат в `ClaimsPrincipal` . 
+`Microsoft.AspNetCore.Authentication.Certificate`содержит реализацию, похожую на [проверку подлинности с помощью сертификата](https://tools.ietf.org/html/rfc5246#section-7.4.4) для ASP.NET Core. Проверка подлинности по сертификату происходит на уровне TLS, задолго до его попадания в ASP.NET Core. Точнее, это обработчик проверки подлинности, который проверяет сертификат, а затем предоставляет событие, в котором можно разрешить этот сертификат в `ClaimsPrincipal` . 
 
-[Настройте узел](#configure-your-host-to-require-certificates) для проверки подлинности на основе сертификата, как IIS, Kestrel, веб-приложения Azure или любое другое приложение, которое вы используете.
+[Настройте сервер](#configure-your-server-to-require-certificates) для проверки подлинности на основе сертификата, как IIS, Kestrel, веб-приложения Azure или любое другое приложение, которое вы используете.
 
 ## <a name="proxy-and-load-balancer-scenarios"></a>Сценарии прокси-сервера и подсистемы балансировки нагрузки
 
@@ -24,7 +36,7 @@
 
 ## <a name="get-started"></a>Начало работы
 
-Получите HTTPS сертификат, примените его и [Настройте узел](#configure-your-host-to-require-certificates) так, чтобы он затребовал сертификаты.
+Получите HTTPS сертификат, примените его и [Настройте сервер](#configure-your-server-to-require-certificates) для использования сертификатов.
 
 В веб-приложении добавьте ссылку на `Microsoft.AspNetCore.Authentication.Certificate` пакет. Затем в `Startup.ConfigureServices` методе вызовите `services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(...);` с вашими параметрами, предоставив делегат для, `OnCertificateValidated` чтобы выполнить дополнительную проверку сертификата клиента, отправляемого с запросами. Включите эту информацию в `ClaimsPrincipal` и установите ее в `context.Principal` свойстве.
 
@@ -183,7 +195,7 @@ services.AddAuthentication(
 
 По сути, проверка сертификата является проблемой авторизации. Добавление проверки, например, издателя или отпечатка в политике авторизации, а не внутри `OnCertificateValidated` , вполне приемлемо.
 
-## <a name="configure-your-host-to-require-certificates"></a>Настройка узла для использования сертификатов
+## <a name="configure-your-server-to-require-certificates"></a>Настройка сервера для использования сертификатов
 
 ### <a name="kestrel"></a>Kestrel
 

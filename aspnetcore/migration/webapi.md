@@ -1,11 +1,23 @@
 ---
-название: автор: описание: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Переход с веб-API ASP.NET на ASP.NET Core
+author: ardalis
+description: Узнайте, как перенести реализацию веб-API с веб-API ASP.NET 4. x на ASP.NET Core MVC.
+ms.author: scaddie
+ms.custom: mvc
+ms.date: 05/26/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: migration/webapi
+ms.openlocfilehash: 3c8bf27a97de92a42817d4af625976a4920001aa
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84145555"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Переход с веб-API ASP.NET на ASP.NET Core
 
@@ -47,7 +59,7 @@
 
 1. В меню **Файл** выберите пункт **Создать** > **Проект**.
 1. Выберите шаблон **пустое решение** и нажмите кнопку **Далее**.
-1. Назовите решение *вебапимигратион*. Щелкните **Создать**.
+1. Назовите решение *вебапимигратион*. Выберите **Создать**.
 1. Добавьте существующий проект *продуктсапп* в решение.
 
 Добавьте новый проект API для переноса в:
@@ -139,7 +151,7 @@ ASP.NET Core не использует папку *App_Start* или файл *G
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.2"
-## <a name="prerequisites"></a>Предварительные условия
+## <a name="prerequisites"></a>Предварительные требования
 
 [!INCLUDE [prerequisites](../includes/net-core-prereqs-vs2019-2.2.md)]
 

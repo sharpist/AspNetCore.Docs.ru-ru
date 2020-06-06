@@ -1,11 +1,24 @@
 ---
-Title: ' безопасное ASP.NET Core Blazor автономное приложение сборки с помощью Azure Active Directory B2C ' author: гуардрекс Description: моникерранже: ' >= aspnetcore-3,1 ' MS. author: рианде MS. Custom: MVC MS. Date: 05/19/2020 No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: Security/блазор/Assembly/standalone-with-Azure-Active-Directory-B2C
-
+title: Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью Azure Active Directory B2C
+author: guardrex
+description: ''
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
+ms.openlocfilehash: 911eeffbe632d8f285d54ae78b62f17851205e83
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84214952"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью Azure Active Directory B2C
 
@@ -110,7 +123,7 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-Пример.
+Пример
 
 ```json
 {

@@ -1,14 +1,25 @@
 ---
-Title: "Управление пользователями и группами в SignalR " Автор: брадигастер Description: "Общие сведения о ASP.NET Core SignalR управлении пользователями и группами."
-Моникерранже: ' >= aspnetcore-2,1 ' MS. author: брадиг MS. Custom: MVC MS. Дата: 05/17/2020 No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: SignalR/Groups
-
+title: Управление пользователями и группами вSignalR
+author: bradygaster
+description: Общие сведения о ASP.NET Core SignalR управлении пользователями и группами.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: bradyg
+ms.custom: mvc
+ms.date: 05/17/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: signalr/groups
+ms.openlocfilehash: dfa989654069bc85f0a936751dbabe384c63e917
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "83550002"
 ---
-
 # <a name="manage-users-and-groups-in-signalr"></a>Управление пользователями и группами вSignalR
 
 По [Бреннан Конрой](https://github.com/BrennanConroy)

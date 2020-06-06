@@ -1,12 +1,23 @@
 ---
-Title: форматирование данных ответа в ASP.NET Core автор веб-API: ардалис Description: Узнайте, как форматировать данные ответа в ASP.NET Core веб-API.
-MS. author: рианде MS. Custom: H1Hack27Feb2017 MS. Дата: 04/17/2020 No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: Web-API/расширенный/форматирование
-
+title: Форматирование данных отклика в веб-API ASP.NET Core
+author: ardalis
+description: Сведения о форматировании данных отклика в веб-API ASP.NET Core.
+ms.author: riande
+ms.custom: H1Hack27Feb2017
+ms.date: 04/17/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: web-api/advanced/formatting
+ms.openlocfilehash: 865b2e58b38c16a54815ce0923a78ac98f2247f1
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84355374"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Форматирование данных отклика в веб-API ASP.NET Core
 
@@ -20,7 +31,7 @@ MS. author: рианде MS. Custom: H1Hack27Feb2017 MS. Дата: 04/17/2020 No
 
 Некоторые типы результатов действий характерны для определенного формата, например <xref:Microsoft.AspNetCore.Mvc.JsonResult> и <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Действия могут возвращать результаты в определенном формате независимо от настроек клиента. Например, при возврате `JsonResult` возвращаются данные в формате JSON. При возврате `ContentResult` или строки возвращаются строковые данные в формате обычного текста.
 
-Действие не должно возвращать данные конкретного типа. ASP.NET Core поддерживает любое возвращаемое значение объекта.  Результаты из действий, возвращающих объекты, которые не являются типами <xref:Microsoft.AspNetCore.Mvc.IActionResult>, сериализуются с помощью соответствующей реализации <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>. Дополнительные сведения см. в разделе <xref:web-api/action-return-types>.
+Действие не должно возвращать данные конкретного типа. ASP.NET Core поддерживает любое возвращаемое значение объекта.  Результаты из действий, возвращающих объекты, которые не являются типами <xref:Microsoft.AspNetCore.Mvc.IActionResult>, сериализуются с помощью соответствующей реализации <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>. Для получения дополнительной информации см. <xref:web-api/action-return-types>.
 
 Встроенный вспомогательный метод <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> возвращает данные в формате JSON: [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_get)]
 

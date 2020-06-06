@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: b7856a3004cfc76acfb485ff8f1fadf87f5aa904
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: d5e0e3865702fe4e5cbe49e7f452f367a8a53de9
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777115"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84451749"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Подтверждение учетной записи и восстановление пароля в ASP.NET Core
 
@@ -38,7 +38,7 @@ ms.locfileid: "82777115"
 
 ::: moniker range="> aspnetcore-2.2"
 
-## <a name="prerequisites"></a>Предварительные условия
+## <a name="prerequisites"></a>Предварительные требования
 
 [Пакет SDK для .NET Core 3.0 или более поздней версии](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 
@@ -63,13 +63,15 @@ dotnet run
 
 В этом руководстве [SendGrid](https://sendgrid.com) используется для отправки электронной почты. Для отправки электронной почты требуется учетная запись SendGrid и ключ. Вы можете использовать другие поставщики электронной почты. Для отправки электронной почты рекомендуется использовать SendGrid или другую почтовую службу. Протокол SMTP трудно защитить и настроить правильно.
 
+Для учетной записи SendGrid My требуется [Добавить отправителя](https://sendgrid.com/docs/ui/sending-email/senders/).
+
 Создайте класс для выборки ключа защищенной электронной почты. Для этого примера создайте *Services/аусмессажесендероптионс. CS*:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Services/AuthMessageSenderOptions.cs?name=snippet1)]
 
 #### <a name="configure-sendgrid-user-secrets"></a>Настройка секретов пользователя SendGrid
 
-Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Например:
+Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Пример:
 
 ```dotnetcli
 dotnet user-secrets set SendGridUser RickAndMSFT
@@ -80,7 +82,7 @@ Successfully saved SendGridUser = RickAndMSFT to the secret store.
 
 В Windows Диспетчер секретов сохраняет пары "ключ-значение" в файле *секреты. JSON* в `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` каталоге.
 
-Содержимое файла *секреты. JSON* не шифруется. В следующей разметке показан файл *секреты. JSON* . `SendGridKey` Значение было удалено.
+Содержимое файла *секреты. JSON* не шифруется. В следующей разметке показан файл *секреты. JSON* . `SendGridKey`Значение было удалено.
 
 ```json
 {
@@ -95,7 +97,7 @@ Successfully saved SendGridUser = RickAndMSFT to the secret store.
 
 В этом руководстве показано, как добавлять уведомления по электронной почте через [SendGrid](https://sendgrid.com/), но можно отправлять сообщения электронной почты с помощью SMTP и других механизмов.
 
-Установите пакет `SendGrid` NuGet:
+Установите `SendGrid` пакет NuGet:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -119,7 +121,7 @@ dotnet add package SendGrid
 
 ### <a name="implement-iemailsender"></a>Реализация Иемаилсендер
 
-Чтобы реализовать `IEmailSender`, создайте *службы/емаилсендер. CS* с кодом, аналогичным следующему:
+Чтобы реализовать `IEmailSender` , создайте *службы/емаилсендер. CS* с кодом, аналогичным следующему:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Services/EmailSender.cs)]
 
@@ -161,13 +163,13 @@ dotnet add package SendGrid
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/StartupAllTokens.cs?name=snippet1&highlight=11-12)]
 
-Встроенные маркеры пользователей удостоверений (см. [AspNetCore/src/Identity/Extensions. Core/src/токеноптионс. CS](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) имеют [время ожидания в один день](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
+Встроенные Identity маркеры пользователей (см. [AspNetCore/src/ Identity /екстенсионс.коре/СРК/токеноптионс.КС](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) имеют [время ожидания в один день](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
 
 ### <a name="change-the-email-token-lifespan"></a>Изменение срока существования маркера электронной почты
 
-Срок существования токена [пользователя](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) по умолчанию — [один день](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). В этом разделе показано, как изменить срок существования маркера электронной почты.
+Срок существования токена [ Identity пользователя](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) по умолчанию — [один день](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). В этом разделе показано, как изменить срок существования маркера электронной почты.
 
-Добавьте пользовательские [>Тусер\<датапротектортокенпровидер](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) и: <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>
+Добавьте пользовательские [датапротектортокенпровидер \<TUser> ](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) и <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> :
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
@@ -185,8 +187,8 @@ dotnet add package SendGrid
 
 Если вы не можете работать с электронной почтой:
 
-* Установите точку останова `EmailSender.Execute` в для `SendGridClient.SendEmailAsync` проверки.
-* Создайте [консольное приложение для отправки электронной почты](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) с помощью аналогичного кода в `EmailSender.Execute`.
+* Установите точку останова в `EmailSender.Execute` для проверки `SendGridClient.SendEmailAsync` .
+* Создайте [консольное приложение для отправки электронной почты](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) с помощью аналогичного кода в `EmailSender.Execute` .
 * Ознакомьтесь со страницей [действие по электронной почте](https://sendgrid.com/docs/User_Guide/email_activity.html) .
 * Проверьте папку спама.
 * Попробуйте использовать другой псевдоним электронной почты в другом поставщике электронной почты (Microsoft, Yahoo, Gmail и т. д.).
@@ -198,9 +200,9 @@ dotnet add package SendGrid
 
 Для выполнения этого раздела необходимо сначала включить внешний поставщик проверки подлинности. См. статью [Проверка подлинности в Facebook, Google и внешнем поставщике](xref:security/authentication/social/index).
 
-Вы можете объединить локальные и социальные учетные записи, щелкнув ссылку на электронную почту. В следующей последовательности "RickAndMSFT@gmail.com" сначала создается как локальное имя входа. Тем не менее можно сначала создать учетную запись в качестве имени для входа в социальных сетях, а затем добавить локальное имя входа.
+Вы можете объединить локальные и социальные учетные записи, щелкнув ссылку на электронную почту. В следующей последовательности " RickAndMSFT@gmail.com " сначала создается как локальное имя входа, но вы можете сначала создать учетную запись в качестве имени для входа в социальных сетях, а затем добавить локальное имя входа.
 
-![Веб-приложение RickAndMSFT@gmail.com : проверка подлинности пользователя](accconfirm/_static/rick.png)
+![Веб-приложение: RickAndMSFT@gmail.com Проверка подлинности пользователя](accconfirm/_static/rick.png)
 
 Щелкните ссылку **Управление** . Обратите внимание на 0 внешних (социальных) имен, связанных с этой учетной записью.
 
@@ -223,11 +225,11 @@ dotnet add package SendGrid
 
 ::: moniker range="> aspnetcore-2.0 < aspnetcore-3.0"
 
-## <a name="prerequisites"></a>Предварительные условия
+## <a name="prerequisites"></a>Предварительные требования
 
 [Пакет SDK для .NET Core 2,2 или более поздней версии](https://dotnet.microsoft.com/download/dotnet-core)
 
-## <a name="create-a-web--app-and-scaffold-identity"></a>Создание веб-приложения и удостоверение шаблона
+## <a name="create-a-web--app-and-scaffold-identity"></a>Создание веб-приложения и шаблонаIdentity
 
 Выполните следующие команды, чтобы создать веб-приложение с проверкой подлинности.
 
@@ -249,7 +251,7 @@ dotnet run
 
 [!INCLUDE[](~/includes/view-identity-db.md)]
 
-Обратите внимание, `EmailConfirmed` что поле `False`таблицы имеет значение.
+Обратите внимание, что `EmailConfirmed` поле таблицы имеет значение `False` .
 
 Вы можете снова использовать это сообщение на следующем шаге, когда приложение отправит сообщение электронной почты с подтверждением. Щелкните строку правой кнопкой мыши и выберите команду **Удалить**. Удаление псевдонима электронной почты упрощает следующие шаги.
 
@@ -257,7 +259,7 @@ dotnet run
 
 ## <a name="require-email-confirmation"></a>Требовать подтверждение по электронной почте
 
-Рекомендуется подтвердить сообщение электронной почты о новой регистрации пользователя. Подтверждение по электронной почте помогает проверить, что они не олицетворяют другого пользователя (т. е. они не зарегистрированы в сообщении электронной почты другого пользователя). Предположим, у вас есть дискуссионный форум, и вы хотите предотвратитьyli@example.comрегистрацию "" в видеnolivetto@contoso.com"". Без подтверждения по электронной почтеnolivetto@contoso.com"" может получить от приложения нежелательное сообщение электронной почты. Предположим, что пользователь случайно зарегистрировалсяylo@example.comкак "" и не заметил опечатку "или". Они не смогут использовать восстановление пароля, так как у приложения нет нужной электронной почты. Подтверждение по электронной почте обеспечивает ограниченную защиту от программы-роботы. Подтверждение по электронной почте не обеспечивает защиту от вредоносных пользователей со многими учетными записями электронной почты.
+Рекомендуется подтвердить сообщение электронной почты о новой регистрации пользователя. Подтверждение по электронной почте помогает проверить, что они не олицетворяют другого пользователя (т. е. они не зарегистрированы в сообщении электронной почты другого пользователя). Предположим, у вас есть дискуссионный форум, и вы хотите предотвратить yli@example.com регистрацию "" в виде "" nolivetto@contoso.com . Без подтверждения по электронной почте " nolivetto@contoso.com " может получить от приложения нежелательное сообщение электронной почты. Предположим, что пользователь случайно зарегистрировался как " ylo@example.com " и не заметил опечатку "или". Они не смогут использовать восстановление пароля, так как у приложения нет нужной электронной почты. Подтверждение по электронной почте обеспечивает ограниченную защиту от программы-роботы. Подтверждение по электронной почте не обеспечивает защиту от вредоносных пользователей со многими учетными записями электронной почты.
 
 Обычно требуется запретить новым пользователям отправлять данные на ваш веб-сайт, прежде чем они будут иметь подтвержденное сообщение электронной почты.
 
@@ -269,7 +271,7 @@ dotnet run
 
 ### <a name="configure-email-provider"></a>Настройка поставщика электронной почты
 
-В этом руководстве [SendGrid](https://sendgrid.com) используется для отправки электронной почты. Для отправки электронной почты требуется учетная запись SendGrid и ключ. Вы можете использовать другие поставщики электронной почты. ASP.NET Core 2. x включает `System.Net.Mail`, что позволяет отправлять электронную почту из приложения. Для отправки электронной почты рекомендуется использовать SendGrid или другую почтовую службу. Протокол SMTP трудно защитить и настроить правильно.
+В этом руководстве [SendGrid](https://sendgrid.com) используется для отправки электронной почты. Для отправки электронной почты требуется учетная запись SendGrid и ключ. Вы можете использовать другие поставщики электронной почты. ASP.NET Core 2. x включает `System.Net.Mail` , что позволяет отправлять электронную почту из приложения. Для отправки электронной почты рекомендуется использовать SendGrid или другую почтовую службу. Протокол SMTP трудно защитить и настроить правильно.
 
 Создайте класс для выборки ключа защищенной электронной почты. Для этого примера создайте *Services/аусмессажесендероптионс. CS*:
 
@@ -277,7 +279,7 @@ dotnet run
 
 #### <a name="configure-sendgrid-user-secrets"></a>Настройка секретов пользователя SendGrid
 
-Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Например:
+Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Пример:
 
 ```console
 C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT
@@ -286,7 +288,7 @@ info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 
 В Windows Диспетчер секретов сохраняет пары "ключ-значение" в файле *секреты. JSON* в `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` каталоге.
 
-Содержимое файла *секреты. JSON* не шифруется. В следующей разметке показан файл *секреты. JSON* . `SendGridKey` Значение было удалено.
+Содержимое файла *секреты. JSON* не шифруется. В следующей разметке показан файл *секреты. JSON* . `SendGridKey`Значение было удалено.
 
 ```json
 {
@@ -301,7 +303,7 @@ info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 
 В этом руководстве показано, как добавлять уведомления по электронной почте через [SendGrid](https://sendgrid.com/), но можно отправлять сообщения электронной почты с помощью SMTP и других механизмов.
 
-Установите пакет `SendGrid` NuGet:
+Установите `SendGrid` пакет NuGet:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -325,7 +327,7 @@ dotnet add package SendGrid
 
 ### <a name="implement-iemailsender"></a>Реализация Иемаилсендер
 
-Чтобы реализовать `IEmailSender`, создайте *службы/емаилсендер. CS* с кодом, аналогичным следующему:
+Чтобы реализовать `IEmailSender` , создайте *службы/емаилсендер. CS* с кодом, аналогичным следующему:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Services/EmailSender.cs)]
 
@@ -340,7 +342,7 @@ dotnet add package SendGrid
 
 ## <a name="enable-account-confirmation-and-password-recovery"></a>Включение подтверждения учетной записи и восстановление пароля
 
-Шаблон содержит код для подтверждения учетной записи и восстановления пароля. Найдите `OnPostAsync` метод в *области (IdentityAreas//Пажес/аккаунт/регистер.кштмл.КС*).
+Шаблон содержит код для подтверждения учетной записи и восстановления пароля. Найдите `OnPostAsync` метод в *области (Areas/ Identity /Пажес/аккаунт/регистер.кштмл.КС*).
 
 Запретите автоматический вход новых зарегистрированных пользователей с помощью комментария к следующей строке:
 
@@ -364,7 +366,7 @@ await _signInManager.SignInAsync(user, isPersistent: false);
 
 ### <a name="view-the-manage-page"></a>Просмотр страницы "Управление"
 
-Выберите имя пользователя в браузере: окно браузера ![с именем пользователя.](accconfirm/_static/un.png)
+Выберите имя пользователя в браузере: ![ окно браузера с именем пользователя.](accconfirm/_static/un.png)
 
 Страница Управление отображается с выбранной вкладкой **профиль** . В **сообщении электронной почты** отображается флажок, указывающий, что сообщение электронной почты подтверждено.
 
@@ -387,13 +389,13 @@ await _signInManager.SignInAsync(user, isPersistent: false);
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/StartupAllTokens.cs?name=snippet1&highlight=15-16)]
 
-Встроенные маркеры Identity пользователей (см. [AspNetCore/src/Identity/екстенсионс.коре/СРК/токеноптионс.КС](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) имеют [время ожидания в один день](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
+Встроенные Identity маркеры пользователей (см. [AspNetCore/src/ Identity /екстенсионс.коре/СРК/токеноптионс.КС](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) имеют [время ожидания в один день](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
 
 ### <a name="change-the-email-token-lifespan"></a>Изменение срока существования маркера электронной почты
 
 Срок существования токена [ Identity пользователя](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) по умолчанию — [один день](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). В этом разделе показано, как изменить срок существования маркера электронной почты.
 
-Добавьте пользовательские [>Тусер\<датапротектортокенпровидер](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) и: <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>
+Добавьте пользовательские [датапротектортокенпровидер \<TUser> ](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) и <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> :
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
@@ -411,8 +413,8 @@ await _signInManager.SignInAsync(user, isPersistent: false);
 
 Если вы не можете работать с электронной почтой:
 
-* Установите точку останова `EmailSender.Execute` в для `SendGridClient.SendEmailAsync` проверки.
-* Создайте [консольное приложение для отправки электронной почты](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) с помощью аналогичного кода в `EmailSender.Execute`.
+* Установите точку останова в `EmailSender.Execute` для проверки `SendGridClient.SendEmailAsync` .
+* Создайте [консольное приложение для отправки электронной почты](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) с помощью аналогичного кода в `EmailSender.Execute` .
 * Ознакомьтесь со страницей [действие по электронной почте](https://sendgrid.com/docs/User_Guide/email_activity.html) .
 * Проверьте папку спама.
 * Попробуйте использовать другой псевдоним электронной почты в другом поставщике электронной почты (Microsoft, Yahoo, Gmail и т. д.).
@@ -424,9 +426,9 @@ await _signInManager.SignInAsync(user, isPersistent: false);
 
 Для выполнения этого раздела необходимо сначала включить внешний поставщик проверки подлинности. См. статью [Проверка подлинности в Facebook, Google и внешнем поставщике](xref:security/authentication/social/index).
 
-Вы можете объединить локальные и социальные учетные записи, щелкнув ссылку на электронную почту. В следующей последовательности "RickAndMSFT@gmail.com" сначала создается как локальное имя входа. Тем не менее можно сначала создать учетную запись в качестве имени для входа в социальных сетях, а затем добавить локальное имя входа.
+Вы можете объединить локальные и социальные учетные записи, щелкнув ссылку на электронную почту. В следующей последовательности " RickAndMSFT@gmail.com " сначала создается как локальное имя входа, но вы можете сначала создать учетную запись в качестве имени для входа в социальных сетях, а затем добавить локальное имя входа.
 
-![Веб-приложение RickAndMSFT@gmail.com : проверка подлинности пользователя](accconfirm/_static/rick.png)
+![Веб-приложение: RickAndMSFT@gmail.com Проверка подлинности пользователя](accconfirm/_static/rick.png)
 
 Щелкните ссылку **Управление** . Обратите внимание на 0 внешних (социальных) имен, связанных с этой учетной записью.
 

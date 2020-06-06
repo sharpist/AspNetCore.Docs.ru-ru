@@ -1,12 +1,24 @@
 ---
-Title: ' ASP.NET Core Blazor Дополнительные сценарии безопасности для сборки ' author: гуардрекс Description: ' сведения о настройке Blazor сборки для дополнительных сценариев безопасности '.
-Моникерранже: ' >= aspnetcore-3,1 ' MS. author: рианде MS. Custom: MVC MS. Дата: 06/01/2020 No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: Security/блазор/Assembly/дополнительные сценарии '
-
+title: ASP.NET Core Blazor дополнительных сценариев безопасности для сборки
+author: guardrex
+description: Узнайте, как настроить Blazor сборку для дополнительных сценариев безопасности.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 06/01/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/webassembly/additional-scenarios
+ms.openlocfilehash: de752eb180767bbb269107ebc478a4422448f968
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84272038"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor дополнительных сценариев безопасности для сборки
 

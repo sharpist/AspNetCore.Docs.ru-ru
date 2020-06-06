@@ -1,12 +1,23 @@
 ---
-Title: кэширование ответов в ASP.NET Core Автор: Рик-Андерсон (Description: Узнайте, как использовать кэширование ответов для снижения требований к пропускной способности и повышения производительности ASP.NET Core приложений.
-Моникерранже: ' >= aspnetcore-2,1 ' MS. author: рианде MS. Дата: 11/04/2019 No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: производительность, кэширование/ответ
-
+title: Кэширование ответов в ASP.NET Core
+author: rick-anderson
+description: Узнайте, как использовать кэширование ответов, чтобы снизить требования к пропускной способности и повысить производительность приложений ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.date: 11/04/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: performance/caching/response
+ms.openlocfilehash: 87ff2633ded612eba2c996583b4a6cf997fe8e18
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84105770"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Кэширование ответов в ASP.NET Core
 
@@ -36,9 +47,9 @@ Title: кэширование ответов в ASP.NET Core Автор: Рик-
 
 Другие заголовки кэша, которые играют роль в кэшировании, показаны в следующей таблице.
 
-| Заголовок                                                     | Функция |
+| Header                                                     | Функция |
 | ---------------------------------------------------------- | -------- |
-| [Интервал](https://tools.ietf.org/html/rfc7234#section-5.1)     | Оценка количества времени в секундах с момента создания или успешной проверки ответа на сервере источника. |
+| [Возраст](https://tools.ietf.org/html/rfc7234#section-5.1)     | Оценка количества времени в секундах с момента создания или успешной проверки ответа на сервере источника. |
 | [Истекает](https://tools.ietf.org/html/rfc7234#section-5.3) | Время, после которого ответ считается устаревшим. |
 | [Включают](https://tools.ietf.org/html/rfc7234#section-5.4)  | Существует для обеспечения обратной совместимости с кэшами HTTP/1.0 для настройки `no-cache` поведения. Если `Cache-Control` заголовок имеется, `Pragma` заголовок игнорируется. |
 | [Меняющие](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | Указывает, что кэшированный ответ не должен отправляться, если все `Vary` поля заголовка не совпадают как в исходном запросе, так и в новом запросе кэшированного ответа. |

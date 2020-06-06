@@ -2,17 +2,21 @@
 
 Задайте тип утверждения идентификатора пользователя, если требуется серверное приложение:
 
-* <xref:Microsoft.AspNetCore.Identity.UserManager%601>или <xref:Microsoft.AspNetCore.Identity.SignInManager%601> в КОНЕЧНОЙ точке API.
+* <xref:Microsoft.AspNetCore.Identity.UserManager%601>или <xref:Microsoft.AspNetCore.Identity.SignInManager%601> в конечной точке API.
 * <xref:Microsoft.AspNetCore.Identity.IdentityUser>подробные сведения, например имя пользователя, адрес электронной почты или время окончания блокировки.
 
 В `Startup.ConfigureServices`:
 
 ```csharp
+using System.Security.Claims;
+
+...
+
 services.Configure<IdentityOptions>(options => 
     options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 ```
 
-<xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> При вызове `Get` метода регистрируются следующие `WeatherForecastController` журналы:
+`WeatherForecastController` <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> При вызове метода регистрируются следующие журналы `Get` :
 
 ```csharp
 using System;
@@ -33,7 +37,7 @@ namespace {APP NAMESPACE}.Server.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
         private static readonly string[] Summaries = new[]
         {
@@ -47,7 +51,7 @@ namespace {APP NAMESPACE}.Server.Controllers
             UserManager<ApplicationUser> userManager)
         {
             this.logger = logger;
-            _userManager = userManager;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -55,7 +59,7 @@ namespace {APP NAMESPACE}.Server.Controllers
         {
             var rng = new Random();
 
-            var user = await _userManager.GetUserAsync(User);
+            var user = await userManager.GetUserAsync(User);
 
             if (user != null)
             {

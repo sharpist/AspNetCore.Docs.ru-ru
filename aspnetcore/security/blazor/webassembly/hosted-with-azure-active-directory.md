@@ -1,11 +1,24 @@
 ---
-Title: ' Защитите Blazor размещенное приложение ASP.NET Core сборки Azure Active Directory "author: гуардрекс Description: моникерранже:" >= aspnetcore-3,1 "MS. author: рианде MS. Custom: MVC MS. Date: 05/19/2020 No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: Security/блазор/AD/hosteding-with-Azure-Active-Directory
-
+title: Обеспечение безопасности Blazor размещенного в ASP.NET Core приложения сборки Azure Active Directory
+author: guardrex
+description: ''
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/webassembly/hosted-with-azure-active-directory
+ms.openlocfilehash: 9e76b300c159a2a1432aa4b1c6e47b3d91084a85
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84215103"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory"></a>Обеспечение безопасности Blazor размещенного в ASP.NET Core приложения сборки Azure Active Directory
 
@@ -83,7 +96,7 @@ Title: ' Защитите Blazor размещенное приложение ASP
 1. Выберите **Добавить разрешения**.
 1. Нажмите кнопку **предоставить содержимое администратора для {имя клиента}** . Нажмите кнопку **Да** для подтверждения.
 
-### <a name="create-the-app"></a>Создайте приложение
+### <a name="create-the-app"></a>Создание приложения
 
 Замените заполнители в следующей команде на записанные ранее сведения и выполните команду в командной оболочке:
 
@@ -168,7 +181,7 @@ services.Configure<JwtBearerOptions>(
 }
 ```
 
-Пример.
+Пример
 
 ```json
 {
@@ -260,7 +273,7 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-Пример.
+Пример
 
 ```json
 {

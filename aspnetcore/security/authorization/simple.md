@@ -1,12 +1,22 @@
 ---
-Title: простая Авторизация в ASP.NET Core Автор: Рик-Андерсон (Description: сведения об использовании атрибута авторизации для ограничения доступа к контроллерам и действиям ASP.NET Core.
-MS. author: рианде MS. Дата: 10/14/2016 No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: Безопасность/авторизация/простой
-
+title: Простая Авторизация в ASP.NET Core
+author: rick-anderson
+description: Узнайте, как использовать атрибут авторизации для ограничения доступа к ASP.NET Core контроллерам и действиям.
+ms.author: riande
+ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/authorization/simple
+ms.openlocfilehash: 4ec31354d7fe11af75fd3a0045b4045f83721cb5
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84272129"
 ---
 # <a name="simple-authorization-in-aspnet-core"></a>Простая Авторизация в ASP.NET Core
 
