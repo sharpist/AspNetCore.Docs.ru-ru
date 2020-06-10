@@ -1,12 +1,24 @@
 ---
-Title: "ASP.NET Core Blazor рекомендации по повышению производительности веб сборки" Автор: описание: "советы по повышению производительности в ASP.NET Core приложениях веб – Blazor сборки и устранении распространенных проблем с производительностью".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Рекомендации по производительности ASP.NET Coreной Blazor сборки
+author: pranavkm
+description: Советы по повышению производительности в ASP.NET Core Blazor приложениях веб – сборки и устранении распространенных проблем с производительностью.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 06/08/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: performance/blazor/webassembly-best-practices
+ms.openlocfilehash: 950d87a6f09e998e47e96c93c5d68bb3f19ddafb
+ms.sourcegitcommit: 74d80a36103fdbd54baba0118535a4647f511913
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84529636"
 ---
 # <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>Рекомендации по производительности ASP.NET Coreной Blazor сборки
 
@@ -131,6 +143,12 @@ BlazorВеб – сборка предлагает две дополнитель
 ```dotnetcli
 dotnet publish -c Release
 ```
+
+### <a name="compression"></a>Сжатие
+
+Когда Blazor приложение сборки публикуется, выходные данные статически сжимаются во время публикации, чтобы уменьшить размер приложения и снизить затраты на сжатие среды выполнения. Blazorиспользует сервер для выполнения неготатион содержимого и обслуживания статических сжатых файлов.
+
+После развертывания приложения убедитесь, что приложение обслуживает сжатые файлы. Проверьте вкладку Сеть в Средства для разработчиков браузера и убедитесь, что файлы обслуживаются с помощью `Content-Encoding: br` или `Content-Encoding: gz` . Если узел не обслуживает сжатые файлы, следуйте инструкциям в разделе <xref:host-and-deploy/blazor/webassembly#compression> .
 
 ### <a name="disable-unused-features"></a>Отключить неиспользуемые функции
 

@@ -1,11 +1,22 @@
 ---
-Заголовок: Автор: описание: MS. author: MS. Дата: нет-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Маршрутизация к действиям контроллера в ASP.NET Core
+author: rick-anderson
+description: Узнайте, как в MVC ASP.NET Core используется ПО промежуточного слоя маршрутизации для сопоставления URL-адресов входящих запросов с действиями.
+ms.author: riande
+ms.date: 3/25/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: mvc/controllers/routing
+ms.openlocfilehash: 0078ed5d4aa30ff7a7b76af8dffd015f2557e165
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83998657"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Маршрутизация к действиям контроллера в ASP.NET Core
 
@@ -203,7 +214,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 * Выберите лучший кандидат.
 * Создание исключения.
 
-Пример:
+Пример.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
@@ -413,105 +424,12 @@ ASP.NET Core имеет следующие шаблоны маршрутов:
 
 В следующей таблице описаны `[Route]` атрибуты в приведенном выше коде.
 
-| attribute               | Объединяет с`[Route("Home")]` | Определение шаблона маршрута |
-| ---
-Заголовок: Автор: описание: MS. author: MS. Дата: нет-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Дата: нет-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Дата: нет-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Дата: нет-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Дата: нет-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Дата: нет-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---------- | Заголовок---: Автор: описание: MS. author: MS. Дата: нет-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Дата: нет-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Дата: нет-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Дата: нет-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------- | Заголовок---: Автор: описание: MS. author: MS. Дата: нет-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Дата: нет-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------ | | `[Route("")]` | Да | `"Home"` |
+| Атрибут               | Объединяет с`[Route("Home")]` | Определение шаблона маршрута |
+| ----------------- | ------------ | --------- |
+| `[Route("")]` | Да | `"Home"` |
 | `[Route("Index")]` | Да | `"Home/Index"` |
 | `[Route("/")]` | **Нет** | `""` |
- | `[Route("About")]` | Да | `"Home/About"`|
+| `[Route("About")]` | Да | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
 <a name="oar"></a>
@@ -1089,7 +1007,7 @@ app.UseMvc(routes =>
 
 ### <a name="disambiguating-actions"></a>Разрешение неоднозначности действий
 
-Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Пример:
+Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Пример.
 
 ```csharp
 public class ProductsController : Controller

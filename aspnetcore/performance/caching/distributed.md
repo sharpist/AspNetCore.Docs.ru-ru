@@ -1,11 +1,24 @@
 ---
-Заголовок: Автор: описание: Моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Распределенное кэширование в ASP.NET Core
+author: rick-anderson
+description: Узнайте, как использовать распределенный кэш ASP.NET Core для повышения производительности и масштабируемости приложений, особенно в среде облака или фермы серверов.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: performance/caching/distributed
+ms.openlocfilehash: d655e48f9504d337b0ffdbd6819f32101730310b
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106706"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>Распределенное кэширование в ASP.NET Core
 

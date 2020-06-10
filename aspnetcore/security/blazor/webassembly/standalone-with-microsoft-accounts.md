@@ -1,11 +1,24 @@
 ---
-Title: ' безопасное ASP.NET Core Blazor изолированное приложение веб-сборки с учетными записями Майкрософт: описание: моникерранже: MS. author: MS. Custom: MS. Date: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью учетных записей Майкрософт
+author: guardrex
+description: ''
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/webassembly/standalone-with-microsoft-accounts
+ms.openlocfilehash: e4c49f899d5988dc42b16c16eb5114613c7204ba
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83852342"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-microsoft-accounts"></a>Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью учетных записей Майкрософт
 
@@ -50,7 +63,7 @@ dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "commo
 После создания приложения вы сможете:
 
 * Войдите в приложение, используя учетная запись Майкрософт.
-* Запрос маркеров доступа для API-интерфейсов Майкрософт. Дополнительные сведения см. в разделе:
+* Запрос маркеров доступа для API-интерфейсов Майкрософт. Дополнительные сведения можно найти в разделе
   * [Области токенов доступа](#access-token-scopes)
   * [Краткое руководство. Настройка приложения для предоставления веб-API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
 
@@ -94,7 +107,7 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-Пример
+Пример.
 
 ```json
 {

@@ -5,7 +5,7 @@ description: Узнайте, как размещать и развертыват
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/30/2020
+ms.date: 05/19/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,18 +13,16 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/blazor/index
-ms.openlocfilehash: 9d57b81cd813d02a65b6d3a39c7f1a1aa8a069c7
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 482b066d347c2c572b0ffb78ccab1ac391195823
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775171"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452243"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor"></a>Размещение и развертывание ASP.NET Core Blazor
 
 Авторы: [Люк Лэтем](https://github.com/guardrex), [Рэйнер Стропек](https://www.timecockpit.com) и [Дэниэл Рот](https://github.com/danroth27)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 ## <a name="publish-the-app"></a>Публикация приложения
 
@@ -56,9 +54,9 @@ dotnet publish -c Release
 Расположения публикации.
 
 * Blazor WebAssembly
-  * Изолированное. Приложение публикуется в папке */bin/Release/{целевая_платформа}/publish/wwwroot*. Чтобы развернуть приложение как статический сайт, скопируйте содержимое папки *wwwroot* на узел статического сайта.
-  * Размещенное. Приложение клиента Blazor WebAssembly публикуется в папке */bin/Release/{целевая_платформа}/publish/wwwroot* для серверного приложения вместе с другими статическими веб-ресурсами серверного приложения. Разверните содержимое папки *publish* на узле.
-* Сервер Blazor. Приложение публикуется в папке */bin/Release/{целевая_платформа}/publish*. Разверните содержимое папки *publish* на узле.
+  * Изолированное. Приложение публикуется в папку */bin/Release/{Целевая платформа}/publish/wwwroot*. Чтобы развернуть приложение как статический сайт, скопируйте содержимое папки *wwwroot* на узел статического сайта.
+  * Размещенное. Клиентское приложение Blazor WebAssembly публикуется в папку */bin/Release/{Целевая_платформа}/publish/wwwroot* серверного приложения вместе со всеми прочими статическими веб-ресурсами серверного приложения. Разверните содержимое папки *publish* на узле.
+* Сервер Blazor. Приложение публикуется в папку */bin/Release/{Целевая платформа}/publish*. Разверните содержимое папки *publish* на узле.
 
 Ресурсы из папки развертываются на веб-сервере. Развертывание может проводиться вручную или автоматизированно в зависимости от используемых средств разработки.
 

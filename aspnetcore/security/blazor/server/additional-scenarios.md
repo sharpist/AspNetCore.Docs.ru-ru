@@ -1,12 +1,24 @@
 ---
-Title: ' ASP.NET Core Blazor Server дополнительные сценарии безопасности ' author: описание: ' сведения о настройке Blazor сервера для дополнительных сценариев безопасности '.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: BlazorДополнительные сценарии безопасности ASP.NET Core Server
+author: guardrex
+description: Узнайте, как настроить Blazor сервер для дополнительных сценариев безопасности.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/server/additional-scenarios
+ms.openlocfilehash: f172df7f2333fd79ba175ec8a3a6925ec07f1113
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83851529"
 ---
 # <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>BlazorДополнительные сценарии безопасности ASP.NET Core Server
 
@@ -16,7 +28,7 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 
 Токены, доступные за пределами Razor компонентов Blazor серверного приложения, можно передавать в компоненты с помощью подхода, описанного в этом разделе. Пример кода, включая полный `Startup.ConfigureServices` пример, см. в разделе [Передача токенов в Blazor приложение на стороне сервера](https://github.com/javiercn/blazor-server-aad-sample).
 
-Проверяйте подлинность Blazor серверного приложения так же, как обычные Razor страницы или приложения MVC. Подготавливает и сохраняйте маркеры в файле cookie проверки подлинности. Пример:
+Проверяйте подлинность Blazor серверного приложения так же, как обычные Razor страницы или приложения MVC. Подготавливает и сохраняйте маркеры в файле cookie проверки подлинности. Пример.
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;

@@ -1,12 +1,24 @@
 ---
-Title: "ведение журнала и диагностика в ASP.NET Core SignalR " Автор: описание: "Узнайте, как собирать диагностические сведения из SignalR приложения ASP.NET Core.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Ведение журнала и диагностика в ASP.NET CoreSignalR
+author: anurse
+description: Узнайте, как собирать диагностические сведения из SignalR приложения ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: anurse
+ms.custom: signalr
+ms.date: 06/08/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: signalr/diagnostics
+ms.openlocfilehash: 22e1d24bc9fed5fd8588c852e07f5ca935946596
+ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84507320"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Ведение журнала и диагностика в ASP.NET CoreSignalR
 
@@ -77,34 +89,14 @@ Visual Studio отображает выходные данные журнала 
 В следующей таблице приведены уровни журнала, доступные для клиента JavaScript. Установка одного из этих значений уровня ведения журнала позволяет вести журнал на этом уровне и на всех уровнях, напревышающих его в таблице.
 
 | Level | Описание |
-| ----- | ---
-Title: "ведение журнала и диагностика в ASP.NET Core SignalR " Автор: описание: "Узнайте, как собирать диагностические сведения из SignalR приложения ASP.NET Core.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: "ведение журнала и диагностика в ASP.NET Core SignalR " Автор: описание: "Узнайте, как собирать диагностические сведения из SignalR приложения ASP.NET Core.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Title: "ведение журнала и диагностика в ASP.NET Core SignalR " Автор: описание: "Узнайте, как собирать диагностические сведения из SignalR приложения ASP.NET Core.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------- | | `None` | Сообщения не регистрируются. | | `Critical` | Сообщения, указывающие на сбой во всем приложении. | | `Error` | Сообщения, указывающие на сбой в текущей операции. | | `Warning` | Сообщения, указывающие на некритическую проблему. | | `Information` | Информационные сообщения. | | `Debug` | Диагностические сообщения, полезные для отладки. | | `Trace` | Очень подробные диагностические сообщения, предназначенные для диагностики конкретных проблем. |
+| ----- | ----------- |
+| `None` | Сообщения не регистрируются. |
+| `Critical` | Сообщения, указывающие на сбой во всем приложении. |
+| `Error` | Сообщения, указывающие на сбой в текущей операции. |
+| `Warning` | Сообщения, указывающие на некритическую проблему. |
+| `Information` | Информационные сообщения. |
+| `Debug` | Диагностические сообщения, полезные для отладки. |
+| `Trace` | Очень подробные диагностические сообщения, предназначенные для диагностики конкретных проблем. |
 
 После настройки уровня детализации журналы записываются в консоль браузера (или стандартные выходные данные в приложении NodeJS).
 
@@ -217,6 +209,39 @@ tcpdump -i [interface] -w trace.pcap
 > Не вставляйте содержимое файлов журнала или трассировки сети в проблемы GitHub. Эти журналы и трассировки могут быть довольно большими, и GitHub обычно усекает их.
 
 ![Перетаскивание файлов журнала на вопрос GitHub](diagnostics/attaching-diagnostics-files.png)
+
+## <a name="metrics"></a>Метрики
+
+Метрики — это представление мер данных за интервалы времени. Например, количество запросов в секунду. Данные метрик позволяют выполнять наблюдение за состоянием приложения на высоком уровне. Метрики .NET gRPC создаются с помощью <xref:System.Diagnostics.Tracing.EventCounter> .
+
+### <a name="signalr-server-metrics"></a>SignalRметрики сервера
+
+SignalRметрики сервера указываются в <xref:Microsoft.AspNetCore.Http.Connections> источнике событий.
+
+| Имя                    | Описание                 |
+|-------------------------|-----------------------------|
+| `connections-started`   | Всего запущенных подключений   |
+| `connections-stopped`   | Всего остановленных подключений   |
+| `connections-timed-out` | Всего подключений истекло |
+| `current-connections`   | Текущие подключения         |
+| `connections-duration`  | Средняя продолжительность соединения |
+
+### <a name="observe-metrics"></a>Наблюдение за метриками
+
+[DotNet-Counters](/dotnet/core/diagnostics/dotnet-counters) — это средство мониторинга производительности для нерегламентированного мониторинга работоспособности и анализа производительности первого уровня. Мониторинг приложения .NET с помощью в `Microsoft.AspNetCore.Http.Connections` качестве имени поставщика. Например:
+
+```console
+> dotnet-counters monitor --process-id 37016 Microsoft.AspNetCore.Http.Connections
+
+Press p to pause, r to resume, q to quit.
+    Status: Running
+[Microsoft.AspNetCore.Http.Connections]
+    Average Connection Duration (ms)       16,040.56
+    Current Connections                         1
+    Total Connections Started                   8
+    Total Connections Stopped                   7
+    Total Connections Timed Out                 0
+```
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

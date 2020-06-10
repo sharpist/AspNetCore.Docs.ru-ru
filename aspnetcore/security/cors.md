@@ -1,11 +1,23 @@
 ---
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Включение запросов между источниками (CORS) в ASP.NET Core
+author: rick-anderson
+description: Узнайте, как использовать CORS в качестве стандарта для разрешения или отклонения запросов между источниками в ASP.NET Core приложении.
+ms.author: riande
+ms.custom: mvc
+ms.date: 04/17/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/cors
+ms.openlocfilehash: a78aff2d2e16f36ed034e6af110d7ed763271583
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84105757"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Включение запросов между источниками (CORS) в ASP.NET Core
 
@@ -446,7 +458,7 @@ Vary: Accept-Encoding
 X-Powered-By: ASP.NET
 ```
 
-**Заголовки запроса**
+**Заголовки запросов**
 
 ```
 Accept: */*
@@ -484,7 +496,7 @@ Vary: Origin
 X-Powered-By: ASP.NET
 ```
 
-**Заголовки запроса**
+**Заголовки запросов**
 
 ```
 Accept: */*
@@ -970,7 +982,7 @@ Test message
 Тестирование CORS:
 
 1. [Создайте проект API](xref:tutorials/first-web-api). Кроме того, можно [загрузить пример](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/sample/Cors).
-1. Включите CORS с помощью одного из подходов, описанных в этом документе. Пример:
+1. Включите CORS с помощью одного из подходов, описанных в этом документе. Пример.
 
   [!code-csharp[](cors/sample/Cors/WebAPI/StartupTest.cs?name=snippet2&highlight=13-18)]
 

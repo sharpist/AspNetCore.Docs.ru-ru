@@ -1,12 +1,24 @@
 ---
-Title: ' применение политики безопасности содержимого для ASP.NET Core Blazor ' author: Description: ' Узнайте, как использовать политику безопасности содержимого (CSP) с Blazor приложениями ASP.NET Core для защиты от атак с использованием межсайтовых сценариев (XSS).
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Применение политики безопасности содержимого для ASP.NET CoreBlazor
+author: guardrex
+description: Узнайте, как использовать политику безопасности содержимого (CSP) с ASP.NET Core Blazor приложениями для защиты от атак с использованием межсайтовых сценариев (XSS).
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/content-security-policy
+ms.openlocfilehash: 8615b199373ca856c252b9f843e3635770367e4a
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106394"
 ---
 # <a name="enforce-a-content-security-policy-for-aspnet-core-blazor"></a>Применение политики безопасности содержимого для ASP.NET CoreBlazor
 
@@ -94,7 +106,7 @@ CSP поддерживается в большинстве современны�
                upgrade-insecure-requests;">
 ```
 
-### <a name="blazor-server"></a>Blazor Server
+### <a name="blazor-server"></a>Сервер Blazor
 
 В `<head>` содержимом страницы узла *pages/_Host. cshtml* примените директивы, описанные в разделе [директивы политики](#policy-directives) .
 

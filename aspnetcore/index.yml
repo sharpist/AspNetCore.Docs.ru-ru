@@ -1,21 +1,21 @@
 ### YamlMime:Hub
-title: Документация по ASP.NET Core
+title: Документация по ASP.NET
 summary: Узнайте, как с помощью ASP.NET Core создавать быстрые и безопасные кроссплатформенные или облачные веб-приложения и службы. Изучайте руководства, примеры кода, основные понятия, справочник по API и многое другое.
 brand: aspnet
 metadata:
-  title: Документация по ASP.NET Core
+  title: Документация по ASP.NET
   description: Узнайте, как с помощью ASP.NET Core создавать быстрые и безопасные кроссплатформенные или облачные веб-приложения и службы. Изучайте руководства, примеры кода, основные понятия, справочник по API и многое другое.
   ms.product: aspnet
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 06/03/2020
-  ms.openlocfilehash: fb4b31258683c5928708e7a2a479f353972c010b
-  ms.sourcegitcommit: 829dca1d5a7dcccbfe90644101c6be1d1c94ac62
+  ms.date: 06/05/2020
+  ms.openlocfilehash: 25b5387c8956ea7931751525ea954f6f702c0cde
+  ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
   ms.translationtype: HT
   ms.contentlocale: ru-RU
-  ms.lasthandoff: 06/04/2020
-  ms.locfileid: "84355427"
+  ms.lasthandoff: 06/08/2020
+  ms.locfileid: "84507327"
 highlightedContent:
   items:
   - title: Создание приложения ASP.NET Core на любой платформе за 5 минут
@@ -44,7 +44,7 @@ highlightedContent:
     url: https://docs.microsoft.com/aspnet/overview
 conceptualContent:
   title: Разработка приложений ASP.NET Core
-  summary: Выбирайте между интерактивными веб-приложениями, веб-API, приложениями на базе шаблонов MVC, приложениями реального времени и многим другим. Документацию по ASP.NET 4.x см. в разделе [ASP.NET](https://docs.microsoft.com/aspnet/overview).
+  summary: Выбирайте между интерактивными веб-приложениями, веб-API, приложениями на базе шаблонов MVC, приложениями реального времени и многим другим.
   items:
   - title: Интерактивные приложения Blazor на стороне клиента
     summary: Применяйте в разработке взаимозаменяемые компоненты пользовательского интерфейса, обеспечивающие производительность практически на уровне внутренних компонентов браузера за счет WebAssembly.

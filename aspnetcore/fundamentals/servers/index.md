@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/index
-ms.openlocfilehash: 74affbb7d18d80e2e55714df100d820aed2ce427
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 9d57fcd5883a869c5421b88321d4a279f3f938c9
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776185"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452152"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>Реализации веб-сервера в ASP.NET Core
 
@@ -158,9 +158,9 @@ HTTP.sys можно также использовать для приложен�
 
 Сервер запускается, когда интегрированная среда разработки (IDE) или редактор запускает приложение:
 
-* [Visual Studio](https://visualstudio.microsoft.com) — профили запуска можно использовать для запуска приложения и сервера с помощью [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)/[модуля ASP.NET Core](xref:host-and-deploy/aspnet-core-module) или консоли.
-* [Visual Studio Code](https://code.visualstudio.com/) — приложение и сервер запускаются решением [Omnisharp](https://github.com/OmniSharp/omnisharp-vscode), которое активирует отладчик CoreCLR.
-* [Visual Studio для Mac](https://visualstudio.microsoft.com/vs/mac/) — приложение и сервер запускаются отладчиком [Mono Soft Debugger](https://www.mono-project.com/docs/advanced/runtime/docs/soft-debugger/).
+* [Visual Studio](https://visualstudio.microsoft.com). Вы можете использовать профили запуска для запуска приложения и сервера с помощью [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)/[модуля ASP.NET Core](xref:host-and-deploy/aspnet-core-module) или консоли.
+* [Visual Studio Code](https://code.visualstudio.com/). Приложение и сервер запускаются решением [Omnisharp](https://github.com/OmniSharp/omnisharp-vscode), которое активирует отладчик CoreCLR.
+* [Visual Studio для Mac](https://visualstudio.microsoft.com/vs/mac/). Приложение и сервер запускаются отладчиком "мягкого режима" [Mono Soft Debugger](https://www.mono-project.com/docs/advanced/runtime/docs/soft-debugger/).
 
 При запуске приложения из командной строки в папке проекта [dotnet run](/dotnet/core/tools/dotnet-run) запускает приложение и сервер (только Kestrel и HTTP.sys). Конфигурация определяется параметром `-c|--configuration`, который может принимать значение `Debug` (по умолчанию) или `Release`.
 

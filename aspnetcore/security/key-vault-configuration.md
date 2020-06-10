@@ -1,11 +1,24 @@
 ---
-Заголовок: Автор: описание: Моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Поставщик конфигурации Azure Key Vault в ASP.NET Core
+author: rick-anderson
+description: Узнайте, как использовать поставщик конфигурации Azure Key Vault для настройки приложения с помощью пар "имя-значение", загружаемых во время выполнения.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/key-vault-configuration
+ms.openlocfilehash: 4a5689af9ffea175838a869e92752de889cbb227
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106680"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Поставщик конфигурации Azure Key Vault в ASP.NET Core
 
@@ -207,78 +220,11 @@ config.AddAzureKeyVault(
 ```
 
 | Свойство         | Описание |
-| ---
-Заголовок: Автор: описание: Моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: Моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: Моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: Моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: Моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: Моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--------- | Заголовок---: Автор: описание: Моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: Моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: Моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------- | | `Client`         | <xref:Microsoft.Azure.KeyVault.KeyVaultClient> для использования при извлечении значений. | | `Manager`        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> экземпляр, используемый для управления загрузкой секрета. | | `ReloadInterval` | `Timespan` ожидание между попытками опроса хранилища ключей на предмет изменений. Значение по умолчанию — `null` (конфигурация не перегружается). | | `Vault`          | URI хранилища ключей. |
+| ---------------- | ----------- |
+| `Client`         | <xref:Microsoft.Azure.KeyVault.KeyVaultClient>для использования при извлечении значений. |
+| `Manager`        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>экземпляр, используемый для управления загрузкой секрета. |
+| `ReloadInterval` | `Timespan`ожидание между попытками опроса хранилища ключей на предмет изменений. Значение по умолчанию — `null` (конфигурация не перегружается). |
+| `Vault`          | URI хранилища ключей. |
 
 ## <a name="use-a-key-name-prefix"></a>Использование префикса имени ключа
 
@@ -417,7 +363,7 @@ Configuration.Reload();
 * <xref:fundamentals/configuration/index>
 * [Microsoft Azure: Key Vault](https://azure.microsoft.com/services/key-vault/)
 * [Microsoft Azure: Документация по Key Vault](/azure/key-vault/)
-* [Создание ключей, защищенных аппаратным модулем безопасности, и их передача в хранилище ключей Azure](/azure/key-vault/key-vault-hsm-protected-keys)
+* [Создание и перенос ключей, защищенных АППАРАТным модулем безопасности, для Azure Key Vault](/azure/key-vault/key-vault-hsm-protected-keys)
 * [Класс KeyVaultClient](/dotnet/api/microsoft.azure.keyvault.keyvaultclient)
 * [Краткое руководство. Настройка и получение секрета из Azure Key Vault с помощью веб-приложения .NET](/azure/key-vault/quick-create-net)
 * [Руководство. Использование Azure Key Vault с виртуальной машиной Linux в Azure (.NET)](/azure/key-vault/tutorial-net-windows-virtual-machine)
@@ -744,7 +690,7 @@ Configuration.Reload();
 * <xref:fundamentals/configuration/index>
 * [Microsoft Azure: Key Vault](https://azure.microsoft.com/services/key-vault/)
 * [Microsoft Azure: Документация по Key Vault](/azure/key-vault/)
-* [Создание ключей, защищенных аппаратным модулем безопасности, и их передача в хранилище ключей Azure](/azure/key-vault/key-vault-hsm-protected-keys)
+* [Создание и перенос ключей, защищенных АППАРАТным модулем безопасности, для Azure Key Vault](/azure/key-vault/key-vault-hsm-protected-keys)
 * [Класс KeyVaultClient](/dotnet/api/microsoft.azure.keyvault.keyvaultclient)
 * [Краткое руководство. Настройка и получение секрета из Azure Key Vault с помощью веб-приложения .NET](/azure/key-vault/quick-create-net)
 * [Руководство. Использование Azure Key Vault с виртуальной машиной Linux в Azure (.NET)](/azure/key-vault/tutorial-net-windows-virtual-machine)

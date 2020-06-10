@@ -1,11 +1,24 @@
 ---
-Заголовок: Автор: описание: Моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Передача файлов в ASP.NET Core
+author: rick-anderson
+description: Сведения об использовании привязки модели и потоковой передачи для передачи файлов в ASP.NET Core MVC.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/03/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: mvc/models/file-uploads
+ms.openlocfilehash: 632cc9fafc5daf2923997f0113adee52491acdcc
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83838322"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Передача файлов в ASP.NET Core
 
@@ -176,7 +189,7 @@
 Для выполнения отправки формы в JavaScript для клиентов, которые [не поддерживают Fetch API](https://caniuse.com/#feat=fetch), используйте один из следующих подходов:
 
 * Используйте функцию Fetch Polyfill (например, [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Используйте `XMLHttpRequest`. Пример:
+* Используйте `XMLHttpRequest`. Пример.
 
   ```javascript
   <script>
@@ -235,7 +248,7 @@
 > [!NOTE]
 > Привязка сопоставляет файлы форм по имени. Например, значение HTML `name` в `<input type="file" name="formFile">` должно соответствовать привязанному к C# параметру или свойству (`FormFile`). Дополнительные сведения см. в разделе [Сопоставление значения атрибута имени и имени параметра метода POST](#match-name-attribute-value-to-parameter-name-of-post-method).
 
-Следующий пример:
+В следующем примере происходит следующее:
 
 * Циклично отправляет один или несколько передаваемых файлов.
 * Использует метод [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*), чтобы вернуть полный путь к файлу, включая его имя. 
@@ -449,7 +462,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 ### <a name="file-extension-validation"></a>Проверка расширения файла
 
-Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример:
+Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример.
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -707,7 +720,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 </system.webServer>
 ```
 
-Этот параметр применим только к службам IIS. При размещении в Kestrel такой проблемы возникать не должно. Дополнительные сведения см. в статье [Request Limits \<requestLimits>](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/) (Ограничения запроса <requestLimits>).
+Этот параметр применим только к службам IIS. При размещении в Kestrel такой проблемы возникать не должно. Дополнительные сведения см. в разделе [ограничения \<requestLimits> запросов ](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
 Ограничения в модуле ASP.NET Core или наличие модуля фильтрации запросов IIS могут ограничить передачу до 2 или 4 ГБ. Дополнительные сведения см. в статье форума (dotnet/AspNetCore #2711) [Unable to upload file greater than 2GB in size](https://github.com/dotnet/AspNetCore/issues/2711) (Не удалось отправить файл размером более 2 ГБ).
 
@@ -905,7 +918,7 @@ The request filtering module is configured to deny a request that exceeds the re
 Для выполнения отправки формы в JavaScript для клиентов, которые [не поддерживают Fetch API](https://caniuse.com/#feat=fetch), используйте один из следующих подходов:
 
 * Используйте функцию Fetch Polyfill (например, [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Используйте `XMLHttpRequest`. Пример:
+* Используйте `XMLHttpRequest`. Пример.
 
   ```javascript
   <script>
@@ -964,7 +977,7 @@ The request filtering module is configured to deny a request that exceeds the re
 > [!NOTE]
 > Привязка сопоставляет файлы форм по имени. Например, значение HTML `name` в `<input type="file" name="formFile">` должно соответствовать привязанному к C# параметру или свойству (`FormFile`). Дополнительные сведения см. в разделе [Сопоставление значения атрибута имени и имени параметра метода POST](#match-name-attribute-value-to-parameter-name-of-post-method).
 
-Следующий пример:
+В следующем примере происходит следующее:
 
 * Циклично отправляет один или несколько передаваемых файлов.
 * Использует метод [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*), чтобы вернуть полный путь к файлу, включая его имя. 
@@ -1178,7 +1191,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 ### <a name="file-extension-validation"></a>Проверка расширения файла
 
-Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример:
+Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример.
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -1429,7 +1442,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 </system.webServer>
 ```
 
-Этот параметр применим только к службам IIS. При размещении в Kestrel такой проблемы возникать не должно. Дополнительные сведения см. в статье [Request Limits \<requestLimits>](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/) (Ограничения запроса <requestLimits>).
+Этот параметр применим только к службам IIS. При размещении в Kestrel такой проблемы возникать не должно. Дополнительные сведения см. в разделе [ограничения \<requestLimits> запросов ](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
 Ограничения в модуле ASP.NET Core или наличие модуля фильтрации запросов IIS могут ограничить передачу до 2 или 4 ГБ. Дополнительные сведения см. в статье форума (dotnet/AspNetCore #2711) [Unable to upload file greater than 2GB in size](https://github.com/dotnet/AspNetCore/issues/2711) (Не удалось отправить файл размером более 2 ГБ).
 

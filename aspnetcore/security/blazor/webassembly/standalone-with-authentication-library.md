@@ -1,11 +1,24 @@
 ---
-Title: ' защита Blazor автономного приложения ASP.NET Coreной сборки с помощью библиотеки проверки подлинности ' author: Description: моникерранже: MS. author: MS. Custom: MS. Date: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью библиотеки проверки подлинности
+author: guardrex
+description: ''
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/webassembly/standalone-with-authentication-library
+ms.openlocfilehash: efd63c2fc533175b034b8311c2b7a6b9e6f4375b
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83851131"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью библиотеки проверки подлинности
 

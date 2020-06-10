@@ -1,11 +1,24 @@
 ---
-Title: ' Защитите Blazor изолированное приложение ASP.NET Coreной сборки с помощью Azure Active Directory "author: описание: моникерранже: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью Azure Active Directory
+author: guardrex
+description: ''
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/webassembly/standalone-with-azure-active-directory
+ms.openlocfilehash: b85129d8b56f2106636b47534630f8139e100ae9
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83851215"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory"></a>Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью Azure Active Directory
 
@@ -53,7 +66,7 @@ dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "{TENA
 После создания приложения вы сможете:
 
 * Войдите в приложение, используя учетную запись пользователя AAD.
-* Запрос маркеров доступа для API-интерфейсов Майкрософт. Дополнительные сведения см. в разделе:
+* Запрос маркеров доступа для API-интерфейсов Майкрософт. Дополнительные сведения можно найти в разделе
   * [Области токенов доступа](#access-token-scopes)
   * [Краткое руководство. Настройка приложения для предоставления веб-API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
 
@@ -97,7 +110,7 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-Пример
+Пример.
 
 ```json
 {

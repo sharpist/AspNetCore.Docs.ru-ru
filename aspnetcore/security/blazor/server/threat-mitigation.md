@@ -1,12 +1,24 @@
 ---
-Title: "Руководство по предотвращению угроз для ASP.NET Core Blazor Server" author: описание: "Узнайте, как уменьшить угрозы безопасности для Blazor серверных приложений".
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Руководство по предотвращению угроз для ASP.NET Core Blazor Server
+author: guardrex
+description: Узнайте, как устранить угрозы безопасности для Blazor серверных приложений.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/05/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/server/threat-mitigation
+ms.openlocfilehash: 06f9cc2d70367ea90a519ddd508a156e88adcb61
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83864635"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Руководство по предотвращению угроз для ASP.NET Core Blazor Server
 
@@ -89,7 +101,7 @@ Blazorклиенты устанавливают одно подключение 
 
 Атаки типа "отказ в обслуживании" (DoS) подразумевают, что клиент выводит на сервер недоступность одного или нескольких ресурсов из-за того, что приложение не будет доступно. BlazorСерверные приложения включают некоторые ограничения по умолчанию и используют другие ASP.NET Core и SignalR ограничения для защиты от атак DOS, заданных в <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> .
 
-| BlazorОграничение серверного приложения | Описание | По умолчанию |
+| BlazorОграничение серверного приложения | Описание | Значение по умолчанию |
 | --- | --- | --- |
 | <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitMaxRetained> | Максимальное число отключенных каналов, которые заданный сервер удерживает в памяти за один раз. | 100 |
 | <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod> | Максимальное время, в течение которого отключенная цепь удерживается в памяти, прежде чем будет прервана. | 3 минуты |
@@ -98,7 +110,7 @@ Blazorклиенты устанавливают одно подключение 
 
 Установите максимальный размер сообщения одного входящего концентратора с помощью <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> .
 
-| SignalRи ограничения ASP.NET Core | Описание | По умолчанию |
+| SignalRи ограничения ASP.NET Core | Описание | Значение по умолчанию |
 | --- | --- | --- |
 | <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> | Размер сообщения для отдельного сообщения. | 32 КБ |
 
@@ -144,7 +156,7 @@ Blazorклиенты устанавливают одно подключение 
 
 События предоставляют точку входа для Blazor серверного приложения. Те же правила защиты конечных точек в веб-приложениях применяются к обработке событий в Blazor серверных приложениях. Вредоносный клиент может отправить в качестве полезных данных для события любые данные, которые он хочет отправить.
 
-Пример:
+Пример.
 
 * Событие изменения для `<select>` может отправить значение, не находящиеся в параметрах, представленных приложением для клиента.
 * `<input>`Может отправить на сервер любые текстовые данные, минуя проверку на стороне клиента.
