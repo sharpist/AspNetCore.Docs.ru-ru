@@ -1,11 +1,24 @@
 ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Размещение ASP.NET Core в Windows со службами IIS
+author: rick-anderson
+description: Сведения о размещении приложений ASP.NET Core в службах Windows Server Internet Information Services (IIS).
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 5/7/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: host-and-deploy/iis/index
+ms.openlocfilehash: 878af251a30fe284293e5293d2059199b42de272
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106108"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Размещение ASP.NET Core в Windows со службами IIS
 
@@ -134,118 +147,11 @@ services.Configure<IISServerOptions>(options =>
 ```
 
 | Параметр                         | Значение по умолчанию | Параметр |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----- | | `AutomaticAuthentication`      | `true`  | Если значение — `true`, сервер IIS задает свойство `HttpContext.User`, использующее [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, сервер только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения: [Проверка подлинности Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. | | `AllowSynchronousIO`           | `false` | Разрешены ли синхронные операции ввода-вывода для `HttpContext.Request` и `HttpContext.Response`. | | `MaxRequestBodySize`           | `30000000`  | Возвращает или задает максимальный размер текста запроса для `HttpRequest`. Обратите внимание, что сами службы IIS ограничены параметром `maxAllowedContentLength`, который обрабатывается перед тем, как `MaxRequestBodySize` задается в `IISServerOptions`. Изменение `MaxRequestBodySize` не влияет на `maxAllowedContentLength`. Чтобы увеличить `maxAllowedContentLength`, добавьте запись в *web.config*, чтобы задать `maxAllowedContentLength` большее значение. Дополнительные сведения см. в разделе [Конфигурация](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
+| ------------------------------ | :-----: | ------- |
+| `AutomaticAuthentication`      | `true`  | Если значение — `true`, сервер IIS задает свойство `HttpContext.User`, использующее [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, сервер только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения: [Проверка подлинности Windows](xref:security/authentication/windowsauth). |
+| `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
+| `AllowSynchronousIO`           | `false` | Разрешены ли синхронные операции ввода-вывода для `HttpContext.Request` и `HttpContext.Response`. |
+| `MaxRequestBodySize`           | `30000000`  | Возвращает или задает максимальный размер текста запроса для `HttpRequest`. Обратите внимание, что сами службы IIS ограничены параметром `maxAllowedContentLength`, который обрабатывается перед тем, как `MaxRequestBodySize` задается в `IISServerOptions`. Изменение `MaxRequestBodySize` не влияет на `maxAllowedContentLength`. Чтобы увеличить `maxAllowedContentLength`, добавьте запись в *web.config*, чтобы задать `maxAllowedContentLength` большее значение. Дополнительные сведения см. в разделе [Конфигурация](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
 
 **Модель размещения вне процесса**
 
@@ -259,118 +165,10 @@ services.Configure<IISOptions>(options =>
 ```
 
 | Параметр                         | Значение по умолчанию | Параметр |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----- | | `AutomaticAuthentication`      | `true`  | Если значение — `true`, [ПО промежуточного слоя для интеграции IIS](#enable-the-iisintegration-components) задает свойство `HttpContext.User`, которое прошло [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, ПО промежуточного слоя только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения см. в статье о [проверке подлинности Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. | | `ForwardClientCertificate`     | `true`  | Если значение — `true` и если присутствует заголовок запроса `MS-ASPNETCORE-CLIENTCERT`, происходит заполнение `HttpContext.Connection.ClientCertificate`. |
+| ------------------------------ | :-----: | ------- |
+| `AutomaticAuthentication`      | `true`  | Если значение — `true`, [ПО промежуточного слоя для интеграции IIS](#enable-the-iisintegration-components) задает свойство `HttpContext.User`, которое прошло [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, ПО промежуточного слоя только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения см. в статье о [проверке подлинности Windows](xref:security/authentication/windowsauth). |
+| `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
+| `ForwardClientCertificate`     | `true`  | Если значение — `true` и если присутствует заголовок запроса `MS-ASPNETCORE-CLIENTCERT`, происходит заполнение `HttpContext.Connection.ClientCertificate`. |
 
 ### <a name="proxy-server-and-load-balancer-scenarios"></a>Сценарии использования прокси-сервера и подсистемы балансировки нагрузки
 
@@ -971,118 +769,9 @@ services.Configure<IISServerOptions>(options =>
 ```
 
 | Параметр                         | Значение по умолчанию | Параметр |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----- | | `AutomaticAuthentication`      | `true`  | Если значение — `true`, сервер IIS задает свойство `HttpContext.User`, использующее [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, сервер только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения: [Проверка подлинности Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
+| ------------------------------ | :-----: | ------- |
+| `AutomaticAuthentication`      | `true`  | Если значение — `true`, сервер IIS задает свойство `HttpContext.User`, использующее [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, сервер только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения: [Проверка подлинности Windows](xref:security/authentication/windowsauth). |
+| `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
 
 **Модель размещения вне процесса**
 
@@ -1096,118 +785,10 @@ services.Configure<IISOptions>(options =>
 ```
 
 | Параметр                         | Значение по умолчанию | Параметр |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----- | | `AutomaticAuthentication`      | `true`  | Если значение — `true`, [ПО промежуточного слоя для интеграции IIS](#enable-the-iisintegration-components) задает свойство `HttpContext.User`, которое прошло [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, ПО промежуточного слоя только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения см. в статье о [проверке подлинности Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. | | `ForwardClientCertificate`     | `true`  | Если значение — `true` и если присутствует заголовок запроса `MS-ASPNETCORE-CLIENTCERT`, происходит заполнение `HttpContext.Connection.ClientCertificate`. |
+| ------------------------------ | :-----: | ------- |
+| `AutomaticAuthentication`      | `true`  | Если значение — `true`, [ПО промежуточного слоя для интеграции IIS](#enable-the-iisintegration-components) задает свойство `HttpContext.User`, которое прошло [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, ПО промежуточного слоя только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения см. в статье о [проверке подлинности Windows](xref:security/authentication/windowsauth). |
+| `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
+| `ForwardClientCertificate`     | `true`  | Если значение — `true` и если присутствует заголовок запроса `MS-ASPNETCORE-CLIENTCERT`, происходит заполнение `HttpContext.Connection.ClientCertificate`. |
 
 ### <a name="proxy-server-and-load-balancer-scenarios"></a>Сценарии использования прокси-сервера и подсистемы балансировки нагрузки
 
@@ -1758,118 +1339,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 ### <a name="iis-options"></a>Параметры служб IIS
 
 | Параметр                         | Значение по умолчанию | Параметр |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----- | | `AutomaticAuthentication`      | `true`  | Если значение — `true`, сервер IIS задает свойство `HttpContext.User`, использующее [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, сервер только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения: [Проверка подлинности Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
+| ------------------------------ | :-----: | ------- |
+| `AutomaticAuthentication`      | `true`  | Если значение — `true`, сервер IIS задает свойство `HttpContext.User`, использующее [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, сервер только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения: [Проверка подлинности Windows](xref:security/authentication/windowsauth). |
+| `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
 
 Чтобы настроить параметры IIS, включите конфигурацию служб для <xref:Microsoft.AspNetCore.Builder.IISOptions> в <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*>. В следующем примере приложению запрещается заполнение `HttpContext.Connection.ClientCertificate`:
 
@@ -1881,118 +1353,10 @@ services.Configure<IISOptions>(options =>
 ```
 
 | Параметр                         | Значение по умолчанию | Параметр |
-| ---
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---------------- | :-----: | --- title: author: description: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----- | | `AutomaticAuthentication`      | `true`  | Если значение — `true`, [ПО промежуточного слоя для интеграции IIS](#enable-the-iisintegration-components) задает свойство `HttpContext.User`, которое прошло [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, ПО промежуточного слоя только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения см. в статье о [проверке подлинности Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. | | `ForwardClientCertificate`     | `true`  | Если значение — `true` и если присутствует заголовок запроса `MS-ASPNETCORE-CLIENTCERT`, происходит заполнение `HttpContext.Connection.ClientCertificate`. |
+| ------------------------------ | :-----: | ------- |
+| `AutomaticAuthentication`      | `true`  | Если значение — `true`, [ПО промежуточного слоя для интеграции IIS](#enable-the-iisintegration-components) задает свойство `HttpContext.User`, которое прошло [проверку подлинности Windows](xref:security/authentication/windowsauth). Если значение — `false`, ПО промежуточного слоя только предоставляет идентификатор для `HttpContext.User` и отвечает на явные запросы защиты от `AuthenticationScheme`. Для работы `AutomaticAuthentication` необходимо включить в службах IIS проверку подлинности Windows. Дополнительные сведения см. в статье о [проверке подлинности Windows](xref:security/authentication/windowsauth). |
+| `AuthenticationDisplayName`    | `null`  | Задает отображаемое имя для пользователей на страницах входа. |
+| `ForwardClientCertificate`     | `true`  | Если значение — `true` и если присутствует заголовок запроса `MS-ASPNETCORE-CLIENTCERT`, происходит заполнение `HttpContext.Connection.ClientCertificate`. |
 
 ### <a name="proxy-server-and-load-balancer-scenarios"></a>Сценарии использования прокси-сервера и подсистемы балансировки нагрузки
 
