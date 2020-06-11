@@ -1,12 +1,24 @@
 ---
-title: 'Модели размещения ASP.NET Core Blazor' author: description: 'Узнайте о моделях размещения Blazor WebAssembly и Blazor Server.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Модели размещения ASP.NET Core Blazor
+author: guardrex
+description: Общие сведения о моделях размещения Blazor WebAssembly и Blazor Server.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/hosting-models
+ms.openlocfilehash: 9556fea5319956ce4ae4f4faf90cb405784c733c
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84105497"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Модели размещения ASP.NET Core Blazor
 

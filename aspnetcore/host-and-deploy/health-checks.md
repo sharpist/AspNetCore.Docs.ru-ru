@@ -1,11 +1,24 @@
 ---
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Проверки работоспособности в ASP.NET Core
+author: rick-anderson
+description: Узнайте, как настроить проверки работоспособности для инфраструктуры ASP.NET Core, например приложений и баз данных.
+monikerRange: '>= aspnetcore-2.2'
+ms.author: riande
+ms.custom: mvc
+ms.date: 12/15/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: host-and-deploy/health-checks
+ms.openlocfilehash: cb3ee4f3bf9061d212c1fee85f3f4a22946be097
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84105783"
 ---
 # <a name="health-checks-in-aspnet-core"></a>Проверки работоспособности в ASP.NET Core
 

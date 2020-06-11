@@ -1,11 +1,24 @@
 ---
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Интеграционные тесты на платформе ASP.NET Core
+author: rick-anderson
+description: Узнайте, как с помощью интеграционных тестов можно проверить работу компонентов приложения на уровне инфраструктуры, включая базу данных, файловую систему и сеть.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/20/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: test/integration-tests
+ms.openlocfilehash: ee57843dc79805aed48dbb4d3a6ac97469052f5c
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84105185"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Интеграционные тесты на платформе ASP.NET Core
 
@@ -202,45 +215,11 @@
 В следующей таблице показаны [WebApplicationFactoryClientOptions](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) по умолчанию, доступные при создании экземпляров `HttpClient`.
 
 | Параметр | Описание | Значение по умолчанию |
-| ---
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----- | | [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Возвращает или задает значение, указывающее, должны ли экземпляры `HttpClient` автоматически следовать ответам перенаправления. | `true` | | [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Возвращает или задает базовый адрес экземпляров `HttpClient`. | `http://localhost` | | [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Возвращает или задает значение, указывающее, должны ли экземпляры `HttpClient` обрабатывать файлы cookie. | `true` | | [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Возвращает или задает максимальное число ответов на перенаправление, которым должны следовать экземпляры `HttpClient`. | 7 |
+| ------ | ----------- | ------- |
+| [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Возвращает или задает, должны ли экземпляры `HttpClient` автоматически следовать ответам перенаправления. | `true` |
+| [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Возвращает или задает базовый адрес экземпляров `HttpClient`. | `http://localhost` |
+| [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Возвращает или задает, должны ли экземпляры `HttpClient` обрабатывать файлы cookie. | `true` |
+| [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Возвращает или задает максимальное число ответов на перенаправление, которым должны следовать экземпляры `HttpClient`. | 7 |
 
 Создайте класс `WebApplicationFactoryClientOptions` и передайте его в метод [CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient) (значения по умолчанию показаны в примере кода):
 
@@ -381,78 +360,9 @@ protected override IWebHostBuilder CreateWebHostBuilder() =>
 [Пример приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) состоит из двух приложений:
 
 | Приложение | каталог проекта; | Описание |
-| --- | ---
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---------- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------- | | Приложение для сообщений (ТС) | *src/RazorPagesProject* | Позволяет пользователю добавлять, удалять сообщения (по одному или все) и анализировать их. | | Тестовое приложение | *tests/RazorPagesProject.Tests* | Используется для тестирования интеграции ТС. |
+| --- | ----------------- | ----------- |
+| Приложение для сообщений (ТС) | *src/RazorPagesProject* | Позволяет пользователю добавлять, удалять сообщения (по одному или все) и анализировать их. |
+| Тестирование приложения. | *tests/RazorPagesProject.Tests* | Используется для тестирования интеграции ТС. |
 
 Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](https://visualstudio.microsoft.com). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в каталоге *tests/RazorPagesProject.Tests*.
 
@@ -480,86 +390,11 @@ dotnet test
 Тестовое приложение — это консольное приложение в папке *tests/RazorPagesProject.Tests*.
 
 | Каталог тестового приложения | Описание |
-| ---
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---------- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------- | | *AuthTests* | Содержит методы теста для:<ul><li>доступа к защищенной странице пользователя, не прошедшего проверку подлинности;</li><li>доступа к защищенной странице пользователя, прошедшего проверку подлинности с помощью макета <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>;</li><li>получения профиля пользователя GitHub и проверки имени входа пользователя профиля.</li></ul> | | *BasicTests* | Содержит метод теста для маршрутизации и типа содержимого. | | *IntegrationTests* | Содержит интеграционные тесты для страницы индекса с использованием настраиваемого класса `WebApplicationFactory`. *Helpers/Utilities* | <ul><li>*Utilities.cs* содержит метод `InitializeDbForTests`, используемый для заполнения базы данных тестовыми данными.</li><li>*HtmlHelpers.cs* предоставляет метод, возвращающий `IHtmlDocument` AngleSharp для использования методами теста.</li><li>*HttpClientExtensions.cs* предоставляет перегрузки для `SendAsync` для отправки запросов к ТС.</li></ul> |
+| ------------------ | ----------- |
+| *AuthTests* | Содержит методы теста для:<ul><li>доступа к защищенной странице пользователя, не прошедшего проверку подлинности;</li><li>доступа к защищенной странице пользователя, прошедшего проверку подлинности с помощью макета <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>;</li><li>получения профиля пользователя GitHub и проверки имени входа пользователя профиля.</li></ul> |
+| *BasicTests* | Содержит метод теста для маршрутизации и типа содержимого. |
+| *IntegrationTests* | Содержит интеграционные тесты для страницы индекса с помощью настраиваемого класса `WebApplicationFactory`. |
+| *Helpers/Utilities* | <ul><li>*Utilities.cs* содержит метод `InitializeDbForTests`, используемый для заполнения базы данных тестовыми данными.</li><li>*HtmlHelpers.cs* предоставляет метод, возвращающий `IHtmlDocument` AngleSharp для использования методами теста.</li><li>*HttpClientExtensions.cs* предоставляет перегрузки для `SendAsync` для отправки запросов к ТС.</li></ul> |
 
 Используемая платформа тестирования — [xUnit](https://xunit.github.io/). Интеграционные тесты выполняются с помощью [Microsoft.AspNetCore.TestHost](/dotnet/api/microsoft.aspnetcore.testhost), который включает [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver). Поскольку пакет [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) используется для настройки узла тестирования и тестового сервера, для пакетов `TestHost` и `TestServer` не требуются прямые ссылки на пакеты в файле проекта тестового приложения или конфигурации разработчика в тестовом приложении.
 
@@ -743,45 +578,11 @@ dotnet test
 В следующей таблице показаны [WebApplicationFactoryClientOptions](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) по умолчанию, доступные при создании экземпляров `HttpClient`.
 
 | Параметр | Описание | Значение по умолчанию |
-| ---
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----- | | [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Возвращает или задает значение, указывающее, должны ли экземпляры `HttpClient` автоматически следовать ответам перенаправления. | `true` | | [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Возвращает или задает базовый адрес экземпляров `HttpClient`. | `http://localhost` | | [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Возвращает или задает значение, указывающее, должны ли экземпляры `HttpClient` обрабатывать файлы cookie. | `true` | | [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Возвращает или задает максимальное число ответов на перенаправление, которым должны следовать экземпляры `HttpClient`. | 7 |
+| ------ | ----------- | ------- |
+| [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Возвращает или задает, должны ли экземпляры `HttpClient` автоматически следовать ответам перенаправления. | `true` |
+| [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Возвращает или задает базовый адрес экземпляров `HttpClient`. | `http://localhost` |
+| [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | Возвращает или задает, должны ли экземпляры `HttpClient` обрабатывать файлы cookie. | `true` |
+| [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | Возвращает или задает максимальное число ответов на перенаправление, которым должны следовать экземпляры `HttpClient`. | 7 |
 
 Создайте класс `WebApplicationFactoryClientOptions` и передайте его в метод [CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient) (значения по умолчанию показаны в примере кода):
 
@@ -950,78 +751,9 @@ public class CustomWebApplicationFactory<TStartup>
 [Пример приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) состоит из двух приложений:
 
 | Приложение | каталог проекта; | Описание |
-| --- | ---
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---------- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------- | | Приложение для сообщений (ТС) | *src/RazorPagesProject* | Позволяет пользователю добавлять, удалять сообщения (по одному или все) и анализировать их. | | Тестовое приложение | *tests/RazorPagesProject.Tests* | Используется для тестирования интеграции ТС. |
+| --- | ----------------- | ----------- |
+| Приложение для сообщений (ТС) | *src/RazorPagesProject* | Позволяет пользователю добавлять, удалять сообщения (по одному или все) и анализировать их. |
+| Тестирование приложения. | *tests/RazorPagesProject.Tests* | Используется для тестирования интеграции ТС. |
 
 Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](https://visualstudio.microsoft.com). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в каталоге *tests/RazorPagesProject.Tests*.
 
@@ -1049,86 +781,11 @@ dotnet test
 Тестовое приложение — это консольное приложение в папке *tests/RazorPagesProject.Tests*.
 
 | Каталог тестового приложения | Описание |
-| ---
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---------- | --- название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------- | | *AuthTests* | Содержит методы теста для:<ul><li>доступа к защищенной странице пользователя, не прошедшего проверку подлинности;</li><li>доступа к защищенной странице пользователя, прошедшего проверку подлинности с помощью макета <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>;</li><li>получения профиля пользователя GitHub и проверки имени входа пользователя профиля.</li></ul> | | *BasicTests* | Содержит метод теста для маршрутизации и типа содержимого. | | *IntegrationTests* | Содержит интеграционные тесты для страницы индекса с использованием настраиваемого класса `WebApplicationFactory`. *Helpers/Utilities* | <ul><li>*Utilities.cs* содержит метод `InitializeDbForTests`, используемый для заполнения базы данных тестовыми данными.</li><li>*HtmlHelpers.cs* предоставляет метод, возвращающий `IHtmlDocument` AngleSharp для использования методами теста.</li><li>*HttpClientExtensions.cs* предоставляет перегрузки для `SendAsync` для отправки запросов к ТС.</li></ul> |
+| ------------------ | ----------- |
+| *AuthTests* | Содержит методы теста для:<ul><li>доступа к защищенной странице пользователя, не прошедшего проверку подлинности;</li><li>доступа к защищенной странице пользователя, прошедшего проверку подлинности с помощью макета <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>;</li><li>получения профиля пользователя GitHub и проверки имени входа пользователя профиля.</li></ul> |
+| *BasicTests* | Содержит метод теста для маршрутизации и типа содержимого. |
+| *IntegrationTests* | Содержит интеграционные тесты для страницы индекса с помощью настраиваемого класса `WebApplicationFactory`. |
+| *Helpers/Utilities* | <ul><li>*Utilities.cs* содержит метод `InitializeDbForTests`, используемый для заполнения базы данных тестовыми данными.</li><li>*HtmlHelpers.cs* предоставляет метод, возвращающий `IHtmlDocument` AngleSharp для использования методами теста.</li><li>*HttpClientExtensions.cs* предоставляет перегрузки для `SendAsync` для отправки запросов к ТС.</li></ul> |
 
 Используемая платформа тестирования — [xUnit](https://xunit.github.io/). Интеграционные тесты выполняются с помощью [Microsoft.AspNetCore.TestHost](/dotnet/api/microsoft.aspnetcore.testhost), который включает [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver). Поскольку пакет [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) используется для настройки узла тестирования и тестового сервера, для пакетов `TestHost` и `TestServer` не требуются прямые ссылки на пакеты в файле проекта тестового приложения или конфигурации разработчика в тестовом приложении.
 

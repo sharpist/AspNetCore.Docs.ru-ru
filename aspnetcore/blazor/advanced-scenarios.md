@@ -1,12 +1,24 @@
 ---
-title: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Сложные сценарии ASP.NET Core Blazor
+author: guardrex
+description: Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/18/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/advanced-scenarios
+ms.openlocfilehash: 3345f545e230ada78e6c66fc9eb049060d5794d6
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83851163"
 ---
 # <a name="aspnet-core-blazor-advanced-scenarios"></a>Сложные сценарии ASP.NET Core Blazor
 
@@ -150,73 +162,15 @@ builder.AddContent(1, "Second");
 Когда код выполняется в первый раз, если `someFlag` имеет значение `true`, построитель получит следующее:
 
 | Sequence | Type      | Данные   |
-| :---
-title: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----: | --- название: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------ | :----: | | 0        | Текстовый узел | Первый  | | 1        | Текстовый узел | Второй |
+| :------: | --------- | :----: |
+| 0        | Текстовый узел | First  |
+| 1        | Текстовый узел | Second |
 
 Представьте, что `someFlag` становится `false`, и разметка снова преобразуется для просмотра. На этот раз построитель получает:
 
 | Sequence | Type       | Данные   |
-| :---
-title: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----: | --- название: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------ | :----: | | 1        | Текстовый узел  | Второй |
+| :------: | ---------- | :----: |
+| 1        | Текстовый узел  | Second |
 
 Когда среда выполнения выполняет сравнение, она видит, что элемент в последовательности `0` был удален, поэтому создает следующий тривиальный *сценарий изменения*:
 
@@ -240,72 +194,15 @@ builder.AddContent(seq++, "Second");
 И теперь первыми выходными данными будет:
 
 | Sequence | Type      | Данные   |
-| :---
-title: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----: | --- название: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------ | :----: | | 0        | Текстовый узел | Первый  | | 1        | Текстовый узел | Второй |
+| :------: | --------- | :----: |
+| 0        | Текстовый узел | First  |
+| 1        | Текстовый узел | Second |
 
 Этот результат идентичен предыдущему случаю, поэтому проблемы не возникают. `someFlag` имеет значение `false` во второй отрисовке, а выходные данные следующие:
 
 | Sequence | Type      | Данные   |
-| :---
-title: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----: | --- название: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
------ | --- название: 'Сложные сценарии ASP.NET Core Blazor' автор: описание: 'Дополнительные сведения о сложных сценариях в Blazor, в том числе о том, как включить выполняемую вручную логику RenderTreeBuilder в приложение.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---- | | 0        | Текстовый узел | Второй |
+| :------: | --------- | ------ |
+| 0        | Текстовый узел | Second |
 
 На этот раз алгоритм сравнения видит, что произошло *два* изменения, и создает следующий скрипт редактирования:
 

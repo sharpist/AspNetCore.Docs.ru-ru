@@ -1,5 +1,9 @@
 <a name="dc"></a>
 
+### <a name="add-nuget-packages-and-ef-tools"></a>Добавление пакетов NuGet и средств EF
+
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
+
 ### <a name="add-a-database-context-class"></a>Добавление класса контекста для базы данных
 
 В проекте RazorPagesMovie создайте новую папку с именем *Data*. Добавьте следующий класс `RazorPagesMovieContext` в папку *Data*:
@@ -17,10 +21,6 @@
 ::: moniker range=">= aspnetcore-3.0"
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/appsettings_SQLite.json?highlight=10-12)]
-
-### <a name="add-nuget-packages-and-ef-tools"></a>Добавление пакетов NuGet и средств EF
-
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
 
 <a name="reg"></a>
 

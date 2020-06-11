@@ -1,11 +1,23 @@
 ---
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Использование gRPC в приложениях на основе браузера
+author: jamesnk
+description: Узнайте, как настроить службы gRPC на платформе ASP.NET Core для вызова из приложений браузера с помощью gRPC-Web.
+monikerRange: '>= aspnetcore-3.0'
+ms.author: jamesnk
+ms.date: 05/26/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: grpc/browser
+ms.openlocfilehash: 6f66a94b41e6e13550396e2e19fdf48f9dc63d46
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106602"
 ---
 # <a name="use-grpc-in-browser-apps"></a>Использование gRPC в приложениях на основе браузера
 

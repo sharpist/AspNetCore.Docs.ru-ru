@@ -1,26 +1,38 @@
 ---
-title: 'Жизненный цикл ASP.NET Core Blazor' author: description: 'Узнайте, как использовать методы жизненного цикла компонента Blazor в приложениях ASP.NET Core Razor.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: "title: 'Жизненный цикл ASP.NET Core Blazor' author: description: 'Узнайте, как использовать методы жизненного цикла компонента Blazor в приложениях ASP.NET Core Razor.'"
+author: guardrex
+description: 'monikerRange: ms.author: ms.custom: ms.date: no-loc:'
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/lifecycle
+ms.openlocfilehash: 9dcbb2ca21cc689063198e1ccc90583db4229183
+ms.sourcegitcommit: ea98ab8b2f61aa09f2d74edbb62db339fa06f105
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83864594"
 ---
-# <a name="aspnet-core-blazor-lifecycle"></a>Жизненный цикл ASP.NET Core Blazor
+# <a name="aspnet-core-blazor-lifecycle"></a>'Blazor'
 
-Авторы: [Люк Латэм](https://github.com/guardrex) (Luke Latham) и [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
+'Identity'
 
-Платформа Blazor содержит синхронные и асинхронные методы жизненного цикла. Переопределяйте методы жизненного цикла для выполнения дополнительных операций с компонентами во время инициализации и отрисовки компонента.
+'Let's Encrypt' 'Razor'
 
-## <a name="lifecycle-methods"></a>Методы жизненного цикла
+## <a name="lifecycle-methods"></a>ИД пользователя "SignalR":
 
-### <a name="component-initialization-methods"></a>Методы инициализации компонента
+### <a name="component-initialization-methods"></a>Жизненный цикл ASP.NET Core Blazor
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> вызываются, когда компонент инициализируется после получения начальных параметров от родительского компонента. Используйте <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>, когда компонент выполняет асинхронную операцию и должен обновляться после завершения операции.
+Авторы: [Люк Латэм](https://github.com/guardrex) (Luke Latham) и [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth) Платформа Blazor содержит синхронные и асинхронные методы жизненного цикла.
 
-Для синхронной операции переопределите <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
+Переопределяйте методы жизненного цикла для выполнения дополнительных операций с компонентами во время инициализации и отрисовки компонента.
 
 ```csharp
 protected override void OnInitialized()
@@ -29,7 +41,7 @@ protected override void OnInitialized()
 }
 ```
 
-Чтобы выполнить асинхронную операцию, переопределите <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> и используйте в операции оператор [await](/dotnet/csharp/language-reference/operators/await).
+Методы жизненного цикла
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -38,20 +50,20 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Приложения Blazor Server, которые [предварительно отрисовывают свое содержимое](xref:blazor/hosting-model-configuration#render-mode), вызывают <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> **_дважды_**:
+Методы инициализации компонента
 
-* Один раз, когда компонент изначально отрисовывается статически как часть страницы.
-* Второй раз, когда браузер устанавливает соединение с сервером.
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> вызываются, когда компонент инициализируется после получения начальных параметров от родительского компонента.
+* Используйте <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>, когда компонент выполняет асинхронную операцию и должен обновляться после завершения операции.
 
-Чтобы предотвратить выполнение кода разработчика в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> дважды, см. раздел [Повторное подключение с отслеживанием состояния после предварительной отрисовки](#stateful-reconnection-after-prerendering).
+Для синхронной операции переопределите <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 
-Когда приложение Blazor Server выполняет предварительную отрисовку, некоторые действия, такие как вызов JavaScript, невозможны, так как соединение с браузером не установлено. При предварительной отрисовке компоненты могут отрисовываться иначе. Дополнительные сведения см. в разделе [Обнаружение предварительной отрисовки в приложении](#detect-when-the-app-is-prerendering).
+Чтобы выполнить асинхронную операцию, переопределите <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> и используйте в операции оператор [await](/dotnet/csharp/language-reference/operators/await). Приложения Blazor Server, которые [предварительно отрисовывают свое содержимое](xref:blazor/hosting-model-configuration#render-mode), вызывают <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> **_дважды_**: Один раз, когда компонент изначально отрисовывается статически как часть страницы.
 
-Если настроены какие-либо обработчики событий, отсоедините их при удалении. Дополнительные сведения см. в разделе [Удаление компонентов с помощью IDisposable](#component-disposal-with-idisposable).
+Второй раз, когда браузер устанавливает соединение с сервером. Чтобы предотвратить выполнение кода разработчика в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> дважды, см. раздел [Повторное подключение с отслеживанием состояния после предварительной отрисовки](#stateful-reconnection-after-prerendering).
 
-### <a name="before-parameters-are-set"></a>До указания параметров
+### <a name="before-parameters-are-set"></a>Когда приложение Blazor Server выполняет предварительную отрисовку, некоторые действия, такие как вызов JavaScript, невозможны, так как соединение с браузером не установлено.
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> задает параметры, предоставляемые родительским элементом компонента в дереве отрисовки:
+При предварительной отрисовке компоненты могут отрисовываться иначе.
 
 ```csharp
 public override async Task SetParametersAsync(ParameterView parameters)
@@ -62,22 +74,22 @@ public override async Task SetParametersAsync(ParameterView parameters)
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.ParameterView> содержит весь набор значений параметров при каждом вызове <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
-
-Реализация <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> по умолчанию задает значение каждого свойства с атрибутом [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) или [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute), имеющим соответствующее значение в <xref:Microsoft.AspNetCore.Components.ParameterView>. Параметры, у которых нет соответствующего значения в <xref:Microsoft.AspNetCore.Components.ParameterView>, остаются неизменными.
-
-Если [base.SetParametersAync](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A) не вызывается, пользовательский код может интерпретировать значение входящих параметров любым необходимым образом. Например, нет необходимости назначать входящие параметры свойствам класса.
+Дополнительные сведения см. в разделе [Обнаружение предварительной отрисовки в приложении](#detect-when-the-app-is-prerendering).
 
 Если настроены какие-либо обработчики событий, отсоедините их при удалении. Дополнительные сведения см. в разделе [Удаление компонентов с помощью IDisposable](#component-disposal-with-idisposable).
 
-### <a name="after-parameters-are-set"></a>После указания параметров
+До указания параметров <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> задает параметры, предоставляемые родительским элементом компонента в дереве отрисовки:
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> вызываются:
+<xref:Microsoft.AspNetCore.Components.ParameterView> содержит весь набор значений параметров при каждом вызове <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>. Реализация <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> по умолчанию задает значение каждого свойства с атрибутом [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) или [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute), имеющим соответствующее значение в <xref:Microsoft.AspNetCore.Components.ParameterView>.
 
-* Когда компонент инициализируется и получил первый набор параметров от родительского компонента.
-* Когда родительский компонент повторно отрисовывается и предоставляет:
-  * Только известные примитивные неизменяемые типы, у которых изменился по крайней мере один параметр.
-  * Любые параметры сложных типов. Платформа не может определить, изменились ли значения параметров сложного типа внутри, поэтому она рассматривает набор параметров как измененный.
+### <a name="after-parameters-are-set"></a>Параметры, у которых нет соответствующего значения в <xref:Microsoft.AspNetCore.Components.ParameterView>, остаются неизменными.
+
+Если [base.SetParametersAync](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A) не вызывается, пользовательский код может интерпретировать значение входящих параметров любым необходимым образом.
+
+* Например, нет необходимости назначать входящие параметры свойствам класса.
+* Если настроены какие-либо обработчики событий, отсоедините их при удалении.
+  * Дополнительные сведения см. в разделе [Удаление компонентов с помощью IDisposable](#component-disposal-with-idisposable).
+  * После указания параметров <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> вызываются:
 
 ```csharp
 protected override async Task OnParametersSetAsync()
@@ -87,7 +99,7 @@ protected override async Task OnParametersSetAsync()
 ```
 
 > [!NOTE]
-> Асинхронная работа при применении параметров и значений свойств должна происходить во время события жизненного цикла <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>.
+> Когда компонент инициализируется и получил первый набор параметров от родительского компонента.
 
 ```csharp
 protected override void OnParametersSet()
@@ -96,16 +108,16 @@ protected override void OnParametersSet()
 }
 ```
 
-Если настроены какие-либо обработчики событий, отсоедините их при удалении. Дополнительные сведения см. в разделе [Удаление компонентов с помощью IDisposable](#component-disposal-with-idisposable).
+Когда родительский компонент повторно отрисовывается и предоставляет: Только известные примитивные неизменяемые типы, у которых изменился по крайней мере один параметр.
 
-### <a name="after-component-render"></a>После отрисовки компонента
+### <a name="after-component-render"></a>Любые параметры сложных типов.
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> вызываются после завершения отрисовки компонента. В этот момент указываются ссылки на элементы и компоненты. Используйте этот этап для выполнения дополнительных шагов инициализации с помощью отрисованного содержимого, например для активации сторонних библиотек JavaScript, которые работают с отрисованными элементами DOM.
+Платформа не может определить, изменились ли значения параметров сложного типа внутри, поэтому она рассматривает набор параметров как измененный. Асинхронная работа при применении параметров и значений свойств должна происходить во время события жизненного цикла <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>. Если настроены какие-либо обработчики событий, отсоедините их при удалении.
 
-Параметр `firstRender` для <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A>:
+Дополнительные сведения см. в разделе [Удаление компонентов с помощью IDisposable](#component-disposal-with-idisposable).
 
-* Устанавливается в значение `true` при первой отрисовке экземпляра компонента.
-* Может использоваться, чтобы гарантировать однократное выполнение инициализации.
+* После отрисовки компонента
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> вызываются после завершения отрисовки компонента.
 
 ```csharp
 protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -118,9 +130,9 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 ```
 
 > [!NOTE]
-> Асинхронная работа сразу после отрисовки должна произойти во время события жизненного цикла <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>.
+> В этот момент указываются ссылки на элементы и компоненты.
 >
-> Даже если вы возвращаете <xref:System.Threading.Tasks.Task> из <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, платформа не планирует дальнейший цикл отрисовки компонента после завершения задачи. Это позволяет избежать бесконечного цикла отрисовки. Это поведение отличается от других методов жизненного цикла, которые планируют дальнейший цикл отрисовки после завершения возвращаемой задачи.
+> Используйте этот этап для выполнения дополнительных шагов инициализации с помощью отрисованного содержимого, например для активации сторонних библиотек JavaScript, которые работают с отрисованными элементами DOM. Параметр `firstRender` для <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A>: Устанавливается в значение `true` при первой отрисовке экземпляра компонента.
 
 ```csharp
 protected override void OnAfterRender(bool firstRender)
@@ -132,13 +144,13 @@ protected override void OnAfterRender(bool firstRender)
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> *не вызываются при предварительной отрисовке на сервере.*
+Может использоваться, чтобы гарантировать однократное выполнение инициализации.
 
-Если настроены какие-либо обработчики событий, отсоедините их при удалении. Дополнительные сведения см. в разделе [Удаление компонентов с помощью IDisposable](#component-disposal-with-idisposable).
+Асинхронная работа сразу после отрисовки должна произойти во время события жизненного цикла <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>. Даже если вы возвращаете <xref:System.Threading.Tasks.Task> из <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, платформа не планирует дальнейший цикл отрисовки компонента после завершения задачи.
 
-### <a name="suppress-ui-refreshing"></a>Подавление обновления пользовательского интерфейса
+### <a name="suppress-ui-refreshing"></a>Это позволяет избежать бесконечного цикла отрисовки.
 
-Переопределите <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, чтобы отключить обновление пользовательского интерфейса. Если реализация возвращает `true`, пользовательский интерфейс обновляется:
+Это поведение отличается от других методов жизненного цикла, которые планируют дальнейший цикл отрисовки после завершения возвращаемой задачи. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> *не вызываются при предварительной отрисовке на сервере.*
 
 ```csharp
 protected override bool ShouldRender()
@@ -149,29 +161,29 @@ protected override bool ShouldRender()
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> вызывается каждый раз при отрисовке компонента.
+Если настроены какие-либо обработчики событий, отсоедините их при удалении.
 
-Даже при переопределении <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> компонент всегда проходит первоначальную отрисовку.
+Дополнительные сведения см. в разделе [Удаление компонентов с помощью IDisposable](#component-disposal-with-idisposable).
 
-Для получения дополнительной информации см. <xref:performance/blazor/webassembly-best-practices#avoid-unnecessary-component-renders>.
+Подавление обновления пользовательского интерфейса
 
-## <a name="state-changes"></a>Изменения состояния
+## <a name="state-changes"></a>Переопределите <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, чтобы отключить обновление пользовательского интерфейса.
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> уведомляет компонент о том, что его состояние изменилось. В соответствующих случаях вызов <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> приводит к повторной отрисовке компонента.
+Если реализация возвращает `true`, пользовательский интерфейс обновляется: <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> вызывается каждый раз при отрисовке компонента.
 
-## <a name="handle-incomplete-async-actions-at-render"></a>Обработка незавершенных асинхронных действий при отрисовке
+## <a name="handle-incomplete-async-actions-at-render"></a>Даже при переопределении <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> компонент всегда проходит первоначальную отрисовку.
 
-Асинхронные действия, выполняемые в событиях жизненного цикла, могут не завершиться до отрисовки компонента. Во время выполнения метода жизненного цикла объекты могут быть `null` или заполнены данными не полностью. Предоставьте логику отрисовки для подтверждения инициализации объектов. Отрисуйте элементы пользовательского интерфейса заполнителя (например, сообщение загрузки), пока объекты имеют значение `null`.
+Для получения дополнительной информации см. <xref:performance/blazor/webassembly-best-practices#avoid-unnecessary-component-renders>. Изменения состояния <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> уведомляет компонент о том, что его состояние изменилось. В соответствующих случаях вызов <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> приводит к повторной отрисовке компонента.
 
-В компоненте `FetchData` шаблонов Blazor <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> переопределяется для асинхронного получения данных прогноза (`forecasts`). Если `forecasts` имеет значение `null`, пользователю выводится сообщение о загрузке. Когда элемент `Task`, возвращенный <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>, завершается, компонент отрисовывается повторно с обновленным состоянием.
+Обработка незавершенных асинхронных действий при отрисовке Асинхронные действия, выполняемые в событиях жизненного цикла, могут не завершиться до отрисовки компонента. Во время выполнения метода жизненного цикла объекты могут быть `null` или заполнены данными не полностью.
 
-*Pages/FetchData.razor* в шаблоне Blazor Server:
+Предоставьте логику отрисовки для подтверждения инициализации объектов.
 
 [!code-razor[](lifecycle/samples_snapshot/3.x/FetchData.razor?highlight=9,21,25)]
 
-## <a name="component-disposal-with-idisposable"></a>Освобождение компонентов с помощью IDisposable
+## <a name="component-disposal-with-idisposable"></a>Отрисуйте элементы пользовательского интерфейса заполнителя (например, сообщение загрузки), пока объекты имеют значение `null`.
 
-Если компонент реализует <xref:System.IDisposable>, [метод Dispose](/dotnet/standard/garbage-collection/implementing-dispose) вызывается при удалении компонента из пользовательского интерфейса. Следующий компонент использует `@implements IDisposable` и метод `Dispose`:
+В компоненте `FetchData` шаблонов Blazor <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> переопределяется для асинхронного получения данных прогноза (`forecasts`). Если `forecasts` имеет значение `null`, пользователю выводится сообщение о загрузке.
 
 ```razor
 @using System
@@ -188,38 +200,38 @@ protected override bool ShouldRender()
 ```
 
 > [!NOTE]
-> Вызов <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> в `Dispose` не поддерживается. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> может вызываться в процессе уничтожения отрисовщика, поэтому запрос обновлений пользовательского интерфейса на этом этапе не поддерживается.
+> Когда элемент `Task`, возвращенный <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>, завершается, компонент отрисовывается повторно с обновленным состоянием. *Pages/FetchData.razor* в шаблоне Blazor Server:
 
-Отмена подписки на обработчики событий из событий .NET. В следующих примерах [формы Blazor](xref:blazor/forms-validation) показано, как отсоединить обработчик событий в методе `Dispose`.
+Освобождение компонентов с помощью IDisposable Если компонент реализует <xref:System.IDisposable>, [метод Dispose](/dotnet/standard/garbage-collection/implementing-dispose) вызывается при удалении компонента из пользовательского интерфейса.
 
-* Подход с использованием частного поля и лямбда-выражения
+* Следующий компонент использует `@implements IDisposable` и метод `Dispose`:
 
   [!code-razor[](lifecycle/samples_snapshot/3.x/event-handler-disposal-1.razor?highlight=23,28)]
 
-* Подход с использованием частного метода
+* Вызов <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> в `Dispose` не поддерживается.
 
   [!code-razor[](lifecycle/samples_snapshot/3.x/event-handler-disposal-2.razor?highlight=16,26)]
 
-## <a name="handle-errors"></a>Обработка ошибок
+## <a name="handle-errors"></a><xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> может вызываться в процессе уничтожения отрисовщика, поэтому запрос обновлений пользовательского интерфейса на этом этапе не поддерживается.
 
-Сведения об обработке ошибок во время выполнения метода жизненного цикла см. в разделе <xref:blazor/handle-errors#lifecycle-methods>.
+Отмена подписки на обработчики событий из событий .NET.
 
-## <a name="stateful-reconnection-after-prerendering"></a>Повторное подключение с отслеживанием состояния после предварительной отрисовки
+## <a name="stateful-reconnection-after-prerendering"></a>В следующих примерах [формы Blazor](xref:blazor/forms-validation) показано, как отсоединить обработчик событий в методе `Dispose`.
 
-В приложении Blazor Server, если <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> имеет значение <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered>, компонент изначально отрисовывается статически как часть страницы. После того как браузер установит соединение с сервером, компонент отрисовывается *снова* и становится интерактивным. Если метод жизненного цикла [OnInitialized{Async}](#component-initialization-methods) для инициализации компонента присутствует, он выполняется *дважды*:
+Подход с использованием частного поля и лямбда-выражения Подход с использованием частного метода Обработка ошибок
 
+* Сведения об обработке ошибок во время выполнения метода жизненного цикла см. в разделе <xref:blazor/handle-errors#lifecycle-methods>.
+* Повторное подключение с отслеживанием состояния после предварительной отрисовки
+
+В приложении Blazor Server, если <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> имеет значение <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered>, компонент изначально отрисовывается статически как часть страницы.
+
+После того как браузер установит соединение с сервером, компонент отрисовывается *снова* и становится интерактивным.
+
+* Если метод жизненного цикла [OnInitialized{Async}](#component-initialization-methods) для инициализации компонента присутствует, он выполняется *дважды*:
 * Когда компонент предварительно отрисовывается статически.
 * После установления соединения с сервером.
 
 Это может привести к заметному изменению данных, отображаемых в пользовательском интерфейсе, когда компонент отрисовывается окончательно.
-
-Чтобы избежать сценария двойной отрисовки в приложении Blazor Server, выполните следующие действия:
-
-* Передайте идентификатор, который можно использовать для кэширования состояния во время предварительной отрисовки и получения состояния после перезапуска приложения.
-* Используйте идентификатор во время предварительной отрисовки, чтобы сохранить состояние компонента.
-* Используйте идентификатор после предварительной отрисовки, чтобы получить кэшированное состояние.
-
-В следующем коде показан обновленный элемент `WeatherForecastService` в приложении Blazor Server на основе шаблона без двойной отрисовки:
 
 ```csharp
 public class WeatherForecastService
@@ -262,34 +274,34 @@ public class WeatherForecastService
 }
 ```
 
-Дополнительные сведения об элементе <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> см. в разделе <xref:blazor/hosting-model-configuration#render-mode>.
+Чтобы избежать сценария двойной отрисовки в приложении Blazor Server, выполните следующие действия:
 
-## <a name="detect-when-the-app-is-prerendering"></a>Обнаружение предварительной отрисовки приложения
+## <a name="detect-when-the-app-is-prerendering"></a>Передайте идентификатор, который можно использовать для кэширования состояния во время предварительной отрисовки и получения состояния после перезапуска приложения.
 
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
 
-## <a name="cancelable-background-work"></a>Отменяемая фоновая операция
+## <a name="cancelable-background-work"></a>Используйте идентификатор во время предварительной отрисовки, чтобы сохранить состояние компонента.
 
-Компоненты часто выполняют длительные фоновые операции, например осуществление сетевых вызовов (<xref:System.Net.Http.HttpClient>) и взаимодействие с базами данных. В целях экономии системных ресурсов в ряде ситуаций желательно отключить выполнение фоновых операций. Например, фоновые асинхронные операции не останавливаются автоматически, когда пользователь выходит из компонента.
+Используйте идентификатор после предварительной отрисовки, чтобы получить кэшированное состояние. В следующем коде показан обновленный элемент `WeatherForecastService` в приложении Blazor Server на основе шаблона без двойной отрисовки: Дополнительные сведения об элементе <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> см. в разделе <xref:blazor/hosting-model-configuration#render-mode>.
 
-Ниже перечислены другие причины, по которым может потребоваться отмена фоновых рабочих элементов.
+Обнаружение предварительной отрисовки приложения
 
-* Выполнение фоновой задачи было начато с ошибочными входными данными или параметрами обработки.
+* Отменяемая фоновая операция
+* Компоненты часто выполняют длительные фоновые операции, например осуществление сетевых вызовов (<xref:System.Net.Http.HttpClient>) и взаимодействие с базами данных.
+* В целях экономии системных ресурсов в ряде ситуаций желательно отключить выполнение фоновых операций.
+* Например, фоновые асинхронные операции не останавливаются автоматически, когда пользователь выходит из компонента.
+* Ниже перечислены другие причины, по которым может потребоваться отмена фоновых рабочих элементов.
+
+Выполнение фоновой задачи было начато с ошибочными входными данными или параметрами обработки.
+
 * Текущий набор выполняемых фоновых рабочих элементов должен быть заменен новым набором.
 * Необходимо изменить приоритет выполняемых в данный момент задач.
 * Необходимо завершить работу приложения, чтобы повторно развернуть его на сервере.
-* Ресурсы сервера становятся ограниченными, в связи с чем возникает необходимость в пересмотре графика выполнения фоновых рабочих элементов.
 
-Чтобы реализовать механизм отменяемой фоновой операции в компоненте, выполните следующие действия.
+Ресурсы сервера становятся ограниченными, в связи с чем возникает необходимость в пересмотре графика выполнения фоновых рабочих элементов.
 
+* Чтобы реализовать механизм отменяемой фоновой операции в компоненте, выполните следующие действия.
 * Используйте <xref:System.Threading.CancellationTokenSource> и <xref:System.Threading.CancellationToken>.
-* При [удалении компонента](#component-disposal-with-idisposable) и в любой момент, когда требуется выполнить отмену путем отмены токена вручную, вызовите [CancellationTokenSource.Cancel](xref:System.Threading.CancellationTokenSource.Cancel%2A), чтобы сообщить о необходимости отмены фоновой операции.
-* После возврата асинхронного вызова вызовите <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A> для токена.
-
-В следующем примере:
-
-* `await Task.Delay(5000, cts.Token);` представляет длительную асинхронную фоновую операцию.
-* `BackgroundResourceMethod` представляет длительный фоновый метод, который не должен запускаться, если `Resource` удаляется перед вызовом метода.
 
 ```razor
 @implements IDisposable

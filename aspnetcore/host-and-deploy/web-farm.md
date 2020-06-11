@@ -1,11 +1,24 @@
 ---
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Размещение ASP.NET Core в веб-ферме
+author: rick-anderson
+description: Сведения о размещении нескольких экземпляров приложения ASP.NET Core с общими ресурсами в среде веб-фермы.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 01/13/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: host-and-deploy/web-farm
+ms.openlocfilehash: 37a50fa2939eb31e66925fa907212d54577bd20b
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106576"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Размещение ASP.NET Core в веб-ферме
 
@@ -52,78 +65,12 @@
 Для следующих сценариев дополнительная конфигурация не требуется, но они зависят от технологий, которые требуют настройки для веб-ферм.
 
 | Сценарий | Зависит от &hellip; |
-| ---
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----- | --- название: автор: описание:  monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----------- | | Проверка подлинности | Защита данных (см. статью <xref:security/data-protection/configuration/overview>).<br><br>Дополнительные сведения см. в разделах <xref:security/authentication/cookie> и <xref:security/cookie-sharing>. | | Identity | Проверка подлинности и конфигурация базы данных.<br><br>Для получения дополнительной информации см. <xref:security/authentication/identity>. | | Сеанс | Защита данных (зашифрованные файлы cookie) (см. раздел <xref:security/data-protection/configuration/overview>) и кэширование (см. раздел <xref:performance/caching/distributed>).<br><br>Дополнительные сведения см. в статье [Управление сеансом и состоянием: ASP.NET Core](xref:fundamentals/app-state#session-state). | | TempData | Защита данных (зашифрованные файлы cookie) (см. в статье <xref:security/data-protection/configuration/overview>) или в разделе "Сеанс" статьи [Управление сеансом и состоянием: ASP.NET Core](xref:fundamentals/app-state#session-state)).<br><br>Дополнительные сведения см. в статье [Управление сеансом и состоянием: ASP.NET Core](xref:fundamentals/app-state#tempdata). | | Защита от подделки | Защита данных (см. статью <xref:security/data-protection/configuration/overview>).<br><br>Для получения дополнительной информации см. <xref:security/anti-request-forgery>. |
+| -------- | ------------------- |
+| Проверка подлинности | Защита данных (см. раздел <xref:security/data-protection/configuration/overview>).<br><br>Дополнительные сведения см. в разделах <xref:security/authentication/cookie> и <xref:security/cookie-sharing>. |
+| Identity | Проверка подлинности и конфигурация базы данных.<br><br>Для получения дополнительной информации см. <xref:security/authentication/identity>. |
+| Сеанс | Защита данных (зашифрованные файлы cookie) (см. раздел <xref:security/data-protection/configuration/overview>) и кэширование (см. раздел <xref:performance/caching/distributed>).<br><br>Дополнительные сведения см. в статье [Управление сеансом и состоянием: ASP.NET Core](xref:fundamentals/app-state#session-state). |
+| TempData | Защита данных (зашифрованные файлы cookie) (см. в <xref:security/data-protection/configuration/overview>) или в разделе "Сеанс" статьи [Управление сеансом и состоянием: ASP.NET Core](xref:fundamentals/app-state#session-state)).<br><br>Дополнительные сведения см. в статье [Управление сеансом и состоянием: ASP.NET Core](xref:fundamentals/app-state#tempdata). |
+| Защита от подделки | Защита данных (см. раздел <xref:security/data-protection/configuration/overview>).<br><br>Для получения дополнительной информации см. <xref:security/anti-request-forgery>. |
 
 ## <a name="troubleshoot"></a>Устранение неполадок
 

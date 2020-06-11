@@ -1,13 +1,24 @@
 ---
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Проверка подлинности и авторизация в gRPC для ASP.NET Core
+author: jamesnk
+description: Узнайте, как использовать проверку подлинности и авторизацию в gRPC для ASP.NET Core.
+monikerRange: '>= aspnetcore-3.0'
+ms.author: jamesnk
+ms.date: 05/26/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: grpc/authn-and-authz
+ms.openlocfilehash: f9d2e73f57d69e1eb5039019dc9e64193cf67820
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84105796"
 ---
-
 # <a name="authentication-and-authorization-in-grpc-for-aspnet-core"></a>Проверка подлинности и авторизация в gRPC для ASP.NET Core
 
 Автор: [Джеймс Ньютон-Кинг (James Newton-King)](https://twitter.com/jamesnk)

@@ -1,11 +1,24 @@
 ---
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Высокопроизводительное ведение журналов с помощью LoggerMessage в ASP.NET Core
+author: rick-anderson
+description: Сведения о том, как использовать LoggerMessage для создания кэшируемых делегатов, которым нужно меньше выделений объектов в сценариях высокопроизводительного ведения журналов.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 08/26/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: fundamentals/logging/loggermessage
+ms.openlocfilehash: f2ae734a3f40f8f31842b937ebf8bf4a7f5b0f4b
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84105016"
 ---
 # <a name="high-performance-logging-with-loggermessage-in-aspnet-core"></a>Высокопроизводительное ведение журналов с помощью LoggerMessage в ASP.NET Core
 

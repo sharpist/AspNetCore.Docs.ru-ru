@@ -12,16 +12,18 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/aspnetcore
-ms.openlocfilehash: c14ae1fb3c2e046ae577c63824eebb4411a6e804
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: fa38ec9f9cf882b1a62f74879b7d49706ee150ce
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776224"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452386"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>Службы gRPC в ASP.NET Core
 
 В этом документе показано, как приступить к работе со службами gRPC с помощью ASP.NET Core.
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="prerequisites"></a>Предварительные требования
 
@@ -130,7 +132,6 @@ API gRPC предоставляет доступ к некоторым данн�
 
 [!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService2.cs?highlight=6-7&name=snippet)]
 
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

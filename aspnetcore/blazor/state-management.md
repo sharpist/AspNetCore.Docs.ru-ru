@@ -1,12 +1,24 @@
 ---
-title: 'Управление состоянием ASP.NET Core Blazor' author: description: 'Узнайте, как сохранить состояние в приложениях Blazor Server.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Управление состоянием ASP.NET Core Blazor
+author: guardrex
+description: Узнайте, как сохранить состояние в приложениях Blazor Server.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/state-management
+ms.openlocfilehash: cfc2867baa03cbc0bedc9ad4a90244ec007094d6
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84105666"
 ---
 # <a name="aspnet-core-blazor-state-management"></a>Управление состоянием ASP.NET Core Blazor
 

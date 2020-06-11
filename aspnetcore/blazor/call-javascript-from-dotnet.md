@@ -1,12 +1,24 @@
 ---
-title: 'Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor' author: description: 'Узнайте, как вызывать функции JavaScript из методов .NET в приложениях Blazor.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor
+author: guardrex
+description: Узнайте, как вызывать функции JavaScript из методов .NET в приложениях Blazor.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/call-javascript-from-dotnet
+ms.openlocfilehash: 26202c45e49e64117d35fe6f1e9a65c4acc170fb
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84105094"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor
 

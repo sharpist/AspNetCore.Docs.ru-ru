@@ -1,11 +1,23 @@
 ---
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Сравнение служб gRPC с API-интерфейсами HTTP
+author: jamesnk
+description: Узнайте об отличиях gRPC от API HTTP и рекомендуемых сценариях использования.
+monikerRange: '>= aspnetcore-3.0'
+ms.author: jamesnk
+ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: grpc/comparison
+ms.openlocfilehash: f622a1518781c255d36762dc651f975625dabf7c
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106134"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Сравнение служб gRPC с API-интерфейсами HTTP
 
@@ -18,333 +30,15 @@
 В следующей таблице представлено общее сравнение функций gRPC и API HTTP с JSON.
 
 | Функция          | gRPC                                               | API HTTP с JSON           |
-| ---
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--------- | --- название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
-------------------------- | --- название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
---------------- | | Контракт         | Обязательный (*PROTO*)                                | Необязательный (OpenAPI)            | | Протокол         | HTTP/2                                             | HTTP                          | | Полезные данные          | [Protobuf (малый, двоичный)](#performance)           | JSON (большой, понятный для человека)  | | Нормативность | [Строгая спецификация](#strict-specification)      | Слабая. Допустимы все HTTP-протоколы.     | | Потоковая передача        | [Клиент, сервер, двунаправленная](#streaming)       | Клиент, Сервер                | | Поддержка браузера  | [Нет (требуется grpc-web)](#limited-browser-support) | Да                           | | Безопасность         | Транспортный уровень (TLS)                                    | Транспортный уровень (TLS)               | | Формирование клиентского кода | [Да](#code-generation)                      | OpenAPI + сторонние инструменты |
+| ---------------- | -------------------------------------------------- | ----------------------------- |
+| Контракт         | Обязательно (*PROTO*)                                | Необязательно (OpenAPI)            |
+| Протокол         | HTTP/2                                             | HTTP                          |
+| Payload          | [Protobuf (малый, двоичный)](#performance)           | JSON (большой, удобочитаемый)  |
+| Обязательность | [Строгая спецификация](#strict-specification)      | Нестрого. Допустимы все HTTP-протоколы.     |
+| Потоковые операторы        | [Клиент, сервер, оба направления](#streaming)       | Клиент, сервер                |
+| Поддержка браузеров  | [Нет (требуется grpc-web)](#limited-browser-support) | Да                           |
+| Безопасность         | Транспорт (TLS)                                    | Транспорт (TLS)               |
+| Создание кода клиента | [Да](#code-generation)                      | OpenAPI + сторонние средства |
 
 ## <a name="grpc-strengths"></a>Сильные стороны gRPC
 

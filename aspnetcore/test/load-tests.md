@@ -1,11 +1,23 @@
 ---
-название: автор: описание: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Нагрузочное тестирование в ASP.NET Core
+author: Jeremy-Meng
+description: Узнайте о нескольких важных средствах и подходах к нагрузочному тестированию приложений ASP.NET Core.
+ms.author: riande
+ms.custom: mvc
+ms.date: 4/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: test/loadtests
+ms.openlocfilehash: f0c930a7689c7288a58cfc3ca630d3cd324bf2cd
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106810"
 ---
 # <a name="aspnet-core-loadstress-testing"></a>Нагрузочное тестирование в ASP.NET Core
 
