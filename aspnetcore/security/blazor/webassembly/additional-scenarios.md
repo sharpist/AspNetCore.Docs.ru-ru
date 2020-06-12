@@ -5,7 +5,7 @@ description: Узнайте, как настроить Blazor сборку дл�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/01/2020
+ms.date: 06/10/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/additional-scenarios
-ms.openlocfilehash: de752eb180767bbb269107ebc478a4422448f968
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 35038cb7b96afd7c009f1210251e38273aa4aad8
+ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84272038"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84679661"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor дополнительных сценариев безопасности для сборки
 
@@ -394,7 +394,7 @@ if (tokenResult.TryGetToken(out var token))
 
 | Метод расширения | Получение свойства запроса |
 | --- | --- |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> | [информации](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> | [credentials](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
 | <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCache%2A> | [Мбайта](https://developer.mozilla.org/docs/Web/API/Request/cache) |
 | <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> | [mode](https://developer.mozilla.org/docs/Web/API/Request/mode) |
 | <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestIntegrity%2A> | [контроля](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
@@ -522,50 +522,140 @@ app.UseCors(policy =>
 
 ## <a name="save-app-state-before-an-authentication-operation"></a>Сохранить состояние приложения перед операцией проверки подлинности
 
-Во время операции аутентификации существуют случаи, когда необходимо сохранить состояние приложения, прежде чем браузер перенаправится на IP-адрес. Это может быть так, если вы используете нечто вроде контейнера состояния и хотите восстановить состояние после завершения проверки подлинности. Можно использовать пользовательский объект состояния проверки подлинности, чтобы сохранить состояние конкретного приложения или ссылку на него, а затем восстановить это состояние после успешного завершения операции проверки подлинности.
+Во время операции аутентификации существуют случаи, когда необходимо сохранить состояние приложения, прежде чем браузер перенаправится на IP-адрес. Это может быть так, когда вы используете контейнер состояния и хотите восстановить состояние после завершения проверки подлинности. Можно использовать пользовательский объект состояния проверки подлинности для сохранения состояния приложения или ссылки на него и восстановления этого состояния после успешного завершения операции проверки подлинности. В следующем примере демонстрируется подход.
 
-`Authentication`Component (*pages/Authentication. Razor*):
+Класс контейнера состояния создается в приложении со свойствами для хранения значений состояния приложения. В следующем примере контейнер используется для сохранения значения счетчика компонента шаблона по умолчанию `Counter` (*pages/Counter. Razor*). Методы сериализации и десериализации контейнера основаны на <xref:System.Text.Json> .
+
+```csharp
+using System.Text.Json;
+
+public class StateContainer
+{
+    public int CounterValue { get; set; }
+
+    public string GetStateForLocalStorage()
+    {
+        return JsonSerializer.Serialize(this);
+    }
+
+    public void SetStateFromLocalStorage(string locallyStoredState)
+    {
+        var deserializedState = 
+            JsonSerializer.Deserialize<StateContainer>(locallyStoredState);
+
+        CounterValue = deserializedState.CounterValue;
+    }
+}
+```
+
+`Counter`Компонент использует контейнер состояния для сохранения `currentCount` значения за пределами компонента:
+
+```razor
+@page "/counter"
+@inject StateContainer State
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    protected override void OnInitialized()
+    {
+        if (State.CounterValue > 0)
+        {
+            currentCount = State.CounterValue;
+        }
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+        State.CounterValue = currentCount;
+    }
+}
+```
+
+Создайте `ApplicationAuthenticationState` из <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationState> . Укажите `Id` свойство, которое служит в качестве идентификатора для локально сохраненного состояния.
+
+*ApplicationAuthenticationState.CS*:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+public class ApplicationAuthenticationState : RemoteAuthenticationState
+{
+    public string Id { get; set; }
+}
+```
+
+`Authentication`Компонент (*pages/Authentication. Razor*) сохраняет и восстанавливает состояние приложения с помощью локального хранилища сеансов с `StateContainer` методами сериализации и десериализации, `GetStateForLocalStorage` а также `SetStateFromLocalStorage` :
 
 ```razor
 @page "/authentication/{action}"
-@inject JSRuntime JS
+@inject IJSRuntime JS
 @inject StateContainer State
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorViewCore Action="@Action" 
-    AuthenticationState="AuthenticationState" OnLogInSucceeded="RestoreState" 
-    OnLogOutSucceeded="RestoreState" />
+<RemoteAuthenticatorViewCore Action="@Action"
+                             TAuthenticationState="ApplicationAuthenticationState"
+                             AuthenticationState="AuthenticationState"
+                             OnLogInSucceeded="RestoreState"
+                             OnLogOutSucceeded="RestoreState" />
 
 @code {
     [Parameter]
     public string Action { get; set; }
 
-    public class ApplicationAuthenticationState : RemoteAuthenticationState
-    {
-        public string Id { get; set; }
-    }
+    public ApplicationAuthenticationState AuthenticationState { get; set; } =
+        new ApplicationAuthenticationState();
 
     protected async override Task OnInitializedAsync()
     {
-        if (RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogIn, 
+        if (RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogIn,
+            Action) ||
+            RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogOut,
             Action))
         {
             AuthenticationState.Id = Guid.NewGuid().ToString();
-            await JS.InvokeVoidAsync("sessionStorage.setKey", 
-                AuthenticationState.Id, State.Store());
+
+            await JS.InvokeVoidAsync("sessionStorage.setItem",
+                AuthenticationState.Id, State.GetStateForLocalStorage());
         }
     }
 
-    public async Task RestoreState(ApplicationAuthenticationState state)
+    private async Task RestoreState(ApplicationAuthenticationState state)
     {
-        var stored = await JS.InvokeAsync<string>("sessionStorage.getKey", 
-            state.Id);
-        State.FromStore(stored);
-    }
+        if (state.Id != null)
+        {
+            var locallyStoredState = await JS.InvokeAsync<string>(
+                "sessionStorage.getItem", state.Id);
 
-    public ApplicationAuthenticationState AuthenticationState { get; set; } = 
-        new ApplicationAuthenticationState();
+            if (locallyStoredState != null)
+            {
+                State.SetStateFromLocalStorage(locallyStoredState);
+                await JS.InvokeVoidAsync("sessionStorage.removeItem", state.Id);
+            }
+        }
+    }
 }
+```
+
+В этом примере для проверки подлинности используется Azure Active Directory (AAD). В `Program.Main` (*Program.CS*):
+
+* Параметр `ApplicationAuthenticationState` настроен в качестве типа Microsoft сквозной Library (MSAL) `RemoteAuthenticationState` .
+* Контейнер состояния регистрируется в контейнере службы.
+
+```csharp
+builder.Services.AddMsalAuthentication<ApplicationAuthenticationState>(options =>
+{
+    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
+});
+
+builder.Services.AddSingleton<StateContainer>();
 ```
 
 ## <a name="customize-app-routes"></a>Настройка маршрутов приложений
@@ -823,7 +913,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-В методе серверного приложения `Startup.Configure` замените [конечные точки. Мапфаллбакктофиле ("index. HTML")](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) с [конечными точками. Мапфаллбакктопаже ("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
+В методе серверного приложения `Startup.Configure` замените [конечные точки. Мапфаллбакктофиле ("index.html")](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) с [конечными точками. Мапфаллбакктопаже ("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -909,7 +999,7 @@ builder.Services.Configure<JwtBearerOptions>(
     });
 ```
 
-Кроме того, параметр можно задать в файле параметров приложения (*appSettings. JSON*):
+Кроме того, параметр можно задать в файле параметров приложения (*appsettings.json*):
 
 ```json
 {
@@ -920,6 +1010,6 @@ builder.Services.Configure<JwtBearerOptions>(
 }
 ```
 
-Если переход на сегмент в центре сертификации не подходит для поставщика OIDC приложения, например с поставщиками, не являющимися владельцами AAD, задайте <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> свойство напрямую. Либо задайте свойство в <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> или в файле параметров приложения (*appSettings. JSON*) с помощью `Authority` ключа.
+Если переход на сегмент в центре сертификации не подходит для поставщика OIDC приложения, например с поставщиками, не являющимися владельцами AAD, задайте <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> свойство напрямую. Либо задайте свойство в <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> или в файле параметров приложения (*appsettings.jsв*) с помощью `Authority` ключа.
 
 Список утверждений в токене идентификатора изменяется для конечных точек версии 2.0. Дополнительные сведения см. [в статье Почему обновление платформы Microsoft Identity Platform (v 2.0)?](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison).

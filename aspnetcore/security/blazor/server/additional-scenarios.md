@@ -5,7 +5,7 @@ description: Узнайте, как настроить Blazor сервер дл�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 06/04/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/server/additional-scenarios
-ms.openlocfilehash: f172df7f2333fd79ba175ec8a3a6925ec07f1113
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 159d418a78caa3954294ad0a1067654d895147f7
+ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "83851529"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84679674"
 ---
 # <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>BlazorДополнительные сценарии безопасности ASP.NET Core Server
 
@@ -28,7 +28,7 @@ ms.locfileid: "83851529"
 
 Токены, доступные за пределами Razor компонентов Blazor серверного приложения, можно передавать в компоненты с помощью подхода, описанного в этом разделе. Пример кода, включая полный `Startup.ConfigureServices` пример, см. в разделе [Передача токенов в Blazor приложение на стороне сервера](https://github.com/javiercn/blazor-server-aad-sample).
 
-Проверяйте подлинность Blazor серверного приложения так же, как обычные Razor страницы или приложения MVC. Подготавливает и сохраняйте маркеры в файле cookie проверки подлинности. Пример.
+Проверяйте подлинность Blazor серверного приложения так же, как обычные Razor страницы или приложения MVC. Подготавливает и сохраняйте маркеры в файле cookie проверки подлинности. Например:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -148,6 +148,18 @@ public class WeatherForecastService
 }
 ```
 
+## <a name="set-the-authentication-scheme"></a>Настройка схемы проверки подлинности
+
+Для приложения, использующего более одного по промежуточного слоя проверки подлинности и, таким образом, имеет несколько схем проверки подлинности, схема, Blazor используемая, может быть явно задана в конфигурации конечной точки `Startup.Configure` . В следующем примере задается схема Azure Active Directory:
+
+```csharp
+endpoints.MapBlazorHub().RequireAuthorization(
+    new AuthorizeAttribute 
+    {
+        AuthenticationSchemes = AzureADDefaults.AuthenticationScheme
+    });
+```
+
 ## <a name="use-open-id-connect-oidc-v20-endpoints"></a>Использование конечных точек Open ID Connect (OIDC) версии 2.0
 
 Библиотека проверки подлинности и Blazor Шаблоны используют конечные точки Open ID Connect (OIDC) v 1.0. Чтобы использовать конечную точку версии 2.0, настройте <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> параметр в <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> :
@@ -160,7 +172,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme,
     }
 ```
 
-Кроме того, параметр можно задать в файле параметров приложения (*appSettings. JSON*):
+Кроме того, параметр можно задать в файле параметров приложения (*appsettings.json*):
 
 ```json
 {
