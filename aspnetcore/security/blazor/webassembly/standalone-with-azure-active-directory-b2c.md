@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
-ms.openlocfilehash: 911eeffbe632d8f285d54ae78b62f17851205e83
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: ec35614e3bc4b5b6422b254dfe579c1cb7ca8310
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84214952"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724397"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью Azure Active Directory B2C
 
@@ -41,7 +41,7 @@ ms.locfileid: "84214952"
 1. Укажите **имя** приложения (например, ** Blazor автономный AAD B2C**).
 1. Для **поддерживаемых типов учетных записей**выберите параметр несколько клиентов: **учетные записи в любом каталоге организации или в любом поставщике удостоверений. Для проверки подлинности пользователей с помощью Azure AD B2C.**
 1. Оставьте в раскрывающемся списке **URI перенаправления** значение **веб-сайт** и укажите следующий URI перенаправления: `https://localhost:{PORT}/authentication/login-callback` . Порт по умолчанию для приложения, работающего на Kestrel, — 5001. Если приложение выполняется на другом порту Kestrel, используйте порт приложения. Для IIS Express созданный случайным образом порт для приложения можно найти в свойствах приложения на панели **отладки** . Так как на этом этапе приложение не существует и порт IIS Express неизвестен, вернитесь к этому шагу после создания приложения и обновите URI перенаправления. В этом разделе появится замечание, напоминающее IIS Express пользователям обновить URI перенаправления.
-1. Убедитесь, что **разрешения**  >  **на предоставление разрешений администратора OpenID Connect и offline_access** включены.
+1. Убедитесь, что **разрешения**  >  **предоставлены администратору для разрешений OpenID Connect и offline_access** включены.
 1. Выберите **Зарегистрировать**.
 
 Запишите идентификатор приложения (идентификатор клиента) (например, `11111111-1111-1111-1111-111111111111` ).
@@ -111,7 +111,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A>Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения. Значения, необходимые для настройки приложения, можно получить из конфигурации AAD при регистрации приложения.
 
-Конфигурация предоставляется файлом *wwwroot/appSettings. JSON* :
+Конфигурация предоставляется файлом *wwwroot/appsettings.jsв* файле:
 
 ```json
 {

@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: 4b3a4b2323b7f221d9cd1aab1c56d1d9828eb916
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: cb2b3ddc3eba2d6e1ea91c1e7f6715ffa9ad1b08
+ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106459"
+ms.lasthandoff: 06/13/2020
+ms.locfileid: "84756019"
 ---
 # <a name="aspnet-core-signalr-javascript-client"></a>ASP.NET Core SignalR клиент JavaScript
 
@@ -43,7 +43,7 @@ npm init -y
 npm install @microsoft/signalr
 ```
 
-NPM устанавливает содержимое пакета в папку *node_modules \\ @microsoft\signalr\dist\browser * . Создайте новую папку с именем *SignalR* в папке *wwwroot \\ lib* . Скопируйте файл *SignalR. js* в папку *ввврут\либ\сигналр*
+NPM устанавливает содержимое пакета в папку *node_modules \\ @microsoft\signalr\dist\browser * . Создайте новую папку с именем *SignalR* в папке *wwwroot \\ lib* . Скопируйте файл *signalr.js* в папку *ввврут\либ\сигналр*
 
 ::: moniker-end
 
@@ -54,11 +54,11 @@ npm init -y
 npm install @aspnet/signalr
 ```
 
-NPM устанавливает содержимое пакета в папку *node_modules \\ @aspnet\signalr\dist\browser * . Создайте новую папку с именем *SignalR* в папке *wwwroot \\ lib* . Скопируйте файл *SignalR. js* в папку *ввврут\либ\сигналр*
+NPM устанавливает содержимое пакета в папку *node_modules \\ @aspnet\signalr\dist\browser * . Создайте новую папку с именем *SignalR* в папке *wwwroot \\ lib* . Скопируйте файл *signalr.js* в папку *ввврут\либ\сигналр*
 
 ::: moniker-end
 
-Сослаться на SignalR клиент JavaScript в `<script>` элементе. Пример.
+Сослаться на SignalR клиент JavaScript в `<script>` элементе. Пример:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -66,7 +66,7 @@ NPM устанавливает содержимое пакета в папку *
 
 ### <a name="use-a-content-delivery-network-cdn"></a>Использование сети доставки содержимого (CDN)
 
-Чтобы использовать клиентскую библиотеку без необходимых компонентов NPM, сослаться на копию клиентской библиотеки, размещенную в CDN. Пример.
+Чтобы использовать клиентскую библиотеку без необходимых компонентов NPM, сослаться на копию клиентской библиотеки, размещенную в CDN. Пример:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>
@@ -172,7 +172,7 @@ SignalRОпределяет, какой клиентский метод след
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withAutomaticReconnect()
     .build();
 ```
@@ -246,7 +246,7 @@ connection.onclose(error => {
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withAutomaticReconnect([0, 0, 10000])
     .build();
 
@@ -269,7 +269,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withAutomaticReconnect({
         nextRetryDelayInMilliseconds: retryContext => {
             if (retryContext.elapsedMilliseconds < 60000) {

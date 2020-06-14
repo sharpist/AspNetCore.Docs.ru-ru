@@ -1,7 +1,7 @@
 ---
 title: Использовать проверку подлинности файлов cookie без ASP.NET CoreIdentity
 author: rick-anderson
-description: Узнайте, как использовать проверку подлинности Identityфайлов cookie без ASP.NET Core.
+description: Узнайте, как использовать проверку подлинности файлов cookie без ASP.NET Core Identity .
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 02/11/2020
@@ -12,46 +12,46 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/cookie
-ms.openlocfilehash: c179b3657ad4cbda960c2afe685a63f3266a7402
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7d2f338f8ece6bd3cc99d5f2ab8153b5c465c7a4
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773848"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724241"
 ---
-# <a name="use-cookie-authentication-without-aspnet-core-identity"></a>Использовать проверку подлинности файлов cookie без удостоверения ASP.NET Core
+# <a name="use-cookie-authentication-without-aspnet-core-identity"></a>Использовать проверку подлинности файлов cookie без ASP.NET CoreIdentity
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core удостоверение — это полнофункциональный поставщик проверки подлинности для создания и обслуживания имен входа. Однако можно использовать поставщик проверки подлинности на основе файлов cookie без ASP.NET Core удостоверения. Для получения дополнительной информации см. <xref:security/authentication/identity>.
+ASP.NET Core — полноценный полнофункциональный Identity поставщик проверки подлинности для создания и обслуживания имен входа. Однако можно использовать поставщик проверки подлинности на основе файлов cookie без ASP.NET Core Identity . Для получения дополнительной информации см. <xref:security/authentication/identity>.
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
-В демонстрационных целях в примере приложения учетная запись пользователя для гипотетического пользователя, Мария Rodriguez, жестко закодирована в приложении. Используйте `maria.rodriguez@contoso.com` адрес **электронной почты** и любой пароль для входа пользователя. Пользователь прошел проверку подлинности в `AuthenticateUser` методе в файле *pages/Account/Login. cshtml. CS* . В реальном примере пользователь будет проходить проверку подлинности в базе данных.
+В демонстрационных целях в примере приложения учетная запись пользователя для гипотетического пользователя, Мария Rodriguez, жестко закодирована в приложении. Используйте адрес **электронной почты** `maria.rodriguez@contoso.com` и любой пароль для входа пользователя. Пользователь прошел проверку подлинности в `AuthenticateUser` методе в файле *pages/Account/Login. cshtml. CS* . В реальном примере пользователь будет проходить проверку подлинности в базе данных.
 
-## <a name="configuration"></a>Параметр Configuration
+## <a name="configuration"></a>Конфигурация
 
 Если приложение не использует [метапакет Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app), создайте ссылку на пакет в файле проекта для пакета [Microsoft. AspNetCore. Authentication. cookies](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Cookies/) .
 
-В `Startup.ConfigureServices` методе создайте службы промежуточного слоя для проверки подлинности с помощью методов <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> и: <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>
+В `Startup.ConfigureServices` методе создайте службы промежуточного слоя для проверки подлинности с помощью <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> методов и:
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Startup.cs?name=snippet1)]
 
-<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>переданный `AddAuthentication` параметр задает схему проверки подлинности по умолчанию для приложения. `AuthenticationScheme`полезен при наличии нескольких экземпляров проверки подлинности файлов cookie и необходимости [авторизации с определенной схемой](xref:security/authorization/limitingidentitybyscheme). `AuthenticationScheme` Присвоение параметру значения [кукиеаусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) предоставляет значение "cookies" для схемы. Можно указать любое строковое значение, которое различает схему.
+<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>переданный `AddAuthentication` параметр задает схему проверки подлинности по умолчанию для приложения. `AuthenticationScheme`полезен при наличии нескольких экземпляров проверки подлинности файлов cookie и необходимости [авторизации с определенной схемой](xref:security/authorization/limitingidentitybyscheme). Присвоение параметру значения `AuthenticationScheme` [Кукиеаусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) предоставляет значение "cookies" для схемы. Можно указать любое строковое значение, которое различает схему.
 
-Схема проверки подлинности приложения отличается от схемы проверки подлинности файлов cookie приложения. Если схема проверки подлинности файлов cookie <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>не указана `CookieAuthenticationDefaults.AuthenticationScheme` в, она использует ("cookies").
+Схема проверки подлинности приложения отличается от схемы проверки подлинности файлов cookie приложения. Если схема проверки подлинности файлов cookie не указана в <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> , она использует `CookieAuthenticationDefaults.AuthenticationScheme` ("cookies").
 
-<xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> Свойство cookie проверки подлинности по умолчанию имеет значение `true` . Файлы cookie проверки подлинности разрешены, когда посетитель сайта не был передан в сбор данных. Для получения дополнительной информации см. <xref:security/gdpr#essential-cookies>.
+Свойство Cookie проверки подлинности по <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> `true` умолчанию имеет значение. Файлы cookie проверки подлинности разрешены, когда посетитель сайта не был передан в сбор данных. Для получения дополнительной информации см. <xref:security/gdpr#essential-cookies>.
 
-В `Startup.Configure`вызовите `UseAuthentication` метод `UseAuthorization` и, чтобы `HttpContext.User` задать свойство и запустить по промежуточного слоя авторизации для запросов. Вызовите `UseAuthentication` методы `UseAuthorization` и перед вызовом `UseEndpoints`:
+В `Startup.Configure` вызовите метод `UseAuthentication` и, `UseAuthorization` чтобы задать `HttpContext.User` свойство и запустить по промежуточного слоя авторизации для запросов. Вызовите `UseAuthentication` `UseAuthorization` методы и перед вызовом `UseEndpoints` :
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Startup.cs?name=snippet2)]
 
-<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> Класс используется для настройки параметров поставщика проверки подлинности.
+<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>Класс используется для настройки параметров поставщика проверки подлинности.
 
-Задайте `CookieAuthenticationOptions` в конфигурации службы для проверки подлинности `Startup.ConfigureServices` в методе:
+Задайте `CookieAuthenticationOptions` в конфигурации службы для проверки подлинности в `Startup.ConfigureServices` методе:
 
 ```csharp
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -63,7 +63,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 
 ## <a name="cookie-policy-middleware"></a>По промежуточного слоя политики файлов cookie
 
-По [промежуточного слоя политики файлов cookie](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) включает возможности политики файлов cookie. Добавление по промежуточного слоя в конвейер обработки приложений зависит от&mdash;порядка, оно влияет только на нисходящие компоненты, зарегистрированные в конвейере.
+По [промежуточного слоя политики файлов cookie](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) включает возможности политики файлов cookie. Добавление по промежуточного слоя в конвейер обработки приложений зависит от порядка, &mdash; оно влияет только на нисходящие компоненты, зарегистрированные в конвейере.
 
 ```csharp
 app.UseCookiePolicy(cookiePolicyOptions);
@@ -71,7 +71,7 @@ app.UseCookiePolicy(cookiePolicyOptions);
 
 Используется <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> по промежуточного слоя политики файлов cookie для управления глобальными характеристиками обработки файлов cookie и подключения к обработчикам обработки файлов cookie при добавлении или удалении файлов cookie.
 
-Значение по <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy> умолчанию `SameSiteMode.Lax` — разрешение проверки подлинности OAuth2. Чтобы строго применить политику того же сайта `SameSiteMode.Strict`, установите. `MinimumSameSitePolicy` Хотя этот параметр нарушает OAuth2 и другие схемы проверки подлинности в разных источниках, он повышает уровень безопасности файлов cookie для других типов приложений, которые не полагаются на обработку запросов между источниками.
+Значение по умолчанию <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy> — `SameSiteMode.Lax` Разрешение проверки подлинности OAuth2. Чтобы строго применить политику того же сайта `SameSiteMode.Strict` , установите `MinimumSameSitePolicy` . Хотя этот параметр нарушает OAuth2 и другие схемы проверки подлинности в разных источниках, он повышает уровень безопасности файлов cookie для других типов приложений, которые не полагаются на обработку запросов между источниками.
 
 ```csharp
 var cookiePolicyOptions = new CookiePolicyOptions
@@ -80,7 +80,7 @@ var cookiePolicyOptions = new CookiePolicyOptions
 };
 ```
 
-Параметр по промежуточного слоя политики `MinimumSameSitePolicy` cookie для может влиять на `Cookie.SameSite` параметр `CookieAuthenticationOptions` в параметрах в соответствии с приведенной ниже матрицей.
+Параметр по промежуточного слоя политики cookie для `MinimumSameSitePolicy` может влиять на параметр в параметрах `Cookie.SameSite` в `CookieAuthenticationOptions` соответствии с приведенной ниже матрицей.
 
 | минимумсамеситеполици | Файл cookie. SameSite | Результирующий параметр cookie. SameSite |
 | --------------------- | --------------- | --------------------------------- |
@@ -90,21 +90,23 @@ var cookiePolicyOptions = new CookiePolicyOptions
 
 ## <a name="create-an-authentication-cookie"></a>Создание файла cookie для проверки подлинности
 
-Чтобы создать файл cookie, содержащий сведения о пользователе, <xref:System.Security.Claims.ClaimsPrincipal>создайте. Сведения о пользователе сериализуются и хранятся в файле cookie. 
+Чтобы создать файл cookie, содержащий сведения о пользователе, создайте <xref:System.Security.Claims.ClaimsPrincipal> . Сведения о пользователе сериализуются и хранятся в файле cookie. 
 
-Создайте объект <xref:System.Security.Claims.ClaimsIdentity> с любым необходимым <xref:System.Security.Claims.Claim>параметром s <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*> и вызовите для входа пользователя:
+Создайте объект <xref:System.Security.Claims.ClaimsIdentity> с любым необходимым параметром <xref:System.Security.Claims.Claim> s и вызовите <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*> для входа пользователя:
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet1)]
 
 [!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
-`SignInAsync`создает зашифрованный файл cookie и добавляет его в текущий ответ. Если `AuthenticationScheme` параметр не указан, используется схема по умолчанию.
+`SignInAsync`создает зашифрованный файл cookie и добавляет его в текущий ответ. Если параметр `AuthenticationScheme` не указан, используется схема по умолчанию.
+
+<xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri>используется по умолчанию только для нескольких конкретных путей, например для пути входа и путей выхода. Дополнительные сведения см. в разделе [источник кукиеаусентикатионхандлер](https://github.com/dotnet/aspnetcore/blob/f2e6e6ff334176540ef0b3291122e359c2106d1a/src/Security/Authentication/Cookies/src/CookieAuthenticationHandler.cs#L334).
 
 Для шифрования используется система [защиты данных](xref:security/data-protection/using-data-protection) ASP.NET Core. Для приложения, размещенного на нескольких компьютерах, балансировки нагрузки между приложениями или с помощью веб-фермы, [Настройте защиту данных](xref:security/data-protection/configuration/overview) для использования одного и того же типа звонка и идентификатора приложения.
 
-## <a name="sign-out"></a>Выход
+## <a name="sign-out"></a>Выйти
 
-Чтобы выйти из текущего пользователя и удалить его файл cookie, вызовите <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*>:
+Чтобы выйти из текущего пользователя и удалить его файл cookie, вызовите <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*> :
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet2)]
 
@@ -119,7 +121,7 @@ var cookiePolicyOptions = new CookiePolicyOptions
 
 Это <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.ValidatePrincipal*> событие можно использовать для перехвата и переопределения проверки удостоверения файла cookie. Проверка файла cookie при каждом запросе снижает риск отзыва пользователей, обращающихся к приложению.
 
-Один из подходов к проверке файлов cookie основан на отслеживании времени изменения пользовательской базы данных. Если база данных не была изменена с момента выдачи файла cookie пользователя, нет необходимости повторно пройти проверку подлинности пользователя, если его файл cookie остается действительным. В примере приложения база данных реализуется в `IUserRepository` и сохраняет `LastChanged` значение. Когда пользователь обновляется в базе данных, `LastChanged` ему присваивается текущее время.
+Один из подходов к проверке файлов cookie основан на отслеживании времени изменения пользовательской базы данных. Если база данных не была изменена с момента выдачи файла cookie пользователя, нет необходимости повторно пройти проверку подлинности пользователя, если его файл cookie остается действительным. В примере приложения база данных реализуется в `IUserRepository` и сохраняет `LastChanged` значение. Когда пользователь обновляется в базе данных, ему `LastChanged` присваивается текущее время.
 
 Чтобы сделать файл cookie недействительным при изменении базы данных на основе `LastChanged` значения, создайте файл cookie с `LastChanged` утверждением, содержащим текущее `LastChanged` значение из базы данных:
 
@@ -139,13 +141,13 @@ await HttpContext.SignInAsync(
     new ClaimsPrincipal(claimsIdentity));
 ```
 
-Чтобы реализовать переопределение для `ValidatePrincipal` события, напишите метод со следующей сигнатурой в классе, производном от: <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents>
+Чтобы реализовать переопределение для `ValidatePrincipal` события, напишите метод со следующей сигнатурой в классе, производном от <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents> :
 
 ```csharp
 ValidatePrincipal(CookieValidatePrincipalContext)
 ```
 
-Ниже приведен пример реализации `CookieAuthenticationEvents`:
+Ниже приведен пример реализации `CookieAuthenticationEvents` :
 
 ```csharp
 using System.Linq;
@@ -184,7 +186,7 @@ public class CustomCookieAuthenticationEvents : CookieAuthenticationEvents
 }
 ```
 
-Зарегистрируйте экземпляр событий во время регистрации службы файлов cookie `Startup.ConfigureServices` в методе. Укажите [регистрацию службы](xref:fundamentals/dependency-injection#service-lifetimes) в заданной `CustomCookieAuthenticationEvents` области для класса:
+Зарегистрируйте экземпляр событий во время регистрации службы файлов cookie в `Startup.ConfigureServices` методе. Укажите [регистрацию службы](xref:fundamentals/dependency-injection#service-lifetimes) в заданной области для `CustomCookieAuthenticationEvents` класса:
 
 ```csharp
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -196,7 +198,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 services.AddScoped<CustomCookieAuthenticationEvents>();
 ```
 
-Рассмотрим ситуацию, в которой имя пользователя обновляется&mdash;, а решение не влияет на безопасность каким-либо образом. Если необходимо обновить субъект-пользователя без разрушения, вызовите метод `context.ReplacePrincipal` и присвойте `context.ShouldRenew` свойству значение `true`.
+Рассмотрим ситуацию, в которой имя пользователя обновляется, &mdash; а решение не влияет на безопасность каким-либо образом. Если необходимо обновить субъект-пользователя без разрушения, вызовите метод `context.ReplacePrincipal` и присвойте `context.ShouldRenew` свойству значение `true` .
 
 > [!WARNING]
 > Описанный здесь подход срабатывает при каждом запросе. Проверка файлов cookie проверки подлинности для всех пользователей при каждом запросе может привести к значительному снижению производительности приложения.
@@ -207,7 +209,7 @@ services.AddScoped<CustomCookieAuthenticationEvents>();
 
 В следующем фрагменте кода создается удостоверение и соответствующий файл cookie, который остается недействительным через замыкания браузера. Учитываются все настроенные ранее параметры срока действия. Если срок действия файла cookie истекает при закрытии браузера, браузер очищает файл cookie после его перезапуска.
 
-Значение <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.IsPersistent> `true` в <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties>:
+Значение <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.IsPersistent> `true` в <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties> :
 
 ```csharp
 // using Microsoft.AspNetCore.Authentication;
@@ -223,7 +225,7 @@ await HttpContext.SignInAsync(
 
 ## <a name="absolute-cookie-expiration"></a>Абсолютный срок действия файла cookie
 
-Абсолютный срок действия можно задать с помощью <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.ExpiresUtc>. Для создания постоянного файла cookie также `IsPersistent` необходимо задать. В противном случае файл cookie создается с временем существования на основе сеанса и может истечь до или после полученного билета проверки подлинности. `ExpiresUtc` Если задан <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.ExpireTimeSpan> параметр, он переопределяет значение параметра <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>, если оно задано.
+Абсолютный срок действия можно задать с помощью <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.ExpiresUtc> . Для создания постоянного файла cookie `IsPersistent` также необходимо задать. В противном случае файл cookie создается с временем существования на основе сеанса и может истечь до или после полученного билета проверки подлинности. Если задан `ExpiresUtc` параметр, он переопределяет значение <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.ExpireTimeSpan> параметра <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> , если оно задано.
 
 В следующем фрагменте кода создается удостоверение и соответствующий файл cookie, который длится 20 минут. При этом игнорируются все параметры скользящего срока действия, настроенные ранее.
 
@@ -244,33 +246,33 @@ await HttpContext.SignInAsync(
 
 ::: moniker range="< aspnetcore-3.0"
 
-ASP.NET Core удостоверение — это полнофункциональный поставщик проверки подлинности для создания и обслуживания имен входа. Однако можно использовать поставщик проверки подлинности на основе файлов cookie без ASP.NET Core удостоверения. Для получения дополнительной информации см. <xref:security/authentication/identity>.
+ASP.NET Core — полноценный полнофункциональный Identity поставщик проверки подлинности для создания и обслуживания имен входа. Однако можно использовать поставщик проверки подлинности на основе файлов cookie без ASP.NET Core Identity . Для получения дополнительной информации см. <xref:security/authentication/identity>.
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
-В демонстрационных целях в примере приложения учетная запись пользователя для гипотетического пользователя, Мария Rodriguez, жестко закодирована в приложении. Используйте `maria.rodriguez@contoso.com` адрес **электронной почты** и любой пароль для входа пользователя. Пользователь прошел проверку подлинности в `AuthenticateUser` методе в файле *pages/Account/Login. cshtml. CS* . В реальном примере пользователь будет проходить проверку подлинности в базе данных.
+В демонстрационных целях в примере приложения учетная запись пользователя для гипотетического пользователя, Мария Rodriguez, жестко закодирована в приложении. Используйте адрес **электронной почты** `maria.rodriguez@contoso.com` и любой пароль для входа пользователя. Пользователь прошел проверку подлинности в `AuthenticateUser` методе в файле *pages/Account/Login. cshtml. CS* . В реальном примере пользователь будет проходить проверку подлинности в базе данных.
 
-## <a name="configuration"></a>Параметр Configuration
+## <a name="configuration"></a>Конфигурация
 
 Если приложение не использует [метапакет Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app), создайте ссылку на пакет в файле проекта для пакета [Microsoft. AspNetCore. Authentication. cookies](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Cookies/) .
 
-В `Startup.ConfigureServices` методе создайте службу промежуточного слоя проверки подлинности с помощью методов <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> и <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> :
+В `Startup.ConfigureServices` методе создайте службу промежуточного слоя проверки подлинности с помощью <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> методов и:
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Startup.cs?name=snippet1)]
 
-<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>переданный `AddAuthentication` параметр задает схему проверки подлинности по умолчанию для приложения. `AuthenticationScheme`полезен при наличии нескольких экземпляров проверки подлинности файлов cookie и необходимости [авторизации с определенной схемой](xref:security/authorization/limitingidentitybyscheme). `AuthenticationScheme` Присвоение параметру значения [кукиеаусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) предоставляет значение "cookies" для схемы. Можно указать любое строковое значение, которое различает схему.
+<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>переданный `AddAuthentication` параметр задает схему проверки подлинности по умолчанию для приложения. `AuthenticationScheme`полезен при наличии нескольких экземпляров проверки подлинности файлов cookie и необходимости [авторизации с определенной схемой](xref:security/authorization/limitingidentitybyscheme). Присвоение параметру значения `AuthenticationScheme` [Кукиеаусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) предоставляет значение "cookies" для схемы. Можно указать любое строковое значение, которое различает схему.
 
-Схема проверки подлинности приложения отличается от схемы проверки подлинности файлов cookie приложения. Если схема проверки подлинности файлов cookie <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>не указана `CookieAuthenticationDefaults.AuthenticationScheme` в, она использует ("cookies").
+Схема проверки подлинности приложения отличается от схемы проверки подлинности файлов cookie приложения. Если схема проверки подлинности файлов cookie не указана в <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> , она использует `CookieAuthenticationDefaults.AuthenticationScheme` ("cookies").
 
-<xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> Свойство cookie проверки подлинности по умолчанию имеет значение `true` . Файлы cookie проверки подлинности разрешены, когда посетитель сайта не был передан в сбор данных. Для получения дополнительной информации см. <xref:security/gdpr#essential-cookies>.
+Свойство Cookie проверки подлинности по <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> `true` умолчанию имеет значение. Файлы cookie проверки подлинности разрешены, когда посетитель сайта не был передан в сбор данных. Для получения дополнительной информации см. <xref:security/gdpr#essential-cookies>.
 
-В `Startup.Configure` методе вызовите `UseAuthentication` метод для вызова по промежуточного слоя проверки подлинности, устанавливающего `HttpContext.User` свойство. Вызовите `UseAuthentication` метод перед `UseMvcWithDefaultRoute` вызовом `UseMvc`или:
+В `Startup.Configure` методе вызовите `UseAuthentication` метод для вызова по промежуточного слоя проверки подлинности, устанавливающего `HttpContext.User` свойство. Вызовите `UseAuthentication` метод перед вызовом `UseMvcWithDefaultRoute` или `UseMvc` :
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Startup.cs?name=snippet2)]
 
-<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> Класс используется для настройки параметров поставщика проверки подлинности.
+<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>Класс используется для настройки параметров поставщика проверки подлинности.
 
-Задайте `CookieAuthenticationOptions` в конфигурации службы для проверки подлинности `Startup.ConfigureServices` в методе:
+Задайте `CookieAuthenticationOptions` в конфигурации службы для проверки подлинности в `Startup.ConfigureServices` методе:
 
 ```csharp
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -282,7 +284,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 
 ## <a name="cookie-policy-middleware"></a>По промежуточного слоя политики файлов cookie
 
-По [промежуточного слоя политики файлов cookie](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) включает возможности политики файлов cookie. Добавление по промежуточного слоя в конвейер обработки приложений зависит от&mdash;порядка, оно влияет только на нисходящие компоненты, зарегистрированные в конвейере.
+По [промежуточного слоя политики файлов cookie](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) включает возможности политики файлов cookie. Добавление по промежуточного слоя в конвейер обработки приложений зависит от порядка, &mdash; оно влияет только на нисходящие компоненты, зарегистрированные в конвейере.
 
 ```csharp
 app.UseCookiePolicy(cookiePolicyOptions);
@@ -290,7 +292,7 @@ app.UseCookiePolicy(cookiePolicyOptions);
 
 Используется <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> по промежуточного слоя политики файлов cookie для управления глобальными характеристиками обработки файлов cookie и подключения к обработчикам обработки файлов cookie при добавлении или удалении файлов cookie.
 
-Значение по <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy> умолчанию `SameSiteMode.Lax` — разрешение проверки подлинности OAuth2. Чтобы строго применить политику того же сайта `SameSiteMode.Strict`, установите. `MinimumSameSitePolicy` Хотя этот параметр нарушает OAuth2 и другие схемы проверки подлинности в разных источниках, он повышает уровень безопасности файлов cookie для других типов приложений, которые не полагаются на обработку запросов между источниками.
+Значение по умолчанию <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy> — `SameSiteMode.Lax` Разрешение проверки подлинности OAuth2. Чтобы строго применить политику того же сайта `SameSiteMode.Strict` , установите `MinimumSameSitePolicy` . Хотя этот параметр нарушает OAuth2 и другие схемы проверки подлинности в разных источниках, он повышает уровень безопасности файлов cookie для других типов приложений, которые не полагаются на обработку запросов между источниками.
 
 ```csharp
 var cookiePolicyOptions = new CookiePolicyOptions
@@ -299,7 +301,7 @@ var cookiePolicyOptions = new CookiePolicyOptions
 };
 ```
 
-Параметр по промежуточного слоя политики `MinimumSameSitePolicy` cookie для может влиять на `Cookie.SameSite` параметр `CookieAuthenticationOptions` в параметрах в соответствии с приведенной ниже матрицей.
+Параметр по промежуточного слоя политики cookie для `MinimumSameSitePolicy` может влиять на параметр в параметрах `Cookie.SameSite` в `CookieAuthenticationOptions` соответствии с приведенной ниже матрицей.
 
 | минимумсамеситеполици | Файл cookie. SameSite | Результирующий параметр cookie. SameSite |
 | --------------------- | --------------- | --------------------------------- |
@@ -309,19 +311,19 @@ var cookiePolicyOptions = new CookiePolicyOptions
 
 ## <a name="create-an-authentication-cookie"></a>Создание файла cookie для проверки подлинности
 
-Чтобы создать файл cookie, содержащий сведения о пользователе, <xref:System.Security.Claims.ClaimsPrincipal>создайте. Сведения о пользователе сериализуются и хранятся в файле cookie. 
+Чтобы создать файл cookie, содержащий сведения о пользователе, создайте <xref:System.Security.Claims.ClaimsPrincipal> . Сведения о пользователе сериализуются и хранятся в файле cookie. 
 
-Создайте объект <xref:System.Security.Claims.ClaimsIdentity> с любым необходимым <xref:System.Security.Claims.Claim>параметром s <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*> и вызовите для входа пользователя:
+Создайте объект <xref:System.Security.Claims.ClaimsIdentity> с любым необходимым параметром <xref:System.Security.Claims.Claim> s и вызовите <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*> для входа пользователя:
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet1)]
 
-`SignInAsync`создает зашифрованный файл cookie и добавляет его в текущий ответ. Если `AuthenticationScheme` параметр не указан, используется схема по умолчанию.
+`SignInAsync`создает зашифрованный файл cookie и добавляет его в текущий ответ. Если параметр `AuthenticationScheme` не указан, используется схема по умолчанию.
 
 Для шифрования используется система [защиты данных](xref:security/data-protection/using-data-protection) ASP.NET Core. Для приложения, размещенного на нескольких компьютерах, балансировки нагрузки между приложениями или с помощью веб-фермы, [Настройте защиту данных](xref:security/data-protection/configuration/overview) для использования одного и того же типа звонка и идентификатора приложения.
 
-## <a name="sign-out"></a>Выход
+## <a name="sign-out"></a>Выйти
 
-Чтобы выйти из текущего пользователя и удалить его файл cookie, вызовите <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*>:
+Чтобы выйти из текущего пользователя и удалить его файл cookie, вызовите <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*> :
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet2)]
 
@@ -336,7 +338,7 @@ var cookiePolicyOptions = new CookiePolicyOptions
 
 Это <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.ValidatePrincipal*> событие можно использовать для перехвата и переопределения проверки удостоверения файла cookie. Проверка файла cookie при каждом запросе снижает риск отзыва пользователей, обращающихся к приложению.
 
-Один из подходов к проверке файлов cookie основан на отслеживании времени изменения пользовательской базы данных. Если база данных не была изменена с момента выдачи файла cookie пользователя, нет необходимости повторно пройти проверку подлинности пользователя, если его файл cookie остается действительным. В примере приложения база данных реализуется в `IUserRepository` и сохраняет `LastChanged` значение. Когда пользователь обновляется в базе данных, `LastChanged` ему присваивается текущее время.
+Один из подходов к проверке файлов cookie основан на отслеживании времени изменения пользовательской базы данных. Если база данных не была изменена с момента выдачи файла cookie пользователя, нет необходимости повторно пройти проверку подлинности пользователя, если его файл cookie остается действительным. В примере приложения база данных реализуется в `IUserRepository` и сохраняет `LastChanged` значение. Когда пользователь обновляется в базе данных, ему `LastChanged` присваивается текущее время.
 
 Чтобы сделать файл cookie недействительным при изменении базы данных на основе `LastChanged` значения, создайте файл cookie с `LastChanged` утверждением, содержащим текущее `LastChanged` значение из базы данных:
 
@@ -356,13 +358,13 @@ await HttpContext.SignInAsync(
     new ClaimsPrincipal(claimsIdentity));
 ```
 
-Чтобы реализовать переопределение для `ValidatePrincipal` события, напишите метод со следующей сигнатурой в классе, производном от: <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents>
+Чтобы реализовать переопределение для `ValidatePrincipal` события, напишите метод со следующей сигнатурой в классе, производном от <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents> :
 
 ```csharp
 ValidatePrincipal(CookieValidatePrincipalContext)
 ```
 
-Ниже приведен пример реализации `CookieAuthenticationEvents`:
+Ниже приведен пример реализации `CookieAuthenticationEvents` :
 
 ```csharp
 using System.Linq;
@@ -401,7 +403,7 @@ public class CustomCookieAuthenticationEvents : CookieAuthenticationEvents
 }
 ```
 
-Зарегистрируйте экземпляр событий во время регистрации службы файлов cookie `Startup.ConfigureServices` в методе. Укажите [регистрацию службы](xref:fundamentals/dependency-injection#service-lifetimes) в заданной `CustomCookieAuthenticationEvents` области для класса:
+Зарегистрируйте экземпляр событий во время регистрации службы файлов cookie в `Startup.ConfigureServices` методе. Укажите [регистрацию службы](xref:fundamentals/dependency-injection#service-lifetimes) в заданной области для `CustomCookieAuthenticationEvents` класса:
 
 ```csharp
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -413,7 +415,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 services.AddScoped<CustomCookieAuthenticationEvents>();
 ```
 
-Рассмотрим ситуацию, в которой имя пользователя обновляется&mdash;, а решение не влияет на безопасность каким-либо образом. Если необходимо обновить субъект-пользователя без разрушения, вызовите метод `context.ReplacePrincipal` и присвойте `context.ShouldRenew` свойству значение `true`.
+Рассмотрим ситуацию, в которой имя пользователя обновляется, &mdash; а решение не влияет на безопасность каким-либо образом. Если необходимо обновить субъект-пользователя без разрушения, вызовите метод `context.ReplacePrincipal` и присвойте `context.ShouldRenew` свойству значение `true` .
 
 > [!WARNING]
 > Описанный здесь подход срабатывает при каждом запросе. Проверка файлов cookie проверки подлинности для всех пользователей при каждом запросе может привести к значительному снижению производительности приложения.
@@ -424,7 +426,7 @@ services.AddScoped<CustomCookieAuthenticationEvents>();
 
 В следующем фрагменте кода создается удостоверение и соответствующий файл cookie, который остается недействительным через замыкания браузера. Учитываются все настроенные ранее параметры срока действия. Если срок действия файла cookie истекает при закрытии браузера, браузер очищает файл cookie после его перезапуска.
 
-Значение <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.IsPersistent> `true` в <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties>:
+Значение <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.IsPersistent> `true` в <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties> :
 
 ```csharp
 // using Microsoft.AspNetCore.Authentication;
@@ -440,7 +442,7 @@ await HttpContext.SignInAsync(
 
 ## <a name="absolute-cookie-expiration"></a>Абсолютный срок действия файла cookie
 
-Абсолютный срок действия можно задать с помощью <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.ExpiresUtc>. Для создания постоянного файла cookie также `IsPersistent` необходимо задать. В противном случае файл cookie создается с временем существования на основе сеанса и может истечь до или после полученного билета проверки подлинности. `ExpiresUtc` Если задан <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.ExpireTimeSpan> параметр, он переопределяет значение параметра <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions>, если оно задано.
+Абсолютный срок действия можно задать с помощью <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.ExpiresUtc> . Для создания постоянного файла cookie `IsPersistent` также необходимо задать. В противном случае файл cookie создается с временем существования на основе сеанса и может истечь до или после полученного билета проверки подлинности. Если задан `ExpiresUtc` параметр, он переопределяет значение <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.ExpireTimeSpan> параметра <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions> , если оно задано.
 
 В следующем фрагменте кода создается удостоверение и соответствующий файл cookie, который длится 20 минут. При этом игнорируются все параметры скользящего срока действия, настроенные ранее.
 

@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-azure-active-directory
-ms.openlocfilehash: b85129d8b56f2106636b47534630f8139e100ae9
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 6d8db8f546e21ccce27cca06b4112ebc52653782
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "83851215"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724384"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory"></a>Защита Blazor автономного приложения ASP.NET Coreной сборки с помощью Azure Active Directory
 
@@ -33,7 +33,7 @@ ms.locfileid: "83851215"
 1. Укажите **имя** приложения (например, ** Blazor автономное приложение AAD**).
 1. Выберите **Поддерживаемые типы учетных записей**. Вы можете выбрать **учетные записи в этом каталоге организации только** для этого интерфейса.
 1. Оставьте в раскрывающемся списке **URI перенаправления** значение **веб-сайт** и укажите следующий URI перенаправления: `https://localhost:{PORT}/authentication/login-callback` . Порт по умолчанию для приложения, работающего на Kestrel, — 5001. Если приложение выполняется на другом порту Kestrel, используйте порт приложения. Для IIS Express созданный случайным образом порт для приложения можно найти в свойствах приложения на панели **отладки** . Так как на этом этапе приложение не существует и порт IIS Express неизвестен, вернитесь к этому шагу после создания приложения и обновите URI перенаправления. В этом разделе появится замечание, напоминающее IIS Express пользователям обновить URI перенаправления.
-1. Отключите **разрешения**  >  **предоставление прав администратора для OpenID Connect и offline_access** .
+1. Отключите **разрешения**  >  **предоставление согласия администратора для OpenID Connect и offline_access разрешений** .
 1. Выберите **Зарегистрировать**.
 
 Запишите следующие сведения:
@@ -98,7 +98,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A>Метод принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения. Значения, необходимые для настройки приложения, можно получить из конфигурации AAD при регистрации приложения.
 
-Конфигурация предоставляется файлом *wwwroot/appSettings. JSON* :
+Конфигурация предоставляется файлом *wwwroot/appsettings.jsв* файле:
 
 ```json
 {
@@ -110,7 +110,7 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-Пример.
+Пример
 
 ```json
 {

@@ -1,5 +1,5 @@
 ---
-title: Конфигурация SignalR ASP.NET Core
+title: SignalRКонфигурация ASP.NET Core
 author: bradygaster
 description: Узнайте, как настроить ASP.NET Core SignalR приложения.
 monikerRange: '>= aspnetcore-2.1'
@@ -13,14 +13,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/configuration
-ms.openlocfilehash: 054462c37fffd1973cbbe4f76ae4a3be5a6c1778
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 09866f1fd56a4d0747ef3814c85ab5070cfb8d59
+ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767308"
+ms.lasthandoff: 06/13/2020
+ms.locfileid: "84756123"
 ---
-# <a name="aspnet-core-signalr-configuration"></a>Конфигурация SignalR для ASP.NET Core
+# <a name="aspnet-core-signalr-configuration"></a>SignalRКонфигурация ASP.NET Core
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -28,9 +28,9 @@ ms.locfileid: "82767308"
 
 ASP.NET Core SignalR поддерживает два протокола кодирования сообщений: [JSON](https://www.json.org/) и [MessagePack](https://msgpack.org/index.html). Для каждого протокола предусмотрены параметры конфигурации сериализации.
 
-Сериализацию JSON можно настроить на сервере с помощью метода расширения [адджсонпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.jsonprotocoldependencyinjectionextensions.addjsonprotocol) . `AddJsonProtocol`можно добавить после [аддсигналр](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) в `Startup.ConfigureServices`. `AddJsonProtocol` Метод принимает делегат, который получает `options` объект. Свойство [пайлоадсериализероптионс](/dotnet/api/microsoft.aspnetcore.signalr.jsonhubprotocoloptions.payloadserializeroptions) этого объекта — `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> это объект, который можно использовать для настройки сериализации аргументов и возвращаемых значений. Дополнительные сведения см. в [документации System. Text. JSON](/dotnet/api/system.text.json).
+Сериализацию JSON можно настроить на сервере с помощью метода расширения [адджсонпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.jsonprotocoldependencyinjectionextensions.addjsonprotocol) . `AddJsonProtocol`можно добавить после [аддсигналр](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) в `Startup.ConfigureServices` . `AddJsonProtocol`Метод принимает делегат, который получает `options` объект. Свойство [пайлоадсериализероптионс](/dotnet/api/microsoft.aspnetcore.signalr.jsonhubprotocoloptions.payloadserializeroptions) этого объекта — это `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> объект, который можно использовать для настройки сериализации аргументов и возвращаемых значений. Дополнительные сведения см. в [System.Text.Jsдокументации](/dotnet/api/system.text.json).
 
-Например, чтобы настроить в сериализаторе не изменять регистр имен свойств, вместо имен по умолчанию используется следующий код `Startup.ConfigureServices`:
+Например, чтобы настроить в сериализаторе не изменять регистр имен свойств, вместо имен по умолчанию используется следующий код `Startup.ConfigureServices` :
 
 ```csharp
 services.AddSignalR()
@@ -39,7 +39,7 @@ services.AddSignalR()
     });
 ```
 
-В клиенте .NET такой же `AddJsonProtocol` метод расширения существует в [хубконнектионбуилдер](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). Чтобы `Microsoft.Extensions.DependencyInjection` разрешить метод расширения, необходимо импортировать пространство имен:
+В клиенте .NET такой же `AddJsonProtocol` метод расширения существует в [хубконнектионбуилдер](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). `Microsoft.Extensions.DependencyInjection`Чтобы разрешить метод расширения, необходимо импортировать пространство имен:
 
 ```csharp
 // At the top of the file:
@@ -56,32 +56,32 @@ var connection = new HubConnectionBuilder()
 > [!NOTE]
 > В настоящее время невозможно настроить сериализацию JSON в клиенте JavaScript.
 
-### <a name="switch-to-newtonsoftjson"></a>Переключиться на Newtonsoft. JSON
+### <a name="switch-to-newtonsoftjson"></a>Переключиться на Newtonsoft.Js
 
-Если вам нужны функции `Newtonsoft.Json` , которые не поддерживаются `System.Text.Json`в, см. раздел [Переключение на Newtonsoft. JSON](xref:migration/22-to-30#switch-to-newtonsoftjson).
+Если вам нужны функции `Newtonsoft.Json` , которые не поддерживаются в `System.Text.Json` , см. раздел [Переключение на Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
 
 ### <a name="messagepack-serialization-options"></a>Параметры сериализации MessagePack
 
-MessagePack сериализацию можно настроить, предоставив делегат вызову [аддмессажепаккпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) . Дополнительные сведения см. [в разделе MessagePack в SignalR](xref:signalr/messagepackhubprotocol) .
+MessagePack сериализацию можно настроить, предоставив делегат вызову [аддмессажепаккпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) . Дополнительные сведения см. [в разделе MessagePack в SignalR ](xref:signalr/messagepackhubprotocol) .
 
 > [!NOTE]
 > В настоящее время невозможно настроить сериализацию MessagePack в клиенте JavaScript.
 
 ## <a name="configure-server-options"></a>Настройка параметров сервера
 
-В следующей таблице описаны параметры для настройки концентраторов SignalR.
+В следующей таблице описаны параметры для настройки SignalR концентраторов.
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
 | `ClientTimeoutInterval` | 30 секунд | Сервер будет считать, что Клиент отключен, если в этот интервал не было получено сообщение (включая "срок поддержания активности"). Чтобы клиент фактически был помечен как отключенный, он может занять больше времени, чем это время ожидания, из-за того, как это реализовано. Рекомендуемое значение — двойное `KeepAliveInterval` значение.|
-| `HandshakeTimeout` | 15 секунд | Если клиент не отправляет исходное сообщение подтверждения в течение этого интервала времени, соединение закрывается. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
-| `KeepAliveInterval` | 15 секунд | Если сервер не отправил сообщение в течение этого интервала, сообщение проверки связи отправляется автоматически, чтобы подключение не открывалось. При изменении `KeepAliveInterval` `serverTimeoutInMilliseconds` параметра на клиенте измените `ServerTimeout` / параметр. Рекомендуемое `ServerTimeout` / `serverTimeoutInMilliseconds` значение — двойное `KeepAliveInterval` значение.  |
+| `HandshakeTimeout` | 15 секунд | Если клиент не отправляет исходное сообщение подтверждения в течение этого интервала времени, соединение закрывается. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `KeepAliveInterval` | 15 секунд | Если сервер не отправил сообщение в течение этого интервала, сообщение проверки связи отправляется автоматически, чтобы подключение не открывалось. При изменении `KeepAliveInterval` `ServerTimeout` / `serverTimeoutInMilliseconds` параметра на клиенте измените параметр. Рекомендуемое `ServerTimeout` / `serverTimeoutInMilliseconds` значение — двойное `KeepAliveInterval` значение.  |
 | `SupportedProtocols` | Все установленные протоколы | Протоколы, поддерживаемые этим концентратором. По умолчанию все зарегистрированные на сервере протоколы разрешены, но в этом списке можно удалить протоколы, чтобы отключить определенные протоколы для отдельных концентраторов. |
-| `EnableDetailedErrors` | `false` | Если `true`значение равно, подробные сообщения об исключениях возвращаются клиентам при возникновении исключения в методе концентратора. Значение по умолчанию — `false`, так как эти сообщения об исключениях могут содержать конфиденциальные сведения. |
+| `EnableDetailedErrors` | `false` | Если значение `true` равно, подробные сообщения об исключениях возвращаются клиентам при возникновении исключения в методе концентратора. Значение по умолчанию — `false` , так как эти сообщения об исключениях могут содержать конфиденциальные сведения. |
 | `StreamBufferCapacity` | `10` | Максимальное число элементов, которые могут быть помещены в буфер для потоков загрузки клиента. При достижении этого предела обработка вызовов блокируется до тех пор, пока сервер не обработает потоковые элементы.|
 | `MaximumReceiveMessageSize` | 32 КБ | Максимальный размер одного входящего сообщения концентратора. |
 
-Параметры можно настроить для всех концентраторов, предоставив делегаты параметров для `AddSignalR` вызова в. `Startup.ConfigureServices`
+Параметры можно настроить для всех концентраторов, предоставив делегаты параметров для `AddSignalR` вызова в `Startup.ConfigureServices` .
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -94,10 +94,10 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Параметры одного концентратора переопределяют глобальные параметры, предоставленные `AddSignalR` в, и могут быть <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*>настроены с помощью:
+Параметры одного концентратора переопределяют глобальные параметры, предоставленные в `AddSignalR` , и могут быть настроены с помощью <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*> :
 
 ```csharp
-services.AddSignalR().AddHubOptions<MyHub>(options =>
+services.AddSignalR().AddHubOptions<ChatHub>(options =>
 {
     options.EnableDetailedErrors = true;
 });
@@ -105,7 +105,7 @@ services.AddSignalR().AddHubOptions<MyHub>(options =>
 
 ### <a name="advanced-http-configuration-options"></a>Дополнительные параметры конфигурации HTTP
 
-Используется `HttpConnectionDispatcherOptions` для настройки дополнительных параметров, относящихся к транспортам и управлению буферами памяти. Эти параметры настраиваются путем передачи делегата в [мафуб\<T>](/dotnet/api/microsoft.aspnetcore.builder.hubendpointroutebuilderextensions.maphub) в `Startup.Configure`.
+Используется `HttpConnectionDispatcherOptions` для настройки дополнительных параметров, относящихся к транспортам и управлению буферами памяти. Эти параметры настраиваются путем передачи делегата в [мафуб \<T> ](/dotnet/api/microsoft.aspnetcore.builder.hubendpointroutebuilderextensions.maphub) в `Startup.Configure` .
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -114,7 +114,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
     app.UseEndpoints(endpoints =>
     {
-        endpoints.MapHub<MyHub>("/myhub", options =>
+        endpoints.MapHub<ChatHub>("/chathub", options =>
         {
             options.Transports =
                 HttpTransportType.WebSockets |
@@ -124,7 +124,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-В следующей таблице описаны параметры для настройки расширенных HTTP-параметров SignalR ASP.NET Core.
+В следующей таблице описаны параметры для настройки SignalR расширенных HTTP-параметров ASP.NET Core.
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
@@ -136,13 +136,13 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 | `WebSockets` | См. ниже. | Дополнительные параметры, относящиеся к транспортному протоколу WebSocket. |
 | `MinimumProtocolVersion` | 0 | Укажите минимальную версию протокола Negotiate. Используется для ограничения клиентов на более новые версии. |
 
-У транспорта с длинным опросом есть дополнительные параметры, которые можно настроить `LongPolling` с помощью свойства:
+У транспорта с длинным опросом есть дополнительные параметры, которые можно настроить с помощью `LongPolling` Свойства:
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
 | `PollTimeout` | 90 секунд | Максимальное количество времени, в течение которого сервер ожидает отправки сообщения клиенту перед завершением одного запроса опроса. Уменьшение этого значения приводит к тому, что клиент будет чаще выдавать новые запросы на опрос. |
 
-Транспорт WebSocket имеет дополнительные параметры, которые можно настроить с помощью `WebSockets` свойства:
+Транспорт WebSocket имеет дополнительные параметры, которые можно настроить с помощью `WebSockets` Свойства:
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
@@ -151,20 +151,20 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 ## <a name="configure-client-options"></a>Настройка параметров клиента
 
-Параметры клиента можно настроить для `HubConnectionBuilder` типа (доступного в клиентах .NET и JavaScript). Он также доступен в клиенте Java, но он содержит `HttpHubConnectionBuilder` параметры конфигурации построителя, а также `HubConnection` сам подкласс.
+Параметры клиента можно настроить для `HubConnectionBuilder` типа (доступного в клиентах .NET и JavaScript). Он также доступен в клиенте Java, но он `HttpHubConnectionBuilder` содержит параметры конфигурации построителя, а также сам подкласс `HubConnection` .
 
 ### <a name="configure-logging"></a>Настройка журнала
 
-Ведение журнала настраивается в клиенте .NET `ConfigureLogging` с помощью метода. Регистраторы и фильтры могут быть зарегистрированы так же, как и на сервере. Дополнительные сведения см. в документации по [ведению журнала ASP.NET Core](xref:fundamentals/logging/index) .
+Ведение журнала настраивается в клиенте .NET с помощью `ConfigureLogging` метода. Регистраторы и фильтры могут быть зарегистрированы так же, как и на сервере. Дополнительные сведения см. в документации по [ведению журнала ASP.NET Core](xref:fundamentals/logging/index) .
 
 > [!NOTE]
 > Чтобы зарегистрировать регистраторы, необходимо установить необходимые пакеты. Полный список см. в разделе [встроенные поставщики ведения журналов](xref:fundamentals/logging/index#built-in-logging-providers) документации.
 
-Например, чтобы включить ведение журнала консоли, установите пакет `Microsoft.Extensions.Logging.Console` NuGet. Вызовите `AddConsole` метод расширения:
+Например, чтобы включить ведение журнала консоли, установите `Microsoft.Extensions.Logging.Console` пакет NuGet. Вызовите `AddConsole` метод расширения:
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub")
+    .WithUrl("https://example.com/chathub")
     .ConfigureLogging(logging => {
         logging.SetMinimumLevel(LogLevel.Information);
         logging.AddConsole();
@@ -176,38 +176,38 @@ var connection = new HubConnectionBuilder()
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 ```
 
-Вместо `LogLevel` значения можно также указать `string` значение, представляющее имя уровня журнала. Это полезно при настройке ведения журнала SignalR в средах, где у вас нет доступа к `LogLevel` константам.
+Вместо `LogLevel` значения можно также указать `string` значение, представляющее имя уровня журнала. Это полезно при настройке SignalR ведения журнала в средах, где у вас нет доступа к `LogLevel` константам.
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging("warn")
     .build();
 ```
 
-В следующей таблице перечислены доступные уровни ведения журнала. Значение, которое вы указываете для `configureLogging` установки **минимального** уровня ведения журнала, который будет записан в журнал. Сообщения, зарегистрированные на этом уровне **или перечисленные в таблице уровни**, будут занесены в журнал.
+В следующей таблице перечислены доступные уровни ведения журнала. Значение, которое вы `configureLogging` указываете для установки **минимального** уровня ведения журнала, который будет записан в журнал. Сообщения, зарегистрированные на этом уровне **или перечисленные в таблице уровни**, будут занесены в журнал.
 
 | Строка                      | LogLevel               |
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **or** `information` | `LogLevel.Information` |
-| `warn` **or** `warning`     | `LogLevel.Warning`     |
+| `info`**или**`information` | `LogLevel.Information` |
+| `warn`**или**`warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
 
 > [!NOTE]
-> Чтобы полностью отключить ведение журнала, `signalR.LogLevel.None` укажите в `configureLogging` методе.
+> Чтобы полностью отключить ведение журнала, укажите `signalR.LogLevel.None` в `configureLogging` методе.
 
-Дополнительные сведения о ведении журналов см. в [документации по диагностике SignalR](xref:signalr/diagnostics).
+Дополнительные сведения о ведении журналов см. в [ SignalR документации по диагностике](xref:signalr/diagnostics).
 
-Клиент, использующий SignalR Java, использует библиотеку [SLF4J](https://www.slf4j.org/) для ведения журнала. Это высокоуровневый API ведения журнала, который позволяет пользователям библиотеки выбирать собственную реализацию ведения журнала, применяя определенную зависимость от ведения журнала. В следующем фрагменте кода показано, как `java.util.logging` использовать с клиентом SignalR Java.
+SignalRКлиент Java использует библиотеку [SLF4J](https://www.slf4j.org/) для ведения журнала. Это высокоуровневый API ведения журнала, который позволяет пользователям библиотеки выбирать собственную реализацию ведения журнала, применяя определенную зависимость от ведения журнала. В следующем фрагменте кода показано, как использовать `java.util.logging` с SignalR клиентом Java.
 
 ```gradle
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
@@ -225,46 +225,46 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 ### <a name="configure-allowed-transports"></a>Настройка разрешенных транспортов
 
-Транспорты, используемые SignalR, можно настроить в `WithUrl` вызове (`withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
+Транспорты, используемые, SignalR можно настроить в `WithUrl` вызове ( `withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
 
 Например, чтобы отключить транспорт событий, отправленных сервером, но разрешить соединения WebSockets и long опрашиваете:
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
+    .WithUrl("https://example.com/chathub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
     .Build();
 ```
 
-В клиенте JavaScript транспорты настраиваются путем установки `transport` поля для объекта Options, указанного в: `withUrl`
+В клиенте JavaScript транспорты настраиваются путем установки поля для `transport` объекта Options, указанного в `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
+    .withUrl("/chathub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
     .build();
 ```
 
 В этой версии клиентские WebSocket-сокеты Java являются единственным доступным транспортом.
 
-В клиенте Java транспорт выбирается с помощью `withTransport` метода в. `HttpHubConnectionBuilder` Клиент Java по умолчанию использует транспорт WebSockets.
+В клиенте Java транспорт выбирается с помощью `withTransport` метода в `HttpHubConnectionBuilder` . Клиент Java по умолчанию использует транспорт WebSockets.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withTransport(TransportEnum.WEBSOCKETS)
     .build();
 ```
 
 > [!NOTE]
-> Клиент Java SignalR пока не поддерживает откат транспорта.
+> SignalRКлиент Java пока не поддерживает откат транспорта.
 
 ### <a name="configure-bearer-authentication"></a>Настройка проверки подлинности носителя
 
-Чтобы предоставить данные проверки подлинности вместе с запросами SignalR, `AccessTokenProvider` используйте параметр`accessTokenFactory` (в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP ( `Authorization` с использованием заголовка с типом `Bearer`). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение `access_token`строки запроса.
+Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
 
-В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl`:
+В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl` :
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.AccessTokenProvider = async () => {
             // Get and return the access token.
         };
@@ -272,11 +272,11 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-В клиенте JavaScript маркер доступа настраивается путем установки `accessTokenFactory` поля для объекта Options в: `withUrl`
+В клиенте JavaScript маркер доступа настраивается путем установки `accessTokenFactory` поля для объекта Options в `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         accessTokenFactory: () => {
             // Get and return the access token.
             // This function can return a JavaScript Promise if asynchronous
@@ -286,10 +286,10 @@ let connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-В клиенте SignalR Java можно настроить токен носителя, который будет использоваться для проверки подлинности, предоставив фабрику маркеров доступа для [хттфубконнектионбуилдер](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Используйте [висакцесстокенфактори](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) для предоставления [\<однострочного>](https://reactivex.io/documentation/single.html) [рксжава](https://github.com/ReactiveX/RxJava) . При вызове [Single. отсрочки](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-)можно написать логику для создания маркеров доступа для клиента.
+В SignalR клиенте Java можно настроить токен носителя для использования при проверке подлинности, предоставив фабрику маркеров доступа для [хттфубконнектионбуилдер](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Используйте [висакцесстокенфактори](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) для предоставления [рксжава](https://github.com/ReactiveX/RxJava) [Single \<String> ](https://reactivex.io/documentation/single.html). При вызове [Single. отсрочки](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-)можно написать логику для создания маркеров доступа для клиента.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withAccessTokenProvider(Single.defer(() -> {
         // Your logic here.
         return Single.just("An Access Token");
@@ -298,45 +298,45 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 
 ### <a name="configure-timeout-and-keep-alive-options"></a>Настройка времени ожидания и параметров поддержания активности
 
-Дополнительные параметры для настройки времени ожидания и проверки активности доступны для самого `HubConnection` объекта:
+Дополнительные параметры для настройки времени ожидания и проверки активности доступны для `HubConnection` самого объекта:
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `ServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `Closed` событие (`onclose` в JavaScript). Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
-| `HandshakeTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `Closed` событие (`onclose` в JavaScript). Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `ServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `Closed` событие ( `onclose` в JavaScript). Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
+| `HandshakeTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `Closed` событие ( `onclose` в JavaScript). Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 | `KeepAliveInterval` | 15 секунд | Определяет интервал, с которым клиент отправляет сообщения проверки связи. Отправка любого сообщения от клиента сбрасывает таймер до начала интервала. Если клиент не отправил сообщение в `ClientTimeoutInterval` наборе на сервере, сервер считает, что Клиент отключен. |
 
-В клиенте .NET значения времени ожидания задаются `TimeSpan` в виде значений.
+В клиенте .NET значения времени ожидания задаются в виде `TimeSpan` значений.
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `serverTimeoutInMilliseconds` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onclose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
+| `serverTimeoutInMilliseconds` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onclose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
 | `keepAliveIntervalInMilliseconds` | 15 секунд (15 000 миллисекунд) | Определяет интервал, с которым клиент отправляет сообщения проверки связи. Отправка любого сообщения от клиента сбрасывает таймер до начала интервала. Если клиент не отправил сообщение в `ClientTimeoutInterval` наборе на сервере, сервер считает, что Клиент отключен. |
 
 # <a name="java"></a>[Java](#tab/java)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `getServerTimeout` / `setServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onClose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
-| `withHandshakeResponseTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `onClose` событие. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `getServerTimeout` / `setServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onClose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
+| `withHandshakeResponseTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `onClose` событие. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 | `getKeepAliveInterval` / `setKeepAliveInterval` | 15 секунд (15 000 миллисекунд) | Определяет интервал, с которым клиент отправляет сообщения проверки связи. Отправка любого сообщения от клиента сбрасывает таймер до начала интервала. Если клиент не отправил сообщение в `ClientTimeoutInterval` наборе на сервере, сервер считает, что Клиент отключен. |
 
 ---
 
 ### <a name="configure-additional-options"></a>Настройка дополнительных параметров
 
-Дополнительные параметры можно настроить в методе `WithUrl` (`withUrl` в JavaScript) для `HubConnectionBuilder` или в различных API-интерфейсах `HttpHubConnectionBuilder` конфигурации в клиенте Java:
+Дополнительные параметры можно настроить в `WithUrl` `withUrl` методе (в JavaScript) для `HubConnectionBuilder` или в различных API-интерфейсах конфигурации в `HttpHubConnectionBuilder` клиенте Java:
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Параметр .NET |  Значение по умолчанию | Описание: |
+| Параметр .NET |  Значение по умолчанию | Описание |
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `SkipNegotiation` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `SkipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 | `ClientCertificates` | Empty | Коллекция сертификатов TLS для отправки в запросы проверки подлинности. |
 | `Cookies` | Empty | Коллекция файлов cookie HTTP для отправки с каждым HTTP-запросом. |
 | `Credentials` | Empty | Учетные данные для отправки с каждым HTTP-запросом. |
@@ -352,24 +352,24 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 | Параметр JavaScript | Значение по умолчанию | Описание |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `skipNegotiation` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
-| `withCredentials` | `true` | Указывает, будут ли учетные данные отправляться с запросом CORS. Служба приложений Azure использует файлы cookie для закрепленных сеансов и требует, чтобы этот параметр был включен правильно. Дополнительные сведения об CORS с помощью SignalR см. в <xref:signalr/security#cross-origin-resource-sharing>разделе. |
+| `skipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
+| `withCredentials` | `true` | Указывает, будут ли учетные данные отправляться с запросом CORS. Служба приложений Azure использует файлы cookie для закрепленных сеансов и требует, чтобы этот параметр был включен правильно. Дополнительные сведения о CORS с SignalR см. в разделе <xref:signalr/security#cross-origin-resource-sharing> . |
 
 # <a name="java"></a>[Java](#tab/java)
 
 | Параметр Java | Значение по умолчанию | Описание |
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `shouldSkipNegotiate` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `shouldSkipNegotiate` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 | `withHeader` `withHeaders` | Empty | Таблица дополнительных заголовков HTTP для отправки с каждым HTTP-запросом. |
 
 ---
 
-В клиенте .NET эти параметры можно изменить с помощью делегата Options, предоставленного `WithUrl`для:
+В клиенте .NET эти параметры можно изменить с помощью делегата Options, предоставленного для `WithUrl` :
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
@@ -377,11 +377,11 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-В клиенте JavaScript эти параметры можно предоставить в объекте JavaScript, предоставленном для `withUrl`:
+В клиенте JavaScript эти параметры можно предоставить в объекте JavaScript, предоставленном для `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
     })
@@ -391,7 +391,7 @@ let connection = new signalR.HubConnectionBuilder()
 В клиенте Java эти параметры можно настроить с помощью методов, `HttpHubConnectionBuilder` возвращаемых из`HubConnectionBuilder.create("HUB URL")`
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
         .withHeader("Foo", "Bar")
         .shouldSkipNegotiate(true)
         .withHandshakeResponseTimeout(30*1000)
@@ -414,9 +414,9 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 
 ASP.NET Core SignalR поддерживает два протокола кодирования сообщений: [JSON](https://www.json.org/) и [MessagePack](https://msgpack.org/index.html). Для каждого протокола предусмотрены параметры конфигурации сериализации.
 
-Сериализацию JSON можно настроить на сервере с помощью метода расширения [адджсонпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.jsonprotocoldependencyinjectionextensions.addjsonprotocol) . `AddJsonProtocol`можно добавить после [аддсигналр](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) в `Startup.ConfigureServices`. `AddJsonProtocol` Метод принимает делегат, который получает `options` объект. Свойство [пайлоадсериализероптионс](/dotnet/api/microsoft.aspnetcore.signalr.jsonhubprotocoloptions.payloadserializeroptions) этого объекта — `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> это объект, который можно использовать для настройки сериализации аргументов и возвращаемых значений. Дополнительные сведения см. в [документации System. Text. JSON](/dotnet/api/system.text.json).
+Сериализацию JSON можно настроить на сервере с помощью метода расширения [адджсонпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.jsonprotocoldependencyinjectionextensions.addjsonprotocol) . `AddJsonProtocol`можно добавить после [аддсигналр](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) в `Startup.ConfigureServices` . `AddJsonProtocol`Метод принимает делегат, который получает `options` объект. Свойство [пайлоадсериализероптионс](/dotnet/api/microsoft.aspnetcore.signalr.jsonhubprotocoloptions.payloadserializeroptions) этого объекта — это `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> объект, который можно использовать для настройки сериализации аргументов и возвращаемых значений. Дополнительные сведения см. в [System.Text.Jsдокументации](/dotnet/api/system.text.json).
 
-Например, чтобы настроить в сериализаторе не изменять регистр имен свойств, вместо имен по умолчанию используется следующий код `Startup.ConfigureServices`:
+Например, чтобы настроить в сериализаторе не изменять регистр имен свойств, вместо имен по умолчанию используется следующий код `Startup.ConfigureServices` :
 
 ```csharp
 services.AddSignalR()
@@ -425,7 +425,7 @@ services.AddSignalR()
     });
 ```
 
-В клиенте .NET такой же `AddJsonProtocol` метод расширения существует в [хубконнектионбуилдер](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). Чтобы `Microsoft.Extensions.DependencyInjection` разрешить метод расширения, необходимо импортировать пространство имен:
+В клиенте .NET такой же `AddJsonProtocol` метод расширения существует в [хубконнектионбуилдер](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). `Microsoft.Extensions.DependencyInjection`Чтобы разрешить метод расширения, необходимо импортировать пространство имен:
 
 ```csharp
 // At the top of the file:
@@ -442,32 +442,32 @@ var connection = new HubConnectionBuilder()
 > [!NOTE]
 > В настоящее время невозможно настроить сериализацию JSON в клиенте JavaScript.
 
-### <a name="switch-to-newtonsoftjson"></a>Переключиться на Newtonsoft. JSON
+### <a name="switch-to-newtonsoftjson"></a>Переключиться на Newtonsoft.Js
 
-Если вам нужны функции `Newtonsoft.Json` , которые не поддерживаются `System.Text.Json`в, см. раздел [Переключение на Newtonsoft. JSON](xref:migration/22-to-30#switch-to-newtonsoftjson).
+Если вам нужны функции `Newtonsoft.Json` , которые не поддерживаются в `System.Text.Json` , см. раздел [Переключение на Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
 
 ### <a name="messagepack-serialization-options"></a>Параметры сериализации MessagePack
 
-MessagePack сериализацию можно настроить, предоставив делегат вызову [аддмессажепаккпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) . Дополнительные сведения см. [в разделе MessagePack в SignalR](xref:signalr/messagepackhubprotocol) .
+MessagePack сериализацию можно настроить, предоставив делегат вызову [аддмессажепаккпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) . Дополнительные сведения см. [в разделе MessagePack в SignalR ](xref:signalr/messagepackhubprotocol) .
 
 > [!NOTE]
 > В настоящее время невозможно настроить сериализацию MessagePack в клиенте JavaScript.
 
 ## <a name="configure-server-options"></a>Настройка параметров сервера
 
-В следующей таблице описаны параметры для настройки концентраторов SignalR.
+В следующей таблице описаны параметры для настройки SignalR концентраторов.
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
 | `ClientTimeoutInterval` | 30 секунд | Сервер будет считать, что Клиент отключен, если в этот интервал не было получено сообщение (включая "срок поддержания активности"). Чтобы клиент фактически был помечен как отключенный, он может занять больше времени, чем это время ожидания, из-за того, как это реализовано. Рекомендуемое значение — двойное `KeepAliveInterval` значение.|
-| `HandshakeTimeout` | 15 секунд | Если клиент не отправляет исходное сообщение подтверждения в течение этого интервала времени, соединение закрывается. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
-| `KeepAliveInterval` | 15 секунд | Если сервер не отправил сообщение в течение этого интервала, сообщение проверки связи отправляется автоматически, чтобы подключение не открывалось. При изменении `KeepAliveInterval` `serverTimeoutInMilliseconds` параметра на клиенте измените `ServerTimeout` / параметр. Рекомендуемое `ServerTimeout` / `serverTimeoutInMilliseconds` значение — двойное `KeepAliveInterval` значение.  |
+| `HandshakeTimeout` | 15 секунд | Если клиент не отправляет исходное сообщение подтверждения в течение этого интервала времени, соединение закрывается. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `KeepAliveInterval` | 15 секунд | Если сервер не отправил сообщение в течение этого интервала, сообщение проверки связи отправляется автоматически, чтобы подключение не открывалось. При изменении `KeepAliveInterval` `ServerTimeout` / `serverTimeoutInMilliseconds` параметра на клиенте измените параметр. Рекомендуемое `ServerTimeout` / `serverTimeoutInMilliseconds` значение — двойное `KeepAliveInterval` значение.  |
 | `SupportedProtocols` | Все установленные протоколы | Протоколы, поддерживаемые этим концентратором. По умолчанию все зарегистрированные на сервере протоколы разрешены, но в этом списке можно удалить протоколы, чтобы отключить определенные протоколы для отдельных концентраторов. |
-| `EnableDetailedErrors` | `false` | Если `true`значение равно, подробные сообщения об исключениях возвращаются клиентам при возникновении исключения в методе концентратора. Значение по умолчанию — `false`, так как эти сообщения об исключениях могут содержать конфиденциальные сведения. |
+| `EnableDetailedErrors` | `false` | Если значение `true` равно, подробные сообщения об исключениях возвращаются клиентам при возникновении исключения в методе концентратора. Значение по умолчанию — `false` , так как эти сообщения об исключениях могут содержать конфиденциальные сведения. |
 | `StreamBufferCapacity` | `10` | Максимальное число элементов, которые могут быть помещены в буфер для потоков загрузки клиента. При достижении этого предела обработка вызовов блокируется до тех пор, пока сервер не обработает потоковые элементы.|
 | `MaximumReceiveMessageSize` | 32 КБ | Максимальный размер одного входящего сообщения концентратора. |
 
-Параметры можно настроить для всех концентраторов, предоставив делегаты параметров для `AddSignalR` вызова в. `Startup.ConfigureServices`
+Параметры можно настроить для всех концентраторов, предоставив делегаты параметров для `AddSignalR` вызова в `Startup.ConfigureServices` .
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -480,10 +480,10 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Параметры одного концентратора переопределяют глобальные параметры, предоставленные `AddSignalR` в, и могут быть <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*>настроены с помощью:
+Параметры одного концентратора переопределяют глобальные параметры, предоставленные в `AddSignalR` , и могут быть настроены с помощью <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*> :
 
 ```csharp
-services.AddSignalR().AddHubOptions<MyHub>(options =>
+services.AddSignalR().AddHubOptions<ChatHub>(options =>
 {
     options.EnableDetailedErrors = true;
 });
@@ -491,7 +491,7 @@ services.AddSignalR().AddHubOptions<MyHub>(options =>
 
 ### <a name="advanced-http-configuration-options"></a>Дополнительные параметры конфигурации HTTP
 
-Используется `HttpConnectionDispatcherOptions` для настройки дополнительных параметров, относящихся к транспортам и управлению буферами памяти. Эти параметры настраиваются путем передачи делегата в [мафуб\<T>](/dotnet/api/microsoft.aspnetcore.builder.hubendpointroutebuilderextensions.maphub) в `Startup.Configure`.
+Используется `HttpConnectionDispatcherOptions` для настройки дополнительных параметров, относящихся к транспортам и управлению буферами памяти. Эти параметры настраиваются путем передачи делегата в [мафуб \<T> ](/dotnet/api/microsoft.aspnetcore.builder.hubendpointroutebuilderextensions.maphub) в `Startup.Configure` .
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -500,7 +500,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
     app.UseEndpoints(endpoints =>
     {
-        endpoints.MapHub<MyHub>("/myhub", options =>
+        endpoints.MapHub<ChatHub>("/chathub", options =>
         {
             options.Transports =
                 HttpTransportType.WebSockets |
@@ -510,7 +510,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-В следующей таблице описаны параметры для настройки расширенных HTTP-параметров SignalR ASP.NET Core.
+В следующей таблице описаны параметры для настройки SignalR расширенных HTTP-параметров ASP.NET Core.
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
@@ -522,35 +522,35 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 | `WebSockets` | См. ниже. | Дополнительные параметры, относящиеся к транспортному протоколу WebSocket. |
 | `MinimumProtocolVersion` | 0 | Укажите минимальную версию протокола Negotiate. Используется для ограничения клиентов на более новые версии. |
 
-У транспорта с длинным опросом есть дополнительные параметры, которые можно настроить `LongPolling` с помощью свойства:
+У транспорта с длинным опросом есть дополнительные параметры, которые можно настроить с помощью `LongPolling` Свойства:
 
-| Параметр | Значение по умолчанию | Описание |
+| Параметр | Значение по умолчанию | Описание: |
 | ------ | ------------- | ----------- |
 | `PollTimeout` | 90 секунд | Максимальное количество времени, в течение которого сервер ожидает отправки сообщения клиенту перед завершением одного запроса опроса. Уменьшение этого значения приводит к тому, что клиент будет чаще выдавать новые запросы на опрос. |
 
-Транспорт WebSocket имеет дополнительные параметры, которые можно настроить с помощью `WebSockets` свойства:
+Транспорт WebSocket имеет дополнительные параметры, которые можно настроить с помощью `WebSockets` Свойства:
 
-| Параметр | Значение по умолчанию | Описание |
+| Параметр | Значение по умолчанию | Описание: |
 | ------ | ------------- | ----------- |
 | `CloseTimeout` | 5 с | Когда сервер закрывается, если не удается закрыть клиент в течение этого интервала времени, соединение будет разорвано. |
 | `SubProtocolSelector` | `null` | Делегат, который можно использовать для задания `Sec-WebSocket-Protocol` заголовка в пользовательском значении. Делегат получает значения, запрошенные клиентом в качестве входных данных, и ожидается, что он возвращает нужное значение. |
 
 ## <a name="configure-client-options"></a>Настройка параметров клиента
 
-Параметры клиента можно настроить для `HubConnectionBuilder` типа (доступного в клиентах .NET и JavaScript). Он также доступен в клиенте Java, но он содержит `HttpHubConnectionBuilder` параметры конфигурации построителя, а также `HubConnection` сам подкласс.
+Параметры клиента можно настроить для `HubConnectionBuilder` типа (доступного в клиентах .NET и JavaScript). Он также доступен в клиенте Java, но он `HttpHubConnectionBuilder` содержит параметры конфигурации построителя, а также сам подкласс `HubConnection` .
 
 ### <a name="configure-logging"></a>Настройка журнала
 
-Ведение журнала настраивается в клиенте .NET `ConfigureLogging` с помощью метода. Регистраторы и фильтры могут быть зарегистрированы так же, как и на сервере. Дополнительные сведения см. в документации по [ведению журнала ASP.NET Core](xref:fundamentals/logging/index) .
+Ведение журнала настраивается в клиенте .NET с помощью `ConfigureLogging` метода. Регистраторы и фильтры могут быть зарегистрированы так же, как и на сервере. Дополнительные сведения см. в документации по [ведению журнала ASP.NET Core](xref:fundamentals/logging/index) .
 
 > [!NOTE]
 > Чтобы зарегистрировать регистраторы, необходимо установить необходимые пакеты. Полный список см. в разделе [встроенные поставщики ведения журналов](xref:fundamentals/logging/index#built-in-logging-providers) документации.
 
-Например, чтобы включить ведение журнала консоли, установите пакет `Microsoft.Extensions.Logging.Console` NuGet. Вызовите `AddConsole` метод расширения:
+Например, чтобы включить ведение журнала консоли, установите `Microsoft.Extensions.Logging.Console` пакет NuGet. Вызовите `AddConsole` метод расширения:
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub")
+    .WithUrl("https://example.com/chathub")
     .ConfigureLogging(logging => {
         logging.SetMinimumLevel(LogLevel.Information);
         logging.AddConsole();
@@ -562,38 +562,38 @@ var connection = new HubConnectionBuilder()
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 ```
 
-Вместо `LogLevel` значения можно также указать `string` значение, представляющее имя уровня журнала. Это полезно при настройке ведения журнала SignalR в средах, где у вас нет доступа к `LogLevel` константам.
+Вместо `LogLevel` значения можно также указать `string` значение, представляющее имя уровня журнала. Это полезно при настройке SignalR ведения журнала в средах, где у вас нет доступа к `LogLevel` константам.
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging("warn")
     .build();
 ```
 
-В следующей таблице перечислены доступные уровни ведения журнала. Значение, которое вы указываете для `configureLogging` установки **минимального** уровня ведения журнала, который будет записан в журнал. Сообщения, зарегистрированные на этом уровне **или перечисленные в таблице уровни**, будут занесены в журнал.
+В следующей таблице перечислены доступные уровни ведения журнала. Значение, которое вы `configureLogging` указываете для установки **минимального** уровня ведения журнала, который будет записан в журнал. Сообщения, зарегистрированные на этом уровне **или перечисленные в таблице уровни**, будут занесены в журнал.
 
 | Строка                      | LogLevel               |
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **or** `information` | `LogLevel.Information` |
-| `warn` **or** `warning`     | `LogLevel.Warning`     |
+| `info`**или**`information` | `LogLevel.Information` |
+| `warn`**или**`warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
 
 > [!NOTE]
-> Чтобы полностью отключить ведение журнала, `signalR.LogLevel.None` укажите в `configureLogging` методе.
+> Чтобы полностью отключить ведение журнала, укажите `signalR.LogLevel.None` в `configureLogging` методе.
 
-Дополнительные сведения о ведении журналов см. в [документации по диагностике SignalR](xref:signalr/diagnostics).
+Дополнительные сведения о ведении журналов см. в [ SignalR документации по диагностике](xref:signalr/diagnostics).
 
-Клиент, использующий SignalR Java, использует библиотеку [SLF4J](https://www.slf4j.org/) для ведения журнала. Это высокоуровневый API ведения журнала, который позволяет пользователям библиотеки выбирать собственную реализацию ведения журнала, применяя определенную зависимость от ведения журнала. В следующем фрагменте кода показано, как `java.util.logging` использовать с клиентом SignalR Java.
+SignalRКлиент Java использует библиотеку [SLF4J](https://www.slf4j.org/) для ведения журнала. Это высокоуровневый API ведения журнала, который позволяет пользователям библиотеки выбирать собственную реализацию ведения журнала, применяя определенную зависимость от ведения журнала. В следующем фрагменте кода показано, как использовать `java.util.logging` с SignalR клиентом Java.
 
 ```gradle
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
@@ -611,46 +611,46 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 ### <a name="configure-allowed-transports"></a>Настройка разрешенных транспортов
 
-Транспорты, используемые SignalR, можно настроить в `WithUrl` вызове (`withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
+Транспорты, используемые, SignalR можно настроить в `WithUrl` вызове ( `withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
 
 Например, чтобы отключить транспорт событий, отправленных сервером, но разрешить соединения WebSockets и long опрашиваете:
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
+    .WithUrl("https://example.com/chathub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
     .Build();
 ```
 
-В клиенте JavaScript транспорты настраиваются путем установки `transport` поля для объекта Options, указанного в: `withUrl`
+В клиенте JavaScript транспорты настраиваются путем установки поля для `transport` объекта Options, указанного в `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
+    .withUrl("/chathub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
     .build();
 ```
 
 В этой версии клиентские WebSocket-сокеты Java являются единственным доступным транспортом.
 
-В клиенте Java транспорт выбирается с помощью `withTransport` метода в. `HttpHubConnectionBuilder` Клиент Java по умолчанию использует транспорт WebSockets.
+В клиенте Java транспорт выбирается с помощью `withTransport` метода в `HttpHubConnectionBuilder` . Клиент Java по умолчанию использует транспорт WebSockets.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withTransport(TransportEnum.WEBSOCKETS)
     .build();
 ```
 
 > [!NOTE]
-> Клиент Java SignalR пока не поддерживает откат транспорта.
+> SignalRКлиент Java пока не поддерживает откат транспорта.
 
 ### <a name="configure-bearer-authentication"></a>Настройка проверки подлинности носителя
 
-Чтобы предоставить данные проверки подлинности вместе с запросами SignalR, `AccessTokenProvider` используйте параметр`accessTokenFactory` (в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP ( `Authorization` с использованием заголовка с типом `Bearer`). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение `access_token`строки запроса.
+Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
 
-В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl`:
+В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl` :
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.AccessTokenProvider = async () => {
             // Get and return the access token.
         };
@@ -658,11 +658,11 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-В клиенте JavaScript маркер доступа настраивается путем установки `accessTokenFactory` поля для объекта Options в: `withUrl`
+В клиенте JavaScript маркер доступа настраивается путем установки `accessTokenFactory` поля для объекта Options в `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         accessTokenFactory: () => {
             // Get and return the access token.
             // This function can return a JavaScript Promise if asynchronous
@@ -672,10 +672,10 @@ let connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-В клиенте SignalR Java можно настроить токен носителя, который будет использоваться для проверки подлинности, предоставив фабрику маркеров доступа для [хттфубконнектионбуилдер](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Используйте [висакцесстокенфактори](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) для предоставления [\<однострочного>](https://reactivex.io/documentation/single.html) [рксжава](https://github.com/ReactiveX/RxJava) . При вызове [Single. отсрочки](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-)можно написать логику для создания маркеров доступа для клиента.
+В SignalR клиенте Java можно настроить токен носителя для использования при проверке подлинности, предоставив фабрику маркеров доступа для [хттфубконнектионбуилдер](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Используйте [висакцесстокенфактори](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) для предоставления [рксжава](https://github.com/ReactiveX/RxJava) [Single \<String> ](https://reactivex.io/documentation/single.html). При вызове [Single. отсрочки](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-)можно написать логику для создания маркеров доступа для клиента.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withAccessTokenProvider(Single.defer(() -> {
         // Your logic here.
         return Single.just("An Access Token");
@@ -684,45 +684,45 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 
 ### <a name="configure-timeout-and-keep-alive-options"></a>Настройка времени ожидания и параметров поддержания активности
 
-Дополнительные параметры для настройки времени ожидания и проверки активности доступны для самого `HubConnection` объекта:
+Дополнительные параметры для настройки времени ожидания и проверки активности доступны для `HubConnection` самого объекта:
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `ServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `Closed` событие (`onclose` в JavaScript). Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
-| `HandshakeTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `Closed` событие (`onclose` в JavaScript). Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `ServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `Closed` событие ( `onclose` в JavaScript). Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
+| `HandshakeTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `Closed` событие ( `onclose` в JavaScript). Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 | `KeepAliveInterval` | 15 секунд | Определяет интервал, с которым клиент отправляет сообщения проверки связи. Отправка любого сообщения от клиента сбрасывает таймер до начала интервала. Если клиент не отправил сообщение в `ClientTimeoutInterval` наборе на сервере, сервер считает, что Клиент отключен. |
 
-В клиенте .NET значения времени ожидания задаются `TimeSpan` в виде значений.
+В клиенте .NET значения времени ожидания задаются в виде `TimeSpan` значений.
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `serverTimeoutInMilliseconds` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onclose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
+| `serverTimeoutInMilliseconds` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onclose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
 | `keepAliveIntervalInMilliseconds` | 15 секунд (15 000 миллисекунд) | Определяет интервал, с которым клиент отправляет сообщения проверки связи. Отправка любого сообщения от клиента сбрасывает таймер до начала интервала. Если клиент не отправил сообщение в `ClientTimeoutInterval` наборе на сервере, сервер считает, что Клиент отключен. |
 
 # <a name="java"></a>[Java](#tab/java)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `getServerTimeout` / `setServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onClose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
-| `withHandshakeResponseTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `onClose` событие. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `getServerTimeout` / `setServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onClose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
+| `withHandshakeResponseTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `onClose` событие. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 | `getKeepAliveInterval` / `setKeepAliveInterval` | 15 секунд (15 000 миллисекунд) | Определяет интервал, с которым клиент отправляет сообщения проверки связи. Отправка любого сообщения от клиента сбрасывает таймер до начала интервала. Если клиент не отправил сообщение в `ClientTimeoutInterval` наборе на сервере, сервер считает, что Клиент отключен. |
 
 ---
 
 ### <a name="configure-additional-options"></a>Настройка дополнительных параметров
 
-Дополнительные параметры можно настроить в методе `WithUrl` (`withUrl` в JavaScript) для `HubConnectionBuilder` или в различных API-интерфейсах `HttpHubConnectionBuilder` конфигурации в клиенте Java:
+Дополнительные параметры можно настроить в `WithUrl` `withUrl` методе (в JavaScript) для `HubConnectionBuilder` или в различных API-интерфейсах конфигурации в `HttpHubConnectionBuilder` клиенте Java:
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Параметр .NET |  Значение по умолчанию | Описание: |
+| Параметр .NET |  Значение по умолчанию | Описание |
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `SkipNegotiation` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `SkipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 | `ClientCertificates` | Empty | Коллекция сертификатов TLS для отправки в запросы проверки подлинности. |
 | `Cookies` | Empty | Коллекция файлов cookie HTTP для отправки с каждым HTTP-запросом. |
 | `Credentials` | Empty | Учетные данные для отправки с каждым HTTP-запросом. |
@@ -735,26 +735,26 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Параметр JavaScript | Значение по умолчанию | Описание |
+| Параметр JavaScript | Значение по умолчанию | Описание: |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `skipNegotiation` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `skipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 
 # <a name="java"></a>[Java](#tab/java)
 
-| Параметр Java | Значение по умолчанию | Описание |
+| Параметр Java | Значение по умолчанию | Описание: |
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `shouldSkipNegotiate` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `shouldSkipNegotiate` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 | `withHeader` `withHeaders` | Empty | Таблица дополнительных заголовков HTTP для отправки с каждым HTTP-запросом. |
 
 ---
 
-В клиенте .NET эти параметры можно изменить с помощью делегата Options, предоставленного `WithUrl`для:
+В клиенте .NET эти параметры можно изменить с помощью делегата Options, предоставленного для `WithUrl` :
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
@@ -762,11 +762,11 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-В клиенте JavaScript эти параметры можно предоставить в объекте JavaScript, предоставленном для `withUrl`:
+В клиенте JavaScript эти параметры можно предоставить в объекте JavaScript, предоставленном для `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
     })
@@ -776,7 +776,7 @@ let connection = new signalR.HubConnectionBuilder()
 В клиенте Java эти параметры можно настроить с помощью методов, `HttpHubConnectionBuilder` возвращаемых из`HubConnectionBuilder.create("HUB URL")`
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
         .withHeader("Foo", "Bar")
         .shouldSkipNegotiate(true)
         .withHandshakeResponseTimeout(30*1000)
@@ -799,9 +799,9 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 
 ASP.NET Core SignalR поддерживает два протокола кодирования сообщений: [JSON](https://www.json.org/) и [MessagePack](https://msgpack.org/index.html). Для каждого протокола предусмотрены параметры конфигурации сериализации.
 
-Сериализацию JSON можно настроить на сервере с помощью метода расширения [адджсонпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.jsonprotocoldependencyinjectionextensions.addjsonprotocol) . `AddJsonProtocol`можно добавить после [аддсигналр](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) в `Startup.ConfigureServices`. `AddJsonProtocol` Метод принимает делегат, который получает `options` объект. Свойство [пайлоадсериализероптионс](/dotnet/api/microsoft.aspnetcore.signalr.jsonhubprotocoloptions.payloadserializeroptions) этого объекта — `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> это объект, который можно использовать для настройки сериализации аргументов и возвращаемых значений. Дополнительные сведения см. в [документации System. Text. JSON](/dotnet/api/system.text.json).
+Сериализацию JSON можно настроить на сервере с помощью метода расширения [адджсонпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.jsonprotocoldependencyinjectionextensions.addjsonprotocol) . `AddJsonProtocol`можно добавить после [аддсигналр](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) в `Startup.ConfigureServices` . `AddJsonProtocol`Метод принимает делегат, который получает `options` объект. Свойство [пайлоадсериализероптионс](/dotnet/api/microsoft.aspnetcore.signalr.jsonhubprotocoloptions.payloadserializeroptions) этого объекта — это `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> объект, который можно использовать для настройки сериализации аргументов и возвращаемых значений. Дополнительные сведения см. в [System.Text.Jsдокументации](/dotnet/api/system.text.json).
 
-Например, чтобы настроить в сериализаторе не изменять регистр имен свойств, вместо имен по умолчанию используется следующий код `Startup.ConfigureServices`:
+Например, чтобы настроить в сериализаторе не изменять регистр имен свойств, вместо имен по умолчанию используется следующий код `Startup.ConfigureServices` :
 
 ```csharp
 services.AddSignalR()
@@ -810,7 +810,7 @@ services.AddSignalR()
     });
 ```
 
-В клиенте .NET такой же `AddJsonProtocol` метод расширения существует в [хубконнектионбуилдер](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). Чтобы `Microsoft.Extensions.DependencyInjection` разрешить метод расширения, необходимо импортировать пространство имен:
+В клиенте .NET такой же `AddJsonProtocol` метод расширения существует в [хубконнектионбуилдер](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). `Microsoft.Extensions.DependencyInjection`Чтобы разрешить метод расширения, необходимо импортировать пространство имен:
 
 ```csharp
 // At the top of the file:
@@ -827,32 +827,32 @@ var connection = new HubConnectionBuilder()
 > [!NOTE]
 > В настоящее время невозможно настроить сериализацию JSON в клиенте JavaScript.
 
-### <a name="switch-to-newtonsoftjson"></a>Переключиться на Newtonsoft. JSON
+### <a name="switch-to-newtonsoftjson"></a>Переключиться на Newtonsoft.Js
 
-Если вам нужны функции `Newtonsoft.Json` , которые не поддерживаются `System.Text.Json`в, см. раздел [Переключение на Newtonsoft. JSON](xref:migration/22-to-30#switch-to-newtonsoftjson).
+Если вам нужны функции `Newtonsoft.Json` , которые не поддерживаются в `System.Text.Json` , см. раздел [Переключение на Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
 
 ### <a name="messagepack-serialization-options"></a>Параметры сериализации MessagePack
 
-MessagePack сериализацию можно настроить, предоставив делегат вызову [аддмессажепаккпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) . Дополнительные сведения см. [в разделе MessagePack в SignalR](xref:signalr/messagepackhubprotocol) .
+MessagePack сериализацию можно настроить, предоставив делегат вызову [аддмессажепаккпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) . Дополнительные сведения см. [в разделе MessagePack в SignalR ](xref:signalr/messagepackhubprotocol) .
 
 > [!NOTE]
 > В настоящее время невозможно настроить сериализацию MessagePack в клиенте JavaScript.
 
 ## <a name="configure-server-options"></a>Настройка параметров сервера
 
-В следующей таблице описаны параметры для настройки концентраторов SignalR.
+В следующей таблице описаны параметры для настройки SignalR концентраторов.
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
 | `ClientTimeoutInterval` | 30 секунд | Сервер будет считать, что Клиент отключен, если в этот интервал не было получено сообщение (включая "срок поддержания активности"). Чтобы клиент фактически был помечен как отключенный, он может занять больше времени, чем это время ожидания, из-за того, как это реализовано. Рекомендуемое значение — двойное `KeepAliveInterval` значение.|
-| `HandshakeTimeout` | 15 секунд | Если клиент не отправляет исходное сообщение подтверждения в течение этого интервала времени, соединение закрывается. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
-| `KeepAliveInterval` | 15 секунд | Если сервер не отправил сообщение в течение этого интервала, сообщение проверки связи отправляется автоматически, чтобы подключение не открывалось. При изменении `KeepAliveInterval` `serverTimeoutInMilliseconds` параметра на клиенте измените `ServerTimeout` / параметр. Рекомендуемое `ServerTimeout` / `serverTimeoutInMilliseconds` значение — двойное `KeepAliveInterval` значение.  |
+| `HandshakeTimeout` | 15 секунд | Если клиент не отправляет исходное сообщение подтверждения в течение этого интервала времени, соединение закрывается. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `KeepAliveInterval` | 15 секунд | Если сервер не отправил сообщение в течение этого интервала, сообщение проверки связи отправляется автоматически, чтобы подключение не открывалось. При изменении `KeepAliveInterval` `ServerTimeout` / `serverTimeoutInMilliseconds` параметра на клиенте измените параметр. Рекомендуемое `ServerTimeout` / `serverTimeoutInMilliseconds` значение — двойное `KeepAliveInterval` значение.  |
 | `SupportedProtocols` | Все установленные протоколы | Протоколы, поддерживаемые этим концентратором. По умолчанию все зарегистрированные на сервере протоколы разрешены, но в этом списке можно удалить протоколы, чтобы отключить определенные протоколы для отдельных концентраторов. |
-| `EnableDetailedErrors` | `false` | Если `true`значение равно, подробные сообщения об исключениях возвращаются клиентам при возникновении исключения в методе концентратора. Значение по умолчанию — `false`, так как эти сообщения об исключениях могут содержать конфиденциальные сведения. |
+| `EnableDetailedErrors` | `false` | Если значение `true` равно, подробные сообщения об исключениях возвращаются клиентам при возникновении исключения в методе концентратора. Значение по умолчанию — `false` , так как эти сообщения об исключениях могут содержать конфиденциальные сведения. |
 | `StreamBufferCapacity` | `10` | Максимальное число элементов, которые могут быть помещены в буфер для потоков загрузки клиента. При достижении этого предела обработка вызовов блокируется до тех пор, пока сервер не обработает потоковые элементы.|
 | `MaximumReceiveMessageSize` | 32 КБ | Максимальный размер одного входящего сообщения концентратора. |
 
-Параметры можно настроить для всех концентраторов, предоставив делегаты параметров для `AddSignalR` вызова в. `Startup.ConfigureServices`
+Параметры можно настроить для всех концентраторов, предоставив делегаты параметров для `AddSignalR` вызова в `Startup.ConfigureServices` .
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -865,10 +865,10 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Параметры одного концентратора переопределяют глобальные параметры, предоставленные `AddSignalR` в, и могут быть <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*>настроены с помощью:
+Параметры одного концентратора переопределяют глобальные параметры, предоставленные в `AddSignalR` , и могут быть настроены с помощью <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*> :
 
 ```csharp
-services.AddSignalR().AddHubOptions<MyHub>(options =>
+services.AddSignalR().AddHubOptions<ChatHub>(options =>
 {
     options.EnableDetailedErrors = true;
 });
@@ -876,7 +876,7 @@ services.AddSignalR().AddHubOptions<MyHub>(options =>
 
 ### <a name="advanced-http-configuration-options"></a>Дополнительные параметры конфигурации HTTP
 
-Используется `HttpConnectionDispatcherOptions` для настройки дополнительных параметров, относящихся к транспортам и управлению буферами памяти. Эти параметры настраиваются путем передачи делегата в [мафуб\<T>](/dotnet/api/microsoft.aspnetcore.builder.hubendpointroutebuilderextensions.maphub) в `Startup.Configure`.
+Используется `HttpConnectionDispatcherOptions` для настройки дополнительных параметров, относящихся к транспортам и управлению буферами памяти. Эти параметры настраиваются путем передачи делегата в [мафуб \<T> ](/dotnet/api/microsoft.aspnetcore.builder.hubendpointroutebuilderextensions.maphub) в `Startup.Configure` .
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -885,7 +885,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
     app.UseEndpoints(endpoints =>
     {
-        endpoints.MapHub<MyHub>("/myhub", options =>
+        endpoints.MapHub<ChatHub>("/chathub", options =>
         {
             options.Transports =
                 HttpTransportType.WebSockets |
@@ -895,7 +895,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-В следующей таблице описаны параметры для настройки расширенных HTTP-параметров SignalR ASP.NET Core.
+В следующей таблице описаны параметры для настройки SignalR расширенных HTTP-параметров ASP.NET Core.
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
@@ -906,13 +906,13 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 | `LongPolling` | См. ниже. | Дополнительные параметры, относящиеся к длительному транспортному потоку. |
 | `WebSockets` | См. ниже. | Дополнительные параметры, относящиеся к транспортному протоколу WebSocket. |
 
-У транспорта с длинным опросом есть дополнительные параметры, которые можно настроить `LongPolling` с помощью свойства:
+У транспорта с длинным опросом есть дополнительные параметры, которые можно настроить с помощью `LongPolling` Свойства:
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
 | `PollTimeout` | 90 секунд | Максимальное количество времени, в течение которого сервер ожидает отправки сообщения клиенту перед завершением одного запроса опроса. Уменьшение этого значения приводит к тому, что клиент будет чаще выдавать новые запросы на опрос. |
 
-Транспорт WebSocket имеет дополнительные параметры, которые можно настроить с помощью `WebSockets` свойства:
+Транспорт WebSocket имеет дополнительные параметры, которые можно настроить с помощью `WebSockets` Свойства:
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
@@ -921,20 +921,20 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 ## <a name="configure-client-options"></a>Настройка параметров клиента
 
-Параметры клиента можно настроить для `HubConnectionBuilder` типа (доступного в клиентах .NET и JavaScript). Он также доступен в клиенте Java, но он содержит `HttpHubConnectionBuilder` параметры конфигурации построителя, а также `HubConnection` сам подкласс.
+Параметры клиента можно настроить для `HubConnectionBuilder` типа (доступного в клиентах .NET и JavaScript). Он также доступен в клиенте Java, но он `HttpHubConnectionBuilder` содержит параметры конфигурации построителя, а также сам подкласс `HubConnection` .
 
 ### <a name="configure-logging"></a>Настройка журнала
 
-Ведение журнала настраивается в клиенте .NET `ConfigureLogging` с помощью метода. Регистраторы и фильтры могут быть зарегистрированы так же, как и на сервере. Дополнительные сведения см. в документации по [ведению журнала ASP.NET Core](xref:fundamentals/logging/index) .
+Ведение журнала настраивается в клиенте .NET с помощью `ConfigureLogging` метода. Регистраторы и фильтры могут быть зарегистрированы так же, как и на сервере. Дополнительные сведения см. в документации по [ведению журнала ASP.NET Core](xref:fundamentals/logging/index) .
 
 > [!NOTE]
 > Чтобы зарегистрировать регистраторы, необходимо установить необходимые пакеты. Полный список см. в разделе [встроенные поставщики ведения журналов](xref:fundamentals/logging/index#built-in-logging-providers) документации.
 
-Например, чтобы включить ведение журнала консоли, установите пакет `Microsoft.Extensions.Logging.Console` NuGet. Вызовите `AddConsole` метод расширения:
+Например, чтобы включить ведение журнала консоли, установите `Microsoft.Extensions.Logging.Console` пакет NuGet. Вызовите `AddConsole` метод расширения:
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub")
+    .WithUrl("https://example.com/chathub")
     .ConfigureLogging(logging => {
         logging.SetMinimumLevel(LogLevel.Information);
         logging.AddConsole();
@@ -946,38 +946,38 @@ var connection = new HubConnectionBuilder()
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 ```
 
-Вместо `LogLevel` значения можно также указать `string` значение, представляющее имя уровня журнала. Это полезно при настройке ведения журнала SignalR в средах, где у вас нет доступа к `LogLevel` константам.
+Вместо `LogLevel` значения можно также указать `string` значение, представляющее имя уровня журнала. Это полезно при настройке SignalR ведения журнала в средах, где у вас нет доступа к `LogLevel` константам.
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging("warn")
     .build();
 ```
 
-В следующей таблице перечислены доступные уровни ведения журнала. Значение, которое вы указываете для `configureLogging` установки **минимального** уровня ведения журнала, который будет записан в журнал. Сообщения, зарегистрированные на этом уровне **или перечисленные в таблице уровни**, будут занесены в журнал.
+В следующей таблице перечислены доступные уровни ведения журнала. Значение, которое вы `configureLogging` указываете для установки **минимального** уровня ведения журнала, который будет записан в журнал. Сообщения, зарегистрированные на этом уровне **или перечисленные в таблице уровни**, будут занесены в журнал.
 
 | Строка                      | LogLevel               |
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **or** `information` | `LogLevel.Information` |
-| `warn` **or** `warning`     | `LogLevel.Warning`     |
+| `info`**или**`information` | `LogLevel.Information` |
+| `warn`**или**`warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
 
 > [!NOTE]
-> Чтобы полностью отключить ведение журнала, `signalR.LogLevel.None` укажите в `configureLogging` методе.
+> Чтобы полностью отключить ведение журнала, укажите `signalR.LogLevel.None` в `configureLogging` методе.
 
-Дополнительные сведения о ведении журналов см. в [документации по диагностике SignalR](xref:signalr/diagnostics).
+Дополнительные сведения о ведении журналов см. в [ SignalR документации по диагностике](xref:signalr/diagnostics).
 
-Клиент, использующий SignalR Java, использует библиотеку [SLF4J](https://www.slf4j.org/) для ведения журнала. Это высокоуровневый API ведения журнала, который позволяет пользователям библиотеки выбирать собственную реализацию ведения журнала, применяя определенную зависимость от ведения журнала. В следующем фрагменте кода показано, как `java.util.logging` использовать с клиентом SignalR Java.
+SignalRКлиент Java использует библиотеку [SLF4J](https://www.slf4j.org/) для ведения журнала. Это высокоуровневый API ведения журнала, который позволяет пользователям библиотеки выбирать собственную реализацию ведения журнала, применяя определенную зависимость от ведения журнала. В следующем фрагменте кода показано, как использовать `java.util.logging` с SignalR клиентом Java.
 
 ```gradle
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
@@ -995,46 +995,46 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 ### <a name="configure-allowed-transports"></a>Настройка разрешенных транспортов
 
-Транспорты, используемые SignalR, можно настроить в `WithUrl` вызове (`withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
+Транспорты, используемые, SignalR можно настроить в `WithUrl` вызове ( `withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
 
 Например, чтобы отключить транспорт событий, отправленных сервером, но разрешить соединения WebSockets и long опрашиваете:
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
+    .WithUrl("https://example.com/chathub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
     .Build();
 ```
 
-В клиенте JavaScript транспорты настраиваются путем установки `transport` поля для объекта Options, указанного в: `withUrl`
+В клиенте JavaScript транспорты настраиваются путем установки поля для `transport` объекта Options, указанного в `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
+    .withUrl("/chathub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
     .build();
 ```
 
 В этой версии клиентские WebSocket-сокеты Java являются единственным доступным транспортом.
 
-В клиенте Java транспорт выбирается с помощью `withTransport` метода в. `HttpHubConnectionBuilder` Клиент Java по умолчанию использует транспорт WebSockets.
+В клиенте Java транспорт выбирается с помощью `withTransport` метода в `HttpHubConnectionBuilder` . Клиент Java по умолчанию использует транспорт WebSockets.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withTransport(TransportEnum.WEBSOCKETS)
     .build();
 ```
 
 > [!NOTE]
-> Клиент Java SignalR пока не поддерживает откат транспорта.
+> SignalRКлиент Java пока не поддерживает откат транспорта.
 
 ### <a name="configure-bearer-authentication"></a>Настройка проверки подлинности носителя
 
-Чтобы предоставить данные проверки подлинности вместе с запросами SignalR, `AccessTokenProvider` используйте параметр`accessTokenFactory` (в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP ( `Authorization` с использованием заголовка с типом `Bearer`). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение `access_token`строки запроса.
+Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
 
-В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl`:
+В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl` :
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.AccessTokenProvider = async () => {
             // Get and return the access token.
         };
@@ -1042,11 +1042,11 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-В клиенте JavaScript маркер доступа настраивается путем установки `accessTokenFactory` поля для объекта Options в: `withUrl`
+В клиенте JavaScript маркер доступа настраивается путем установки `accessTokenFactory` поля для объекта Options в `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         accessTokenFactory: () => {
             // Get and return the access token.
             // This function can return a JavaScript Promise if asynchronous
@@ -1056,10 +1056,10 @@ let connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-В клиенте SignalR Java можно настроить токен носителя, который будет использоваться для проверки подлинности, предоставив фабрику маркеров доступа для [хттфубконнектионбуилдер](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Используйте [висакцесстокенфактори](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) для предоставления [\<однострочного>](https://reactivex.io/documentation/single.html) [рксжава](https://github.com/ReactiveX/RxJava) . При вызове [Single. отсрочки](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-)можно написать логику для создания маркеров доступа для клиента.
+В SignalR клиенте Java можно настроить токен носителя для использования при проверке подлинности, предоставив фабрику маркеров доступа для [хттфубконнектионбуилдер](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Используйте [висакцесстокенфактори](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) для предоставления [рксжава](https://github.com/ReactiveX/RxJava) [Single \<String> ](https://reactivex.io/documentation/single.html). При вызове [Single. отсрочки](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-)можно написать логику для создания маркеров доступа для клиента.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withAccessTokenProvider(Single.defer(() -> {
         // Your logic here.
         return Single.just("An Access Token");
@@ -1068,45 +1068,45 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 
 ### <a name="configure-timeout-and-keep-alive-options"></a>Настройка времени ожидания и параметров поддержания активности
 
-Дополнительные параметры для настройки времени ожидания и проверки активности доступны для самого `HubConnection` объекта:
+Дополнительные параметры для настройки времени ожидания и проверки активности доступны для `HubConnection` самого объекта:
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `ServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `Closed` событие (`onclose` в JavaScript). Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
-| `HandshakeTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `Closed` событие (`onclose` в JavaScript). Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `ServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `Closed` событие ( `onclose` в JavaScript). Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
+| `HandshakeTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `Closed` событие ( `onclose` в JavaScript). Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 | `KeepAliveInterval` | 15 секунд | Определяет интервал, с которым клиент отправляет сообщения проверки связи. Отправка любого сообщения от клиента сбрасывает таймер до начала интервала. Если клиент не отправил сообщение в `ClientTimeoutInterval` наборе на сервере, сервер считает, что Клиент отключен. |
 
-В клиенте .NET значения времени ожидания задаются `TimeSpan` в виде значений.
+В клиенте .NET значения времени ожидания задаются в виде `TimeSpan` значений.
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `serverTimeoutInMilliseconds` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onclose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
+| `serverTimeoutInMilliseconds` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onclose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
 | `keepAliveIntervalInMilliseconds` | 15 секунд (15 000 миллисекунд) | Определяет интервал, с которым клиент отправляет сообщения проверки связи. Отправка любого сообщения от клиента сбрасывает таймер до начала интервала. Если клиент не отправил сообщение в `ClientTimeoutInterval` наборе на сервере, сервер считает, что Клиент отключен. |
 
 # <a name="java"></a>[Java](#tab/java)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `getServerTimeout` / `setServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onClose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
-| `withHandshakeResponseTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `onClose` событие. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `getServerTimeout` / `setServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onClose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
+| `withHandshakeResponseTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `onClose` событие. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 | `getKeepAliveInterval` / `setKeepAliveInterval` | 15 секунд (15 000 миллисекунд) | Определяет интервал, с которым клиент отправляет сообщения проверки связи. Отправка любого сообщения от клиента сбрасывает таймер до начала интервала. Если клиент не отправил сообщение в `ClientTimeoutInterval` наборе на сервере, сервер считает, что Клиент отключен. |
 
 ---
 
 ### <a name="configure-additional-options"></a>Настройка дополнительных параметров
 
-Дополнительные параметры можно настроить в методе `WithUrl` (`withUrl` в JavaScript) для `HubConnectionBuilder` или в различных API-интерфейсах `HttpHubConnectionBuilder` конфигурации в клиенте Java:
+Дополнительные параметры можно настроить в `WithUrl` `withUrl` методе (в JavaScript) для `HubConnectionBuilder` или в различных API-интерфейсах конфигурации в `HttpHubConnectionBuilder` клиенте Java:
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Параметр .NET |  Значение по умолчанию | Описание: |
+| Параметр .NET |  Значение по умолчанию | Описание |
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `SkipNegotiation` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `SkipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 | `ClientCertificates` | Empty | Коллекция сертификатов TLS для отправки в запросы проверки подлинности. |
 | `Cookies` | Empty | Коллекция файлов cookie HTTP для отправки с каждым HTTP-запросом. |
 | `Credentials` | Empty | Учетные данные для отправки с каждым HTTP-запросом. |
@@ -1122,23 +1122,23 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 | Параметр JavaScript | Значение по умолчанию | Описание |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `skipNegotiation` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `skipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 
 # <a name="java"></a>[Java](#tab/java)
 
 | Параметр Java | Значение по умолчанию | Описание |
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `shouldSkipNegotiate` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `shouldSkipNegotiate` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 | `withHeader` `withHeaders` | Empty | Таблица дополнительных заголовков HTTP для отправки с каждым HTTP-запросом. |
 
 ---
 
-В клиенте .NET эти параметры можно изменить с помощью делегата Options, предоставленного `WithUrl`для:
+В клиенте .NET эти параметры можно изменить с помощью делегата Options, предоставленного для `WithUrl` :
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
@@ -1146,11 +1146,11 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-В клиенте JavaScript эти параметры можно предоставить в объекте JavaScript, предоставленном для `withUrl`:
+В клиенте JavaScript эти параметры можно предоставить в объекте JavaScript, предоставленном для `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
     })
@@ -1160,7 +1160,7 @@ let connection = new signalR.HubConnectionBuilder()
 В клиенте Java эти параметры можно настроить с помощью методов, `HttpHubConnectionBuilder` возвращаемых из`HubConnectionBuilder.create("HUB URL")`
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
         .withHeader("Foo", "Bar")
         .shouldSkipNegotiate(true)
         .withHandshakeResponseTimeout(30*1000)
@@ -1183,9 +1183,9 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 
 ASP.NET Core SignalR поддерживает два протокола кодирования сообщений: [JSON](https://www.json.org/) и [MessagePack](https://msgpack.org/index.html). Для каждого протокола предусмотрены параметры конфигурации сериализации.
 
-Сериализацию JSON можно настроить на сервере с помощью метода расширения [адджсонпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.jsonprotocoldependencyinjectionextensions.addjsonprotocol) , который можно добавить после [аддсигналр](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) в `Startup.ConfigureServices` методе. `AddJsonProtocol` Метод принимает делегат, который получает `options` объект. Свойство [пайлоадсериализерсеттингс](/dotnet/api/microsoft.aspnetcore.signalr.jsonhubprotocoloptions.payloadserializersettings) этого объекта является объектом JSON.NET `JsonSerializerSettings` , который можно использовать для настройки сериализации аргументов и возвращаемых значений. Дополнительные сведения см. в [документации по JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm).
+Сериализацию JSON можно настроить на сервере с помощью метода расширения [адджсонпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.jsonprotocoldependencyinjectionextensions.addjsonprotocol) , который можно добавить после [аддсигналр](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) в `Startup.ConfigureServices` методе. `AddJsonProtocol`Метод принимает делегат, который получает `options` объект. Свойство [пайлоадсериализерсеттингс](/dotnet/api/microsoft.aspnetcore.signalr.jsonhubprotocoloptions.payloadserializersettings) этого объекта является `JsonSerializerSettings` объектом JSON.NET, который можно использовать для настройки сериализации аргументов и возвращаемых значений. Дополнительные сведения см. в [документации по JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm).
  
-Например, чтобы настроить сериализатор для использования имен свойств "PascalCase" вместо имен по умолчанию "camelCase", используйте следующий код в `Startup.ConfigureServices`:
+Например, чтобы настроить сериализатор для использования имен свойств "PascalCase" вместо имен по умолчанию "camelCase", используйте следующий код в `Startup.ConfigureServices` :
  
 ```csharp
 services.AddSignalR()
@@ -1195,7 +1195,7 @@ services.AddSignalR()
     });
 ```
 
-В клиенте .NET такой же `AddJsonProtocol` метод расширения существует в [хубконнектионбуилдер](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). Чтобы `Microsoft.Extensions.DependencyInjection` разрешить метод расширения, необходимо импортировать пространство имен:
+В клиенте .NET такой же `AddJsonProtocol` метод расширения существует в [хубконнектионбуилдер](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). `Microsoft.Extensions.DependencyInjection`Чтобы разрешить метод расширения, необходимо импортировать пространство имен:
 
 ```csharp
 // At the top of the file:
@@ -1215,24 +1215,24 @@ var connection = new HubConnectionBuilder()
 
 ### <a name="messagepack-serialization-options"></a>Параметры сериализации MessagePack
 
-MessagePack сериализацию можно настроить, предоставив делегат вызову [аддмессажепаккпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) . Дополнительные сведения см. [в разделе MessagePack в SignalR](xref:signalr/messagepackhubprotocol) .
+MessagePack сериализацию можно настроить, предоставив делегат вызову [аддмессажепаккпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) . Дополнительные сведения см. [в разделе MessagePack в SignalR ](xref:signalr/messagepackhubprotocol) .
 
 > [!NOTE]
 > В настоящее время невозможно настроить сериализацию MessagePack в клиенте JavaScript.
 
 ## <a name="configure-server-options"></a>Настройка параметров сервера
 
-В следующей таблице описаны параметры для настройки концентраторов SignalR.
+В следующей таблице описаны параметры для настройки SignalR концентраторов.
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
 | `ClientTimeoutInterval` | 30 секунд | Сервер будет считать, что Клиент отключен, если в этот интервал не было получено сообщение (включая "срок поддержания активности"). Чтобы клиент фактически был помечен как отключенный, он может занять больше времени, чем это время ожидания, из-за того, как это реализовано. Рекомендуемое значение — двойное `KeepAliveInterval` значение.|
-| `HandshakeTimeout` | 15 секунд | Если клиент не отправляет исходное сообщение подтверждения в течение этого интервала времени, соединение закрывается. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
-| `KeepAliveInterval` | 15 секунд | Если сервер не отправил сообщение в течение этого интервала, сообщение проверки связи отправляется автоматически, чтобы подключение не открывалось. При изменении `KeepAliveInterval` `serverTimeoutInMilliseconds` параметра на клиенте измените `ServerTimeout` / параметр. Рекомендуемое `ServerTimeout` / `serverTimeoutInMilliseconds` значение — двойное `KeepAliveInterval` значение.  |
+| `HandshakeTimeout` | 15 секунд | Если клиент не отправляет исходное сообщение подтверждения в течение этого интервала времени, соединение закрывается. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `KeepAliveInterval` | 15 секунд | Если сервер не отправил сообщение в течение этого интервала, сообщение проверки связи отправляется автоматически, чтобы подключение не открывалось. При изменении `KeepAliveInterval` `ServerTimeout` / `serverTimeoutInMilliseconds` параметра на клиенте измените параметр. Рекомендуемое `ServerTimeout` / `serverTimeoutInMilliseconds` значение — двойное `KeepAliveInterval` значение.  |
 | `SupportedProtocols` | Все установленные протоколы | Протоколы, поддерживаемые этим концентратором. По умолчанию все зарегистрированные на сервере протоколы разрешены, но в этом списке можно удалить протоколы, чтобы отключить определенные протоколы для отдельных концентраторов. |
-| `EnableDetailedErrors` | `false` | Если `true`значение равно, подробные сообщения об исключениях возвращаются клиентам при возникновении исключения в методе концентратора. Значение по умолчанию — `false`, так как эти сообщения об исключениях могут содержать конфиденциальные сведения. |
+| `EnableDetailedErrors` | `false` | Если значение `true` равно, подробные сообщения об исключениях возвращаются клиентам при возникновении исключения в методе концентратора. Значение по умолчанию — `false` , так как эти сообщения об исключениях могут содержать конфиденциальные сведения. |
 
-Параметры можно настроить для всех концентраторов, предоставив делегаты параметров для `AddSignalR` вызова в. `Startup.ConfigureServices`
+Параметры можно настроить для всех концентраторов, предоставив делегаты параметров для `AddSignalR` вызова в `Startup.ConfigureServices` .
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -1245,10 +1245,10 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Параметры одного концентратора переопределяют глобальные параметры, предоставленные `AddSignalR` в, и могут быть <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*>настроены с помощью:
+Параметры одного концентратора переопределяют глобальные параметры, предоставленные в `AddSignalR` , и могут быть настроены с помощью <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*> :
 
 ```csharp
-services.AddSignalR().AddHubOptions<MyHub>(options =>
+services.AddSignalR().AddHubOptions<ChatHub>(options =>
 {
     options.EnableDetailedErrors = true;
 });
@@ -1256,7 +1256,7 @@ services.AddSignalR().AddHubOptions<MyHub>(options =>
 
 ### <a name="advanced-http-configuration-options"></a>Дополнительные параметры конфигурации HTTP
 
-Используется `HttpConnectionDispatcherOptions` для настройки дополнительных параметров, относящихся к транспортам и управлению буферами памяти. Эти параметры настраиваются путем передачи делегата в [мафуб\<T>](/dotnet/api/microsoft.aspnetcore.signalr.hubroutebuilder.maphub) в `Startup.Configure`.
+Используется `HttpConnectionDispatcherOptions` для настройки дополнительных параметров, относящихся к транспортам и управлению буферами памяти. Эти параметры настраиваются путем передачи делегата в [мафуб \<T> ](/dotnet/api/microsoft.aspnetcore.signalr.hubroutebuilder.maphub) в `Startup.Configure` .
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -1267,7 +1267,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
             HttpTransportType.WebSockets |
             HttpTransportType.LongPolling;
 
-        configure.MapHub<MyHub>("/myhub", (options) =>
+        configure.MapHub<ChatHub>("/chathub", (options) =>
         {
             options.Transports = desiredTransports;
         });
@@ -1275,7 +1275,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-В следующей таблице описаны параметры для настройки расширенных HTTP-параметров SignalR ASP.NET Core.
+В следующей таблице описаны параметры для настройки SignalR расширенных HTTP-параметров ASP.NET Core.
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
@@ -1286,13 +1286,13 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 | `LongPolling` | См. ниже. | Дополнительные параметры, относящиеся к длительному транспортному потоку. |
 | `WebSockets` | См. ниже. | Дополнительные параметры, относящиеся к транспортному протоколу WebSocket. |
 
-У транспорта с длинным опросом есть дополнительные параметры, которые можно настроить `LongPolling` с помощью свойства:
+У транспорта с длинным опросом есть дополнительные параметры, которые можно настроить с помощью `LongPolling` Свойства:
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
 | `PollTimeout` | 90 секунд | Максимальное количество времени, в течение которого сервер ожидает отправки сообщения клиенту перед завершением одного запроса опроса. Уменьшение этого значения приводит к тому, что клиент будет чаще выдавать новые запросы на опрос. |
 
-Транспорт WebSocket имеет дополнительные параметры, которые можно настроить с помощью `WebSockets` свойства:
+Транспорт WebSocket имеет дополнительные параметры, которые можно настроить с помощью `WebSockets` Свойства:
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
@@ -1301,20 +1301,20 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 ## <a name="configure-client-options"></a>Настройка параметров клиента
 
-Параметры клиента можно настроить для `HubConnectionBuilder` типа (доступного в клиентах .NET и JavaScript). Он также доступен в клиенте Java, но он содержит `HttpHubConnectionBuilder` параметры конфигурации построителя, а также `HubConnection` сам подкласс.
+Параметры клиента можно настроить для `HubConnectionBuilder` типа (доступного в клиентах .NET и JavaScript). Он также доступен в клиенте Java, но он `HttpHubConnectionBuilder` содержит параметры конфигурации построителя, а также сам подкласс `HubConnection` .
 
 ### <a name="configure-logging"></a>Настройка журнала
 
-Ведение журнала настраивается в клиенте .NET `ConfigureLogging` с помощью метода. Регистраторы и фильтры могут быть зарегистрированы так же, как и на сервере. Дополнительные сведения см. в документации по [ведению журнала ASP.NET Core](xref:fundamentals/logging/index) .
+Ведение журнала настраивается в клиенте .NET с помощью `ConfigureLogging` метода. Регистраторы и фильтры могут быть зарегистрированы так же, как и на сервере. Дополнительные сведения см. в документации по [ведению журнала ASP.NET Core](xref:fundamentals/logging/index) .
 
 > [!NOTE]
 > Чтобы зарегистрировать регистраторы, необходимо установить необходимые пакеты. Полный список см. в разделе [встроенные поставщики ведения журналов](xref:fundamentals/logging/index#built-in-logging-providers) документации.
 
-Например, чтобы включить ведение журнала консоли, установите пакет `Microsoft.Extensions.Logging.Console` NuGet. Вызовите `AddConsole` метод расширения:
+Например, чтобы включить ведение журнала консоли, установите `Microsoft.Extensions.Logging.Console` пакет NuGet. Вызовите `AddConsole` метод расширения:
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub")
+    .WithUrl("https://example.com/chathub")
     .ConfigureLogging(logging => {
         logging.SetMinimumLevel(LogLevel.Information);
         logging.AddConsole();
@@ -1326,17 +1326,17 @@ var connection = new HubConnectionBuilder()
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 ```
 
 > [!NOTE]
-> Чтобы полностью отключить ведение журнала, `signalR.LogLevel.None` укажите в `configureLogging` методе.
+> Чтобы полностью отключить ведение журнала, укажите `signalR.LogLevel.None` в `configureLogging` методе.
 
-Дополнительные сведения о ведении журналов см. в [документации по диагностике SignalR](xref:signalr/diagnostics).
+Дополнительные сведения о ведении журналов см. в [ SignalR документации по диагностике](xref:signalr/diagnostics).
 
-Клиент, использующий SignalR Java, использует библиотеку [SLF4J](https://www.slf4j.org/) для ведения журнала. Это высокоуровневый API ведения журнала, который позволяет пользователям библиотеки выбирать собственную реализацию ведения журнала, применяя определенную зависимость от ведения журнала. В следующем фрагменте кода показано, как `java.util.logging` использовать с клиентом SignalR Java.
+SignalRКлиент Java использует библиотеку [SLF4J](https://www.slf4j.org/) для ведения журнала. Это высокоуровневый API ведения журнала, который позволяет пользователям библиотеки выбирать собственную реализацию ведения журнала, применяя определенную зависимость от ведения журнала. В следующем фрагменте кода показано, как использовать `java.util.logging` с SignalR клиентом Java.
 
 ```gradle
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
@@ -1354,21 +1354,21 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 ### <a name="configure-allowed-transports"></a>Настройка разрешенных транспортов
 
-Транспорты, используемые SignalR, можно настроить в `WithUrl` вызове (`withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
+Транспорты, используемые, SignalR можно настроить в `WithUrl` вызове ( `withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
 
 Например, чтобы отключить транспорт событий, отправленных сервером, но разрешить соединения WebSockets и long опрашиваете:
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
+    .WithUrl("https://example.com/chathub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
     .Build();
 ```
 
-В клиенте JavaScript транспорты настраиваются путем установки `transport` поля для объекта Options, указанного в: `withUrl`
+В клиенте JavaScript транспорты настраиваются путем установки поля для `transport` объекта Options, указанного в `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
+    .withUrl("/chathub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
     .build();
 ```
 
@@ -1376,13 +1376,13 @@ let connection = new signalR.HubConnectionBuilder()
 
 ### <a name="configure-bearer-authentication"></a>Настройка проверки подлинности носителя
 
-Чтобы предоставить данные проверки подлинности вместе с запросами SignalR, `AccessTokenProvider` используйте параметр`accessTokenFactory` (в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP ( `Authorization` с использованием заголовка с типом `Bearer`). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение `access_token`строки запроса.
+Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
 
-В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl`:
+В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl` :
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.AccessTokenProvider = async () => {
             // Get and return the access token.
         };
@@ -1390,11 +1390,11 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-В клиенте JavaScript маркер доступа настраивается путем установки `accessTokenFactory` поля для объекта Options в: `withUrl`
+В клиенте JavaScript маркер доступа настраивается путем установки `accessTokenFactory` поля для объекта Options в `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         accessTokenFactory: () => {
             // Get and return the access token.
             // This function can return a JavaScript Promise if asynchronous
@@ -1404,10 +1404,10 @@ let connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-В клиенте SignalR Java можно настроить токен носителя, который будет использоваться для проверки подлинности, предоставив фабрику маркеров доступа для [хттфубконнектионбуилдер](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Используйте [висакцесстокенфактори](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) для предоставления [\<однострочного>](https://reactivex.io/documentation/single.html) [рксжава](https://github.com/ReactiveX/RxJava) . При вызове [Single. отсрочки](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-)можно написать логику для создания маркеров доступа для клиента.
+В SignalR клиенте Java можно настроить токен носителя для использования при проверке подлинности, предоставив фабрику маркеров доступа для [хттфубконнектионбуилдер](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Используйте [висакцесстокенфактори](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) для предоставления [рксжава](https://github.com/ReactiveX/RxJava) [Single \<String> ](https://reactivex.io/documentation/single.html). При вызове [Single. отсрочки](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-)можно написать логику для создания маркеров доступа для клиента.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withAccessTokenProvider(Single.defer(() -> {
         // Your logic here.
         return Single.just("An Access Token");
@@ -1416,45 +1416,45 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 
 ### <a name="configure-timeout-and-keep-alive-options"></a>Настройка времени ожидания и параметров поддержания активности
 
-Дополнительные параметры для настройки времени ожидания и проверки активности доступны для самого `HubConnection` объекта:
+Дополнительные параметры для настройки времени ожидания и проверки активности доступны для `HubConnection` самого объекта:
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `ServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `Closed` событие (`onclose` в JavaScript). Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
-| `HandshakeTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `Closed` событие (`onclose` в JavaScript). Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `ServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `Closed` событие ( `onclose` в JavaScript). Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
+| `HandshakeTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `Closed` событие ( `onclose` в JavaScript). Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 | `KeepAliveInterval` | 15 секунд | Определяет интервал, с которым клиент отправляет сообщения проверки связи. Отправка любого сообщения от клиента сбрасывает таймер до начала интервала. Если клиент не отправил сообщение в `ClientTimeoutInterval` наборе на сервере, сервер считает, что Клиент отключен. |
 
-В клиенте .NET значения времени ожидания задаются `TimeSpan` в виде значений.
+В клиенте .NET значения времени ожидания задаются в виде `TimeSpan` значений.
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `serverTimeoutInMilliseconds` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onclose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
+| `serverTimeoutInMilliseconds` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onclose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
 | `keepAliveIntervalInMilliseconds` | 15 секунд (15 000 миллисекунд) | Определяет интервал, с которым клиент отправляет сообщения проверки связи. Отправка любого сообщения от клиента сбрасывает таймер до начала интервала. Если клиент не отправил сообщение в `ClientTimeoutInterval` наборе на сервере, сервер считает, что Клиент отключен. |
 
 # <a name="java"></a>[Java](#tab/java)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `getServerTimeout` / `setServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onClose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
-| `withHandshakeResponseTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `onClose` событие. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `getServerTimeout` / `setServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onClose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
+| `withHandshakeResponseTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `onClose` событие. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 | `getKeepAliveInterval` / `setKeepAliveInterval` | 15 секунд (15 000 миллисекунд) | Определяет интервал, с которым клиент отправляет сообщения проверки связи. Отправка любого сообщения от клиента сбрасывает таймер до начала интервала. Если клиент не отправил сообщение в `ClientTimeoutInterval` наборе на сервере, сервер считает, что Клиент отключен. |
 
 ---
 
 ### <a name="configure-additional-options"></a>Настройка дополнительных параметров
 
-Дополнительные параметры можно настроить в методе `WithUrl` (`withUrl` в JavaScript) для `HubConnectionBuilder` или в различных API-интерфейсах `HttpHubConnectionBuilder` конфигурации в клиенте Java:
+Дополнительные параметры можно настроить в `WithUrl` `withUrl` методе (в JavaScript) для `HubConnectionBuilder` или в различных API-интерфейсах конфигурации в `HttpHubConnectionBuilder` клиенте Java:
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Параметр .NET |  Значение по умолчанию | Описание: |
+| Параметр .NET |  Значение по умолчанию | Описание |
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `SkipNegotiation` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `SkipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 | `ClientCertificates` | Empty | Коллекция сертификатов TLS для отправки в запросы проверки подлинности. |
 | `Cookies` | Empty | Коллекция файлов cookie HTTP для отправки с каждым HTTP-запросом. |
 | `Credentials` | Empty | Учетные данные для отправки с каждым HTTP-запросом. |
@@ -1470,23 +1470,23 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 | Параметр JavaScript | Значение по умолчанию | Описание |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `skipNegotiation` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `skipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 
 # <a name="java"></a>[Java](#tab/java)
 
 | Параметр Java | Значение по умолчанию | Описание |
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `shouldSkipNegotiate` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `shouldSkipNegotiate` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 | `withHeader` `withHeaders` | Empty | Таблица дополнительных заголовков HTTP для отправки с каждым HTTP-запросом. |
 
 ---
 
-В клиенте .NET эти параметры можно изменить с помощью делегата Options, предоставленного `WithUrl`для:
+В клиенте .NET эти параметры можно изменить с помощью делегата Options, предоставленного для `WithUrl` :
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
@@ -1494,11 +1494,11 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-В клиенте JavaScript эти параметры можно предоставить в объекте JavaScript, предоставленном для `withUrl`:
+В клиенте JavaScript эти параметры можно предоставить в объекте JavaScript, предоставленном для `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
     })
@@ -1508,7 +1508,7 @@ let connection = new signalR.HubConnectionBuilder()
 В клиенте Java эти параметры можно настроить с помощью методов, `HttpHubConnectionBuilder` возвращаемых из`HubConnectionBuilder.create("HUB URL")`
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
         .withHeader("Foo", "Bar")
         .shouldSkipNegotiate(true)
         .withHandshakeResponseTimeout(30*1000)
@@ -1531,9 +1531,9 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 
 ASP.NET Core SignalR поддерживает два протокола кодирования сообщений: [JSON](https://www.json.org/) и [MessagePack](https://msgpack.org/index.html). Для каждого протокола предусмотрены параметры конфигурации сериализации.
 
-Сериализацию JSON можно настроить на сервере с помощью метода расширения [адджсонпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.jsonprotocoldependencyinjectionextensions.addjsonprotocol) , который можно добавить после [аддсигналр](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) в `Startup.ConfigureServices` методе. `AddJsonProtocol` Метод принимает делегат, который получает `options` объект. Свойство [пайлоадсериализерсеттингс](/dotnet/api/microsoft.aspnetcore.signalr.jsonhubprotocoloptions.payloadserializersettings) этого объекта является объектом JSON.NET `JsonSerializerSettings` , который можно использовать для настройки сериализации аргументов и возвращаемых значений. Дополнительные сведения см. в [документации по JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm).
+Сериализацию JSON можно настроить на сервере с помощью метода расширения [адджсонпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.jsonprotocoldependencyinjectionextensions.addjsonprotocol) , который можно добавить после [аддсигналр](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) в `Startup.ConfigureServices` методе. `AddJsonProtocol`Метод принимает делегат, который получает `options` объект. Свойство [пайлоадсериализерсеттингс](/dotnet/api/microsoft.aspnetcore.signalr.jsonhubprotocoloptions.payloadserializersettings) этого объекта является `JsonSerializerSettings` объектом JSON.NET, который можно использовать для настройки сериализации аргументов и возвращаемых значений. Дополнительные сведения см. в [документации по JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm).
  
-Например, чтобы настроить сериализатор для использования имен свойств "PascalCase" вместо имен по умолчанию "camelCase", используйте следующий код в `Startup.ConfigureServices`:
+Например, чтобы настроить сериализатор для использования имен свойств "PascalCase" вместо имен по умолчанию "camelCase", используйте следующий код в `Startup.ConfigureServices` :
  
 ```csharp
 services.AddSignalR()
@@ -1543,7 +1543,7 @@ services.AddSignalR()
     });
 ```
 
-В клиенте .NET такой же `AddJsonProtocol` метод расширения существует в [хубконнектионбуилдер](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). Чтобы `Microsoft.Extensions.DependencyInjection` разрешить метод расширения, необходимо импортировать пространство имен:
+В клиенте .NET такой же `AddJsonProtocol` метод расширения существует в [хубконнектионбуилдер](/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnectionbuilder). `Microsoft.Extensions.DependencyInjection`Чтобы разрешить метод расширения, необходимо импортировать пространство имен:
 
 ```csharp
 // At the top of the file:
@@ -1563,23 +1563,23 @@ var connection = new HubConnectionBuilder()
 
 ### <a name="messagepack-serialization-options"></a>Параметры сериализации MessagePack
 
-MessagePack сериализацию можно настроить, предоставив делегат вызову [аддмессажепаккпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) . Дополнительные сведения см. [в разделе MessagePack в SignalR](xref:signalr/messagepackhubprotocol) .
+MessagePack сериализацию можно настроить, предоставив делегат вызову [аддмессажепаккпротокол](/dotnet/api/microsoft.extensions.dependencyinjection.msgpackprotocoldependencyinjectionextensions.addmessagepackprotocol) . Дополнительные сведения см. [в разделе MessagePack в SignalR ](xref:signalr/messagepackhubprotocol) .
 
 > [!NOTE]
 > В настоящее время невозможно настроить сериализацию MessagePack в клиенте JavaScript.
 
 ## <a name="configure-server-options"></a>Настройка параметров сервера
 
-В следующей таблице описаны параметры для настройки концентраторов SignalR.
+В следующей таблице описаны параметры для настройки SignalR концентраторов.
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `HandshakeTimeout` | 15 секунд | Если клиент не отправляет исходное сообщение подтверждения в течение этого интервала времени, соединение закрывается. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
-| `KeepAliveInterval` | 15 секунд | Если сервер не отправил сообщение в течение этого интервала, сообщение проверки связи отправляется автоматически, чтобы подключение не открывалось. При изменении `KeepAliveInterval` `serverTimeoutInMilliseconds` параметра на клиенте измените `ServerTimeout` / параметр. Рекомендуемое `ServerTimeout` / `serverTimeoutInMilliseconds` значение — двойное `KeepAliveInterval` значение.  |
+| `HandshakeTimeout` | 15 секунд | Если клиент не отправляет исходное сообщение подтверждения в течение этого интервала времени, соединение закрывается. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `KeepAliveInterval` | 15 секунд | Если сервер не отправил сообщение в течение этого интервала, сообщение проверки связи отправляется автоматически, чтобы подключение не открывалось. При изменении `KeepAliveInterval` `ServerTimeout` / `serverTimeoutInMilliseconds` параметра на клиенте измените параметр. Рекомендуемое `ServerTimeout` / `serverTimeoutInMilliseconds` значение — двойное `KeepAliveInterval` значение.  |
 | `SupportedProtocols` | Все установленные протоколы | Протоколы, поддерживаемые этим концентратором. По умолчанию все зарегистрированные на сервере протоколы разрешены, но в этом списке можно удалить протоколы, чтобы отключить определенные протоколы для отдельных концентраторов. |
-| `EnableDetailedErrors` | `false` | Если `true`значение равно, подробные сообщения об исключениях возвращаются клиентам при возникновении исключения в методе концентратора. Значение по умолчанию — `false`, так как эти сообщения об исключениях могут содержать конфиденциальные сведения. |
+| `EnableDetailedErrors` | `false` | Если значение `true` равно, подробные сообщения об исключениях возвращаются клиентам при возникновении исключения в методе концентратора. Значение по умолчанию — `false` , так как эти сообщения об исключениях могут содержать конфиденциальные сведения. |
 
-Параметры можно настроить для всех концентраторов, предоставив делегаты параметров для `AddSignalR` вызова в. `Startup.ConfigureServices`
+Параметры можно настроить для всех концентраторов, предоставив делегаты параметров для `AddSignalR` вызова в `Startup.ConfigureServices` .
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -1592,10 +1592,10 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Параметры одного концентратора переопределяют глобальные параметры, предоставленные `AddSignalR` в, и могут быть <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*>настроены с помощью:
+Параметры одного концентратора переопределяют глобальные параметры, предоставленные в `AddSignalR` , и могут быть настроены с помощью <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*> :
 
 ```csharp
-services.AddSignalR().AddHubOptions<MyHub>(options =>
+services.AddSignalR().AddHubOptions<ChatHub>(options =>
 {
     options.EnableDetailedErrors = true;
 });
@@ -1603,7 +1603,7 @@ services.AddSignalR().AddHubOptions<MyHub>(options =>
 
 ### <a name="advanced-http-configuration-options"></a>Дополнительные параметры конфигурации HTTP
 
-Используется `HttpConnectionDispatcherOptions` для настройки дополнительных параметров, относящихся к транспортам и управлению буферами памяти. Эти параметры настраиваются путем передачи делегата в [мафуб\<T>](/dotnet/api/microsoft.aspnetcore.signalr.hubroutebuilder.maphub) в `Startup.Configure`.
+Используется `HttpConnectionDispatcherOptions` для настройки дополнительных параметров, относящихся к транспортам и управлению буферами памяти. Эти параметры настраиваются путем передачи делегата в [мафуб \<T> ](/dotnet/api/microsoft.aspnetcore.signalr.hubroutebuilder.maphub) в `Startup.Configure` .
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -1614,7 +1614,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
             HttpTransportType.WebSockets |
             HttpTransportType.LongPolling;
 
-        configure.MapHub<MyHub>("/myhub", (options) =>
+        configure.MapHub<ChatHub>("/chathub", (options) =>
         {
             options.Transports = desiredTransports;
         });
@@ -1622,7 +1622,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-В следующей таблице описаны параметры для настройки расширенных HTTP-параметров SignalR ASP.NET Core.
+В следующей таблице описаны параметры для настройки SignalR расширенных HTTP-параметров ASP.NET Core.
 
 | Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
@@ -1633,35 +1633,35 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 | `LongPolling` | См. ниже. | Дополнительные параметры, относящиеся к длительному транспортному потоку. |
 | `WebSockets` | См. ниже. | Дополнительные параметры, относящиеся к транспортному протоколу WebSocket. |
 
-У транспорта с длинным опросом есть дополнительные параметры, которые можно настроить `LongPolling` с помощью свойства:
+У транспорта с длинным опросом есть дополнительные параметры, которые можно настроить с помощью `LongPolling` Свойства:
 
-| Параметр | Значение по умолчанию | Описание |
+| Параметр | Значение по умолчанию | Описание: |
 | ------ | ------------- | ----------- |
 | `PollTimeout` | 90 секунд | Максимальное количество времени, в течение которого сервер ожидает отправки сообщения клиенту перед завершением одного запроса опроса. Уменьшение этого значения приводит к тому, что клиент будет чаще выдавать новые запросы на опрос. |
 
-Транспорт WebSocket имеет дополнительные параметры, которые можно настроить с помощью `WebSockets` свойства:
+Транспорт WebSocket имеет дополнительные параметры, которые можно настроить с помощью `WebSockets` Свойства:
 
-| Параметр | Значение по умолчанию | Описание |
+| Параметр | Значение по умолчанию | Описание: |
 | ------ | ------------- | ----------- |
 | `CloseTimeout` | 5 с | Когда сервер закрывается, если не удается закрыть клиент в течение этого интервала времени, соединение будет разорвано. |
 | `SubProtocolSelector` | `null` | Делегат, который можно использовать для задания `Sec-WebSocket-Protocol` заголовка в пользовательском значении. Делегат получает значения, запрошенные клиентом в качестве входных данных, и ожидается, что он возвращает нужное значение. |
 
 ## <a name="configure-client-options"></a>Настройка параметров клиента
 
-Параметры клиента можно настроить для `HubConnectionBuilder` типа (доступного в клиентах .NET и JavaScript). Он также доступен в клиенте Java, но он содержит `HttpHubConnectionBuilder` параметры конфигурации построителя, а также `HubConnection` сам подкласс.
+Параметры клиента можно настроить для `HubConnectionBuilder` типа (доступного в клиентах .NET и JavaScript). Он также доступен в клиенте Java, но он `HttpHubConnectionBuilder` содержит параметры конфигурации построителя, а также сам подкласс `HubConnection` .
 
 ### <a name="configure-logging"></a>Настройка журнала
 
-Ведение журнала настраивается в клиенте .NET `ConfigureLogging` с помощью метода. Регистраторы и фильтры могут быть зарегистрированы так же, как и на сервере. Дополнительные сведения см. в документации по [ведению журнала ASP.NET Core](xref:fundamentals/logging/index) .
+Ведение журнала настраивается в клиенте .NET с помощью `ConfigureLogging` метода. Регистраторы и фильтры могут быть зарегистрированы так же, как и на сервере. Дополнительные сведения см. в документации по [ведению журнала ASP.NET Core](xref:fundamentals/logging/index) .
 
 > [!NOTE]
 > Чтобы зарегистрировать регистраторы, необходимо установить необходимые пакеты. Полный список см. в разделе [встроенные поставщики ведения журналов](xref:fundamentals/logging/index#built-in-logging-providers) документации.
 
-Например, чтобы включить ведение журнала консоли, установите пакет `Microsoft.Extensions.Logging.Console` NuGet. Вызовите `AddConsole` метод расширения:
+Например, чтобы включить ведение журнала консоли, установите `Microsoft.Extensions.Logging.Console` пакет NuGet. Вызовите `AddConsole` метод расширения:
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub")
+    .WithUrl("https://example.com/chathub")
     .ConfigureLogging(logging => {
         logging.SetMinimumLevel(LogLevel.Information);
         logging.AddConsole();
@@ -1673,17 +1673,17 @@ var connection = new HubConnectionBuilder()
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 ```
 
 > [!NOTE]
-> Чтобы полностью отключить ведение журнала, `signalR.LogLevel.None` укажите в `configureLogging` методе.
+> Чтобы полностью отключить ведение журнала, укажите `signalR.LogLevel.None` в `configureLogging` методе.
 
-Дополнительные сведения о ведении журналов см. в [документации по диагностике SignalR](xref:signalr/diagnostics).
+Дополнительные сведения о ведении журналов см. в [ SignalR документации по диагностике](xref:signalr/diagnostics).
 
-Клиент, использующий SignalR Java, использует библиотеку [SLF4J](https://www.slf4j.org/) для ведения журнала. Это высокоуровневый API ведения журнала, который позволяет пользователям библиотеки выбирать собственную реализацию ведения журнала, применяя определенную зависимость от ведения журнала. В следующем фрагменте кода показано, как `java.util.logging` использовать с клиентом SignalR Java.
+SignalRКлиент Java использует библиотеку [SLF4J](https://www.slf4j.org/) для ведения журнала. Это высокоуровневый API ведения журнала, который позволяет пользователям библиотеки выбирать собственную реализацию ведения журнала, применяя определенную зависимость от ведения журнала. В следующем фрагменте кода показано, как использовать `java.util.logging` с SignalR клиентом Java.
 
 ```gradle
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
@@ -1701,33 +1701,33 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 ### <a name="configure-allowed-transports"></a>Настройка разрешенных транспортов
 
-Транспорты, используемые SignalR, можно настроить в `WithUrl` вызове (`withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
+Транспорты, используемые, SignalR можно настроить в `WithUrl` вызове ( `withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
 
 Например, чтобы отключить транспорт событий, отправленных сервером, но разрешить соединения WebSockets и long опрашиваете:
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
+    .WithUrl("https://example.com/chathub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
     .Build();
 ```
 
-В клиенте JavaScript транспорты настраиваются путем установки `transport` поля для объекта Options, указанного в: `withUrl`
+В клиенте JavaScript транспорты настраиваются путем установки поля для `transport` объекта Options, указанного в `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
+    .withUrl("/chathub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
     .build();
 ```
 
 ### <a name="configure-bearer-authentication"></a>Настройка проверки подлинности носителя
 
-Чтобы предоставить данные проверки подлинности вместе с запросами SignalR, `AccessTokenProvider` используйте параметр`accessTokenFactory` (в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP ( `Authorization` с использованием заголовка с типом `Bearer`). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение `access_token`строки запроса.
+Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
 
-В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl`:
+В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl` :
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.AccessTokenProvider = async () => {
             // Get and return the access token.
         };
@@ -1735,11 +1735,11 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-В клиенте JavaScript маркер доступа настраивается путем установки `accessTokenFactory` поля для объекта Options в: `withUrl`
+В клиенте JavaScript маркер доступа настраивается путем установки `accessTokenFactory` поля для объекта Options в `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         accessTokenFactory: () => {
             // Get and return the access token.
             // This function can return a JavaScript Promise if asynchronous
@@ -1749,10 +1749,10 @@ let connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-В клиенте SignalR Java можно настроить токен носителя, который будет использоваться для проверки подлинности, предоставив фабрику маркеров доступа для [хттфубконнектионбуилдер](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Используйте [висакцесстокенфактори](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) для предоставления [\<однострочного>](https://reactivex.io/documentation/single.html) [рксжава](https://github.com/ReactiveX/RxJava) . При вызове [Single. отсрочки](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-)можно написать логику для создания маркеров доступа для клиента.
+В SignalR клиенте Java можно настроить токен носителя для использования при проверке подлинности, предоставив фабрику маркеров доступа для [хттфубконнектионбуилдер](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Используйте [висакцесстокенфактори](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) для предоставления [рксжава](https://github.com/ReactiveX/RxJava) [Single \<String> ](https://reactivex.io/documentation/single.html). При вызове [Single. отсрочки](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-)можно написать логику для создания маркеров доступа для клиента.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withAccessTokenProvider(Single.defer(() -> {
         // Your logic here.
         return Single.just("An Access Token");
@@ -1761,42 +1761,42 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 
 ### <a name="configure-timeout-and-keep-alive-options"></a>Настройка времени ожидания и параметров поддержания активности
 
-Дополнительные параметры для настройки времени ожидания и проверки активности доступны для самого `HubConnection` объекта:
+Дополнительные параметры для настройки времени ожидания и проверки активности доступны для `HubConnection` самого объекта:
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `ServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `Closed` событие (`onclose` в JavaScript). Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
-| `HandshakeTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `Closed` событие (`onclose` в JavaScript). Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `ServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `Closed` событие ( `onclose` в JavaScript). Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
+| `HandshakeTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `Closed` событие ( `onclose` в JavaScript). Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 
-В клиенте .NET значения времени ожидания задаются `TimeSpan` в виде значений.
+В клиенте .NET значения времени ожидания задаются в виде `TimeSpan` значений.
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `serverTimeoutInMilliseconds` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onclose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, чтобы разрешить поступление проверки связи. |
+| `serverTimeoutInMilliseconds` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onclose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное значение сервера, `KeepAliveInterval` чтобы разрешить поступление проверки связи. |
 
 # <a name="java"></a>[Java](#tab/java)
 
-| Параметр | Значение по умолчанию | Описание: |
+| Параметр | Значение по умолчанию | Описание |
 | ------ | ------------- | ----------- |
-| `getServerTimeout` / `setServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onClose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, `KeepAliveInterval` двойное значение сервера, которое позволяет получить время для проверки связи. |
-| `withHandshakeResponseTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `onClose` событие. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [Спецификация протокола концентратора SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `getServerTimeout` / `setServerTimeout` | 30 секунд (30 000 миллисекунд) | Время ожидания активности сервера. Если сервер не отправил сообщение в этот интервал, клиент считает, что сервер отключен, и активирует `onClose` событие. Это значение должно быть достаточно большим для отправки сообщения проверки связи с сервера **и** получения клиентом в течение интервала времени ожидания. Рекомендуемое значение — это число, по крайней мере, двойное `KeepAliveInterval` значение сервера, которое позволяет получить время для проверки связи. |
+| `withHandshakeResponseTimeout` | 15 секунд | Время ожидания для первоначального подтверждения сервера. Если сервер не отправляет ответ подтверждения в течение этого интервала, клиент отменяет подтверждение и активирует `onClose` событие. Это дополнительный параметр, который следует изменять, только если возникают ошибки времени ожидания подтверждения из-за серьезной задержки сети. Дополнительные сведения о процессе подтверждения связи см. в статье [ SignalR Спецификация протокола концентратора](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 
 ---
 
 ### <a name="configure-additional-options"></a>Настройка дополнительных параметров
 
-Дополнительные параметры можно настроить в методе `WithUrl` (`withUrl` в JavaScript) для `HubConnectionBuilder` или в различных API-интерфейсах `HttpHubConnectionBuilder` конфигурации в клиенте Java:
+Дополнительные параметры можно настроить в `WithUrl` `withUrl` методе (в JavaScript) для `HubConnectionBuilder` или в различных API-интерфейсах конфигурации в `HttpHubConnectionBuilder` клиенте Java:
 
 # <a name="net"></a>[.NET](#tab/dotnet)
 
-| Параметр .NET |  Значение по умолчанию | Описание: |
+| Параметр .NET |  Значение по умолчанию | Описание |
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `SkipNegotiation` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `SkipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 | `ClientCertificates` | Empty | Коллекция сертификатов TLS для отправки в запросы проверки подлинности. |
 | `Cookies` | Empty | Коллекция файлов cookie HTTP для отправки с каждым HTTP-запросом. |
 | `Credentials` | Empty | Учетные данные для отправки с каждым HTTP-запросом. |
@@ -1812,23 +1812,23 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/m
 | Параметр JavaScript | Значение по умолчанию | Описание |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `skipNegotiation` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `skipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 
 # <a name="java"></a>[Java](#tab/java)
 
 | Параметр Java | Значение по умолчанию | Описание |
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
-| `shouldSkipNegotiate` | `false` | Установите этот параметр `true` в значение, чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании службы Azure SignalR. |
+| `shouldSkipNegotiate` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 | `withHeader` `withHeaders` | Empty | Таблица дополнительных заголовков HTTP для отправки с каждым HTTP-запросом. |
 
 ---
 
-В клиенте .NET эти параметры можно изменить с помощью делегата Options, предоставленного `WithUrl`для:
+В клиенте .NET эти параметры можно изменить с помощью делегата Options, предоставленного для `WithUrl` :
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
@@ -1836,11 +1836,11 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-В клиенте JavaScript эти параметры можно предоставить в объекте JavaScript, предоставленном для `withUrl`:
+В клиенте JavaScript эти параметры можно предоставить в объекте JavaScript, предоставленном для `withUrl` :
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
     })
@@ -1850,7 +1850,7 @@ let connection = new signalR.HubConnectionBuilder()
 В клиенте Java эти параметры можно настроить с помощью методов, `HttpHubConnectionBuilder` возвращаемых из`HubConnectionBuilder.create("HUB URL")`
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
         .withHeader("Foo", "Bar")
         .shouldSkipNegotiate(true)
         .withHandshakeResponseTimeout(30*1000)

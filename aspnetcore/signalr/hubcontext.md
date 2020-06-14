@@ -1,63 +1,96 @@
 ---
-title: SignalR HubContext
+title: SignalRхубконтекст
 author: bradygaster
-description: Узнайте, как использовать службу ASP.NET Core SignalR HubContext для отправки уведомлений клиентам из за пределами концентратору.
+description: Узнайте, как использовать службу ASP.NET Core SignalR хубконтекст для отправки уведомлений клиентам за пределами концентратора.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/01/2018
+ms.date: 11/12/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: signalr/hubcontext
-ms.openlocfilehash: 7ec52d4711fc191dcb83120cf54b1dc28c41f947
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 336173866e9346d836bb31955644d07403fc238d
+ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64894481"
+ms.lasthandoff: 06/13/2020
+ms.locfileid: "84756058"
 ---
-# <a name="send-messages-from-outside-a-hub"></a>Отправка сообщения извне концентратору
+# <a name="send-messages-from-outside-a-hub"></a>Отправка сообщений из-за пределов концентратора
 
-По [Майкл Mengistu](https://twitter.com/MikaelM_12)
+Авторы: [Микаэль Менгисту](https://twitter.com/MikaelM_12) (Mikael Mengistu)
 
-Центр SignalR — это основная абстракция для отправки сообщений для клиентов, подключенных к серверу SignalR. Можно также отправлять сообщения из других мест в приложении с помощью `IHubContext` службы. В этой статье объясняется, как получить доступ к SignalR `IHubContext` для отправки уведомлений клиентам из за пределами концентратору.
+SignalRЦентр является основной абстракцией для отправки сообщений клиентам, подключенным к SignalR серверу. Кроме того, можно отправить сообщения из других мест в приложении с помощью `IHubContext` службы. В этой статье объясняется, как получить доступ к, SignalR `IHubContext` чтобы отправлять уведомления клиентам извне концентратора.
 
-[Просмотреть или скачать образец кода](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubcontext/sample/) [(способ загрузки)](xref:index#how-to-download-a-sample)
+[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubcontext/sample/) [(описание загрузки)](xref:index#how-to-download-a-sample)
 
-## <a name="get-an-instance-of-ihubcontext"></a>Получить экземпляр IHubContext
+## <a name="get-an-instance-of-ihubcontext"></a>Получение экземпляра Ихубконтекст
 
-В ASP.NET Core SignalR, можно получить доступ к экземпляру `IHubContext` посредством внедрения зависимостей. Вы можете внедрить экземпляр `IHubContext` в контроллере, по промежуточного слоя или другую службу внедрения Зависимостей. Используйте экземпляр, для отправки сообщений клиентам.
+В ASP.NET Core SignalR можно получить доступ к экземпляру `IHubContext` через внедрение зависимостей. Экземпляр можно внедрить `IHubContext` в контроллер, по промежуточного слоя или в другую службу di. Используйте экземпляр для отправки сообщений клиентам.
 
 > [!NOTE]
-> Это отличается от ASP.NET 4.x SignalR, который используется для предоставления доступа к GlobalHost `IHubContext`. ASP.NET Core имеет платформой внедрения зависимостей, который устраняет потребность в этот глобальный одноэлементный.
+> Это отличается от ASP.NET 4. x SignalR , который использовал GlobalHost для предоставления доступа к `IHubContext` . ASP.NET Core имеет платформу внедрения зависимостей, которая устраняет необходимость в этом глобальном одноэлементном наборе.
 
-### <a name="inject-an-instance-of-ihubcontext-in-a-controller"></a>Экземпляр IHubContext в контроллере
+### <a name="inject-an-instance-of-ihubcontext-in-a-controller"></a>Внедрение экземпляра Ихубконтекст в контроллер
 
-Вы можете внедрить экземпляр `IHubContext` в контроллер, добавьте его в ваш конструктор:
+Вы можете внедрить экземпляр `IHubContext` в контроллер, добавив его в конструктор:
 
 [!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=12-19,57)]
 
-Теперь, с доступом к экземпляру `IHubContext`, можно вызывать методы концентратора, как если бы вы были в сам концентратор.
+Теперь, используя доступ к экземпляру `IHubContext` , можно вызывать методы концентратора, как если бы вы были в самом концентраторе.
 
 [!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=21-25)]
 
-### <a name="get-an-instance-of-ihubcontext-in-middleware"></a>Получить экземпляр IHubContext в по промежуточного слоя
+### <a name="get-an-instance-of-ihubcontext-in-middleware"></a>Получение экземпляра Ихубконтекст по промежуточного слоя
 
-Доступ `IHubContext` в конвейер по промежуточного слоя следующим образом:
+Получите доступ к в `IHubContext` конвейере по промежуточного слоя следующим образом:
 
 ```csharp
 app.Use(async (context, next) =>
 {
     var hubContext = context.RequestServices
-                            .GetRequiredService<IHubContext<MyHub>>();
+                            .GetRequiredService<IHubContext<ChatHub>>();
     //...
+    
+    if (next != null)
+    {
+        await next.Invoke();
+    }
 });
 ```
 
 > [!NOTE]
-> При вызове методов концентратора из за пределами `Hub` класса, то связанные с вызовом вызывающий объект. Таким образом, отсутствует доступ к `ConnectionId`, `Caller`, и `Others` свойства.
+> Когда методы концентратора вызываются извне `Hub` класса, не существует вызывающего объекта, связанного с этим вызовом. Поэтому нет доступа к `ConnectionId` `Caller` `Others` свойствам, и.
 
-### <a name="inject-a-strongly-typed-hubcontext"></a>Внедрить HubContext со строгой типизацией
+### <a name="get-an-instance-of-ihubcontext-from-ihost"></a>Получение экземпляра Ихубконтекст из Ихост
 
-Для вставки HubContext со строгой типизацией, убедитесь, концентратор наследует от `Hub<T>`. Внедрить его с помощью `IHubContext<THub, T>` интерфейс вместо `IHubContext<THub>`.
+Доступ к `IHubContext` из веб-узла полезен для интеграции с областями за пределами ASP.NET Core, например с помощью сторонних платформ внедрения зависимостей:
+
+```csharp
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var host = CreateHostBuilder(args).Build();
+            var hubContext = host.Services.GetService(typeof(IHubContext<ChatHub>));
+            host.Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder => {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
+```
+
+### <a name="inject-a-strongly-typed-hubcontext"></a>Внедрить строго типизированный Хубконтекст
+
+Чтобы внедрить строго типизированный Хубконтекст, убедитесь, что ваш центр наследует от `Hub<T>` . Вставьте его, используя `IHubContext<THub, T>` интерфейс, а не `IHubContext<THub>` .
 
 ```csharp
 public class ChatController : Controller
@@ -79,5 +112,5 @@ public class ChatController : Controller
 ## <a name="related-resources"></a>Связанные ресурсы
 
 * [Начало работы](xref:tutorials/signalr)
-* [Центры](xref:signalr/hubs)
+* [Концентраторы](xref:signalr/hubs)
 * [Публикация в Azure](xref:signalr/publish-to-azure-web-app)

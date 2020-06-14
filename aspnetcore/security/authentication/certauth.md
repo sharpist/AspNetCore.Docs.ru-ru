@@ -1,7 +1,7 @@
 ---
 title: Настройка проверки подлинности сертификата в ASP.NET Core
 author: blowdart
-description: Узнайте, как настроить проверку подлинности сертификата в ASP.NET Core для IIS и HTTP. sys.
+description: Узнайте, как настроить проверку подлинности сертификата в ASP.NET Core для IIS и HTTP.sys.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
 ms.date: 01/02/2020
@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 4511e253ea9487c5739162b9b0180e39eb3a1b9c
-ms.sourcegitcommit: 67eadd7bf28eae0b8786d85e90a7df811ffe5904
+ms.openlocfilehash: cf80f7009334f49d877d2bd296b512e23f7fded8
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84454614"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724254"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Настройка проверки подлинности сертификата в ASP.NET Core
 
@@ -557,3 +557,36 @@ namespace AspNetCoreCertificateAuthApi
     }
 }
 ```
+
+<a name="occ"></a>
+
+## <a name="optional-client-certificates"></a>Необязательные сертификаты клиента
+
+В этом разделе содержатся сведения о приложениях, которые должны защищать подмножество приложения с помощью сертификата. Например, для Razor страницы или контроллера в приложении могут потребоваться сертификаты клиента. Это представляет проблемы в качестве сертификатов клиента:
+  
+* Являются компонентом TLS, а не компонентом HTTP.
+* Согласовываются по подключению и должны быть согласованы в начале соединения, прежде чем будут доступны все данные HTTP. В начале соединения известен только указание имени сервера (SNI) &dagger; . Сертификаты клиента и сервера согласовываются до первого запроса в соединении, и запросы, как правило, не смогут повторно согласовываться. Повторное согласование запрещено в HTTP/2.
+
+ASP.NET Core 5 Preview 4 и более поздней версии добавляет более удобную поддержку для необязательных клиентских сертификатов. Дополнительные сведения см. в [примере необязательных сертификатов](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+
+Следующий подход поддерживает необязательные сертификаты клиента:
+
+* Настройка привязки для домена и поддомена:
+  * Например, настройте привязки для `contoso.com` и `myClient.contoso.com` . `contoso.com`Узлу не требуется сертификат клиента, но он `myClient.contoso.com` выполняется.
+  * Дополнительные сведения можно найти в разделе
+    * [Kestrel](/fundamentals/servers/kestrel):
+      * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel#listenoptionsusehttps)
+      * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
+      * Примечание. Kestrel в настоящее время не поддерживает несколько конфигураций TLS для одной привязки, вам потребуются две привязки с уникальными IP-адресами или портами. См. раздел https://github.com/dotnet/runtime/issues/31097
+    * IIS
+      * [Размещение IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
+      * [Настройка безопасности служб IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
+    * Http.Sys: [Настройка Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
+* Для запросов к веб-приложению, которому требуется сертификат клиента, и у которых нет такого сертификата:
+  * Перенаправление на ту же страницу с помощью защищенного поддомена сертификата клиента.
+  * Например, перенаправление в `myClient.contoso.com/requestedPage` . Так как запрос на `myClient.contoso.com/requestedPage` имя узла отличается от `contoso.com/requestedPage` , клиент устанавливает другое соединение и предоставляется сертификат клиента.
+  * Для получения дополнительной информации см. <xref:security/authorization/introduction>.
+
+Оставьте вопросы, комментарии и другие отзывы о необязательных сертификатах клиентов в этой статье об [этом обсуждении GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/18720) .
+
+&dagger;Указание имени сервера (SNI) — это расширение TLS для включения виртуального домена в состав согласования SSL. Это фактически означает, что имя виртуального домена или имени узла можно использовать для указания конечной точки сети.

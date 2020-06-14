@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: d5e0e3865702fe4e5cbe49e7f452f367a8a53de9
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 8d4488b3953a8c87033d3a092b656409a0c6a52d
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451749"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724371"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Подтверждение учетной записи и восстановление пароля в ASP.NET Core
 
@@ -63,7 +63,7 @@ dotnet run
 
 В этом руководстве [SendGrid](https://sendgrid.com) используется для отправки электронной почты. Для отправки электронной почты требуется учетная запись SendGrid и ключ. Вы можете использовать другие поставщики электронной почты. Для отправки электронной почты рекомендуется использовать SendGrid или другую почтовую службу. Протокол SMTP трудно защитить и настроить правильно.
 
-Для учетной записи SendGrid My требуется [Добавить отправителя](https://sendgrid.com/docs/ui/sending-email/senders/).
+Для учетной записи SendGrid может потребоваться [Добавить отправителя](https://sendgrid.com/docs/ui/sending-email/senders/).
 
 Создайте класс для выборки ключа защищенной электронной почты. Для этого примера создайте *Services/аусмессажесендероптионс. CS*:
 
@@ -80,9 +80,9 @@ dotnet user-secrets set SendGridKey <key>
 Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-В Windows Диспетчер секретов сохраняет пары "ключ-значение" в файле *секреты. JSON* в `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` каталоге.
+В Windows Диспетчер секретов сохраняет пары "ключ-значение" в *secrets.jsдля* файла в `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` каталоге.
 
-Содержимое файла *секреты. JSON* не шифруется. В следующей разметке показан файл *секреты. JSON* . `SendGridKey`Значение было удалено.
+Содержимое *secrets.js* файла не шифруется. В следующей разметке показано *secrets.js* файла. `SendGridKey`Значение было удалено.
 
 ```json
 {
@@ -286,9 +286,9 @@ C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT
 info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-В Windows Диспетчер секретов сохраняет пары "ключ-значение" в файле *секреты. JSON* в `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` каталоге.
+В Windows Диспетчер секретов сохраняет пары "ключ-значение" в *secrets.jsдля* файла в `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` каталоге.
 
-Содержимое файла *секреты. JSON* не шифруется. В следующей разметке показан файл *секреты. JSON* . `SendGridKey`Значение было удалено.
+Содержимое *secrets.js* файла не шифруется. В следующей разметке показано *secrets.js* файла. `SendGridKey`Значение было удалено.
 
 ```json
 {
