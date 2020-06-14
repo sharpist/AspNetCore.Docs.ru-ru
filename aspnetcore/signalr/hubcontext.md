@@ -1,63 +1,96 @@
 ---
-title: SignalR HubContext
+title: SignalRхубконтекст
 author: bradygaster
-description: Узнайте, как использовать службу ASP.NET Core SignalR HubContext для отправки уведомлений клиентам из за пределами концентратору.
+description: Узнайте, как использовать службу ASP.NET Core SignalR хубконтекст для отправки уведомлений клиентам за пределами концентратора.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/01/2018
+ms.date: 11/12/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: signalr/hubcontext
-ms.openlocfilehash: 7ec52d4711fc191dcb83120cf54b1dc28c41f947
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 336173866e9346d836bb31955644d07403fc238d
+ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64894481"
+ms.lasthandoff: 06/13/2020
+ms.locfileid: "84756058"
 ---
-# <a name="send-messages-from-outside-a-hub"></a><span data-ttu-id="d4375-103">Отправка сообщения извне концентратору</span><span class="sxs-lookup"><span data-stu-id="d4375-103">Send messages from outside a hub</span></span>
+# <a name="send-messages-from-outside-a-hub"></a><span data-ttu-id="3c622-103">Отправка сообщений из-за пределов концентратора</span><span class="sxs-lookup"><span data-stu-id="3c622-103">Send messages from outside a hub</span></span>
 
-<span data-ttu-id="d4375-104">По [Майкл Mengistu](https://twitter.com/MikaelM_12)</span><span class="sxs-lookup"><span data-stu-id="d4375-104">By [Mikael Mengistu](https://twitter.com/MikaelM_12)</span></span>
+<span data-ttu-id="3c622-104">Авторы: [Микаэль Менгисту](https://twitter.com/MikaelM_12) (Mikael Mengistu)</span><span class="sxs-lookup"><span data-stu-id="3c622-104">By [Mikael Mengistu](https://twitter.com/MikaelM_12)</span></span>
 
-<span data-ttu-id="d4375-105">Центр SignalR — это основная абстракция для отправки сообщений для клиентов, подключенных к серверу SignalR.</span><span class="sxs-lookup"><span data-stu-id="d4375-105">The SignalR hub is the core abstraction for sending messages to clients connected to the SignalR server.</span></span> <span data-ttu-id="d4375-106">Можно также отправлять сообщения из других мест в приложении с помощью `IHubContext` службы.</span><span class="sxs-lookup"><span data-stu-id="d4375-106">It's also possible to send messages from other places in your app using the `IHubContext` service.</span></span> <span data-ttu-id="d4375-107">В этой статье объясняется, как получить доступ к SignalR `IHubContext` для отправки уведомлений клиентам из за пределами концентратору.</span><span class="sxs-lookup"><span data-stu-id="d4375-107">This article explains how to access a SignalR `IHubContext` to send notifications to clients from outside a hub.</span></span>
+<span data-ttu-id="3c622-105">SignalRЦентр является основной абстракцией для отправки сообщений клиентам, подключенным к SignalR серверу.</span><span class="sxs-lookup"><span data-stu-id="3c622-105">The SignalR hub is the core abstraction for sending messages to clients connected to the SignalR server.</span></span> <span data-ttu-id="3c622-106">Кроме того, можно отправить сообщения из других мест в приложении с помощью `IHubContext` службы.</span><span class="sxs-lookup"><span data-stu-id="3c622-106">It's also possible to send messages from other places in your app using the `IHubContext` service.</span></span> <span data-ttu-id="3c622-107">В этой статье объясняется, как получить доступ к, SignalR `IHubContext` чтобы отправлять уведомления клиентам извне концентратора.</span><span class="sxs-lookup"><span data-stu-id="3c622-107">This article explains how to access a SignalR `IHubContext` to send notifications to clients from outside a hub.</span></span>
 
-<span data-ttu-id="d4375-108">[Просмотреть или скачать образец кода](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubcontext/sample/) [(способ загрузки)](xref:index#how-to-download-a-sample)</span><span class="sxs-lookup"><span data-stu-id="d4375-108">[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubcontext/sample/) [(how to download)](xref:index#how-to-download-a-sample)</span></span>
+<span data-ttu-id="3c622-108">[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubcontext/sample/) [(описание загрузки)](xref:index#how-to-download-a-sample)</span><span class="sxs-lookup"><span data-stu-id="3c622-108">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubcontext/sample/) [(how to download)](xref:index#how-to-download-a-sample)</span></span>
 
-## <a name="get-an-instance-of-ihubcontext"></a><span data-ttu-id="d4375-109">Получить экземпляр IHubContext</span><span class="sxs-lookup"><span data-stu-id="d4375-109">Get an instance of IHubContext</span></span>
+## <a name="get-an-instance-of-ihubcontext"></a><span data-ttu-id="3c622-109">Получение экземпляра Ихубконтекст</span><span class="sxs-lookup"><span data-stu-id="3c622-109">Get an instance of IHubContext</span></span>
 
-<span data-ttu-id="d4375-110">В ASP.NET Core SignalR, можно получить доступ к экземпляру `IHubContext` посредством внедрения зависимостей.</span><span class="sxs-lookup"><span data-stu-id="d4375-110">In ASP.NET Core SignalR, you can access an instance of `IHubContext` via dependency injection.</span></span> <span data-ttu-id="d4375-111">Вы можете внедрить экземпляр `IHubContext` в контроллере, по промежуточного слоя или другую службу внедрения Зависимостей.</span><span class="sxs-lookup"><span data-stu-id="d4375-111">You can inject an instance of `IHubContext` into a controller, middleware, or other DI service.</span></span> <span data-ttu-id="d4375-112">Используйте экземпляр, для отправки сообщений клиентам.</span><span class="sxs-lookup"><span data-stu-id="d4375-112">Use the instance to send messages to clients.</span></span>
+<span data-ttu-id="3c622-110">В ASP.NET Core SignalR можно получить доступ к экземпляру `IHubContext` через внедрение зависимостей.</span><span class="sxs-lookup"><span data-stu-id="3c622-110">In ASP.NET Core SignalR, you can access an instance of `IHubContext` via dependency injection.</span></span> <span data-ttu-id="3c622-111">Экземпляр можно внедрить `IHubContext` в контроллер, по промежуточного слоя или в другую службу di.</span><span class="sxs-lookup"><span data-stu-id="3c622-111">You can inject an instance of `IHubContext` into a controller, middleware, or other DI service.</span></span> <span data-ttu-id="3c622-112">Используйте экземпляр для отправки сообщений клиентам.</span><span class="sxs-lookup"><span data-stu-id="3c622-112">Use the instance to send messages to clients.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="d4375-113">Это отличается от ASP.NET 4.x SignalR, который используется для предоставления доступа к GlobalHost `IHubContext`.</span><span class="sxs-lookup"><span data-stu-id="d4375-113">This differs from ASP.NET 4.x SignalR which used GlobalHost to provide access to the `IHubContext`.</span></span> <span data-ttu-id="d4375-114">ASP.NET Core имеет платформой внедрения зависимостей, который устраняет потребность в этот глобальный одноэлементный.</span><span class="sxs-lookup"><span data-stu-id="d4375-114">ASP.NET Core has a dependency injection framework that removes the need for this global singleton.</span></span>
+> <span data-ttu-id="3c622-113">Это отличается от ASP.NET 4. x SignalR , который использовал GlobalHost для предоставления доступа к `IHubContext` .</span><span class="sxs-lookup"><span data-stu-id="3c622-113">This differs from ASP.NET 4.x SignalR which used GlobalHost to provide access to the `IHubContext`.</span></span> <span data-ttu-id="3c622-114">ASP.NET Core имеет платформу внедрения зависимостей, которая устраняет необходимость в этом глобальном одноэлементном наборе.</span><span class="sxs-lookup"><span data-stu-id="3c622-114">ASP.NET Core has a dependency injection framework that removes the need for this global singleton.</span></span>
 
-### <a name="inject-an-instance-of-ihubcontext-in-a-controller"></a><span data-ttu-id="d4375-115">Экземпляр IHubContext в контроллере</span><span class="sxs-lookup"><span data-stu-id="d4375-115">Inject an instance of IHubContext in a controller</span></span>
+### <a name="inject-an-instance-of-ihubcontext-in-a-controller"></a><span data-ttu-id="3c622-115">Внедрение экземпляра Ихубконтекст в контроллер</span><span class="sxs-lookup"><span data-stu-id="3c622-115">Inject an instance of IHubContext in a controller</span></span>
 
-<span data-ttu-id="d4375-116">Вы можете внедрить экземпляр `IHubContext` в контроллер, добавьте его в ваш конструктор:</span><span class="sxs-lookup"><span data-stu-id="d4375-116">You can inject an instance of `IHubContext` into a controller by adding it to your constructor:</span></span>
+<span data-ttu-id="3c622-116">Вы можете внедрить экземпляр `IHubContext` в контроллер, добавив его в конструктор:</span><span class="sxs-lookup"><span data-stu-id="3c622-116">You can inject an instance of `IHubContext` into a controller by adding it to your constructor:</span></span>
 
 [!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=12-19,57)]
 
-<span data-ttu-id="d4375-117">Теперь, с доступом к экземпляру `IHubContext`, можно вызывать методы концентратора, как если бы вы были в сам концентратор.</span><span class="sxs-lookup"><span data-stu-id="d4375-117">Now, with access to an instance of `IHubContext`, you can call hub methods as if you were in the hub itself.</span></span>
+<span data-ttu-id="3c622-117">Теперь, используя доступ к экземпляру `IHubContext` , можно вызывать методы концентратора, как если бы вы были в самом концентраторе.</span><span class="sxs-lookup"><span data-stu-id="3c622-117">Now, with access to an instance of `IHubContext`, you can call hub methods as if you were in the hub itself.</span></span>
 
 [!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=21-25)]
 
-### <a name="get-an-instance-of-ihubcontext-in-middleware"></a><span data-ttu-id="d4375-118">Получить экземпляр IHubContext в по промежуточного слоя</span><span class="sxs-lookup"><span data-stu-id="d4375-118">Get an instance of IHubContext in middleware</span></span>
+### <a name="get-an-instance-of-ihubcontext-in-middleware"></a><span data-ttu-id="3c622-118">Получение экземпляра Ихубконтекст по промежуточного слоя</span><span class="sxs-lookup"><span data-stu-id="3c622-118">Get an instance of IHubContext in middleware</span></span>
 
-<span data-ttu-id="d4375-119">Доступ `IHubContext` в конвейер по промежуточного слоя следующим образом:</span><span class="sxs-lookup"><span data-stu-id="d4375-119">Access the `IHubContext` within the middleware pipeline like so:</span></span>
+<span data-ttu-id="3c622-119">Получите доступ к в `IHubContext` конвейере по промежуточного слоя следующим образом:</span><span class="sxs-lookup"><span data-stu-id="3c622-119">Access the `IHubContext` within the middleware pipeline like so:</span></span>
 
 ```csharp
 app.Use(async (context, next) =>
 {
     var hubContext = context.RequestServices
-                            .GetRequiredService<IHubContext<MyHub>>();
+                            .GetRequiredService<IHubContext<ChatHub>>();
     //...
+    
+    if (next != null)
+    {
+        await next.Invoke();
+    }
 });
 ```
 
 > [!NOTE]
-> <span data-ttu-id="d4375-120">При вызове методов концентратора из за пределами `Hub` класса, то связанные с вызовом вызывающий объект.</span><span class="sxs-lookup"><span data-stu-id="d4375-120">When hub methods are called from outside of the `Hub` class, there's no caller associated with the invocation.</span></span> <span data-ttu-id="d4375-121">Таким образом, отсутствует доступ к `ConnectionId`, `Caller`, и `Others` свойства.</span><span class="sxs-lookup"><span data-stu-id="d4375-121">Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.</span></span>
+> <span data-ttu-id="3c622-120">Когда методы концентратора вызываются извне `Hub` класса, не существует вызывающего объекта, связанного с этим вызовом.</span><span class="sxs-lookup"><span data-stu-id="3c622-120">When hub methods are called from outside of the `Hub` class, there's no caller associated with the invocation.</span></span> <span data-ttu-id="3c622-121">Поэтому нет доступа к `ConnectionId` `Caller` `Others` свойствам, и.</span><span class="sxs-lookup"><span data-stu-id="3c622-121">Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.</span></span>
 
-### <a name="inject-a-strongly-typed-hubcontext"></a><span data-ttu-id="d4375-122">Внедрить HubContext со строгой типизацией</span><span class="sxs-lookup"><span data-stu-id="d4375-122">Inject a strongly-typed HubContext</span></span>
+### <a name="get-an-instance-of-ihubcontext-from-ihost"></a><span data-ttu-id="3c622-122">Получение экземпляра Ихубконтекст из Ихост</span><span class="sxs-lookup"><span data-stu-id="3c622-122">Get an instance of IHubContext from IHost</span></span>
 
-<span data-ttu-id="d4375-123">Для вставки HubContext со строгой типизацией, убедитесь, концентратор наследует от `Hub<T>`.</span><span class="sxs-lookup"><span data-stu-id="d4375-123">To inject a strongly-typed HubContext, ensure your Hub inherits from `Hub<T>`.</span></span> <span data-ttu-id="d4375-124">Внедрить его с помощью `IHubContext<THub, T>` интерфейс вместо `IHubContext<THub>`.</span><span class="sxs-lookup"><span data-stu-id="d4375-124">Inject it using the `IHubContext<THub, T>` interface rather than `IHubContext<THub>`.</span></span>
+<span data-ttu-id="3c622-123">Доступ к `IHubContext` из веб-узла полезен для интеграции с областями за пределами ASP.NET Core, например с помощью сторонних платформ внедрения зависимостей:</span><span class="sxs-lookup"><span data-stu-id="3c622-123">Accessing an `IHubContext` from the web host is useful for integrating with areas outside of ASP.NET Core, for example, using 3rd party dependency injection frameworks:</span></span>
+
+```csharp
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var host = CreateHostBuilder(args).Build();
+            var hubContext = host.Services.GetService(typeof(IHubContext<ChatHub>));
+            host.Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder => {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
+```
+
+### <a name="inject-a-strongly-typed-hubcontext"></a><span data-ttu-id="3c622-124">Внедрить строго типизированный Хубконтекст</span><span class="sxs-lookup"><span data-stu-id="3c622-124">Inject a strongly-typed HubContext</span></span>
+
+<span data-ttu-id="3c622-125">Чтобы внедрить строго типизированный Хубконтекст, убедитесь, что ваш центр наследует от `Hub<T>` .</span><span class="sxs-lookup"><span data-stu-id="3c622-125">To inject a strongly-typed HubContext, ensure your Hub inherits from `Hub<T>`.</span></span> <span data-ttu-id="3c622-126">Вставьте его, используя `IHubContext<THub, T>` интерфейс, а не `IHubContext<THub>` .</span><span class="sxs-lookup"><span data-stu-id="3c622-126">Inject it using the `IHubContext<THub, T>` interface rather than `IHubContext<THub>`.</span></span>
 
 ```csharp
 public class ChatController : Controller
@@ -76,8 +109,8 @@ public class ChatController : Controller
 }
 ```
 
-## <a name="related-resources"></a><span data-ttu-id="d4375-125">Связанные ресурсы</span><span class="sxs-lookup"><span data-stu-id="d4375-125">Related resources</span></span>
+## <a name="related-resources"></a><span data-ttu-id="3c622-127">Связанные ресурсы</span><span class="sxs-lookup"><span data-stu-id="3c622-127">Related resources</span></span>
 
-* [<span data-ttu-id="d4375-126">Начало работы</span><span class="sxs-lookup"><span data-stu-id="d4375-126">Get started</span></span>](xref:tutorials/signalr)
-* [<span data-ttu-id="d4375-127">Центры</span><span class="sxs-lookup"><span data-stu-id="d4375-127">Hubs</span></span>](xref:signalr/hubs)
-* [<span data-ttu-id="d4375-128">Публикация в Azure</span><span class="sxs-lookup"><span data-stu-id="d4375-128">Publish to Azure</span></span>](xref:signalr/publish-to-azure-web-app)
+* [<span data-ttu-id="3c622-128">Начало работы</span><span class="sxs-lookup"><span data-stu-id="3c622-128">Get started</span></span>](xref:tutorials/signalr)
+* [<span data-ttu-id="3c622-129">Концентраторы</span><span class="sxs-lookup"><span data-stu-id="3c622-129">Hubs</span></span>](xref:signalr/hubs)
+* [<span data-ttu-id="3c622-130">Публикация в Azure</span><span class="sxs-lookup"><span data-stu-id="3c622-130">Publish to Azure</span></span>](xref:signalr/publish-to-azure-web-app)
