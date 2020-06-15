@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: ddc14aba14e31c5530cda14b4792736da001246a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 2fcfd46057935cadac76c558a78729a1c096ffc0
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767243"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84451836"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Учебник. Создание веб-API с помощью ASP.NET Core
 
@@ -108,11 +108,13 @@ ms.locfileid: "82767243"
 
   ![Новое решение macOS](first-web-api-mac/_static/sln.png)
 
-* Щелкните **.NET Core** > **Приложение** > **API** > **Далее**.
+* В версии Visual Studio для Mac, предшествующей 8.6, последовательно выберите **.NET Core** > **Приложение** > **API** > **Далее**. В версии 8.6 или более поздней последовательно выберите **Интернет и консоль** > **Приложение** > **API** > **Далее**.
 
-  ![Диалоговое окно "Новый проект" в macOS](first-web-api-mac/_static/1.png)
-  
-* В диалоговом окне **Настройка нового веб-API ASP.NET Core** в качестве **Целевой платформы** выберите * *.NET Core 3.1*.
+  ![Выбор шаблона API macOS](first-web-api-mac/_static/api_template.png)
+
+* Убедитесь, что для параметра **Требуемая версия .NET Framework** выбрано **.NET Core 3.1**. Выберите **Далее**.
+
+  ![Выбор .NET Core 3.1 для macOS](first-web-api-mac/_static/api_31_config.png)
 
 * Введите *TodoApi* в поле **Имя проекта** и выберите команду **Создать**.
 
@@ -422,7 +424,7 @@ dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m 
 
 ## <a name="return-values"></a>Возвращаемые значения
 
-Возвращаемое значение имеет тип `GetTodoItems`, а метод `GetTodoItem` имеет тип [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core автоматически сериализует объект в формат [JSON](https://www.json.org/) и записывает данные JSON в тело сообщения ответа. Код ответа для этого типа возвращаемого значения равен 200, что свидетельствует об отсутствии необработанных исключений. Необработанные исключения преобразуются в ошибки 5xx.
+Возвращаемый тип методов `GetTodoItems` и `GetTodoItem` — [ActionResult\<T>](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core автоматически сериализует объект в формат [JSON](https://www.json.org/) и записывает данные JSON в тело сообщения ответа. Код ответа для этого типа возвращаемого значения равен 200, что свидетельствует об отсутствии необработанных исключений. Необработанные исключения преобразуются в ошибки 5xx.
 
 Типы возвращаемых значений `ActionResult` могут представлять широкий спектр кодов состояний HTTP. Например, метод `GetTodoItem` может возвращать два разных значения состояния:
 
@@ -588,9 +590,7 @@ DTO можно использовать для следующего:
 
   ![Новое решение macOS](first-web-api-mac/_static/sln.png)
 
-* Щелкните **.NET Core** > **Приложение** > **API** > **Далее**.
-
-  ![Диалоговое окно "Новый проект" в macOS](first-web-api-mac/_static/1.png)
+* В версии Visual Studio для Mac, предшествующей 8.6, последовательно выберите **.NET Core** > **Приложение** > **API** > **Далее**. В версии 8.6 или более поздней последовательно выберите **Интернет и консоль** > **Приложение** > **API** > **Далее**.
   
 * В диалоговом окне **Настройка нового веб-API ASP.NET Core** оставьте установленное по умолчанию значение для параметра **Целевая платформа**, то есть * *.NET Core 2.2*.
 
@@ -771,7 +771,7 @@ DTO можно использовать для следующего:
 
 ## <a name="return-values"></a>Возвращаемые значения
 
-Возвращаемое значение имеет тип `GetTodoItems`, а метод `GetTodoItem` имеет тип [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core автоматически сериализует объект в формат [JSON](https://www.json.org/) и записывает данные JSON в тело сообщения ответа. Код ответа для этого типа возвращаемого значения равен 200, что свидетельствует об отсутствии необработанных исключений. Необработанные исключения преобразуются в ошибки 5xx.
+Возвращаемый тип методов `GetTodoItems` и `GetTodoItem` — [ActionResult\<T>](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core автоматически сериализует объект в формат [JSON](https://www.json.org/) и записывает данные JSON в тело сообщения ответа. Код ответа для этого типа возвращаемого значения равен 200, что свидетельствует об отсутствии необработанных исключений. Необработанные исключения преобразуются в ошибки 5xx.
 
 Типы возвращаемых значений `ActionResult` могут представлять широкий спектр кодов состояний HTTP. Например, метод `GetTodoItem` может возвращать два разных значения состояния:
 

@@ -1,12 +1,24 @@
 ---
-title: Формы и проверка ASP.NET Core Blazor автор: описание: Узнайте, как использовать формы и сценарии проверки полей в Blazor.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Формы и проверка ASP.NET Core Blazor
+author: guardrex
+description: Узнайте, как использовать сценарии проверки форм и полей в Blazor.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 06/04/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/forms-validation
+ms.openlocfilehash: 707686cdc4ceb6605d6214eeeee0f6dd2e121c90
+ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84679531"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>Формы и проверка ASP.NET Core Blazor
 
@@ -62,114 +74,13 @@ public class ExampleModel
 Для получения и проверки вводимых пользователем данных доступны наборы встроенных компонентов ввода. Входные данные проверяются при их изменении и отправке формы. В приведенной ниже таблице показаны доступные компоненты ввода.
 
 | Компонент ввода | Отображается как &hellip; |
-| ---
-title: Формы и проверка ASP.NET Core Blazor автор: описание: Узнайте, как использовать формы и сценарии проверки полей в Blazor.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: Формы и проверка ASP.NET Core Blazor автор: описание: Узнайте, как использовать формы и сценарии проверки полей в Blazor.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: Формы и проверка ASP.NET Core Blazor автор: описание: Узнайте, как использовать формы и сценарии проверки полей в Blazor.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: Формы и проверка ASP.NET Core Blazor автор: описание: Узнайте, как использовать формы и сценарии проверки полей в Blazor.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: Формы и проверка ASP.NET Core Blazor автор: описание: Узнайте, как использовать формы и сценарии проверки полей в Blazor.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--------- | --- название: Формы и проверка ASP.NET Core Blazor автор: описание: Узнайте, как использовать формы и сценарии проверки полей в Blazor.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: Формы и проверка ASP.NET Core Blazor автор: описание: Узнайте, как использовать формы и сценарии проверки полей в Blazor.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: Формы и проверка ASP.NET Core Blazor автор: описание: Узнайте, как использовать формы и сценарии проверки полей в Blazor.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: Формы и проверка ASP.NET Core Blazor автор: описание: Узнайте, как использовать формы и сценарии проверки полей в Blazor.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: Формы и проверка ASP.NET Core Blazor автор: описание: Узнайте, как использовать формы и сценарии проверки полей в Blazor.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: Формы и проверка ASP.NET Core Blazor автор: описание: Узнайте, как использовать формы и сценарии проверки полей в Blazor.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-title: Формы и проверка ASP.NET Core Blazor автор: описание: Узнайте, как использовать формы и сценарии проверки полей в Blazor.
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
----------- | | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` | | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` | | <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` | | <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` | | <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` | | <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| --------------- | ------------------- |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
 
 Все компоненты ввода, включая <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, поддерживают произвольные атрибуты. В отрисованный HTML-элемент добавляется любой атрибут, который не соответствует параметру компонента.
 
@@ -335,7 +246,9 @@ public class Starship
 
 Используйте компонент <xref:Microsoft.AspNetCore.Components.Forms.InputText>, чтобы создать пользовательский компонент, использующий событие `input`, а не событие `change`.
 
-Создайте компонент со следующей разметкой и используйте компонент так же, как используется <xref:Microsoft.AspNetCore.Components.Forms.InputText>:
+В следующем примере компонент `CustomInputText` наследует компонент `InputText` платформы задает привязку события (<xref:Microsoft.AspNetCore.Components.EventCallbackFactoryBinderExtensions.CreateBinder%2A>) к событию `oninput`.
+
+*Shared/CustomInputText.razor*:
 
 ```razor
 @inherits InputText
@@ -343,9 +256,48 @@ public class Starship
 <input 
     @attributes="AdditionalAttributes" 
     class="@CssClass" 
-    value="@CurrentValue" 
+    value="@CurrentValue"
     @oninput="EventCallback.Factory.CreateBinder<string>(
-        this, __value => CurrentValueAsString = __value, CurrentValueAsString)" />
+         this, __value => CurrentValueAsString = __value, 
+         CurrentValueAsString)" />
+```
+
+Компонент `CustomInputText` можно использовать везде, где используется <xref:Microsoft.AspNetCore.Components.Forms.InputText>:
+
+*Pages/TestForm.razor*:
+
+```razor
+@page  "/testform"
+@using System.ComponentModel.DataAnnotations;
+
+<EditForm Model="@exampleModel" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <CustomInputText @bind-Value="exampleModel.Name" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+<p>
+    CurrentValue: @exampleModel.Name
+</p>
+
+@code {
+    private ExampleModel exampleModel = new ExampleModel();
+
+    private void HandleValidSubmit()
+    {
+        Console.WriteLine("OnValidSubmit");
+    }
+
+    public class ExampleModel
+    {
+        [Required]
+        [StringLength(10, ErrorMessage = "Name is too long.")]
+        public string Name { get; set; }
+    }
+}
 ```
 
 ## <a name="work-with-radio-buttons"></a>Работа с переключателями

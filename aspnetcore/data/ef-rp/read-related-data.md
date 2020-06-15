@@ -1,19 +1,25 @@
 ---
-title: Razor Pages с EF Core в ASP.NET Core — чтение связанных данных — 6 из 8
+title: Часть 6. Razor Pages с EF Core в ASP.NET Core — чтение связанных данных
 author: rick-anderson
-description: Из этого руководства вы узнаете, как читать и отображать связанные данные — данные, которые Entity Framework загружает в свойства навигации.
+description: Часть 6 серии руководств по Razor Pages и Entity Framework.
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: 0835dbf6b5434e4224d9f56ea3335df4b5d9e119
-ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
+ms.openlocfilehash: e67738015f64ca7077c2f87a8f7eabe722aac9d8
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/14/2020
-ms.locfileid: "81277331"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652613"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---read-related-data---6-of-8"></a>Razor Pages с EF Core в ASP.NET Core — чтение связанных данных — 6 из 8
+# <a name="part-6-razor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Часть 6. Razor Pages с EF Core в ASP.NET Core — чтение связанных данных
 
 Авторы: [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra), [Йон П. Смит](https://twitter.com/thereformedprog) (Jon P Smith) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -585,7 +591,7 @@ ms.locfileid: "81277331"
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_courseID)]
 
-Добавьте следующую разметку в конец страницы Razor *Pages/Instructors/Index.cshtml*:
+Добавьте следующую разметку в конец страницы Razor *Pages/Instructors/Index.cshtml*.
 
 [!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-999)]
 

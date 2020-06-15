@@ -1,12 +1,24 @@
 ---
-title: 'Глобализация и локализация в ASP.NET Core Blazor' author: description: 'Узнайте, как сделать компоненты Razor доступными для пользователей с различными языковыми и региональными параметрами.'
-monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Глобализация и локализация в ASP.NET Core Blazor
+author: guardrex
+description: Узнайте, как сделать компоненты Razor доступными для пользователей с различными языковыми и региональными параметрами.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 06/04/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/globalization-localization
+ms.openlocfilehash: 94faaa57cc6dd3df9e4a7c3c090fe01527399658
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84419740"
 ---
 # <a name="aspnet-core-blazor-globalization-and-localization"></a>Глобализация и локализация в ASP.NET Core Blazor
 
@@ -74,34 +86,39 @@ monikerRange: ms.author: ms.custom: ms.date: no-loc:
 
 #### <a name="cookies"></a>Файлы cookie
 
-Файл cookie локализации может запоминать язык и региональные параметры пользователя. Файл cookie создается методом `OnGet` на странице host приложения (*Pages/Host.cshtml.cs*). ПО промежуточного слоя локализации считывает файл cookie при последующих запросах, чтобы задать язык и региональные параметры пользователя. 
+Файл cookie локализации может запоминать язык и региональные параметры пользователя. ПО промежуточного слоя локализации считывает файл cookie при последующих запросах, чтобы задать язык и региональные параметры пользователя. 
 
 Использование файла cookie гарантирует, что соединение WebSocket сможет правильно распространить языковые и региональные параметры. Если схема локализации основана на URL-адресе или строке запроса, она может не поддерживать работу с WebSockets и не сможет сохранить язык и региональные параметры. Поэтому рекомендуемым подходом для локализации является использование файла cookie языка и региональных параметров.
 
 Если язык и региональные параметры сохраняются в файле cookie с локализацией, то можно использовать любой метод для назначения языка и региональных параметров. Если у приложения уже есть установленная схема локализации для ASP.NET Core на стороне сервера, продолжайте использовать существующую инфраструктуру локализации приложения и задавайте файл cookie языка и региональных параметров для локализации в схеме приложения.
 
-В следующем примере показано, как задать текущий язык и региональные параметры в файле cookie, который можно прочитать в ПО промежуточного слоя локализации. Создайте файл *Pages/_Host.cshtml.cs* со следующим содержимым в приложении Blazor Server:
+В следующем примере показано, как задать текущий язык и региональные параметры в файле cookie, который можно прочитать в ПО промежуточного слоя локализации. Создайте Razor выражение в файле *Pages/_Host.cshtml* непосредственно в открывающем теге `<body>`:
 
-```csharp
-public class HostModel : PageModel
-{
-    public void OnGet()
-    {
-        HttpContext.Response.Cookies.Append(
+```cshtml
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+
+...
+
+<body>
+    @{
+        this.HttpContext.Response.Cookies.Append(
             CookieRequestCultureProvider.DefaultCookieName,
             CookieRequestCultureProvider.MakeCookieValue(
                 new RequestCulture(
                     CultureInfo.CurrentCulture,
                     CultureInfo.CurrentUICulture)));
     }
-}
+
+    ...
+</body>
 ```
 
 Локализация обрабатывается приложением в следующей последовательности событий.
 
 1. Браузер отправляет первоначальный HTTP-запрос в приложение.
 1. Язык и региональные параметры назначаются в ПО промежуточного слоя локализации.
-1. Метод `OnGet` в файле *_Host.cshtml.cs* сохраняет язык и региональные параметры в файле cookie как часть ответа.
+1. Выражение Razor на странице `_Host` ( *_Host.cshtml*) сохраняет язык и региональные параметры в файле cookie как часть ответа.
 1. Браузер открывает соединение WebSocket для создания интерактивного сеанса Blazor Server.
 1. ПО промежуточного слоя для локализации считывает файл cookie и назначает язык и региональные параметры.
 1. Сеанс Blazor Server начинается с нужными языком и региональными параметрами.
@@ -135,6 +152,25 @@ public class CultureController : Controller
 
 > [!WARNING]
 > Для предотвращения атак с открытым перенаправлением используйте результат действия <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A>. Для получения дополнительной информации см. <xref:security/preventing-open-redirects>.
+
+Если приложение не настроено для обработки действий контроллера:
+
+* Добавьте службы MVC в коллекцию служб в `Startup.ConfigureServices`:
+
+  ```csharp
+  services.AddControllers();
+  ```
+
+* Добавьте маршрутизацию конечных точек контроллера в `Startup.Configure`:
+
+  ```csharp
+  app.UseEndpoints(endpoints =>
+  {
+      endpoints.MapControllers();
+      endpoints.MapBlazorHub();
+      endpoints.MapFallbackToPage("/_Host");
+  });
+  ```
 
 В следующем компоненте показан пример выполнения начального перенаправления, когда пользователь выбирает язык и региональные параметры:
 

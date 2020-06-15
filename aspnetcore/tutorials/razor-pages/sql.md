@@ -1,7 +1,7 @@
 ---
-title: Работа с базой данных и ASP.NET Core
+title: Часть 4. Работа с базой данных и ASP.NET Core
 author: rick-anderson
-description: В этой статье описывается работа с базой данных и ASP.NET Core.
+description: Часть 4 серии руководств по Razor Pages.
 ms.author: riande
 ms.date: 7/22/2019
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: 159588ec750f0ede534522aa9397fc2aefb58cd6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 21ae2ed4e91a0b3e52b1cdad1f4f4686c50614ba
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775613"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652986"
 ---
-# <a name="work-with-a-database-and-aspnet-core"></a>Работа с базой данных и ASP.NET Core
+# <a name="part-4-with-a-database-and-aspnet-core"></a>Часть 4. Работа с базой данных и ASP.NET Core
 
 Авторы: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson) и [Джо Одетт](https://twitter.com/joeaudette) (Joe Audette)
 
@@ -148,7 +148,7 @@ if (context.Movie.Any())
 
 > [!div class="step-by-step"]
 > [Предыдущая статья. Сформированные страницы Razor Pages](xref:tutorials/razor-pages/page)
-> [Следующая статья. Изменение созданных страниц](xref:tutorials/razor-pages/da1)
+> [Далее: Изменение созданных страниц](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end
 

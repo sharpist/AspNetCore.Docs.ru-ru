@@ -1,19 +1,25 @@
 ---
-title: Razor Pages с EF Core в ASP.NET Core — параллелизм — 8 из 8
+title: Часть 8. Razor Pages с EF Core в ASP.NET Core — параллелизм
 author: rick-anderson
-description: Это руководство описывает, как обрабатывать конфликты, когда несколько пользователей одновременно изменяют одну сущность.
+description: Часть 8 серии руководств по Razor Pages и Entity Framework.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: c4d43f26ba80e7922c3cbd37d9a5f8e1561b11ad
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: fb6a59a11cf31dff4866d5f5294cd9f15b173add
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78645880"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652435"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---concurrency---8-of-8"></a>Razor Pages с EF Core в ASP.NET Core — параллелизм — 8 из 8
+# <a name="part-8-razor-pages-with-ef-core-in-aspnet-core---concurrency"></a>Часть 8. Razor Pages с EF Core в ASP.NET Core — параллелизм
 
 Авторы: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson), [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra) и [Йон П. Смит](https://twitter.com/thereformedprog) (Jon P Smith)
 
@@ -327,7 +333,7 @@ modelBuilder.Entity<Department>()
 * Возникает исключение DbUpdateConcurrencyException.
 * Вызывается `OnGetAsync` с `concurrencyError`.
 
-### <a name="update-the-delete-razor-page"></a>Обновление страницы удаления Razor
+### <a name="update-the-delete-razor-page"></a>Обновление страницы Razor "Delete" (Удаление)
 
 Измените *Pages/Departments/Delete.cshtml*, используя следующий код:
 

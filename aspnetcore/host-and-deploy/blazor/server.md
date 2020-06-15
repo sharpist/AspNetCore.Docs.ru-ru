@@ -5,7 +5,7 @@ description: Сведения о размещении и развертыван�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/03/2020
+ms.date: 06/04/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/blazor/server
-ms.openlocfilehash: e69b91035c65739dde724330e83793c0b8b5481a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 8c06d3a4d0d75a3e2fd9f699af38a23833fa8bce
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775158"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84419948"
 ---
 # <a name="host-and-deploy-blazor-server"></a>Размещение и развертывание серверного приложения Blazor
 
@@ -147,6 +147,41 @@ http {
 * [NGINX как прокси-сервер WebSocket](https://www.nginx.com/blog/websocket-nginx/)
 * [Использование прокси-сервера для WebSocket](http://nginx.org/docs/http/websocket.html)
 * <xref:host-and-deploy/linux-nginx>
+
+## <a name="linux-with-apache"></a>Linux c Apache
+
+Чтобы разместить приложение Blazor на основе Apache в Linux, настройте `ProxyPass` для трафика HTTP и WebSockets.
+
+В следующем примере:
+
+* Сервер Kestrel запущен на ведущем компьютере.
+* Приложение прослушивает трафик на порту 5000.
+
+```
+ProxyRequests       On
+ProxyPreserveHost   On
+ProxyPassMatch      ^/_blazor/(.*) http://localhost:5000/_blazor/$1
+ProxyPass           /_blazor ws://localhost:5000/_blazor
+ProxyPass           / http://localhost:5000/
+ProxyPassReverse    / http://localhost:5000/
+```
+
+Включите следующие модули:
+
+```
+a2enmod   proxy
+a2enmod   proxy_wstunnel
+```
+
+Проверьте консоль браузера на наличие ошибок WebSockets. Примеры ошибок приведены далее.
+
+* Firefox не может установить подключение к серверу по адресу ws://the-domain-name.tld/_blazor?id=XXX.
+* Ошибка: Не удалось запустить транспорт "WebSockets": Ошибка: произошла ошибка транспорта.
+* Ошибка: не удалось запустить транспорт "LongPolling". TypeError: этот транспорт не определен.
+* Ошибка: не удается подключиться к серверу с помощью любого из доступных транспортов. Сбой WebSockets.
+* Ошибка: невозможно отправить данные, если подключение не находится в состоянии "Подключено".
+
+Дополнительные сведения см. в [документации по Apache](https://httpd.apache.org/docs/current/mod/mod_proxy.html).
 
 ### <a name="measure-network-latency"></a>Измерение задержки сети
 

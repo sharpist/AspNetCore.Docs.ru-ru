@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 67fc972676549a02265035c129c513f11d303d51
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 5b6ae8173ca3d968e220faa4a060e1b42b14f8bb
+ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774051"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84507248"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>Новые возможности в ASP.NET Core 3.1
 
@@ -37,7 +37,7 @@ ms.locfileid: "82774051"
 
 Вспомогательная функция HTML по-прежнему поддерживается в ASP.NET Core 3.1, но рекомендуется использовать вспомогательную функцию тега компонента.
 
-Серверные приложения Blazor теперь могут передавать параметры в компоненты верхнего уровня во время первоначальной отрисовки. Ранее параметры можно было передавать в компонент верхнего уровня только с помощью [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static). В этом выпуске поддерживаются как [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server), так и [RenderModel.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered). Все указанные значения параметров сериализуются как JSON и включаются в исходный ответ.
+Серверные приложения Blazor теперь могут передавать параметры в компоненты верхнего уровня во время первоначальной отрисовки. Ранее параметры можно было передавать в компонент верхнего уровня только с помощью [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static). В этом выпуске поддерживается как [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server), так и [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered). Все указанные значения параметров сериализуются как JSON и включаются в исходный ответ.
 
 Например, компонент `Counter` может предварительно отрисовываться со значением приращения (`IncrementAmount`):
 

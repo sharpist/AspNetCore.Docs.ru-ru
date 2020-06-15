@@ -1,19 +1,25 @@
 ---
-title: Razor Pages с EF Core в ASP.NET Core — модель данных— 5 из 8
+title: Часть 5. Razor Pages с EF Core в ASP.NET Core — модель данных
 author: rick-anderson
-description: В этом руководстве вы добавите дополнительные сущности и связи, а также настроите модель данных, указав правила форматирования, проверки и сопоставления.
+description: Часть 5 серии руководств по Razor Pages и Entity Framework.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 1d81a0444487c6396bb32381ed2cb26d44312c3a
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: f44ca9857ea127cf7e662e2712cc6d4b460450e9
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650212"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652500"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---data-model---5-of-8"></a>Razor Pages с EF Core в ASP.NET Core — модель данных— 5 из 8
+# <a name="part-5-razor-pages-with-ef-core-in-aspnet-core---data-model"></a>Часть 5. Razor Pages с EF Core в ASP.NET Core — модель данных
 
 Авторы: [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -96,7 +102,7 @@ ms.locfileid: "78650212"
 Атрибут `StringLength` не запрещает пользователю ввести пробел в качестве имени пользователя. Атрибут [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) можно использовать для применения ограничений к входным данным. Например, следующий код требует, чтобы первый символ был прописной буквой, а остальные символы были буквенными:
 
 ```csharp
-[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+[RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
 ```
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
@@ -788,7 +794,7 @@ https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intr
 Предыдущий код задает ограничение длины имен в 50 символов. Атрибут `StringLength` не запрещает пользователю ввести пробел в качестве имени пользователя. Атрибут [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) используется для применения ограничений к входным данным. Например, следующий код требует, чтобы первый символ был прописной буквой, а остальные символы были буквенными:
 
 ```csharp
-[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+[RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
 ```
 
 Запустите приложение:

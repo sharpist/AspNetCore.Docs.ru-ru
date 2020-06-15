@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/complex-data-model
-ms.openlocfilehash: 5e617a201cbd133e695bdadc08dc6c797f97b6be
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 10d6f0bd6f6b95efbe868e4bc21513460e1f0b67
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773631"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652472"
 ---
 # <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF  Core. Создание сложной модели данных
 
@@ -95,7 +95,7 @@ ms.locfileid: "82773631"
 Атрибут `StringLength` не запрещает пользователю ввести пробел в качестве имени пользователя. Атрибут `RegularExpression` можно использовать для применения ограничений к входным данным. Например, следующий код требует, чтобы первый символ был прописной буквой, а остальные символы были буквенными:
 
 ```csharp
-[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+[RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
 ```
 
 Атрибут `MaxLength` предоставляет функциональность, аналогичную атрибуту `StringLength`, но не обеспечивает проверку на стороне клиента.
@@ -112,7 +112,7 @@ dotnet ef migrations add MaxLengthOnNames
 dotnet ef database update
 ```
 
-Команда `migrations add` выдает предупреждение о возможной потере данных, так как это изменение сокращает максимальную длину для двух столбцов.  Функция миграций создает файл с именем *\<метка_времени>_MaxLengthOnNames.cs*. Он содержит в методе `Up` код, который обновит базу данных в соответствии с текущей моделью данных. Команда `database update` запустила этот код.
+Команда `migrations add` выдает предупреждение о возможной потере данных, так как это изменение сокращает максимальную длину для двух столбцов.  Функция миграций создает файл с именем *\<timeStamp>_MaxLengthOnNames.cs*. Он содержит в методе `Up` код, который обновит базу данных в соответствии с текущей моделью данных. Команда `database update` запустила этот код.
 
 Метка времени, добавленная в качестве префикса к имени файла миграций, используется платформой Entity Framework для упорядочения миграций. Вы можете создать несколько миграций перед выполнением команды update-database, после чего все миграции применяются в порядке их создания.
 

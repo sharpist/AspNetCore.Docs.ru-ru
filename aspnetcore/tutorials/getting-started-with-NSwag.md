@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/get-started-with-nswag
-ms.openlocfilehash: 50096ae6a77d5f8b07e6be795d9401fcbfd421e3
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: cd4cc6778de7d2156243dc91fba64b2bdb79cf08
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776712"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452126"
 ---
 # <a name="get-started-with-nswag-and-aspnet-core"></a>Начало работы с NSwag и ASP.NET Core
 
@@ -107,11 +107,11 @@ dotnet add TodoApi.csproj package NSwag.AspNetCore
 
 Можно воспользоваться преимуществами создания кода в NSwag, выбрав один из следующих вариантов:
 
-* [NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio) &ndash; — это классическое приложение Windows для создания клиентского кода API на C# или TypeScript.
+* [NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio): классическое приложение Windows для создания клиентского кода API на C# или TypeScript.
 * Пакеты NuGet [NSwag.CodeGeneration.CSharp](https://www.nuget.org/packages/NSwag.CodeGeneration.CSharp/) или [NSwag.CodeGeneration.TypeScript](https://www.nuget.org/packages/NSwag.CodeGeneration.TypeScript/) для создания кода внутри проекта.
 * NSwag из [командной строки](https://github.com/RicoSuter/NSwag/wiki/CommandLine).
 * Пакет NuGet [NSwag.MSBuild](https://github.com/RicoSuter/NSwag/wiki/NSwag.MSBuild).
-* [Подключенная служба Unchase OpenAPI (Swagger)](https://marketplace.visualstudio.com/items?itemName=Unchase.unchaseopenapiconnectedservice) &ndash; — это подключенная служба Visual Studio для создания клиентского кода API на C# или TypeScript. Она также создает контроллеры C# для служб OpenAPI с NSwag.
+* [Подключенная служба Unchase OpenAPI (Swagger)](https://marketplace.visualstudio.com/items?itemName=Unchase.unchaseopenapiconnectedservice): подключенная служба Visual Studio для создания клиентского кода API на C# или TypeScript. Она также создает контроллеры C# для служб OpenAPI с NSwag.
 
 ### <a name="generate-code-with-nswagstudio"></a>Создание кода с помощью NSwagStudio
 
@@ -271,7 +271,7 @@ Swagger предоставляет параметры для документи�
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Так как NSwag использует [отражение](/dotnet/csharp/programming-guide/concepts/reflection), а рекомендуемый тип возвращаемого значения для действий веб-API — это [IActionResult\<T >](xref:Microsoft.AspNetCore.Mvc.ActionResult%601), NSwag может определить только тип возвращаемого значения, задаваемый `T`. Невозможно автоматически определить другие возможные типы возвращаемого значения.
+Так как NSwag использует [отражение](/dotnet/csharp/programming-guide/concepts/reflection), а рекомендуемый тип возвращаемого значения для действий веб-API — это [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult%601), NSwag может определить только тип возвращаемого значения, задаваемый `T`. Невозможно автоматически определить другие возможные типы возвращаемого значения.
 
 Рассмотрим следующий пример.
 

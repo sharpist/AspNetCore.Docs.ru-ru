@@ -1,7 +1,7 @@
 ---
-title: Добавление проверки в приложение MVC ASP.NET Core
+title: Часть 9. Добавление проверки в приложение MVC ASP.NET Core
 author: rick-anderson
-description: Практическое руководство. Добавление проверки в приложение ASP.NET Core.
+description: Часть 9 серии руководств по ASP.NET Core MVC.
 ms.author: riande
 ms.date: 04/13/2017
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/validation
-ms.openlocfilehash: 6e46a4ace7c99096f1a7d47946a21fd7a5c657e7
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 70cc66955fdaee6ff93648523c2977587e6b05d6
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776198"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652441"
 ---
-# <a name="add-validation-to-an-aspnet-core-mvc-app"></a>Добавление проверки в приложение MVC ASP.NET Core
+# <a name="part-9-add-validation-to-an-aspnet-core-mvc-app"></a>Часть 9. Добавление проверки в приложение MVC ASP.NET Core
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -55,7 +55,7 @@ ms.locfileid: "82776198"
 
 Вам может быть интересно, как пользовательский интерфейс проверки создается без обновления кода контроллера или представлений. В следующем примере кода показаны два метода `Create`.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie/Controllers/MoviesController.cs?name=snippetCreate)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippetCreate)]
 
 Первый метод действия `Create` (HTTP GET) отображает исходную форму создания. Вторая версия (`[HttpPost]`) обрабатывает передачу формы. Второй метод `Create` (версия `[HttpPost]`) вызывает `ModelState.IsValid`, который определяет наличие ошибок проверки в фильме. При вызове этого метода оцениваются все атрибуты проверки, которые были применены к объекту. При наличии ошибок проверки в объекте метод `Create` повторно отображает форму. Если ошибок нет, метод сохраняет новый фильм в базе данных. В этом примере форма передается на сервер только после того, как будут устранены все ошибки проверки, обнаруженные на стороне клиента. Второй метод `Create` не вызывается до тех пор, пока на стороне клиента присутствуют ошибки проверки. При отключении JavaScript в браузере также отключается проверка на стороне клиента. В этом случае вы можете протестировать метод HTTP POST `Create``ModelState.IsValid`, который обнаруживает наличие ошибок проверки.
 
@@ -89,7 +89,7 @@ ms.locfileid: "82776198"
 
 Откройте файл *Movie.cs* и проверьте класс `Movie`. В пространстве имен `System.ComponentModel.DataAnnotations` в дополнение к набору встроенных атрибутов проверки предоставляются атрибуты форматирования. К полям с датой выпуска и ценой уже применено значение перечисления `DataType`. В следующем коде показаны свойства `ReleaseDate` и `Price` с соответствующим атрибутом `DataType`.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
 
 Атрибуты `DataType` предоставляют модулю просмотра только рекомендации по форматированию данных, а также другие элементы и атрибуты, например `<a>` для URL-адресов и `<a href="mailto:EmailAddress.com">` для электронной почты. Используйте атрибут `RegularExpression` для проверки формата данных. Атрибут `DataType` позволяет указать тип данных с более точным определением по сравнению со встроенным типом базы данных, но не предназначен для проверки. В этом случае требуется отслеживать только дату, но не время. В перечислении `DataType` представлено множество типов данных, таких как Date, Time, PhoneNumber, Currency, EmailAddress и другие. Атрибут `DataType` также обеспечивает автоматическое предоставление функций для определенных типов в приложении. Например, может быть создана ссылка `mailto:` для `DataType.EmailAddress`. Также в браузерах с поддержкой HTML5 может быть предоставлен селектор даты для `DataType.Date`. Атрибуты `DataType` создают атрибуты HTML 5 `data-`, которые используются браузерами с поддержкой HTML 5. Атрибуты `DataType`**не предназначены** для проверки.
 

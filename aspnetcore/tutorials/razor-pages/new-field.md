@@ -1,7 +1,7 @@
 ---
-title: Добавление нового поля на страницу Razor в ASP.NET Core
+title: Часть 7. Добавление нового поля на страницу Razor в ASP.NET Core
 author: rick-anderson
-description: Демонстрирует, как добавить новое поле на страницу Razor с помощью Entity Framework Core
+description: Часть 7 серии руководств по Razor Pages.
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
@@ -12,14 +12,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: 683d6718f4dcdb73c45cbcf94f6ac4f477b71bcd
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 15d4ccbe88c2147210918a3db1416983fb30132b
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82769738"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652796"
 ---
-# <a name="add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Добавление нового поля на страницу Razor в ASP.NET Core
+# <a name="part-7-add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Часть 7. Добавление нового поля на страницу Razor в ASP.NET Core
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 

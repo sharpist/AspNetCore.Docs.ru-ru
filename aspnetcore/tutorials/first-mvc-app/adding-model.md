@@ -1,7 +1,7 @@
 ---
-title: Добавление модели в приложение MVC ASP.NET Core
+title: Часть 4. Добавление модели в приложение MVC ASP.NET Core
 author: rick-anderson
-description: Добавление модели в простое приложение ASP.NET Core.
+description: Часть 4 серии руководств по ASP.NET Core MVC.
 ms.author: riande
 ms.date: 01/13/2020
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 1347659ee25e2b85b0a479f6bbcc5eb1a956fab2
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 29f70d6bd1d5c1223ef35b4e24e5b9c0a8465d1d
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776764"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652383"
 ---
-# <a name="add-a-model-to-an-aspnet-core-mvc-app"></a>Добавление модели в приложение MVC ASP.NET Core
+# <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>Часть 4. Добавление модели в приложение MVC ASP.NET Core
 
 Авторы: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson) и [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra)
 

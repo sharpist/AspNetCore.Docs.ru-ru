@@ -1,7 +1,7 @@
 ---
-title: Добавление модели в приложение Razor Pages в ASP.NET Core
+title: Часть 2. Добавление модели в приложение Razor Pages в ASP.NET Core
 author: rick-anderson
-description: Узнайте, как добавлять классы для управления фильмами в базе данных с использованием Entity Framework Core (EF Core).
+description: Часть 2 серии руководств по Razor Pages.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: d093d7c4dc1b355c0042f300f70a830653b168c0
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: d3f7d355625ce20a0cb45c785fbab259a5655c63
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82769836"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652945"
 ---
-# <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Добавление модели в приложение Razor Pages в ASP.NET Core
+# <a name="part-2-add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Часть 2. Добавление модели в приложение Razor Pages в ASP.NET Core
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -82,11 +82,11 @@ ms.locfileid: "82769836"
 
 ![Изображение из предыдущих инструкций.](model/_static/sca.png)
 
-В диалоговом окне **Добавление шаблона** выберите **Razor Pages на основе Entity Framework (CRUD)** >**Добавить**.
+В диалоговом окне **Добавление шаблона** щелкните **Razor Pages на основе Entity Framework (CRUD)** > **Добавить**.
 
 ![Изображение из предыдущих инструкций.](model/_static/add_scaffold.png)
 
-Заполните поля в диалоговом окне **Добавить Razor Pages с помощью Entity Framework (CRUD)** :
+Заполните поля в диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** :
 
 * В раскрывающемся списке **Класс модели** выберите **Фильм (RazorPagesMovie.Models)** .
 * В строке **Класс контекста данных** щелкните значок плюса **+** и измените сгенерированное имя RazorPagesMovie.**Models**.RazorPagesMovieContext на RazorPagesMovie.**Data**.RazorPagesMovieContext. [Это изменение](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) не требуется. Оно создает класс контекста базы данных с правильным пространством имен.
@@ -140,7 +140,7 @@ ms.locfileid: "82769836"
 
 ![Изображение из предыдущих инструкций.](model/_static/add_scaffoldMac.png)
 
-Заполните поля в диалоговом окне **Добавить Razor Pages с помощью Entity Framework (CRUD)** :
+Заполните поля в диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** :
 
 * В раскрывающемся списке **Класс модели** выберите или введите **Фильм (RazorPagesMovie.Models)** .
 * В строке **Data context class** (Класс контекста данных) введите имя нового класса RazorPagesMovie.**Data**.RazorPagesMovieContext. [Это изменение](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) не требуется. Оно создает класс контекста базы данных с правильным пространством имен.
@@ -363,11 +363,11 @@ Login failed for user 'User-name'.
 
 ![Изображение из предыдущих инструкций.](model/_static/sca.png)
 
-В диалоговом окне **Добавление шаблона** выберите **Razor Pages на основе Entity Framework (CRUD)** >**Добавить**.
+В диалоговом окне **Добавление шаблона** щелкните **Razor Pages на основе Entity Framework (CRUD)** > **Добавить**.
 
 ![Изображение из предыдущих инструкций.](model/_static/add_scaffold.png)
 
-Заполните поля в диалоговом окне **Добавить Razor Pages с помощью Entity Framework (CRUD)** :
+Заполните поля в диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** :
 <!-- In the next section, change 
 (plus) sign and accept the generated name 
 to use Data, it should not use models. That will make the namespace the same for the VS version and the CLI version
@@ -417,7 +417,7 @@ to use Data, it should not use models. That will make the namespace the same for
 
 ![Изображение из предыдущих инструкций.](model/_static/add_scaffoldMac.png)
 
-Заполните поля в диалоговом окне **Добавить Razor Pages с помощью Entity Framework (CRUD)** :
+Заполните поля в диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** :
 
 * В раскрывающемся списке **Класс модели** выберите или введите **Фильм**.
 * В строке **Data context class** (Класс контекста данных) введите или выберите **RazorPagesMovieContext**. Это приведет к созданию класса контекста базы данных с правильным пространством имен. В этом случае это будет **RazorPagesMovie.Models.RazorPagesMovieContext**.

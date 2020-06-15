@@ -1,19 +1,25 @@
 ---
-title: Razor Pages с EF Core в ASP.NET Core — сортировка, фильтрация, разбиение на страницы — 3 из 8
+title: Часть 3. Razor Pages с EF Core в ASP.NET Core — сортировка, фильтрация, разбиение на страницы
 author: rick-anderson
-description: Из этого учебника вы узнаете, как с помощью ASP.NET Core и Entity Framework Core добавить на страницу Razor функции сортировки, фильтрации и разбиения на страницы.
+description: Часть 3 серии руководств по Razor Pages и Entity Framework.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 9563f3ef52ce429eb0a58b468acb8e9cd7b276e2
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 99b14c99cb99d106604f1a4edacf1da0a2d6125c
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78645496"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652587"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging---3-of-8"></a>Razor Pages с EF Core в ASP.NET Core — сортировка, фильтрация, разбиение на страницы — 3 из 8
+# <a name="part-3-razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Часть 3. Razor Pages с EF Core в ASP.NET Core — сортировка, фильтрация, разбиение на страницы
 
 Авторы: [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra), [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson) и [Йон П. Смит](https://twitter.com/thereformedprog) (Jon P Smith)
 
@@ -203,7 +209,7 @@ https://localhost:<port>/Students?SearchString=an
 
   Два вопросительных знака после `pageIndex` в вызове `PaginatedList.CreateAsync` являются [оператором объединения с NULL](/dotnet/csharp/language-reference/operators/null-conditional-operator). Оператор объединения с null определяет значение по умолчанию для типа, допускающего значение null. Выражение `(pageIndex ?? 1)` означает возвращение значения `pageIndex`, если он имеет значение. Если у `pageIndex` нет значения, возвращается 1.
 
-### <a name="add-paging-links-to-the-razor-page"></a>Добавление ссылок для перелистывания страниц на страницу Razor
+### <a name="add-paging-links-to-the-razor-page"></a>Добавление ссылок для разбиения по страницам на страницу Razor
 
 Замените код в файле *Students/Index.cshtml* на приведенный ниже код. Изменения выделены:
 
@@ -239,7 +245,7 @@ https://localhost:<port>/Students?SearchString=an
 
 [!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### <a name="create-the-razor-page"></a>Создание страницы Razor
+### <a name="create-the-razor-page"></a>Создание Razor страницы
 
 Создайте файл *Pages/About.cshtml* со следующим кодом:
 
@@ -459,7 +465,7 @@ http://localhost:5000/Students?SearchString=an
 
 Два вопросительных знака в `PaginatedList.CreateAsync` являются [оператором объединения с null](/dotnet/csharp/language-reference/operators/null-conditional-operator). Оператор объединения с null определяет значение по умолчанию для типа, допускающего значение null. Выражение `(pageIndex ?? 1)` означает возвращение значения `pageIndex`, если он имеет значение. Если у `pageIndex` нет значения, возвращается 1.
 
-## <a name="add-paging-links-to-the-student-razor-page"></a>Добавление ссылок для перелистывания страниц на страницу Razor
+## <a name="add-paging-links-to-the-student-razor-page"></a>Добавление ссылок на страницу Razor учащихся
 
 Измените разметку в *Students/Index.cshtml*. Изменения выделены:
 
@@ -505,7 +511,7 @@ http://localhost:5000/Students?SearchString=an
 
 ### <a name="update-the-about-page-model"></a>Обновление модели страницы "About" (О программе)
 
-Веб-шаблоны в ASP.NET Core 2.2 не включают страницу About. Если вы используете ASP.NET Core 2.2, создайте страницу About Razor Page.
+Веб-шаблоны в ASP.NET Core 2.2 не включают страницу About. Если вы используете ASP.NET Core 2.2, создайте страницу About Razor Page.
 
 Измените файл *Pages/About.cshtml.cs*, используя следующий код:
 
@@ -513,7 +519,7 @@ http://localhost:5000/Students?SearchString=an
 
 Запрос LINQ группирует записи из таблицы студентов по дате зачисления, вычисляет число записей в каждой группе и сохраняет результаты в коллекцию объектов моделей представления `EnrollmentDateGroup`.
 
-### <a name="modify-the-about-razor-page"></a>Изменение страницы Razor "About" (О программе)
+### <a name="modify-the-about-razor-page"></a>Изменение страницы Razor About
 
 Замените код в файле *Pages/About.cshtml* следующим кодом:
 

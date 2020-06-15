@@ -1,18 +1,24 @@
 ---
-title: Razor Pages с EF Core в ASP.NET Core — CRUD — 2 из 8
+title: Часть 2. Razor Pages с EF Core в ASP.NET Core — CRUD
 author: rick-anderson
-description: Описание операций создания, чтения, обновления и удаления в EF Core.
+description: Часть 2 серии руководств по Razor Pages и Entity Framework.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: 05519852fab22bd3ad5b77e3494b49191448286f
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 62e35639d5e3d43bd20c9f92b75fa101d7914f82
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78650152"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652355"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---crud---2-of-8"></a>Razor Pages с EF Core в ASP.NET Core — CRUD — 2 из 8
+# <a name="part-2-razor-pages-with-ef-core-in-aspnet-core---crud"></a>Часть 2. Razor Pages с EF Core в ASP.NET Core — CRUD
 
 Авторы: [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra), [Йон П. Смит](https://twitter.com/thereformedprog) (Jon P Smith) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -167,7 +173,7 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 * Возникает исключение базы данных.
 * Вызывается метод `OnGetAsync` страницы Delete с параметром `saveChangesError=true`.
 
-Добавьте сообщение об ошибке на страницу удаления Razor (*Pages/Students/Delete.cshtml*):
+Добавьте сообщение об ошибке на страницу удаления Razor (*Pages/Students/Delete.cshtml*).
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
 
@@ -185,9 +191,9 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 
 В этом учебнике описывается проверка и настройка шаблонного кода операций CRUD (создание, чтение, обновление и удаление).
 
-Чтобы максимально упростить этот код и сконцентрироваться на работе с EF Core, в моделях страниц в этих учебниках используется код EF Core. Некоторые разработчики используют уровень служб или шаблон репозитория для создания уровня абстракции между пользовательским интерфейсом (Razor Pages) и уровнем доступа к данным.
+Чтобы максимально упростить этот код и сконцентрироваться на работе с EF Core, в моделях страниц в этих учебниках используется код EF Core. Некоторые разработчики используют уровень служб или шаблон репозитория, чтобы создать уровень абстракции между пользовательским интерфейсом (Razor Pages) и уровнем доступа к данным.
 
-В рамках этого руководства изучаются страницы Razor Pages в папке *Students*, предназначенные для создания, редактирования, удаления и просмотра сведений.
+В рамках этого руководства изучаются страницы RazorPages в папке *Students*, предназначенные для создания, редактирования, удаления и просмотра сведений.
 
 В шаблонном коде используется следующий шаблон для страниц создания, редактирования и удаления:
 
@@ -231,7 +237,7 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 
 Запустите приложение и щелкните ссылку **Details**. URL-адрес имеет вид `http://localhost:5000/Students/Details?id=2`. Идентификатор учащегося передается с помощью строки запроса (`?id=2`).
 
-Обновите страницы Razor Pages Edit, Details и Delete так, чтобы использовался шаблон маршрута `"{id:int}"`. Измените директиву страницы для каждой из этих страниц c `@page` на `@page "{id:int}"`.
+Обновите страницы Razor Pages Edit, Details и Delete так, чтобы использовался шаблон маршрута `"{id:int}"`. Измените директиву страницы для каждой из этих страниц c `@page` на `@page "{id:int}"`.
 
 Запрос к странице с шаблоном маршрута "{id:int}", который **не** включает в себя целочисленное значение маршрута, приводит к ошибке HTTP 404 (не найдено). Например, `http://localhost:5000/Students/Details` возвращает ошибку 404. Чтобы сделать идентификатор необязательным, добавьте `?` к ограничению маршрута:
 
@@ -298,7 +304,7 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 
 [!code-csharp[](intro/samples/cu21/Models/StudentZsecret.cs?name=snippet_Intro&highlight=7)]
 
-Даже если приложение не имеет поля `Secret` на странице создания или обновления Razor Pages, злоумышленник может установить значение `Secret` посредством чрезмерной передачи данных. Злоумышленник может использовать такие средства, как Fiddler, или собственный код JavaScript для отправки значения формы `Secret`. В исходном коде не ограничиваются поля, которые используются при создании экземпляра Student связывателем модели.
+Даже если приложение не имеет поля `Secret` на странице создания или обновления Razor, злоумышленник может установить значение `Secret` посредством чрезмерной передачи данных. Злоумышленник может использовать такие средства, как Fiddler, или собственный код JavaScript для отправки значения формы `Secret`. В исходном коде не ограничиваются поля, которые используются при создании экземпляра Student связывателем модели.
 
 Какое бы значение ни задал злоумышленник для поля формы `Secret`, оно будет обновлено в базе данных. На следующем рисунке показано средство Fiddler, с помощью которого в отправленные значения формы добавляется поле `Secret` (со значением "OverPost").
 
@@ -324,7 +330,7 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 
 При использовании `StudentVM` необходимо обновить [CreateVM.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21/Pages/Students/CreateVM.cshtml), чтобы использовать `StudentVM` вместо `Student`.
 
-В Razor Pages представление модели реализуется с помощью производного класса `PageModel`.
+В Razor Pages представление модели реализуется с помощью производного класса `PageModel`.
 
 ## <a name="update-the-edit-page"></a>Обновление страницы редактирования
 
@@ -385,9 +391,9 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 * Вызывается исключение базы данных.
 * Вызывается метод `OnGetAsync` страницы Delete с параметром `saveChangesError=true`.
 
-### <a name="update-the-delete-razor-page"></a>Обновление страницы удаления Razor Pages
+### <a name="update-the-delete-razor-page"></a>Обновление страницы удаления Razor
 
-Добавьте выделенное ниже сообщение об ошибке на страницу Delete Razor Pages.
+Добавьте выделенное ниже сообщение об ошибке на страницу Delete Razor.
 <!--
 [!code-cshtml[](intro/samples/cu21/Pages/Students/Delete.cshtml?name=snippet&highlight=11)]
 -->
@@ -399,13 +405,13 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 
 Не работает ссылка Students/Index или другие ссылки:
 
-Убедитесь, что на странице Razor Pages содержится правильная директива `@page`. Например, страница Razor Pages Students/Index **не должна** содержать шаблон маршрута:
+Убедитесь, что на странице Razor содержится правильная директива `@page`. Например, страница Razor Students/Index **не** должна содержать шаблон маршрута:.
 
 ```cshtml
 @page "{id:int}"
 ```
 
-Каждая страница Razor Pages должна содержать директиву `@page`.
+Каждая страница Razor должна содержать директиву `@page`.
 
 
 

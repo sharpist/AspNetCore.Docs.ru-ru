@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: 0b28e99d9c56d92e157e9010880e58ec5165196a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c2b76b59ae775b9268fa77019bf8420e5e4108b6
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774989"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452302"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Начало работы с MVC ASP.NET Core
 
@@ -98,17 +98,24 @@ ms.locfileid: "82774989"
 
 * Щелкните **Файл** > **Новое решение**.
 
-  ![Новое решение macOS](./start-mvc/_static/new_project_vsmac.png)
+  ![Новое решение macOS](start-mvc/_static/new_project_vsmac.png)
 
-* Щелкните **.NET Core** > **Приложение** > **Веб-приложение (Модель — представление — контроллер)** > **Далее**.
+* В версии Visual Studio для Mac, предшествующей 8.6, последовательно выберите **.NET Core** > **Приложение** > **Веб-приложение (модель — представление — контроллер)**  > **Далее**. В версии 8.6 или более поздней последовательно выберите **Интернет и консоль** > **Приложение** > **Веб-приложение (модель — представление — контроллер)**  > **Далее**.
 
-  ![Диалоговое окно "Новый проект" в macOS](./start-mvc/_static/new_project_mvc_vsmac.png)
+  ![Выбор шаблона веб-приложения macOS](start-mvc/_static/web_app_template_vsmac.png)
 
-* В диалоговом окне **Настройка нового веб-API ASP.NET Core** установите для параметра **Целевая платформа** значение **.NET Core 3.1**.
+* Подтвердите следующие конфигурации.
 
-  ![Выбор .NET Core 3.1 для macOS](./start-mvc/_static/new_project_31_vsmac.png)
+  * Для параметра **Целевая платформа** задано значение **.NET Core 3.1**.
+  * Для параметра **Проверка подлинности** задано значение **Без проверки подлинности**.
+   
+  Выберите **Далее**.
+
+  ![Выбор .NET Core 3.1 для macOS](start-mvc/_static/new_project_31_vsmac.png)
 
 * Присвойте проекту имя **MvcMovie** и нажмите кнопку **Создать**.
+
+  ![Имя проекта macOS](start-mvc/_static/MvcMovie.png)
 
 ---
 
@@ -248,9 +255,7 @@ ms.locfileid: "82774989"
 
   ![Новое решение macOS](./start-mvc/_static/new_project_vsmac.png)
 
-* Щелкните **.NET Core** > **Приложение** > **Веб-приложение (Модель — представление — контроллер)** > **Далее**.
-
-  ![Диалоговое окно "Новый проект" в macOS](./start-mvc/_static/new_project_mvc_vsmac.png)
+* В версии Visual Studio для Mac, предшествующей 8.6, последовательно выберите **.NET Core** > **Приложение** > **Веб-приложение (модель — представление — контроллер)**  > **Далее**. В версии 8.6 или более поздней последовательно выберите **Интернет и консоль** > **Приложение** > **Веб-приложение (модель — представление — контроллер)**  > **Далее**.
 
 * В диалоговом окне **Настройка нового веб-API ASP.NET Core** оставьте установленное по умолчанию значение для параметра **Целевая платформа**, то есть **.NET Core 2.2**.
 

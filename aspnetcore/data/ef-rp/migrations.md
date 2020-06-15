@@ -1,18 +1,24 @@
 ---
-title: Razor Pages с EF Core в ASP.NET Core — миграции — 4 из 8
+title: Часть 4. Razor Pages с EF Core в ASP.NET Core — миграции
 author: rick-anderson
-description: В этом учебнике вы начинаете использовать функцию миграций EF Core для управления изменениями модели данных в приложении ASP.NET Core MVC.
+description: Часть 4 серии руководств по Razor Pages и Entity Framework.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/migrations
-ms.openlocfilehash: 86fd83c898fce8e121e4d259aaca12c59591e606
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 74fe8771718647c3adf8288a72b11c30fb097a63
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78645556"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652631"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---migrations---4-of-8"></a>Razor Pages с EF Core в ASP.NET Core — миграции — 4 из 8
+# <a name="part-4-razor-pages-with-ef-core-migrations-in-aspnet-core"></a>Часть 4. Миграции Razor Pages с EF Core в ASP.NET Core
 
 Авторы: [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra), [Йон П. Смит](https://twitter.com/thereformedprog) (Jon P Smith) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -82,7 +88,7 @@ dotnet ef database update
 
 ## <a name="up-and-down-methods"></a>Методы Up и Down
 
-Команда EF Core `migrations add` создала код для создания базы данных. Код миграции находится в файле *Migrations\<метка_времени>_InitialCreate.cs*. Метод `Up` класса `InitialCreate` создает таблицы базы данных, соответствующие наборам сущностей модели данных. Метод `Down` удаляет их, как показано в следующем примере:
+Команда EF Core `migrations add` создала код для создания базы данных. Код миграции находится в файле *Migrations\<timestamp>_InitialCreate.cs*. Метод `Up` класса `InitialCreate` создает таблицы базы данных, соответствующие наборам сущностей модели данных. Метод `Down` удаляет их, как показано в следующем примере:
 
 [!code-csharp[](intro/samples/cu30/Migrations/20190731193522_InitialCreate.cs)]
 
@@ -145,7 +151,7 @@ Login failed for user 'user name'.
 * [Интерфейс командной строки EF Core](/ef/core/miscellaneous/cli/dotnet).
 * [Консоль диспетчера пакетов (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 
-## <a name="next-steps"></a>Дальнейшие действия
+## <a name="next-steps"></a>Следующие шаги
 
 В следующем руководстве продолжается построение модели данных путем добавления свойств сущностей и новых сущностей.
 
@@ -220,7 +226,7 @@ dotnet ef database update
 
 ### <a name="examine-the-up-and-down-methods"></a>Обзор методов Up и Down
 
-Команда EF Core `migrations add` создала код для создания базы данных. Код миграции находится в файле *Migrations\<метка_времени>_InitialCreate.cs*. Метод `Up` класса `InitialCreate` создает таблицы базы данных, соответствующие наборам сущностей модели данных. Метод `Down` удаляет их, как показано в следующем примере:
+Команда EF Core `migrations add` создала код для создания базы данных. Код миграции находится в файле *Migrations\<timestamp>_InitialCreate.cs*. Метод `Up` класса `InitialCreate` создает таблицы базы данных, соответствующие наборам сущностей модели данных. Метод `Down` удаляет их, как показано в следующем примере:
 
 [!code-csharp[](intro/samples/cu21/Migrations/20180626224812_InitialCreate.cs?range=7-24,77-88)]
 
@@ -306,7 +312,7 @@ The login failed.
 Login failed for user 'user name'.
 ```
 
-Решение. Выполните `dotnet ef database update`
+Решение: Выполнить `dotnet ef database update`
 
 ### <a name="additional-resources"></a>Дополнительные ресурсы
 

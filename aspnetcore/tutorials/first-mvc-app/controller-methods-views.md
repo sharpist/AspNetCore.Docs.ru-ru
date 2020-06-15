@@ -1,7 +1,7 @@
 ---
-title: Методы и представления контроллера в приложении ASP.NET Core
+title: Часть 6. Методы и представления контроллера в ASP.NET Core
 author: rick-anderson
-description: Узнайте, как работать с методами, представлениями и DataAnnotations контроллера в ASP.NET Core.
+description: Часть 6. Добавление модели в приложение MVC ASP.NET Core
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: 444c870fcf9e866f0c382e32af174442d11d3af5
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 50b527cee19f19316fd9034759c05817010fefbb
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777583"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84653015"
 ---
-# <a name="controller-methods-and-views-in-aspnet-core"></a>Методы и представления контроллера в приложении ASP.NET Core
+# <a name="part-6-controller-methods-and-views-in-aspnet-core"></a>Часть 6. Методы и представления контроллера в ASP.NET Core
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 

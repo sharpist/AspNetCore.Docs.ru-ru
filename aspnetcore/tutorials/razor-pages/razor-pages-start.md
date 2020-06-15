@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 8ed12b1778673962fe0b174e005bd6d8a7f54168
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 3b8ccf639bb91234f81c67750fffa170e52d636f
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774877"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452356"
 ---
-# <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Учебник. Начало работы с Razor Pages в ASP.NET Core
+# <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Учебник. Начало работы с Razor Pages в ASP.NET Core
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -100,19 +100,24 @@ ms.locfileid: "82774877"
 
 * Щелкните **Файл** > **Новое решение**.
 
-![Новое решение macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
+  ![Новое решение macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* Щелкните **.NET Core** > **Приложение** > **Веб-приложение** > **Далее**.
+* В версии Visual Studio для Mac, предшествующей 8.6, последовательно выберите **.NET Core** > **Приложение** > **Веб-приложение** > **Далее**. В версии 8.6 или более поздней последовательно выберите **Интернет и консоль** > **Приложение** > **Веб-приложение** > **Далее**.
 
-  ![Диалоговое окно "Новый проект" в macOS](razor-pages-start/_static/webapp.png)
+  ![Выбор шаблона веб-приложения macOS](razor-pages-start/_static/web_app_template_vsmac.png)
 
-* В диалоговом окне **Настройка нового веб-приложения** установите для параметра **Целевая платформа** значение **.NET Core 3.1**.
+* Подтвердите следующие конфигурации.
+
+  * Для параметра **Целевая платформа** задано значение **.NET Core 3.1**.
+  * Для параметра **Проверка подлинности** задано значение **Без проверки подлинности**.
+   
+  Выберите **Далее**.
 
   ![Выбор .NET Core 3.1 для macOS](razor-pages-start/_static/targetframework3.png)
 
 * Присвойте проекту имя **RazorPagesMovie** и нажмите кнопку **Создать**.
 
-  ![nameproj](razor-pages-start/_static/RazorPagesMovie.png)
+  ![Имя проекта macOS](razor-pages-start/_static/RazorPagesMovie.png)
 
 <!-- End of VS tabs -->
 
@@ -130,7 +135,7 @@ ms.locfileid: "82774877"
 
 Содержит страницы Razor и вспомогательные файлы. Каждая страница Razor — это пара файлов.
 
-* Файл *.cshtml*, содержащий HTML-разметку с кодом C# и синтаксисом Razor.
+* Файл *CSHTML*, содержащий HTML-разметку с кодом C# и синтаксисом Razor.
 * Файл *. cshtml.cs*, содержащий код C#, который обрабатывает события страницы.
 
 Имена вспомогательных файлов начинаются с символа подчеркивания. Например, файл *_Layout.cshtml* настраивает элементы пользовательского интерфейса, общие для всех страниц. Этот файл настраивает меню навигации в верхней части страницы и уведомление об авторских правах в нижней части страницы. Для получения дополнительной информации см. <xref:mvc/views/layout>.
@@ -247,9 +252,7 @@ ms.locfileid: "82774877"
 
 ![Новое решение macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* Щелкните **.NET Core** > **Приложение** > **Веб-приложение** > **Далее**.
-
-  ![Диалоговое окно "Новый проект" в macOS](razor-pages-start/_static/webapp.png)
+* В версии Visual Studio для Mac, предшествующей 8.6, последовательно выберите **.NET Core** > **Приложение** > **Веб-приложение** > **Далее**. В версии 8.6 или более поздней последовательно выберите **Интернет и консоль** > **Приложение** > **Веб-приложение** > **Далее**.
 
 * В диалоговом окне **Настройка нового веб-API ASP.NET Core** установите для параметра **Целевая платформа** значение **.NET Core 3.1**.
 

@@ -1,18 +1,24 @@
 ---
-title: Razor Pages с EF Core в ASP.NET Core — обновление связанных данных — 7 из 8
+title: Часть 7. Razor Pages с EF Core в ASP.NET Core — обновление связанных данных
 author: rick-anderson
-description: В этом учебнике вы обновите связанные данные путем обновления полей внешнего ключа и свойств навигации.
+description: Часть 7 серии руководств по Razor Pages и Entity Framework.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: fdfdb14ff8414b8bf30f9b95be7ba0a6bcbd2995
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: d86e57d50c414e4baabd00ca9675aa66266342ca
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78645460"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652599"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---update-related-data---7-of-8"></a>Razor Pages с EF Core в ASP.NET Core — обновление связанных данных — 7 из 8
+# <a name="part-7-razor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Часть 7. Razor Pages с EF Core в ASP.NET Core — обновление связанных данных
 
 Авторы: [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -57,7 +63,7 @@ ms.locfileid: "78645460"
 * Использует `TryUpdateModelAsync`, чтобы предотвратить [чрезмерную передачу данных](xref:data/ef-rp/crud#overposting).
 * Удаляет `ViewData["DepartmentID"]`. `DepartmentNameSL` из базового класса — это строго типизированная модель, которая будет использоваться страницей Razor. Вместо слабо типизированных моделей рекомендуется использовать строго типизированные. Дополнительные сведения см. в разделе [Слабо типизированные данные (ViewData и ViewBag)](xref:mvc/views/overview#VD_VB).
 
-### <a name="update-the-course-create-razor-page"></a>Обновление страницы Razor для создания курсов
+### <a name="update-the-course-create-razor-page"></a>Обновление страницы Razor создания курсов
 
 Измените файл *Pages/Courses/Create.cshtml*, используя следующий код:
 
@@ -70,7 +76,7 @@ ms.locfileid: "78645460"
 * Добавляет параметр "Select Department" (Выбор кафедры). В результате этого изменения вместо первой кафедры в раскрывающемся списке отображается пункт "Select Department" (Выберите кафедру), если кафедра еще не выбрана.
 * Добавляет сообщение о проверке в том случае, если не выбрана кафедра.
 
-На странице Razor Pages используется [вспомогательная функция тега Select](xref:mvc/views/working-with-forms#the-select-tag-helper):
+На странице Razor Pages используется [вспомогательная функция тега Select](xref:mvc/views/working-with-forms#the-select-tag-helper).
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -84,7 +90,7 @@ ms.locfileid: "78645460"
 
 Изменения аналогичны внесенным в модель страницы Create. В приведенном выше коде `PopulateDepartmentsDropDownList` передает идентификатор кафедры, по которому выбирается кафедра в раскрывающемся списке.
 
-### <a name="update-the-course-edit-razor-page"></a>Обновление страницы Razor для редактирования курсов
+### <a name="update-the-course-edit-razor-page"></a>Обновление страницы Razor редактирования курсов
 
 Измените файл *Pages/Courses/Edit.cshtml*, используя следующий код:
 
@@ -112,7 +118,7 @@ ms.locfileid: "78645460"
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=28)]
 
-### <a name="update-the-course-razor-pages"></a>Обновление страниц Razor для курсов
+### <a name="update-the-course-razor-pages"></a>Обновление страницы Razor курсов
 
 Измените файл *Pages/Courses/Delete.cshtml*, используя следующий код:
 
@@ -189,7 +195,7 @@ ms.locfileid: "78645460"
 * Вызывает `UpdateInstructorCourses` в `OnPostAsync`, чтобы применить сведения флажков к редактируемой сущности Instructor.
 * Вызывает `PopulateAssignedCourseData` и `UpdateInstructorCourses` в `OnPostAsync` в случае сбоя `TryUpdateModel`. Эти вызовы методов восстанавливают данные по назначенным курсам, введенные на странице, при ее повторном отображении с сообщением об ошибке.
 
-### <a name="update-the-instructor-edit-razor-page"></a>Обновление страницы Razor для редактирования преподавателя
+### <a name="update-the-instructor-edit-razor-page"></a>Обновление страницы Razor редактирования преподавателя
 
 Измените файл *Pages/Instructors/Edit.cshtml*, используя следующий код:
 
@@ -205,7 +211,7 @@ ms.locfileid: "78645460"
 
 ### <a name="update-the-instructor-create-page"></a>Обновление страницы создания преподавателя
 
-Обновите модель для страницы создания преподавателя и соответствующую страницу Razor, используя код, аналогичный коду страницы редактирования:
+Обновите модель для страницы создания преподавателя и соответствующую страницу Razor, используя код, аналогичный коду страницы редактирования.
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Create.cshtml.cs)]
 
@@ -227,7 +233,7 @@ ms.locfileid: "78645460"
 
 Запустите приложение и протестируйте страницу удаления.
 
-## <a name="next-steps"></a>Дальнейшие действия
+## <a name="next-steps"></a>Следующие шаги
 
 > [!div class="step-by-step"]
 > [Предыдущий учебник](xref:data/ef-rp/read-related-data)
@@ -287,7 +293,7 @@ ms.locfileid: "78645460"
 * Добавляет параметр "Select Department" (Выбор кафедры). В результате этого изменения вместо первой кафедры отображается параметр "Select Department" (Выбор кафедры).
 * Добавляет сообщение о проверке в том случае, если не выбрана кафедра.
 
-На странице Razor Pages используется [вспомогательная функция тега Select](xref:mvc/views/working-with-forms#the-select-tag-helper):
+На странице Razor Pages используется [вспомогательная функция тега Select](xref:mvc/views/working-with-forms#the-select-tag-helper).
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -327,7 +333,7 @@ ms.locfileid: "78645460"
 
 ### <a name="modify-the-delete-and-details-pages"></a>Изменение страниц Delete и Details
 
-Обновите страницу Razor Pages Delete, используя следующую разметку:
+Обновите страницу Razor Delete, используя следующую разметку.
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Delete.cshtml?highlight=15-20)]
 
@@ -402,7 +408,7 @@ ms.locfileid: "78645460"
 
 Приведенный выше код обрабатывает изменения в назначении кабинета.
 
-Обновите представление Razor преподавателя:
+Обновление представлений Razor преподавателя
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Edit.cshtml?highlight=34-59)]
 
@@ -426,7 +432,7 @@ ms.locfileid: "78645460"
 
 Приведенный выше код аналогичен коду в файле *Pages/Instructors/Edit.cshtml.cs*.
 
-Обновите страницу создания преподавателя Razor Pages, используя следующую разметку:
+Обновите страницу создания преподавателя Razor, используя следующую разметку.
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Create.cshtml?highlight=32-62)]
 
