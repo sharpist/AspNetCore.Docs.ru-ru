@@ -560,6 +560,9 @@
         - name: Вопросы разработки API
           uid: signalr/api-design
           displayName: signalr
+        - name: Фильтры концентраторов
+          uid: signalr/hub-filters
+          displayName: signalr
     - name: Клиенты
       displayName: signalr
       items:
