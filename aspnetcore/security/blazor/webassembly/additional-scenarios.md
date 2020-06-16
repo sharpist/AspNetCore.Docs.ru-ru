@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/additional-scenarios
-ms.openlocfilehash: 35038cb7b96afd7c009f1210251e38273aa4aad8
-ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
+ms.openlocfilehash: 52ca2cc3187eceb318f6eb38189ed7f408d5a61b
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84679661"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84776414"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor дополнительных сценариев безопасности для сборки
 
@@ -200,6 +200,8 @@ public class WeatherForecastClient
     }
 }
 ```
+
+Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `using static BlazorSample.Data;` ).
 
 `Program.Main` (*Program.cs*):
 
@@ -662,7 +664,7 @@ builder.Services.AddSingleton<StateContainer>();
 
 По умолчанию библиотека [Microsoft. AspNetCore. Components. веб-сборка. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) использует маршруты, приведенные в следующей таблице, для представления различных состояний проверки подлинности.
 
-| Маршрут                            | Назначение |
+| Маршрут                            | Цель |
 | -------------------------------- | ------- |
 | `authentication/login`           | Активирует операцию входа. |
 | `authentication/login-callback`  | Обрабатывает результат любой операции входа. |

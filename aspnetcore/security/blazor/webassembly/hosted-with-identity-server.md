@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-identity-server
-ms.openlocfilehash: ade2d88c6a2d59e169c9019e871982a74ae46b33
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: c85843c04688beefe7ea87d9e8b281d14ab85bc5
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452321"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84776518"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a>Обеспечение безопасности Blazor размещенного в ASP.NET Core сборки приложения с помощью Identity сервера
 
@@ -132,7 +132,7 @@ dotnet new blazorwasm -au Individual -ho
 
 ### <a name="app-settings-files"></a>Файлы параметров приложения
 
-В файле параметров приложения (*appSettings. JSON*) в корне проекта в `IdentityServer` разделе описывается список настроенных клиентов. В следующем примере есть один клиент. Имя клиента соответствует имени приложения и сопоставляется по соглашению с `ClientId` параметром OAuth. Профиль указывает на настраиваемый тип приложения. Профиль используется внутренне для обозначения соглашений, упрощающих процесс настройки сервера. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
+В файле параметров приложения (*appsettings.json*) в корневом каталоге проекта в `IdentityServer` разделе описывается список настроенных клиентов. В следующем примере есть один клиент. Имя клиента соответствует имени приложения и сопоставляется по соглашению с `ClientId` параметром OAuth. Профиль указывает на настраиваемый тип приложения. Профиль используется внутренне для обозначения соглашений, упрощающих процесс настройки сервера. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
 
 ```json
 "IdentityServer": {
@@ -143,6 +143,8 @@ dotnet new blazorwasm -au Individual -ho
   }
 }
 ```
+
+Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `BlazorSample.Client` ).
 
 ## <a name="client-app-configuration"></a>Конфигурация клиентского приложения
 
