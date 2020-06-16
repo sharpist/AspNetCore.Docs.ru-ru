@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: ead9cb8c852ac768c8fe1f9066eb73ac1203c4ce
-ms.sourcegitcommit: 67eadd7bf28eae0b8786d85e90a7df811ffe5904
+ms.openlocfilehash: 9b34125fdf6c6d451a11a53874944f5d8b44aa29
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84454705"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84776544"
 ---
 # <a name="configuration-in-aspnet-core"></a>Конфигурация в .NET Core
 
@@ -56,7 +56,7 @@ ms.locfileid: "84454705"
 1. Переменные среды, использующие [поставщик конфигурации переменных среды](#evcp).
 1. Аргументы командной строки, использующие [поставщик конфигурации командной строки](#command-line).
 
-Поставщики конфигурации, добавленные позже, переопределяют предыдущие параметры ключа. Например, если `MyKey` задан в *appsettings.json* и в среде, используется значение среды. При использовании поставщиков конфигурации по умолчанию [поставщик конфигурации командной строки](#command-line-configuration-provider) переопределяет остальных поставщиков.
+Поставщики конфигурации, добавленные позже, переопределяют предыдущие параметры ключа. Например, если `MyKey` задан в *appsettings.json* и в среде, используется значение среды. При использовании поставщиков конфигурации по умолчанию [поставщик конфигурации командной строки](#clcp) переопределяет остальных поставщиков.
 
 Дополнительные сведения о `CreateDefaultBuilder` см. в разделе [Параметры сборщика по умолчанию](xref:fundamentals/host/generic-host#default-builder-settings).
 
