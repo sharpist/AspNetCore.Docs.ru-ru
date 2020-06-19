@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: f582e8201a3393b848cf3f2c21ce3a7df5554100
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 3a491e43aec8291fcf03696b53240bd33e0deda1
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105536"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102490"
 ---
 # <a name="aspnet-core-blazor-templates"></a>Шаблоны ASP.NET Core Blazor
 
@@ -80,7 +80,7 @@ dotnet new blazorserver --help
 
 * Папка *Shared*. Содержит другие компоненты пользовательского интерфейса ( *.razor*), используемые приложением.
   * `MainLayout` (*MainLayout.razor*). Компонент макета приложения.
-  * `NavMenu` (*NavMenu.razor*). Реализует боковую панель навигации. Включает в себя [компонент NavLink](xref:blazor/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), который служит для отрисовки навигационных ссылок на другие компоненты Razor. Компонент <xref:Microsoft.AspNetCore.Components.Routing.NavLink> автоматически указывает выбранное состояние при загрузке компонента, что помогает пользователю понять, какой компонент отображается в настоящее время.
+  * `NavMenu` (*NavMenu.razor*). Реализует боковую панель навигации. Включает в себя [компонент NavLink](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), который служит для отрисовки навигационных ссылок на другие компоненты Razor. Компонент <xref:Microsoft.AspNetCore.Components.Routing.NavLink> автоматически указывает выбранное состояние при загрузке компонента, что помогает пользователю понять, какой компонент отображается в настоящее время.
 
 * *_Imports.razor*. Содержит стандартные директивы Razor, включаемые в компонент приложения ( *.razor*), например директивы [`@using`](xref:mvc/views/razor#using) для пространств имен.
 

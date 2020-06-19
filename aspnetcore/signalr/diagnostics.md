@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: d26bb71a8ae06764b58a094b28d5e6f9eb581ecd
-ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
+ms.openlocfilehash: 7d7ea0fe69f258c01177c7755eaee61ab42400ce
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/13/2020
-ms.locfileid: "84755967"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102951"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Ведение журнала и диагностика в ASP.NET CoreSignalR
 
@@ -111,7 +111,7 @@ Visual Studio отображает выходные данные журнала 
 
 Чтобы получить журналы из клиента .NET, можно использовать `ConfigureLogging` метод для `HubConnectionBuilder` . Это работает так же, как `ConfigureLogging` и метод в `WebHostBuilder` и `HostBuilder` . Вы можете настроить те же поставщики ведения журналов, которые используются в ASP.NET Core. Однако необходимо вручную установить и включить пакеты NuGet для отдельных поставщиков ведения журнала.
 
-Сведения о добавлении ведения журнала клиента .NET в Blazor приложение-сборку см <xref:fundamentals/logging/index#blazor-webassembly-signalr-net-client-logging> . в разделе.
+Сведения о добавлении ведения журнала клиента .NET в Blazor приложение-сборку см <xref:blazor/fundamentals/logging#blazor-webassembly-signalr-net-client-logging> . в разделе.
 
 ### <a name="console-logging"></a>Журнал консоли
 
@@ -220,7 +220,7 @@ tcpdump -i [interface] -w trace.pcap
 
 SignalRметрики сервера указываются в <xref:Microsoft.AspNetCore.Http.Connections> источнике событий.
 
-| name                    | Описание                 |
+| Имя                    | Описание                 |
 |-------------------------|-----------------------------|
 | `connections-started`   | Всего запущенных подключений   |
 | `connections-stopped`   | Всего остановленных подключений   |

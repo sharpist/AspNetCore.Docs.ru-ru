@@ -15,4 +15,4 @@
 * Определите параметр в корневом компоненте для хранения данных, передаваемых в приложение.
 * Используйте данные, относящиеся к пользователю, в приложении или скопируйте эти данные в службу с заданной областью в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>, чтобы их можно было использовать в приложении.
 
-Дополнительные сведения и примеры с кодом см. в разделе <xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+Дополнительные сведения и примеры с кодом см. в разделе <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.

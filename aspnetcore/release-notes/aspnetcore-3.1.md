@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 5b6ae8173ca3d968e220faa4a060e1b42b14f8bb
-ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
+ms.openlocfilehash: 6a03e35495e2ae545dc0a3cdd38578b433d8df6b
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84507248"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102588"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>Новые возможности в ASP.NET Core 3.1
 
@@ -25,7 +25,7 @@ ms.locfileid: "84507248"
 
 ## <a name="partial-class-support-for-razor-components"></a>Поддержка разделяемых классов для компонентов Razor
 
-Компоненты Razor теперь создаются как разделяемые классы. Код компонента Razor можно написать как файл кода программной части, определенный как разделяемый класс, вместо того чтобы определять весь код компонента в одном файле. Дополнительные сведения см. в разделе [Поддержка разделяемых классов](xref:blazor/components#partial-class-support).
+Компоненты Razor теперь создаются как разделяемые классы. Код компонента Razor можно написать как файл кода программной части, определенный как разделяемый класс, вместо того чтобы определять весь код компонента в одном файле. Дополнительные сведения см. в разделе [Поддержка разделяемых классов](xref:blazor/components/index#partial-class-support).
 
 ## <a name="blazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a>Вспомогательная функция тега компонента Blazor и передача параметров в компоненты верхнего уровня
 
@@ -46,7 +46,7 @@ ms.locfileid: "84507248"
     param-IncrementAmount="10" />
 ```
 
-Дополнительные сведения см. в разделе [Интеграция компонентов в Razor Pages и приложения MVC](xref:blazor/integrate-components).
+Дополнительные сведения см. в разделе [Интеграция компонентов в Razor Pages и приложения MVC](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps).
 
 ## <a name="support-for-shared-queues-in-httpsys"></a>Поддержка общих очередей в HTTP.sys
 
@@ -66,7 +66,7 @@ ms.locfileid: "84507248"
 <input value="@_count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
 ```
 
-Дополнительные сведения см. в разделе [Запрет действий по умолчанию](xref:blazor/event-handling#prevent-default-actions).
+Дополнительные сведения см. в разделе [Запрет действий по умолчанию](xref:blazor/components/event-handling#prevent-default-actions).
 
 ## <a name="stop-event-propagation-in-blazor-apps"></a>Остановка распространения событий в приложениях Blazor
 
@@ -86,7 +86,7 @@ ms.locfileid: "84507248"
 }
 ```
 
-Дополнительные сведения см. в разделе [Отключение распространения событий](xref:blazor/event-handling#stop-event-propagation).
+Дополнительные сведения см. в разделе [Отключение распространения событий](xref:blazor/components/event-handling#stop-event-propagation).
 
 ## <a name="detailed-errors-during-blazor-app-development"></a>Подробные сведения об ошибках во время разработки приложений Blazor
 
@@ -95,4 +95,4 @@ ms.locfileid: "84507248"
 * Во время разработки из этой полоски можно перейти в консоль браузера, где можно просмотреть исключение.
 * В рабочей среде эта полоска уведомляет пользователя о том, что произошла ошибка, и рекомендует обновить содержимое окна браузера.
 
-Дополнительные сведения см. в разделе [Подробные сведения об ошибках во время разработки](xref:blazor/handle-errors#detailed-errors-during-development).
+Дополнительные сведения см. в разделе [Подробные сведения об ошибках во время разработки](xref:blazor/fundamentals/handle-errors#detailed-errors-during-development).

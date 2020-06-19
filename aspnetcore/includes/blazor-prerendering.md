@@ -2,7 +2,7 @@
 ---
 Когда приложение Blazor Server выполняет предварительную отрисовку, некоторые действия, такие как вызов в JavaScript, невозможны, так как подключение к браузеру не установлено. При предварительной отрисовке компоненты могут отрисовываться иначе.
 
-Чтобы отложить вызовы взаимодействия с JavaScript до установки подключения к браузеру, можно использовать [событие жизненного цикла компонента OnAfterRenderAsync](xref:blazor/lifecycle#after-component-render). Это событие вызывается только после полной отрисовки приложения и установки клиентского подключения.
+Чтобы отложить вызовы взаимодействия с JavaScript до установки подключения к браузеру, можно использовать [событие жизненного цикла компонента OnAfterRenderAsync](xref:blazor/components/lifecycle#after-component-render). Это событие вызывается только после полной отрисовки приложения и установки клиентского подключения.
 
 ```cshtml
 @using Microsoft.JSInterop
@@ -39,7 +39,7 @@
 
 При вызове <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWithType> `ElementRef` используется только в методе <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, а не в предыдущем методе жизненного цикла, так как элемент JavaScript появляется только после отрисовки компонента.
 
-Метод [StateHasChanged](xref:blazor/lifecycle#state-changes) вызывается для повторной отрисовки компонента с новым состоянием, полученным из вызова взаимодействия с JavaScript. Код не создает бесконечный цикл, так как метод `StateHasChanged` вызывается, только если `infoFromJs` имеет значение `null`.
+Метод [StateHasChanged](xref:blazor/components/lifecycle#state-changes) вызывается для повторной отрисовки компонента с новым состоянием, полученным из вызова взаимодействия с JavaScript. Код не создает бесконечный цикл, так как метод `StateHasChanged` вызывается, только если `infoFromJs` имеет значение `null`.
 
 ```cshtml
 @page "/prerendered-interop"

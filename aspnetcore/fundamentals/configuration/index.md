@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 9b34125fdf6c6d451a11a53874944f5d8b44aa29
-ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
+ms.openlocfilehash: 51c86639ef904aae1730a698758cd6b8867a445a
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84776544"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074293"
 ---
 # <a name="configuration-in-aspnet-core"></a>Конфигурация в .NET Core
 
@@ -730,7 +730,7 @@ Index: 5  Value: value5
 Подробные сведения о конфигурации по умолчанию при использовании [веб-узла](xref:fundamentals/host/web-host) см. в [разделе о версии ASP.NET Core 2.2 в этой статье](/aspnet/core/fundamentals/configuration/?view=aspnetcore-2.2).
 
 * Существуют следующие способы предоставления конфигурации узла.
-  * Переменные среды с префиксом `DOTNET_` (например, `DOTNET_ENVIRONMENT`), использующие [поставщик конфигурации переменных среды](#environment-variables-configuration-provider). Префикс (`DOTNET_`) исключается при загрузке пар "ключ — значение" конфигурации.
+  * Переменные среды с префиксом `DOTNET_` (например, `DOTNET_ENVIRONMENT`), использующие [поставщик конфигурации переменных среды](#environment-variables). Префикс (`DOTNET_`) исключается при загрузке пар "ключ — значение" конфигурации.
   * Аргументы командной строки, использующие [поставщик конфигурации командной строки](#command-line-configuration-provider).
 * Устанавливается конфигурация веб-узла по умолчанию (`ConfigureWebHostDefaults`):
   * Kestrel используется в качестве веб-сервера и настраивается с помощью поставщиков конфигурации приложения.
