@@ -5,7 +5,7 @@ description: Узнайте больше об использовании ASP.NET
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, seoapril2019
-ms.date: 05/19/2020
+ms.date: 06/19/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: feca504a39624282961fbc6405876e970a20b5d4
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 086629f88ad04faed812bd16683e7d073f3e8ede
+ms.sourcegitcommit: 77729ba225d5143c0e3954db005906f4a5c7da95
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102277"
+ms.lasthandoff: 06/20/2020
+ms.locfileid: "85122078"
 ---
 # <a name="introduction-to-aspnet-core-blazor"></a>Введение в ASP.NET Core Blazor
 
@@ -149,7 +149,7 @@ Blazor отделяет логику отображения компоненто
 
 ## <a name="code-sharing-and-net-standard"></a>Совместное использование кода и .NET Standard
 
-Blazor реализует [.NET Standard 2.0](/dotnet/standard/net-standard). .NET Standard — это формальная спецификация API-интерфейсов .NET, которые доступны во всех реализациях .NET. Библиотеки классов .NET Standard можно использовать на разных платформах .NET, таких как Blazor, .NET Framework, .NET Core, Xamarin, Mono и Unity.
+Blazor реализует [.NET Standard 2.1](/dotnet/standard/net-standard), что позволяет проектам Blazor ссылаться на библиотеки, которые соответствуют .NET Standard 2.1 или более ранним спецификациям. .NET Standard — это формальная спецификация API-интерфейсов .NET, которые доступны во всех реализациях .NET. Библиотеки классов .NET Standard можно использовать на разных платформах .NET, таких как Blazor, .NET Framework, .NET Core, Xamarin, Mono и Unity.
 
 API, которые не используются в веб-браузере (например, для доступа к файловой системе, открытия сокетов и работы с потоками), создают исключение <xref:System.PlatformNotSupportedException>.
 
