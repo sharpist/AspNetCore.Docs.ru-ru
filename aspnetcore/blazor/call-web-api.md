@@ -1,7 +1,7 @@
 ---
-title: "title: 'Вызов веб-API из ASP.NET Core Blazor WebAssembly' author: guardrex description: 'Узнайте, как вызывать веб-API из приложения Blazor WebAssembly с помощью вспомогательных методов JSON, включая создание запросов на общий доступ к ресурсам независимо от источника (CORS).'"
+title: Вызов веб-API из ASP.NET Core Blazor WebAssembly
 author: guardrex
-description: "monikerRange: '>= aspnetcore-3.1' ms.автор: riande ms.custom: mvc ms.дата: 28.05.2020 no-loc:"
+description: Узнайте, как вызывать веб-API из приложения Blazor WebAssembly с помощью вспомогательных методов JSON, включая создание запросов на общий доступ к ресурсам независимо от источника (CORS).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -13,35 +13,35 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: 4f3fd1fca075098a94756757474b2cad3cc99775
-ms.sourcegitcommit: d8c35c37c90f81bd2cd7ae5e1700f2fede1b4b75
+ms.openlocfilehash: 19e10c4eced47676c633a7d30a26726913373162
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84214777"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102422"
 ---
-# <a name="call-a-web-api-from-aspnet-core-blazor"></a>'Blazor'
+# <a name="call-a-web-api-from-aspnet-core-blazor"></a>Вызов веб-API из ASP.NET Core Blazor
 
-'Identity'
+Авторы: [Люк Латэм (Luke Latham)](https://github.com/guardrex), [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и [Хуан Де ла Круз (Juan De la Cruz)](https://github.com/juandelacruz23)
 
-'Let's Encrypt' 'Razor' 'SignalR' uid: blazor/call-web-api Вызов веб-API из ASP.NET Core Blazor
+[Приложения Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) вызывают веб-API с помощью предварительно настроенной службы <xref:System.Net.Http.HttpClient>. Составляйте запросы, которые могут включать параметры JavaScript [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API), используя вспомогательные методы JSON Blazor или с помощью <xref:System.Net.Http.HttpRequestMessage>. Служба <xref:System.Net.Http.HttpClient> в приложениях Blazor WebAssembly направляет запросы обратно к серверу-источнику. Рекомендации в этом разделе относятся только к приложениям Blazor WebAssembly.
 
-Авторы: [Люк Латэм (Luke Latham)](https://github.com/guardrex), [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и [Хуан Де ла Круз (Juan De la Cruz)](https://github.com/juandelacruz23) [Приложения Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) вызывают веб-API с помощью предварительно настроенной службы <xref:System.Net.Http.HttpClient>. Составляйте запросы, которые могут включать параметры JavaScript [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API), используя вспомогательные методы JSON Blazor или с помощью <xref:System.Net.Http.HttpRequestMessage>.
-
-Служба <xref:System.Net.Http.HttpClient> в приложениях Blazor WebAssembly направляет запросы обратно к серверу-источнику.
-
-Рекомендации в этом разделе относятся только к приложениям Blazor WebAssembly.
-
-* [Приложения Blazor Server](xref:blazor/hosting-models#blazor-server) вызывают веб-API с помощью экземпляров <xref:System.Net.Http.HttpClient>, обычно созданных с помощью <xref:System.Net.Http.IHttpClientFactory>.
-* Рекомендации в этом разделе не относятся к приложениям Blazor Server.
-
-## <a name="packages"></a>При разработке приложений Blazor Server следуйте указаниям в <xref:fundamentals/http-requests>.
+[Приложения Blazor Server](xref:blazor/hosting-models#blazor-server) вызывают веб-API с помощью экземпляров <xref:System.Net.Http.HttpClient>, обычно созданных с помощью <xref:System.Net.Http.IHttpClientFactory>. Рекомендации в этом разделе не относятся к приложениям Blazor Server. При разработке приложений Blazor Server следуйте указаниям в <xref:fundamentals/http-requests>.
 
 [Просмотрите или скачайте пример кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([описание процедуры скачивания](xref:index#how-to-download-a-sample)). Выберите приложение *BlazorWebAssemblySample*.
 
-## <a name="add-the-httpclient-service"></a>См. следующие компоненты в примере приложения *BlazorWebAssemblySample*:
+См. следующие компоненты в примере приложения *BlazorWebAssemblySample*:
 
-Вызов веб-API (*Pages/CallWebAPI.razor*)
+* Вызов веб-API (*Pages/CallWebAPI.razor*)
+* Тестер HTTP-запросов (*Components/HTTPRequestTester.razor*)
+
+## <a name="packages"></a>Пакеты
+
+Сошлитесь на пакет NuGet [System.Net.Http.Json](https://www.nuget.org/packages/System.Net.Http.Json/) в файле проекта.
+
+## <a name="add-the-httpclient-service"></a>Добавление службы HttpClient
+
+В `Program.Main` добавьте службу <xref:System.Net.Http.HttpClient>, если она еще не существует:
 
 ```csharp
 builder.Services.AddTransient(sp => 
@@ -51,26 +51,26 @@ builder.Services.AddTransient(sp =>
     });
 ```
 
-## <a name="httpclient-and-json-helpers"></a>Тестер HTTP-запросов (*Components/HTTPRequestTester.razor*)
+## <a name="httpclient-and-json-helpers"></a>HttpClient и вспомогательные методы JSON
 
-Пакеты
+В приложении Blazor WebAssembly [HttpClient](xref:fundamentals/http-requests) доступен в качестве предварительно настроенной службы для отправки запросов обратно к серверу-источнику.
 
-Сошлитесь на пакет NuGet [System.Net.Http.Json](https://www.nuget.org/packages/System.Net.Http.Json/) в файле проекта. Добавление службы HttpClient
+Приложение Blazor Server не включает службу <xref:System.Net.Http.HttpClient> по умолчанию. Предоставьте <xref:System.Net.Http.HttpClient> для приложения с помощью [инфраструктуры фабрики HttpClient](xref:fundamentals/http-requests).
 
-В `Program.Main` добавьте службу <xref:System.Net.Http.HttpClient>, если она еще не существует: HttpClient и вспомогательные методы JSON
+<xref:System.Net.Http.HttpClient> и вспомогательные методы JSON также используются для вызова сторонних конечных точек веб-API. <xref:System.Net.Http.HttpClient> реализуется с помощью [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) браузера и зависит от его ограничений, включая принудительное применение той же политики источника.
 
-В приложении Blazor WebAssembly [HttpClient](xref:fundamentals/http-requests) доступен в качестве предварительно настроенной службы для отправки запросов обратно к серверу-источнику. Приложение Blazor Server не включает службу <xref:System.Net.Http.HttpClient> по умолчанию.
+Базовый адрес клиента устанавливается как адрес сервера-источника. Внедрите экземпляр <xref:System.Net.Http.HttpClient> с помощью директивы [`@inject`](xref:mvc/views/razor#inject):
 
 ```razor
 @using System.Net.Http
 @inject HttpClient Http
 ```
 
-Предоставьте <xref:System.Net.Http.HttpClient> для приложения с помощью [инфраструктуры фабрики HttpClient](xref:fundamentals/http-requests). <xref:System.Net.Http.HttpClient> и вспомогательные методы JSON также используются для вызова сторонних конечных точек веб-API.
+В следующих примерах веб-API Todo обрабатывает операции создания, чтения, обновления и удаления (CRUD). Примеры основаны на классе `TodoItem`, в котором хранится:
 
-* <xref:System.Net.Http.HttpClient> реализуется с помощью [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) браузера и зависит от его ограничений, включая принудительное применение той же политики источника.
-* Базовый адрес клиента устанавливается как адрес сервера-источника.
-* Внедрите экземпляр <xref:System.Net.Http.HttpClient> с помощью директивы [`@inject`](xref:mvc/views/razor#inject):
+* Идентификатор (`Id`, `long`): уникальный идентификатор элемента.
+* Имя (`Name`, `string`). Имя элемента.
+* Состояние (`IsComplete`, `bool`): указание того, завершен ли элемент Todo.
 
 ```csharp
 private class TodoItem
@@ -81,11 +81,11 @@ private class TodoItem
 }
 ```
 
-В следующих примерах веб-API Todo обрабатывает операции создания, чтения, обновления и удаления (CRUD).
+Вспомогательные методы JSON отправляют запросы к URI (веб-API в следующих примерах) и обрабатывают ответ:
 
-* Примеры основаны на классе `TodoItem`, в котором хранится:
+* <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>. Отправляет запрос HTTP GET и анализирует текст ответа JSON для создания объекта.
 
-  Идентификатор (`Id`, `long`): уникальный идентификатор элемента. Имя (`Name`, `string`). Имя элемента. Состояние (`IsComplete`, `bool`): указание того, завершен ли элемент Todo.
+  В следующем коде `todoItems` отображаются компонентом. Метод `GetTodoItems` срабатывает после завершения подготовки компонента к просмотру ([OnInitializedAsync](xref:blazor/components/lifecycle#component-initialization-methods)). Полный пример см. в примере приложения.
 
   ```razor
   @using System.Net.Http
@@ -99,9 +99,9 @@ private class TodoItem
   }
   ```
 
-* Вспомогательные методы JSON отправляют запросы к URI (веб-API в следующих примерах) и обрабатывают ответ:
+* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>. Отправляет запрос HTTP POST, включая содержимое в кодировке JSON, и анализирует текст ответа JSON для создания объекта.
 
-  <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>. Отправляет запрос HTTP GET и анализирует текст ответа JSON для создания объекта. В следующем коде `todoItems` отображаются компонентом. Метод `GetTodoItems` срабатывает после завершения подготовки компонента к просмотру ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)).
+  В следующем коде `newItemName` предоставляется связанным элементом компонента. Метод `AddItem` активируется путем выбора элемента `<button>`. Полный пример см. в примере приложения.
 
   ```razor
   @using System.Net.Http
@@ -121,15 +121,15 @@ private class TodoItem
   }
   ```
   
-  Полный пример см. в примере приложения. <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>. Отправляет запрос HTTP POST, включая содержимое в кодировке JSON, и анализирует текст ответа JSON для создания объекта.
+  Вызовы к <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A> возвращают <xref:System.Net.Http.HttpResponseMessage>. Чтобы десериализовать содержимое JSON из ответного сообщения, используйте метод расширения `ReadFromJsonAsync<T>`:
   
   ```csharp
   var content = response.Content.ReadFromJsonAsync<WeatherForecast>();
   ```
 
-* В следующем коде `newItemName` предоставляется связанным элементом компонента.
+* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A>. Отправляет запрос HTTP PUT, включая содержимое в кодировке JSON.
 
-  Метод `AddItem` активируется путем выбора элемента `<button>`. Полный пример см. в примере приложения. Вызовы к <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A> возвращают <xref:System.Net.Http.HttpResponseMessage>. Чтобы десериализовать содержимое JSON из ответного сообщения, используйте метод расширения `ReadFromJsonAsync<T>`:
+  В следующем коде значения `editItem` для `Name` и `IsCompleted` предоставляются связанными элементами компонента. Элемент `Id` задается, когда элемент выбирается в другой части пользовательского интерфейса и вызывается `EditItem`. Метод `SaveItem` активируется путем выбора элемента `<button>` "Save". Полный пример см. в примере приложения.
 
   ```razor
   @using System.Net.Http
@@ -152,15 +152,15 @@ private class TodoItem
   }
   ```
   
-  <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A>. Отправляет запрос HTTP PUT, включая содержимое в кодировке JSON. В следующем коде значения `editItem` для `Name` и `IsCompleted` предоставляются связанными элементами компонента.
+  Вызовы к <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> возвращают <xref:System.Net.Http.HttpResponseMessage>. Чтобы десериализовать содержимое JSON из ответного сообщения, используйте метод расширения <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>:
   
   ```csharp
   var content = response.content.ReadFromJsonAsync<WeatherForecast>();
   ```
 
-Элемент `Id` задается, когда элемент выбирается в другой части пользовательского интерфейса и вызывается `EditItem`. Метод `SaveItem` активируется путем выбора элемента `<button>` "Save".
+<xref:System.Net.Http> включает дополнительные методы расширения для отправки HTTP-запросов и получения HTTP-ответов. <xref:System.Net.Http.HttpClient.DeleteAsync%2A?displayProperty=nameWithType> используется для отправки запроса HTTP DELETE в веб-интерфейс API.
 
-Полный пример см. в примере приложения. Вызовы к <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> возвращают <xref:System.Net.Http.HttpResponseMessage>. Чтобы десериализовать содержимое JSON из ответного сообщения, используйте метод расширения <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>:
+В следующем коде элемент `<button>` "Delete" вызывает метод `DeleteItem`. Связанный элемент `<input>` предоставляет `id` удаляемого элемента. Полный пример см. в примере приложения.
 
 ```razor
 @using System.Net.Http
@@ -177,20 +177,20 @@ private class TodoItem
 }
 ```
 
-## <a name="named-httpclient-with-ihttpclientfactory"></a><xref:System.Net.Http> включает дополнительные методы расширения для отправки HTTP-запросов и получения HTTP-ответов.
+## <a name="named-httpclient-with-ihttpclientfactory"></a>Именованный класс HttpClient с IHttpClientFactory
 
-<xref:System.Net.Http.HttpClient.DeleteAsync%2A?displayProperty=nameWithType> используется для отправки запроса HTTP DELETE в веб-интерфейс API.
+Поддерживаются службы <xref:System.Net.Http.IHttpClientFactory> и конфигурация именованного класса <xref:System.Net.Http.HttpClient>.
 
-В следующем коде элемент `<button>` "Delete" вызывает метод `DeleteItem`.
+Используйте ссылку на пакет NuGet [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) в файле проекта.
 
-Связанный элемент `<input>` предоставляет `id` удаляемого элемента.
+`Program.Main` (*Program.cs*):
 
 ```csharp
 builder.Services.AddHttpClient("ServerAPI", client => 
     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 ```
 
-Полный пример см. в примере приложения.
+Компонент `FetchData` (*Pages/FetchData.razor*):
 
 ```razor
 @inject IHttpClientFactory ClientFactory
@@ -210,11 +210,11 @@ builder.Services.AddHttpClient("ServerAPI", client =>
 }
 ```
 
-## <a name="typed-httpclient"></a>Именованный класс HttpClient с IHttpClientFactory
+## <a name="typed-httpclient"></a>Типизированный класс HttpClient
 
-Поддерживаются службы <xref:System.Net.Http.IHttpClientFactory> и конфигурация именованного класса <xref:System.Net.Http.HttpClient>.
+Для возврата данных из одной или нескольких конечных точек веб-API типизированный класс <xref:System.Net.Http.HttpClient> использует один или несколько экземпляров класса <xref:System.Net.Http.HttpClient> приложения (заданных по умолчанию или именованных).
 
-Используйте ссылку на пакет NuGet [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) в файле проекта.
+*WeatherForecastClient.cs*:
 
 ```csharp
 using System.Net.Http;
@@ -256,9 +256,9 @@ builder.Services.AddHttpClient<WeatherForecastClient>(client =>
     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 ```
 
-Компонент `FetchData` (*Pages/FetchData.razor*):
+Компоненты внедряют типизированный класс <xref:System.Net.Http.HttpClient> для вызова веб-API.
 
-Типизированный класс HttpClient
+Компонент `FetchData` (*Pages/FetchData.razor*):
 
 ```razor
 @inject WeatherForecastClient Client
@@ -275,15 +275,15 @@ builder.Services.AddHttpClient<WeatherForecastClient>(client =>
 }
 ```
 
-## <a name="handle-errors"></a>Для возврата данных из одной или нескольких конечных точек веб-API типизированный класс <xref:System.Net.Http.HttpClient> использует один или несколько экземпляров класса <xref:System.Net.Http.HttpClient> приложения (заданных по умолчанию или именованных).
+## <a name="handle-errors"></a>Обработка ошибок
 
-*WeatherForecastClient.cs*: `Program.Main` (*Program.cs*): Компоненты внедряют типизированный класс <xref:System.Net.Http.HttpClient> для вызова веб-API.
+Ошибки, возникающие во время взаимодействия с веб-API, могут обрабатываться кодом разработчика. Например, <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> ожидает ответа JSON от API сервера с заголовком `Content-Type` типа `application/json`. Если формат ответа отличается от JSON, при проверке содержимого возникает исключение <xref:System.NotSupportedException>.
 
-Компонент `FetchData` (*Pages/FetchData.razor*): Обработка ошибок
+В следующем примере показана неправильно написанная конечная точка URI для запроса данных прогноза погоды. URI должен иметь вид `WeatherForecast`, но отображается в вызове как `WeatherForcast` (без "e").
 
-Ошибки, возникающие во время взаимодействия с веб-API, могут обрабатываться кодом разработчика. Например, <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> ожидает ответа JSON от API сервера с заголовком `Content-Type` типа `application/json`.
+Вызов <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> ожидает возврата JSON, но сервер возвращает HTML для необработанного исключения на сервере с заголовком `Content-Type` типа `text/html`. Необработанное исключение возникает на сервере, так как путь не найден, а ПО промежуточного слоя не может обслуживать страницу или представление для запроса.
 
-Если формат ответа отличается от JSON, при проверке содержимого возникает исключение <xref:System.NotSupportedException>. В следующем примере показана неправильно написанная конечная точка URI для запроса данных прогноза погоды.
+Если выясняется, что содержимое ответа не является содержимым формата JSON, в методе <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> на клиенте возникает исключение <xref:System.NotSupportedException>. Исключение перехватывается в блоке `catch`, где пользовательская логика может зарегистрировать ошибку или вывести понятное сообщение об ошибке для пользователя:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -301,22 +301,22 @@ protected override async Task OnInitializedAsync()
 ```
 
 > [!NOTE]
-> URI должен иметь вид `WeatherForecast`, но отображается в вызове как `WeatherForcast` (без "e"). Вызов <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> ожидает возврата JSON, но сервер возвращает HTML для необработанного исключения на сервере с заголовком `Content-Type` типа `text/html`.
+> Предыдущий пример приведен только в качестве демонстрации. Серверное приложение веб-API можно настроить для возврата JSON, даже если не существует конечная точка или на сервере возникает необработанное исключение.
 
-Необработанное исключение возникает на сервере, так как путь не найден, а ПО промежуточного слоя не может обслуживать страницу или представление для запроса.
+Для получения дополнительной информации см. <xref:blazor/fundamentals/handle-errors>.
 
-## <a name="cross-origin-resource-sharing-cors"></a>Если выясняется, что содержимое ответа не является содержимым формата JSON, в методе <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> на клиенте возникает исключение <xref:System.NotSupportedException>.
+## <a name="cross-origin-resource-sharing-cors"></a>Общий доступ к ресурсам независимо от источника (CORS)
 
-Исключение перехватывается в блоке `catch`, где пользовательская логика может зарегистрировать ошибку или вывести понятное сообщение об ошибке для пользователя: Предыдущий пример приведен только в качестве демонстрации. Серверное приложение веб-API можно настроить для возврата JSON, даже если не существует конечная точка или на сервере возникает необработанное исключение. Для получения дополнительной информации см. <xref:blazor/handle-errors>.
+Безопасность в браузере предотвращает запросы веб-страницы к другому домену, отличному от того, который обслуживает веб-страницу. Это ограничение называется *политика одного источника*. Эта политика предотвращает чтение вредоносным сайтом конфиденциальных данных с другого сайта. Для выполнения запросов из браузера к конечной точке с другим источником *конечная точка* должна включать [общий доступ к ресурсам независимо от источника (CORS)](https://www.w3.org/TR/cors/).
 
-Общий доступ к ресурсам независимо от источника (CORS)
+В [примере приложения Blazor WebAssembly (BlazorWebAssemblySample)](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) показано использование CORS в компоненте вызова веб-API (*Pages/CallWebAPI.razor*).
 
-Безопасность в браузере предотвращает запросы веб-страницы к другому домену, отличному от того, который обслуживает веб-страницу.
+Сведения о том, как разрешить другим сайтам выполнять запросы на общий доступ к ресурсам независимо от источника (CORS) к приложению, см. в разделе <xref:security/cors>.
 
-## <a name="additional-resources"></a>Это ограничение называется *политика одного источника*.
+## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* Эта политика предотвращает чтение вредоносным сайтом конфиденциальных данных с другого сайта.
+* <xref:blazor/security/webassembly/additional-scenarios>. Сведения об использовании класса <xref:System.Net.Http.HttpClient> для отправки безопасных запросов веб-интерфейса API.
 * <xref:fundamentals/http-requests>
 * <xref:security/enforcing-ssl>
-* Для выполнения запросов из браузера к конечной точке с другим источником *конечная точка* должна включать [общий доступ к ресурсам независимо от источника (CORS)](https://www.w3.org/TR/cors/).
-* В [примере приложения Blazor WebAssembly (BlazorWebAssemblySample)](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) показано использование CORS в компоненте вызова веб-API (*Pages/CallWebAPI.razor*).
+* [Конфигурация конечных точек HTTPS Kestrel](xref:fundamentals/servers/kestrel#endpoint-configuration)
+* [Общий доступ к ресурсам независимо от источника (CORS) в W3C](https://www.w3.org/TR/cors/)

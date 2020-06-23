@@ -12,13 +12,13 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-uid: security/blazor/webassembly/index
-ms.openlocfilehash: ce780afe3e69d2526698cf3694fe70394fc17847
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+uid: blazor/security/webassembly/index
+ms.openlocfilehash: 5b20ab96f5419a86ab162fdcf7a57020f6aa7227
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84253478"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103165"
 ---
 # <a name="secure-aspnet-core-blazor-webassembly"></a>Защита ASP.NET Core Blazor WebAssembly
 
@@ -64,7 +64,7 @@ WebAssembly Blazor поддерживает проверку подлиннос�
 
 Маркеры обновления не могут быть защищены на стороне клиента в приложениях Blazor WebAssembly. Поэтому маркеры обновления не должны отправляться в приложение для непосредственного использования.
 
-Маркеры обновления могут поддерживаться и использоваться серверным приложением в размещенном решении Blazor WebAssembly для доступа к интерфейсам API сторонних производителей. Для получения дополнительной информации см. <xref:security/blazor/webassembly/additional-scenarios#authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party>.
+Маркеры обновления могут поддерживаться и использоваться серверным приложением в размещенном решении Blazor WebAssembly для доступа к интерфейсам API сторонних производителей. Для получения дополнительной информации см. <xref:blazor/security/webassembly/additional-scenarios#authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party>.
 
 ## <a name="implementation-guidance"></a>Рекомендации по реализации
 
@@ -72,15 +72,15 @@ WebAssembly Blazor поддерживает проверку подлиннос�
 
 Автономные приложения Blazor WebAssembly:
 
-* [Общие рекомендации по использованию поставщиков OIDC и библиотеки проверки подлинности WebAssembly](xref:security/blazor/webassembly/standalone-with-authentication-library)
-* [Учетные записи Майкрософт](xref:security/blazor/webassembly/standalone-with-microsoft-accounts)
-* [Azure Active Directory (AAD)](xref:security/blazor/webassembly/standalone-with-azure-active-directory)
-* [Azure Active Directory (AAD) B2C](xref:security/blazor/webassembly/standalone-with-azure-active-directory-b2c)
+* [Общие рекомендации по использованию поставщиков OIDC и библиотеки проверки подлинности WebAssembly](xref:blazor/security/webassembly/standalone-with-authentication-library)
+* [Учетные записи Майкрософт](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
+* [Azure Active Directory (AAD)](xref:blazor/security/webassembly/standalone-with-azure-active-directory)
+* [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c)
 
 Размещенные приложения Blazor WebAssembly:
 
-* [Azure Active Directory (AAD)](xref:security/blazor/webassembly/hosted-with-azure-active-directory)
-* [Azure Active Directory (AAD) B2C](xref:security/blazor/webassembly/hosted-with-azure-active-directory-b2c)
-* [Сервер Identity](xref:security/blazor/webassembly/hosted-with-identity-server)
+* [Azure Active Directory (AAD)](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
+* [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
+* [Сервер Identity](xref:blazor/security/webassembly/hosted-with-identity-server)
 
-Дополнительные рекомендации по настройке см. по этой ссылке: <xref:security/blazor/webassembly/additional-scenarios>.
+Дополнительные рекомендации по настройке см. по этой ссылке: <xref:blazor/security/webassembly/additional-scenarios>.

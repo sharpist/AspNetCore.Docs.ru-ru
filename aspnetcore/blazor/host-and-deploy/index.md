@@ -12,13 +12,13 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-uid: host-and-deploy/blazor/index
-ms.openlocfilehash: 482b066d347c2c572b0ffb78ccab1ac391195823
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+uid: blazor/host-and-deploy/index
+ms.openlocfilehash: 3a3c5ab5365e5b4312dd3fd516f4906155911cc9
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452243"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103153"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor"></a>Размещение и развертывание ASP.NET Core Blazor
 
@@ -109,5 +109,5 @@ dotnet run --pathbase=/CoolApp
 
 Инструкции по развертыванию см. в следующих разделах:
 
-* <xref:host-and-deploy/blazor/webassembly>
-* <xref:host-and-deploy/blazor/server>
+* <xref:blazor/host-and-deploy/webassembly>
+* <xref:blazor/host-and-deploy/server>

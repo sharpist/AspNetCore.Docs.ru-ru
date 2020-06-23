@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
-ms.openlocfilehash: b6e3890e13ef5ad20098d3907b6895046087aeca
-ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
+ms.openlocfilehash: df978d49201ba1010ddf13b1b9a63ae27116616e
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84776505"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103089"
 ---
 # <a name="component-tag-helper-in-aspnet-core"></a>Вспомогательная функция тега компонента в ASP.NET Core
 
@@ -27,7 +27,7 @@ ms.locfileid: "84776505"
 
 ## <a name="prerequisites"></a>Предварительные требования
 
-Следуйте указаниям в разделе *Подготовка приложения к использованию компонентов в страницах и представлениях* <xref:blazor/integrate-components#prepare-the-app> статьи.
+Следуйте указаниям в разделе *Подготовка приложения к использованию компонентов в страницах и представлениях* <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps#prepare-the-app> статьи.
 
 ## <a name="component-tag-helper"></a>Вспомогательная функция тега компонента
 
@@ -72,7 +72,7 @@ ms.locfileid: "84776505"
 }
 ```
 
-`Size` `int` Параметры компонента () `Color` и `string` ( [component parameters](xref:blazor/components#component-parameters) ) могут быть заданы вспомогательной функцией тега компонента:
+`Size` `int` Параметры компонента () `Color` и `string` ( [component parameters](xref:blazor/components/index#component-parameters) ) могут быть заданы вспомогательной функцией тега компонента:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -172,4 +172,4 @@ public class MyClass
 
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * <xref:mvc/views/tag-helpers/intro>
-* <xref:blazor/components>
+* <xref:blazor/components/index>

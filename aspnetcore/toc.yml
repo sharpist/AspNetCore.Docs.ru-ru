@@ -297,94 +297,134 @@
               uid: tutorials/signalr-blazor-webassembly
         - name: Шаблоны
           uid: blazor/templates
+        - name: Основы
+          items:
+            - name: Маршрутизация
+              uid: blazor/fundamentals/routing
+            - name: Параметр Configuration
+              uid: blazor/fundamentals/configuration
+            - name: Внедрение зависимостей
+              uid: blazor/fundamentals/dependency-injection
+            - name: Среды
+              uid: blazor/fundamentals/environments
+            - name: Ведение журнала
+              uid: blazor/fundamentals/logging
+            - name: Обработка ошибок
+              uid: blazor/fundamentals/handle-errors
+            - name: Дополнительные сценарии
+              uid: blazor/fundamentals/additional-scenarios
         - name: Компоненты
-          uid: blazor/components
-        - name: Привязка данных
-          uid: blazor/data-binding
-        - name: Обработка событий
-          uid: blazor/event-handling
-        - name: Жизненный цикл
-          uid: blazor/lifecycle
-        - name: Шаблонные компоненты
-          uid: blazor/templated-components
-        - name: Интеграция компонентов
-          uid: blazor/integrate-components
+          items:
+            - name: Обзор
+              uid: blazor/components/index
+            - name: Встроенные компоненты
+              items:
+                - name: Приложение
+                  uid: blazor/templates
+                - name: Проверка подлинности
+                  uid: blazor/security/webassembly/additional-scenarios
+                - name: AuthorizeView
+                  uid: blazor/security/index
+                - name: InputCheckbox
+                  uid: blazor/forms-validation
+                - name: InputDate
+                  uid: blazor/forms-validation
+                - name: InputNumber
+                  uid: blazor/forms-validation
+                - name: InputSelect
+                  uid: blazor/forms-validation
+                - name: InputText
+                  uid: blazor/forms-validation
+                - name: InputTextArea
+                  uid: blazor/forms-validation
+                - name: MainLayout
+                  uid: blazor/layouts
+                - name: NavLink
+                  uid: blazor/fundamentals/routing
+                - name: NavMenu
+                  uid: blazor/fundamentals/routing
+                - name: Маршрутизатор
+                  uid: blazor/fundamentals/routing
+            - name: Каскадные значения и параметры
+              uid: blazor/components/cascading-values-and-parameters
+            - name: Привязка данных
+              uid: blazor/components/data-binding
+            - name: Обработка событий
+              uid: blazor/components/event-handling
+            - name: Жизненный цикл
+              uid: blazor/components/lifecycle
+            - name: Шаблонные компоненты
+              uid: blazor/components/templated-components
+            - name: Интеграция компонентов
+              uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
+            - name: Библиотеки компонентов
+              uid: blazor/components/class-libraries
         - name: Глобализация и локализация
           uid: blazor/globalization-localization
         - name: Макеты
           uid: blazor/layouts
         - name: Формы и проверка
           uid: blazor/forms-validation
-        - name: Внедрение зависимостей
-          uid: blazor/dependency-injection
-        - name: Маршрутизация
-          uid: blazor/routing
         - name: Вызов JavaScript из .NET
           uid: blazor/call-javascript-from-dotnet
         - name: Вызов .NET из JavaScript
           uid: blazor/call-dotnet-from-javascript
-        - name: Конфигурация модели размещения
-          uid: blazor/hosting-model-configuration
-        - name: Библиотеки компонентов
-          uid: blazor/class-libraries
         - name: Безопасность и удостоверения
           items:
             - name: Обзор
-              uid: security/blazor/index
+              uid: blazor/security/index
             - name: Blazor WebAssembly
               items:
                 - name: Обзор
-                  uid: security/blazor/webassembly/index
+                  uid: blazor/security/webassembly/index
                 - name: Автономное развертывание с помощью библиотеки проверки подлинности
-                  uid: security/blazor/webassembly/standalone-with-authentication-library
+                  uid: blazor/security/webassembly/standalone-with-authentication-library
                 - name: Автономное развертывание с помощью учетных записей Майкрософт
-                  uid: security/blazor/webassembly/standalone-with-microsoft-accounts
+                  uid: blazor/security/webassembly/standalone-with-microsoft-accounts
                 - name: Автономное развертывание с помощью AAD
-                  uid: security/blazor/webassembly/standalone-with-azure-active-directory
+                  uid: blazor/security/webassembly/standalone-with-azure-active-directory
                 - name: Автономное развертывание с помощью AAD B2C
-                  uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
+                  uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
                 - name: Размещенное развертывание с помощью AAD
-                  uid: security/blazor/webassembly/hosted-with-azure-active-directory
+                  uid: blazor/security/webassembly/hosted-with-azure-active-directory
                 - name: Размещенное развертывание с помощью AAD B2C
-                  uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+                  uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
                 - name: Размещенное развертывание с помощью Identity Server
-                  uid: security/blazor/webassembly/hosted-with-identity-server
+                  uid: blazor/security/webassembly/hosted-with-identity-server
                 - name: Дополнительные сценарии
-                  uid: security/blazor/webassembly/additional-scenarios
+                  uid: blazor/security/webassembly/additional-scenarios
                 - name: Группы и роли AAD
-                  uid: security/blazor/webassembly/aad-groups-roles
+                  uid: blazor/security/webassembly/aad-groups-roles
             - name: Blazor Server
               items:
                 - name: Обзор
-                  uid: security/blazor/server/index
+                  uid: blazor/security/server/index
                 - name: Предотвращение угроз
-                  uid: security/blazor/server/threat-mitigation
+                  uid: blazor/security/server/threat-mitigation
                 - name: Дополнительные сценарии
-                  uid: security/blazor/server/additional-scenarios
+                  uid: blazor/security/server/additional-scenarios
             - name: Политика безопасности содержимого
-              uid: security/blazor/content-security-policy
+              uid: blazor/security/content-security-policy
         - name: Управление состоянием
           uid: blazor/state-management
-        - name: Обработка ошибок
-          uid: blazor/handle-errors
         - name: Отладка WebAssembly
           uid: blazor/debug
         - name: Вызов веб-API из WebAssembly
           uid: blazor/call-web-api
         - name: Производительность WebAssembly
-          uid: performance/blazor/webassembly-best-practices
+          uid: blazor/webassembly-performance-best-practices
         - name: Прогрессивные веб-приложения
           uid: blazor/progressive-web-app
         - name: Размещение и развертывание
           items:
             - name: Обзор
-              uid: host-and-deploy/blazor/index
+              uid: blazor/host-and-deploy/index
             - name: Blazor WebAssembly
-              uid: host-and-deploy/blazor/webassembly
+              uid: blazor/host-and-deploy/webassembly
             - name: Blazor Server
-              uid: host-and-deploy/blazor/server
+              uid: blazor/host-and-deploy/server
             - name: Настройка компоновщика
-              uid: host-and-deploy/blazor/configure-linker
+              uid: blazor/host-and-deploy/configure-linker
         - name: Сложные сценарии
           uid: blazor/advanced-scenarios
     - name: Клиентская разработка
@@ -445,15 +485,15 @@
             - name: Среда
               uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
             - name: Form
-              href: 'mvc/views/working-with-forms.md#the-form-tag-helper'
+              href: mvc/views/working-with-forms.md#the-form-tag-helper
             - name: Действие формы
-              href: 'mvc/views/working-with-forms.md#the-form-action-tag-helper'
+              href: mvc/views/working-with-forms.md#the-form-action-tag-helper
             - name: Изображение
               uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
             - name: Входные данные
-              href: 'mvc/views/working-with-forms.md#the-input-tag-helper'
+              href: mvc/views/working-with-forms.md#the-input-tag-helper
             - name: Метка
-              href: 'mvc/views/working-with-forms.md#the-label-tag-helper'
+              href: mvc/views/working-with-forms.md#the-label-tag-helper
             - name: Ссылка
               uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
             - name: Partial
@@ -461,13 +501,13 @@
             - name: Сценарий
               uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
             - name: Выбрать
-              href: 'mvc/views/working-with-forms.md#the-select-tag-helper'
+              href: mvc/views/working-with-forms.md#the-select-tag-helper
             - name: Текстовая область
-              href: 'mvc/views/working-with-forms.md#the-textarea-tag-helper'
+              href: mvc/views/working-with-forms.md#the-textarea-tag-helper
             - name: Сообщение проверки
-              href: 'mvc/views/working-with-forms.md#the-validation-message-tag-helper'
+              href: mvc/views/working-with-forms.md#the-validation-message-tag-helper
             - name: Сводка проверки
-              href: 'mvc/views/working-with-forms.md#the-validation-summary-tag-helper'
+              href: mvc/views/working-with-forms.md#the-validation-summary-tag-helper
     - name: Дополнительно
       items:
         - name: Части приложения
@@ -640,7 +680,7 @@
       items:
         - name: "Начало работы со службой\_gRPC"
           uid: tutorials/grpc/grpc-start
-    - name: 'Службы gRPC на языке C#'
+    - name: Службы gRPC на языке C#
       uid: grpc/basics
     - name: Службы gRPC в ASP.NET Core
       uid: grpc/aspnetcore
@@ -890,13 +930,13 @@
     - name: Blazor
       items:
         - name: Обзор
-          uid: host-and-deploy/blazor/index
+          uid: blazor/host-and-deploy/index
         - name: Blazor WebAssembly
-          uid: host-and-deploy/blazor/webassembly
+          uid: blazor/host-and-deploy/webassembly
         - name: Blazor Server
-          uid: host-and-deploy/blazor/server
+          uid: blazor/host-and-deploy/server
         - name: Настройка компоновщика
-          uid: host-and-deploy/blazor/configure-linker
+          uid: blazor/host-and-deploy/configure-linker
 - name: Безопасность и удостоверения
   displayName: 'authentication, authorization'
   items:
@@ -1132,39 +1172,39 @@
     - name: Blazor
       items:
         - name: Обзор
-          uid: security/blazor/index
+          uid: blazor/security/index
         - name: Blazor WebAssembly
           items:
             - name: Обзор
-              uid: security/blazor/webassembly/index
+              uid: blazor/security/webassembly/index
             - name: Автономное развертывание с помощью библиотеки проверки подлинности
-              uid: security/blazor/webassembly/standalone-with-authentication-library
+              uid: blazor/security/webassembly/standalone-with-authentication-library
             - name: Автономное развертывание с помощью учетных записей Майкрософт
-              uid: security/blazor/webassembly/standalone-with-microsoft-accounts
+              uid: blazor/security/webassembly/standalone-with-microsoft-accounts
             - name: Автономное развертывание с помощью AAD
-              uid: security/blazor/webassembly/standalone-with-azure-active-directory
+              uid: blazor/security/webassembly/standalone-with-azure-active-directory
             - name: Автономное развертывание с помощью AAD B2C
-              uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
+              uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
             - name: Размещенное развертывание с помощью AAD
-              uid: security/blazor/webassembly/hosted-with-azure-active-directory
+              uid: blazor/security/webassembly/hosted-with-azure-active-directory
             - name: Размещенное развертывание с помощью AAD B2C
-              uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+              uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
             - name: Размещенное развертывание с помощью Identity Server
-              uid: security/blazor/webassembly/hosted-with-identity-server
+              uid: blazor/security/webassembly/hosted-with-identity-server
             - name: Дополнительные сценарии
-              uid: security/blazor/webassembly/additional-scenarios
+              uid: blazor/security/webassembly/additional-scenarios
             - name: Группы и роли AAD
-              uid: security/blazor/webassembly/aad-groups-roles
+              uid: blazor/security/webassembly/aad-groups-roles
         - name: Blazor Server
           items:
             - name: Обзор
-              uid: security/blazor/server/index
+              uid: blazor/security/server/index
             - name: Предотвращение угроз
-              uid: security/blazor/server/threat-mitigation
+              uid: blazor/security/server/threat-mitigation
             - name: Дополнительные сценарии
-              uid: security/blazor/server/additional-scenarios
+              uid: blazor/security/server/additional-scenarios
         - name: Политика безопасности содержимого
-          uid: security/blazor/content-security-policy
+          uid: blazor/security/content-security-policy
 - name: Производительность
   items:
     - name: Обзор
@@ -1190,7 +1230,7 @@
     - name: Нагрузочное тестирование
       uid: test/loadtests
     - name: Blazor WebAssembly
-      uid: performance/blazor/webassembly-best-practices
+      uid: blazor/webassembly-performance-best-practices
 - name: Глобализация и локализация
   items:
     - name: Обзор

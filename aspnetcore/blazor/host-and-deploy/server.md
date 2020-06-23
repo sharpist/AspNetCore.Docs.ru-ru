@@ -12,13 +12,13 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-uid: host-and-deploy/blazor/server
-ms.openlocfilehash: 8c06d3a4d0d75a3e2fd9f699af38a23833fa8bce
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+uid: blazor/host-and-deploy/server
+ms.openlocfilehash: 891714250bc4e8b0b241e589efb268b8f8e9f0d5
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84419948"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103310"
 ---
 # <a name="host-and-deploy-blazor-server"></a>Размещение и развертывание серверного приложения Blazor
 
@@ -39,7 +39,7 @@ ms.locfileid: "84419948"
 Планируйте развертывание так, чтобы доступная инфраструктура максимально эффективно использовалась серверным приложением Blazor. Вопросы, связанные с масштабируемостью серверных приложений Blazor, рассматриваются в следующих статьях:
 
 * [Статья со сведениями о серверных приложениях Blazor](xref:blazor/hosting-models#blazor-server)
-* <xref:security/blazor/server/threat-mitigation>
+* <xref:blazor/security/server/threat-mitigation>
 
 ### <a name="deployment-server"></a>Сервер развертывания
 
@@ -48,7 +48,7 @@ ms.locfileid: "84419948"
 * число активных каналов, которые может поддерживать сервер;
 * задержку пользовательского интерфейса в клиенте.
 
-Рекомендации по созданию безопасных и масштабируемых серверных приложений Blazor см. здесь: <xref:security/blazor/server/threat-mitigation>.
+Рекомендации по созданию безопасных и масштабируемых серверных приложений Blazor см. здесь: <xref:blazor/security/server/threat-mitigation>.
 
 Каждый канал использует около 250 КБ памяти для минималистичного приложения в стиле *Hello World*. Размер канала зависит от кода приложения и требований к обслуживанию состояний для каждого компонента. Мы рекомендуем определять требования к ресурсам во время разработки приложения и инфраструктуры, но при планировании цели развертывания можно использовать следующие базовые показатели: если вы предполагаете, что приложение будет одновременно поддерживать 5000 пользователей, выделите для приложения по меньшей мере 1,3 ГБ серверной памяти (или около 273 КБ на пользователя).
 

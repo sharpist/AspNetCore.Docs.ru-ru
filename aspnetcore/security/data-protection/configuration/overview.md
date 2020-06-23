@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/configuration/overview
-ms.openlocfilehash: d37fdc44bb9a603d85818fc72a7a07de67006366
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 5439ba449a9ceaa417cf01a45f51009acf098a4e
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776816"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074389"
 ---
 # <a name="configure-aspnet-core-data-protection"></a>Настройка защиты данных в ASP.NET Core
 
@@ -57,15 +57,33 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Задайте место хранения ключевых звонков (например, [персисткэйстоазуреблобстораже](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage)). Расположение должно быть задано, так `ProtectKeysWithAzureKeyVault` как вызов реализует [иксмленкриптор](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmlencryptor) , который отключает автоматические параметры защиты данных, включая место хранения ключевых звонков. В предыдущем примере для сохранения ключа используется хранилище BLOB-объектов Azure. Дополнительные сведения см. в статье [поставщики хранилища ключей: служба хранилища Azure](xref:security/data-protection/implementation/key-storage-providers#azure-storage). Вы также можете сохранить ключ в локальной системе с помощью [персисткэйстофилесистем](xref:security/data-protection/implementation/key-storage-providers#file-system).
+Задайте место хранения ключевых звонков (например, [персисткэйстоазуреблобстораже](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage)). Расположение должно быть задано, так как вызов `ProtectKeysWithAzureKeyVault` реализует [иксмленкриптор](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmlencryptor) , который отключает автоматические параметры защиты данных, включая место хранения ключевых звонков. В предыдущем примере для сохранения ключа используется хранилище BLOB-объектов Azure. Дополнительные сведения см. в статье [поставщики хранилища ключей: служба хранилища Azure](xref:security/data-protection/implementation/key-storage-providers#azure-storage). Вы также можете сохранить ключ в локальной системе с помощью [персисткэйстофилесистем](xref:security/data-protection/implementation/key-storage-providers#file-system).
 
-`keyIdentifier` — Это идентификатор ключа хранилища ключей, используемый для шифрования ключей. Например, ключ, созданный в хранилище ключей с именем `dataprotection` , `contosokeyvault` имеет идентификатор `https://contosokeyvault.vault.azure.net/keys/dataprotection/`ключа. Укажите приложение с **ключом** **распаковки** и разрешениями на ключ для хранилища ключей.
+`keyIdentifier`— Это идентификатор ключа хранилища ключей, используемый для шифрования ключей. Например, ключ, созданный в хранилище ключей с именем `dataprotection` , `contosokeyvault` имеет идентификатор ключа `https://contosokeyvault.vault.azure.net/keys/dataprotection/` . Укажите приложение с **ключом** **распаковки** и разрешениями на ключ для хранилища ключей.
 
 `ProtectKeysWithAzureKeyVault`перегрузки
 
 * [Протекткэйсвисазурекэйваулт (идатапротектионбуилдер, KeyVaultClient, String)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault#Microsoft_AspNetCore_DataProtection_AzureDataProtectionBuilderExtensions_ProtectKeysWithAzureKeyVault_Microsoft_AspNetCore_DataProtection_IDataProtectionBuilder_Microsoft_Azure_KeyVault_KeyVaultClient_System_String_) позволяет использовать [KeyVaultClient](/dotnet/api/microsoft.azure.keyvault.keyvaultclient) для обеспечения возможности использования хранилища ключей системой защиты данных.
 * [Протекткэйсвисазурекэйваулт (идатапротектионбуилдер, String, String, X509Certificate2)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault#Microsoft_AspNetCore_DataProtection_AzureDataProtectionBuilderExtensions_ProtectKeysWithAzureKeyVault_Microsoft_AspNetCore_DataProtection_IDataProtectionBuilder_System_String_System_String_System_Security_Cryptography_X509Certificates_X509Certificate2_) позволяет использовать протокол `ClientId` и [X509Certificate](/dotnet/api/system.security.cryptography.x509certificates.x509certificate2) , чтобы система защиты данных использовала хранилище ключей.
-* [Протекткэйсвисазурекэйваулт (идатапротектионбуилдер, строка, строка, строка)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault#Microsoft_AspNetCore_DataProtection_AzureDataProtectionBuilderExtensions_ProtectKeysWithAzureKeyVault_Microsoft_AspNetCore_DataProtection_IDataProtectionBuilder_System_String_System_String_System_String_) позволяет использовать `ClientId` и `ClientSecret` , чтобы система защиты данных использовала хранилище ключей.
+* [Протекткэйсвисазурекэйваулт (идатапротектионбуилдер, строка, строка, строка)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault#Microsoft_AspNetCore_DataProtection_AzureDataProtectionBuilderExtensions_ProtectKeysWithAzureKeyVault_Microsoft_AspNetCore_DataProtection_IDataProtectionBuilder_System_String_System_String_System_String_) позволяет использовать `ClientId` и, `ClientSecret` чтобы система защиты данных использовала хранилище ключей.
+
+При использовании комбинации keyvault и хранилища Azure для хранения и защиты ключей `System.UriFormatException` будет создано исключение, если большой двоичный объект для хранения ключей в не существует. Это можно создать вручную перед запуском приложения или `.ProtectKeysWithAzureKeyVault()` удалить его для первого запуска, чтобы создать большой двоичный объект, а затем добавить его для последующих запусков. `.ProtectKeysWithAzureKeyVault()`Рекомендуется удалить, так как это обеспечит создание файла с правильной схемой и значениями на месте.
+
+```csharp
+var storageAccount = CloudStorageAccount.Parse("<storage account connection string">);
+var client = storageAccount.CreateCloudBlobClient();
+var container = client.GetContainerReference("<key store container name>");
+
+var azureServiceTokenProvider = new AzureServiceTokenProvider();
+var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(
+        azureServiceTokenProvider.KeyVaultTokenCallback));
+
+services.AddDataProtection()
+    //This blob must already exist before the application is run
+    .PersistKeysToAzureBlobStorage(container, "<key store blob name>")
+    //Removing this line below for an initial run will ensure the file is created correctly
+    .ProtectKeysWithAzureKeyVault(keyVaultClient, "<keyIdentifier>");
+```
 
 ::: moniker-end
 
@@ -86,7 +104,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="protectkeyswith"></a>протекткэйсвис\*
 
-Вы можете настроить систему для защиты неактивных ключей, вызвав любой из API [конфигурации\* протекткэйсвис](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions) . Рассмотрим приведенный ниже пример, в котором ключи хранятся в общем UNC-ресурсе и шифруются с помощью определенного сертификата X. 509:
+Вы можете настроить систему для защиты неактивных ключей, вызвав любой из API [конфигурации \* протекткэйсвис](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions) . Рассмотрим приведенный ниже пример, в котором ключи хранятся в общем UNC-ресурсе и шифруются с помощью определенного сертификата X. 509:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -169,7 +187,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="disableautomatickeygeneration"></a>дисаблеаутоматиккэйженератион
 
-У вас может быть сценарий, в котором приложение не должно автоматически выполнять откат ключей (создание новых ключей) по мере их истечения. Одним из примеров могут быть приложения, настроенные в связи «первичная/вторичная», в которой только основное приложение отвечает на вопросы управления ключами, а дополнительные приложения просто имеют доступное только для чтения представление круга ключей. Вторичные приложения можно настроить так, чтобы они обрабатывали ключевое кольцо как доступное только для <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.DisableAutomaticKeyGeneration*>чтения, настроив систему с помощью:
+У вас может быть сценарий, в котором приложение не должно автоматически выполнять откат ключей (создание новых ключей) по мере их истечения. Одним из примеров могут быть приложения, настроенные в связи «первичная/вторичная», в которой только основное приложение отвечает на вопросы управления ключами, а дополнительные приложения просто имеют доступное только для чтения представление круга ключей. Вторичные приложения можно настроить так, чтобы они обрабатывали ключевое кольцо как доступное только для чтения, настроив систему с помощью <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.DisableAutomaticKeyGeneration*> :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -181,14 +199,14 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="per-application-isolation"></a>Изоляция отдельных приложений
 
-Когда система защиты данных предоставляется узлом ASP.NET Core, она автоматически изолирует приложения друг от друга, даже если эти приложения выполняются в той же учетной записи рабочего процесса и используют один и тот же материал основного ключа. Это в некоторой степени аналогично модификатору IsolateApps `<machineKey>` элемента System. Web.
+Когда система защиты данных предоставляется узлом ASP.NET Core, она автоматически изолирует приложения друг от друга, даже если эти приложения выполняются в той же учетной записи рабочего процесса и используют один и тот же материал основного ключа. Это в некоторой степени аналогично модификатору IsolateApps элемента System. Web `<machineKey>` .
 
 Механизм изоляции работает путем рассмотрения каждого приложения на локальном компьютере в качестве уникального клиента, поэтому <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> корневой каталог для любого конкретного приложения автоматически включает идентификатор приложения в качестве дискриминатора. Уникальный идентификатор приложения — это физический путь приложения:
 
 * Для приложений, размещенных в службах IIS, уникальный идентификатор — это физический путь IIS приложения. Если приложение развернуто в среде веб-фермы, это значение является стабильным при условии, что среды IIS настроены одинаково на всех компьютерах в веб-ферме.
 * Для автономных приложений, работающих на [сервере Kestrel](xref:fundamentals/servers/index#kestrel), уникальный идентификатор — это физический путь к приложению на диске.
 
-Уникальный идентификатор разрабатывается для того,&mdash;чтобы сбросить оба отдельных приложения и самого компьютера.
+Уникальный идентификатор разрабатывается для того, чтобы сбросить &mdash; оба отдельных приложения и самого компьютера.
 
 Этот механизм изоляции предполагает, что приложения не являются вредоносными. Вредоносное приложение всегда может повлиять на любое другое приложение, выполняемое в той же учетной записи рабочего процесса. В общей среде размещения, в которой приложения взаимно не считаются доверенными, поставщик услуг размещения должен принять меры по обеспечению изоляции на уровне ОС между приложениями, включая разделение базовых хранилищ ключей приложений.
 
@@ -281,7 +299,7 @@ serviceCollection.AddDataProtection()
 
 ::: moniker-end
 
-Как правило \*, свойства типа должны указывать на конкретные, допускающие создание экземпляров (с помощью общедоступного конструктора без параметров) [SymmetricAlgorithm](/dotnet/api/system.security.cryptography.symmetricalgorithm) и [KeyedHashAlgorithm](/dotnet/api/system.security.cryptography.keyedhashalgorithm), хотя в специальных возможностях `typeof(Aes)` системы некоторые значения, например для удобства.
+Как правило, \* свойства типа должны указывать на конкретные, допускающие создание экземпляров (с помощью общедоступного конструктора без параметров) [SymmetricAlgorithm](/dotnet/api/system.security.cryptography.symmetricalgorithm) и [KeyedHashAlgorithm](/dotnet/api/system.security.cryptography.keyedhashalgorithm), хотя в специальных возможностях системы некоторые значения, например `typeof(Aes)` для удобства.
 
 > [!NOTE]
 > SymmetricAlgorithm должен иметь длину ключа ≥ 128 бит и размер блока ≥ 64 бит, и он должен поддерживать шифрование в режиме CBC с заполнением PKCS #7. KeyedHashAlgorithm должен иметь размер дайджеста >= 128 бит и должен поддерживать ключи длиной, равную длине дайджеста хэш-алгоритма. KeyedHashAlgorithm строго не обязательно должен быть HMAC.
@@ -337,7 +355,7 @@ services.AddDataProtection()
 ::: moniker-end
 
 > [!NOTE]
-> Алгоритм блочного блочного шифра должен иметь длину ключа >= 128 бит, размер блока >= 64 бит и должен поддерживать шифрование в режиме CBC с использованием дополнений PKCS #7. Хэш-алгоритм должен иметь размер дайджеста >= 128 бит и должен поддерживать открытие с флагом флага\_HMAC\_\_в\_Handles. Для \*свойств поставщика можно задать значение null, чтобы использовать поставщик по умолчанию для указанного алгоритма. Дополнительные сведения см. в документации по [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx) .
+> Алгоритм блочного блочного шифра должен иметь длину ключа >= 128 бит, размер блока >= 64 бит и должен поддерживать шифрование в режиме CBC с использованием дополнений PKCS #7. Хэш-алгоритм должен иметь размер дайджеста >= 128 бит и должен поддерживать открытие с \_ \_ \_ \_ флагом флага HMAC в Handles. Для \* свойств поставщика можно задать значение null, чтобы использовать поставщик по умолчанию для указанного алгоритма. Дополнительные сведения см. в документации по [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx) .
 
 ::: moniker range=">= aspnetcore-2.0"
 

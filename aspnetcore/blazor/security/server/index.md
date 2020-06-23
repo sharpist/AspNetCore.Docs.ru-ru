@@ -12,13 +12,13 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-uid: security/blazor/server/index
-ms.openlocfilehash: 5ba7bbde49bfc232795d375a1ec644825a0dee1e
-ms.sourcegitcommit: 67eadd7bf28eae0b8786d85e90a7df811ffe5904
+uid: blazor/security/server/index
+ms.openlocfilehash: a8604ca6ea60386bb3c54c950205ee695d37c689
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84454640"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103141"
 ---
 # <a name="secure-aspnet-core-blazor-server-apps"></a>Безопасные приложения ASP.NET Core Blazor Server
 
@@ -39,9 +39,9 @@ ms.locfileid: "84454640"
 * **Без аутентификации**.
 * **Учетные записи отдельных пользователей**. Учетные записи пользователей могут храниться:
   * Внутри приложения с помощью системы [Identity](xref:security/authentication/identity) в ASP.NET Core.
-  * В [Azure AD B2C](xref:security/authentication/azure-ad-b2c).
-* **Рабочие или учебные учетные записи**.
-* **Проверка подлинности Windows**.
+  * в [Azure AD B2C](xref:security/authentication/azure-ad-b2c);
+* **рабочие или учебные учетные записи**.
+* **Проверка подлинности Windows**
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -55,9 +55,9 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 | Механизм аутентификации | Описание |
 | ------------------------ | ----------- |
-| `None` (по умолчанию)         | Без аутентификации |
+| `None` (по умолчанию)         | без аутентификации; |
 | `Individual`             | Хранение пользователей в приложении с помощью ASP.NET Core Identity |
-| `IndividualB2C`          | Хранение пользователей в [Azure AD B2C](xref:security/authentication/azure-ad-b2c) |
+| `IndividualB2C`          | Пользователи, сохраненные в [Azure AD B2C](xref:security/authentication/azure-ad-b2c). |
 | `SingleOrg`              | Корпоративная аутентификация для отдельного клиента |
 | `MultiOrg`               | Корпоративная аутентификация для нескольких клиентов |
 | `Windows`                | Проверка подлинности Windows |

@@ -12,13 +12,13 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-uid: blazor/data-binding
-ms.openlocfilehash: 3b419b4738bd3f434cf4a9d8ccdf3b3af86ba1d5
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+uid: blazor/components/data-binding
+ms.openlocfilehash: c901ba0cbcd79bb14cb32a6a56a2595d159f8678
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "83998501"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103468"
 ---
 # <a name="aspnet-core-blazor-data-binding"></a>Привязка к данным в ASP.NET Core Blazor
 
@@ -165,12 +165,12 @@ ms.locfileid: "83998501"
 }
 ```
 
-Назначение структуры <xref:Microsoft.AspNetCore.Components.EventCallback%601> описывается в разделе <xref:blazor/event-handling#eventcallback>.
+Назначение структуры <xref:Microsoft.AspNetCore.Components.EventCallback%601> описывается в разделе <xref:blazor/components/event-handling#eventcallback>.
 
 Рассмотрим представленный ниже родительский компонент.
 
 * Он использует `ChildComponent`, а его параметр `ParentYear` привязывается к параметру `Year` дочернего компонента.
-* Событие `onclick` используется для активации метода `ChangeTheYear`. Для получения дополнительной информации см. <xref:blazor/event-handling>.
+* Событие `onclick` используется для активации метода `ChangeTheYear`. Для получения дополнительной информации см. <xref:blazor/components/event-handling>.
 
 ```razor
 @page "/ParentComponent"
@@ -243,8 +243,8 @@ ms.locfileid: "83998501"
 Приведенный ниже компонент `PasswordField` (*PasswordField.razor*) делает следующее:
 
 * присваивает элементу `<input>` значение свойства `Password`;
-* сообщает об изменениях свойства `Password` родительскому компоненту посредством [EventCallback](xref:blazor/event-handling#eventcallback);
-* использует событие `onclick` для активации метода `ToggleShowPassword`. Для получения дополнительной информации см. <xref:blazor/event-handling>.
+* сообщает об изменениях свойства `Password` родительскому компоненту посредством [EventCallback](xref:blazor/components/event-handling#eventcallback);
+* использует событие `onclick` для активации метода `ToggleShowPassword`. Для получения дополнительной информации см. <xref:blazor/components/event-handling>.
 
 ```razor
 <h1>Child Component</h1>

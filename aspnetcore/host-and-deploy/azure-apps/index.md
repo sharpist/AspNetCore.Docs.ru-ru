@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: 8195702a3de93bafc76dff61939dfc70d4e896b6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: cc12dc2bc6720652866227dc2bbcbcf4e8af793d
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775249"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074233"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Развертывание приложений ASP.NET Core в Службе приложений Azure
 
@@ -87,17 +87,20 @@ ms.locfileid: "82775249"
 
 ## <a name="override-app-configuration-using-the-azure-portal"></a>Переопределение конфигурации приложения с помощью портала Azure
 
-Параметры приложений на портале Azure позволяют задать переменные среды для приложения. Переменные среды могут использоваться [поставщиком конфигураций переменных среды](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+::: moniker range=">= aspnetcore-3.0"
+
+Параметры приложений на портале Azure позволяют задать переменные среды для приложения. Переменные среды могут использоваться [поставщиком конфигураций переменных среды](xref:fundamentals/configuration/index#environment-variables).
 
 Когда вы создаете или изменяете параметр приложения на портале Azure, при нажатии кнопки **Сохранить** происходит перезапуск приложения Azure. Переменная среды доступна в приложении после перезапуска службы.
 
-::: moniker range=">= aspnetcore-3.0"
-
-Если приложение использует [универсальный узел](xref:fundamentals/host/generic-host), переменные среды загружаются в конфигурацию приложения, когда метод <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> вызывается для создания узла. Дополнительные сведения см. в разделах <xref:fundamentals/host/generic-host> и [Конфигурация для разных сред](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+Если приложение использует [универсальный узел](xref:fundamentals/host/generic-host), переменные среды загружаются в конфигурацию приложения, когда метод <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> вызывается для создания узла. Дополнительные сведения см. в разделах <xref:fundamentals/host/generic-host> и [Конфигурация для разных сред](xref:fundamentals/configuration/index#environment-variables).
 
 ::: moniker-end
-
 ::: moniker range="< aspnetcore-3.0"
+
+Параметры приложений на портале Azure позволяют задать переменные среды для приложения. Переменные среды могут использоваться [поставщиком конфигураций переменных среды](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+
+Когда вы создаете или изменяете параметр приложения на портале Azure, при нажатии кнопки **Сохранить** происходит перезапуск приложения Azure. Переменная среды доступна в приложении после перезапуска службы.
 
 Если приложение использует [веб-узел](xref:fundamentals/host/web-host), переменные среды загружаются в конфигурацию приложения, когда метод <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> вызывается для создания узла. Дополнительные сведения см. в разделах <xref:fundamentals/host/web-host> и [Конфигурация для разных сред](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 

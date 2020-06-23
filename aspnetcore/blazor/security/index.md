@@ -12,13 +12,13 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-uid: security/blazor/index
-ms.openlocfilehash: fb842fe799731a1d7692b24a543ba05e53d04637
-ms.sourcegitcommit: 67eadd7bf28eae0b8786d85e90a7df811ffe5904
+uid: blazor/security/index
+ms.openlocfilehash: 8c5e6c6ba741cae2634e2852e9ca141a0a7c33ce
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84454575"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103144"
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>Проверка подлинности и авторизация в ASP.NET Core Blazor
 
@@ -33,7 +33,7 @@ ASP.NET Core поддерживает настройку и администри
 
 Приложения Blazor WebAssembly выполняются на стороне клиента. В этом случае авторизация используется *только* для определения отображаемых вариантов пользовательского интерфейса. Так как пользователь может изменить или обойти проверки на стороне клиента, приложение Blazor WebAssembly не может применять правила авторизации доступа.
 
-[Соглашения об авторизации Razor Pages](xref:security/authorization/razor-pages-authorization) не применяются к маршрутизируемым компонентам Razor. Если компонент Razor, не поддерживающий маршрутизацию, [встроен в страницу](xref:blazor/integrate-components#render-components-from-a-page-or-view), соглашения об авторизации страницы оказывают косвенное влияние на компонент Razor, а также на остальную часть содержимого страницы.
+[Соглашения об авторизации Razor Pages](xref:security/authorization/razor-pages-authorization) не применяются к маршрутизируемым компонентам Razor. Если компонент Razor, не поддерживающий маршрутизацию, [встроен в страницу](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps#render-components-from-a-page-or-view), соглашения об авторизации страницы оказывают косвенное влияние на компонент Razor, а также на остальную часть содержимого страницы.
 
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Identity.SignInManager%601> и <xref:Microsoft.AspNetCore.Identity.UserManager%601> не поддерживаются в компонентах Razor.
@@ -53,13 +53,13 @@ Blazor использует существующие механизмы пров
 
 Вопросы обработки проверки подлинности и реализации встроенной или настраиваемой службы <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> рассматриваются в следующих разделах.
 
-Дополнительные сведения о создании и настройке приложений см. в статье <xref:security/blazor/webassembly/index>.
+Дополнительные сведения о создании и настройке приложений см. в статье <xref:blazor/security/webassembly/index>.
 
 ### <a name="blazor-server-authentication"></a>Проверка подлинности Blazor Server
 
 Серверные приложения Blazor работают через подключение в реальном времени, созданное с помощью SignalR. [Проверка подлинности в приложениях на основе SignalR](xref:signalr/authn-and-authz) выполняется при установлении подключения. Аутентификация может выполняться на основе файлов cookie или других маркеров носителя.
 
-Дополнительные сведения о создании и настройке приложений см. в статье <xref:security/blazor/server/index>.
+Дополнительные сведения о создании и настройке приложений см. в статье <xref:blazor/security/server/index>.
 
 ## <a name="authenticationstateprovider-service"></a>Служба AuthenticationStateProvider
 
@@ -122,7 +122,7 @@ Blazor использует существующие механизмы пров
 
 Если `user.Identity.IsAuthenticated` имеет значение `true`, а пользователь является <xref:System.Security.Claims.ClaimsPrincipal>, можно перечислить утверждения и оценить членство в ролях.
 
-Дополнительные сведения о внедрении зависимостей и службах см. в статьях <xref:blazor/dependency-injection> и <xref:fundamentals/dependency-injection>.
+Дополнительные сведения о внедрении зависимостей и службах см. в статьях <xref:blazor/fundamentals/dependency-injection> и <xref:fundamentals/dependency-injection>.
 
 ## <a name="implement-a-custom-authenticationstateprovider"></a>Реализация пользовательского AuthenticationStateProvider
 
@@ -275,7 +275,7 @@ builder.Services.AddAuthorizationCore();
 </AuthorizeView>
 ```
 
-Компонент <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> можно использовать в компоненте `NavMenu` (*Shared/NavMenu.razor*) в целях отображения элемента списка (`<li>...</li>`) для [компонента NavLink](xref:blazor/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), однако следует учитывать, что при использовании этого подхода удаляется только элемент списка из отображаемых выходных данных. Пользователь по-прежнему может переходить к компоненту.
+Компонент <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> можно использовать в компоненте `NavMenu` (*Shared/NavMenu.razor*) в целях отображения элемента списка (`<li>...</li>`) для [компонента NavLink](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), однако следует учитывать, что при использовании этого подхода удаляется только элемент списка из отображаемых выходных данных. Пользователь по-прежнему может переходить к компоненту.
 
 Содержимое тегов `<Authorized>` и `<NotAuthorized>` может включать произвольные элементы, например другие интерактивные компоненты.
 

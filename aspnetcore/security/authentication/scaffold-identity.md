@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: 36afa8ece58843b434ebfba6305bffdb9eb9bca0
-ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
+ms.openlocfilehash: f3314458a504af7f44dcdc276de890fa9485a2b3
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84724293"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103043"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Формирование шаблонов Identity в ASP.NET Core проектах
 
@@ -195,7 +195,7 @@ Identityнастраивается в *области/ Identity /IdentityHosting
 * Когда маркеры проверки подлинности подготавливаются и сохраняются в файле cookie проверки подлинности, они могут передаваться компонентам.
 * Razorкомпоненты не могут использовать `HttpContext` напрямую, поэтому не существует способа получить [маркер подделки для защиты от запроса (XSRF)](xref:security/anti-request-forgery) для размещения Identity конечной точки выхода в `/Identity/Account/Logout` . Токен XSRF может быть передан компонентам.
 
-Для получения дополнительной информации см. <xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+Дополнительные сведения см. в разделе <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
 В файле *pages/_Host. cshtml* Установите маркер после его добавления в `InitialApplicationState` `TokenProvider` классы и:
 
@@ -229,7 +229,7 @@ TokenProvider.XsrfToken = InitialState.XsrfToken;
 В `Startup` классе:
 
 * Убедитесь, что Razor службы страниц добавлены в `Startup.ConfigureServices` .
-* При использовании [TokenProvider](xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app)Зарегистрируйте службу.
+* При использовании [TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app)Зарегистрируйте службу.
 * Вызовите в `UseDatabaseErrorPage` построителе приложений в `Startup.Configure` среде разработки.
 * Вызовите `UseAuthentication` и `UseAuthorization` после `UseRouting` .
 * Добавление конечной точки для Razor страниц.
@@ -253,7 +253,7 @@ TokenProvider.XsrfToken = InitialState.XsrfToken;
 }
 ```
 
-Добавьте `LoginDisplay` компонент (*логиндисплай. Razor*) в *общую* папку приложения. [Служба TokenProvider](xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) предоставляет маркер XSRF для HTML-формы, которая отправляет в Identity конечную точку выхода.
+Добавьте `LoginDisplay` компонент (*логиндисплай. Razor*) в *общую* папку приложения. [Служба TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) предоставляет маркер XSRF для HTML-формы, которая отправляет в Identity конечную точку выхода.
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization

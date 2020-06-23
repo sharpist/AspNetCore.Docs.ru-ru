@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: 08229283882928c4cc733de19840d25872846c97
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: c90c3bf7ccef420101c66fe04d579920209b066c
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452035"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102339"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Начало работы с Blazor ASP.NET Core
 
@@ -162,7 +162,7 @@ ms.locfileid: "84452035"
 
 Запустите приложение. На домашней странице имеется собственный счетчик, предоставленный компонентом `Counter`.
 
-Параметры компонента указываются с помощью атрибутов или [дочернего содержимого](xref:blazor/components#child-content), которые позволяют задавать свойства дочернего компонента. Чтобы добавить параметр в компонент `Counter`, обновите блок `@code`компонента:
+Параметры компонента указываются с помощью атрибутов или [дочернего содержимого](xref:blazor/components/index#child-content), которые позволяют задавать свойства дочернего компонента. Чтобы добавить параметр в компонент `Counter`, обновите блок `@code`компонента:
 
 * Добавьте открытое свойство для `IncrementAmount` с атрибутом [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute).
 * Изменение метод `IncrementCount`, чтобы он использовал `IncrementAmount` при увеличении значения `currentCount`.

@@ -12,13 +12,13 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-uid: blazor/event-handling
-ms.openlocfilehash: 66430fe45d74fadf46dff3798215ae3ac6e10a40
-ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
+uid: blazor/components/event-handling
+ms.openlocfilehash: 32f7595cffc2c31116c8d876c9f9526b84c52f14
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84776401"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103467"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>Обработка событий Blazor в ASP.NET Core
 
@@ -54,7 +54,7 @@ ms.locfileid: "84776401"
 }
 ```
 
-Обработчики событий также могут быть асинхронными и возвращать <xref:System.Threading.Tasks.Task>. Нет необходимости вручную вызывать [StateHasChanged](xref:blazor/lifecycle#state-changes). Исключения регистрируются при их возникновении.
+Обработчики событий также могут быть асинхронными и возвращать <xref:System.Threading.Tasks.Task>. Нет необходимости вручную вызывать [StateHasChanged](xref:blazor/components/lifecycle#state-changes). Исключения регистрируются при их возникновении.
 
 В следующем примере `UpdateHeading` вызывается асинхронно при выборе кнопки:
 
@@ -140,7 +140,7 @@ ms.locfileid: "84776401"
 
 В `ChildComponent` в примере приложения (*Components/ChildComponent.razor*) показано, как обработчик `onclick` кнопки настроен на получение делегата <xref:Microsoft.AspNetCore.Components.EventCallback> из `ParentComponent` образца. <xref:Microsoft.AspNetCore.Components.EventCallback> вводится с `MouseEventArgs`, что подходит для события `onclick` от периферийного устройства:
 
-[!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
+[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
 
 `ParentComponent` задает для <xref:Microsoft.AspNetCore.Components.EventCallback%601> дочернего компонента (`OnClickCallback`) его метод `ShowMessage`.
 
@@ -172,7 +172,7 @@ ms.locfileid: "84776401"
 При выборе кнопки в `ChildComponent`:
 
 * Вызывается метод `ShowMessage` `ParentComponent`. `messageText` обновляется и отображается в `ParentComponent`.
-* Вызов [StateHasChanged](xref:blazor/lifecycle#state-changes) не требуется в методе обратного вызова (`ShowMessage`). <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> вызывается автоматически для повторной отрисовки `ParentComponent`, так же как и дочерние события запускают повторную отрисовку компонента в обработчиках событий, которые выполняются в дочернем элементе.
+* Вызов [StateHasChanged](xref:blazor/components/lifecycle#state-changes) не требуется в методе обратного вызова (`ShowMessage`). <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> вызывается автоматически для повторной отрисовки `ParentComponent`, так же как и дочерние события запускают повторную отрисовку компонента в обработчиках событий, которые выполняются в дочернем элементе.
 
 <xref:Microsoft.AspNetCore.Components.EventCallback> и <xref:Microsoft.AspNetCore.Components.EventCallback%601> разрешают выполнять асинхронные делегаты. <xref:Microsoft.AspNetCore.Components.EventCallback%601> является строго типизированным и требует определенного типа аргумента. <xref:Microsoft.AspNetCore.Components.EventCallback> слабо типизирован и допускает любой тип аргумента.
 

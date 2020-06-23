@@ -12,13 +12,13 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-uid: blazor/class-libraries
-ms.openlocfilehash: b7819404066267003a340629979f2339c66724b0
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+uid: blazor/components/class-libraries
+ms.openlocfilehash: ecc9873d7f652f27767df98196786d12789518c9
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452022"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103472"
 ---
 # <a name="aspnet-core-razor-components-class-libraries"></a>Библиотеки классов компонентов Razor в ASP.NET Core
 
@@ -134,4 +134,4 @@ dotnet pack
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * <xref:razor-pages/ui-class>
-* [Добавление файла конфигурации компоновщика XML в библиотеку](xref:host-and-deploy/blazor/configure-linker#add-an-xml-linker-configuration-file-to-a-library)
+* [Добавление файла конфигурации компоновщика XML в библиотеку](xref:blazor/host-and-deploy/configure-linker#add-an-xml-linker-configuration-file-to-a-library)

@@ -12,13 +12,13 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-uid: blazor/integrate-components
-ms.openlocfilehash: 97515ec519c4bedb0478f510ec9ed739b5d76e4f
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
+ms.openlocfilehash: 78d524bc0271fd2640302bb0de78571ab688bef5
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105250"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103479"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages
 
@@ -45,7 +45,7 @@ ms.locfileid: "84105250"
      <base href="~/" />
      ```
 
-     Значение `href` (*базовый путь к приложению* ) в предыдущем примере предполагает, что приложение находится по корневому URL-пути (`/`). Если приложение является подчиненным, следуйте инструкциям в разделе *Базовый путь к приложению* статьи <xref:host-and-deploy/blazor/index#app-base-path>.
+     Значение `href` (*базовый путь к приложению* ) в предыдущем примере предполагает, что приложение находится по корневому URL-пути (`/`). Если приложение является подчиненным, следуйте инструкциям в разделе *Базовый путь к приложению* статьи <xref:blazor/host-and-deploy/index#app-base-path>.
 
      Файл *_Layout.cshtml* находится в папке *Pages/Shared* приложения Razor Pages или папке *Views/Shared* приложения MVC.
 
@@ -310,4 +310,4 @@ ms.locfileid: "84105250"
 
 Файл *_ViewImports.cshtml* находится в папке *Pages* приложения Razor Pages или папке *Views* приложения MVC.
 
-Для получения дополнительной информации см. <xref:blazor/components#import-components>.
+Для получения дополнительной информации см. <xref:blazor/components/index#namespaces>.

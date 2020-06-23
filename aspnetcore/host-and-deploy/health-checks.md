@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/health-checks
-ms.openlocfilehash: cb3ee4f3bf9061d212c1fee85f3f4a22946be097
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 00b2697a6b916718d9d0e01d1ea9f922eb2b5706
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105783"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074429"
 ---
 # <a name="health-checks-in-aspnet-core"></a>Проверки работоспособности в ASP.NET Core
 
@@ -560,7 +560,7 @@ dotnet run --scenario writer
 
 Вызовите `RequireHost` в `MapHealthChecks` с шаблоном URL-адреса, в котором указан порт для ограничения запросов проверки работоспособности указанным портом. Обычно это используется в контейнерной среде с целью предоставления порта для мониторинга служб.
 
-Пример приложения настраивает порт с помощью [поставщика конфигурации переменных среды](xref:fundamentals/configuration/index#environment-variables-configuration-provider). Порт устанавливается в файле *launchSettings.json* и передается поставщику конфигурации с помощью переменной среды. Необходимо также настроить на сервере прослушивание запросов через порт управления.
+Пример приложения настраивает порт с помощью [поставщика конфигурации переменных среды](xref:fundamentals/configuration/index#environment-variables). Порт устанавливается в файле *launchSettings.json* и передается поставщику конфигурации с помощью переменной среды. Необходимо также настроить на сервере прослушивание запросов через порт управления.
 
 Чтобы использовать пример приложения для демонстрации настройки портов управления, создайте файл *launchSettings.json* в папке *Properties*.
 
@@ -789,7 +789,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-Для получения дополнительной информации см. <xref:fundamentals/middleware/index#use-run-and-map>.
+Для получения дополнительной информации см. <xref:fundamentals/middleware/index#branch-the-middleware-pipeline>.
 
 ::: moniker-end
 

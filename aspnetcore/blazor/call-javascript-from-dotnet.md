@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 26202c45e49e64117d35fe6f1e9a65c4acc170fb
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: de04992c3e3c7ce2dc73eee801484d5e3930fa3a
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105094"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102449"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor
 
@@ -222,7 +222,7 @@ public static async Task Focus(this ElementReference elementRef, IJSRuntime jsRu
 [!code-razor[](call-javascript-from-dotnet/samples_snapshot/component2.razor?highlight=1-4,12)]
 
 > [!IMPORTANT]
-> Переменная `username` заполняется только после отрисовки компонента. Если в код JavaScript передается пустая ссылка <xref:Microsoft.AspNetCore.Components.ElementReference>, он получает значение `null`. Для управления ссылками на элементы после завершения отрисовки компонента (для установки начального фокуса на элемент) используйте [метод жизненного цикла компонента OnAfterRenderAsync или OnAfterRender](xref:blazor/lifecycle#after-component-render).
+> Переменная `username` заполняется только после отрисовки компонента. Если в код JavaScript передается пустая ссылка <xref:Microsoft.AspNetCore.Components.ElementReference>, он получает значение `null`. Для управления ссылками на элементы после завершения отрисовки компонента (для установки начального фокуса на элемент) используйте [метод жизненного цикла компонента OnAfterRenderAsync или OnAfterRender](xref:blazor/components/lifecycle#after-component-render).
 
 При работе с универсальными типами и возврате значения используйте <xref:System.Threading.Tasks.ValueTask%601>:
 
@@ -459,7 +459,7 @@ namespace BlazorSample.Shared
       TimeSpan.FromSeconds({SECONDS}), new[] { "Arg1" });
   ```
 
-Дополнительные сведения о нехватке ресурсов см. в статье <xref:security/blazor/server/threat-mitigation>.
+Дополнительные сведения о нехватке ресурсов см. в статье <xref:blazor/security/server/threat-mitigation>.
 
 [!INCLUDE[](~/includes/blazor-share-interop-code.md)]
 
