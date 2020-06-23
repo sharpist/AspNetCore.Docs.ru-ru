@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/authn-and-authz
-ms.openlocfilehash: f9d2e73f57d69e1eb5039019dc9e64193cf67820
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 61ddcdc75a627fe777fab88b41bdbc4c7f9be9f3
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105796"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84723994"
 ---
 # <a name="authentication-and-authorization-in-grpc-for-aspnet-core"></a>Проверка подлинности и авторизация в gRPC для ASP.NET Core
 
@@ -117,7 +117,7 @@ private static GrpcChannel CreateAuthenticatedChannel(string address)
 Клиент может также предоставить сертификат клиента для проверки подлинности. [Проверка подлинности по сертификату](https://tools.ietf.org/html/rfc5246#section-7.4.4) происходит на уровне TLS, задолго до его попадания в ASP.NET Core. Когда запрос попадает в ASP.NET Core, [пакет проверки подлинности сертификата клиента](xref:security/authentication/certauth) позволяет разрешить сертификат в `ClaimsPrincipal`.
 
 > [!NOTE]
-> Узел должен быть настроен для приема сертификатов клиентов. Сведения о принятии сертификатов клиента в Kestrel, IIS и Azure см. в разделе [Настройка узла для требования сертификатов](xref:security/authentication/certauth#configure-your-host-to-require-certificates).
+> Сервер должен быть настроен для принятия сертификатов клиентов. Сведения о принятии сертификатов клиента в Kestrel, IIS и Azure см. в статье <xref:security/authentication/certauth#configure-your-server-to-require-certificates>.
 
 В клиенте .NET gRPC сертификат клиента добавляется в `HttpClientHandler`, который затем используется для создания клиента gRPC:
 
