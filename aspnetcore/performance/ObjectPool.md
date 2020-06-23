@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/ObjectPool
-ms.openlocfilehash: f29d15fc1e2d2ad84526598be14638110f08614e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 004ca5724517bf3fbf6512c0b9653793f4e0f702
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774786"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85241008"
 ---
 # <a name="object-reuse-with-objectpool-in-aspnet-core"></a>Повторное использование объектов с Обжектпул в ASP.NET Core
 
@@ -31,7 +31,7 @@ ms.locfileid: "82774786"
 - Представляет некоторый ограниченный ресурс.
 - Используется в качестве прогнозируемых и часто используемых.
 
-Например, ASP.NET Core Framework использует пул объектов в некоторых местах для повторного использования <xref:System.Text.StringBuilder> экземпляров. `StringBuilder`выделяет собственные буферы для хранения символьных данных и управляет ими. ASP.NET Core регулярное `StringBuilder` использование для реализации функций и их повторное использование обеспечивает выигрыш в производительности.
+Например, ASP.NET Core Framework использует пул объектов в некоторых местах для повторного использования <xref:System.Text.StringBuilder> экземпляров. `StringBuilder`выделяет собственные буферы для хранения символьных данных и управляет ими. ASP.NET Core регулярное использование `StringBuilder` для реализации функций и их повторное использование обеспечивает выигрыш в производительности.
 
 Пул объектов не всегда повышает производительность:
 
@@ -40,7 +40,7 @@ ms.locfileid: "82774786"
 
 Используйте пул объектов только после сбора данных о производительности с помощью реалистичных сценариев для приложения или библиотеки.
 
-**Предупреждение: `ObjectPool` не реализует `IDisposable`. Мы не рекомендуем использовать его с типами, которые требуют реализации.**
+**Предупреждение: `ObjectPool` не реализует `IDisposable` . Мы не рекомендуем использовать его с типами, которые требуют реализации.**
 
 **Примечание. Обжектпул не устанавливает ограничение на количество объектов, которые он будет выделять, он ограничивает количество объектов, которое он будет хранить.**
 
@@ -61,7 +61,7 @@ ms.locfileid: "82774786"
 
 ## <a name="how-to-use-objectpool"></a>Как использовать Обжектпул
 
-Вызовите метод <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> , чтобы получить <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> объект и вернуть объект.  Нет необходимости возвращать каждый объект. Если не вернуть объект, он будет удален сборщиком мусора.
+Вызовите метод <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> , чтобы получить объект и <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> вернуть объект.  Нет необходимости возвращать каждый объект. Если не вернуть объект, он будет удален сборщиком мусора.
 
 ## <a name="objectpool-sample"></a>Пример Обжектпул
 
@@ -69,10 +69,12 @@ ms.locfileid: "82774786"
 
 * Добавляет `ObjectPoolProvider` в контейнер [внедрения зависимостей](xref:fundamentals/dependency-injection) (DI).
 * Добавляет и настраивает `ObjectPool<StringBuilder>` контейнер di.
-* Добавляет `BirthdayMiddleware`.
+* Добавляет `BirthdayMiddleware` .
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/Startup.cs?name=snippet)]
 
 Следующий код реализует`BirthdayMiddleware`
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/BirthdayMiddleware.cs?name=snippet)]
+
+[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
