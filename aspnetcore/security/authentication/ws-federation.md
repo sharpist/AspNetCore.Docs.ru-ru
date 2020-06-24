@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/ws-federation
-ms.openlocfilehash: fede3887ad7dacd40cf3bb5d1b785392a9bc1480
-ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
+ms.openlocfilehash: 62b8e33d8b7eb17a65a7a54df2a9aa298acdfe36
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82850465"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292826"
 ---
 # <a name="authenticate-users-with-ws-federation-in-aspnet-core"></a>Проверка подлинности пользователей с помощью WS-Federation в ASP.NET Core
 
@@ -28,11 +28,11 @@ ms.locfileid: "82850465"
 По умолчанию новое по промежуточного слоя:
 
 * Не разрешает незапрошенные имена входа. Эта функция протокола WS-Federation уязвима для атак XSRF. Однако его можно включить с помощью `AllowUnsolicitedLogins` параметра.
-* Не проверяет каждую форму POST для сообщений входа. Только запросы к компоненту проверяются `CallbackPath` на наличие входов. `CallbackPath` значение `/signin-wsfed` по умолчанию —, но его можно изменить с помощью унаследованного свойства [ремотеаусентикатионоптионс. каллбаккпас](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) класса [всфедератионоптионс](/dotnet/api/microsoft.aspnetcore.authentication.wsfederation.wsfederationoptions) . Этот путь можно использовать совместно с другими поставщиками проверки подлинности, включив параметр [скипунрекогнизедрекуестс](/dotnet/api/microsoft.aspnetcore.authentication.wsfederation.wsfederationoptions.skipunrecognizedrequests) .
+* Не проверяет каждую форму POST для сообщений входа. Только запросы к `CallbackPath` компоненту проверяются на наличие входов. `CallbackPath` значение по умолчанию —, `/signin-wsfed` но его можно изменить с помощью унаследованного свойства [Ремотеаусентикатионоптионс. каллбаккпас](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) класса [всфедератионоптионс](/dotnet/api/microsoft.aspnetcore.authentication.wsfederation.wsfederationoptions) . Этот путь можно использовать совместно с другими поставщиками проверки подлинности, включив параметр [скипунрекогнизедрекуестс](/dotnet/api/microsoft.aspnetcore.authentication.wsfederation.wsfederationoptions.skipunrecognizedrequests) .
 
 ## <a name="register-the-app-with-active-directory"></a>Регистрация приложения в Active Directory
 
-### <a name="active-directory-federation-services"></a>Службы федерации Active Directory (AD FS)
+### <a name="active-directory-federation-services"></a>службы федерации Active Directory;
 
 * Откройте **Мастер добавления отношения доверия с проверяющей стороной** на сервере из консоли управления ADFS:
 
@@ -65,7 +65,7 @@ ms.locfileid: "82850465"
 
 ![Мастер добавления правила преобразования утверждений: Настройка правила для утверждений](ws-federation/_static/AddTransformClaimRule.png)
 
-* В окне **изменение правил утверждений** нажмите кнопку **Готово** > **ОК** .
+* **Finish**  >  В окне **изменение правил утверждений** нажмите кнопку Готово**ОК** .
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
 
@@ -78,17 +78,17 @@ ms.locfileid: "82850465"
 
 ![Azure Active Directory: создание регистрации приложения](ws-federation/_static/AadCreateAppRegistration.png)
 
-* Щелкните **конечные точки** и запишите URL-адрес **документа метаданных федерации** . Это по промежуточного слоя WS-Federation `MetadataAddress`:
+* Щелкните **конечные точки** и запишите URL-адрес **документа метаданных федерации** . Это по промежуточного слоя WS-Federation `MetadataAddress` :
 
 ![Azure Active Directory: конечные точки](ws-federation/_static/AadFederationMetadataDocument.png)
 
-* Перейдите к новой регистрации приложения. Щелкните **Параметры** > **Свойства** и запишите **URI идентификатора приложения**. Это по промежуточного слоя WS-Federation `Wtrealm`:
+* Перейдите к новой регистрации приложения. Щелкните **предоставить API**. Щелкните идентификатор приложения URI **Set**  >  **Save (сохранить**). Запишите **URI идентификатора приложения**. Это по промежуточного слоя WS-Federation `Wtrealm` :
 
 ![Azure Active Directory: свойства регистрации приложения](ws-federation/_static/AadAppIdUri.png)
 
 ## <a name="use-ws-federation-without-aspnet-core-identity"></a>Использование WS-Federation без ASP.NET CoreIdentity
 
-По промежуточного слоя WS-Federation можно использовать Identityбез. Пример:
+По промежуточного слоя WS-Federation можно использовать без Identity . Пример.
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](ws-federation/samples/StartupNon31.cs?name=snippet)]
 ::: moniker-end
@@ -100,7 +100,7 @@ ms.locfileid: "82850465"
 ## <a name="add-ws-federation-as-an-external-login-provider-for-aspnet-core-identity"></a>Добавление WS-Federation в качестве внешнего поставщика входа для ASP.NET CoreIdentity
 
 * Добавьте зависимость от [Microsoft. AspNetCore. Authentication. WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) в проект.
-* Добавить WS-Federation в `Startup.ConfigureServices`:
+* Добавить WS-Federation в `Startup.ConfigureServices` :
 
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](ws-federation/samples/Startup31.cs?name=snippet)]
@@ -114,10 +114,10 @@ ms.locfileid: "82850465"
 
 ### <a name="log-in-with-ws-federation"></a>Вход с помощью WS-Federation
 
-Перейдите к приложению и щелкните ссылку **Вход** в заголовке навигации. Есть возможность войти с помощью WsFederation: Log On Page ![.](ws-federation/_static/WsFederationButton.png)
+Перейдите к приложению и щелкните ссылку **Вход** в заголовке навигации. Есть возможность войти с помощью WsFederation: ![ Log On Page.](ws-federation/_static/WsFederationButton.png)
 
-При использовании ADFS в качестве поставщика кнопка перенаправляется на страницу входа ADFS: ![страница входа ADFS](ws-federation/_static/AdfsLoginPage.png)
+При использовании ADFS в качестве поставщика кнопка перенаправляется на страницу входа ADFS: ![ страница входа ADFS](ws-federation/_static/AdfsLoginPage.png)
 
-При Azure Active Directory в качестве поставщика кнопка перенаправляется на страницу входа AAD: страница входа AAD. ![](ws-federation/_static/AadSignIn.png)
+При Azure Active Directory в качестве поставщика кнопка перенаправляется на страницу входа AAD: ![ страница входа AAD.](ws-federation/_static/AadSignIn.png)
 
-При успешном входе нового пользователя выполняется перенаправление на страницу регистрации пользователя приложения: ![регистрация страницы](ws-federation/_static/Register.png)
+При успешном входе нового пользователя выполняется перенаправление на страницу регистрации пользователя приложения: ![ Регистрация страницы](ws-federation/_static/Register.png)

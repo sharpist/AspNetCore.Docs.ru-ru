@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cors
-ms.openlocfilehash: a78aff2d2e16f36ed034e6af110d7ed763271583
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 1a52a2425eeba2bc62253e96fe6d2465562c154e
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105757"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292767"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Включение запросов между источниками (CORS) в ASP.NET Core
 
@@ -64,6 +64,9 @@ ms.locfileid: "84105757"
 
 Использование атрибута [[EnableCors]](#attr) с именованной политикой предоставляет элемент управления Finest в ограничении конечных точек, поддерживающих CORS.
 
+> [!WARNING]
+> <xref:Owin.CorsExtensions.UseCors%2A>должен вызываться перед <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> использованием `UseResponseCaching` .
+
 Каждый подход подробно описан в следующих разделах.
 
 <a name="np"></a>
@@ -72,7 +75,7 @@ ms.locfileid: "84105757"
 
 По промежуточного слоя CORS обрабатывает запросы между источниками. Следующий код применяет политику CORS ко всем конечным точкам приложения с указанными источниками:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=3,9,31)]
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=3,9,32)]
 
 Предыдущий код:
 
@@ -80,6 +83,7 @@ ms.locfileid: "84105757"
 * Вызывает <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> метод расширения и задает `_myAllowSpecificOrigins` политику CORS. `UseCors`добавляет по промежуточного слоя CORS. Вызов `UseCors` должен быть помещен после `UseRouting` , но до `UseAuthorization` . Дополнительные сведения см. в разделе [порядок по промежуточного слоя](xref:fundamentals/middleware/index#middleware-order).
 * Вызывает <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> [лямбда-выражение](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Лямбда-выражение принимает <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> объект. [Параметры конфигурации](#cors-policy-options), такие как `WithOrigins` , описаны далее в этой статье.
 * Включает `_myAllowSpecificOrigins` политику CORS для всех конечных точек контроллера. Чтобы применить политику CORS к конкретным конечным точкам, см. раздел [Маршрутизация конечных](#ecors) точек.
+* При использовании по [промежуточного слоя кэширования ответа](xref:performance/caching/middleware)вызовите метод <xref:Owin.CorsExtensions.UseCors%2A> перед <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> .
 
 При маршрутизации конечных точек по промежуточного слоя CORS **должно** быть настроено для выполнения между вызовами функций `UseRouting` и `UseEndpoints` .
 
@@ -458,7 +462,7 @@ Vary: Accept-Encoding
 X-Powered-By: ASP.NET
 ```
 
-**Заголовки запросов**
+**Заголовки запроса**
 
 ```
 Accept: */*
@@ -496,7 +500,7 @@ Vary: Origin
 X-Powered-By: ASP.NET
 ```
 
-**Заголовки запросов**
+**Заголовки запроса**
 
 ```
 Accept: */*
@@ -551,7 +555,7 @@ Firefox по умолчанию отображает запросы параме
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet)]
 
-[Мидисплайраутеинфо](https://github.com/Rick-Anderson/RouteInfo/blob/master/Microsoft.Docs.Samples.RouteInfo/ControllerContextExtensions.cs) предоставляется пакетом NuGet для [Рик. документация. Samples. раутеинфо](https://www.nuget.org/packages/Rick.Docs.Samples.RouteInfo) и отображает сведения о маршруте.
+[Мидисплайраутеинфо](https://github.com/Rick-Anderson/RouteInfo/blob/master/Microsoft.Docs.Samples.RouteInfo/ControllerContextExtensions.cs) предоставляется пакетом NuGet [Rick.Docs. Samples. раутеинфо](https://www.nuget.org/packages/Rick.Docs.Samples.RouteInfo) и отображает сведения о маршруте.
 
 Протестируйте предыдущий пример кода с помощью одного из следующих подходов:
 
