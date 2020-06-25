@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: a97fbe07251a61b30985695e3d207f0e3c3a777b
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: e1778d865edcfed8f5f45f4f53a57f1b3a3bd9aa
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103159"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242440"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
@@ -30,7 +30,7 @@ ms.locfileid: "85103159"
 
 ## <a name="component-classes"></a>Классы компонентов
 
-Компоненты реализуются в файлах компонентов [Razor](xref:mvc/views/razor) ( *.razor*) с помощью комбинации разметки HTML и C#. Компонент в Blazor формально называется *компонентом Razor* .
+Компоненты реализуются в файлах компонентов [Razor](xref:mvc/views/razor) (`.razor`) с помощью комбинации разметки HTML и C#. Компонент в Blazor формально называется *компонентом Razor* .
 
 ### <a name="razor-syntax"></a>Синтаксис Razor
 
@@ -43,7 +43,7 @@ ms.locfileid: "85103159"
 
 ### <a name="names"></a>Имена
 
-Имя компонента должно начинаться с заглавной буквы. Например, *MyCoolComponent.razor* является допустимым, а *myCoolComponent.razor* нет.
+Имя компонента должно начинаться с заглавной буквы. Например, `MyCoolComponent.razor` допустимо использовать, а `myCoolComponent.razor` нет.
 
 ### <a name="routing"></a>Маршрутизация
 
@@ -77,16 +77,16 @@ ms.locfileid: "85103159"
 
 После первоначальной отрисовки компонента он повторно создает дерево отрисовки в ответ на события. Затем Blazor сравнивает новое и прежнее дерево отрисовки и применяет все изменения в модели DOM браузера.
 
-Компоненты являются обычными классами C# и могут размещаться в любом месте внутри проекта. Компоненты, создающие веб-страницы, обычно находятся в папке *Pages*. Компоненты, не связанные со страницами, часто находятся в папке *Shared* или настраиваемой папке, добавленной в проект.
+Компоненты являются обычными классами C# и могут размещаться в любом месте внутри проекта. Компоненты, создающие веб-страницы, обычно находятся в папке `Pages`. Компоненты, не являющиеся страницами, часто находятся в папке `Shared` или пользовательской папке, добавленной в проект.
 
 ### <a name="namespaces"></a>Пространства имен
 
-Как правило, пространство имен компонента является производным от корневого пространства имен приложения и расположения компонента (папки) в приложении. Если корневым пространством имен приложения является `BlazorApp`, а компонент `Counter` находится в папке *Pages*:
+Как правило, пространство имен компонента является производным от корневого пространства имен приложения и расположения компонента (папки) в приложении. Если пространством имен корня приложения является `BlazorApp`, а компонент `Counter` находится в папке `Pages`:
 
 * Пространством имен компонента `Counter` является `BlazorApp.Pages`.
 * Полным именем компонента является `BlazorApp.Pages.Counter`.
 
-При использовании пользовательских папок, содержащих компоненты, добавьте директиву [`@using`][2] в родительский компонент или в файл *_Imports.razor* приложения. В следующем примере становятся доступными компоненты в папке *Компоненты*:
+При использовании пользовательских папок, содержащих компоненты, добавьте директиву [`@using`][2] в родительский компонент или в файл `_Imports.razor` приложения. В следующем примере становятся доступными компоненты в папке `Components`.
 
 ```razor
 @using BlazorApp.Components
@@ -100,16 +100,16 @@ ms.locfileid: "85103159"
 
 Пространство имен компонента, созданного с помощью Razor, основано на следующем (в порядке приоритета).
 
-* Назначение [`@namespace`][8] в разметке файла Razor ( *.razor*) (`@namespace BlazorSample.MyNamespace`).
+* Назначение [`@namespace`][8] в разметке (`@namespace BlazorSample.MyNamespace`) файла Razor (`.razor`).
 * `RootNamespace` проекта в файле проекта (`<RootNamespace>BlazorSample</RootNamespace>`).
-* Имя проекта, полученное из имени файла проекта (*CSPROJ*), и путь из корневого каталога проекта к компоненту. Например, платформа разрешает *{PROJECT ROOT}/Pages/Index.razor* (*BlazorSample.csproj*) в пространство имен `BlazorSample.Pages`. Компоненты соответствуют правилам привязки имен C#. Для компонента `Index` в этом примере компонентами в области действия являются все компоненты:
-  * в той же папке *Pages*;
+* Имя проекта, полученное из имени файла проекта (`.csproj`), и путь из корневого каталога проекта к компоненту. Например, платформа разрешает `{PROJECT ROOT}/Pages/Index.razor` (`BlazorSample.csproj`) в пространство имен `BlazorSample.Pages`. Компоненты соответствуют правилам привязки имен C#. Для компонента `Index` в этом примере компонентами в области действия являются все компоненты:
+  * в этой же папке `Pages`;
   * в корневой папке проекта, которая не задает другое пространство имен явным образом.
 
 > [!NOTE]
 > Квалификация `global::` не поддерживается.
 >
-> Импорт компонентов с инструкциями [using](/dotnet/csharp/language-reference/keywords/using-statement) с псевдонимами (например, `@using Foo = Bar`) не поддерживается.
+> Импорт компонентов с инструкциями [`using`](/dotnet/csharp/language-reference/keywords/using-statement), содержащими псевдонимы, (например, `@using Foo = Bar`) не поддерживается.
 >
 > Частично определенные имена не поддерживаются. Например, добавление `@using BlazorSample` и ссылка на компонент `NavMenu` (`NavMenu.razor`) с помощью `<Shared.NavMenu></Shared.NavMenu>` не поддерживаются.
 
@@ -122,7 +122,7 @@ ms.locfileid: "85103159"
 
 В следующем примере показан компонент `Counter` по умолчанию с блоком [`@code`][1] в приложении, созданном из шаблона Blazor. Разметка HTML, код Razor и код C# находятся в одном файле.
 
-*Counter.razor*:
+`Pages/Counter.razor`.
 
 ```razor
 @page "/counter"
@@ -145,7 +145,7 @@ ms.locfileid: "85103159"
 
 Компонент `Counter` также можно создать, используя файл кода программной части с разделяемым классом:
 
-*Counter.razor*:
+`Pages/Counter.razor`.
 
 ```razor
 @page "/counter"
@@ -157,7 +157,7 @@ ms.locfileid: "85103159"
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 ```
 
-*Counter.razor.cs*:
+`Counter.razor.cs`.
 
 ```csharp
 namespace BlazorApp.Pages
@@ -189,7 +189,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 Директиву [`@inherits`][6] можно использовать для указания базового класса для компонента. В следующем примере показано, как компонент может наследовать базовый класс `BlazorRocksBase`, чтобы предоставить свойства и методы компонента. Базовый класс должен быть производным от <xref:Microsoft.AspNetCore.Components.ComponentBase>.
 
-*Pages/BlazorRocks.razor*:
+`Pages/BlazorRocks.razor`.
 
 ```razor
 @page "/BlazorRocks"
@@ -198,7 +198,7 @@ using Microsoft.AspNetCore.Components.Web;
 <h1>@BlazorRocksText</h1>
 ```
 
-*BlazorRocksBase.cs*:
+`BlazorRocksBase.cs`.
 
 ```csharp
 using Microsoft.AspNetCore.Components;
@@ -217,13 +217,13 @@ namespace BlazorSample
 
 Компоненты могут включать другие компоненты, объявляя их с помощью синтаксиса HTML-элементов. Разметка для использования компонента выглядит как тег HTML с именем, соответствующем типу компонента.
 
-Следующая разметка в *Index.razor* визуализирует экземпляр `HeadingComponent`:
+Следующая разметка в `Pages/Index.razor` преобразовывает экземпляр `HeadingComponent` для просмотра.
 
 ```razor
 <HeadingComponent />
 ```
 
-*Components/HeadingComponent.razor*:
+`Components/HeadingComponent.razor`.
 
 [!code-razor[](index/samples_snapshot/HeadingComponent.razor)]
 
@@ -235,25 +235,25 @@ namespace BlazorSample
 
 Компоненты могут принимать параметры маршрута из шаблона маршрута, указанного в директиве [`@page`][9]. Маршрутизатор использует параметры маршрута для заполнения соответствующих параметров компонента.
 
-*Pages/RouteParameter.razor*:
+`Pages/RouteParameter.razor`.
 
 [!code-razor[](index/samples_snapshot/RouteParameter.razor?highlight=2,7-8)]
 
 Необязательные параметры не поддерживаются, поэтому в предыдущем примере применяются две директивы [`@page`][9]. Первая позволяет переходить к компоненту без параметра. Вторая директива [`@page`][9] принимает параметр маршрута `{text}` и присваивает значение свойству `Text`.
 
-Синтаксис *универсального* параметра (`*`/`**`) **не** поддерживается в компонентах Razor ( *.razor*).
+Синтаксис параметра *catch-all* (`*`/`**`), который захватывает путь через границы нескольких папок, **не** поддерживается в компонентах Razor (`.razor`).
 
 ### <a name="component-parameters"></a>Параметры компонентов
 
 Компоненты могут иметь *параметры*, определяемые с помощью открытых свойств в классе компонента с атрибутом [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute). Используйте атрибуты, чтобы указать аргументы для компонента в разметке.
 
-*Components/ChildComponent.razor*:
+`Components/ChildComponent.razor`.
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=2,11-12)]
 
 В следующем примере из примера приложения `ParentComponent` задает значение свойства `Title` для `ChildComponent`.
 
-*Pages/ParentComponent.razor*:
+`Pages/ParentComponent.razor`.
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
@@ -266,7 +266,7 @@ namespace BlazorSample
 
 В следующем примере `ChildComponent` имеет свойство `ChildContent`, представляющее <xref:Microsoft.AspNetCore.Components.RenderFragment>, который представляет сегмент пользовательского интерфейса для отрисовки. Значение `ChildContent` находится в том месте разметки компонента, где должно быть визуализировано содержимое. Значение `ChildContent` принимается от родительского компонента и визуализируется внутри `panel-body` панели начальной загрузки.
 
-*Components/ChildComponent.razor*:
+`Components/ChildComponent.razor`.
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
 
@@ -275,7 +275,7 @@ namespace BlazorSample
 
 `ParentComponent` в примере приложения может предоставить содержимое для отрисовки `ChildComponent`, заключив содержимое в теги `<ChildComponent>`.
 
-*Pages/ParentComponent.razor*:
+`Pages/ParentComponent.razor`.
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=7-8)]
 
@@ -351,13 +351,13 @@ namespace BlazorSample
 
 Расположение [`@attributes`][3] относительно положения атрибутов элемента имеет значение. Когда выполняется сплаттинг [`@attributes`][3] для элемента, атрибуты обрабатываются справа налево (от последнего к первому). Рассмотрим следующий пример компонента, использующего компонент `Child`:
 
-*ParentComponent.razor*:
+`ParentComponent.razor`.
 
 ```razor
 <ChildComponent extra="10" />
 ```
 
-*ChildComponent.razor*:
+`ChildComponent.razor`.
 
 ```razor
 <div @attributes="AdditionalAttributes" extra="5" />
@@ -374,13 +374,13 @@ public IDictionary<string, object> AdditionalAttributes { get; set; }
 
 В следующем примере порядок `extra` и [`@attributes`][3] в `<div>` компонента `Child` изменен на противоположный:
 
-*ParentComponent.razor*:
+`ParentComponent.razor`.
 
 ```razor
 <ChildComponent extra="10" />
 ```
 
-*ChildComponent.razor*:
+`ChildComponent.razor`.
 
 ```razor
 <div extra="5" @attributes="AdditionalAttributes" />
@@ -418,7 +418,7 @@ public IDictionary<string, object> AdditionalAttributes { get; set; }
 При отрисовке компонента поле `loginDialog` заполняется экземпляром дочернего компонента `MyLoginDialog`. Затем можно вызывать методы .NET в экземпляре компонента.
 
 > [!IMPORTANT]
-> Переменная `loginDialog` заполняется только после отрисовки компонента, а ее выходные данные включают элемент `MyLoginDialog`. До этого момента ссылаться не на что. Для управления ссылками на компоненты после завершения отрисовки компонента используйте [методы OnAfterRenderAsync или OnAfterRender](xref:blazor/components/lifecycle#after-component-render).
+> Переменная `loginDialog` заполняется только после отрисовки компонента, а ее выходные данные включают элемент `MyLoginDialog`. До этого момента ссылаться не на что. Для управления ссылками на компоненты после завершения отрисовки компонента используйте [методы `OnAfterRenderAsync` или `OnAfterRender`](xref:blazor/components/lifecycle#after-component-render).
 
 Сведения о ссылках на компоненты в цикле см. в разделе [Получение ссылок на несколько схожих дочерних компонентов (dotnet/aspnetcore #13358)](https://github.com/dotnet/aspnetcore/issues/13358).
 
@@ -706,7 +706,7 @@ public class NotifierService
 Для получения дополнительной информации см. <xref:mvc/views/razor>.
 
 > [!WARNING]
-> Некоторые атрибуты HTML, такие как [, aria-pressed](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), работают неправильно, если типом .NET является `bool`. В этих случаях используйте тип `string` вместо `bool`.
+> Некоторые атрибуты HTML, такие как [`aria-pressed`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), работают неправильно, если типом .NET является `bool`. В этих случаях используйте тип `string` вместо `bool`.
 
 ## <a name="raw-html"></a>Необработанный HTML-код
 
@@ -762,9 +762,9 @@ public class NotifierService
 
 ## <a name="static-assets"></a>Статические ресурсы.
 
-Blazor соответствует соглашению для приложений ASP.NET Core о размещении статических ресурсов в [корневом веб-каталоге (wwwroot)](xref:fundamentals/index#web-root) проекта.
+Blazor соответствует соглашению для приложений ASP.NET Core о размещении статических ресурсов в [папке `web root (wwwroot)`](xref:fundamentals/index#web-root) проекта.
 
-Используйте базовый относительный путь (`/`) для ссылки на корневой веб-каталог статического ресурса. В следующем примере *logo.png* физически находится в папке *{PROJECT ROOT}/wwwroot/images*:
+Используйте базовый относительный путь (`/`) для ссылки на корневой веб-каталог статического ресурса. В следующем примере `logo.png` физически находится в папке `{PROJECT ROOT}/wwwroot/images`.
 
 ```razor
 <img alt="Company logo" src="/images/logo.png" />
@@ -776,17 +776,17 @@ Blazor соответствует соглашению для приложени
 
 ## <a name="tag-helpers-arent-supported-in-components"></a>Вспомогательные функции тегов в компонентах не поддерживаются
 
-[Вспомогательные функции тегов](xref:mvc/views/tag-helpers/intro) не поддерживаются в компонентах Razor (файлы *.razor*). Чтобы обеспечить функциональные возможности, аналогичные вспомогательным функциям тегов, в Blazor, создайте компонент с теми же функциональными возможностями, что и вспомогательная функция тега, и используйте его вместо нее.
+[`Tag Helpers`Razor не поддерживаются в компонентах ](xref:mvc/views/tag-helpers/intro) (файлы с расширением `.razor`). Чтобы обеспечить функциональные возможности, аналогичные вспомогательным функциям тегов, в Blazor, создайте компонент с теми же функциональными возможностями, что и вспомогательная функция тега, и используйте его вместо нее.
 
 ## <a name="scalable-vector-graphics-svg-images"></a>Изображения SVG
 
-Так как Blazor отображает визуализирует HTML-код, поддерживаемые браузером изображения, включая изображения *SVG*, поддерживаются с помощью тега `<img>`:
+Так как Blazor выполняет рендеринг HTML-кода, поддерживаемые браузером изображения, включая изображения SVG (`.svg`), поддерживаются при использовании тега `<img>`.
 
 ```html
 <img alt="Example image" src="some-image.svg" />
 ```
 
-Аналогичным образом изображения SVG поддерживаются в правилах CSS файла таблицы стилей (*CSS*):
+Аналогичным образом изображения SVG поддерживаются в правилах CSS файла таблицы стилей (`.css`).
 
 ```css
 .my-element {
@@ -794,7 +794,7 @@ Blazor соответствует соглашению для приложени
 }
 ```
 
-Однако встроенная разметка SVG не поддерживается во всех сценариях. Если поместить тег `<svg>` непосредственно в файл компонента (*RAZOR*), то базовая отрисовка изображений доступна, но многие расширенные сценарии пока не поддерживаются. Например, теги `<use>` сейчас не учитываются, а с некоторыми тегами SVG невозможно использовать [`@bind`][10]. Дополнительные сведения см. в [справке по SVG в Blazor (dotnet/aspnetcore#18271)](https://github.com/dotnet/aspnetcore/issues/18271).
+Однако встроенная разметка SVG не поддерживается во всех сценариях. Если поместить тег `<svg>` непосредственно в файл компонента (`.razor`), базовая отрисовка изображений будет доступной, но многие расширенные сценарии пока не поддерживаются. Например, теги `<use>` сейчас не учитываются, а с некоторыми тегами SVG невозможно использовать [`@bind`][10]. Дополнительные сведения см. в [справке по SVG в Blazor (dotnet/aspnetcore#18271)](https://github.com/dotnet/aspnetcore/issues/18271).
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

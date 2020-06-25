@@ -13,16 +13,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: a8604ca6ea60386bb3c54c950205ee695d37c689
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 2811e08fd2f6c66112ffa0bb40f474158f4c7a59
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103141"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292689"
 ---
 # <a name="secure-aspnet-core-blazor-server-apps"></a>Безопасные приложения ASP.NET Core Blazor Server
 
 Автор [Люк Латэм](https://github.com/guardrex) (Luke Latham)
+
+Blazor Серверные приложения настраиваются для обеспечения безопасности так же, как приложения ASP.NET Core. Дополнительные сведения см. в статьях в документе <xref:security/index>. Разделы в этом обзоре посвящены Blazor Server. 
 
 ## <a name="blazor-server-project-template"></a>Шаблон проекта "Сервер Blazor"
 
@@ -67,7 +69,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 * Создайте папку для проекта.
 * Дайте проекту имя.
 
-Подробнее см. статью о команде [dotnet new](/dotnet/core/tools/dotnet-new) в руководстве по .NET Core.
+См. сведения о команде [`dotnet new`](/dotnet/core/tools/dotnet-new) в руководстве по .NET Core.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
@@ -101,13 +103,9 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 * Создайте папку для проекта.
 * Дайте проекту имя.
 
-Подробнее см. статью о команде [dotnet new](/dotnet/core/tools/dotnet-new) в руководстве по .NET Core.
+См. сведения о команде [`dotnet new`](/dotnet/core/tools/dotnet-new) в руководстве по .NET Core.
 
 ---
-
-## <a name="secure-an-existing-app"></a>Защита существующего приложения
-
-Blazor Серверные приложения настраиваются для обеспечения безопасности так же, как приложения ASP.NET Core. Дополнительные сведения см. в статьях в документе <xref:security/index>.
 
 ## <a name="scaffold-identity"></a>Формирование шаблонов Identity
 

@@ -12,14 +12,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/add-user-data
-ms.openlocfilehash: 29c23e10d11eb1042b64fc071c221a9ead857fcc
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 6b4de0a47cd7882852512040a08832942f20aa4c
+ms.sourcegitcommit: 1833870ad0845326fb764fef1b530a07b9b5b099
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777336"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85347116"
 ---
-# <a name="add-download-and-delete-custom-user-data-to-identity-in-an-aspnet-core-project"></a>Добавление, скачивание и удаление настраиваемых данных пользователя для идентификации в проекте ASP.NET Core
+# <a name="add-download-and-delete-custom-user-data-to-identity-in-an-aspnet-core-project"></a>Добавление, скачивание и удаление пользовательских данных Identity в проекте ASP.NET Core
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -28,7 +28,7 @@ ms.locfileid: "82777336"
 * Добавление настраиваемых пользовательских данных в веб-приложение ASP.NET Core.
 * Пометьте пользовательскую модель данных <xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute> атрибутом, чтобы она автоматически была доступна для скачивания и удаления. Обеспечение возможности загрузки и удаления данных помогает удовлетворить требования [GDPR](xref:security/gdpr) .
 
-Пример проекта создается на основе веб-приложения Razor Pages, но эти инструкции похожи на ASP.NET Core веб-приложения MVC.
+Пример проекта создается на основе Razor веб-приложения для страниц, но эти инструкции похожи на ASP.NET Core веб-приложение MVC.
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/add-user-data) ([как скачивать](xref:index#how-to-download-a-sample))
 
@@ -46,7 +46,7 @@ ms.locfileid: "82777336"
 
 ::: moniker-end
 
-## <a name="create-a-razor-web-app"></a>Создание веб-приложения Razor
+## <a name="create-a-razor-web-app"></a>Создание Razor веб-приложения
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -79,20 +79,20 @@ dotnet new webapp -o WebApp1
 
 ---
 
-## <a name="run-the-identity-scaffolder"></a>Запуск шаблона удостоверений
+## <a name="run-the-identity-scaffolder"></a>Запуск Identity механизма формирования шаблонов
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* В **Обозреватель решений**щелкните правой кнопкой мыши проект > **Добавить** > **Новый**шаблонный элемент.
-* В левой области диалогового окна **Добавление шаблона** выберите **удостоверение** > **Добавить**.
-* В диалоговом окне **Добавление удостоверения** выполните следующие действия.
+* В **Обозреватель решений**щелкните правой кнопкой мыши проект > **Добавить**  >  **Новый**шаблонный элемент.
+* В левой области диалогового окна **Добавление шаблона** выберите **Identity**  >  **Добавить**.
+* В диалоговом окне **Добавить можно задать Identity ** следующие параметры.
   * Выберите существующий файл макета *~/пажес/шаред/_layout. cshtml*
   * Выберите следующие файлы для переопределения:
     * **Учетная запись или регистр**
     * **Учетная запись/управление/индекс**
   * Нажмите **+** кнопку, чтобы создать новый **класс контекста данных**. Примите тип ("имя_проекта **. Models. WebApp1Context** ", если проект называется " **APP1**").
   * Нажмите **+** кнопку, чтобы создать новый **класс пользователя**. Примите тип (**WebApp1User** , если проект называется "имя_проекта **") >** **добавить**.
-* Нажмите кнопку **Добавить**.
+* Нажмите **Добавить**.
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli)
 
@@ -109,13 +109,13 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
 ```
 
-Выполните следующую команду, чтобы вывести список параметров шаблона удостоверений:
+Выполните следующую команду, чтобы вывести список Identity параметров шаблона:
 
 ```dotnetcli
 dotnet aspnet-codegenerator identity -h
 ```
 
-В папке проекта запустите механизм формирования идентификаторов:
+В папке проекта запустите программу Identity формирования шаблонов:
 
 ```dotnetcli
 dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account.Manage.Index
@@ -132,12 +132,12 @@ dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account
   * Регистрация пользователя
   * Выберите новое имя пользователя (рядом с ссылкой для **выхода** ). Может потребоваться развернуть окно или выбрать значок панели навигации, чтобы отобразить имя пользователя и другие ссылки.
   * Перейдите на вкладку **личные данные** .
-  * Нажмите кнопку **скачать** и рассмотрели файл *персоналдата. JSON* .
+  * Нажмите кнопку **скачать** и проверите *PersonalData.js* файла.
   * Протестируйте кнопку **Удалить** , которая удаляет пользователя, выполнившего вход в систему.
 
-## <a name="add-custom-user-data-to-the-identity-db"></a>Добавление настраиваемых данных пользователя в базу данных удостоверений
+## <a name="add-custom-user-data-to-the-identity-db"></a>Добавление пользовательских данных в базу данных Identity
 
-Обновите `IdentityUser` производный класс с помощью пользовательских свойств. Если вы назвали имя проекта Project, файл будет называться *Areas/Identity/Data/WebApp1User. CS*. Обновите файл, используя следующий код:
+Обновите `IdentityUser` производный класс с помощью пользовательских свойств. Если вы назвали имя проекта Project, файл будет называться *Areas/ Identity /Data/WebApp1User.CS*. Обновите файл, используя следующий код:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -153,18 +153,18 @@ dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account
 
 Свойства с атрибутом [персоналдата](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute) :
 
-* Удаляется при вызове `UserManager.Delete`страницы Razor *Areas/Identity/Pages/Account/Manage/делетеперсоналдата. cshtml* .
-* Включается в Скачанные данные на странице Razor *Areas/Identity/Pages/Account/Manage/довнлоадперсоналдата. cshtml* .
+* Удаляется при вызове страницы *Areas/ Identity /Пажес/аккаунт/манаже/делетеперсоналдата.кштмл* Razor `UserManager.Delete` .
+* Включается в Скачанные данные на странице *Areas/ Identity /Пажес/аккаунт/манаже/довнлоадперсоналдата.кштмл* Razor .
 
 ### <a name="update-the-accountmanageindexcshtml-page"></a>Обновление страницы "учетная запись/управление/индекс. cshtml"
 
-Обновите `InputModel` в *области, идентификатор, страницы/учетная запись/управление/индекс. cshtml. CS* со следующим выделенным кодом:
+Обновите `InputModel` *область в области/ Identity /Пажес/аккаунт/манаже/индекс.кштмл.КС* , дополнив выделение следующим выделенным кодом:
 
 ::: moniker range=">= aspnetcore-3.0"
 
 [!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=24-32,48-49,96-104,106)]
 
-Обновите *области, идентификаторы, страницы, учетные записи, а также управление/index. cshtml* с помощью следующей выделенной разметки:
+Обновите *области/ Identity /Пажес/аккаунт/манаже/индекс.кштмл* со следующей выделенной разметкой:
 
 [!code-cshtml[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25)]
 
@@ -174,7 +174,7 @@ dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account
 
 [!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=28-36,63-64,98-106,119)]
 
-Обновите *области, идентификаторы, страницы, учетные записи, а также управление/index. cshtml* с помощью следующей выделенной разметки:
+Обновите *области/ Identity /Пажес/аккаунт/манаже/индекс.кштмл* со следующей выделенной разметкой:
 
 [!code-cshtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=35-42)]
 
@@ -182,13 +182,13 @@ dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account
 
 ### <a name="update-the-accountregistercshtml-page"></a>Обновление страницы "учетная запись/регистрация. cshtml"
 
-Обновите `InputModel` в *области, идентификатор, страницы, учетная запись/Register. cshtml. CS* со следующим выделенным кодом:
+Обновите `InputModel` *область в области/ Identity /Пажес/аккаунт/регистер.кштмл.КС* , дополнив выделение следующим выделенным кодом:
 
 ::: moniker range=">= aspnetcore-3.0"
 
 [!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=30-38,70-71)]
 
-Обновите *области, идентификаторы, страницы, учетную запись или Register. cshtml* со следующей выделенной разметкой:
+Обновите *области/ Identity /Пажес/аккаунт/регистер.кштмл* со следующей выделенной разметкой:
 
 [!code-cshtml[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
@@ -198,7 +198,7 @@ dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account
 
 [!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=28-36,67,66)]
 
-Обновите *области, идентификаторы, страницы, учетную запись или Register. cshtml* со следующей выделенной разметкой:
+Обновите *области/ Identity /Пажес/аккаунт/регистер.кштмл* со следующей выделенной разметкой:
 
 [!code-cshtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
@@ -235,9 +235,12 @@ dotnet ef database update
 * Просмотр настраиваемых данных пользователя на `/Identity/Account/Manage` странице.
 * Скачайте и просмотрите персональные данные пользователей на `/Identity/Account/Manage/PersonalData` странице.
 
-## <a name="add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser"></a>Добавление утверждений Identity для использования иусерклаимспринЦипалфактори<ApplicationUser>
+## <a name="add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser"></a>Добавление утверждений для Identity использования иусерклаимспринЦипалфактори<ApplicationUser>
 
-Дополнительные утверждения можно добавить в ASP.NET Core Identity с помощью `IUserClaimsPrincipalFactory<T>` интерфейса. Этот класс можно добавить в приложение в `Startup.ConfigureServices` методе. Добавьте пользовательскую реализацию класса следующим образом:
+> [!NOTE]
+> Этот раздел не является расширением предыдущего руководства. Чтобы применить следующие действия к приложению, созданному с помощью учебника, см. [эту ошибку в GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/18797).
+
+Дополнительные утверждения можно добавить в ASP.NET Core с Identity помощью `IUserClaimsPrincipalFactory<T>` интерфейса. Этот класс можно добавить в приложение в `Startup.ConfigureServices` методе. Добавьте пользовательскую реализацию класса следующим образом:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -259,7 +262,7 @@ public class ApplicationUser : IdentityUser
 }
 ```
 
-Класс `AdditionalUserClaimsPrincipalFactory` реализует интерфейс `UserClaimsPrincipalFactory`. Новое утверждение роли добавляется в `ClaimsPrincipal`.
+Класс `AdditionalUserClaimsPrincipalFactory` реализует интерфейс `UserClaimsPrincipalFactory`. Новое утверждение роли добавляется в `ClaimsPrincipal` .
 
 ```csharp
 public class AdditionalUserClaimsPrincipalFactory 

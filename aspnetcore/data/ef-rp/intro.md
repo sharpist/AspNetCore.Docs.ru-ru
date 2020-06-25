@@ -1,20 +1,37 @@
 ---
-title: Razor Pages с Entity Framework Core в ASP.NET Core: учебник 1 из 8 author: rick-anderson description: Узнайте, как создать приложение Razor Pages с помощью Entity Framework ms.author: riande ms.custom: "mvc, seodec18" ms.date: 09/26/2019 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR] uid: data/ef-rp/intro
+title: 'Использование Razor Pages с Entity Framework Core в ASP.NET Core: руководство 1 из 8'
+author: rick-anderson
+description: Сведения о том, как создать приложение Razor Pages с помощью Entity Framework Core
+ms.author: riande
+ms.custom: mvc, seodec18
+ms.date: 09/26/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: data/ef-rp/intro
+ms.openlocfilehash: a6915da23124b7ed4bfaa982692635f9fc75f96a
+ms.sourcegitcommit: 726b8c5cf92e6f6a4d0205787b19307e889d6240
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "82967521"
 ---
-
-# <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pages с Entity Framework Core в ASP.NET Core: учебник 1 из 8
+# <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Использование Razor Pages с Entity Framework Core в ASP.NET Core: руководство 1 из 8
 
 Авторы: [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Это первый учебник из серии, посвященной использованию Entity Framework (EF) Core в приложении [Razor Pages на основе ASP.NET Core](xref:razor-pages/index). В учебниках создается веб-сайт для вымышленного университета Contoso. На сайте предусмотрены различные функции, в том числе прием учащихся, создание курсов и назначение преподавателей. В этом руководстве используется подход Code First. См. сведения о работе с этим руководством при использовании подхода Database First в [этой проблеме GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
+Это первое руководство из серии, посвященной использованию Entity Framework (EF) Core в приложении [ASP.NET Core Razor Pages](xref:razor-pages/index). В учебниках создается веб-сайт для вымышленного университета Contoso. На сайте предусмотрены различные функции, в том числе прием учащихся, создание курсов и назначение преподавателей. В этом руководстве используется подход Code First. См. сведения о работе с этим руководством при использовании подхода Database First в [этой проблеме GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
 [Скачайте или ознакомьтесь с готовым приложением.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Указания по скачиванию](xref:index#how-to-download-a-sample).
 
 ## <a name="prerequisites"></a>Предварительные требования
 
-* Если у вас нет опыта работы с Razor Pages, ознакомьтесь с серией учебников [Начало работы с Razor Pages](xref:tutorials/razor-pages/razor-pages-start), прежде чем приступать к изучению этого учебника.
+* Если у вас нет опыта работы с Razor Pages, ознакомьтесь с серией руководств [Начало работы с Razor Pages](xref:tutorials/razor-pages/razor-pages-start), прежде чем приступать к изучению этого руководства.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -193,14 +210,14 @@ EF Core воспринимает свойство как внешний ключ
 В этом разделе вы используете средство формирования шаблонов ASP.NET Core для создания указанных ниже компонентов.
 
 * Класс *контекста* EF Core. Контекст —это основной класс, который координирует функциональные возможности Entity Framework для определенной модели данных. Он является производным от класса `Microsoft.EntityFrameworkCore.DbContext`.
-* Страницы Razor, обрабатывающие операции создания, чтения, обновления и удаления (CRUD) для сущности `Student`.
+* Razor Pages с поддержкой операций создания, чтения, обновления и удаления (CRUD) для сущности `Student`.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * В папке *Pages* создайте папку *Students*.
 * В **обозревателе решений** щелкните правой кнопкой мыши папку *Pages/Students* и выберите **Добавить** > **Создать шаблонный элемент**.
 * В диалоговом окне **Добавление шаблона** щелкните **Razor Pages на основе Entity Framework (CRUD)** > **Добавить**.
-* В диалоговом окне **Добавить Razor Pages с помощью Entity Framework (CRUD)** выполните указанные ниже действия.
+* В диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** сделайте следующее:
   * В раскрывающемся списке **Класс модели** выберите **Student (ContosoUniversity.Models)** .
   * В строке **Класс контекста данных** щелкните знак плюса ( **+** ).
   * Измените имя контекста данных с *ContosoUniversity.Models.ContosoUniversityContext* на *ContosoUniversity.Data.SchoolContext*.
@@ -302,7 +319,7 @@ LocalDB — это упрощенная версия ядра СУБД SQL Serve
 
 Так как набор сущностей содержит несколько сущностей, свойства DBSet должны иметь имена во множественном числе. Так как средство формирования шаблонов создало DBSet `Student`, в этом шаге его имя меняется на имя во множественном числе: `Students`. 
 
-Чтобы код Razor Pages соответствовал новому имени DBSet, измените `_context.Student` на `_context.Students` в рамках всего проекта.  Всего это имя встречается 8 раз.
+Чтобы код Razor Pages соответствовал новому имени DBSet, измените `_context.Student` на `_context.Students` во всем проекте.  Всего это имя встречается 8 раз.
 
 Выполните сборку проекта и убедитесь в отсутствии ошибок компилятора.
 
@@ -443,7 +460,7 @@ public async Task OnGetAsync()
 
 ::: moniker range="< aspnetcore-3.0"
 
-На примере учебного веб-приложения "Университет Contoso" демонстрируется процесс создания веб-приложений Razor Pages ASP.NET Core с помощью Entity Framework (EF) Core.
+На примере веб-приложения Contoso University показано, как создать веб-приложение Razor Pages ASP.NET Core с помощью Entity Framework (EF) Core.
 
 В этом примере приложения реализуется веб-сайт вымышленного университета Contoso. На нем предусмотрены различные функции, в том числе прием учащихся, создание курсов и назначение преподавателей. Это первое руководство из серии, в котором описывается создание примера приложения для университета Contoso.
 
@@ -461,7 +478,7 @@ public async Task OnGetAsync()
 
 ---
 
-Знакомство с [Razor Pages](xref:razor-pages/index). Новые программисты должны изучить статью [Начало работы с Razor Pages](xref:tutorials/razor-pages/razor-pages-start), прежде чем приступать к этой серии.
+Опыт работы с [Razor Pages](xref:razor-pages/index). Начинающие программисты должны изучить статью [Начало работы с Razor Pages](xref:tutorials/razor-pages/razor-pages-start), прежде чем приступать к этой серии.
 
 ## <a name="troubleshooting"></a>Устранение неполадок
 
@@ -477,7 +494,7 @@ public async Task OnGetAsync()
 
 ![Страница редактирования учащихся](intro/_static/student-edit.png)
 
-Стиль пользовательского интерфейса для этого сайта близок к обеспечиваемому встроенными шаблонами. Это руководство посвящено EF Core с Razor Pages, а не пользовательскому интерфейсу.
+Стиль пользовательского интерфейса для этого сайта близок к обеспечиваемому встроенными шаблонами. Это руководство посвящено использованию EF Core с Razor Pages, а не работе с пользовательским интерфейсом.
 
 ## <a name="create-the-contosouniversity-razor-pages-web-app"></a>Создание веб-приложения Razor Pages ContosoUniversity
 
@@ -582,7 +599,7 @@ EF Core воспринимает свойство как внешний ключ
 * В **обозревателе решений** щелкните правой кнопкой мыши папку *Pages/Students* и выберите **Добавить** > **Создать шаблонный элемент**.
 * В диалоговом окне **Добавление шаблона** щелкните **Razor Pages на основе Entity Framework (CRUD)** > **Добавить**.
 
-Заполните поля в диалоговом окне **Добавить Razor Pages с помощью Entity Framework (CRUD)** :
+Заполните поля в диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** :
 
 * В раскрывающемся списке **Класс модели** выберите **Student (ContosoUniversity.Models)** .
 * В строке **Класс контекста данных** щелкните значок плюса ( **+** ) и измените автоматически присвоенное имя на **ContosoUniversity.Models.SchoolContext**.
