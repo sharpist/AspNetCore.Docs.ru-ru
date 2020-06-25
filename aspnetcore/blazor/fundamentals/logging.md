@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/logging
-ms.openlocfilehash: b0448d5f6e5e16a726eb2274dcacb4dfa8314b5d
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 841c4021d9217312b2601b0e775542c6455cca82
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103328"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240876"
 ---
 # <a name="aspnet-core-blazor-logging"></a>Ведение журналов ASP.NET Core Blazor
 
@@ -39,7 +39,7 @@ builder.Logging.AddProvider(new CustomLoggingProvider());
 
 Свойство `Logging` имеет тип <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, поэтому все методы расширения, доступные в <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, также доступны в `Logging`.
 
-Конфигурацию ведения журнала можно загрузить из файлов параметров приложения. Для получения дополнительной информации см. <xref:blazor/fundamentals/logging>.
+Конфигурацию ведения журнала можно загрузить из файлов параметров приложения. Для получения дополнительной информации см. <xref:blazor/fundamentals/configuration#logging-configuration>.
 
 ## <a name="blazor-server"></a>Сервер Blazor
 
