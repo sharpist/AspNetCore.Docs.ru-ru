@@ -12,7 +12,7 @@
       href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Начало работы
   uid: getting-started
-- name: заметки о выпуске;
+- name: Заметки о выпуске
   items:
     - name: "Новые возможности версии\_3.1"
       uid: aspnetcore-3.1
@@ -347,7 +347,7 @@
                   uid: blazor/fundamentals/routing
             - name: Каскадные значения и параметры
               uid: blazor/components/cascading-values-and-parameters
-            - name: 'привязка данных,'
+            - name: Привязка данных
               uid: blazor/components/data-binding
             - name: Обработка событий
               uid: blazor/components/event-handling
