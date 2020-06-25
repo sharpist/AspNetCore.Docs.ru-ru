@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/loadtests
-ms.openlocfilehash: f0c930a7689c7288a58cfc3ca630d3cd324bf2cd
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 0ec69ad783a4e545ea95ddcb928d03ba6a2e0050
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106810"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074375"
 ---
 # <a name="aspnet-core-loadstress-testing"></a>Нагрузочное тестирование в ASP.NET Core
 
@@ -29,15 +29,7 @@ ms.locfileid: "84106810"
 
 Нагрузочные испытания определяют, может ли приложение под нагрузкой восстанавливаться после сбоя и корректно возвращаться к ожидаемому поведению. В условиях нагрузки приложение не запускается в нормальных условиях.
 
-Visual Studio 2019 — это последняя версия Visual Studio, включающая средства нагрузочного тестирования. Клиентам, которым в будущем потребуются средства нагрузочного тестирования, мы рекомендуем использовать альтернативные средства нагрузочного тестирования, такие как Apache JMeter, Akamai CloudTest или BlazeMeter. Дополнительные сведения см. в [заметках о выпуске Visual Studio 2019](/visualstudio/releases/2019/release-notes-v16.0#test-tools).
-
-## <a name="visual-studio-tools"></a>Инструменты Visual Studio
-
-Visual Studio позволяет пользователям создавать, разрабатывать и отлаживать тесты веб-производительности и нагрузочные тесты. Имеется параметр для создания тестов путем записи действий в веб-браузере.
-
-Сведения о создании, настройке и запуске проектов нагрузочных тестов с помощью Visual Studio 2017 см. в разделе [Быстрое начало. Создание проекта нагрузочного тестирования](/visualstudio/test/quickstart-create-a-load-test-project?view=vs-2017).
-
-Нагрузочные тесты можно настроить для локального запуска или запуска в облаке с помощью Azure DevOps.
+Visual Studio 2019 объявил о планах [объявить устаревшим нагрузочное тестирование](https://devblogs.microsoft.com/devops/cloud-based-load-testing-service-eol/). Работа соответствующей облачной службы нагрузочного тестирования Azure DevOps прекращена.
 
 ## <a name="third-party-tools"></a>Сторонние средства
 
@@ -51,4 +43,3 @@ Visual Studio позволяет пользователям создавать, 
 * [West Wind WebSurge](https://websurge.west-wind.com/)
 * [Netling](https://github.com/hallatore/Netling)
 * [Vegeta](https://github.com/tsenart/vegeta)
-

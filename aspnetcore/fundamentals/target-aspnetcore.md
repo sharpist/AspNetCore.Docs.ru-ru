@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/target-aspnetcore
-ms.openlocfilehash: 85c0d850922b7118b101126c09b208b0db420f7e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 70a445d109a1a9553178e94d79df87cd373e6b06
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776491"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103027"
 ---
 # <a name="use-aspnet-core-apis-in-a-class-library"></a>Использование интерфейсов API ASP.NET Core в библиотеке классов
 
@@ -48,7 +48,7 @@ ASP.NET Core соответствует [политике поддержки .NE
 
 ## <a name="include-blazor-extensibility"></a>Включение расширяемости Blazor
 
-Blazor поддерживает [модели размещения](xref:blazor/hosting-models) Server и WebAssembly (WASM). Если не требуется иное, то библиотека [компонентов Razor](xref:blazor/components) должна поддерживать обе модели размещения. Библиотека компонентов Razor должна использовать пакет SDK для [Microsoft.NET.SDK.Razor](xref:razor-pages/sdk).
+Blazor поддерживает [модели размещения](xref:blazor/hosting-models) Server и WebAssembly (WASM). Если не требуется иное, то библиотека [компонентов Razor](xref:blazor/components/index) должна поддерживать обе модели размещения. Библиотека компонентов Razor должна использовать пакет SDK для [Microsoft.NET.Sdk.Razor ](xref:razor-pages/sdk).
 
 ### <a name="support-both-hosting-models"></a>Поддержка обеих моделей размещения
 
@@ -56,7 +56,7 @@ Blazor поддерживает [модели размещения](xref:blazor/
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Используйте шаблон проекта **Библиотека классов Razor**. Снимите флажок **Support pages and views** (Представления и страницы поддержки).
+Используйте шаблон проекта **библиотеки классов Razor** . Снимите флажок **Support pages and views** (Представления и страницы поддержки).
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -68,7 +68,7 @@ dotnet new razorclasslib
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-Используйте шаблон проекта **Библиотека классов Razor**.
+Используйте шаблон проекта **библиотеки классов Razor** .
 
 ---
 
@@ -95,7 +95,7 @@ dotnet new razorclasslib
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-razor-components-library.csproj)]
 
-Дополнительные сведения о библиотеках, содержащих компоненты Razor, см. в статье [ASP.NET Core Razor components class libraries](xref:blazor/class-libraries) (Библиотеки классов компонентов Razor для ASP.NET Core).
+Дополнительные сведения о библиотеках, содержащих компоненты Razor, см. в статье [Библиотеки классов компонентов Razor для ASP.NET Core](xref:blazor/components/class-libraries).
 
 ## <a name="include-mvc-extensibility"></a>Включение расширяемости MVC
 
@@ -109,7 +109,7 @@ dotnet new razorclasslib
 
 ### <a name="razor-views-or-razor-pages"></a>Представления Razor или Razor Pages
 
-Проект, включающий [представления Razor](xref:mvc/views/overview) или [Razor Pages](xref:razor-pages/index), должен использовать [пакет SDK Microsoft.NET.Sdk.Razor](xref:razor-pages/sdk).
+Проект, включающий [представления Razor](xref:mvc/views/overview) или [Razor Pages](xref:razor-pages/index), должен использовать [пакет SDK Microsoft.NET.Sdk.Razor ](xref:razor-pages/sdk).
 
 Если проект предназначен для .NET Core 3.x, для него требуется:
 
@@ -120,7 +120,7 @@ dotnet new razorclasslib
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Используйте шаблон проекта **Библиотека классов Razor**. Установите флажок **Support pages and views** (Представления и страницы поддержки).
+Используйте шаблон проекта **библиотеки классов Razor** . Установите флажок **Support pages and views** (Представления и страницы поддержки).
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -286,6 +286,6 @@ public class ScriptInliningTagHelper : TagHelper
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * <xref:razor-pages/ui-class>
-* <xref:blazor/class-libraries>
+* <xref:blazor/components/class-libraries>
 * [Поддержка реализации .NET](/dotnet/standard/net-standard#net-implementation-support)
 * [Политики поддержки .NET](https://dotnet.microsoft.com/platform/support/policy)

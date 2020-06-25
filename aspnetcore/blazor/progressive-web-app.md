@@ -13,18 +13,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: c935f326afb77de5e083829c0bc2494efb20fec3
-ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
+ms.openlocfilehash: b55619889c294a0cd6ab98ffdf228d86ee60cd7c
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84679622"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102313"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Создание прогрессивных веб-приложений с помощью ASP.NET Core Blazor WebAssembly
 
 Автор: [Стив Сандерсон](https://github.com/SteveSandersonMS) (Steve Sanderson)
 
-Прогрессивное веб-приложение — это одностраничное приложение (SPA), которое использует API и функциональные возможности современного браузера, реализуя свойственное классическим приложениям поведение. Blazor WebAssembly — это стандартизированная клиентская платформа веб-приложений, которая поддерживает API любых браузеров, в том числе API прогрессивных веб-приложений (PWA), необходимые для реализации следующих возможностей:
+Прогрессивное веб-приложение — это обычно одностраничное приложение (SPA), которое использует API и функциональные возможности современного браузера, реализуя свойственное классическим приложениям поведение. Blazor WebAssembly — это стандартизированная клиентская платформа веб-приложений, которая поддерживает API любых браузеров, в том числе API прогрессивных веб-приложений (PWA), необходимые для реализации следующих возможностей:
 
 * работа в автономном режиме и мгновенная загрузка вне зависимости от скорости сети;
 * возможность запуска в отдельном окне приложения, а не только в окне браузера;
@@ -89,7 +89,7 @@ dotnet new blazorwasm -o MyNewProject --pwa
 
 Чтобы ознакомиться с принципами поддержки автономного режима:
 
-1. Опубликуйте приложение. Для получения дополнительной информации см. <xref:host-and-deploy/blazor/index#publish-the-app>.
+1. Опубликуйте приложение. Для получения дополнительной информации см. <xref:blazor/host-and-deploy/index#publish-the-app>.
 1. Разверните приложение на сервере, который поддерживает протокол HTTPS, и получите доступ к приложению в браузере по его защищенному HTTPS-адресу.
 1. Откройте средства разработки браузера и убедитесь, что для узла на вкладке **Приложение** зарегистрирована *рабочая роль службы*.
 
@@ -295,4 +295,4 @@ const shouldServeIndexHtml = event.request.mode === 'navigate'
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* [Согласование независимо от источника для проверки подлинности для SignalR](xref:blazor/hosting-model-configuration#signalr-cross-origin-negotiation-for-authentication)
+* [Согласование независимо от источника для проверки подлинности для SignalR](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
