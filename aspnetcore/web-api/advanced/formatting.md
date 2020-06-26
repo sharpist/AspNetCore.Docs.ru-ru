@@ -7,17 +7,19 @@ ms.custom: H1Hack27Feb2017
 ms.date: 04/17/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 46a1ccbb3b5eeaf1beb3e33bca1b6c7065d6d56a
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: e6b78af3eeb858310eb772fdf0034510c10351c0
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074218"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400366"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Форматирование данных отклика в веб-API ASP.NET Core
 
@@ -31,7 +33,7 @@ ms.locfileid: "85074218"
 
 Некоторые типы результатов действий характерны для определенного формата, например <xref:Microsoft.AspNetCore.Mvc.JsonResult> и <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Действия могут возвращать результаты в определенном формате независимо от настроек клиента. Например, при возврате `JsonResult` возвращаются данные в формате JSON. При возврате `ContentResult` или строки возвращаются строковые данные в формате обычного текста.
 
-Действие не должно возвращать данные конкретного типа. ASP.NET Core поддерживает любое возвращаемое значение объекта.  Результаты из действий, возвращающих объекты, которые не являются типами <xref:Microsoft.AspNetCore.Mvc.IActionResult>, сериализуются с помощью соответствующей реализации <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>. Дополнительные сведения см. в разделе <xref:web-api/action-return-types>.
+Действие не должно возвращать данные конкретного типа. ASP.NET Core поддерживает любое возвращаемое значение объекта.  Результаты из действий, возвращающих объекты, которые не являются типами <xref:Microsoft.AspNetCore.Mvc.IActionResult>, сериализуются с помощью соответствующей реализации <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>. Для получения дополнительной информации см. <xref:web-api/action-return-types>.
 
 Встроенный вспомогательный метод <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> возвращает данные в формате JSON: [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_get)]
 
@@ -141,7 +143,7 @@ services.AddControllers().AddJsonOptions(options =>
 });
 ```
 
-Параметры сериализации выходных данных для отдельных действий можно настроить с помощью `JsonResult`. Пример:
+Параметры сериализации выходных данных для отдельных действий можно настроить с помощью `JsonResult`. Пример.
 
 ```csharp
 public IActionResult Get()
@@ -180,7 +182,7 @@ services.AddControllers().AddNewtonsoftJson(options =>
 });
 ```
 
-Параметры сериализации выходных данных для отдельных действий можно настроить с помощью `JsonResult`. Пример:
+Параметры сериализации выходных данных для отдельных действий можно настроить с помощью `JsonResult`. Пример.
 
 ```csharp
 public IActionResult Get()
@@ -236,7 +238,7 @@ public IActionResult Get()
 
 Без `StringOutputFormatter`, встроенный модуль форматирования JSON форматирует типы возвращаемого значения `string`. Если встроенный модуль форматирования JSON удален и доступен модуль форматирования XML, то типы возвращаемого значения `string` форматирует модуль форматирования XML. В противном случае, `string` типы возвращаемого значения возвращают `406 Not Acceptable`.
 
-Без `HttpNoContentOutputFormatter` объекты со значением null форматируются с помощью настроенного модуля форматирования. Пример:
+Без `HttpNoContentOutputFormatter` объекты со значением null форматируются с помощью настроенного модуля форматирования. Пример.
 
 * Форматировщик JSON возвращает ответ с текстом `null`.
 * Форматировщик XML возвращает пустой XML-элемент с атрибутом `xsi:nil="true"`.
@@ -248,7 +250,7 @@ public IActionResult Get()
 * В строке запроса или в части пути.
 * С использованием расширения файла конкретного формата, такого как XML или JSON.
 
-Сопоставление из пути запроса должно быть указано в маршруте, используемом API. Пример:
+Сопоставление из пути запроса должно быть указано в маршруте, используемом API. Пример.
 
 [!code-csharp[](./formatting/sample/Controllers/ProductsController.cs?name=snippet)]
 

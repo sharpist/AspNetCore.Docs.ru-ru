@@ -7,17 +7,19 @@ ms.author: riande
 ms.date: 12/18/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: 2e604cd1869ea077fc0465df91ec083b9db83763
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b3dcb3a80e8d5150d8513ef558531749d0884568
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768974"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400158"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Привязка модели в ASP.NET Core
 
@@ -29,7 +31,7 @@ ms.locfileid: "82768974"
 
 ## <a name="what-is-model-binding"></a>Что такое привязка модели
 
-Контроллеры Razor и страницы работают с данными, поступающими из HTTP-запросов. Например, данные о маршруте могут предоставлять ключ записи, а опубликованные поля формы могут предоставлять значения для свойств модели. Написание кода для получения этих значений и их преобразования из строк в типы .NET будет утомительной задачей с высоким риском ошибок. Привязка модели позволяет автоматизировать этот процесс. Система привязки модели:
+Контроллеры и Razor страницы работают с данными, поступающими из HTTP-запросов. Например, данные о маршруте могут предоставлять ключ записи, а опубликованные поля формы могут предоставлять значения для свойств модели. Написание кода для получения этих значений и их преобразования из строк в типы .NET будет утомительной задачей с высоким риском ошибок. Привязка модели позволяет автоматизировать этот процесс. Система привязки модели:
 
 * Извлекает данные из различных источников, таких как данные о маршруте, поля формы и строки запроса.
 * Предоставляет данные для контроллеров и Razor страниц в параметрах метода и общих свойствах.
@@ -61,12 +63,12 @@ http://contoso.com/api/pets/2?DogsOnly=true
 
 В приведенном выше примере целевые объекты привязки модели — это параметры методов, которые являются примитивными типами. Целевые объекты также могут быть свойствами сложного типа. После успешной привязки каждого свойства осуществляется [проверка модели](xref:mvc/models/validation) для этого свойства. Записи о данных, привязанных к модели, а также об ошибках привязки или проверки хранятся в [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) или [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). Чтобы узнать об успешном выполнении этого процесса, приложение проверяет наличие флага [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid).
 
-## <a name="targets"></a>Цели
+## <a name="targets"></a>Целевые объекты
 
 Привязка модели попытается найти значения для следующих типов целевых объектов:
 
 * Параметры метода действия контроллера, к которому направлен запрос.
-* Параметры метода обработчика Razor страниц, к которому направляется запрос. 
+* Параметры Razor метода обработчика страниц, к которому направляется запрос. 
 * Открытые свойства контроллера или класса `PageModel`, если задано атрибутами.
 
 ### <a name="bindproperty-attribute"></a>Атрибут [BindProperty]
@@ -93,7 +95,7 @@ http://contoso.com/api/pets/2?DogsOnly=true
 
 1. Поля формы
 1. Текст запроса (для [контроллеров, имеющих атрибут [ApiController]](xref:web-api/index#binding-source-parameter-inference).)
-1. Отправка данных
+1. Данные маршрута
 1. Параметры строки запроса
 1. Отправленные файлы
 
@@ -188,7 +190,7 @@ public class Pet
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-Проверка на стороне клиента приводит к перехвату большинства недопустимых данных, которые в Razor противном случае были бы переданы в форму страниц. Эта проверка затрудняет срабатывание выделенного выше кода. Пример приложения включает кнопку **Отправить с неверной датой**, которая помещает недопустимые данные в поле **Дата приема на работу** и отправляет форму. Эта кнопка показывает, как работает код для повторного отображения страницы, если возникла ошибка преобразования данных.
+Проверка на стороне клиента приводит к перехвату большинства недопустимых данных, которые в противном случае были бы переданы в Razor форму страниц. Эта проверка затрудняет срабатывание выделенного выше кода. Пример приложения включает кнопку **Отправить с неверной датой**, которая помещает недопустимые данные в поле **Дата приема на работу** и отправляет форму. Эта кнопка показывает, как работает код для повторного отображения страницы, если возникла ошибка преобразования данных.
 
 Когда страница отображается повторно приведенным выше кодом, недопустимые входные данные не отображаются в поле формы. Это связано с тем, что свойству модели задано значение NULL или значение по умолчанию. Недопустимые входные данные отображаются в сообщении об ошибке. Но если требуется повторно отобразить неправильные данные в поле формы, возможно, следует сделать свойство модели строкой и выполнить преобразование данных вручную.
 
@@ -201,15 +203,15 @@ public class Pet
 * [Boolean](xref:System.ComponentModel.BooleanConverter)
 * [Byte](xref:System.ComponentModel.ByteConverter), [SByte](xref:System.ComponentModel.SByteConverter)
 * [Char](xref:System.ComponentModel.CharConverter)
-* [Дата и время](xref:System.ComponentModel.DateTimeConverter)
+* [DateTime](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
-* [Десятичное число](xref:System.ComponentModel.DecimalConverter)
+* [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
-* [Перечисления](xref:System.ComponentModel.EnumConverter)
-* [Guid](xref:System.ComponentModel.GuidConverter)
+* [Перечисление](xref:System.ComponentModel.EnumConverter)
+* [Устройства](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
-* [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
+* [Временной](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [URI](xref:System.UriTypeConverter)
 * [Версия](xref:System.ComponentModel.VersionConverter)
@@ -312,7 +314,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="collections"></a>Коллекции
 
-Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
+Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример.
 
 * Предположим, что параметром для привязки является массив с именем `selectedCourses`:
 
@@ -357,7 +359,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="dictionaries"></a>Словари
 
-Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
+Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример.
 
 * Предположим, что целевой параметр является `Dictionary<int, string>` с именем `selectedCourses`:
 
@@ -515,7 +517,7 @@ ASP.NET Core выбирает форматировщики входных дан
 
 ## <a name="what-is-model-binding"></a>Что такое привязка модели
 
-Контроллеры Razor и страницы работают с данными, поступающими из HTTP-запросов. Например, данные о маршруте могут предоставлять ключ записи, а опубликованные поля формы могут предоставлять значения для свойств модели. Написание кода для получения этих значений и их преобразования из строк в типы .NET будет утомительной задачей с высоким риском ошибок. Привязка модели позволяет автоматизировать этот процесс. Система привязки модели:
+Контроллеры и Razor страницы работают с данными, поступающими из HTTP-запросов. Например, данные о маршруте могут предоставлять ключ записи, а опубликованные поля формы могут предоставлять значения для свойств модели. Написание кода для получения этих значений и их преобразования из строк в типы .NET будет утомительной задачей с высоким риском ошибок. Привязка модели позволяет автоматизировать этот процесс. Система привязки модели:
 
 * Извлекает данные из различных источников, таких как данные о маршруте, поля формы и строки запроса.
 * Предоставляет данные для контроллеров и Razor страниц в параметрах метода и общих свойствах.
@@ -547,12 +549,12 @@ http://contoso.com/api/pets/2?DogsOnly=true
 
 В приведенном выше примере целевые объекты привязки модели — это параметры методов, которые являются примитивными типами. Целевые объекты также могут быть свойствами сложного типа. После успешной привязки каждого свойства осуществляется [проверка модели](xref:mvc/models/validation) для этого свойства. Записи о данных, привязанных к модели, а также об ошибках привязки или проверки хранятся в [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) или [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). Чтобы узнать об успешном выполнении этого процесса, приложение проверяет наличие флага [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid).
 
-## <a name="targets"></a>Цели
+## <a name="targets"></a>Целевые объекты
 
 Привязка модели попытается найти значения для следующих типов целевых объектов:
 
 * Параметры метода действия контроллера, к которому направлен запрос.
-* Параметры метода обработчика Razor страниц, к которому направляется запрос. 
+* Параметры Razor метода обработчика страниц, к которому направляется запрос. 
 * Открытые свойства контроллера или класса `PageModel`, если задано атрибутами.
 
 ### <a name="bindproperty-attribute"></a>Атрибут [BindProperty]
@@ -579,7 +581,7 @@ http://contoso.com/api/pets/2?DogsOnly=true
 
 1. Поля формы
 1. Текст запроса (для [контроллеров, имеющих атрибут [ApiController]](xref:web-api/index#binding-source-parameter-inference).)
-1. Отправка данных
+1. Данные маршрута
 1. Параметры строки запроса
 1. Отправленные файлы
 
@@ -674,7 +676,7 @@ public class Pet
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-Проверка на стороне клиента приводит к перехвату большинства недопустимых данных, которые в Razor противном случае были бы переданы в форму страниц. Эта проверка затрудняет срабатывание выделенного выше кода. Пример приложения включает кнопку **Отправить с неверной датой**, которая помещает недопустимые данные в поле **Дата приема на работу** и отправляет форму. Эта кнопка показывает, как работает код для повторного отображения страницы, если возникла ошибка преобразования данных.
+Проверка на стороне клиента приводит к перехвату большинства недопустимых данных, которые в противном случае были бы переданы в Razor форму страниц. Эта проверка затрудняет срабатывание выделенного выше кода. Пример приложения включает кнопку **Отправить с неверной датой**, которая помещает недопустимые данные в поле **Дата приема на работу** и отправляет форму. Эта кнопка показывает, как работает код для повторного отображения страницы, если возникла ошибка преобразования данных.
 
 Когда страница отображается повторно приведенным выше кодом, недопустимые входные данные не отображаются в поле формы. Это связано с тем, что свойству модели задано значение NULL или значение по умолчанию. Недопустимые входные данные отображаются в сообщении об ошибке. Но если требуется повторно отобразить неправильные данные в поле формы, возможно, следует сделать свойство модели строкой и выполнить преобразование данных вручную.
 
@@ -687,15 +689,15 @@ public class Pet
 * [Boolean](xref:System.ComponentModel.BooleanConverter)
 * [Byte](xref:System.ComponentModel.ByteConverter), [SByte](xref:System.ComponentModel.SByteConverter)
 * [Char](xref:System.ComponentModel.CharConverter)
-* [Дата и время](xref:System.ComponentModel.DateTimeConverter)
+* [DateTime](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
-* [Десятичное число](xref:System.ComponentModel.DecimalConverter)
+* [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
-* [Перечисления](xref:System.ComponentModel.EnumConverter)
-* [Guid](xref:System.ComponentModel.GuidConverter)
+* [Перечисление](xref:System.ComponentModel.EnumConverter)
+* [Устройства](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
-* [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
+* [Временной](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [URI](xref:System.UriTypeConverter)
 * [Версия](xref:System.ComponentModel.VersionConverter)
@@ -798,7 +800,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="collections"></a>Коллекции
 
-Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
+Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример.
 
 * Предположим, что параметром для привязки является массив с именем `selectedCourses`:
 
@@ -843,7 +845,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="dictionaries"></a>Словари
 
-Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
+Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример.
 
 * Предположим, что целевой параметр является `Dictionary<int, string>` с именем `selectedCourses`:
 

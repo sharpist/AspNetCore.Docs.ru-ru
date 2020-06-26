@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 5/1/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: f3314458a504af7f44dcdc276de890fa9485a2b3
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 155bdfbeea06022d35bbb551d5b2d0ee5a51a093
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103043"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400821"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Формирование шаблонов Identity в ASP.NET Core проектах
 
@@ -178,7 +180,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-## <a name="scaffold-identity-into-a-blazor-server-project-without-existing-authorization"></a>Формирование шаблонов Identity в Blazor серверном проекте без существующей авторизации
+## <a name="scaffold-identity-into-a-blazor-server-project-without-existing-authorization"></a>Формирование шаблонов Identity в Blazor Server проекте без существующей авторизации
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
@@ -195,7 +197,7 @@ Identityнастраивается в *области/ Identity /IdentityHosting
 * Когда маркеры проверки подлинности подготавливаются и сохраняются в файле cookie проверки подлинности, они могут передаваться компонентам.
 * Razorкомпоненты не могут использовать `HttpContext` напрямую, поэтому не существует способа получить [маркер подделки для защиты от запроса (XSRF)](xref:security/anti-request-forgery) для размещения Identity конечной точки выхода в `/Identity/Account/Logout` . Токен XSRF может быть передан компонентам.
 
-Дополнительные сведения см. в разделе <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+Для получения дополнительной информации см. <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
 В файле *pages/_Host. cshtml* Установите маркер после его добавления в `InitialApplicationState` `TokenProvider` классы и:
 
@@ -289,11 +291,11 @@ TokenProvider.XsrfToken = InitialState.XsrfToken;
 
 ### <a name="style-authentication-endpoints"></a>Конечные точки проверки подлинности стиля
 
-Поскольку Blazor сервер использует Razor Identity страницы страниц, стиль пользовательского интерфейса изменяется при переходе посетителя между Identity страницами и компонентами. Существует два варианта для адресации стилей инконгруаус:
+Поскольку Blazor Server использует Razor Identity страницы страниц, стиль пользовательского интерфейса изменяется при переходе посетителя между Identity страницами и компонентами. Существует два варианта для адресации стилей инконгруаус:
 
 #### <a name="build-identity-components"></a>IdentityКомпоненты сборки
 
-Подход к использованию компонентов Identity вместо страниц заключается в создании Identity компонентов. Поскольку `SignInManager` и `UserManager` не поддерживаются в Razor компонентах, используйте конечные точки API в Blazor серверном приложении для обработки действий с учетной записью пользователя.
+Подход к использованию компонентов Identity вместо страниц заключается в создании Identity компонентов. Поскольку `SignInManager` и `UserManager` не поддерживаются в Razor компонентах, используйте конечные точки API в Blazor Server приложении для обработки действий с учетной записью пользователя.
 
 #### <a name="use-a-custom-layout-with-blazor-app-styles"></a>Использование пользовательского макета с Blazor стилями приложения
 
@@ -360,7 +362,7 @@ IdentityМакет и стили страниц можно изменить дл
   <script src="_framework/blazor.server.js"></script>
   ```
 
-## <a name="scaffold-identity-into-a-blazor-server-project-with-authorization"></a>Формирование шаблонов Identity в Blazor серверный проект с авторизацией
+## <a name="scaffold-identity-into-a-blazor-server-project-with-authorization"></a>Формирование шаблонов Identity в Blazor Server проекте с авторизацией
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
@@ -404,7 +406,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 Чтобы отключить регистрацию пользователей, выполните следующие действия.
 
-* Шаблон Identity . Включить учетную запись. регистрация, учетная запись. Login и Account. Регистерконфирматион. Пример:
+* Шаблон Identity . Включить учетную запись. регистрация, учетная запись. Login и Account. Регистерконфирматион. Пример.
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
@@ -649,7 +651,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 Чтобы отключить регистрацию пользователей, выполните следующие действия.
 
-* Шаблон Identity . Включить учетную запись. регистрация, учетная запись. Login и Account. Регистерконфирматион. Пример:
+* Шаблон Identity . Включить учетную запись. регистрация, учетная запись. Login и Account. Регистерконфирматион. Пример.
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"

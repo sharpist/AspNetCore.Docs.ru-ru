@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 04/06/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/compatibility/replacing-machinekey
-ms.openlocfilehash: 72e736f820ec243a7ad1461fc70e2711ac8b76ee
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: db041ab4939fc7c39ac01cc02e350aca2fbee93e
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777466"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400548"
 ---
 # <a name="replace-the-aspnet-machinekey-in-aspnet-core"></a>Замените ASP.NET machineKey в ASP.NET Core
 
@@ -29,16 +31,16 @@ ms.locfileid: "82777466"
 > [!NOTE]
 > Новую систему защиты данных можно установить только в существующее приложение ASP.NET, предназначенное для .NET 4.5.1 или более поздней версии. Установка завершится ошибкой, если приложение предназначено для .NET 4,5 или более ранней версии.
 
-Чтобы установить новую систему защиты данных в существующий проект ASP.NET 4.5.1 +, установите пакет Microsoft. AspNetCore. Data Protection. SystemWeb. При этом будет создан экземпляр системы защиты данных с использованием параметров [конфигурации по умолчанию](xref:security/data-protection/configuration/default-settings) .
+Чтобы установить новую систему защиты данных в существующий проект ASP.NET 4.5.1 +, установите пакет Microsoft.AspNetCore.DataProtection.SysТемвеб. При этом будет создан экземпляр системы защиты данных с использованием параметров [конфигурации по умолчанию](xref:security/data-protection/configuration/default-settings) .
 
-При установке пакета он вставляет строку в *файл Web. config* , которая указывает ASP.NET использовать ее для [большинства криптографических операций](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/), включая проверку подлинности с помощью форм, состояние представления и вызовы machineKey. Protect. Вставленная строка считывается следующим образом.
+При установке пакета он вставляет строку в *Web.config* , которая указывает ASP.NET использовать ее для [большинства криптографических операций](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/), включая проверку подлинности с помощью форм, состояние представления и вызовы machineKey. Protect. Вставленная строка считывается следующим образом.
 
 ```xml
 <machineKey compatibilityMode="Framework45" dataProtectorType="..." />
 ```
 
 >[!TIP]
-> Вы можете определить, активна ли новая система защиты данных, проверив такие `__VIEWSTATE`поля, как, которые должны начинаться с "CfDJ8", как показано в примере ниже. "CfDJ8" — это представление в формате Base64 заголовка Magic "09 F0 C9 F0", определяющего полезную нагрузку, защищенную системой защиты данных.
+> Вы можете определить, активна ли новая система защиты данных, проверив такие поля `__VIEWSTATE` , как, которые должны начинаться с "CfDJ8", как показано в примере ниже. "CfDJ8" — это представление в формате Base64 заголовка Magic "09 F0 C9 F0", определяющего полезную нагрузку, защищенную системой защиты данных.
 
 ```html
 <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="CfDJ8AWPr2EQPTBGs3L2GCZOpk...">
@@ -75,7 +77,7 @@ namespace DataProtectionDemo
 >[!TIP]
 > Можно также использовать `<machineKey applicationName="my-app" ... />` вместо явного вызова SetApplicationName. Это удобный механизм, позволяющий не заставлять разработчику создавать Датапротектионстартуп-производный тип, если все, что нужно настроить, задает имя приложения.
 
-Чтобы включить эту пользовательскую конфигурацию, вернитесь к Web. config и найдите `<appSettings>` элемент, который пакет установки добавляет в файл конфигурации. Он будет выглядеть, как в следующей разметке:
+Чтобы включить эту пользовательскую конфигурацию, вернитесь к Web.config и найдите `<appSettings>` элемент, который пакет установки добавляет в файл конфигурации. Он будет выглядеть, как в следующей разметке:
 
 ```xml
 <appSettings>

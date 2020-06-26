@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
-ms.openlocfilehash: df978d49201ba1010ddf13b1b9a63ae27116616e
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: c088cb7dd4f446b6a42c63357ccf2a080d852382
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103089"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399248"
 ---
 # <a name="component-tag-helper-in-aspnet-core"></a>Вспомогательная функция тега компонента в ASP.NET Core
 
@@ -42,7 +44,7 @@ ms.locfileid: "85103089"
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
 ```
 
-В предыдущем примере предполагается, что `Counter` компонент находится в папке *pages* приложения. Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `@using BlazorSample.Pages` ).
+В предыдущем примере предполагается, что `Counter` компонент находится в папке *pages* приложения. Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `@using BlazorSample.Pages`).
 
 Вспомогательная функция тега компонента также может передавать параметры в компоненты. Рассмотрим следующий `ColorfulCheckbox` компонент, устанавливающий цвет и размер метки флажка:
 
@@ -84,7 +86,7 @@ ms.locfileid: "85103089"
     param-Size="14" param-Color="@("blue")" />
 ```
 
-В предыдущем примере предполагается, что `ColorfulCheckbox` компонент находится в *общей* папке приложения. Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `@using BlazorSample.Shared` ).
+В предыдущем примере предполагается, что `ColorfulCheckbox` компонент находится в *общей* папке приложения. Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `@using BlazorSample.Shared`).
 
 Следующий код HTML отображается на странице или в представлении:
 
@@ -160,8 +162,8 @@ public class MyClass
 
 | Режим обработки | Описание |
 | ----------- | ----------- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Преобразует компонент в статический HTML и включает метку приложения Blazor Server. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Отображает метку приложения Blazor Server. Выходные данные компонента не включаются. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Преобразует компонент в статический HTML и включает маркер для Blazor Server приложения. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Подготавливает к просмотру маркер для Blazor Server приложения. Выходные данные компонента не включаются. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Преобразует компонент в статический HTML. |
 
 Хотя страницы и представления могут использовать компоненты, наоборот это не так. Компоненты не могут использовать функции представления и страницы, такие как частичные представления и разделы. Чтобы использовать логику из частичного представления в компоненте, разнесите логику частичного представления в компонент.

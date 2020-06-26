@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/10/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: ced10a7b7b221188fdac2a4e3c54f66292110ece
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 65d8bbcdaed76a308b924ba024219e8f520bb585
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773946"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399287"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Вспомогательная функция тегов кэша в MVC-моделях ASP.NET Core
 
@@ -27,7 +29,7 @@ ms.locfileid: "82773946"
 
 Общие сведения о вспомогательных функциях тегов см. здесь: <xref:mvc/views/tag-helpers/intro>.
 
-Приведенная ниже разметка Razor кэширует текущую дату:
+Следующая Razor Разметка кэширует текущую дату:
 
 ```cshtml
 <cache>@DateTime.Now</cache>
@@ -41,7 +43,7 @@ ms.locfileid: "82773946"
 
 | Тип атрибута  | Примеры        | Значение по умолчанию |
 | --------------- | --------------- | ------- |
-| логический         | `true`, `false` | `true`  |
+| Логическое         | `true`, `false` | `true`  |
 
 `enabled` определяет, кэшируется ли содержимое, охватываемое вспомогательной функцией тегов кэша. Значение по умолчанию — `true`. Если установлено значение `false`, выводимые данные **не** кэшируются.
 
@@ -85,7 +87,7 @@ ms.locfileid: "82773946"
 </cache>
 ```
 
-Модуль представлений Razor задает для `expires-after` значение по умолчанию 20 минут.
+RazorОбработчик представлений задает значение по умолчанию, `expires-after` равное двадцать минутам.
 
 ### <a name="expires-sliding"></a>expires-sliding
 
@@ -145,7 +147,7 @@ ms.locfileid: "82773946"
 
 Пример.
 
-*Startup.CS*:
+*Startup.cs*:
 
 ```csharp
 routes.MapRoute(
@@ -169,7 +171,7 @@ routes.MapRoute(
 
 `vary-by-cookie` принимает список разделенных запятыми имен cookie, запускающих обновление кэша при изменении их значений.
 
-Следующий пример отслеживает файл cookie, связанный с удостоверением ASP.NET Core. При проверке подлинности пользователя изменения в файле cookie удостоверений инициирует обновление кэша:
+В следующем примере показан мониторинг файла cookie, связанного с ASP.NET Core Identity . При проверке подлинности пользователя изменение Identity файла cookie инициирует обновление кэша:
 
 ```cshtml
 <cache vary-by-cookie=".AspNetCore.Identity.Application">
@@ -181,9 +183,9 @@ routes.MapRoute(
 
 | Тип атрибута  | Примеры        | Значение по умолчанию |
 | --------------- | --------------- | ------- |
-| логический         | `true`, `false` | `true`  |
+| Логическое         | `true`, `false` | `true`  |
 
-`vary-by-user` указывает, следует ли сбрасывать кэш при изменении вошедшего в систему пользователя (или участника контекста). Текущий пользователь также называется участником контекста запроса и доступен для просмотра в представлении Razor с помощью ссылки на `@User.Identity.Name`.
+`vary-by-user` указывает, следует ли сбрасывать кэш при изменении вошедшего в систему пользователя (или участника контекста). Текущий пользователь также известен как участник контекста запроса, и его можно просмотреть в Razor представлении, обратившись к `@User.Identity.Name` .
 
 В следующем примере отслеживается текущий вошедший пользователь для активации обновления кэша:
 
