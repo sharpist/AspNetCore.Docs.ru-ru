@@ -7,17 +7,19 @@ ms.date: 09/26/2019
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: web-api/Microsoft.dotnet-openapi
-ms.openlocfilehash: 1924fb8ee5ac1ba8dc31d2175a336c8333c81fb2
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: eb8d6a1dc70b2aabf495bdb359e243c91e94289f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775717"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404799"
 ---
 # <a name="develop-aspnet-core-apps-using-openapi-tools"></a>Разработка приложений ASP.NET Core с использованием средств OpenAPI
 
@@ -35,7 +37,7 @@ dotnet tool install -g Microsoft.dotnet-openapi
 
 ## <a name="add"></a>Add
 
-Добавление ссылки OpenAPI с помощью любой команды на этой странице добавляет в *CSPROJ* - `<OpenApiReference />` файл элемент, аналогичный следующему:
+Добавление ссылки OpenAPI с помощью любой команды на этой странице добавляет `<OpenApiReference />` в *CSPROJ* -файл элемент, аналогичный следующему:
 
 ```xml
 <OpenApiReference Include="openapi.json" />
@@ -70,7 +72,7 @@ dotnet tool install -g Microsoft.dotnet-openapi
 
 #### <a name="arguments"></a>Аргументы
 
-|  Аргумент  | Описание | Пример |
+|  Аргумент  | Описание: | Пример |
 |-------------|-------------|---------|
 | source-file | Источник, из которого создается ссылка. Должен быть файлом OpenAPI. |dotnet openapi add file *.\OpenAPI.json* |
 
@@ -87,7 +89,7 @@ dotnet tool install -g Microsoft.dotnet-openapi
 
 #### <a name="arguments"></a>Аргументы
 
-|  Аргумент  | Описание | Пример |
+|  Аргумент  | Описание: | Пример |
 |-------------|-------------|---------|
 | source-URL | Источник, из которого создается ссылка. Должен быть URL-адресом. |dotnet openapi add url `https://contoso.com/openapi.json` |
 
@@ -104,11 +106,11 @@ dotnet tool install -g Microsoft.dotnet-openapi
 
 ### <a name="arguments"></a>Аргументы
 
-|  Аргумент  | Описание| Пример |
+|  Аргумент  | Описание:| Пример |
 | ------------|------------|---------|
 | source-file | Источник, ссылку на который необходимо удалить. |dotnet openapi remove *.\OpenAPI.json* |
 
-## <a name="refresh"></a>Обновление
+## <a name="refresh"></a>Обновить
 
 Обновляет локальную версию файла, скачанного с использованием последнего содержимого из URL-адреса для скачивания.
 

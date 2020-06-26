@@ -8,17 +8,19 @@ ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/twitter-logins
-ms.openlocfilehash: c6498704214de5e805c9bf57033529d4acc5fd3e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 61c983de33b91a16ad207d8a350daf4859c89eaf
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775795"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406099"
 ---
 # <a name="twitter-external-sign-in-setup-with-aspnet-core"></a>Настройка внешнего входа в Twitter с помощью ASP.NET Core
 
@@ -38,10 +40,10 @@ ms.locfileid: "82775795"
 
 * Microsoft. AspNetCore.Identity требует, чтобы по умолчанию у пользователей был адрес электронной почты. Перейдите на вкладку **разрешения** , нажмите кнопку " **изменить** " и установите флажок " **запросить адрес электронной почты у пользователей**".
 
-* Введите URI разработки с `/signin-twitter` добавлением в поле **URL-адреса обратного вызова** (например `https://webapp128.azurewebsites.net/signin-twitter`,). Схема проверки подлинности Twitter, настроенная далее в этом примере, `/signin-twitter` автоматически обрабатывает запросы по маршруту для реализации потока OAuth.
+* Введите URI разработки с `/signin-twitter` добавлением в поле **URL-адреса обратного вызова** (например, `https://webapp128.azurewebsites.net/signin-twitter` ). Схема проверки подлинности Twitter, настроенная далее в этом примере, автоматически обрабатывает запросы по `/signin-twitter` маршруту для реализации потока OAuth.
 
   > [!NOTE]
-  > Сегмент `/signin-twitter` URI задается в качестве обратного вызова по умолчанию для поставщика проверки подлинности Twitter. URI обратного вызова по умолчанию можно изменить при настройке по промежуточного слоя проверки подлинности Twitter с помощью унаследованного свойства [ремотеаусентикатионоптионс. каллбаккпас](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) класса [твиттероптионс](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions) .
+  > Сегмент URI `/signin-twitter` задается в качестве обратного вызова по умолчанию для поставщика проверки подлинности Twitter. URI обратного вызова по умолчанию можно изменить при настройке по промежуточного слоя проверки подлинности Twitter с помощью унаследованного свойства [ремотеаусентикатионоптионс. каллбаккпас](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) класса [твиттероптионс](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions) .
 
 * Заполните оставшуюся часть формы и выберите **создать**. Отобразятся сведения о новом приложении:
 
@@ -50,7 +52,7 @@ ms.locfileid: "82775795"
 Храните конфиденциальные параметры, такие как ключ API потребителя Twitter и секретный код, с помощью [диспетчера секретов](xref:security/app-secrets). Для этого примера выполните следующие действия.
 
 1. Инициализируйте проект для хранения секретных данных согласно инструкциям в разделе [Включение секретного хранилища](xref:security/app-secrets#enable-secret-storage).
-1. Храните конфиденциальные параметры в локальном хранилище секретов с помощью ключей `Authentication:Twitter:ConsumerKey` секретов `Authentication:Twitter:ConsumerSecret`и:
+1. Храните конфиденциальные параметры в локальном хранилище секретов с помощью ключей секретов `Authentication:Twitter:ConsumerKey` и `Authentication:Twitter:ConsumerSecret` :
 
     ```dotnetcli
     dotnet user-secrets set "Authentication:Twitter:ConsumerAPIKey" "<consumer-api-key>"
@@ -93,13 +95,13 @@ Rather in the twitter setup, you can provide an External sign-in homepage. The e
 
 ## <a name="troubleshooting"></a>Устранение неполадок
 
-* **Только ASP.NET Core 2. x:** Если Identity параметр не настроен с `services.AddIdentity` помощью `ConfigureServices`вызова в, попытка проверки подлинности приведет к тому, что будет получено исключение *"сигнинсчеме"*. Шаблон проекта, используемый в этом образце, гарантирует, что это будет сделано.
+* **Только ASP.NET Core 2. x:** Если Identity параметр не настроен с помощью вызова `services.AddIdentity` в `ConfigureServices` , попытка проверки подлинности приведет к тому, что будет получено исключение *"сигнинсчеме"*. Шаблон проекта, используемый в этом образце, гарантирует, что это будет сделано.
 * Если база данных сайта не была создана с применением первоначальной миграции, то при обработке ошибки запроса возникнет *Ошибка операции с базой данных* . Выберите **Применить миграции** , чтобы создать базу данных и обновить, чтобы продолжить выполнение после ошибки.
 
-## <a name="next-steps"></a>Дальнейшие шаги
+## <a name="next-steps"></a>Дальнейшие действия
 
 * В этой статье показано, как можно пройти проверку подлинности в Twitter. Аналогичный подход можно использовать для проверки подлинности с другими поставщиками, перечисленными на [предыдущей странице](xref:security/authentication/social/index).
 
 * После публикации веб-сайта в веб-приложение Azure необходимо сбросить настройки `ConsumerSecret` на портале разработчика Twitter.
 
-* Задайте параметры `Authentication:Twitter:ConsumerKey` приложения `Authentication:Twitter:ConsumerSecret` и в портал Azure. Система конфигурации настроена на чтение ключей из переменных среды.
+* Задайте `Authentication:Twitter:ConsumerKey` `Authentication:Twitter:ConsumerSecret` Параметры приложения и в портал Azure. Система конфигурации настроена на чтение ключей из переменных среды.

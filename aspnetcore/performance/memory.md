@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 4/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: db6f8e867fc83a211170aa59f5bad604d9c2730d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: d261a26de7b9ba77e5f9787ae2eb37293257a0fc
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776120"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406398"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Управление памятью и сборка мусора (GC) в ASP.NET Core
 
@@ -135,7 +137,7 @@ public ActionResult<string> GetBigString()
 * **Сборщик мусора рабочей станции**: оптимизирован для настольных систем.
 * **GC сервера**. Глобальный каталог по умолчанию для приложений ASP.NET Core. Оптимизировано для сервера.
 
-Режим GC можно задать явным образом в файле проекта или в файле *runtimeconfig. JSON* опубликованного приложения. В следующей разметке `ServerGarbageCollection` показан параметр в файле проекта:
+Режим GC можно задать явно в файле проекта или в *runtimeconfig.js* файла опубликованного приложения. В следующей разметке показан параметр `ServerGarbageCollection` в файле проекта:
 
 ```xml
 <PropertyGroup>
@@ -143,7 +145,7 @@ public ActionResult<string> GetBigString()
 </PropertyGroup>
 ```
 
-Для `ServerGarbageCollection` изменения в файле проекта требуется Перестроение приложения.
+`ServerGarbageCollection`Для изменения в файле проекта требуется Перестроение приложения.
 
 **Примечание.** Сборка мусора сервера **недоступна** на компьютерах с одним ядром. Для получения дополнительной информации см. <xref:System.Runtime.GCSettings.IsServerGC>.
 
@@ -186,7 +188,7 @@ public ActionResult<string> GetStaticString()
 Предыдущий код:
 
 * — Пример типичной утечки памяти.
-* При частом вызове происходит увеличение объема памяти приложения до аварийного завершения процесса `OutOfMemory` с исключением.
+* При частом вызове происходит увеличение объема памяти приложения до аварийного завершения процесса с `OutOfMemory` исключением.
 
 ![Предыдущая диаграмма](memory/_static/eternal.png)
 
@@ -196,13 +198,13 @@ public ActionResult<string> GetStaticString()
 * Сборщик мусора пытается освободить память по мере роста нехватки памяти путем вызова сборки поколения 2.
 * Сборщику мусора не удается освободить утечку памяти. Увеличение выделенного и рабочего набора с учетом времени.
 
-В некоторых сценариях, таких как кэширование, требуется, чтобы ссылки на объекты удерживались до тех пор, пока не будет принудительно снята нагрузка на память. <xref:System.WeakReference> Класс может использоваться для этого типа кода кэширования. `WeakReference` Объект собирается при нехватке памяти. Используемая по <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> умолчанию `WeakReference`реализация.
+В некоторых сценариях, таких как кэширование, требуется, чтобы ссылки на объекты удерживались до тех пор, пока не будет принудительно снята нагрузка на память. <xref:System.WeakReference>Класс может использоваться для этого типа кода кэширования. `WeakReference`Объект собирается при нехватке памяти. Используемая по умолчанию реализация <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> `WeakReference` .
 
 ### <a name="native-memory"></a>Собственная память
 
 Некоторые объекты .NET Core основываются на собственной памяти. Встроенная память **не** может быть СОБРАНа сборщиком мусора. Объект .NET, использующий собственную память, должен освободить его с помощью машинного кода.
 
-.NET предоставляет <xref:System.IDisposable> интерфейс, позволяющий разработчикам освобождать собственную память. Даже если <xref:System.IDisposable.Dispose*> не вызывается, правильно реализованные классы `Dispose` вызываются при запуске [метода завершения](/dotnet/csharp/programming-guide/classes-and-structs/destructors) .
+.NET предоставляет <xref:System.IDisposable> интерфейс, позволяющий разработчикам освобождать собственную память. Даже если <xref:System.IDisposable.Dispose*> не вызывается, правильно реализованные классы вызываются `Dispose` при запуске [метода завершения](/dotnet/csharp/programming-guide/classes-and-structs/destructors) .
 
 Рассмотрим следующий код.
 
@@ -226,7 +228,7 @@ public void GetFileProvider()
 Такая же утечка может произойти в пользовательском коде одним из следующих:
 
 * Не освобождайте класс должным образом.
-* Не удается вызвать `Dispose`метод зависимых объектов, которые должны быть удалены.
+* Не `Dispose` удается вызвать метод зависимых объектов, которые должны быть удалены.
 
 ### <a name="large-objects-heap"></a>Куча больших объектов
 
@@ -248,7 +250,7 @@ GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.Compa
 GC.Collect();
 ```
 
-Дополнительные <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode> сведения о сжатии LOH см. в разделе.
+<xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode>Дополнительные сведения о сжатии LOH см. в разделе.
 
 В контейнерах, использующих .NET Core 3,0 и более поздних версий, LOH автоматически сжимается.
 
@@ -287,7 +289,7 @@ public int GetLOH1(int size)
 * [Респонсекачинг/Streams/Стреамутилитиес. CS](https://github.com/dotnet/AspNetCore/blob/v3.0.0/src/Middleware/ResponseCaching/src/Streams/StreamUtilities.cs#L16)
 * [Респонсекачинг/Мемориреспонсекаче. CS](https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Internal/MemoryResponseCache.cs#L55)
 
-Дополнительные сведения см. в разделе:
+Дополнительные сведения можно найти в разделе
 
 * [Обнаружена куча больших объектов](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)
 * [Куча больших объектов](/dotnet/standard/garbage-collection/large-object-heap)
@@ -299,9 +301,9 @@ public int GetLOH1(int size)
 * Больше, чем память.
 * Более проблематично, если утечка по сравнению с памятью.
 
-Опытным разработчикам .NET известна возможность вызова <xref:System.IDisposable.Dispose*> для <xref:System.IDisposable>объектов, реализующих. Удаление объектов, которые реализуют `IDisposable` , как правило, приводит к утечке памяти или утечке системных ресурсов.
+Опытным разработчикам .NET известна возможность вызова <xref:System.IDisposable.Dispose*> для объектов, реализующих <xref:System.IDisposable> . Удаление объектов, которые реализуют, `IDisposable` как правило, приводит к утечке памяти или утечке системных ресурсов.
 
-`HttpClient`реализует `IDisposable`, но **не** следует удалять при каждом вызове. Вместо этого `HttpClient` следует использовать повторно.
+`HttpClient`реализует `IDisposable` , но **не** следует удалять при каждом вызове. Вместо этого `HttpClient` следует использовать повторно.
 
 Следующая Конечная точка создает и уничтожает новый `HttpClient` экземпляр при каждом запросе:
 
@@ -333,7 +335,7 @@ System.Net.Http.HttpRequestException: Only one usage of each socket address
 
 Несмотря на то `HttpClient` , что экземпляры удалены, фактическое сетевое подключение занимает некоторое время, выпуская операционной системой. При непрерывном создании новых соединений происходит _нехватка портов_ . Для каждого клиентского соединения требуется свой порт клиента.
 
-Одним из способов предотвращения нехватки портов является повторное использование того `HttpClient` же экземпляра:
+Одним из способов предотвращения нехватки портов является повторное использование того же `HttpClient` экземпляра:
 
 ```csharp
 private static readonly HttpClient _httpClient = new HttpClient();
@@ -346,9 +348,9 @@ public async Task<int> GetHttpClient2(string url)
 }
 ```
 
-`HttpClient` Экземпляр освобождается при остановке приложения. В этом примере показано, что не каждый удаляемый ресурс должен быть удален после каждого использования.
+`HttpClient`Экземпляр освобождается при остановке приложения. В этом примере показано, что не каждый удаляемый ресурс должен быть удален после каждого использования.
 
-Дополнительные сведения об обработке времени существования `HttpClient` экземпляра см. в следующих статьях:
+Дополнительные сведения об обработке времени существования экземпляра см. в следующих статьях `HttpClient` :
 
 * [Управление HttpClient и временем существования](/aspnet/core/fundamentals/http-requests#httpclient-and-lifetime-management)
 * [Блог фабрики HTTPClient](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/)
@@ -386,7 +388,7 @@ public async Task<int> GetHttpClient2(string url)
 
 На приведенной выше диаграмме сборки поколения 0 происходят приблизительно в секунду.
 
-Приведенный выше код можно оптимизировать путем объединения `byte` буфера с помощью [аррайпул\<T>](xref:System.Buffers.ArrayPool`1). Статический экземпляр повторно используется в запросах.
+Предыдущий код можно оптимизировать путем объединения `byte` буфера с помощью [ \<T> аррайпул](xref:System.Buffers.ArrayPool`1). Статический экземпляр повторно используется в запросах.
 
 В отличие от этого подхода, объект poold возвращается из API. Это означает:
 
@@ -398,7 +400,7 @@ public async Task<int> GetHttpClient2(string url)
 * Инкапсулирует массив в пуле в удаляемый объект.
 * Зарегистрируйте объект poold с помощью [HttpContext. Response. регистерфордиспосе](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose*).
 
-`RegisterForDispose`будет выполнять вызов `Dispose`на целевом объекте, чтобы он выпускался только после завершения HTTP-запроса.
+`RegisterForDispose`будет выполнять вызов `Dispose` на целевом объекте, чтобы он выпускался только после завершения HTTP-запроса.
 
 ```csharp
 private static ArrayPool<byte> _arrayPool = ArrayPool<byte>.Create();

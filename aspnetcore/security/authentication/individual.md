@@ -6,23 +6,25 @@ ms.author: riande
 ms.date: 12/11/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/individual
-ms.openlocfilehash: 26f53b6452e307bbd0816c1a3604f38b04c6af15
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 6d3743fc31c29bed5075ac29381aea51a64a908c
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768654"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406255"
 ---
 # <a name="articles-based-on-aspnet-core-projects-created-with-individual-user-accounts"></a>Статьи на основе проектов ASP.NET Core, созданных с учетными записями отдельных пользователей
 
-ASP.NET Core удостоверение включается в шаблоны проектов Visual Studio с параметром "индивидуальные учетные записи пользователей".
+ASP.NET Core Identity включается в шаблоны проектов Visual Studio с параметром "индивидуальные учетные записи пользователей".
 
-Шаблоны проверки подлинности доступны в .NET Core CLI `-au Individual`с помощью:
+Шаблоны проверки подлинности доступны в .NET Core CLI с помощью `-au Individual` :
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -59,7 +61,7 @@ dotnet new razor -au Individual
 
 ## <a name="windows-authentication"></a>Проверка подлинности Windows
 
-Проверка подлинности Windows указана для новых веб-приложений в `-au Windows` .NET Core CLI с параметром. В Visual Studio диалоговое окно **Изменение проверки подлинности** предоставляет параметры **проверки подлинности Windows** .
+Проверка подлинности Windows указана для новых веб-приложений в .NET Core CLI с `-au Windows` параметром. В Visual Studio диалоговое окно **Изменение проверки подлинности** предоставляет параметры **проверки подлинности Windows** .
 
 Если выбрана проверка подлинности Windows, приложение настроено для использования [модуля IIS проверки подлинности Windows](xref:host-and-deploy/iis/modules). Проверка подлинности Windows предназначена для веб-сайтов интрасети.
 
@@ -69,7 +71,7 @@ dotnet new razor -au Individual
 
 | Параметр | Тип проверки подлинности | Ссылка на дополнительные сведения |
  | ----------------- | ------------ | ---------- |
-| None            |  без аутентификации; | | 
+| Отсутствуют            |  без аутентификации; | | 
 | Индивидуальное лицо      |  Индивидуальная проверка подлинности | <xref:security/authentication/identity>
 | IndividualB2C   |  Индивидуальная проверка подлинности, размещенная в облаке, с Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
 | синглеорг       |  Корпоративная аутентификация для отдельного клиента | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
@@ -82,7 +84,7 @@ dotnet new razor -au Individual
 
 | Параметр | Тип проверки подлинности | Ссылка на дополнительные сведения |
  | ----------------- | ------------ | ---------- |
-| None            |  без аутентификации; | | 
+| Отсутствуют            |  без аутентификации; | | 
 | Индивидуальные учетные записи пользователей и хранение учетных записей пользователей в приложении |  Индивидуальная проверка подлинности | <xref:security/authentication/identity> |
 | Учетные записи отдельных пользователей и подключение к существующему хранилищу пользователей в облаке |  Индивидуальная проверка подлинности, размещенная в облаке, с Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
 | Рабочее или учебное облако/Единая Организация  |  Корпоративная аутентификация для отдельного клиента | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |

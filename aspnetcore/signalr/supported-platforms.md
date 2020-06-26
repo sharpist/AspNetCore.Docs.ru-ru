@@ -1,41 +1,43 @@
 ---
-title: Поддерживаемые SignalR платформы ASP.NET Core
+title: Поддерживаемые платформы ASP.NET Core SignalR
 author: bradygaster
-description: Дополнительные сведения о поддерживаемых платформах для SignalRASP.NET Core.
+description: Сведения о поддерживаемых платформах для ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/supported-platforms
-ms.openlocfilehash: 70a05dabb95aaf561aa78d5c8b24b430c51bd973
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 9d7dd946ae5cf83b76a83ba1faeed0bb3fc31cef
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82772609"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405826"
 ---
-# <a name="aspnet-core-signalr-supported-platforms"></a>Платформы, поддерживаемые SignalR ASP.NET Core
+# <a name="aspnet-core-signalr-supported-platforms"></a>Поддерживаемые платформы ASP.NET Core SignalR
 
 ## <a name="server-system-requirements"></a>Системные требования к  Server
 
-SignalR для ASP.NET Core поддерживает любую серверную платформу, поддерживаемую ASP.NET Core.
+SignalRдля ASP.NET Core поддерживает любую серверную платформу, поддерживаемую ASP.NET Core.
 
 ## <a name="javascript-client"></a>Клиент JavaScript
 
 [Клиент JavaScript](xref:signalr/javascript-client) работает на NodeJS 8 и более поздних версиях и в следующих браузерах:
 
-| Браузер                         | Версия         |
+| Браузер                         | Version         |
 | ------------------------------- | --------------- |
-| Microsoft Edge                  | Данном&dagger; |
-| Mozilla Firefox                 | Данном&dagger; |
-| Google Chrome; включает Android | Данном&dagger; |
-| Обозревателе включает iOS            | Данном&dagger; |
+| Microsoft Edge                  | Текущие&dagger; |
+| Mozilla Firefox                 | Текущие&dagger; |
+| Google Chrome; включает Android | Текущие&dagger; |
+| Обозревателе включает iOS            | Текущие&dagger; |
 | Microsoft Internet Explorer     | 11              |
 
 &dagger;*Current* ссылается на последнюю версию браузера.

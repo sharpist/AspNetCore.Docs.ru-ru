@@ -7,17 +7,19 @@ ms.author: scaddie
 ms.date: 06/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/th-components
-ms.openlocfilehash: df118cdc8346b99e4e5c60c9f0441c963543f4b4
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 58781880764b26a67d71e70c225ab4ed4e5da109
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767516"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406710"
 ---
 # <a name="tag-helper-components-in-aspnet-core"></a>Вспомогательные компоненты тегов в ASP.NET Core
 
@@ -25,7 +27,7 @@ ms.locfileid: "82767516"
 
 Вспомогательный компонент тегов позволяет на основе условий изменять или добавлять элементы HTML из серверного кода. Эта функция доступна в ASP.NET Core 2.0 и более поздних версий.
 
-ASP.NET Core включает в себя два встроенных вспомогательных компонента тегов: `head` и `body`. Они находятся в <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> пространстве имен и могут использоваться как в MVC, так и Razor на страницах. Вспомогательные компоненты тегов не нужно регистрировать в *_ViewImports.cshtml*.
+ASP.NET Core включает в себя два встроенных вспомогательных компонента тегов: `head` и `body`. Они находятся в <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> пространстве имен и могут использоваться как в MVC, так и на Razor страницах. Вспомогательные компоненты тегов не нужно регистрировать в *_ViewImports.cshtml*.
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
@@ -69,7 +71,7 @@ ASP.NET Core включает в себя два встроенных вспом
 Вспомогательные компоненты тегов необходимо добавить в коллекцию вспомогательных компонентов тегов приложения. Добавить его в коллекцию можно тремя способами:
 
 * [регистрация с помощью контейнера служб](#registration-via-services-container);
-* [Регистрация с Razor помощью файла](#registration-via-razor-file)
+* [Регистрация с помощью Razor файла](#registration-via-razor-file)
 * [регистрация с помощью модели страницы или контроллера](#registration-via-page-model-or-controller).
 
 ### <a name="registration-via-services-container"></a>Регистрация с помощью контейнера служб
@@ -78,9 +80,9 @@ ASP.NET Core включает в себя два встроенных вспом
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Startup.cs?name=snippet_ConfigureServices&highlight=12-15)]
 
-### <a name="registration-via-razor-file"></a>Регистрация с Razor помощью файла
+### <a name="registration-via-razor-file"></a>Регистрация с помощью Razor файла
 
-Если вспомогательный компонент тега не зарегистрирован в режиме внедрения, его можно зарегистрировать на странице Razor страниц или в представлении MVC. Этот метод используется для управления внедренной разметкой и порядком выполнения компонента из Razor файла.
+Если вспомогательный компонент тега не зарегистрирован в режиме внедрения, его можно зарегистрировать на Razor странице страниц или в представлении MVC. Этот метод используется для управления внедренной разметкой и порядком выполнения компонента из Razor файла.
 
 `ITagHelperComponentManager` позволяет добавлять вспомогательные компоненты тегов и (или) удалять их из приложения. Этот метод демонстрируется в следующем коде на примере `AddressTagHelperComponent`:
 
@@ -103,7 +105,7 @@ ASP.NET Core включает в себя два встроенных вспом
 
 Если вспомогательный компонент тега не зарегистрирован в ходе внедрения, его можно зарегистрировать на Razor странице страницы или в контроллере MVC. Этот метод полезен для отделения логики C# от Razor файлов.
 
-Для доступа к экземпляру `ITagHelperComponentManager` внедряется конструктор. Вспомогательный компонент тегов добавляется в коллекцию вспомогательных компонентов тегов. Эта методика показана в следующей Razor модели страниц `AddressTagHelperComponent`:
+Для доступа к экземпляру `ITagHelperComponentManager` внедряется конструктор. Вспомогательный компонент тегов добавляется в коллекцию вспомогательных компонентов тегов. RazorЭта методика показана в следующей модели страниц `AddressTagHelperComponent` :
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Pages/Index.cshtml.cs?name=snippet_IndexModelClass)]
 

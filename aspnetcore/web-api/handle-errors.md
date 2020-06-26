@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 12/10/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: web-api/handle-errors
-ms.openlocfilehash: 7c641fb12e0d06ebd7bb3ce9f878f0469b4a3d8e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: f756d9abfb92fd4d6d51d8762967ac2288b54b2a
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775067"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405761"
 ---
 # <a name="handle-errors-in-aspnet-core-web-apis"></a>Обработка ошибок в веб-API ASP.NET Core
 
@@ -74,7 +76,7 @@ Host: localhost:44312
 User-Agent: curl/7.55.1
 ```
 
-Чтобы вместо этого отображался отформатированный HTML-запрос, задайте для заголовка HTTP-запроса `Accept` тип носителя `text/html`. Например:
+Чтобы вместо этого отображался отформатированный HTML-запрос, задайте для заголовка HTTP-запроса `Accept` тип носителя `text/html`. Пример.
 
 ```bash
 curl -i -H "Accept: text/html" https://localhost:5001/weatherforecast/chicago

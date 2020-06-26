@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 3/25/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 0078ed5d4aa30ff7a7b76af8dffd015f2557e165
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: b917671053313c74acfff36518e8f36d5ef2eb22
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "83998657"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405488"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Маршрутизация к действиям контроллера в ASP.NET Core
 
@@ -849,7 +851,7 @@ result: /UrlGeneration/Destination
 
 Открытые методы на контроллере, за исключением тех, которые имеют атрибут [недействия](xref:Microsoft.AspNetCore.Mvc.NonActionAttribute) , являются действиями.
 
-## <a name="sample-code"></a>Образец кода
+## <a name="sample-code"></a>Пример кода
 
  * Метод [мидисплайраутеинфо](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x/main/Extensions/ControllerContextExtensions.cs) включен в [Пример загрузки](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) и используется для вывода сведений о маршрутизации.
 * [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) ([как скачивать](xref:index#how-to-download-a-sample))

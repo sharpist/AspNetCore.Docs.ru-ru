@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/configuration/non-di-scenarios
-ms.openlocfilehash: 31013e97038338d72c98151e23a5caa68008ce4f
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 9ae3d1ec039768b1008702a7a29f4d9a716cb99c
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776829"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404851"
 ---
 # <a name="non-di-aware-scenarios-for-data-protection-in-aspnet-core"></a>Сценарии без поддержки внедрения зависимостей для защиты данных в ASP.NET Core
 
@@ -24,7 +26,7 @@ ms.locfileid: "82776829"
 
 ASP.NET Core система защиты данных обычно [добавляется в контейнер службы](xref:security/data-protection/consumer-apis/overview) и используется зависимыми компонентами посредством внедрения зависимостей (DI). Однако бывают случаи, когда это нецелесообразно или нежелательно, особенно при импорте системы в существующее приложение.
 
-Для поддержки этих сценариев пакет [Microsoft. AspNetCore. Data Protection. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) предоставляет конкретный тип, [датапротектионпровидер](/dotnet/api/Microsoft.AspNetCore.DataProtection.DataProtectionProvider), который обеспечивает простой способ использования защиты данных, не полагаясь на Di. `DataProtectionProvider` Тип реализует [идатапротектионпровидер](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotectionprovider). `DataProtectionProvider` Только для создания экземпляра [DirectoryInfo](/dotnet/api/system.io.directoryinfo) необходимо указать, где должны храниться криптографические ключи поставщика, как показано в следующем примере кода:
+Для поддержки этих сценариев пакет [Microsoft. AspNetCore. Data Protection. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) предоставляет конкретный тип, [датапротектионпровидер](/dotnet/api/Microsoft.AspNetCore.DataProtection.DataProtectionProvider), который обеспечивает простой способ использования защиты данных, не полагаясь на Di. `DataProtectionProvider`Тип реализует [идатапротектионпровидер](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotectionprovider). `DataProtectionProvider`Только для создания экземпляра [DirectoryInfo](/dotnet/api/system.io.directoryinfo) необходимо указать, где должны храниться криптографические ключи поставщика, как показано в следующем примере кода:
 
 [!code-csharp[](non-di-scenarios/_static/nodisample1.cs)]
 
@@ -37,4 +39,4 @@ ASP.NET Core система защиты данных обычно [добавл
 [!code-csharp[](non-di-scenarios/_static/nodisample2.cs)]
 
 > [!TIP]
-> Экземпляры `DataProtectionProvider` конкретного типа затратны на создание. Если приложение поддерживает несколько экземпляров этого типа и все они используют один и тот же каталог хранилища ключей, производительность приложений может снизиться. Если используется `DataProtectionProvider` тип, рекомендуется создать этот тип один раз и использовать его как можно больше. `DataProtectionProvider` Тип и все экземпляры [идатапротектор](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotector) , созданные из него, являются потокобезопасными для нескольких вызывающих объектов.
+> Экземпляры `DataProtectionProvider` конкретного типа затратны на создание. Если приложение поддерживает несколько экземпляров этого типа и все они используют один и тот же каталог хранилища ключей, производительность приложений может снизиться. Если используется `DataProtectionProvider` тип, рекомендуется создать этот тип один раз и использовать его как можно больше. `DataProtectionProvider`Тип и все экземпляры [идатапротектор](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotector) , созданные из него, являются потокобезопасными для нескольких вызывающих объектов.

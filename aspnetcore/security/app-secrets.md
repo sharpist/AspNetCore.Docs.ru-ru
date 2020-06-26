@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 4/20/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/app-secrets
-ms.openlocfilehash: 7508aebcda4e14812140f13ece635428908a4abb
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a12262d182ce84a326086935627b55d2edc4885e
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776686"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407009"
 ---
 # <a name="safe-storage-of-app-secrets-in-development-in-aspnet-core"></a>Надежное хранение секретов приложений в разработке в ASP.NET Core
 
@@ -33,7 +35,7 @@ ms.locfileid: "82776686"
 
 Переменные среды используются, чтобы избежать хранения секретов приложения в коде или в локальных файлах конфигурации. Переменные среды переопределяют значения конфигурации для всех ранее указанных источников конфигурации.
 
-Рассмотрим ASP.NET Core веб-приложение, в котором включена безопасность **отдельных учетных записей пользователей** . Строка подключения к базе данных по умолчанию включается в файл *appSettings. JSON* проекта с ключом `DefaultConnection`. Строка подключения по умолчанию — для LocalDB, которая выполняется в пользовательском режиме и не требует пароля. Во время развертывания приложения значение `DefaultConnection` ключа может быть переопределено значением переменной среды. Переменная среды может хранить полную строку подключения с конфиденциальными учетными данными.
+Рассмотрим ASP.NET Core веб-приложение, в котором включена безопасность **отдельных учетных записей пользователей** . Строка подключения к базе данных по умолчанию включается в *appsettings.js* проекта в файле с ключом `DefaultConnection` . Строка подключения по умолчанию — для LocalDB, которая выполняется в пользовательском режиме и не требует пароля. Во время развертывания приложения `DefaultConnection` значение ключа может быть переопределено значением переменной среды. Переменная среды может хранить полную строку подключения с конфиденциальными учетными данными.
 
 > [!WARNING]
 > Переменные среды обычно хранятся в виде обычного незашифрованного текста. Если компьютер или процесс скомпрометирован, недоверенные стороны могут получить доступ к переменным среды. Могут потребоваться дополнительные меры для предотвращения раскрытия секретов пользователя.
@@ -65,7 +67,7 @@ ms.locfileid: "82776686"
 
 ---
 
-В приведенных выше путях файлов замените `<user_secrets_id>` `UserSecretsId` значением, указанным в файле *CSPROJ* .
+В приведенных выше путях файлов замените `<user_secrets_id>` значением, `UserSecretsId` указанным в файле *CSPROJ* .
 
 Не записывайте код, который зависит от расположения или формата данных, сохраненных с помощью диспетчера секретов. Эти сведения о реализации могут измениться. Например, секретные значения не шифруются, но могут быть в будущем.
 
@@ -83,7 +85,7 @@ dotnet user-secrets init
 
 [!code-xml[](app-secrets/samples/3.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
 
-В Visual Studio щелкните правой кнопкой мыши проект в обозреватель решений и выберите в контекстном меню пункт **Управление секретами пользователя** . Этот жест добавляет `UserSecretsId` элемент, ЗАПОЛНЕНный идентификатором GUID, в *CSPROJ* -файл.
+В Visual Studio щелкните правой кнопкой мыши проект в обозреватель решений и выберите в контекстном меню пункт **Управление секретами пользователя** . Этот жест добавляет `UserSecretsId` элемент, заполненный идентификатором GUID, в *CSPROJ* -файл.
 
 ## <a name="set-a-secret"></a>Задать секрет
 
@@ -95,7 +97,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345"
 
 В предыдущем примере двоеточие обозначает, что `Movies` является объектным литералом со `ServiceApiKey` свойством.
 
-Диспетчер секретов можно использовать и в других каталогах. Используйте `--project` параметр, чтобы указать путь файловой системы, в котором существует файл *. csproj* . Например:
+Диспетчер секретов можно использовать и в других каталогах. Используйте `--project` параметр, чтобы указать путь файловой системы, в котором существует файл *. csproj* . Пример.
 
 ```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"
@@ -103,7 +105,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ### <a name="json-structure-flattening-in-visual-studio"></a>Сведение структуры JSON в Visual Studio
 
-Жест **управления пользовательскими секретами** в Visual Studio открывает файл *секреты. JSON* в текстовом редакторе. Замените содержимое файла *секреты. JSON* хранимыми парами "ключ-значение". Например:
+Жест **управления пользовательскими секретами** в Visual Studio открывает *secrets.jsдля* файла в текстовом редакторе. Замените содержимое *secrets.jsна* пары "ключ-значение", которые необходимо сохранить. Пример.
 
 ```json
 {
@@ -114,7 +116,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 }
 ```
 
-Структура JSON преобразуется в плоскую структуру после `dotnet user-secrets remove` изменений `dotnet user-secrets set`с помощью или. Например, запуск `dotnet user-secrets remove "Movies:ConnectionString"` сворачивает `Movies` объектный литерал. Измененный файл выглядит следующим образом:
+Структура JSON преобразуется в плоскую структуру после изменений с помощью `dotnet user-secrets remove` или `dotnet user-secrets set` . Например, запуск `dotnet user-secrets remove "Movies:ConnectionString"` сворачивает `Movies` объектный литерал. Измененный файл выглядит следующим образом:
 
 ```json
 {
@@ -124,7 +126,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ## <a name="set-multiple-secrets"></a>Задание нескольких секретов
 
-Пакет секретов можно задать с помощью конвейера `set` командной строки. В следующем примере содержимое *входного файла JSON* передается `set` команде.
+Пакет секретов можно задать с помощью конвейера `set` командной строки. В следующем примере *input.js* содержимое файла передается `set` команде.
 
 # <a name="windows"></a>[Windows](#tab/windows)
 
@@ -148,15 +150,15 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 [API настройки ASP.NET Core](xref:fundamentals/configuration/index) предоставляет доступ к секретам диспетчера секретов.
 
-Источник конфигурации секреты пользователя автоматически добавляется в режим разработки при вызове <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> проекта для инициализации нового экземпляра узла с предварительно настроенными настройками по умолчанию. `CreateDefaultBuilder`вызывает <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> , <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> если имеет <xref:Microsoft.Extensions.Hosting.EnvironmentName.Development>значение:
+Источник конфигурации секреты пользователя автоматически добавляется в режим разработки при вызове проекта <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> для инициализации нового экземпляра узла с предварительно настроенными настройками по умолчанию. `CreateDefaultBuilder`вызывает <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> , если <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> имеет значение <xref:Microsoft.Extensions.Hosting.EnvironmentName.Development> :
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Program.cs?name=snippet_CreateHostBuilder&highlight=2)]
 
-Если `CreateDefaultBuilder` метод не вызывается, добавьте источник конфигурации user Secret явным образом <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A>, вызвав. Вызывайте `AddUserSecrets` только при запуске приложения в среде разработки, как показано в следующем примере:
+Если `CreateDefaultBuilder` метод не вызывается, добавьте источник конфигурации user Secret явным образом, вызвав <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> . Вызывайте `AddUserSecrets` только при запуске приложения в среде разработки, как показано в следующем примере:
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Program2.cs?name=snippet_Host&highlight=6-9)]
 
-Секреты пользователя можно получить с `Configuration` помощью API:
+Секреты пользователя можно получить с помощью `Configuration` API:
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
 
@@ -166,27 +168,27 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Чтобы связать предыдущие секреты с POCO, используйте функцию `Configuration` [привязки графа объектов](xref:fundamentals/configuration/index#bind-to-an-object-graph) API. Следующий код привязывается к пользовательской `MovieSettings` POCO и обращается к значению `ServiceApiKey` свойства:
+Чтобы связать предыдущие секреты с POCO, используйте `Configuration` функцию [привязки графа объектов](xref:fundamentals/configuration/index#bind-to-an-object-graph) API. Следующий код привязывается к пользовательской `MovieSettings` POCO и обращается к `ServiceApiKey` значению свойства:
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
 
-Секреты `Movies:ConnectionString` и `Movies:ServiceApiKey` сопоставлены с соответствующими свойствами в `MovieSettings`:
+`Movies:ConnectionString`Секреты и `Movies:ServiceApiKey` сопоставлены с соответствующими свойствами в `MovieSettings` :
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
 
 ## <a name="string-replacement-with-secrets"></a>Замена строк секретами
 
-Хранение паролей в виде обычного текста является небезопасным. Например, строка подключения к базе данных, хранящаяся в *appSettings. JSON* , может включать пароль для указанного пользователя:
+Хранение паролей в виде обычного текста является небезопасным. Например, строка подключения к базе данных, хранимая в *appsettings.json* , может включать пароль для указанного пользователя:
 
 [!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
-Более безопасный подход заключается в хранении пароля в качестве секрета. Например:
+Более безопасный подход заключается в хранении пароля в качестве секрета. Пример.
 
 ```dotnetcli
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Удалите пару `Password` "ключ-значение" из строки подключения в *appSettings. JSON*. Например:
+Удалите `Password` пару "ключ-значение" из строки подключения в *appsettings.json*. Пример.
 
 [!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
 
@@ -211,7 +213,7 @@ Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted
 Movies:ServiceApiKey = 12345
 ```
 
-В предыдущем примере двоеточие в именах ключей обозначает иерархию объектов в *тайне. JSON*.
+В предыдущем примере двоеточие в именах ключей обозначает иерархию объектов в *secrets.js*.
 
 ## <a name="remove-a-single-secret"></a>Удаление одного секрета
 
@@ -223,7 +225,7 @@ Movies:ServiceApiKey = 12345
 dotnet user-secrets remove "Movies:ConnectionString"
 ```
 
-Файл *секреты. JSON* приложения был изменен для удаления пары "ключ-значение", связанной с `MoviesConnectionString` ключом:
+Файл *secrets.jsв* приложении изменен для удаления пары "ключ-значение", связанной с `MoviesConnectionString` ключом:
 
 ```json
 {
@@ -249,13 +251,13 @@ Movies:ServiceApiKey = 12345
 dotnet user-secrets clear
 ```
 
-Все секреты пользователя для приложения удалены из файла *секреты. JSON* :
+Все секреты пользователя для приложения удалены из *secrets.jsв* файле:
 
 ```json
 {}
 ```
 
-При `dotnet user-secrets list` выполнении отображается следующее сообщение:
+При выполнении `dotnet user-secrets list` отображается следующее сообщение:
 
 ```console
 No secrets configured for this application.
@@ -281,7 +283,7 @@ No secrets configured for this application.
 
 Переменные среды используются, чтобы избежать хранения секретов приложения в коде или в локальных файлах конфигурации. Переменные среды переопределяют значения конфигурации для всех ранее указанных источников конфигурации.
 
-Рассмотрим ASP.NET Core веб-приложение, в котором включена безопасность **отдельных учетных записей пользователей** . Строка подключения к базе данных по умолчанию включается в файл *appSettings. JSON* проекта с ключом `DefaultConnection`. Строка подключения по умолчанию — для LocalDB, которая выполняется в пользовательском режиме и не требует пароля. Во время развертывания приложения значение `DefaultConnection` ключа может быть переопределено значением переменной среды. Переменная среды может хранить полную строку подключения с конфиденциальными учетными данными.
+Рассмотрим ASP.NET Core веб-приложение, в котором включена безопасность **отдельных учетных записей пользователей** . Строка подключения к базе данных по умолчанию включается в *appsettings.js* проекта в файле с ключом `DefaultConnection` . Строка подключения по умолчанию — для LocalDB, которая выполняется в пользовательском режиме и не требует пароля. Во время развертывания приложения `DefaultConnection` значение ключа может быть переопределено значением переменной среды. Переменная среды может хранить полную строку подключения с конфиденциальными учетными данными.
 
 > [!WARNING]
 > Переменные среды обычно хранятся в виде обычного незашифрованного текста. Если компьютер или процесс скомпрометирован, недоверенные стороны могут получить доступ к переменным среды. Могут потребоваться дополнительные меры для предотвращения раскрытия секретов пользователя.
@@ -313,7 +315,7 @@ No secrets configured for this application.
 
 ---
 
-В приведенных выше путях файлов замените `<user_secrets_id>` `UserSecretsId` значением, указанным в файле *CSPROJ* .
+В приведенных выше путях файлов замените `<user_secrets_id>` значением, `UserSecretsId` указанным в файле *CSPROJ* .
 
 Не записывайте код, который зависит от расположения или формата данных, сохраненных с помощью диспетчера секретов. Эти сведения о реализации могут измениться. Например, секретные значения не шифруются, но могут быть в будущем.
 
@@ -321,12 +323,12 @@ No secrets configured for this application.
 
 Диспетчер секретов работает с параметрами конфигурации конкретного проекта, хранящимися в профиле пользователя.
 
-Чтобы использовать секреты пользователя, определите `UserSecretsId` элемент в `PropertyGroup` файле *. csproj* . Внутренний текст `UserSecretsId` является произвольным, но уникален для проекта. Разработчики обычно создают идентификатор GUID для `UserSecretsId`.
+Чтобы использовать секреты пользователя, определите `UserSecretsId` элемент в `PropertyGroup` файле *. csproj* . Внутренний текст `UserSecretsId` является произвольным, но уникален для проекта. Разработчики обычно создают идентификатор GUID для `UserSecretsId` .
 
 [!code-xml[](app-secrets/samples/2.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
 
 > [!TIP]
-> В Visual Studio щелкните правой кнопкой мыши проект в обозреватель решений и выберите в контекстном меню пункт **Управление секретами пользователя** . Этот жест добавляет `UserSecretsId` элемент, ЗАПОЛНЕНный идентификатором GUID, в *CSPROJ* -файл.
+> В Visual Studio щелкните правой кнопкой мыши проект в обозреватель решений и выберите в контекстном меню пункт **Управление секретами пользователя** . Этот жест добавляет `UserSecretsId` элемент, заполненный идентификатором GUID, в *CSPROJ* -файл.
 
 ## <a name="set-a-secret"></a>Задать секрет
 
@@ -338,7 +340,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345"
 
 В предыдущем примере двоеточие обозначает, что `Movies` является объектным литералом со `ServiceApiKey` свойством.
 
-Диспетчер секретов можно использовать и в других каталогах. Используйте `--project` параметр, чтобы указать путь файловой системы, в котором существует файл *. csproj* . Например:
+Диспетчер секретов можно использовать и в других каталогах. Используйте `--project` параметр, чтобы указать путь файловой системы, в котором существует файл *. csproj* . Пример.
 
 ```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"
@@ -346,7 +348,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ### <a name="json-structure-flattening-in-visual-studio"></a>Сведение структуры JSON в Visual Studio
 
-Жест **управления пользовательскими секретами** в Visual Studio открывает файл *секреты. JSON* в текстовом редакторе. Замените содержимое файла *секреты. JSON* хранимыми парами "ключ-значение". Например:
+Жест **управления пользовательскими секретами** в Visual Studio открывает *secrets.jsдля* файла в текстовом редакторе. Замените содержимое *secrets.jsна* пары "ключ-значение", которые необходимо сохранить. Пример.
 
 ```json
 {
@@ -357,7 +359,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 }
 ```
 
-Структура JSON преобразуется в плоскую структуру после `dotnet user-secrets remove` изменений `dotnet user-secrets set`с помощью или. Например, запуск `dotnet user-secrets remove "Movies:ConnectionString"` сворачивает `Movies` объектный литерал. Измененный файл выглядит следующим образом:
+Структура JSON преобразуется в плоскую структуру после изменений с помощью `dotnet user-secrets remove` или `dotnet user-secrets set` . Например, запуск `dotnet user-secrets remove "Movies:ConnectionString"` сворачивает `Movies` объектный литерал. Измененный файл выглядит следующим образом:
 
 ```json
 {
@@ -367,7 +369,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ## <a name="set-multiple-secrets"></a>Задание нескольких секретов
 
-Пакет секретов можно задать с помощью конвейера `set` командной строки. В следующем примере содержимое *входного файла JSON* передается `set` команде.
+Пакет секретов можно задать с помощью конвейера `set` командной строки. В следующем примере *input.js* содержимое файла передается `set` команде.
 
 # <a name="windows"></a>[Windows](#tab/windows)
 
@@ -391,17 +393,17 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 [API настройки ASP.NET Core](xref:fundamentals/configuration/index) предоставляет доступ к секретам диспетчера секретов.
 
-Если проект предназначен для .NET Framework, установите пакет NuGet [Microsoft. Extensions. Configuration. усерсекретс](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) .
+Если проект предназначен для .NET Framework, установите [Microsoft.Extensions.Configфигурации. ](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets)Пакет NuGet усерсекретс.
 
-В ASP.NET Core 2,0 или более поздней версии источник конфигурации секреты пользователя автоматически добавляется в режим разработки, когда проект <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> вызывает инициализацию нового экземпляра узла с предварительно настроенными по умолчанию. `CreateDefaultBuilder`вызывает <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> , <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName> если имеет <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development>значение:
+В ASP.NET Core 2,0 или более поздней версии источник конфигурации секреты пользователя автоматически добавляется в режим разработки, когда проект вызывает <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> инициализацию нового экземпляра узла с предварительно настроенными по умолчанию. `CreateDefaultBuilder`вызывает <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> , если <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName> имеет значение <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development> :
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Program.cs?name=snippet_CreateWebHostBuilder&highlight=2)]
 
-Если `CreateDefaultBuilder` метод не вызывается, добавьте источник конфигурации секреты пользователя явным образом <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> , вызвав в `Startup` конструкторе. Вызывайте `AddUserSecrets` только при запуске приложения в среде разработки, как показано в следующем примере:
+Если `CreateDefaultBuilder` метод не вызывается, добавьте источник конфигурации секреты пользователя явным образом, вызвав <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> в `Startup` конструкторе. Вызывайте `AddUserSecrets` только при запуске приложения в среде разработки, как показано в следующем примере:
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup3.cs?name=snippet_StartupConstructor&highlight=12)]
 
-Секреты пользователя можно получить с `Configuration` помощью API:
+Секреты пользователя можно получить с помощью `Configuration` API:
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
 
@@ -411,27 +413,27 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Чтобы связать предыдущие секреты с POCO, используйте функцию `Configuration` [привязки графа объектов](xref:fundamentals/configuration/index#bind-to-an-object-graph) API. Следующий код привязывается к пользовательской `MovieSettings` POCO и обращается к значению `ServiceApiKey` свойства:
+Чтобы связать предыдущие секреты с POCO, используйте `Configuration` функцию [привязки графа объектов](xref:fundamentals/configuration/index#bind-to-an-object-graph) API. Следующий код привязывается к пользовательской `MovieSettings` POCO и обращается к `ServiceApiKey` значению свойства:
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
 
-Секреты `Movies:ConnectionString` и `Movies:ServiceApiKey` сопоставлены с соответствующими свойствами в `MovieSettings`:
+`Movies:ConnectionString`Секреты и `Movies:ServiceApiKey` сопоставлены с соответствующими свойствами в `MovieSettings` :
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
 
 ## <a name="string-replacement-with-secrets"></a>Замена строк секретами
 
-Хранение паролей в виде обычного текста является небезопасным. Например, строка подключения к базе данных, хранящаяся в *appSettings. JSON* , может включать пароль для указанного пользователя:
+Хранение паролей в виде обычного текста является небезопасным. Например, строка подключения к базе данных, хранимая в *appsettings.json* , может включать пароль для указанного пользователя:
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
-Более безопасный подход заключается в хранении пароля в качестве секрета. Например:
+Более безопасный подход заключается в хранении пароля в качестве секрета. Пример.
 
 ```dotnetcli
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Удалите пару `Password` "ключ-значение" из строки подключения в *appSettings. JSON*. Например:
+Удалите `Password` пару "ключ-значение" из строки подключения в *appsettings.json*. Пример.
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings.json?highlight=3)]
 
@@ -456,7 +458,7 @@ Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted
 Movies:ServiceApiKey = 12345
 ```
 
-В предыдущем примере двоеточие в именах ключей обозначает иерархию объектов в *тайне. JSON*.
+В предыдущем примере двоеточие в именах ключей обозначает иерархию объектов в *secrets.js*.
 
 ## <a name="remove-a-single-secret"></a>Удаление одного секрета
 
@@ -468,7 +470,7 @@ Movies:ServiceApiKey = 12345
 dotnet user-secrets remove "Movies:ConnectionString"
 ```
 
-Файл *секреты. JSON* приложения был изменен для удаления пары "ключ-значение", связанной с `MoviesConnectionString` ключом:
+Файл *secrets.jsв* приложении изменен для удаления пары "ключ-значение", связанной с `MoviesConnectionString` ключом:
 
 ```json
 {
@@ -478,7 +480,7 @@ dotnet user-secrets remove "Movies:ConnectionString"
 }
 ```
 
-При `dotnet user-secrets list` выполнении отображается следующее сообщение:
+При выполнении `dotnet user-secrets list` отображается следующее сообщение:
 
 ```console
 Movies:ServiceApiKey = 12345
@@ -494,13 +496,13 @@ Movies:ServiceApiKey = 12345
 dotnet user-secrets clear
 ```
 
-Все секреты пользователя для приложения удалены из файла *секреты. JSON* :
+Все секреты пользователя для приложения удалены из *secrets.jsв* файле:
 
 ```json
 {}
 ```
 
-При `dotnet user-secrets list` выполнении отображается следующее сообщение:
+При выполнении `dotnet user-secrets list` отображается следующее сообщение:
 
 ```console
 No secrets configured for this application.

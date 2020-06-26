@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authorization/introduction
-ms.openlocfilehash: 241ef8b00e9dcbd1983d32edcd9c1db2eaa5c687
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b0d6c91adfb5dc273aeb662cb2c249626ef1d3c6
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777531"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405436"
 ---
 # <a name="introduction-to-authorization-in-aspnet-core"></a>Общие сведения об авторизации в ASP.NET Core
 
@@ -26,7 +28,7 @@ ms.locfileid: "82777531"
 
 Авторизация является ортогональной и независимой от проверки подлинности. Однако Авторизация требует использования механизма проверки подлинности. Проверка подлинности — это процесс проверки пользователя. При использовании аутентификации возможно создание одного или нескольких удостоверений для текущего пользователя.
 
-Дополнительные сведения о проверке подлинности в ASP.NET Core <xref:security/authentication/index>см. в разделе.
+Дополнительные сведения о проверке подлинности в ASP.NET Core см. в разделе <xref:security/authentication/index> .
 
 ## <a name="authorization-types"></a>Типы авторизации
 
@@ -34,6 +36,6 @@ ASP.NET Coreная авторизация предоставляет прост�
 
 ## <a name="namespaces"></a>Пространства имен
 
-Компоненты авторизации, включая атрибуты `AuthorizeAttribute` и `AllowAnonymousAttribute` , находятся в `Microsoft.AspNetCore.Authorization` пространстве имен.
+Компоненты авторизации, включая `AuthorizeAttribute` атрибуты и `AllowAnonymousAttribute` , находятся в `Microsoft.AspNetCore.Authorization` пространстве имен.
 
 Обратитесь к документации по [простой авторизации](xref:security/authorization/simple).

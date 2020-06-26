@@ -8,17 +8,19 @@ ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/microsoft-logins
-ms.openlocfilehash: 731a17085a1fd01852bb3fe2f0fc9f3e7a9ac30f
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: df3e738880902e3005221c6047b6be9e924f2929
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775665"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406138"
 ---
 # <a name="microsoft-account-external-login-setup-with-aspnet-core"></a>Настройка внешнего входа учетной записи Майкрософт с ASP.NET Core
 
@@ -34,10 +36,10 @@ ms.locfileid: "82775665"
 Если у вас нет учетная запись Майкрософт, выберите **создать**. После входа вы будете перенаправлены на **Регистрация приложений** страницу:
 
 * Выбрать **новую регистрацию**
-* Введите **имя**.
+* Введите **Имя**.
 * Выберите вариант для **поддерживаемых типов учетных записей**.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts. It took 24 hours after setting this up for the keys to work -->
-* В разделе **URI перенаправления**введите URL-адрес `/signin-microsoft` разработки с добавлением. Например, `https://localhost:5001/signin-microsoft`. Схема проверки подлинности Майкрософт, настроенная далее в этом примере, `/signin-microsoft` автоматически обрабатывает запросы по маршруту для реализации потока OAuth.
-* Выбор **регистра**
+* В разделе **URI перенаправления**введите URL-адрес разработки с `/signin-microsoft` добавлением. Например, `https://localhost:5001/signin-microsoft`. Схема проверки подлинности Майкрософт, настроенная далее в этом примере, автоматически обрабатывает запросы по `/signin-microsoft` маршруту для реализации потока OAuth.
+* Нажмите кнопку **Зарегистрировать**.
 
 ### <a name="create-client-secret"></a>Создать секрет клиента
 
@@ -45,18 +47,18 @@ ms.locfileid: "82775665"
 * В разделе **секреты клиента**выберите **новый секрет клиента** .
 
   * Добавьте описание секрета клиента.
-  * Нажмите кнопку **Добавить** .
+  * Нажмите кнопку **Добавить**.
 
 * В разделе **секреты клиента**скопируйте значение секрета клиента.
 
-Сегмент `/signin-microsoft` URI задается в качестве обратного вызова по умолчанию для поставщика проверки подлинности Майкрософт. URI обратного вызова по умолчанию можно изменить при настройке по промежуточного слоя проверки подлинности Майкрософт с помощью унаследованного свойства [ремотеаусентикатионоптионс. каллбаккпас](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) класса [микрософтаккаунтоптионс](/dotnet/api/microsoft.aspnetcore.authentication.microsoftaccount.microsoftaccountoptions) .
+Сегмент URI `/signin-microsoft` задается в качестве обратного вызова по умолчанию для поставщика проверки подлинности Майкрософт. URI обратного вызова по умолчанию можно изменить при настройке по промежуточного слоя проверки подлинности Майкрософт с помощью унаследованного свойства [ремотеаусентикатионоптионс. каллбаккпас](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) класса [микрософтаккаунтоптионс](/dotnet/api/microsoft.aspnetcore.authentication.microsoftaccount.microsoftaccountoptions) .
 
 ## <a name="store-the-microsoft-client-id-and-secret"></a>Хранение идентификатора и секрета клиента Майкрософт
 
 Храните конфиденциальные параметры, такие как идентификатор клиента (Майкрософт) и секретные значения, с помощью [диспетчера секретов](xref:security/app-secrets). Для этого примера выполните следующие действия.
 
 1. Инициализируйте проект для хранения секретных данных согласно инструкциям в разделе [Включение секретного хранилища](xref:security/app-secrets#enable-secret-storage).
-1. Храните конфиденциальные параметры в локальном хранилище секретов с секретными `Authentication:Microsoft:ClientId` ключами `Authentication:Microsoft:ClientSecret`и:
+1. Храните конфиденциальные параметры в локальном хранилище секретов с секретными ключами `Authentication:Microsoft:ClientId` и `Authentication:Microsoft:ClientSecret` :
 
     ```dotnetcli
     dotnet user-secrets set "Authentication:Microsoft:ClientId" "<client-id>"
@@ -67,7 +69,7 @@ ms.locfileid: "82775665"
 
 ## <a name="configure-microsoft-account-authentication"></a>Настройка проверки подлинности учетной записи Майкрософт
 
-Добавьте службу учетных записей Майкрософт в `Startup.ConfigureServices`:
+Добавьте службу учетных записей Майкрософт в `Startup.ConfigureServices` :
 
 [!code-csharp[](~/security/authentication/social/social-code/3.x/StartupMS3x.cs?name=snippet&highlight=10-14)]
 
@@ -92,7 +94,7 @@ ms.locfileid: "82775665"
 * Если поставщик учетных записей Майкрософт перенаправит вас на страницу ошибки входа, обратите внимание на заголовок ошибки и описание параметры строки запроса непосредственно после `#` (хэш-кода) в универсальном коде ресурса (URI).
 
   Несмотря на то, что сообщение об ошибке указывает на проблему с проверкой подлинности Майкрософт, наиболее распространенной причиной является URI приложения, не совпадающий ни с одним из **URI перенаправления** , указанных для **веб-** платформы.
-* Если Identity параметр не настроен с `services.AddIdentity` помощью `ConfigureServices`вызова в, попытка проверки подлинности приведет к тому, что будет получено исключение *"сигнинсчеме"*. Шаблон проекта, используемый в этом образце, гарантирует, что это будет сделано.
+* Если Identity параметр не настроен с помощью вызова `services.AddIdentity` в `ConfigureServices` , попытка проверки подлинности приведет к тому, что будет получено исключение *"сигнинсчеме"*. Шаблон проекта, используемый в этом образце, гарантирует, что это будет сделано.
 * Если база данных сайта не была создана с применением первоначальной миграции, то при обработке ошибки запроса возникнет *Ошибка операции с базой данных* . Выберите **Применить миграции** , чтобы создать базу данных и обновить, чтобы продолжить выполнение после ошибки.
 
 ## <a name="next-steps"></a>Дальнейшие действия
@@ -101,4 +103,4 @@ ms.locfileid: "82775665"
 
 * После публикации веб-сайта в веб-приложение Azure создайте секретные данные клиента на портале разработчика Майкрософт.
 
-* Задайте параметры `Authentication:Microsoft:ClientId` приложения `Authentication:Microsoft:ClientSecret` и в портал Azure. Система конфигурации настроена на чтение ключей из переменных среды.
+* Задайте `Authentication:Microsoft:ClientId` `Authentication:Microsoft:ClientSecret` Параметры приложения и в портал Azure. Система конфигурации настроена на чтение ключей из переменных среды.

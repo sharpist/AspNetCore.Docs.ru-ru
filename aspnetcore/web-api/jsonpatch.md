@@ -1,13 +1,26 @@
 ---
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: JsonPatch в веб-API ASP.NET Core
+author: rick-anderson
+description: Сведения об обработке запросов JSON Patch в веб-API ASP.NET Core.
+ms.author: riande
+ms.custom: mvc
+ms.date: 04/02/2020
+no-loc:
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: web-api/jsonpatch
+ms.openlocfilehash: 08ae366859c4466e6957592f78dda813d6670bb4
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: MT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405033"
 ---
-
 # <a name="jsonpatch-in-aspnet-core-web-api"></a>JsonPatch в веб-API ASP.NET Core
 
 Авторы: [Том Дикстра](https://github.com/tdykstra) (Tom Dykstra) и [Kirk Larkin](https://github.com/serpent5) (Кирк Ларкин)
@@ -21,7 +34,7 @@
 Чтобы включить поддержку исправления JSON в приложении, выполните следующие действия.
 
 1. Установите [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) пакет NuGet.
-1. Обновите метод проекта `Startup.ConfigureServices` для вызова <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*> . Пример:
+1. Обновите метод проекта `Startup.ConfigureServices` для вызова <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*> . Пример.
 
     ```csharp
     services
@@ -35,7 +48,7 @@
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers*>
 
-## <a name="json-patch-addnewtonsoftjson-and-systemtextjson"></a>Исправление JSON, Аддневтонсофтжсон и System. Text. JSON
+## <a name="json-patch-addnewtonsoftjson-and-systemtextjson"></a>Исправление JSON, Аддневтонсофтжсон и System.Text.Jsна
 
 `AddNewtonsoftJson`заменяет `System.Text.Json` модули форматирования ввода и вывода, используемые для форматирования **всего** содержимого JSON. Чтобы добавить поддержку обновления JSON с помощью `Newtonsoft.Json` , при этом другие модули форматирования не меняются, обновите метод проекта следующим образом `Startup.ConfigureServices` :
 
@@ -106,143 +119,13 @@
 В следующей таблице перечислены поддерживаемые операции, которые определены в [спецификации JSON Patch](https://tools.ietf.org/html/rfc6902).
 
 |Операция  | Примечания |
-|---
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
-------|---
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
-----------------| | `add`     | Добавьте свойство или элемент массива. Для существующего свойства: Set value. | | `remove`  | Удалите свойство или элемент массива. | | `replace` | То же, что и `remove` , за `add` тем же расположением. | | `move`    | То же, что и `remove` источник, за которым следует `add` назначение, используя значение из источника. | | `copy`    | То же, что `add` и назначение, используя значение из источника. | | `test`    | Вернуть код состояния успеха, если указано значение в параметре `path` = `value` . |
+|-----------|--------------------------------|
+| `add`     | Добавляет свойство или элемент массива. Для существующего свойства устанавливает значение.|
+| `remove`  | Удаляет свойство или элемент массива. |
+| `replace` | Действует так же, как `remove` с последующим `add` в том же расположении. |
+| `move`    | Действует так же, как `remove` из источника с последующим `add`, в котором указаны место назначения и значение из источника. |
+| `copy`    | Действует так же, как `add`, в котором указаны место назначения и значение из источника. |
+| `test`    | Возвращает успешный код состояния, если значение `path` совпадает с предоставленным `value`.|
 
 ## <a name="json-patch-in-aspnet-core"></a>Обновление JSON в ASP.NET Core
 
@@ -256,7 +139,7 @@
 * принимает `JsonPatchDocument<T>` обычно с указанием `[FromBody]`;
 * вызывает `ApplyTo` для целевого документа, чтобы применить изменения.
 
-Приведем пример:
+Ниже приведен пример:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -362,7 +245,7 @@
 
 [!code-json[](jsonpatch/samples/2.2/JSON/test-fail.json)]
 
-## <a name="get-the-code"></a>Получение кода
+## <a name="get-the-code"></a>Получите код
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples). ([Инструкция по скачиванию](xref:index#how-to-download-a-sample).)
 
@@ -448,143 +331,13 @@
 В следующей таблице перечислены поддерживаемые операции, которые определены в [спецификации JSON Patch](https://tools.ietf.org/html/rfc6902).
 
 |Операция  | Примечания |
-|---
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
-------|---
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
--
-Заголовок: Автор: описание: MS. author: MS. Custom: MS. Дата: No-Loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
-----------------| | `add`     | Добавьте свойство или элемент массива. Для существующего свойства: Set value. | | `remove`  | Удалите свойство или элемент массива. | | `replace` | То же, что и `remove` , за `add` тем же расположением. | | `move`    | То же, что и `remove` источник, за которым следует `add` назначение, используя значение из источника. | | `copy`    | То же, что `add` и назначение, используя значение из источника. | | `test`    | Вернуть код состояния успеха, если указано значение в параметре `path` = `value` . |
+|-----------|--------------------------------|
+| `add`     | Добавляет свойство или элемент массива. Для существующего свойства устанавливает значение.|
+| `remove`  | Удаляет свойство или элемент массива. |
+| `replace` | Действует так же, как `remove` с последующим `add` в том же расположении. |
+| `move`    | Действует так же, как `remove` из источника с последующим `add`, в котором указаны место назначения и значение из источника. |
+| `copy`    | Действует так же, как `add`, в котором указаны место назначения и значение из источника. |
+| `test`    | Возвращает успешный код состояния, если значение `path` совпадает с предоставленным `value`.|
 
 ## <a name="jsonpatch-in-aspnet-core"></a>JsonPatch в ASP.NET Core
 
@@ -598,7 +351,7 @@
 * принимает `JsonPatchDocument<T>` обычно с указанием `[FromBody]`;
 * вызывает `ApplyTo` для целевого документа, чтобы применить изменения.
 
-Приведем пример:
+Ниже приведен пример:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -704,7 +457,7 @@
 
 [!code-json[](jsonpatch/samples/2.2/JSON/test-fail.json)]
 
-## <a name="get-the-code"></a>Получение кода
+## <a name="get-the-code"></a>Получите код
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([Инструкция по скачиванию](xref:index#how-to-download-a-sample).)
 

@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: 4a5689af9ffea175838a869e92752de889cbb227
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 47172339f1c82a572a8a2c5d4ba49e4906e30b29
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106680"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406879"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Поставщик конфигурации Azure Key Vault в ASP.NET Core
 
@@ -35,7 +37,7 @@ ms.locfileid: "84106680"
 
 ## <a name="packages"></a>Пакеты
 
-Добавьте ссылку на пакет в пакет [Microsoft. Extensions. Configuration. AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) .
+Добавьте ссылку на пакет в [Microsoft.Extensions.Configфигурации. Пакет AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) .
 
 ## <a name="sample-app"></a>Пример приложения
 
@@ -129,11 +131,11 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
    1. Выберите приложение в Azure AD.
    1. Перейдите к разделу **сертификаты & секреты**.
    1. Выберите **отправить сертификат** , чтобы отправить сертификат, который содержит открытый ключ. Сертификат *. cer*, *. pem*или *. CRT* является приемлемым.
-1. Сохраните имя хранилища ключей, идентификатор приложения и отпечаток сертификата в файле *appSettings. JSON* приложения.
+1. Сохраните имя хранилища ключей, идентификатор приложения и отпечаток сертификата в *appsettings.js* файла приложения.
 1. Перейдите к **разделу хранилища ключей** в портал Azure.
 1. Выберите хранилище ключей, созданное в [хранилище секретов в рабочей среде с помощью Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) разделе.
-1. Выберите **политики доступа**.
-1. Выберите **Добавить политику доступа**.
+1. Выберите **Политики доступа**.
+1. Нажмите **Добавить политику доступа**.
 1. Откройте **разрешения для секрета** и предоставьте приложению разрешения **Get** и **List** .
 1. Щелкните **выбрать субъект** и выберите зарегистрированное приложение по имени. Нажмите кнопку **Выбрать**.
 1. Щелкните **ОК**.
@@ -147,7 +149,7 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-Сертификат X. 509 управляется ОС. Приложение вызывает <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> со значениями, предоставленными файлом *appSettings. JSON* :
+Сертификат X. 509 управляется ОС. Приложение вызывает <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> со значениями, предоставленными *appsettings.jsв* файле:
 
 [!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=20-23)]
 
@@ -169,7 +171,7 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
 
 Пример приложения использует управляемые удостоверения для ресурсов Azure, когда `#define` инструкция в верхней части файла *Program.CS* имеет значение `Managed` .
 
-Введите имя хранилища в файл *appSettings. JSON* приложения. В примере приложения не требуется идентификатор приложения и пароль (секрет клиента), если задана `Managed` версия, поэтому эти записи конфигурации можно игнорировать. Приложение развертывается в Azure, а Azure выполняет проверку подлинности приложения для доступа к Azure Key Vault только с использованием имени хранилища, хранящегося в файле *appSettings. JSON* .
+Введите имя хранилища в *appsettings.jsприложения в* файле. В примере приложения не требуется идентификатор приложения и пароль (секрет клиента), если задана `Managed` версия, поэтому эти записи конфигурации можно игнорировать. Приложение развертывается в Azure, а Azure выполняет проверку подлинности приложения для доступа к Azure Key Vault только с использованием имени хранилища, хранящегося в *appsettings.js* файле.
 
 Разверните пример приложения в службе приложений Azure.
 
@@ -219,7 +221,7 @@ config.AddAzureKeyVault(
     });
 ```
 
-| Свойство         | Описание |
+| Свойство         | Описание: |
 | ---------------- | ----------- |
 | `Client`         | <xref:Microsoft.Azure.KeyVault.KeyVaultClient>для использования при извлечении значений. |
 | `Manager`        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>экземпляр, используемый для управления загрузкой секрета. |
@@ -381,7 +383,7 @@ Configuration.Reload();
 
 ## <a name="packages"></a>Пакеты
 
-Добавьте ссылку на пакет в пакет [Microsoft. Extensions. Configuration. AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) .
+Добавьте ссылку на пакет в [Microsoft.Extensions.Configфигурации. Пакет AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) .
 
 ## <a name="sample-app"></a>Пример приложения
 
@@ -475,11 +477,11 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
    1. Выберите приложение в Azure AD.
    1. Перейдите к разделу **сертификаты & секреты**.
    1. Выберите **отправить сертификат** , чтобы отправить сертификат, который содержит открытый ключ. Сертификат *. cer*, *. pem*или *. CRT* является приемлемым.
-1. Сохраните имя хранилища ключей, идентификатор приложения и отпечаток сертификата в файле *appSettings. JSON* приложения.
+1. Сохраните имя хранилища ключей, идентификатор приложения и отпечаток сертификата в *appsettings.js* файла приложения.
 1. Перейдите к **разделу хранилища ключей** в портал Azure.
 1. Выберите хранилище ключей, созданное в [хранилище секретов в рабочей среде с помощью Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) разделе.
-1. Выберите **политики доступа**.
-1. Выберите **Добавить политику доступа**.
+1. Выберите **Политики доступа**.
+1. Нажмите **Добавить политику доступа**.
 1. Откройте **разрешения для секрета** и предоставьте приложению разрешения **Get** и **List** .
 1. Щелкните **выбрать субъект** и выберите зарегистрированное приложение по имени. Нажмите кнопку **Выбрать**.
 1. Щелкните **ОК**.
@@ -493,7 +495,7 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-Сертификат X. 509 управляется ОС. Приложение вызывает <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> со значениями, предоставленными файлом *appSettings. JSON* :
+Сертификат X. 509 управляется ОС. Приложение вызывает <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> со значениями, предоставленными *appsettings.jsв* файле:
 
 [!code-csharp[](key-vault-configuration/samples/2.x/SampleApp/Program.cs?name=snippet1&highlight=20-23)]
 
@@ -515,7 +517,7 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
 
 Пример приложения использует управляемые удостоверения для ресурсов Azure, когда `#define` инструкция в верхней части файла *Program.CS* имеет значение `Managed` .
 
-Введите имя хранилища в файл *appSettings. JSON* приложения. В примере приложения не требуется идентификатор приложения и пароль (секрет клиента), если задана `Managed` версия, поэтому эти записи конфигурации можно игнорировать. Приложение развертывается в Azure, а Azure выполняет проверку подлинности приложения для доступа к Azure Key Vault только с использованием имени хранилища, хранящегося в файле *appSettings. JSON* .
+Введите имя хранилища в *appsettings.jsприложения в* файле. В примере приложения не требуется идентификатор приложения и пароль (секрет клиента), если задана `Managed` версия, поэтому эти записи конфигурации можно игнорировать. Приложение развертывается в Azure, а Azure выполняет проверку подлинности приложения для доступа к Azure Key Vault только с использованием имени хранилища, хранящегося в *appsettings.js* файле.
 
 Разверните пример приложения в службе приложений Azure.
 
