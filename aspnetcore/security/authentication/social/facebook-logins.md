@@ -8,17 +8,19 @@ ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/facebook-logins
-ms.openlocfilehash: 11ddc7314a694446d488da6ef1b2e3423bf7241a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: df91b6f324de70b8492ccf0aef74c9264c3e9711
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777037"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403954"
 ---
 # <a name="facebook-external-login-setup-in-aspnet-core"></a>Настройка внешнего входа Facebook в ASP.NET Core
 
@@ -55,16 +57,16 @@ ms.locfileid: "82777037"
 
   ![Страница параметров OAuth клиента](index/_static/FBOAuthSetup.png)
 
-* Введите универсальный код ресурса (URI) для разработки с */сигнин-фацебук* , добавленным в **допустимое поле URI перенаправления OAuth** (например: `https://localhost:44320/signin-facebook`). Проверка подлинности Facebook, настроенная далее в этом руководстве, автоматически обрабатывает запросы по маршруту */сигнин-фацебук* для реализации потока OAuth.
+* Введите универсальный код ресурса (URI) для разработки с */сигнин-фацебук* , добавленным в **допустимое поле URI перенаправления OAuth** (например: `https://localhost:44320/signin-facebook` ). Проверка подлинности Facebook, настроенная далее в этом руководстве, автоматически обрабатывает запросы по маршруту */сигнин-фацебук* для реализации потока OAuth.
 
 > [!NOTE]
 > URI */сигнин-фацебук* задается в качестве обратного вызова по умолчанию для поставщика проверки подлинности Facebook. URI обратного вызова по умолчанию можно изменить при настройке по промежуточного слоя проверки подлинности Facebook с помощью унаследованного свойства [ремотеаусентикатионоптионс. каллбаккпас](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) класса [фацебукоптионс](/dotnet/api/microsoft.aspnetcore.authentication.facebook.facebookoptions) .
 
 * Щелкните **Сохранить изменения**.
 
-* Щелкните ссылку **Параметры** > **Базовая** ссылка в области навигации слева.
+* Щелкните ссылку **Параметры**  >  **Базовая** ссылка в области навигации слева.
 
-  На этой странице запишите `App ID` и ваш. `App Secret` Вы добавите оба варианта в приложение ASP.NET Core в следующем разделе:
+  На этой странице запишите `App ID` и ваш `App Secret` . Вы добавите оба варианта в приложение ASP.NET Core в следующем разделе:
 
 * При развертывании сайта необходимо повторно посетить страницу настройки **имени входа Facebook** и зарегистрировать новый общедоступный URI.
 
@@ -73,7 +75,7 @@ ms.locfileid: "82777037"
 Храните конфиденциальные параметры, такие как идентификатор приложения Facebook и значения секрета, с помощью [диспетчера секретов](xref:security/app-secrets). Для этого примера выполните следующие действия.
 
 1. Инициализируйте проект для хранения секретных данных согласно инструкциям в разделе [Включение секретного хранилища](xref:security/app-secrets#enable-secret-storage).
-1. Храните конфиденциальные параметры в локальном хранилище секретов с секретными `Authentication:Facebook:AppId` ключами `Authentication:Facebook:AppSecret`и:
+1. Храните конфиденциальные параметры в локальном хранилище секретов с секретными ключами `Authentication:Facebook:AppId` и `Authentication:Facebook:AppSecret` :
 
     ```dotnetcli
     dotnet user-secrets set "Authentication:Facebook:AppId" "<app-id>"
@@ -112,11 +114,11 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 
 <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.AccessDeniedPath>может предоставить путь перенаправления к агенту пользователя, когда пользователь не утвердит запрошенный запрос на авторизацию.
 
-Следующий код задает для `AccessDeniedPath` `"/AccessDeniedPathInfo"`значение:
+Следующий код задает для значение `AccessDeniedPath` `"/AccessDeniedPathInfo"` :
 
 [!code-csharp[](~/security/authentication/social/social-code/StartupAccessDeniedPath.cs?name=snippetFB)]
 
-Рекомендуется, `AccessDeniedPath` чтобы страница содержала следующие сведения:
+Рекомендуется, чтобы `AccessDeniedPath` страница содержала следующие сведения:
 
 *  Удаленная проверка подлинности была отменена.
 * Для этого приложения требуется проверка подлинности.
@@ -141,13 +143,13 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 
 ## <a name="troubleshooting"></a>Устранение неполадок
 
-* **Только ASP.NET Core 2. x:** Если Identity параметр не настроен с `services.AddIdentity` помощью `ConfigureServices`вызова в, попытка проверки подлинности приведет к тому, что будет получено исключение *"сигнинсчеме"*. Шаблон проекта, используемый в этом руководстве, гарантирует, что это будет сделано.
+* **Только ASP.NET Core 2. x:** Если Identity параметр не настроен с помощью вызова `services.AddIdentity` в `ConfigureServices` , попытка проверки подлинности приведет к тому, что будет получено исключение *"сигнинсчеме"*. Шаблон проекта, используемый в этом руководстве, гарантирует, что это будет сделано.
 * Если база данных сайта не была создана путем применения первоначальной миграции, то при обработке ошибки запроса возникнет *Ошибка операции с базой данных* . Выберите **Применить миграции** , чтобы создать базу данных и обновить, чтобы продолжить выполнение после ошибки.
 
 ## <a name="next-steps"></a>Дальнейшие действия
 
 * В этой статье показано, как можно пройти проверку подлинности с помощью Facebook. Аналогичный подход можно использовать для проверки подлинности с другими поставщиками, перечисленными на [предыдущей странице](xref:security/authentication/social/index).
 
-* После публикации веб-сайта в веб-приложение Azure необходимо сбросить его `AppSecret` на портале разработчика Facebook.
+* После публикации веб-сайта в веб-приложение Azure необходимо сбросить его на `AppSecret` портале разработчика Facebook.
 
-* Задайте параметры `Authentication:Facebook:AppId` приложения `Authentication:Facebook:AppSecret` и в портал Azure. Система конфигурации настроена на чтение ключей из переменных среды.
+* Задайте `Authentication:Facebook:AppId` `Authentication:Facebook:AppSecret` Параметры приложения и в портал Azure. Система конфигурации настроена на чтение ключей из переменных среды.

@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 3/22/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: migration/identity
-ms.openlocfilehash: 0474d0d4f430d587acac5fdd8f391220f825ccee
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 995de894bc77c4db5e5683b36e691b0c5a3463d3
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775535"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403759"
 ---
 # <a name="migrate-authentication-and-identity-to-aspnet-core"></a>Перенос проверки подлинности и Identity в ASP.NET Core
 
@@ -26,7 +28,7 @@ ms.locfileid: "82775535"
 
 ## <a name="configure-identity-and-membership"></a>Настройка Identity и членство
 
-В ASP.NET MVC функции проверки подлинности и идентификации настраиваются Identity с помощью ASP.NET в *Startup.auth.CS* и *IdentityConfig.cs*, расположенных в папке *App_Start* . В ASP.NET Core MVC эти функции настраиваются в *Startup.CS*.
+В ASP.NET MVC функции проверки подлинности и идентификации настраиваются с помощью ASP.NET Identity в *Startup.Auth.cs* и *IdentityConfig.CS*, расположенных в папке *App_Start* . В ASP.NET Core MVC эти функции настраиваются в *Startup.CS*.
 
 Установите следующие пакеты NuGet:
 
@@ -51,7 +53,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-На этом этапе существует два типа, упоминаемых в приведенном выше коде, которые еще не перенесены из проекта MVC ASP.NET `ApplicationDbContext` : `ApplicationUser`и. Создайте новую папку *Models* в проекте ASP.NET Core и добавьте в нее два класса, соответствующие этим типам. Версии ASP.NET MVC этих классов можно найти в */Моделс/идентитимоделс.КС*, но мы будем использовать по одному файлу для каждого класса в перенесенном проекте, так как это более ясно.
+На этом этапе существует два типа, упоминаемых в приведенном выше коде, которые еще не перенесены из проекта MVC ASP.NET: `ApplicationDbContext` и `ApplicationUser` . Создайте новую папку *Models* в проекте ASP.NET Core и добавьте в нее два класса, соответствующие этим типам. Версии ASP.NET MVC этих классов можно найти в */Моделс/идентитимоделс.КС*, но мы будем использовать по одному файлу для каждого класса в перенесенном проекте, так как это более ясно.
 
 *ApplicationUser.CS*:
 
@@ -92,7 +94,7 @@ namespace NewMvcProject.Models
 }
 ```
 
-ASP.NET Coreный веб-проект MVC не включает в `ApplicationDbContext`себя значительную настройку пользователей или. При переносе реального приложения необходимо также перенести все пользовательские свойства и методы пользователя и `DbContext` классов приложения, а также любые другие классы модели, используемые вашим приложением. Например, если у вас `DbContext` есть `DbSet<Album>`, необходимо перенести `Album` класс.
+ASP.NET Coreный веб-проект MVC не включает в себя значительную настройку пользователей или `ApplicationDbContext` . При переносе реального приложения необходимо также перенести все пользовательские свойства и методы пользователя и классов приложения, а также `DbContext` любые другие классы модели, используемые вашим приложением. Например, если у вас `DbContext` есть `DbSet<Album>` , необходимо перенести `Album` класс.
 
 Используя эти файлы, можно выполнить компиляцию файла *Startup.CS* , обновив `using` инструкции:
 
@@ -121,7 +123,7 @@ using Microsoft.Extensions.DependencyInjection;
 </div>
 ```
 
-Теперь добавьте новое Razor представление с именем *_LoginPartial* в папку *views/Shared* .
+Теперь добавьте новое представление с Razor именем *_LoginPartial* в папку *views/Shared* .
 
 Обновите *_LoginPartial. cshtml* со следующим кодом (замените все его содержимое):
 

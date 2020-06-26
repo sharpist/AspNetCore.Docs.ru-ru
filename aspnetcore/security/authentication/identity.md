@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 01/15/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 6d9532ed8ff89735f41c362b27826436c37c6cb5
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 97cbc5f68d20c06e92a56ead85c8377d4e8ef582
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452139"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404591"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>Введение в Identity ASP.NET Core
 
@@ -24,7 +26,7 @@ ms.locfileid: "84452139"
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
-ASP.NET Core Identity :
+ASP.NET Core Identity:
 
 * — Это API, поддерживающий функцию входа в пользовательский интерфейс.
 * Управляет пользователями, паролями, данными профилирования, ролями, утверждениями, маркерами, подтверждением электронной почты и т. д.
@@ -73,7 +75,7 @@ dotnet new webapp --auth Individual -uld -o WebApp1
 
 ---
 
-Созданный проект предоставляет [ASP.NET Core Identity ](xref:security/authentication/identity) в виде [ Razor библиотеки классов](xref:razor-pages/ui-class). Identity Razor Библиотека классов предоставляет конечные точки с `Identity` областью. Пример:
+Созданный проект предоставляет [ASP.NET Core Identity ](xref:security/authentication/identity) в виде [ Razor библиотеки классов](xref:razor-pages/ui-class). Identity Razor Библиотека классов предоставляет конечные точки с `Identity` областью. Пример.
 
 * /Identity/аккаунт/логин
 * /Identity/аккаунт/логаут
@@ -236,8 +238,9 @@ IdentityБолее подробное изучение:
 </Target>
 ```
 
-## <a name="next-steps"></a>Next Steps
+## <a name="next-steps"></a>Следующие шаги
 
+* [IdentityИсходный код ASP.NET Core](https://github.com/dotnet/aspnetcore/tree/master/src/Identity)
 * Сведения о настройке с помощью SQLite см. в [этой статье о проблемах GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) Identity .
 * [ВыбратьIdentity](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>
@@ -293,7 +296,7 @@ dotnet new webapp --auth Individual -o WebApp1
 
 ---
 
-Созданный проект предоставляет [ASP.NET Core Identity ](xref:security/authentication/identity) в виде [ Razor библиотеки классов](xref:razor-pages/ui-class). Identity Razor Библиотека классов предоставляет конечные точки с `Identity` областью. Пример:
+Созданный проект предоставляет [ASP.NET Core Identity ](xref:security/authentication/identity) в виде [ Razor библиотеки классов](xref:razor-pages/ui-class). Identity Razor Библиотека классов предоставляет конечные точки с `Identity` областью. Пример.
 
 * /Identity/аккаунт/логин
 * /Identity/аккаунт/логаут
@@ -426,7 +429,7 @@ IdentityБолее подробное изучение:
 
 См. раздел [Конфигурация](#pw) для примера, который устанавливает минимальные требования к паролю.
 
-## <a name="next-steps"></a>Next Steps
+## <a name="next-steps"></a>Следующие шаги
 
 * Сведения о настройке с помощью SQLite см. в [этой статье о проблемах GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) Identity .
 * [ВыбратьIdentity](xref:security/authentication/identity-configuration)

@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/06/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 26e6fb38cf31b5a2d5c88c19347c867641eb55df
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 8247d66900a0c15b3b386dca021c5c5922d26e71
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451736"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404566"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Принудительное применение HTTPS в ASP.NET Core
 
@@ -58,7 +60,7 @@ ms.locfileid: "84451736"
 
 ::: moniker-end
 
-## <a name="require-https"></a>Требование к использованию протокола HTTPS
+## <a name="require-https"></a>Требование использовать HTTPS
 
 В рабочей ASP.NET Core веб-приложений рекомендуется использовать:
 
@@ -108,7 +110,7 @@ ms.locfileid: "84451736"
 
   * В конфигурации узла.
   * Путем задания `ASPNETCORE_HTTPS_PORT` переменной среды.
-  * Путем добавления записи верхнего уровня в *appSettings. JSON*:
+  * Добавив запись верхнего уровня в *appsettings.js*:
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
@@ -122,7 +124,7 @@ ms.locfileid: "84451736"
 
   * В конфигурации узла.
   * Путем задания `ASPNETCORE_HTTPS_PORT` переменной среды.
-  * Путем добавления записи верхнего уровня в *appSettings. JSON*:
+  * Добавив запись верхнего уровня в *appsettings.js*:
 
     [!code-json[](enforcing-ssl/sample-snapshot/2.x/appsettings.json?highlight=2)]
 
@@ -130,16 +132,16 @@ ms.locfileid: "84451736"
 
 ::: moniker-end
 
-* В среде разработки задайте URL-адрес HTTPS в *launchsettings. JSON*. При использовании IIS Express включите протокол HTTPS.
+* В среде разработки задайте URL-адрес HTTPS в *launchsettings.json*. При использовании IIS Express включите протокол HTTPS.
 
-* Настройте конечную точку HTTPS URL-адреса для общедоступного пограничной развертывания сервера [Kestrel](xref:fundamentals/servers/kestrel) или [http. sys](xref:fundamentals/servers/httpsys) . Приложение использует только **один HTTPS-порт** . По промежуточного слоя обнаруживает порт через <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .
+* Настройте конечную точку HTTPS URL для общедоступного пограничной развертывания сервера [Kestrel](xref:fundamentals/servers/kestrel) или сервера [HTTP.sys](xref:fundamentals/servers/httpsys) . Приложение использует только **один HTTPS-порт** . По промежуточного слоя обнаруживает порт через <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .
 
 > [!NOTE]
 > Если приложение запускается в конфигурации обратного прокси-сервера, оно <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> недоступно. Задайте порт с помощью одного из других подходов, описанных в этом разделе.
 
 ### <a name="edge-deployments"></a>Развертывания Edge 
 
-Если Kestrel или HTTP. sys используется в качестве общедоступного пограничной сервера, то Kestrel или HTTP. sys должны быть настроены на прослушивание обоих типов:
+Если Kestrel или HTTP.sys используется в качестве общедоступного пограничной сервера, Kestrel или HTTP.sys должны быть настроены для прослушивания обоих типов:
 
 * Безопасный порт, на который перенаправляется клиент (как правило, 443 в рабочей среде и 5001 в разработке).
 * Небезопасный порт (как правило, 80 в рабочей среде и 5000 в разработке).
@@ -319,7 +321,7 @@ ASP.NET Core 2,1 и более поздних версий реализует HS
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli) 
 
-Использовать параметр `--no-https`. Например:
+Использовать параметр `--no-https`. Пример
 
 ```dotnetcli
 dotnet new webapp --no-https

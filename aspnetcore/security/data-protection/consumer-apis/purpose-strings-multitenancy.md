@@ -6,25 +6,27 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/purpose-strings-multitenancy
-ms.openlocfilehash: 73edb8082d2df263bc1e6d73fee1360fa6840514
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 8f069da500e7bc06e4b8712fbf7b86d90a815758
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776777"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404383"
 ---
 # <a name="purpose-hierarchy-and-multi-tenancy-in-aspnet-core"></a>Иерархия целей и мультитенантность в ASP.NET Core
 
-Так как `IDataProtector` объект также неявно является `IDataProtectionProvider`, цели могут быть объединены в цепочку. В этом смысле `provider.CreateProtector([ "purpose1", "purpose2" ])` эквивалентно `provider.CreateProtector("purpose1").CreateProtector("purpose2")`.
+Так как объект `IDataProtector` также неявно является `IDataProtectionProvider` , цели могут быть объединены в цепочку. В этом смысле `provider.CreateProtector([ "purpose1", "purpose2" ])` эквивалентно `provider.CreateProtector("purpose1").CreateProtector("purpose2")` .
 
-Это позволяет некоторым интересным иерархическим связям через систему защиты данных. В предыдущем примере для [contoso. Messaging. секуремессаже](xref:security/data-protection/consumer-apis/purpose-strings#data-protection-contoso-purpose)компонент секуремессаже может вызываться `provider.CreateProtector("Contoso.Messaging.SecureMessage")` один раз перед передним планом и кэшировать результат в закрытое `_myProvider` поле. Затем можно создавать будущие предохранители с `_myProvider.CreateProtector("User: username")`помощью вызовов, а эти предохранители будут использоваться для защиты отдельных сообщений.
+Это позволяет некоторым интересным иерархическим связям через систему защиты данных. В предыдущем примере для [contoso. Messaging. секуремессаже](xref:security/data-protection/consumer-apis/purpose-strings#data-protection-contoso-purpose)компонент секуремессаже может вызываться `provider.CreateProtector("Contoso.Messaging.SecureMessage")` один раз перед передним планом и кэшировать результат в закрытое `_myProvider` поле. Затем можно создавать будущие предохранители с помощью вызовов `_myProvider.CreateProtector("User: username")` , а эти предохранители будут использоваться для защиты отдельных сообщений.
 
-Это также можно сделать зеркально. Рассмотрим единое логическое приложение, в котором размещается несколько клиентов (это кажется разумным), и каждый клиент может быть настроен с помощью собственной системы проверки подлинности и управления состоянием. Приложение-шаблон имеет одного главного поставщика и вызывает `provider.CreateProtector("Tenant 1")` и `provider.CreateProtector("Tenant 2")` , чтобы предоставить каждому клиенту собственный изолированный срез системы защиты данных. Клиенты могут получить собственные индивидуальные предохранители, основываясь на их собственных нуждах, но независимо от того, насколько сложно они попытаются, не могут создавать предохранители, которые конфликтуют с любым другим клиентом в системе. Графическое представление представлено ниже.
+Это также можно сделать зеркально. Рассмотрим единое логическое приложение, в котором размещается несколько клиентов (это кажется разумным), и каждый клиент может быть настроен с помощью собственной системы проверки подлинности и управления состоянием. Приложение-шаблон имеет одного главного поставщика и вызывает `provider.CreateProtector("Tenant 1")` и, `provider.CreateProtector("Tenant 2")` чтобы предоставить каждому клиенту собственный изолированный срез системы защиты данных. Клиенты могут получить собственные индивидуальные предохранители, основываясь на их собственных нуждах, но независимо от того, насколько сложно они попытаются, не могут создавать предохранители, которые конфликтуют с любым другим клиентом в системе. Графическое представление представлено ниже.
 
 ![Многопользовательские цели](purpose-strings-multitenancy/_static/purposes-multi-tenancy.png)
 

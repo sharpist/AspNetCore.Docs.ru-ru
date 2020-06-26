@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 07/11/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/gdpr
-ms.openlocfilehash: 2e21f54ebfcb55be2b97da217b92a39843b5d702
-ms.sourcegitcommit: 6c7a149168d2c4d747c36de210bfab3abd60809a
+ms.openlocfilehash: 0fef14388f83d8b4c708194954f2b75b2164b746
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "83003202"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404500"
 ---
 # <a name="eu-general-data-protection-regulation-gdpr-support-in-aspnet-core"></a>Поддержка ЕС Общий регламент по защите данных (GDPR) в ASP.NET Core
 
@@ -33,7 +35,7 @@ ASP.NET Core предоставляет интерфейсы API и шаблон
 Чтобы включить функцию разрешения файлов cookie по умолчанию, как в шаблонах ASP.NET Core 2,2 в создаваемом шаблоне ASP.NET Core 3,0, выполните следующие действия.
 
 * Добавьте `using Microsoft.AspNetCore.Http` в список директив using.
-* Добавьте [кукиеполициоптионс](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) в `Startup.ConfigureServices` и [усекукиеполици](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) в `Startup.Configure`:
+* Добавьте [кукиеполициоптионс](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) в `Startup.ConfigureServices` и [усекукиеполици](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) в `Startup.Configure` :
 
   [!code-csharp[Main](gdpr/sample/RP3.0/Startup.cs?name=snippet1&highlight=12-19,38)]
 
@@ -41,7 +43,7 @@ ASP.NET Core предоставляет интерфейсы API и шаблон
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_Layout.cshtml?name=snippet&highlight=4)]
 
-* Добавьте в проект файл * \_кукиеконсентпартиал. cshtml* :
+* Добавьте в проект файл * \_ кукиеконсентпартиал. cshtml* :
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_CookieConsentPartial.cshtml)]
 
@@ -52,10 +54,10 @@ ASP.NET Core предоставляет интерфейсы API и шаблон
 ::: moniker range="= aspnetcore-2.2"
 
 * Шаблоны проектов включают точки расширения и разметку создана, которые можно заменить на конфиденциальность и политику использования файлов cookie.
-* Функция согласия файлов cookie позволяет запрашивать (и контролировать) согласие от пользователей на хранение персональных данных. Если пользователь не предоставил разрешения на сбор данных, а приложение имеет [чеккконсентнидед](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.checkconsentneeded) `true`, некритические файлы cookie не отправляются в браузер.
+* Функция согласия файлов cookie позволяет запрашивать (и контролировать) согласие от пользователей на хранение персональных данных. Если пользователь не предоставил разрешения на сбор данных, а приложение имеет [чеккконсентнидед](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.checkconsentneeded) , некритические `true` файлы cookie не отправляются в браузер.
 * Файлы cookie могут быть помечены как основные. Основные файлы cookie отправляются в браузер, даже если пользователь не отправил и не отслеживается.
 * [TempData и сеансовые файлы cookie](#tempdata) не работают, если отслеживание отключено.
-* Страница [Управление удостоверениями](#pd) содержит ссылку для скачивания и удаления данных пользователя.
+* Страница [ Identity Управление](#pd) содержит ссылку для скачивания и удаления данных пользователя.
 
 [Пример приложения](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) позволяет тестировать большинство точек расширения GDPR и API, добавленных в шаблоны ASP.NET Core 2,1. Инструкции по тестированию см. в файле [сведений](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) .
 
@@ -63,32 +65,32 @@ ASP.NET Core предоставляет интерфейсы API и шаблон
 
 ## <a name="aspnet-core-gdpr-support-in-template-generated-code"></a>ASP.NET Core поддержка GDPR в коде, созданном шаблоном
 
-Razor Pages и проекты MVC, созданные с помощью шаблонов проектов, включают следующую поддержку GDPR:
+RazorСтраницы и проекты MVC, созданные с помощью шаблонов проектов, включают следующую поддержку GDPR:
 
 * [Кукиеполициоптионс](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) и [усекукиеполици](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) задаются в `Startup` классе.
-* [Частичное представление](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper) * \_кукиеконсентпартиал. cshtml* . В этот файл входит кнопка **принять** . Когда пользователь нажимает кнопку **Accept (принять** ), предоставляется согласие на хранение файлов cookie.
-* Страница Pages */privacy. cshtml* или views */Home/privacy. cshtml* предоставляет страницу для детализации политики конфиденциальности сайта. Файл * \_кукиеконсентпартиал. cshtml* создает ссылку на страницу «конфиденциальность».
+* [Частичное представление](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper) * \_ кукиеконсентпартиал. cshtml* . В этот файл входит кнопка **принять** . Когда пользователь нажимает кнопку **Accept (принять** ), предоставляется согласие на хранение файлов cookie.
+* Страница Pages */privacy. cshtml* или views */Home/privacy. cshtml* предоставляет страницу для детализации политики конфиденциальности сайта. Файл * \_ кукиеконсентпартиал. cshtml* создает ссылку на страницу «конфиденциальность».
 * Для приложений, созданных с учетными записями отдельных пользователей, страница Управление предоставляет ссылки для скачивания и удаления [персональных данных пользователя](#pd).
 
 ### <a name="cookiepolicyoptions-and-usecookiepolicy"></a>Кукиеполициоптионс и Усекукиеполици
 
-[Кукиеполициоптионс](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) инициализируются в `Startup.ConfigureServices`:
+[Кукиеполициоптионс](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) инициализируются в `Startup.ConfigureServices` :
 
 [!code-csharp[Main](gdpr/sample/Startup.cs?name=snippet1&highlight=14-20)]
 
-[Усекукиеполици](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) вызывается в `Startup.Configure`:
+[Усекукиеполици](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) вызывается в `Startup.Configure` :
 
 [!code-csharp[](gdpr/sample/Startup.cs?name=snippet1&highlight=51)]
 
 ### <a name="_cookieconsentpartialcshtml-partial-view"></a>\_Частичное представление Кукиеконсентпартиал. cshtml
 
-Частичное представление * \_кукиеконсентпартиал. cshtml* :
+Частичное представление * \_ кукиеконсентпартиал. cshtml* :
 
 [!code-html[](gdpr/sample/RP2.2/Pages/Shared/_CookieConsentPartial.cshtml)]
 
 Это частичное:
 
-* Получает состояние отслеживания для пользователя. Если приложение настроено для обязательного согласия, пользователь должен согласиться перед тем, как можно будет относиться к файлам cookie. Если требуется согласие, панель согласия файлов cookie зафиксирована в верхней части панели навигации, созданной с помощью файла * \_Layout. cshtml* .
+* Получает состояние отслеживания для пользователя. Если приложение настроено для обязательного согласия, пользователь должен согласиться перед тем, как можно будет относиться к файлам cookie. Если требуется согласие, панель согласия файлов cookie зафиксирована в верхней части панели навигации, созданной с помощью файла * \_ Layout. cshtml* .
 * Предоставляет элемент HTML `<p>` для суммирования политики конфиденциальности и использования файлов cookie.
 * Содержит ссылку на страницу конфиденциальности или представление, где можно подробно описать политику конфиденциальности сайта.
 
@@ -102,7 +104,7 @@ Razor Pages и проекты MVC, созданные с помощью шабл
 
 ### <a name="tempdata-provider-and-session-state-cookies-arent-essential"></a>Файлы cookie состояния поставщика TempData и сеанса не являются важными
 
-Файл cookie [поставщика TempData](xref:fundamentals/app-state#tempdata) не является обязательным. Если отслеживание отключено, то поставщик TempData не работает. Чтобы включить поставщик TempData при отключении отслеживания, пометьте файл cookie TempData как важный в `Startup.ConfigureServices`:
+Файл cookie [поставщика TempData](xref:fundamentals/app-state#tempdata) не является обязательным. Если отслеживание отключено, то поставщик TempData не работает. Чтобы включить поставщик TempData при отключении отслеживания, пометьте файл cookie TempData как важный в `Startup.ConfigureServices` :
 
 [!code-csharp[Main](gdpr/sample/RP2.2/Startup.cs?name=snippet1)]
 
@@ -122,9 +124,9 @@ ASP.NET Core приложения, созданные с учетными зап
 
 Примечания.
 
-* Сведения о создании `Account/Manage` кода см. в разделе [удостоверение шаблона](xref:security/authentication/scaffold-identity).
-* Ссылки **Delete** и **download** действуют только для данных удостоверений по умолчанию. Приложения, которые создают настраиваемые пользовательские данные, должны быть расширены для удаления и скачивания пользовательских данных. Дополнительные сведения см. [в разделе Добавление, скачивание и удаление настраиваемых данных пользователя в удостоверение](xref:security/authentication/add-user-data).
-* Сохраненные токены для пользователя, хранящиеся в таблице `AspNetUserTokens` базы данных Identity, удаляются, когда пользователь удаляется через каскадное поведение удаления из-за [внешнего ключа](https://github.com/aspnet/Identity/blob/release/2.1/src/EF/IdentityUserContext.cs#L152).
+* Сведения о создании `Account/Manage` кода см. в разделе [формирование Identity шаблонов ](xref:security/authentication/scaffold-identity).
+* Ссылки **Delete** и **download** действуют только для данных удостоверений по умолчанию. Приложения, которые создают настраиваемые пользовательские данные, должны быть расширены для удаления и скачивания пользовательских данных. Дополнительные сведения см. [в разделе Добавление, скачивание и удаление настраиваемых данных пользователя Identity в ](xref:security/authentication/add-user-data).
+* Сохраненные токены для пользователя, хранящегося в Identity таблице базы данных `AspNetUserTokens` , удаляются при удалении пользователя через каскадное поведение удаления из-за [внешнего ключа](https://github.com/aspnet/Identity/blob/release/2.1/src/EF/IdentityUserContext.cs#L152).
 * [Проверка подлинности внешнего поставщика](xref:security/authentication/social/index), например Facebook и Google, недоступна до принятия политики "файлы cookie".
 
 ::: moniker-end
@@ -138,13 +140,13 @@ ASP.NET Core приложения, созданные с учетными зап
 * — Самый простой и надежный вариант.
 * Позволяет базе данных управлять ключами и шифрованием.
 
-Пример:
+Пример.
 
 * Microsoft SQL и Azure SQL предоставляют [прозрачное шифрование данных](/sql/relational-databases/security/encryption/transparent-data-encryption) (TDE).
 * [По умолчанию SQL Azure шифрует базу данных](https://azure.microsoft.com/updates/newly-created-azure-sql-databases-encrypted-by-default/)
 * [Большие двоичные объекты Azure, файлы, таблицы и хранилища очередей шифруются по умолчанию](https://azure.microsoft.com/blog/announcing-default-encryption-for-azure-blobs-files-table-and-queue-storage/).
 
-Для баз данных, которые не предоставляют встроенное шифрование, вы можете использовать шифрование дисков для обеспечения такой же защиты. Пример:
+Для баз данных, которые не предоставляют встроенное шифрование, вы можете использовать шифрование дисков для обеспечения такой же защиты. Пример.
 
 * [BitLocker для Windows Server](/windows/security/information-protection/bitlocker/bitlocker-how-to-deploy-on-windows-server)
 * Linux:
