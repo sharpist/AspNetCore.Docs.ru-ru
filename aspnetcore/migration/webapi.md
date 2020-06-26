@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 05/26/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: migration/webapi
-ms.openlocfilehash: 3c8bf27a97de92a42817d4af625976a4920001aa
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 530455c85c4c869f06ba795d9fb63dcfd1c8d5cf
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84145555"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407230"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Переход с веб-API ASP.NET на ASP.NET Core
 
@@ -73,7 +75,7 @@ ms.locfileid: "84145555"
 
 ## <a name="migrate-configuration"></a>Миграция конфигурации
 
-ASP.NET Core не использует папку *App_Start* или файл *Global. asax* . Кроме того, файл *Web. config* добавляется во время публикации.
+ASP.NET Core не использует папку *App_Start* или файл *Global. asax* . Кроме того, файл *web.config* добавляется во время публикации.
 
 Класс `Startup`:
 
@@ -186,7 +188,7 @@ ASP.NET Core не использует папку *App_Start* или файл *G
 ASP.NET Core не использует:
 
 * *App_Startная* папка или файл *Global. asax*
-* файл *Web. config* добавляется во время публикации.
+* *web.config* файл добавляется во время публикации.
 
 Класс `Startup`:
 

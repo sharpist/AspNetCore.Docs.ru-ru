@@ -8,23 +8,25 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: web-api/advanced/conventions
-ms.openlocfilehash: f74327cd5bb6a5794c90ffdd3896f2b343e175a6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: eece8130c152fdada1e1d86cf3c94932c5ee9f63
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774890"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408452"
 ---
 # <a name="use-web-api-conventions"></a>Использование соглашений веб-API
 
 Авторы: [Пранав Кришнамурти (Pranav Krishnamoorthy)](https://github.com/pranavkm) и [Скот Эдди (Scott Addie)](https://github.com/scottaddie)
 
-В ASP.NET Core 2.2 и более поздних версий добавлен способ извлечения распространенной [документации по API](xref:tutorials/web-api-help-pages-using-swagger) и ее применения к нескольким действиям, контроллерам или всем контроллерам в рамках сборки. Соглашения веб-API являются заменителем для оформления отдельных действий [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute)с помощью.
+В ASP.NET Core 2.2 и более поздних версий добавлен способ извлечения распространенной [документации по API](xref:tutorials/web-api-help-pages-using-swagger) и ее применения к нескольким действиям, контроллерам или всем контроллерам в рамках сборки. Соглашения веб-API являются заменителем для оформления отдельных действий с помощью [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) .
 
 Соглашение позволяет следующее.
 
@@ -41,7 +43,7 @@ ASP.NET Core MVC 2.2 и более поздних версий включает 
 
 Соглашения не являются составными, каждое действие может быть связано только с одним соглашением. Более конкретные соглашения имеют приоритет над менее определенными. Если к действию применяются два или более соглашения с одинаковым приоритетом, выбор осуществляется недетерминированным образом. Существуют следующие варианты применения соглашения к действию (от наиболее конкретного до наименее конкретного):
 
-1. `Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute`&mdash; Применяется к отдельным действиям и определяет тип соглашения и применяемый метод соглашения.
+1. `Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute`&mdash;Применяется к отдельным действиям и определяет тип соглашения и применяемый метод соглашения.
 
     В следующем примере метод соглашения `Microsoft.AspNetCore.Mvc.DefaultApiConventions.Put` типа соглашения по умолчанию применяется к действию `Update`:
 
@@ -79,7 +81,7 @@ ASP.NET Core MVC 2.2 и более поздних версий включает 
 
 ### <a name="response-types"></a>Типы ответов
 
-Эти методы помечаются атрибутами `[ProducesResponseType]` или `[ProducesDefaultResponseType]`. Например:
+Эти методы помечаются атрибутами `[ProducesResponseType]` или `[ProducesDefaultResponseType]`. Пример.
 
 ```csharp
 public static class MyAppConventions
@@ -99,7 +101,7 @@ public static class MyAppConventions
 
 ### <a name="naming-requirements"></a>Требования к именам
 
-Атрибуты `[ApiConventionNameMatch]` и `[ApiConventionTypeMatch]` можно применить к методу соглашения, определяющему действия, к которым они применяются. Например:
+Атрибуты `[ApiConventionNameMatch]` и `[ApiConventionTypeMatch]` можно применить к методу соглашения, определяющему действия, к которым они применяются. Пример.
 
 ```csharp
 [ProducesResponseType(StatusCodes.Status200OK)]

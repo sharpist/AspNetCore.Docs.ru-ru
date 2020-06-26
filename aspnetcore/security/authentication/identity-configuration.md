@@ -1,36 +1,38 @@
 ---
 title: Настройка ASP.NET CoreIdentity
 author: AdrienTorris
-description: Изучите ASP.NET Core Identity значения по умолчанию и Identity Узнайте, как настроить свойства для использования пользовательских значений.
+description: Изучите ASP.NET Core Identity значения по умолчанию и Узнайте, как настроить Identity свойства для использования пользовательских значений.
 ms.author: riande
 ms.date: 02/11/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/identity-configuration
-ms.openlocfilehash: b88f2627eabc536f2d3b8e677020a67bfd1a40ba
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 95c19b671602b45ba217dcb551110854cbbee359
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775652"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408972"
 ---
-# <a name="configure-aspnet-core-identity"></a>Настройка удостоверения ASP.NET Core
+# <a name="configure-aspnet-core-identity"></a>Настройка ASP.NET CoreIdentity
 
-ASP.NET Core удостоверение использует значения по умолчанию для таких параметров, как политика паролей, блокировка и конфигурация файлов cookie. Эти параметры можно переопределить в `Startup` классе.
+ASP.NET Core Identity использует значения по умолчанию для таких параметров, как политика паролей, блокировка и конфигурация файлов cookie. Эти параметры можно переопределить в `Startup` классе.
 
-## <a name="identity-options"></a>Параметры идентификации
+## <a name="identity-options"></a>Параметры Identity
 
-Класс [идентитйоптионс](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) представляет параметры, которые можно использовать для настройки системы удостоверений. `IdentityOptions`необходимо задать **после** вызова метода `AddIdentity` или `AddDefaultIdentity`.
+Класс [идентитйоптионс](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) представляет параметры, которые можно использовать для настройки Identity системы. `IdentityOptions`необходимо задать **после** вызова метода `AddIdentity` или `AddDefaultIdentity` .
 
-### <a name="claims-identity"></a>Удостоверение утверждений
+### <a name="claims-identity"></a>ПретензиIdentity
 
 [Идентитйоптионс. ClaimsIdentity](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.claimsidentity) указывает [клаимсидентитйоптионс](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions) со свойствами, показанными в следующей таблице.
 
-| Свойство. | Описание | Значение по умолчанию |
+| Свойство | Описание | Значение по умолчанию |
 | -------- | ----------- | :-----: |
 | [ролеклаимтипе](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions.roleclaimtype) | Возвращает или задает тип утверждения, используемого для утверждения роли. | [ClaimTypes. Role](/dotnet/api/system.security.claims.claimtypes.role) |
 | [секуритистампклаимтипе](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions.securitystampclaimtype) | Возвращает или задает тип утверждения, используемого для утверждения метки безопасности. | `AspNet.Identity.SecurityStamp` |
@@ -43,9 +45,9 @@ ASP.NET Core удостоверение использует значения п
 
 [!code-csharp[](identity-configuration/sample/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=9)]
 
-Приведенный выше код основан на шаблоне `Login` Identity. 
+Приведенный выше код основан на `Login` Identity шаблоне. 
 
-Параметры блокировки задаются `StartUp.ConfigureServices`в:
+Параметры блокировки задаются в `StartUp.ConfigureServices` :
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_lock)]
 
@@ -55,7 +57,7 @@ ASP.NET Core удостоверение использует значения п
 
 [Идентитйоптионс. Блокировка](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.lockout) задает [локкаутоптионс](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions) со свойствами, показанными в таблице.
 
-| Свойство. | Описание | Значение по умолчанию |
+| Свойство | Описание | Значение по умолчанию |
 | -------- | ----------- | :-----: |
 | [алловедфорневусерс](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.allowedfornewusers) | Определяет, можно ли заблокировать нового пользователя. | `true` |
 | [дефаултлоккауттимеспан](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.defaultlockouttimespan) | Количество времени, в течение которого пользователь блокируется в случае блокировки. | 5 мин |
@@ -63,7 +65,7 @@ ASP.NET Core удостоверение использует значения п
 
 ### <a name="password"></a>Пароль
 
-По умолчанию для удостоверения требуется, чтобы пароли содержали символы в верхнем регистре, символы нижнего регистра, цифры и символы, отличные от буквенно-цифровых. Пароли должны иметь длину не менее шести символов. [Пассвордоптионс](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) можно задать в `Startup.ConfigureServices`.
+По умолчанию Identity требует, чтобы пароли содержали символы в верхнем регистре, символы нижнего регистра, цифры и символы, отличные от буквенно-цифровых. Пароли должны иметь длину не менее шести символов. [Пассвордоптионс](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) можно задать в `Startup.ConfigureServices` .
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -87,7 +89,7 @@ ASP.NET Core удостоверение использует значения п
 
 ::: moniker range=">= aspnetcore-2.0"
 
-| Свойство. | Описание | Значение по умолчанию |
+| Свойство | Описание | Значение по умолчанию |
 | -------- | ----------- | :-----: |
 | [рекуиредигит](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requiredigit) | Требуется число от 0-9 в пароле. | `true` |
 | [рекуиредленгс](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requiredlength) | Минимальная длина пароля. | 6 |
@@ -100,7 +102,7 @@ ASP.NET Core удостоверение использует значения п
 
 ::: moniker range="< aspnetcore-2.0"
 
-| Свойство. | Описание | Значение по умолчанию |
+| Свойство | Описание | Значение по умолчанию |
 | -------- | ----------- | :-----: |
 | [рекуиредигит](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requiredigit) | Требуется число от 0-9 в пароле. | `true` |
 | [рекуиредленгс](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requiredlength) | Минимальная длина пароля. | 6 |
@@ -112,7 +114,7 @@ ASP.NET Core удостоверение использует значения п
 
 ### <a name="sign-in"></a>Вход
 
-Следующий код задает `SignIn` параметры (значения по умолчанию):
+Следующий код задает `SignIn` Параметры (значения по умолчанию):
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -128,7 +130,7 @@ ASP.NET Core удостоверение использует значения п
 
 [Идентитйоптионс. Signing](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.signin) указывает [сигниноптионс](/dotnet/api/microsoft.aspnetcore.identity.signinoptions) со свойствами, показанными в таблице.
 
-| Свойство. | Описание | Значение по умолчанию |
+| Свойство | Описание | Значение по умолчанию |
 | -------- | ----------- | :-----: |
 | [рекуиреконфирмедемаил](/dotnet/api/microsoft.aspnetcore.identity.signinoptions.requireconfirmedemail) | Для входа требуется подтвержденное электронное письмо. | `false` |
 | [рекуиреконфирмедфоненумбер](/dotnet/api/microsoft.aspnetcore.identity.signinoptions.requireconfirmedphonenumber) | Для входа требуется подтвержденный номер телефона. | `false` |
@@ -137,29 +139,29 @@ ASP.NET Core удостоверение использует значения п
 
 [Идентитйоптионс. Tokens](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.tokens) указывает [токеноптионс](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions) с помощью свойств, показанных в таблице.
 
-|                                                        Свойство.                                                         |                                                                                      Описание                                                                                      |
+|                                                        Свойство                                                         |                                                                                      Описание:                                                                                      |
 |-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|     [аусентикатортокенпровидер](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.authenticatortokenprovider)     |                                       Возвращает или задает объект `AuthenticatorTokenProvider` , используемый для проверки двухфакторной регистрации с помощью средства проверки подлинности.                                       |
-|       [чанжеемаилтокенпровидер](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.changeemailtokenprovider)       |                                     Возвращает или задает объект `ChangeEmailTokenProvider` , используемый для создания токенов, используемых в сообщениях электронной почты с подтверждением изменений.                                     |
-| [чанжефоненумбертокенпровидер](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.changephonenumbertokenprovider) |                                      Возвращает или задает объект `ChangePhoneNumberTokenProvider` , используемый для создания маркеров, используемых при изменении номеров телефонов.                                      |
+|     [аусентикатортокенпровидер](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.authenticatortokenprovider)     |                                       Возвращает или задает объект, `AuthenticatorTokenProvider` используемый для проверки двухфакторной регистрации с помощью средства проверки подлинности.                                       |
+|       [чанжеемаилтокенпровидер](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.changeemailtokenprovider)       |                                     Возвращает или задает объект, `ChangeEmailTokenProvider` используемый для создания токенов, используемых в сообщениях электронной почты с подтверждением изменений.                                     |
+| [чанжефоненумбертокенпровидер](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.changephonenumbertokenprovider) |                                      Возвращает или задает объект, `ChangePhoneNumberTokenProvider` используемый для создания маркеров, используемых при изменении номеров телефонов.                                      |
 | [емаилконфирматионтокенпровидер](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.emailconfirmationtokenprovider) |                                             Возвращает или задает поставщик токенов, используемый для создания токенов, используемых в сообщениях электронной почты с подтверждением учетной записи.                                              |
-|     [пассвордресеттокенпровидер](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.passwordresettokenprovider)     | Возвращает или задает [>Тусер\<иусертвофактортокенпровидер](/dotnet/api/microsoft.aspnetcore.identity.iusertwofactortokenprovider-1) , используемый для создания токенов, используемых в сообщениях электронной почты для сброса пароля. |
+|     [пассвордресеттокенпровидер](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.passwordresettokenprovider)     | Возвращает или задает [иусертвофактортокенпровидер \<TUser> ](/dotnet/api/microsoft.aspnetcore.identity.iusertwofactortokenprovider-1) , используемый для создания токенов, используемых в сообщениях электронной почты для сброса пароля. |
 |                    [провидермап](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.providermap)                    |                Используется для создания [поставщика пользовательского токена](/dotnet/api/microsoft.aspnetcore.identity.tokenproviderdescriptor) с ключом, используемым в качестве имени поставщика.                 |
 
-### <a name="user"></a>Пользователь
+### <a name="user"></a>User (Пользователь)
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_user)]
 
 [Идентитйоптионс. User](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.user) указывает [UserOptions](/dotnet/api/microsoft.aspnetcore.identity.useroptions) с свойствами, показанными в таблице.
 
-| Свойство. | Описание | Значение по умолчанию |
+| Свойство | Описание | Значение по умолчанию |
 | -------- | ----------- | :-----: |
 | [алловедусернамечарактерс](/dotnet/api/microsoft.aspnetcore.identity.useroptions.allowedusernamecharacters) | Допустимые символы в имени пользователя. | абкдефгхижклмнопкрстуввксиз<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>0123456789<br>-.\_@+ |
 | [рекуиреуникуимаил](/dotnet/api/microsoft.aspnetcore.identity.useroptions.requireuniqueemail) | Требует, чтобы каждый пользователь имел уникальный адрес электронной почты. | `false` |
 
 ### <a name="cookie-settings"></a>Параметры файлов cookie
 
-Настройте файл cookie приложения в `Startup.ConfigureServices`. [Конфигуреаппликатионкукие](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) должен вызываться **после** вызова `AddIdentity` метода `AddDefaultIdentity`или.
+Настройте файл cookie приложения в `Startup.ConfigureServices` . [Конфигуреаппликатионкукие](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) должен вызываться **после** вызова метода `AddIdentity` или `AddDefaultIdentity` .
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -187,10 +189,10 @@ ASP.NET Core удостоверение использует значения п
 
 | Параметр | Описание: |
 | ------ | ----------- |
-| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> | Режим совместимости, используемый при хэшировании новых паролей. По умолчанию имеет значение <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. Первый байт хэшированного пароля, называемый *маркером формата*, указывает версию алгоритма хэширования, используемого для хэширования пароля. При проверке пароля по хэшу <xref:Microsoft.AspNetCore.Identity.PasswordHasher`1.VerifyHashedPassword*> метод выбирает правильный алгоритм на основе первого байта. Клиент может проходить проверку подлинности независимо от того, какая версия алгоритма использовалась для хэширования пароля. Установка режима совместимости влияет на хэширование *новых паролей*. |
-| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> | Число итераций, используемых при хэшировании паролей с помощью PBKDF2. Это значение используется только в том случае <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> , если свойству присвоено значение <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. Значение должно быть положительным целым числом, а по `10000`умолчанию —. |
+| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> | Режим совместимости, используемый при хэшировании новых паролей. По умолчанию — <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. Первый байт хэшированного пароля, называемый *маркером формата*, указывает версию алгоритма хэширования, используемого для хэширования пароля. При проверке пароля по хэшу <xref:Microsoft.AspNetCore.Identity.PasswordHasher`1.VerifyHashedPassword*> метод выбирает правильный алгоритм на основе первого байта. Клиент может проходить проверку подлинности независимо от того, какая версия алгоритма использовалась для хэширования пароля. Установка режима совместимости влияет на хэширование *новых паролей*. |
+| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> | Число итераций, используемых при хэшировании паролей с помощью PBKDF2. Это значение используется только в том случае, если <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> свойству присвоено значение <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3> . Значение должно быть положительным целым числом, а по умолчанию — `10000` . |
 
-В следующем примере <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> для `12000` задано значение в: `Startup.ConfigureServices`
+В следующем примере для задано значение <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> `12000` в `Startup.ConfigureServices` :
 
 ```csharp
 // using Microsoft.AspNetCore.Identity;

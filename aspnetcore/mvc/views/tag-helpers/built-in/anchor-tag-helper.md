@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/13/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: 142ad62bbbc25fc5390331b253a6173f064ef162
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: af0f07a0f50a79f25b6a14459402f9dd8b59dae2
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773969"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408257"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>Вспомогательная функция тега привязки в ASP.NET Core MVC
 
@@ -188,14 +190,14 @@ RazorОбласти страниц поддерживаются в ASP.NET Core 
 * **{Имя проекта}**
   * **wwwroot**
   * **Области**
-    * **Сеансы**
-      * **Pages**
+    * **Активных**
+      * **Страницы**
         * *\_Виевстарт. cshtml*
         * *Index.cshtml*
         * *Index.cshtml.cs*
-  * **Pages**
+  * **Страницы**
 
-Разметка для ссылки на страницу *индекса* Razor области *сеансов* :
+Разметка для ссылки на страницу *индекса* области *сеансов* Razor :
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAreaRazorPages)]
 
@@ -206,7 +208,7 @@ RazorОбласти страниц поддерживаются в ASP.NET Core 
 ```
 
 > [!TIP]
-> Для поддержки областей в приложении Razor для страниц выполните одно из следующих действий в `Startup.ConfigureServices`.
+> Для поддержки областей в Razor приложении для страниц выполните одно из следующих `Startup.ConfigureServices` действий в.
 >
 > * Задайте [версию совместимости](xref:mvc/compatibility-version) 2.1 или более позднюю.
 > * Задайте для свойства [RazorPagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) значение `true`:
@@ -241,13 +243,13 @@ RazorОбласти страниц поддерживаются в ASP.NET Core 
 ```
 
 > [!TIP]
-> Для поддержки областей в приложении MVC в шаблон маршрута необходимо включить ссылку на область, если она существует. Этот шаблон представлен вторым параметром вызова `routes.MapRoute` метода во *время запуска. Настройте*:
+> Для поддержки областей в приложении MVC в шаблон маршрута необходимо включить ссылку на область, если она существует. Этот шаблон представлен вторым параметром `routes.MapRoute` вызова метода в *Startup.Configключать*:
 >
 > [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_UseMvc&highlight=5)]
 
 ### <a name="asp-protocol"></a>asp-protocol
 
-Атрибут [asp-protocol](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Protocol*) предназначен для указания протокола (например, `https`) в URL-адресе. Например:
+Атрибут [asp-protocol](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Protocol*) предназначен для указания протокола (например, `https`) в URL-адресе. Пример.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspProtocol)]
 
@@ -261,7 +263,7 @@ RazorОбласти страниц поддерживаются в ASP.NET Core 
 
 ### <a name="asp-host"></a>asp-host
 
-Атрибут [asp-host](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Host*) предназначен для определения имени узла в URL-адресе. Например:
+Атрибут [asp-host](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Host*) предназначен для определения имени узла в URL-адресе. Пример.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspHost)]
 
@@ -275,7 +277,7 @@ RazorОбласти страниц поддерживаются в ASP.NET Core 
 
 Атрибут [ASP-Page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) используется со Razor страницами. Используйте его для определения значения атрибута `href` тега привязки для определенной страницы. Чтобы создать URL-адрес, перед именем страницы следует ввести символ косой черты (/).
 
-Следующий пример указывает на Razor страницу «участник»:
+Следующий пример указывает на страницу «участник» Razor :
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspPage)]
 

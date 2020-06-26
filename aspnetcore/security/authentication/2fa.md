@@ -8,17 +8,19 @@ ms.date: 09/22/2018
 ms.custom: mvc, seodec18
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/2fa
-ms.openlocfilehash: e33f22356de983c8c4e0211822d5027a33b48de6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 032650296cfdcc4fef632c6a6a9ce2b56db6a6df
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775834"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408582"
 ---
 # <a name="two-factor-authentication-with-sms-in-aspnet-core"></a>Двухфакторная проверка подлинности с помощью SMS в ASP.NET Core
 
@@ -33,7 +35,7 @@ ms.locfileid: "82775834"
 
 ## <a name="create-a-new-aspnet-core-project"></a>Создание проекта ASP.NET Core
 
-Создайте веб-приложение ASP.NET Core с именем `Web2FA` с учетными записями отдельных пользователей. Следуйте инструкциям в <xref:security/enforcing-ssl> , чтобы настроить и требовать протокол HTTPS.
+Создайте веб-приложение ASP.NET Core с именем `Web2FA` с учетными записями отдельных пользователей. Следуйте инструкциям в, <xref:security/enforcing-ssl> чтобы настроить и требовать протокол HTTPS.
 
 ### <a name="create-an-sms-account"></a>Создание учетной записи SMS
 
@@ -49,7 +51,7 @@ ms.locfileid: "82775834"
 
 В параметрах учетной записи перейдите по адресу **Userkey** и скопируйте его вместе с **паролем**.
 
-Позже мы будем хранить эти значения в с помощью средства Secret-Manager в ключах `SMSAccountIdentification` и `SMSAccountPassword`.
+Позже мы будем хранить эти значения в с помощью средства Secret-Manager в ключах `SMSAccountIdentification` и `SMSAccountPassword` .
 
 #### <a name="specifying-senderid--originator"></a>Указание SenderID или инициатора
 
@@ -57,7 +59,7 @@ ms.locfileid: "82775834"
 
 **Аспсмс:** В меню Источник разблокировки Разблокируйте один или несколько источник или выберите буквенно-цифровой инициатор (не поддерживается всеми сетями).
 
-Позже мы будем хранить это значение с помощью средства Secret-Manager в рамках ключа `SMSAccountFrom`.
+Позже мы будем хранить это значение с помощью средства Secret-Manager в рамках ключа `SMSAccountFrom` .
 
 ### <a name="provide-credentials-for-the-sms-service"></a>Укажите учетные данные для службы SMS
 
@@ -67,7 +69,7 @@ ms.locfileid: "82775834"
 
 [!code-csharp[](2fa/sample/Web2FA/Services/SMSoptions.cs)]
 
-`SMSAccountIdentification`Задайте `SMSAccountPassword` и `SMSAccountFrom` с помощью [средства Secret-Manager](xref:security/app-secrets). Например:
+Задайте `SMSAccountIdentification` `SMSAccountPassword` и `SMSAccountFrom` с помощью [средства Secret-Manager](xref:security/app-secrets). Пример.
 
 ```none
 C:/Web2FA/src/WebApp1>dotnet user-secrets set SMSAccountIdentification 12345
@@ -94,7 +96,7 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 
 ### <a name="configure-startup-to-use-smsoptions"></a>Настройка запуска для использования`SMSoptions`
 
-Добавьте `SMSoptions` в контейнер службы в `ConfigureServices` методе в *Startup.CS*:
+Добавьте в `SMSoptions` контейнер службы в `ConfigureServices` методе в *Startup.CS*:
 
 [!code-csharp[](2fa/sample/Web2FA/Startup.cs?name=snippet1&highlight=4)]
 
@@ -108,7 +110,7 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 
 ![Открытие представления регистрации веб-приложения в Microsoft ребро](2fa/_static/login2fa1.png)
 
-* Коснитесь имени пользователя, которое активирует метод `Index` действия в управлении контроллером. Затем коснитесь ссылки **Добавить** номер телефона.
+* Коснитесь имени пользователя, которое активирует `Index` метод действия в управлении контроллером. Затем коснитесь ссылки **Добавить** номер телефона.
 
 ![Управление представлением — Коснитесь ссылки "Добавить"](2fa/_static/login2fa2.png)
 
@@ -152,7 +154,7 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 
 [!code-csharp[](2fa/sample/Web2FA/Startup.cs?name=snippet2&highlight=13-17)]
 
-Убедитесь, [PasswordSignInAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync) что пассвордсигнинасинк `lockoutOnFailure` задает `true`:
+Убедитесь, что [пассвордсигнинасинк](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync) задает `lockoutOnFailure` `true` :
 
 ```csharp
 var result = await _signInManager.PasswordSignInAsync(

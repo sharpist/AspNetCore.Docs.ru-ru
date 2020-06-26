@@ -8,26 +8,28 @@ ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/publish-to-azure-web-app
-ms.openlocfilehash: a5d19c1519c69351605e8da1d8fa70bff784efd4
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: d3f48b3171012b03fcaf7665c2089b27d37bbeca
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777193"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408842"
 ---
-# <a name="publish-an-aspnet-core-signalr-app-to-azure-app-service"></a>Публикация приложения ASP.NET Core SignalR в службе приложений Azure
+# <a name="publish-an-aspnet-core-signalr-app-to-azure-app-service"></a>Публикация ASP.NET Core SignalR приложения в службе приложений Azure
 
 По [Брейди Гастер](https://twitter.com/bradygaster)
 
 [Служба приложений Azure](/azure/app-service/app-service-web-overview) — это служба платформы [облачных вычислений Майкрософт](https://azure.microsoft.com/) для размещения веб-приложений, включая ASP.NET Core.
 
 > [!NOTE]
-> В этой статье описывается публикация приложения ASP.NET Core SignalR из Visual Studio. Дополнительные сведения см. в статье [Служба SignalR для Azure](https://azure.microsoft.com/services/signalr-service).
+> В этой статье описывается публикация ASP.NET Core SignalR приложения из Visual Studio. Дополнительные сведения см. в статье [ SignalR служба для Azure](https://azure.microsoft.com/services/signalr-service).
 
 ## <a name="publish-the-app"></a>Публикация приложения
 
@@ -48,13 +50,13 @@ ms.locfileid: "82777193"
    | **Группа ресурсов** | Группа связанных ресурсов, к которым принадлежит приложение. |
    | **План размещения**   | Тарифный план для веб-приложения. |
 
-1. Выберите **службу Azure SignalR ** в раскрывающемся **списке зависимости** > **Добавить** :
+1. Выберите ** SignalR службу Azure** в раскрывающемся списке **зависимости**  >  **Добавить** :
 
-   ![Область зависимостей, отображающая выбор службы SignalR Azure в раскрывающемся списке "Добавить"](publish-to-azure-web-app/_static/signalr-service-dependency.png)
+   ![Область зависимостей, отображающая выбор службы Azure в раскрывающемся SignalR списке "Добавить"](publish-to-azure-web-app/_static/signalr-service-dependency.png)
 
-1. В диалоговом окне **службы Azure SignalR ** выберите **создать новый экземпляр службы SignalR Azure**.
+1. В диалоговом окне ** SignalR службы Azure** выберите **создать новый SignalR экземпляр службы Azure**.
 
-1. Укажите **имя**, **группу ресурсов**и **Расположение**. Вернитесь в диалоговое окно **службы Azure SignalR ** и нажмите кнопку **добавить**.
+1. Укажите **имя**, **группу ресурсов**и **Расположение**. Вернитесь в диалоговое окно ** SignalR службы Azure** и нажмите кнопку **добавить**.
 
 Visual Studio выполняет следующие задачи:
 
@@ -63,7 +65,7 @@ Visual Studio выполняет следующие задачи:
 * Публикует приложение.
 * Запускает браузер, который загружает веб-приложение.
 
-URL-адрес приложения имеет `{APP SERVICE NAME}.azurewebsites.net`формат. Например, приложение с именем `SignalRChatApp` имеет URL-адрес. `https://signalrchatapp.azurewebsites.net`
+URL-адрес приложения имеет формат `{APP SERVICE NAME}.azurewebsites.net` . Например, приложение с именем `SignalRChatApp` имеет URL-адрес `https://signalrchatapp.azurewebsites.net` .
 
 Если при развертывании приложения, предназначенного для предварительной версии .NET Core, возникает ошибка HTTP *502,2-Bad Gateway* , см. статью [развертывание ASP.NET Core предварительной версии в службе приложений Azure](xref:host-and-deploy/azure-apps/index#deploy-aspnet-core-preview-release-to-azure-app-service) .
 
@@ -72,7 +74,7 @@ URL-адрес приложения имеет `{APP SERVICE NAME}.azurewebsites
 > [!NOTE]
 > *Этот раздел относится только к приложениям, которые не используют SignalR службу Azure.*
 >
-> Если приложение использует службу Azure SignalR , служба приложений не требует настройки сходства маршрутизации запросов приложений (ARR) и веб-сокетов, описанных в этом разделе. Клиенты соединяют свои веб-сокеты со SignalR службой Azure, а не напрямую с приложением.
+> Если приложение использует SignalR службу Azure, служба приложений не требует настройки сходства маршрутизации запросов приложений (ARR) и веб-сокетов, описанных в этом разделе. Клиенты соединяют свои веб-сокеты со SignalR службой Azure, а не напрямую с приложением.
 
 Для приложений, размещенных без SignalR службы Azure, включите:
 
@@ -80,7 +82,7 @@ URL-адрес приложения имеет `{APP SERVICE NAME}.azurewebsites
 * [Веб-сокеты](xref:fundamentals/websockets) для обеспечения функционирования транспорта веб-сокетов. Значение по умолчанию — **Off**.
 
 1. В портал Azure перейдите к веб-приложению в **службах приложений**.
-1. Откройте **Configuration** > **Общие параметры**конфигурации.
+1. Откройте **Configuration**  >  **Общие параметры**конфигурации.
 1. Установите для **веб-сокетов** значение **вкл**.
 1. Убедитесь, что для параметра **сходство arr** установлено значение **вкл**.
 
@@ -90,7 +92,7 @@ URL-адрес приложения имеет `{APP SERVICE NAME}.azurewebsites
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* [Что такое служба SignalR Azure?](/azure/azure-signalr/signalr-overview)
+* [Что такое SignalR служба Azure?](/azure/azure-signalr/signalr-overview)
 * <xref:signalr/introduction>
 * <xref:host-and-deploy/index>
 * <xref:tutorials/publish-to-azure-webapp-using-vs>

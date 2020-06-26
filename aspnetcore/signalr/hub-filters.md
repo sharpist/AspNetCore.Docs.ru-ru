@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/22/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/hub-filters
-ms.openlocfilehash: afdb52039c0eff53a421038518c687c78e1d509b
-ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
+ms.openlocfilehash: c7ba0fff8bca53e2d6d12add693ee391ffa789ca
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/13/2020
-ms.locfileid: "84756071"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408569"
 ---
 # <a name="use-hub-filters-in-aspnet-core-signalr"></a>Использование фильтров концентратора в ASP.NET CoreSignalR
 
@@ -191,7 +193,7 @@ public class CustomFilter : IHubFilter
 
 `HubInvocationContext`Содержит сведения о текущем вызове метода концентратора.
 
-| Свойство | Описание | Тип |
+| Свойство | Описание | Type |
 | ------ | ------ | ----------- |
 | `Context ` | `HubCallerContext`Содержит сведения о соединении. | `HubCallerContext` |
 | `Hub` | Экземпляр концентратора, используемый для этого вызова метода концентратора. | `Hub` |
@@ -204,7 +206,7 @@ public class CustomFilter : IHubFilter
 
 `HubLifetimeContext`Содержит сведения для `OnConnectedAsync` `OnDisconnectedAsync` методов концентратора и.
 
-| Свойство | Описание | Тип |
+| Свойство | Описание | Type |
 | ------ | ------ | ----------- |
 | `Context ` | `HubCallerContext`Содержит сведения о соединении. | `HubCallerContext` |
 | `Hub` | Экземпляр концентратора, используемый для этого вызова метода концентратора. | `Hub` |

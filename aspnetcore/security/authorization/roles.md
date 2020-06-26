@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authorization/roles
-ms.openlocfilehash: 01d4239377b128f711a110a821e1afea58ca14a7
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 5d2ea6b9be0c993d62fa75fb8b471b5923747bac
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776543"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407867"
 ---
 # <a name="role-based-authorization-in-aspnet-core"></a>Авторизация на основе ролей в ASP.NET Core
 
@@ -26,7 +28,7 @@ ms.locfileid: "82776543"
 
 ## <a name="adding-role-checks"></a>Добавление проверок ролей
 
-Проверки авторизации на основе ролей являются декларативными&mdash;. разработчик внедряет их в код для контроллера или действия в пределах контроллера, указывая роли, членом которых должен являться текущий пользователь для доступа к запрошенному ресурсу.
+Проверки авторизации на основе ролей являются декларативными. &mdash; разработчик внедряет их в код для контроллера или действия в пределах контроллера, указывая роли, членом которых должен являться текущий пользователь для доступа к запрошенному ресурсу.
 
 Например, следующий код ограничивает доступ к любым действиям `AdministrationController` для пользователей, являющихся членами `Administrator` роли:
 
@@ -48,7 +50,7 @@ public class SalaryController : Controller
 
 Этот контроллер будет доступен только пользователям, которые являются членами `HRManager` роли или `Finance` роли.
 
-При применении нескольких атрибутов пользователь, обращающийся к, должен быть членом всех указанных ролей. в следующем примере необходимо, чтобы пользователь был членом роли `PowerUser` и. `ControlPanelUser`
+При применении нескольких атрибутов пользователь, обращающийся к, должен быть членом всех указанных ролей. в следующем примере необходимо, чтобы пользователь был членом `PowerUser` `ControlPanelUser` роли и.
 
 ```csharp
 [Authorize(Roles = "PowerUser")]
@@ -75,7 +77,7 @@ public class ControlPanelController : Controller
 }
 ```
 
-В `Administrator` предыдущем фрагменте кода члены роли или `PowerUser` роли могут получить доступ к контроллеру и `SetTime` действию, но только члены `Administrator` роли могут получить доступ к `ShutDown` действию.
+В предыдущем фрагменте кода члены `Administrator` роли или `PowerUser` роли могут получить доступ к контроллеру и `SetTime` действию, но только члены `Administrator` роли могут получить доступ к `ShutDown` действию.
 
 Можно также заблокировать контроллер, но разрешить доступ к отдельным действиям с анонимным доступом без проверки подлинности.
 
@@ -112,7 +114,7 @@ public class UpdateModel : PageModel
 ```
 
 > [!IMPORTANT]
-> Атрибуты фильтра, включая `AuthorizeAttribute`, могут применяться только к PageModel и не могут применяться к конкретным методам обработчика страницы.
+> Атрибуты фильтра, включая `AuthorizeAttribute` , могут применяться только к PageModel и не могут применяться к конкретным методам обработчика страницы.
 ::: moniker-end
 
 <a name="security-authorization-role-policy"></a>
@@ -169,7 +171,7 @@ options.AddPolicy("ElevatedRights", policy =>
                   policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
 ```
 
-Этот пример разрешает пользователям `Administrator`, принадлежащим к ролям, `PowerUser` или `BackupAdministrator` .
+Этот пример разрешает пользователям, принадлежащим к `Administrator` ролям, `PowerUser` или `BackupAdministrator` .
 
 ### <a name="add-role-services-to-identity"></a>Добавление служб ролей вIdentity
 

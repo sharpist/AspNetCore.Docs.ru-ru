@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: cdf10cd26f3eb9af386f782475eeabbda50f0df9
-ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
+ms.openlocfilehash: 1bbea6f16d57d5cc107c95293e2788271bfce601
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83153348"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408049"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Поставщики хранилища ключей в ASP.NET Core
 
@@ -126,7 +128,7 @@ public void ConfigureServices(IServiceCollection services)
 
 **Применяется только к развертываниям Windows.**
 
-Иногда приложение может не иметь доступа на запись в файловую систему. Рассмотрим ситуацию, когда приложение запускается как учетная запись виртуальной службы (например, удостоверение пула приложений *w3wp. exe*). В таких случаях администратор может предоставить раздел реестра, доступный для удостоверения учетной записи службы. Вызовите метод расширения [персисткэйсторегистри](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystoregistry) , как показано ниже. Укажите [RegistryKey](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository.registrykey) , указывающий на расположение, в котором должны храниться криптографические ключи:
+Иногда приложение может не иметь доступа на запись в файловую систему. Рассмотрим ситуацию, когда приложение работает как учетная запись виртуальной службы (например, удостоверение пула приложений *w3wp.exe*). В таких случаях администратор может предоставить раздел реестра, доступный для удостоверения учетной записи службы. Вызовите метод расширения [персисткэйсторегистри](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystoregistry) , как показано ниже. Укажите [RegistryKey](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository.registrykey) , указывающий на расположение, в котором должны храниться криптографические ключи:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -147,7 +149,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Этот пакет позволяет совместно использовать ключи в нескольких экземплярах веб-приложения.
 
-Чтобы настроить поставщик EF Core, вызовите метод [ \<>персисткэйстодбконтекст тконтекст](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) :
+Чтобы настроить поставщик EF Core, вызовите метод [персисткэйстодбконтекст \<TContext> ](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) :
 
 [!code-csharp[Main](key-storage-providers/sample/Startup.cs?name=snippet&highlight=13-20)]
 

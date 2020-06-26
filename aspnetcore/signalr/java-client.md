@@ -1,36 +1,38 @@
 ---
-title: Клиент SignalR Java ASP.NET Core
+title: SignalRКлиент Java ASP.NET Core
 author: mikaelm12
-description: Узнайте, как использовать клиент Java SignalR ASP.NET Core.
+description: Узнайте, как использовать SignalR клиент Java ASP.NET Core.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: mimengis
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/java-client
-ms.openlocfilehash: 33c1e3b9b2b8990c811f3b49a978cbc630294c81
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 27ab8cc1b6e419b59aadb97a8a1fbdddc3579276
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777258"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408803"
 ---
-# <a name="aspnet-core-signalr-java-client"></a>Клиент SignalR Java ASP.NET Core
+# <a name="aspnet-core-signalr-java-client"></a>SignalRКлиент Java ASP.NET Core
 
-По [Mikael Менгисту](https://twitter.com/MikaelM_12)
+Авторы: [Микаэль Менгисту](https://twitter.com/MikaelM_12) (Mikael Mengistu)
 
-Клиент Java позволяет подключаться к серверу SignalR ASP.NET Core из кода Java, включая приложения Android. Как и клиент [JavaScript](xref:signalr/javascript-client) и [клиент .NET](xref:signalr/dotnet-client), клиент Java позволяет получать и отправлять сообщения в концентратор в режиме реального времени. Клиент Java доступен в ASP.NET Core 2,2 и более поздних версиях.
+Клиент Java позволяет подключаться к SignalR серверу ASP.NET Core из кода Java, включая приложения Android. Как и клиент [JavaScript](xref:signalr/javascript-client) и [клиент .NET](xref:signalr/dotnet-client), клиент Java позволяет получать и отправлять сообщения в концентратор в режиме реального времени. Клиент Java доступен в ASP.NET Core 2,2 и более поздних версиях.
 
-Пример консольного приложения Java, упоминаемого в этой статье SignalR , использует клиент Java.
+Пример консольного приложения Java, упоминаемого в этой статье, использует SignalR клиент Java.
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/java-client/sample) ([как скачивать](xref:index#how-to-download-a-sample))
 
-## <a name="install-the-signalr-java-client-package"></a>Установка клиентского SignalR пакета Java
+## <a name="install-the-signalr-java-client-package"></a>Установка SignalR клиентского пакета Java
 
 JAR *-файл 1.0.0* позволяет клиентам подключаться к SignalR концентраторам. Чтобы найти последний номер версии JAR-файла, см. [Результаты поиска Maven](https://search.maven.org/search?q=g:com.microsoft.signalr%20AND%20a:signalr).
 
@@ -40,19 +42,19 @@ JAR *-файл 1.0.0* позволяет клиентам подключатьс
 implementation 'com.microsoft.signalr:signalr:1.0.0'
 ```
 
-При использовании Maven добавьте следующие строки в `<dependencies>` элемент файла *POM. XML* :
+При использовании Maven добавьте следующие строки в `<dependencies>` элемент файла *pom.xml* :
 
 [!code-xml[pom.xml dependency element](java-client/sample/pom.xml?name=snippet_dependencyElement)]
 
 ## <a name="connect-to-a-hub"></a>Подключение к концентратору
 
-Чтобы установить `HubConnection`, `HubConnectionBuilder` следует использовать. URL-адрес центра и уровень журнала можно настроить при создании соединения. Настройте все необходимые параметры, вызвав любой из `HubConnectionBuilder` методов, `build`предшествующих. Запустите соединение с `start`.
+Чтобы установить `HubConnection` , `HubConnectionBuilder` следует использовать. URL-адрес центра и уровень журнала можно настроить при создании соединения. Настройте все необходимые параметры, вызвав любой из `HubConnectionBuilder` методов, предшествующих `build` . Запустите соединение с `start` .
 
 [!code-java[Build hub connection](java-client/sample/src/main/java/Chat.java?range=16-17)]
 
 ## <a name="call-hub-methods-from-client"></a>Методы концентратора вызовов от клиента
 
-Вызов метода `send` вызывает метод концентратора. Передайте имя метода концентратора и все аргументы, определенные в методе `send`концентратора, в.
+Вызов `send` метода вызывает метод концентратора. Передайте имя метода концентратора и все аргументы, определенные в методе концентратора, в `send` .
 
 [!code-java[send method](java-client/sample/src/main/java/Chat.java?range=28)]
 
@@ -67,7 +69,7 @@ implementation 'com.microsoft.signalr:signalr:1.0.0'
 
 ## <a name="add-logging"></a>Добавление ведения журнала
 
-Клиент SignalR Java использует библиотеку [SLF4J](https://www.slf4j.org/) для ведения журнала. Это высокоуровневый API ведения журнала, который позволяет пользователям библиотеки выбирать собственную реализацию ведения журнала, применяя определенную зависимость от ведения журнала. В следующем фрагменте кода показано, как `java.util.logging` использовать с SignalR клиентом Java.
+SignalRКлиент Java использует библиотеку [SLF4J](https://www.slf4j.org/) для ведения журнала. Это высокоуровневый API ведения журнала, который позволяет пользователям библиотеки выбирать собственную реализацию ведения журнала, применяя определенную зависимость от ведения журнала. В следующем фрагменте кода показано, как использовать `java.util.logging` с SignalR клиентом Java.
 
 ```gradle
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
@@ -87,12 +89,12 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 С учетом пакет SDK для Android совместимости для SignalR клиентских функций при указании целевой версии пакет SDK для Android учитывайте следующие элементы:
 
-* Клиент SignalR Java будет работать на API Android уровня 16 и более поздних версий.
-* Для подключения через службу SignalR Azure потребуется уровень API Android 20 и более поздней версии, так как [службе azure SignalR ](/azure/azure-signalr/signalr-overview) требуется TLS 1,2 и не поддерживаются комплекты шифров на основе SHA-1. В Android [добавлена поддержка комплектов шифров SHA-256 (и более поздних версий)](https://developer.android.com/reference/javax/net/ssl/SSLSocket) на уровне API 20.
+* SignalRКлиент Java будет работать на API Android уровня 16 и более поздних версий.
+* Для подключения через службу Azure потребуется SignalR уровень API Android 20 и более поздней версии, так как [ SignalR службе azure](/azure/azure-signalr/signalr-overview) требуется TLS 1,2 и не поддерживаются комплекты шифров на основе SHA-1. В Android [добавлена поддержка комплектов шифров SHA-256 (и более поздних версий)](https://developer.android.com/reference/javax/net/ssl/SSLSocket) на уровне API 20.
 
 ## <a name="configure-bearer-token-authentication"></a>Настройка проверки подлинности токена носителя
 
-В клиенте SignalR Java можно настроить токен носителя, который будет использоваться для проверки подлинности, предоставив "фабрику маркеров доступа" для [хттфубконнектионбуилдер](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Используйте [висакцесстокенфактори](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) для предоставления [\<однострочного>](https://reactivex.io/documentation/single.html) [рксжава](https://github.com/ReactiveX/RxJava) . При вызове [Single. отсрочки](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-)можно написать логику для создания маркеров доступа для клиента.
+В SignalR клиенте Java можно настроить токен носителя, который будет использоваться для проверки подлинности, предоставив "фабрику маркеров доступа" для [хттфубконнектионбуилдер](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Используйте [висакцесстокенфактори](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) для предоставления [рксжава](https://github.com/ReactiveX/RxJava) [Single \<String> ](https://reactivex.io/documentation/single.html). При вызове [Single. отсрочки](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-)можно написать логику для создания маркеров доступа для клиента.
 
 ```java
 HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
@@ -125,4 +127,4 @@ HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
 * <xref:signalr/hubs>
 * <xref:signalr/javascript-client>
 * <xref:signalr/publish-to-azure-web-app>
-* [Документация SignalR , посвященная бессерверной службе Azure](/azure/azure-signalr/signalr-concept-serverless-development-config)
+* [SignalRДокументация, посвященная бессерверной службе Azure](/azure/azure-signalr/signalr-concept-serverless-development-config)

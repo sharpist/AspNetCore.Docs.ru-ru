@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 03/12/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/ip-safelist
-ms.openlocfilehash: 7923a81e72124cfb0e11e3c1ac327c1e32194b21
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 5b74205bc7b17d61edbb73cf309f6e24e4318391
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776504"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85409011"
 ---
 # <a name="client-ip-safelist-for-aspnet-core"></a>Адрес списка надежных IP-адресов клиента для ASP.NET Core
 
@@ -43,16 +45,16 @@ ms.locfileid: "82776504"
 
 В примере приложения адрес списка надежных IP-адресов:
 
-* Определяется `AdminSafeList` свойством в файле *appSettings. JSON* .
+* Определяется `AdminSafeList` свойством в *appsettings.js* файла.
 * Строка с разделителями-точкой с запятой, которая может содержать адреса [протокола IP версии 4 (IPv4)](https://wikipedia.org/wiki/IPv4) и [протокола IP версии 6 (IPv6)](https://wikipedia.org/wiki/IPv6) .
 
 [!code-json[](ip-safelist/samples/3.x/ClientIpAspNetCore/appsettings.json?range=1-3&highlight=2)]
 
-В предыдущем примере разрешены адреса `127.0.0.1` IPv4 и `192.168.1.5` и IPv6-адрес замыкания на себя `::1` (сжатый формат для `0:0:0:0:0:0:0:1`).
+В предыдущем примере разрешены адреса IPv4 и и `127.0.0.1` `192.168.1.5` IPv6-адрес замыкания на себя `::1` (сжатый формат для `0:0:0:0:0:0:0:1` ).
 
 ## <a name="middleware"></a>ПО промежуточного слоя
 
-`Startup.Configure` Метод добавляет пользовательский `AdminSafeListMiddleware` тип по промежуточного слоя в конвейер запросов приложения. Списка надежных отправителей извлекается с помощью поставщика конфигурации .NET Core и передается в качестве параметра конструктора.
+`Startup.Configure`Метод добавляет пользовательский `AdminSafeListMiddleware` тип по промежуточного слоя в конвейер запросов приложения. Списка надежных отправителей извлекается с помощью поставщика конфигурации .NET Core и передается в качестве параметра конструктора.
 
 [!code-csharp[](ip-safelist/samples/3.x/ClientIpAspNetCore/Startup.cs?name=snippet_ConfigureAddMiddleware)]
 
@@ -62,11 +64,11 @@ ms.locfileid: "82776504"
 
 ## <a name="action-filter"></a>Фильтр действий
 
-Если требуется управление доступом к спискам надежных отправителей для конкретных контроллеров MVC или методов действий, используйте фильтр действий. Пример:
+Если требуется управление доступом к спискам надежных отправителей для конкретных контроллеров MVC или методов действий, используйте фильтр действий. Пример.
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckActionFilter.cs?name=snippet_ClassOnly)]
 
-В `Startup.ConfigureServices`добавьте фильтр действий в коллекцию фильтров MVC. В следующем примере добавляется фильтр `ClientIpCheckActionFilter` действий. Объект списка надежных отправителей и экземпляр средства ведения журнала консоли передаются как параметры конструктора.
+В `Startup.ConfigureServices` добавьте фильтр действий в коллекцию фильтров MVC. В следующем примере `ClientIpCheckActionFilter` добавляется фильтр действий. Объект списка надежных отправителей и экземпляр средства ведения журнала консоли передаются как параметры конструктора.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -84,9 +86,9 @@ ms.locfileid: "82776504"
 
 [!code-csharp[](ip-safelist/samples/3.x/ClientIpAspNetCore/Controllers/ValuesController.cs?name=snippet_ActionFilter&highlight=1)]
 
-В примере приложения фильтр действий применяется к методу `Get` действия контроллера. При тестировании приложения путем отправки:
+В примере приложения фильтр действий применяется к `Get` методу действия контроллера. При тестировании приложения путем отправки:
 
-* Запрос HTTP GET, `[ServiceFilter]` атрибут проверяет IP-адрес клиента. Если доступ разрешен для метода `Get` действия, то в фильтре действий и методе действия создается разновидность следующих выходных данных консоли:
+* Запрос HTTP GET, `[ServiceFilter]` атрибут проверяет IP-адрес клиента. Если доступ разрешен для `Get` метода действия, то в фильтре действий и методе действия создается разновидность следующих выходных данных консоли:
 
     ```
     dbug: ClientIpSafelistComponents.Filters.ClientIpCheckActionFilter[0]
@@ -95,15 +97,15 @@ ms.locfileid: "82776504"
           successful HTTP GET    
     ```
 
-* Команда HTTP-запроса, отличная от GET, `AdminSafeListMiddleware` по промежуточного слоя проверяет IP-адрес клиента.
+* Команда HTTP-запроса, отличная от GET, по `AdminSafeListMiddleware` промежуточного слоя проверяет IP-адрес клиента.
 
 ## <a name="razor-pages-filter"></a>RazorФильтр страниц
 
-Если требуется управлять доступом к спискам надежных отправителей Razor для приложения страниц, используйте Razor фильтр страниц. Пример:
+Если требуется управлять доступом к спискам надежных отправителей для Razor приложения страниц, используйте Razor Фильтр страниц. Пример.
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckPageFilter.cs?name=snippet_ClassOnly)]
 
-В `Startup.ConfigureServices`включите фильтр Razor страниц, добавив его в коллекцию фильтров MVC. В следующем примере `ClientIpCheckPageFilter` Razor добавляется фильтр страниц. Объект списка надежных отправителей и экземпляр средства ведения журнала консоли передаются как параметры конструктора.
+В `Startup.ConfigureServices` включите Razor Фильтр страниц, добавив его в коллекцию фильтров MVC. В следующем примере `ClientIpCheckPageFilter` Razor добавляется фильтр страниц. Объект списка надежных отправителей и экземпляр средства ведения журнала консоли передаются как параметры конструктора.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -117,7 +119,7 @@ ms.locfileid: "82776504"
 
 ::: moniker-end
 
-Когда запрашивается страница *индекса* Razor примера приложения, фильтр Razor страниц проверяет IP-адрес клиента. Фильтр создает разновидность следующих выходных данных консоли:
+Когда *Index* Razor запрашивается страница индекса примера приложения, Razor Фильтр страниц проверяет IP-адрес клиента. Фильтр создает разновидность следующих выходных данных консоли:
 
 ```
 dbug: ClientIpSafelistComponents.Filters.ClientIpCheckPageFilter[0]

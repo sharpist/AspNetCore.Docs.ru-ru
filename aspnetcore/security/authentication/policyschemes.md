@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/policyschemes
-ms.openlocfilehash: ddedf62c5e8363bd93c9948fd2d3418abc566539
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a8bde9633f06f41ebcb55480eb2322544db4b4da
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767321"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408764"
 ---
 # <a name="policy-schemes-in-aspnet-core"></a>Схемы политики в ASP.NET Core
 
@@ -25,7 +27,7 @@ ms.locfileid: "82767321"
 * Простое перенаправление любого действия проверки подлинности в другую схему.
 * Пересылать динамически на основе запроса.
 
-Все схемы проверки подлинности <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> , использующие производные и связанные с [\<аусентикатионхандлер TOptions>](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1):
+Все схемы проверки подлинности, использующие производные <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> и связанные [ \<TOptions> аусентикатионхандлер](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1):
 
 * Являются автоматическими схемами политик в ASP.NET Core 2,1 и более поздних версий.
 * Можно включить с помощью настройки параметров схемы.

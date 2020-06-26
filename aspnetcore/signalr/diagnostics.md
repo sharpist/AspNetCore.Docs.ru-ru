@@ -8,17 +8,19 @@ ms.custom: signalr
 ms.date: 06/12/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 7d7ea0fe69f258c01177c7755eaee61ab42400ce
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: f2b864d47c98a031872be676a68143bd79f49829
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102951"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85409102"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Ведение журнала и диагностика в ASP.NET CoreSignalR
 
@@ -100,7 +102,7 @@ Visual Studio отображает выходные данные журнала 
 
 После настройки уровня детализации журналы записываются в консоль браузера (или стандартные выходные данные в приложении NodeJS).
 
-Если вы хотите отправить журналы в пользовательскую систему ведения журнала, можно предоставить объект JavaScript, реализующий `ILogger` интерфейс. Единственным методом, который необходимо реализовать `log` , является, который принимает уровень события и сообщение, связанное с событием. Пример:
+Если вы хотите отправить журналы в пользовательскую систему ведения журнала, можно предоставить объект JavaScript, реализующий `ILogger` интерфейс. Единственным методом, который необходимо реализовать `log` , является, который принимает уровень события и сообщение, связанное с событием. Пример.
 
 [!code-typescript[](diagnostics/custom-logger.ts?highlight=3-7,13)]
 
@@ -111,7 +113,7 @@ Visual Studio отображает выходные данные журнала 
 
 Чтобы получить журналы из клиента .NET, можно использовать `ConfigureLogging` метод для `HubConnectionBuilder` . Это работает так же, как `ConfigureLogging` и метод в `WebHostBuilder` и `HostBuilder` . Вы можете настроить те же поставщики ведения журналов, которые используются в ASP.NET Core. Однако необходимо вручную установить и включить пакеты NuGet для отдельных поставщиков ведения журнала.
 
-Сведения о добавлении ведения журнала клиента .NET в Blazor приложение-сборку см <xref:blazor/fundamentals/logging#blazor-webassembly-signalr-net-client-logging> . в разделе.
+Сведения о добавлении ведения журнала клиента .NET в Blazor WebAssembly приложение см <xref:blazor/fundamentals/logging#blazor-webassembly-signalr-net-client-logging> . в разделе.
 
 ### <a name="console-logging"></a>Журнал консоли
 
@@ -220,7 +222,7 @@ tcpdump -i [interface] -w trace.pcap
 
 SignalRметрики сервера указываются в <xref:Microsoft.AspNetCore.Http.Connections> источнике событий.
 
-| Имя                    | Описание                 |
+| name                    | Описание:                 |
 |-------------------------|-----------------------------|
 | `connections-started`   | Всего запущенных подключений   |
 | `connections-stopped`   | Всего остановленных подключений   |

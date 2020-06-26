@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 08/14/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/identity-enable-qrcodes
-ms.openlocfilehash: 42ddddeaa329ac5ff5b2b40cbf9ebffa68f6d4cf
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4ed5a550b5d3ca00179ae0492bf61e7fe91e324c
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774435"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408777"
 ---
 # <a name="enable-qr-code-generation-for-totp-authenticator-apps-in-aspnet-core"></a>Включение создания QR-кода для приложений TOTP Authenticator в ASP.NET Core
 
@@ -36,22 +38,22 @@ ASP.NET Core поставляется с поддержкой приложени
 
 ## <a name="adding-qr-codes-to-the-2fa-configuration-page"></a>Добавление QR-кодов на страницу настройки 2FA
 
-В этих инструкциях в https://davidshimjs.github.io/qrcodejs/ репозитории используется *кркоде. js* .
+В этих инструкциях используется *qrcode.js* из https://davidshimjs.github.io/qrcodejs/ репозитория.
 
-* Скачайте [библиотеку JavaScript кркоде. js](https://davidshimjs.github.io/qrcodejs/) в `wwwroot\lib` папку проекта.
+* Скачайте [библиотекуqrcode.js JavaScript](https://davidshimjs.github.io/qrcodejs/) в `wwwroot\lib` папку проекта.
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* Следуйте инструкциям в разделе [формирование Identity шаблонов](xref:security/authentication/scaffold-identity) , чтобы создать */Ареас/Identity/Пажес/аккаунт/манаже/енаблеаусентикатор.кштмл*.
-* В */Ареас/Identity/Пажес/аккаунт/манаже/енаблеаусентикатор.кштмл*выберите `Scripts` раздел в конце файла:
+* Следуйте инструкциям в разделе [формирование Identity шаблонов](xref:security/authentication/scaffold-identity) , чтобы создать */Ареас/ Identity /Пажес/аккаунт/манаже/енаблеаусентикатор.кштмл*.
+* В */Ареас/ Identity /Пажес/аккаунт/манаже/енаблеаусентикатор.кштмл*выберите раздел в `Scripts` конце файла:
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-* В окне *страницы/учетная запись/управление/енаблеаусентикатор. cshtml* (Razor страницы) или *views/Manage/енаблеаусентикатор. cshtml* (MVC `Scripts` ) выберите раздел в конце файла:
+* В окне *страницы/учетная запись/управление/енаблеаусентикатор. cshtml* ( Razor страницы) или *views/Manage/енаблеаусентикатор. cshtml* (MVC) выберите `Scripts` раздел в конце файла:
 
 ::: moniker-end
 
@@ -63,7 +65,7 @@ ASP.NET Core поставляется с поддержкой приложени
 }
 ```
 
-* Обновите `Scripts` раздел, чтобы добавить ссылку на добавленную `qrcodejs` библиотеку, и вызов для создания QR-кода. Он должен выглядеть следующим образом:
+* Обновите `Scripts` раздел, чтобы добавить ссылку на `qrcodejs` добавленную библиотеку, и вызов для создания QR-кода. Он должен выглядеть следующим образом:
 
 ```cshtml
 @section Scripts {
@@ -91,13 +93,13 @@ ASP.NET Core поставляется с поддержкой приложени
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Имя сайта в QR-коде берется из имени проекта, выбранного при первоначальном создании проекта. Его можно изменить, выполнив поиск `GenerateQrCodeUri(string email, string unformattedKey)` метода в */Ареас/Identity/Пажес/аккаунт/манаже/енаблеаусентикатор.кштмл.КС*.
+Имя сайта в QR-коде берется из имени проекта, выбранного при первоначальном создании проекта. Его можно изменить, выполнив поиск `GenerateQrCodeUri(string email, string unformattedKey)` метода в */Ареас/ Identity /Пажес/аккаунт/манаже/енаблеаусентикатор.кштмл.КС*.
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-Имя сайта в QR-коде берется из имени проекта, выбранного при первоначальном создании проекта. `GenerateQrCodeUri(string email, string unformattedKey)` Его можно изменить, выполнив поиск метода в файле *pages/Account/Manage/енаблеаусентикатор. cshtml. CS* (Razor Pages) или в файле *Controllers/манажеконтроллер. CS* (MVC).
+Имя сайта в QR-коде берется из имени проекта, выбранного при первоначальном создании проекта. Его можно изменить, выполнив поиск `GenerateQrCodeUri(string email, string unformattedKey)` метода в файле *pages/Account/Manage/енаблеаусентикатор. cshtml. CS* ( Razor pages) или в файле *Controllers/манажеконтроллер. CS* (MVC).
 
 ::: moniker-end
 
@@ -120,7 +122,7 @@ private string GenerateQrCodeUri(string email, string unformattedKey)
 
 ## <a name="using-a-different-qr-code-library"></a>Использование другой библиотеки QR-кодов
 
-Библиотеку QR-кода можно заменить предпочтительной библиотекой. HTML содержит `qrCode` элемент, в который можно поместить QR-код любым механизмом, предоставляемым библиотекой.
+Библиотеку QR-кода можно заменить предпочтительной библиотекой. HTML содержит элемент, `qrCode` в который можно поместить QR-код любым механизмом, предоставляемым библиотекой.
 
 URL-адрес в правильно отформатированном коде QR доступен в:
 

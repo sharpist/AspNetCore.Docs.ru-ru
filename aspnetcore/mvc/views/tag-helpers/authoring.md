@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: 0b60468b96ded559d180e7b3bf5f799ce2f4d7e3
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 5e250debb5c4c2ef00b844557d31ed8281d2ff2f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775093"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407594"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Создание вспомогательных функций тегов в ASP.NET Core
 
@@ -37,7 +39,7 @@ ms.locfileid: "82775093"
 
 ## <a name="a-minimal-tag-helper"></a>Простейшая вспомогательная функция тега
 
-В этом разделе вы напишете вспомогательную функцию тега, которая обновляет тег электронной почты. Пример:
+В этом разделе вы напишете вспомогательную функцию тега, которая обновляет тег электронной почты. Пример.
 
 ```html
 <email>Support</email>
@@ -57,7 +59,7 @@ ms.locfileid: "82775093"
 
    * Для вспомогательных функций тегов используется соглашение об именовании в отношении элементов имени корневого класса (за исключением части *TagHelper* этого имени). В этом примере корневое имя **емаилтагхелпер** — *e-mail*, поэтому `<email>` тег будет целевым. Это соглашение об именовании подходит для большинства вспомогательных функций тегов, позднее мы покажем, как переопределить его.
 
-   * Класс `EmailTagHelper` является производным от класса `TagHelper`. Класс `TagHelper` предоставляет методы и свойства для написания вспомогательных функций тегов.
+   * Класс `EmailTagHelper` является производным от `TagHelper`. Класс `TagHelper` предоставляет методы и свойства для написания вспомогательных функций тегов.
 
    * Переопределенный `Process` метод управляет действиями, выполняемыми вспомогательной функцией тега. Класс `TagHelper` также предоставляет асинхронную версию (`ProcessAsync`) с теми же параметрами.
 
@@ -199,7 +201,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/WebsiteInformationTagHelper.cs)]
 
-   * Как было сказано ранее, имена классов и свойств C# в стиле Pascal для вспомогательных функций тегов преобразуются в [кебаб-стиль](https://wiki.c2.com/?KebabCase). Таким образом, чтобы использовать `WebsiteInformationTagHelper` в Razor, вы пишете `<website-information />`.
+   * Как было сказано ранее, имена классов и свойств C# в стиле Pascal для вспомогательных функций тегов преобразуются в [кебаб-стиль](https://wiki.c2.com/?KebabCase). Таким образом, чтобы использовать `WebsiteInformationTagHelper` в Razor , вы пишете `<website-information />` .
 
    * Целевой элемент не определяется напрямую с помощью атрибута `[HtmlTargetElement]`, поэтому по умолчанию целевым будет элемент `website-information`. Например, вы применяете следующий атрибут (обратите внимание, что он не в стиле кебаб, но соответствует имени класса):
 
@@ -213,7 +215,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
    [HtmlTargetElement("Website-Information")]
    ```
 
-   * Самозакрывающиеся элементы не имеют содержимого. В Razor этом примере разметка будет использовать самозакрывающийся тег, но вспомогательная функция тега будет создавать элемент [section](https://www.w3.org/TR/html5/sections.html#the-section-element) (который не является самостоятельным закрытием и вы пишете содержимое внутри `section` элемента). Поэтому для записи выходных данных следует присвоить свойству `TagMode` значение `StartTagAndEndTag`. Кроме того, можно закомментировать строку, в которой задается `TagMode`, и написать разметку с закрывающим тегом. (Пример разметки приводится далее в этом руководстве.)
+   * Самозакрывающиеся элементы не имеют содержимого. В этом примере Razor Разметка будет использовать самозакрывающийся тег, но вспомогательная функция тега будет создавать элемент [section](https://www.w3.org/TR/html5/sections.html#the-section-element) (который не является самостоятельным закрытием и вы пишете содержимое внутри `section` элемента). Поэтому для записи выходных данных следует присвоить свойству `TagMode` значение `StartTagAndEndTag`. Кроме того, можно закомментировать строку, в которой задается `TagMode`, и написать разметку с закрывающим тегом. (Пример разметки приводится далее в этом руководстве.)
 
    * Символ `$` (знак доллара) в приведенной ниже строке определяет использование [интерполированной строки](/dotnet/csharp/language-reference/keywords/interpolated-strings).
 
@@ -226,11 +228,11 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
    [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,4-8, 18-999)]
 
    > [!NOTE]
-   > В разметке, Razor показанной ниже:
+   > В Razor разметке, показанной ниже:
    >
    > [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?range=18-18)]
    >
-   > Razorзнает, `info` что атрибут является классом, а не строкой, и вы хотите написать код C#. Любой нестроковый атрибут вспомогательной функции тега должен быть записан без символа `@`.
+   > Razorзнает, что `info` атрибут является классом, а не строкой, и вы хотите написать код C#. Любой нестроковый атрибут вспомогательной функции тега должен быть записан без символа `@`.
 
 1. Запустите приложение и перейдите к представлению About, чтобы просмотреть сведения о веб-сайте.
 
