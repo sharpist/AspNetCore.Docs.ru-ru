@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 25d6bdae0fce7821ec7b9195817dc07ef9aed40f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 5c3314991d05ea868fe9190bb3a0206b27fd920f
+ms.sourcegitcommit: b06511252f165dd4590ba9b5beca4153fa220779
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408192"
+ms.lasthandoff: 06/27/2020
+ms.locfileid: "85459770"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Кэширование ответов в ASP.NET Core
 
@@ -176,7 +176,17 @@ Cache-Control: public,max-age=10
 
 Настройка профиля кэша. В следующем примере показан 30-секундный профиль кэша в примере приложения `Startup.ConfigureServices` .
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](response/samples/3.x/Startup.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Startup.cs?name=snippet1)]
+
+::: moniker-end
 
 Модель страницы Cache4 в примере приложения ссылается на `Default30` профиль кэша:
 
@@ -184,9 +194,9 @@ Cache-Control: public,max-age=10
 
 <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>Можно применить к:
 
-* RazorОбработчики страниц (классы): атрибуты не могут применяться к методам обработчика.
-* Контроллеры MVC (классы).
-* Действия MVC (методы): атрибуты уровня метода переопределяют параметры, указанные в атрибутах уровня класса.
+* RazorPages: атрибуты не могут применяться к методам обработчика.
+* Контроллеры MVC.
+* Методы действий MVC. атрибуты уровня метода переопределяют параметры, указанные в атрибутах уровня класса.
 
 Результирующий заголовок, примененный к ответу страницы Cache4 в `Default30` профиле кэша:
 
