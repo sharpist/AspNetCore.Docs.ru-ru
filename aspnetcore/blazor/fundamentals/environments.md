@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/environments
-ms.openlocfilehash: 203f29ce606a313463e416b068177ce02acd6231
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: a527e04cf97dd2d2b88dcc6e866475835498545d
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103329"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243620"
 ---
 # <a name="aspnet-core-blazor-environments"></a>Среды ASP.NET Core Blazor
 
@@ -31,7 +31,7 @@ ms.locfileid: "85103329"
 
 Для автономного приложения, выполняемого локально, сервер разработки добавляет заголовок `blazor-environment`, чтобы указать среду разработки. Чтобы указать среду для других сред размещения, добавьте заголовок `blazor-environment`.
 
-В следующем примере для IIS добавьте пользовательский заголовок в опубликованный *файл Web. config*. Файл *web.config* размещен в папке *bin/Release/{TARGET FRAMEWORK}/publish*:
+В следующем примере для служб IIS добавьте пользовательский заголовок в опубликованный файл `web.config`. Файл `web.config` находится в папке `bin/Release/{TARGET FRAMEWORK}/publish`.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -50,7 +50,7 @@ ms.locfileid: "85103329"
 ```
 
 > [!NOTE]
-> Сведения об использовании пользовательского файла *web.config* для служб IIS, который не перезаписывается при публикации приложения в папку *Publish*, см. в разделе <xref:blazor/host-and-deploy/webassembly#use-a-custom-webconfig>.
+> Сведения об использовании пользовательского файла `web.config` для служб IIS, который не перезаписывается при публикации приложения в папку `publish`, см. в разделе <xref:blazor/host-and-deploy/webassembly#use-a-custom-webconfig>.
 
 Чтобы получить среду приложения в компоненте, вставьте <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> и прочтите свойство <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment>:
 

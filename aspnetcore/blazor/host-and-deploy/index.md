@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/index
-ms.openlocfilehash: 0cd21e6b4930fb6112aa448a8a44be80cc8fbf61
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 040f9560bd51841063ca2785b0c0730c6bb16002
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243568"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402654"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor"></a>Размещение и развертывание ASP.NET Core Blazor
 
@@ -56,7 +58,7 @@ dotnet publish -c Release
 * Blazor WebAssembly
   * Изолированное. Приложение будет опубликовано в папке `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot`. Чтобы развернуть приложение как статический сайт, скопируйте содержимое папки `wwwroot` на узел статического сайта.
   * Размещенное. Клиентское приложение Blazor WebAssembly будет опубликовано в папку `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` серверного приложения вместе со статическими веб-ресурсами серверного приложения. Разверните содержимое папки `publish` на узле.
-* Сервер Blazor. Приложение будет опубликовано в папке `/bin/Release/{TARGET FRAMEWORK}/publish`. Разверните содержимое папки `publish` на узле.
+* Blazor Server. Приложение будет опубликовано в папке `/bin/Release/{TARGET FRAMEWORK}/publish`. Разверните содержимое папки `publish` на узле.
 
 Ресурсы из папки развертываются на веб-сервере. Развертывание может проводиться вручную или автоматизированно в зависимости от используемых средств разработки.
 
@@ -79,7 +81,7 @@ dotnet publish -c Release
 <base href="/CoolApp/">
 ```
 
-Серверные приложения Blazor дополнительно устанавливают базовый путь на стороне сервера путем вызова <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> в конвейере запросов приложения `Startup.Configure`:
+Приложения Blazor Server дополнительно устанавливают базовый путь на стороне сервера путем вызова <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> в конвейере запросов приложения `Startup.Configure`:
 
 ```csharp
 app.UsePathBase("/CoolApp");
@@ -91,7 +93,7 @@ app.UsePathBase("/CoolApp");
 
 Чтобы задать базовый путь к приложению, измените тег `<base>` в элементах `<head>` тега файла `Pages/_Host.cshtml` (Blazor Server) или файла `wwwroot/index.html` (Blazor WebAssembly). Задайте значение атрибута `href` как `/{RELATIVE URL PATH}/` (косая черта в конце обязательна), где `{RELATIVE URL PATH}` — полный относительный путь URL приложения.
 
-Приложение Blazor WebAssembly с некорневым относительным путем URL (например, `<base href="/CoolApp/">`) не сможет найти свои ресурсы *при локальном запуске*. Для решения этой проблемы во время локальной разработки и тестирования можно предоставить аргумент *базового пути*, который соответствует значению `href` тега `<base>` во время выполнения. Не добавляйте в конце косую черту. Для передачи аргумента базового пути при локальном запуске приложения выполните из каталога приложения команду `dotnet run` с параметром `--pathbase`:
+Приложение Blazor WebAssembly с некорневым относительным путем URL (например, `<base href="/CoolApp/">`) не сможет найти свои ресурсы при *локальном запуске*. Для решения этой проблемы во время локальной разработки и тестирования можно предоставить аргумент *базового пути*, который соответствует значению `href` тега `<base>` во время выполнения. Не добавляйте в конце косую черту. Для передачи аргумента базового пути при локальном запуске приложения выполните из каталога приложения команду `dotnet run` с параметром `--pathbase`:
 
 ```dotnetcli
 dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}
@@ -103,7 +105,7 @@ dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}
 dotnet run --pathbase=/CoolApp
 ```
 
-Приложение Blazor WebAssembly отвечает локально по адресу `http://localhost:port/CoolApp`.
+Приложение Blazor WebAssembly отвечает локально по `http://localhost:port/CoolApp`.
 
 ## <a name="deployment"></a>Развертывание
 

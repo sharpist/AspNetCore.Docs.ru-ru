@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: ba6b3a333a021184ad8a42d6292915e908cc6eb7
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 5a05543c77f1ebaebadc27236aa8f7634e84f1fd
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103499"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243422"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Защита изолированного приложения ASP.NET Core Blazor WebAssembly с помощью библиотеки проверки подлинности
 
@@ -26,7 +26,7 @@ ms.locfileid: "85103499"
 
 *При использовании Azure Active Directory (AAD) и Azure Active Directory B2C (AAD B2C) не следуйте указаниям в этой статье. См. статьи, посвященные AAD и AAD B2C, в этом разделе оглавления.*
 
-Чтобы создать изолированное приложение Blazor WebAssembly, использующее библиотеку [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/), выполните следующую команду в командной оболочке:
+Чтобы создать изолированное приложение Blazor WebAssembly, использующее библиотеку [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/), выполните следующую команду в командной оболочке:
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual
@@ -38,7 +38,7 @@ dotnet new blazorwasm -au Individual
 
 ## <a name="authentication-package"></a>Пакет проверки подлинности
 
-Когда приложение создается для использования отдельных учетных записей пользователей, оно автоматически получает ссылку на пакет [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) в файле проекта приложения. В пакете содержится набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных API.
+Когда приложение создается для использования отдельных учетных записей пользователей, оно автоматически получает ссылку на пакет [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) в файле проекта приложения. В пакете содержится набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных API.
 
 При добавлении проверки подлинности в приложение вручную добавьте пакет в файл проекта приложения:
 
@@ -50,9 +50,9 @@ dotnet new blazorwasm -au Individual
 
 ## <a name="authentication-service-support"></a>Поддержка службы проверки подлинности
 
-Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью метода расширения <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A>, предоставляемого в пакете [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/). Этот метод настраивает службы, необходимые для взаимодействия приложения с поставщиком Identity (IP).
+Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью метода расширения <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A>, предоставляемого в пакете [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/). Этот метод настраивает службы, необходимые для взаимодействия приложения с поставщиком Identity (IP).
 
-*Program.cs*:
+`Program.cs`.
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -61,7 +61,7 @@ builder.Services.AddOidcAuthentication(options =>
 });
 ```
 
-Конфигурация предоставляется файлом *wwwroot/appsettings.json*:
+Конфигурация предоставлена в файле `wwwroot/appsettings.json`:
 
 ```json
 {
@@ -111,7 +111,7 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## <a name="logindisplay-component"></a>Компонент LoginDisplay
 
-Компонент `LoginDisplay` (*Shared/LoginDisplay.razor*) преобразуется для просмотра в компоненте `MainLayout` (*Shared/MainLayout.razor*) и управляет следующими поведениями:
+Компонент `LoginDisplay` (`Shared/LoginDisplay.razor`) отображается в компоненте `MainLayout` (`Shared/MainLayout.razor`) и управляет следующими поведениями.
 
 * Для пользователей, прошедших проверку подлинности:
   * отображает имя текущего пользователя;

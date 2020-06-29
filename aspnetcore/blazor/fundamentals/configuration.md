@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/configuration
-ms.openlocfilehash: b43eae03c71cabbaafa2bc0d704765e89f743279
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 0e36b81d771b07e85158724c02210ee50a3ab118
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103443"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242684"
 ---
 # <a name="aspnet-core-blazor-configuration"></a>Конфигурация Blazor ASP.NET Core
 
@@ -28,8 +28,8 @@ ms.locfileid: "85103443"
 Blazor WebAssembly загружает конфигурацию из следующих источников:
 
 * Файлы параметров приложения по умолчанию
-  * *wwwroot/appsettings.json*
-  * *wwwroot/appsettings.{ENVIRONMENT}.json*
+  * `wwwroot/appsettings.json`
+  * `wwwroot/appsettings.{ENVIRONMENT}.json`
 * Другие [поставщики конфигурации](xref:fundamentals/configuration/index), зарегистрированные приложением. Не все поставщики подходят для приложений Blazor WebAssembly. Сведения о том, какие поставщики поддерживаются для Blazor WebAssembly, можно найти в разделе [Поставщики конфигурации для Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).
 
 > [!WARNING]
@@ -39,7 +39,7 @@ Blazor WebAssembly загружает конфигурацию из следую
 
 ## <a name="app-settings-configuration"></a>Конфигурация параметров приложения
 
-*wwwroot/appsettings.json*:
+`wwwroot/appsettings.json`.
 
 ```json
 {
@@ -112,9 +112,9 @@ builder.Configuration.Add(memoryConfig);
 }
 ```
 
-Для чтения других файлов конфигурации из папки *wwwroot* в конфигурацию используйте <xref:System.Net.Http.HttpClient> для получения содержимого файла. При использовании этого подхода существующая регистрация службы <xref:System.Net.Http.HttpClient> может использовать локальный клиент, созданный для чтения файла, как показано в следующем примере.
+Для чтения других файлов конфигурации из папки `wwwroot` в конфигурацию используйте <xref:System.Net.Http.HttpClient> для получения содержимого файла. При использовании этого подхода существующая регистрация службы <xref:System.Net.Http.HttpClient> может использовать локальный клиент, созданный для чтения файла, как показано в следующем примере.
 
-*wwwroot/cars.json*:
+`wwwroot/cars.json`.
 
 ```json
 {
@@ -144,7 +144,7 @@ builder.Configuration.AddJsonStream(stream);
 
 ## <a name="authentication-configuration"></a>Конфигурация проверки подлинности
 
-*wwwroot/appsettings.json*:
+`wwwroot/appsettings.json`.
 
 ```json
 {
@@ -164,13 +164,13 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## <a name="logging-configuration"></a>Конфигурация ведения журнала
 
-Добавьте ссылку на пакет для [Microsoft.Extensions.Logging.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration/).
+Добавьте ссылку на пакет для [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration/):
 
 ```xml
 <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
 ```
 
-*wwwroot/appsettings.json*:
+`wwwroot/appsettings.json`.
 
 ```json
 {
@@ -208,6 +208,6 @@ var hostname = builder.Configuration["HostName"];
 Файлы конфигурации кэшируются для автономного использования. При использовании [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app) файлы конфигурации можно изменять только при создании развертывания. Изменение файлов конфигурации между развертываниями не работает по следующим причинам:
 
 * У пользователей есть кэшированные версии файлов, которые они продолжают использовать.
-* Файлы *service-worker.js* и *service-worker-assets.js* PWA должны быть перестроены при компиляции, что при следующем входе пользователя в сеть сообщает приложению о том, что приложение было развернуто повторно.
+* Файлы `service-worker.js` и `service-worker-assets.js` PWA должны быть перестроены при компиляции, что при следующем входе пользователя в сеть сообщает приложению о том, что приложение было развернуто повторно.
 
 Дополнительные сведения об обработке фоновых изменений с помощью PWA см. на странице <xref:blazor/progressive-web-app#background-updates>.

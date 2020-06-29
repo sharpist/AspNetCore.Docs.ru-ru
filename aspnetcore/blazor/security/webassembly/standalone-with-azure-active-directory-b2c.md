@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
-ms.openlocfilehash: 2229483acc8c3a3fd6e77848e307253b7b317365
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 579e1774929219c9dc90752253c5a1ea7000cf82
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103496"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243451"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Защита изолированного приложения ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory B2C
 
@@ -57,7 +57,7 @@ ms.locfileid: "85103496"
 
 [Создайте поток пользователя для регистрации и входа в систему](/azure/active-directory-b2c/tutorial-create-user-flows)
 
-Чтобы заполнить `context.User.Identity.Name` в компоненте `LoginDisplay` (*Shared/LoginDisplay.razor*), выберите хотя бы атрибут пользователя **Утверждения приложения** > **Отображаемое имя**.
+Чтобы заполнить `context.User.Identity.Name` в компоненте `LoginDisplay` (`Shared/LoginDisplay.razor`), выберите хотя бы атрибут пользователя **Утверждения приложения** > **Отображаемое имя**.
 
 Запишите имя потока пользователя для регистрации и входа, созданное для приложения (например, `B2C_1_signupsignin`).
 
@@ -85,7 +85,7 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 
 ## <a name="authentication-package"></a>Пакет проверки подлинности
 
-Когда приложение создается для использования отдельной учетной записи B2C (`IndividualB2C`), оно автоматически получает ссылку на пакет для [библиотеки проверки подлинности Майкрософт](/azure/active-directory/develop/msal-overview) ([Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/)). В пакете содержится набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных API.
+Когда приложение создается для использования отдельной учетной записи B2C (`IndividualB2C`), оно автоматически получает ссылку на пакет для [библиотеки проверки подлинности Майкрософт](/azure/active-directory/develop/msal-overview) ([`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/)). В пакете содержится набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных API.
 
 При добавлении проверки подлинности в приложение вручную добавьте пакет в файл проекта приложения:
 
@@ -94,13 +94,13 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
   Version="3.2.0" />
 ```
 
-Пакет [Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) транзитивно добавляет в приложение пакет [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/).
+Пакет [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) транзитивно добавляет пакет [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) в приложение.
 
 ## <a name="authentication-service-support"></a>Поддержка службы проверки подлинности
 
-Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью метода расширения <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A>, предоставляемого в пакете [Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/). Этот метод настраивает все службы, необходимые для взаимодействия приложения с поставщиком Identity (IP).
+Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью метода расширения <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A>, предоставляемого в пакете [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/). Этот метод настраивает все службы, необходимые для взаимодействия приложения с поставщиком Identity (IP).
 
-*Program.cs*:
+`Program.cs`.
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -111,7 +111,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 Метод <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> принимает обратный вызов для настройки параметров, необходимых для проверки подлинности приложения. Значения, необходимые для настройки приложения, можно получить из конфигурации AAD при регистрации приложения.
 
-Конфигурация предоставляется файлом *wwwroot/appsettings.json*:
+Конфигурация предоставлена в файле `wwwroot/appsettings.json`:
 
 ```json
 {

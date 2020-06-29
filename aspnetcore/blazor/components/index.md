@@ -5,20 +5,22 @@ description: Сведения о том, как создавать и испол
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/11/2020
+ms.date: 06/25/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: e1778d865edcfed8f5f45f4f53a57f1b3a3bd9aa
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 02e3f7f5442a5abde0b13b7bba14d9d0f29c1de7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242440"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399092"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
@@ -427,11 +429,24 @@ public IDictionary<string, object> AdditionalAttributes { get; set; }
 > [!NOTE]
 > **Не** используйте ссылки на компоненты для изменения состояния дочерних компонентов. Вместо этого используйте обычные декларативные параметры для передачи данных дочерним компонентам. Использование обычных декларативных параметров приводит к тому, что дочерние компоненты автоматически визуализируются в нужное время.
 
-## <a name="invoke-component-methods-externally-to-update-state"></a>Внешний вызов методов компонента для изменения состояния
+## <a name="synchronization-context"></a>Контекст синхронизации
 
 Blazor использует контекст синхронизации (<xref:System.Threading.SynchronizationContext>) для принудительного использования одного логического потока выполнения. [Методы жизненного цикла ](xref:blazor/components/lifecycle) компонента и все обратные вызовы событий, сделанные Blazor, выполняются в этом контексте синхронизации.
 
 Контекст синхронизации Blazor Server пытается эмулировать однопоточную среду таким образом, чтобы она точно соответствовала модели WebAssembly в браузере, которая является однопоточной. В любой момент времени работа выполняется только в одном потоке, что создает впечатление единого логического потока. Две операции не могут выполняться одновременно.
+
+### <a name="avoid-thread-blocking-calls"></a>Избегайте блокирующих вызовов
+
+Как правило, не следует вызывать следующие методы. Следующие методы блокируют поток и, таким образом, блокируют возобновление работы приложения до тех пор, пока не завершится базовый <xref:System.Threading.Tasks.Task>:
+
+* <xref:System.Threading.Tasks.Task%601.Result%2A>
+* <xref:System.Threading.Tasks.Task.Wait%2A>
+* <xref:System.Threading.Tasks.Task.WaitAny%2A>
+* <xref:System.Threading.Tasks.Task.WaitAll%2A>
+* <xref:System.Threading.Thread.Sleep%2A>
+* <xref:System.Runtime.CompilerServices.TaskAwaiter.GetResult%2A>
+
+### <a name="invoke-component-methods-externally-to-update-state"></a>Внешний вызов методов компонента для изменения состояния
 
 Если компонент нужно изменить на основе внешнего события, такого как таймер или другие уведомления, используйте метод `InvokeAsync`, который выполняет отправку в контекст синхронизации Blazor. Например, рассмотрим *службу уведомителя*, которая может уведомлять любой компонент, ожидающий передачи данных, об измененном состоянии:
 

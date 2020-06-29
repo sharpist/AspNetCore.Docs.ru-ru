@@ -1,5 +1,5 @@
 ---
-title: Безопасные приложения ASP.NET Core Blazor Server
+title: Защита приложений ASP.NET Core Blazor Server
 author: guardrex
 description: Сведения о защите приложений Blazor Server как приложений ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
@@ -8,33 +8,35 @@ ms.custom: mvc
 ms.date: 05/02/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: 2811e08fd2f6c66112ffa0bb40f474158f4c7a59
-ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
+ms.openlocfilehash: ab3baad30f78c5d5e2f969b3292d4886fcd0406d
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/24/2020
-ms.locfileid: "85292689"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402316"
 ---
-# <a name="secure-aspnet-core-blazor-server-apps"></a>Безопасные приложения ASP.NET Core Blazor Server
+# <a name="secure-aspnet-core-blazor-server-apps"></a>Защита приложений ASP.NET Core Blazor Server
 
 Автор [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
-Blazor Серверные приложения настраиваются для обеспечения безопасности так же, как приложения ASP.NET Core. Дополнительные сведения см. в статьях в документе <xref:security/index>. Разделы в этом обзоре посвящены Blazor Server. 
+Приложения Blazor Server настраиваются для обеспечения безопасности так же, как приложения ASP.NET Core. Дополнительные сведения см. в статьях в документе <xref:security/index>. Разделы в этом обзоре посвящены Blazor Server. 
 
-## <a name="blazor-server-project-template"></a>Шаблон проекта "Сервер Blazor"
+## <a name="blazor-server-project-template"></a>Шаблон проекта Blazor Server
 
-Шаблон проекта "Сервер Blazor" можно настроить для проверки подлинности при создании проекта.
+Шаблон проекта Blazor Server можно настроить для проверки подлинности при создании проекта.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 Следуйте указаниям по работе с Visual Studio (<xref:blazor/get-started>), чтобы создать проект Blazor Server с механизмом проверки подлинности.
 
-Выбрав шаблон **Серверное приложение Blazor** в диалоговом окне **Создать веб-приложение ASP.NET Core**, щелкните **Изменить** в разделе **Проверка подлинности**.
+Выбрав шаблон **Приложение Blazor Server** в диалоговом окне **Создание веб-приложения ASP.NET Core**, щелкните **Изменить** в разделе **Проверка подлинности**.
 
 Откроется диалоговое окно с тем же набором механизмов аутентификации, которые доступны для других проектов ASP.NET Core.
 
@@ -75,13 +77,13 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 1. Следуйте инструкциям по работе с Visual Studio для Mac (<xref:blazor/get-started>).
 
-1. На шаге **Настройка нового серверного приложения Blazor** выберите **Индивидуальная проверка подлинности (в приложении)** из раскрывающегося списка **Проверка подлинности**.
+1. На шаге **Настройка нового приложения Blazor Server** выберите **Индивидуальная проверка подлинности (в приложении)** из раскрывающегося списка **Проверка подлинности**.
 
 1. Приложение будет создано для отдельных пользователей, хранимых в приложении с помощью ASP.NET Core Identity.
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli/)
 
-Выполните указания для .NET Core CLI из статьи <xref:blazor/get-started>, чтобы создать новый проект "Сервер Blazor", используя следующий механизм проверки подлинности:
+Выполните указания для .NET Core CLI из статьи <xref:blazor/get-started>, чтобы создать новый проект Blazor Server, используя следующий механизм проверки подлинности:
 
 ```dotnetcli
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
@@ -109,7 +111,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 ## <a name="scaffold-identity"></a>Формирование шаблонов Identity
 
-Сформируйте шаблоны Identity для проекта "Сервер Blazor":
+Сформируйте шаблоны Identity для проекта Blazor Server:
 
 * [Без существующей авторизации](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization).
 * [С авторизацией](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-with-authorization).

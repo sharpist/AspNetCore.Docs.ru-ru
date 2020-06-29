@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-identity-server
-ms.openlocfilehash: 0fdc88e8e50856fcc4da0beb74f03925ae24401e
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 8251658a2bb99ec17424ec26b8a44171082fab05
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103507"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243486"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a>Защита размещенного приложения ASP.NET Core Blazor WebAssembly с помощью Identity Server
 
@@ -118,21 +118,21 @@ dotnet new blazorwasm -au Individual -ho
 
 ### <a name="weatherforecastcontroller"></a>WeatherForecastController
 
-В `WeatherForecastController` (*Controllers/WeatherForecastController.cs*) к классу применяется атрибут [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute). Атрибут указывает, что пользователь должен быть авторизован на основе политики по умолчанию, чтобы получить доступ к ресурсу. Политика авторизации по умолчанию настроена на использование схемы проверки подлинности по умолчанию, которая настраивается <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A>. Вспомогательный метод настраивает <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> в качестве обработчика по умолчанию для запросов к приложению.
+В `WeatherForecastController` (`Controllers/WeatherForecastController.cs`) к классу применяется атрибут [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute). Атрибут указывает, что пользователь должен быть авторизован на основе политики по умолчанию, чтобы получить доступ к ресурсу. Политика авторизации по умолчанию настроена на использование схемы проверки подлинности по умолчанию, которая настраивается <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A>. Вспомогательный метод настраивает <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> в качестве обработчика по умолчанию для запросов к приложению.
 
 ### <a name="applicationdbcontext"></a>ApplicationDbContext
 
-В `ApplicationDbContext` (*Data/ApplicationDbContext.cs*) <xref:Microsoft.EntityFrameworkCore.DbContext> расширяет <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> для включения схемы для IdentityServer. Класс <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> является производным от <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
+В `ApplicationDbContext` (`Data/ApplicationDbContext.cs`) <xref:Microsoft.EntityFrameworkCore.DbContext> расширяет <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> для включения схемы для IdentityServer. Класс <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> является производным от <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
 
 Чтобы получить полный контроль над схемой базы данных, наследуйте один из доступных классов Identity <xref:Microsoft.EntityFrameworkCore.DbContext> и настройте контекст для включения схемы Identity путем вызова `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` в методе <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A>.
 
 ### <a name="oidcconfigurationcontroller"></a>OidcConfigurationController
 
-В `OidcConfigurationController` (*Controllers/OidcConfigurationController.cs*) конечная точка клиента подготавливается для обслуживания параметров OIDC.
+В `OidcConfigurationController` (`Controllers/OidcConfigurationController.cs`) выполняется подготовка конечной точки клиента для обслуживания параметров OIDC.
 
 ### <a name="app-settings-files"></a>Файл параметров приложения
 
-В файле параметров приложения (*appsettings.json*) в корневом каталоге проекта в разделе `IdentityServer` описывается список настроенных клиентов. В следующем примере есть один клиент. Имя клиента соответствует имени приложения и сопоставляется по соглашению с параметром `ClientId` OAuth. Профиль указывает на настраиваемый тип приложения. Профиль используется внутри для обозначения соглашений, упрощающих процесс настройки сервера. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
+В файле параметров приложения (`appsettings.json`) в корневом каталоге проекта в разделе `IdentityServer` описывается список настроенных клиентов. В следующем примере есть один клиент. Имя клиента соответствует имени приложения и сопоставляется по соглашению с параметром `ClientId` OAuth. Профиль указывает на настраиваемый тип приложения. Профиль используется внутри для обозначения соглашений, упрощающих процесс настройки сервера. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
 
 ```json
 "IdentityServer": {
@@ -150,7 +150,7 @@ dotnet new blazorwasm -au Individual -ho
 
 ### <a name="authentication-package"></a>Пакет проверки подлинности
 
-Когда приложение создается для использования отдельных учетных записей пользователей (`Individual`), приложение автоматически получает ссылку на пакет для [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) в файле проекта приложения. В пакете содержится набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных API.
+Когда приложение создается для использования отдельных учетных записей пользователей (`Individual`), оно автоматически получает ссылку на пакет [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) в файле проекта приложения. В пакете содержится набор примитивов, которые помогают приложению проверять подлинность пользователей и получать маркеры для вызова защищенных API.
 
 При добавлении проверки подлинности в приложение вручную добавьте пакет в файл проекта приложения:
 
@@ -162,7 +162,7 @@ dotnet new blazorwasm -au Individual -ho
 
 ### <a name="api-authorization-support"></a>Поддержка авторизации API
 
-Поддержка проверки подлинности пользователей подключается к контейнеру службы с помощью метода расширения в составе пакета [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/). Этот метод настраивает службы, необходимые для взаимодействия с существующей системой авторизации.
+Поддержка проверки подлинности пользователей подключается в контейнере службы с помощью метода расширения, предоставляемого в пакете [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/). Этот метод настраивает службы, необходимые для взаимодействия с существующей системой авторизации.
 
 ```csharp
 builder.Services.AddApiAuthorization();
@@ -188,7 +188,7 @@ builder.Services.AddApiAuthorization();
 
 ### <a name="logindisplay-component"></a>Компонент LoginDisplay
 
-Компонент `LoginDisplay` (*Shared/LoginDisplay.razor*) преобразуется для просмотра в компоненте `MainLayout` (*Shared/MainLayout.razor*) и управляет следующими поведениями:
+Компонент `LoginDisplay` (`Shared/LoginDisplay.razor`) отображается в компоненте `MainLayout` (`Shared/MainLayout.razor`) и управляет следующими поведениями.
 
 * Для пользователей, прошедших проверку подлинности:
   * Отображает имя текущего пользователя.
@@ -247,7 +247,7 @@ builder.Services.AddApiAuthorization();
 
 В клиентском приложении создайте настраиваемую фабрику пользователей. Identity Server отправляет несколько ролей в виде массива JSON в одном утверждении `role`. Одна роль отправляется как строковое значение в утверждении. Фабрика создает отдельное утверждение `role` для каждой из ролей пользователя.
 
-*CustomUserFactory.cs*:
+`CustomUserFactory.cs`.
 
 ```csharp
 using System.Linq;
@@ -307,7 +307,7 @@ public class CustomUserFactory
 }
 ```
 
-В клиентском приложении зарегистрируйте фабрику в `Program.Main` (*Program.cs*):
+В клиентском приложении зарегистрируйте фабрику в `Program.Main` (`Program.cs`):
 
 ```csharp
 builder.Services.AddApiAuthorization()
@@ -362,7 +362,7 @@ JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 
 В серверном приложении создайте реализацию `ProfileService`.
 
-*ProfileService.cs*:
+`ProfileService.cs`.
 
 ```csharp
 using IdentityModel;
@@ -408,7 +408,7 @@ services.AddTransient<IProfileService, ProfileService>();
 
 На этом этапе подходы с авторизацией компонентов в клиентском приложении являются функциональными. Любой из механизмов авторизации в компонентах может использовать роль для авторизации пользователя:
 
-* [Компонент AuthorizeView](xref:blazor/security/index#authorizeview-component) (например: `<AuthorizeView Roles="admin">`)
+* [Компонент `AuthorizeView`](xref:blazor/security/index#authorizeview-component) (например: `<AuthorizeView Roles="admin">`)
 * [Директива атрибута `[Authorize]`](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (например: `@attribute [Authorize(Roles = "admin")]`)
 * [Процедурная логика](xref:blazor/security/index#procedural-logic) (например: `if (user.IsInRole("admin")) { ... }`)
 

@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: c5169231eec67a43830f761bff7585deff774613
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 2b6d4e706856cb28f26c2502feca4f959ca4abac
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103491"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243035"
 ---
 # <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>Рекомендации по повышению производительности ASP.NET Core Blazor WebAssembly
 
@@ -76,10 +76,10 @@ ms.locfileid: "85103491"
 
 Компоненты обеспечивают удобный подход для создания многократно используемых фрагментов кода и разметки. Как правило, рекомендуется создавать отдельные компоненты, которые наилучшим образом согласовываются с требованиями приложения. Одним из недостатков является то, что каждый дополнительный дочерний компонент увеличивает общее время, необходимое для отрисовки родительского компонента. Для большинства приложений этими дополнительными накладными расходами можно пренебречь. Однако в случае с приложениями, которые создают большое количество компонентов, следует предусмотреть стратегии по снижению затрат на обработку, например путем ограничения количества отрисовываемых компонентов.
 
-Так, отрисовка сетки или списка с сотнями строк, содержащих компоненты, является ресурсоемкой задачей. Вы можете виртуализировать макет сетки или списка, чтобы в любой момент времени отрисовывалось только подмножество компонентов. Примером отрисовки подмножества компонентов могут служить следующие компоненты в [примере приложения с виртуализацией (в репозитории GitHub aspnet/samples)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Virtualization):
+Так, отрисовка сетки или списка с сотнями строк, содержащих компоненты, является ресурсоемкой задачей. Вы можете виртуализировать макет сетки или списка, чтобы в любой момент времени отрисовывалось только подмножество компонентов. Примером отрисовки подмножества компонентов могут служить следующие компоненты в [примере приложения `Virtualization` (в репозитории GitHub aspnet/samples)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Virtualization):
 
-* компонент `Virtualize` ([Shared/Virtualize.razor](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs)) — компонент на C#, который реализует <xref:Microsoft.AspNetCore.Components.ComponentBase> для отрисовки набора строк данных по погоде при выполнении прокрутки пользователем;
-* Компонент `FetchData` ([Pages/FetchData.razor](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor)): использует компонент `Virtualize` для вывода 25 строк данных по погоде за раз.
+* Компонент `Virtualize` ([`Shared/Virtualize.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs)): компонент на C#, который реализует <xref:Microsoft.AspNetCore.Components.ComponentBase> для отрисовки набора строк данных по погоде при выполнении прокрутки пользователем;
+* Компонент `FetchData` ([`Pages/FetchData.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor)): использует компонент `Virtualize` для вывода 25 строк данных по погоде за раз.
 
 ## <a name="avoid-javascript-interop-to-marshal-data"></a>Избегайте использования взаимодействия с JavaScript для маршалирования данных
 
@@ -89,7 +89,7 @@ ms.locfileid: "85103491"
 
 Реализация взаимодействия с JS в Blazor основана на <xref:System.Text.Json>, высокопроизводительной библиотеке сериализации JSON, занимающей мало места в памяти. Использование <xref:System.Text.Json> не приводит к увеличению размера полезных данных в приложении, в отличие от добавления одной или нескольких альтернативных библиотек JSON.
 
-Указания по миграции см. в статье [Миграция из Newtonsoft.Json в System.Text.Json](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
+Руководство по миграции см. в статье [Миграция с `Newtonsoft.Json` на `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
 ## <a name="use-synchronous-and-unmarshalled-js-interop-apis-where-appropriate"></a>Использование синхронных и немаршалируемых интерфейсов API взаимодействия с JS, где они применимы
 
@@ -138,7 +138,7 @@ Blazor WebAssembly предлагает две дополнительные ве
 
 ### <a name="intermediate-language-il-linking"></a>Компоновка промежуточного языка (IL)
 
-[Компоновка приложения Blazor WebAssembly](xref:blazor/host-and-deploy/configure-linker) уменьшает размер приложения за счет удаления неиспользуемого кода в двоичных файлах приложения. По умолчанию компоновщик включается только при сборке в конфигурации `Release`. Чтобы воспользоваться этой возможностью, опубликуйте приложение для развертывания с помощью команды [dotnet publish](/dotnet/core/tools/dotnet-publish) с параметром [-c|--configuration](/dotnet/core/tools/dotnet-publish#options), имеющим значение `Release`:
+[Компоновка приложения Blazor WebAssembly](xref:blazor/host-and-deploy/configure-linker) уменьшает размер приложения за счет удаления неиспользуемого кода в двоичных файлах приложения. По умолчанию компоновщик включается только при сборке в конфигурации `Release`. Чтобы воспользоваться этой возможностью, опубликуйте приложение для развертывания с помощью команды [`dotnet publish`](/dotnet/core/tools/dotnet-publish) с параметром [-c|--configuration](/dotnet/core/tools/dotnet-publish#options), имеющим значение `Release`:
 
 ```dotnetcli
 dotnet publish -c Release

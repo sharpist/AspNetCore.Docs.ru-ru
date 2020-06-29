@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: 726aafd2bf5d3469c30ebce1e4eea8ed8ec8d58e
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 72a8b59b06e40f6f85abe41217ae564f82c8d89c
+ms.sourcegitcommit: 1833870ad0845326fb764fef1b530a07b9b5b099
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103460"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85347077"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>Конфигурация модели размещения ASP.NET Core Blazor
 
@@ -32,10 +32,10 @@ ms.locfileid: "85103460"
 
 Чтобы настроить базовый клиент SignalRдля отправки учетных данных, таких как файлы cookie или заголовки проверки подлинности HTTP:
 
-* используйте <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A>, чтобы задать <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> в независящих от источника запросах [fetch](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch):
+* используйте <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A>, чтобы задать <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> в независящих от источника запросах [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch):
 
   ```csharp
-  public class IncludeRequestCredentialsMessagHandler : DelegatingHandler
+  public class IncludeRequestCredentialsMessageHandler : DelegatingHandler
   {
       protected override Task<HttpResponseMessage> SendAsync(
           HttpRequestMessage request, CancellationToken cancellationToken)
@@ -53,7 +53,7 @@ ms.locfileid: "85103460"
       .WithUrl(new Uri("http://signalr.example.com"), options =>
       {
           options.HttpMessageHandlerFactory = innerHandler => 
-              new IncludeRequestCredentialsMessagHandler { InnerHandler = innerHandler };
+              new IncludeRequestCredentialsMessageHandler { InnerHandler = innerHandler };
       }).Build();
   ```
 
@@ -65,7 +65,7 @@ ms.locfileid: "85103460"
 
 Когда клиент обнаруживает, что соединение было потеряно, пользовательский интерфейс по умолчанию отображается пользователю, в то время как клиент пытается восстановить соединение. Если происходит повторный сбой подключения, пользователю предоставляется возможность повторить попытку.
 
-Чтобы настроить пользовательский интерфейс, определите значение `id` элемента `components-reconnect-modal` в блоке `<body>` страницы Razor *_Host.cshtml*.
+Чтобы настроить пользовательский интерфейс, определите значение `id` элемента `components-reconnect-modal` в блоке `<body>` страницы Razor `_Host.cshtml`.
 
 ```cshtml
 <div id="components-reconnect-modal">
@@ -86,7 +86,7 @@ ms.locfileid: "85103460"
 
 *Этот раздел относится к Blazor Server.*
 
-Приложения Blazor Server по умолчанию настроены на предварительную отрисовку пользовательского интерфейса на сервере, прежде чем будет установлено подключение клиента с сервером. Это поведение настраивается на странице Razor *_Host.cshtml*.
+Приложения Blazor Server по умолчанию настроены на предварительную отрисовку пользовательского интерфейса на сервере, прежде чем будет установлено подключение клиента с сервером. Настройка выполняется на странице Razor `_Host.cshtml`.
 
 ```cshtml
 <body>
@@ -117,7 +117,7 @@ ms.locfileid: "85103460"
 
 Иногда необходимо настроить клиент SignalR, используемый приложениями Blazor Server. Например, может потребоваться настроить ведение журнала на клиенте SignalR для диагностики проблемы с подключением.
 
-Чтобы настроить клиент SignalR, внесите следующие изменения в файле *Pages/_Host.cshtml*:
+Чтобы настроить клиент SignalR в файле `Pages/_Host.cshtml`, сделайте следующее:
 
 * добавьте атрибут `autostart="false"` в тег `<script>` для сценария `blazor.server.js`;
 * вызовите `Blazor.start` и передайте объект конфигурации, указывающий построитель SignalR.

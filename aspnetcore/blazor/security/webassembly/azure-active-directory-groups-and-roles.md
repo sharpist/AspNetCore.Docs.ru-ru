@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
-ms.openlocfilehash: 99ebe43da191153aa98cce6bae8fe98035bc7d6f
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: ed49ba13842f2b5805250d8c12535397c542cfd4
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103515"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242879"
 ---
 # <a name="azure-ad-groups-administrative-roles-and-user-defined-roles"></a>Группы Azure AD, административные роли и определяемые пользователем роли
 
@@ -45,7 +45,7 @@ Azure Active Directory (AAD) предоставляет несколько по�
 Сведения о том, как настроить приложение на портале Azure для предоставления утверждения о членстве `groups`, см. в следующих статьях Azure. Назначение пользователей для определяемых пользователем групп AAD и встроенных административных ролей.
 
 * [Роли, использующие группы безопасности Azure AD](/azure/architecture/multitenant-identity/app-roles#roles-using-azure-ad-security-groups)
-* [Атрибут groupMembershipClaims](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute)
+* [Атрибут `groupMembershipClaims`](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute)
 
 В следующих примерах предполагается, что пользователю назначена встроенная роль *Администратор выставления счетов*.
 
@@ -53,7 +53,7 @@ Azure Active Directory (AAD) предоставляет несколько по�
 
 Расширьте <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, чтобы включить свойства массива для групп и ролей.
 
-*CustomUserAccount.cs*:
+`CustomUserAccount.cs`.
 
 ```csharp
 using System.Text.Json.Serialization;
@@ -115,7 +115,7 @@ public class CustomUserFactory
 
 Нет необходимости предоставлять код для удаления исходного утверждения `groups`, поскольку оно автоматически удаляется платформой.
 
-Зарегистрируйте фабрику в `Program.Main` (*Program.cs*) изолированного приложения или клиентского приложения размещенного решения:
+Зарегистрируйте фабрику в `Program.Main` (`Program.cs`) изолированного приложения или клиентского приложения размещенного решения:
 
 ```csharp
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
@@ -145,7 +145,7 @@ builder.Services.AddAuthorizationCore(options =>
 
 В следующих примерах приложение использует предыдущую политику для авторизации пользователя.
 
-С политикой работает [компонент AuthorizeView](xref:blazor/security/index#authorizeview-component):
+С политикой работает [компонент`AuthorizeView`](xref:blazor/security/index#authorizeview-component):
 
 ```razor
 <AuthorizeView Policy="BillingAdministrator">
@@ -245,7 +245,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 На этом этапе можно применять подходы с авторизацией компонентов. Любой из механизмов авторизации в компонентах может использовать роль `admin` для авторизации пользователя:
 
-* [Компонент AuthorizeView](xref:blazor/security/index#authorizeview-component) (например: `<AuthorizeView Roles="admin">`)
+* [Компонент `AuthorizeView`](xref:blazor/security/index#authorizeview-component) (например: `<AuthorizeView Roles="admin">`)
 * [Директива атрибута `[Authorize]`](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (например: `@attribute [Authorize(Roles = "admin")]`)
 * [Процедурная логика](xref:blazor/security/index#procedural-logic) (например: `if (user.IsInRole("admin")) { ... }`)
 

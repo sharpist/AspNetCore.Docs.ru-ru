@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: 14cf614bf5d4f2ad6a34c49cb08277a2deae8d00
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: e905f08f867b73fc37d5fed7138256ac89811312
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242954"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402407"
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>Проверка подлинности и авторизация в ASP.NET Core Blazor
 
@@ -26,7 +28,7 @@ ms.locfileid: "85242954"
 
 ASP.NET Core поддерживает настройку и администрирование средств безопасности в приложениях Blazor.
 
-Сценарии безопасности для серверных приложений Blazor и приложений Blazor WebAssembly отличаются. Так как серверные приложения Blazor выполняются на стороне сервера, проверки авторизации могут определить следующее:
+Сценарии безопасности для приложений Blazor Server и Blazor WebAssembly отличаются. Так как приложения Blazor Server выполняются на стороне сервера, проверки авторизации могут определить следующее:
 
 * параметры пользовательского интерфейса, предоставленные пользователю (например, какие пункты меню доступны пользователю);
 * правила доступа для приложений и компонентов.
@@ -40,9 +42,9 @@ ASP.NET Core поддерживает настройку и администри
 
 ## <a name="authentication"></a>Проверка подлинности
 
-Blazor использует существующие механизмы проверки подлинности ASP.NET Core для установления личности пользователя. Конкретный механизм зависит от того, как размещается приложение Blazor (приложение Blazor WebAssembly или серверное приложение Blazor).
+Blazor использует существующие механизмы проверки подлинности ASP.NET Core для установления личности пользователя. Конкретный механизм зависит от того, как размещается приложение Blazor (Blazor WebAssembly или Blazor Server).
 
-### <a name="blazor-webassembly-authentication"></a>Проверка подлинности в Blazor WebAssembly
+### <a name="blazor-webassembly-authentication"></a>Blazor WebAssembly аутентификация
 
 В приложениях Blazor WebAssembly проверку подлинности можно обойти, так как пользователь может изменять весь код на стороне клиента. Это же справедливо для всех технологий на стороне клиента, включая платформы одностраничного приложения JavaScript или собственных приложений для любой операционной системы.
 
@@ -55,9 +57,9 @@ Blazor использует существующие механизмы пров
 
 Дополнительные сведения о создании и настройке приложений см. в статье <xref:blazor/security/webassembly/index>.
 
-### <a name="blazor-server-authentication"></a>Проверка подлинности Blazor Server
+### <a name="blazor-server-authentication"></a>Blazor Server аутентификация
 
-Серверные приложения Blazor работают через подключение в реальном времени, созданное с помощью SignalR. [Проверка подлинности в приложениях на основе SignalR](xref:signalr/authn-and-authz) выполняется при установлении подключения. Аутентификация может выполняться на основе файлов cookie или других маркеров носителя.
+Приложения Blazor Server работают через подключение в реальном времени, созданное с помощью SignalR. [Проверка подлинности в приложениях на основе SignalR](xref:signalr/authn-and-authz) выполняется при установлении подключения. Аутентификация может выполняться на основе файлов cookie или других маркеров носителя.
 
 Дополнительные сведения о создании и настройке приложений см. в статье <xref:blazor/security/server/index>.
 
@@ -149,7 +151,7 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 }
 ```
 
-В приложении WebAssembly Blazor служба `CustomAuthStateProvider` регистрируется в `Main` в файле `Program.cs`.
+В приложении Blazor WebAssembly служба `CustomAuthStateProvider` регистрируется в `Main` `Program.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -159,7 +161,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 ```
 
-В серверном приложении Blazor служба `CustomAuthStateProvider` регистрируется в `Startup.ConfigureServices`:
+В приложении Blazor Server служба `CustomAuthStateProvider` регистрируется в `Startup.ConfigureServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -232,7 +234,7 @@ builder.Services.AddOptions();
 builder.Services.AddAuthorizationCore();
 ```
 
-В серверном приложении Blazor уже есть службы для параметров и авторизации, поэтому ничего делать не нужно.
+В приложении Blazor Server уже есть службы для параметров и авторизации, поэтому ничего делать не нужно.
 
 ## <a name="authorization"></a>Авторизация
 
@@ -310,7 +312,7 @@ builder.Services.AddAuthorizationCore();
 
 Авторизация на основе утверждений считается особым случаем авторизации на основе политик. Например, вы можете определить политику, которая требует наличия определенного утверждения у пользователя. Для получения дополнительной информации см. <xref:security/authorization/policies>.
 
-Эти API могут использоваться в серверных приложениях Blazor и приложениях Blazor WebAssembly.
+Эти API-интерфейсы можно использовать в приложениях Blazor Server или Blazor WebAssembly.
 
 Если не указано ни <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles>, ни <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy>, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> использует политику по умолчанию.
 
@@ -333,7 +335,7 @@ Blazor позволяет *асинхронно* определять состо
 </AuthorizeView>
 ```
 
-Такой подход обычно не применим к серверным приложениям Blazor. Серверные приложения Blazor узнают состояние проверки подлинности, как только оно устанавливается. Содержимое <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing> можно указать в компоненте <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> для серверного приложения Blazor, но это содержимое никогда не отображается.
+Такой подход обычно не применим к приложениям Blazor Server. Приложения Blazor Server узнают состояние проверки подлинности, как только оно устанавливается. Содержимое <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing> можно указать в компоненте <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> для приложения Blazor Server, но это содержимое никогда не отображается.
 
 ## <a name="authorize-attribute"></a>Атрибут [Authorize]
 
@@ -380,7 +382,7 @@ You can only see this if you're signed in.
 * пользователь не удовлетворяет условию [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), которое применено к компоненту (атрибут [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) описан в разделе [Атрибут `[Authorize]`](#authorize-attribute));
 * выполняется асинхронная аутентификация.
 
-В стандартном шаблоне проекта серверного приложения Blazor есть компонент `App` (`App.razor`) для настройки пользовательского содержимого.
+В стандартном шаблоне проекта приложения Blazor Server есть компонент `App` (`App.razor`) для настройки пользовательского содержимого.
 
 ```razor
 <CascadingAuthenticationState>
@@ -477,7 +479,7 @@ Not authorized.
 
 * **Для `authenticationStateTask` возвращается значение `null`**
 
-Вполне вероятно, что проект не был создан на основе шаблона серверного приложения Blazor с включенной проверкой подлинности. Примените `<CascadingAuthenticationState>` в качестве оболочки определенной части дерева пользовательского интерфейса, например в компоненте `App` (`App.razor`), следующим образом.
+Вполне вероятно, что проект не был создан на основе шаблона приложения Blazor Server с включенной проверкой подлинности. Примените `<CascadingAuthenticationState>` в качестве оболочки определенной части дерева пользовательского интерфейса, например в компоненте `App` (`App.razor`), следующим образом.
 
 ```razor
 <CascadingAuthenticationState>

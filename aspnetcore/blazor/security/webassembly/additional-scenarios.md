@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: 2020b422ad48a9c4c52f2670fd3b5054aa4d60c5
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 13007df4ddddd31dd0508e9526775a6d33e0fd97
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103516"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242918"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>Сценарии обеспечения дополнительной безопасности ASP.NET Core Blazor WebAssembly
 
@@ -30,8 +30,8 @@ ms.locfileid: "85103516"
 
 Чтобы настроить обработчик сообщений для исходящих запросов, используйте один из следующих подходов:
 
-* [Пользовательский класс AuthorizationMessageHandler](#custom-authorizationmessagehandler-class) (*рекомендуется*)
-* [Configure AuthorizationMessageHandler](#configure-authorizationmessagehandler)
+* [Пользовательский класс `AuthorizationMessageHandler`](#custom-authorizationmessagehandler-class) (*рекомендуется*)
+* [Настройка `AuthorizationMessageHandler`](#configure-authorizationmessagehandler)
 
 ### <a name="custom-authorizationmessagehandler-class"></a>Пользовательский класс AuthorizationMessageHandler
 
@@ -54,7 +54,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 }
 ```
 
-В `Program.Main` (*Program.cs*) объект <xref:System.Net.Http.HttpClient> настраивается с помощью пользовательского обработчика сообщений авторизации:
+В `Program.Main` (`Program.cs`) объект <xref:System.Net.Http.HttpClient> настраивается с помощью пользовательского обработчика сообщений авторизации:
 
 ```csharp
 builder.Services.AddTransient<CustomAuthorizationMessageHandler>();
@@ -64,7 +64,7 @@ builder.Services.AddHttpClient("ServerAPI",
         .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
 ```
 
-Настроенный объект <xref:System.Net.Http.HttpClient> используется для выполнения авторизованных запросов с помощью шаблона [try-catch](/dotnet/csharp/language-reference/keywords/try-catch). Когда клиент создается с помощью метода <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> (из пакета [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/)), при выполнении запросов к интерфейсу API сервера объекту <xref:System.Net.Http.HttpClient> передаются экземпляры, содержащие маркеры доступа:
+Настроенный объект <xref:System.Net.Http.HttpClient> используется для выполнения авторизованных запросов с помощью шаблона [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch). Когда клиент создается с помощью метода <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> (из пакета [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http/)), при выполнении запросов к интерфейсу API сервера объекту <xref:System.Net.Http.HttpClient> передаются экземпляры, содержащие маркеры доступа:
 
 ```razor
 @inject IHttpClientFactory ClientFactory
@@ -96,7 +96,7 @@ builder.Services.AddHttpClient("ServerAPI",
 
 ### <a name="configure-authorizationmessagehandler"></a>Configure AuthorizationMessageHandler
 
-В следующем примере обработчик <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> настраивает объект <xref:System.Net.Http.HttpClient> в `Program.Main` (*Program.cs*):
+В следующем примере обработчик <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> настраивает объект <xref:System.Net.Http.HttpClient> в `Program.Main` (`Program.cs`):
 
 ```csharp
 using System.Net.Http;
@@ -116,7 +116,7 @@ builder.Services.AddTransient(sp =>
 });
 ```
 
-Для удобства включен обработчик <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> с базовым адресом приложения, предварительно настроенным в качестве авторизованного URL-адреса. В шаблонах Blazor WebAssembly с поддержкой проверки подлинности теперь используется интерфейс <xref:System.Net.Http.IHttpClientFactory> (из пакета [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/)) в проекте API сервера для настройки объекта <xref:System.Net.Http.HttpClient> с <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>:
+Для удобства включен обработчик <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> с базовым адресом приложения, предварительно настроенным в качестве авторизованного URL-адреса. В шаблонах Blazor WebAssembly с поддержкой проверки подлинности теперь используется интерфейс <xref:System.Net.Http.IHttpClientFactory> (из пакета [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http/)) в проекте API сервера для настройки объекта <xref:System.Net.Http.HttpClient> с <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>:
 
 ```csharp
 using System.Net.Http;
@@ -134,7 +134,7 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
 
 Когда в предыдущем примере клиент создается с помощью метода <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A>, при выполнении запросов к проекту сервера объекту <xref:System.Net.Http.HttpClient> передаются экземпляры, содержащие маркеры доступа.
 
-Настроенный объект <xref:System.Net.Http.HttpClient> используется для выполнения авторизованных запросов с помощью шаблона [try-catch](/dotnet/csharp/language-reference/keywords/try-catch).
+Настроенный объект <xref:System.Net.Http.HttpClient> используется для выполнения авторизованных запросов с помощью шаблона [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch):
 
 ```razor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -164,7 +164,7 @@ protected override async Task OnInitializedAsync()
 
 Можно определить типизированный клиент, который будет обрабатывать все аспекты, связанные с HTTP и получением маркеров, в пределах одного класса.
 
-*WeatherForecastClient.cs*:
+`WeatherForecastClient.cs`.
 
 ```csharp
 using System.Net.Http;
@@ -203,7 +203,7 @@ public class WeatherForecastClient
 
 Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `using static BlazorSample.Data;`).
 
-`Program.Main` (*Program.cs*):
+`Program.Main` (`Program.cs`):
 
 ```csharp
 using System.Net.Http;
@@ -216,7 +216,7 @@ builder.Services.AddHttpClient<WeatherForecastClient>(
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 ```
 
-Компонент `FetchData` (*Pages/FetchData.razor*):
+Компонент `FetchData` (`Pages/FetchData.razor`):
 
 ```razor
 @inject WeatherForecastClient Client
@@ -233,7 +233,7 @@ protected override async Task OnInitializedAsync()
 
 Обработчик можно дополнительно настроить с помощью <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> для исходящих HTTP-запросов.
 
-`Program.Main` (*Program.cs*):
+`Program.Main` (`Program.cs`):
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastClient>(client => client.BaseAddress = new Uri("https://www.example.com/base"))
@@ -246,7 +246,7 @@ builder.Services.AddHttpClient<WeatherForecastClient>(client => client.BaseAddre
 
 Если приложение Blazor WebAssembly обычно использует защищенный клиент <xref:System.Net.Http.HttpClient> по умолчанию, приложение также может выполнять неавторизованные или не прошедшие проверку запросы к веб-API путем настройки именованного клиента <xref:System.Net.Http.HttpClient>:
 
-`Program.Main` (*Program.cs*):
+`Program.Main` (`Program.cs`):
 
 ```csharp
 builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient", 
@@ -255,7 +255,7 @@ builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient",
 
 Приведенная выше регистрация является дополнением к существующей регистрации защищенного клиента <xref:System.Net.Http.HttpClient> по умолчанию.
 
-Компонент создает клиент <xref:System.Net.Http.HttpClient> на основе <xref:System.Net.Http.IHttpClientFactory> (из пакета [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/)) для выполнения не прошедших проверку или неавторизованных запросов:
+Компонент создает клиент <xref:System.Net.Http.HttpClient> на основе <xref:System.Net.Http.IHttpClientFactory> (из пакета [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http/)) для выполнения не прошедших проверку или неавторизованных запросов:
 
 ```razor
 @inject IHttpClientFactory ClientFactory
@@ -284,7 +284,7 @@ builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient",
 
 В приведенном ниже примере для чтения данных пользователей и отправки почты приложениям требуются дополнительные области API Microsoft Graph Azure Active Directory (AAD). После добавления разрешений API Microsoft Graph на портале Azure AAD дополнительные области настраиваются в клиентском приложении.
 
-`Program.Main` (*Program.cs*):
+`Program.Main` (`Program.cs`):
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -328,7 +328,7 @@ if (tokenResult.TryGetToken(out var token))
 
 ## <a name="httpclient-and-httprequestmessage-with-fetch-api-request-options"></a>HttpClient и HttpRequestMessage с параметрами запроса Fetch API
 
-При выполнении в WebAssembly в приложении Blazor WebAssembly для настройки запросов можно использовать [HttpClient](xref:fundamentals/http-requests) и <xref:System.Net.Http.HttpRequestMessage>. Например, можно указать метод HTTP и заголовки запроса. Следующий компонент выполняет запрос `POST` к конечной точке API списка дел на сервере и отображает текст ответа:
+При выполнении в WebAssembly в приложении Blazor WebAssembly для настройки запросов можно использовать [`HttpClient`](xref:fundamentals/http-requests) и <xref:System.Net.Http.HttpRequestMessage>. Например, можно указать метод HTTP и заголовки запроса. Следующий компонент выполняет запрос `POST` к конечной точке API списка дел на сервере и отображает текст ответа:
 
 ```razor
 @page "/todorequest"
@@ -396,10 +396,10 @@ if (tokenResult.TryGetToken(out var token))
 
 | Метод расширения | Свойство запроса на извлечение |
 | --- | --- |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> | [credentials](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCache%2A> | [cache](https://developer.mozilla.org/docs/Web/API/Request/cache) |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> | [mode](https://developer.mozilla.org/docs/Web/API/Request/mode) |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestIntegrity%2A> | [integrity](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> | [`credentials`](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCache%2A> | [`cache`](https://developer.mozilla.org/docs/Web/API/Request/cache) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> | [`mode`](https://developer.mozilla.org/docs/Web/API/Request/mode) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestIntegrity%2A> | [`integrity`](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
 
 Вы можете задать дополнительные параметры с помощью более универсального метода расширения <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestOption%2A>.
  
@@ -430,7 +430,7 @@ app.UseCors(policy =>
     .AllowCredentials());
 ```
 
-Дополнительные сведения см. в разделе <xref:security/cors> и компоненте "Тестер HTTP-запросов" примера приложения (*Components/HTTPRequestTester.razor*).
+Дополнительные сведения см. в разделе <xref:security/cors> и компоненте "Тестер HTTP-запросов" примера приложения (`Components/HTTPRequestTester.razor`).
 
 ## <a name="handle-token-request-errors"></a>Обработка ошибок при выполнении запросов маркеров
 
@@ -454,7 +454,7 @@ app.UseCors(policy =>
 
 При сбое запроса маркера необходимо решить, следует ли сохранить текущее состояние перед выполнением перенаправления. Ниже приведены возможные подходы в порядке увеличения сложности.
 
-* Сохраните текущее состояние страницы в хранилище сеансов. Во время [события жизненного цикла OnInitializedAsync](xref:blazor/components/lifecycle#component-initialization-methods) (<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>) проверьте, можно ли восстановить состояние, прежде чем продолжить.
+* Сохраните текущее состояние страницы в хранилище сеансов. Во время [события жизненного цикла `OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-methods) (<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>) проверьте, можно ли восстановить состояние, прежде чем продолжить.
 * Добавьте параметр строки запроса и используйте его, чтобы сообщить приложению о необходимости восстановить ранее сохраненное состояние.
 * Добавьте параметр строки запроса с уникальным идентификатором для сохранения данных в хранилище сеансов без риска конфликтов с другими элементами.
 
@@ -526,7 +526,7 @@ app.UseCors(policy =>
 
 Во время операции проверки подлинности существуют случаи, когда необходимо сохранить состояние приложения, прежде чем в браузере будет выполнено перенаправление в поставщик удостоверений. Например, такая потребность может возникнуть, когда вы используете контейнер состояния и хотите восстановить состояние после успешной проверки подлинности. Вы можете использовать пользовательский объект состояния проверки подлинности для сохранения состояния приложения или ссылки на него и восстанавливать это состояние после успешного завершения проверки подлинности. Такой подход демонстрируется в приведенном ниже примере.
 
-В приложении создается класс контейнера состояния со свойствами для хранения значений состояния приложения. В приведенном ниже примере контейнер используется для хранения значения счетчика для компонента `Counter` шаблона по умолчанию (*Pages/Counter.razor*). Методы сериализации и десериализации контейнера основаны на <xref:System.Text.Json>.
+В приложении создается класс контейнера состояния со свойствами для хранения значений состояния приложения. В приведенном ниже примере контейнер используется для хранения значения счетчика для компонента `Counter` шаблона по умолчанию (`Pages/Counter.razor`). Методы сериализации и десериализации контейнера основаны на <xref:System.Text.Json>.
 
 ```csharp
 using System.Text.Json;
@@ -583,7 +583,7 @@ public class StateContainer
 
 Создайте `ApplicationAuthenticationState` на основе <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationState>. Укажите свойство `Id`, которое служит идентификатором для локально хранящегося состояния.
 
-*ApplicationAuthenticationState.cs*:
+`ApplicationAuthenticationState.cs`.
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -594,7 +594,7 @@ public class ApplicationAuthenticationState : RemoteAuthenticationState
 }
 ```
 
-Компонент `Authentication` (*Pages/Authentication.razor*) сохраняет и восстанавливает состояние приложения, используя локальное хранилище сеансов, с помощью методов сериализации и десериализации `StateContainer` (`GetStateForLocalStorage` и `SetStateFromLocalStorage`):
+Компонент `Authentication` (`Pages/Authentication.razor`) сохраняет и восстанавливает состояние приложения, используя локальное хранилище сеансов, с помощью методов сериализации и десериализации `StateContainer` (`GetStateForLocalStorage` и `SetStateFromLocalStorage`):
 
 ```razor
 @page "/authentication/{action}"
@@ -646,7 +646,7 @@ public class ApplicationAuthenticationState : RemoteAuthenticationState
 }
 ```
 
-В этом примере для проверки подлинности используется Azure Active Directory (AAD). В `Program.Main` (*Program.cs*):
+В этом примере для проверки подлинности используется Azure Active Directory (AAD). В `Program.Main` (`Program.cs`):
 
 * `ApplicationAuthenticationState` настраивается с типом `RemoteAuthenticationState` из библиотеки проверки подлинности Майкрософт (MSAL).
 * Контейнер состояния регистрируется в контейнере службы.
@@ -662,7 +662,7 @@ builder.Services.AddSingleton<StateContainer>();
 
 ## <a name="customize-app-routes"></a>Настройка маршрутов приложения
 
-Для представления различных состояний проверки подлинности библиотека [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) по умолчанию использует маршруты, приведенные в таблице ниже.
+Для представления различных состояний проверки подлинности библиотека [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) по умолчанию использует маршруты, приведенные в таблице ниже.
 
 | Маршрут                            | Цель |
 | -------------------------------- | ------- |
@@ -680,7 +680,7 @@ builder.Services.AddSingleton<StateContainer>();
 
 В приведенном ниже примере все пути имеют префикс `/security`.
 
-Компонент `Authentication` (*Pages/Authentication.razor*):
+Компонент `Authentication` (`Pages/Authentication.razor`):
 
 ```razor
 @page "/security/{action}"
@@ -694,7 +694,7 @@ builder.Services.AddSingleton<StateContainer>();
 }
 ```
 
-`Program.Main` (*Program.cs*):
+`Program.Main` (`Program.cs`):
 
 ```csharp
 builder.Services.AddApiAuthorization(options => { 
@@ -724,7 +724,7 @@ builder.Services.AddApiAuthorization(options => {
 
 <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> содержит набор элементов пользовательского интерфейса по умолчанию для каждого состояния проверки подлинности. Каждое состояние можно настроить, передав пользовательский объект <xref:Microsoft.AspNetCore.Components.RenderFragment>. Чтобы настроить текст, отображаемый во время первоначального входа в систему, можно изменить <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> указанным ниже образом.
 
-Компонент `Authentication` (*Pages/Authentication.razor*):
+Компонент `Authentication` (`Pages/Authentication.razor`):
 
 ```razor
 @page "/security/{action}"
@@ -866,7 +866,7 @@ public class CustomAccountFactory
 * предварительно отрисовывает пути, не требующие авторизации;
 * не выполняет предварительную отрисовку путей, требующих авторизации.
 
-В классе `Program` клиентского приложения (*Program.cs*) включите регистрации общих служб в отдельный метод (например, `ConfigureCommonServices`):
+В классе `Program` клиентского приложения (`Program.cs`) включите регистрации общих служб в отдельный метод (например, `ConfigureCommonServices`):
 
 ```csharp
 public class Program
@@ -915,7 +915,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-В методе `Startup.Configure` серверного приложения замените [endpoints.MapFallbackToFile("index.html")](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) на [endpoints.MapFallbackToPage("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
+В методе `Startup.Configure` серверного приложения замените [`endpoints.MapFallbackToFile("index.html")`](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) на [`endpoints.MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -925,7 +925,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-В серверном приложении создайте папку *Pages*, если она отсутствует. В папке *Pages* серверного приложения создайте страницу *_Host.cshtml*. Вставьте содержимое из файла *wwwroot/index.html* клиентского приложения в файл *Pages/_Host.cshtml*. Обновите содержимое файла:
+В серверном приложении создайте папку `Pages`, если она отсутствует. В папке серверного приложения `Pages` создайте страницу `_Host.cshtml`. Вставьте содержимое из файла `wwwroot/index.html` клиентского приложения в файл `Pages/_Host.cshtml`. Обновите содержимое файла:
 
 * Добавьте `@page "_Host"` в начало файла.
 * Замените тег `<app>Loading...</app>` следующим:
@@ -1001,7 +1001,7 @@ builder.Services.Configure<JwtBearerOptions>(
     });
 ```
 
-Кроме того, параметр можно задать в файле параметров приложения (*appsettings.json*):
+Кроме того, параметр можно задать в файле параметров приложения (`appsettings.json`):
 
 ```json
 {
@@ -1012,6 +1012,6 @@ builder.Services.Configure<JwtBearerOptions>(
 }
 ```
 
-Если переход на сегмент в центре сертификации не подходит для поставщика OIDC приложения, например в случае с поставщиками, не являющимися владельцами AAD, задайте свойство <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> напрямую. Задайте свойство либо в <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions>, либо в файле параметров приложения (*appsettings.json*) с помощью ключа `Authority`.
+Если переход на сегмент в центре сертификации не подходит для поставщика OIDC приложения, например в случае с поставщиками, не являющимися владельцами AAD, задайте свойство <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> напрямую. Задайте свойство либо в <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions>, либо в файле параметров приложения (`appsettings.json`) с помощью ключа `Authority`.
 
 Список утверждений в маркере идентификатора отличается для конечных точек версии 2.0. Дополнительные сведения см. в статье [Зачем выполнять обновление до платформы удостоверений Майкрософт (версия 2.0)?](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison)

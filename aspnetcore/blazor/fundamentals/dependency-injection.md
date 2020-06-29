@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/dependency-injection
-ms.openlocfilehash: b4ac0dbc6dabdeff4689544f2e11278b8302c553
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 24cd5ae837eeb4c89a15bab2948dde2eface0c0d
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103444"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242801"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>Внедрение зависимостей Blazor в ASP.NET Core
 
@@ -47,7 +47,7 @@ Blazor поддерживает [внедрение зависимостей](xr
 
 ### <a name="blazor-webassembly"></a>Blazor WebAssembly
 
-Настройте службы для коллекции служб приложения в методе `Main` файла *Program.cs*. В следующем примере реализация `MyDependency` зарегистрирована для `IMyDependency`:
+Настройте службы для коллекции служб приложения в методе `Main` файла `Program.cs`. В следующем примере реализация `MyDependency` зарегистрирована для `IMyDependency`:
 
 ```csharp
 public class Program
@@ -84,7 +84,7 @@ public class Program
 }
 ```
 
-Узел также предоставляет центральный экземпляр конфигурации для приложения. Основываясь на предыдущем примере, URL-адрес службы погоды передается из источника конфигурации по умолчанию (например, *appsettings.json*) в `InitializeWeatherAsync`:
+Узел также предоставляет центральный экземпляр конфигурации для приложения. Основываясь на предыдущем примере, URL-адрес службы погоды передается из источника конфигурации по умолчанию (например, `appsettings.json`) в `InitializeWeatherAsync`:
 
 ```csharp
 public class Program
@@ -193,7 +193,7 @@ public class DataAccess : IDataAccess
 Необходимые условия для внедрения конструктора:
 
 * Должен существовать один конструктор, аргументы которого могут использоваться системой внедрения зависимостей. Дополнительные параметры, не охваченные системой внедрения зависимостей, разрешены, если они указывают значения по умолчанию.
-* Применимый конструктор должен быть *общедоступным*.
+* Применимый конструктор должен быть `public`.
 * Должен существовать один подходящий конструктор. В случае неоднозначности система внедрения зависимостей выдает исключение.
 
 ## <a name="utility-base-component-classes-to-manage-a-di-scope"></a>Служебные классы базовых компонентов служебной программы для управления областью внедрения зависимостей
@@ -346,5 +346,5 @@ public class DataAccess : IDataAccess
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * <xref:fundamentals/dependency-injection>
-* [Руководство по применению временных и общих экземпляров IDisposable](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
+* [Руководство по применению временных и общих экземпляров `IDisposable`](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>
