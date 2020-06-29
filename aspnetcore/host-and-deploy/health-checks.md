@@ -5,7 +5,7 @@ description: Узнайте, как настроить проверки рабо
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/15/2019
+ms.date: 06/22/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/health-checks
-ms.openlocfilehash: 00b2697a6b916718d9d0e01d1ea9f922eb2b5706
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: ca5540b4920bc92e968dcbc22a9407453041b01c
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074429"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292702"
 ---
 # <a name="health-checks-in-aspnet-core"></a>Проверки работоспособности в ASP.NET Core
 
@@ -227,7 +227,7 @@ app.UseEndpoints(endpoints =>
 
 ### <a name="enable-cross-origin-requests-cors"></a>Включение запросов о происхождении (CORS)
 
-Хотя выполнение проверок работоспособности вручную из браузера не является распространенным сценарием использования, ПО промежуточного слоя CORS можно включить, вызвав `RequireCors` в конечных точках проверки работоспособности. Перегрузка `RequireCors` принимает делегат построителя политики CORS (`CorsPolicyBuilder`) или имя политики. Если политика не указана, используется политика CORS по умолчанию. Для получения дополнительной информации см. <xref:security/cors>.
+Хотя выполнение проверок работоспособности вручную из браузера не является распространенным сценарием использования, ПО промежуточного слоя CORS можно включить, вызвав `RequireCors` в конечных точках проверки работоспособности. Перегрузка `RequireCors` принимает делегат построителя политики CORS (`CorsPolicyBuilder`) или имя политики. Если политика не указана, используется политика CORS по умолчанию. Дополнительные сведения см. в разделе <xref:security/cors>.
 
 ## <a name="health-check-options"></a>Варианты проверки работоспособности
 
@@ -442,10 +442,10 @@ Unhealthy
 
 В некоторых сценариях размещения используются пары проверок работоспособности, отличающие два состояния приложения:
 
-* Приложение работает, но еще не готово к получению запросов. Это состояние *готовности* приложения.
-* Приложение работает и отвечает на запросы. Это состояние *жизнеспособности* приложения.
+* *Готовность* указывает, что приложение работает нормально, но не готово к приему запросов.
+* *Активность* указывает на сбой приложения, и его необходимо перезапустить.
 
-Проверка готовности обычно выполняет ряд проверок, чтобы определить, все ли подсистемы и ресурсы приложения доступны; она более обширна и требует много времени. Проверка жизнеспособности лишь быстро определяет, доступно ли приложение для обработки запросов. По прохождении проверки готовности приложения нет необходимости создавать чрезмерную нагрузку на приложение с дорогостоящим набором проверок готовности&mdash;дальнейшие проверки требуют лишь проверки жизнеспособности.
+Рассмотрим следующий пример: Приложение должно загрузить большой файл конфигурации до того, как оно будет готово к обработке запросов. Нам не требуется перезапуск приложения в случае сбоя начальной загрузки, так как приложение может повторить попытку скачивания файла несколько раз. Для описания активности процесса используется *проба активности*, дополнительные проверки не выполняются. Кроме того, мы хотим предотвратить отправку запросов в приложение до успешной загрузки файла конфигурации. Мы используем *пробу активности*, чтобы указать состояние "не готово" до тех пор, пока загрузка не будет завершена и приложение не сможет принимать запросы.
 
 Пример приложения содержит проверку работоспособности, которая сообщает о завершении длительной задачи запуска [размещенной службы](xref:fundamentals/host/hosted-services). `StartupHostedServiceHealthCheck` предоставляет свойство, `StartupTaskCompleted`, которое размещенная служба может задать как `true` после завершения длительной задачи (*StartupHostedServiceHealthCheck.cs*):
 
@@ -710,7 +710,7 @@ dotnet run --scenario port
    * Необязательное имя проверки работоспособности (`name`). Если `null`, используется `example_health_check`.
    * Строковая точка данных для проверки работоспособности (`data1`).
    * Целочисленная точка данных для проверки работоспособности (`data2`). Если `null`, используется `1`.
-   * состояние сбоя (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>). Значение по умолчанию — `null`. В случае `null` возвращается [HealthStatus.Unhealthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus) как состояние сбоя.
+   * состояние сбоя (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>). Значение по умолчанию — `null`. В случае `null` возвращается [HealthStatus.Unhealthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus) как состояние сбоя.
    * Теги (`IEnumerable<string>`).
 
    ```csharp
@@ -750,10 +750,10 @@ Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 
 <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> позволяет задать следующие параметры:
 
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Delay>. Исходная задержка, которая срабатывает после запуска приложения и перед выполнением экземпляров <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Задержка применяется при запуске один раз и не распространяется на все последующие итерации. Значение по умолчанию — пять секунд.
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Period>. Период выполнения <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Значение по умолчанию - 30 секунды.
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate>. Если <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> имеет значение `null` (по умолчанию), служба издателя проверки работоспособности выполняет все зарегистрированные проверки работоспособности. Чтобы выполнить ряд проверок работоспособности, укажите функцию, которая отфильтровывает нужный набор. Предикат вычисляется в каждом периоде.
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Timeout>. Время ожидания для выполнения проверок работоспособности для всех экземпляров <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Используйте <xref:System.Threading.Timeout.InfiniteTimeSpan>, чтобы выполнить проверки без задержки. Значение по умолчанию - 30 секунды.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Delay>: Исходная задержка, которая срабатывает после запуска приложения и перед выполнением экземпляров <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Задержка применяется при запуске один раз и не распространяется на все последующие итерации. Значение по умолчанию — пять секунд.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Period>: Период выполнения <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Значение по умолчанию — 30 секунд.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate>: Если <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> имеет значение `null` (по умолчанию), служба издателя проверки работоспособности выполняет все зарегистрированные проверки работоспособности. Чтобы выполнить ряд проверок работоспособности, укажите функцию, которая отфильтровывает нужный набор. Предикат вычисляется в каждом периоде.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Timeout>: Время ожидания для выполнения проверок работоспособности для всех экземпляров <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Используйте <xref:System.Threading.Timeout.InfiniteTimeSpan>, чтобы выполнить проверки без задержки. Значение по умолчанию — 30 секунд.
 
 В примере приложения `ReadinessPublisher` является реализацией <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Состояние проверки работоспособности записывается для каждой проверки на таком уровне журнала:
 
@@ -789,7 +789,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-Для получения дополнительной информации см. <xref:fundamentals/middleware/index#branch-the-middleware-pipeline>.
+Дополнительные сведения см. в разделе <xref:fundamentals/middleware/index#branch-the-middleware-pipeline>.
 
 ::: moniker-end
 
@@ -1155,10 +1155,10 @@ Unhealthy
 
 В некоторых сценариях размещения используются пары проверок работоспособности, отличающие два состояния приложения:
 
-* Приложение работает, но еще не готово к получению запросов. Это состояние *готовности* приложения.
-* Приложение работает и отвечает на запросы. Это состояние *жизнеспособности* приложения.
+* *Готовность* указывает, что приложение работает нормально, но не готово к приему запросов.
+* *Активность* указывает на сбой приложения, и его необходимо перезапустить.
 
-Проверка готовности обычно выполняет ряд проверок, чтобы определить, все ли подсистемы и ресурсы приложения доступны; она более обширна и требует много времени. Проверка жизнеспособности лишь быстро определяет, доступно ли приложение для обработки запросов. По прохождении проверки готовности приложения нет необходимости создавать чрезмерную нагрузку на приложение с дорогостоящим набором проверок готовности&mdash;дальнейшие проверки требуют лишь проверки жизнеспособности.
+Рассмотрим следующий пример: Приложение должно загрузить большой файл конфигурации до того, как оно будет готово к обработке запросов. Нам не требуется перезапуск приложения в случае сбоя начальной загрузки, так как приложение может повторить попытку скачивания файла несколько раз. Для описания активности процесса используется *проба активности*, дополнительные проверки не выполняются. Кроме того, мы хотим предотвратить отправку запросов в приложение до успешной загрузки файла конфигурации. Мы используем *пробу активности*, чтобы указать состояние "не готово" до тех пор, пока загрузка не будет завершена и приложение не сможет принимать запросы.
 
 Пример приложения содержит проверку работоспособности, которая сообщает о завершении длительной задачи запуска [размещенной службы](xref:fundamentals/host/hosted-services). `StartupHostedServiceHealthCheck` предоставляет свойство, `StartupTaskCompleted`, которое размещенная служба может задать как `true` после завершения длительной задачи (*StartupHostedServiceHealthCheck.cs*):
 
@@ -1385,7 +1385,7 @@ dotnet run --scenario port
    * Необязательное имя проверки работоспособности (`name`). Если `null`, используется `example_health_check`.
    * Строковая точка данных для проверки работоспособности (`data1`).
    * Целочисленная точка данных для проверки работоспособности (`data2`). Если `null`, используется `1`.
-   * состояние сбоя (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>). Значение по умолчанию — `null`. В случае `null` возвращается [HealthStatus.Unhealthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus) как состояние сбоя.
+   * состояние сбоя (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>). Значение по умолчанию — `null`. В случае `null` возвращается [HealthStatus.Unhealthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus) как состояние сбоя.
    * Теги (`IEnumerable<string>`).
 
    ```csharp
@@ -1425,10 +1425,10 @@ Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 
 <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> позволяет задать следующие параметры:
 
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Delay>. Исходная задержка, которая срабатывает после запуска приложения и перед выполнением экземпляров <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Задержка применяется при запуске один раз и не распространяется на все последующие итерации. Значение по умолчанию — пять секунд.
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Period>. Период выполнения <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Значение по умолчанию - 30 секунды.
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate>. Если <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> имеет значение `null` (по умолчанию), служба издателя проверки работоспособности выполняет все зарегистрированные проверки работоспособности. Чтобы выполнить ряд проверок работоспособности, укажите функцию, которая отфильтровывает нужный набор. Предикат вычисляется в каждом периоде.
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Timeout>. Время ожидания для выполнения проверок работоспособности для всех экземпляров <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Используйте <xref:System.Threading.Timeout.InfiniteTimeSpan>, чтобы выполнить проверки без задержки. Значение по умолчанию - 30 секунды.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Delay>: Исходная задержка, которая срабатывает после запуска приложения и перед выполнением экземпляров <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Задержка применяется при запуске один раз и не распространяется на все последующие итерации. Значение по умолчанию — пять секунд.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Period>: Период выполнения <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Значение по умолчанию — 30 секунд.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate>: Если <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> имеет значение `null` (по умолчанию), служба издателя проверки работоспособности выполняет все зарегистрированные проверки работоспособности. Чтобы выполнить ряд проверок работоспособности, укажите функцию, которая отфильтровывает нужный набор. Предикат вычисляется в каждом периоде.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Timeout>: Время ожидания для выполнения проверок работоспособности для всех экземпляров <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Используйте <xref:System.Threading.Timeout.InfiniteTimeSpan>, чтобы выполнить проверки без задержки. Значение по умолчанию — 30 секунд.
 
 > [!WARNING]
 > В выпуске ASP.NET Core 2.2 значение <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Period> не поддерживается в реализации <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Здесь задается значение <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Delay>. Эта проблема была устранена в ASP.NET Core 3.0.
@@ -1477,6 +1477,6 @@ app.MapWhen(
 app.UseMvc();
 ```
 
-Для получения дополнительной информации см. <xref:fundamentals/middleware/index#use-run-and-map>.
+Дополнительные сведения см. в разделе <xref:fundamentals/middleware/index#use-run-and-map>.
 
 ::: moniker-end

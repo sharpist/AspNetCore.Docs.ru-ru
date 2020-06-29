@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
-ms.openlocfilehash: 78d524bc0271fd2640302bb0de78571ab688bef5
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 1c71067528fb34ab141bb1ee846716834204ee40
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103479"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242463"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages
 
@@ -37,7 +37,7 @@ ms.locfileid: "85103479"
 
 Существующее приложение MVC или Razor Pages может интегрировать компоненты Razor в страницы и представления:
 
-1. В файле макета приложения ( *_Layout.cshtml*) сделайте следующее:
+1. В файле макета приложения (`_Layout.cshtml`):
 
    * Добавьте следующий тег `<base>` в элемент `<head>`:
 
@@ -47,7 +47,7 @@ ms.locfileid: "85103479"
 
      Значение `href` (*базовый путь к приложению* ) в предыдущем примере предполагает, что приложение находится по корневому URL-пути (`/`). Если приложение является подчиненным, следуйте инструкциям в разделе *Базовый путь к приложению* статьи <xref:blazor/host-and-deploy/index#app-base-path>.
 
-     Файл *_Layout.cshtml* находится в папке *Pages/Shared* приложения Razor Pages или папке *Views/Shared* приложения MVC.
+     Файл `_Layout.cshtml` находится в папке *Pages/Shared* приложения Razor Pages или в папке *Views/Shared* приложения MVC.
 
    * Добавьте тег `<script>` для скрипта *blazor.server.js* непосредственно перед закрывающим тегом `</body>`:
 
@@ -57,7 +57,7 @@ ms.locfileid: "85103479"
 
      Платформа добавляет скрипт *blazor.server.js* в приложение. Добавлять скрипт в приложение вручную не требуется.
 
-1. Добавьте файл *_Imports.razor* в корневую папку проекта со следующим содержимым (измените последнее пространство имен `MyAppNamespace` на пространство имен приложения):
+1. Добавьте файл `_Imports.razor` в корневую папку проекта со следующим содержимым (измените последнее пространство имен `MyAppNamespace` на пространство имен приложения):
 
    ```razor
    @using System.Net.Http
@@ -92,7 +92,7 @@ ms.locfileid: "85103479"
 
 1. Следуйте указаниям в разделе [подготовка приложений](#prepare-the-app).
 
-1. Добавьте файл *App.razor* в корневой каталог проекта со следующим содержимым:
+1. Добавьте файл `App.razor` в корневой каталог проекта со следующим содержимым:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -108,7 +108,7 @@ ms.locfileid: "85103479"
    </Router>
    ```
 
-1. Добавьте файл *_Host.cshtml* в папку *Pages* со следующим содержимым:
+1. Добавьте файл `_Host.cshtml` в папку `Pages` со следующим содержимым:
 
    ```cshtml
    @page "/blazor"
@@ -121,7 +121,7 @@ ms.locfileid: "85103479"
    </app>
    ```
 
-   Для макета компоненты используют общий файл *_Layout.cshtml*.
+   Для макета компоненты используют общий файл `_Layout.cshtml`.
 
    Параметр <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> настраивает одно из следующих поведений компонента `App`:
 
@@ -136,7 +136,7 @@ ms.locfileid: "85103479"
 
    Дополнительные сведения о компоненте Tag Helper см. в разделе <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-1. Добавьте маршрут с низким приоритетом для страницы *_Host.cshtml* в конфигурацию конечной точки в `Startup.Configure`:
+1. Добавьте маршрут с низким приоритетом для страницы `_Host.cshtml` в конфигурацию конечной точки в `Startup.Configure`:
 
    ```csharp
    app.UseEndpoints(endpoints =>
@@ -167,7 +167,7 @@ ms.locfileid: "85103479"
 
 1. Следуйте указаниям в разделе [подготовка приложений](#prepare-the-app).
 
-1. Добавьте файл *App.razor* в корневой каталог проекта со следующим содержимым:
+1. Добавьте файл `App.razor` в корневой каталог проекта со следующим содержимым:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -183,7 +183,7 @@ ms.locfileid: "85103479"
    </Router>
    ```
 
-1. Добавьте файл *_Host.cshtml* в папку *Views/Home* со следующим содержимым:
+1. Добавьте файл `_Host.cshtml` в папку `Views/Home` со следующим содержимым:
 
    ```cshtml
    @{
@@ -195,7 +195,7 @@ ms.locfileid: "85103479"
    </app>
    ```
 
-   Для макета компоненты используют общий файл *_Layout.cshtml*.
+   Для макета компоненты используют общий файл `_Layout.cshtml`.
    
    Параметр <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> настраивает одно из следующих поведений компонента `App`:
 
@@ -219,7 +219,7 @@ ms.locfileid: "85103479"
    }
    ```
 
-1. Добавьте маршрут с низким приоритетом для действия контроллера, которое возвращает представление *_Host.cshtml*, в конфигурацию конечной точки в `Startup.Configure`:
+1. Добавьте маршрут с низким приоритетом для действия контроллера, которое возвращает представление `_Host.cshtml`, в конфигурацию конечной точки в `Startup.Configure`:
 
    ```csharp
    app.UseEndpoints(endpoints =>
@@ -230,7 +230,7 @@ ms.locfileid: "85103479"
    });
    ```
 
-1. Создайте папку *Pages* и добавьте маршрутизируемые компоненты в приложение. Пример:
+1. Создайте папку `Pages` и добавьте маршрутизируемые компоненты в приложение. Пример:
 
    ```razor
    @page "/counter"
@@ -272,7 +272,7 @@ ms.locfileid: "85103479"
 }
 ```
 
-Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+Дополнительные сведения см. в разделе <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ### <a name="render-noninteractive-components"></a>Отрисовка неинтерактивных компонентов
 
@@ -295,11 +295,11 @@ ms.locfileid: "85103479"
 }
 ```
 
-Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+Дополнительные сведения см. в разделе <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ## <a name="component-namespaces"></a>Пространства имен компонентов
 
-При использовании настраиваемой папки для хранения компонентов приложения добавьте пространство имен, представляющее эту папку, на страницу или в представление либо в файл *_ViewImports.cshtml*. В следующем примере:
+При использовании настраиваемой папки для хранения компонентов приложения добавьте пространство имен, представляющее эту папку, на страницу или в представление либо в файл `_ViewImports.cshtml`. Рассмотрим следующий пример:
 
 * Измените `MyAppNamespace` на пространство имен приложения.
 * Если папка с именем *Components* не используется для хранения компонентов, измените `Components` на папку, где находятся компоненты.
@@ -308,6 +308,6 @@ ms.locfileid: "85103479"
 @using MyAppNamespace.Components
 ```
 
-Файл *_ViewImports.cshtml* находится в папке *Pages* приложения Razor Pages или папке *Views* приложения MVC.
+Файл `_ViewImports.cshtml` находится в папке `Pages` приложения Razor Pages или в папке `Views` приложения MVC.
 
-Для получения дополнительной информации см. <xref:blazor/components/index#namespaces>.
+Дополнительные сведения см. в разделе <xref:blazor/components/index#namespaces>.

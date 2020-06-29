@@ -1,5 +1,5 @@
 ---
-title: Учебник. Использование ASP.NET MVC с EF Core. Функции миграций
+title: Руководство по Использование ASP.NET MVC с EF Core. Функции миграций
 description: В этом руководстве вы начинаете использовать функцию миграций EF Core для управления изменениями модели данных в приложении ASP.NET Core MVC.
 author: rick-anderson
 ms.author: riande
@@ -13,18 +13,18 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/migrations
-ms.openlocfilehash: b8701687d97f5fe940e2f39fca9c3f98052660be
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 20a6cbbdd1f10c06f454f230363951059bdd3a7b
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773527"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240930"
 ---
-# <a name="tutorial-using-the-migrations-feature---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF Core. Функции миграций
+# <a name="tutorial-using-the-migrations-feature---aspnet-mvc-with-ef-core"></a>Руководство по Использование ASP.NET MVC с EF Core. Функции миграций
 
 В этом руководстве вы начинаете использовать функцию миграций EF Core для управления изменениями модели данных. В последующих руководствах вы добавите дополнительные миграции по мере изменения модели данных.
 
-В этом учебнике рассмотрены следующие задачи.
+Изучив это руководство, вы:
 
 > [!div class="checklist"]
 > * Дополнительные сведения о миграциях
@@ -78,10 +78,13 @@ ms.locfileid: "82773527"
 Введите в командном окне следующую команду:
 
 ```dotnetcli
+dotnet tool install --global dotnet-ef
 dotnet ef migrations add InitialCreate
 ```
 
-В командном окне отображаются следующие выходные данные:
+`dotnet tool install --global dotnet-ef` устанавливает `dotnet ef` как [глобальное средство](/ef/core/miscellaneous/cli/dotnet).
+
+Приведенные выше команды выводят результат наподобие следующего:
 
 ```console
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
@@ -89,14 +92,11 @@ info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
 Done. To undo this action, use 'ef migrations remove'
 ```
 
-> [!NOTE]
-> Если отображается сообщение об ошибке *No executable found matching command "dotnet-ef"* (Не найден исполняемый файл, соответствующий команде "dotnet-ef"), сведения об устранении проблемы см. в [этой записи блога](https://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/).
-
 Если отображается сообщение об ошибке "*Доступ к файлу... ContosoUniversity.dll невозможен, так как файл используется другим процессом*", найдите значок IIS Express в области уведомлений Windows, щелкните его правой кнопкой мыши, а затем выберите **ContosoUniversity > Остановить сайт**.
 
 ## <a name="examine-up-and-down-methods"></a>Обзор методов Up и Down
 
-При выполнении команды `migrations add` система EF сформировала код, который создаст базу данных с нуля. Этот код находится в файле *\<метка_времени>_InitialCreate.cs* внутри папки *Migrations*. Метод `Up` класса `InitialCreate` создает таблицы базы данных, которые соответствуют наборам сущностей модели данных, а метод `Down` удаляет их, как показано в следующем примере.
+При выполнении команды `migrations add` система EF сформировала код, который создаст базу данных с нуля. Этот код находится в файле *\<timestamp>_InitialCreate.cs* внутри папки *Migrations*. Метод `Up` класса `InitialCreate` создает таблицы базы данных, которые соответствуют наборам сущностей модели данных, а метод `Down` удаляет их, как показано в следующем примере.
 
 [!code-csharp[](intro/samples/cu/Migrations/20170215220724_InitialCreate.cs?range=92-118)]
 
@@ -122,7 +122,7 @@ Done. To undo this action, use 'ef migrations remove'
 dotnet ef database update
 ```
 
-Выходные данные команды аналогичны команде `migrations add`, за исключением того, что вы видите журналы для команд SQL, настраивающих базу данных. В приведенном ниже примере выходных данных большинство журналов опущено. Если вам не нужен такой уровень детализации сообщений журнала, можно изменить уровень ведения журнала в файле *appsettings.Development.json*. Для получения дополнительной информации см. <xref:fundamentals/logging/index>.
+Выходные данные команды аналогичны команде `migrations add`, за исключением того, что вы видите журналы для команд SQL, настраивающих базу данных. В приведенном ниже примере выходных данных большинство журналов опущено. Если вам не нужен такой уровень детализации сообщений журнала, можно изменить уровень ведения журнала в файле *appsettings.Development.json*. Дополнительные сведения см. в разделе <xref:fundamentals/logging/index>.
 
 ```text
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
@@ -173,13 +173,13 @@ Done.
 
 Дополнительные сведения о командах консоли диспетчера пакетов см. в разделе [Консоль диспетчера пакетов (Visual Studio)](/ef/core/miscellaneous/cli/powershell).
 
-## <a name="get-the-code"></a>Получите код
+## <a name="get-the-code"></a>Получение кода
 
 [Скачайте или ознакомьтесь с готовым приложением.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## <a name="next-step"></a>Дальнейшие действия
+## <a name="next-step"></a>Следующий шаг
 
-В этом учебнике рассмотрены следующие задачи.
+Изучив это руководство, вы:
 
 > [!div class="checklist"]
 > * Дополнительные сведения о миграциях

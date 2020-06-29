@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: 42b61c9af0c1809ecb7d9a45ec8edfa815e2df22
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 5050d99e5304c7edaf6faa43f05298b69882521d
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102328"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243594"
 ---
 # <a name="aspnet-core-blazor-globalization-and-localization"></a>Глобализация и локализация в ASP.NET Core Blazor
 
@@ -34,7 +34,7 @@ ms.locfileid: "85102328"
 * <xref:Microsoft.Extensions.Localization.IStringLocalizer> и <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> *поддерживаются* в приложениях Blazor.
 * <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> и локализация заметок к данным являются сценариями MVC ASP.NET Core и **не поддерживается** в приложениях Blazor.
 
-Для получения дополнительной информации см. <xref:fundamentals/localization>.
+Дополнительные сведения см. в разделе <xref:fundamentals/localization>.
 
 ## <a name="globalization"></a>Глобализация
 
@@ -71,7 +71,7 @@ ms.locfileid: "85102328"
 
 По умолчанию конфигурация компоновщика Blazor для приложений Blazor WebAssembly исключает сведения об интернационализации, кроме явно запрошенных языковых стандартов. Дополнительные сведения и рекомендации по управлению поведением компоновщика см. в разделе <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
 
-Хотя язык и региональные параметры, выбираемые Blazor по умолчанию, могут быть достаточными для большинства пользователей, рекомендуется предоставить пользователям возможность указать предпочитаемый языковой стандарт. Пример приложения Blazor WebAssembly с выбором языка и региональных параметров см. в описании примера приложения локализации [LocSample](https://github.com/pranavkm/LocSample).
+Хотя язык и региональные параметры, выбираемые Blazor по умолчанию, могут быть достаточными для большинства пользователей, рекомендуется предоставить пользователям возможность указать предпочитаемый языковой стандарт. Пример приложения Blazor WebAssembly с выбором языка и региональных параметров см. в описании примера приложения локализации [`LocSample`](https://github.com/pranavkm/LocSample).
 
 ### <a name="blazor-server"></a>Сервер Blazor
 
@@ -82,7 +82,7 @@ ms.locfileid: "85102328"
 * [Файлы "cookie"](#cookies)
 * [Предоставление пользовательского интерфейса для выбора языка и региональных параметров](#provide-ui-to-choose-the-culture)
 
-Дополнительные сведения и примеры см. в разделе <xref:fundamentals/localization>.
+Дополнительные сведения и примеры см. на сайте <xref:fundamentals/localization>.
 
 #### <a name="cookies"></a>Файлы cookie
 
@@ -92,7 +92,7 @@ ms.locfileid: "85102328"
 
 Если язык и региональные параметры сохраняются в файле cookie с локализацией, то можно использовать любой метод для назначения языка и региональных параметров. Если у приложения уже есть установленная схема локализации для ASP.NET Core на стороне сервера, продолжайте использовать существующую инфраструктуру локализации приложения и задавайте файл cookie языка и региональных параметров для локализации в схеме приложения.
 
-В следующем примере показано, как задать текущий язык и региональные параметры в файле cookie, который можно прочитать в ПО промежуточного слоя локализации. Создайте Razor выражение в файле *Pages/_Host.cshtml* непосредственно в открывающем теге `<body>`:
+В следующем примере показано, как задать текущий язык и региональные параметры в файле cookie, который можно прочитать в ПО промежуточного слоя локализации. Создайте Razor выражение в файле `Pages/_Host.cshtml` непосредственно в открывающем теге `<body>`:
 
 ```cshtml
 @using System.Globalization
@@ -118,7 +118,7 @@ ms.locfileid: "85102328"
 
 1. Браузер отправляет первоначальный HTTP-запрос в приложение.
 1. Язык и региональные параметры назначаются в ПО промежуточного слоя локализации.
-1. Выражение Razor на странице `_Host` ( *_Host.cshtml*) сохраняет язык и региональные параметры в файле cookie как часть ответа.
+1. Выражение Razor на странице `_Host` (`_Host.cshtml`) сохраняет язык и региональные параметры в файле cookie как часть ответа.
 1. Браузер открывает соединение WebSocket для создания интерактивного сеанса Blazor Server.
 1. ПО промежуточного слоя для локализации считывает файл cookie и назначает язык и региональные параметры.
 1. Сеанс Blazor Server начинается с нужными языком и региональными параметрами.
@@ -151,7 +151,7 @@ public class CultureController : Controller
 ```
 
 > [!WARNING]
-> Для предотвращения атак с открытым перенаправлением используйте результат действия <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A>. Для получения дополнительной информации см. <xref:security/preventing-open-redirects>.
+> Для предотвращения атак с открытым перенаправлением используйте результат действия <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A>. Дополнительные сведения см. в разделе <xref:security/preventing-open-redirects>.
 
 Если приложение не настроено для обработки действий контроллера:
 

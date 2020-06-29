@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/configure-linker
-ms.openlocfilehash: efac62c325b03b5ee19cae58abb5227f3d300b69
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 76af450df70fe666ea1b951cb4b41696057c5e67
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103311"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243581"
 ---
 # <a name="configure-the-linker-for-aspnet-core-blazor"></a>Настройка компоновщика для ASP.NET Core Blazor
 
@@ -55,7 +55,7 @@ Blazor WebAssembly выполняет компоновку [промежуточ
 </ItemGroup>
 ```
 
-*LinkerConfig.xml*:
+`LinkerConfig.xml`:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -93,7 +93,7 @@ Blazor WebAssembly выполняет компоновку [промежуточ
 
 Чтобы настроить компоновщик для определенной библиотеки, добавьте файл конфигурации компоновщика XML в библиотеку в качестве внедренного ресурса. Имя внедренного ресурса должно совпадать с именем сборки.
 
-В следующем примере файл *LinkerConfig.xml* указан как внедренный ресурс, имя которого совпадает с именем сборки библиотеки.
+В следующем примере файл `LinkerConfig.xml` указан как внедренный ресурс, имя которого совпадает с именем сборки библиотеки.
 
 ```xml
 <ItemGroup>
@@ -118,12 +118,12 @@ Blazor WebAssembly выполняет компоновку [промежуточ
 | Значение региона     | Сборка для одного региона    |
 | ---------------- | ----------------------- |
 | `all`            | Включены все сборки |
-| `cjk`            | *I18N.CJK.dll*          |
-| `mideast`        | *I18N.MidEast.dll*      |
-| `none` (по умолчанию) | Отсутствуют                    |
-| `other`          | *I18N.Other.dll*        |
-| `rare`           | *I18N.Rare.dll*         |
-| `west`           | *I18N.West.dll*         |
+| `cjk`            | `I18N.CJK.dll`          |
+| `mideast`        | `I18N.MidEast.dll`      |
+| `none` (по умолчанию) | None                    |
+| `other`          | `I18N.Other.dll`        |
+| `rare`           | `I18N.Rare.dll`         |
+| `west`           | `I18N.West.dll`         |
 
 Для разделения нескольких значений используйте запятую (например, `mideast,west`).
 

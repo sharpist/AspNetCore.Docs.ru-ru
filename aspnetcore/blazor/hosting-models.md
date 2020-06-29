@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: a5323534cd76cfb60008636066ca5dcb7308d134
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: a54f92d1c951792e599992b82e6b6d5c85549292
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102276"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243503"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Модели размещения ASP.NET Core Blazor
 
@@ -36,9 +36,9 @@ Blazor — это веб-платформа, предназначенная дл
 
 ![Blazor WebAssembly. Приложение Blazor выполняется в потоке пользовательского интерфейса в браузере.](hosting-models/_static/blazor-webassembly.png)
 
-Чтобы создать приложение Blazor с помощью клиентской модели размещения, используйте шаблон **Blazor приложения WebAssembly** ([dotnet new blazorwasm](/dotnet/core/tools/dotnet-new)).
+Чтобы создать приложение Blazor с помощью клиентской модели размещения, используйте шаблон **приложения Blazor WebAssembly** ([`dotnet new blazorwasm`](/dotnet/core/tools/dotnet-new)).
 
-После выбора шаблона **Blazorприложения WebAssembly** можно настроить приложение для использования серверной части ASP.NET Core, установив флажок **ASP.NET Core hosted** ([dotnet new blazorwasm --hosted](/dotnet/core/tools/dotnet-new)). Приложение ASP.NET Core предоставляет клиентам приложение Blazor. Приложение Blazor WebAssembly может взаимодействовать с сервером по сети с помощью вызовов веб-API или [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
+После выбора шаблона **приложения Blazor WebAssembly** можно настроить приложение для использования серверной части ASP.NET Core, установив флажок **Размещенный проект ASP.NET Core** ([`dotnet new blazorwasm --hosted`](/dotnet/core/tools/dotnet-new)). Приложение ASP.NET Core предоставляет клиентам приложение Blazor. Приложение Blazor WebAssembly может взаимодействовать с сервером по сети с помощью вызовов веб-API или [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
 
 Шаблоны включают сценарий `blazor.webassembly.js`, который обрабатывает следующие задачи.
 
@@ -67,7 +67,7 @@ Blazor — это веб-платформа, предназначенная дл
 
 ![Браузер взаимодействует с приложением (размещенным в приложении ASP.NET Core) на сервере через подключение SignalR.](hosting-models/_static/blazor-server.png)
 
-Чтобы создать приложение Blazor с использованием модели размещения Blazor Server, используйте шаблон ASP.NET Core **Blazor Server** ([dotnet new blazorserver](/dotnet/core/tools/dotnet-new)). Приложение ASP.NET Core размещает приложение Blazor Server и создает конечную точку SignalR, к которой подключаются клиенты.
+Чтобы создать приложение Blazor с использованием модели размещения Blazor Server, используйте шаблон **приложения Blazor Server** для ASP.NET Core ([`dotnet new blazorserver`](/dotnet/core/tools/dotnet-new)). Приложение ASP.NET Core размещает приложение Blazor Server и создает конечную точку SignalR, к которой подключаются клиенты.
 
 Приложение ASP.NET Core ссылается на класс `Startup` приложения для добавления:
 
@@ -126,7 +126,7 @@ Blazor — это веб-платформа, предназначенная дл
 
 Blazor рассматривает закрытие вкладки браузера или переход по внешнему URL-адресу как *корректное* завершение. В случае корректного завершения работы канал и связанные ресурсы немедленно освобождаются. Клиент может также отключиться некорректно, например из-за прерывания работы сети. Blazor Server хранит отключенные каналы в течение настраиваемого интервала, чтобы разрешить клиенту повторное подключение.
 
-Blazor Server позволяет коду определить *обработчик канала*, чтобы выполнять код при изменении состояния канала пользователя. Для получения дополнительной информации см. <xref:blazor/advanced-scenarios#blazor-server-circuit-handler>.
+Blazor Server позволяет коду определить *обработчик канала*, чтобы выполнять код при изменении состояния канала пользователя. Дополнительные сведения см. в разделе <xref:blazor/advanced-scenarios#blazor-server-circuit-handler>.
 
 ### <a name="ui-latency"></a>Задержка пользовательского интерфейса
 
@@ -147,7 +147,7 @@ Blazor Server позволяет коду определить *обработч
 
 Приложение Blazor Server предварительно отрисовывается в ответ на первый клиентский запрос, который настраивает состояние пользовательского интерфейса на сервере. Когда клиент пытается создать подключение SignalR, клиент должен повторно подключиться к тому же серверу. Приложения Blazor Server, использующие более одного внутреннего сервера, должны реализовывать *прикрепленные сеансы* для соединений SignalR.
 
-Мы рекомендуем использовать для серверных приложений Blazor[службу Azure SignalR](/azure/azure-signalr). Она позволяет вертикально масштабировать серверные приложения Blazor для одновременного использования большого числа подключений SignalR. Прикрепленные сеансы включаются для службы Azure SignalR путем установки параметра или значения конфигурации службы `ServerStickyMode` в значение `Required`. Для получения дополнительной информации см. <xref:blazor/host-and-deploy/server#signalr-configuration>.
+Мы рекомендуем использовать для серверных приложений Blazor[службу Azure SignalR](/azure/azure-signalr). Она позволяет вертикально масштабировать серверные приложения Blazor для одновременного использования большого числа подключений SignalR. Прикрепленные сеансы включаются для службы Azure SignalR путем установки параметра или значения конфигурации службы `ServerStickyMode` в значение `Required`. Дополнительные сведения см. в разделе <xref:blazor/host-and-deploy/server#signalr-configuration>.
 
 При использовании служб IIS прикрепленные сеансы включаются с помощью маршрутизации запросов приложений. Дополнительные сведения см. в статье [Балансировка нагрузки HTTP с помощью маршрутизации запросов приложений](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
 

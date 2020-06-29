@@ -13,42 +13,42 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/supported-platforms
-ms.openlocfilehash: c10132c87c93346af89c548363e786967609f3da
-ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
+ms.openlocfilehash: 99f14486711c2dd2a634bc51b27a8e3891deee1a
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "83607983"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243230"
 ---
 # <a name="aspnet-core-blazor-supported-platforms"></a>Поддерживаемые платформы ASP.NET Core Blazor
 
 Автор [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
-## <a name="browser-requirements"></a>Требования к браузеру
+## <a name="browser-requirements"></a>Требования к браузерам
 
 ### <a name="blazor-webassembly"></a>Blazor WebAssembly
 
-| Браузер                          | Version               |
+| Браузер                          | Версия               |
 | -------------------------------- | :-------------------: |
-| Microsoft Edge                   | Текущие               |
-| Mozilla Firefox                  | Текущие               |
-| Google Chrome, включая Android | Текущие               |
-| Safari, включая iOS            | Текущие               |
+| Microsoft Edge                   | Текущий               |
+| Mozilla Firefox                  | Текущий               |
+| Google Chrome, включая Android | Текущий               |
+| Safari, включая iOS            | Текущий               |
 | Microsoft Internet Explorer      | Не поддерживается&dagger; |
 
 &dagger;Microsoft Internet Explorer не поддерживает [WebAssembly](https://webassembly.org).
 
 ### <a name="blazor-server"></a>Сервер Blazor
 
-| Браузер                          | Version    |
+| Браузер                          | Версия    |
 | -------------------------------- | :--------: |
-| Microsoft Edge                   | Текущие    |
-| Mozilla Firefox                  | Текущие    |
-| Google Chrome, включая Android | Текущие    |
-| Safari, включая iOS            | Текущие    |
+| Microsoft Edge                   | Текущий    |
+| Mozilla Firefox                  | Текущий    |
+| Google Chrome, включая Android | Текущий    |
+| Safari, включая iOS            | Текущий    |
 | Microsoft Internet Explorer      | 11&dagger; |
 
-&dagger;Требуются дополнительные заполнения (например, обещания можно добавить с помощью пакета [Polyfill.io](https://polyfill.io/v3/)).
+&dagger;Требуются дополнительные заполнения (например, обещания можно добавить с помощью пакета [`Polyfill.io`](https://polyfill.io/v3/)).
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

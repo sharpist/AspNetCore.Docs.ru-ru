@@ -1,8 +1,8 @@
-`App`Компонент (*app. Razor*) похож на `App` компонент, обнаруженный в приложениях блазор Server.
+Компонент `App` (`App.razor`) аналогичен компоненту `App`, который находится в приложениях Blazor Server.
 
-* <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState>Компонент управляет предоставлением <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> для остального приложения.
-* <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView>Компонент гарантирует, что текущий пользователь имеет право доступа к определенной странице или иным образом визуализирует `RedirectToLogin` компонент.
-* `RedirectToLogin`Компонент управляет перенаправлением неавторизованных пользователей на страницу входа.
+* Компонент <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> управляет предоставлением <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> остальным приложениям.
+* Компонент <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> гарантирует, что текущий пользователь имеет право доступа к определенной странице или иным образом работать с компонентом `RedirectToLogin`.
+* Компонент `RedirectToLogin` управляет перенаправлением неавторизованных пользователей на страницу входа.
 
 ```razor
 <CascadingAuthenticationState>
