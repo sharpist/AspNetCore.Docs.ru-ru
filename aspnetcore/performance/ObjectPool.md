@@ -14,16 +14,16 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/ObjectPool
-ms.openlocfilehash: 8244acb39a345875d80c5528a822de23f78b6e38
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 9df7f370eb550172493478bcd8d94a9541926fec
+ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403551"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85793553"
 ---
 # <a name="object-reuse-with-objectpool-in-aspnet-core"></a>Повторное использование объектов с Обжектпул в ASP.NET Core
 
-[Стив Гордон](https://twitter.com/stevejgordon), [Райан Nowak)](https://github.com/rynowak)и [Рик Андерсон (](https://twitter.com/RickAndMSFT)
+По [Стив Гордон](https://twitter.com/stevejgordon), [Райан Nowak)](https://github.com/rynowak)и [гüнсер фоидл](https://github.com/gfoidl)
 
 <xref:Microsoft.Extensions.ObjectPool>является частью инфраструктуры ASP.NET Core, поддерживающей хранение группы объектов в памяти для повторного использования, а не разрешение сбора мусора для объектов.
 
@@ -42,7 +42,9 @@ ms.locfileid: "85403551"
 
 Используйте пул объектов только после сбора данных о производительности с помощью реалистичных сценариев для приложения или библиотеки.
 
-**Предупреждение: `ObjectPool` не реализует `IDisposable` . Мы не рекомендуем использовать его с типами, которые требуют реализации.**
+::: moniker range="< aspnetcore-3.0"
+**Предупреждение: `ObjectPool` не реализует `IDisposable` . Мы не рекомендуем использовать его с типами, которые требуют реализации.** `ObjectPool`в ASP.NET Core 3,0 и более поздних версий поддерживается `IDisposable` .
+::: moniker-end
 
 **Примечание. Обжектпул не устанавливает ограничение на количество объектов, которые он будет выделять, он ограничивает количество объектов, которое он будет хранить.**
 
@@ -63,7 +65,20 @@ ms.locfileid: "85403551"
 
 ## <a name="how-to-use-objectpool"></a>Как использовать Обжектпул
 
-Вызовите метод <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> , чтобы получить объект и <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> вернуть объект.  Нет необходимости возвращать каждый объект. Если не вернуть объект, он будет удален сборщиком мусора.
+Вызовите метод <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Get*> , чтобы получить объект и <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> вернуть объект.  Нет необходимости возвращать каждый объект. Если не вернуть объект, он будет удален сборщиком мусора.
+
+::: moniker range=">= aspnetcore-3.0"
+При <xref:Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider> использовании и `T` реализует `IDisposable` :
+
+* Элементы, которые ***не*** возвращаются в пул, будут удалены.
+* Когда пул удаляется по DI, все элементы в пуле удаляются.
+
+Примечание. После удаления пула:
+
+* Вызов `Get` создает исключение `ObjectDisposedException` .
+* `return`Удаляет заданный элемент.
+
+::: moniker-end
 
 ## <a name="objectpool-sample"></a>Пример Обжектпул
 
