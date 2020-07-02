@@ -1,11 +1,26 @@
 ---
-название: автор: описание: monikerRange: ms.author: ms.custom: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Написание пользовательского ПО промежуточного слоя ASP.NET Core
+author: rick-anderson
+description: Узнайте, как написать пользовательское ПО промежуточного слоя ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 5/18/2020
+no-loc:
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: fundamentals/middleware/write
+ms.openlocfilehash: aeebc7d5a7cbfaaab6d48b8da76d35c47c2c552b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407854"
 ---
 # <a name="write-custom-aspnet-core-middleware"></a>Написание пользовательского ПО промежуточного слоя ASP.NET Core
 

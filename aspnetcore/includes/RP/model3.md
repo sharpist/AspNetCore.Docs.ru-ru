@@ -1,3 +1,4 @@
+[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
 
 Выполните следующие команды интерфейса командной строки .NET Core:
 

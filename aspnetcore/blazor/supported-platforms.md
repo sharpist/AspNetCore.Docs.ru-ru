@@ -8,44 +8,46 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/supported-platforms
-ms.openlocfilehash: 99f14486711c2dd2a634bc51b27a8e3891deee1a
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: adf27fa84acb3929a1639b561c728c2db29723f6
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243230"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401939"
 ---
 # <a name="aspnet-core-blazor-supported-platforms"></a>Поддерживаемые платформы ASP.NET Core Blazor
 
 Автор [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
-## <a name="browser-requirements"></a>Требования к браузерам
+## <a name="browser-requirements"></a>Требования к браузеру
 
-### <a name="blazor-webassembly"></a>Blazor WebAssembly
+### Blazor WebAssembly
 
-| Браузер                          | Версия               |
+| Браузер                          | Version               |
 | -------------------------------- | :-------------------: |
-| Microsoft Edge                   | Текущий               |
-| Mozilla Firefox                  | Текущий               |
-| Google Chrome, включая Android | Текущий               |
-| Safari, включая iOS            | Текущий               |
+| Microsoft Edge                   | Текущие               |
+| Mozilla Firefox                  | Текущие               |
+| Google Chrome, включая Android | Текущие               |
+| Safari, включая iOS            | Текущие               |
 | Microsoft Internet Explorer      | Не поддерживается&dagger; |
 
 &dagger;Microsoft Internet Explorer не поддерживает [WebAssembly](https://webassembly.org).
 
-### <a name="blazor-server"></a>Сервер Blazor
+### Blazor Server
 
-| Браузер                          | Версия    |
+| Браузер                          | Version    |
 | -------------------------------- | :--------: |
-| Microsoft Edge                   | Текущий    |
-| Mozilla Firefox                  | Текущий    |
-| Google Chrome, включая Android | Текущий    |
-| Safari, включая iOS            | Текущий    |
+| Microsoft Edge                   | Текущие    |
+| Mozilla Firefox                  | Текущие    |
+| Google Chrome, включая Android | Текущие    |
+| Safari, включая iOS            | Текущие    |
 | Microsoft Internet Explorer      | 11&dagger; |
 
 &dagger;Требуются дополнительные заполнения (например, обещания можно добавить с помощью пакета [`Polyfill.io`](https://polyfill.io/v3/)).

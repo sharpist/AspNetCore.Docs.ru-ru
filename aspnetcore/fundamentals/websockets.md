@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/websockets
-ms.openlocfilehash: da713f22582cf17f60a4deda1b689662a4e4ae06
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: e2aff39db621ea6e71dce1f1560b1aa70fa865f0
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775444"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404097"
 ---
 # <a name="websockets-support-in-aspnet-core"></a>Поддержка WebSockets в ASP.NET Core
 
@@ -28,9 +30,9 @@ ms.locfileid: "82775444"
 
 [Просмотреть или скачать пример кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) ([описание скачивания](xref:index#how-to-download-a-sample)). [Процедура выполнения](#sample-app).
 
-## <a name="signalr"></a>SignalR
+## SignalR
 
-[ASP.NET Core SignalR](xref:signalr/introduction) — это библиотека, которая упрощает добавление веб-функций в приложения в режиме реального времени. Она использует WebSocket, когда это возможно.
+[ASP.NET Core SignalR](xref:signalr/introduction) — это библиотека, которая упрощает добавление веб-функций в режиме реального времени в приложения. Она использует WebSocket, когда это возможно.
 
 Для большинства приложений рекомендуется использовать SignalR вместо прямых соединений WebSocket. Служба SignalR обеспечивает резервный транспорт для сред, в которых соединения WebSocket недоступны. Она также предоставляет простую модель приложений на основе удаленного вызова процедур. В большинстве сценариев SignalR по производительности не уступает прямым соединениям WebSocket.
 

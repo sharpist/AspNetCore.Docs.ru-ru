@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 01/13/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 29f70d6bd1d5c1223ef35b4e24e5b9c0a8465d1d
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: 0974abfe632fd897c08435b82a7c695534cc3139
+ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652383"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85793598"
 ---
 # <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>Часть 4. Добавление модели в приложение MVC ASP.NET Core
 
@@ -259,6 +261,8 @@ Update-Database
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio для Mac](#tab/visual-studio-code+visual-studio-mac)
 
+[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
+
 Выполните следующие команды интерфейса командной строки .NET Core:
 
 ```dotnetcli
@@ -269,8 +273,6 @@ dotnet ef database update
 * `ef migrations add InitialCreate`. Создает файл миграции *Migrations/{метка_времени}_InitialCreate.cs*. Аргумент `InitialCreate` — это имя миграции. Можно использовать любое имя, но по соглашению выбирается имя, которое описывает миграцию. Так как это первая миграция, созданный класс содержит код для создания схемы базы данных. Схема базы данных создается на основе модели, указанной в классе `MvcMovieContext` (в файле *Data/MvcMovieContext.cs*).
 
 * `ef database update`. Обновляет базу данных до последней миграции, созданной предыдущей командой. Эта команда выполняет метод `Up` в файле *Migrations/{метка_времени}_InitialCreate.cs*, который создает базу данных.
-
-[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
 
 ---
 

@@ -5,13 +5,21 @@ description: Сведения о сборе диагностики из прил
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 09/23/2019
+no-loc:
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: grpc/diagnostics
-ms.openlocfilehash: 131144bf7a2c637eb2c1a1d5c54990dd4d429502
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: ca87ba5b03e7657132e5ebaba72370bde85c85d4
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80417520"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406775"
 ---
 # <a name="logging-and-diagnostics-in-grpc-on-net"></a>Ведение журнала и диагностика в gRPC на платформе .NET
 
@@ -77,7 +85,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 #### <a name="as-a-console-app"></a>Консольное приложение
 
-В консольном приложении по умолчанию должно быть включено [средство ведения журнала консоли](xref:fundamentals/logging/index#console-provider). Журналы gRPC будут выводиться в консоли.
+В консольном приложении по умолчанию должно быть включено [средство ведения журнала консоли](xref:fundamentals/logging/index#console). Журналы gRPC будут выводиться в консоли.
 
 #### <a name="other-environments"></a>Другие среды
 

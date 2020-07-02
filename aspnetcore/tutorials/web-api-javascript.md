@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 11/26/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/web-api-javascript
-ms.openlocfilehash: c3eb003812a31d8cf3168453fcc11601ffba19fb
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4031289e43af75ef2026661dbecbbbce30593d43
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774357"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407984"
 ---
 # <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Учебник. Вызов веб-API ASP.NET Core с помощью JavaScript
 

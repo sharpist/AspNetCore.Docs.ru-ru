@@ -1,11 +1,25 @@
 ---
-название: автор: описание: monikerRange: ms.author: ms.date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ИД пользователя "SignalR": 
-
+title: Службы gRPC на языке C#
+author: juntaoluo
+description: Ознакомьтесь с основными понятиями при написании служб gRPC с помощью C#.
+monikerRange: '>= aspnetcore-3.0'
+ms.author: johluo
+ms.date: 07/03/2019
+no-loc:
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: grpc/basics
+ms.openlocfilehash: 08c755cf078fe71d09e8c7af2cc16f5c427495f1
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: HT
+ms.contentlocale: ru-RU
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407295"
 ---
 # <a name="grpc-services-with-c"></a>Службы gRPC на языке C\#
 
