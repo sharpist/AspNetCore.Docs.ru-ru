@@ -1,0 +1,3 @@
+ASP.NET Core [удостоверения](xref:security/authentication/identity) практически не затрагиваются [файлами cookie SameSite](xref:security/samesite) , за исключением сложных сценариев, таких как `IFrames` или `OpenIdConnect` интеграция.
+
+При использовании `Identity` ***не*** добавляйте поставщики файлов cookie или вызов ` services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)` , `Identity` за это отвечает.

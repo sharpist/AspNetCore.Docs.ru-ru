@@ -15,12 +15,12 @@ no-loc:
 - SignalR
 - Electron
 uid: security/samesite
-ms.openlocfilehash: 68766591ec86e12e5602d741de74e20aec67cf49
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 3e3c12e17de3e12ead15c405e9339761a3f2f711
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399508"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944284"
 ---
 # <a name="work-with-samesite-cookies-in-aspnet-core"></a>Работа с файлами cookie SameSite в ASP.NET Core
 
@@ -37,6 +37,10 @@ SameSite — это стандартный черновик [IETF](https://ietf.
 Этот `SameSite=Lax` параметр работает для большинства файлов cookie приложения. Некоторые формы проверки подлинности, такие как [OpenID Connect Connect](https://openid.net/connect/) (OIDC) и [WS-Federation](https://auth0.com/docs/protocols/ws-fed) , по умолчанию перенаправления на основе POST. Перенаправления на основе POST активируют защиту обозревателя SameSite, поэтому SameSite для этих компонентов отключен. Большинство имен входа [OAuth](https://oauth.net/) не затрагивается из-за различий в способах передачи запросов.
 
 Каждый компонент ASP.NET Core, который создает файлы cookie, должен решить, подходит ли SameSite.
+
+## <a name="samesite-and-identity"></a>SameSite иIdentity
+
+[!INCLUDE[](~/includes/SameSiteIdentity.md)]
 
 ## <a name="samesite-test-sample-code"></a>Пример кода теста SameSite
 

@@ -15,16 +15,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/samesite/mvc21
-ms.openlocfilehash: 4239321531f3a7696a15b1dea164450ea0860c2b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ce301cd7e2cbfbfc724d78bd5734dff231d0ab93
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85409063"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944731"
 ---
 # <a name="aspnet-core-21-mvc-samesite-cookie-sample"></a>Пример файла cookie SameSite ASP.NET Core 2,1 MVC
 
 ASP.NET Core 2,1 имеет встроенную поддержку атрибута [SameSite](https://www.owasp.org/index.php/SameSite) , но она была записана в исходный стандарт. [Исправленное поведение](https://github.com/dotnet/aspnetcore/issues/8212) изменило значение параметра `SameSite.None` , чтобы выдать атрибут sameSite со значением `None` , а не выдавать значение вообще. Если вы не хотите выпустить значение, можно задать `SameSite` для свойства cookie значение-1.
+
+[!INCLUDE[](~/includes/SameSiteIdentity.md)]
 
 ## <a name="writing-the-samesite-attribute"></a><a name="sampleCode"></a>Написание атрибута SameSite
 
@@ -85,7 +87,7 @@ services.AddSession(options =>
 
 Чтобы перехватить файлы cookie, чтобы настроить значение None в соответствии с его поддержкой в агенте браузера пользователя, необходимо использовать по `CookiePolicy` промежуточного слоя. Он должен быть помещен в конвейер HTTP-запросов **перед** всеми компонентами, записывающими файлы cookie и настроенными в `ConfigureServices()` .
 
-Чтобы вставить его в конвейер, используйте `app.UseCookiePolicy()` `Configure(IApplicationBuilder, IHostingEnvironment)` метод в [Startup.CS](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs). Пример.
+Чтобы вставить его в конвейер, используйте `app.UseCookiePolicy()` `Configure(IApplicationBuilder, IHostingEnvironment)` метод в [Startup.CS](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs). Пример:
 
 ```c#
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -115,7 +117,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-Затем в `ConfigureServices(IServiceCollection services)` политике Настройка политики cookie для вызова вспомогательного класса при добавлении или удалении файлов cookie. Пример.
+Затем в `ConfigureServices(IServiceCollection services)` политике Настройка политики cookie для вызова вспомогательного класса при добавлении или удалении файлов cookie. Пример:
 
 ```c#
 public void ConfigureServices(IServiceCollection services)
