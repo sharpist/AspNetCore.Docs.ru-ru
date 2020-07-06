@@ -12,7 +12,7 @@
       href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Начало работы
   uid: getting-started
-- name: Заметки о выпуске
+- name: заметки о выпуске;
   items:
     - name: "Новые возможности версии\_3.1"
       uid: aspnetcore-3.1
@@ -79,7 +79,7 @@
               uid: tutorials/first-mvc-app/details
         - name: Blazor
           displayName: tutorial
-          uid: tutorials/first-blazor-app
+          uid: tutorials/build-a-blazor-app
     - name: API веб-приложений
       items:
         - name: Создание веб-API
@@ -285,14 +285,14 @@
           uid: blazor/index
         - name: Поддерживаемые платформы
           uid: blazor/supported-platforms
-        - name: Начало работы
-          uid: blazor/get-started
+        - name: Инструментарий
+          uid: blazor/tooling
         - name: Модели размещения
           uid: blazor/hosting-models
         - name: Учебники
           items:
-            - name: Создание первого приложения
-              uid: tutorials/first-blazor-app
+            - name: Создание приложения Blazor со списком дел
+              uid: tutorials/build-a-blazor-app
             - name: SignalR с Blazor WebAssembly
               uid: tutorials/signalr-blazor-webassembly
         - name: Шаблоны
@@ -347,7 +347,7 @@
                   uid: blazor/fundamentals/routing
             - name: Каскадные значения и параметры
               uid: blazor/components/cascading-values-and-parameters
-            - name: Привязка данных
+            - name: 'привязка данных,'
               uid: blazor/components/data-binding
             - name: Обработка событий
               uid: blazor/components/event-handling

@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 02e3f7f5442a5abde0b13b7bba14d9d0f29c1de7
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d25dc3441c2373655558dfc101b899252a280814
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399092"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944449"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
@@ -420,7 +420,22 @@ public IDictionary<string, object> AdditionalAttributes { get; set; }
 При отрисовке компонента поле `loginDialog` заполняется экземпляром дочернего компонента `MyLoginDialog`. Затем можно вызывать методы .NET в экземпляре компонента.
 
 > [!IMPORTANT]
-> Переменная `loginDialog` заполняется только после отрисовки компонента, а ее выходные данные включают элемент `MyLoginDialog`. До этого момента ссылаться не на что. Для управления ссылками на компоненты после завершения отрисовки компонента используйте [методы `OnAfterRenderAsync` или `OnAfterRender`](xref:blazor/components/lifecycle#after-component-render).
+> Переменная `loginDialog` заполняется только после отрисовки компонента, а ее выходные данные включают элемент `MyLoginDialog`. Пока компонент не будет преобразован для просмотра, ссылка на него не используется.
+>
+> Для управления ссылками на компоненты после завершения отрисовки компонента используйте [методы `OnAfterRenderAsync` или `OnAfterRender`](xref:blazor/components/lifecycle#after-component-render).
+>
+> Чтобы использовать ссылочную переменную с обработчиком событий, используйте лямбда-выражение или назначьте делегат обработчика событий в [методах `OnAfterRenderAsync` или `OnAfterRender`](xref:blazor/components/lifecycle#after-component-render). Это гарантирует, что ссылочная переменная будет назначена до назначения обработчика событий.
+>
+> ```razor
+> <button type="button" 
+>     @onclick="@(() => loginDialog.DoSomething())">Do Something</button>
+>
+> <MyLoginDialog @ref="loginDialog" ... />
+>
+> @code {
+>     private MyLoginDialog loginDialog;
+> }
+> ```
 
 Сведения о ссылках на компоненты в цикле см. в разделе [Получение ссылок на несколько схожих дочерних компонентов (dotnet/aspnetcore #13358)](https://github.com/dotnet/aspnetcore/issues/13358).
 

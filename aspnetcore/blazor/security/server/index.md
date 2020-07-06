@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: ab3baad30f78c5d5e2f969b3292d4886fcd0406d
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 69a24fc955a0f2fb524ec817eb50372052f538a1
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402316"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944260"
 ---
 # <a name="secure-aspnet-core-blazor-server-apps"></a>Защита приложений ASP.NET Core Blazor Server
 
@@ -34,7 +34,7 @@ ms.locfileid: "85402316"
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Следуйте указаниям по работе с Visual Studio (<xref:blazor/get-started>), чтобы создать проект Blazor Server с механизмом проверки подлинности.
+Следуйте инструкциям по работе с Visual Studio (<xref:blazor/tooling>), чтобы создать проект Blazor Server с механизмом проверки подлинности.
 
 Выбрав шаблон **Приложение Blazor Server** в диалоговом окне **Создание веб-приложения ASP.NET Core**, щелкните **Изменить** в разделе **Проверка подлинности**.
 
@@ -49,7 +49,7 @@ ms.locfileid: "85402316"
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Следуйте указаниям по работе с Visual Studio Code (<xref:blazor/get-started>), чтобы создать проект Blazor Server с механизмом проверки подлинности:
+Следуйте инструкциям по работе с Visual Studio Code (<xref:blazor/tooling>), чтобы создать проект Blazor Server с механизмом проверки подлинности.
 
 ```dotnetcli
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
@@ -75,7 +75,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-1. Следуйте инструкциям по работе с Visual Studio для Mac (<xref:blazor/get-started>).
+1. Следуйте инструкциям по работе с Visual Studio для Mac (<xref:blazor/tooling>).
 
 1. На шаге **Настройка нового приложения Blazor Server** выберите **Индивидуальная проверка подлинности (в приложении)** из раскрывающегося списка **Проверка подлинности**.
 
@@ -83,7 +83,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli/)
 
-Выполните указания для .NET Core CLI из статьи <xref:blazor/get-started>, чтобы создать новый проект Blazor Server, используя следующий механизм проверки подлинности:
+Создайте новый проект Blazor Server с механизмом проверки подлинности, используя следующую команду в командной оболочке:
 
 ```dotnetcli
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}

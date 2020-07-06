@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 5e413fad090ff2cb5e1379bf7311caf159a57a4b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 5a9ed8d6737352f56be78039a895a85f22dec361
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408595"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944648"
 ---
 # <a name="configuration-in-aspnet-core"></a>Конфигурация в .NET Core
 
@@ -183,6 +183,10 @@ dotnet run
 Дополнительные сведения см. в руководстве по [переопределению конфигурации приложения Azure с помощью портала Azure](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
 
 Сведения о строках подключения к базе данных Azure см. в разделе [Префиксы строк подключения](#constr).
+
+### <a name="environment-variables-set-in-launchsettingsjson"></a>Переменные среды, заданные в launchSettings.json
+
+Переменные среды, заданные в *launchSettings.json*, переопределяют переменные, заданные в системной среде.
 
 <a name="clcp"></a>
 
@@ -750,6 +754,8 @@ Index: 5  Value: value5
 * *web.config* — это файл конфигурации сервера, описанный в следующих источниках:
   * <xref:host-and-deploy/iis/index>
   * <xref:host-and-deploy/aspnet-core-module>
+
+Переменные среды, заданные в *launchSettings.json*, переопределяют переменные, заданные в системной среде.
 
 См. сведения о переносе конфигурации приложения из более ранних версий ASP.NET: <xref:migration/proper-to-2x/index#store-configurations>.
 
