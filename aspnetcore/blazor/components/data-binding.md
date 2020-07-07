@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 03/26/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: 1654c0ce40d44ad4cc679c151ef99f155e31b514
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
-ms.translationtype: HT
+ms.openlocfilehash: 35873e57171b4d86affcb475ad2d55aef443d3b5
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242502"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399183"
 ---
 # <a name="aspnet-core-blazor-data-binding"></a>Привязка к данным в ASP.NET Core Blazor
 
@@ -170,7 +171,7 @@ ms.locfileid: "85242502"
 Рассмотрим представленный ниже родительский компонент.
 
 * Он использует `ChildComponent`, а его параметр `ParentYear` привязывается к параметру `Year` дочернего компонента.
-* Событие `onclick` используется для активации метода `ChangeTheYear`. Дополнительные сведения см. в разделе <xref:blazor/components/event-handling>.
+* Событие `onclick` используется для активации метода `ChangeTheYear`. Для получения дополнительной информации см. <xref:blazor/components/event-handling>.
 
 ```razor
 @page "/ParentComponent"
@@ -244,7 +245,7 @@ ms.locfileid: "85242502"
 
 * присваивает элементу `<input>` значение свойства `Password`;
 * сообщает об изменениях свойства `Password` родительскому компоненту посредством [`EventCallback`](xref:blazor/components/event-handling#eventcallback);
-* использует событие `onclick` для активации метода `ToggleShowPassword`. Дополнительные сведения см. в разделе <xref:blazor/components/event-handling>.
+* использует событие `onclick` для активации метода `ToggleShowPassword`. Для получения дополнительной информации см. <xref:blazor/components/event-handling>.
 
 ```razor
 <h1>Child Component</h1>

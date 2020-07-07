@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 04/10/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: e1367fe284c4d51a341da01c6415284f6f3e7a9c
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
-ms.translationtype: HT
+ms.openlocfilehash: c936ff9a7aadd21ce99a0c37184ae8cf911c3070
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102893"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403980"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Среда размещения ASP.NET Core в операционной системе Linux с Nginx
 
@@ -156,7 +157,7 @@ server {
 }
 ```
 
-Если приложение является серверным приложением Blazor, которое использует соединения WebSocket SignalR, см. сведения о том, как задать заголовок `Connection`, в разделе <xref:blazor/host-and-deploy/server#linux-with-nginx>.
+Если это приложение Blazor Server, которое использует соединения WebSocket SignalR, см. сведения о том, как задать заголовок `Connection`, в разделе <xref:blazor/host-and-deploy/server#linux-with-nginx>.
 
 Если отсутствуют совпадения для `server_name`, Nginx использует сервер по умолчанию. Если сервер по умолчанию не определен, первый сервер в файле конфигурации является сервером по умолчанию. Рекомендуется добавить в качестве сервера по умолчанию определенный сервер, который возвращает код состояния 444 в файле конфигурации. Ниже приведен пример конфигурации сервера по умолчанию:
 
@@ -262,7 +263,7 @@ sudo systemctl enable kestrel-helloapp.service
 sudo systemctl start kestrel-helloapp.service
 sudo systemctl status kestrel-helloapp.service
 
-● kestrel-helloapp.service - Example .NET Web API App running on Ubuntu
+◝ kestrel-helloapp.service - Example .NET Web API App running on Ubuntu
     Loaded: loaded (/etc/systemd/system/kestrel-helloapp.service; enabled)
     Active: active (running) since Thu 2016-10-18 04:09:35 NZDT; 35s ago
 Main PID: 9021 (dotnet)

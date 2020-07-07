@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: 72a8b59b06e40f6f85abe41217ae564f82c8d89c
-ms.sourcegitcommit: 1833870ad0845326fb764fef1b530a07b9b5b099
-ms.translationtype: HT
+ms.openlocfilehash: 236dffd829bcd7c30ae1145242ce07cd8e9857e6
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85347077"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402953"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>Конфигурация модели размещения ASP.NET Core Blazor
 

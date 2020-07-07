@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: host-and-deploy/iis/modules
-ms.openlocfilehash: 7262b9ea18e4cf6acd278d087fcc44262f8f9c80
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
+ms.openlocfilehash: 124f2a629ebd14210cb21351a720e007bba48f02
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775951"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404019"
 ---
 # <a name="iis-modules-with-aspnet-core"></a>Модули IIS с ASP.NET Core
 
@@ -60,7 +61,7 @@ ms.locfileid: "82775951"
 | **Статическое содержимое**<br>`StaticFileModule`                                                         | Нет  | [ПО промежуточного слоя для статических файлов](xref:fundamentals/static-files) |
 | **Кэшировании маркеров**<br>`TokenCacheModule`                                                          | Да | |
 | **Кэширование URI**<br>`UriCacheModule`                                                              | Да | |
-| **Авторизация URL-адреса**<br>`UrlAuthorizationModule`                                                | Да | [Идентификация ASP.NET Core](xref:security/authentication/identity) |
+| **Авторизация URL-адреса**<br>`UrlAuthorizationModule`                                                | Да | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | **Проверка подлинности Windows**<br>`WindowsAuthenticationModule`                                      | Да | |
 
 &#8224;В модуле переопределения URL-адресов типы сопоставления `isFile` и `isDirectory` не работают с приложениями ASP.NET Core из-за изменений в [структуре каталогов](xref:host-and-deploy/directory-structure).
@@ -174,4 +175,4 @@ Appcmd.exe delete module MODULE_NAME /app.name:APPLICATION_NAME
 * [Введение в архитектуры служб IIS. Модули в службах IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#modules-in-iis)
 * [Общие сведения о модулях IIS](/iis/get-started/introduction-to-iis/iis-modules-overview)
 * [Настройка ролей и модулей в IIS 7.0](https://technet.microsoft.com/library/cc627313.aspx)
-* [Службы IIS \<system.webServer>](/iis/configuration/system.webServer/)
+* [Службы IIS\<system.webServer>](/iis/configuration/system.webServer/)

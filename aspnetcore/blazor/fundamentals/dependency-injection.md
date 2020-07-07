@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/fundamentals/dependency-injection
-ms.openlocfilehash: 24cd5ae837eeb4c89a15bab2948dde2eface0c0d
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
-ms.translationtype: HT
+ms.openlocfilehash: 0e99e2e3e2dafae0c35d2cfe6903bf4f511f5dc1
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242801"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402888"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>Внедрение зависимостей Blazor в ASP.NET Core
 
@@ -37,15 +38,15 @@ Blazor поддерживает [внедрение зависимостей](xr
 
 | Служба | Время существования | Описание |
 | ------- | -------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Временный | Предоставляет методы для отправки HTTP-запросов и получения HTTP-ответов от ресурса с заданным URI.<br><br>Экземпляр <xref:System.Net.Http.HttpClient> в приложении Blazor WebAssembly использует браузер для обработки HTTP-трафика в фоновом режиме.<br><br>Приложения Blazor Server не включают клиент <xref:System.Net.Http.HttpClient>, по умолчанию настроенный в качестве службы. Предоставьте <xref:System.Net.Http.HttpClient> приложению Blazor Server.<br><br>Для получения дополнительной информации см. <xref:blazor/call-web-api>. |
-| <xref:Microsoft.JSInterop.IJSRuntime> | Отдельная (Blazor WebAssembly)<br>С областью действия (Blazor Server) | Представляет экземпляр среды выполнения JavaScript, в которую отправляются вызовы JavaScript. Для получения дополнительной информации см. <xref:blazor/call-javascript-from-dotnet>. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager> | Отдельная (Blazor WebAssembly)<br>С областью действия (Blazor Server) | Содержит вспомогательные методы для работы с URI и состоянием навигации. Дополнительные сведения см. в разделе [URI и вспомогательные инструменты состояния навигации](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
+| <xref:System.Net.Http.HttpClient> | Временный | Предоставляет методы для отправки HTTP-запросов и получения HTTP-ответов от ресурса с заданным URI.<br><br>Экземпляр <xref:System.Net.Http.HttpClient> в приложении Blazor WebAssembly использует браузер для обработки HTTP-трафика в фоновом режиме.<br><br>Приложения Blazor Server не включают клиент <xref:System.Net.Http.HttpClient>, настроенный в качестве службы по умолчанию. Предоставьте <xref:System.Net.Http.HttpClient> приложению Blazor Server.<br><br>Для получения дополнительной информации см. <xref:blazor/call-web-api>. |
+| <xref:Microsoft.JSInterop.IJSRuntime> | Singleton (Blazor WebAssembly)<br>С заданной областью (Blazor Server) | Представляет экземпляр среды выполнения JavaScript, в которую отправляются вызовы JavaScript. Для получения дополнительной информации см. <xref:blazor/call-javascript-from-dotnet>. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager> | Singleton (Blazor WebAssembly)<br>С заданной областью (Blazor Server) | Содержит вспомогательные методы для работы с URI и состоянием навигации. Дополнительные сведения см. в разделе [URI и вспомогательные инструменты состояния навигации](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
 
 Пользовательский поставщик услуг не предоставляет перечисленные в таблице службы по умолчанию автоматически. Если вы используете пользовательский поставщик услуг и нуждаетесь в какой-либо из служб, указанных в таблице, добавьте необходимые службы в новый поставщик услуг.
 
 ## <a name="add-services-to-an-app"></a>Добавление служб в приложение
 
-### <a name="blazor-webassembly"></a>Blazor WebAssembly
+### Blazor WebAssembly
 
 Настройте службы для коллекции служб приложения в методе `Main` файла `Program.cs`. В следующем примере реализация `MyDependency` зарегистрирована для `IMyDependency`:
 
@@ -106,7 +107,7 @@ public class Program
 }
 ```
 
-### <a name="blazor-server"></a>Сервер Blazor
+### Blazor Server
 
 После создания приложения изучите метод `Startup.ConfigureServices`:
 
@@ -132,7 +133,7 @@ public void ConfigureServices(IServiceCollection services)
 
 | Время существования | Описание |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | Сейчас в приложениях Blazor WebAssembly концепция областей внедрения зависимостей отсутствует. Службы, зарегистрированные как `Scoped`, работают аналогично службам `Singleton`. Однако модель размещения сервера Blazor поддерживает время существования `Scoped`. В приложениях Blazor Server регистрация службы с заданной областью ограничивается *соединением*. По этой причине использование служб с заданной областью предпочтительно для служб, которые должны быть ограничены текущим пользователем, даже если текущим намерением является запуск на стороне клиента в браузере. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | Сейчас в приложениях Blazor WebAssembly концепция областей внедрения зависимостей отсутствует. Службы, зарегистрированные как `Scoped`, работают аналогично службам `Singleton`. Но модель размещения Blazor Server поддерживает время существования `Scoped`. В приложениях Blazor Server регистрация службы с заданной областью ограничивается *подключением*. По этой причине использование служб с заданной областью предпочтительно для служб, которые должны быть ограничены текущим пользователем, даже если текущим намерением является запуск на стороне клиента в браузере. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | Система внедрения зависимостей создает *один экземпляр* службы. Все компоненты, для которых необходима служба `Singleton`, получают экземпляр той же службы. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Каждый раз, когда компонент получает экземпляр службы `Transient` из контейнера службы, он получает *новый экземпляр* этой службы. |
 
@@ -198,7 +199,10 @@ public class DataAccess : IDataAccess
 
 ## <a name="utility-base-component-classes-to-manage-a-di-scope"></a>Служебные классы базовых компонентов служебной программы для управления областью внедрения зависимостей
 
-В приложениях ASP.NET Core службы с заданной областью обычно ограничены текущим запросом. По завершении запроса все временные службы или службы с заданной областью удаляются системой внедрения зависимостей. В приложениях Blazor Server область запроса существует на протяжении всего клиентского соединения, что может привести к тому, что временные службы или службы с заданной областью будут работать намного дольше, чем ожидалось. В приложениях Blazor WebAssembly службы, зарегистрированные с ограниченным временем существования, рассматриваются как одноэлементные, поэтому они существуют дольше, чем службы с заданной областью в типичных приложениях ASP.NET Core.
+В приложениях ASP.NET Core службы с заданной областью обычно ограничены текущим запросом. По завершении запроса все временные службы или службы с заданной областью удаляются системой внедрения зависимостей. В приложениях Blazor Server область запроса существует на протяжении всего клиентского подключения. Это может привести к тому, что временные службы или службы с заданной областью будут работать намного дольше, чем ожидалось. В приложениях Blazor WebAssembly службы, зарегистрированные с ограниченным временем существования, рассматриваются как singleton, поэтому они существуют дольше, чем службы с заданной областью в типичных приложениях ASP.NET Core.
+
+> [!NOTE]
+> См. раздел [Обнаружение высвобождаемых временных служб](#detect-transient-disposables).
 
 Подход, ограничивающий время существования службы в приложениях Blazor, заключается в использовании типа <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. <xref:Microsoft.AspNetCore.Components.OwningComponentBase> является абстрактным типом, производным от <xref:Microsoft.AspNetCore.Components.ComponentBase>, который создает область внедрения зависимостей, соответствующую времени существования компонента. Используя эту область, можно использовать службы внедрения зависимостей с ограниченным временем существования, заставляя их существовать так же долго, как и компонент. При удалении компонента также удаляются и службы из поставщика служб с заданной областью действия этого компонента. Это может быть полезно для служб, которые:
 
@@ -342,6 +346,34 @@ public class DataAccess : IDataAccess
         }
     }
     ```
+
+## <a name="detect-transient-disposables"></a>Обнаружение высвобождаемых временных служб
+
+В следующих примерах показано, как обнаружить высвобождаемые временные службы в приложении, которые должны использовать <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. См. раздел [Служебные классы базовых компонентов служебной программы для управления областью внедрения зависимостей](#utility-base-component-classes-to-manage-a-di-scope).
+
+### Blazor WebAssembly
+
+`DetectIncorrectUsagesOfTransientDisposables.cs`.
+
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm.cs)]
+
+В следующем примере обнаруживается `TransientDisposable` (`Program.cs`):
+
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/wasm-program.cs?highlight=6,9,17,22-25)]
+
+### Blazor Server
+
+`DetectIncorrectUsagesOfTransientDisposables.cs`.
+
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server.cs)]
+
+`Program`.
+
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/server-program.cs?highlight=3)]
+
+В следующем примере обнаруживается `TransientDependency` (`Startup.cs`):
+
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/server-startup.cs?highlight=6-8,11-32)]
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

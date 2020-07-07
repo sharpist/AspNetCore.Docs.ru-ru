@@ -7,17 +7,18 @@ ms.custom: mvc
 ms.date: 5/12/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: test/middleware
-ms.openlocfilehash: ea7fc0e889ab32cbaf23257b3e866519af0727aa
-ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
-ms.translationtype: HT
+ms.openlocfilehash: f4ed16b136da37c093a72a8866301a188a8518a2
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83424540"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406489"
 ---
 # <a name="test-aspnet-core-middleware"></a>Тестирование ПО промежуточного слоя ASP.NET Core
 
@@ -41,6 +42,14 @@ ms.locfileid: "83424540"
 
 * Создайте и запустите узел, который использует <xref:Microsoft.AspNetCore.TestHost.TestServer>.
 * Добавьте все необходимые службы, используемые ПО промежуточного слоя.
+* Добавьте в проект пакет NuGet [Microsoft.AspNetCore.TestHost](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost/).
+  
+  ```dotnetcli
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.*" />
+  </ItemGroup>
+  ```
+
 * Настройте конвейер обработки для использования ПО промежуточного слоя для теста.
 
 [!code-csharp[](middleware/samples_snapshot/3.x/setup.cs?highlight=4-18)]
@@ -62,7 +71,7 @@ ms.locfileid: "83424540"
 
 ## <a name="send-requests-with-httpcontext"></a>Отправка запросов с помощью HttpContext
 
-Тестовое приложение также может отправить запрос с помощью [SendAsync (Action\<HttpContext>, CancellationToken)](xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A). В следующем примере выполняется несколько проверок, когда `https://example.com/A/Path/?and=query` обрабатывается в ПО промежуточного слоя:
+Тестовое приложение также может отправить запрос с помощью [SendAsync(Action\<HttpContext>, CancellationToken)](xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A). В следующем примере выполняется несколько проверок, когда `https://example.com/A/Path/?and=query` обрабатывается в ПО промежуточного слоя:
 
 ```csharp
 [Fact]

@@ -1,30 +1,31 @@
 ---
-title: Отладка ASP.NET Core Blazor WebAssembly
+title: Отладка в ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Узнайте, как выполнять отладку приложений Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/31/2020
+ms.date: 06/25/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 75db5d5e69cb200ebf3bd1dc1e0afed0300214cc
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
-ms.translationtype: HT
+ms.openlocfilehash: 9fe51b8c7eafdd62cc6fc1a820135d9ee5ff010e
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242775"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401016"
 ---
-# <a name="debug-aspnet-core-blazor-webassembly"></a>Отладка ASP.NET Core Blazor WebAssembly
+# <a name="debug-aspnet-core-blazor-webassembly"></a>Отладка в ASP.NET Core Blazor WebAssembly
 
-[Дэниэл Рот (Daniel Roth)](https://github.com/danroth27)
+[Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
 
-Приложения Blazor WebAssembly можно отлаживать с помощью средств разработки браузера в браузерах на основе Chromium (Edge/Chrome). Кроме того, можно выполнить отладку приложения с помощью Visual Studio или Visual Studio Code.
+Приложения Blazor WebAssembly можно отлаживать с помощью средств разработки браузера в браузерах на основе Chromium (Microsoft Edge или Chrome). Кроме того, можно выполнить отладку приложения с помощью Visual Studio или Visual Studio Code.
 
 Поддерживаются следующие сценарии:
 
@@ -51,7 +52,7 @@ ms.locfileid: "85242775"
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Включение отладки для Visual Studio и Visual Studio Code
 
-Чтобы включить отладку для существующего приложения Blazor WebAssembly, измените файл `launchSettings.json` в запускаемом проекте, включив в него следующее свойство `inspectUri` в каждом профиле запуска:
+Чтобы включить отладку для существующего приложения Blazor WebAssembly, измените файл `launchSettings.json` в запускаемом проекте, добавив в него следующее свойство `inspectUri` в каждом профиле запуска:
 
 ```json
 "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
@@ -72,7 +73,7 @@ ms.locfileid: "85242775"
 
 Чтобы выполнить отладку приложения Blazor WebAssembly в Visual Studio, сделайте следующее:
 
-1. Создайте размещенное приложение Blazor WebAssembly ASP.NET Core.
+1. Создайте новое приложение Blazor WebAssembly, размещенное в ASP.NET Core.
 1. Нажмите клавишу <kbd>F5</kbd>, чтобы запустить приложение в отладчике.
 1. Установите точку останова в `Pages/Counter.razor` в методе `IncrementCount`.
 1. Перейдите на вкладку **`Counter`** и нажмите кнопку для попадания в точку останова:
@@ -107,7 +108,7 @@ ms.locfileid: "85242775"
  
 Установите [расширение C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) и расширения [отладчика JavaScript (Nightly)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly), задав для `debug.javascript.usePreview` значение `true`.
 
-![Модули](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-extensions.png)
+![Расширения](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-extensions.png)
 
 ![Отладчик предварительной версии JS](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-js-use-preview.png)
 
@@ -139,7 +140,7 @@ ms.locfileid: "85242775"
 
 1. Откройте размещенное приложение Blazor WebAssembly в VS Code.
 
-1. Если для проекта не задана конфигурация запуска, появится следующее уведомление. Выберите **Да**.
+1. Если для проекта не задана конфигурация запуска, появится следующее уведомление. Выберите ответ **Да**.
 
    ![Добавление необходимых ресурсов](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
 
@@ -169,8 +170,8 @@ ms.locfileid: "85242775"
 | Параметр    | Описание |
 | --------- | ----------- |
 | `request` | Используйте `launch`, чтобы запустить и подключить сеанс отладки к приложению Blazor WebAssembly, или `attach`, чтобы подключить сеанс отладки к уже работающему приложению. |
-| `url`     | URL-адрес для открытия в браузере при отладке. По умолчанию равен `https://localhost:5001`. |
-| `browser` | Браузер для запуска сеанса отладки. Задайте `edge` или `chrome`. По умолчанию равен `chrome`. |
+| `url`     | URL-адрес для открытия в браузере при отладке. По умолчанию — `https://localhost:5001`. |
+| `browser` | Браузер для запуска сеанса отладки. Задайте `edge` или `chrome`. По умолчанию — `chrome`. |
 | `trace`   | Используется для создания журналов из отладчика JS. Задано значение `true`, чтобы создавались журналы. |
 | `hosted`  | При запуске и отладке размещенного приложения Blazor WebAssembly необходимо задать значение `true`. |
 | `webRoot` | Указывает полный путь к веб-серверу. Если приложение обслуживается с использованием подмаршрута, необходимо указать значение для этого параметра. |
@@ -230,9 +231,10 @@ Blazor предоставляет прокси-сервер отладки, ко
 
 Сопоставители с исходным кодом в браузере позволяют браузеру сопоставлять скомпилированные файлы с исходными файлами и обычно используются для отладки на стороне клиента. Однако Blazor в настоящее время не сопоставляет C# напрямую с JavaScript/WASM. Вместо этого Blazor выполняет интерпретацию IL в браузере, поэтому сопоставление с исходным кодом не актуально.
 
-## <a name="troubleshoot"></a>Диагностика
+## <a name="troubleshoot"></a>Устранение неполадок
 
 При возникновении ошибок воспользуйтесь следующими советами:
 
 * На вкладке **Отладчик** откройте средства разработчика в браузере. В консоли выполните `localStorage.clear()`, чтобы удалить все точки останова.
-* Убедитесь, что вы установили и сделали доверенным сертификат разработки HTTPS ASP.NET Core. Дополнительные сведения см. в разделе <xref:security/enforcing-ssl#troubleshoot-certificate-problems>.
+* Убедитесь, что вы установили и сделали доверенным сертификат разработки HTTPS ASP.NET Core. Для получения дополнительной информации см. <xref:security/enforcing-ssl#troubleshoot-certificate-problems>.
+* В Visual Studio должен быть включен параметр **Включить отладку JavaScript для ASP.NET (Chrome, Edge и IE)** в разделе **Инструменты** > **Параметры** > **Отладка** > **Общие**. Этот параметр включен в Visual Studio по умолчанию. Если отладка не работает, проверьте, выбран ли этот параметр.

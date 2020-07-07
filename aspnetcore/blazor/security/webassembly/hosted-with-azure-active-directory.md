@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-azure-active-directory
-ms.openlocfilehash: 3a541df51a040291f390559842ecd05ba09cee8c
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
-ms.translationtype: HT
+ms.openlocfilehash: 2c1454d4fc3cd5923100e27748013873c6b4a74a
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243633"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402381"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory"></a>Защита размещенного приложения ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory
 
@@ -37,7 +38,7 @@ ms.locfileid: "85243633"
 Следуйте инструкциям в разделе [Краткое руководство. Регистрация приложения с помощью платформы удостоверений Майкрософт](/azure/active-directory/develop/quickstart-register-app) и последующих разделах, посвященных Azure AAD, чтобы зарегистрировать приложение AAD для *приложения API сервера*, а затем выполните следующие действия.
 
 1. В разделе **Azure Active Directory** > **Регистрация приложений** выберите **Новая регистрация**.
-1. Укажите **имя** приложения (например, **BlazorСерверный AAD**).
+1. Укажите **имя** приложения (например, **Blazor Server AAD**).
 1. Выберите **поддерживаемые типы учетных записей**. Можно выбрать **Учетные записи только в этом каталоге организации** (один клиент).
 1. В этом сценарии *приложению API сервера* не требуется **URI перенаправления**, поэтому в раскрывающемся списке оставьте значение **Интернет** и не вводите URI-перенаправления.
 1. Снимите флажок **Разрешения** > **Предоставьте согласие администратора для разрешений openid и offline_access**.
@@ -90,7 +91,7 @@ ms.locfileid: "85243633"
 
 1. Убедитесь, что у приложения имеется разрешение **Microsoft Graph** > **User.Read**.
 1. Выберите **Добавить разрешение**, а затем — **Мои API**.
-1. В столбце *Имя* выберите **Приложение API сервера** (например, **Blazor Серверный AAD**).
+1. В столбце *Имя* выберите **Приложение API сервера** (например, **Blazor Server AAD**).
 1. Откройте список **API**.
 1. Разрешите доступ к API (например, `API.Access`).
 1. Выберите **Добавить разрешения**.
@@ -199,7 +200,7 @@ services.Configure<JwtBearerOptions>(
 Контроллер WeatherForecast (*Controllers/WeatherForecastController.cs*) предоставляет защищенный API с атрибутом [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), применяемым к контроллеру. **Важно** понять следующее:
 
 * Атрибут [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) в этом контроллере API является единственным, который защищает этот API от несанкционированного доступа.
-* Атрибут [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), используемый в приложении Blazor WebAssembly, служит подсказкой для приложения, которую должен авторизовать пользователь, чтобы приложение работало правильно.
+* Атрибут [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), используемый в приложении Blazor WebAssembly, служит подсказкой для приложения о том, что пользователь должен пройти авторизацию, чтобы приложение работало правильно.
 
 ```csharp
 [Authorize]

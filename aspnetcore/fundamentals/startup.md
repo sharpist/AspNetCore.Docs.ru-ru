@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/startup
-ms.openlocfilehash: 39fba5ccc99ec0ecf32df5681cfc025c52bc5469
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
+ms.openlocfilehash: 0d1bf0dd23b7f3b99d6e9383ffc72291c1b138ec
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776439"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400717"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Запуск приложения в ASP.NET Core
 
@@ -42,7 +43,7 @@ ms.locfileid: "82776439"
 Предыдущий пример предназначен для [Razor Pages](xref:razor-pages/index); версия для MVC похожа.
 
 
-Класс `Startup` указывается при создании [узла](xref:fundamentals/index#host) приложения. Класс `Startup` обычно указывается путем вызова метода [WebHostBuilderExtensions.UseStartup\<TStartup >](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) в построителе узлов.
+Класс `Startup` указывается при создании [узла](xref:fundamentals/index#host) приложения. Класс `Startup` обычно указывается путем вызова метода [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) в построителе узлов.
 
 [!code-csharp[](startup/3.0_samples/Program3.cs?name=snippet_Program&highlight=12)]
 
@@ -174,7 +175,7 @@ ms.locfileid: "82776439"
 
 [!code-csharp[](startup/sample_snapshot/Startup1.cs)]
 
-Класс `Startup` указывается при создании [узла](xref:fundamentals/index#host) приложения. Класс `Startup` обычно указывается путем вызова метода [WebHostBuilderExtensions.UseStartup\<TStartup >](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) в построителе узлов.
+Класс `Startup` указывается при создании [узла](xref:fundamentals/index#host) приложения. Класс `Startup` обычно указывается путем вызова метода [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) в построителе узлов.
 
 [!code-csharp[](startup/sample_snapshot/Program3.cs?name=snippet_Program&highlight=12)]
 

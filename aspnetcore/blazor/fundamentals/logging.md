@@ -8,21 +8,22 @@ ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/fundamentals/logging
-ms.openlocfilehash: 841c4021d9217312b2601b0e775542c6455cca82
-ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
-ms.translationtype: HT
+ms.openlocfilehash: 1f4b18bdea02016fb76b75dd01a8fcbeab9b2bc9
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85240876"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402836"
 ---
 # <a name="aspnet-core-blazor-logging"></a>Ведение журналов ASP.NET Core Blazor
 
-## <a name="blazor-webassembly"></a>Blazor WebAssembly
+## Blazor WebAssembly
 
 Настройте ведение журналов в приложениях Blazor WebAssembly с помощью свойства `WebAssemblyHostBuilder.Logging` в `Program.Main`:
 
@@ -41,7 +42,7 @@ builder.Logging.AddProvider(new CustomLoggingProvider());
 
 Конфигурацию ведения журнала можно загрузить из файлов параметров приложения. Для получения дополнительной информации см. <xref:blazor/fundamentals/configuration#logging-configuration>.
 
-## <a name="blazor-server"></a>Сервер Blazor
+## Blazor Server
 
 Общие рекомендации по ведению журнала ASP.NET Core см. в разделе <xref:fundamentals/logging/index>.
 

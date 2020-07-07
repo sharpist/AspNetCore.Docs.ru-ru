@@ -1,26 +1,27 @@
 ---
-title: Сценарии обеспечения дополнительной безопасности ASP.NET Core Blazor WebAssembly
+title: Сценарии обеспечения дополнительной безопасности Blazor WebAssembly для ASP.NET Core
 author: guardrex
-description: Узнайте, как настроить Blazor WebAssembly для сценариев дополнительной безопасности.
+description: Узнайте, как настроить Blazor WebAssembly для сценариев обеспечения дополнительной безопасности.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2020
+ms.date: 06/24/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: 13007df4ddddd31dd0508e9526775a6d33e0fd97
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
-ms.translationtype: HT
+ms.openlocfilehash: 4e7f7c89e7dbc1851069b6e7024065e96495a317
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242918"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402186"
 ---
-# <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>Сценарии обеспечения дополнительной безопасности ASP.NET Core Blazor WebAssembly
+# <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>Сценарии обеспечения дополнительной безопасности Blazor WebAssembly для ASP.NET Core
 
 Авторы: [Хавьер Кальварро Нельсон](https://github.com/javiercn) (Javier Calvarro Nelson) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
@@ -116,7 +117,7 @@ builder.Services.AddTransient(sp =>
 });
 ```
 
-Для удобства включен обработчик <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> с базовым адресом приложения, предварительно настроенным в качестве авторизованного URL-адреса. В шаблонах Blazor WebAssembly с поддержкой проверки подлинности теперь используется интерфейс <xref:System.Net.Http.IHttpClientFactory> (из пакета [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http/)) в проекте API сервера для настройки объекта <xref:System.Net.Http.HttpClient> с <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>:
+Для удобства включен обработчик <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> с базовым адресом приложения, предварительно настроенным в качестве авторизованного URL-адреса. В шаблонах Blazor WebAssembly с поддержкой аутентификации теперь используется интерфейс <xref:System.Net.Http.IHttpClientFactory> (из пакета [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http/)) в проекте API сервера для настройки объекта <xref:System.Net.Http.HttpClient> с <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>:
 
 ```csharp
 using System.Net.Http;
@@ -244,7 +245,7 @@ builder.Services.AddHttpClient<WeatherForecastClient>(client => client.BaseAddre
 
 ## <a name="unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client"></a>Запросы веб-API, не прошедшие проверку подлинности или неавторизованные, в приложении с защищенным клиентом по умолчанию
 
-Если приложение Blazor WebAssembly обычно использует защищенный клиент <xref:System.Net.Http.HttpClient> по умолчанию, приложение также может выполнять неавторизованные или не прошедшие проверку запросы к веб-API путем настройки именованного клиента <xref:System.Net.Http.HttpClient>:
+Если приложение Blazor WebAssembly обычно использует защищенный клиент <xref:System.Net.Http.HttpClient> по умолчанию, приложение также может выполнять неавторизованные или неаутентифицированные запросы к веб-API путем настройки именованного клиента <xref:System.Net.Http.HttpClient>:
 
 `Program.Main` (`Program.cs`):
 
@@ -255,7 +256,7 @@ builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient",
 
 Приведенная выше регистрация является дополнением к существующей регистрации защищенного клиента <xref:System.Net.Http.HttpClient> по умолчанию.
 
-Компонент создает клиент <xref:System.Net.Http.HttpClient> на основе <xref:System.Net.Http.IHttpClientFactory> (из пакета [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http/)) для выполнения не прошедших проверку или неавторизованных запросов:
+Компонент создает клиент <xref:System.Net.Http.HttpClient> на основе <xref:System.Net.Http.IHttpClientFactory> (из пакета [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)) для выполнения не прошедших проверку или неавторизованных запросов:
 
 ```razor
 @inject IHttpClientFactory ClientFactory
@@ -277,6 +278,10 @@ builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient",
 
 > [!NOTE]
 > Контроллер в интерфейсе API сервера (`WeatherForecastNoAuthenticationController` в предыдущем примере) не помечен атрибутом [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute).
+
+Решение о том, следует ли использовать безопасный клиент или небезопасный клиент в качестве экземпляра <xref:System.Net.Http.HttpClient> по умолчанию, принимает разработчик. При принятии такого решения рекомендуется учесть соотношение неавторизованных и аутентифицированных конечных точек, к которым обращается приложение. Если приложение отправляет большинство запросов к безопасным конечным точкам API, используйте аутентифицированный экземпляр <xref:System.Net.Http.HttpClient> в качестве значения по умолчанию. В противном случае в качестве значения по умолчанию зарегистрируйте неавторизованный экземпляр <xref:System.Net.Http.HttpClient>.
+
+Альтернативный подход к использованию <xref:System.Net.Http.IHttpClientFactory> заключается в создании [типизированного клиента](#typed-httpclient) для неаутентифицированного доступа к анонимным конечным точкам.
 
 ## <a name="request-additional-access-tokens"></a>Запрос дополнительных маркеров доступа
 
@@ -946,7 +951,7 @@ app.UseEndpoints(endpoints =>
   
 ## <a name="options-for-hosted-apps-and-third-party-login-providers"></a>Варианты для размещенных приложений и сторонних поставщиков входа
 
-При проверке подлинности и авторизации размещенного приложения Blazor WebAssembly в стороннем поставщике доступно несколько вариантов проверки подлинности пользователя. Выбор варианта зависит от вашего сценария.
+При аутентификации и авторизации размещенного приложения Blazor WebAssembly в стороннем поставщике доступно несколько вариантов аутентификации пользователя. Выбор варианта зависит от вашего сценария.
 
 Для получения дополнительной информации см. <xref:security/authentication/social/additional-claims>.
 

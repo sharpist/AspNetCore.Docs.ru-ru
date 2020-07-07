@@ -7,17 +7,18 @@ ms.date: 10/24/2018
 ms.custom: mvc, seodec18
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: azure/devops/cicd
-ms.openlocfilehash: f5b0e0ee1c903de26188815c7dc01ed547cca97e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
+ms.openlocfilehash: 0edded18d766d6f2af08f6be5dbecbfd52a14a35
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767139"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400561"
 ---
 # <a name="continuous-integration-and-deployment"></a>Непрерывная интеграция и развертывание
 
@@ -68,7 +69,7 @@ ms.locfileid: "82767139"
 
 Удалите локальное развертывание GIT, выполнив указанные ниже действия. Azure Pipelines (служба Azure DevOps) заменяет его и дополняет его функциональные возможности.
 
-1. Откройте [портал Azure](https://portal.azure.com/) и перейдите к *промежуточному веб-приложению (mywebapp\<уникальный_номер\>/staging)* . Его можно быстро найти, введя в поле поиска на портале запрос *промежуточное*.
+1. На [портале Azure](https://portal.azure.com/) перейдите к *промежуточному веб-приложению (mywebapp\<unique_number\>/staging)* . Его можно быстро найти, введя в поле поиска на портале запрос *промежуточное*.
 
     ![Поиск промежуточного веб-приложения](media/cicd/portal-search-box.png)
 
@@ -89,7 +90,7 @@ ms.locfileid: "82767139"
 
     ![Кнопка "Запустить проект"](media/cicd/vsts-start-project.png)
 
-1. В браузере откроется страница с адресом *\<имя_учетной_записи\>.visualstudio.com*. Щелкните ссылку *MyFirstProject*, чтобы начать настройку конвейера DevOps проекта.
+1. В браузере откроется страница с адресом *\<account_name\>.visualstudio.com*. Щелкните ссылку *MyFirstProject*, чтобы начать настройку конвейера DevOps проекта.
 
 ## <a name="configure-the-azure-pipelines-pipeline"></a>Настройка конвейера Azure Pipelines
 
@@ -279,7 +280,7 @@ ms.locfileid: "82767139"
 
 ![Снимок экрана: задача развертывания конвейера выпуска](media/cicd/release-definition-task1.png)
 
-В задаче развертывания определены подписка Azure, тип службы, имя веб-приложения, группа ресурсов и слот развертывания. В текстовом поле **Пакет или папка** указывается путь к файлу *ZIP*, который следует извлечь и развернуть в *промежуточном* слоте веб-приложения *mywebapp\<уникальный_номер\>* .
+В задаче развертывания определены подписка Azure, тип службы, имя веб-приложения, группа ресурсов и слот развертывания. В текстовом поле **Пакет или папка** указывается путь к файлу *ZIP*, который следует извлечь и развернуть в *промежуточном* слоте веб-приложения *mywebapp\<unique_number\>* .
 
 Если щелкнуть задачу переключения слотов, появится следующая конфигурация:
 

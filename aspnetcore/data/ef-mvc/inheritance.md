@@ -8,17 +8,18 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: data/ef-mvc/inheritance
-ms.openlocfilehash: 4883c697e950cac298dec961b4cd5a5096d8e946
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
+ms.openlocfilehash: cea19044294482adf834d998b75e0f3fc386cc46
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773579"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400535"
 ---
 # <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF Core. Реализация наследования
 
@@ -105,7 +106,7 @@ dotnet ef migrations add Inheritance
 
 На этом этапе не выполняйте команду `database update`. Ее выполнение приведет к потере данных, поскольку будет удалена таблица Instructor, а таблица Student будет переименована в Person. Для сохранения существующих данных потребуется настраиваемый код.
 
-Откройте файл *Migrations/\<метка_времени>_Inheritance.cs* и замените метод `Up` следующим кодом:
+Откройте файл *Migrations/\<timestamp>_Inheritance.cs* и замените метод `Up` следующим кодом:
 
 [!code-csharp[](intro/samples/cu/Migrations/20170216215525_Inheritance.cs?name=snippet_Up)]
 

@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 04/25/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
-ms.openlocfilehash: 1c71067528fb34ab141bb1ee846716834204ee40
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
-ms.translationtype: HT
+ms.openlocfilehash: 29360174ea86623491d5d8aacd4038162855bba8
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242463"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399066"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages
 
@@ -70,7 +71,7 @@ ms.locfileid: "85242463"
    @using MyAppNamespace
    ```
 
-1. В `Startup.ConfigureServices` зарегистрируйте службу Blazor Server.
+1. Зарегистрируйте службу Blazor Server в `Startup.ConfigureServices`:
 
    ```csharp
    services.AddServerSideBlazor();
@@ -272,7 +273,7 @@ ms.locfileid: "85242463"
 }
 ```
 
-Дополнительные сведения см. в разделе <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ### <a name="render-noninteractive-components"></a>Отрисовка неинтерактивных компонентов
 
@@ -295,11 +296,11 @@ ms.locfileid: "85242463"
 }
 ```
 
-Дополнительные сведения см. в разделе <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ## <a name="component-namespaces"></a>Пространства имен компонентов
 
-При использовании настраиваемой папки для хранения компонентов приложения добавьте пространство имен, представляющее эту папку, на страницу или в представление либо в файл `_ViewImports.cshtml`. Рассмотрим следующий пример:
+При использовании настраиваемой папки для хранения компонентов приложения добавьте пространство имен, представляющее эту папку, на страницу или в представление либо в файл `_ViewImports.cshtml`. В следующем примере:
 
 * Измените `MyAppNamespace` на пространство имен приложения.
 * Если папка с именем *Components* не используется для хранения компонентов, измените `Components` на папку, где находятся компоненты.
@@ -310,4 +311,4 @@ ms.locfileid: "85242463"
 
 Файл `_ViewImports.cshtml` находится в папке `Pages` приложения Razor Pages или в папке `Views` приложения MVC.
 
-Дополнительные сведения см. в разделе <xref:blazor/components/index#namespaces>.
+Для получения дополнительной информации см. <xref:blazor/components/index#namespaces>.

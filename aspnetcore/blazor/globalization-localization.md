@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: 5050d99e5304c7edaf6faa43f05298b69882521d
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
-ms.translationtype: HT
+ms.openlocfilehash: 1d24ebe900dfcdeb8b7bcc97f1d212deea9cecae
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243594"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402732"
 ---
 # <a name="aspnet-core-blazor-globalization-and-localization"></a>Глобализация и локализация в ASP.NET Core Blazor
 
@@ -34,7 +35,7 @@ ms.locfileid: "85243594"
 * <xref:Microsoft.Extensions.Localization.IStringLocalizer> и <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> *поддерживаются* в приложениях Blazor.
 * <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> и локализация заметок к данным являются сценариями MVC ASP.NET Core и **не поддерживается** в приложениях Blazor.
 
-Дополнительные сведения см. в разделе <xref:fundamentals/localization>.
+Для получения дополнительной информации см. <xref:fundamentals/localization>.
 
 ## <a name="globalization"></a>Глобализация
 
@@ -63,7 +64,7 @@ ms.locfileid: "85243594"
 
 ## <a name="localization"></a>Локализация
 
-### <a name="blazor-webassembly"></a>Blazor WebAssembly
+### Blazor WebAssembly
 
 Приложения Blazor WebAssembly задают язык и региональные параметры с помощью [предпочитаемого языка пользователя](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages).
 
@@ -73,7 +74,7 @@ ms.locfileid: "85243594"
 
 Хотя язык и региональные параметры, выбираемые Blazor по умолчанию, могут быть достаточными для большинства пользователей, рекомендуется предоставить пользователям возможность указать предпочитаемый языковой стандарт. Пример приложения Blazor WebAssembly с выбором языка и региональных параметров см. в описании примера приложения локализации [`LocSample`](https://github.com/pranavkm/LocSample).
 
-### <a name="blazor-server"></a>Сервер Blazor
+### Blazor Server
 
 Приложения Blazor Server локализуются с помощью [промежуточного слоя локализации](xref:fundamentals/localization#localization-middleware). ПО промежуточного слоя выбирает соответствующие языки и региональные параметры для пользователей, запрашивающих ресурсы из приложения.
 
@@ -82,7 +83,7 @@ ms.locfileid: "85243594"
 * [Файлы "cookie"](#cookies)
 * [Предоставление пользовательского интерфейса для выбора языка и региональных параметров](#provide-ui-to-choose-the-culture)
 
-Дополнительные сведения и примеры см. на сайте <xref:fundamentals/localization>.
+Дополнительные сведения и примеры см. в разделе <xref:fundamentals/localization>.
 
 #### <a name="cookies"></a>Файлы cookie
 
@@ -151,7 +152,7 @@ public class CultureController : Controller
 ```
 
 > [!WARNING]
-> Для предотвращения атак с открытым перенаправлением используйте результат действия <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A>. Дополнительные сведения см. в разделе <xref:security/preventing-open-redirects>.
+> Для предотвращения атак с открытым перенаправлением используйте результат действия <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A>. Для получения дополнительной информации см. <xref:security/preventing-open-redirects>.
 
 Если приложение не настроено для обработки действий контроллера:
 

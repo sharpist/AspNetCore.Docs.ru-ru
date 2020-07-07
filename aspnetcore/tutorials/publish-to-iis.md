@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 10/03/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/publish-to-iis
-ms.openlocfilehash: aa79ce604539b4f09d6f17d4f43da28a6b615f53
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
+ms.openlocfilehash: 837a66ef36f1394df87d56132e146ef23a5d5659
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774578"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407893"
 ---
 # <a name="publish-an-aspnet-core-app-to-iis"></a>Публикация приложения ASP.NET Core в службах IIS
 
@@ -67,7 +68,7 @@ ms.locfileid: "82774578"
 
 ## <a name="create-an-aspnet-core-razor-pages-app"></a>Создание приложения Razor Pages ASP.NET Core
 
-Следуйте указаниям руководства <xref:getting-started>, чтобы создать приложение Razor Pages.
+Следуйте указаниям из руководства <xref:getting-started>, чтобы создать приложение Razor Pages.
 
 ## <a name="publish-and-deploy-the-app"></a>Публикация и развертывание приложения
 

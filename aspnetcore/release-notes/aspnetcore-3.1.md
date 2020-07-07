@@ -7,17 +7,18 @@ ms.custom: mvc
 ms.date: 02/12/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 6a03e35495e2ae545dc0a3cdd38578b433d8df6b
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
-ms.translationtype: HT
+ms.openlocfilehash: 92804d168381526100ddb8a368f71d201bd4cad9
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102588"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407672"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>Новые возможности в ASP.NET Core 3.1
 
@@ -37,7 +38,7 @@ ms.locfileid: "85102588"
 
 Вспомогательная функция HTML по-прежнему поддерживается в ASP.NET Core 3.1, но рекомендуется использовать вспомогательную функцию тега компонента.
 
-Серверные приложения Blazor теперь могут передавать параметры в компоненты верхнего уровня во время первоначальной отрисовки. Ранее параметры можно было передавать в компонент верхнего уровня только с помощью [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static). В этом выпуске поддерживается как [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server), так и [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered). Все указанные значения параметров сериализуются как JSON и включаются в исходный ответ.
+Приложения Blazor Server теперь могут передавать параметры в компоненты верхнего уровня во время первоначальной отрисовки. Ранее параметры можно было передавать в компонент верхнего уровня только с помощью [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static). В этом выпуске поддерживается как [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server), так и [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered). Все указанные значения параметров сериализуются как JSON и включаются в исходный ответ.
 
 Например, компонент `Counter` может предварительно отрисовываться со значением приращения (`IncrementAmount`):
 

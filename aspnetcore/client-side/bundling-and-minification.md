@@ -7,17 +7,18 @@ ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: 4523ba299d5c5e50a442f84acadf06bf57c69c5d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
+ms.openlocfilehash: de7c155189008e1f78bfb1eba062fcc86f9e4839
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82770957"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401913"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Объединение и минификация статических ресурсов в ASP.NET Core
 
@@ -75,13 +76,13 @@ ms.locfileid: "82770957"
 
 ::: moniker range="<= aspnetcore-2.0"
 
-В ASP.NET Core 2.0 или более ранних версиях шаблоны проектов MVC и Razor Pages предоставляют файл конфигурации *bundleconfig.json*, который определяет параметры для каждого пакета:
+В ASP.NET Core 2.0 и более ранних версиях шаблоны проектов MVC и Razor Pages предоставляют файл конфигурации *bundleconfig.json*, который определяет параметры для каждого пакета:
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
 
-В ASP.NET Core 2.1 или более поздних версиях в корневой каталог проекта MVC или Razor Pages следует добавить файл *bundleconfig.json*. Для начала включите в этот файл следующий код JSON:
+В ASP.NET Core 2.1 и более поздних версиях в корневой каталог проекта MVC или *Pages следует добавить файл*bundleconfig.jsonRazor. Для начала включите в этот файл следующий код JSON:
 
 ::: moniker-end
 

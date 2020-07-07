@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 06/21/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 34ed08a5b49b56fd37628032ac73fe03a34448e6
-ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
-ms.translationtype: HT
+ms.openlocfilehash: 2074aa75029cf27922b43545ec18c0cd8a50eb02
+ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85240846"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85793346"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Внедрение зависимостей в ASP.NET Core
 
@@ -144,28 +145,28 @@ public void Configure(IApplicationBuilder app, IOptions<MyOptions> options)
 }
 ```
 
-Дополнительные сведения см. в разделе <xref:fundamentals/startup>.
+Для получения дополнительной информации см. <xref:fundamentals/startup>.
 
 ## <a name="framework-provided-services"></a>Платформенные службы
 
 Метод `Startup.ConfigureServices` отвечает за определение служб, которые использует приложение, включая такие компоненты, как Entity Framework Core и ASP.NET Core MVC. Изначально коллекция `IServiceCollection`, предоставленная для `ConfigureServices`, содержит определенные платформой службы (в зависимости от [настройки узла](xref:fundamentals/index#host)). Приложение, основанное на шаблоне ASP.NET Core, часто содержит сотни служб, зарегистрированных платформой. В следующей таблице перечислены некоторые примеры зарегистрированных платформой служб.
 
-| Тип службы | Срок действия |
+| Тип службы | Время существования |
 | ------------ | -------- |
-| <xref:Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory?displayProperty=fullName> | Промежуточный |
-| `IHostApplicationLifetime` | Отдельная |
-| `IWebHostEnvironment` | Отдельная |
-| <xref:Microsoft.AspNetCore.Hosting.IStartup?displayProperty=fullName> | Отдельная |
-| <xref:Microsoft.AspNetCore.Hosting.IStartupFilter?displayProperty=fullName> | Промежуточный |
-| <xref:Microsoft.AspNetCore.Hosting.Server.IServer?displayProperty=fullName> | Отдельная |
-| <xref:Microsoft.AspNetCore.Http.IHttpContextFactory?displayProperty=fullName> | Промежуточный |
-| <xref:Microsoft.Extensions.Logging.ILogger`1?displayProperty=fullName> | Отдельная |
-| <xref:Microsoft.Extensions.Logging.ILoggerFactory?displayProperty=fullName> | Отдельная |
-| <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider?displayProperty=fullName> | Отдельная |
-| <xref:Microsoft.Extensions.Options.IConfigureOptions`1?displayProperty=fullName> | Промежуточный |
-| <xref:Microsoft.Extensions.Options.IOptions`1?displayProperty=fullName> | Отдельная |
-| <xref:System.Diagnostics.DiagnosticSource?displayProperty=fullName> | Отдельная |
-| <xref:System.Diagnostics.DiagnosticListener?displayProperty=fullName> | Отдельная |
+| <xref:Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory?displayProperty=fullName> | Временный |
+| `IHostApplicationLifetime` | Одноэлементный |
+| `IWebHostEnvironment` | Одноэлементный |
+| <xref:Microsoft.AspNetCore.Hosting.IStartup?displayProperty=fullName> | Одноэлементный |
+| <xref:Microsoft.AspNetCore.Hosting.IStartupFilter?displayProperty=fullName> | Временный |
+| <xref:Microsoft.AspNetCore.Hosting.Server.IServer?displayProperty=fullName> | Одноэлементный |
+| <xref:Microsoft.AspNetCore.Http.IHttpContextFactory?displayProperty=fullName> | Временный |
+| <xref:Microsoft.Extensions.Logging.ILogger`1?displayProperty=fullName> | Одноэлементный |
+| <xref:Microsoft.Extensions.Logging.ILoggerFactory?displayProperty=fullName> | Одноэлементный |
+| <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider?displayProperty=fullName> | Одноэлементный |
+| <xref:Microsoft.Extensions.Options.IConfigureOptions`1?displayProperty=fullName> | Временный |
+| <xref:Microsoft.Extensions.Options.IOptions`1?displayProperty=fullName> | Одноэлементный |
+| <xref:System.Diagnostics.DiagnosticSource?displayProperty=fullName> | Одноэлементный |
+| <xref:System.Diagnostics.DiagnosticListener?displayProperty=fullName> | Одноэлементный |
 
 ## <a name="register-additional-services-with-extension-methods"></a>Регистрация дополнительных служб с помощью методов расширения
 
@@ -193,7 +194,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Для каждой зарегистрированной службы выбирайте подходящее время существования. Для служб ASP.NET можно настроить следующие параметры времени существования:
 
-### <a name="transient"></a>Промежуточный
+### <a name="transient"></a>Временный
 
 Временные службы времени существования (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddTransient*>) создаются при каждом их запросе из контейнера служб. Это время существования лучше всего подходит для простых служб без отслеживания состояния.
 
@@ -206,9 +207,9 @@ public void ConfigureServices(IServiceCollection services)
 В приложениях, обрабатывающих запросы, службы с заданной областью удаляются в конце запроса.
 
 > [!WARNING]
-> При использовании такой службы в ПО промежуточного слоя внедрите ее в метод `Invoke` или `InvokeAsync`. Не внедряйте службу с помощью [внедрения через конструктор](xref:mvc/controllers/dependency-injection#constructor-injection), поскольку в таком случае служба будет вести себя как одноэлементный объект. Дополнительные сведения см. в разделе <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
+> При использовании такой службы в ПО промежуточного слоя внедрите ее в метод `Invoke` или `InvokeAsync`. Не внедряйте службу с помощью [внедрения через конструктор](xref:mvc/controllers/dependency-injection#constructor-injection), поскольку в таком случае служба будет вести себя как одноэлементный объект. Для получения дополнительной информации см. <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
 
-### <a name="singleton"></a>Отдельная
+### <a name="singleton"></a>Одноэлементный
 
 Отдельные службы времени существования (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>) создаются при первом запросе (или при выполнении `Startup.ConfigureServices`, когда экземпляр указан во время регистрации службы). Созданный экземпляр используют все последующие запросы. Если в приложении нужно использовать одинарные службы, рекомендуется разрешить контейнеру служб управлять временем их существования. Реализовывать конструктивный шаблон с одинарными службами и предоставлять пользовательский код для управления временем существования объекта в классе категорически не рекомендуется.
 
@@ -221,13 +222,13 @@ public void ConfigureServices(IServiceCollection services)
 
 Методы расширения регистрации службы предлагают перегрузки, которые полезны в определенных сценариях.
 
-| Метод | Автоматически<br>объект<br>удаление | Несколько<br>реализации | Передача аргументов |
+| Метод | Автоматический<br>object<br>удаление | Несколько<br>реализации | Передача аргументов |
 | ------ | :-----------------------------: | :-------------------------: | :-------: |
-| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Пример<br>`services.AddSingleton<IMyDep, MyDep>();` | Да | Да | Нет |
-| `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Да | Да | Да |
-| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Пример<br>`services.AddSingleton<MyDep>();` | Да | Нет | Нет |
-| `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | Нет | Да | Да |
-| `AddSingleton(new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));` | Нет | Нет | Да |
+| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Пример.<br>`services.AddSingleton<IMyDep, MyDep>();` | Да | Да | Нет |
+| `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Примеры<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Да | Да | Да |
+| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Пример.<br>`services.AddSingleton<MyDep>();` | Да | Нет | Нет |
+| `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Примеры<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | Нет | Да | Да |
+| `AddSingleton(new {IMPLEMENTATION})`<br>Примеры<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));` | Нет | Нет | Да |
 
 Дополнительные сведения об удалении типа см. в разделе [Удаление служб](#disposal-of-services). Распространенный сценарий для нескольких реализаций — [макеты типов для тестирования](xref:test/integration-tests#inject-mock-services).
 
@@ -241,7 +242,7 @@ services.AddSingleton<IMyDependency, MyDependency>();
 services.TryAddSingleton<IMyDependency, DifferentDependency>();
 ```
 
-Дополнительные сведения см. в разделе:
+Дополнительные сведения можно найти в разделе
 
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAdd*>
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddTransient*>
@@ -269,7 +270,7 @@ services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep1, MyDep>());
 Службы можно разрешать двумя методами:
 
 * <xref:System.IServiceProvider>
-* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>: Позволяет создавать объекты без регистрации службы в контейнере внедрения зависимостей. `ActivatorUtilities` используется с абстракциями пользовательского уровня, например со вспомогательными функциями для тегов, контроллерами MVC, и связывателями моделей.
+* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>. Позволяет создавать объекты без регистрации службы в контейнере внедрения зависимостей. `ActivatorUtilities` используется с абстракциями пользовательского уровня, например со вспомогательными функциями для тегов, контроллерами MVC, и связывателями моделей.
 
 Конструкторы могут принимать аргументы, которые не предоставляются внедрением зависимостей, но эти аргументы должны назначать значения по умолчанию.
 
@@ -405,7 +406,7 @@ public class Program
 
 Службы с заданной областью удаляются создавшим их контейнером. Если служба с заданной областью создается в корневом контейнере, время существования службы повышается до уровня одноэлементного объекта, поскольку она удаляется только корневым контейнером при завершении работы приложения или сервера. Проверка областей службы перехватывает эти ситуации при вызове `BuildServiceProvider`.
 
-Дополнительные сведения см. в разделе <xref:fundamentals/host/web-host#scope-validation>.
+Для получения дополнительной информации см. <xref:fundamentals/host/web-host#scope-validation>.
 
 ## <a name="request-services"></a>Службы запросов
 
@@ -414,6 +415,8 @@ public class Program
 Службы запросов — это все настроенные и запрашиваемые в приложении службы. Когда объекты указывают зависимости, они удовлетворяются за счет типов из `RequestServices`, а не из `ApplicationServices`.
 
 Как правило, использовать эти свойства в приложении напрямую не следует. Вместо этого запрашивайте требуемые для классов типы через конструкторы классов и разрешите платформе внедрять зависимости. Этот процесс создает классы, которые легче тестировать.
+
+ASP.NET Core создает область для каждого запроса, а `RequestServices` предоставляет поставщик услуг с заданной областью. Все службы с заданной областью действительны до тех пор, пока запрос активен.
 
 > [!NOTE]
 > Предпочтительнее запрашивать зависимости в качестве параметров конструктора, а не обращаться к коллекции `RequestServices`.
@@ -450,7 +453,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Рассмотрим следующий пример:
+В следующем примере:
 
 * Экземпляры службы не создаются контейнером службы.
 * Платформе неизвестно предполагаемое время жизни службы.
@@ -556,7 +559,7 @@ public void ConfigureServices(IServiceCollection services)
   }
   ```
 
-  **Правильное.**
+  **Правильно**:
 
   ```csharp
   public class MyClass
@@ -727,28 +730,28 @@ public void Configure(IApplicationBuilder app, IOptions<MyOptions> options)
 }
 ```
 
-Дополнительные сведения см. в разделе <xref:fundamentals/startup>.
+Для получения дополнительной информации см. <xref:fundamentals/startup>.
 
 ## <a name="framework-provided-services"></a>Платформенные службы
 
 Метод `Startup.ConfigureServices` отвечает за определение служб, которые использует приложение, включая такие компоненты, как Entity Framework Core и ASP.NET Core MVC. Изначально коллекция `IServiceCollection`, предоставленная для `ConfigureServices`, содержит определенные платформой службы (в зависимости от [настройки узла](xref:fundamentals/index#host)). Приложение, основанное на шаблоне ASP.NET Core, часто содержит сотни служб, зарегистрированных платформой. В следующей таблице перечислены некоторые примеры зарегистрированных платформой служб.
 
-| Тип службы | Срок действия |
+| Тип службы | Время существования |
 | ------------ | -------- |
-| <xref:Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory?displayProperty=fullName> | Промежуточный |
-| <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime?displayProperty=fullName> | Отдельная |
-| <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment?displayProperty=fullName> | Отдельная |
-| <xref:Microsoft.AspNetCore.Hosting.IStartup?displayProperty=fullName> | Отдельная |
-| <xref:Microsoft.AspNetCore.Hosting.IStartupFilter?displayProperty=fullName> | Промежуточный |
-| <xref:Microsoft.AspNetCore.Hosting.Server.IServer?displayProperty=fullName> | Отдельная |
-| <xref:Microsoft.AspNetCore.Http.IHttpContextFactory?displayProperty=fullName> | Промежуточный |
-| <xref:Microsoft.Extensions.Logging.ILogger`1?displayProperty=fullName> | Отдельная |
-| <xref:Microsoft.Extensions.Logging.ILoggerFactory?displayProperty=fullName> | Отдельная |
-| <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider?displayProperty=fullName> | Отдельная |
-| <xref:Microsoft.Extensions.Options.IConfigureOptions`1?displayProperty=fullName> | Промежуточный |
-| <xref:Microsoft.Extensions.Options.IOptions`1?displayProperty=fullName> | Отдельная |
-| <xref:System.Diagnostics.DiagnosticSource?displayProperty=fullName> | Отдельная |
-| <xref:System.Diagnostics.DiagnosticListener?displayProperty=fullName> | Отдельная |
+| <xref:Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory?displayProperty=fullName> | Временный |
+| <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime?displayProperty=fullName> | Одноэлементный |
+| <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment?displayProperty=fullName> | Одноэлементный |
+| <xref:Microsoft.AspNetCore.Hosting.IStartup?displayProperty=fullName> | Одноэлементный |
+| <xref:Microsoft.AspNetCore.Hosting.IStartupFilter?displayProperty=fullName> | Временный |
+| <xref:Microsoft.AspNetCore.Hosting.Server.IServer?displayProperty=fullName> | Одноэлементный |
+| <xref:Microsoft.AspNetCore.Http.IHttpContextFactory?displayProperty=fullName> | Временный |
+| <xref:Microsoft.Extensions.Logging.ILogger`1?displayProperty=fullName> | Одноэлементный |
+| <xref:Microsoft.Extensions.Logging.ILoggerFactory?displayProperty=fullName> | Одноэлементный |
+| <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider?displayProperty=fullName> | Одноэлементный |
+| <xref:Microsoft.Extensions.Options.IConfigureOptions`1?displayProperty=fullName> | Временный |
+| <xref:Microsoft.Extensions.Options.IOptions`1?displayProperty=fullName> | Одноэлементный |
+| <xref:System.Diagnostics.DiagnosticSource?displayProperty=fullName> | Одноэлементный |
+| <xref:System.Diagnostics.DiagnosticListener?displayProperty=fullName> | Одноэлементный |
 
 ## <a name="register-additional-services-with-extension-methods"></a>Регистрация дополнительных служб с помощью методов расширения
 
@@ -776,7 +779,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Для каждой зарегистрированной службы выбирайте подходящее время существования. Для служб ASP.NET можно настроить следующие параметры времени существования:
 
-### <a name="transient"></a>Промежуточный
+### <a name="transient"></a>Временный
 
 Временные службы времени существования (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddTransient*>) создаются при каждом их запросе из контейнера служб. Это время существования лучше всего подходит для простых служб без отслеживания состояния.
 
@@ -789,9 +792,9 @@ public void ConfigureServices(IServiceCollection services)
 В приложениях, обрабатывающих запросы, службы с заданной областью удаляются в конце запроса.
 
 > [!WARNING]
-> При использовании такой службы в ПО промежуточного слоя внедрите ее в метод `Invoke` или `InvokeAsync`. Не внедряйте службу с помощью [внедрения через конструктор](xref:mvc/controllers/dependency-injection#constructor-injection), поскольку в таком случае служба будет вести себя как одноэлементный объект. Дополнительные сведения см. в разделе <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
+> При использовании такой службы в ПО промежуточного слоя внедрите ее в метод `Invoke` или `InvokeAsync`. Не внедряйте службу с помощью [внедрения через конструктор](xref:mvc/controllers/dependency-injection#constructor-injection), поскольку в таком случае служба будет вести себя как одноэлементный объект. Для получения дополнительной информации см. <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
 
-### <a name="singleton"></a>Отдельная
+### <a name="singleton"></a>Одноэлементный
 
 Отдельные службы времени существования (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>) создаются при первом запросе (или при выполнении `Startup.ConfigureServices`, когда экземпляр указан во время регистрации службы). Созданный экземпляр используют все последующие запросы. Если в приложении нужно использовать одинарные службы, рекомендуется разрешить контейнеру служб управлять временем их существования. Реализовывать конструктивный шаблон с одинарными службами и предоставлять пользовательский код для управления временем существования объекта в классе категорически не рекомендуется.
 
@@ -804,13 +807,13 @@ public void ConfigureServices(IServiceCollection services)
 
 Методы расширения регистрации службы предлагают перегрузки, которые полезны в определенных сценариях.
 
-| Метод | Автоматически<br>объект<br>удаление | Несколько<br>реализации | Передача аргументов |
+| Метод | Автоматический<br>object<br>удаление | Несколько<br>реализации | Передача аргументов |
 | ------ | :-----------------------------: | :-------------------------: | :-------: |
-| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Пример<br>`services.AddSingleton<IMyDep, MyDep>();` | Да | Да | Нет |
-| `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Да | Да | Да |
-| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Пример<br>`services.AddSingleton<MyDep>();` | Да | Нет | Нет |
-| `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | Нет | Да | Да |
-| `AddSingleton(new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));` | Нет | Нет | Да |
+| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Пример.<br>`services.AddSingleton<IMyDep, MyDep>();` | Да | Да | Нет |
+| `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Примеры<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Да | Да | Да |
+| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Пример.<br>`services.AddSingleton<MyDep>();` | Да | Нет | Нет |
+| `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Примеры<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | Нет | Да | Да |
+| `AddSingleton(new {IMPLEMENTATION})`<br>Примеры<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));` | Нет | Нет | Да |
 
 Дополнительные сведения об удалении типа см. в разделе [Удаление служб](#disposal-of-services). Распространенный сценарий для нескольких реализаций — [макеты типов для тестирования](xref:test/integration-tests#inject-mock-services).
 
@@ -824,7 +827,7 @@ services.AddSingleton<IMyDependency, MyDependency>();
 services.TryAddSingleton<IMyDependency, DifferentDependency>();
 ```
 
-Дополнительные сведения см. в разделе:
+Дополнительные сведения можно найти в разделе
 
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAdd*>
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddTransient*>
@@ -852,7 +855,7 @@ services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep1, MyDep>());
 Службы можно разрешать двумя методами:
 
 * <xref:System.IServiceProvider>
-* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>: Позволяет создавать объекты без регистрации службы в контейнере внедрения зависимостей. `ActivatorUtilities` используется с абстракциями пользовательского уровня, например со вспомогательными функциями для тегов, контроллерами MVC, и связывателями моделей.
+* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>. Позволяет создавать объекты без регистрации службы в контейнере внедрения зависимостей. `ActivatorUtilities` используется с абстракциями пользовательского уровня, например со вспомогательными функциями для тегов, контроллерами MVC, и связывателями моделей.
 
 Конструкторы могут принимать аргументы, которые не предоставляются внедрением зависимостей, но эти аргументы должны назначать значения по умолчанию.
 
@@ -986,7 +989,7 @@ public class Program
 
 Службы с заданной областью удаляются создавшим их контейнером. Если служба с заданной областью создается в корневом контейнере, время существования службы повышается до уровня одноэлементного объекта, поскольку она удаляется только корневым контейнером при завершении работы приложения или сервера. Проверка областей службы перехватывает эти ситуации при вызове `BuildServiceProvider`.
 
-Дополнительные сведения см. в разделе <xref:fundamentals/host/web-host#scope-validation>.
+Для получения дополнительной информации см. <xref:fundamentals/host/web-host#scope-validation>.
 
 ## <a name="request-services"></a>Службы запросов
 
@@ -1031,7 +1034,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Рассмотрим следующий пример:
+В следующем примере:
 
 * Экземпляры службы не создаются контейнером службы.
 * Платформе неизвестно предполагаемое время жизни службы.
@@ -1139,7 +1142,7 @@ public void ConfigureServices(IServiceCollection services)
     }
     ```
 
-    **Правильное.**
+    **Правильно**:
 
     ```csharp
     public class MyClass

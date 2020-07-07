@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: 09b004abd423abc9cc8e83d3bb3fea1dddf09e14
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
+ms.openlocfilehash: 65095f3990c72224d95f1f5fe46d320ab8f12040
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776634"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404838"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Устранение неполадок ASP.NET Core в Службе приложений Azure и IIS
 

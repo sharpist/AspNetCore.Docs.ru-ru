@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: 31e72eeac415f10d573de455f19aa8ff34743356
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
-ms.translationtype: HT
+ms.openlocfilehash: 91f2aa893c06728b4b71d010241a2cb5a307ae0b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242409"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400197"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-blazor"></a>Вызов методов .NET из функций JavaScript в ASP.NET Core Blazor
 
@@ -36,7 +37,7 @@ ms.locfileid: "85242409"
 
 Пример приложения включает метод C#, возвращающий массив `int`. К методу применяется атрибут [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute).
 
-`Pages/JsInterop.razor`:
+`Pages/JsInterop.razor`.
 
 ```razor
 <button type="button" class="btn btn-primary"
@@ -55,7 +56,7 @@ ms.locfileid: "85242409"
 
 JavaScript, предоставляемый клиенту, вызывает метод C# .NET.
 
-`wwwroot/exampleJsInterop.js`:
+`wwwroot/exampleJsInterop.js`.
 
 [!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=8-14)]
 
@@ -107,7 +108,7 @@ returnArrayAsyncJs: function () {
 
 Если нажата кнопка **`Trigger .NET instance method HelloHelper.SayHello`** , вызывается `ExampleJsInterop.CallHelloHelperSayHello` и в метод передается имя `Blazor`.
 
-`Pages/JsInterop.razor`:
+`Pages/JsInterop.razor`.
 
 ```razor
 <button type="button" class="btn btn-primary" @onclick="TriggerNetInstanceMethod">
@@ -125,17 +126,17 @@ returnArrayAsyncJs: function () {
 
 Метод `CallHelloHelperSayHello` вызывает функцию JavaScript `sayHello` с новым экземпляром `HelloHelper`.
 
-`JsInteropClasses/ExampleJsInterop.cs`:
+`JsInteropClasses/ExampleJsInterop.cs`.
 
 [!code-csharp[](./common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=11-18)]
 
-`wwwroot/exampleJsInterop.js`:
+`wwwroot/exampleJsInterop.js`.
 
 [!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=15-18)]
 
 Имя передается в конструктор `HelloHelper`, который задает свойство `HelloHelper.Name`. При выполнении функции JavaScript `sayHello` метод `HelloHelper.SayHello` возвращает сообщение `Hello, {Name}!`, которое записывается в консоль функцией JavaScript.
 
-`JsInteropClasses/HelloHelper.cs`:
+`JsInteropClasses/HelloHelper.cs`.
 
 [!code-csharp[](./common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/HelloHelper.cs?name=snippet1&highlight=5,10-11)]
 
@@ -233,7 +234,7 @@ function updateMessageCallerJS() {
 }
 ```
 
-`Pages/JSInteropComponent.razor`:
+`Pages/JSInteropComponent.razor`.
 
 ```razor
 @page "/JSInteropComponent"
@@ -271,13 +272,13 @@ function updateMessageCallerJS() {
 
 При наличии нескольких компонентов, каждый из которых содержит методы экземпляра, используйте вспомогательный класс для вызова методов экземпляра (как <xref:System.Action>) для каждого компонента.
 
-Рассмотрим следующий пример:
+В следующем примере:
 
 * Компонент `JSInteropExample` содержит несколько компонентов `ListItem`.
 * Каждый компонент `ListItem` состоит из сообщения и кнопки.
 * При выборе кнопки компонента `ListItem` метод `UpdateMessage` `ListItem`изменяет текст элемента списка и скрывает кнопку.
 
-`MessageUpdateInvokeHelper.cs`:
+`MessageUpdateInvokeHelper.cs`.
 
 ```csharp
 using System;
@@ -309,7 +310,7 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 }
 ```
 
-`Shared/ListItem.razor`:
+`Shared/ListItem.razor`.
 
 ```razor
 @inject IJSRuntime JsRuntime
@@ -344,7 +345,7 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 }
 ```
 
-`Pages/JSInteropExample.razor`:
+`Pages/JSInteropExample.razor`.
 
 ```razor
 @page "/JSInteropExample"

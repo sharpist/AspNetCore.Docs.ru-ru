@@ -1,32 +1,33 @@
 ---
-title: Сценарии обеспечения дополнительной безопасности ASP.NET Core Blazor Server
+title: Сценарии обеспечения дополнительной безопасности Blazor Server для ASP.NET Core
 author: guardrex
-description: Узнайте, как настроить Blazor Server для сценариев дополнительной безопасности.
+description: Узнайте, как настроить Blazor Server для сценариев обеспечения дополнительной безопасности.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/server/additional-scenarios
-ms.openlocfilehash: 7f92f82d6e78771494b9f2358ee19153502f8dcb
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
-ms.translationtype: HT
+ms.openlocfilehash: 46de9a22dec540b8dfda7583b7a3c5c2dcbbc549
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243048"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402329"
 ---
-# <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>Сценарии обеспечения дополнительной безопасности ASP.NET Core Blazor Server
+# <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>Сценарии обеспечения дополнительной безопасности Blazor Server для ASP.NET Core
 
 Автор: [Javier Calvarro Nelson](https://github.com/javiercn) (Хавьер Кальварро Нельсон)
 
 ## <a name="pass-tokens-to-a-blazor-server-app"></a>Передача маркеров в приложение Blazor Server
 
-Маркеры, доступные за пределами компонентов Razor в приложении Blazor Server, можно передавать в компоненты с помощью подхода, описанного в этом разделе. Пример кода, в том числе полный пример `Startup.ConfigureServices`, см. в разделе [Передача маркеров в серверные приложения Blazor](https://github.com/javiercn/blazor-server-aad-sample).
+Маркеры, доступные за пределами компонентов Razor в приложении Blazor Server, можно передавать в компоненты с помощью подхода, описанного в этой статье. Пример кода, в том числе полный пример `Startup.ConfigureServices`, см. в разделе [Передача маркеров в серверные приложения Blazor](https://github.com/javiercn/blazor-server-aad-sample).
 
 Проверка подлинности приложения Blazor Server выполняется так же, как и для обычного приложения Razor Pages или MVC. Подготовьте и сохраните маркеры в файле cookie проверки подлинности. Пример:
 

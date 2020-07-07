@@ -5,26 +5,27 @@ description: Советы по повышению производительно
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/08/2020
+ms.date: 06/25/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: 2b6d4e706856cb28f26c2502feca4f959ca4abac
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
-ms.translationtype: HT
+ms.openlocfilehash: f7bd0d356030e6ddb95c77d7376995320e3ec40e
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243035"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401887"
 ---
 # <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>Рекомендации по повышению производительности ASP.NET Core Blazor WebAssembly
 
 Автор: [Пранав Кришнамурти](https://github.com/pranavkm) (Pranav Krishnamoorthy)
 
-В этой статье приводятся рекомендации по обеспечению производительности ASP.NET Core Blazor WebAssembly.
+В этой статье приводятся рекомендации по обеспечению высокой производительности ASP.NET Core Blazor WebAssembly.
 
 ## <a name="avoid-unnecessary-component-renders"></a>Устранение лишних отрисовок компонентов
 
@@ -38,7 +39,7 @@ ms.locfileid: "85243035"
 }
 ```
 
-Большинству приложений не требуется детализированный контроль, однако метод <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> можно также использовать для выборочной отрисовки компонентов, отвечающих на события пользовательского интерфейса.
+Большинству приложений не требуется детализированный контроль, но метод <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> можно использовать для выборочной отрисовки компонентов, отвечающих на события пользовательского интерфейса. Метод <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> также может потребоваться в сценариях с отрисовкой большого числа компонентов. Например, рассмотрим сетку, в которой использование <xref:Microsoft.AspNetCore.Components.EventCallback> в одном компоненте одной ячейки сетки вызывает метод <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> для всей сетки. При вызове <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> повторно отрисовываются все дочерние компоненты. Если нужно повторно отрисовать только несколько ячеек, используйте <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, чтобы не снижать производительность из-за ненужных операций.
 
 В следующем примере:
 
@@ -93,7 +94,7 @@ ms.locfileid: "85243035"
 
 ## <a name="use-synchronous-and-unmarshalled-js-interop-apis-where-appropriate"></a>Использование синхронных и немаршалируемых интерфейсов API взаимодействия с JS, где они применимы
 
-Blazor WebAssembly предлагает две дополнительные версии <xref:Microsoft.JSInterop.IJSRuntime>, помимо версии, доступной для серверных приложений Blazor.
+Blazor WebAssembly предлагает две дополнительные версии <xref:Microsoft.JSInterop.IJSRuntime>, помимо версии, доступной для приложений Blazor Server.
 
 * <xref:Microsoft.JSInterop.IJSInProcessRuntime> позволяет синхронно совершать вызовы взаимодействия с JS, что требует меньше ресурсов, чем асинхронные вызовы:
 
@@ -146,13 +147,13 @@ dotnet publish -c Release
 
 ### <a name="compression"></a>Сжатие
 
-При публикации приложения Blazor WebAssembly выходные данные статически сжимаются во время публикации, чтобы уменьшить размер приложения и исключить издержки на сжатие среды выполнения. Blazor использует сервер для согласования содержимого и предоставления статически сжатых файлов.
+При публикации приложения Blazor WebAssembly выходные данные статически сжимаются, чтобы уменьшить размер приложения и исключить издержки на сжатие среды выполнения. Blazor использует сервер для согласования содержимого и предоставления статически сжатых файлов.
 
 После развертывания приложения убедитесь в том, что приложение предоставляет сжатые файлы. В браузере откройте вкладку "Сеть" в Средствах для разработчиков и убедитесь в том, что файлы предоставляются с `Content-Encoding: br` или `Content-Encoding: gz`. Если узел не предоставляет сжатые файлы, выполните инструкции в разделе <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ### <a name="disable-unused-features"></a>Отключение неиспользуемых функций
 
-Среда выполнения Blazor WebAssembly включает в себя следующие функции .NET, которые можно отключить, если они не требуются приложению для уменьшения размера полезных данных:
+Среда выполнения Blazor WebAssembly включает в себя следующие функции .NET, которые можно отключить, если они не требуются приложению, для уменьшения размера полезных данных:
 
 * Для обеспечения правильности сведений о часовом поясе включается файл данных. Если приложению не нужна эта функция, ее можно отключить, присвоив свойству MSBuild `BlazorEnableTimeZoneSupport` в файле проекта приложения значение `false`:
 

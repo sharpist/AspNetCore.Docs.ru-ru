@@ -1,24 +1,31 @@
 ---
-title: Соглашения для маршрутов и приложений Razor Pages в ASP.NET Core
+title: Соглашения для маршрутов и приложений Razor Pages в ASP.NET Core
 author: rick-anderson
 description: Узнайте, как использовать соглашения поставщика модели маршрутов и приложений для управления маршрутизацией, обнаружением и обработкой страниц.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: razor-pages/razor-pages-conventions
-ms.openlocfilehash: 6124554d5f9859179edfb5c545cf0b082369c0c9
-ms.sourcegitcommit: 3d07e21868dafc503530ecae2cfa18a7490b58a6
-ms.translationtype: HT
+ms.openlocfilehash: 308ca4401289a55e5dba8d61de50644cb2a53433
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/18/2020
-ms.locfileid: "81642737"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405254"
 ---
-# <a name="razor-pages-route-and-app-conventions-in-aspnet-core"></a>Соглашения для маршрутов и приложений Razor Pages в ASP.NET Core
+# <a name="razor-pages-route-and-app-conventions-in-aspnet-core"></a>Соглашения для маршрутов и приложений Razor Pages в ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Узнайте, как использовать [соглашения поставщика модели маршрутов и приложений](xref:mvc/controllers/application-model#conventions) страниц для управления маршрутизацией, обнаружением и обработкой страниц в приложениях Razor Pages.
+Узнайте, как использовать [соглашения поставщика модели маршрутов и приложений](xref:mvc/controllers/application-model#conventions) страниц для управления маршрутизацией, обнаружением и обработкой страниц в приложениях Razor Pages.
 
 Когда вам необходимо настроить уникальные маршруты для отдельных страниц, используйте [соглашение AddPageRoute](#configure-a-page-route), описанное далее в этом разделе.
 
@@ -264,7 +271,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Модель приложений страницы используется для проверки относительного пути на наличие сегментов, ведущих к странице Page2 в папке *OtherPages*. Если условие выполняется, добавляется заголовок. Если нет, применяется `EmptyFilter`.
 
-`EmptyFilter` является [фильтром действий](xref:mvc/controllers/filters#action-filters). Так как в Razor Pages фильтры действий не учитываются, `EmptyFilter` не оказывает действия, как и задумано, если путь не содержит `OtherPages/Page2`.
+`EmptyFilter` является [фильтром действий](xref:mvc/controllers/filters#action-filters). Так как в Razor Pages фильтры действий не учитываются, `EmptyFilter` не оказывает действия, как и задумано, если путь не содержит `OtherPages/Page2`.
 
 Запросите страницу Page2 по адресу `localhost:5000/OtherPages/Page2` из примера и посмотрите заголовки, чтобы проверить результат:
 
@@ -272,7 +279,7 @@ public void ConfigureServices(IServiceCollection services)
 
 **Настройка фабрики фильтров**
 
-Метод <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> позволяет настроить указанное производство так, чтобы [фильтры](xref:mvc/controllers/filters) применялись ко всем страницам Razor Pages.
+Метод <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> позволяет настроить указанное производство так, чтобы [фильтры](xref:mvc/controllers/filters) применялись ко всем страницам Razor Pages.
 
 В примере приложения приведен образец использования [фабрики фильтров](xref:mvc/controllers/filters#ifilterfactory) путем добавления на страницы приложения заголовка `FilterFactoryHeader` с двумя значениями:
 
@@ -290,7 +297,7 @@ public void ConfigureServices(IServiceCollection services)
 
 [Фильтры действий](xref:mvc/controllers/filters#action-filters) MVC игнорируются в Razor Pages, так как Razor Pages использует методы обработчиков. Доступны для использования другие типы фильтров MVC: фильтры [авторизации](xref:mvc/controllers/filters#authorization-filters), [исключений](xref:mvc/controllers/filters#exception-filters), [ресурсов](xref:mvc/controllers/filters#resource-filters) и [результатов](xref:mvc/controllers/filters#result-filters). Дополнительные сведения см. в разделе [Фильтры](xref:mvc/controllers/filters).
 
-Фильтр страниц (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) — это фильтр, применяемый к страницам Razor Pages. Дополнительные сведения см. в разделе [Методы фильтрации для Razor Pages](xref:razor-pages/filter).
+Фильтр страниц (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) — это фильтр, применяемый к страницам Razor Pages. Дополнительные сведения см. в разделе [Методы фильтрации для Razor Pages](xref:razor-pages/filter).
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
@@ -301,7 +308,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker range="= aspnetcore-2.2"
 
-Узнайте, как использовать [соглашения поставщика модели маршрутов и приложений](xref:mvc/controllers/application-model#conventions) страниц для управления маршрутизацией, обнаружением и обработкой страниц в приложениях Razor Pages.
+Узнайте, как использовать [соглашения поставщика модели маршрутов и приложений](xref:mvc/controllers/application-model#conventions) страниц для управления маршрутизацией, обнаружением и обработкой страниц в приложениях Razor Pages.
 
 Когда вам необходимо настроить уникальные маршруты для отдельных страниц, используйте [соглашение AddPageRoute](#configure-a-page-route), описанное далее в этом разделе.
 
@@ -554,7 +561,7 @@ public class SlugifyParameterTransformer : IOutboundParameterTransformer
 
 Модель приложений страницы используется для проверки относительного пути на наличие сегментов, ведущих к странице Page2 в папке *OtherPages*. Если условие выполняется, добавляется заголовок. Если нет, применяется `EmptyFilter`.
 
-`EmptyFilter` является [фильтром действий](xref:mvc/controllers/filters#action-filters). Так как в Razor Pages фильтры действий не учитываются, `EmptyFilter` не оказывает действия, как и задумано, если путь не содержит `OtherPages/Page2`.
+`EmptyFilter` является [фильтром действий](xref:mvc/controllers/filters#action-filters). Так как в Razor Pages фильтры действий не учитываются, `EmptyFilter` не оказывает действия, как и задумано, если путь не содержит `OtherPages/Page2`.
 
 Запросите страницу Page2 по адресу `localhost:5000/OtherPages/Page2` из примера и посмотрите заголовки, чтобы проверить результат:
 
@@ -562,7 +569,7 @@ public class SlugifyParameterTransformer : IOutboundParameterTransformer
 
 **Настройка фабрики фильтров**
 
-Метод <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> позволяет настроить указанное производство так, чтобы [фильтры](xref:mvc/controllers/filters) применялись ко всем страницам Razor Pages.
+Метод <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> позволяет настроить указанное производство так, чтобы [фильтры](xref:mvc/controllers/filters) применялись ко всем страницам Razor Pages.
 
 В примере приложения приведен образец использования [фабрики фильтров](xref:mvc/controllers/filters#ifilterfactory) путем добавления на страницы приложения заголовка `FilterFactoryHeader` с двумя значениями:
 
@@ -580,7 +587,7 @@ public class SlugifyParameterTransformer : IOutboundParameterTransformer
 
 [Фильтры действий](xref:mvc/controllers/filters#action-filters) MVC игнорируются в Razor Pages, так как Razor Pages использует методы обработчиков. Доступны для использования другие типы фильтров MVC: фильтры [авторизации](xref:mvc/controllers/filters#authorization-filters), [исключений](xref:mvc/controllers/filters#exception-filters), [ресурсов](xref:mvc/controllers/filters#resource-filters) и [результатов](xref:mvc/controllers/filters#result-filters). Дополнительные сведения см. в разделе [Фильтры](xref:mvc/controllers/filters).
 
-Фильтр страниц (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) — это фильтр, применяемый к страницам Razor Pages. Дополнительные сведения см. в разделе [Методы фильтрации для Razor Pages](xref:razor-pages/filter).
+Фильтр страниц (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) — это фильтр, применяемый к страницам Razor Pages. Дополнительные сведения см. в разделе [Методы фильтрации для Razor Pages](xref:razor-pages/filter).
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
@@ -591,7 +598,7 @@ public class SlugifyParameterTransformer : IOutboundParameterTransformer
 
 ::: moniker range="< aspnetcore-2.2"
 
-Узнайте, как использовать [соглашения поставщика модели маршрутов и приложений](xref:mvc/controllers/application-model#conventions) страниц для управления маршрутизацией, обнаружением и обработкой страниц в приложениях Razor Pages.
+Узнайте, как использовать [соглашения поставщика модели маршрутов и приложений](xref:mvc/controllers/application-model#conventions) страниц для управления маршрутизацией, обнаружением и обработкой страниц в приложениях Razor Pages.
 
 Когда вам необходимо настроить уникальные маршруты для отдельных страниц, используйте [соглашение AddPageRoute](#configure-a-page-route), описанное далее в этом разделе.
 
@@ -810,7 +817,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Модель приложений страницы используется для проверки относительного пути на наличие сегментов, ведущих к странице Page2 в папке *OtherPages*. Если условие выполняется, добавляется заголовок. Если нет, применяется `EmptyFilter`.
 
-`EmptyFilter` является [фильтром действий](xref:mvc/controllers/filters#action-filters). Так как в Razor Pages фильтры действий не учитываются, `EmptyFilter` не оказывает действия, как и задумано, если путь не содержит `OtherPages/Page2`.
+`EmptyFilter` является [фильтром действий](xref:mvc/controllers/filters#action-filters). Так как в Razor Pages фильтры действий не учитываются, `EmptyFilter` не оказывает действия, как и задумано, если путь не содержит `OtherPages/Page2`.
 
 Запросите страницу Page2 по адресу `localhost:5000/OtherPages/Page2` из примера и посмотрите заголовки, чтобы проверить результат:
 
@@ -818,7 +825,7 @@ public void ConfigureServices(IServiceCollection services)
 
 **Настройка фабрики фильтров**
 
-Метод <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> позволяет настроить указанное производство так, чтобы [фильтры](xref:mvc/controllers/filters) применялись ко всем страницам Razor Pages.
+Метод <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> позволяет настроить указанное производство так, чтобы [фильтры](xref:mvc/controllers/filters) применялись ко всем страницам Razor Pages.
 
 В примере приложения приведен образец использования [фабрики фильтров](xref:mvc/controllers/filters#ifilterfactory) путем добавления на страницы приложения заголовка `FilterFactoryHeader` с двумя значениями:
 
@@ -836,7 +843,7 @@ public void ConfigureServices(IServiceCollection services)
 
 [Фильтры действий](xref:mvc/controllers/filters#action-filters) MVC игнорируются в Razor Pages, так как Razor Pages использует методы обработчиков. Доступны для использования другие типы фильтров MVC: фильтры [авторизации](xref:mvc/controllers/filters#authorization-filters), [исключений](xref:mvc/controllers/filters#exception-filters), [ресурсов](xref:mvc/controllers/filters#resource-filters) и [результатов](xref:mvc/controllers/filters#result-filters). Дополнительные сведения см. в разделе [Фильтры](xref:mvc/controllers/filters).
 
-Фильтр страниц (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) — это фильтр, применяемый к страницам Razor Pages. Дополнительные сведения см. в разделе [Методы фильтрации для Razor Pages](xref:razor-pages/filter).
+Фильтр страниц (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) — это фильтр, применяемый к страницам Razor Pages. Дополнительные сведения см. в разделе [Методы фильтрации для Razor Pages](xref:razor-pages/filter).
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

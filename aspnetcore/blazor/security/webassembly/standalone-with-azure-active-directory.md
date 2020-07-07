@@ -8,23 +8,24 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-azure-active-directory
-ms.openlocfilehash: 1852ff5637cff9aef9ad713dc470ea0354b3fb47
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
-ms.translationtype: HT
+ms.openlocfilehash: 0f7bf6de44b3fb62291b4698b67de3a350817a45
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243438"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402082"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory"></a>Защита изолированного приложения ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory
 
 Авторы: [Хавьер Кальварро Нельсон](https://github.com/javiercn) (Javier Calvarro Nelson) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
-Чтобы создать изолированное приложение Blazor WebAssembly, использующее [Azure Active Directory (AAD](https://azure.microsoft.com/services/active-directory/)) для проверки подлинности, выполните приведенные ниже действия.
+Чтобы создать изолированное приложение Blazor WebAssembly, использующее [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) для проверки подлинности, выполните приведенные ниже действия.
 
 [Создайте клиент AAD и веб-приложение](/azure/active-directory/develop/v2-overview):
 

@@ -8,17 +8,18 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/error-handling
-ms.openlocfilehash: bbd16e2e045a24f018eb59b67dfdf50d9bed6f32
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
+ms.openlocfilehash: 857b4935816d0010fa425ce98f938c87eb35a581
+ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775041"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85793449"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Обработка ошибок в ASP.NET Core
 
@@ -224,6 +225,8 @@ if (env.IsDevelopment())
     app.UseDatabaseErrorPage();
 }
 ```
+
+Для <xref:Microsoft.AspNetCore.Builder.DatabaseErrorPageExtensions.UseDatabaseErrorPage%2A> необходим пакет NuGet [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/).
 
 <!-- FUTURE UPDATE: On the next topic overhaul/release update, add API crosslink to this section for xref:Microsoft.AspNetCore.Builder.DatabaseErrorPageExtensions.UseDatabaseErrorPage* when available via the API docs. -->
 

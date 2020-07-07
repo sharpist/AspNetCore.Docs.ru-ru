@@ -1,18 +1,25 @@
 ---
 title: Модульные тесты Razor Pages в ASP.NET Core
 author: rick-anderson
-description: Узнайте, как создавать модульные тесты для приложений Razor Pages.
+description: Узнайте, как создавать модульные тесты для приложений Razor Pages.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/14/2019
+no-loc:
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: test/razor-pages-tests
-ms.openlocfilehash: 0e217b6b7f15519a3da44f5d074cf80fa96a3b3a
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
-ms.translationtype: HT
+ms.openlocfilehash: 756af7f2b14512bd43aefd1a4e63e195c2daa138
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78649576"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407763"
 ---
 # <a name="razor-pages-unit-tests-in-aspnet-core"></a>Модульные тесты Razor Pages в ASP.NET Core
 
@@ -25,7 +32,7 @@ ASP.NET Core поддерживает модульные тесты прилож
 * существует дополнительная документация о том, как приложение должно себя вести;
 * регрессии, которые являются ошибками, вызванными обновлениями кода, обнаруживаются во время автоматической сборки и развертывания.
 
-В этом разделе предполагается, что у вас есть базовое представление о приложениях Razor Pages и модульных тестах. Если вы не знакомы с приложениями Razor Pages или основами тестирования, см. следующие разделы:
+В этом разделе предполагается, что у вас есть базовое представление о приложениях Razor Pages и модульных тестах. Если вы не знакомы с приложениями Razor Pages или основами тестирования, см. следующие статьи:
 
 * <xref:razor-pages/index>
 * <xref:tutorials/razor-pages/razor-pages-start>
@@ -48,7 +55,7 @@ dotnet test
 
 ## <a name="message-app-organization"></a>Организация приложения для сообщений
 
-Приложение для сообщений — это система сообщений Razor Pages со следующими характеристиками.
+Приложение для сообщений — это система сообщений Razor Pages со следующими характеристиками:
 
 * Индексная страница приложения (*Pages/Index.cshtml* и *Pages/Index.cshtml.cs*) предоставляет методы пользовательского интерфейса и модели страницы для управления добавлением, удалением и анализом сообщений (поиск среднего числа слов на сообщение).
 * Сообщение описывается классом `Message` (*Data/Message.cs*) с двумя свойствами: `Id` (ключ) и `Text` (сообщение). Свойство `Text` является обязательным и ограничено 200 символами.
@@ -58,7 +65,7 @@ dotnet test
 
 &#8224;В разделе документации о EF [Тестирование с помощью InMemory](/ef/core/miscellaneous/testing/in-memory) объясняется, как использовать базу данных в памяти для тестов с помощью MSTest. В этом разделе используется платформа тестирования [xUnit](https://xunit.github.io/). Концепции тестирования и реализации тестов в разных платформах тестирования похожи, но не идентичны.
 
-Хотя пример приложения не использует шаблон репозитория и не является эффективным примером [шаблона "единица работы" (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages поддерживает такие шаблоны разработки. Дополнительные сведения см. в разделах [Проектирование уровня сохраняемости инфраструктуры](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) и <xref:mvc/controllers/testing> (пример реализует шаблон репозитория).
+Хотя пример приложения не использует шаблон репозитория и не является эффективным примером [шаблона "единица работы" (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages поддерживает такие шаблоны разработки. Дополнительные сведения см. в разделах [Проектирование уровня сохраняемости инфраструктуры](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) и <xref:mvc/controllers/testing> (пример реализует шаблон репозитория).
 
 ## <a name="test-app-organization"></a>Организация приложения для тестирования
 
@@ -209,7 +216,7 @@ ASP.NET Core поддерживает модульные тесты прилож
 * существует дополнительная документация о том, как приложение должно себя вести;
 * регрессии, которые являются ошибками, вызванными обновлениями кода, обнаруживаются во время автоматической сборки и развертывания.
 
-В этом разделе предполагается, что у вас есть базовое представление о приложениях Razor Pages и модульных тестах. Если вы не знакомы с приложениями Razor Pages или основами тестирования, см. следующие разделы:
+В этом разделе предполагается, что у вас есть базовое представление о приложениях Razor Pages и модульных тестах. Если вы не знакомы с приложениями Razor Pages или основами тестирования, см. следующие статьи:
 
 * <xref:razor-pages/index>
 * <xref:tutorials/razor-pages/razor-pages-start>
@@ -232,7 +239,7 @@ dotnet test
 
 ## <a name="message-app-organization"></a>Организация приложения для сообщений
 
-Приложение для сообщений — это система сообщений Razor Pages со следующими характеристиками.
+Приложение для сообщений — это система сообщений Razor Pages со следующими характеристиками:
 
 * Индексная страница приложения (*Pages/Index.cshtml* и *Pages/Index.cshtml.cs*) предоставляет методы пользовательского интерфейса и модели страницы для управления добавлением, удалением и анализом сообщений (поиск среднего числа слов на сообщение).
 * Сообщение описывается классом `Message` (*Data/Message.cs*) с двумя свойствами: `Id` (ключ) и `Text` (сообщение). Свойство `Text` является обязательным и ограничено 200 символами.
@@ -242,7 +249,7 @@ dotnet test
 
 &#8224;В разделе документации о EF [Тестирование с помощью InMemory](/ef/core/miscellaneous/testing/in-memory) объясняется, как использовать базу данных в памяти для тестов с помощью MSTest. В этом разделе используется платформа тестирования [xUnit](https://xunit.github.io/). Концепции тестирования и реализации тестов в разных платформах тестирования похожи, но не идентичны.
 
-Хотя пример приложения не использует шаблон репозитория и не является эффективным примером [шаблона "единица работы" (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages поддерживает такие шаблоны разработки. Дополнительные сведения см. в разделах [Проектирование уровня сохраняемости инфраструктуры](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) и <xref:mvc/controllers/testing> (пример реализует шаблон репозитория).
+Хотя пример приложения не использует шаблон репозитория и не является эффективным примером [шаблона "единица работы" (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages поддерживает такие шаблоны разработки. Дополнительные сведения см. в разделах [Проектирование уровня сохраняемости инфраструктуры](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) и <xref:mvc/controllers/testing> (пример реализует шаблон репозитория).
 
 ## <a name="test-app-organization"></a>Организация приложения для тестирования
 

@@ -7,31 +7,32 @@ ms.custom: mvc
 ms.date: 02/10/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/signalr-typescript-webpack
-ms.openlocfilehash: 67a6217055db69fe540412f42411dd3a33bbbe73
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
+ms.openlocfilehash: 49d185ce941d5f8e841224e7de3b72b8350a1c47
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775509"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407906"
 ---
-# <a name="use-aspnet-core-signalr-with-typescript-and-webpack"></a>Использование ASP.NET Core SignalR с TypeScript и Webpack
+# <a name="use-aspnet-core-signalr-with-typescript-and-webpack"></a>Использование ASP.NET Core SignalR с TypeScript и webpack
 
 Авторы: [Себастьен Сунье (Sébastien Sougnez)](https://twitter.com/ssougnez) и [Скотт Эдди (Scott Addie)](https://twitter.com/Scott_Addie)
 
-С помощью средства [Webpack](https://webpack.js.org/) разработчики могут создавать пакеты и выполнять сборку ресурсов на стороне клиента для веб-приложения. В этом руководстве демонстрируется использование средства Webpack для создания пакета и сборки веб-приложения ASP.NET Core SignalR, клиент которого написан на языке [TypeScript](https://www.typescriptlang.org/).
+С помощью средства [Webpack](https://webpack.js.org/) разработчики могут создавать пакеты и выполнять сборку ресурсов на стороне клиента для веб-приложения. В этом учебнике демонстрируется использование средства webpack для создания пакета и сборки веб-приложения ASP.NET Core SignalR, клиент которого написан на языке [TypeScript](https://www.typescriptlang.org/).
 
 В этом руководстве вы узнаете, как:
 
 > [!div class="checklist"]
-> * Сформировать шаблон для начального приложения ASP.NET Core SignalR
-> * Настроить клиент TypeScript SignalR
+> * сформировать шаблон для начального приложения ASP.NET Core SignalR;
+> * настроить клиент TypeScript SignalR;
 > * Настроить конвейер сборки с использованием Webpack
-> * Настроить сервер SignalR
+> * настроить сервер SignalR.
 > * Обеспечить взаимодействие между клиентом и сервером
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([как скачивать](xref:index#how-to-download-a-sample))
@@ -224,7 +225,7 @@ dotnet add package Microsoft.TypeScript.MSBuild
 
     Предыдущая команда устанавливает:
 
-     * [клиент TypeScript SignalR](https://www.npmjs.com/package/@microsoft/signalr), который позволяет клиенту отправлять сообщения на сервер.
+     * [Клиент TypeScript SignalR](https://www.npmjs.com/package/@microsoft/signalr), который позволяет клиенту отправлять сообщения на сервер.
      * Определения типа TypeScript для Node.js, обеспечивающие проверку типов Node.js во время компиляции.
 
 1. Добавьте выделенный код в файл *src/index.ts*:
@@ -434,7 +435,7 @@ dotnet new web -o SignalRWebPack
 
     Приведенный выше код позволяет серверу обнаруживать и обрабатывать файл *index.html* независимо от того, вводит ли пользователь полный URL-адрес или URL-адрес корня веб-приложения.
 
-1. Вызовите [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) в `Startup.ConfigureServices`. Этот метод добавляет службы SignalR в проект.
+1. Вызовите [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) в `Startup.ConfigureServices`. Этот метод добавляет в проект службы SignalR.
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_AddSignalR)]
 
@@ -462,7 +463,7 @@ dotnet new web -o SignalRWebPack
     npm install @aspnet/signalr
     ```
 
-    Приведенная выше команда устанавливает [клиент TypeScript SignalR](https://www.npmjs.com/package/@microsoft/signalr), который позволяет клиенту отправлять сообщения на сервер.
+    Команда выше устанавливает [клиент TypeScript SignalR](https://www.npmjs.com/package/@microsoft/signalr), который позволяет клиенту отправлять сообщения на сервер.
 
 1. Добавьте выделенный код в файл *src/index.ts*:
 

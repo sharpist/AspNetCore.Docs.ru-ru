@@ -8,23 +8,24 @@ ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 3f8aeec1e0471bab5034d1dcc8a42023f6b13c0d
-ms.sourcegitcommit: 77729ba225d5143c0e3954db005906f4a5c7da95
-ms.translationtype: HT
+ms.openlocfilehash: 5a58e7ae28842e2e8a0f3bae8f47e252839903fe
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/20/2020
-ms.locfileid: "85122104"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408881"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Использование SignalR для ASP.NET Core с Blazor WebAssembly
 
 Авторы: [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)
 
-В этом руководстве описаны основы создания приложения в режиме реального времени с помощью SignalR с Blazor WebAssembly. Вы узнаете, как выполнять следующие задачи:
+В этом руководстве описаны основы того, как с помощью SignalR и Blazor WebAssembly создать приложение, работающее в режиме реального времени. Вы научитесь:
 
 > [!div class="checklist"]
 > * создавать проект размещенного приложения Blazor WebAssembly;
@@ -72,13 +73,13 @@ ms.locfileid: "85122104"
 
 1. Выберите **Приложение Blazor** и нажмите кнопку **Далее**.
 
-1. Введите `BlazorSignalRApp` в поле **Имя проекта**. Убедитесь, что для проекта правильно указано существующее **расположение** или укажите новое. Нажмите кнопку **создания**.
+1. Введите `BlazorSignalRApp` в поле **Имя проекта**. Убедитесь, что для проекта правильно указано существующее **расположение** или укажите новое. Выберите **Создать**.
 
-1. Выберите шаблон **приложения Blazor WebAssembly**.
+1. Выберите шаблон **приложения Blazor WebAssembly** .
 
 1. В разделе **Дополнительно** установите флажок **Размещенный проект ASP.NET Core**.
 
-1. Нажмите кнопку **создания**.
+1. Выберите **Создать**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -100,7 +101,7 @@ ms.locfileid: "85122104"
 
 1. На боковой панели выберите **Интернет и консоль** > **Приложение**.
 
-1. Выберите шаблон **приложения Blazor WebAssembly**. Выберите **Далее**.
+1. Выберите шаблон **приложения Blazor WebAssembly** . Выберите **Далее**.
 
    Подтвердите следующие конфигурации.
 
@@ -111,7 +112,7 @@ ms.locfileid: "85122104"
 
    Выберите **Далее**.
 
-1. В поле **Имя проекта** присвойте имя приложению `BlazorSignalRApp`. Нажмите кнопку **создания**.
+1. В поле **Имя проекта** присвойте имя приложению `BlazorSignalRApp`. Выберите **Создать**.
 
    При появлении подтверждения доверия к сертификату разработки подтвердите доверие, чтобы продолжить. Для доверия к сертификату необходимы пароли пользователя и цепочки ключей.
 
@@ -209,7 +210,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 [!code-razor[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Client/Pages/Index.razor)]
 
-## <a name="run-the-app"></a>Запустите приложение
+## <a name="run-the-app"></a>Запуск приложения
 
 1. Следуйте указаниям по выбору инструментов:
 
@@ -221,7 +222,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Выберите любой браузер, введите имя и сообщение и нажмите кнопку для отправки сообщения. Имя и сообщение отображаются на обеих страницах мгновенно:
 
-   ![SignalR Пример приложения Blazor WebAssembly в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
+   Пример приложения Blazor WebAssembly для ![SignalR в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
    Цитаты: *Звездный путь VI. Неоткрытая страна* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -239,7 +240,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Выберите любой браузер, введите имя и сообщение и нажмите кнопку для отправки сообщения. Имя и сообщение отображаются на обеих страницах мгновенно:
 
-   ![SignalR Пример приложения Blazor WebAssembly в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
+   Пример приложения Blazor WebAssembly для ![SignalR в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
    Цитаты: *Звездный путь VI. Неоткрытая страна* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -251,7 +252,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Выберите любой браузер, введите имя и сообщение и нажмите кнопку для отправки сообщения. Имя и сообщение отображаются на обеих страницах мгновенно:
 
-   ![SignalR Пример приложения Blazor WebAssembly в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
+   Пример приложения Blazor WebAssembly для ![SignalR в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
    Цитаты: *Звездный путь VI. Неоткрытая страна* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -268,15 +269,15 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Выберите любой браузер, введите имя и сообщение и нажмите кнопку для отправки сообщения. Имя и сообщение отображаются на обеих страницах мгновенно:
 
-   ![SignalR Пример приложения Blazor WebAssembly в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
+   Пример приложения Blazor WebAssembly для ![SignalR в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
    Цитаты: *Звездный путь VI. Неоткрытая страна* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
 ---
 
-## <a name="next-steps"></a>Дальнейшие действия
+## <a name="next-steps"></a>Следующие шаги
 
-В этом руководстве вы узнали, как выполнять следующие задачи:
+В этом руководстве вы узнали, как:
 
 > [!div class="checklist"]
 > * создавать проект размещенного приложения Blazor WebAssembly;
