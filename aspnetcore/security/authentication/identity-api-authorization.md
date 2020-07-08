@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 86f9b0a3efea5315092d1c6435a1b764fbec0a1d
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2b587517268208dcf66cd2895b7aa22bfa381f84
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402992"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060362"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Проверка подлинности и авторизация для одностраничные приложения
 
@@ -64,7 +64,6 @@ dotnet new react -o <output_directory_name> -au Individual
         options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
     services.AddDefaultIdentity<ApplicationUser>()
-        .AddDefaultUI(UIFramework.Bootstrap4)
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
@@ -195,7 +194,7 @@ services.Configure<JwtBearerOptions>(
 
 Обработчик JWT API создает события, которые обеспечивают контроль над процессом проверки подлинности с помощью `JwtBearerEvents` . Чтобы обеспечить поддержку авторизации API, `AddIdentityServerJwt` регистрирует собственные обработчики событий.
 
-Чтобы настроить обработку события, заключите существующий обработчик событий в требуемую дополнительную логику. Пример.
+Чтобы настроить обработку события, заключите существующий обработчик событий в требуемую дополнительную логику. Пример:
 
 ```csharp
 services.Configure<JwtBearerOptions>(

@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cors
-ms.openlocfilehash: 76e79c2d9762e242dc44857370b0ce1d13f1d1cb
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0a2be31092ab491e23ab9de9be676b5b4d3963ee
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403785"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060284"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Включение запросов между источниками (CORS) в ASP.NET Core
 
@@ -794,7 +794,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 app.UseCors(policy => policy.WithHeaders(HeaderNames.CacheControl));
 ```
 
-По промежуточного слоя CORS успешно реагирует на предварительный запрос со следующим заголовком запроса, поскольку `Content-Language` всегда имеет значение список разрешений:
+По промежуточного слоя CORS успешно реагирует на предварительный запрос со следующим заголовком запроса, так как `Content-Language` всегда разрешено следующее:
 
 ```
 Access-Control-Request-Headers: Cache-Control, Content-Language
@@ -988,7 +988,7 @@ Test message
 Тестирование CORS:
 
 1. [Создайте проект API](xref:tutorials/first-web-api). Кроме того, можно [загрузить пример](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/sample/Cors).
-1. Включите CORS с помощью одного из подходов, описанных в этом документе. Пример.
+1. Включите CORS с помощью одного из подходов, описанных в этом документе. Пример:
 
   [!code-csharp[](cors/sample/Cors/WebAPI/StartupTest.cs?name=snippet2&highlight=13-18)]
 
