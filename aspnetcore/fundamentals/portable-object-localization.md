@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/portable-object-localization
-ms.openlocfilehash: e4053bd5024914242db1755ca34ddbeb2f2d5013
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 531e836db8613cc3382ef2f38f336a0986116334
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408127"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944488"
 ---
 # <a name="configure-portable-object-localization-in-aspnet-core"></a>Настройка локализации переносных объектов в ASP.NET Core
 
@@ -28,7 +28,7 @@ ms.locfileid: "85408127"
 
 **Примечание.** Orchard Core не является продуктом корпорации Майкрософт. Поэтому корпорация Майкрософт не предоставляет поддержку для этого компонента.
 
-[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization) ([как скачивать](xref:index#how-to-download-a-sample))
+[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/2.x/POLocalization) ([как скачивать](xref:index#how-to-download-a-sample))
 
 ## <a name="what-is-a-po-file"></a>Что такое файл переносимых объектов?
 

@@ -15,21 +15,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: ba43ff052fbd290412fa27cf57ace3ee3491f8d0
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 56681e713e008188d57166da9c8fd4eb6923928c
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402563"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944221"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Модели размещения ASP.NET Core Blazor
 
 Автор: [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
 
 Blazor — это веб-платформа, предназначенная для запуска на стороне клиента в браузере в среде выполнения .NET на основе [WebAssembly](https://webassembly.org/) ( *Blazor WebAssembly* ) или на стороне сервера в ASP.NET Core ( *Blazor Server* ). Независимо от модели размещения, модели приложений и модели компонентов *совпадают*.
-
-Сведения о создании проекта для моделей размещения, описанных в этой статье, см. в разделе <xref:blazor/get-started>.
-
-Сведения о расширенной настройке см. в разделе <xref:blazor/fundamentals/configuration>.
 
 ## Blazor WebAssembly
 
@@ -154,7 +151,6 @@ Blazor Server позволяет коду определить *обработч
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* <xref:blazor/get-started>
 * <xref:signalr/introduction>
 * <xref:blazor/fundamentals/additional-scenarios>
 * <xref:tutorials/signalr-blazor-webassembly>

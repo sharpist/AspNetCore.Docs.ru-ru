@@ -5,7 +5,7 @@ description: Сведения о том, как создавать и испол
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/25/2020
+ms.date: 07/06/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 0a8335461b4c9cd628d9c65b97f7ab6a74487fca
-ms.sourcegitcommit: 7f423602a1475736f61fc361327d4de0976c9649
+ms.openlocfilehash: 23aab2504368559b8d3dd21b3c0896ffc3348e2f
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85950904"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86059822"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
@@ -83,15 +83,15 @@ ms.locfileid: "85950904"
 
 ### <a name="namespaces"></a>Пространства имен
 
-Как правило, пространство имен компонента является производным от корневого пространства имен приложения и расположения компонента (папки) в приложении. Если пространством имен корня приложения является `BlazorApp`, а компонент `Counter` находится в папке `Pages`:
+Как правило, пространство имен компонента является производным от корневого пространства имен приложения и расположения компонента (папки) в приложении. Если пространством имен корня приложения является `BlazorSample`, а компонент `Counter` находится в папке `Pages`:
 
-* Пространством имен компонента `Counter` является `BlazorApp.Pages`.
-* Полным именем компонента является `BlazorApp.Pages.Counter`.
+* Пространством имен компонента `Counter` является `BlazorSample.Pages`.
+* Полным именем компонента является `BlazorSample.Pages.Counter`.
 
 При использовании пользовательских папок, содержащих компоненты, добавьте директиву [`@using`][2] в родительский компонент или в файл `_Imports.razor` приложения. В следующем примере становятся доступными компоненты в папке `Components`.
 
 ```razor
-@using BlazorApp.Components
+@using BlazorSample.Components
 ```
 
 На компоненты также можно ссылаться с помощью полных имен, для чего не требуется директива [`@using`][2]:
@@ -162,7 +162,7 @@ ms.locfileid: "85950904"
 `Counter.razor.cs`.
 
 ```csharp
-namespace BlazorApp.Pages
+namespace BlazorSample.Pages
 {
     public partial class Counter
     {
@@ -481,15 +481,15 @@ public class NotifierService
 }
 ```
 
-Зарегистрируйте службу `NotifierService` как одноэлементную:
+Зарегистрируйте `NotifierService`.
 
-* В Blazor WebAssembly зарегистрируйте службу в `Program.Main`:
+* В Blazor WebAssembly зарегистрируйте службу как отдельную (singleton) в `Program.Main`:
 
   ```csharp
   builder.Services.AddSingleton<NotifierService>();
   ```
 
-* В Blazor Server зарегистрируйте службу в `Startup.ConfigureServices`:
+* В Blazor Server зарегистрируйте службу с заданной областью (scoped) в `Startup.ConfigureServices`:
 
   ```csharp
   services.AddScoped<NotifierService>();
@@ -619,13 +619,19 @@ public class NotifierService
 * переключает отображение дочернего содержимого с помощью параметра компонента.
 
 ```razor
-<div @onclick="@Toggle">
-    Toggle (Expanded = @Expanded)
+<div @onclick="@Toggle" class="card text-white bg-success mb-3">
+    <div class="card-body">
+        <div class="panel-heading">
+            <h2>Toggle (Expanded = @Expanded)</h2>
+        </div>
 
-    @if (Expanded)
-    {
-        @ChildContent
-    }
+        @if (Expanded)
+        {
+            <div class="card-text">
+                @ChildContent
+            </div>
+        }
+    </div>
 </div>
 
 @code {
@@ -645,13 +651,15 @@ public class NotifierService
 Компонент `Expander` добавляется в родительский компонент, который может вызывать <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>:
 
 ```razor
+@page "/expander"
+
 <Expander Expanded="true">
-    <h1>Hello, world!</h1>
+    Expander 1 content
 </Expander>
 
 <Expander Expanded="true" />
 
-<button @onclick="@(() => StateHasChanged())">
+<button @onclick="StateHasChanged">
     Call StateHasChanged
 </button>
 ```
@@ -660,30 +668,36 @@ public class NotifierService
 
 Чтобы сохранить состояние в предыдущем сценарии, используйте *закрытое поле* в компоненте `Expander`, чтобы сохранить состояние переключения.
 
-Приведенный ниже компонент `Expander` делает следующее.
+Следующий измененный компонент `Expander`:
 
-* Принимает значение параметра компонента `Expanded` из родительского элемента.
-* Присваивает значение параметра компонента *закрытому полю* (`expanded`) при [событии OnInitialized](xref:blazor/components/lifecycle#component-initialization-methods).
-* Использует закрытое поле для поддержания внутреннего состояния переключения.
+* принимает значение параметра компонента `Expanded` из родительского элемента;
+* присваивает значение параметра компонента *закрытому полю* (`expanded`) при [событии OnInitialized](xref:blazor/components/lifecycle#component-initialization-methods);
+* использует закрытое поле для поддержания внутреннего состояния переключения.
 
 ```razor
-<div @onclick="@Toggle">
-    Toggle (Expanded = @expanded)
+<div @onclick="@Toggle" class="card text-white bg-success mb-3">
+    <div class="card-body">
+        <div class="panel-heading">
+            <h2>Toggle (Expanded = @expanded)</h2>
+        </div>
 
-    @if (expanded)
-    {
-        @ChildContent
-    }
+        @if (Expanded)
+        {
+            <div class="card-text">
+                @ChildContent
+            </div>
+        }
+    </div>
 </div>
 
 @code {
+    private bool expanded;
+
     [Parameter]
     public bool Expanded { get; set; }
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
-
-    private bool expanded;
 
     protected override void OnInitialized()
     {
