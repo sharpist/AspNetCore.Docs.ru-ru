@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: 06d5d6e2db1cf3ccb148c24c40c264016d47a0ed
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 7a92f2b5bc791f268b897878db08a9f9f4f7bf0c
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406593"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212406"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Вспомогательные функции тегов в формах в ASP.NET Core
 
@@ -45,7 +45,7 @@ ms.locfileid: "85406593"
 
 Образец.
 
-[!code-HTML[](working-with-forms/sample/final/Views/Demo/RegisterFormOnly.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Demo/RegisterFormOnly.cshtml)]
 
 Приведенная выше вспомогательная функция тега формы создает следующий код HTML:
 
@@ -62,7 +62,7 @@ ms.locfileid: "85406593"
 
 Атрибут `asp-route` вспомогательной функции тега также может создавать разметку для атрибута HTML `action`. Приложение с [маршрутом](../../fundamentals/routing.md) с именем `register` использует следующую разметку для страницы регистрации:
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterRoute.cshtml)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterRoute.cshtml)]
 
 Многие представления в папке *Views/Account* (сформированные при создании веб-приложения с *учетными записями отдельных пользователей*) содержат атрибут [asp-route-returnurl](xref:mvc/views/working-with-forms):
 
@@ -81,7 +81,7 @@ ms.locfileid: "85406593"
 
 Ниже перечислены поддерживаемые атрибуты [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) для управления значением `formaction`.
 
-|Атрибут|Описание:|
+|attribute|Описание|
 |---|---|
 |[asp-controller](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-controller)|Имя контроллера.|
 |[asp-action](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-action)|Имя метода действия.|
@@ -89,7 +89,7 @@ ms.locfileid: "85406593"
 |[asp-page](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-page)|Имя Razor страницы.|
 |[asp-page-handler](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-page-handler)|Имя Razor обработчика страницы.|
 |[asp-route](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-route)|Имя маршрута.|
-|[asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-route-value)|Одно значение URL-адреса маршрута. Например, `asp-route-id="1234"`.|
+|[asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-route-value)|Одно значение URL-адреса маршрута. Пример: `asp-route-id="1234"`.|
 |[asp-all-route-data](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-all-route-data)|Все значения маршрута.|
 |[asp-fragment](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-fragment)|Фрагмент URL-адреса.|
 
@@ -207,7 +207,7 @@ Type expected
 |Тип .NET|Тип входных данных|
 |---|---|
 |Bool|type="checkbox"|
-|Строка|type="text"|
+|Строковый|type="text"|
 |Дата и время|type=["datetime-local"](https://developer.mozilla.org/docs/Web/HTML/Element/input/datetime-local)|
 |Byte|type="number"|
 |Int|type="number"|
@@ -215,7 +215,7 @@ Type expected
 
 В следующей таблице приведены некоторые наиболее распространенные атрибуты [заметок к данным](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter), которые вспомогательная функция тега входных данных будет сопоставлять с определенными типами входных данных (указаны не все атрибуты проверки):
 
-|Атрибут|Тип входных данных|
+|attribute|Тип входных данных|
 |---|---|
 |[EmailAddress]|type="email"|
 |[Url]|type="url"|
@@ -229,7 +229,7 @@ Type expected
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/RegisterViewModel.cs)]
 
-[!code-HTML[](working-with-forms/sample/final/Views/Demo/RegisterInput.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Demo/RegisterInput.cshtml)]
 
 Приведенный выше код создает следующий HTML:
 
@@ -299,7 +299,7 @@ Type expected
 
 В представлении выполняется привязка к `Address.AddressLine1`:
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterAddress.cshtml?highlight=6)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterAddress.cshtml?highlight=6)]
 
 Следующий HTML создан для `Address.AddressLine1`:
 
@@ -325,11 +325,11 @@ public IActionResult Edit(int id, int colorIndex)
 
 Ниже Razor показано, как получить доступ к определенному `Color` элементу.
 
-[!code-HTML[](working-with-forms/sample/final/Views/Demo/EditColor.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Demo/EditColor.cshtml)]
 
 Шаблон *Views/Shared/EditorTemplates/String.cshtml*:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Shared/EditorTemplates/String.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/String.cshtml)]
 
 Пример с использованием `List<T>`:
 
@@ -337,11 +337,11 @@ public IActionResult Edit(int id, int colorIndex)
 
 Ниже Razor показано, как выполнить итерацию по коллекции.
 
-[!code-HTML[](working-with-forms/sample/final/Views/Demo/Edit.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Demo/Edit.cshtml)]
 
 Шаблон *Views/Shared/EditorTemplates/ToDoItem.cshtml*:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
 
 По возможности следует использовать `foreach`, когда значение будет применяться в эквивалентном контексте `asp-for` или `Html.DisplayFor`. Обычно лучше использовать `for`, чем `foreach` (если сценарий позволяет), так как ему не нужно выделять перечислитель. Тем не менее оценка индексатора в выражении LINQ может быть недешевой, поэтому ее нужно минимизировать.
 
@@ -364,7 +364,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/DescriptionViewModel.cs)]
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterTextArea.cshtml?highlight=4)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterTextArea.cshtml?highlight=4)]
 
 Создается следующий HTML:
 
@@ -400,7 +400,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/SimpleViewModel.cs)]
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterLabel.cshtml?highlight=4)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterLabel.cshtml?highlight=4)]
 
 Для элемента `<label>` создан следующий HTML:
 
@@ -462,7 +462,7 @@ public IActionResult Edit(int id, int colorIndex)
 |--- |--- |
 |ValidationSummary.All|Свойство и уровень модели|
 |ValidationSummary.ModelOnly|Модель|
-|ValidationSummary.None|Отсутствуют|
+|ValidationSummary.None|Нет|
 
 ### <a name="sample"></a>Пример
 
@@ -470,7 +470,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/RegisterViewModel.cs)]
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterValidation.cshtml?highlight=4,6,8&range=1-10)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterValidation.cshtml?highlight=4,6,8&range=1-10)]
 
 Созданный HTML (если модель является допустимой):
 
@@ -499,9 +499,9 @@ public IActionResult Edit(int id, int colorIndex)
 
 * Располагает альтернативой вспомогательному методу HTML — `Html.DropDownListFor` и `Html.ListBoxFor`.
 
-`Select Tag Helper` `asp-for` указывает имя свойства модели для элемента [select](https://www.w3.org/wiki/HTML/Elements/select), а `asp-items` указывает элементы [option](https://www.w3.org/wiki/HTML/Elements/option).  Пример.
+`Select Tag Helper` `asp-for` указывает имя свойства модели для элемента [select](https://www.w3.org/wiki/HTML/Elements/select), а `asp-items` указывает элементы [option](https://www.w3.org/wiki/HTML/Elements/option).  Пример:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
 
 Образец.
 
@@ -538,7 +538,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 Значение атрибута `asp-for` является особым случаем и не требует префикса `Model`, тогда как он необходим другим атрибутам вспомогательной функции тега (например, `asp-items`).
 
-[!code-HTML[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
 
 ### <a name="enum-binding"></a>Привязка перечисления
 
@@ -552,7 +552,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 Метод `GetEnumSelectList` создает объект `SelectList` для перечисления.
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEnum.cshtml?highlight=5)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEnum.cshtml?highlight=5)]
 
 Список перечислителя можно пометить атрибутом `Display` для формирования пользовательского интерфейса с более широкими функциональными возможностями:
 
@@ -617,7 +617,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 Со следующим представлением:
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexMultiSelect.cshtml?highlight=4)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexMultiSelect.cshtml?highlight=4)]
 
 Генерирует следующий HTML:
 
@@ -641,17 +641,17 @@ public IActionResult Edit(int id, int colorIndex)
 
 Если вы используете параметр "not specified" (не выбрано) на нескольких страницах, можно создать шаблон, чтобы исключить повторяющийся HTML:
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=5)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=5)]
 
 Шаблон *Views/Shared/EditorTemplates/CountryViewModel.cshtml*:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
 
 Добавление HTML- [\<option>](https://www.w3.org/wiki/HTML/Elements/option) элементов не ограничено вариантом *без выбора* . Например, следующее представление и метод действия создадут HTML, аналогичный приведенному выше коду:
 
 [!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?name=snippetNone)]
 
-[!code-HTML[](working-with-forms/sample/final/Views/Home/IndexOption.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Home/IndexOption.cshtml)]
 
 В зависимости от текущего значения `Country` будет выбран соответствующий элемент `<option>` (содержащий атрибут `selected="selected"`).
 

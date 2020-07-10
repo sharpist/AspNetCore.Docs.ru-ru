@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/dependency-injection
-ms.openlocfilehash: 0cc452b25392fe92c87ef346b2e16350fb3ec19a
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 335eac4b1533f4156e00f9d0140f921fa492e71a
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405891"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212974"
 ---
 # <a name="dependency-injection-into-views-in-aspnet-core"></a>Внедрение зависимостей в представления в ASP.NET Core
 
@@ -61,7 +61,7 @@ ASP.NET Core поддерживает [внедрение зависимост�
 
 Службу можно внедрить в представление с помощью директивы `@inject`. По сути, `@inject` добавляет в представление свойство и заполняет это свойство с помощью внедрения зависимостей.
 
-[!code-csharp[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/ToDo/Index.cshtml?highlight=4,5,15,16,17)]
+[!code-cshtml[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/ToDo/Index.cshtml?highlight=4,5,15,16,17)]
 
 Это представление отображает список экземпляров `ToDoItem`, а также сводку по общей статистике. Сводка заполняется из внедренного `StatisticsService`. Эта служба регистрируется для внедрения зависимости в `ConfigureServices` в файле *Startup.cs*:
 

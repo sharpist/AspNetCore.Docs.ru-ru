@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 36d8c3dd42ac9d0acdb93bba4bc39ab18ad5c52f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d2791422e50082eab51c0735e2209e5b829d22f2
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400899"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212498"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>Вспомогательные функции тегов в ASP.NET Core
 
@@ -133,7 +133,7 @@ public class Movie
 
 На приведенном ниже рисунке кода задан префикс `th:` вспомогательной функции тега, поэтому вспомогательную функцию тега поддерживают только элементы с префиксом `th:` (элементы с поддержкой вспомогательной функции тега выделены особым шрифтом). У элементов `<label>` и `<input>` есть префикс вспомогательной функции тега и поддержка этой функции, а у элемента `<span>` этого префикса и поддержки нет.
 
-![Изображение](intro/_static/thp.png)
+![image](intro/_static/thp.png)
 
 Правила иерархии, которые применяются к `@addTagHelper`, также применяются и к `@tagHelperPrefix`.
 
@@ -163,33 +163,33 @@ public class Movie
 
 Рекомендуется написать элемент HTML `<label>`. Когда вы введете `<l` в редакторе Visual Studio, IntelliSense отобразит подходящие элементы:
 
-![Изображение](intro/_static/label.png)
+![image](intro/_static/label.png)
 
 Выводится не только справка по HTML, но и значок ("@" symbol with "<>" под ней).
 
-![Изображение](intro/_static/tagSym.png)
+![image](intro/_static/tagSym.png)
 
 Он показывает элемент, на который нацелены вспомогательные функции тегов. Чистые элементы HTML (например, `fieldset`) отображают значок "<>".
 
 Чистый тег HTML `<label>` отображается (с помощью базовой цветовой гаммы Visual Studio) коричневым цветом, атрибуты — красным, а значения атрибутов — синим.
 
-![Изображение](intro/_static/LableHtmlTag.png)
+![image](intro/_static/LableHtmlTag.png)
 
 После того как вы введете `<label`, IntelliSense выведет перечень доступных атрибутов HTML и CSS и атрибутов для вспомогательной функции тега:
 
-![Изображение](intro/_static/labelattr.png)
+![image](intro/_static/labelattr.png)
 
 Функция завершения операторов IntelliSense позволяет заполнить выражение выбранным значением с помощью клавиши TAB:
 
-![Изображение](intro/_static/stmtcomplete.png)
+![image](intro/_static/stmtcomplete.png)
 
 После ввода атрибута вспомогательной функции тега шрифты тега и атрибута изменяются. При использовании базовых цветовых схем Visual Studio "Синяя" или "Светлая" шрифт будет пурпурным с полужирным начертанием. Если используется тема "Темная", шрифт будет сине-зеленым с полужирным начертанием. Изображения в этом документе были созданы с помощью темы по умолчанию.
 
-![Изображение](intro/_static/labelaspfor2.png)
+![image](intro/_static/labelaspfor2.png)
 
 Вы можете использовать сочетание клавиш Visual Studio *CompleteWord* (CTRL+пробел [по умолчанию](/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio) внутри двойных кавычек (""), чтобы переключиться на C# так же, как если бы вы находились в классе C#. IntelliSense отобразит все методы и свойства на модели страницы. Методы и свойства доступны, поскольку типом свойства является `ModelExpression`. На рисунке ниже выполняется редактирование представления `Register`, поэтому доступен `RegisterViewModel`.
 
-![Изображение](intro/_static/intellemail.png)
+![image](intro/_static/intellemail.png)
 
 IntelliSense выводит свойства и методы, доступные для модели на странице. Благодаря широким возможностям IntelliSense помогает выбрать класс CSS:
 
@@ -221,13 +221,13 @@ new {@class="caption"}
 
 При использовании вспомогательной функции тега, как только вы вводите `<l` в редакторе Visual Studio, IntelliSense отобразит подходящие элементы:
 
-![Изображение](intro/_static/label.png)
+![image](intro/_static/label.png)
 
 IntelliSense помогает написать всю строку.
 
 На следующем рисунке кода показана форма *представления/учетной записи/Register. cshtml* , Razor созданная на основе шаблона MVC ASP.NET 4.5. x, входящего в состав Visual Studio.
 
-![Изображение](intro/_static/regCS.png)
+![image](intro/_static/regCS.png)
 
 Редактор Visual Studio отображает код C# на сером фоне. Например, вспомогательный метод HTML `AntiForgeryToken`:
 
@@ -237,13 +237,13 @@ IntelliSense помогает написать всю строку.
 
 отображается на сером фоне. Большая часть разметки в представлении Register является кодом C#. Сравните это с эквивалентным подходом, где используются вспомогательные функции тегов:
 
-![Изображение](intro/_static/regTH.png)
+![image](intro/_static/regTH.png)
 
 Разметка здесь более чистая, ее проще читать, редактировать и поддерживать, чем при использовании вспомогательных методов HTML. Количество C# кода уменьшено до минимума — здесь есть только то, что необходимо знать серверу. Редактор Visual Studio отображает разметку, с которой работает вспомогательная функция тега, особым шрифтом.
 
 Рассмотрим группу *Email*:
 
-[!code-csharp[](intro/sample/Register.cshtml?range=12-18)]
+[!code-cshtml[](intro/sample/Register.cshtml?range=12-18)]
 
 У каждого из атрибутов "asp-" есть значение "Email", но "Email" не является строкой. В данном контексте "Email" — это свойство модельного выражения C# для `RegisterViewModel`.
 
@@ -271,7 +271,7 @@ IntelliSense помогает написать всю строку.
 
 Можно настроить шрифт и цветовую раскраску с помощью **меню Сервис**  >  **Параметры**  >  **Среда**  >  **шрифты и цвета**:
 
-![Изображение](intro/_static/fontoptions2.png)
+![image](intro/_static/fontoptions2.png)
 
 [!INCLUDE[](~/includes/built-in-TH.md)]
 

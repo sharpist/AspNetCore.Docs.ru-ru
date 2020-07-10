@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: 5e250debb5c4c2ef00b844557d31ed8281d2ff2f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e630bf4b0c121796315be077623abae73d240b37
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407594"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212463"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Создание вспомогательных функций тегов в ASP.NET Core
 
@@ -87,14 +87,14 @@ ms.locfileid: "85407594"
 
 <!--
 the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
-    [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImports.cshtml?highlight=3&range=1-3)]
+    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImports.cshtml?highlight=3&range=1-3)]
 -->
 
 Чтобы добавить вспомогательную функцию тега в представление с помощью полного имени, сначала добавьте полное имя (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`), а затем — **имя сборки** (*AuthoringTagHelpers*, не обязательно `namespace`). Большинство разработчиков предпочитают использовать синтаксис с подстановочным знаком. В статье [Общие сведения о вспомогательных функциях тегов](intro.md) подробно рассматривается добавление и удаление вспомогательных функций тегов, их иерархия и синтаксис с подстановочным знаком.
 
 1. Внесите следующие изменения в разметку в файле *Views/Home/Contact.cshtml*: 
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
 
 1. Запустите приложение и просмотрите исходный текст HTML в любимом браузере, чтобы проверить, были ли теги электронной почты заменены разметкой привязки (например, `<a>Support</a>`). Строки *Support* и *Marketing* отображаются как ссылки, но у них нет атрибута `href`, поэтому ссылки будут нерабочими. Мы исправим это в следующем разделе.
 
@@ -118,7 +118,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 1. Внесите следующие изменения в разметку в файле *Views/Home/Contact.cshtml*: 
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml?highlight=15,16)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml?highlight=15,16)]
 
 1. Запустите приложение и убедитесь в том, что ссылки создаются правильно.
 
@@ -147,7 +147,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 1. Чтобы вспомогательная функция тега могла получить целевой адрес электронной почты, внесите следующее изменение в файл *Views/Home/Contact.cshtml*:
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
 
 1. Запустите приложение и убедитесь в том, что ссылки электронной почты создаются правильно.
 
@@ -163,7 +163,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 1. Измените представление *About.cshtml* так, чтобы оно содержало значение атрибута `bold`. Ниже приведен готовый код.
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/AboutBoldOnly.cshtml?highlight=7)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/AboutBoldOnly.cshtml?highlight=7)]
 
 1. Запустите приложение. Для проверки исходного кода и разметки можно использовать любой браузер на ваш выбор.
 
@@ -225,7 +225,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 1. Добавьте приведенную ниже разметку в представление *About.cshtml*. Выделенная разметка служит для вывода сведений о веб-сайте.
 
-   [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,4-8, 18-999)]
+   [!code-cshtml[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,4-8, 18-999)]
 
    > [!NOTE]
    > В Razor разметке, показанной ниже:
@@ -251,7 +251,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 1. Замените содержимое файла *Views/Home/Index.cshtml* следующей разметкой:
 
-   [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Index.cshtml)]
+   [!code-cshtml[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Index.cshtml)]
 
 1. Замените метод `Index` в контроллере `Home` следующим кодом:
 
@@ -281,7 +281,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 1. Добавьте следующую разметку в конец файла *Views/Home/Contact.cshtml*:
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=19)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=19)]
 
 1. Запустите приложение и проверьте, правильно ли вспомогательная функция тега отображает привязку.
 

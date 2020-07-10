@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 31970bd2b52ad83c116067d258aa9dca2d9b3b66
-ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
+ms.openlocfilehash: 6ac565bfa4862168fa143417ab5a81c51b620f16
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85793570"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212445"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>Введение в Identity ASP.NET Core
 
@@ -57,7 +57,7 @@ Identityобычно настраивается с помощью SQL Server б�
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Выберите **файл** > **создать** > **проект**.
-* Выберите **Новое веб-приложение ASP.NET Core**. Присвойте проекту имя **APP1** , которое будет иметь то же пространство имен, что и загружаемый проект. Нажмите кнопку **ОК**.
+* Выберите **Новое веб-приложение ASP.NET Core**. Присвойте проекту имя **APP1** , которое будет иметь то же пространство имен, что и загружаемый проект. Нажмите кнопку **OK**.
 * Выберите ASP.NET Core **веб-приложение**, а затем щелкните **изменить проверку подлинности**.
 * Выберите **учетные записи отдельных пользователей** и нажмите кнопку **ОК**.
 
@@ -75,7 +75,7 @@ dotnet new webapp --auth Individual -uld -o WebApp1
 
 ---
 
-Созданный проект предоставляет [ASP.NET Core Identity ](xref:security/authentication/identity) в виде [ Razor библиотеки классов](xref:razor-pages/ui-class). Identity Razor Библиотека классов предоставляет конечные точки с `Identity` областью. Пример:
+Созданный проект предоставляет [ASP.NET Core Identity ](xref:security/authentication/identity) в виде [ Razor библиотеки классов](xref:razor-pages/ui-class). Identity Razor Библиотека классов предоставляет конечные точки с `Identity` областью. Пример.
 
 * /Identity/аккаунт/логин
 * /Identity/аккаунт/логаут
@@ -185,7 +185,7 @@ dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --fil
 
 Параметр POST указан в *страницах Pages/Shared/_LoginPartial. cshtml*:
 
-[!code-csharp[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
+[!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
 ## <a name="test-identity"></a>ПроверьтеIdentity
 
@@ -216,7 +216,7 @@ IdentityБолее подробное изучение:
 
 См. раздел [Конфигурация](#pw) для примера, который устанавливает минимальные требования к паролю.
 
-## <a name="adddefaultidentity-and-addidentity"></a>Адддефаултидентити и Аддидентити
+## <a name="adddefaultidentity-and-addidentity"></a>Адддефаулт Identity и добавитьIdentity
 
 <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*>было введено в ASP.NET Core 2,1. Вызов `AddDefaultIdentity` аналогичен вызову следующего:
 
@@ -224,7 +224,7 @@ IdentityБолее подробное изучение:
 * <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>
 * <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders*>
 
-Дополнительные сведения см. в разделе [адддефаултидентити Source](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) .
+Дополнительные сведения см. в разделе [адддефаулт Identity Source](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) .
 
 ## <a name="prevent-publish-of-static-identity-assets"></a>Запретить публикацию статических Identity ресурсов
 
@@ -271,7 +271,7 @@ Identityможно настроить с помощью SQL Server базы да
 
 <a name="adi"></a>
 
-## <a name="adddefaultidentity-and-addidentity"></a>Адддефаултидентити и Аддидентити
+## <a name="adddefaultidentity-and-addidentity"></a>Адддефаулт Identity и добавитьIdentity
 
 <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*>было введено в ASP.NET Core 2,1. Вызов `AddDefaultIdentity` аналогичен вызову следующего:
 
@@ -279,7 +279,7 @@ Identityможно настроить с помощью SQL Server базы да
 * <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>
 * <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders*>
 
-Дополнительные сведения см. в разделе [адддефаултидентити Source](https://github.com/dotnet/AspNetCore/blob/release/2.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) .
+Дополнительные сведения см. в разделе [адддефаулт Identity Source](https://github.com/dotnet/AspNetCore/blob/release/2.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) .
 
 ## <a name="create-a-web-app-with-authentication"></a>Создание веб-приложения с проверкой подлинности
 
@@ -288,7 +288,7 @@ Identityможно настроить с помощью SQL Server базы да
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Выберите **файл** > **создать** > **проект**.
-* Выберите **Новое веб-приложение ASP.NET Core**. Присвойте проекту имя **APP1** , которое будет иметь то же пространство имен, что и загружаемый проект. Нажмите кнопку **ОК**.
+* Выберите **Новое веб-приложение ASP.NET Core**. Присвойте проекту имя **APP1** , которое будет иметь то же пространство имен, что и загружаемый проект. Нажмите кнопку **OK**.
 * Выберите ASP.NET Core **веб-приложение**, а затем щелкните **изменить проверку подлинности**.
 * Выберите **учетные записи отдельных пользователей** и нажмите кнопку **ОК**.
 
@@ -300,7 +300,7 @@ dotnet new webapp --auth Individual -o WebApp1
 
 ---
 
-Созданный проект предоставляет [ASP.NET Core Identity ](xref:security/authentication/identity) в виде [ Razor библиотеки классов](xref:razor-pages/ui-class). Identity Razor Библиотека классов предоставляет конечные точки с `Identity` областью. Пример:
+Созданный проект предоставляет [ASP.NET Core Identity ](xref:security/authentication/identity) в виде [ Razor библиотеки классов](xref:razor-pages/ui-class). Identity Razor Библиотека классов предоставляет конечные точки с `Identity` областью. Пример.
 
 * /Identity/аккаунт/логин
 * /Identity/аккаунт/логаут
@@ -346,7 +346,7 @@ Identityвключается путем вызова [усеаусентикат
 
 [!code-csharp[](identity/sample/WebApp1/Startup.cs?name=snippet_configure&highlight=18)]
 
-Дополнительные сведения см. в разделе [класс идентитйоптионс](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) и [Запуск приложения](xref:fundamentals/startup).
+Дополнительные сведения см. в статье [ Identity класс Options](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) и [Запуск приложения](xref:fundamentals/startup).
 
 ## <a name="scaffold-register-login-and-logout"></a>Регистрация, вход и выход из шаблона формирования шаблонов
 
@@ -402,7 +402,7 @@ dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --fil
 
 Параметр POST указан в *страницах Pages/Shared/_LoginPartial. cshtml*:
 
-[!code-csharp[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
+[!code-cshtml[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 
 ## <a name="test-identity"></a>ПроверьтеIdentity
 

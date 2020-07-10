@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cors
-ms.openlocfilehash: 0a2be31092ab491e23ab9de9be676b5b4d3963ee
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: dc8e68ef482025443147eeb27bd3f245c1a1a5ed
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060284"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212891"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Включение запросов между источниками (CORS) в ASP.NET Core
 
@@ -123,7 +123,7 @@ ms.locfileid: "86060284"
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPt.cs?name=snippet2&highlight=3,7-15,32,40,43)]
 
-В приведенном выше коде:
+В предыдущем коде:
 
 * `app.UseCors`включает по промежуточного слоя CORS. Так как политика по умолчанию не настроена, `app.UseCors()` она не включает CORS.
 * `/echo`Конечные точки контроллера и позволяют выполнять запросы между источниками с помощью указанной политики.
@@ -464,7 +464,7 @@ Vary: Accept-Encoding
 X-Powered-By: ASP.NET
 ```
 
-**Заголовки запроса**
+**Заголовки запросов**
 
 ```
 Accept: */*
@@ -502,7 +502,7 @@ Vary: Origin
 X-Powered-By: ASP.NET
 ```
 
-**Заголовки запроса**
+**Заголовки запросов**
 
 ```
 Accept: */*
@@ -988,7 +988,7 @@ Test message
 Тестирование CORS:
 
 1. [Создайте проект API](xref:tutorials/first-web-api). Кроме того, можно [загрузить пример](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/sample/Cors).
-1. Включите CORS с помощью одного из подходов, описанных в этом документе. Пример:
+1. Включите CORS с помощью одного из подходов, описанных в этом документе. Пример.
 
   [!code-csharp[](cors/sample/Cors/WebAPI/StartupTest.cs?name=snippet2&highlight=13-18)]
 
@@ -998,7 +998,7 @@ Test message
 1. Создайте проект веб-приложения ( Razor страницы или MVC). В образце используются Razor страницы. Вы можете создать веб-приложение в том же решении, что и проект API.
 1. Добавьте выделенный ниже код в файл *index. cshtml* :
 
-  [!code-csharp[](cors/sample/Cors/ClientApp/Pages/Index2.cshtml?highlight=7-99)]
+  [!code-cshtml[](cors/sample/Cors/ClientApp/Pages/Index2.cshtml?highlight=7-99)]
 
 1. В приведенном выше коде замените `url: 'https://<web app>.azurewebsites.net/api/values/1',` URL-адресом развернутого приложения.
 1. Разверните проект API. Например, выполните [развертывание в Azure](xref:host-and-deploy/azure-apps/index).
