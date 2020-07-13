@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/url-rewriting
-ms.openlocfilehash: c41ba2e067c8dc978b1359db548733c5f8890a2b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: dbdb7cd86218fd9ba63ae4ac2aa516836d4fd1a1
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408387"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944299"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>ПО промежуточного слоя для переопределения URL-адресов в ASP.NET Core
 
@@ -325,7 +325,7 @@ public void Configure(IApplicationBuilder app)
 
 Используйте <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*>, чтобы реализовать собственную логику правил в методе. `Add` предоставляет <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, который предоставляет <xref:Microsoft.AspNetCore.Http.HttpContext> для использования в методе. [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*) определяет, как осуществляется дополнительная обработка в конвейере. Установите значение одного из полей <xref:Microsoft.AspNetCore.Rewrite.RuleResult> из следующей таблицы.
 
-| `RewriteContext.Result`              | Действие                                                           |
+| Результат перезаписи контекста               | Действие                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |
 | `RuleResult.ContinueRules` (по умолчанию) | Продолжение применения правил.                                         |
 | `RuleResult.EndResponse`             | Остановка применения правил и отправка отклика.                       |
@@ -679,7 +679,7 @@ public void Configure(IApplicationBuilder app)
 
 Используйте <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*>, чтобы реализовать собственную логику правил в методе. `Add` предоставляет <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, который предоставляет <xref:Microsoft.AspNetCore.Http.HttpContext> для использования в методе. [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*) определяет, как осуществляется дополнительная обработка в конвейере. Установите значение одного из полей <xref:Microsoft.AspNetCore.Rewrite.RuleResult> из следующей таблицы.
 
-| `RewriteContext.Result`              | Действие                                                           |
+| Результат перезаписи контекста               | Действие                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |
 | `RuleResult.ContinueRules` (по умолчанию) | Продолжение применения правил.                                         |
 | `RuleResult.EndResponse`             | Остановка применения правил и отправка отклика.                       |

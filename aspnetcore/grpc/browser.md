@@ -4,7 +4,7 @@ author: jamesnk
 description: Узнайте, как настроить службы gRPC на платформе ASP.NET Core для вызова из приложений браузера с помощью gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 06/29/2020
+ms.date: 06/30/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -14,11 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/browser
-ms.openlocfilehash: 20f72deb9895111a6e691eb1ee5cd7419c8c4cb4
-ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
+ms.openlocfilehash: 05ff343f7116509128b7370a50bcfa3c67ffb9fe
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85793509"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944246"
 ---
 # <a name="use-grpc-in-browser-apps"></a>Использование gRPC в приложениях на основе браузера
 
@@ -78,6 +79,15 @@ ms.locfileid: "85793509"
 * Вызывает `AddCors` для добавления служб CORS и настраивает политику CORS, которая предоставляет заголовки, относящиеся к gRPC.
 * Вызывает `UseCors` для добавления ПО промежуточного слоя CORS после маршрутизации и перед конечными точками.
 * Указывает метод `endpoints.MapGrpcService<GreeterService>()` с поддержкой CORS с `RequiresCors`.
+
+### <a name="grpc-web-and-streaming"></a>gRPC-Web и потоковая передача
+
+Традиционный API gRPC по HTTP/2 поддерживает потоковую передачу во всех направлениях. gRPC-Web имеет ограниченную поддержку потоковой передачи:
+
+* Клиенты браузера с gRPC-Web не поддерживают вызов методов потоковой передачи клиента и двунаправленной потоковой передачи.
+* Службы gRPC в ASP.NET Core, размещенные в Службе приложений Azure и IIS, не поддерживают двунаправленную потоковую передачу.
+
+При использовании gRPC-Web мы рекомендуем применять только унарные методы и методы серверной потоковой передачи.
 
 ## <a name="call-grpc-web-from-the-browser"></a>Вызов gRPC-Web из браузера
 

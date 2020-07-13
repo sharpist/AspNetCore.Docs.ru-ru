@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: b084404a7fdd8b2fc18c407bd11705ccd1c496c1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b442a4ce1f63c047c123315626f559155fd06424
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406307"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060141"
 ---
 # <a name="part-7-razor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Часть 7. Razor Pages с EF Core в ASP.NET Core — обновление связанных данных
 
@@ -158,7 +158,7 @@ ms.locfileid: "85406307"
 
 Базовый класс `InstructorCoursesPageModel` будет использоваться для моделей страниц редактирования и создания. `PopulateAssignedCourseData` считывает все сущности `Course` для заполнения списка `AssignedCourseDataList`. Для каждого курса код задает `CourseID`, название, а также сведения о назначении курсу преподавателя. Для эффективного поиска используется класс [HashSet](/dotnet/api/system.collections.generic.hashset-1).
 
-Так как страница Razor не содержит коллекцию сущностей Course, связыватель модели не может автоматически обновить свойство навигации `CourseAssignments`. Вместо использования связывателя модели для обновления свойства навигации `CourseAssignments` вы делаете это в новом методе `UpdateInstructorCourses`. Поэтому нужно исключить свойство `CourseAssignments` из привязки модели. Это не требует внесения никаких изменений в код, вызывающем `TryUpdateModel`, так как вы используете перегрузку на базе списка разрешений, а `CourseAssignments` отсутствует в списке включений.
+Так как страница Razor не содержит коллекцию сущностей Course, связыватель модели не может автоматически обновить свойство навигации `CourseAssignments`. Вместо использования связывателя модели для обновления свойства навигации `CourseAssignments` вы делаете это в новом методе `UpdateInstructorCourses`. Поэтому нужно исключить свойство `CourseAssignments` из привязки модели. Это не требует внесения никаких изменений в код, вызывающий `TryUpdateModel`, так как вы используете перегрузку с объявленными свойствами, а `CourseAssignments` отсутствует в списке включений.
 
 Если никакие флажки не выбраны, код в `UpdateInstructorCourses` инициализирует свойство навигации `CourseAssignments` с использованием пустой коллекции и возвращает следующее:
 

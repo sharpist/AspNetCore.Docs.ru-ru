@@ -1,11 +1,11 @@
 ---
 title: Защита размещенного приложения ASP.NET Core Blazor WebAssembly с помощью Identity Server
 author: guardrex
-description: Создание нового размещенного приложения Blazor с проверкой подлинности в Visual Studio с использованием [IdentityServer](https://identityserver.io/) в качестве серверной части
+description: Создание нового размещенного приложения Blazor с аутентификацией в Visual Studio с использованием [IdentityServer](https://identityserver.io/) в качестве серверной части
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/08/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,37 +15,54 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-identity-server
-ms.openlocfilehash: cce6b6b1ec144e362415fe34645aef567269c873
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 001fa0885c4ef4f365d9849278d3aa36e7657c54
+ms.sourcegitcommit: f7873c02c1505c99106cbc708f37e18fc0a496d1
+ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402212"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86147734"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a>Защита размещенного приложения ASP.NET Core Blazor WebAssembly с помощью Identity Server
 
 Авторы: [Хавьер Кальварро Нельсон](https://github.com/javiercn) (Javier Calvarro Nelson) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
-В этой статье объясняется, как создать новое размещенное приложение Blazor, которое использует [IdentityServer](https://identityserver.io/) для проверки подлинности пользователей и вызовов API.
+В этой статье объясняется, как создать новое размещенное приложение Blazor, которое использует [IdentityServer](https://identityserver.io/) для аутентификации пользователей и вызовов API.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-В Visual Studio сделайте следующее:
+Чтобы создать новый проект Blazor WebAssembly с механизмом аутентификации, выполните следующие действия:
 
-1. Создайте новое приложение **Blazor WebAssembly** . Для получения дополнительной информации см. <xref:blazor/get-started>.
-1. В диалоговом окне **Создание нового приложения Blazor** в разделе **Проверка подлинности** выберите **Изменить**.
-1. Выберите **Учетные записи отдельных пользователей** и нажмите кнопку **ОК**.
-1. В разделе **Дополнительно** установите флажок **Размещенный ASP.NET Core**.
-1. Нажмите кнопку **Создать**.
+1. Выбрав шаблон **Приложение Blazor WebAssembly** в диалоговом окне **Создание веб-приложения ASP.NET Core**, щелкните **Изменить** в разделе **Проверка подлинности**.
 
-# <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli/)
+1. Выберите **Учетные записи отдельных пользователей** с параметром **Хранить учетные записи пользователей в приложении**, чтобы хранить пользователей в приложении с помощью системы [Identity](xref:security/authentication/identity) ASP.NET Core.
 
-Чтобы создать приложение, в командной оболочке выполните следующую команду:
+1. Установите флажок **С размещением в ASP.NET Core** в разделе **Дополнительно**.
+
+# <a name="visual-studio-code--net-core-cli"></a>[Visual Studio Code или .NET Core CLI](#tab/visual-studio-code+netcore-cli)
+
+Чтобы создать новый проект Blazor WebAssembly с механизмом аутентификации в пустой папке, укажите механизм аутентификации `Individual` с параметром `-au|--auth` для хранения пользователей в приложении с помощью системы [Identity](xref:security/authentication/identity) ASP.NET Core:
 
 ```dotnetcli
-dotnet new blazorwasm -au Individual -ho
+dotnet new blazorwasm -au Individual -ho -o {APP NAME}
 ```
 
-Чтобы указать расположение выходных данных для создания папки проекта, если она не существует, включите в команду параметр выходных данных с путем (например, `-o BlazorSample`). Имя папки также станет частью имени проекта.
+| Заполнитель  | Пример        |
+| ------------ | -------------- |
+| `{APP NAME}` | `BlazorSample` |
+
+Расположение выходных данных, указанное в параметре `-o|--output`, создает папку проекта, если она не существует, и внедряется в имя приложения.
+
+См. сведения о команде [`dotnet new`](/dotnet/core/tools/dotnet-new) в руководстве по .NET Core.
+
+# <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
+
+Чтобы создать новый проект Blazor WebAssembly с механизмом аутентификации, выполните следующие действия:
+
+1. На шаге **Настройка нового приложения Blazor WebAssembly** выберите **Индивидуальная проверка подлинности (в приложении)** из раскрывающегося списка **Проверка подлинности**.
+
+1. Приложение будет создано для отдельных пользователей, хранимых в приложении, с помощью [Identity](xref:security/authentication/identity) ASP.NET Core.
+
+1. Установите флажок **С размещением в ASP.NET Core**.
 
 ---
 
@@ -78,7 +95,7 @@ dotnet new blazorwasm -au Individual -ho
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
     ```
 
-  * Проверка подлинности с помощью дополнительного вспомогательного метода <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A>, который настраивает приложение для проверки маркеров JWT, созданных IdentityServer:
+  * Аутентификация с помощью дополнительного вспомогательного метода <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A>, который настраивает приложение для проверки маркеров JWT, созданных IdentityServer:
 
     ```csharp
     services.AddAuthentication()
@@ -108,7 +125,7 @@ dotnet new blazorwasm -au Individual -ho
 
 ### <a name="addapiauthorization"></a>AddApiAuthorization
 
-Вспомогательный метод <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> настраивает [IdentityServer](https://identityserver.io/) для сценариев ASP.NET Core. IdentityServer — это функциональная и расширяемая платформа для устранения проблем с безопасностью приложений. IdentityServer усложняет некоторые наиболее распространенные сценарии. Следовательно, предусмотрен набор соглашений и параметров конфигурации, которые можно рассматривать в качестве хорошей отправной точки. Если требуется изменить требования к проверке подлинности, можно воспользоваться широкими возможностями IdentityServer для настройки проверки подлинности в соответствии с требованиями приложения.
+Вспомогательный метод <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> настраивает [IdentityServer](https://identityserver.io/) для сценариев ASP.NET Core. IdentityServer — это функциональная и расширяемая платформа для повышения уровня безопасности приложений. IdentityServer указывает на ненужную сложность в некоторых распространенных сценариях. Следовательно, предусмотрен набор соглашений и параметров конфигурации, которые можно рассматривать в качестве хорошей отправной точки. Если нужно изменить требования к аутентификации, можно воспользоваться широкими возможностями IdentityServer для настройки аутентификации в соответствии с требованиями приложения.
 
 ### <a name="addidentityserverjwt"></a>AddIdentityServerJwt
 

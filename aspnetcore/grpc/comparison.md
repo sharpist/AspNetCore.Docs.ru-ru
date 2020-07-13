@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/comparison
-ms.openlocfilehash: 08efb79f5085acff455744e46ca411777b2641e5
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: caf9e99bcd4a1887fe5d69a3641fabee08573ef1
+ms.sourcegitcommit: d1fa3d69dda675d7a52c7100742dfa6297413376
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406164"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86093312"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Сравнение служб gRPC с API-интерфейсами HTTP
 
@@ -104,7 +104,7 @@ gRPC хорошо подходит для следующих сценариев:
 gRPC-Web поддерживает не все возможности gRPC. Клиентская и двунаправленная потоковая передача не поддерживается, и существует ограниченная поддержка потоковой передачи сервера.
 
 > [!TIP]
-> .NET Core имеет экспериментальную поддержку для gRPC-Web. Дополнительные сведения см. по адресу <xref:grpc/browser>.
+> .NET Core имеет поддержку для gRPC-Web. Дополнительные сведения см. по адресу <xref:grpc/browser>.
 
 ### <a name="not-human-readable"></a>Недоступно для чтения человеком
 

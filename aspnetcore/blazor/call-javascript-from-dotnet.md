@@ -5,7 +5,7 @@ description: Узнайте, как вызывать функции JavaScript �
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/07/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,11 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 8a2df6ca55985a1cff49abb09113e49bfeae6829
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 5c22220871fdba7fea43c38fa4bc826c07135ffc
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400522"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060037"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor
 
@@ -116,7 +117,7 @@ ms.locfileid: "85400522"
 
 ```razor
 @page "/JSInterop"
-@using BlazorSample.JsInteropClasses
+@using {APP ASSEMBLY}.JsInteropClasses
 @inject IJSRuntime JSRuntime
 
 <h1>JavaScript Interop</h1>
@@ -142,6 +143,8 @@ ms.locfileid: "85400522"
     }
 }
 ```
+
+Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `BlazorSample`).
 
 1. Если функция `TriggerJsPrompt` выполняется при нажатии кнопки **`Trigger JavaScript Prompt`** , то вызывается функция JavaScript `showPrompt`, предоставленная в файле `wwwroot/exampleJsInterop.js`.
 1. Функция `showPrompt` принимает введенные пользователем данные (имя пользователя), которые кодируются в HTML и возвращаются компоненту. Компонент сохраняет имя пользователя в локальной переменной `name`.
@@ -290,7 +293,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorSample.Pages
+namespace {APP ASSEMBLY}.Pages
 {
     public partial class Index : 
         ComponentBase, IObservable<ElementReference>, IDisposable
@@ -367,6 +370,8 @@ namespace BlazorSample.Pages
 }
 ```
 
+Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `BlazorSample`).
+
 `Shared/SurveyPrompt.razor` (дочерний компонент):
 
 ```razor
@@ -396,7 +401,7 @@ namespace BlazorSample.Pages
 using System;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorSample.Shared
+namespace {APP ASSEMBLY}.Shared
 {
     public partial class SurveyPrompt : 
         ComponentBase, IObserver<ElementReference>, IDisposable
@@ -441,6 +446,8 @@ namespace BlazorSample.Shared
     }
 }
 ```
+
+Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `BlazorSample`).
 
 ## <a name="harden-js-interop-calls"></a>Повышение надежности вызовов взаимодействия с JS
 

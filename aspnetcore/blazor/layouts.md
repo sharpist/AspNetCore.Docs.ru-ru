@@ -5,7 +5,7 @@ description: Узнайте, как создавать многократно и
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 06/23/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: f405bb655b2879bd546420d99ff645401ead92fc
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: fe78a144b413bf97be83d20b11148e1856608f78
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402524"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944239"
 ---
 # <a name="aspnet-core-blazor-layouts"></a>Макеты Blazor в ASP.NET Core
 
@@ -73,13 +73,16 @@ ms.locfileid: "85402524"
 
 * `MyCoolLayout`.
 * Все компоненты Razor в одной и той же папке и во всех вложенных папках.
-* Пространство имен `BlazorApp1.Data`.
+* Пространство имен `BlazorApp1.Data` .
  
 [!code-razor[](layouts/sample_snapshot/3.x/_Imports.razor)]
 
 Файл `_Imports.razor` аналогичен файлу [_ViewImports.cshtml для представлений и страниц Razor](xref:mvc/views/layout#importing-shared-directives), однако он применяется специально к файлам компонентов Razor.
 
 Указание макета в файле `_Imports.razor` переопределяет макет, указанный в качестве *макета по умолчанию* маршрутизатора.
+
+> [!WARNING]
+> **Не** добавляйте директиву Razor `@layout` к корневому файлу `_Imports.razor`, так как это приведет к формированию бесконечного цикла макетов в файле. Чтобы управлять макетом приложения по умолчанию, укажите макет в компоненте `Router`. Дополнительные сведения см. в разделе [Макет по умолчанию](#default-layout).
 
 ## <a name="nested-layouts"></a>Вложенные макеты
 
@@ -99,7 +102,7 @@ ms.locfileid: "85402524"
 
 ## <a name="share-a-razor-pages-layout-with-integrated-components"></a>Совместное использование макета Razor Pages с интегрированными компонентами
 
-Если маршрутизируемые компоненты интегрированы в приложение Razor Pages, общий макет приложения можно использовать с компонентами. Дополнительные сведения см. в разделе <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>.
+Если маршрутизируемые компоненты интегрированы в приложение Razor Pages, общий макет приложения можно использовать с компонентами. Для получения дополнительной информации см. <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

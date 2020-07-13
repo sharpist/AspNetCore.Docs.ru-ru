@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: 59bf94f6818108f09e9af147559fc304f48936bc
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 066bebf95a941fca5e7cc175c4c0d6d56abc9cb5
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401315"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060063"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF Core. Обновление связанных данных
 
@@ -143,7 +143,7 @@ ms.locfileid: "85401315"
 
 * Получает текущую сущность Instructor из базы данных, используя безотложную загрузку для свойства навигации `OfficeAssignment`. Это аналогично тому, что вы сделали в методе HttpGet `Edit`.
 
-* Обновляет извлеченную сущность Instructor, используя значения из связывателя модели. Перегрузка `TryUpdateModel` позволяет добавить включаемые свойства в список разрешений. Это защищает от чрезмерной передачи данных, как описано во [втором руководстве](crud.md).
+* Обновляет извлеченную сущность Instructor, используя значения из связывателя модели. Перегрузка `TryUpdateModel` позволяет объявить включаемые свойства. Это защищает от чрезмерной передачи данных, как описано во [втором руководстве](crud.md).
 
     <!-- Snippets don't play well with <ul> [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?range=241-244)] -->
 
@@ -211,7 +211,7 @@ ms.locfileid: "85401315"
 
 Сигнатура метода теперь отличается от метода HttpGet `Edit`, поэтому имя метода изменяется с `EditPost` обратно на `Edit`.
 
-Так как представление не содержит коллекцию сущностей Course, связыватель модели не может автоматически обновить свойство навигации `CourseAssignments`. Вместо использования связывателя модели для обновления свойства навигации `CourseAssignments` вы делаете это в новом методе `UpdateInstructorCourses`. Поэтому нужно исключить свойство `CourseAssignments` из привязки модели. Это не требует внесения никаких изменений в код, вызывающем `TryUpdateModel`, так как вы используете перегрузку на базе списка разрешений, а `CourseAssignments` отсутствует в списке включений.
+Так как представление не содержит коллекцию сущностей Course, связыватель модели не может автоматически обновить свойство навигации `CourseAssignments`. Вместо использования связывателя модели для обновления свойства навигации `CourseAssignments` вы делаете это в новом методе `UpdateInstructorCourses`. Поэтому нужно исключить свойство `CourseAssignments` из привязки модели. Это не требует внесения никаких изменений в код, вызывающем `TryUpdateModel`, так как вы используете перегрузку, требующую явного утверждения, а `CourseAssignments` отсутствует в списке включений.
 
 Если никакие флажки не выбраны, код в `UpdateInstructorCourses` инициализирует свойство навигации `CourseAssignments` с использованием пустой коллекции и возвращает следующее:
 

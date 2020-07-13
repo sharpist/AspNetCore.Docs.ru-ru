@@ -5,7 +5,7 @@ description: Узнайте, как использовать сценарии п
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/04/2020
+ms.date: 07/06/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 1ed87b4aa2519334d2339b500a615aa96ef4d57d
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f31a1f1d8942c9d9654dc26e946c022cf21ed9d1
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402966"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86059868"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>Формы и проверка ASP.NET Core Blazor
 
@@ -196,7 +196,7 @@ public class Starship
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditForm> создает <xref:Microsoft.AspNetCore.Components.Forms.EditContext> в виде [каскадного значения](xref:blazor/components/cascading-values-and-parameters), которое отслеживает метаданные процесса редактирования, включая измененные поля и текущие сообщения проверки. <xref:Microsoft.AspNetCore.Components.Forms.EditForm> также предоставляет удобные события для допустимых и недопустимых отправок (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>, <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit>). Кроме того, можно использовать <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit>, чтобы активировать проверку полей значений с помощью пользовательского кода проверки.
 
-Рассмотрим следующий пример:
+В следующем примере:
 
 * Метод `HandleSubmit` выполняется при нажатии кнопки **`Submit`** .
 * Форма проверяется с помощью <xref:Microsoft.AspNetCore.Components.Forms.EditContext> формы.
@@ -250,7 +250,7 @@ public class Starship
 
 В следующем примере компонент `CustomInputText` наследует компонент `InputText` платформы задает привязку события (<xref:Microsoft.AspNetCore.Components.EventCallbackFactoryBinderExtensions.CreateBinder%2A>) к событию `oninput`.
 
-`Shared/CustomInputText.razor`:
+`Shared/CustomInputText.razor`.
 
 ```razor
 @inherits InputText
@@ -266,7 +266,7 @@ public class Starship
 
 Компонент `CustomInputText` можно использовать везде, где используется <xref:Microsoft.AspNetCore.Components.Forms.InputText>:
 
-`Pages/TestForm.razor`:
+`Pages/TestForm.razor`.
 
 ```razor
 @page  "/testform"
@@ -302,7 +302,7 @@ public class Starship
 }
 ```
 
-## <a name="work-with-radio-buttons"></a>Работа с переключателями
+## <a name="radio-buttons"></a>Переключатели
 
 При работе с переключателями в форме привязка данных обрабатывается иначе, чем другие элементы, так как переключатели оцениваются как группа. Значение каждого переключателя является фиксированным, но значение группы переключателей является значением выбранного переключателя. В приведенном ниже примере показано, как выполнить следующие задачи.
 
@@ -390,6 +390,30 @@ public class Starship
 }
 ```
 
+## <a name="binding-select-element-options-to-c-object-null-values"></a>Привязка параметров элемента `<select>` к значениям `null` объекта C#
+
+Не существует целесообразного способа представить значение параметра элемента `<select>` в виде значения `null` объекта C# по следующим причинам:
+
+* Атрибуты HTML не могут иметь значение `null`. Ближайшим эквивалентом `null` в HTML является отсутствие атрибута HTML `value` в элементе `<option>`.
+* При выборе `<option>` без атрибута `value` браузер обрабатывает такое значение как *текстовое содержимое* элемента `<option>`.
+
+Платформа Blazor не пытается блокировать поведение по умолчанию, так как для этого потребуется:
+
+* создать цепочку специальных решений в платформе;
+* кардинально изменить текущее поведение платформы.
+
+::: moniker range=">= aspnetcore-5.0"
+
+Приемлемым эквивалентом `null` в HTML является *пустая строка* (`value`). Платформа Blazor преобразует `null` в пустую строку для двусторонней привязки к значению `<select>`.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Платформа Blazor не выполняет автоматическое преобразование `null` в пустую строку при попытке двусторонней привязки к значению элемента `<select>`. Дополнительные сведения см. в разделе [Исправление привязки `<select>` к значению NULL (dotnet/aspnetcore 23221)](https://github.com/dotnet/aspnetcore/pull/23221).
+
+::: moniker-end
+
 ## <a name="validation-support"></a>Поддержка проверки
 
 Компонент <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> привязывает поддержку проверки с помощью заметок к данным к каскадному <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Чтобы включить поддержку проверки с помощью заметок к данным, требуется это явное действие. Чтобы использовать другую систему проверки, а не заметки к данным, замените <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> пользовательской реализацией. Реализация ASP.NET Core доступна для проверки в эталонном источнике: [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs). Предыдущие ссылки на источник ссылки предоставляют код из ветви `master` репозитория, которая представляет текущую разработку единицы продукта для следующего выпуска ASP.NET Core. Чтобы выбрать ветвь для другого выпуска, используйте селектор ветвей GitHub (например `release/3.1`).
@@ -421,6 +445,14 @@ Blazor выполняет два типа проверки данных:
 
 Компоненты <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> и <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> поддерживают произвольные атрибуты. В созданный элемент `<div>` или `<ul>` добавляется любой атрибут, который не соответствует параметру компонента.
 
+Вы можете управлять стилем сообщений проверки с помощью таблицы стилей приложения (`wwwroot/css/app.css` или `wwwroot/css/site.css`). Класс `validation-message` по умолчанию задает для сообщений проверки красный цвет текста:
+
+```css
+.validation-message {
+    color: red;
+}
+```
+
 ### <a name="custom-validation-attributes"></a>Пользовательские атрибуты проверки
 
 Чтобы убедиться, что результат проверки правильно связан с полем при использовании [настраиваемого атрибута проверки](xref:mvc/models/validation#custom-attributes), передайте <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> контекста проверки при создании <xref:System.ComponentModel.DataAnnotations.ValidationResult>:
@@ -429,7 +461,7 @@ Blazor выполняет два типа проверки данных:
 using System;
 using System.ComponentModel.DataAnnotations;
 
-private class MyCustomValidator : ValidationAttribute
+private class CustomValidator : ValidationAttribute
 {
     protected override ValidationResult IsValid(object value, 
         ValidationContext validationContext)
@@ -441,6 +473,9 @@ private class MyCustomValidator : ValidationAttribute
     }
 }
 ```
+
+> [!NOTE]
+> <xref:System.ComponentModel.DataAnnotations.ValidationContext.GetService%2A?displayProperty=nameWithType> имеет значение `null`. Внедрение служб для проверки в методе `IsValid` не поддерживается.
 
 ### <a name="blazor-data-annotations-validation-package"></a>Пакет проверки заметок к данным в Blazor
 
@@ -465,7 +500,7 @@ Blazor обеспечивает поддержку проверки входны
 
 Делайте заметки для свойств модели с помощью `[ValidateComplexType]`. В следующих классах модели класс `ShipDescription` содержит дополнительные заметки к данным для проверки, когда модель привязана к форме:
 
-`Starship.cs`:
+`Starship.cs`.
 
 ```csharp
 using System;
@@ -482,7 +517,7 @@ public class Starship
 }
 ```
 
-`ShipDescription.cs`:
+`ShipDescription.cs`.
 
 ```csharp
 using System;
@@ -506,7 +541,7 @@ public class ShipDescription
 
 * Используйте <xref:Microsoft.AspNetCore.Components.Forms.EditContext> формы, чтобы назначить модель при инициализации компонента.
 * Проверьте форму в обратном вызове <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> контекста, чтобы включить и отключить кнопку "Отправить".
-* Отсоедините обработчик событий в методе `Dispose`. Дополнительные сведения см. в разделе <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+* Отсоедините обработчик событий в методе `Dispose`. Для получения дополнительной информации см. <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
 
 ```razor
 @implements IDisposable
@@ -576,7 +611,7 @@ public class ShipDescription
 }
 ```
 
-## <a name="troubleshoot"></a>Диагностика
+## <a name="troubleshoot"></a>Устранение неполадок
 
 > InvalidOperationException: EditForm requires a Model parameter, or an EditContext parameter, but not both (Для EditForm требуется указать параметр Model или EditContext, но не оба).
 
