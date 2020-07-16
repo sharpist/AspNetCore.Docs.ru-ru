@@ -5,7 +5,7 @@ description: Устранение ошибок при использовании
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
-ms.date: 05/26/2020
+ms.date: 07/09/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/troubleshoot
-ms.openlocfilehash: 9a3e7269db04b79146686668879bf47f1a7dd6af
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 385291ec6bb6719a5fade927fa9f599af8c94045
+ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400041"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86176175"
 ---
 # <a name="troubleshoot-grpc-on-net-core"></a>Устранение неполадок gRPC в .NET Core
 
@@ -135,13 +135,6 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 * ссылку на пакет инструментария gRPC [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/).
 
 Дополнительные сведения о создании ресурсов gRPC на C# см. в статье <xref:grpc/basics>.
-
-По умолчанию ссылка на `<Protobuf>` создает конкретный клиент и базовый класс службы. С помощью атрибута `GrpcServices` элемента ссылки можно ограничить создание ресурсов на C#. Допустимые значения `GrpcServices`:
-
-* `Both` (по умолчанию, если значение не задано)
-* `Server`
-* `Client`
-* `None`
 
 Веб-приложение ASP.NET Core, в котором размещаются службы gRPC, требует создания только базового класса службы:
 

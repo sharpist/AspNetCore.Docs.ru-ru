@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/advanced
-ms.openlocfilehash: 7233d6baf139d2ef362f4e3d1a56cf7f0e2514d2
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ebeb581cf79f2d2ab60de7df43d042fa3185cd32
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403122"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212729"
 ---
 # <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Учебник. Сведения о сложных сценариях для ASP.NET MVC с EF Core
 
@@ -105,7 +105,7 @@ ms.locfileid: "85403122"
 
 В файле *Views/Courses/UpdateCourseCredits.cshtml* замените код шаблона следующим кодом:
 
-[!code-html[](intro/samples/cu/Views/Courses/UpdateCourseCredits.cshtml)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/UpdateCourseCredits.cshtml)]
 
 Выполните метод `UpdateCourseCredits`, выбрав вкладку **Courses** (Курсы), а затем добавив "/UpdateCourseCredits" в конец URL-адреса в адресной строке браузера (например, `http://localhost:5813/Courses/UpdateCourseCredits`). Введите число в текстовое поле:
 

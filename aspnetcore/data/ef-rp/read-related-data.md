@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: 14b28f04f4077cb5622858dad1bd18b81b198f3d
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 171607544bfe89fdd0a1ed9efb68f7a532f9aee1
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405800"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212650"
 ---
 # <a name="part-6-razor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Часть 6. Razor Pages с EF Core в ASP.NET Core — чтение связанных данных
 
@@ -147,7 +147,7 @@ ms.locfileid: "85405800"
 
 Приведенный выше код не возвращает никаких типов сущностей, поэтому отслеживание не выполняется. Дополнительные сведения об отслеживании EF см. в разделе [Отслеживание или Отключение отслеживания запросов](/ef/core/querying/tracking).
 
-`CourseViewModel`.
+`CourseViewModel`:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Models/SchoolViewModels/CourseViewModel.cs?name=snippet)]
 
@@ -326,9 +326,9 @@ ms.locfileid: "85405800"
 
 Обратите внимание, что предыдущий код закомментирует `.AsNoTracking()`. Для отслеживаемых сущностей свойства навигации можно загрузить лишь явно.
 
-Тестирование приложения. С точки зрения пользователя приложение работает аналогично предыдущей версии.
+Проверьте работу приложения. С точки зрения пользователя приложение работает аналогично предыдущей версии.
 
-## <a name="next-steps"></a>Дальнейшие действия
+## <a name="next-steps"></a>Следующие шаги
 
 Следующее руководство посвящено обновлению связанных данных.
 
@@ -420,7 +420,7 @@ ms.locfileid: "85405800"
 
 Измените *Pages/Courses/Index.cshtml*, используя выделенную ниже разметку:
 
-[!code-html[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
+[!code-cshtml[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
 В шаблонный код были внесены следующие изменения:
 
@@ -508,14 +508,14 @@ ms.locfileid: "85405800"
 
 Запрос имеет две операции включения:
 
-* `OfficeAssignment`: отображается в [представлении преподавателей](#IP).
-* `CourseAssignments`: вызывает проводимые курсы.
+* `OfficeAssignment`. отображается в [представлении преподавателей](#IP).
+* `CourseAssignments`. вызывает проводимые курсы.
 
 ### <a name="update-the-instructors-index-page"></a>Изменение страницы индекса преподавателей
 
 Измените *Pages/Instructors/Index.cshtml*, используя следующую разметку:
 
-[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=1-65&highlight=1,5,8,16-21,25-32,43-57)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=1-65&highlight=1,5,8,16-21,25-32,43-57)]
 
 Приведенная выше разметка вносит следующие изменения:
 
@@ -595,11 +595,11 @@ ms.locfileid: "85405800"
 
 Добавьте следующую разметку в конец страницы Razor *Pages/Instructors/Index.cshtml*.
 
-[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-999)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-999)]
 
 Предыдущая разметка отображает список связанных с преподавателем курсов при выборе преподавателя.
 
-Тестирование приложения. Щелкните ссылку **Select** (Выбрать) на странице преподавателей.
+Проверьте работу приложения. Щелкните ссылку **Select** (Выбрать) на странице преподавателей.
 
 ### <a name="show-student-data"></a>Отображение данных об учащихся
 
@@ -611,7 +611,7 @@ ms.locfileid: "85405800"
 
 Измените *Pages/Instructors/Index.cshtml*. Добавьте следующую разметку в конец файла:
 
-[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=103-)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=103-)]
 
 Предыдущая разметка отображает список учащихся, которые зачислены на курс.
 
@@ -646,7 +646,7 @@ ms.locfileid: "85405800"
 
 Обратите внимание, что предыдущий код закомментирует `.AsNoTracking()`. Для отслеживаемых сущностей свойства навигации можно загрузить лишь явно.
 
-Тестирование приложения. С точки зрения пользователей приложение работает аналогично предыдущей версии.
+Проверьте работу приложения. С точки зрения пользователей приложение работает аналогично предыдущей версии.
 
 Следующее руководство посвящено обновлению связанных данных.
 

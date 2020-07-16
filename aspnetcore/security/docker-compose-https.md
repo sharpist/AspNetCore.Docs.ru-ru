@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-compose-https
-ms.openlocfilehash: b282af3b9c657bda4432f0d60f100f65fa7cbae9
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: a44e82be9c631aae788a671b514bab3b70f54522
+ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408621"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86407805"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-compose-over-https"></a>Размещение образов ASP.NET Core с Docker Compose по протоколу HTTPS
 
@@ -105,7 +105,7 @@ dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password her
 dotnet dev-certs https --trust
 ```
 
-`dotnet dev-certs https --trust`поддерживается только в macOS и Windows. Необходимо доверять сертификатам в Linux так, как это поддерживается в дистрибутив. Вероятно, вам нужно доверять сертификату в браузере.
+`dotnet dev-certs https --trust`поддерживается только в macOS и Windows. Необходимо доверять сертификатам в Linux так, как это поддерживается дистрибутивом. Вероятно, вам нужно доверять сертификату в браузере.
 
 В предыдущих командах замените `{ password here }` паролем.
 

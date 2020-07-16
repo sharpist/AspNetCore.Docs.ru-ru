@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/handle-errors
-ms.openlocfilehash: f756d9abfb92fd4d6d51d8762967ac2288b54b2a
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0abb5e78e1971925c8e741386c65bdf71a0f0072
+ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405761"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86407636"
 ---
 # <a name="handle-errors-in-aspnet-core-web-apis"></a>Обработка ошибок в веб-API ASP.NET Core
 
@@ -42,7 +42,7 @@ curl -i https://localhost:5001/weatherforecast/chicago
 
 ::: moniker range=">= aspnetcore-3.0"
 
-В ASP.NET Core 3.0 и более поздних версиях на странице со сведениями об исключении для разработчика ответ отображается в виде обычного текста, если клиент не запрашивает выходные данные в формате HTML. Появится следующий результат:
+В ASP.NET Core 3.0 и более поздних версиях на странице со сведениями об исключении для разработчика ответ отображается в виде обычного текста, если клиент не запрашивает выходные данные в формате HTML. Отображаются следующие результаты:
 
 ```console
 HTTP/1.1 500 Internal Server Error
@@ -76,7 +76,7 @@ Host: localhost:44312
 User-Agent: curl/7.55.1
 ```
 
-Чтобы вместо этого отображался отформатированный HTML-запрос, задайте для заголовка HTTP-запроса `Accept` тип носителя `text/html`. Пример.
+Чтобы вместо этого отображался отформатированный HTML-запрос, задайте для заголовка HTTP-запроса `Accept` тип носителя `text/html`. Пример:
 
 ```bash
 curl -i -H "Accept: text/html" https://localhost:5001/weatherforecast/chicago
@@ -290,11 +290,11 @@ Date: Fri, 27 Sep 2019 16:55:37 GMT
 1. [Реализация ProblemDetailsFactory](#implement-problemdetailsfactory).
 1. [Использование ApiBehaviorOptions.ClientErrorMapping](#use-apibehavioroptionsclienterrormapping).
 
-### <a name="implement-problemdetailsfactory"></a>Реализация ProblemDetailsFactory
+### <a name="implement-problemdetailsfactory"></a>Реализуйте `ProblemDetailsFactory`
 
-MVC создает все экземпляры <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> и <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> с помощью `Microsoft.AspNetCore.Mvc.ProblemDetailsFactory`. Сюда относятся ответы при ошибках клиента, ответы в случае ошибок при сбое проверки, а также вспомогательные методы `Microsoft.AspNetCore.Mvc.ControllerBase.Problem` и <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem>.
+MVC создает все экземпляры <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> и <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> с помощью <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory?displayProperty=fullName>. Сюда относятся ответы при ошибках клиента, ответы в случае ошибок при сбое проверки, а также вспомогательные методы <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A?displayProperty=nameWithType> и <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A?displayProperty=nameWithType>.
 
-Чтобы настроить ответ с подробными сведениями о проблемах, зарегистрируйте пользовательскую реализацию `ProblemDetailsFactory` в `Startup.ConfigureServices`:
+Чтобы настроить ответ с подробными сведениями о проблемах, зарегистрируйте пользовательскую реализацию <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> в `Startup.ConfigureServices`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection serviceCollection)
