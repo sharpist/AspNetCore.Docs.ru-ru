@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 0a87fe2f4cf7014cc15752dcf25545ce7aaa4687
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 496221bb4e34e1f9e4177d1934786a77d8c9b411
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408608"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212544"
 ---
 # <a name="part-3-razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Часть 3. Razor Pages с EF Core в ASP.NET Core — сортировка, фильтрация, разбиение на страницы
 
@@ -337,7 +337,7 @@ https://localhost:<port>/Students?SearchString=an
 
 Замените код в файле *Students/Index.cshtml* на следующий выделенный код:
 
-[!code-html[](intro/samples/cu21/Pages/Students/Index2.cshtml?highlight=17-19,25-27)]
+[!code-cshtml[](intro/samples/cu21/Pages/Students/Index2.cshtml?highlight=17-19,25-27)]
 
 Предыдущий код:
 
@@ -393,7 +393,7 @@ https://localhost:<port>/Students?SearchString=an
 
 Добавьте в *Pages/Student/Index.cshtml* приведенный ниже выделенный код, чтобы создать кнопку **Search** и различные элементы хрома.
 
-[!code-html[](intro/samples/cu21/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
+[!code-cshtml[](intro/samples/cu21/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
 
 Для добавления кнопки и поля поиска предыдущий код использует `<form>` [вспомогательную функцию тегов](xref:mvc/views/tag-helpers/intro). По умолчанию вспомогательная функция тегов `<form>` отправляет данные формы с помощью POST. При этом параметры передаются в тексте сообщения HTTP, а не в URL-адресе. При использовании HTTP GET данные формы передаются в виде строк запроса в URL-адресе. Передача данных со строками запроса позволяет пользователям добавлять URL-адрес в закладки. [Руководства консорциума W3C](https://www.w3.org/2001/tag/doc/whenToUseGet.html) рекомендуют использовать GET, когда действие не приводит к обновлению.
 
@@ -471,15 +471,15 @@ http://localhost:5000/Students?SearchString=an
 
 Измените разметку в *Students/Index.cshtml*. Изменения выделены:
 
-[!code-html[](intro/samples/cu21/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-999)]
+[!code-cshtml[](intro/samples/cu21/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-999)]
 
 Ссылки в заголовках столбцов передают в метод `OnGetAsync` с помощью строки запроса текущее значение строки поиска, чтобы пользователь мог сортировать отфильтрованные результаты:
 
-[!code-html[](intro/samples/cu21/Pages/Students/Index.cshtml?range=28-31)]
+[!code-cshtml[](intro/samples/cu21/Pages/Students/Index.cshtml?range=28-31)]
 
 Кнопки перелистывания отображаются вспомогательными функциями тегов:
 
-[!code-html[](intro/samples/cu21/Pages/Students/Index.cshtml?range=72-)]
+[!code-cshtml[](intro/samples/cu21/Pages/Students/Index.cshtml?range=72-)]
 
 Запустите приложение и перейдите на страницу учащихся.
 
@@ -525,7 +525,7 @@ http://localhost:5000/Students?SearchString=an
 
 Замените код в файле *Pages/About.cshtml* следующим кодом:
 
-[!code-html[](intro/samples/cu21/Pages/About.cshtml)]
+[!code-cshtml[](intro/samples/cu21/Pages/About.cshtml)]
 
 Запустите приложение и перейдите на страницу "About" (О программе). Количество зачисленных студентов по дням отображается в таблице.
 
