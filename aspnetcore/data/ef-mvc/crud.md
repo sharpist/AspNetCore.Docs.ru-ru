@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/crud
-ms.openlocfilehash: e7e4c4b15cca9612a552c58029ae8b34b79070d1
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: c33ff357ec6b467435325578047ac851a39e533e
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060128"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212722"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF Core. Реализация функциональности CRUD
 
@@ -102,11 +102,11 @@ http://localhost:1230/Instructor/Index?id=1&CourseID=2021
 
 Откройте *Views/Students/Details.cshtml*. Каждое поле отображается с помощью вспомогательных функций `DisplayNameFor` и `DisplayFor`, как показано в следующем примере:
 
-[!code-html[](intro/samples/cu/Views/Students/Details.cshtml?range=13-18&highlight=2,5)]
+[!code-cshtml[](intro/samples/cu/Views/Students/Details.cshtml?range=13-18&highlight=2,5)]
 
 После последнего поля и непосредственно перед закрывающим тегом `</dl>` добавьте следующий код, чтобы отобразить список регистраций:
 
-[!code-html[](intro/samples/cu/Views/Students/Details.cshtml?range=31-52)]
+[!code-cshtml[](intro/samples/cu/Views/Students/Details.cshtml?range=31-52)]
 
 Если после вставки кода нарушаются отступы в нем, нажмите клавиши CTRL-K-D, чтобы исправить это.
 
@@ -267,7 +267,7 @@ public class Student
 
 В файле *Views/Student/Delete.cshtml* добавьте сообщение об ошибке между заголовками h2 и h3, как показано в следующем примере:
 
-[!code-html[](intro/samples/cu/Views/Students/Delete.cshtml?range=7-9&highlight=2)]
+[!code-cshtml[](intro/samples/cu/Views/Students/Delete.cshtml?range=7-9&highlight=2)]
 
 Запустите приложение, выберите вкладку **Students** (Учащиеся) и щелкните гиперссылку **Delete** (Удалить):
 

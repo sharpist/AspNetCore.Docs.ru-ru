@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: 066bebf95a941fca5e7cc175c4c0d6d56abc9cb5
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 754ca2f94b1abde30ae650c9c3bcf00499520383
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060063"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212582"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF Core. Обновление связанных данных
 
@@ -87,19 +87,19 @@ ms.locfileid: "86060063"
 
 Во *Views/Courses/Create.cshtml* добавьте параметр "Select Department" (Выбрать кафедру) в раскрывающийся список **Department** (Кафедра), измените заголовок с **DepartmentID** на **Department** и добавьте сообщение о проверке.
 
-[!code-html[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-34)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-34)]
 
 Во *Views/Courses/Edit.cshtml* внесите для поля "Department" (Кафедра) изменение, аналогичное внесенному в *Create.cshtml*.
 
 Кроме того, добавьте во *Views/Courses/Edit.cshtml* поле номера курса перед полем **Title** (Название). Так как номер курса является первичным ключом, он отображается, но не может быть изменен.
 
-[!code-html[](intro/samples/cu/Views/Courses/Edit.cshtml?range=15-18)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Edit.cshtml?range=15-18)]
 
 Представление "Edit" (Редактирование) уже содержит скрытое поле (`<input type="hidden">`) для номера курса. Добавление вспомогательной функции тегов `<label>` не устраняет потребность в этом скрытом поле, так как не приводит к включению номера курса в передаваемые данные, когда пользователь нажимает кнопку **Save** (Сохранить) на странице **Edit** (Редактирование).
 
 Во *Views/Courses/Delete.cshtml* добавьте поле номера курса в верхней части страницы и измените идентификатор кафедры на ее имя.
 
-[!code-html[](intro/samples/cu/Views/Courses/Delete.cshtml?highlight=14-19,36)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Delete.cshtml?highlight=14-19,36)]
 
 Во *Views/Courses/Details.cshtml* внесите изменение, аналогичное внесенному в *Delete.cshtml*.
 
@@ -171,7 +171,7 @@ ms.locfileid: "86060063"
 
 В конце *Views/Instructors/Edit.cshtml*, перед кнопкой **Save** (Сохранить), добавьте новое поле для редактирования расположения кабинета:
 
-[!code-html[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=30-34)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=30-34)]
 
 Запустите приложение, выберите вкладку **Instructors** (Преподаватели), а затем щелкните **Edit** (Изменить) для преподавателя. Измените значение **Office Location** (Расположение кабинета) и нажмите кнопку **Save** (Сохранить).
 
@@ -235,7 +235,7 @@ ms.locfileid: "86060063"
 > [!NOTE]
 > При вставке кода в Visual Studio разрывы строк могут поменяться, нарушая код. Если код выглядит иначе после вставки, нажмите клавиши CTRL + Z один раз для отмены автоматического форматирования. Это исправляет разрывы строк, благодаря чему код приобретает показанный здесь вид. Выравнивать отступы необязательно, однако строки `@:</tr><tr>`, `@:<td>`, `@:</td>` и `@:</tr>` должны находиться на одной строке, как показано здесь. В противном случае возникает ошибка времени выполнения. Выделите блок нового кода и три раза нажмите клавишу TAB, чтобы выровнять его с существующим кодом. Эта проблема исправлена в Visual Studio 2019.
 
-[!code-html[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=35-61)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=35-61)]
 
 Этот код создает таблицу HTML с тремя столбцами. Каждый столбец содержит флажок, за которым идет заголовок с номером и названием курса. Все флажки имеют одинаковое имя ("selectedCourses"), уведомляющее связывателя модели, что их следует рассматривать как группу. Атрибуту значения для каждого флажка присваивается значение `CourseID`. При передаче страницы связыватель модели передает контроллеру массив, содержащий значения `CourseID` только для выбранных флажков.
 
@@ -299,7 +299,7 @@ public ICollection<CourseAssignment> CourseAssignments
 
 Во *Views/Instructor/Create.cshtml* добавьте текстовое поле для расположения кабинета и флажки для курсов перед кнопкой "Submit" (Отправить). Как и в случае со страницей редактирования, [исправьте форматирование, если Visual Studio переформатирует код при вставке](#notepad).
 
-[!code-html[](intro/samples/cu/Views/Instructors/Create.cshtml?range=29-61)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Create.cshtml?range=29-61)]
 
 Проверьте работу, запустив приложение и создав преподавателя.
 

@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/concurrency
-ms.openlocfilehash: 3038ae8f01273013e6c35694583d9674a1668bac
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f6ee60bf5e75256a9bf330f56b2f09b06f720a85
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401562"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212805"
 ---
 # <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET Core MVC с EF Core. Обработка параллелизма
 
@@ -148,7 +148,7 @@ dotnet ef database update
 
 Замените код в файле *Views/Departments/Index.cshtml* на приведенный ниже код.
 
-[!code-html[](intro/samples/cu/Views/Departments/Index.cshtml?highlight=4,7,44)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Index.cshtml?highlight=4,7,44)]
 
 Он изменяет заголовок на "Departments" (Кафедры), удаляет столбец RowVersion и отображает администратору имя и фамилию, а не только имя.
 
@@ -198,7 +198,7 @@ _context.Entry(departmentToUpdate).Property("RowVersion").OriginalValue = rowVer
 
 * Добавьте пункт "Select Administrator" (Выбрать администратора) в раскрывающийся список.
 
-[!code-html[](intro/samples/cu/Views/Departments/Edit.cshtml?highlight=16,34-36)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Edit.cshtml?highlight=16,34-36)]
 
 ## <a name="test-concurrency-conflicts"></a>Тестирование конфликтов параллелизма
 
@@ -258,7 +258,7 @@ public async Task<IActionResult> Delete(Department department)
 
 В файле *Views/Departments/Delete.cshtml* замените шаблонный код приведенным ниже кодом, который добавляет поле сообщения об ошибке и скрытые поля для свойств DepartmentID и RowVersion. Изменения выделены.
 
-[!code-html[](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,44,45,48)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,44,45,48)]
 
 Этот код вносит следующие изменения:
 
@@ -288,11 +288,11 @@ public async Task<IActionResult> Delete(Department department)
 
 Замените код в *Views/Departments/Details.cshtml*, чтобы удалить столбец RowVersion и отобразить полное имя администратора.
 
-[!code-html[](intro/samples/cu/Views/Departments/Details.cshtml?highlight=35)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Details.cshtml?highlight=35)]
 
 Замените код в *Views/Departments/Create.cshtml*, чтобы добавить параметр "Select" (Выбрать) в раскрывающийся список.
 
-[!code-html[](intro/samples/cu/Views/Departments/Create.cshtml?highlight=32-34)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Create.cshtml?highlight=32-34)]
 
 ## <a name="get-the-code"></a>Получите код
 

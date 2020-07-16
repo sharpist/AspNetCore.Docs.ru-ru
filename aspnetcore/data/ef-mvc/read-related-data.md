@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: f2e989b2c6370d862b4d1e6550b09cb47b5747c1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: abd5c4e474e30c119e2bea9e3cce3d2b277e0daf
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401523"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212744"
 ---
 # <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF Core. Чтение связанных данных
 
@@ -83,7 +83,7 @@ ms.locfileid: "85401523"
 
 Откройте файл *Views/Courses/Index.cshtml* и замените код шаблона следующим кодом. Изменения выделены:
 
-[!code-html[](intro/samples/cu/Views/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
 Мы внесли следующие изменения в код шаблона:
 
@@ -179,7 +179,7 @@ ms.locfileid: "85401523"
 
 В файле *Views/Instructors/Index.cshtml* замените код шаблона следующим кодом. Изменения выделены.
 
-[!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-54,56)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-54,56)]
 
 Мы внесли следующие изменения в существующий код:
 
@@ -221,7 +221,7 @@ ms.locfileid: "85401523"
 
 В файле *Views/Instructors/Index.cshtml* после закрывающего таблицу элемента (в конце файла) добавьте следующий код. Этот код отображает список связанных с преподавателем курсов, когда преподаватель выбран.
 
-[!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=66-101)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=66-101)]
 
 Этот код считывает свойство `Courses` модели представления для отображения списка курсов. Он также предоставляет гиперссылку **Select**, которая отправляет идентификатор выбранного курса в метод действия `Index`.
 
@@ -231,7 +231,7 @@ ms.locfileid: "85401523"
 
 После только что добавленного блока кода добавьте следующий код. Он отображает список студентов, которые зачислены на курс при выборе этого курса.
 
-[!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=103-125)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=103-125)]
 
 Этот код считывает свойство Enrollments модели представления для отображения списка студентов, зачисленных на этот курс.
 

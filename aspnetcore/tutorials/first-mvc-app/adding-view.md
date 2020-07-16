@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: 841751ffb834f77184365c3022293dbadc9f6f2c
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d6a541e9633d3ecc2768744956c3b43d830b0b2b
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403538"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86213129"
 ---
 # <a name="part-3-add-a-view-to-an-aspnet-core-mvc-app"></a>Часть 3. Добавление представления в приложение MVC ASP.NET Core
 
@@ -80,7 +80,7 @@ ms.locfileid: "85403538"
 
 Замените содержимое файла представления Razor *Views/HelloWorld/Index.cshtml* следующим.
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
 Перейдите к `https://localhost:{PORT}/HelloWorld`. Метод `Index` в `HelloWorldController` сделал совсем мало. Он выполнил оператор `return View();`, который указал, что метод должен использовать файл шаблона представления для отображения ответа в браузере. Так как имя файла шаблона представления не указано, MVC по умолчанию использует файл представления по умолчанию. Файл представления по умолчанию имеет имя, совпадающее с именем метода (`Index`), поэтому используется шаблон представления в файле */Views/HelloWorld/Index.cshtml*. На рисунке ниже показана строка "Hello from our View Template!", которая жестко задана в представлении.
 
@@ -96,7 +96,7 @@ ms.locfileid: "85403538"
 
 Замените содержимое файла *Views/Shared/_Layout.cshtml* следующей разметкой. Изменения выделены:
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
 
 Приведенная выше разметка вносит следующие изменения:
 
@@ -125,7 +125,7 @@ ms.locfileid: "85403538"
 
 Измените заголовок и элемент `<h2>` файла представления *Views/HelloWorld/Index.cshtml*:
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
 
 Заголовок и элемент `<h2>` немного отличаются, чтобы вы видели, какой именно фрагмент кода изменяет отображение.
 
@@ -161,7 +161,7 @@ ms.locfileid: "85403538"
 
 В шаблоне представления *Welcome.cshtml* создайте цикл, который будет отображать строку "Hello" `NumTimes`. Замените содержимое файла *Views/HelloWorld/Welcome.cshtml* следующим:
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Welcome.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Welcome.cshtml)]
 
 Сохраните изменения и перейдите по следующему URL-адресу:
 
@@ -237,7 +237,7 @@ ms.locfileid: "85403538"
 
 Замените содержимое файла представления Razor *Views/HelloWorld/Index.cshtml* следующим.
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
 Перейдите к `https://localhost:{PORT}/HelloWorld`. Метод `Index` в `HelloWorldController` сделал совсем мало. Он выполнил оператор `return View();`, который указал, что метод должен использовать файл шаблона представления для отображения ответа в браузере. Так как имя файла шаблона представления не указано, MVC по умолчанию использует файл представления по умолчанию. Файл представления по умолчанию имеет имя, совпадающее с именем метода (`Index`), поэтому используется файл */Views/HelloWorld/Index.cshtml*. На рисунке ниже показана строка "Hello from our View Template!", которая жестко задана в представлении.
 
@@ -256,7 +256,7 @@ ms.locfileid: "85403538"
 
 Эти изменения выделены в следующей разметке:
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml?highlight=6,24,51)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml?highlight=6,24,51)]
 
 В приведенной выше разметке [атрибут вспомогательной функции тега привязки](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-area` был опущен, так как это приложение не использует [области](xref:mvc/controllers/areas).
 
@@ -285,7 +285,7 @@ ms.locfileid: "85403538"
 
 Измените заголовок и элемент `<h2>` файла представления *Views/HelloWorld/Index.cshtml*:
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
 
 Заголовок и элемент `<h2>` немного отличаются, чтобы вы видели, какой именно фрагмент кода изменяет отображение.
 
@@ -321,7 +321,7 @@ ms.locfileid: "85403538"
 
 В шаблоне представления *Welcome.cshtml* создайте цикл, который будет отображать строку "Hello" `NumTimes`. Замените содержимое файла *Views/HelloWorld/Welcome.cshtml* следующим:
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Welcome.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Welcome.cshtml)]
 
 Сохраните изменения и перейдите по следующему URL-адресу:
 

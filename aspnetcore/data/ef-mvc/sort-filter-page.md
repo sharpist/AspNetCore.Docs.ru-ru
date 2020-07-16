@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/sort-filter-page
-ms.openlocfilehash: 45aabc644fbeaeaa31d534877ba93cb0611f3f34
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 24643931ed84ac257d98ceb8cc6c64d0767cfc14
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401341"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212592"
 ---
 # <a name="tutorial-add-sorting-filtering-and-paging---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF Core. Добавление сортировки, фильтрации и разбиения на страницы
 
@@ -78,7 +78,7 @@ ms.locfileid: "85401341"
 
 Для добавления гиперссылок в заголовки столбцов замените код в файле *Views/Students/Index.cshtml* следующим кодом. Измененные строки выделены.
 
-[!code-html[](intro/samples/cu/Views/Students/Index2.cshtml?highlight=16,22)]
+[!code-cshtml[](intro/samples/cu/Views/Students/Index2.cshtml?highlight=16,22)]
 
 Для формирования гиперссылок с соответствующей строкой запроса этот код использует информацию из свойств `ViewData`.
 
@@ -107,7 +107,7 @@ ms.locfileid: "85401341"
 
 В файле *Views/Student/Index.cshtml* добавьте выделенный код непосредственно перед открывающим тегом table для создания заголовка, текстового поля и кнопки **Search**.
 
-[!code-html[](intro/samples/cu/Views/Students/Index3.cshtml?range=9-23&highlight=5-13)]
+[!code-cshtml[](intro/samples/cu/Views/Students/Index3.cshtml?range=9-23&highlight=5-13)]
 
 Для добавления кнопки и поля поиска этот код использует [вспомогательную функцию тега](xref:mvc/views/tag-helpers/intro) `<form>`. По умолчанию вспомогательная функция тега `<form>` отправляет данные формы с помощью запроса POST, это означает, что параметры передаются в теле сообщения HTTP, а не в URL-адресе в виде строки запросов. При указании метода HTTP GET данные формы передаются в URL-адресе в виде строк запроса, что позволяет добавлять URL-адреса в закладки. Руководства консорциума W3C рекомендуют использовать метод GET, когда действие не приводит к обновлению.
 
@@ -186,7 +186,7 @@ return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pa
 
 Замените код в файле *Views/Students/Index.cshtml* следующим кодом. Изменения выделены.
 
-[!code-html[](intro/samples/cu/Views/Students/Index.cshtml?highlight=1,27,30,33,61-79)]
+[!code-cshtml[](intro/samples/cu/Views/Students/Index.cshtml?highlight=1,27,30,33,61-79)]
 
 Оператор `@model` в начале страницы указывает на то, что теперь представление принимает объект `PaginatedList<T>`, а не объект `List<T>`.
 
@@ -250,7 +250,7 @@ return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pa
 
 Добавьте файл *Views/Home/About.cshtml* со следующим кодом.
 
-[!code-html[](intro/samples/cu/Views/Home/About.cshtml)]
+[!code-cshtml[](intro/samples/cu/Views/Home/About.cshtml)]
 
 Запустите приложение и перейдите на страницу About. Количество зачисленных студентов по дням отображается в таблице.
 
