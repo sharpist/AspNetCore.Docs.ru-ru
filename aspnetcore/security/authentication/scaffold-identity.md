@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: e2ae82b9c26771ee5da16b1611026c6d62804bce
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: a8ca520d84d382b95cd4c0e2962ba4e5c922049e
+ms.sourcegitcommit: 3544941682869734ea0113e24e02ed0ec9e1a9ec
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212939"
+ms.lasthandoff: 07/18/2020
+ms.locfileid: "86464570"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Формирование шаблонов Identity в ASP.NET Core проектах
 
@@ -400,6 +400,14 @@ cd RPauth
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
 -->
+
+## <a name="password-configuration"></a>Настройка пароля
+
+Если <xref:Microsoft.AspNetCore.Identity.PasswordOptions> настроен в `Startup.ConfigureServices` , для свойства в шаблонных страницах может потребоваться настройка [ `[StringLength]` атрибутов](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) `Password` Identity . `InputModel``Password`Свойства находятся в следующих файлах:
+
+* `Areas/Identity/Pages/Account/Register.cshtml.cs`
+* `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
+
 ## <a name="disable-a-page"></a>Отключение страницы
 
 В этом разделе показано, как отключить страницу Register, но подход можно использовать для отключения любой страницы.
@@ -647,6 +655,14 @@ cd RPauth
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
 -->
+
+## <a name="password-configuration"></a>Настройка пароля
+
+Если <xref:Microsoft.AspNetCore.Identity.PasswordOptions> настроен в `Startup.ConfigureServices` , для свойства в шаблонных страницах может потребоваться настройка [ `[StringLength]` атрибутов](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) `Password` Identity . `InputModel``Password`Свойства находятся в следующих файлах:
+
+* `Areas/Identity/Pages/Account/Register.cshtml.cs`
+* `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
+
 ## <a name="disable-register-page"></a>Отключить страницу регистрации
 
 Чтобы отключить регистрацию пользователей, выполните следующие действия.

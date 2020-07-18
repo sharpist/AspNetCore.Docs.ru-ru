@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: bf599487fdc3e574f72f1a3d35278cc9c2ce7513
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 1156ddd2921afbfeccaf077ca29d267f8b1e844a
+ms.sourcegitcommit: 3544941682869734ea0113e24e02ed0ec9e1a9ec
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404656"
+ms.lasthandoff: 07/18/2020
+ms.locfileid: "86464557"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Подтверждение учетной записи и восстановление пароля в ASP.NET Core
 
@@ -32,13 +32,7 @@ ms.locfileid: "85404656"
 
 <!-- see C:/Dropbox/wrk/Code/SendGridConsole/Program.cs -->
 
-::: moniker range="<= aspnetcore-2.0"
-
-См. [этот PDF-файл](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_1-16-18.pdf) для ASP.NET Core версии 1,1.
-
-::: moniker-end
-
-::: moniker range="> aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
 
 ## <a name="prerequisites"></a>Предварительные требования
 
@@ -73,7 +67,7 @@ dotnet run
 
 #### <a name="configure-sendgrid-user-secrets"></a>Настройка секретов пользователя SendGrid
 
-Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Пример.
+Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Пример:
 
 ```dotnetcli
 dotnet user-secrets set SendGridUser RickAndMSFT
@@ -135,6 +129,16 @@ dotnet add package SendGrid
 * Зарегистрируйте `AuthMessageSenderOptions` экземпляр конфигурации.
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Startup.cs?name=snippet1&highlight=11-15)]
+
+## <a name="scaffold-registerconfirmation"></a>Регистерконфирматион шаблонов
+
+Следуйте инструкциям по [формированию Identity шаблонов](xref:security/authentication/scaffold-identity) и шаблонов `RegisterConfirmation` .
+
+<!-- .NET 5 fixes this, see
+https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
+-->
+
+[!INCLUDE[](~/includes/disableVer.md)]
 
 ## <a name="register-confirm-email-and-reset-password"></a>Регистрация, подтверждение электронной почты и сброс пароля
 
@@ -225,7 +229,7 @@ dotnet add package SendGrid
 
 ::: moniker-end
 
-::: moniker range="> aspnetcore-2.0 < aspnetcore-3.0"
+::: moniker range="< aspnetcore-3.0"
 
 ## <a name="prerequisites"></a>Предварительные требования
 
@@ -244,8 +248,10 @@ dotnet aspnet-codegenerator identity -dc WebPWrecover.Data.ApplicationDbContext 
 dotnet ef database drop -f
 dotnet ef database update
 dotnet run
-
 ```
+
+> [!NOTE]
+> Если <xref:Microsoft.AspNetCore.Identity.PasswordOptions> настроен в `Startup.ConfigureServices` , для свойства в шаблонных страницах может потребоваться настройка [ `[StringLength]` атрибутов](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) `Password` Identity . `InputModel` `Password` Свойство находится в `Areas/Identity/Pages/Account/Register.cshtml.cs` файле после формирования шаблонов Identity .
 
 ## <a name="test-new-user-registration"></a>Тестирование регистрации нового пользователя
 
@@ -281,7 +287,7 @@ dotnet run
 
 #### <a name="configure-sendgrid-user-secrets"></a>Настройка секретов пользователя SendGrid
 
-Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Пример.
+Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Пример:
 
 ```console
 C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT

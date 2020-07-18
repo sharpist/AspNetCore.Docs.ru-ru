@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 5a9ed8d6737352f56be78039a895a85f22dec361
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 6e47e627915bd8988d161f7d5af4a89f3671c0a7
+ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944648"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86445454"
 ---
 # <a name="configuration-in-aspnet-core"></a>Конфигурация в .NET Core
 
@@ -246,18 +246,18 @@ dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test3.cshtml.cs?name=snippet)]
 
-Выполните следующую команду, чтобы проверить замену ключа:
-
-```dotnetcli
-dotnet run -k1=value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 value6
-```
-
-Примечание. В настоящее время `=` нельзя использовать для задания значений замены ключа с одним тире `-`. Также см. [эту проблему в GitHub](https://github.com/dotnet/extensions/issues/3059).
-
 Следующая команда проверяет замену ключа:
 
 ```dotnetcli
 dotnet run -k1 value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 value6
+```
+
+<!-- Run the following command to test the key replacement: -->
+
+Примечание. В настоящее время `=` нельзя использовать для задания значений замены ключа с одним тире `-`. Также см. [эту проблему в GitHub](https://github.com/dotnet/extensions/issues/3059).
+
+```dotnetcli
+dotnet run -k1=value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 value6
 ```
 
 Для приложений, использующих сопоставления переключений, в вызове `CreateDefaultBuilder` аргументы передаваться не должны. Вызов команды `AddCommandLine` метода `CreateDefaultBuilder` не включает сопоставленные параметры, и нет возможности передать словарь сопоставления параметров в `CreateDefaultBuilder`. Чтобы решить эту проблему, нужно не передавать аргументы команде `CreateDefaultBuilder`, а позволить методу `AddCommandLine` метода `ConfigurationBuilder` обрабатывать как аргументы, так и словарь сопоставления параметров.
