@@ -5,7 +5,7 @@ description: Узнайте, как выполнять отладку прило
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 07/15/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: c48eb19c5a1759aace112e2afb1637c649173a3d
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 828fb0ce5101407b6f40195138d59c335eec389f
+ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86059907"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86407675"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>Отладка в ASP.NET Core Blazor WebAssembly
 
@@ -48,8 +48,8 @@ ms.locfileid: "86059907"
 
 Для отладки требуется один из следующих браузеров:
 
+* Google Chrome (версии 70 и более поздних) (по умолчанию)
 * Microsoft Edge (версии 80 и более поздних)
-* Google Chrome (версии 70 и более поздних)
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Включение отладки для Visual Studio и Visual Studio Code
 
@@ -133,13 +133,13 @@ ms.locfileid: "86059907"
 
 ### <a name="debug-hosted-blazor-webassembly"></a>Отладка размещенного приложения Blazor WebAssembly
 
-1. Откройте размещенное приложение Blazor WebAssembly в VS Code.
+1. Откройте папку решения размещенного приложения Blazor WebAssembly в VS Code.
 
 1. Если для проекта не задана конфигурация запуска, появится следующее уведомление. Выберите ответ **Да**.
 
    ![Добавление необходимых ресурсов](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
 
-1. В окне выберите проект *Server* в размещенном решении.
+1. В палитре команд вверху окна выберите проект *Server* в размещенном решении.
 
 При этом будет создан файл `launch.json` с конфигурацией запуска для отладчика.
 
@@ -160,7 +160,7 @@ ms.locfileid: "86059907"
 
 ### <a name="launch-configuration-options"></a>Параметры конфигурации запуска
 
-Для отладки типа `blazorwasm` поддерживаются следующие параметры конфигурации запуска.
+Для отладки типа `blazorwasm` (`.vscode/launch.json`) поддерживаются следующие параметры конфигурации запуска.
 
 | Параметр    | Описание |
 | --------- | ----------- |
@@ -198,17 +198,23 @@ ms.locfileid: "86059907"
 }
 ```
 
-#### <a name="launch-and-debug-a-hosted-blazor-webassembly-app"></a>Запуск и отладка размещенного приложения Blazor WebAssembly
+#### <a name="launch-and-debug-a-hosted-blazor-webassembly-app-with-microsoft-edge"></a>Запуск и отладка размещенного приложения Blazor WebAssembly с помощью Microsoft Edge
+
+По умолчанию конфигурация браузера использует Google Chrome. При использовании Microsoft Edge для отладки задайте для параметра `browser` значение `edge`. Чтобы использовать Google Chrome, не задавайте параметр `browser` или задайте для него значение `chrome`.
 
 ```json
 {
+  "name": "Launch and Debug Hosted Blazor WebAssembly App",
   "type": "blazorwasm",
   "request": "launch",
-  "name": "Launch and Debug Hosted App",
+  "hosted": true,
   "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/MyHostedApp.Server.dll",
-  "cwd": "${workspaceFolder}"
+  "cwd": "${workspaceFolder}/Server",
+  "browser": "edge"
 }
 ```
+
+В предыдущем примере `MyHostedApp.Server.dll` является сборкой приложения *Server*. Папка `.vscode` расположена в папке решения рядом с папками `Client`, `Server` и `Shared`.
 
 ## <a name="debug-in-the-browser"></a>Отладка в браузере
 

@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: 597f396237151f49a9ae333973e91d8f4f7c6ff1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ff9e01df002ac0fc94ced6d5d093099d66a14f36
+ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401380"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86176275"
 ---
 # <a name="part-8-razor-pages-with-ef-core-in-aspnet-core---concurrency"></a>Часть 8. Razor Pages с EF Core в ASP.NET Core — параллелизм
 
@@ -86,7 +86,7 @@ ms.locfileid: "85401380"
 
 * Настройте в EF Core включение исходных значений столбцов, настроенных как [токены параллелизма](/ef/core/modeling/concurrency), в предложение Where команд Update и Delete.
 
-  При вызове `SaveChanges` предложение Where ищет исходные значения всех свойств, помеченных атрибутом [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute). Инструкция UPDATE не найдет обновляемую строку, если какие-либо свойства токенов параллелизма изменились с момента первого чтения строки. EF Core интерпретирует это как конфликт параллелизма. Для таблиц базы данных со множеством столбцов этот подход может привести к очень большим предложениям Where и потребовать большого объема состояний. Поэтому в общем случае данный подход не рекомендуется, кроме того, он не применяется и в этом руководстве.
+  При вызове `SaveChanges` предложение Where ищет исходные значения всех свойств, помеченных атрибутом <xref:System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute>. Инструкция UPDATE не найдет обновляемую строку, если какие-либо свойства токенов параллелизма изменились с момента первого чтения строки. EF Core интерпретирует это как конфликт параллелизма. Для таблиц базы данных со множеством столбцов этот подход может привести к очень большим предложениям Where и потребовать большого объема состояний. Поэтому в общем случае данный подход не рекомендуется, кроме того, он не применяется и в этом руководстве.
 
 * Включите в таблицу базы данных столбец отслеживания, который позволяет определять, когда была изменена строка.
 
@@ -98,7 +98,7 @@ ms.locfileid: "85401380"
 
 [!code-csharp[](intro/samples/cu30/Models/Department.cs?highlight=26,27)]
 
-Именно атрибут [Timestamp](/dotnet/api/system.componentmodel.dataannotations.timestampattribute) определяет столбец как столбец отслеживания параллелизма. Другой способ задания свойства отслеживания — текучий API.
+Именно атрибут <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> определяет столбец как столбец отслеживания параллелизма. Другой способ задания свойства отслеживания — текучий API.
 
 ```csharp
 modelBuilder.Entity<Department>()
@@ -250,7 +250,7 @@ modelBuilder.Entity<Department>()
 
 В следующем примере кода показана обновленная страница:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,48,51)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,48,51)]
 
 ## <a name="update-the-edit-page-model"></a>Обновление модели страницы "Edit" (Редактирование)
 
@@ -258,7 +258,7 @@ modelBuilder.Entity<Department>()
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_All)]
 
-[OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) обновляется с помощью значения `rowVersion` из сущности при получении в методе `OnGet`. EF Core создает команду SQL UPDATE с предложением WHERE, содержащим исходное значение `RowVersion`. Если команда UPDATE не затрагивает никакие строки (нет строк, имеющих исходное значение `RowVersion`), возникает исключение `DbUpdateConcurrencyException`.
+<xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> обновляется с помощью значения `rowVersion` из сущности при получении в методе `OnGet`. EF Core создает команду SQL UPDATE с предложением WHERE, содержащим исходное значение `RowVersion`. Если команда UPDATE не затрагивает никакие строки (нет строк, имеющих исходное значение `RowVersion`), возникает исключение `DbUpdateConcurrencyException`.
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_RowVersion&highlight=17-18)]
 
@@ -282,11 +282,11 @@ modelBuilder.Entity<Department>()
 
 Оператор `ModelState.Remove` является обязательным, так как `ModelState` имеет старое значение `RowVersion`. На странице Razor значение `ModelState` для поля имеет приоритет над значениями свойств модели, если они присутствуют вместе.
 
-### <a name="update-the-razor-page"></a>Обновление страницы Razor
+### <a name="update-the-edit-page"></a>Обновление страницы редактирования
 
 Измените файл *Pages/Departments/Edit.cshtml*, используя следующий код:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
 Предыдущий код:
 
@@ -323,7 +323,7 @@ modelBuilder.Entity<Department>()
 
 Снова нажмите кнопку **Save** (Сохранить). Сохраняется значение, введенное на второй вкладке браузера. Сохраненные значения отображаются на странице индекса.
 
-## <a name="update-the-delete-page"></a>Обновление страницы удаления
+## <a name="update-the-delete-page-model"></a>Обновление модели страницы "Delete" (Удаление)
 
 Измените файл *Pages/Departments/Delete.cshtml.cs*, используя следующий код:
 
@@ -335,11 +335,11 @@ modelBuilder.Entity<Department>()
 * Возникает исключение DbUpdateConcurrencyException.
 * Вызывается `OnGetAsync` с `concurrencyError`.
 
-### <a name="update-the-delete-razor-page"></a>Обновление страницы Razor "Delete" (Удаление)
+### <a name="update-the-delete-page"></a>Обновление страницы удаления
 
 Измените *Pages/Departments/Delete.cshtml*, используя следующий код:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,42,51)]
 
 Приведенный выше код вносит следующие изменения:
 
@@ -347,7 +347,7 @@ modelBuilder.Entity<Department>()
 * Добавляет сообщение об ошибке.
 * Заменяет FirstMidName на FullName в поле **Administrator** (Администратор).
 * Изменяет `RowVersion` для отображения последнего байта.
-* Добавляет версию скрытых строк. Нужно добавить `RowVersion`, чтобы при обратном добавлении postgit привязывалось значение.
+* Добавляет версию скрытых строк. Нужно добавить `RowVersion`, чтобы обратная передача привязывала значение.
 
 ### <a name="test-concurrency-conflicts"></a>Тестирование конфликтов параллелизма
 
@@ -365,7 +365,7 @@ modelBuilder.Entity<Department>()
 
 В браузере отображается страница индекса с измененным значением и обновленным индикатором rowVersion. Обратите внимание на обновленный индикатор rowVersion, он отображается при второй обратной передаче на другой вкладке.
 
-Удалите тестовую кафедру со второй закладки. Отображается ошибка параллелизма с текущими значениями из базы данных. При нажатии кнопки **Delete** (Удалить) сущность удаляется, если только не был обновлен `RowVersion` или не была удалена кафедра.
+Удалите тестовую кафедру со второй закладки. Отображается ошибка параллелизма с текущими значениями из базы данных. При нажатии кнопки **Delete** (Удалить) сущность удаляется, если только не был обновлен `RowVersion`.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
@@ -550,7 +550,7 @@ dotnet ef database update
 
 Следующая разметка показывает обновленную страницу:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
 
 ### <a name="update-the-edit-page-model"></a>Обновление модели страницы "Edit" (Редактирование)
 
@@ -582,7 +582,7 @@ dotnet ef database update
 
 Обновите *Pages/Departments/Edit.cshtml*, используя следующую разметку:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
 Предыдущая разметка:
 
@@ -637,7 +637,7 @@ dotnet ef database update
 
 Измените *Pages/Departments/Delete.cshtml*, используя следующий код:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 
 Приведенный выше код вносит следующие изменения:
 
@@ -663,7 +663,7 @@ dotnet ef database update
 
 В браузере отображается страница индекса с измененным значением и обновленным индикатором rowVersion. Обратите внимание на обновленный индикатор rowVersion, он отображается при второй обратной передаче на другой вкладке.
 
-Удалите тестовую кафедру со второй закладки. Отображается ошибка параллелизма с текущими значениями из базы данных. При нажатии кнопки **Delete** (Удалить) сущность удаляется, если только не был обновлен `RowVersion` или не была удалена кафедра.
+Удалите тестовую кафедру со второй закладки. Отображается ошибка параллелизма с текущими значениями из базы данных. При нажатии кнопки **Delete** (Удалить) сущность удаляется, если только не был обновлен `RowVersion`.
 
 Сведения о том, как наследовать модель данных, см. в разделе [Наследование](xref:data/ef-mvc/inheritance).
 

@@ -5,7 +5,7 @@ description: Подробные сведения о дополнительных
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/07/2020
+ms.date: 07/10/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: e62cb2ab865fbf57166d5ec3d1344183c00c2095
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: b28e4e43b88fcf8eab9e8959142cca21223c57ff
+ms.sourcegitcommit: e216e8f4afa21215dc38124c28d5ee19f5ed7b1e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86059846"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86239638"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>Конфигурация модели размещения ASP.NET Core Blazor
 
@@ -129,23 +129,107 @@ ms.locfileid: "86059846"
 
 *Этот раздел относится к Blazor Server.*
 
-Иногда необходимо настроить клиент SignalR, используемый приложениями Blazor Server. Например, может потребоваться настроить ведение журнала на клиенте SignalR для диагностики проблемы с подключением.
+Настройте клиент SignalR, используемый приложениями Blazor Server, в файле `Pages/_Host.cshtml`. Разместите скрипт, который вызывает `Blazor.start` после скрипта `_framework/blazor.server.js` и внутри тега `</body>`.
 
-Чтобы настроить клиент SignalR в файле `Pages/_Host.cshtml`, сделайте следующее:
+### <a name="logging"></a>Ведение журнала
+
+Чтобы настроить ведение журнала для клиента SignalR, выполните следующие действия:
 
 * добавьте атрибут `autostart="false"` в тег `<script>` для сценария `blazor.server.js`;
-* вызовите `Blazor.start` и передайте объект конфигурации, указывающий построитель SignalR.
+* передайте объект конфигурации (`configureSignalR`), который вызывает `configureLogging` с уровнем журнала для построителя клиента.
 
-```html
-<script src="_framework/blazor.server.js" autostart="false"></script>
-<script>
-  Blazor.start({
-    configureSignalR: function (builder) {
-      builder.configureLogging("information"); // LogLevel.Information
-    }
-  });
-</script>
+```cshtml
+    ...
+
+    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script>
+      Blazor.start({
+        configureSignalR: function (builder) {
+          builder.configureLogging("information");
+        }
+      });
+    </script>
+</body>
 ```
+
+В предыдущем примере `information` эквивалентно уровню журнала <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.
+
+### <a name="modify-the-reconnection-handler"></a>Изменение обработчика повторного подключения
+
+Для событий подключения канала обработчика повторного подключения можно настроить пользовательское поведение, например следующим способом:
+
+* уведомлять пользователя, если подключение было разорвано;.
+* вносить записи в журнал (со стороны клиента) при подключении канала.
+
+Чтобы изменить события подключения, сделайте следующее:
+
+* добавьте атрибут `autostart="false"` в тег `<script>` для сценария `blazor.server.js`;
+* регистрируйте обратные вызовы по изменениям подключений для разорванных подключений (`onConnectionDown`) и установленных (в том числе повторно) подключений (`onConnectionUp`), при этом укажите **оба** метода `onConnectionDown` и `onConnectionUp`.
+
+```cshtml
+    ...
+
+    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script>
+      Blazor.start({
+        reconnectionHandler: {
+          onConnectionDown: (options, error) => console.error(error);
+          onConnectionUp: () => console.log("Up, up, and away!");
+        }
+      });
+    </script>
+</body>
+```
+
+### <a name="adjust-the-reconnection-retry-count-and-interval"></a>Настройка числа попыток и интервала повторного подключения
+
+Чтобы настроить число попыток и интервал повторного подключения, выполните следующие действия:
+
+* добавьте атрибут `autostart="false"` в тег `<script>` для сценария `blazor.server.js`;
+* задайте число повторных попыток (`maxRetries`) и периодичность в миллисекундах для каждой повторной попытки (`retryIntervalMilliseconds`).
+
+```cshtml
+    ...
+
+    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script>
+      Blazor.start({
+        reconnectionOptions: {
+          maxRetries: 3,
+          retryIntervalMilliseconds: 2000
+        }
+      });
+    </script>
+</body>
+```
+
+### <a name="hide-or-replace-the-reconnection-display"></a>Скрытие или замена отображаемого элемента повторного подключения
+
+Чтобы скрыть отображаемый элемент повторного подключения, выполните следующие действия:
+
+* добавьте атрибут `autostart="false"` в тег `<script>` для сценария `blazor.server.js`;
+* задайте для свойства `_reconnectionDisplay` обработчика повторных подключений пустой объект (`{}` или `new Object()`).
+
+```cshtml
+    ...
+
+    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script>
+      window.addEventListener('beforeunload', function () {
+        Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
+      });
+    </script>
+</body>
+```
+
+Чтобы заменить отображаемый элемент повторного подключения, задайте для `_reconnectionDisplay` в предыдущем примере нужный элемент:
+
+```javascript
+Blazor.defaultReconnectionHandler._reconnectionDisplay = 
+  document.getElementById("{ELEMENT ID}");
+```
+
+Заполнитель `{ELEMENT ID}` — это идентификатор элемента HTML для отображения.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
