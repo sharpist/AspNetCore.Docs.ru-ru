@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 055dc7295aad67f92fe5f4e8271a1543262257b5
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 720da8a8fe22f0e1911fd554c094661b4465a335
+ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404604"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86568838"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Передача файлов в ASP.NET Core
 
@@ -191,7 +191,7 @@ ms.locfileid: "85404604"
 Для выполнения отправки формы в JavaScript для клиентов, которые [не поддерживают Fetch API](https://caniuse.com/#feat=fetch), используйте один из следующих подходов:
 
 * Используйте функцию Fetch Polyfill (например, [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Используйте `XMLHttpRequest`. Пример.
+* Используйте `XMLHttpRequest`. Пример:
 
   ```javascript
   <script>
@@ -424,7 +424,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 В примере приложения `GenerateAntiforgeryTokenCookieAttribute` и применяются в `DisableFormValueModelBindingAttribute` качестве фильтров к моделям приложений страницы `/StreamedSingleFileUploadDb` и `/StreamedSingleFileUploadPhysical` в `Startup.ConfigureServices` с использованием [ Razor соглашений о страницах](xref:razor-pages/razor-pages-conventions).
 
-[!code-csharp[](file-uploads/samples/3.x/SampleApp/Startup.cs?name=snippet_AddRazorPages&highlight=8-11,17-20)]
+[!code-csharp[](file-uploads/samples/3.x/SampleApp/Startup.cs?name=snippet_AddRazorPages&highlight=7-10,16-19)]
 
 Так как привязка модели не считывает форму, параметры, привязанные из формы, не привязываются (запросы, маршруты и заголовки продолжают работать). Метод действия работает напрямую со свойством `Request`. Для считывания каждого раздела служит объект `MultipartReader`. Данные "ключ — значение" хранятся в `KeyValueAccumulator`. После считывания составных разделов содержимое `KeyValueAccumulator` используется для привязки данных формы к типу модели.
 
@@ -464,7 +464,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 ### <a name="file-extension-validation"></a>Проверка расширения файла
 
-Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример.
+Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -621,18 +621,17 @@ public void ConfigureServices(IServiceCollection services)
 В Razor приложении "страницы" примените фильтр с [соглашением](xref:razor-pages/razor-pages-conventions) в `Startup.ConfigureServices` :
 
 ```csharp
-services.AddRazorPages()
-    .AddRazorPagesOptions(options =>
-    {
-        options.Conventions
-            .AddPageApplicationModelConvention("/FileUploadPage",
-                model.Filters.Add(
-                    new RequestFormLimitsAttribute()
-                    {
-                        // Set the limit to 256 MB
-                        MultipartBodyLengthLimit = 268435456
-                    });
-    });
+services.AddRazorPages(options =>
+{
+    options.Conventions
+        .AddPageApplicationModelConvention("/FileUploadPage",
+            model.Filters.Add(
+                new RequestFormLimitsAttribute()
+                {
+                    // Set the limit to 256 MB
+                    MultipartBodyLengthLimit = 268435456
+                });
+});
 ```
 
 В Razor приложении "страницы" или в приложении MVC примените фильтр к модели страницы или методу действия:
@@ -669,18 +668,17 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 В Razor приложении "страницы" примените фильтр с [соглашением](xref:razor-pages/razor-pages-conventions) в `Startup.ConfigureServices` :
 
 ```csharp
-services.AddRazorPages()
-    .AddRazorPagesOptions(options =>
-    {
-        options.Conventions
-            .AddPageApplicationModelConvention("/FileUploadPage",
-                model =>
-                {
-                    // Handle requests up to 50 MB
-                    model.Filters.Add(
-                        new RequestSizeLimitAttribute(52428800));
-                });
-    });
+services.AddRazorPages(options =>
+{
+    options.Conventions
+        .AddPageApplicationModelConvention("/FileUploadPage",
+            model =>
+            {
+                // Handle requests up to 50 MB
+                model.Filters.Add(
+                    new RequestSizeLimitAttribute(52428800));
+            });
+});
 ```
 
 В Razor приложении Pages или MVC примените фильтр к классу обработчика страницы или методу действия:
@@ -920,7 +918,7 @@ The request filtering module is configured to deny a request that exceeds the re
 Для выполнения отправки формы в JavaScript для клиентов, которые [не поддерживают Fetch API](https://caniuse.com/#feat=fetch), используйте один из следующих подходов:
 
 * Используйте функцию Fetch Polyfill (например, [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Используйте `XMLHttpRequest`. Пример.
+* Используйте `XMLHttpRequest`. Пример:
 
   ```javascript
   <script>
@@ -1193,7 +1191,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 ### <a name="file-extension-validation"></a>Проверка расширения файла
 
-Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример.
+Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };

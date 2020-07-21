@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 2c58a274e8de0b1205b223287b7690b1d5caed23
-ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
+ms.openlocfilehash: 06803ee57824bbfac5725763938abbb9db0e360a
+ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86445129"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86568851"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Настройка проверки подлинности сертификата в ASP.NET Core
 
@@ -630,7 +630,7 @@ public void ConfigureServices(IServiceCollection services)
 - HTTP/2 [явно запрещает](https://tools.ietf.org/html/rfc7540#section-9.2.1) повторное согласование.
 - Протокол TLS 1,3 [удалил](https://tools.ietf.org/html/rfc8740#section-1) поддержку повторного согласования.
 
-ASP.NET Core 5 Preview 4 и более поздней версии добавляет более удобную поддержку для необязательных клиентских сертификатов. Дополнительные сведения см. в [примере необязательных сертификатов](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+ASP.NET Core 5 Preview 7 и более поздней версии добавляет более удобную поддержку для необязательных клиентских сертификатов. Дополнительные сведения см. в [примере необязательных сертификатов](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
 
 Следующий подход поддерживает необязательные сертификаты клиента:
 
