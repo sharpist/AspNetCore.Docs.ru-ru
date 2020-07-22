@@ -5,7 +5,7 @@ description: Узнайте, как создать веб-API в ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/02/2020
+ms.date: 07/20/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/index
-ms.openlocfilehash: 7c9762d23ff612155846357bfadeaaad492c7299
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 98fb8c0a26f5f8e7ce5f07066f2f36e748ab2398
+ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404734"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86568747"
 ---
 # <a name="create-web-apis-with-aspnet-core"></a>Создание веб-API с помощью ASP.NET Core
 
@@ -98,16 +98,12 @@ ASP.NET Core поддерживает создание служб RESTful, та�
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.1"
-
 * [Обязательная маршрутизация атрибутов](#attribute-routing-requirement)
 * [Автоматические отклики HTTP 400](#automatic-http-400-responses)
 * [Вывод параметров источника привязки](#binding-source-parameter-inference)
 * [Вывод многокомпонентных запросов и запросов данных форм](#multipartform-data-request-inference)
 
 Для реализации этих функций необходима [версия совместимости](xref:mvc/compatibility-version), начиная с 2.1.
-
-::: moniker-end
 
 ### <a name="attribute-on-specific-controllers"></a>Атрибут в определенных контроллерах
 
@@ -232,9 +228,11 @@ if (!ModelState.IsValid)
 
 ::: moniker-end
 
+Чтобы обеспечить согласованность автоматических и настраиваемых ответов, вызовите метод <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A>, а не <xref:System.Web.Http.ApiController.BadRequest%2A>. `ValidationProblem` возвращает объект <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>, а также автоматический ответ.
+
 ### <a name="log-automatic-400-responses"></a>Запись в журнал автоматических откликов HTTP 400
 
-См. статью об[записи в журнал автоматических откликов HTTP 400 на ошибки проверки модели (aspnet/AspNetCore.Docs № 12157)](https://github.com/dotnet/AspNetCore.Docs/issues/12157).
+См. описание проблемы [записи в журнал автоматических ответов HTTP 400 для ошибок проверки модели (aspnet/AspNetCore.Docs#12157)](https://github.com/dotnet/AspNetCore.Docs/issues/12157).
 
 ### <a name="disable-automatic-400-response"></a>Отключение автоматической активации отклика HTTP 400
 

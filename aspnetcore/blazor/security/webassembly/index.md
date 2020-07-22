@@ -5,7 +5,7 @@ description: Узнайте о защите приложений Blazor WebAssem
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/01/2020
+ms.date: 07/16/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: 0ff580dd7cbefdfe3121b30490f99e0235d93bc3
-ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
+ms.openlocfilehash: fbb3f6d254e6d294edc7af59d7980a1d67e4a801
+ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86176148"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86568812"
 ---
 # <a name="secure-aspnet-core-blazor-webassembly"></a>Защита ASP.NET Core Blazor WebAssembly
 
@@ -73,6 +73,22 @@ Blazor WebAssembly поддерживает проверку подлиннос�
 В приложениях Blazor WebAssembly авторизацию можно обойти, так как пользователь может изменять весь код на стороне клиента. Это же справедливо для всех технологий на стороне клиента, включая платформы одностраничного приложения JavaScript или собственных приложений для любой операционной системы.
 
 **Всегда выполняйте проверки авторизации на стороне сервера в конечных точках API, к которым обращается клиентское приложение.**
+
+## <a name="require-authorization-for-the-entire-app"></a>Требование авторизации для всего приложения
+
+Примените [атрибут `[Authorize]`](xref:blazor/security/index#authorize-attribute) ([документация по API](xref:System.Web.Mvc.AuthorizeAttribute)) к каждому компоненту Razor приложения, используя один из следующих подходов.
+
+* Используйте директиву [`@attribute`](xref:mvc/views/razor#attribute) в файле `_Imports.razor`:
+
+  ```razor
+  @using Microsoft.AspNetCore.Authorization
+  @attribute [Authorize]
+  ```
+
+* Добавьте атрибут к каждому компоненту Razor в папке `Pages`.
+
+> [!NOTE]
+> Задание политики <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> с использованием <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> **не** поддерживается.
 
 ## <a name="refresh-tokens"></a>Маркеры обновления
 

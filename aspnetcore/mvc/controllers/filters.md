@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: 0141ad2df5216183424980a6ca50bf6bcd64ade5
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: 96d24940af6c591e3c02bfa26ed9d7d6ea60d27d
+ms.sourcegitcommit: d00a200bc8347af794b24184da14ad5c8b6bba9a
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86213056"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86869982"
 ---
 # <a name="filters-in-aspnet-core"></a>Фильтры в ASP.NET Core
 
@@ -83,6 +83,8 @@ ms.locfileid: "86213056"
 Синхронные фильтры выполняют код до и после этапа конвейера. Например, <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting*> вызывается перед вызовом метода действия, а <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted*> — после возврата метода действия.
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/MySampleActionFilter.cs?name=snippet_ActionFilter)]
+
+В приведенном выше коде [мидебуг](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/filters/3.1sample/FiltersSample/Helper/MyDebug.cs) — это служебная функция в [примере загрузки](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/filters/3.1sample/FiltersSample/Helper/MyDebug.cs).
 
 Асинхронные фильтры определяют метод `On-Stage-ExecutionAsync`. Например, <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*>:
 
@@ -184,14 +186,14 @@ ASP.NET Core включает встроенные фильтры на осно�
   
 В следующем примере показан порядок вызова методов фильтров для синхронных фильтров действий.
 
-| Sequence | Область фильтра | Метод фильтра |
+| Последовательность | Область фильтра | Метод фильтра |
 |:--------:|:------------:|:-------------:|
-| 1 | Глобальный | `OnActionExecuting` |
+| 1 | Global | `OnActionExecuting` |
 | 2 | Контроллер или Razor страница| `OnActionExecuting` |
 | 3 | Метод | `OnActionExecuting` |
 | 4 | Метод | `OnActionExecuted` |
 | 5 | Контроллер или Razor страница | `OnActionExecuted` |
-| 6 | Глобальный | `OnActionExecuted` |
+| 6 | Global | `OnActionExecuted` |
 
 ### <a name="controller-level-filters"></a>Фильтры на уровне контроллера
 
@@ -211,6 +213,8 @@ ASP.NET Core включает встроенные фильтры на осно�
 * Переопределяет `OnActionExecuting` и `OnActionExecuted`.
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/TestController.cs?name=snippet)]
+
+[!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
 <!-- test via  webBuilder.UseStartup<Startup>(); -->
 
@@ -728,14 +732,14 @@ ASP.NET Core включает встроенные фильтры на осно�
   
 В следующем примере показан порядок вызова методов фильтров для синхронных фильтров действий.
 
-| Sequence | Область фильтра | Метод фильтра |
+| Последовательность | Область фильтра | Метод фильтра |
 |:--------:|:------------:|:-------------:|
-| 1 | Глобальный | `OnActionExecuting` |
+| 1 | Global | `OnActionExecuting` |
 | 2 | Контроллер | `OnActionExecuting` |
 | 3 | Метод | `OnActionExecuting` |
 | 4 | Метод | `OnActionExecuted` |
 | 5 | Контроллер | `OnActionExecuted` |
-| 6 | Глобальный | `OnActionExecuted` |
+| 6 | Global | `OnActionExecuted` |
 
 Эта последовательность показывает:
 
@@ -788,12 +792,12 @@ ASP.NET Core включает встроенные фильтры на осно�
 
 Рассмотрим три фильтра действий, показанные в предыдущем примере. Если свойство `Order` контроллера и глобальные фильтры имеют значения 1 и 2 соответственно, порядок выполнения инвертируется.
 
-| Sequence | Область фильтра | Свойство`Order` | Метод фильтра |
+| Последовательность | Область фильтра | Свойство`Order` | Метод фильтра |
 |:--------:|:------------:|:-----------------:|:-------------:|
 | 1 | Метод | 0 | `OnActionExecuting` |
 | 2 | Контроллер | 1  | `OnActionExecuting` |
-| 3 | Глобальный | 2  | `OnActionExecuting` |
-| 4 | Глобальный | 2  | `OnActionExecuted` |
+| 3 | Global | 2  | `OnActionExecuting` |
+| 4 | Global | 2  | `OnActionExecuted` |
 | 5 | Контроллер | 1  | `OnActionExecuted` |
 | 6 | Метод | 0  | `OnActionExecuted` |
 
