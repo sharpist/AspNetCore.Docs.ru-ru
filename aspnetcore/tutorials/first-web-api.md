@@ -6,20 +6,20 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 2/25/2020
 no-loc:
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: 79f36168d0430ceee3794cfb5a4e29f3671ac73f
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: 2383934070a65b8131e890a170186b736d3fcec0
+ms.sourcegitcommit: d00a200bc8347af794b24184da14ad5c8b6bba9a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212620"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86869995"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Учебник. Создание веб-API с помощью ASP.NET Core
 
@@ -232,7 +232,7 @@ ms.locfileid: "86212620"
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-### <a name="add-microsoftentityframeworkcoresqlserver"></a>Добавление Microsoft.EntityFrameworkCore.SqlServer
+### <a name="add-nuget-packages"></a>Добавление пакетов NuGet
 
 * В меню **Сервис** выберите **Диспетчер пакетов NuGet > Управление пакетами NuGet для решения**.
 * Перейдите на вкладку **Обзор** и введите **Microsoft.EntityFrameworkCore.SqlServer** в поле поиска.
@@ -958,13 +958,13 @@ jQuery отправляет запрос HTTP POST с элементом спи�
 
 ## <a name="add-authentication-support-to-a-web-api"></a>Добавление поддержки аутентификации в веб-API
 
-[!INCLUDE[](~/includes/:::no-loc(Identity):::Server4.md)]
+[!INCLUDE[](~/includes/IdentityServer4.md)]
 
-## <a name="additional-resources"></a>[!INCLUDE[](~/includes/IdentityServer4.md)]
+## <a name="additional-resources"></a>Дополнительные ресурсы
 
-Дополнительные ресурсы [Просмотреть или скачать пример кода для этого учебника](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples).
+[Просмотреть или скачать пример кода для этого учебника](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). См. раздел [Практическое руководство. Скачивание файла](xref:index#how-to-download-a-sample).
 
-См. раздел [Практическое руководство. Скачивание файла](xref:index#how-to-download-a-sample).
+Дополнительные сведения см. в следующих ресурсах:
 
 * <xref:web-api/index>
 * <xref:tutorials/web-api-help-pages-using-swagger>
@@ -973,4 +973,4 @@ jQuery отправляет запрос HTTP POST с элементом спи�
 * <xref:web-api/action-return-types>
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
-* Дополнительные сведения см. в следующих ресурсах:
+* [Версия руководства на YouTube](https://www.youtube.com/watch?v=TTkhEyGBfAk)
