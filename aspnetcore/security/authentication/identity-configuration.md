@@ -1,64 +1,64 @@
 ---
-title: Настройка ASP.NET CoreIdentity
+title: 'Настройка ASP.NET Core:::no-loc(Identity):::'
 author: AdrienTorris
-description: Изучите ASP.NET Core Identity значения по умолчанию и Узнайте, как настроить Identity свойства для использования пользовательских значений.
+description: 'Изучите ASP.NET Core :::no-loc(Identity)::: значения по умолчанию и Узнайте, как настроить :::no-loc(Identity)::: свойства для использования пользовательских значений.'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/11/2019
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- ':::no-loc(Blazor):::'
+- ':::no-loc(Blazor Server):::'
+- ':::no-loc(Blazor WebAssembly):::'
+- ':::no-loc(Identity):::'
+- ":::no-loc(Let's Encrypt):::"
+- ':::no-loc(Razor):::'
+- ':::no-loc(SignalR):::'
 uid: security/authentication/identity-configuration
-ms.openlocfilehash: 262101594d57ad63bb0bac4da3cefa8d8d380908
-ms.sourcegitcommit: 3544941682869734ea0113e24e02ed0ec9e1a9ec
+ms.openlocfilehash: 5c999b426742cf75b1997f5b40223e2dda112901
+ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/18/2020
-ms.locfileid: "86464531"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "87160288"
 ---
-# <a name="configure-aspnet-core-identity"></a>Настройка ASP.NET CoreIdentity
+# <a name="configure-aspnet-core-no-locidentity"></a>Настройка ASP.NET Core:::no-loc(Identity):::
 
-ASP.NET Core Identity использует значения по умолчанию для таких параметров, как политика паролей, блокировка и конфигурация файлов cookie. Эти параметры можно переопределить в `Startup` классе.
+ASP.NET Core :::no-loc(Identity)::: использует значения по умолчанию для таких параметров, как политика паролей, блокировка и конфигурация файлов cookie. Эти параметры можно переопределить в `Startup` классе.
 
-## <a name="identity-options"></a>Параметры Identity
+## <a name="no-locidentity-options"></a>Параметры :::no-loc(Identity):::
 
-Класс [ Identity Options](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) представляет параметры, которые можно использовать для настройки Identity системы. `IdentityOptions`необходимо задать **после** вызова метода `AddIdentity` или `AddDefaultIdentity` .
+Класс [ :::no-loc(Identity)::: Options](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) представляет параметры, которые можно использовать для настройки :::no-loc(Identity)::: системы. `:::no-loc(Identity):::Options`необходимо задать **после** вызова метода `Add:::no-loc(Identity):::` или `AddDefault:::no-loc(Identity):::` .
 
-### <a name="claims-identity"></a>ПретензиIdentity
+### <a name="claims-no-locidentity"></a>Претензи:::no-loc(Identity):::
 
-[ Identity Options. Claims Identity ](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.claimsidentity) указывает [ Identity Параметры утверждений](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions) со свойствами, приведенными в следующей таблице.
+[ :::no-loc(Identity)::: Options. Claims :::no-loc(Identity)::: ](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.claimsidentity) указывает [ :::no-loc(Identity)::: Параметры утверждений](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions) со свойствами, приведенными в следующей таблице.
 
-| Свойство | Описание | Значение по умолчанию |
+| Свойство | Описание | По умолчанию |
 | -------- | ----------- | :-----: |
 | [ролеклаимтипе](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions.roleclaimtype) | Возвращает или задает тип утверждения, используемого для утверждения роли. | [ClaimTypes. Role](/dotnet/api/system.security.claims.claimtypes.role) |
-| [секуритистампклаимтипе](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions.securitystampclaimtype) | Возвращает или задает тип утверждения, используемого для утверждения метки безопасности. | `AspNet.Identity.SecurityStamp` |
+| [секуритистампклаимтипе](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions.securitystampclaimtype) | Возвращает или задает тип утверждения, используемого для утверждения метки безопасности. | `AspNet.:::no-loc(Identity):::.SecurityStamp` |
 | [UserIdClaimType](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions.useridclaimtype) | Возвращает или задает тип утверждения, используемого для утверждения идентификатора пользователя. | [ClaimTypes. NameIdentifier](/dotnet/api/system.security.claims.claimtypes.nameidentifier) |
 | [UserNameClaimType](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions.usernameclaimtype) | Возвращает или задает тип утверждения, используемого для утверждения имени пользователя. | [ClaimTypes.Name](/dotnet/api/system.security.claims.claimtypes.name) |
 
 ### <a name="lockout"></a>Блокирование
 
-Блокировка задается в методе [пассвордсигнинасинк](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync#Microsoft_AspNetCore_Identity_SignInManager_1_PasswordSignInAsync_System_String_System_String_System_Boolean_System_Boolean_) :
+Блокировка задается в методе [пассвордсигнинасинк](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync#Microsoft_AspNetCore_:::no-loc(Identity):::_SignInManager_1_PasswordSignInAsync_System_String_System_String_System_Boolean_System_Boolean_) :
 
-[!code-csharp[](identity-configuration/sample/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=9)]
+[!code-csharp[](identity-configuration/sample/Areas/:::no-loc(Identity):::/Pages/Account/Login.cshtml.cs?name=snippet&highlight=9)]
 
-Приведенный выше код основан на `Login` Identity шаблоне. 
+Приведенный выше код основан на `Login` :::no-loc(Identity)::: шаблоне. 
 
 Параметры блокировки задаются в `StartUp.ConfigureServices` :
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_lock)]
 
-Приведенный выше код задает [ Identity Параметры](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) [локкаутоптионс](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions) со значениями по умолчанию.
+Приведенный выше код задает [ :::no-loc(Identity)::: Параметры](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) [локкаутоптионс](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions) со значениями по умолчанию.
 
 Успешная проверка подлинности сбрасывает количество неудачных попыток доступа и сбрасывает часы.
 
-[ Identity Options. блокировкой](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.lockout) задает [локкаутоптионс](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions) со свойствами, показанными в таблице.
+[ :::no-loc(Identity)::: Options. блокировкой](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.lockout) задает [локкаутоптионс](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions) со свойствами, показанными в таблице.
 
-| Свойство | Описание | Значение по умолчанию |
+| Свойство | Описание | По умолчанию |
 | -------- | ----------- | :-----: |
 | [алловедфорневусерс](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.allowedfornewusers) | Определяет, можно ли заблокировать нового пользователя. | `true` |
 | [дефаултлоккауттимеспан](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.defaultlockouttimespan) | Количество времени, в течение которого пользователь блокируется в случае блокировки. | 5 минут |
@@ -66,20 +66,20 @@ ASP.NET Core Identity использует значения по умолчан�
 
 ### <a name="password"></a>Пароль
 
-По умолчанию Identity требует, чтобы пароли содержали символы в верхнем регистре, символы нижнего регистра, цифры и символы, отличные от буквенно-цифровых. Пароли должны иметь длину не менее шести символов.
+По умолчанию :::no-loc(Identity)::: требует, чтобы пароли содержали символы в верхнем регистре, символы нижнего регистра, цифры и символы, отличные от буквенно-цифровых. Пароли должны иметь длину не менее шести символов.
 
 Для паролей настраивается:
 
-* <xref:Microsoft.AspNetCore.Identity.PasswordOptions> в `Startup.ConfigureServices`;
-* [ `[StringLength]` атрибуты](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) `Password` свойств, если Identity в приложении сформировано [формирование шаблонов](xref:security/authentication/scaffold-identity). `InputModel``Password`Свойства находятся в следующих файлах:
-  * `Areas/Identity/Pages/Account/Register.cshtml.cs`
-  * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
+* <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.PasswordOptions> в `Startup.ConfigureServices`;
+* [ `[StringLength]` атрибуты](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) `Password` свойств, если :::no-loc(Identity)::: в приложении сформировано [формирование шаблонов](xref:security/authentication/scaffold-identity). `InputModel``Password`Свойства находятся в следующих файлах:
+  * `Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml.cs`
+  * `Areas/:::no-loc(Identity):::/Pages/Account/ResetPassword.cshtml.cs`
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_pw)]
 
-[ Identity Параметры. Password](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.password) задает [пассвордоптионс](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) с свойствами, показанными в таблице.
+[ :::no-loc(Identity)::: Параметры. Password](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.password) задает [пассвордоптионс](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) с свойствами, показанными в таблице.
 
-| Свойство | Описание | Значение по умолчанию |
+| Свойство | Описание | По умолчанию |
 | -------- | ----------- | :-----: |
 | [рекуиредигит](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requiredigit) | Требуется число от 0-9 в пароле. | `true` |
 | [рекуиредленгс](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requiredlength) | Минимальная длина пароля. | 6 |
@@ -94,16 +94,16 @@ ASP.NET Core Identity использует значения по умолчан�
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_si)]
 
-[ Identity Параметры. Signing](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.signin) указывает [сигниноптионс](/dotnet/api/microsoft.aspnetcore.identity.signinoptions) со свойствами, показанными в таблице.
+[ :::no-loc(Identity)::: Параметры. Signing](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.signin) указывает [сигниноптионс](/dotnet/api/microsoft.aspnetcore.identity.signinoptions) со свойствами, показанными в таблице.
 
-| Свойство | Описание | Значение по умолчанию |
+| Свойство | Описание | По умолчанию |
 | -------- | ----------- | :-----: |
 | [рекуиреконфирмедемаил](/dotnet/api/microsoft.aspnetcore.identity.signinoptions.requireconfirmedemail) | Для входа требуется подтвержденное электронное письмо. | `false` |
 | [рекуиреконфирмедфоненумбер](/dotnet/api/microsoft.aspnetcore.identity.signinoptions.requireconfirmedphonenumber) | Для входа требуется подтвержденный номер телефона. | `false` |
 
 ### <a name="tokens"></a>Токены
 
-[ Identity Options. Tokens](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.tokens) указывает [токеноптионс](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions) с помощью свойств, показанных в таблице.
+[ :::no-loc(Identity)::: Options. Tokens](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.tokens) указывает [токеноптионс](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions) с помощью свойств, показанных в таблице.
 
 | Свойство | Описание |
 | -------- | ----------- |
@@ -118,16 +118,16 @@ ASP.NET Core Identity использует значения по умолчан�
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_user)]
 
-[ Identity Параметры. User](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.user) указывает [UserOptions](/dotnet/api/microsoft.aspnetcore.identity.useroptions) со свойствами, показанными в таблице.
+[ :::no-loc(Identity)::: Параметры. User](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.user) указывает [UserOptions](/dotnet/api/microsoft.aspnetcore.identity.useroptions) со свойствами, показанными в таблице.
 
-| Свойство | Описание | Значение по умолчанию |
+| Свойство | Описание | По умолчанию |
 | -------- | ----------- | :-----: |
 | [алловедусернамечарактерс](/dotnet/api/microsoft.aspnetcore.identity.useroptions.allowedusernamecharacters) | Допустимые символы в имени пользователя. | абкдефгхижклмнопкрстуввксиз<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>0123456789<br>-.\_@+ |
 | [рекуиреуникуимаил](/dotnet/api/microsoft.aspnetcore.identity.useroptions.requireuniqueemail) | Требует, чтобы каждый пользователь имел уникальный адрес электронной почты. | `false` |
 
 ### <a name="cookie-settings"></a>Параметры файлов cookie
 
-Настройте файл cookie приложения в `Startup.ConfigureServices` . [Конфигуреаппликатионкукие](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) должен вызываться **после** вызова метода `AddIdentity` или `AddDefaultIdentity` .
+Настройте файл cookie приложения в `Startup.ConfigureServices` . [Конфигуреаппликатионкукие](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_:::no-loc(Identity):::ServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) должен вызываться **после** вызова метода `Add:::no-loc(Identity):::` или `AddDefault:::no-loc(Identity):::` .
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_cookie)]
 
@@ -135,20 +135,24 @@ ASP.NET Core Identity использует значения по умолчан�
 
 ## <a name="password-hasher-options"></a>Параметры хэша пароля
 
-<xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions>Возвращает и задает параметры хэширования паролей.
+<xref:Microsoft.AspNetCore.:::no-loc(Identity):::.PasswordHasherOptions>Возвращает и задает параметры хэширования паролей.
 
 | Параметр | Описание |
 | ------ | ----------- |
-| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> | Режим совместимости, используемый при хэшировании новых паролей. По умолчанию — <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. Первый байт хэшированного пароля, называемый *маркером формата*, указывает версию алгоритма хэширования, используемого для хэширования пароля. При проверке пароля по хэшу <xref:Microsoft.AspNetCore.Identity.PasswordHasher`1.VerifyHashedPassword*> метод выбирает правильный алгоритм на основе первого байта. Клиент может проходить проверку подлинности независимо от того, какая версия алгоритма использовалась для хэширования пароля. Установка режима совместимости влияет на хэширование *новых паролей*. |
-| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> | Число итераций, используемых при хэшировании паролей с помощью PBKDF2. Это значение используется только в том случае, если <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> свойству присвоено значение <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3> . Значение должно быть положительным целым числом, а по умолчанию — `10000` . |
+| <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.PasswordHasherOptions.CompatibilityMode> | Режим совместимости, используемый при хэшировании новых паролей. По умолчанию — <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.PasswordHasherCompatibilityMode.:::no-loc(Identity):::V3>. Первый байт хэшированного пароля, называемый *маркером формата*, указывает версию алгоритма хэширования, используемого для хэширования пароля. При проверке пароля по хэшу <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.PasswordHasher`1.VerifyHashedPassword*> метод выбирает правильный алгоритм на основе первого байта. Клиент может проходить проверку подлинности независимо от того, какая версия алгоритма использовалась для хэширования пароля. Установка режима совместимости влияет на хэширование *новых паролей*. |
+| <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.PasswordHasherOptions.IterationCount> | Число итераций, используемых при хэшировании паролей с помощью PBKDF2. Это значение используется только в том случае, если <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.PasswordHasherOptions.CompatibilityMode> свойству присвоено значение <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.PasswordHasherCompatibilityMode.:::no-loc(Identity):::V3> . Значение должно быть положительным целым числом, а по умолчанию — `10000` . |
 
-В следующем примере для задано значение <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> `12000` в `Startup.ConfigureServices` :
+В следующем примере для задано значение <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.PasswordHasherOptions.IterationCount> `12000` в `Startup.ConfigureServices` :
 
 ```csharp
-// using Microsoft.AspNetCore.Identity;
+// using Microsoft.AspNetCore.:::no-loc(Identity):::;
 
 services.Configure<PasswordHasherOptions>(option =>
 {
     option.IterationCount = 12000;
 });
 ```
+
+## <a name="globally-require-all-users-to-be-authenticated"></a>Глобально требовать проверку подлинности всех пользователей
+
+[!INCLUDE[](~/includes/requireAuth.md)]

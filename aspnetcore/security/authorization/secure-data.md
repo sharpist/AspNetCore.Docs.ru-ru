@@ -1,35 +1,29 @@
 ---
 title: Создание приложения ASP.NET Core с данными пользователя, защищенными с помощью авторизации
 author: rick-anderson
-description: Узнайте, как создать Razor Приложение страниц с данными пользователя, защищенными с помощью авторизации. Включает протокол HTTPS, проверку подлинности, Безопасность ASP.NET Core Identity .
+description: 'Узнайте, как создать ASP.NET Core веб-приложение с данными пользователя, защищенными с помощью авторизации. Включает протокол HTTPS, проверку подлинности, Безопасность ASP.NET Core :::no-loc(Identity)::: .'
 ms.author: riande
-ms.date: 12/18/2018
+ms.date: 7/18/2020
 ms.custom: mvc, seodec18
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- ':::no-loc(Blazor):::'
+- ':::no-loc(Blazor Server):::'
+- ':::no-loc(Blazor WebAssembly):::'
+- ':::no-loc(Identity):::'
+- ":::no-loc(Let's Encrypt):::"
+- ':::no-loc(Razor):::'
+- ':::no-loc(SignalR):::'
 uid: security/authorization/secure-data
-ms.openlocfilehash: f50015af864a4a62abd5e2eab508aac915cb6370
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 7d4c10fa0b1c569179fc3e0a518917ec0185c51f
+ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404721"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "87160275"
 ---
-# <a name="create-an-aspnet-core-app-with-user-data-protected-by-authorization"></a>Создание приложения ASP.NET Core с данными пользователя, защищенными с помощью авторизации
+# <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>Создание ASP.NET Core веб-приложения с данными пользователя, защищенными с помощью авторизации
 
 Авторы: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson) и [Джо Одетт](https://twitter.com/joeaudette) (Joe Audette)
-
-::: moniker range="<= aspnetcore-1.1"
-
-См. [этот PDF-файл](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_1-16-18.pdf) для ASP.NET Core версии MVC. Версия ASP.NET Core 1,1 этого учебника находится в [этой](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data) папке. Образец 1,1 ASP.NET Core приведен [в примерах.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2)
-
-::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
@@ -77,12 +71,12 @@ ms.locfileid: "85404721"
 * `ContactManagerAuthorizationHandler`: Позволяет руководителям утверждать или отклонять контакты.
 * `ContactAdministratorsAuthorizationHandler`: Позволяет администраторам утверждать или отклонять контакты, а также изменять и удалять контакты.
 
-## <a name="prerequisites"></a>Предварительные требования
+## <a name="prerequisites"></a>Предварительные условия
 
 Этот учебник расширен. Вы должны быть знакомы с:
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
-* [Authentication](xref:security/authentication/identity)
+* [Аутентификация](xref:security/authentication/identity)
 * [Подтверждение учетной записи и восстановление пароля](xref:security/authentication/accconfirm)
 * [Авторизация](xref:security/authorization/introduction)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
@@ -103,11 +97,11 @@ ms.locfileid: "85404721"
 
 ### <a name="tie-the-contact-data-to-the-user"></a>Связать контактные данные с пользователем
 
-Используйте [Identity](xref:security/authentication/identity) идентификатор пользователя ASP.NET, чтобы убедиться, что пользователи могут изменять данные, но не данные других пользователей. Добавьте `OwnerID` и `ContactStatus` в `Contact` модель:
+Используйте [:::no-loc(Identity):::](xref:security/authentication/identity) идентификатор пользователя ASP.NET, чтобы убедиться, что пользователи могут изменять данные, но не данные других пользователей. Добавьте `OwnerID` и `ContactStatus` в `Contact` модель:
 
 [!code-csharp[](secure-data/samples/final3/Models/Contact.cs?name=snippet1&highlight=5-6,16-999)]
 
-`OwnerID`Идентификатор пользователя из `AspNetUser` таблицы в [Identity](xref:security/authentication/identity) базе данных. `Status`Поле определяет, можно ли просматривать контакт обычными пользователями.
+`OwnerID`Идентификатор пользователя из `AspNetUser` таблицы в [:::no-loc(Identity):::](xref:security/authentication/identity) базе данных. `Status`Поле определяет, можно ли просматривать контакт обычными пользователями.
 
 Создайте новую миграцию и обновите базу данных:
 
@@ -116,21 +110,39 @@ dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
 
-### <a name="add-role-services-to-identity"></a>Добавление служб ролей вIdentity
+### <a name="add-role-services-to-no-locidentity"></a>Добавление служб ролей в:::no-loc(Identity):::
 
-Добавление [аддролес](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) для добавления служб ролей:
+Добавление [аддролес](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_:::no-loc(Identity):::_:::no-loc(Identity):::Builder_AddRoles__1) для добавления служб ролей:
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet2&highlight=9)]
 
+<a name="rau"></a>
+
 ### <a name="require-authenticated-users"></a>Требовать прошедших проверку пользователей
 
-Задайте политику проверки подлинности по умолчанию, чтобы требовать проверку подлинности пользователей:
+Настройте политику резервной проверки подлинности, чтобы требовать проверку подлинности пользователей:
 
-[!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=15-99)] 
+[!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=13-99)]
 
- Можно отказаться от проверки подлинности на Razor уровне страницы, контроллера или метода действия с помощью `[AllowAnonymous]` атрибута. Настройка политики проверки подлинности по умолчанию для обязательной проверки подлинности пользователей защищает вновь добавленные Razor страницы и контроллеры. Необходимость проверки подлинности по умолчанию более безопасна, чем использование новых контроллеров и Razor страниц для включения `[Authorize]` атрибута.
+Выделенный выше код задает [политику резервной проверки подлинности](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). Политика резервной проверки подлинности требует, чтобы ***все*** пользователи прошли проверку подлинности, за исключением :::no-loc(Razor)::: страниц, контроллеров или методов действий с атрибутом проверки подлинности. Например, :::no-loc(Razor)::: страницы, контроллеры или методы действий с `[AllowAnonymous]` или `[Authorize(PolicyName="MyPolicy")]` используют примененный атрибут проверки подлинности, а не политику резервной проверки подлинности.
 
-Добавьте [allowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) на страницы индекса и конфиденциальности, чтобы анонимные пользователи могли получить сведения о сайте перед их регистрацией.
+Резервная политика проверки подлинности:
+
+* Применяется ко всем запросам, которые не указывают политику проверки подлинности явным образом. Для запросов, обслуживаемых маршрутизацией конечных точек, сюда входят все конечные точки, не указывающие атрибут авторизации. Для запросов, обслуживаемых другим по промежуточного слоя, после по промежуточного слоя авторизации, например [статических файлов](xref:fundamentals/static-files), эта политика будет применена ко всем запросам.
+
+Настройка политики резервной проверки подлинности на требование проверки подлинности пользователей защищает вновь добавленные :::no-loc(Razor)::: страницы и контроллеры. Необходимость проверки подлинности по умолчанию более безопасна, чем использование новых контроллеров и :::no-loc(Razor)::: страниц для включения `[Authorize]` атрибута.
+
+<xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions>Класс также содержит <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType> . `DefaultPolicy`— Это политика, используемая с `[Authorize]` атрибутом, если не указана политика. `[Authorize]`не содержит именованную политику, в отличие от `[Authorize(PolicyName="MyPolicy")]` .
+
+Дополнительные сведения о политиках см. в разделе <xref:security/authorization/policies> .
+
+Альтернативный способ для контроллеров и :::no-loc(Razor)::: страниц MVC, требующих проверки подлинности всех пользователей, — Добавление фильтра авторизации:
+
+[!code-csharp[](secure-data/samples/final3/Startup2.cs?name=snippet&highlight=14-99)]
+
+В приведенном выше коде используется фильтр авторизации, установка политики резервирования использует маршрутизацию конечных точек. Настройка политики резервирования является предпочтительным способом требовать проверку подлинности всех пользователей.
+
+Добавьте [allowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) на `Index` страницы и, `Privacy` чтобы анонимные пользователи могли получить сведения о сайте перед регистрацией:
 
 [!code-csharp[](secure-data/samples/final3/Pages/Index.cshtml.cs?highlight=1,7)]
 
@@ -187,7 +199,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 ## <a name="register-the-authorization-handlers"></a>Регистрация обработчиков авторизации
 
-Службы, использующие Entity Framework Core, должны быть зарегистрированы для [внедрения зависимостей](xref:fundamentals/dependency-injection) с помощью [аддскопед](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). `ContactIsOwnerAuthorizationHandler`Использует ASP.NET Core [Identity](xref:security/authentication/identity) , который построен на Entity Framework Core. Зарегистрируйте обработчики в коллекции служб, чтобы они были доступны `ContactsController` через [внедрение зависимостей](xref:fundamentals/dependency-injection). Добавьте следующий код в конец `ConfigureServices` :
+Службы, использующие Entity Framework Core, должны быть зарегистрированы для [внедрения зависимостей](xref:fundamentals/dependency-injection) с помощью [аддскопед](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). `ContactIsOwnerAuthorizationHandler`Использует ASP.NET Core [:::no-loc(Identity):::](xref:security/authentication/identity) , который построен на Entity Framework Core. Зарегистрируйте обработчики в коллекции служб, чтобы они были доступны `ContactsController` через [внедрение зависимостей](xref:fundamentals/dependency-injection). Добавьте следующий код в конец `ConfigureServices` :
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet_defaultPolicy&highlight=23-99)]
 
@@ -195,7 +207,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 ## <a name="support-authorization"></a>Поддержка авторизации
 
-В этом разделе вы обновите Razor страницы и добавите класс требований к операциям.
+В этом разделе вы обновите :::no-loc(Razor)::: страницы и добавите класс требований к операциям.
 
 ### <a name="review-the-contact-operations-requirements-class"></a>Ознакомьтесь с классом требований к операциям
 
@@ -203,16 +215,16 @@ dotnet user-secrets set SeedUserPW <PW>
 
 [!code-csharp[](secure-data/samples/final3/Authorization/ContactOperations.cs)]
 
-### <a name="create-a-base-class-for-the-contacts-razor-pages"></a>Создание базового класса для Razor страниц контактов
+### <a name="create-a-base-class-for-the-contacts-no-locrazor-pages"></a>Создание базового класса для :::no-loc(Razor)::: страниц контактов
 
-Создайте базовый класс, содержащий службы, используемые на Razor страницах контактов. Базовый класс помещает код инициализации в одно расположение:
+Создайте базовый класс, содержащий службы, используемые на :::no-loc(Razor)::: страницах контактов. Базовый класс помещает код инициализации в одно расположение:
 
 [!code-csharp[](secure-data/samples/final3/Pages/Contacts/DI_BasePageModel.cs)]
 
 Предыдущий код:
 
 * Добавляет `IAuthorizationService` службу для доступа к обработчикам авторизации.
-* Добавляет Identity `UserManager` службу.
+* Добавляет :::no-loc(Identity)::: `UserManager` службу.
 * Добавьте `ApplicationDbContext`.
 
 ### <a name="update-the-createmodel"></a>Обновление Креатемодел
@@ -261,7 +273,7 @@ dotnet user-secrets set SeedUserPW <PW>
 [!code-cshtml[](secure-data/samples/final3/Pages/Contacts/Index.cshtml?highlight=34-36,62-999)]
 
 > [!WARNING]
-> Скрытие ссылок от пользователей, не имеющих разрешений на изменение данных, не защищает приложение. Скрытие ссылок делает приложение более удобным для пользователей, отображая только допустимые ссылки. Пользователи могут обращаться к созданным URL-адресам для вызова операций правки и удаления данных, которыми они не владеют. RazorСтраница или контроллер должны применять проверки доступа для защиты данных.
+> Скрытие ссылок от пользователей, не имеющих разрешений на изменение данных, не защищает приложение. Скрытие ссылок делает приложение более удобным для пользователей, отображая только допустимые ссылки. Пользователи могут обращаться к созданным URL-адресам для вызова операций правки и удаления данных, которыми они не владеют. :::no-loc(Razor):::Страница или контроллер должны применять проверки доступа для защиты данных.
 
 ### <a name="update-details"></a>Сведения об обновлении
 
@@ -284,7 +296,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 ## <a name="differences-between-challenge-and-forbid"></a>Различия между запросом и запретом
 
-Это приложение задает политику по умолчанию, [требующую проверки подлинности пользователей](#require-authenticated-users). Следующий код позволяет анонимным пользователям. Анонимным пользователям разрешено показывать различия между запросом и запретом.
+Это приложение задает политику по умолчанию, [требующую проверки подлинности пользователей](#rau). Следующий код позволяет анонимным пользователям. Анонимным пользователям разрешено показывать различия между запросом и запретом.
 
 [!code-csharp[](secure-data/samples/final3/Pages/Contacts/Details2.cshtml.cs?name=snippet)]
 
@@ -316,7 +328,7 @@ dotnet user-secrets set SeedUserPW <PW>
 * Руководители могут утверждать и отклонять контактные данные. В `Details` представлении отображаются кнопки **утвердить** и **отклонить** .
 * Администраторы могут утверждать, отклонять и изменять и удалять все данные.
 
-| User (Пользователь)                | Заполнено приложением | Параметры                                  |
+| Пользователь                | Заполнено приложением | Параметры                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
 | test@example.com    | Нет                | Изменение или удаление собственных данных.                |
 | manager@contoso.com | Да               | Утвердите, отклоните и измените или удалите собственные данные. |
@@ -326,7 +338,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 ## <a name="create-the-starter-app"></a>Создание начального приложения
 
-* Создание Razor страницы приложения с именем "ContactManager"
+* Создание :::no-loc(Razor)::: страницы приложения с именем "ContactManager"
   * Создайте приложение с **учетными записями отдельных пользователей**.
   * Назовите его "ContactManager", чтобы пространство имен совпадало с пространством имен, используемым в примере.
   * `-uld`Указывает LocalDB вместо SQLite
@@ -413,12 +425,12 @@ dotnet ef database update
 * `ContactManagerAuthorizationHandler`: Позволяет руководителям утверждать или отклонять контакты.
 * `ContactAdministratorsAuthorizationHandler`: Позволяет администраторам утверждать или отклонять контакты, а также изменять и удалять контакты.
 
-## <a name="prerequisites"></a>Предварительные требования
+## <a name="prerequisites"></a>Предварительные условия
 
 Этот учебник расширен. Вы должны быть знакомы с:
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
-* [Authentication](xref:security/authentication/identity)
+* [Аутентификация](xref:security/authentication/identity)
 * [Подтверждение учетной записи и восстановление пароля](xref:security/authentication/accconfirm)
 * [Авторизация](xref:security/authorization/introduction)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
@@ -439,11 +451,11 @@ dotnet ef database update
 
 ### <a name="tie-the-contact-data-to-the-user"></a>Связать контактные данные с пользователем
 
-Используйте [Identity](xref:security/authentication/identity) идентификатор пользователя ASP.NET, чтобы убедиться, что пользователи могут изменять данные, но не данные других пользователей. Добавьте `OwnerID` и `ContactStatus` в `Contact` модель:
+Используйте [:::no-loc(Identity):::](xref:security/authentication/identity) идентификатор пользователя ASP.NET, чтобы убедиться, что пользователи могут изменять данные, но не данные других пользователей. Добавьте `OwnerID` и `ContactStatus` в `Contact` модель:
 
 [!code-csharp[](secure-data/samples/final2.1/Models/Contact.cs?name=snippet1&highlight=5-6,16-999)]
 
-`OwnerID`Идентификатор пользователя из `AspNetUser` таблицы в [Identity](xref:security/authentication/identity) базе данных. `Status`Поле определяет, можно ли просматривать контакт обычными пользователями.
+`OwnerID`Идентификатор пользователя из `AspNetUser` таблицы в [:::no-loc(Identity):::](xref:security/authentication/identity) базе данных. `Status`Поле определяет, можно ли просматривать контакт обычными пользователями.
 
 Создайте новую миграцию и обновите базу данных:
 
@@ -452,11 +464,11 @@ dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
 
-### <a name="add-role-services-to-identity"></a>Добавление служб ролей вIdentity
+### <a name="add-role-services-to-no-locidentity"></a>Добавление служб ролей в:::no-loc(Identity):::
 
-Добавление [аддролес](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) для добавления служб ролей:
+Добавление [аддролес](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_:::no-loc(Identity):::_:::no-loc(Identity):::Builder_AddRoles__1) для добавления служб ролей:
 
-[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet2&highlight=12)]
+[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet2&highlight=11)]
 
 ### <a name="require-authenticated-users"></a>Требовать прошедших проверку пользователей
 
@@ -464,7 +476,7 @@ dotnet ef database update
 
 [!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet&highlight=17-99)] 
 
- Можно отказаться от проверки подлинности на Razor уровне страницы, контроллера или метода действия с помощью `[AllowAnonymous]` атрибута. Настройка политики проверки подлинности по умолчанию для обязательной проверки подлинности пользователей защищает вновь добавленные Razor страницы и контроллеры. Необходимость проверки подлинности по умолчанию более безопасна, чем использование новых контроллеров и Razor страниц для включения `[Authorize]` атрибута.
+ Можно отказаться от проверки подлинности на :::no-loc(Razor)::: уровне страницы, контроллера или метода действия с помощью `[AllowAnonymous]` атрибута. Настройка политики проверки подлинности по умолчанию для обязательной проверки подлинности пользователей защищает вновь добавленные :::no-loc(Razor)::: страницы и контроллеры. Необходимость проверки подлинности по умолчанию более безопасна, чем использование новых контроллеров и :::no-loc(Razor)::: страниц для включения `[Authorize]` атрибута.
 
 Добавьте [allowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) в индекс, About и Contact Pages, чтобы анонимные пользователи могли получить сведения о сайте перед регистрацией.
 
@@ -523,7 +535,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 ## <a name="register-the-authorization-handlers"></a>Регистрация обработчиков авторизации
 
-Службы, использующие Entity Framework Core, должны быть зарегистрированы для [внедрения зависимостей](xref:fundamentals/dependency-injection) с помощью [аддскопед](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). `ContactIsOwnerAuthorizationHandler`Использует ASP.NET Core [Identity](xref:security/authentication/identity) , который построен на Entity Framework Core. Зарегистрируйте обработчики в коллекции служб, чтобы они были доступны `ContactsController` через [внедрение зависимостей](xref:fundamentals/dependency-injection). Добавьте следующий код в конец `ConfigureServices` :
+Службы, использующие Entity Framework Core, должны быть зарегистрированы для [внедрения зависимостей](xref:fundamentals/dependency-injection) с помощью [аддскопед](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). `ContactIsOwnerAuthorizationHandler`Использует ASP.NET Core [:::no-loc(Identity):::](xref:security/authentication/identity) , который построен на Entity Framework Core. Зарегистрируйте обработчики в коллекции служб, чтобы они были доступны `ContactsController` через [внедрение зависимостей](xref:fundamentals/dependency-injection). Добавьте следующий код в конец `ConfigureServices` :
 
 [!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet_defaultPolicy&highlight=27-99)]
 
@@ -531,7 +543,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 ## <a name="support-authorization"></a>Поддержка авторизации
 
-В этом разделе вы обновите Razor страницы и добавите класс требований к операциям.
+В этом разделе вы обновите :::no-loc(Razor)::: страницы и добавите класс требований к операциям.
 
 ### <a name="review-the-contact-operations-requirements-class"></a>Ознакомьтесь с классом требований к операциям
 
@@ -539,16 +551,16 @@ dotnet user-secrets set SeedUserPW <PW>
 
 [!code-csharp[](secure-data/samples/final2.1/Authorization/ContactOperations.cs)]
 
-### <a name="create-a-base-class-for-the-contacts-razor-pages"></a>Создание базового класса для Razor страниц контактов
+### <a name="create-a-base-class-for-the-contacts-no-locrazor-pages"></a>Создание базового класса для :::no-loc(Razor)::: страниц контактов
 
-Создайте базовый класс, содержащий службы, используемые на Razor страницах контактов. Базовый класс помещает код инициализации в одно расположение:
+Создайте базовый класс, содержащий службы, используемые на :::no-loc(Razor)::: страницах контактов. Базовый класс помещает код инициализации в одно расположение:
 
 [!code-csharp[](secure-data/samples/final2.1/Pages/Contacts/DI_BasePageModel.cs)]
 
 Предыдущий код:
 
 * Добавляет `IAuthorizationService` службу для доступа к обработчикам авторизации.
-* Добавляет Identity `UserManager` службу.
+* Добавляет :::no-loc(Identity)::: `UserManager` службу.
 * Добавьте `ApplicationDbContext`.
 
 ### <a name="update-the-createmodel"></a>Обновление Креатемодел
@@ -597,7 +609,7 @@ dotnet user-secrets set SeedUserPW <PW>
 [!code-cshtml[](secure-data/samples/final2.1/Pages/Contacts/Index.cshtml?highlight=34-36,62-999)]
 
 > [!WARNING]
-> Скрытие ссылок от пользователей, не имеющих разрешений на изменение данных, не защищает приложение. Скрытие ссылок делает приложение более удобным для пользователей, отображая только допустимые ссылки. Пользователи могут обращаться к созданным URL-адресам для вызова операций правки и удаления данных, которыми они не владеют. RazorСтраница или контроллер должны применять проверки доступа для защиты данных.
+> Скрытие ссылок от пользователей, не имеющих разрешений на изменение данных, не защищает приложение. Скрытие ссылок делает приложение более удобным для пользователей, отображая только допустимые ссылки. Пользователи могут обращаться к созданным URL-адресам для вызова операций правки и удаления данных, которыми они не владеют. :::no-loc(Razor):::Страница или контроллер должны применять проверки доступа для защиты данных.
 
 ### <a name="update-details"></a>Сведения об обновлении
 
@@ -643,7 +655,7 @@ dotnet user-secrets set SeedUserPW <PW>
 * Руководители могут утверждать и отклонять контактные данные. В `Details` представлении отображаются кнопки **утвердить** и **отклонить** .
 * Администраторы могут утверждать, отклонять и изменять и удалять все данные.
 
-| User (Пользователь)                | Заполнено приложением | Параметры                                  |
+| Пользователь                | Заполнено приложением | Параметры                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
 | test@example.com    | Нет                | Изменение или удаление собственных данных.                |
 | manager@contoso.com | Да               | Утвердите, отклоните и измените или удалите собственные данные. |
@@ -653,7 +665,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 ## <a name="create-the-starter-app"></a>Создание начального приложения
 
-* Создание Razor страницы приложения с именем "ContactManager"
+* Создание :::no-loc(Razor)::: страницы приложения с именем "ContactManager"
   * Создайте приложение с **учетными записями отдельных пользователей**.
   * Назовите его "ContactManager", чтобы пространство имен совпадало с пространством имен, используемым в примере.
   * `-uld`Указывает LocalDB вместо SQLite

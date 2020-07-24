@@ -13,12 +13,12 @@ no-loc:
 - ':::no-loc(Razor):::'
 - ':::no-loc(SignalR):::'
 uid: security/authentication/identity
-ms.openlocfilehash: dd3296db568700a363c427398f02239846a46ada
-ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
+ms.openlocfilehash: 25070e90050db9dca8b003ae782662811096526a
+ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86445439"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "87160304"
 ---
 # <a name="introduction-to-no-locidentity-on-aspnet-core"></a>Введение в :::no-loc(Identity)::: ASP.NET Core
 
@@ -32,6 +32,8 @@ ASP.NET Core :::no-loc(Identity)::::
 * Управляет пользователями, паролями, данными профилирования, ролями, утверждениями, маркерами, подтверждением электронной почты и т. д.
 
 Пользователи могут создать учетную запись с данными входа, хранящимися в, :::no-loc(Identity)::: или использовать внешний поставщик входа. Поддерживаемые внешние поставщики входа включают [Facebook, Google, учетную запись Майкрософт и Twitter](xref:security/authentication/social/index).
+
+[!INCLUDE[](~/includes/requireAuth.md)]
 
 [ :::no-loc(Identity)::: Исходный код](https://github.com/dotnet/AspNetCore/tree/master/src/:::no-loc(Identity):::) доступен на сайте GitHub. [Формирование :::no-loc(Identity)::: шаблонов](xref:security/authentication/scaffold-identity) и просмотрите созданные файлы, чтобы проверить взаимодействие с шаблоном :::no-loc(Identity)::: .
 
@@ -245,7 +247,7 @@ https://github.com/dotnet/aspnetcore/blob/master/src/:::no-loc(Identity):::/UI/s
 
 <a name="next"></a>
 
-## <a name="next-steps"></a>Следующие шаги
+## <a name="next-steps"></a>Дальнейшие шаги
 
 * [:::no-loc(Identity):::Исходный код ASP.NET Core](https://github.com/dotnet/aspnetcore/tree/master/src/:::no-loc(Identity):::)
 * Сведения о настройке с помощью SQLite см. в [этой статье о проблемах GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) :::no-loc(Identity)::: .
@@ -436,7 +438,7 @@ dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --fil
 
 См. раздел [Конфигурация](#pw) для примера, который устанавливает минимальные требования к паролю.
 
-## <a name="next-steps"></a>Следующие шаги
+## <a name="next-steps"></a>Дальнейшие шаги
 
 * Сведения о настройке с помощью SQLite см. в [этой статье о проблемах GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) :::no-loc(Identity)::: .
 * [Настройка :::no-loc(Identity):::](xref:security/authentication/identity-configuration)

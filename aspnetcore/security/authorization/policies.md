@@ -6,20 +6,20 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- ':::no-loc(Blazor):::'
+- ':::no-loc(Blazor Server):::'
+- ':::no-loc(Blazor WebAssembly):::'
+- ':::no-loc(Identity):::'
+- ":::no-loc(Let's Encrypt):::"
+- ':::no-loc(Razor):::'
+- ':::no-loc(SignalR):::'
 uid: security/authorization/policies
-ms.openlocfilehash: 8c68f2a15d07909d4576a2426d92f9beaa91fbb7
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 668c68bc328860ef17e1f2df09103fca07733ef7
+ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408075"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "87160173"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Авторизация на основе политик в ASP.NET Core
 
@@ -109,7 +109,7 @@ public void ConfigureServices(IServiceCollection services)
 
 
     services.AddControllersWithViews();
-    services.AddRazorPages();
+    services.Add:::no-loc(Razor):::Pages();
 }
 ```
 
@@ -117,21 +117,21 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="apply-policies-to-mvc-controllers"></a>Применение политик к контроллерам MVC
 
-Если вы используете Razor страницы, см. раздел [применение политик к Razor страницам](#apply-policies-to-razor-pages) этого документа.
+Если вы используете :::no-loc(Razor)::: страницы, см. раздел [применение политик к :::no-loc(Razor)::: страницам](#apply-policies-to-razor-pages) этого документа.
 
-Политики применяются к контроллерам с помощью `[Authorize]` атрибута с именем политики. Пример.
+Политики применяются к контроллерам с помощью `[Authorize]` атрибута с именем политики. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
-## <a name="apply-policies-to-razor-pages"></a>Применение политик к Razor страницам
+## <a name="apply-policies-to-no-locrazor-pages"></a>Применение политик к :::no-loc(Razor)::: страницам
 
-Политики применяются к Razor страницам с помощью `[Authorize]` атрибута с именем политики. Пример.
+Политики применяются к :::no-loc(Razor)::: страницам с помощью `[Authorize]` атрибута с именем политики. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
-Политики ***не*** могут применяться на Razor уровне обработчика страницы, они должны быть применены к странице.
+Политики ***не*** могут применяться на :::no-loc(Razor)::: уровне обработчика страницы, они должны быть применены к странице.
 
-Политики можно применять к Razor страницам с помощью [соглашения об авторизации](xref:security/authorization/razor-pages-authorization).
+Политики можно применять к :::no-loc(Razor)::: страницам с помощью [соглашения об авторизации](xref:security/authorization/razor-pages-authorization).
 
 ## <a name="requirements"></a>Требования
 
@@ -174,7 +174,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### <a name="handler-registration"></a>Регистрация обработчика
 
-Обработчики регистрируются в коллекции служб во время настройки. Пример.
+Обработчики регистрируются в коллекции служб во время настройки. Пример:
 
 [!code-csharp[](policies/samples/3.0PoliciesAuthApp1/Startup.cs?range=31-32,39-40,42-45, 53-55, 58)]
 
@@ -225,9 +225,9 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="access-mvc-request-context-in-handlers"></a>Доступ к контексту запроса MVC в обработчиках
 
-`HandleRequirementAsync`Метод, реализуемый в обработчике авторизации, имеет два параметра: и обрабатываемый объект `AuthorizationHandlerContext` `TRequirement` . Платформы, такие как MVC или SignalR , могут добавлять любой объект в свойство в `Resource` `AuthorizationHandlerContext` для передачи дополнительной информации.
+`HandleRequirementAsync`Метод, реализуемый в обработчике авторизации, имеет два параметра: и обрабатываемый объект `AuthorizationHandlerContext` `TRequirement` . Платформы, такие как MVC или :::no-loc(SignalR)::: , могут добавлять любой объект в свойство в `Resource` `AuthorizationHandlerContext` для передачи дополнительной информации.
 
-При использовании маршрутизации конечных точек авторизация обычно обрабатывается по промежуточного слоя авторизации. В этом случае `Resource` свойство является экземпляром <xref:Microsoft.AspNetCore.Http.Endpoint> . Конечную точку можно использовать для проверки базового ресурса, с которым выполняется маршрутизация. Пример.
+При использовании маршрутизации конечных точек авторизация обычно обрабатывается по промежуточного слоя авторизации. В этом случае `Resource` свойство является экземпляром <xref:Microsoft.AspNetCore.Http.Endpoint> . Конечную точку можно использовать для проверки базового ресурса, с которым выполняется маршрутизация. Пример:
 
 ```csharp
 if (context.Resource is Endpoint endpoint)
@@ -239,7 +239,7 @@ if (context.Resource is Endpoint endpoint)
 
 Конечная точка не предоставляет доступ к текущей `HttpContext` . При использовании маршрутизации конечных точек используйте `IHttpContextAcessor` для доступа `HttpContext` внутри обработчика авторизации. Дополнительные сведения см. в разделе [Использование HttpContext из пользовательских компонентов](xref:fundamentals/httpcontext#use-httpcontext-from-custom-components).
 
-Если используется традиционная маршрутизация или когда Авторизация происходит как часть фильтра авторизации MVC, значение `Resource` является <xref:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext> экземпляром. Это свойство предоставляет доступ к `HttpContext` , `RouteData` и всем остальным, предоставляемым MVC и Razor страницами.
+Если используется традиционная маршрутизация или когда Авторизация происходит как часть фильтра авторизации MVC, значение `Resource` является <xref:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext> экземпляром. Это свойство предоставляет доступ к `HttpContext` , `RouteData` и всем остальным, предоставляемым MVC и :::no-loc(Razor)::: страницами.
 
 Использование `Resource` свойства зависит от платформы. Использование сведений в `Resource` свойстве ограничивает политики авторизации определенными платформами. Необходимо привести `Resource` свойство с помощью `is` ключевого слова, а затем подтвердить успешное приведение, чтобы гарантировать, что код не будет завершаться с ошибкой `InvalidCastException` при выполнении в других платформах:
 
@@ -252,8 +252,11 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 }
 ```
 
-::: moniker-end
+## <a name="globally-require-all-users-to-be-authenticated"></a>Глобально требовать проверку подлинности всех пользователей
 
+[!INCLUDE[](~/includes/requireAuth.md)]
+
+::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
@@ -350,19 +353,19 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="apply-policies-to-mvc-controllers"></a>Применение политик к контроллерам MVC
 
-Если вы используете Razor страницы, см. раздел [применение политик к Razor страницам](#apply-policies-to-razor-pages) этого документа.
+Если вы используете :::no-loc(Razor)::: страницы, см. раздел [применение политик к :::no-loc(Razor)::: страницам](#apply-policies-to-razor-pages) этого документа.
 
-Политики применяются к контроллерам с помощью `[Authorize]` атрибута с именем политики. Пример.
+Политики применяются к контроллерам с помощью `[Authorize]` атрибута с именем политики. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
-## <a name="apply-policies-to-razor-pages"></a>Применение политик к Razor страницам
+## <a name="apply-policies-to-no-locrazor-pages"></a>Применение политик к :::no-loc(Razor)::: страницам
 
-Политики применяются к Razor страницам с помощью `[Authorize]` атрибута с именем политики. Пример.
+Политики применяются к :::no-loc(Razor)::: страницам с помощью `[Authorize]` атрибута с именем политики. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
-Политики также можно применять к Razor страницам с помощью [соглашения об авторизации](xref:security/authorization/razor-pages-authorization).
+Политики также можно применять к :::no-loc(Razor)::: страницам с помощью [соглашения об авторизации](xref:security/authorization/razor-pages-authorization).
 
 ## <a name="requirements"></a>Требования
 
@@ -405,7 +408,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### <a name="handler-registration"></a>Регистрация обработчика
 
-Обработчики регистрируются в коллекции служб во время настройки. Пример.
+Обработчики регистрируются в коллекции служб во время настройки. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,62-63,66)]
 
@@ -456,9 +459,9 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="access-mvc-request-context-in-handlers"></a>Доступ к контексту запроса MVC в обработчиках
 
-`HandleRequirementAsync`Метод, реализуемый в обработчике авторизации, имеет два параметра: и обрабатываемый объект `AuthorizationHandlerContext` `TRequirement` . Платформы, такие как MVC или SignalR , могут добавлять любой объект в свойство в `Resource` `AuthorizationHandlerContext` для передачи дополнительной информации.
+`HandleRequirementAsync`Метод, реализуемый в обработчике авторизации, имеет два параметра: и обрабатываемый объект `AuthorizationHandlerContext` `TRequirement` . Платформы, такие как MVC или :::no-loc(SignalR)::: , могут добавлять любой объект в свойство в `Resource` `AuthorizationHandlerContext` для передачи дополнительной информации.
 
-Например, MVC передает экземпляр [аусоризатионфилтерконтекст](/dotnet/api/?term=AuthorizationFilterContext) в `Resource` свойство. Это свойство предоставляет доступ к `HttpContext` , `RouteData` и всем остальным, предоставляемым MVC и Razor страницами.
+Например, MVC передает экземпляр [аусоризатионфилтерконтекст](/dotnet/api/?term=AuthorizationFilterContext) в `Resource` свойство. Это свойство предоставляет доступ к `HttpContext` , `RouteData` и всем остальным, предоставляемым MVC и :::no-loc(Razor)::: страницами.
 
 Использование `Resource` свойства зависит от платформы. Использование сведений в `Resource` свойстве ограничивает политики авторизации определенными платформами. Необходимо привести `Resource` свойство с помощью `is` ключевого слова, а затем подтвердить успешное приведение, чтобы гарантировать, что код не будет завершаться с ошибкой `InvalidCastException` при выполнении в других платформах:
 
