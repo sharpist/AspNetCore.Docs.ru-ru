@@ -5,7 +5,7 @@ description: Узнайте, как создавать модульные тес
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/14/2019
+ms.date: 7/22/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,11 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/razor-pages-tests
-ms.openlocfilehash: 756af7f2b14512bd43aefd1a4e63e195c2daa138
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ed048d600b629335b8267b63b3cfd57b525d608e
+ms.sourcegitcommit: c86b4e2955dc1724f2eaa7c97894ad8b3bf763fb
+ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407763"
+ms.lasthandoff: 07/22/2020
+ms.locfileid: "86949098"
 ---
 # <a name="razor-pages-unit-tests-in-aspnet-core"></a>Модульные тесты Razor Pages в ASP.NET Core
 
@@ -47,7 +48,7 @@ ASP.NET Core поддерживает модульные тесты прилож
 | Приложение для сообщений | *src/RazorPagesTestSample*         | Позволяет пользователю добавлять сообщение, удалять одно сообщение, удалять все сообщения и анализировать сообщения (найти среднее количество слов на сообщение). |
 | Тестирование приложения.    | *tests/RazorPagesTestSample.Tests* | Используется для модульного тестирования модели DAL и индексной страницы приложения для сообщений. |
 
-Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](/visualstudio/test/unit-test-your-code) или [Visual Studio для Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в папке *tests/RazorPagesTestSample.Tests*.
+Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](/visualstudio/test/unit-test-your-code) или [Visual Studio для Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в папке *tests/RazorPagesTestSample.Tests*:
 
 ```dotnetcli
 dotnet test
@@ -175,11 +176,11 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 
 Когда метод `OnGetAsync` выполняется на шаге действия, он вызывает метод `GetMessagesAsync` модели страницы.
 
-Шаг действия модульного теста (*tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs*).
+Шаг действия модульного теста (*tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs*):
 
 [!code-csharp[](razor-pages-tests/samples/3.x/tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs?name=snippet2)]
 
-Метод `OnGetAsync` модели страницы `IndexPage` (*src/RazorPagesTestSample/Pages/Index.cshtml.cs*).
+Метод `OnGetAsync` модели страницы `IndexPage` (*src/RazorPagesTestSample/Pages/Index.cshtml.cs*):
 
 [!code-csharp[](razor-pages-tests/samples/3.x/src/RazorPagesTestSample/Pages/Index.cshtml.cs?name=snippet1&highlight=3)]
 
@@ -231,7 +232,7 @@ ASP.NET Core поддерживает модульные тесты прилож
 | Приложение для сообщений | *src/RazorPagesTestSample*         | Позволяет пользователю добавлять сообщение, удалять одно сообщение, удалять все сообщения и анализировать сообщения (найти среднее количество слов на сообщение). |
 | Тестирование приложения.    | *tests/RazorPagesTestSample.Tests* | Используется для модульного тестирования модели DAL и индексной страницы приложения для сообщений. |
 
-Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](/visualstudio/test/unit-test-your-code) или [Visual Studio для Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в папке *tests/RazorPagesTestSample.Tests*.
+Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](/visualstudio/test/unit-test-your-code) или [Visual Studio для Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в папке *tests/RazorPagesTestSample.Tests*:
 
 ```dotnetcli
 dotnet test
@@ -359,11 +360,11 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 
 Когда метод `OnGetAsync` выполняется на шаге действия, он вызывает метод `GetMessagesAsync` модели страницы.
 
-Шаг действия модульного теста (*tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs*).
+Шаг действия модульного теста (*tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs*):
 
 [!code-csharp[](razor-pages-tests/samples/2.x/tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs?name=snippet2)]
 
-Метод `OnGetAsync` модели страницы `IndexPage` (*src/RazorPagesTestSample/Pages/Index.cshtml.cs*).
+Метод `OnGetAsync` модели страницы `IndexPage` (*src/RazorPagesTestSample/Pages/Index.cshtml.cs*):
 
 [!code-csharp[](razor-pages-tests/samples/2.x/src/RazorPagesTestSample/Pages/Index.cshtml.cs?name=snippet1&highlight=3)]
 
@@ -388,5 +389,6 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 * [Getting started with xUnit.net: Using .NET Core with the .NET SDK command line](https://xunit.github.io/docs/getting-started-dotnet-core) (Начало работы с xUnit.net. Использование .NET Core с командной строкой пакета SDK для .NET)
 * [Moq](https://github.com/moq/moq4)
 * [Moq Quickstart](https://github.com/Moq/moq4/wiki/Quickstart) (Краткое руководство по Moq)
+* [JustMockLite](https://github.com/telerik/JustMockLite): платформа макетирования для разработчиков на .NET. (*Не поддерживается и не обслуживается Майкрософт.* )
 
 ::: moniker-end

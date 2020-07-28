@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: 0f2741a78b58d7380fcbe84e97f5a08ef291c27b
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 896eed0e55986678b6bb86638ca92b04a77b4fef
+ms.sourcegitcommit: d00a200bc8347af794b24184da14ad5c8b6bba9a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944507"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86869943"
 ---
 # <a name="aspnet-core-blazor-data-binding"></a>Привязка к данным в ASP.NET Core Blazor
 
@@ -167,12 +167,12 @@ ms.locfileid: "85944507"
 }
 ```
 
-Назначение структуры <xref:Microsoft.AspNetCore.Components.EventCallback%601> описывается в разделе <xref:blazor/components/event-handling#eventcallback>.
+Имя <xref:Microsoft.AspNetCore.Components.EventCallback%601> должно включать имя параметра компонента, за которым следует суффикс `Changed` (`{PARAMETER NAME}Changed`) (`YearChanged` в предыдущем примере). Дополнительные сведения о методе <xref:Microsoft.AspNetCore.Components.EventCallback%601> см. в разделе <xref:blazor/components/event-handling#eventcallback>.
 
 Рассмотрим представленный ниже родительский компонент.
 
 * Он использует `ChildComponent`, а его параметр `ParentYear` привязывается к параметру `Year` дочернего компонента.
-* Событие `onclick` используется для активации метода `ChangeTheYear`. Для получения дополнительной информации см. <xref:blazor/components/event-handling>.
+* Событие `onclick` используется для активации метода `ChangeTheYear`. Дополнительные сведения см. в разделе <xref:blazor/components/event-handling>.
 
 ```razor
 @page "/ParentComponent"

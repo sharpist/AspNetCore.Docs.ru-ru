@@ -5,7 +5,7 @@ description: Узнайте, как с помощью интеграционны
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/20/2020
+ms.date: 07/14/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/integration-tests
-ms.openlocfilehash: 6e4a0065486f6d9d6744dcd21de10ec76782f210
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: c050665f630c0973abe6c9d08a4652597441639f
+ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405878"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86445285"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Интеграционные тесты на платформе ASP.NET Core
 
@@ -310,7 +310,7 @@ _client = _factory.CreateClient(clientOptions);
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet4&highlight=11-18)]
 
-Для проверки подлинности пользователя вызывается `TestAuthHandler`, если для схемы проверки подлинности задано `Test`, где `AddAuthentication` зарегистрировано для `ConfigureTestServices`:
+Для проверки подлинности пользователя вызывается `TestAuthHandler`, если для схемы проверки подлинности задано `Test`, где `AddAuthentication` зарегистрировано для `ConfigureTestServices`. Важно, чтобы схема `Test` соответствовала схеме, которую ожидает приложение. В противном случае проверка подлинности не будет работать.
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet3&highlight=7-12)]
 
@@ -366,7 +366,7 @@ protected override IWebHostBuilder CreateWebHostBuilder() =>
 | Приложение для сообщений (ТС) | *src/RazorPagesProject* | Позволяет пользователю добавлять, удалять сообщения (по одному или все) и анализировать их. |
 | Тестирование приложения. | *tests/RazorPagesProject.Tests* | Используется для тестирования интеграции ТС. |
 
-Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](https://visualstudio.microsoft.com). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в каталоге *tests/RazorPagesProject.Tests*.
+Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](https://visualstudio.microsoft.com). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в каталоге *tests/RazorPagesProject.Tests*:
 
 ```console
 dotnet test
@@ -579,7 +579,7 @@ dotnet test
 
 В следующей таблице показаны [WebApplicationFactoryClientOptions](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) по умолчанию, доступные при создании экземпляров `HttpClient`.
 
-| Параметр | Описание | Значение по умолчанию |
+| Параметр | Описание: | Значение по умолчанию |
 | ------ | ----------- | ------- |
 | [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | Возвращает или задает, должны ли экземпляры `HttpClient` автоматически следовать ответам перенаправления. | `true` |
 | [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | Возвращает или задает базовый адрес экземпляров `HttpClient`. | `http://localhost` |
@@ -757,7 +757,7 @@ public class CustomWebApplicationFactory<TStartup>
 | Приложение для сообщений (ТС) | *src/RazorPagesProject* | Позволяет пользователю добавлять, удалять сообщения (по одному или все) и анализировать их. |
 | Тестирование приложения. | *tests/RazorPagesProject.Tests* | Используется для тестирования интеграции ТС. |
 
-Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](https://visualstudio.microsoft.com). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в каталоге *tests/RazorPagesProject.Tests*.
+Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](https://visualstudio.microsoft.com). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в каталоге *tests/RazorPagesProject.Tests*:
 
 ```dotnetcli
 dotnet test
