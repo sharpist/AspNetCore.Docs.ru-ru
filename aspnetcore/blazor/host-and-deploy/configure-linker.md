@@ -1,37 +1,38 @@
 ---
-title: Настройка компоновщика для ASP.NET Core Blazor
+title: Настройка компоновщика для ASP.NET Core [Blazor
 author: guardrex
-description: Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.
+description: Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения [Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- '[Blazor'
+- '[Blazor Server'
+- '[Blazor WebAssembly'
+- '[Identity'
+- "[Let's Encrypt"
+- '[Razor'
+- '[SignalR'
 uid: blazor/host-and-deploy/configure-linker
 ms.openlocfilehash: 568efe9971aefc11841c42789ac7f2af3004003f
 ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 06/26/2020
 ms.locfileid: "85402706"
 ---
-# <a name="configure-the-linker-for-aspnet-core-blazor"></a><span data-ttu-id="1be59-103">Настройка компоновщика для ASP.NET Core Blazor</span><span class="sxs-lookup"><span data-stu-id="1be59-103">Configure the Linker for ASP.NET Core Blazor</span></span>
+# <a name="configure-the-linker-for-aspnet-core-blazor"></a><span data-ttu-id="1be59-103">Настройка компоновщика для ASP.NET Core [Blazor</span><span class="sxs-lookup"><span data-stu-id="1be59-103">Configure the Linker for ASP.NET Core [Blazor</span></span>
 
 <span data-ttu-id="1be59-104">Автор [Люк Латэм](https://github.com/guardrex) (Luke Latham)</span><span class="sxs-lookup"><span data-stu-id="1be59-104">By [Luke Latham](https://github.com/guardrex)</span></span>
 
-Blazor WebAssembly<span data-ttu-id="1be59-105"> выполняет компоновку [промежуточного языка (IL)](/dotnet/standard/managed-code#intermediate-language--execution) во время сборки, чтобы затем удалить ненужный IL из выходных сборок приложения.</span><span class="sxs-lookup"><span data-stu-id="1be59-105"> performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a build to trim unnecessary IL from the app's output assemblies.</span></span> <span data-ttu-id="1be59-106">Компоновщик отключен при сборке в конфигурации отладки.</span><span class="sxs-lookup"><span data-stu-id="1be59-106">The linker is disabled when building in Debug configuration.</span></span> <span data-ttu-id="1be59-107">Для включения компоновщика приложения должны быть построены в конфигурации выпуска.</span><span class="sxs-lookup"><span data-stu-id="1be59-107">Apps must build in Release configuration to enable the linker.</span></span> <span data-ttu-id="1be59-108">Мы рекомендуем создавать выпуск при развертывании приложений Blazor WebAssembly.</span><span class="sxs-lookup"><span data-stu-id="1be59-108">We recommend building in Release when deploying your Blazor WebAssembly apps.</span></span> 
+<span data-ttu-id="1be59-105">[Blazor WebAssembly выполняет компоновку [промежуточного языка (IL)](/dotnet/standard/managed-code#intermediate-language--execution) во время сборки, чтобы затем удалить ненужный IL из выходных сборок приложения.</span><span class="sxs-lookup"><span data-stu-id="1be59-105">[Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a build to trim unnecessary IL from the app's output assemblies.</span></span> <span data-ttu-id="1be59-106">Компоновщик отключен при сборке в конфигурации отладки.</span><span class="sxs-lookup"><span data-stu-id="1be59-106">The linker is disabled when building in Debug configuration.</span></span> <span data-ttu-id="1be59-107">Для включения компоновщика приложения должны быть построены в конфигурации выпуска.</span><span class="sxs-lookup"><span data-stu-id="1be59-107">Apps must build in Release configuration to enable the linker.</span></span> <span data-ttu-id="1be59-108">Мы рекомендуем создавать выпуск при развертывании приложений [Blazor WebAssembly.</span><span class="sxs-lookup"><span data-stu-id="1be59-108">We recommend building in Release when deploying your [Blazor WebAssembly apps.</span></span> 
 
 <span data-ttu-id="1be59-109">Компоновка приложения оптимизируется в зависимости от размера, но это может иметь негативные последствия.</span><span class="sxs-lookup"><span data-stu-id="1be59-109">Linking an app optimizes for size but may have detrimental effects.</span></span> <span data-ttu-id="1be59-110">Приложения, использующие отражение или связанные динамические функции, могут прерываться при усечении, так как компоновщик не знает об этом динамическом поведении и не может определить, какие типы необходимы для отражения во время выполнения.</span><span class="sxs-lookup"><span data-stu-id="1be59-110">Apps that use reflection or related dynamic features may break when trimmed because the linker doesn't know about this dynamic behavior and can't determine in general which types are required for reflection at runtime.</span></span> <span data-ttu-id="1be59-111">Чтобы обрезать такие приложения, компоновщик должен быть уведомлен о любых типах, необходимых для отражения в коде и в пакетах или платформах, от которых зависит приложение.</span><span class="sxs-lookup"><span data-stu-id="1be59-111">To trim such apps, the linker must be informed about any types required by reflection in the code and in packages or frameworks that the app depends on.</span></span> 
 
 <span data-ttu-id="1be59-112">Чтобы обеспечить правильную работу обрезанного приложения после его развертывания, важно часто тестировать сборки выпуска приложения при разработке.</span><span class="sxs-lookup"><span data-stu-id="1be59-112">To ensure the trimmed app works correctly once deployed, it's important to test Release builds of the app frequently while developing.</span></span>
 
-<span data-ttu-id="1be59-113">Компоновку приложений Blazor можно настроить с помощью следующих функций MSBuild:</span><span class="sxs-lookup"><span data-stu-id="1be59-113">Linking for Blazor apps can be configured using these MSBuild features:</span></span>
+<span data-ttu-id="1be59-113">Компоновку приложений [Blazor можно настроить с помощью следующих функций MSBuild:</span><span class="sxs-lookup"><span data-stu-id="1be59-113">Linking for [Blazor apps can be configured using these MSBuild features:</span></span>
 
 * <span data-ttu-id="1be59-114">настройка компоновки глобально с помощью [свойства MSBuild](#control-linking-with-an-msbuild-property);</span><span class="sxs-lookup"><span data-stu-id="1be59-114">Configure linking globally with a [MSBuild property](#control-linking-with-an-msbuild-property).</span></span>
 * <span data-ttu-id="1be59-115">управлять компоновкой каждой сборки с помощью [файла конфигурации](#control-linking-with-a-configuration-file).</span><span class="sxs-lookup"><span data-stu-id="1be59-115">Control linking on a per-assembly basis with a [configuration file](#control-linking-with-a-configuration-file).</span></span>
@@ -61,7 +62,7 @@ Blazor WebAssembly<span data-ttu-id="1be59-105"> выполняет компон
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-  This file specifies which parts of the BCL or Blazor packages must not be
+  This file specifies which parts of the BCL or [Blazor packages must not be
   stripped by the IL Linker even if they aren't referenced by user code.
 -->
 <linker>
@@ -106,7 +107,7 @@ Blazor WebAssembly<span data-ttu-id="1be59-105"> выполняет компон
 
 ### <a name="configure-the-linker-for-internationalization"></a><span data-ttu-id="1be59-127">Настройка компоновщика для интернационализации</span><span class="sxs-lookup"><span data-stu-id="1be59-127">Configure the linker for internationalization</span></span>
 
-<span data-ttu-id="1be59-128">По умолчанию конфигурация компоновщика Blazor для приложений Blazor WebAssembly исключает сведения об интернационализации, кроме явно запрошенных языковых стандартов.</span><span class="sxs-lookup"><span data-stu-id="1be59-128">By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested.</span></span> <span data-ttu-id="1be59-129">Удаление этих сборок уменьшает размер приложения.</span><span class="sxs-lookup"><span data-stu-id="1be59-129">Removing these assemblies minimizes the app's size.</span></span>
+<span data-ttu-id="1be59-128">По умолчанию конфигурация компоновщика [Blazor для приложений [Blazor WebAssembly исключает сведения об интернационализации, кроме явно запрошенных языковых стандартов.</span><span class="sxs-lookup"><span data-stu-id="1be59-128">By default, [Blazor's linker configuration for [Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested.</span></span> <span data-ttu-id="1be59-129">Удаление этих сборок уменьшает размер приложения.</span><span class="sxs-lookup"><span data-stu-id="1be59-129">Removing these assemblies minimizes the app's size.</span></span>
 
 <span data-ttu-id="1be59-130">Чтобы указать, какие сборки I18N необходимо оставить, задайте свойство MSBuild `<BlazorWebAssemblyI18NAssemblies>` в файле проекта:</span><span class="sxs-lookup"><span data-stu-id="1be59-130">To control which I18N assemblies are retained, set the `<BlazorWebAssemblyI18NAssemblies>` MSBuild property in the project file:</span></span>
 

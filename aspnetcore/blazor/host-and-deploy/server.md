@@ -1,45 +1,46 @@
 ---
-title: Размещение и развертывание ASP.NET Core Blazor Server
+title: Размещение и развертывание ASP.NET Core [Blazor Server
 author: guardrex
-description: Сведения о размещении и развертывании приложения Blazor Server с помощью ASP.NET Core.
+description: Сведения о размещении и развертывании приложения [Blazor Server с помощью ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- '[Blazor'
+- '[Blazor Server'
+- '[Blazor WebAssembly'
+- '[Identity'
+- "[Let's Encrypt"
+- '[Razor'
+- '[SignalR'
 uid: blazor/host-and-deploy/server
 ms.openlocfilehash: e59579046ecbfdbb4cca79bfb0e39d299e26913c
 ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 06/26/2020
 ms.locfileid: "85402602"
 ---
-# <a name="host-and-deploy-blazor-server"></a><span data-ttu-id="85d2c-103">Размещение и развертывание Blazor Server</span><span class="sxs-lookup"><span data-stu-id="85d2c-103">Host and deploy Blazor Server</span></span>
+# <a name="host-and-deploy-blazor-server"></a><span data-ttu-id="85d2c-103">Размещение и развертывание [Blazor Server</span><span class="sxs-lookup"><span data-stu-id="85d2c-103">Host and deploy [Blazor Server</span></span>
 
 <span data-ttu-id="85d2c-104">Авторы: [Люк Лэтем](https://github.com/guardrex), [Рэйнер Стропек](https://www.timecockpit.com) и [Дэниэл Рот](https://github.com/danroth27)</span><span class="sxs-lookup"><span data-stu-id="85d2c-104">By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)</span></span>
 
 ## <a name="host-configuration-values"></a><span data-ttu-id="85d2c-105">Значения конфигурации узла</span><span class="sxs-lookup"><span data-stu-id="85d2c-105">Host configuration values</span></span>
 
-<span data-ttu-id="85d2c-106">[Приложения Blazor Server](xref:blazor/hosting-models#blazor-server) могут принимать [значения конфигурации универсального узла](xref:fundamentals/host/generic-host#host-configuration).</span><span class="sxs-lookup"><span data-stu-id="85d2c-106">[Blazor Server apps](xref:blazor/hosting-models#blazor-server) can accept [Generic Host configuration values](xref:fundamentals/host/generic-host#host-configuration).</span></span>
+<span data-ttu-id="85d2c-106">[Приложения [Blazor Server](xref:blazor/hosting-models#blazor-server) могут принимать [значения конфигурации универсального узла](xref:fundamentals/host/generic-host#host-configuration).</span><span class="sxs-lookup"><span data-stu-id="85d2c-106">[[Blazor Server apps](xref:blazor/hosting-models#blazor-server) can accept [Generic Host configuration values](xref:fundamentals/host/generic-host#host-configuration).</span></span>
 
 ## <a name="deployment"></a><span data-ttu-id="85d2c-107">Развертывание</span><span class="sxs-lookup"><span data-stu-id="85d2c-107">Deployment</span></span>
 
-<span data-ttu-id="85d2c-108">Если используется [модель размещения Blazor Server](xref:blazor/hosting-models#blazor-server), Blazor выполняется на сервере из приложения ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="85d2c-108">Using the [Blazor Server hosting model](xref:blazor/hosting-models#blazor-server), Blazor is executed on the server from within an ASP.NET Core app.</span></span> <span data-ttu-id="85d2c-109">Обновление элементов пользовательского интерфейса, обработка событий и вызовы JavaScript обрабатываются через подключение [SignalR](xref:signalr/introduction).</span><span class="sxs-lookup"><span data-stu-id="85d2c-109">UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection.</span></span>
+<span data-ttu-id="85d2c-108">Если используется [модель размещения [Blazor Server](xref:blazor/hosting-models#blazor-server), [Blazor выполняется на сервере из приложения ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="85d2c-108">Using the [[Blazor Server hosting model](xref:blazor/hosting-models#blazor-server), [Blazor is executed on the server from within an ASP.NET Core app.</span></span> <span data-ttu-id="85d2c-109">Обновление элементов пользовательского интерфейса, обработка событий и вызовы JavaScript обрабатываются через подключение [[SignalR](xref:signalr/introduction).</span><span class="sxs-lookup"><span data-stu-id="85d2c-109">UI updates, event handling, and JavaScript calls are handled over a [[SignalR](xref:signalr/introduction) connection.</span></span>
 
-<span data-ttu-id="85d2c-110">Необходим веб-сервер, позволяющий размещать приложения ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="85d2c-110">A web server capable of hosting an ASP.NET Core app is required.</span></span> <span data-ttu-id="85d2c-111">Visual Studio содержит шаблон проекта **Приложение Blazor Server** (шаблон `blazorserverside` при использовании команды [`dotnet new`](/dotnet/core/tools/dotnet-new)).</span><span class="sxs-lookup"><span data-stu-id="85d2c-111">Visual Studio includes the **Blazor Server App** project template (`blazorserverside` template when using the [`dotnet new`](/dotnet/core/tools/dotnet-new) command).</span></span>
+<span data-ttu-id="85d2c-110">Необходим веб-сервер, позволяющий размещать приложения ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="85d2c-110">A web server capable of hosting an ASP.NET Core app is required.</span></span> <span data-ttu-id="85d2c-111">Visual Studio содержит шаблон проекта **Приложение [Blazor Server** (шаблон `blazorserverside` при использовании команды [`dotnet new`](/dotnet/core/tools/dotnet-new)).</span><span class="sxs-lookup"><span data-stu-id="85d2c-111">Visual Studio includes the **[Blazor Server App** project template (`blazorserverside` template when using the [`dotnet new`](/dotnet/core/tools/dotnet-new) command).</span></span>
 
 ## <a name="scalability"></a><span data-ttu-id="85d2c-112">Масштабируемость</span><span class="sxs-lookup"><span data-stu-id="85d2c-112">Scalability</span></span>
 
-<span data-ttu-id="85d2c-113">Планируйте развертывание так, чтобы доступная инфраструктура максимально эффективно использовалась приложением Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="85d2c-113">Plan a deployment to make the best use of the available infrastructure for a Blazor Server app.</span></span> <span data-ttu-id="85d2c-114">См. сведения о масштабируемости приложений Blazor Server:</span><span class="sxs-lookup"><span data-stu-id="85d2c-114">See the following resources to address Blazor Server app scalability:</span></span>
+<span data-ttu-id="85d2c-113">Планируйте развертывание так, чтобы доступная инфраструктура максимально эффективно использовалась приложением [Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="85d2c-113">Plan a deployment to make the best use of the available infrastructure for a [Blazor Server app.</span></span> <span data-ttu-id="85d2c-114">См. сведения о масштабируемости приложений [Blazor Server:</span><span class="sxs-lookup"><span data-stu-id="85d2c-114">See the following resources to address [Blazor Server app scalability:</span></span>
 
-* <span data-ttu-id="85d2c-115">[Общие сведения о приложениях Blazor Server](xref:blazor/hosting-models#blazor-server)</span><span class="sxs-lookup"><span data-stu-id="85d2c-115">[Fundamentals of Blazor Server apps](xref:blazor/hosting-models#blazor-server)</span></span>
+* <span data-ttu-id="85d2c-115">[Общие сведения о приложениях [Blazor Server](xref:blazor/hosting-models#blazor-server)</span><span class="sxs-lookup"><span data-stu-id="85d2c-115">[Fundamentals of [Blazor Server apps](xref:blazor/hosting-models#blazor-server)</span></span>
 * <xref:blazor/security/server/threat-mitigation>
 
 ### <a name="deployment-server"></a><span data-ttu-id="85d2c-116">Сервер развертывания</span><span class="sxs-lookup"><span data-stu-id="85d2c-116">Deployment server</span></span>
@@ -49,19 +50,19 @@ ms.locfileid: "85402602"
 * <span data-ttu-id="85d2c-119">число активных каналов, которые может поддерживать сервер;</span><span class="sxs-lookup"><span data-stu-id="85d2c-119">Number of active circuits that a server can support.</span></span>
 * <span data-ttu-id="85d2c-120">задержку пользовательского интерфейса в клиенте.</span><span class="sxs-lookup"><span data-stu-id="85d2c-120">UI latency on the client.</span></span>
 
-<span data-ttu-id="85d2c-121">Рекомендации по созданию безопасных и масштабируемых серверных приложений Blazor см. здесь: <xref:blazor/security/server/threat-mitigation>.</span><span class="sxs-lookup"><span data-stu-id="85d2c-121">For guidance on building secure and scalable Blazor server apps, see <xref:blazor/security/server/threat-mitigation>.</span></span>
+<span data-ttu-id="85d2c-121">Рекомендации по созданию безопасных и масштабируемых серверных приложений [Blazor см. здесь: <xref:blazor/security/server/threat-mitigation>.</span><span class="sxs-lookup"><span data-stu-id="85d2c-121">For guidance on building secure and scalable [Blazor server apps, see <xref:blazor/security/server/threat-mitigation>.</span></span>
 
 <span data-ttu-id="85d2c-122">Каждый канал использует около 250 КБ памяти для минималистичного приложения в стиле *Hello World*.</span><span class="sxs-lookup"><span data-stu-id="85d2c-122">Each circuit uses approximately 250 KB of memory for a minimal *Hello World*-style app.</span></span> <span data-ttu-id="85d2c-123">Размер канала зависит от кода приложения и требований к обслуживанию состояний для каждого компонента.</span><span class="sxs-lookup"><span data-stu-id="85d2c-123">The size of a circuit depends on the app's code and the state maintenance requirements associated with each component.</span></span> <span data-ttu-id="85d2c-124">Мы рекомендуем определять требования к ресурсам во время разработки приложения и инфраструктуры, но при планировании цели развертывания можно использовать следующие базовые показатели: если вы предполагаете, что приложение будет одновременно поддерживать 5000 пользователей, выделите для приложения по меньшей мере 1,3 ГБ серверной памяти (или около 273 КБ на пользователя).</span><span class="sxs-lookup"><span data-stu-id="85d2c-124">We recommend that you measure resource demands during development for your app and infrastructure, but the following baseline can be a starting point in planning your deployment target: If you expect your app to support 5,000 concurrent users, consider budgeting at least 1.3 GB of server memory to the app (or ~273 KB per user).</span></span>
 
-### <a name="signalr-configuration"></a><span data-ttu-id="85d2c-125">Конфигурация SignalR</span><span class="sxs-lookup"><span data-stu-id="85d2c-125">SignalR configuration</span></span>
+### <a name="signalr-configuration"></a><span data-ttu-id="85d2c-125">Конфигурация [SignalR</span><span class="sxs-lookup"><span data-stu-id="85d2c-125">[SignalR configuration</span></span>
 
-<span data-ttu-id="85d2c-126">Приложения Blazor Server используют SignalR ASP.NET Core для обмена данными с браузером.</span><span class="sxs-lookup"><span data-stu-id="85d2c-126">Blazor Server apps use ASP.NET Core SignalR to communicate with the browser.</span></span> <span data-ttu-id="85d2c-127">[Условия размещения и масштабирования SignalR](xref:signalr/publish-to-azure-web-app) применяются и к приложениям Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="85d2c-127">[SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply to Blazor Server apps.</span></span>
+<span data-ttu-id="85d2c-126">Приложения [Blazor Server используют [SignalR ASP.NET Core для обмена данными с браузером.</span><span class="sxs-lookup"><span data-stu-id="85d2c-126">[Blazor Server apps use ASP.NET Core [SignalR to communicate with the browser.</span></span> <span data-ttu-id="85d2c-127">[Условия размещения и масштабирования [SignalR](xref:signalr/publish-to-azure-web-app) применяются и к приложениям [Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="85d2c-127">[[SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply to [Blazor Server apps.</span></span>
 
-Blazor<span data-ttu-id="85d2c-128"> лучше всего работает с WebSocket в качестве транспортного механизма SignalR благодаря низкой задержке, надежности и [безопасности](xref:signalr/security).</span><span class="sxs-lookup"><span data-stu-id="85d2c-128"> works best when using WebSockets as the SignalR transport due to lower latency, reliability, and [security](xref:signalr/security).</span></span> <span data-ttu-id="85d2c-129">Продолжительный опрос используется службой SignalR, если подключения WebSocket недоступны или если приложение явно настроено на применение продолжительного опроса.</span><span class="sxs-lookup"><span data-stu-id="85d2c-129">Long Polling is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling.</span></span> <span data-ttu-id="85d2c-130">При развертывании Службы приложений Azure настройте приложение на использование WebSocket в параметрах службы на портале Azure.</span><span class="sxs-lookup"><span data-stu-id="85d2c-130">When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service.</span></span> <span data-ttu-id="85d2c-131">Подробные сведения о настройке приложения для Службы приложений Azure см. в статье с [рекомендациями по публикации приложения SignalR](xref:signalr/publish-to-azure-web-app).</span><span class="sxs-lookup"><span data-stu-id="85d2c-131">For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).</span></span>
+<span data-ttu-id="85d2c-128">[Blazor лучше всего работает с WebSocket в качестве транспортного механизма [SignalR благодаря низкой задержке, надежности и [безопасности](xref:signalr/security).</span><span class="sxs-lookup"><span data-stu-id="85d2c-128">[Blazor works best when using WebSockets as the [SignalR transport due to lower latency, reliability, and [security](xref:signalr/security).</span></span> <span data-ttu-id="85d2c-129">Продолжительный опрос используется службой [SignalR, если подключения WebSocket недоступны или если приложение явно настроено на применение продолжительного опроса.</span><span class="sxs-lookup"><span data-stu-id="85d2c-129">Long Polling is used by [SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling.</span></span> <span data-ttu-id="85d2c-130">При развертывании Службы приложений Azure настройте приложение на использование WebSocket в параметрах службы на портале Azure.</span><span class="sxs-lookup"><span data-stu-id="85d2c-130">When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service.</span></span> <span data-ttu-id="85d2c-131">Подробные сведения о настройке приложения для Службы приложений Azure см. в статье с [рекомендациями по публикации приложения [SignalR](xref:signalr/publish-to-azure-web-app).</span><span class="sxs-lookup"><span data-stu-id="85d2c-131">For details on configuring the app for Azure App Service, see the [[SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).</span></span>
 
-#### <a name="azure-signalr-service"></a><span data-ttu-id="85d2c-132">Служба Azure SignalR</span><span class="sxs-lookup"><span data-stu-id="85d2c-132">Azure SignalR Service</span></span>
+#### <a name="azure-signalr-service"></a><span data-ttu-id="85d2c-132">Служба Azure [SignalR</span><span class="sxs-lookup"><span data-stu-id="85d2c-132">Azure [SignalR Service</span></span>
 
-<span data-ttu-id="85d2c-133">Мы рекомендуем использовать для приложений Blazor Server [службу Azure SignalR](/azure/azure-signalr).</span><span class="sxs-lookup"><span data-stu-id="85d2c-133">We recommend using the [Azure SignalR Service](/azure/azure-signalr) for Blazor Server apps.</span></span> <span data-ttu-id="85d2c-134">Она позволяет вертикально масштабировать приложения Blazor Server для одновременного использования большого числа подключений SignalR.</span><span class="sxs-lookup"><span data-stu-id="85d2c-134">The service allows for scaling up a Blazor Server app to a large number of concurrent SignalR connections.</span></span> <span data-ttu-id="85d2c-135">Кроме того, глобальный охват службы SignalR и ее высокопроизводительные центры обработки данных обеспечивают низкую задержку благодаря доступности в разных регионах.</span><span class="sxs-lookup"><span data-stu-id="85d2c-135">In addition, the SignalR service's global reach and high-performance data centers significantly aid in reducing latency due to geography.</span></span> <span data-ttu-id="85d2c-136">Чтобы настроить приложение (и при необходимости подготовить к работе) для службы Azure SignalR, сделайте следующее:</span><span class="sxs-lookup"><span data-stu-id="85d2c-136">To configure an app (and optionally provision) the Azure SignalR Service:</span></span>
+<span data-ttu-id="85d2c-133">Мы рекомендуем использовать для приложений [Blazor Server [службу Azure [SignalR](/azure/azure-signalr).</span><span class="sxs-lookup"><span data-stu-id="85d2c-133">We recommend using the [Azure [SignalR Service](/azure/azure-signalr) for [Blazor Server apps.</span></span> <span data-ttu-id="85d2c-134">Она позволяет вертикально масштабировать приложения [Blazor Server для одновременного использования большого числа подключений [SignalR.</span><span class="sxs-lookup"><span data-stu-id="85d2c-134">The service allows for scaling up a [Blazor Server app to a large number of concurrent [SignalR connections.</span></span> <span data-ttu-id="85d2c-135">Кроме того, глобальный охват службы [SignalR и ее высокопроизводительные центры обработки данных обеспечивают низкую задержку благодаря доступности в разных регионах.</span><span class="sxs-lookup"><span data-stu-id="85d2c-135">In addition, the [SignalR service's global reach and high-performance data centers significantly aid in reducing latency due to geography.</span></span> <span data-ttu-id="85d2c-136">Чтобы настроить приложение (и при необходимости подготовить к работе) для службы Azure [SignalR, сделайте следующее:</span><span class="sxs-lookup"><span data-stu-id="85d2c-136">To configure an app (and optionally provision) the Azure [SignalR Service:</span></span>
 
 1. <span data-ttu-id="85d2c-137">Включите в службе поддержку *прикрепленных сеансов*, когда клиенты [перенаправляются обратно на тот же сервер при предварительной отрисовке](xref:blazor/hosting-models#connection-to-the-server).</span><span class="sxs-lookup"><span data-stu-id="85d2c-137">Enable the service to support *sticky sessions*, where clients are [redirected back to the same server when prerendering](xref:blazor/hosting-models#connection-to-the-server).</span></span> <span data-ttu-id="85d2c-138">Установите параметр или значение конфигурации `ServerStickyMode` равным `Required`.</span><span class="sxs-lookup"><span data-stu-id="85d2c-138">Set the `ServerStickyMode` option or configuration value to `Required`.</span></span> <span data-ttu-id="85d2c-139">Как правило, приложение создает конфигурацию, используя **один** из следующих подходов:</span><span class="sxs-lookup"><span data-stu-id="85d2c-139">Typically, an app creates the configuration using **one** of the following approaches:</span></span>
 
@@ -71,7 +72,7 @@ Blazor<span data-ttu-id="85d2c-128"> лучше всего работает с W
      services.AddSignalR().AddAzureSignalR(options =>
      {
          options.ServerStickyMode = 
-             Microsoft.Azure.SignalR.ServerStickyMode.Required;
+             Microsoft.Azure.[SignalR.ServerStickyMode.Required;
      });
      ```
 
@@ -80,13 +81,13 @@ Blazor<span data-ttu-id="85d2c-128"> лучше всего работает с W
      * <span data-ttu-id="85d2c-142">`appsettings.json`.</span><span class="sxs-lookup"><span data-stu-id="85d2c-142">`appsettings.json`:</span></span>
 
        ```json
-       "Azure:SignalR:ServerStickyMode": "Required"
+       "Azure:[SignalR:ServerStickyMode": "Required"
        ```
 
-     * <span data-ttu-id="85d2c-143">раздел **Конфигурация** > **Параметры приложения** для службы приложений на портале Azure (**Имя**: `Azure:SignalR:ServerStickyMode`, **Значение**: `Required`).</span><span class="sxs-lookup"><span data-stu-id="85d2c-143">The app service's **Configuration** > **Application settings** in the Azure portal (**Name**: `Azure:SignalR:ServerStickyMode`, **Value**: `Required`).</span></span>
+     * <span data-ttu-id="85d2c-143">раздел **Конфигурация** > **Параметры приложения** для службы приложений на портале Azure (**Имя**: `Azure:[SignalR:ServerStickyMode`, **Значение**: `Required`).</span><span class="sxs-lookup"><span data-stu-id="85d2c-143">The app service's **Configuration** > **Application settings** in the Azure portal (**Name**: `Azure:[SignalR:ServerStickyMode`, **Value**: `Required`).</span></span>
 
-1. <span data-ttu-id="85d2c-144">Создайте профиль публикации приложений Azure Apps в Visual Studio для приложения Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="85d2c-144">Create an Azure Apps publish profile in Visual Studio for the Blazor Server app.</span></span>
-1. <span data-ttu-id="85d2c-145">Добавьте в профиль зависимость **службы Azure SignalR** .</span><span class="sxs-lookup"><span data-stu-id="85d2c-145">Add the **Azure SignalR Service** dependency to the profile.</span></span> <span data-ttu-id="85d2c-146">Если подписка Azure не имеет уже существующего экземпляра службы Azure SignalR для назначения приложению, выберите **Создайте новый экземпляр службы Azure SignalR** для предоставления нового экземпляра службы.</span><span class="sxs-lookup"><span data-stu-id="85d2c-146">If the Azure subscription doesn't have a pre-existing Azure SignalR Service instance to assign to the app, select **Create a new Azure SignalR Service instance** to provision a new service instance.</span></span>
+1. <span data-ttu-id="85d2c-144">Создайте профиль публикации приложений Azure Apps в Visual Studio для приложения [Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="85d2c-144">Create an Azure Apps publish profile in Visual Studio for the [Blazor Server app.</span></span>
+1. <span data-ttu-id="85d2c-145">Добавьте в профиль зависимость **службы Azure [SignalR** .</span><span class="sxs-lookup"><span data-stu-id="85d2c-145">Add the **Azure [SignalR Service** dependency to the profile.</span></span> <span data-ttu-id="85d2c-146">Если подписка Azure не имеет уже существующего экземпляра службы Azure [SignalR для назначения приложению, выберите **Создайте новый экземпляр службы Azure [SignalR** для предоставления нового экземпляра службы.</span><span class="sxs-lookup"><span data-stu-id="85d2c-146">If the Azure subscription doesn't have a pre-existing Azure [SignalR Service instance to assign to the app, select **Create a new Azure [SignalR Service instance** to provision a new service instance.</span></span>
 1. <span data-ttu-id="85d2c-147">Опубликуйте приложение в Azure.</span><span class="sxs-lookup"><span data-stu-id="85d2c-147">Publish the app to Azure.</span></span>
 
 #### <a name="iis"></a><span data-ttu-id="85d2c-148">IIS</span><span class="sxs-lookup"><span data-stu-id="85d2c-148">IIS</span></span>
@@ -114,7 +115,7 @@ metadata:
 
 #### <a name="linux-with-nginx"></a><span data-ttu-id="85d2c-154">Linux с Nginx</span><span class="sxs-lookup"><span data-stu-id="85d2c-154">Linux with Nginx</span></span>
 
-<span data-ttu-id="85d2c-155">Для правильной работы WebSockets SignalR убедитесь, что для заголовков `Upgrade` и `Connection` прокси-сервера заданы следующие значения и `$connection_upgrade` сопоставлен с одним из следующих элементов:</span><span class="sxs-lookup"><span data-stu-id="85d2c-155">For SignalR WebSockets to function properly, confirm that the proxy's `Upgrade` and `Connection` headers are set to the following values and that `$connection_upgrade` is mapped to either:</span></span>
+<span data-ttu-id="85d2c-155">Для правильной работы WebSockets [SignalR убедитесь, что для заголовков `Upgrade` и `Connection` прокси-сервера заданы следующие значения и `$connection_upgrade` сопоставлен с одним из следующих элементов:</span><span class="sxs-lookup"><span data-stu-id="85d2c-155">For [SignalR WebSockets to function properly, confirm that the proxy's `Upgrade` and `Connection` headers are set to the following values and that `$connection_upgrade` is mapped to either:</span></span>
 
 * <span data-ttu-id="85d2c-156">Значение заголовка обновления по умолчанию.</span><span class="sxs-lookup"><span data-stu-id="85d2c-156">The Upgrade header value by default.</span></span>
 * <span data-ttu-id="85d2c-157">`close`, если заголовок обновления отсутствует или пуст.</span><span class="sxs-lookup"><span data-stu-id="85d2c-157">`close` when the Upgrade header is missing or empty.</span></span>
@@ -151,7 +152,7 @@ http {
 
 ## <a name="linux-with-apache"></a><span data-ttu-id="85d2c-161">Linux c Apache</span><span class="sxs-lookup"><span data-stu-id="85d2c-161">Linux with Apache</span></span>
 
-<span data-ttu-id="85d2c-162">Чтобы разместить приложение Blazor на основе Apache в Linux, настройте `ProxyPass` для трафика HTTP и WebSockets.</span><span class="sxs-lookup"><span data-stu-id="85d2c-162">To host a Blazor app behind Apache on Linux, configure `ProxyPass` for HTTP and WebSockets traffic.</span></span>
+<span data-ttu-id="85d2c-162">Чтобы разместить приложение [Blazor на основе Apache в Linux, настройте `ProxyPass` для трафика HTTP и WebSockets.</span><span class="sxs-lookup"><span data-stu-id="85d2c-162">To host a [Blazor app behind Apache on Linux, configure `ProxyPass` for HTTP and WebSockets traffic.</span></span>
 
 <span data-ttu-id="85d2c-163">В следующем примере:</span><span class="sxs-lookup"><span data-stu-id="85d2c-163">In the following example:</span></span>
 

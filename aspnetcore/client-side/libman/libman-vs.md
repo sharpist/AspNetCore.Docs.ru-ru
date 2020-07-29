@@ -6,16 +6,17 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/20/2018
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- '[Blazor'
+- '[Blazor Server'
+- '[Blazor WebAssembly'
+- '[Identity'
+- "[Let's Encrypt"
+- '[Razor'
+- '[SignalR'
 uid: client-side/libman/libman-vs
 ms.openlocfilehash: 504c34ccd8813273161b86504700704f8a932538
 ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 06/26/2020
 ms.locfileid: "85403174"
@@ -67,7 +68,7 @@ ms.locfileid: "85403174"
     * <span data-ttu-id="69d67-139">используется папка *lib*, если *wwwroot* не существует.</span><span class="sxs-lookup"><span data-stu-id="69d67-139">*lib* is used if *wwwroot* doesn't exist.</span></span>
   * <span data-ttu-id="69d67-140">При запуске из папки проекта используется соответствующее имя папки.</span><span class="sxs-lookup"><span data-stu-id="69d67-140">If launched from a project folder, the corresponding folder name is used.</span></span>
 
-  <span data-ttu-id="69d67-141">После папки указывается имя библиотеки.</span><span class="sxs-lookup"><span data-stu-id="69d67-141">The folder suggestion is suffixed with the library name.</span></span> <span data-ttu-id="69d67-142">В приведенной ниже таблице показаны папки, предлагаемые при установке jQuery в проекте Razor Pages.</span><span class="sxs-lookup"><span data-stu-id="69d67-142">The following table illustrates folder suggestions when installing jQuery in a Razor Pages project.</span></span>
+  <span data-ttu-id="69d67-141">После папки указывается имя библиотеки.</span><span class="sxs-lookup"><span data-stu-id="69d67-141">The folder suggestion is suffixed with the library name.</span></span> <span data-ttu-id="69d67-142">В приведенной ниже таблице показаны папки, предлагаемые при установке jQuery в проекте [Razor Pages.</span><span class="sxs-lookup"><span data-stu-id="69d67-142">The following table illustrates folder suggestions when installing jQuery in a [Razor Pages project.</span></span>
   
   |<span data-ttu-id="69d67-143">Место запуска</span><span class="sxs-lookup"><span data-stu-id="69d67-143">Launch location</span></span>                           |<span data-ttu-id="69d67-144">Предлагаемая папка</span><span class="sxs-lookup"><span data-stu-id="69d67-144">Suggested folder</span></span>      |
   |------------------------------------------|----------------------|

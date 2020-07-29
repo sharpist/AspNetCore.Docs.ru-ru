@@ -1,22 +1,23 @@
 ---
-title: ASP.NET Core Blazor WebAssembly с группами и ролями Azure Active Directory
+title: ASP.NET Core [Blazor WebAssembly с группами и ролями Azure Active Directory
 author: guardrex
-description: Узнайте, как настроить Blazor WebAssembly для использования групп и ролей Azure Active Directory.
+description: Узнайте, как настроить [Blazor WebAssembly для использования групп и ролей Azure Active Directory.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- '[Blazor'
+- '[Blazor Server'
+- '[Blazor WebAssembly'
+- '[Identity'
+- "[Let's Encrypt"
+- '[Razor'
+- '[SignalR'
 uid: blazor/security/webassembly/aad-groups-roles
 ms.openlocfilehash: 6e27b062d7b5a1b72804fe5d4ea31ec65358ce45
 ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 06/26/2020
 ms.locfileid: "85402160"
@@ -25,7 +26,7 @@ ms.locfileid: "85402160"
 
 <span data-ttu-id="dcbd5-104">Авторы: [Люк Латэм](https://github.com/javiercn) (Luke Latham) и [Хавьер Кальварро Нельсон](https://github.com/guardrex) (Javier Calvarro Nelson)</span><span class="sxs-lookup"><span data-stu-id="dcbd5-104">By [Luke Latham](https://github.com/guardrex) and [Javier Calvarro Nelson](https://github.com/javiercn)</span></span>
 
-<span data-ttu-id="dcbd5-105">Azure Active Directory (AAD) предоставляет несколько подходов к авторизации, которые можно сочетать с ASP.NET Core Identity:</span><span class="sxs-lookup"><span data-stu-id="dcbd5-105">Azure Active Directory (AAD) provides several authorization approaches that can be combined with ASP.NET Core Identity:</span></span>
+<span data-ttu-id="dcbd5-105">Azure Active Directory (AAD) предоставляет несколько подходов к авторизации, которые можно сочетать с ASP.NET Core [Identity:</span><span class="sxs-lookup"><span data-stu-id="dcbd5-105">Azure Active Directory (AAD) provides several authorization approaches that can be combined with ASP.NET Core [Identity:</span></span>
 
 * <span data-ttu-id="dcbd5-106">Определяемые пользователем группы</span><span class="sxs-lookup"><span data-stu-id="dcbd5-106">User-defined groups</span></span>
   * <span data-ttu-id="dcbd5-107">Безопасность</span><span class="sxs-lookup"><span data-stu-id="dcbd5-107">Security</span></span>
@@ -35,7 +36,7 @@ ms.locfileid: "85402160"
   * <span data-ttu-id="dcbd5-111">Встроенные административные роли</span><span class="sxs-lookup"><span data-stu-id="dcbd5-111">Built-in Administrative Roles</span></span>
   * <span data-ttu-id="dcbd5-112">Определяемые пользователем роли</span><span class="sxs-lookup"><span data-stu-id="dcbd5-112">User-defined roles</span></span>
 
-<span data-ttu-id="dcbd5-113">Рекомендации в этой статье относятся к сценариям развертывания Blazor WebAssembly AAD, описанным в следующих разделах:</span><span class="sxs-lookup"><span data-stu-id="dcbd5-113">The guidance in this article applies to the Blazor WebAssembly AAD deployment scenarios described in the following topics:</span></span>
+<span data-ttu-id="dcbd5-113">Рекомендации в этой статье относятся к сценариям развертывания [Blazor WebAssembly AAD, описанным в следующих разделах:</span><span class="sxs-lookup"><span data-stu-id="dcbd5-113">The guidance in this article applies to the [Blazor WebAssembly AAD deployment scenarios described in the following topics:</span></span>
 
 * [<span data-ttu-id="dcbd5-114">Автономное развертывание с помощью учетных записей Майкрософт</span><span class="sxs-lookup"><span data-stu-id="dcbd5-114">Standalone with Microsoft Accounts</span></span>](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
 * [<span data-ttu-id="dcbd5-115">Автономное развертывание с помощью AAD</span><span class="sxs-lookup"><span data-stu-id="dcbd5-115">Standalone with AAD</span></span>](xref:blazor/security/webassembly/standalone-with-azure-active-directory)
@@ -94,9 +95,9 @@ public class CustomUserFactory
     {
         var initialUser = await base.CreateUserAsync(account, options);
 
-        if (initialUser.Identity.IsAuthenticated)
+        if (initialUser.[Identity.IsAuthenticated)
         {
-            var userIdentity = (ClaimsIdentity)initialUser.Identity;
+            var userIdentity = (ClaimsIdentity)initialUser.[Identity;
 
             foreach (var role in account.Roles)
             {
@@ -285,7 +286,7 @@ builder.Services.AddMsalAuthentication(options =>
 <span data-ttu-id="dcbd5-198">Читатели каталога</span><span class="sxs-lookup"><span data-stu-id="dcbd5-198">Directory readers</span></span> | <span data-ttu-id="dcbd5-199">e1fc84a6-7762-4b9b-8e29-518b4adbc23b</span><span class="sxs-lookup"><span data-stu-id="dcbd5-199">e1fc84a6-7762-4b9b-8e29-518b4adbc23b</span></span>
 <span data-ttu-id="dcbd5-200">Администратор Dynamics 365</span><span class="sxs-lookup"><span data-stu-id="dcbd5-200">Dynamics 365 administrator</span></span> | <span data-ttu-id="dcbd5-201">f20a9cfa-9fdf-49a8-a977-1afe446a1d6e</span><span class="sxs-lookup"><span data-stu-id="dcbd5-201">f20a9cfa-9fdf-49a8-a977-1afe446a1d6e</span></span>
 <span data-ttu-id="dcbd5-202">администратор Exchange;</span><span class="sxs-lookup"><span data-stu-id="dcbd5-202">Exchange administrator</span></span> | <span data-ttu-id="dcbd5-203">b2ec2cc0-d5c9-4864-ad9b-38dd9dba2652</span><span class="sxs-lookup"><span data-stu-id="dcbd5-203">b2ec2cc0-d5c9-4864-ad9b-38dd9dba2652</span></span>
-<span data-ttu-id="dcbd5-204">Администратор внешнего поставщика Identity</span><span class="sxs-lookup"><span data-stu-id="dcbd5-204">External Identity Provider administrator</span></span> | <span data-ttu-id="dcbd5-205">febfaeb4-e478-407a-b4b3-f4d9716618a2</span><span class="sxs-lookup"><span data-stu-id="dcbd5-205">febfaeb4-e478-407a-b4b3-f4d9716618a2</span></span>
+<span data-ttu-id="dcbd5-204">Администратор внешнего поставщика [Identity</span><span class="sxs-lookup"><span data-stu-id="dcbd5-204">External [Identity Provider administrator</span></span> | <span data-ttu-id="dcbd5-205">febfaeb4-e478-407a-b4b3-f4d9716618a2</span><span class="sxs-lookup"><span data-stu-id="dcbd5-205">febfaeb4-e478-407a-b4b3-f4d9716618a2</span></span>
 <span data-ttu-id="dcbd5-206">Глобальный администратор.</span><span class="sxs-lookup"><span data-stu-id="dcbd5-206">Global administrator</span></span> | <span data-ttu-id="dcbd5-207">a45ba61b-44db-462c-924b-3b2719152588</span><span class="sxs-lookup"><span data-stu-id="dcbd5-207">a45ba61b-44db-462c-924b-3b2719152588</span></span>
 <span data-ttu-id="dcbd5-208">Глобальный читатель</span><span class="sxs-lookup"><span data-stu-id="dcbd5-208">Global reader</span></span> | <span data-ttu-id="dcbd5-209">f6903b21-6aba-4124-b44c-76671796b9d5</span><span class="sxs-lookup"><span data-stu-id="dcbd5-209">f6903b21-6aba-4124-b44c-76671796b9d5</span></span>
 <span data-ttu-id="dcbd5-210">Администратор групп</span><span class="sxs-lookup"><span data-stu-id="dcbd5-210">Groups administrator</span></span> | <span data-ttu-id="dcbd5-211">158b3e5a-d89d-460b-92b5-3b34985f0197</span><span class="sxs-lookup"><span data-stu-id="dcbd5-211">158b3e5a-d89d-460b-92b5-3b34985f0197</span></span>

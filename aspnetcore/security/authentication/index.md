@@ -6,13 +6,13 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/03/2020
 no-loc:
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/index
 ms.openlocfilehash: a230e1ae85a54ddf16900b2ee7ed4a18d45e4ea2
 ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
@@ -49,7 +49,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 <span data-ttu-id="f5194-119">Если используется множество схем, в политиках (или атрибутах) авторизации можно [указать конкретные схемы](xref:security/authorization/limitingidentitybyscheme), применяемые для проверки подлинности пользователя.</span><span class="sxs-lookup"><span data-stu-id="f5194-119">If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/limitingidentitybyscheme) they depend on to authenticate the user.</span></span> <span data-ttu-id="f5194-120">В приведенном выше примере можно специально задать использование схемы на основе файлов cookie, указав ее имя (по умолчанию — `CookieAuthenticationDefaults.AuthenticationScheme`, однако при вызове `AddCookie` можно указать другое).</span><span class="sxs-lookup"><span data-stu-id="f5194-120">In the example above, the cookie authentication scheme could be used by specifying its name (`CookieAuthenticationDefaults.AuthenticationScheme` by default, though a different name could be provided when calling `AddCookie`).</span></span>
 
-<span data-ttu-id="f5194-121">В некоторых случаях `AddAuthentication` автоматически вызывается другими методами расширения.</span><span class="sxs-lookup"><span data-stu-id="f5194-121">In some cases, the call to `AddAuthentication` is automatically made by other extension methods.</span></span> <span data-ttu-id="f5194-122">Например, при использовании [ASP.NET Core :::no-loc(Identity):::](xref:security/authentication/identity) выполняется внутренний вызов `AddAuthentication`.</span><span class="sxs-lookup"><span data-stu-id="f5194-122">For example, when using [ASP.NET Core :::no-loc(Identity):::](xref:security/authentication/identity), `AddAuthentication` is called internally.</span></span>
+<span data-ttu-id="f5194-121">В некоторых случаях `AddAuthentication` автоматически вызывается другими методами расширения.</span><span class="sxs-lookup"><span data-stu-id="f5194-121">In some cases, the call to `AddAuthentication` is automatically made by other extension methods.</span></span> <span data-ttu-id="f5194-122">Например, при использовании [ASP.NET Core Identity](xref:security/authentication/identity) выполняется внутренний вызов `AddAuthentication`.</span><span class="sxs-lookup"><span data-stu-id="f5194-122">For example, when using [ASP.NET Core Identity](xref:security/authentication/identity), `AddAuthentication` is called internally.</span></span>
 
 <span data-ttu-id="f5194-123">ПО промежуточного слоя для проверки подлинности добавляется в `Startup.Configure` путем вызова метода расширения <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> в интерфейсе `IApplicationBuilder` приложения.</span><span class="sxs-lookup"><span data-stu-id="f5194-123">The Authentication middleware is added in `Startup.Configure` by calling the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> extension method on the app's `IApplicationBuilder`.</span></span> <span data-ttu-id="f5194-124">Вызов `UseAuthentication` регистрирует ПО промежуточного слоя, использующее зарегистрированные ранее схемы проверки подлинности.</span><span class="sxs-lookup"><span data-stu-id="f5194-124">Calling `UseAuthentication` registers the middleware which uses the previously registered authentication schemes.</span></span> <span data-ttu-id="f5194-125">Следует вызывать `UseAuthentication` перед вызовом любого ПО промежуточного слоя, требующего проверки подлинности пользователей.</span><span class="sxs-lookup"><span data-stu-id="f5194-125">Call `UseAuthentication` before any middleware that depends on users being authenticated.</span></span> <span data-ttu-id="f5194-126">При использовании маршрутизации конечных точек метод `UseAuthentication` необходимо вызывать в следующем порядке:</span><span class="sxs-lookup"><span data-stu-id="f5194-126">When using endpoint routing, the call to `UseAuthentication` must go:</span></span>
 

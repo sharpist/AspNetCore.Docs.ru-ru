@@ -1,45 +1,46 @@
 ---
-title: Глобализация и локализация в ASP.NET Core Blazor
+title: Глобализация и локализация в ASP.NET Core [Blazor
 author: guardrex
-description: Узнайте, как сделать компоненты Razor доступными для пользователей с различными языковыми и региональными параметрами.
+description: Узнайте, как сделать компоненты [Razor доступными для пользователей с различными языковыми и региональными параметрами.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- '[Blazor'
+- '[Blazor Server'
+- '[Blazor WebAssembly'
+- '[Identity'
+- "[Let's Encrypt"
+- '[Razor'
+- '[SignalR'
 uid: blazor/globalization-localization
 ms.openlocfilehash: 1d24ebe900dfcdeb8b7bcc97f1d212deea9cecae
 ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 06/26/2020
 ms.locfileid: "85402732"
 ---
-# <a name="aspnet-core-blazor-globalization-and-localization"></a><span data-ttu-id="89455-103">Глобализация и локализация в ASP.NET Core Blazor</span><span class="sxs-lookup"><span data-stu-id="89455-103">ASP.NET Core Blazor globalization and localization</span></span>
+# <a name="aspnet-core-blazor-globalization-and-localization"></a><span data-ttu-id="89455-103">Глобализация и локализация в ASP.NET Core [Blazor</span><span class="sxs-lookup"><span data-stu-id="89455-103">ASP.NET Core [Blazor globalization and localization</span></span>
 
 <span data-ttu-id="89455-104">Авторы: [Люк Латэм](https://github.com/guardrex) (Luke Latham) и [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)</span><span class="sxs-lookup"><span data-stu-id="89455-104">By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)</span></span>
 
-<span data-ttu-id="89455-105">Компоненты Razor можно сделать доступными для пользователей с различными языковыми и региональными параметрами.</span><span class="sxs-lookup"><span data-stu-id="89455-105">Razor components can be made accessible to users in multiple cultures and languages.</span></span> <span data-ttu-id="89455-106">Доступны следующие сценарии глобализации и локализации .NET:</span><span class="sxs-lookup"><span data-stu-id="89455-106">The following .NET globalization and localization scenarios are available:</span></span>
+<span data-ttu-id="89455-105">Компоненты [Razor можно сделать доступными для пользователей с различными языковыми и региональными параметрами.</span><span class="sxs-lookup"><span data-stu-id="89455-105">[Razor components can be made accessible to users in multiple cultures and languages.</span></span> <span data-ttu-id="89455-106">Доступны следующие сценарии глобализации и локализации .NET:</span><span class="sxs-lookup"><span data-stu-id="89455-106">The following .NET globalization and localization scenarios are available:</span></span>
 
 * <span data-ttu-id="89455-107">система ресурсов NET;</span><span class="sxs-lookup"><span data-stu-id="89455-107">.NET's resources system</span></span>
 * <span data-ttu-id="89455-108">форматирование чисел и дат в зависимости от языка и региональных параметров.</span><span class="sxs-lookup"><span data-stu-id="89455-108">Culture-specific number and date formatting</span></span>
 
 <span data-ttu-id="89455-109">В настоящее время поддерживается ограниченный набор сценариев локализации ASP.NET Core:</span><span class="sxs-lookup"><span data-stu-id="89455-109">A limited set of ASP.NET Core's localization scenarios are currently supported:</span></span>
 
-* <span data-ttu-id="89455-110"><xref:Microsoft.Extensions.Localization.IStringLocalizer> и <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> *поддерживаются* в приложениях Blazor.</span><span class="sxs-lookup"><span data-stu-id="89455-110"><xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> *are supported* in Blazor apps.</span></span>
-* <span data-ttu-id="89455-111"><xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> и локализация заметок к данным являются сценариями MVC ASP.NET Core и **не поддерживается** в приложениях Blazor.</span><span class="sxs-lookup"><span data-stu-id="89455-111"><xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and Data Annotations localization are ASP.NET Core MVC scenarios and **not supported** in Blazor apps.</span></span>
+* <span data-ttu-id="89455-110"><xref:Microsoft.Extensions.Localization.IStringLocalizer> и <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> *поддерживаются* в приложениях [Blazor.</span><span class="sxs-lookup"><span data-stu-id="89455-110"><xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> *are supported* in [Blazor apps.</span></span>
+* <span data-ttu-id="89455-111"><xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> и локализация заметок к данным являются сценариями MVC ASP.NET Core и **не поддерживается** в приложениях [Blazor.</span><span class="sxs-lookup"><span data-stu-id="89455-111"><xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and Data Annotations localization are ASP.NET Core MVC scenarios and **not supported** in [Blazor apps.</span></span>
 
 <span data-ttu-id="89455-112">Для получения дополнительной информации см. <xref:fundamentals/localization>.</span><span class="sxs-lookup"><span data-stu-id="89455-112">For more information, see <xref:fundamentals/localization>.</span></span>
 
 ## <a name="globalization"></a><span data-ttu-id="89455-113">Глобализация</span><span class="sxs-lookup"><span data-stu-id="89455-113">Globalization</span></span>
 
-<span data-ttu-id="89455-114">Функция [`@bind`](xref:mvc/views/razor#bind) в Blazor выполняет форматирование и синтаксический анализ значений, отображаемых на основе текущего языка и региональных параметров пользователя.</span><span class="sxs-lookup"><span data-stu-id="89455-114">Blazor's [`@bind`](xref:mvc/views/razor#bind) functionality performs formats and parses values for display based on the user's current culture.</span></span>
+<span data-ttu-id="89455-114">Функция [`@bind`](xref:mvc/views/razor#bind) в [Blazor выполняет форматирование и синтаксический анализ значений, отображаемых на основе текущего языка и региональных параметров пользователя.</span><span class="sxs-lookup"><span data-stu-id="89455-114">[Blazor's [`@bind`](xref:mvc/views/razor#bind) functionality performs formats and parses values for display based on the user's current culture.</span></span>
 
 <span data-ttu-id="89455-115">Доступ к текущему языку и региональным параметрам можно получить из свойства <xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=fullName>.</span><span class="sxs-lookup"><span data-stu-id="89455-115">The current culture can be accessed from the <xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=fullName> property.</span></span>
 
@@ -54,29 +55,29 @@ ms.locfileid: "85402732"
 * <span data-ttu-id="89455-119">не могут содержать текст в свободной форме;</span><span class="sxs-lookup"><span data-stu-id="89455-119">Can't contain free-form text.</span></span>
 * <span data-ttu-id="89455-120">предоставляют характеристики взаимодействия с пользователем в зависимости от реализации браузера.</span><span class="sxs-lookup"><span data-stu-id="89455-120">Provide user interaction characteristics based on the browser's implementation.</span></span>
 
-<span data-ttu-id="89455-121">Следующие типы полей имеют особые требования к форматированию, которые в настоящее время не поддерживаются в Blazor, так как они не поддерживаются всеми основными браузерами.</span><span class="sxs-lookup"><span data-stu-id="89455-121">The following field types have specific formatting requirements and aren't currently supported by Blazor because they aren't supported by all major browsers:</span></span>
+<span data-ttu-id="89455-121">Следующие типы полей имеют особые требования к форматированию, которые в настоящее время не поддерживаются в [Blazor, так как они не поддерживаются всеми основными браузерами.</span><span class="sxs-lookup"><span data-stu-id="89455-121">The following field types have specific formatting requirements and aren't currently supported by [Blazor because they aren't supported by all major browsers:</span></span>
 
 * `datetime-local`
 * `month`
 * `week`
 
-<span data-ttu-id="89455-122">[`@bind`](xref:mvc/views/razor#bind) поддерживает параметр `@bind:culture`, чтобы предоставлять <xref:System.Globalization.CultureInfo?displayProperty=fullName> для анализа и форматирования значения.</span><span class="sxs-lookup"><span data-stu-id="89455-122">[`@bind`](xref:mvc/views/razor#bind) supports the `@bind:culture` parameter to provide a <xref:System.Globalization.CultureInfo?displayProperty=fullName> for parsing and formatting a value.</span></span> <span data-ttu-id="89455-123">Указание языка и региональных параметров не рекомендуется при использовании типов полей `date` и `number`.</span><span class="sxs-lookup"><span data-stu-id="89455-123">Specifying a culture isn't recommended when using the `date` and `number` field types.</span></span> <span data-ttu-id="89455-124">Типы `date` и `number` имеют встроенную поддержку Blazor, которая обеспечивает поддержку языка и региональных параметров.</span><span class="sxs-lookup"><span data-stu-id="89455-124">`date` and `number` have built-in Blazor support that provides the required culture.</span></span>
+<span data-ttu-id="89455-122">[`@bind`](xref:mvc/views/razor#bind) поддерживает параметр `@bind:culture`, чтобы предоставлять <xref:System.Globalization.CultureInfo?displayProperty=fullName> для анализа и форматирования значения.</span><span class="sxs-lookup"><span data-stu-id="89455-122">[`@bind`](xref:mvc/views/razor#bind) supports the `@bind:culture` parameter to provide a <xref:System.Globalization.CultureInfo?displayProperty=fullName> for parsing and formatting a value.</span></span> <span data-ttu-id="89455-123">Указание языка и региональных параметров не рекомендуется при использовании типов полей `date` и `number`.</span><span class="sxs-lookup"><span data-stu-id="89455-123">Specifying a culture isn't recommended when using the `date` and `number` field types.</span></span> <span data-ttu-id="89455-124">Типы `date` и `number` имеют встроенную поддержку [Blazor, которая обеспечивает поддержку языка и региональных параметров.</span><span class="sxs-lookup"><span data-stu-id="89455-124">`date` and `number` have built-in [Blazor support that provides the required culture.</span></span>
 
 ## <a name="localization"></a><span data-ttu-id="89455-125">Локализация</span><span class="sxs-lookup"><span data-stu-id="89455-125">Localization</span></span>
 
-### Blazor WebAssembly
+### [Blazor WebAssembly
 
-<span data-ttu-id="89455-126">Приложения Blazor WebAssembly задают язык и региональные параметры с помощью [предпочитаемого языка пользователя](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages).</span><span class="sxs-lookup"><span data-stu-id="89455-126">Blazor WebAssembly apps set the culture using the user's [language preference](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages).</span></span>
+<span data-ttu-id="89455-126">Приложения [Blazor WebAssembly задают язык и региональные параметры с помощью [предпочитаемого языка пользователя](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages).</span><span class="sxs-lookup"><span data-stu-id="89455-126">[Blazor WebAssembly apps set the culture using the user's [language preference](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages).</span></span>
 
 <span data-ttu-id="89455-127">Чтобы явно настроить язык и региональные параметры, задайте <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> и <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> в `Program.Main`.</span><span class="sxs-lookup"><span data-stu-id="89455-127">To explicitly configure the culture, set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.Main`.</span></span>
 
-<span data-ttu-id="89455-128">По умолчанию конфигурация компоновщика Blazor для приложений Blazor WebAssembly исключает сведения об интернационализации, кроме явно запрошенных языковых стандартов.</span><span class="sxs-lookup"><span data-stu-id="89455-128">By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested.</span></span> <span data-ttu-id="89455-129">Дополнительные сведения и рекомендации по управлению поведением компоновщика см. в разделе <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.</span><span class="sxs-lookup"><span data-stu-id="89455-129">For more information and guidance on controlling the linker's behavior, see <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.</span></span>
+<span data-ttu-id="89455-128">По умолчанию конфигурация компоновщика [Blazor для приложений [Blazor WebAssembly исключает сведения об интернационализации, кроме явно запрошенных языковых стандартов.</span><span class="sxs-lookup"><span data-stu-id="89455-128">By default, [Blazor's linker configuration for [Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested.</span></span> <span data-ttu-id="89455-129">Дополнительные сведения и рекомендации по управлению поведением компоновщика см. в разделе <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.</span><span class="sxs-lookup"><span data-stu-id="89455-129">For more information and guidance on controlling the linker's behavior, see <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.</span></span>
 
-<span data-ttu-id="89455-130">Хотя язык и региональные параметры, выбираемые Blazor по умолчанию, могут быть достаточными для большинства пользователей, рекомендуется предоставить пользователям возможность указать предпочитаемый языковой стандарт.</span><span class="sxs-lookup"><span data-stu-id="89455-130">While the culture that Blazor selects by default might be sufficient for most users, consider offering a way for users to specify their preferred locale.</span></span> <span data-ttu-id="89455-131">Пример приложения Blazor WebAssembly с выбором языка и региональных параметров см. в описании примера приложения локализации [`LocSample`](https://github.com/pranavkm/LocSample).</span><span class="sxs-lookup"><span data-stu-id="89455-131">For a Blazor WebAssembly sample app with a culture picker, see the [`LocSample`](https://github.com/pranavkm/LocSample) localization sample app.</span></span>
+<span data-ttu-id="89455-130">Хотя язык и региональные параметры, выбираемые [Blazor по умолчанию, могут быть достаточными для большинства пользователей, рекомендуется предоставить пользователям возможность указать предпочитаемый языковой стандарт.</span><span class="sxs-lookup"><span data-stu-id="89455-130">While the culture that [Blazor selects by default might be sufficient for most users, consider offering a way for users to specify their preferred locale.</span></span> <span data-ttu-id="89455-131">Пример приложения [Blazor WebAssembly с выбором языка и региональных параметров см. в описании примера приложения локализации [`LocSample`](https://github.com/pranavkm/LocSample).</span><span class="sxs-lookup"><span data-stu-id="89455-131">For a [Blazor WebAssembly sample app with a culture picker, see the [`LocSample`](https://github.com/pranavkm/LocSample) localization sample app.</span></span>
 
-### Blazor Server
+### [Blazor Server
 
-<span data-ttu-id="89455-132">Приложения Blazor Server локализуются с помощью [промежуточного слоя локализации](xref:fundamentals/localization#localization-middleware).</span><span class="sxs-lookup"><span data-stu-id="89455-132">Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware).</span></span> <span data-ttu-id="89455-133">ПО промежуточного слоя выбирает соответствующие языки и региональные параметры для пользователей, запрашивающих ресурсы из приложения.</span><span class="sxs-lookup"><span data-stu-id="89455-133">The middleware selects the appropriate culture for users requesting resources from the app.</span></span>
+<span data-ttu-id="89455-132">Приложения [Blazor Server локализуются с помощью [промежуточного слоя локализации](xref:fundamentals/localization#localization-middleware).</span><span class="sxs-lookup"><span data-stu-id="89455-132">[Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware).</span></span> <span data-ttu-id="89455-133">ПО промежуточного слоя выбирает соответствующие языки и региональные параметры для пользователей, запрашивающих ресурсы из приложения.</span><span class="sxs-lookup"><span data-stu-id="89455-133">The middleware selects the appropriate culture for users requesting resources from the app.</span></span>
 
 <span data-ttu-id="89455-134">Язык и региональные параметры можно задать с помощью одного из следующих подходов.</span><span class="sxs-lookup"><span data-stu-id="89455-134">The culture can be set using one of the following approaches:</span></span>
 
@@ -93,7 +94,7 @@ ms.locfileid: "85402732"
 
 <span data-ttu-id="89455-144">Если язык и региональные параметры сохраняются в файле cookie с локализацией, то можно использовать любой метод для назначения языка и региональных параметров.</span><span class="sxs-lookup"><span data-stu-id="89455-144">Any technique can be used to assign a culture if the culture is persisted in a localization cookie.</span></span> <span data-ttu-id="89455-145">Если у приложения уже есть установленная схема локализации для ASP.NET Core на стороне сервера, продолжайте использовать существующую инфраструктуру локализации приложения и задавайте файл cookie языка и региональных параметров для локализации в схеме приложения.</span><span class="sxs-lookup"><span data-stu-id="89455-145">If the app already has an established localization scheme for server-side ASP.NET Core, continue to use the app's existing localization infrastructure and set the localization culture cookie within the app's scheme.</span></span>
 
-<span data-ttu-id="89455-146">В следующем примере показано, как задать текущий язык и региональные параметры в файле cookie, который можно прочитать в ПО промежуточного слоя локализации.</span><span class="sxs-lookup"><span data-stu-id="89455-146">The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware.</span></span> <span data-ttu-id="89455-147">Создайте Razor выражение в файле `Pages/_Host.cshtml` непосредственно в открывающем теге `<body>`:</span><span class="sxs-lookup"><span data-stu-id="89455-147">Create a Razor expression in the `Pages/_Host.cshtml` file immediately inside the opening `<body>` tag:</span></span>
+<span data-ttu-id="89455-146">В следующем примере показано, как задать текущий язык и региональные параметры в файле cookie, который можно прочитать в ПО промежуточного слоя локализации.</span><span class="sxs-lookup"><span data-stu-id="89455-146">The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware.</span></span> <span data-ttu-id="89455-147">Создайте [Razor выражение в файле `Pages/_Host.cshtml` непосредственно в открывающем теге `<body>`:</span><span class="sxs-lookup"><span data-stu-id="89455-147">Create a [Razor expression in the `Pages/_Host.cshtml` file immediately inside the opening `<body>` tag:</span></span>
 
 ```cshtml
 @using System.Globalization
@@ -119,10 +120,10 @@ ms.locfileid: "85402732"
 
 1. <span data-ttu-id="89455-149">Браузер отправляет первоначальный HTTP-запрос в приложение.</span><span class="sxs-lookup"><span data-stu-id="89455-149">The browser sends an initial HTTP request to the app.</span></span>
 1. <span data-ttu-id="89455-150">Язык и региональные параметры назначаются в ПО промежуточного слоя локализации.</span><span class="sxs-lookup"><span data-stu-id="89455-150">The culture is assigned by the Localization Middleware.</span></span>
-1. <span data-ttu-id="89455-151">Выражение Razor на странице `_Host` (`_Host.cshtml`) сохраняет язык и региональные параметры в файле cookie как часть ответа.</span><span class="sxs-lookup"><span data-stu-id="89455-151">The Razor expression in the `_Host` page (`_Host.cshtml`) persists the culture in a cookie as part of the response.</span></span>
-1. <span data-ttu-id="89455-152">Браузер открывает соединение WebSocket для создания интерактивного сеанса Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="89455-152">The browser opens a WebSocket connection to create an interactive Blazor Server session.</span></span>
+1. <span data-ttu-id="89455-151">Выражение [Razor на странице `_Host` (`_Host.cshtml`) сохраняет язык и региональные параметры в файле cookie как часть ответа.</span><span class="sxs-lookup"><span data-stu-id="89455-151">The [Razor expression in the `_Host` page (`_Host.cshtml`) persists the culture in a cookie as part of the response.</span></span>
+1. <span data-ttu-id="89455-152">Браузер открывает соединение WebSocket для создания интерактивного сеанса [Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="89455-152">The browser opens a WebSocket connection to create an interactive [Blazor Server session.</span></span>
 1. <span data-ttu-id="89455-153">ПО промежуточного слоя для локализации считывает файл cookie и назначает язык и региональные параметры.</span><span class="sxs-lookup"><span data-stu-id="89455-153">The Localization Middleware reads the cookie and assigns the culture.</span></span>
-1. <span data-ttu-id="89455-154">Сеанс Blazor Server начинается с нужными языком и региональными параметрами.</span><span class="sxs-lookup"><span data-stu-id="89455-154">The Blazor Server session begins with the correct culture.</span></span>
+1. <span data-ttu-id="89455-154">Сеанс [Blazor Server начинается с нужными языком и региональными параметрами.</span><span class="sxs-lookup"><span data-stu-id="89455-154">The [Blazor Server session begins with the correct culture.</span></span>
 
 #### <a name="provide-ui-to-choose-the-culture"></a><span data-ttu-id="89455-155">Предоставление пользовательского интерфейса для выбора языка и региональных параметров</span><span class="sxs-lookup"><span data-stu-id="89455-155">Provide UI to choose the culture</span></span>
 
