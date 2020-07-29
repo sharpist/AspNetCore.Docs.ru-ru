@@ -6,13 +6,13 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/03/2020
 no-loc:
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/index
 ms.openlocfilehash: a230e1ae85a54ddf16900b2ee7ed4a18d45e4ea2
 ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
@@ -49,7 +49,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 Если используется множество схем, в политиках (или атрибутах) авторизации можно [указать конкретные схемы](xref:security/authorization/limitingidentitybyscheme), применяемые для проверки подлинности пользователя. В приведенном выше примере можно специально задать использование схемы на основе файлов cookie, указав ее имя (по умолчанию — `CookieAuthenticationDefaults.AuthenticationScheme`, однако при вызове `AddCookie` можно указать другое).
 
-В некоторых случаях `AddAuthentication` автоматически вызывается другими методами расширения. Например, при использовании [ASP.NET Core :::no-loc(Identity):::](xref:security/authentication/identity) выполняется внутренний вызов `AddAuthentication`.
+В некоторых случаях `AddAuthentication` автоматически вызывается другими методами расширения. Например, при использовании [ASP.NET Core Identity](xref:security/authentication/identity) выполняется внутренний вызов `AddAuthentication`.
 
 ПО промежуточного слоя для проверки подлинности добавляется в `Startup.Configure` путем вызова метода расширения <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> в интерфейсе `IApplicationBuilder` приложения. Вызов `UseAuthentication` регистрирует ПО промежуточного слоя, использующее зарегистрированные ранее схемы проверки подлинности. Следует вызывать `UseAuthentication` перед вызовом любого ПО промежуточного слоя, требующего проверки подлинности пользователей. При использовании маршрутизации конечных точек метод `UseAuthentication` необходимо вызывать в следующем порядке:
 

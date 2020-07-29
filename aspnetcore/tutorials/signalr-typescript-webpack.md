@@ -1,38 +1,39 @@
 ---
-title: Использование ASP.NET Core SignalR с TypeScript и webpack
+title: Использование ASP.NET Core [SignalR с TypeScript и webpack
 author: ssougnez
-description: В рамках этого учебника вы настроите средство webpack для создания пакета и сборки веб-приложения ASP.NET Core SignalR, клиент которого написан на языке TypeScript.
+description: В рамках этого учебника вы настроите средство webpack для создания пакета и сборки веб-приложения ASP.NET Core [SignalR, клиент которого написан на языке TypeScript.
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 02/10/2020
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- '[Blazor'
+- '[Blazor Server'
+- '[Blazor WebAssembly'
+- '[Identity'
+- "[Let's Encrypt"
+- '[Razor'
+- '[SignalR'
 uid: tutorials/signalr-typescript-webpack
 ms.openlocfilehash: 49d185ce941d5f8e841224e7de3b72b8350a1c47
 ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 06/26/2020
 ms.locfileid: "85407906"
 ---
-# <a name="use-aspnet-core-signalr-with-typescript-and-webpack"></a>Использование ASP.NET Core SignalR с TypeScript и webpack
+# <a name="use-aspnet-core-signalr-with-typescript-and-webpack"></a>Использование ASP.NET Core [SignalR с TypeScript и webpack
 
 Авторы: [Себастьен Сунье (Sébastien Sougnez)](https://twitter.com/ssougnez) и [Скотт Эдди (Scott Addie)](https://twitter.com/Scott_Addie)
 
-С помощью средства [Webpack](https://webpack.js.org/) разработчики могут создавать пакеты и выполнять сборку ресурсов на стороне клиента для веб-приложения. В этом учебнике демонстрируется использование средства webpack для создания пакета и сборки веб-приложения ASP.NET Core SignalR, клиент которого написан на языке [TypeScript](https://www.typescriptlang.org/).
+С помощью средства [Webpack](https://webpack.js.org/) разработчики могут создавать пакеты и выполнять сборку ресурсов на стороне клиента для веб-приложения. В этом учебнике демонстрируется использование средства webpack для создания пакета и сборки веб-приложения ASP.NET Core [SignalR, клиент которого написан на языке [TypeScript](https://www.typescriptlang.org/).
 
 В этом руководстве вы узнаете, как:
 
 > [!div class="checklist"]
-> * сформировать шаблон для начального приложения ASP.NET Core SignalR;
-> * настроить клиент TypeScript SignalR;
+> * сформировать шаблон для начального приложения ASP.NET Core [SignalR;
+> * настроить клиент TypeScript [SignalR;
 > * Настроить конвейер сборки с использованием Webpack
-> * настроить сервер SignalR.
+> * настроить сервер [SignalR.
 > * Обеспечить взаимодействие между клиентом и сервером
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([как скачивать](xref:index#how-to-download-a-sample))
@@ -154,7 +155,7 @@ dotnet add package Microsoft.TypeScript.MSBuild
     Приведенный выше файл определяет конфигурацию компиляции Webpack. Сведения о конфигурации, на которые следует обратить внимание:
 
     * Свойство `output` переопределяет значение по умолчанию для *dist*. Вместо этого пакет выводится в каталог *wwwroot*.
-    * Массив `resolve.extensions` содержит элемент *.js* для импорта кода JavaScript клиента SignalR.
+    * Массив `resolve.extensions` содержит элемент *.js* для импорта кода JavaScript клиента [SignalR.
 
 1. Создайте новый каталог *src* в корневом каталоге проекта, чтобы сохранить клиентские ресурсы проекта.
 
@@ -203,7 +204,7 @@ dotnet add package Microsoft.TypeScript.MSBuild
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_AddSignalR)]
 
-1. Создайте новый каталог с именем *Hubs* в корневом каталоге проекта *SignalRWebPack/* для хранения концентратора SignalR.
+1. Создайте новый каталог с именем *Hubs* в корневом каталоге проекта *SignalRWebPack/* для хранения концентратора [SignalR.
 
 1. Создайте концентратор *Hubs/ChatHub.cs* со следующим кодом:
 
@@ -225,7 +226,7 @@ dotnet add package Microsoft.TypeScript.MSBuild
 
     Предыдущая команда устанавливает:
 
-     * [Клиент TypeScript SignalR](https://www.npmjs.com/package/@microsoft/signalr), который позволяет клиенту отправлять сообщения на сервер.
+     * [Клиент TypeScript [SignalR](https://www.npmjs.com/package/@microsoft/signalr), который позволяет клиенту отправлять сообщения на сервер.
      * Определения типа TypeScript для Node.js, обеспечивающие проверку типов Node.js во время компиляции.
 
 1. Добавьте выделенный код в файл *src/index.ts*:
@@ -234,7 +235,7 @@ dotnet add package Microsoft.TypeScript.MSBuild
 
     Приведенный выше код поддерживает получение сообщений от сервера. Класс `HubConnectionBuilder` создает новый построитель для настройки подключения к серверу. Функция `withUrl` настраивает URL-адрес концентратора.
 
-    SignalR обеспечивает обмен сообщениями между клиентом и сервером. Каждому сообщению присваивается определенное имя. Например, сообщения с именем `messageReceived` могут выполнять логику отображения новых сообщений в соответствующей зоне. Прослушивание определенных сообщений реализуется с помощью функции `on`. Возможно прослушивание любого числа имен сообщений. Кроме того, можно передавать параметры сообщения, например имя его автора или содержимое полученного сообщения. После того как клиент получает сообщение, создается новый элемент `div`, в атрибуте `innerHTML` которого содержатся имя автора и содержимое сообщения. Этот элемент добавляется в основной элемент `div`, который используется для отображения сообщений.
+    [SignalR обеспечивает обмен сообщениями между клиентом и сервером. Каждому сообщению присваивается определенное имя. Например, сообщения с именем `messageReceived` могут выполнять логику отображения новых сообщений в соответствующей зоне. Прослушивание определенных сообщений реализуется с помощью функции `on`. Возможно прослушивание любого числа имен сообщений. Кроме того, можно передавать параметры сообщения, например имя его автора или содержимое полученного сообщения. После того как клиент получает сообщение, создается новый элемент `div`, в атрибуте `innerHTML` которого содержатся имя автора и содержимое сообщения. Этот элемент добавляется в основной элемент `div`, который используется для отображения сообщений.
 
 1. Теперь клиент может принимать сообщения. Далее следует настроить его для отправки сообщений. Добавьте выделенный код в файл *src/index.ts*:
 
@@ -394,7 +395,7 @@ dotnet new web -o SignalRWebPack
     Приведенный выше файл определяет конфигурацию компиляции Webpack. Сведения о конфигурации, на которые следует обратить внимание:
 
     * Свойство `output` переопределяет значение по умолчанию для *dist*. Вместо этого пакет выводится в каталог *wwwroot*.
-    * Массив `resolve.extensions` содержит элемент *.js* для импорта кода JavaScript клиента SignalR.
+    * Массив `resolve.extensions` содержит элемент *.js* для импорта кода JavaScript клиента [SignalR.
 
 1. Создайте новый каталог *src* в корневом каталоге проекта, чтобы сохранить клиентские ресурсы проекта.
 
@@ -435,7 +436,7 @@ dotnet new web -o SignalRWebPack
 
     Приведенный выше код позволяет серверу обнаруживать и обрабатывать файл *index.html* независимо от того, вводит ли пользователь полный URL-адрес или URL-адрес корня веб-приложения.
 
-1. Вызовите [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) в `Startup.ConfigureServices`. Этот метод добавляет в проект службы SignalR.
+1. Вызовите [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) в `Startup.ConfigureServices`. Этот метод добавляет в проект службы [SignalR.
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_AddSignalR)]
 
@@ -443,7 +444,7 @@ dotnet new web -o SignalRWebPack
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_UseSignalR)]
 
-1. Создайте новый каталог *Hubs* в корневом элементе проекта. Этот каталог служит для хранения концентратора SignalR, созданного на предыдущем шаге.
+1. Создайте новый каталог *Hubs* в корневом элементе проекта. Этот каталог служит для хранения концентратора [SignalR, созданного на предыдущем шаге.
 
 1. Создайте концентратор *Hubs/ChatHub.cs* со следующим кодом:
 
@@ -463,7 +464,7 @@ dotnet new web -o SignalRWebPack
     npm install @aspnet/signalr
     ```
 
-    Команда выше устанавливает [клиент TypeScript SignalR](https://www.npmjs.com/package/@microsoft/signalr), который позволяет клиенту отправлять сообщения на сервер.
+    Команда выше устанавливает [клиент TypeScript [SignalR](https://www.npmjs.com/package/@microsoft/signalr), который позволяет клиенту отправлять сообщения на сервер.
 
 1. Добавьте выделенный код в файл *src/index.ts*:
 
@@ -471,7 +472,7 @@ dotnet new web -o SignalRWebPack
 
     Приведенный выше код поддерживает получение сообщений от сервера. Класс `HubConnectionBuilder` создает новый построитель для настройки подключения к серверу. Функция `withUrl` настраивает URL-адрес концентратора.
 
-    SignalR обеспечивает обмен сообщениями между клиентом и сервером. Каждому сообщению присваивается определенное имя. Например, сообщения с именем `messageReceived` могут выполнять логику отображения новых сообщений в соответствующей зоне. Прослушивание определенных сообщений реализуется с помощью функции `on`. Возможно прослушивание любого числа имен сообщений. Кроме того, можно передавать параметры сообщения, например имя его автора или содержимое полученного сообщения. После того как клиент получает сообщение, создается новый элемент `div`, в атрибуте `innerHTML` которого содержатся имя автора и содержимое сообщения. Новое сообщение добавляется в основной элемент `div`, который используется для отображения сообщений.
+    [SignalR обеспечивает обмен сообщениями между клиентом и сервером. Каждому сообщению присваивается определенное имя. Например, сообщения с именем `messageReceived` могут выполнять логику отображения новых сообщений в соответствующей зоне. Прослушивание определенных сообщений реализуется с помощью функции `on`. Возможно прослушивание любого числа имен сообщений. Кроме того, можно передавать параметры сообщения, например имя его автора или содержимое полученного сообщения. После того как клиент получает сообщение, создается новый элемент `div`, в атрибуте `innerHTML` которого содержатся имя автора и содержимое сообщения. Новое сообщение добавляется в основной элемент `div`, который используется для отображения сообщений.
 
 1. Теперь клиент может принимать сообщения. Далее следует настроить его для отправки сообщений. Добавьте выделенный код в файл *src/index.ts*:
 

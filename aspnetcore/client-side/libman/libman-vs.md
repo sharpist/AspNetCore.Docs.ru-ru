@@ -6,16 +6,17 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/20/2018
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- '[Blazor'
+- '[Blazor Server'
+- '[Blazor WebAssembly'
+- '[Identity'
+- "[Let's Encrypt"
+- '[Razor'
+- '[SignalR'
 uid: client-side/libman/libman-vs
 ms.openlocfilehash: 504c34ccd8813273161b86504700704f8a932538
 ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 06/26/2020
 ms.locfileid: "85403174"
@@ -67,7 +68,7 @@ ms.locfileid: "85403174"
     * используется папка *lib*, если *wwwroot* не существует.
   * При запуске из папки проекта используется соответствующее имя папки.
 
-  После папки указывается имя библиотеки. В приведенной ниже таблице показаны папки, предлагаемые при установке jQuery в проекте Razor Pages.
+  После папки указывается имя библиотеки. В приведенной ниже таблице показаны папки, предлагаемые при установке jQuery в проекте [Razor Pages.
   
   |Место запуска                           |Предлагаемая папка      |
   |------------------------------------------|----------------------|

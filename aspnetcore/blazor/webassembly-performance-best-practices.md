@@ -1,35 +1,36 @@
 ---
-title: Рекомендации по повышению производительности ASP.NET Core Blazor WebAssembly
+title: Рекомендации по повышению производительности ASP.NET Core [Blazor WebAssembly
 author: pranavkm
-description: Советы по повышению производительности приложений ASP.NET Core Blazor WebAssembly и избежанию распространенных проблем с производительностью.
+description: Советы по повышению производительности приложений ASP.NET Core [Blazor WebAssembly и избежанию распространенных проблем с производительностью.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/25/2020
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- '[Blazor'
+- '[Blazor Server'
+- '[Blazor WebAssembly'
+- '[Identity'
+- "[Let's Encrypt"
+- '[Razor'
+- '[SignalR'
 uid: blazor/webassembly-performance-best-practices
 ms.openlocfilehash: f7bd0d356030e6ddb95c77d7376995320e3ec40e
 ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 06/26/2020
 ms.locfileid: "85401887"
 ---
-# <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>Рекомендации по повышению производительности ASP.NET Core Blazor WebAssembly
+# <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>Рекомендации по повышению производительности ASP.NET Core [Blazor WebAssembly
 
 Автор: [Пранав Кришнамурти](https://github.com/pranavkm) (Pranav Krishnamoorthy)
 
-В этой статье приводятся рекомендации по обеспечению высокой производительности ASP.NET Core Blazor WebAssembly.
+В этой статье приводятся рекомендации по обеспечению высокой производительности ASP.NET Core [Blazor WebAssembly.
 
 ## <a name="avoid-unnecessary-component-renders"></a>Устранение лишних отрисовок компонентов
 
-Алгоритм сравнения Blazor позволяет избежать повторной отрисовки компонентов, которые не изменялись. Переопределите <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A?displayProperty=nameWithType> для точного управления отрисовкой компонентов.
+Алгоритм сравнения [Blazor позволяет избежать повторной отрисовки компонентов, которые не изменялись. Переопределите <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A?displayProperty=nameWithType> для точного управления отрисовкой компонентов.
 
 При создании компонента, который используется только в пользовательском интерфейсе и не изменяется после первоначальной отрисовки, настройте метод <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> так, чтобы он возвращал значение `false`:
 
@@ -84,17 +85,17 @@ ms.locfileid: "85401887"
 
 ## <a name="avoid-javascript-interop-to-marshal-data"></a>Избегайте использования взаимодействия с JavaScript для маршалирования данных
 
-В Blazor WebAssembly вызов взаимодействия с JavaScript (JS) должен пересекать границу между WebAssembly и JS. Сериализация и десериализация содержимого в двух контекстах вызывают дополнительные накладные расходы на обработку в приложении. Частые вызовы взаимодействия с JS часто негативно влияют на производительность. Чтобы уменьшить объем маршалирования данных через границу, определите, может ли приложение объединить множество небольших фрагментов полезных данных в один большой фрагмент. Это позволит избежать частых переключений контекста между WebAssembly и JS.
+В [Blazor WebAssembly вызов взаимодействия с JavaScript (JS) должен пересекать границу между WebAssembly и JS. Сериализация и десериализация содержимого в двух контекстах вызывают дополнительные накладные расходы на обработку в приложении. Частые вызовы взаимодействия с JS часто негативно влияют на производительность. Чтобы уменьшить объем маршалирования данных через границу, определите, может ли приложение объединить множество небольших фрагментов полезных данных в один большой фрагмент. Это позволит избежать частых переключений контекста между WebAssembly и JS.
 
 ## <a name="use-systemtextjson"></a>Использование System.Text.Json
 
-Реализация взаимодействия с JS в Blazor основана на <xref:System.Text.Json>, высокопроизводительной библиотеке сериализации JSON, занимающей мало места в памяти. Использование <xref:System.Text.Json> не приводит к увеличению размера полезных данных в приложении, в отличие от добавления одной или нескольких альтернативных библиотек JSON.
+Реализация взаимодействия с JS в [Blazor основана на <xref:System.Text.Json>, высокопроизводительной библиотеке сериализации JSON, занимающей мало места в памяти. Использование <xref:System.Text.Json> не приводит к увеличению размера полезных данных в приложении, в отличие от добавления одной или нескольких альтернативных библиотек JSON.
 
 Руководство по миграции см. в статье [Миграция с `Newtonsoft.Json` на `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
 ## <a name="use-synchronous-and-unmarshalled-js-interop-apis-where-appropriate"></a>Использование синхронных и немаршалируемых интерфейсов API взаимодействия с JS, где они применимы
 
-Blazor WebAssembly предлагает две дополнительные версии <xref:Microsoft.JSInterop.IJSRuntime>, помимо версии, доступной для приложений Blazor Server.
+[Blazor WebAssembly предлагает две дополнительные версии <xref:Microsoft.JSInterop.IJSRuntime>, помимо версии, доступной для приложений [Blazor Server.
 
 * <xref:Microsoft.JSInterop.IJSInProcessRuntime> позволяет синхронно совершать вызовы взаимодействия с JS, что требует меньше ресурсов, чем асинхронные вызовы:
 
@@ -139,7 +140,7 @@ Blazor WebAssembly предлагает две дополнительные ве
 
 ### <a name="intermediate-language-il-linking"></a>Компоновка промежуточного языка (IL)
 
-[Компоновка приложения Blazor WebAssembly](xref:blazor/host-and-deploy/configure-linker) уменьшает размер приложения за счет удаления неиспользуемого кода в двоичных файлах приложения. По умолчанию компоновщик включается только при сборке в конфигурации `Release`. Чтобы воспользоваться этой возможностью, опубликуйте приложение для развертывания с помощью команды [`dotnet publish`](/dotnet/core/tools/dotnet-publish) с параметром [-c|--configuration](/dotnet/core/tools/dotnet-publish#options), имеющим значение `Release`:
+[Компоновка приложения [Blazor WebAssembly](xref:blazor/host-and-deploy/configure-linker) уменьшает размер приложения за счет удаления неиспользуемого кода в двоичных файлах приложения. По умолчанию компоновщик включается только при сборке в конфигурации `Release`. Чтобы воспользоваться этой возможностью, опубликуйте приложение для развертывания с помощью команды [`dotnet publish`](/dotnet/core/tools/dotnet-publish) с параметром [-c|--configuration](/dotnet/core/tools/dotnet-publish#options), имеющим значение `Release`:
 
 ```dotnetcli
 dotnet publish -c Release
@@ -147,13 +148,13 @@ dotnet publish -c Release
 
 ### <a name="compression"></a>Сжатие
 
-При публикации приложения Blazor WebAssembly выходные данные статически сжимаются, чтобы уменьшить размер приложения и исключить издержки на сжатие среды выполнения. Blazor использует сервер для согласования содержимого и предоставления статически сжатых файлов.
+При публикации приложения [Blazor WebAssembly выходные данные статически сжимаются, чтобы уменьшить размер приложения и исключить издержки на сжатие среды выполнения. [Blazor использует сервер для согласования содержимого и предоставления статически сжатых файлов.
 
 После развертывания приложения убедитесь в том, что приложение предоставляет сжатые файлы. В браузере откройте вкладку "Сеть" в Средствах для разработчиков и убедитесь в том, что файлы предоставляются с `Content-Encoding: br` или `Content-Encoding: gz`. Если узел не предоставляет сжатые файлы, выполните инструкции в разделе <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ### <a name="disable-unused-features"></a>Отключение неиспользуемых функций
 
-Среда выполнения Blazor WebAssembly включает в себя следующие функции .NET, которые можно отключить, если они не требуются приложению, для уменьшения размера полезных данных:
+Среда выполнения [Blazor WebAssembly включает в себя следующие функции .NET, которые можно отключить, если они не требуются приложению, для уменьшения размера полезных данных:
 
 * Для обеспечения правильности сведений о часовом поясе включается файл данных. Если приложению не нужна эта функция, ее можно отключить, присвоив свойству MSBuild `BlazorEnableTimeZoneSupport` в файле проекта приложения значение `false`:
 

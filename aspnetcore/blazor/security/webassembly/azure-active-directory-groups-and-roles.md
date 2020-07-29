@@ -1,22 +1,23 @@
 ---
-title: ASP.NET Core Blazor WebAssembly с группами и ролями Azure Active Directory
+title: ASP.NET Core [Blazor WebAssembly с группами и ролями Azure Active Directory
 author: guardrex
-description: Узнайте, как настроить Blazor WebAssembly для использования групп и ролей Azure Active Directory.
+description: Узнайте, как настроить [Blazor WebAssembly для использования групп и ролей Azure Active Directory.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- '[Blazor'
+- '[Blazor Server'
+- '[Blazor WebAssembly'
+- '[Identity'
+- "[Let's Encrypt"
+- '[Razor'
+- '[SignalR'
 uid: blazor/security/webassembly/aad-groups-roles
 ms.openlocfilehash: 6e27b062d7b5a1b72804fe5d4ea31ec65358ce45
 ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 06/26/2020
 ms.locfileid: "85402160"
@@ -25,7 +26,7 @@ ms.locfileid: "85402160"
 
 Авторы: [Люк Латэм](https://github.com/javiercn) (Luke Latham) и [Хавьер Кальварро Нельсон](https://github.com/guardrex) (Javier Calvarro Nelson)
 
-Azure Active Directory (AAD) предоставляет несколько подходов к авторизации, которые можно сочетать с ASP.NET Core Identity:
+Azure Active Directory (AAD) предоставляет несколько подходов к авторизации, которые можно сочетать с ASP.NET Core [Identity:
 
 * Определяемые пользователем группы
   * Безопасность
@@ -35,7 +36,7 @@ Azure Active Directory (AAD) предоставляет несколько по�
   * Встроенные административные роли
   * Определяемые пользователем роли
 
-Рекомендации в этой статье относятся к сценариям развертывания Blazor WebAssembly AAD, описанным в следующих разделах:
+Рекомендации в этой статье относятся к сценариям развертывания [Blazor WebAssembly AAD, описанным в следующих разделах:
 
 * [Автономное развертывание с помощью учетных записей Майкрософт](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
 * [Автономное развертывание с помощью AAD](xref:blazor/security/webassembly/standalone-with-azure-active-directory)
@@ -94,9 +95,9 @@ public class CustomUserFactory
     {
         var initialUser = await base.CreateUserAsync(account, options);
 
-        if (initialUser.Identity.IsAuthenticated)
+        if (initialUser.[Identity.IsAuthenticated)
         {
-            var userIdentity = (ClaimsIdentity)initialUser.Identity;
+            var userIdentity = (ClaimsIdentity)initialUser.[Identity;
 
             foreach (var role in account.Roles)
             {
@@ -285,7 +286,7 @@ builder.Services.AddMsalAuthentication(options =>
 Читатели каталога | e1fc84a6-7762-4b9b-8e29-518b4adbc23b
 Администратор Dynamics 365 | f20a9cfa-9fdf-49a8-a977-1afe446a1d6e
 администратор Exchange; | b2ec2cc0-d5c9-4864-ad9b-38dd9dba2652
-Администратор внешнего поставщика Identity | febfaeb4-e478-407a-b4b3-f4d9716618a2
+Администратор внешнего поставщика [Identity | febfaeb4-e478-407a-b4b3-f4d9716618a2
 Глобальный администратор. | a45ba61b-44db-462c-924b-3b2719152588
 Глобальный читатель | f6903b21-6aba-4124-b44c-76671796b9d5
 Администратор групп | 158b3e5a-d89d-460b-92b5-3b34985f0197

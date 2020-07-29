@@ -7,16 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- '[Blazor'
+- '[Blazor Server'
+- '[Blazor WebAssembly'
+- '[Identity'
+- "[Let's Encrypt"
+- '[Razor'
+- '[SignalR'
 uid: fundamentals/error-handling
 ms.openlocfilehash: 857b4935816d0010fa425ce98f938c87eb35a581
 ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
+ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 07/01/2020
 ms.locfileid: "85793449"
@@ -60,7 +61,7 @@ ms.locfileid: "85793449"
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=5-9)]
 
-Шаблон приложения Razor Pages предоставляет страницу ошибки (*CSHTML*) и класс <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> (`ErrorModel`) в папке *Pages*. Для приложения MVC шаблон проекта содержит метод действия при возникновении ошибки и представление ошибок. Ниже показан метод действия.
+Шаблон приложения [Razor Pages предоставляет страницу ошибки (*CSHTML*) и класс <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> (`ErrorModel`) в папке *Pages*. Для приложения MVC шаблон проекта содержит метод действия при возникновении ошибки и представление ошибок. Ниже показан метод действия.
 
 ```csharp
 [AllowAnonymous]
@@ -140,7 +141,7 @@ Status Code: 404; Not Found
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithRedirect)]
 
-Шаблон URL-адреса может содержать заполнитель `{0}` для кода состояния, как показано в примере. Если шаблон URL-адреса начинается с тильды (~), она заменяется `PathBase` приложения. Если вы указываете на конечную точку в приложении, создайте представление MVC или страницу Razor для конечной точки. Пример Razor Pages доступен в [примере приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples) в файле *Pages/StatusCode.cshtml*.
+Шаблон URL-адреса может содержать заполнитель `{0}` для кода состояния, как показано в примере. Если шаблон URL-адреса начинается с тильды (~), она заменяется `PathBase` приложения. Если вы указываете на конечную точку в приложении, создайте представление MVC или страницу [Razor для конечной точки. Пример [Razor Pages доступен в [примере приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples) в файле *Pages/StatusCode.cshtml*.
 
 Этот метод обычно используется, если приложение:
 
@@ -156,14 +157,14 @@ Status Code: 404; Not Found
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithReExecute)]
 
-Если вы указываете на конечную точку в приложении, создайте представление MVC или страницу Razor для конечной точки. Пример Razor Pages доступен в [примере приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples) в файле *Pages/StatusCode.cshtml*.
+Если вы указываете на конечную точку в приложении, создайте представление MVC или страницу [Razor для конечной точки. Пример [Razor Pages доступен в [примере приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples) в файле *Pages/StatusCode.cshtml*.
 
 Этот метод обычно используется, если приложение:
 
 * Обрабатывает запрос без перенаправления к другой конечной точке. Для веб-приложений в адресной строке браузера клиента отображается изначально запрошенная конечная точка.
 * Сохраняет и возвращает исходный код состояния с ответом.
 
-Шаблоны URL-адреса и строки запроса могут содержать заполнитель (`{0}`) для кода состояния. Шаблон URL-адреса должен начинаться с косой черты (`/`). При использовании заполнителя в пути убедитесь, что конечная точка (страница или контроллер) могут обрабатывать сегмент пути. Например, страница Razor для ошибок должна принимать необязательное значение сегмента с директивой `@page`.
+Шаблоны URL-адреса и строки запроса могут содержать заполнитель (`{0}`) для кода состояния. Шаблон URL-адреса должен начинаться с косой черты (`/`). При использовании заполнителя в пути убедитесь, что конечная точка (страница или контроллер) могут обрабатывать сегмент пути. Например, страница [Razor для ошибок должна принимать необязательное значение сегмента с директивой `@page`.
 
 ```cshtml
 @page "{code?}"
@@ -177,7 +178,7 @@ Status Code: 404; Not Found
 
 Чтобы отключить страницы кодов состояния для метода контроллера или действия MVC, используйте атрибут [`[SkipStatusCodePages]`](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute).
 
-Чтобы отключить страницы кодов состояния для конкретных запросов в методе обработчика Razor Pages или в контроллере MVC, используйте <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>.
+Чтобы отключить страницы кодов состояния для конкретных запросов в методе обработчика [Razor Pages или в контроллере MVC, используйте <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>.
 
 ```csharp
 var statusCodePagesFeature = HttpContext.Features.Get<IStatusCodePagesFeature>();
@@ -232,7 +233,7 @@ if (env.IsDevelopment())
 
 ## <a name="exception-filters"></a>Фильтры исключений
 
-В приложениях MVC фильтры исключений можно настраивать как глобально, так и для отдельных контроллеров или действий. В приложениях Razor Pages они могут быть настроены глобально или для модели страницы. Эти фильтры обрабатывают все необработанные исключения, которые возникают во время выполнения действия контроллера или другого фильтра. Для получения дополнительной информации см. <xref:mvc/controllers/filters#exception-filters>.
+В приложениях MVC фильтры исключений можно настраивать как глобально, так и для отдельных контроллеров или действий. В приложениях [Razor Pages они могут быть настроены глобально или для модели страницы. Эти фильтры обрабатывают все необработанные исключения, которые возникают во время выполнения действия контроллера или другого фильтра. Для получения дополнительной информации см. <xref:mvc/controllers/filters#exception-filters>.
 
 > [!TIP]
 > Фильтры исключений полезны при перехвате исключений, которые возникают в действиях MVC. Но эти фильтры не так гибки, как ПО промежуточного слоя для обработки исключений. Мы рекомендуем использовать ПО промежуточного слоя. Используйте фильтры, только если ошибки нужно обрабатывать по-разному в зависимости от выбранного действия MVC.

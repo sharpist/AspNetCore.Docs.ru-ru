@@ -6,16 +6,17 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 07/04/2019
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- '[Blazor'
+- '[Blazor Server'
+- '[Blazor WebAssembly'
+- '[Identity'
+- "[Let's Encrypt"
+- '[Razor'
+- '[SignalR'
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ms.openlocfilehash: a106654c8a37e84e9186a2f06d90605df753e8a7
 ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 06/26/2020
 ms.locfileid: "85405605"
@@ -63,8 +64,8 @@ dotnet aspnet-codegenerator [-h|--help]
 | ----------------- | ------------ | 
 | площадь      | [Формирует шаблон области](/aspnet/core/mvc/controllers/areas) |
   контроллер| [Формирует шаблон контроллера](/aspnet/core/tutorials/first-mvc-app/adding-model) |
-  удостоверение  | [Формирует шаблон Identity](/aspnet/core/security/authentication/scaffold-identity) |
-  razorpage | [Формирует шаблон страниц Razor Pages](/aspnet/core/tutorials/razor-pages/model) |
+  удостоверение  | [Формирует шаблон [Identity](/aspnet/core/security/authentication/scaffold-identity) |
+  razorpage | [Формирует шаблон страниц [Razor Pages](/aspnet/core/tutorials/razor-pages/model) |
   view      | [Формирует шаблон представления](/aspnet/core/mvc/views/overview) |
 
 ## <a name="options"></a>Параметры
@@ -103,7 +104,7 @@ dotnet aspnet-codegenerator [-h|--help]
 
 * Область
 * Контроллер
-* Identity  
+* [Identity  
 * Razorpage
 * Просмотр
 
@@ -111,7 +112,7 @@ dotnet aspnet-codegenerator [-h|--help]
 
 ### <a name="area-options"></a>Параметры области
 
-Это средство предназначено для веб-проектов ASP.NET Core с контроллерами и представлениями. Оно не предназначено для приложений Razor Pages.
+Это средство предназначено для веб-проектов ASP.NET Core с контроллерами и представлениями. Оно не предназначено для приложений [Razor Pages.
 
 Использование: `dotnet aspnet-codegenerator area AreaNameToGenerate`
 
@@ -154,7 +155,7 @@ dotnet aspnet-codegenerator controller -h
 
 <a name="rp"></a>
 
-Шаблоны для страниц Razor Pages можно формировать по отдельности. Для этого нужно указать имя новой страницы и используемый шаблон. Поддерживаются такие шаблоны:
+Шаблоны для страниц [Razor Pages можно формировать по отдельности. Для этого нужно указать имя новой страницы и используемый шаблон. Поддерживаются такие шаблоны:
 
 * `Empty`
 * `Create`
@@ -197,6 +198,6 @@ dotnet aspnet-codegenerator razorpage -h
 
 Пример `dotnet aspnet-codegenerator razorpage` см. в разделе [Создание модели фильма](/aspnet/core/tutorials/razor-pages/model).
 
-### Identity
+### [Identity
 
-См. [Формирование шаблонов Identity](/aspnet/core/security/authentication/scaffold-identity)
+См. [Формирование шаблонов [Identity](/aspnet/core/security/authentication/scaffold-identity)

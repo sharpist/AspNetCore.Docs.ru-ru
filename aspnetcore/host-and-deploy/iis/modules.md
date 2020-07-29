@@ -7,16 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- '[Blazor'
+- '[Blazor Server'
+- '[Blazor WebAssembly'
+- '[Identity'
+- "[Let's Encrypt"
+- '[Razor'
+- '[SignalR'
 uid: host-and-deploy/iis/modules
 ms.openlocfilehash: 124f2a629ebd14210cb21351a720e007bba48f02
 ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 06/26/2020
 ms.locfileid: "85404019"
@@ -61,7 +62,7 @@ ms.locfileid: "85404019"
 | **Статическое содержимое**<br>`StaticFileModule`                                                         | Нет  | [ПО промежуточного слоя для статических файлов](xref:fundamentals/static-files) |
 | **Кэшировании маркеров**<br>`TokenCacheModule`                                                          | Да | |
 | **Кэширование URI**<br>`UriCacheModule`                                                              | Да | |
-| **Авторизация URL-адреса**<br>`UrlAuthorizationModule`                                                | Да | [ASP.NET Core Identity](xref:security/authentication/identity) |
+| **Авторизация URL-адреса**<br>`UrlAuthorizationModule`                                                | Да | [ASP.NET Core [Identity](xref:security/authentication/identity) |
 | **Проверка подлинности Windows**<br>`WindowsAuthenticationModule`                                      | Да | |
 
 &#8224;В модуле переопределения URL-адресов типы сопоставления `isFile` и `isDirectory` не работают с приложениями ASP.NET Core из-за изменений в [структуре каталогов](xref:host-and-deploy/directory-structure).
@@ -83,7 +84,7 @@ ms.locfileid: "85404019"
 | Сеанс                 | [ПО промежуточного слоя для сеансов](xref:fundamentals/app-state) |
 | UrlAuthorization        | |
 | UrlMappingsModule       | [ПО промежуточного слоя для переопределения URL-адресов](xref:fundamentals/url-rewriting) |
-| UrlRoutingModule-4.0    | [ASP.NET Core Identity](xref:security/authentication/identity) |
+| UrlRoutingModule-4.0    | [ASP.NET Core [Identity](xref:security/authentication/identity) |
 | WindowsAuthentication   | |
 
 ## <a name="iis-manager-application-changes"></a>Изменения в приложении диспетчера IIS
