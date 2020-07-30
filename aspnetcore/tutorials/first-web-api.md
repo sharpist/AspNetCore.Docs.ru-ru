@@ -960,11 +960,11 @@ jQuery отправляет запрос HTTP POST с элементом спи�
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
-## <a name="additional-resources"></a>Дополнительные ресурсы
+## <a name="additional-resources"></a>[!INCLUDE[](~/includes/IdentityServer4.md)]
 
-[Просмотреть или скачать пример кода для этого учебника](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). См. раздел [Практическое руководство. Скачивание файла](xref:index#how-to-download-a-sample).
+Дополнительные ресурсы [Просмотреть или скачать пример кода для этого учебника](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples).
 
-Дополнительные сведения см. в следующих ресурсах:
+См. раздел [Практическое руководство. Скачивание файла](xref:index#how-to-download-a-sample).
 
 * <xref:web-api/index>
 * <xref:tutorials/web-api-help-pages-using-swagger>
@@ -973,4 +973,4 @@ jQuery отправляет запрос HTTP POST с элементом спи�
 * <xref:web-api/action-return-types>
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
-* [Версия руководства на YouTube](https://www.youtube.com/watch?v=TTkhEyGBfAk)
+* Дополнительные сведения см. в следующих ресурсах:

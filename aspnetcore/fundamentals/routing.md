@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: 18f1aee5ac33b17914bd182e46453120e14b31ab
-ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
+ms.openlocfilehash: fcf79966abf7a023773ef892636530278b668c44
+ms.sourcegitcommit: 5a36758cca2861aeb10840093e46d273a6e6e91d
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86176205"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87303616"
 ---
 # <a name="routing-in-aspnet-core"></a>Маршрутизация в ASP.NET Core
 
@@ -831,7 +831,7 @@ ASP.NET Core предоставляет соглашения об API для и
 Сведения о настройке метаданных конечной точки см. на следующих веб-страницах:
 
 * [Включение CORS с маршрутизацией конечных точек](xref:security/cors#enable-cors-with-endpoint-routing)
-* [Пример IAuthorizationPolicyProvider](https://github.com/dotnet/AspNetCore/tree/release/3.0/src/Security/samples/CustomPolicyProvider) с использованием настраиваемого атрибута `[MinimumAgeAuthorize]`
+* [Пример IAuthorizationPolicyProvider](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/CustomPolicyProvider) с использованием настраиваемого атрибута `[MinimumAgeAuthorize]`
 * [Тестирование проверки подлинности с использованием атрибута [Authorize]](xref:security/authentication/identity#test-identity)
 * <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>
 * [Выбор схемы с использованием атрибута [Authorize]](xref:security/authorization/limitingidentitybyscheme#selecting-the-scheme-with-the-authorize-attribute)
