@@ -14,10 +14,10 @@ no-loc:
 - SignalR
 uid: security/authentication/identity
 ms.openlocfilehash: 25070e90050db9dca8b003ae782662811096526a
-ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
+ms.sourcegitcommit: 5a36758cca2861aeb10840093e46d273a6e6e91d
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/24/2020
+ms.lasthandoff: 07/28/2020
 ms.locfileid: "87160304"
 ---
 # <a name="introduction-to-no-locidentity-on-aspnet-core"></a>Введение в Identity ASP.NET Core
@@ -247,7 +247,7 @@ IdentityБолее подробное изучение:
 
 <a name="next"></a>
 
-## <a name="next-steps"></a>Дальнейшие шаги
+## <a name="next-steps"></a>Next Steps
 
 * [IdentityИсходный код ASP.NET Core](https://github.com/dotnet/aspnetcore/tree/master/src/Identity)
 * Сведения о настройке с помощью SQLite см. в [этой статье о проблемах GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) Identity .
@@ -438,7 +438,7 @@ IdentityБолее подробное изучение:
 
 См. раздел [Конфигурация](#pw) для примера, который устанавливает минимальные требования к паролю.
 
-## <a name="next-steps"></a>Дальнейшие шаги
+## <a name="next-steps"></a>Next Steps
 
 * Сведения о настройке с помощью SQLite см. в [этой статье о проблемах GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) Identity .
 * [Настройка Identity](xref:security/authentication/identity-configuration)
