@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: b917671053313c74acfff36518e8f36d5ef2eb22
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 962b42239b2101fc95e55fb38ce214481bf0ef01
+ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405488"
+ms.lasthandoff: 07/30/2020
+ms.locfileid: "87444135"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Маршрутизация к действиям контроллера в ASP.NET Core
 
@@ -52,7 +52,7 @@ ms.locfileid: "85405488"
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet)]
 
-Внутри вызова метод <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> используется для создания одного маршрута. Единственный маршрут называется `default` Route. Большинство приложений с контроллерами и представлениями используют шаблон маршрута, аналогичный `default` маршруту. Интерфейсы API-интерфейсов для интерфейса остальных должны использовать [маршрутизацию атрибутов](#ar).
+Внутри вызова метод <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> используется для создания одного маршрута. Единственный маршрут называется `default` Route. Большинство приложений с контроллерами и представлениями используют шаблон маршрута, аналогичный `default` маршруту. Интерфейсы API-интерфейсов для интерфейса остальных должны использовать [маршрутизацию атрибутов](#ar).
 
 Шаблон маршрута `"{controller=Home}/{action=Index}/{id?}"` :
 
@@ -89,7 +89,7 @@ public class HomeController : Controller
 
 URL-путь `/` использует `Home` контроллеры и действие шаблона маршрута по умолчанию `Index` . URL-путь `/Home` использует действие по умолчанию шаблона маршрута `Index` .
 
-Универсальный метод <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>:
+Универсальный метод <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute%2A>:
 
 ```csharp
 endpoints.MapDefaultControllerRoute();
@@ -102,10 +102,10 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 ```
 
 > [!IMPORTANT]
-> Маршрутизация настраивается с помощью по <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> промежуточного слоя и. Использование контроллеров:
+> Маршрутизация настраивается с помощью по <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> промежуточного слоя и. Использование контроллеров:
 >
-> * Вызовите <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> внутри `UseEndpoints` , чтобы сопоставлять [атрибуты, перенаправляемые](#ar) контроллерам.
-> * Вызовите метод <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> или <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> , чтобы связать как [соглашение с маршрутизацией](#cr) , так и [перенаправляемые](#ar) контроллеры.
+> * Вызовите <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> внутри `UseEndpoints` , чтобы сопоставлять [атрибуты, перенаправляемые](#ar) контроллерам.
+> * Вызовите метод <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> или <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A> , чтобы связать как [соглашение с маршрутизацией](#cr) , так и [перенаправляемые](#ar) контроллеры.
 
 <a name="routing-conventional-ref-label"></a>
 <a name="crd"></a>
@@ -151,7 +151,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 * Является отправной точкой для приложений на базе пользовательского интерфейса.
 * — Единственный шаблон маршрута, необходимый для многих приложений пользовательского веб-интерфейса. Для больших веб-приложений пользовательского интерфейса другой маршрут, использующий [области](#areas) , если это необходимо.
 
-<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>и <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> :
+<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A>и <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute%2A> :
 
 * Автоматически назначить значение **заказа** своим конечным точкам в соответствии с порядком их вызова.
 
@@ -168,7 +168,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 
 ### <a name="multiple-conventional-routes"></a>Несколько обычных маршрутов
 
-В можно добавить несколько [обычных маршрутов](#cr) `UseEndpoints` , добавив дополнительные вызовы в <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> и <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> . Это позволяет определить несколько соглашений или добавить традиционные маршруты, предназначенные для конкретного [действия](#action), например:
+В можно добавить несколько [обычных маршрутов](#cr) `UseEndpoints` , добавив дополнительные вызовы в <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> и <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A> . Это позволяет определить несколько соглашений или добавить традиционные маршруты, предназначенные для конкретного [действия](#action), например:
 
 [!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
@@ -189,7 +189,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 В предыдущем примере:
 
 * `blog`маршрут имеет более высокий приоритет для совпадений, чем `default` маршрут, так как он добавляется первым.
-* — И пример маршрутизации [по стилю](https://developer.mozilla.org/docs/Glossary/Slug) , в которой в качестве части URL-адреса обычно используется имя статьи.
+* — Пример маршрутизации в [стиле "в формате"](https://developer.mozilla.org/docs/Glossary/Slug) , в которой имя статьи является частью URL-адреса.
 
 > [!WARNING]
 > В ASP.NET Core 3,0 и более поздних версиях маршрутизация не выполняет:
@@ -203,7 +203,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 ### <a name="conventional-routing-order"></a>Стандартный порядок маршрутизации
 
 Обычная маршрутизация соответствует только комбинации действий и контроллера, определенных приложением. Это предназначено для упрощения случаев, когда обычные маршруты перекрываются.
-Добавление маршрутов с помощью <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> , <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*> и <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> автоматически назначает значение порядка своим конечным точкам в соответствии с порядком их вызова. Совпадает с более высоким приоритетом на маршруте, который отображается ранее. При маршрутизации на основе соглашений учитывается порядок. Как правило, маршруты с областями следует размещать раньше, так как они более специфичны, чем маршруты без области. [Выделенные традиционные маршруты](#dcr) с перекрестными параметрами маршрутов `{*article}` , например, могут сделать маршрут слишком [жадным](xref:fundamentals/routing#greedy), то есть сопоставлять URL-адреса, которые вы хотели бы сопоставить с другими маршрутами. Помещайте жадные маршруты позже в таблице маршрутов, чтобы предотвратить жадные соответствия.
+Добавление маршрутов с помощью <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> , <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute%2A> и <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A> автоматически назначает значение порядка своим конечным точкам в соответствии с порядком их вызова. Совпадает с более высоким приоритетом на маршруте, который отображается ранее. При маршрутизации на основе соглашений учитывается порядок. Как правило, маршруты с областями следует размещать раньше, так как они более специфичны, чем маршруты без области. [Выделенные традиционные маршруты](#dcr) с перекрестными параметрами маршрутов `{*article}` , например, могут сделать маршрут слишком [жадным](xref:fundamentals/routing#greedy), то есть сопоставлять URL-адреса, которые вы хотели бы сопоставить с другими маршрутами. Помещайте жадные маршруты позже в таблице маршрутов, чтобы предотвратить жадные соответствия.
 
 [!INCLUDE[](~/includes/catchall.md)]
 
@@ -216,7 +216,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 * Выберите лучший кандидат.
 * Создание исключения.
 
-Пример.
+Пример:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
@@ -272,7 +272,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 
 [!code-csharp[](routing/samples/3.x/main/StartupAPI.cs?name=snippet)]
 
-В приведенном выше коде <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> вызывается внутри, `UseEndpoints` чтобы сопоставлять атрибуты, перенаправляемые контроллерами.
+В приведенном выше коде <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> вызывается внутри, `UseEndpoints` чтобы сопоставлять атрибуты, перенаправляемые контроллерами.
 
 В следующем примере:
 
@@ -413,7 +413,7 @@ ASP.NET Core имеет следующие шаблоны маршрутов:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet)]
 
-В предшествующем примере:
+В предыдущем примере:
 
 * Путь URL-адреса `/products` может совпадать`ProductsApi.ListProducts`
 * Путь URL-адреса `/products/5` может совпадать `ProductsApi.GetProduct(int)` .
@@ -426,7 +426,7 @@ ASP.NET Core имеет следующие шаблоны маршрутов:
 
 В следующей таблице описаны `[Route]` атрибуты в приведенном выше коде.
 
-| Атрибут               | Объединяет с`[Route("Home")]` | Определение шаблона маршрута |
+| attribute               | Объединяет с`[Route("Home")]` | Определение шаблона маршрута |
 | ----------------- | ------------ | --------- |
 | `[Route("")]` | Да | `"Home"` |
 | `[Route("Index")]` | Да | `"Home/Index"` |
@@ -758,7 +758,7 @@ result: /UrlGeneration/Destination
 
 <a name="routing-gen-urls-html-ref-label"></a>
 
-### <a name="generate-urls-in-html-and-razor"></a>Создание URL-адресов в HTML иRazor
+### <a name="generate-urls-in-html-and-no-locrazor"></a>Создание URL-адресов в HTML иRazor
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper>предоставляет <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> методы [HTML. Бегинформ](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) и [HTML. ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) для создания `<form>` элементов и `<a>` соответственно. Эти методы используют метод [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) для создания URL-адреса и принимают аналогичные аргументы. Эквивалентами методов `Url.RouteUrl` для `HtmlHelper` являются методы `Html.BeginRouteForm` и `Html.RouteLink`, которые имеют схожие функции.
 
@@ -776,7 +776,7 @@ result: /UrlGeneration/Destination
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/CustomerController.cs?name=snippet)]
 
-Действия, выполняемые фабриками, такие как <xref:Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction*> и, <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> следуют аналогичному шаблону для методов в `IUrlHelper` .
+Действия, выполняемые фабриками, такие как <xref:Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction%2A> и, <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> следуют аналогичному шаблону для методов в `IUrlHelper` .
 
 <a name="routing-dedicated-ref-label"></a>
 
@@ -805,7 +805,7 @@ result: /UrlGeneration/Destination
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet1)]
 
-В приведенном выше коде <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> вызывается для создания `"blog_route"` . Вторым параметром `"Blog"` является имя области.
+В приведенном выше коде <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A> вызывается для создания `"blog_route"` . Вторым параметром `"Blog"` является имя области.
 
 При сопоставлении URL-пути `/Manage/Users/AddUser` , например, `"blog_route"` маршрут формирует значения маршрута `{ area = Blog, controller = Users, action = AddUser }` . `area`Значение маршрута создается значением по умолчанию для `area` . Маршрут, созданный с помощью, `MapAreaControllerRoute` эквивалентен следующему:
 
@@ -851,7 +851,7 @@ result: /UrlGeneration/Destination
 
 Открытые методы на контроллере, за исключением тех, которые имеют атрибут [недействия](xref:Microsoft.AspNetCore.Mvc.NonActionAttribute) , являются действиями.
 
-## <a name="sample-code"></a>Пример кода
+## <a name="sample-code"></a>Образец кода
 
  * Метод [мидисплайраутеинфо](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x/main/Extensions/ControllerContextExtensions.cs) включен в [Пример загрузки](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) и используется для вывода сведений о маршрутизации.
 * [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) ([как скачивать](xref:index#how-to-download-a-sample))
@@ -1009,7 +1009,7 @@ app.UseMvc(routes =>
 
 ### <a name="disambiguating-actions"></a>Разрешение неоднозначности действий
 
-Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Пример.
+Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Пример:
 
 ```csharp
 public class ProductsController : Controller
