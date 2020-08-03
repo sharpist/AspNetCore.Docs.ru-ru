@@ -5,7 +5,7 @@ description: Узнайте, как выполнять отладку прило
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/15/2020
+ms.date: 07/27/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 828fb0ce5101407b6f40195138d59c335eec389f
-ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
+ms.openlocfilehash: b4199c3a99af5875c5d9a87f29f7c7e2758ffd71
+ms.sourcegitcommit: 5a36758cca2861aeb10840093e46d273a6e6e91d
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/15/2020
-ms.locfileid: "86407675"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87303564"
 ---
-# <a name="debug-aspnet-core-blazor-webassembly"></a>Отладка в ASP.NET Core Blazor WebAssembly
+# <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Отладка в ASP.NET Core Blazor WebAssembly
 
 [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
 
@@ -105,19 +105,19 @@ ms.locfileid: "86407675"
 
 ## <a name="visual-studio-code"></a>Visual Studio Code
 
-Сведения об установке Visual Studio Code для разработки приложений Blazor см. здесь: <xref:blazor/tooling>.
-
-### <a name="debug-standalone-blazor-webassembly"></a>Отладка автономного приложения Blazor WebAssembly
+### <a name="debug-standalone-no-locblazor-webassembly"></a>Отладка автономного приложения Blazor WebAssembly
 
 1. Откройте автономное приложение Blazor WebAssembly в VS Code.
 
-   Если вы получите следующее уведомление о том, что для включения отладки требуется дополнительная настройка:
+   Вы можете получить следующее уведомление о том, что для включения отладки требуется дополнительная настройка:
    
-   * Убедитесь, что у вас установлены требуемые расширения.
-   * Убедитесь, что отладчик JavaScript включен.
-   * Перезагрузите окно.
-
    ![Требуется дополнительная настройка](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-additional-setup.png)
+   
+   Если вы получили уведомление:
+
+   * Убедитесь, что установлена актуальная версия [расширения C# для Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp). Чтобы проверить установленные расширения, откройте раздел **Вид** > **Расширения** в строке меню или выберите значок **Расширения** на боковой панели **Действия**.
+   * Убедитесь, что отладчик JavaScript включен. Откройте файл параметров в строке меню (**Файл** > **Настройки** > **Параметры**). Выполните поиск по ключевым словам `debug preview`. В результатах поиска убедитесь, что флажок **Отладка > JavaScript: Use Preview (JavaScript: использовать предварительную версию)** установлен.
+   * Перезагрузите окно.
 
 1. Начните отладку, нажав клавишу <kbd>F5</kbd> или выбрав соответствующий пункт меню.
 
@@ -131,11 +131,11 @@ ms.locfileid: "86407675"
 
    ![Счетчик отладки в VS Code](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-debug-counter.png)
 
-### <a name="debug-hosted-blazor-webassembly"></a>Отладка размещенного приложения Blazor WebAssembly
+### <a name="debug-hosted-no-locblazor-webassembly"></a>Отладка размещенного приложения Blazor WebAssembly
 
 1. Откройте папку решения размещенного приложения Blazor WebAssembly в VS Code.
 
-1. Если для проекта не задана конфигурация запуска, появится следующее уведомление. Выберите ответ **Да**.
+1. Если для проекта не задана конфигурация запуска, появится следующее уведомление. Выберите **Да**.
 
    ![Добавление необходимых ресурсов](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
 
@@ -177,7 +177,7 @@ ms.locfileid: "86407675"
 
 ### <a name="example-launch-configurations"></a>Примеры конфигураций запуска
 
-#### <a name="launch-and-debug-a-standalone-blazor-webassembly-app"></a>Запуск и отладка автономного приложения Blazor WebAssembly
+#### <a name="launch-and-debug-a-standalone-no-locblazor-webassembly-app"></a>Запуск и отладка автономного приложения Blazor WebAssembly
 
 ```json
 {
@@ -198,7 +198,7 @@ ms.locfileid: "86407675"
 }
 ```
 
-#### <a name="launch-and-debug-a-hosted-blazor-webassembly-app-with-microsoft-edge"></a>Запуск и отладка размещенного приложения Blazor WebAssembly с помощью Microsoft Edge
+#### <a name="launch-and-debug-a-hosted-no-locblazor-webassembly-app-with-microsoft-edge"></a>Запуск и отладка размещенного приложения Blazor WebAssembly с помощью Microsoft Edge
 
 По умолчанию конфигурация браузера использует Google Chrome. При использовании Microsoft Edge для отладки задайте для параметра `browser` значение `edge`. Чтобы использовать Google Chrome, не задавайте параметр `browser` или задайте для него значение `chrome`.
 
@@ -238,7 +238,7 @@ Blazor предоставляет прокси-сервер отладки, ко
 
 Сопоставители с исходным кодом в браузере позволяют браузеру сопоставлять скомпилированные файлы с исходными файлами и обычно используются для отладки на стороне клиента. Однако Blazor в настоящее время не сопоставляет C# напрямую с JavaScript/WASM. Вместо этого Blazor выполняет интерпретацию IL в браузере, поэтому сопоставление с исходным кодом не актуально.
 
-## <a name="troubleshoot"></a>Устранение неполадок
+## <a name="troubleshoot"></a>Диагностика
 
 При возникновении ошибок воспользуйтесь следующими советами:
 

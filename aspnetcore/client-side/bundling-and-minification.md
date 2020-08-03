@@ -4,22 +4,22 @@ author: scottaddie
 description: Узнайте, как оптимизировать статические ресурсы в веб-приложении ASP.NET Core, применяя методы объединения и минификации.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 04/15/2020
+ms.date: 07/23/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: de7c155189008e1f78bfb1eba062fcc86f9e4839
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 5db6ab3d790257c677c0a4ed7e605eb39c2982ed
+ms.sourcegitcommit: cc845634a490c49ff869c89b6e422b6d65d0e886
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401913"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "87159723"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Объединение и минификация статических ресурсов в ASP.NET Core
 
@@ -71,19 +71,19 @@ ms.locfileid: "85401913"
 
 ## <a name="choose-a-bundling-and-minification-strategy"></a>Выбор стратегии объединения и минификации
 
-Шаблоны проектов MVC и [Razor Pages предоставляют решения для объединения и минификации, состоящие из файла конфигурации JSON. Сторонние средства, такие как запускатель задач [Grunt](xref:client-side/using-grunt), выполняют те же задачи, но с несколько более сложной реализацией. Сторонние средства отлично подходят в случаях, когда в рамках рабочего процесса разработки, помимо объединения и минификации, требуется другая обработка, &mdash; такая как контроль качества кода и оптимизация изображений. С помощью объединения и минификации во время разработки уменьшенные файлы создаются до развертывания приложения. Объединение и минификация до развертывания обеспечивают преимущества снижения нагрузки на сервер. Однако важно понимать, что объединение и минификация во время разработки повышает сложность сборки и применяется только со статическими файлами.
+Шаблоны проектов MVC и Razor Pages предоставляют решения для объединения и минификации, состоящие из файла конфигурации JSON. Сторонние средства, такие как запускатель задач [Grunt](xref:client-side/using-grunt), выполняют те же задачи, но с несколько более сложной реализацией. Сторонние средства отлично подходят в случаях, когда в рамках рабочего процесса разработки, помимо объединения и минификации, требуется другая обработка, &mdash; такая как контроль качества кода и оптимизация изображений. С помощью объединения и минификации во время разработки уменьшенные файлы создаются до развертывания приложения. Объединение и минификация до развертывания обеспечивают преимущества снижения нагрузки на сервер. Однако важно понимать, что объединение и минификация во время разработки повышает сложность сборки и применяется только со статическими файлами.
 
 ## <a name="configure-bundling-and-minification"></a>Настройка объединения и минификации
 
 ::: moniker range="<= aspnetcore-2.0"
 
-В ASP.NET Core 2.0 и более ранних версиях шаблоны проектов MVC и [Razor Pages предоставляют файл конфигурации *bundleconfig.json*, который определяет параметры для каждого пакета:
+В ASP.NET Core 2.0 и более ранних версиях шаблоны проектов MVC и Razor Pages предоставляют файл конфигурации *bundleconfig.json*, который определяет параметры для каждого пакета:
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
 
-В ASP.NET Core 2.1 и более поздних версиях в корневой каталог проекта MVC или *Pages следует добавить файл*bundleconfig.json[Razor. Для начала включите в этот файл следующий код JSON:
+В ASP.NET Core 2.1 и более поздних версиях в корневой каталог проекта MVC или *Pages следует добавить файл*bundleconfig.jsonRazor. Для начала включите в этот файл следующий код JSON:
 
 ::: moniker-end
 
@@ -174,13 +174,13 @@ ms.locfileid: "85401913"
 
 Установите зависимости, выполнив следующую команду на том же уровне, что и файл *package.json*:
 
-```console
+```bash
 npm i
 ```
 
 Установите CLI Gulp в качестве глобальной зависимости:
 
-```console
+```bash
 npm i -g gulp-cli
 ```
 
@@ -190,9 +190,12 @@ npm i -g gulp-cli
 
 ### <a name="run-gulp-tasks"></a>Выполнение задач Gulp
 
-Чтобы запустить задачу минификации Gulp перед построением проекта в Visual Studio, добавьте следующий [целевой объект MSBuild](/visualstudio/msbuild/msbuild-targets) в файл CSPROJ:
+Чтобы запустить задачу минификации Gulp перед построением проекта в Visual Studio, сделайте следующее:
 
-[!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=14-16)]
+1. Установите пакет NuGet [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier).
+1. Добавьте в файл проекта следующий [целевой объект MSBuild](/visualstudio/msbuild/msbuild-targets):
+
+    [!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=14-16)]
 
 В этом примере все задачи, определенные в целевом объекте `MyPreCompileTarget`, выполняются до предварительно заданного целевого объекта `Build`. В окне выходных данных Visual Studio отображаются данные, аналогичные приведенным ниже:
 
