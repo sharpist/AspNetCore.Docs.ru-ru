@@ -4,7 +4,7 @@ author: jamesnk
 description: Узнайте, как вызывать службы gRPC с помощью клиента gRPC .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 04/21/2020
+ms.date: 07/27/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -14,32 +14,32 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/client
-ms.openlocfilehash: 9ebe36cdb17e858fd82216b090e3e89169197101
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0d8856bba5afaaed4d9552480e4ae5dcbb7704d5
+ms.sourcegitcommit: 5a36758cca2861aeb10840093e46d273a6e6e91d
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406190"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87303551"
 ---
-# <a name="call-grpc-services-with-the-net-client"></a><span data-ttu-id="b4c8c-103">Вызов служб gRPC с помощью клиента .NET</span><span class="sxs-lookup"><span data-stu-id="b4c8c-103">Call gRPC services with the .NET client</span></span>
+# <a name="call-grpc-services-with-the-net-client"></a><span data-ttu-id="8c916-103">Вызов служб gRPC с помощью клиента .NET</span><span class="sxs-lookup"><span data-stu-id="8c916-103">Call gRPC services with the .NET client</span></span>
 
-<span data-ttu-id="b4c8c-104">Клиентская библиотека .NET gRPC доступна в пакете NuGet [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client).</span><span class="sxs-lookup"><span data-stu-id="b4c8c-104">A .NET gRPC client library is available in the [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) NuGet package.</span></span> <span data-ttu-id="b4c8c-105">В этом документе объясняется, как выполнять следующие задачи:</span><span class="sxs-lookup"><span data-stu-id="b4c8c-105">This document explains how to:</span></span>
+<span data-ttu-id="8c916-104">Клиентская библиотека .NET gRPC доступна в пакете NuGet [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client).</span><span class="sxs-lookup"><span data-stu-id="8c916-104">A .NET gRPC client library is available in the [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) NuGet package.</span></span> <span data-ttu-id="8c916-105">В этом документе объясняется, как выполнять следующие задачи:</span><span class="sxs-lookup"><span data-stu-id="8c916-105">This document explains how to:</span></span>
 
-* <span data-ttu-id="b4c8c-106">Настройка клиента gRPC для вызова служб gRPC.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-106">Configure a gRPC client to call gRPC services.</span></span>
-* <span data-ttu-id="b4c8c-107">Вызовы gRPC для унарного метода, методов потоковой передачи сервера, потоковой передачи клиента и двунаправленной потоковой передачи.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-107">Make gRPC calls to unary, server streaming, client streaming, and bi-directional streaming methods.</span></span>
+* <span data-ttu-id="8c916-106">Настройка клиента gRPC для вызова служб gRPC.</span><span class="sxs-lookup"><span data-stu-id="8c916-106">Configure a gRPC client to call gRPC services.</span></span>
+* <span data-ttu-id="8c916-107">Вызовы gRPC для унарного метода, методов потоковой передачи сервера, потоковой передачи клиента и двунаправленной потоковой передачи.</span><span class="sxs-lookup"><span data-stu-id="8c916-107">Make gRPC calls to unary, server streaming, client streaming, and bi-directional streaming methods.</span></span>
 
-## <a name="configure-grpc-client"></a><span data-ttu-id="b4c8c-108">Настройка клиента gRPC</span><span class="sxs-lookup"><span data-stu-id="b4c8c-108">Configure gRPC client</span></span>
+## <a name="configure-grpc-client"></a><span data-ttu-id="8c916-108">Настройка клиента gRPC</span><span class="sxs-lookup"><span data-stu-id="8c916-108">Configure gRPC client</span></span>
 
-<span data-ttu-id="b4c8c-109">Клиенты gRPC являются конкретными типами клиентов, [создаваемыми в файлах *\*.proto*](xref:grpc/basics#generated-c-assets).</span><span class="sxs-lookup"><span data-stu-id="b4c8c-109">gRPC clients are concrete client types that are [generated from *\*.proto* files](xref:grpc/basics#generated-c-assets).</span></span> <span data-ttu-id="b4c8c-110">Конкретный клиент gRPC использует методы, которые выполняют преобразование для служб gRPC в файле *\*.proto*.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-110">The concrete gRPC client has methods that translate to the gRPC service in the *\*.proto* file.</span></span>
+<span data-ttu-id="8c916-109">Клиенты gRPC являются конкретными типами клиентов, [создаваемыми в файлах *\*.proto*](xref:grpc/basics#generated-c-assets).</span><span class="sxs-lookup"><span data-stu-id="8c916-109">gRPC clients are concrete client types that are [generated from *\*.proto* files](xref:grpc/basics#generated-c-assets).</span></span> <span data-ttu-id="8c916-110">Конкретный клиент gRPC использует методы, которые выполняют преобразование для служб gRPC в файле *\*.proto*.</span><span class="sxs-lookup"><span data-stu-id="8c916-110">The concrete gRPC client has methods that translate to the gRPC service in the *\*.proto* file.</span></span>
 
-<span data-ttu-id="b4c8c-111">Клиент gRPC создается из канала.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-111">A gRPC client is created from a channel.</span></span> <span data-ttu-id="b4c8c-112">Для начала воспользуйтесь `GrpcChannel.ForAddress`, чтобы создать канал, а затем используйте канал для создания клиента gRPC:</span><span class="sxs-lookup"><span data-stu-id="b4c8c-112">Start by using `GrpcChannel.ForAddress` to create a channel, and then use the channel to create a gRPC client:</span></span>
+<span data-ttu-id="8c916-111">Клиент gRPC создается из канала.</span><span class="sxs-lookup"><span data-stu-id="8c916-111">A gRPC client is created from a channel.</span></span> <span data-ttu-id="8c916-112">Для начала воспользуйтесь `GrpcChannel.ForAddress`, чтобы создать канал, а затем используйте канал для создания клиента gRPC:</span><span class="sxs-lookup"><span data-stu-id="8c916-112">Start by using `GrpcChannel.ForAddress` to create a channel, and then use the channel to create a gRPC client:</span></span>
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
 var client = new Greet.GreeterClient(channel);
 ```
 
-<span data-ttu-id="b4c8c-113">Канал представляет собой долгосрочное подключение к службе gRPC.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-113">A channel represents a long-lived connection to a gRPC service.</span></span> <span data-ttu-id="b4c8c-114">При создании канала он настраивается с параметрами, связанными с вызовом службы.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-114">When a channel is created, it is configured with options related to calling a service.</span></span> <span data-ttu-id="b4c8c-115">Например, `HttpClient`, используемый для выполнения вызовов, максимальный размер сообщения для отправки и получения, а также ведение журнала можно указать в `GrpcChannelOptions` и использовать с `GrpcChannel.ForAddress`.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-115">For example, the `HttpClient` used to make calls, the maximum send and receive message size, and logging can be specified on `GrpcChannelOptions` and used with `GrpcChannel.ForAddress`.</span></span> <span data-ttu-id="b4c8c-116">Полный список параметров см. в разделе, [посвященном параметрам конфигурации клиента](xref:grpc/configuration#configure-client-options).</span><span class="sxs-lookup"><span data-stu-id="b4c8c-116">For a complete list of options, see [client configuration options](xref:grpc/configuration#configure-client-options).</span></span>
+<span data-ttu-id="8c916-113">Канал представляет собой долгосрочное подключение к службе gRPC.</span><span class="sxs-lookup"><span data-stu-id="8c916-113">A channel represents a long-lived connection to a gRPC service.</span></span> <span data-ttu-id="8c916-114">При создании канала он настраивается с параметрами, связанными с вызовом службы.</span><span class="sxs-lookup"><span data-stu-id="8c916-114">When a channel is created, it is configured with options related to calling a service.</span></span> <span data-ttu-id="8c916-115">Например, `HttpClient`, используемый для выполнения вызовов, максимальный размер сообщения для отправки и получения, а также ведение журнала можно указать в `GrpcChannelOptions` и использовать с `GrpcChannel.ForAddress`.</span><span class="sxs-lookup"><span data-stu-id="8c916-115">For example, the `HttpClient` used to make calls, the maximum send and receive message size, and logging can be specified on `GrpcChannelOptions` and used with `GrpcChannel.ForAddress`.</span></span> <span data-ttu-id="8c916-116">Полный список параметров см. в разделе, [посвященном параметрам конфигурации клиента](xref:grpc/configuration#configure-client-options).</span><span class="sxs-lookup"><span data-stu-id="8c916-116">For a complete list of options, see [client configuration options](xref:grpc/configuration#configure-client-options).</span></span>
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
@@ -50,36 +50,46 @@ var counterClient = new Count.CounterClient(channel);
 // Use clients to call gRPC services
 ```
 
-<span data-ttu-id="b4c8c-117">Производительность и использование канала и клиента:</span><span class="sxs-lookup"><span data-stu-id="b4c8c-117">Channel and client performance and usage:</span></span>
+### <a name="configure-tls"></a><span data-ttu-id="8c916-117">Настройка TLS</span><span class="sxs-lookup"><span data-stu-id="8c916-117">Configure TLS</span></span>
 
-* <span data-ttu-id="b4c8c-118">Создание канала может потребовать значительных ресурсов.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-118">Creating a channel can be an expensive operation.</span></span> <span data-ttu-id="b4c8c-119">Повторное использование канала для вызовов gRPC обеспечивает выигрыш в производительности.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-119">Reusing a channel for gRPC calls provides performance benefits.</span></span>
-* <span data-ttu-id="b4c8c-120">Клиенты gRPC создаются с помощью каналов.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-120">gRPC clients are created with channels.</span></span> <span data-ttu-id="b4c8c-121">Клиенты gRPC являются облегченными объектами и не нуждаются в кэшировании или повторном использовании.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-121">gRPC clients are lightweight objects and don't need to be cached or reused.</span></span>
-* <span data-ttu-id="b4c8c-122">Из одного канала можно создать несколько клиентов gRPC, включая различные типы клиентов.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-122">Multiple gRPC clients can be created from a channel, including different types of clients.</span></span>
-* <span data-ttu-id="b4c8c-123">Канал и клиенты, созданные из канала, могут безопасно использоваться несколькими потоками.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-123">A channel and clients created from the channel can safely be used by multiple threads.</span></span>
-* <span data-ttu-id="b4c8c-124">Клиенты, созданные из канала, могут выполнять несколько одновременных вызовов.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-124">Clients created from the channel can make multiple simultaneous calls.</span></span>
+<span data-ttu-id="8c916-118">Клиент gRPC должен использовать ту же систему безопасности на уровне подключения, что и вызванная служба.</span><span class="sxs-lookup"><span data-stu-id="8c916-118">A gRPC client must use the same connection-level security as the called service.</span></span> <span data-ttu-id="8c916-119">Протокол TLS для клиента gRPC настраивается при создании канала gRPC.</span><span class="sxs-lookup"><span data-stu-id="8c916-119">gRPC client Transport Layer Security (TLS) is configured when the gRPC channel is created.</span></span> <span data-ttu-id="8c916-120">Если система безопасности на уровне подключения канала и службы не совпадает, при вызове службы от клиента gRPC поступает сообщение об ошибке.</span><span class="sxs-lookup"><span data-stu-id="8c916-120">A gRPC client throws an error when it calls a service and the connection-level security of the channel and service don't match.</span></span>
 
-<span data-ttu-id="b4c8c-125">`GrpcChannel.ForAddress` — не единственный вариант создания клиента gRPC.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-125">`GrpcChannel.ForAddress` isn't the only option for creating a gRPC client.</span></span> <span data-ttu-id="b4c8c-126">При вызове службы gRPC из приложения ASP.NET Core, рассмотрите возможность [интеграции фабрики клиента gRPC](xref:grpc/clientfactory).</span><span class="sxs-lookup"><span data-stu-id="b4c8c-126">If calling gRPC services from an ASP.NET Core app, consider [gRPC client factory integration](xref:grpc/clientfactory).</span></span> <span data-ttu-id="b4c8c-127">Интеграция gRPC с `HttpClientFactory` предлагает централизованную альтернативу созданию клиентов gRPC.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-127">gRPC integration with `HttpClientFactory` offers a centralized alternative to creating gRPC clients.</span></span>
+<span data-ttu-id="8c916-121">Чтобы настроить канал gRPC для использования протокола TLS, убедитесь, что адрес сервера начинается с `https`.</span><span class="sxs-lookup"><span data-stu-id="8c916-121">To configure a gRPC channel to use TLS, ensure the server address starts with `https`.</span></span> <span data-ttu-id="8c916-122">Например, `GrpcChannel.ForAddress("https://localhost:5001")` использует протокол HTTPS.</span><span class="sxs-lookup"><span data-stu-id="8c916-122">For example, `GrpcChannel.ForAddress("https://localhost:5001")` uses HTTPS protocol.</span></span> <span data-ttu-id="8c916-123">Канал gRPC автоматически согласует подключение, защищенное с помощью TLS, и использует безопасное соединение для выполнения вызовов gRPC.</span><span class="sxs-lookup"><span data-stu-id="8c916-123">The gRPC channel automatically negotates a connection secured by TLS and uses a secure connection to make gRPC calls.</span></span>
+
+> [!TIP]
+> <span data-ttu-id="8c916-124">gRPC поддерживает проверку подлинности на основе сертификата клиента по протоколу TLS.</span><span class="sxs-lookup"><span data-stu-id="8c916-124">gRPC supports client certificate authentication over TLS.</span></span> <span data-ttu-id="8c916-125">Сведения о настройке сертификатов клиента с помощью канала gRPC см. в разделе <xref:grpc/authn-and-authz#client-certificate-authentication>.</span><span class="sxs-lookup"><span data-stu-id="8c916-125">For information on configuring client certificates with a gRPC channel, see <xref:grpc/authn-and-authz#client-certificate-authentication>.</span></span>
+
+<span data-ttu-id="8c916-126">Чтобы вызвать незащищенные службы gRPC, убедитесь, что адрес сервера начинается с `http`.</span><span class="sxs-lookup"><span data-stu-id="8c916-126">To call unsecured gRPC services, ensure the server address starts with `http`.</span></span> <span data-ttu-id="8c916-127">Например, `GrpcChannel.ForAddress("http://localhost:5000")` использует протокол HTTP.</span><span class="sxs-lookup"><span data-stu-id="8c916-127">For example, `GrpcChannel.ForAddress("http://localhost:5000")` uses HTTP protocol.</span></span> <span data-ttu-id="8c916-128">В .NET Core 3.1 или более поздней версии для [вызова незащищенных служб gRPC с помощью клиента .NET](xref:grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client) требуется дополнительная настройка.</span><span class="sxs-lookup"><span data-stu-id="8c916-128">In .NET Core 3.1 or later, additional configuration is required to [call insecure gRPC services with the .NET client](xref:grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client).</span></span>
+
+### <a name="client-performance"></a><span data-ttu-id="8c916-129">Производительность клиента</span><span class="sxs-lookup"><span data-stu-id="8c916-129">Client performance</span></span>
+
+<span data-ttu-id="8c916-130">Производительность и использование канала и клиента:</span><span class="sxs-lookup"><span data-stu-id="8c916-130">Channel and client performance and usage:</span></span>
+
+* <span data-ttu-id="8c916-131">Создание канала может потребовать значительных ресурсов.</span><span class="sxs-lookup"><span data-stu-id="8c916-131">Creating a channel can be an expensive operation.</span></span> <span data-ttu-id="8c916-132">Повторное использование канала для вызовов gRPC обеспечивает выигрыш в производительности.</span><span class="sxs-lookup"><span data-stu-id="8c916-132">Reusing a channel for gRPC calls provides performance benefits.</span></span>
+* <span data-ttu-id="8c916-133">Клиенты gRPC создаются с помощью каналов.</span><span class="sxs-lookup"><span data-stu-id="8c916-133">gRPC clients are created with channels.</span></span> <span data-ttu-id="8c916-134">Клиенты gRPC являются облегченными объектами и не нуждаются в кэшировании или повторном использовании.</span><span class="sxs-lookup"><span data-stu-id="8c916-134">gRPC clients are lightweight objects and don't need to be cached or reused.</span></span>
+* <span data-ttu-id="8c916-135">Из одного канала можно создать несколько клиентов gRPC, включая различные типы клиентов.</span><span class="sxs-lookup"><span data-stu-id="8c916-135">Multiple gRPC clients can be created from a channel, including different types of clients.</span></span>
+* <span data-ttu-id="8c916-136">Канал и клиенты, созданные из канала, могут безопасно использоваться несколькими потоками.</span><span class="sxs-lookup"><span data-stu-id="8c916-136">A channel and clients created from the channel can safely be used by multiple threads.</span></span>
+* <span data-ttu-id="8c916-137">Клиенты, созданные из канала, могут выполнять несколько одновременных вызовов.</span><span class="sxs-lookup"><span data-stu-id="8c916-137">Clients created from the channel can make multiple simultaneous calls.</span></span>
+
+<span data-ttu-id="8c916-138">`GrpcChannel.ForAddress` — не единственный вариант создания клиента gRPC.</span><span class="sxs-lookup"><span data-stu-id="8c916-138">`GrpcChannel.ForAddress` isn't the only option for creating a gRPC client.</span></span> <span data-ttu-id="8c916-139">При вызове службы gRPC из приложения ASP.NET Core, рассмотрите возможность [интеграции фабрики клиента gRPC](xref:grpc/clientfactory).</span><span class="sxs-lookup"><span data-stu-id="8c916-139">If calling gRPC services from an ASP.NET Core app, consider [gRPC client factory integration](xref:grpc/clientfactory).</span></span> <span data-ttu-id="8c916-140">Интеграция gRPC с `HttpClientFactory` предлагает централизованную альтернативу созданию клиентов gRPC.</span><span class="sxs-lookup"><span data-stu-id="8c916-140">gRPC integration with `HttpClientFactory` offers a centralized alternative to creating gRPC clients.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="b4c8c-128">Для [вызова незащищенных служб gRPC с клиентом .NET](xref:grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client) требуется дополнительная настройка.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-128">Additional configuration is required to [call insecure gRPC services with the .NET client](xref:grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client).</span></span>
+> <span data-ttu-id="8c916-141">Вызов gRPC через HTTP/2 с `Grpc.Net.Client` в настоящее время не поддерживается в Xamarin.</span><span class="sxs-lookup"><span data-stu-id="8c916-141">Calling gRPC over HTTP/2 with `Grpc.Net.Client` is currently not supported on Xamarin.</span></span> <span data-ttu-id="8c916-142">Мы работаем над улучшением поддержки HTTP/2 в будущих выпусках Xamarin.</span><span class="sxs-lookup"><span data-stu-id="8c916-142">We are working to improve HTTP/2 support in a future Xamarin release.</span></span> <span data-ttu-id="8c916-143">[Grpc.Core](https://www.nuget.org/packages/Grpc.Core) и [gRPC-Web](xref:grpc/browser) являются приемлемыми работающими альтернативами, которые доступны на сегодняшний день.</span><span class="sxs-lookup"><span data-stu-id="8c916-143">[Grpc.Core](https://www.nuget.org/packages/Grpc.Core) and [gRPC-Web](xref:grpc/browser) are viable alternatives that work today.</span></span>
 
-> [!NOTE]
-> <span data-ttu-id="b4c8c-129">Вызов gRPC через HTTP/2 с `Grpc.Net.Client` в настоящее время не поддерживается в Xamarin.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-129">Calling gRPC over HTTP/2 with `Grpc.Net.Client` is currently not supported on Xamarin.</span></span> <span data-ttu-id="b4c8c-130">Мы работаем над улучшением поддержки HTTP/2 в будущих выпусках Xamarin.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-130">We are working to improve HTTP/2 support in a future Xamarin release.</span></span> <span data-ttu-id="b4c8c-131">[Grpc.Core](https://www.nuget.org/packages/Grpc.Core) и [gRPC-Web](xref:grpc/browser) являются приемлемыми работающими альтернативами, которые доступны на сегодняшний день.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-131">[Grpc.Core](https://www.nuget.org/packages/Grpc.Core) and [gRPC-Web](xref:grpc/browser) are viable alternatives that work today.</span></span>
+## <a name="make-grpc-calls"></a><span data-ttu-id="8c916-144">Вызовы gRPC</span><span class="sxs-lookup"><span data-stu-id="8c916-144">Make gRPC calls</span></span>
 
-## <a name="make-grpc-calls"></a><span data-ttu-id="b4c8c-132">Вызовы gRPC</span><span class="sxs-lookup"><span data-stu-id="b4c8c-132">Make gRPC calls</span></span>
+<span data-ttu-id="8c916-145">Вызов gRPC инициируется путем вызова метода в клиенте.</span><span class="sxs-lookup"><span data-stu-id="8c916-145">A gRPC call is initiated by calling a method on the client.</span></span> <span data-ttu-id="8c916-146">Клиент gRPC будет выполнять сериализацию сообщений и направлять вызов gRPC к правильной службе.</span><span class="sxs-lookup"><span data-stu-id="8c916-146">The gRPC client will handle message serialization and addressing the gRPC call to the correct service.</span></span>
 
-<span data-ttu-id="b4c8c-133">Вызов gRPC инициируется путем вызова метода в клиенте.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-133">A gRPC call is initiated by calling a method on the client.</span></span> <span data-ttu-id="b4c8c-134">Клиент gRPC будет выполнять сериализацию сообщений и направлять вызов gRPC к правильной службе.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-134">The gRPC client will handle message serialization and addressing the gRPC call to the correct service.</span></span>
+<span data-ttu-id="8c916-147">gRPC имеет различные типы методов.</span><span class="sxs-lookup"><span data-stu-id="8c916-147">gRPC has different types of methods.</span></span> <span data-ttu-id="8c916-148">Способ использования клиента для выполнения вызова gRPC зависит от типа вызываемого метода.</span><span class="sxs-lookup"><span data-stu-id="8c916-148">How the client is used to make a gRPC call depends on the type of method called.</span></span> <span data-ttu-id="8c916-149">Типы методов gRPC:</span><span class="sxs-lookup"><span data-stu-id="8c916-149">The gRPC method types are:</span></span>
 
-<span data-ttu-id="b4c8c-135">gRPC имеет различные типы методов.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-135">gRPC has different types of methods.</span></span> <span data-ttu-id="b4c8c-136">Способ использования клиента для выполнения вызова gRPC зависит от типа вызываемого метода.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-136">How the client is used to make a gRPC call depends on the type of method called.</span></span> <span data-ttu-id="b4c8c-137">Типы методов gRPC:</span><span class="sxs-lookup"><span data-stu-id="b4c8c-137">The gRPC method types are:</span></span>
+* <span data-ttu-id="8c916-150">Унарный</span><span class="sxs-lookup"><span data-stu-id="8c916-150">Unary</span></span>
+* <span data-ttu-id="8c916-151">Потоковая передача сервера</span><span class="sxs-lookup"><span data-stu-id="8c916-151">Server streaming</span></span>
+* <span data-ttu-id="8c916-152">Потоковая передача клиента</span><span class="sxs-lookup"><span data-stu-id="8c916-152">Client streaming</span></span>
+* <span data-ttu-id="8c916-153">Двунаправленная потоковая передача</span><span class="sxs-lookup"><span data-stu-id="8c916-153">Bi-directional streaming</span></span>
 
-* <span data-ttu-id="b4c8c-138">Унарный</span><span class="sxs-lookup"><span data-stu-id="b4c8c-138">Unary</span></span>
-* <span data-ttu-id="b4c8c-139">Потоковая передача сервера</span><span class="sxs-lookup"><span data-stu-id="b4c8c-139">Server streaming</span></span>
-* <span data-ttu-id="b4c8c-140">Потоковая передача клиента</span><span class="sxs-lookup"><span data-stu-id="b4c8c-140">Client streaming</span></span>
-* <span data-ttu-id="b4c8c-141">Двунаправленная потоковая передача</span><span class="sxs-lookup"><span data-stu-id="b4c8c-141">Bi-directional streaming</span></span>
+### <a name="unary-call"></a><span data-ttu-id="8c916-154">Унарный вызов</span><span class="sxs-lookup"><span data-stu-id="8c916-154">Unary call</span></span>
 
-### <a name="unary-call"></a><span data-ttu-id="b4c8c-142">Унарный вызов</span><span class="sxs-lookup"><span data-stu-id="b4c8c-142">Unary call</span></span>
-
-<span data-ttu-id="b4c8c-143">Унарный вызов начинается с клиента, отправляющего сообщение с запросом.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-143">A unary call starts with the client sending a request message.</span></span> <span data-ttu-id="b4c8c-144">После завершения работы службы возвращается ответное сообщение.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-144">A response message is returned when the service finishes.</span></span>
+<span data-ttu-id="8c916-155">Унарный вызов начинается с клиента, отправляющего сообщение с запросом.</span><span class="sxs-lookup"><span data-stu-id="8c916-155">A unary call starts with the client sending a request message.</span></span> <span data-ttu-id="8c916-156">После завершения работы службы возвращается ответное сообщение.</span><span class="sxs-lookup"><span data-stu-id="8c916-156">A response message is returned when the service finishes.</span></span>
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
@@ -89,14 +99,14 @@ Console.WriteLine("Greeting: " + response.Message);
 // Greeting: Hello World
 ```
 
-<span data-ttu-id="b4c8c-145">Каждый унарный метод службы в файле *\*PROTO* приведет к появлению двух методов .NET в конкретном типе клиента gRPC для вызова метода: асинхронного метода и блокирующего метода.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-145">Each unary service method in the *\*.proto* file will result in two .NET methods on the concrete gRPC client type for calling the method: an asynchronous method and a blocking method.</span></span> <span data-ttu-id="b4c8c-146">Например, в `GreeterClient` существует два способа вызова `SayHello`.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-146">For example, on `GreeterClient` there are two ways of calling `SayHello`:</span></span>
+<span data-ttu-id="8c916-157">Каждый унарный метод службы в файле *\*PROTO* приведет к появлению двух методов .NET в конкретном типе клиента gRPC для вызова метода: асинхронного метода и блокирующего метода.</span><span class="sxs-lookup"><span data-stu-id="8c916-157">Each unary service method in the *\*.proto* file will result in two .NET methods on the concrete gRPC client type for calling the method: an asynchronous method and a blocking method.</span></span> <span data-ttu-id="8c916-158">Например, в `GreeterClient` существует два способа вызова `SayHello`.</span><span class="sxs-lookup"><span data-stu-id="8c916-158">For example, on `GreeterClient` there are two ways of calling `SayHello`:</span></span>
 
-* <span data-ttu-id="b4c8c-147">`GreeterClient.SayHelloAsync` — асинхронный вызов службы `Greeter.SayHello`.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-147">`GreeterClient.SayHelloAsync` - calls `Greeter.SayHello` service asynchronously.</span></span> <span data-ttu-id="b4c8c-148">Может быть ожидаемым.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-148">Can be awaited.</span></span>
-* <span data-ttu-id="b4c8c-149">`GreeterClient.SayHello` — вызов службы `Greeter.SayHello` и блокировка до завершения.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-149">`GreeterClient.SayHello` - calls `Greeter.SayHello` service and blocks until complete.</span></span> <span data-ttu-id="b4c8c-150">Не используйте его в асинхронном коде.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-150">Don't use in asynchronous code.</span></span>
+* <span data-ttu-id="8c916-159">`GreeterClient.SayHelloAsync` — асинхронный вызов службы `Greeter.SayHello`.</span><span class="sxs-lookup"><span data-stu-id="8c916-159">`GreeterClient.SayHelloAsync` - calls `Greeter.SayHello` service asynchronously.</span></span> <span data-ttu-id="8c916-160">Может быть ожидаемым.</span><span class="sxs-lookup"><span data-stu-id="8c916-160">Can be awaited.</span></span>
+* <span data-ttu-id="8c916-161">`GreeterClient.SayHello` — вызов службы `Greeter.SayHello` и блокировка до завершения.</span><span class="sxs-lookup"><span data-stu-id="8c916-161">`GreeterClient.SayHello` - calls `Greeter.SayHello` service and blocks until complete.</span></span> <span data-ttu-id="8c916-162">Не используйте его в асинхронном коде.</span><span class="sxs-lookup"><span data-stu-id="8c916-162">Don't use in asynchronous code.</span></span>
 
-### <a name="server-streaming-call"></a><span data-ttu-id="b4c8c-151">Вызов потоковой передачи сервера</span><span class="sxs-lookup"><span data-stu-id="b4c8c-151">Server streaming call</span></span>
+### <a name="server-streaming-call"></a><span data-ttu-id="8c916-163">Вызов потоковой передачи сервера</span><span class="sxs-lookup"><span data-stu-id="8c916-163">Server streaming call</span></span>
 
-<span data-ttu-id="b4c8c-152">Вызов потоковой передачи сервера начинается с клиента, отправляющего сообщение с запросом.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-152">A server streaming call starts with the client sending a request message.</span></span> <span data-ttu-id="b4c8c-153">`ResponseStream.MoveNext()` считывает сообщения, переданные в службу путем потоковой передачи.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-153">`ResponseStream.MoveNext()` reads messages streamed from the service.</span></span> <span data-ttu-id="b4c8c-154">Вызов потоковой передачи сервера завершается, когда `ResponseStream.MoveNext()` возвращает `false`.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-154">The server streaming call is complete when `ResponseStream.MoveNext()` returns `false`.</span></span>
+<span data-ttu-id="8c916-164">Вызов потоковой передачи сервера начинается с клиента, отправляющего сообщение с запросом.</span><span class="sxs-lookup"><span data-stu-id="8c916-164">A server streaming call starts with the client sending a request message.</span></span> <span data-ttu-id="8c916-165">`ResponseStream.MoveNext()` считывает сообщения, переданные в службу путем потоковой передачи.</span><span class="sxs-lookup"><span data-stu-id="8c916-165">`ResponseStream.MoveNext()` reads messages streamed from the service.</span></span> <span data-ttu-id="8c916-166">Вызов потоковой передачи сервера завершается, когда `ResponseStream.MoveNext()` возвращает `false`.</span><span class="sxs-lookup"><span data-stu-id="8c916-166">The server streaming call is complete when `ResponseStream.MoveNext()` returns `false`.</span></span>
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
@@ -109,7 +119,7 @@ while (await call.ResponseStream.MoveNext())
 }
 ```
 
-<span data-ttu-id="b4c8c-155">Если используется C# 8 или более поздней версии, для чтения сообщений можно использовать синтаксис `await foreach`.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-155">When using C# 8 or later, the `await foreach` syntax can be used to read messages.</span></span> <span data-ttu-id="b4c8c-156">Метод расширения `IAsyncStreamReader<T>.ReadAllAsync()` считывает все сообщения из потока ответов:</span><span class="sxs-lookup"><span data-stu-id="b4c8c-156">The `IAsyncStreamReader<T>.ReadAllAsync()` extension method reads all messages from the response stream:</span></span>
+<span data-ttu-id="8c916-167">Если используется C# 8 или более поздней версии, для чтения сообщений можно использовать синтаксис `await foreach`.</span><span class="sxs-lookup"><span data-stu-id="8c916-167">When using C# 8 or later, the `await foreach` syntax can be used to read messages.</span></span> <span data-ttu-id="8c916-168">Метод расширения `IAsyncStreamReader<T>.ReadAllAsync()` считывает все сообщения из потока ответов:</span><span class="sxs-lookup"><span data-stu-id="8c916-168">The `IAsyncStreamReader<T>.ReadAllAsync()` extension method reads all messages from the response stream:</span></span>
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
@@ -122,9 +132,9 @@ await foreach (var response in call.ResponseStream.ReadAllAsync())
 }
 ```
 
-### <a name="client-streaming-call"></a><span data-ttu-id="b4c8c-157">Вызов потоковой передачи клиента</span><span class="sxs-lookup"><span data-stu-id="b4c8c-157">Client streaming call</span></span>
+### <a name="client-streaming-call"></a><span data-ttu-id="8c916-169">Вызов потоковой передачи клиента</span><span class="sxs-lookup"><span data-stu-id="8c916-169">Client streaming call</span></span>
 
-<span data-ttu-id="b4c8c-158">Вызов потоковой передачи клиента начинается *без* клиента, отправляющего сообщение с запросом.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-158">A client streaming call starts *without* the client sending a message.</span></span> <span data-ttu-id="b4c8c-159">Клиент может выбрать отправку сообщений с помощью `RequestStream.WriteAsync`.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-159">The client can choose to send messages with `RequestStream.WriteAsync`.</span></span> <span data-ttu-id="b4c8c-160">Когда клиент завершит отправку сообщений, следует вызвать `RequestStream.CompleteAsync`, чтобы уведомить службу.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-160">When the client has finished sending messages, `RequestStream.CompleteAsync` should be called to notify the service.</span></span> <span data-ttu-id="b4c8c-161">Вызов завершается, когда служба возвращает ответное сообщение.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-161">The call is finished when the service returns a response message.</span></span>
+<span data-ttu-id="8c916-170">Вызов потоковой передачи клиента начинается *без* клиента, отправляющего сообщение с запросом.</span><span class="sxs-lookup"><span data-stu-id="8c916-170">A client streaming call starts *without* the client sending a message.</span></span> <span data-ttu-id="8c916-171">Клиент может выбрать отправку сообщений с помощью `RequestStream.WriteAsync`.</span><span class="sxs-lookup"><span data-stu-id="8c916-171">The client can choose to send messages with `RequestStream.WriteAsync`.</span></span> <span data-ttu-id="8c916-172">Когда клиент завершит отправку сообщений, следует вызвать `RequestStream.CompleteAsync`, чтобы уведомить службу.</span><span class="sxs-lookup"><span data-stu-id="8c916-172">When the client has finished sending messages, `RequestStream.CompleteAsync` should be called to notify the service.</span></span> <span data-ttu-id="8c916-173">Вызов завершается, когда служба возвращает ответное сообщение.</span><span class="sxs-lookup"><span data-stu-id="8c916-173">The call is finished when the service returns a response message.</span></span>
 
 ```csharp
 var client = new Counter.CounterClient(channel);
@@ -141,9 +151,9 @@ Console.WriteLine($"Count: {response.Count}");
 // Count: 3
 ```
 
-### <a name="bi-directional-streaming-call"></a><span data-ttu-id="b4c8c-162">Вызов двунаправленной потоковой передачи</span><span class="sxs-lookup"><span data-stu-id="b4c8c-162">Bi-directional streaming call</span></span>
+### <a name="bi-directional-streaming-call"></a><span data-ttu-id="8c916-174">Вызов двунаправленной потоковой передачи</span><span class="sxs-lookup"><span data-stu-id="8c916-174">Bi-directional streaming call</span></span>
 
-<span data-ttu-id="b4c8c-163">Вызов двунаправленной потоковой передачи начинается *без* клиента, отправляющего сообщение с запросом.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-163">A bi-directional streaming call starts *without* the client sending a message.</span></span> <span data-ttu-id="b4c8c-164">Клиент может выбрать отправку сообщений с помощью `RequestStream.WriteAsync`.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-164">The client can choose to send messages with `RequestStream.WriteAsync`.</span></span> <span data-ttu-id="b4c8c-165">Сообщения, переданные в службу путем потоковой передачи, доступны с `ResponseStream.MoveNext()` или `ResponseStream.ReadAllAsync()`.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-165">Messages streamed from the service are accessible with `ResponseStream.MoveNext()` or `ResponseStream.ReadAllAsync()`.</span></span> <span data-ttu-id="b4c8c-166">Вызов двунаправленной потоковой передачи завершается, когда `ResponseStream` больше не содержит сообщений.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-166">The bi-directional streaming call is complete when the `ResponseStream` has no more messages.</span></span>
+<span data-ttu-id="8c916-175">Вызов двунаправленной потоковой передачи начинается *без* клиента, отправляющего сообщение с запросом.</span><span class="sxs-lookup"><span data-stu-id="8c916-175">A bi-directional streaming call starts *without* the client sending a message.</span></span> <span data-ttu-id="8c916-176">Клиент может выбрать отправку сообщений с помощью `RequestStream.WriteAsync`.</span><span class="sxs-lookup"><span data-stu-id="8c916-176">The client can choose to send messages with `RequestStream.WriteAsync`.</span></span> <span data-ttu-id="8c916-177">Сообщения, переданные в службу путем потоковой передачи, доступны с `ResponseStream.MoveNext()` или `ResponseStream.ReadAllAsync()`.</span><span class="sxs-lookup"><span data-stu-id="8c916-177">Messages streamed from the service are accessible with `ResponseStream.MoveNext()` or `ResponseStream.ReadAllAsync()`.</span></span> <span data-ttu-id="8c916-178">Вызов двунаправленной потоковой передачи завершается, когда `ResponseStream` больше не содержит сообщений.</span><span class="sxs-lookup"><span data-stu-id="8c916-178">The bi-directional streaming call is complete when the `ResponseStream` has no more messages.</span></span>
 
 ```csharp
 var client = new Echo.EchoClient(channel);
@@ -177,15 +187,15 @@ await call.RequestStream.CompleteAsync();
 await readTask;
 ```
 
-<span data-ttu-id="b4c8c-167">Во время вызова двунаправленной потоковой передачи клиент и служба могут обмениваться сообщениями в любое время.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-167">During a bi-directional streaming call, the client and service can send messages to each other at any time.</span></span> <span data-ttu-id="b4c8c-168">Наиболее подходящая логика клиента для взаимодействия с вызовом двунаправленной потоковой передачи зависит от логики службы.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-168">The best client logic for interacting with a bi-directional call varies depending upon the service logic.</span></span>
+<span data-ttu-id="8c916-179">Во время вызова двунаправленной потоковой передачи клиент и служба могут обмениваться сообщениями в любое время.</span><span class="sxs-lookup"><span data-stu-id="8c916-179">During a bi-directional streaming call, the client and service can send messages to each other at any time.</span></span> <span data-ttu-id="8c916-180">Наиболее подходящая логика клиента для взаимодействия с вызовом двунаправленной потоковой передачи зависит от логики службы.</span><span class="sxs-lookup"><span data-stu-id="8c916-180">The best client logic for interacting with a bi-directional call varies depending upon the service logic.</span></span>
 
-## <a name="access-grpc-trailers"></a><span data-ttu-id="b4c8c-169">Доступ к трейлерам gRPC</span><span class="sxs-lookup"><span data-stu-id="b4c8c-169">Access gRPC trailers</span></span>
+## <a name="access-grpc-trailers"></a><span data-ttu-id="8c916-181">Доступ к трейлерам gRPC</span><span class="sxs-lookup"><span data-stu-id="8c916-181">Access gRPC trailers</span></span>
 
-<span data-ttu-id="b4c8c-170">Вызовы gRPC могут возвращать трейлеры gRPC.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-170">gRPC calls may return gRPC trailers.</span></span> <span data-ttu-id="b4c8c-171">Трейлеры gRPC содержат метаданные имени и значения для вызова.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-171">gRPC trailers are used to provide name/value metadata about a call.</span></span> <span data-ttu-id="b4c8c-172">Трейлеры содержат аналогичные функции для заголовков HTTP, но они принимаются в конце вызова.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-172">Trailers provide similar functionality to HTTP headers, but are received at the end of the call.</span></span>
+<span data-ttu-id="8c916-182">Вызовы gRPC могут возвращать трейлеры gRPC.</span><span class="sxs-lookup"><span data-stu-id="8c916-182">gRPC calls may return gRPC trailers.</span></span> <span data-ttu-id="8c916-183">Трейлеры gRPC содержат метаданные имени и значения для вызова.</span><span class="sxs-lookup"><span data-stu-id="8c916-183">gRPC trailers are used to provide name/value metadata about a call.</span></span> <span data-ttu-id="8c916-184">Трейлеры содержат аналогичные функции для заголовков HTTP, но они принимаются в конце вызова.</span><span class="sxs-lookup"><span data-stu-id="8c916-184">Trailers provide similar functionality to HTTP headers, but are received at the end of the call.</span></span>
 
-<span data-ttu-id="b4c8c-173">Трейлеры gRPC доступны с помощью `GetTrailers()`, которая возвращает коллекцию метаданных.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-173">gRPC trailers are accessible using `GetTrailers()`, which returns a collection of metadata.</span></span> <span data-ttu-id="b4c8c-174">Трейлеры возвращаются после завершения ответа, поэтому перед обращением к трейлеру необходимо дождаться конца ответа.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-174">Trailers are returned after the response is complete, therefore, you must await all response messages before accessing the trailers.</span></span>
+<span data-ttu-id="8c916-185">Трейлеры gRPC доступны с помощью `GetTrailers()`, которая возвращает коллекцию метаданных.</span><span class="sxs-lookup"><span data-stu-id="8c916-185">gRPC trailers are accessible using `GetTrailers()`, which returns a collection of metadata.</span></span> <span data-ttu-id="8c916-186">Трейлеры возвращаются после завершения ответа, поэтому перед обращением к трейлеру необходимо дождаться конца ответа.</span><span class="sxs-lookup"><span data-stu-id="8c916-186">Trailers are returned after the response is complete, therefore, you must await all response messages before accessing the trailers.</span></span>
 
-<span data-ttu-id="b4c8c-175">Унарные и клиентские вызовы потоковой передачи должны дождаться `ResponseAsync` перед вызовом `GetTrailers()`:</span><span class="sxs-lookup"><span data-stu-id="b4c8c-175">Unary and client streaming calls must await `ResponseAsync` before calling `GetTrailers()`:</span></span>
+<span data-ttu-id="8c916-187">Унарные и клиентские вызовы потоковой передачи должны дождаться `ResponseAsync` перед вызовом `GetTrailers()`:</span><span class="sxs-lookup"><span data-stu-id="8c916-187">Unary and client streaming calls must await `ResponseAsync` before calling `GetTrailers()`:</span></span>
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
@@ -196,10 +206,10 @@ Console.WriteLine("Greeting: " + response.Message);
 // Greeting: Hello World
 
 var trailers = call.GetTrailers();
-var myValue = trailers.First(e => e.Key == "my-trailer-name");
+var myValue = trailers.GetValue("my-trailer-name");
 ```
 
-<span data-ttu-id="b4c8c-176">Вызовы сервера и двунаправленной потоковой передачи должны завершить ожидание ответного потока перед вызовом `GetTrailers()`:</span><span class="sxs-lookup"><span data-stu-id="b4c8c-176">Server and bidirectional streaming calls must finish awaiting the response stream before calling `GetTrailers()`:</span></span>
+<span data-ttu-id="8c916-188">Вызовы сервера и двунаправленной потоковой передачи должны завершить ожидание ответного потока перед вызовом `GetTrailers()`:</span><span class="sxs-lookup"><span data-stu-id="8c916-188">Server and bidirectional streaming calls must finish awaiting the response stream before calling `GetTrailers()`:</span></span>
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
@@ -212,10 +222,10 @@ await foreach (var response in call.ResponseStream.ReadAllAsync())
 }
 
 var trailers = call.GetTrailers();
-var myValue = trailers.First(e => e.Key == "my-trailer-name");
+var myValue = trailers.GetValue("my-trailer-name");
 ```
 
-<span data-ttu-id="b4c8c-177">Трейлеры gRPC также доступны из `RpcException`.</span><span class="sxs-lookup"><span data-stu-id="b4c8c-177">gRPC trailers are also accessible from `RpcException`.</span></span> <span data-ttu-id="b4c8c-178">Служба может вернуть трейлеры вместе со статусом gRPC, отличным от "ОК".</span><span class="sxs-lookup"><span data-stu-id="b4c8c-178">A service may return trailers together with a non-OK gRPC status.</span></span> <span data-ttu-id="b4c8c-179">В этой ситуации трейлеры получаются из исключения, вызываемого клиентом gRPC:</span><span class="sxs-lookup"><span data-stu-id="b4c8c-179">In this situation the trailers are retrieved from the exception thrown by the gRPC client:</span></span>
+<span data-ttu-id="8c916-189">Трейлеры gRPC также доступны из `RpcException`.</span><span class="sxs-lookup"><span data-stu-id="8c916-189">gRPC trailers are also accessible from `RpcException`.</span></span> <span data-ttu-id="8c916-190">Служба может вернуть трейлеры вместе со статусом gRPC, отличным от "ОК".</span><span class="sxs-lookup"><span data-stu-id="8c916-190">A service may return trailers together with a non-OK gRPC status.</span></span> <span data-ttu-id="8c916-191">В этой ситуации трейлеры получаются из исключения, вызываемого клиентом gRPC:</span><span class="sxs-lookup"><span data-stu-id="8c916-191">In this situation the trailers are retrieved from the exception thrown by the gRPC client:</span></span>
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
@@ -230,16 +240,16 @@ try
     // Greeting: Hello World
 
     var trailers = call.GetTrailers();
-    myValue = trailers.First(e => e.Key == "my-trailer-name");
+    myValue = trailers.GetValue("my-trailer-name");
 }
 catch (RpcException ex)
 {
     var trailers = ex.Trailers;
-    myValue = trailers.First(e => e.Key == "my-trailer-name");
+    myValue = trailers.GetValue("my-trailer-name");
 }
 ```
 
-## <a name="additional-resources"></a><span data-ttu-id="b4c8c-180">Дополнительные ресурсы</span><span class="sxs-lookup"><span data-stu-id="b4c8c-180">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="8c916-192">Дополнительные ресурсы</span><span class="sxs-lookup"><span data-stu-id="8c916-192">Additional resources</span></span>
 
 * <xref:grpc/clientfactory>
 * <xref:grpc/basics>
