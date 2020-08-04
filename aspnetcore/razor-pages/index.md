@@ -14,14 +14,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/index
-ms.openlocfilehash: e7e9bc76a2bba1c15b32c97f0f3629285f256499
-ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
+ms.openlocfilehash: bd9f991a2aba32cbbeb193ad422005f910e6795b
+ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86568709"
+ms.lasthandoff: 07/30/2020
+ms.locfileid: "87444078"
 ---
-# <a name="introduction-to-razor-pages-in-aspnet-core"></a>Введение в Razor Pages в ASP.NET Core
+# <a name="introduction-to-no-locrazor-pages-in-aspnet-core"></a>Введение в Razor Pages в ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -51,7 +51,7 @@ Razor Pages делает создание кодов сценариев для �
 
 <a name="rpvs17"></a>
 
-## <a name="create-a-razor-pages-project"></a>Создание проекта Razor Pages
+## <a name="create-a-no-locrazor-pages-project"></a>Создание проекта Razor Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -67,7 +67,7 @@ Razor Pages делает создание кодов сценариев для �
 
 ---
 
-## <a name="razor-pages"></a>Razor Pages
+## <a name="no-locrazor-pages"></a>Razor Pages
 
 Razor Pages активируется в файле *Startup.cs*:
 
@@ -108,6 +108,8 @@ Razor Pages активируется в файле *Startup.cs*:
 Razor Pages предназначена для упрощения реализации типовых шаблонов, которые используются в браузерах, при создании приложения. [Привязки модели](xref:mvc/models/model-binding), [вспомогательные функции тегов](xref:mvc/views/tag-helpers/intro) и вспомогательные методы HTML *отлично работают* со свойствами, определенными в классе Razor Pages. Рассмотрим страницу с простой формой связи для модели `Contact`.
 
 В представленных в этой статье примерах `DbContext` инициализируется в файле [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/3.0sample/RazorPagesContacts/Startup.cs#L23-L24).
+
+Для работы с базой данных в памяти требуется пакет NuGet `Microsoft.EntityFrameworkCore.InMemory`.
 
 [!code-csharp[](index/3.0sample/RazorPagesContacts/Startup.cs?name=snippet)]
 
@@ -169,7 +171,7 @@ Razor Pages предназначена для упрощения реализа
 
 * С допустимыми данными:
 
-  * Метод обработчика `OnPostAsync` вызывает вспомогательный метод <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.RedirectToPage*>. `RedirectToPage` возвращает экземпляр <xref:Microsoft.AspNetCore.Mvc.RedirectToPageResult>. `RedirectToPage`.
+  * Метод обработчика `OnPostAsync` вызывает вспомогательный метод <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.RedirectToPage*>. `RedirectToPage` возвращает экземпляр <xref:Microsoft.AspNetCore.Mvc.RedirectToPageResult>. `RedirectToPage`:
 
     * Является результатом действия.
     * Аналогичен `RedirectToAction` или `RedirectToRoute` (используется в контроллерах и представлениях).
@@ -340,13 +342,13 @@ Razor Pages предназначена для упрощения реализа
 
 <a name="xsrf"></a>
 
-## <a name="xsrfcsrf-and-razor-pages"></a>XSRF/CSRF и Razor Pages
+## <a name="xsrfcsrf-and-no-locrazor-pages"></a>XSRF/CSRF и Razor Pages
 
 В Razor Pages реализована [проверка для защиты от подделки](xref:security/anti-request-forgery). [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) вставляет маркеры защиты от подделки в элементы HTML-форм.
 
 <a name="layout"></a>
 
-## <a name="using-layouts-partials-templates-and-tag-helpers-with-razor-pages"></a>Использование макетов, частичных реплик, шаблонов и вспомогательных функций тегов с Razor Pages
+## <a name="using-layouts-partials-templates-and-tag-helpers-with-no-locrazor-pages"></a>Использование макетов, частичных реплик, шаблонов и вспомогательных функций тегов с Razor Pages
 
 Pages работает со всеми функциями подсистемы просмотра Razor. Макеты, частичные реплики, шаблоны, вспомогательные функции тегов, а также файлы *_ViewStart.cshtml* и *_ViewImports.cshtml* работают точно так же, как и в стандартных представлениях Razor.
 
@@ -585,13 +587,13 @@ public string Message { get; set; }
 
 Сведения о предварительной компиляции представлений см. на странице [Компиляция представлений Razor](xref:mvc/views/view-compilation).
 
-### <a name="specify-that-razor-pages-are-at-the-content-root"></a>Указание местонахождения Razor Pages в корне каталога
+### <a name="specify-that-no-locrazor-pages-are-at-the-content-root"></a>Указание местонахождения Razor Pages в корне каталога
 
 По умолчанию Razor Pages находится в корне каталога */Pages*. Добавьте <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.WithRazorPagesAtContentRoot*>, чтобы указать, что Razor Pages находится в [корневой папке содержимого](xref:fundamentals/index#content-root) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) приложения:
 
 [!code-csharp[](index/3.0sample/RazorPagesContacts/StartupWithRazorPagesAtContentRoot.cs?name=snippet)]
 
-### <a name="specify-that-razor-pages-are-at-a-custom-root-directory"></a>Указание местонахождения Razor Pages в пользовательском корневом каталоге
+### <a name="specify-that-no-locrazor-pages-are-at-a-custom-root-directory"></a>Указание местонахождения Razor Pages в пользовательском корневом каталоге
 
 Добавьте <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderExtensions.WithRazorPagesRoot*>, чтобы указать, что Razor Pages находится в пользовательском корневом каталоге в приложении (укажите относительный путь):
 
@@ -642,7 +644,7 @@ Razor Pages — это новый аспект платформы MVC ASP.NET�
 
 <a name="rpvs17"></a>
 
-## <a name="create-a-razor-pages-project"></a>Создание проекта Razor Pages
+## <a name="create-a-no-locrazor-pages-project"></a>Создание проекта Razor Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -660,7 +662,7 @@ Razor Pages — это новый аспект платформы MVC ASP.NET�
 
 ---
 
-## <a name="razor-pages"></a>Razor Pages
+## <a name="no-locrazor-pages"></a>Razor Pages
 
 Razor Pages активируется в файле *Startup.cs*:
 
@@ -860,13 +862,13 @@ services.AddMvc()
 
 <a name="xsrf"></a>
 
-## <a name="xsrfcsrf-and-razor-pages"></a>XSRF/CSRF и Razor Pages
+## <a name="xsrfcsrf-and-no-locrazor-pages"></a>XSRF/CSRF и Razor Pages
 
 Вам не придется писать отдельный код для [проверки подлинности запросов](xref:security/anti-request-forgery). Razor Pages включает создание и проверку маркеров защиты от подделок по умолчанию.
 
 <a name="layout"></a>
 
-## <a name="using-layouts-partials-templates-and-tag-helpers-with-razor-pages"></a>Использование макетов, частичных реплик, шаблонов и вспомогательных функций тегов с Razor Pages
+## <a name="using-layouts-partials-templates-and-tag-helpers-with-no-locrazor-pages"></a>Использование макетов, частичных реплик, шаблонов и вспомогательных функций тегов с Razor Pages
 
 Pages работает со всеми функциями подсистемы просмотра Razor. Макеты, частичные реплики, шаблоны, вспомогательные функции тегов, а также файлы *_ViewStart.cshtml* и *_ViewImports.cshtml* работают точно так же, как и в стандартных представлениях Razor.
 
@@ -1094,7 +1096,7 @@ public string Message { get; set; }
 
 Дополнительные общие сведения см. на странице [Учебник. Начало работы с Razor Pages в ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start).
 
-### <a name="specify-that-razor-pages-are-at-the-content-root"></a>Указание местонахождения Razor Pages в корне каталога
+### <a name="specify-that-no-locrazor-pages-are-at-the-content-root"></a>Указание местонахождения Razor Pages в корне каталога
 
 По умолчанию Razor Pages находится в корне каталога */Pages*. Добавьте [WithRazorPagesAtContentRoot](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvcbuilderextensions.withrazorpagesatcontentroot) в [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc#Microsoft_Extensions_DependencyInjection_MvcServiceCollectionExtensions_AddMvc_Microsoft_Extensions_DependencyInjection_IServiceCollection_), чтобы указать, что Razor Pages находится в [корневой папке содержимого](xref:fundamentals/index#content-root) ([ContentRootPath](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.contentrootpath)) приложения:
 
@@ -1107,7 +1109,7 @@ services.AddMvc()
     .WithRazorPagesAtContentRoot();
 ```
 
-### <a name="specify-that-razor-pages-are-at-a-custom-root-directory"></a>Указание местонахождения Razor Pages в пользовательском корневом каталоге
+### <a name="specify-that-no-locrazor-pages-are-at-a-custom-root-directory"></a>Указание местонахождения Razor Pages в пользовательском корневом каталоге
 
 Добавьте [WithRazorPagesRoot](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvccorebuilderextensions.withrazorpagesroot) в [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc#Microsoft_Extensions_DependencyInjection_MvcServiceCollectionExtensions_AddMvc_Microsoft_Extensions_DependencyInjection_IServiceCollection_), чтобы указать, что Razor Pages находится в пользовательской корневой папке приложения (укажите относительный путь):
 
