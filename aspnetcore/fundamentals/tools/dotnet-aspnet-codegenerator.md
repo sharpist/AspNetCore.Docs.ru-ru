@@ -6,20 +6,20 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 07/04/2019
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-ms.openlocfilehash: a106654c8a37e84e9186a2f06d90605df753e8a7
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: af151b65d3fefb5863529de1cd97c6315f11ca82
+ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405605"
+ms.lasthandoff: 07/30/2020
+ms.locfileid: "87444123"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
@@ -60,13 +60,13 @@ dotnet aspnet-codegenerator [-h|--help]
 
 Запускаемый генератор кода. Доступны такие генераторы:
 
-| Generator | Операция |
-| ----------------- | ------------ | 
-| площадь      | [Формирует шаблон области](/aspnet/core/mvc/controllers/areas) |
-  контроллер| [Формирует шаблон контроллера](/aspnet/core/tutorials/first-mvc-app/adding-model) |
-  удостоверение  | [Формирует шаблон [Identity](/aspnet/core/security/authentication/scaffold-identity) |
-  razorpage | [Формирует шаблон страниц [Razor Pages](/aspnet/core/tutorials/razor-pages/model) |
-  view      | [Формирует шаблон представления](/aspnet/core/mvc/views/overview) |
+| Generator  | Операция                                                            |
+| ---------- | -------------------------------------------------------------------- |
+| площадь       | [Формирует шаблон области](xref:mvc/controllers/areas)                      |
+| контроллер | [Формирует шаблон контроллера](xref:tutorials/first-mvc-app/adding-model)  |
+| удостоверение   | [Формирует шаблон Identity](xref:security/authentication/scaffold-identity) |
+| razorpage  | [Формирует шаблон страниц Razor Pages](xref:tutorials/razor-pages/model)            |
+| view       | [Формирует шаблон представления](xref:mvc/views/overview)                          |
 
 ## <a name="options"></a>Параметры
 
@@ -104,7 +104,7 @@ dotnet aspnet-codegenerator [-h|--help]
 
 * Область
 * Контроллер
-* [Identity  
+* Identity  
 * Razorpage
 * Просмотр
 
@@ -112,7 +112,7 @@ dotnet aspnet-codegenerator [-h|--help]
 
 ### <a name="area-options"></a>Параметры области
 
-Это средство предназначено для веб-проектов ASP.NET Core с контроллерами и представлениями. Оно не предназначено для приложений [Razor Pages.
+Это средство предназначено для веб-проектов ASP.NET Core с контроллерами и представлениями. Оно не предназначено для приложений Razor Pages.
 
 Использование: `dotnet aspnet-codegenerator area AreaNameToGenerate`
 
@@ -135,13 +135,13 @@ dotnet aspnet-codegenerator [-h|--help]
 
 В таблице ниже перечислены параметры только для `aspnet-codegenerator controller`.
 
-| Параметр               | Описание|
-| ----------------- | ------------ |
-| --controllerName или -name | Имя контроллера. |
-| --useAsyncActions или -async | Создание асинхронных действий контроллера. |
-| --noViews или -nv | Представления **не** создаются. |
-| --restWithNoViews или -api  | Создание контроллера с API в стиле REST. Используется `noViews`, а все параметры, связанные с представлением, игнорируются. |
-| --readWriteActions или -actions | Создание контроллера с действиями чтения и записи без модели. |
+| Параметр                         | Описание                                                                                               |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| --controllerName или -name      | Имя контроллера.                                                                                   |
+| --useAsyncActions или -async    | Создание асинхронных действий контроллера.                                                                        |
+| --noViews или -nv               | Представления **не** создаются.                                                                                    |
+| --restWithNoViews или -api      | Создание контроллера с API в стиле REST. Используется `noViews`, а все параметры, связанные с представлением, игнорируются. |
+| --readWriteActions или -actions | Создание контроллера с действиями чтения и записи без модели.                                              |
 
 Чтобы получить справку по команде `aspnet-codegenerator controller`, используйте параметр `-h`.
 
@@ -149,13 +149,13 @@ dotnet aspnet-codegenerator [-h|--help]
 dotnet aspnet-codegenerator controller -h
 ```
 
-Пример `dotnet aspnet-codegenerator controller` см. в разделе [Создание модели фильма](/aspnet/core/tutorials/razor-pages/model).
+Пример `dotnet aspnet-codegenerator controller` см. в разделе [Создание модели фильма](xref:tutorials/first-mvc-app/adding-model).
 
-### <a name="razorpage"></a>Razorpage
+### <a name="no-locrazorpage"></a>Razorpage
 
 <a name="rp"></a>
 
-Шаблоны для страниц [Razor Pages можно формировать по отдельности. Для этого нужно указать имя новой страницы и используемый шаблон. Поддерживаются такие шаблоны:
+Шаблоны для страниц Razor Pages можно формировать по отдельности. Для этого нужно указать имя новой страницы и используемый шаблон. Поддерживаются такие шаблоны:
 
 * `Empty`
 * `Create`
@@ -184,11 +184,11 @@ dotnet aspnet-codegenerator razorpage MyEdit Edit -m Movie -dc RazorPagesMovieCo
 
 В таблице ниже перечислены параметры только для `aspnet-codegenerator razorpage`.
 
-| Параметр               | Описание|
-| ----------------- | ------------ |
-|   --namespaceName или -namespace | Имя пространства имен, используемого для созданной модели PageModel. |
-| --partialView или -partial | Создание частичного представления. Если указан этот параметр, параметры макета -l и -udl игнорируются. |
-| --noPageModel или -npm | Параметр, при использовании которого не создается класс PageModel для пустого шаблона. |
+| Параметр                        | Описание                                                                           |
+| ----------------------------- | ------------------------------------------------------------------------------------- |
+| --namespaceName или -namespace | Имя пространства имен, используемого для созданной модели PageModel.                          |
+| --partialView или -partial     | Создание частичного представления. Если указан этот параметр, параметры макета -l и -udl игнорируются. |
+| --noPageModel или -npm         | Параметр, при использовании которого не создается класс PageModel для пустого шаблона.                           |
 
 Чтобы получить справку по команде `aspnet-codegenerator razorpage`, используйте параметр `-h`.
 
@@ -196,8 +196,8 @@ dotnet aspnet-codegenerator razorpage MyEdit Edit -m Movie -dc RazorPagesMovieCo
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-Пример `dotnet aspnet-codegenerator razorpage` см. в разделе [Создание модели фильма](/aspnet/core/tutorials/razor-pages/model).
+Пример `dotnet aspnet-codegenerator razorpage` см. в разделе [Создание модели фильма](xref:tutorials/razor-pages/model).
 
-### [Identity
+### Identity
 
-См. [Формирование шаблонов [Identity](/aspnet/core/security/authentication/scaffold-identity)
+См. [Формирование шаблонов Identity](xref:security/authentication/scaffold-identity)

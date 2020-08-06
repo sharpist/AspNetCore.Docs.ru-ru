@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: a08993a7909d67be34446815b10d32089d9e0629
-ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
+ms.openlocfilehash: 9f143523a6d02ac018ad2a869cc9d768ee25681f
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87444152"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87819267"
 ---
 # <a name="configuration-in-aspnet-core"></a>Конфигурация в .NET Core
 
@@ -356,6 +356,35 @@ API конфигурации имеет особые правила обрабо
 | `SQLAZURECONNSTR_{KEY}`  | `ConnectionStrings:{KEY}`   | Ключ: `ConnectionStrings:{KEY}_ProviderName`:<br>Значение: `System.Data.SqlClient`  |
 | `SQLCONNSTR_{KEY}`       | `ConnectionStrings:{KEY}`   | Ключ: `ConnectionStrings:{KEY}_ProviderName`:<br>Значение: `System.Data.SqlClient`  |
 
+## <a name="file-configuration-provider"></a>Поставщик конфигурации файла
+
+<xref:Microsoft.Extensions.Configuration.FileConfigurationProvider> является базовым классом для загрузки конфигурации из файловой системы. Следующие поставщики конфигурации являются производными от `FileConfigurationProvider`:
+
+* [Поставщик конфигурации INI](#ini-configuration-provider)
+* [Поставщик конфигурации JSON](#jcp)
+* [Поставщик конфигурации XML](#xml-configuration-provider)
+
+### <a name="ini-configuration-provider"></a>Поставщик конфигурации INI
+
+<xref:Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider> загружает конфигурацию из пары "ключ — значение" INI-файла во время выполнения.
+
+Следующий код очищает все поставщики конфигурации и добавляет несколько поставщиков конфигурации:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramINI.cs?name=snippet&highlight=10-30)]
+
+В приведенном выше коде параметры в *MyIniConfig.ini* и *MyIniConfig*.`Environment`.*ini* переопределяются параметрами в следующих поставщиках:
+
+* [Поставщик конфигурации переменных среды](#evcp).
+* [Поставщик конфигурации командной строки](#clcp).
+
+[Пример загрузки](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) содержит следующий файл *MyIniConfig.ini*:
+
+[!code-ini[](index/samples/3.x/ConfigSample/MyIniConfig.ini)]
+
+В следующем коде из [примера загрузки](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) отображаются некоторые из перечисленных выше параметров конфигурации:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
+
 <a name="jcp"></a>
 
 ### <a name="json-configuration-provider"></a>Поставщик конфигурации JSON
@@ -398,35 +427,6 @@ API конфигурации имеет особые правила обрабо
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 <a name="fcp"></a>
-
-## <a name="file-configuration-provider"></a>Поставщик конфигурации файла
-
-<xref:Microsoft.Extensions.Configuration.FileConfigurationProvider> является базовым классом для загрузки конфигурации из файловой системы. Следующие поставщики конфигурации являются производными от `FileConfigurationProvider`:
-
-* [Поставщик конфигурации INI](#ini-configuration-provider)
-* [Поставщик конфигурации JSON](#jcp)
-* [Поставщик конфигурации XML](#xml-configuration-provider)
-
-### <a name="ini-configuration-provider"></a>Поставщик конфигурации INI
-
-<xref:Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider> загружает конфигурацию из пары "ключ — значение" INI-файла во время выполнения.
-
-Следующий код очищает все поставщики конфигурации и добавляет несколько поставщиков конфигурации:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramINI.cs?name=snippet&highlight=10-30)]
-
-В приведенном выше коде параметры в *MyIniConfig.ini* и *MyIniConfig*.`Environment`.*ini* переопределяются параметрами в следующих поставщиках:
-
-* [Поставщик конфигурации переменных среды](#evcp).
-* [Поставщик конфигурации командной строки](#clcp).
-
-[Пример загрузки](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) содержит следующий файл *MyIniConfig.ini*:
-
-[!code-ini[](index/samples/3.x/ConfigSample/MyIniConfig.ini)]
-
-В следующем коде из [примера загрузки](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) отображаются некоторые из перечисленных выше параметров конфигурации:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 ### <a name="xml-configuration-provider"></a>Поставщик конфигурации XML
 
@@ -761,7 +761,7 @@ Index: 5  Value: value5
 
 ## <a name="add-configuration-from-an-external-assembly"></a>Добавление конфигурации из внешней сборки
 
-Реализация <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> позволяет при запуске добавлять в приложение улучшения из внешней сборки вне приложения класса `Startup`. Дополнительные сведения см. в разделе <xref:fundamentals/configuration/platform-specific-configuration>.
+Реализация <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> позволяет при запуске добавлять в приложение улучшения из внешней сборки вне приложения класса `Startup`. Для получения дополнительной информации см. <xref:fundamentals/configuration/platform-specific-configuration>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
