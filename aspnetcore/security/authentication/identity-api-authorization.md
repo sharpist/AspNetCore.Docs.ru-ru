@@ -15,16 +15,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 2b587517268208dcf66cd2895b7aa22bfa381f84
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: c06f1d4bf772d7726d19163fcdee8c92d4006cd2
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060362"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87819117"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Проверка подлинности и авторизация для одностраничные приложения
 
-ASP.NET Core 3,0 или более поздней версии обеспечивает проверку подлинности в одностраничных приложениях (одностраничные приложения) с помощью поддержки авторизации API. ASP.NET Core Identity для проверки подлинности и хранения пользователей вместе с [IdentityServer](https://identityserver.io/) для реализации Open ID Connect.
+ASP.NET Core 3,0 или более поздней версии обеспечивает проверку подлинности в одностраничных приложениях (одностраничные приложения) с помощью поддержки авторизации API. ASP.NET Core Identity для проверки подлинности и хранения пользователей объединяется с [ Identity сервером](https://identityserver.io/) для реализации OpenID Connect Connect.
 
 В шаблоны проектов " **угловой** " и " **отреагировать** " был добавлен параметр проверки подлинности, аналогичный параметру проверки подлинности в шаблонах проектов **веб-приложения (модель-представление-контроллер)** (MVC) и **веб-приложение** ( Razor страницы). Допустимые значения параметра: **None** и **индивидуальных**. Шаблон проекта **React.js и Redux** в настоящее время не поддерживает параметр проверки подлинности.
 
@@ -52,7 +52,7 @@ dotnet new react -o <output_directory_name> -au Individual
 
 ### <a name="startup-class"></a>Класс Startup
 
-В следующих примерах кода используется пакет NuGet [Microsoft. AspNetCore. апиаусоризатион. IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) . В примерах настраивается проверка подлинности и авторизация API с помощью <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> методов расширения и. Проекты, использующие шаблоны проектов "реагирующий" или "угловой SPA" с проверкой подлинности, включают ссылку на этот пакет.
+В следующих примерах кода используются [Microsoft. AspNetCore. апиаусоризатион. Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer)Пакет NuGet сервера. В примерах настраивается проверка подлинности и авторизация API с помощью <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> методов расширения и. Проекты, использующие шаблоны проектов "реагирующий" или "угловой SPA" с проверкой подлинности, включают ссылку на этот пакет.
 
 `Startup`Класс имеет следующие дополнения:
 
@@ -67,14 +67,14 @@ dotnet new react -o <output_directory_name> -au Individual
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * IdentityServer с дополнительным `AddApiAuthorization` вспомогательным методом, который настраивает некоторые соглашения ASP.NET Core по умолчанию поверх IdentityServer:
+  * IdentityСервер с дополнительным `AddApiAuthorization` вспомогательным методом, который устанавливает некоторые соглашения ASP.NET Core по умолчанию поверх Identity сервера:
 
     ```csharp
     services.AddIdentityServer()
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
     ```
 
-  * Проверка подлинности с помощью дополнительного вспомогательного метода `AddIdentityServerJwt`, который настраивает приложение для проверки маркеров JWT, созданных IdentityServer:
+  * Аутентификация с помощью дополнительного вспомогательного метода `AddIdentityServerJwt`, который настраивает приложение для проверки маркеров JWT, созданных IdentityServer:
 
     ```csharp
     services.AddAuthentication()
@@ -88,7 +88,7 @@ dotnet new react -o <output_directory_name> -au Individual
     app.UseAuthentication();
     ```
 
-  * По промежуточного слоя IdentityServer, предоставляющее конечные точки подключения Open ID:
+  * По Identity промежуточного слоя сервера, предоставляющего конечные точки подключения OpenID Connect:
 
     ```csharp
     app.UseIdentityServer();
@@ -96,11 +96,11 @@ dotnet new react -o <output_directory_name> -au Individual
 
 ### <a name="addapiauthorization"></a>AddApiAuthorization
 
-Этот вспомогательный метод настраивает IdentityServer для использования нашей поддерживаемой конфигурации. IdentityServer — это функциональная и расширяемая платформа для устранения проблем с безопасностью приложений. В то же время это делает ненужную сложность для наиболее распространенных сценариев. Следовательно, для вас предоставляется набор соглашений и параметров конфигурации, которые считаются хорошей отправной точкой. После изменения требований к проверке подлинности все возможности IdentityServer по-прежнему доступны для настройки проверки подлинности в соответствии с вашими потребностями.
+Этот вспомогательный метод настраивает Identity сервер для использования нашей поддерживаемой конфигурации. IdentityServer — это функциональная и расширяемая платформа для повышения уровня безопасности приложений. В то же время это делает ненужную сложность для наиболее распространенных сценариев. Следовательно, для вас предоставляется набор соглашений и параметров конфигурации, которые считаются хорошей отправной точкой. После изменения требований к проверке подлинности все возможности Identity сервера по-прежнему доступны для настройки проверки подлинности в соответствии с вашими потребностями.
 
-### <a name="addidentityserverjwt"></a>AddIdentityServerJwt
+### <a name="addno-locidentityserverjwt"></a>AddIdentityServerJwt
 
-Этот вспомогательный метод настраивает схему политики для приложения в качестве обработчика проверки подлинности по умолчанию. Политика настроена таким путем, чтобы разрешить Identity обработку всех запросов, направляемых по любому вложенному пути в Identity пространстве URL-адресов "/ Identity ". `JwtBearerHandler` обрабатывает все остальные запросы. Кроме того, этот метод регистрирует `<<ApplicationName>>API` ресурс API в IdentityServer с областью по умолчанию `<<ApplicationName>>API` и настраивает по промежуточного слоя маркера носителя JWT для проверки маркеров, выданных IdentityServer для приложения.
+Этот вспомогательный метод настраивает схему политики для приложения в качестве обработчика проверки подлинности по умолчанию. Политика настроена таким путем, чтобы разрешить Identity обработку всех запросов, направляемых по любому вложенному пути в Identity пространстве URL-адресов "/ Identity ". `JwtBearerHandler` обрабатывает все остальные запросы. Кроме того, этот метод регистрирует `<<ApplicationName>>API` ресурс API с Identity сервером с областью по умолчанию `<<ApplicationName>>API` и настраивает по промежуточного слоя маркера носителя JWT для проверки маркеров, выданных Identity сервером для приложения.
 
 ### <a name="weatherforecastcontroller"></a>WeatherForecastController
 
@@ -108,7 +108,7 @@ dotnet new react -o <output_directory_name> -au Individual
 
 ### <a name="applicationdbcontext"></a>ApplicationDbContext
 
-В файле *дата\аппликатиондбконтекст.КС* Обратите внимание на то же, что `DbContext` используется в Identity с исключением, которое оно расширяет `ApiAuthorizationDbContext` (более производным классом от `IdentityDbContext` ), чтобы включить схему для IdentityServer.
+В файле *дата\аппликатиондбконтекст.КС* Обратите внимание на то же, что `DbContext` используется в Identity с исключением, которое оно расширяет `ApiAuthorizationDbContext` (более производным классом от `IdentityDbContext` ), чтобы включить схему для Identity сервера.
 
 Чтобы получить полный контроль над схемой базы данных, наследуйте один из доступных Identity `DbContext` классов и настройте контекст для включения Identity схемы путем вызова `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` `OnModelCreating` метода в методе.
 
@@ -273,7 +273,7 @@ async populateWeatherData() {
 
 Чтобы развернуть приложение в рабочей среде, необходимо подготовить следующие ресурсы:
 
-* База данных для хранения Identity учетных записей пользователей и IdentityServer.
+* База данных для хранения Identity учетных записей пользователей и Identity серверов.
 * Рабочий сертификат, используемый для подписи маркеров.
   * Для этого сертификата нет особых требований; Это может быть самозаверяющий сертификат или сертификат, подготовленный через центр сертификации.
   * Его можно создать с помощью стандартных средств, таких как PowerShell или OpenSSL.
@@ -310,25 +310,25 @@ async populateWeatherData() {
 
 ## <a name="other-configuration-options"></a>Другие параметры конфигурации
 
-Поддержка авторизации API основана на IdentityServer с набором соглашений, значениями по умолчанию и улучшениями для упрощения работы одностраничные приложения. Нет нужды говорить, что все возможности IdentityServer доступны в фоновом режиме, если ASP.NET Core интеграции не охватывают ваш сценарий. Поддержка ASP.NET Coreов сосредоточена на «первых» приложениях, где все приложения создаются и развертываются в нашей Организации. Таким образом, поддержка не предоставляется для таких вещей, как согласие или Федерация. Для этих сценариев используйте IdentityServer и следуйте их документации.
+Поддержка авторизации API основана на Identity сервере с набором соглашений, значениями по умолчанию и усовершенствованиями для упрощения работы одностраничные приложения. Нет нужды говорить, что все возможности сервера доступны в фоновом режиме, Identity если ASP.NET Core интеграции не охватывают ваш сценарий. Поддержка ASP.NET Coreов сосредоточена на «первых» приложениях, где все приложения создаются и развертываются в нашей Организации. Таким образом, поддержка не предоставляется для таких вещей, как согласие или Федерация. Для этих сценариев используйте Identity сервер и следуйте его документации.
 
 ### <a name="application-profiles"></a>Профили приложений
 
 Профили приложений — это предопределенные конфигурации для приложений, которые дополнительно определяют свои параметры. В настоящее время поддерживаются следующие профили:
 
-* `IdentityServerSPA`— Представляет SPA, размещенный вместе с IdentityServer, как единое целое.
+* `IdentityServerSPA`— Представляет защищенный, размещенный вместе с Identity сервером объект как единое целое.
   * Значение `redirect_uri` по умолчанию — `/authentication/login-callback` .
   * Значение `post_logout_redirect_uri` по умолчанию — `/authentication/logout-callback` .
   * Набор областей включает `openid` , `profile` и все области, определенные для API-интерфейсов в приложении.
   * Набор разрешенных типов ответов OIDC — `id_token token` или каждый из них по отдельности ( `id_token` , `token` ).
   * Допустимый режим ответа — `fragment` .
-* `SPA`— Это SPA, которая не размещается с помощью IdentityServer.
+* `SPA`— Это SPA, которая не размещена на Identity сервере.
   * Набор областей включает `openid` , `profile` и все области, определенные для API-интерфейсов в приложении.
   * Набор разрешенных типов ответов OIDC — `id_token token` или каждый из них по отдельности ( `id_token` , `token` ).
   * Допустимый режим ответа — `fragment` .
-* `IdentityServerJwt`— Представляет API, размещенный вместе с IdentityServer.
+* `IdentityServerJwt`— Представляет API, размещенный вместе с Identity сервером.
   * В приложении настроена одна область, которая по умолчанию имеет имя приложения.
-* `API`— Представляет API, который не размещается с помощью IdentityServer.
+* `API`— Представляет API, который не размещен на Identity сервере.
   * В приложении настроена одна область, которая по умолчанию имеет имя приложения.
 
 ### <a name="configuration-through-appsettings"></a>Настройка с помощью AppSettings

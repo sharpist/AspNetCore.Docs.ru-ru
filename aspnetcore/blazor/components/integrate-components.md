@@ -15,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
-ms.openlocfilehash: 6aef51a0f8bf4ec2e7cb6115856bc465a90ec2ee
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: a28c43ed68adb7af9c30f7ae62872811361d8f9c
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86059854"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87819097"
 ---
-# <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages
+# <a name="integrate-aspnet-core-no-locrazor-components-into-no-locrazor-pages-and-mvc-apps"></a>Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages
 
 Авторы: [Люк Латэм](https://github.com/guardrex) (Luke Latham) и [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
 
@@ -86,7 +86,7 @@ ms.locfileid: "86059854"
 
 1. Интегрируйте компоненты в какую-либо страницу или какое-либо представление. Дополнительные сведения см. в разделе [Отрисовка компонентов со страницы или представления](#render-components-from-a-page-or-view).
 
-## <a name="use-routable-components-in-a-razor-pages-app"></a>Использование маршрутизируемых компонентов в приложении Razor Pages
+## <a name="use-routable-components-in-a-no-locrazor-pages-app"></a>Использование маршрутизируемых компонентов в приложении Razor Pages
 
 *Этот раздел описывает добавление компонентов, напрямую маршрутизируемых из запросов пользователей.*
 
@@ -99,7 +99,7 @@ ms.locfileid: "86059854"
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
 
-   <Router AppAssembly="typeof(Program).Assembly">
+   <Router AppAssembly="@typeof(Program).Assembly">
        <Found Context="routeData">
            <RouteView RouteData="routeData" />
        </Found>
@@ -174,7 +174,7 @@ ms.locfileid: "86059854"
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
 
-   <Router AppAssembly="typeof(Program).Assembly">
+   <Router AppAssembly="@typeof(Program).Assembly">
        <Found Context="routeData">
            <RouteView RouteData="routeData" />
        </Found>
