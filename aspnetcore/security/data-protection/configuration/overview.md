@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/configuration/overview
-ms.openlocfilehash: 65ef506d5857afb71113a0309613a2cbd82893be
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 096862b7149679c14e3d1ca17d38468a14e438a2
+ms.sourcegitcommit: b0fa7ff0cb158277df61bcd08058a81222c3fe10
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399547"
+ms.lasthandoff: 08/07/2020
+ms.locfileid: "87913869"
 ---
 # <a name="configure-aspnet-core-data-protection"></a>Настройка защиты данных в ASP.NET Core
 
@@ -357,7 +357,7 @@ services.AddDataProtection()
 ::: moniker-end
 
 > [!NOTE]
-> Алгоритм блочного блочного шифра должен иметь длину ключа >= 128 бит, размер блока >= 64 бит и должен поддерживать шифрование в режиме CBC с использованием дополнений PKCS #7. Хэш-алгоритм должен иметь размер дайджеста >= 128 бит и должен поддерживать открытие с \_ \_ \_ \_ флагом флага HMAC в Handles. Для \* свойств поставщика можно задать значение null, чтобы использовать поставщик по умолчанию для указанного алгоритма. Дополнительные сведения см. в документации по [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx) .
+> Алгоритм блочного блочного шифра должен иметь длину ключа >= 128 бит, размер блока >= 64 бит и должен поддерживать шифрование в режиме CBC с использованием дополнений PKCS #7. Хэш-алгоритм должен иметь размер дайджеста >= 128 бит и должен поддерживать открытие с \_ \_ \_ \_ флагом флага HMAC в Handles. Для \* свойств поставщика можно задать значение null, чтобы использовать поставщик по умолчанию для указанного алгоритма. Дополнительные сведения см. в документации по [BCryptOpenAlgorithmProvider](/windows/win32/api/bcrypt/nf-bcrypt-bcryptopenalgorithmprovider) .
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -400,7 +400,7 @@ services.AddDataProtection()
 ::: moniker-end
 
 > [!NOTE]
-> Алгоритм симметричного блочного шифра должен иметь длину ключа >= 128 бит, размер блока ровно 128 бит и должен поддерживать шифрование GCM. Чтобы использовать поставщик по умолчанию для указанного алгоритма, можно задать для свойства [енкриптионалгорисмпровидер](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.configurationmodel.cngcbcauthenticatedencryptorconfiguration.encryptionalgorithmprovider) значение null. Дополнительные сведения см. в документации по [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx) .
+> Алгоритм симметричного блочного шифра должен иметь длину ключа >= 128 бит, размер блока ровно 128 бит и должен поддерживать шифрование GCM. Чтобы использовать поставщик по умолчанию для указанного алгоритма, можно задать для свойства [енкриптионалгорисмпровидер](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.configurationmodel.cngcbcauthenticatedencryptorconfiguration.encryptionalgorithmprovider) значение null. Дополнительные сведения см. в документации по [BCryptOpenAlgorithmProvider](/windows/win32/api/bcrypt/nf-bcrypt-bcryptopenalgorithmprovider) .
 
 ### <a name="specifying-other-custom-algorithms"></a>Указание других пользовательских алгоритмов
 

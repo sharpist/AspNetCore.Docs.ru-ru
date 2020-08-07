@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mobile/native-mobile-backend
-ms.openlocfilehash: a6d99e4a8f05125e6e7968b088c5b7e29cb75e6c
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b719c64e6976e65a725b28ae3f6c245f2f4874a4
+ms.sourcegitcommit: b0fa7ff0cb158277df61bcd08058a81222c3fe10
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407568"
+ms.lasthandoff: 08/07/2020
+ms.locfileid: "87913604"
 ---
 # <a name="create-backend-services-for-native-mobile-apps-with-aspnet-core"></a>Создание внутренних служб для собственных мобильных приложений в ASP.NET Core
 
@@ -158,8 +158,8 @@ public static string RestUrl = "http://192.168.1.207:5000/api/todoitems/{0}";
 
 При разработке внутренних служб для своего приложения вам потребуется согласованный набор соглашений или политик для обработки сквозных задач. Например, в приведенной выше службе на запросы запрашивает определенные записи, которые не были найдены, и был получен отклик `NotFound`, а не `BadRequest`. Аналогичным образом, команды, выполненные для этой службы, которые передавались в привязанные типы модели, всегда проверяли `ModelState.IsValid` и возвращали `BadRequest` для недопустимых типов модели.
 
-Определив общую политику для своих API, вы обычно можете инкапсулировать ее в [фильтр](../mvc/controllers/filters.md). Дополнительные сведения о том, [как инкапсулировать общие политики API в приложения ASP.NET Core MVC](https://msdn.microsoft.com/magazine/mt767699.aspx).
+Определив общую политику для своих API, вы обычно можете инкапсулировать ее в [фильтр](../mvc/controllers/filters.md). Дополнительные сведения о том, [как инкапсулировать общие политики API в приложения ASP.NET Core MVC](/archive/msdn-magazine/2016/august/asp-net-core-real-world-asp-net-core-mvc-filters).
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* [Проверка подлинности и авторизация](/xamarin/xamarin-forms/enterprise-application-patterns/authentication-and-authorization)
+* [Аутентификация и авторизация](/xamarin/xamarin-forms/enterprise-application-patterns/authentication-and-authorization)
