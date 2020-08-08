@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/14/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 1312ae531b0acb0ce09137cc2bae6299ddda5c32
-ms.sourcegitcommit: e6b3dd344521ce320d5c2121bbc27c211df87e57
+ms.openlocfilehash: a145cfd551650445f9ff35259cbedf71ebb686f0
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/19/2020
-ms.locfileid: "86468851"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014598"
 ---
-# <a name="create-and-use-aspnet-core-razor-components"></a>Создание и использование компонентов Razor ASP.NET Core
+# <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
 Авторы: [Люк Латэм (Luke Latham)](https://github.com/guardrex), [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и Тобиас Бартщ [(Tobias Bartsch)](https://www.aveo-solutions.com/)
 
@@ -34,7 +36,7 @@ ms.locfileid: "86468851"
 
 Компоненты реализуются в файлах компонентов [Razor](xref:mvc/views/razor) (`.razor`) с помощью комбинации разметки HTML и C#. Компонент в Blazor формально называется *компонентом Razor* .
 
-### <a name="razor-syntax"></a>Синтаксис Razor
+### <a name="no-locrazor-syntax"></a>Синтаксис Razor
 
 В компонентах Razor приложений Blazor часто используется синтаксис Razor. Если вы не знакомы с языком разметки Razor, сначала прочтите статью <xref:mvc/views/razor>.
 
@@ -124,7 +126,7 @@ ms.locfileid: "86468851"
 
 В следующем примере показан компонент `Counter` по умолчанию с блоком [`@code`][1] в приложении, созданном из шаблона Blazor. Разметка HTML, код Razor и код C# находятся в одном файле.
 
-`Pages/Counter.razor`.
+`Pages/Counter.razor`:
 
 ```razor
 @page "/counter"
@@ -147,7 +149,7 @@ ms.locfileid: "86468851"
 
 Компонент `Counter` также можно создать, используя файл кода программной части с разделяемым классом:
 
-`Pages/Counter.razor`.
+`Pages/Counter.razor`:
 
 ```razor
 @page "/counter"
@@ -159,7 +161,7 @@ ms.locfileid: "86468851"
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 ```
 
-`Counter.razor.cs`.
+`Counter.razor.cs`:
 
 ```csharp
 namespace BlazorSample.Pages
@@ -194,7 +196,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 Директиву [`@inherits`][6] можно использовать для указания базового класса для компонента. В следующем примере показано, как компонент может наследовать базовый класс `BlazorRocksBase`, чтобы предоставить свойства и методы компонента. Базовый класс должен быть производным от <xref:Microsoft.AspNetCore.Components.ComponentBase>.
 
-`Pages/BlazorRocks.razor`.
+`Pages/BlazorRocks.razor`:
 
 ```razor
 @page "/BlazorRocks"
@@ -203,7 +205,7 @@ using Microsoft.AspNetCore.Components.Web;
 <h1>@BlazorRocksText</h1>
 ```
 
-`BlazorRocksBase.cs`.
+`BlazorRocksBase.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Components;
@@ -228,7 +230,7 @@ namespace BlazorSample
 <HeadingComponent />
 ```
 
-`Components/HeadingComponent.razor`.
+`Components/HeadingComponent.razor`:
 
 [!code-razor[](index/samples_snapshot/HeadingComponent.razor)]
 
@@ -240,7 +242,7 @@ namespace BlazorSample
 
 Компоненты могут принимать параметры маршрута из шаблона маршрута, указанного в директиве [`@page`][9]. Маршрутизатор использует параметры маршрута для заполнения соответствующих параметров компонента.
 
-`Pages/RouteParameter.razor`.
+`Pages/RouteParameter.razor`:
 
 [!code-razor[](index/samples_snapshot/RouteParameter.razor?highlight=2,7-8)]
 
@@ -252,13 +254,13 @@ namespace BlazorSample
 
 Компоненты могут иметь *параметры*, определяемые с помощью открытых свойств в классе компонента с атрибутом [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute). Используйте атрибуты, чтобы указать аргументы для компонента в разметке.
 
-`Components/ChildComponent.razor`.
+`Components/ChildComponent.razor`:
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=2,11-12)]
 
 В следующем примере из примера приложения `ParentComponent` задает значение свойства `Title` для `ChildComponent`.
 
-`Pages/ParentComponent.razor`.
+`Pages/ParentComponent.razor`:
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
@@ -271,7 +273,7 @@ namespace BlazorSample
 
 В следующем примере `ChildComponent` имеет свойство `ChildContent`, представляющее <xref:Microsoft.AspNetCore.Components.RenderFragment>, который представляет сегмент пользовательского интерфейса для отрисовки. Значение `ChildContent` находится в том месте разметки компонента, где должно быть визуализировано содержимое. Значение `ChildContent` принимается от родительского компонента и визуализируется внутри `panel-body` панели начальной загрузки.
 
-`Components/ChildComponent.razor`.
+`Components/ChildComponent.razor`:
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
 
@@ -280,7 +282,7 @@ namespace BlazorSample
 
 `ParentComponent` в примере приложения может предоставить содержимое для отрисовки `ChildComponent`, заключив содержимое в теги `<ChildComponent>`.
 
-`Pages/ParentComponent.razor`.
+`Pages/ParentComponent.razor`:
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=7-8)]
 
@@ -379,13 +381,13 @@ namespace BlazorSample
 
 Расположение [`@attributes`][3] относительно положения атрибутов элемента имеет значение. Когда выполняется сплаттинг [`@attributes`][3] для элемента, атрибуты обрабатываются справа налево (от последнего к первому). Рассмотрим следующий пример компонента, использующего компонент `Child`:
 
-`ParentComponent.razor`.
+`ParentComponent.razor`:
 
 ```razor
 <ChildComponent extra="10" />
 ```
 
-`ChildComponent.razor`.
+`ChildComponent.razor`:
 
 ```razor
 <div @attributes="AdditionalAttributes" extra="5" />
@@ -402,13 +404,13 @@ public IDictionary<string, object> AdditionalAttributes { get; set; }
 
 В следующем примере порядок `extra` и [`@attributes`][3] в `<div>` компонента `Child` изменен на противоположный:
 
-`ParentComponent.razor`.
+`ParentComponent.razor`:
 
 ```razor
 <ChildComponent extra="10" />
 ```
 
-`ChildComponent.razor`.
+`ChildComponent.razor`:
 
 ```razor
 <div extra="5" @attributes="AdditionalAttributes" />
@@ -796,7 +798,7 @@ public class NotifierService
 }
 ```
 
-## <a name="razor-templates"></a>Шаблоны Razor
+## <a name="no-locrazor-templates"></a>Шаблоны Razor
 
 Фрагменты отрисовки можно определить с помощью синтаксиса шаблонов Razor. Шаблоны Razor позволяют определить фрагмент кода пользовательского интерфейса и подразумевают следующий формат.
 

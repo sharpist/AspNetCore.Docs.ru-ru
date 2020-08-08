@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 05/26/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/webapi
-ms.openlocfilehash: 530455c85c4c869f06ba795d9fb63dcfd1c8d5cf
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 4888de6ad55037be540cb62b6e4f02878e2b57ab
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407230"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014819"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Переход с веб-API ASP.NET на ASP.NET Core
 
@@ -61,7 +63,7 @@ ms.locfileid: "85407230"
 
 1. В меню **Файл** выберите пункт **Создать** > **Проект**.
 1. Выберите шаблон **пустое решение** и нажмите кнопку **Далее**.
-1. Назовите решение *вебапимигратион*. Выберите **Создать**.
+1. Назовите решение *вебапимигратион*. Нажмите кнопку **создания**.
 1. Добавьте существующий проект *продуктсапп* в решение.
 
 Добавьте новый проект API для переноса в:
@@ -102,7 +104,7 @@ ASP.NET Core не использует папку *App_Start* или файл *G
 * Пространство имен `System.Web.Http`
 * Интерфейс `IHttpActionResult`
 
-Выполните следующие изменения:
+Внесите следующие изменения:
 
 1. Измените `ApiController` на <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Добавьте, `using Microsoft.AspNetCore.Mvc;` чтобы разрешить `ControllerBase` ссылку.
 1. Удалите `using System.Web.Http;`.
@@ -177,7 +179,7 @@ ASP.NET Core не использует папку *App_Start* или файл *G
 
 В Visual Studio выполните следующие действия.
 
-* Последовательно выберите **файл**  >  **создать**  >  **проект**  >  **другие типы проектов**  >  **решения Visual Studio**. Выберите **пустое решение**и назовите решение *вебапимигратион*. Нажмите кнопку **ОК**.
+* Последовательно выберите **файл**  >  **создать**  >  **проект**  >  **другие типы проектов**  >  **решения Visual Studio**. Выберите **пустое решение**и назовите решение *вебапимигратион*. Нажмите кнопку **ОК** .
 * Добавьте существующий проект *продуктсапп* в решение.
 * Добавьте в решение новый проект **веб-приложения ASP.NET Core** . Выберите целевую платформу **.NET Core** в раскрывающемся списке и выберите шаблон проекта **API** . Назовите проект *продуктскоре*и нажмите кнопку **ОК** .
 
@@ -218,7 +220,7 @@ ASP.NET Core не использует:
 * Пространство имен `System.Web.Http`
 * Интерфейс `IHttpActionResult`
 
-Выполните следующие изменения:
+Внесите следующие изменения:
 
 1. Измените `ApiController` на <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Добавьте, `using Microsoft.AspNetCore.Mvc;` чтобы разрешить `ControllerBase` ссылку.
 1. Удалите `using System.Web.Http;`.

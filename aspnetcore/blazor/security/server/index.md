@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/02/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,20 +17,20 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: 69a24fc955a0f2fb524ec817eb50372052f538a1
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 4dc9040b9410304eb33e5df7c47db2f9a42152d3
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944260"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014000"
 ---
-# <a name="secure-aspnet-core-blazor-server-apps"></a>Защита приложений ASP.NET Core Blazor Server
+# <a name="secure-aspnet-core-no-locblazor-server-apps"></a>Защита приложений ASP.NET Core Blazor Server
 
 Автор [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
 Приложения Blazor Server настраиваются для обеспечения безопасности так же, как приложения ASP.NET Core. Дополнительные сведения см. в статьях в документе <xref:security/index>. Разделы в этом обзоре посвящены Blazor Server. 
 
-## <a name="blazor-server-project-template"></a>Шаблон проекта Blazor Server
+## <a name="no-locblazor-server-project-template"></a>Шаблон проекта Blazor Server
 
 Шаблон проекта Blazor Server можно настроить для проверки подлинности при создании проекта.
 
@@ -109,7 +111,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 ---
 
-## <a name="scaffold-identity"></a>Формирование шаблонов Identity
+## <a name="scaffold-no-locidentity"></a>Формирование шаблонов Identity
 
 Сформируйте шаблоны Identity для проекта Blazor Server:
 

@@ -5,6 +5,8 @@ description: В этой статье описаны наиболее распр
 ms.author: scaddie
 ms.date: 06/21/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/1x-to-2x/identity-2x
-ms.openlocfilehash: dacf6fa7191f51f36b9ba65a90746a26f958fc03
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 46f10df25235b532f188eda2a079aef71070cd6d
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408673"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015294"
 ---
-# <a name="migrate-authentication-and-identity-to-aspnet-core-20"></a>Миграция проверки подлинности и Identity в ASP.NET Core 2,0
+# <a name="migrate-authentication-and-no-locidentity-to-aspnet-core-20"></a>Миграция проверки подлинности и Identity в ASP.NET Core 2,0
 
 [Скотт Эдди (](https://github.com/scottaddie) и [Хао кунг](https://github.com/HaoK)
 
@@ -86,19 +88,19 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
 
 Ниже приведены инструкции по миграции для каждой основной схемы проверки подлинности 2,0.
 
-### <a name="cookie-based-authentication"></a>Проверка подлинности на основе файлов cookie
+### <a name="no-loccookie-based-authentication"></a>CookieПроверка подлинности на основе
 
 Выберите один из двух параметров ниже и внесите необходимые изменения в *Startup.CS*:
 
-1. Использование файлов cookie сIdentity
+1. Использовать cookie s сIdentity
     - Замените `UseIdentity` на `UseAuthentication` в `Configure` методе:
 
         ```csharp
         app.UseAuthentication();
         ```
 
-    - Вызовите `AddIdentity` метод в `ConfigureServices` методе, чтобы добавить службы проверки подлинности файлов cookie.
-    - При необходимости вызовите `ConfigureApplicationCookie` метод или `ConfigureExternalCookie` в `ConfigureServices` методе, чтобы настроить Identity Параметры файла cookie.
+    - Вызовите `AddIdentity` метод в `ConfigureServices` методе, чтобы добавить cookie службы проверки подлинности.
+    - При необходимости вызовите `ConfigureApplicationCookie` метод или `ConfigureExternalCookie` в `ConfigureServices` методе, чтобы настроить Identity cookie Параметры.
 
         ```csharp
         services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -108,7 +110,7 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
         services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/LogIn");
         ```
 
-2. Использование файлов cookie безIdentity
+2. Использовать cookie s безIdentity
     - Замените `UseCookieAuthentication` вызов метода в `Configure` методе на `UseAuthentication` :
 
         ```csharp
@@ -277,7 +279,7 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
 ```
 
-В предыдущем фрагменте кода схема по умолчанию имеет значение `CookieAuthenticationDefaults.AuthenticationScheme` ("cookies").
+В предыдущем фрагменте кода схема по умолчанию имеет значение `CookieAuthenticationDefaults.AuthenticationScheme` (" Cookie s").
 
 Кроме того, можно использовать перегруженную версию метода, `AddAuthentication` чтобы задать более одного свойства. В следующем примере перегруженного метода схема по умолчанию имеет значение `CookieAuthenticationDefaults.AuthenticationScheme` . Схема проверки подлинности также может быть указана в индивидуальных `[Authorize]` атрибутах или политиках авторизации.
 
@@ -293,7 +295,7 @@ services.AddAuthentication(options =>
 - Вы хотите, чтобы пользователь автоматически вошел в учетную запись
 - Использование `[Authorize]` политик атрибутов или авторизации без указания схем
 
-Исключением из этого правила является `AddIdentity` метод. Этот метод добавляет файлы cookie для вас и устанавливает схемы проверки подлинности и вызова по умолчанию в файл cookie приложения `IdentityConstants.ApplicationScheme` . Кроме того, он задает схему входа по умолчанию для внешнего файла cookie `IdentityConstants.ExternalScheme` .
+Исключением из этого правила является `AddIdentity` метод. Этот метод добавляет cookie s для вас и задает для приложения схемы проверки подлинности и вызова по умолчанию cookie `IdentityConstants.ApplicationScheme` . Кроме того, он задает для схемы входа по умолчанию внешний объект cookie `IdentityConstants.ExternalScheme` .
 
 <a name="obsolete-interface"></a>
 
@@ -342,11 +344,11 @@ services.AddAuthentication(options =>
 
 <a name="identity-cookie-options"></a>
 
-## <a name="identitycookieoptions-instances"></a>Экземпляры Идентитикукиеоптионс
+## <a name="no-locidentityno-loccookieoptions-instances"></a>IdentityCookieЭкземпляры параметров
 
-Побочным результатом изменений 2,0 является переключение на использование именованных параметров вместо экземпляров параметров файлов cookie. Возможность настройки Identity имен для схемы файлов cookie удаляется.
+Побочным результатом изменений 2,0 является переключение на использование именованных параметров вместо cookie экземпляров параметров. Возможность настройки Identity cookie имен схем удаляется.
 
-Например, проекты 1. x используют [внедрение конструктора](xref:mvc/controllers/dependency-injection#constructor-injection) для передачи `IdentityCookieOptions` параметра в *AccountController.CS* и *ManageController.CS*. Доступ к схеме проверки подлинности внешних файлов cookie осуществляется из предоставленного экземпляра:
+Например, проекты 1. x используют [внедрение конструктора](xref:mvc/controllers/dependency-injection#constructor-injection) для передачи `IdentityCookieOptions` параметра в *AccountController.CS* и *ManageController.CS*. cookieДоступ к внешней схеме проверки подлинности осуществляется из предоставленного экземпляра:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Controllers/AccountController.cs?name=snippet_AccountControllerConstructor&highlight=4,11)]
 
@@ -368,7 +370,7 @@ services.AddAuthentication(options =>
 
 <a name="navigation-properties"></a>
 
-## <a name="add-identityuser-poco-navigation-properties"></a>Добавление свойств навигации Идентитюсер POCO
+## <a name="add-no-locidentityuser-poco-navigation-properties"></a>Добавление Identity свойств навигации POCO пользователя
 
 Свойства навигации ядра (EF) для базового `IdentityUser` объекта POCO (обычный объект CLR) были удалены. Entity Framework Если проект 1. x использовал эти свойства, вручную добавьте их обратно в проект 2,0:
 
