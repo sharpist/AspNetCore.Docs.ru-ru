@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/publish-to-azure-web-app
-ms.openlocfilehash: d3f48b3171012b03fcaf7665c2089b27d37bbeca
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 3163a2743c544d0a07d92eb7547e77c3b200ac83
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408842"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022541"
 ---
-# <a name="publish-an-aspnet-core-signalr-app-to-azure-app-service"></a>Публикация ASP.NET Core SignalR приложения в службе приложений Azure
+# <a name="publish-an-aspnet-core-no-locsignalr-app-to-azure-app-service"></a>Публикация ASP.NET Core SignalR приложения в службе приложений Azure
 
 По [Брейди Гастер](https://twitter.com/bradygaster)
 
@@ -45,14 +47,14 @@ ms.locfileid: "85408842"
 
    | Элемент               | Описание |
    | ------------------ | ----------- |
-   | **имя**;           | Уникальное имя приложения. |
+   | **Имя**           | Уникальное имя приложения. |
    | **Подписка**   | Подписка Azure, используемая приложением. |
    | **Группа ресурсов** | Группа связанных ресурсов, к которым принадлежит приложение. |
    | **План размещения**   | Тарифный план для веб-приложения. |
 
 1. Выберите ** SignalR службу Azure** в раскрывающемся списке **зависимости**  >  **Добавить** :
 
-   ![Область зависимостей, отображающая выбор службы Azure в раскрывающемся SignalR списке "Добавить"](publish-to-azure-web-app/_static/signalr-service-dependency.png)
+   ![Область зависимостей, отображающая выбор Azure::: No-Loc (SignalR)::: Service в раскрывающемся списке "Добавить"](publish-to-azure-web-app/_static/signalr-service-dependency.png)
 
 1. В диалоговом окне ** SignalR службы Azure** выберите **создать новый SignalR экземпляр службы Azure**.
 
@@ -78,7 +80,7 @@ URL-адрес приложения имеет формат `{APP SERVICE NAME}.
 
 Для приложений, размещенных без SignalR службы Azure, включите:
 
-* [Сопоставление arr](https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity-cookie-(ARR-cookie)-for-Azure-web-apps.html) для маршрутизации запросов от пользователя к тому же экземпляру службы приложений. Значение по умолчанию — **On**.
+* [Соответствие ARR] ( https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity- cookie -(ARR- cookie ) -for-Azure-web-apps.html) для маршрутизации запросов от пользователя к тому же экземпляру службы приложений. Значение по умолчанию — **On**.
 * [Веб-сокеты](xref:fundamentals/websockets) для обеспечения функционирования транспорта веб-сокетов. Значение по умолчанию — **Off**.
 
 1. В портал Azure перейдите к веб-приложению в **службах приложений**.

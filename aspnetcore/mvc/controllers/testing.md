@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/22/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/testing
-ms.openlocfilehash: e75c3a382904011e30ed50dfd465a15210c64368
-ms.sourcegitcommit: c86b4e2955dc1724f2eaa7c97894ad8b3bf763fb
+ms.openlocfilehash: 311f1ce9eb2b0e358ddc01a1982dc39379f53b8f
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86949086"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020916"
 ---
 # <a name="unit-test-controller-logic-in-aspnet-core"></a>Модульное тестирование логики контроллера в ASP.NET Core
 
@@ -356,6 +358,6 @@ ms.locfileid: "86949086"
 
 * <xref:test/integration-tests>
 * [Создание и запуск модульных тестов с помощью Visual Studio](/visualstudio/test/unit-test-your-code)
-* [Библиотека тестирования митестед. AspNetCore. MVC-Fluent для ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): строго типизированная Библиотека модульного тестирования, предоставляющая интерфейс Fluent для тестирования приложений MVC и веб-API. (*Не поддерживается и не обслуживается Майкрософт.*)
-* [Жустмокклите](https://github.com/telerik/JustMockLite): инфраструктура макетирования для разработчиков .NET. (*Не поддерживается и не обслуживается Майкрософт.*)
+* [Библиотека тестирования митестед. AspNetCore. MVC-Fluent для ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): строго типизированная Библиотека модульного тестирования, предоставляющая интерфейс Fluent для тестирования приложений MVC и веб-API. (*Не поддерживается и не обслуживается Майкрософт.* )
+* [JustMockLite](https://github.com/telerik/JustMockLite): платформа макетирования для разработчиков на .NET. (*Не поддерживается и не обслуживается Майкрософт.* )
 

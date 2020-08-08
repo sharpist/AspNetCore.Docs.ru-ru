@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/08/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: 8c7acad42f3a49ccf1bc60f8ae5b4f68a602d97b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 04200ced41113eb9a68cefc2f485f2d3798476c6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406931"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022346"
 ---
-# <a name="aspnet-core-signalr-javascript-client"></a>ASP.NET Core SignalR клиент JavaScript
+# <a name="aspnet-core-no-locsignalr-javascript-client"></a>ASP.NET Core SignalR клиент JavaScript
 
 Автор: [Рэйчел Аппель](https://twitter.com/rachelappel) (Rachel Appel)
 
@@ -30,7 +32,7 @@ SignalRКлиентская библиотека ASP.NET Core JavaScript поз�
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([как скачивать](xref:index#how-to-download-a-sample))
 
-## <a name="install-the-signalr-client-package"></a>Установка SignalR клиентского пакета
+## <a name="install-the-no-locsignalr-client-package"></a>Установка SignalR клиентского пакета
 
 SignalRКлиентская библиотека JavaScript доставляется в виде пакета [NPM](https://www.npmjs.com/) . В следующих разделах описаны различные способы установки клиентской библиотеки.
 
@@ -60,7 +62,7 @@ NPM устанавливает содержимое пакета в папку *
 
 ::: moniker-end
 
-Сослаться на SignalR клиент JavaScript в `<script>` элементе. Пример.
+Сослаться на SignalR клиент JavaScript в `<script>` элементе. Например:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -68,7 +70,7 @@ NPM устанавливает содержимое пакета в папку *
 
 ### <a name="use-a-content-delivery-network-cdn"></a>Использование сети доставки содержимого (CDN)
 
-Чтобы использовать клиентскую библиотеку без необходимых компонентов NPM, сослаться на копию клиентской библиотеки, размещенную в CDN. Пример.
+Чтобы использовать клиентскую библиотеку без необходимых компонентов NPM, сослаться на копию клиентской библиотеки, размещенную в CDN. Например:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>

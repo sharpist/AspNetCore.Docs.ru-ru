@@ -7,6 +7,8 @@ ms.author: prkrishn
 ms.custom: mvc
 ms.date: 07/23/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/handle-errors
-ms.openlocfilehash: d9517bc14ced15094f279029abb791477f7a0004
-ms.sourcegitcommit: cc845634a490c49ff869c89b6e422b6d65d0e886
+ms.openlocfilehash: a17db9de5f19d11853fb3f9f8c45ade8391ff600
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87159743"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021501"
 ---
 # <a name="handle-errors-in-aspnet-core-web-apis"></a>Обработка ошибок в веб-API ASP.NET Core
 
@@ -42,7 +44,7 @@ curl -i https://localhost:5001/weatherforecast/chicago
 
 ::: moniker range=">= aspnetcore-3.0"
 
-В ASP.NET Core 3.0 и более поздних версиях на странице со сведениями об исключении для разработчика ответ отображается в виде обычного текста, если клиент не запрашивает выходные данные в формате HTML. Отображаются следующие результаты:
+В ASP.NET Core 3.0 и более поздних версиях на странице со сведениями об исключении для разработчика ответ отображается в виде обычного текста, если клиент не запрашивает выходные данные в формате HTML. Появится следующий результат:
 
 ```console
 HTTP/1.1 500 Internal Server Error
@@ -76,7 +78,7 @@ Host: localhost:44312
 User-Agent: curl/7.55.1
 ```
 
-Чтобы вместо этого отображался отформатированный HTML-запрос, задайте для заголовка HTTP-запроса `Accept` тип носителя `text/html`. Пример:
+Чтобы вместо этого отображался отформатированный HTML-запрос, задайте для заголовка HTTP-запроса `Accept` тип носителя `text/html`. Например:
 
 ```bash
 curl -i -H "Accept: text/html" https://localhost:5001/weatherforecast/chicago

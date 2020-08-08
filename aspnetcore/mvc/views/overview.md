@@ -5,6 +5,8 @@ description: Узнайте, как представления обеспечи�
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/overview
-ms.openlocfilehash: b646908c070a51aac2e376c2acaa8e0e091790b0
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 8630df0ad8ea556c6edf0ab251b3c86493f751e2
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400470"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020877"
 ---
 # <a name="views-in-aspnet-core-mvc"></a>Представления в ASP.NET Core MVC
 
@@ -371,11 +373,11 @@ public IActionResult SomeAction()
 
 * `ViewData`
   * Является производным от [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary), поэтому он имеет свойства словаря, которые могут быть полезными, такие как `ContainsKey` ,, `Add` `Remove` и `Clear` .
-  * Ключи в словаре представляют собой строки, поэтому пробел допустим. Пример: `ViewData["Some Key With Whitespace"]`
+  * Ключи в словаре представляют собой строки, поэтому пробел допустим. Например, `ViewData["Some Key With Whitespace"]`.
   * Любой тип, кроме `string`, должен быть приведен в представлении так, чтобы он мог использоваться в `ViewData`.
 * `ViewBag`
   * Является производным от [DynamicViewData](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata), поэтому позволяет создавать динамические свойства с помощью точечной нотации (`@ViewBag.SomeKey = <value or object>`); приведение не требуется. Синтаксис свойства `ViewBag` позволяет быстрее добавлять его в контроллеры и представления.
-  * Проще проверять значение NULL. Пример: `@ViewBag.Person?.Name`
+  * Проще проверять значение NULL. Например, `@ViewBag.Person?.Name`.
 
 **Выбор между ViewData и ViewBag**
 

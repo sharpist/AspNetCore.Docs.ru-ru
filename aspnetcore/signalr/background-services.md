@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/background-services
-ms.openlocfilehash: bf5fff213b2cd7db0b3227922a8c5babba2fc904
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 409ace5e3eaa4ab1de0b9d5f0cbd0e10d9243ea9
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85409089"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022385"
 ---
-# <a name="host-aspnet-core-signalr-in-background-services"></a>ASP.NET Core узла SignalR в фоновых службах
+# <a name="host-aspnet-core-no-locsignalr-in-background-services"></a>ASP.NET Core узла SignalR в фоновых службах
 
 По [Брейди Гастер](https://twitter.com/bradygaster)
 
@@ -33,16 +35,16 @@ ms.locfileid: "85409089"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/3.x) [(описание загрузки)](xref:index#how-to-download-a-sample)
+[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/3.x) ([описание загрузки](xref:index#how-to-download-a-sample))
 
 ::: moniker-end
 ::: moniker range="<= aspnetcore-2.2"
 
-[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/2.2) [(описание загрузки)](xref:index#how-to-download-a-sample)
+[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/2.2) ([описание загрузки](xref:index#how-to-download-a-sample))
 
 ::: moniker-end
 
-## <a name="enable-signalr-in-startup"></a>Включить SignalR при запуске
+## <a name="enable-no-locsignalr-in-startup"></a>Включить SignalR при запуске
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -90,7 +92,7 @@ ms.locfileid: "85409089"
 
 ::: moniker-end
 
-## <a name="call-a-signalr-hub-from-a-background-service"></a>Вызов SignalR концентратора из фоновой службы
+## <a name="call-a-no-locsignalr-hub-from-a-background-service"></a>Вызов SignalR концентратора из фоновой службы
 
 Во время запуска `Worker` класс ( `BackgroundService` ) включается с помощью `AddHostedService` .
 
@@ -113,7 +115,7 @@ services.AddHostedService<Worker>();
 
 Так как `ExecuteAsync` метод вызывается итеративно в фоновой службе, текущая дата и время сервера отправляются подключенным клиентам с помощью `ClockHub` .
 
-## <a name="react-to-signalr-events-with-background-services"></a>Реагирование на SignalR события с помощью фоновых служб
+## <a name="react-to-no-locsignalr-events-with-background-services"></a>Реагирование на SignalR события с помощью фоновых служб
 
 Как и приложение с одним страницам, использующее клиент JavaScript для или классическое SignalR приложение .NET, может использовать с помощью <xref:signalr/dotnet-client> , а `BackgroundService` `IHostedService` также для подключения к SignalR концентраторам и реагирования на события.
 

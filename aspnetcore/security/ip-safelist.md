@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/12/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/ip-safelist
-ms.openlocfilehash: 5b74205bc7b17d61edbb73cf309f6e24e4318391
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 75c1ea3a6087f89a200d1f73b1ff65080c819ccd
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85409011"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021774"
 ---
 # <a name="client-ip-safelist-for-aspnet-core"></a>Адрес списка надежных IP-адресов клиента для ASP.NET Core
 
@@ -64,7 +66,7 @@ ms.locfileid: "85409011"
 
 ## <a name="action-filter"></a>Фильтр действий
 
-Если требуется управление доступом к спискам надежных отправителей для конкретных контроллеров MVC или методов действий, используйте фильтр действий. Пример.
+Если требуется управление доступом к спискам надежных отправителей для конкретных контроллеров MVC или методов действий, используйте фильтр действий. Например:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckActionFilter.cs?name=snippet_ClassOnly)]
 
@@ -99,9 +101,9 @@ ms.locfileid: "85409011"
 
 * Команда HTTP-запроса, отличная от GET, по `AdminSafeListMiddleware` промежуточного слоя проверяет IP-адрес клиента.
 
-## <a name="razor-pages-filter"></a>RazorФильтр страниц
+## <a name="no-locrazor-pages-filter"></a>RazorФильтр страниц
 
-Если требуется управлять доступом к спискам надежных отправителей для Razor приложения страниц, используйте Razor Фильтр страниц. Пример.
+Если требуется управлять доступом к спискам надежных отправителей для Razor приложения страниц, используйте Razor Фильтр страниц. Например:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckPageFilter.cs?name=snippet_ClassOnly)]
 

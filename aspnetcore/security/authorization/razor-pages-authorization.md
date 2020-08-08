@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/razor-pages-authorization
-ms.openlocfilehash: 0f4022e46993c6a957d3d0c133b3db56fa650edc
-ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
+ms.openlocfilehash: 5e0c76ea6c6b4af8e24693b1bfe8ac28bf2ce3a9
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86568825"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022281"
 ---
-# <a name="razor-pages-authorization-conventions-in-aspnet-core"></a>RazorСтраницы соглашения об авторизации в ASP.NET Core
+# <a name="no-locrazor-pages-authorization-conventions-in-aspnet-core"></a>RazorСтраницы соглашения об авторизации в ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -30,7 +32,7 @@ ms.locfileid: "86568825"
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/razor-pages-authorization/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
-Пример приложения использует [проверку подлинности файлов Identity cookie без ASP.NET Core ](xref:security/authentication/cookie). Понятия и примеры, приведенные в этом разделе, применяются одинаково к приложениям, использующим ASP.NET Core Identity . Чтобы использовать ASP.NET Core Identity , следуйте указаниям в статье <xref:security/authentication/identity> .
+Пример приложения использует [ cookie проверку подлинности Identity без ASP.NET Core ](xref:security/authentication/cookie). Понятия и примеры, приведенные в этом разделе, применяются одинаково к приложениям, использующим ASP.NET Core Identity . Чтобы использовать ASP.NET Core Identity , следуйте указаниям в статье <xref:security/authentication/identity> .
 
 ## <a name="require-authorization-to-access-a-page"></a>Требовать авторизацию для доступа к странице
 
@@ -142,7 +144,7 @@ options.Conventions.AuthorizeAreaFolder("Identity", "/Manage", "AtLeast21");
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/razor-pages-authorization/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
-Пример приложения использует [проверку подлинности файлов Identity cookie без ASP.NET Core ](xref:security/authentication/cookie). Понятия и примеры, приведенные в этом разделе, применяются одинаково к приложениям, использующим ASP.NET Core Identity . Чтобы использовать ASP.NET Core Identity , следуйте указаниям в статье <xref:security/authentication/identity> .
+Пример приложения использует [ cookie проверку подлинности Identity без ASP.NET Core ](xref:security/authentication/cookie). Понятия и примеры, приведенные в этом разделе, применяются одинаково к приложениям, использующим ASP.NET Core Identity . Чтобы использовать ASP.NET Core Identity , следуйте указаниям в статье <xref:security/authentication/identity> .
 
 ## <a name="require-authorization-to-access-a-page"></a>Требовать авторизацию для доступа к странице
 

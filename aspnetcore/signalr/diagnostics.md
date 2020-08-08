@@ -7,6 +7,8 @@ ms.author: anurse
 ms.custom: signalr
 ms.date: 06/12/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: f2b864d47c98a031872be676a68143bd79f49829
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 61733fe4fbcd7b94662404a39a288ff2ce75ec53
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85409102"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021839"
 ---
-# <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Ведение журнала и диагностика в ASP.NET CoreSignalR
+# <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Ведение журнала и диагностика в ASP.NET CoreSignalR
 
 [Эндрю Стантон-медперсонала](https://twitter.com/anurse)
 
@@ -102,11 +104,11 @@ Visual Studio отображает выходные данные журнала 
 
 После настройки уровня детализации журналы записываются в консоль браузера (или стандартные выходные данные в приложении NodeJS).
 
-Если вы хотите отправить журналы в пользовательскую систему ведения журнала, можно предоставить объект JavaScript, реализующий `ILogger` интерфейс. Единственным методом, который необходимо реализовать `log` , является, который принимает уровень события и сообщение, связанное с событием. Пример.
+Если вы хотите отправить журналы в пользовательскую систему ведения журнала, можно предоставить объект JavaScript, реализующий `ILogger` интерфейс. Единственным методом, который необходимо реализовать `log` , является, который принимает уровень события и сообщение, связанное с событием. Например:
 
 [!code-typescript[](diagnostics/custom-logger.ts?highlight=3-7,13)]
 
-## <a name="net-client-logging"></a>Ведение журнала клиента .NET
+## <a name="net-client-logging"></a>Ведение журнала клиента  .NET
 
 > [!WARNING]
 > Журналы на стороне клиента могут содержать конфиденциальные сведения из приложения. **Никогда не** размещайте необработанные журналы из рабочих приложений на общедоступные форумы, такие как GitHub.
@@ -196,7 +198,7 @@ tcpdump -i [interface] -w trace.pcap
 
 ![Параметр "Сохранить как HAR с содержимым" на вкладке "сеть" средств разработки Google Chrome](diagnostics/chrome-har-export.png)
 
-### <a name="mozilla-firefox"></a>Mozilla Firefox
+### <a name="mozilla-firefox"></a>Mozilla Firefox;
 
 1. Нажмите клавишу F12, чтобы открыть средства разработки
 2. Перейдите на вкладку Сеть.
@@ -218,11 +220,11 @@ tcpdump -i [interface] -w trace.pcap
 
 Метрики — это представление мер данных за интервалы времени. Например, количество запросов в секунду. Данные метрик позволяют выполнять наблюдение за состоянием приложения на высоком уровне. Метрики .NET gRPC создаются с помощью <xref:System.Diagnostics.Tracing.EventCounter> .
 
-### <a name="signalr-server-metrics"></a>SignalRметрики сервера
+### <a name="no-locsignalr-server-metrics"></a>SignalRметрики сервера
 
 SignalRметрики сервера указываются в <xref:Microsoft.AspNetCore.Http.Connections> источнике событий.
 
-| name                    | Описание:                 |
+| name                    | Описание                 |
 |-------------------------|-----------------------------|
 | `connections-started`   | Всего запущенных подключений   |
 | `connections-stopped`   | Всего остановленных подключений   |

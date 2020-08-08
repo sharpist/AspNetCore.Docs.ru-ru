@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/14/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/iauthorizationpolicyprovider
-ms.openlocfilehash: bb9b52da08639680b05a102dd4df71ff1af00971
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 724b1f065e83302137d920fe4e0e2b381be505b7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399560"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022138"
 ---
 # <a name="custom-authorization-policy-providers-using-iauthorizationpolicyprovider-in-aspnet-core"></a>Пользовательские поставщики политики авторизации с использованием Иаусоризатионполиципровидер в ASP.NET Core 
 
@@ -100,7 +102,7 @@ public IActionResult RequiresMinimumAge10()
 
 * Анализ возраста на основе имени политики.
 * Использование `AuthorizationPolicyBuilder` для создания нового`AuthorizationPolicy`
-* В этом и следующих примерах предполагается, что пользователь пройдет проверку подлинности с помощью файла cookie. Значение `AuthorizationPolicyBuilder` должно быть создано по крайней мере с одним именем схемы авторизации или всегда выполняться. В противном случае нет информации о том, как предоставить пользователю запрос, и будет выдано исключение.
+* В этом и следующих примерах предполагается, что пользователь прошел проверку подлинности через cookie . Значение `AuthorizationPolicyBuilder` должно быть создано по крайней мере с одним именем схемы авторизации или всегда выполняться. В противном случае нет информации о том, как предоставить пользователю запрос, и будет выдано исключение.
 * Добавление требований к политике на основе возраста с `AuthorizationPolicyBuilder.AddRequirements` . В других сценариях вы можете использовать `RequireClaim` , `RequireRole` или `RequireUserName` .
 
 ```csharp

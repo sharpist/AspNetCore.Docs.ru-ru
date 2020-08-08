@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/1/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: a8ca520d84d382b95cd4c0e2962ba4e5c922049e
-ms.sourcegitcommit: 3544941682869734ea0113e24e02ed0ec9e1a9ec
+ms.openlocfilehash: 4404a5513d9dc989e50c904f3e7863de59991939
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/18/2020
-ms.locfileid: "86464570"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022333"
 ---
-# <a name="scaffold-identity-in-aspnet-core-projects"></a>Формирование шаблонов Identity в ASP.NET Core проектах
+# <a name="scaffold-no-locidentity-in-aspnet-core-projects"></a>Формирование шаблонов Identity в ASP.NET Core проектах
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -52,7 +54,7 @@ ASP.NET Core предоставляет [ASP.NET Core Identity ](xref:security/a
 
 Как правило, приложения, созданные с помощью отдельных учетных записей, ***не*** должны создавать новый контекст данных.
 
-## <a name="scaffold-identity-into-an-empty-project"></a>Формирование шаблона Identity в пустой проект
+## <a name="scaffold-no-locidentity-into-an-empty-project"></a>Формирование шаблона Identity в пустой проект
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
@@ -64,7 +66,7 @@ ASP.NET Core предоставляет [ASP.NET Core Identity ](xref:security/a
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-## <a name="scaffold-identity-into-a-razor-project-without-existing-authorization"></a>Формирование шаблонов Identity в Razor проекте без существующей авторизации
+## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-without-existing-authorization"></a>Формирование шаблонов Identity в Razor проекте без существующей авторизации
 
 <!--  Updated for 3.0
 set projNam=RPnoAuth
@@ -117,7 +119,7 @@ Identityнастраивается в *области или Identity / Identity
 
 [!code-cshtml[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
-## <a name="scaffold-identity-into-a-razor-project-with-authorization"></a>Формирование шаблонов Identity в Razor проекте с авторизацией
+## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-with-authorization"></a>Формирование шаблонов Identity в Razor проекте с авторизацией
 
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
@@ -134,7 +136,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 Некоторые Identity параметры настраиваются в *области или Identity / Identity HostingStartup.CS*. Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
-## <a name="scaffold-identity-into-an-mvc-project-without-existing-authorization"></a>Формирование шаблонов Identity в проекте MVC без существующей авторизации
+## <a name="scaffold-no-locidentity-into-an-mvc-project-without-existing-authorization"></a>Формирование шаблонов Identity в проекте MVC без существующей авторизации
 
 <!--
 set projNam=MvcNoAuth
@@ -168,7 +170,7 @@ Identityнастраивается в *области или Identity / Identity
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-## <a name="scaffold-identity-into-an-mvc-project-with-authorization"></a>Формирование шаблонов Identity в проекте MVC с авторизацией
+## <a name="scaffold-no-locidentity-into-an-mvc-project-with-authorization"></a>Формирование шаблонов Identity в проекте MVC с авторизацией
 
 <!--
 dotnet new mvc -au Individual -o MvcAuth
@@ -180,7 +182,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-## <a name="scaffold-identity-into-a-blazor-server-project-without-existing-authorization"></a>Формирование шаблонов Identity в Blazor Server проекте без существующей авторизации
+## <a name="scaffold-no-locidentity-into-a-no-locblazor-server-project-without-existing-authorization"></a>Формирование шаблонов Identity в Blazor Server проекте без существующей авторизации
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
@@ -194,7 +196,7 @@ Identityнастраивается в *области или Identity / Identity
 
 Маркеры можно передавать в компоненты:
 
-* Когда маркеры проверки подлинности подготавливаются и сохраняются в файле cookie проверки подлинности, они могут передаваться компонентам.
+* Когда маркеры проверки подлинности подготавливаются и сохраняются в процессе проверки подлинности cookie , они могут передаваться в компоненты.
 * Razorкомпоненты не могут использовать `HttpContext` напрямую, поэтому не существует способа получить [маркер подделки для защиты от запроса (XSRF)](xref:security/anti-request-forgery) для размещения Identity конечной точки выхода в `/Identity/Account/Logout` . Токен XSRF может быть передан компонентам.
 
 Для получения дополнительной информации см. <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
@@ -293,11 +295,11 @@ TokenProvider.XsrfToken = InitialState.XsrfToken;
 
 Поскольку Blazor Server использует Razor Identity страницы страниц, стиль пользовательского интерфейса изменяется при переходе посетителя между Identity страницами и компонентами. Существует два варианта для адресации стилей инконгруаус:
 
-#### <a name="build-identity-components"></a>IdentityКомпоненты сборки
+#### <a name="build-no-locidentity-components"></a>IdentityКомпоненты сборки
 
 Подход к использованию компонентов Identity вместо страниц заключается в создании Identity компонентов. Поскольку `SignInManager` и `UserManager` не поддерживаются в Razor компонентах, используйте конечные точки API в Blazor Server приложении для обработки действий с учетной записью пользователя.
 
-#### <a name="use-a-custom-layout-with-blazor-app-styles"></a>Использование пользовательского макета с Blazor стилями приложения
+#### <a name="use-a-custom-layout-with-no-locblazor-app-styles"></a>Использование пользовательского макета с Blazor стилями приложения
 
 IdentityМакет и стили страниц можно изменить для создания страниц, использующих тему по умолчанию Blazor .
 
@@ -362,7 +364,7 @@ IdentityМакет и стили страниц можно изменить дл
   <script src="_framework/blazor.server.js"></script>
   ```
 
-## <a name="scaffold-identity-into-a-blazor-server-project-with-authorization"></a>Формирование шаблонов Identity в Blazor Server проекте с авторизацией
+## <a name="scaffold-no-locidentity-into-a-no-locblazor-server-project-with-authorization"></a>Формирование шаблонов Identity в Blazor Server проекте с авторизацией
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
@@ -370,7 +372,7 @@ IdentityМакет и стили страниц можно изменить дл
 
 <a name="full"></a>
 
-## <a name="create-full-identity-ui-source"></a>Создание полного Identity источника пользовательского интерфейса
+## <a name="create-full-no-locidentity-ui-source"></a>Создание полного Identity источника пользовательского интерфейса
 
 Чтобы обеспечить полный контроль над Identity пользовательским интерфейсом, запустите шаблон Identity и выберите **переопределить все файлы**.
 
@@ -414,7 +416,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 Чтобы отключить регистрацию пользователей, выполните следующие действия.
 
-* Шаблон Identity . Включить учетную запись. регистрация, учетная запись. Login и Account. Регистерконфирматион. Пример:
+* Шаблон Identity . Включить учетную запись. регистрация, учетная запись. Login и Account. Регистерконфирматион. Например:
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
@@ -476,7 +478,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 Подобный подход можно выполнить для рабочих сценариев.
 
-## <a name="prevent-publish-of-static-identity-assets"></a>Запретить публикацию статических Identity ресурсов
+## <a name="prevent-publish-of-static-no-locidentity-assets"></a>Запретить публикацию статических Identity ресурсов
 
 Чтобы предотвратить публикацию статических Identity ресурсов в веб-корне, см <xref:security/authentication/identity#prevent-publish-of-static-identity-assets> . раздел.
 
@@ -501,7 +503,7 @@ ASP.NET Core 2,1 и более поздних версий предоставл�
 > [!NOTE]
 > Службы необходимы при использовании [двухфакторной проверки подлинности](xref:security/authentication/identity-enable-qrcodes), [подтверждения учетной записи и восстановления пароля](xref:security/authentication/accconfirm), а также других функций безопасности с Identity . Службы или заглушки служб не создаются при формировании шаблонов Identity . Службы для включения этих функций необходимо добавить вручную. Например, см. статью [требование подтверждения по электронной почте](xref:security/authentication/accconfirm#require-email-confirmation).
 
-## <a name="scaffold-identity-into-an-empty-project"></a>Формирование шаблона Identity в пустой проект
+## <a name="scaffold-no-locidentity-into-an-empty-project"></a>Формирование шаблона Identity в пустой проект
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
@@ -513,7 +515,7 @@ ASP.NET Core 2,1 и более поздних версий предоставл�
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-## <a name="scaffold-identity-into-a-razor-project-without-existing-authorization"></a>Формирование шаблонов Identity в Razor проекте без существующей авторизации
+## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-without-existing-authorization"></a>Формирование шаблонов Identity в Razor проекте без существующей авторизации
 
 <!--  Updated for 3.0
 set projNam=RPnoAuth
@@ -558,7 +560,7 @@ Identityнастраивается в *области или Identity / Identity
 
 [!code-cshtml[](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
 
-## <a name="scaffold-identity-into-a-razor-project-with-authorization"></a>Формирование шаблонов Identity в Razor проекте с авторизацией
+## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-with-authorization"></a>Формирование шаблонов Identity в Razor проекте с авторизацией
 
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
@@ -575,7 +577,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 Некоторые Identity параметры настраиваются в *области или Identity / Identity HostingStartup.CS*. Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
-## <a name="scaffold-identity-into-an-mvc-project-without-existing-authorization"></a>Формирование шаблонов Identity в проекте MVC без существующей авторизации
+## <a name="scaffold-no-locidentity-into-an-mvc-project-without-existing-authorization"></a>Формирование шаблонов Identity в проекте MVC без существующей авторизации
 
 <!--
 set projNam=MvcNoAuth
@@ -609,7 +611,7 @@ Identityнастраивается в *области или Identity / Identity
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-## <a name="scaffold-identity-into-an-mvc-project-with-authorization"></a>Формирование шаблонов Identity в проекте MVC с авторизацией
+## <a name="scaffold-no-locidentity-into-an-mvc-project-with-authorization"></a>Формирование шаблонов Identity в проекте MVC с авторизацией
 
 <!--
 dotnet new mvc -au Individual -o MvcAuth
@@ -625,7 +627,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 <a name="full"></a>
 
-## <a name="create-full-identity-ui-source"></a>Создание полного Identity источника пользовательского интерфейса
+## <a name="create-full-no-locidentity-ui-source"></a>Создание полного Identity источника пользовательского интерфейса
 
 Чтобы обеспечить полный контроль над Identity пользовательским интерфейсом, запустите шаблон Identity и выберите **переопределить все файлы**.
 
@@ -667,7 +669,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 Чтобы отключить регистрацию пользователей, выполните следующие действия.
 
-* Шаблон Identity . Включить учетную запись. регистрация, учетная запись. Login и Account. Регистерконфирматион. Пример:
+* Шаблон Identity . Включить учетную запись. регистрация, учетная запись. Login и Account. Регистерконфирматион. Например:
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"

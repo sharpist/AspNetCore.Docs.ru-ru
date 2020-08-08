@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/02/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/jsonpatch
-ms.openlocfilehash: 08ae366859c4466e6957592f78dda813d6670bb4
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 09da557d678889ba16abe6f9af40ae1b33583d8b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405033"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022372"
 ---
 # <a name="jsonpatch-in-aspnet-core-web-api"></a>JsonPatch в веб-API ASP.NET Core
 
@@ -34,7 +36,7 @@ ms.locfileid: "85405033"
 Чтобы включить поддержку исправления JSON в приложении, выполните следующие действия.
 
 1. Установите [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) пакет NuGet.
-1. Обновите метод проекта `Startup.ConfigureServices` для вызова <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*> . Пример.
+1. Обновите метод проекта `Startup.ConfigureServices` для вызова <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*> . Например:
 
     ```csharp
     services
@@ -114,7 +116,7 @@ ms.locfileid: "85405033"
 
 Для указания элементов массива используются числовые индексы, начиная с нуля. Первый элемент массива `addresses` будет обозначаться как `/addresses/0`. В `add` конец массива используйте дефис ( `-` ), а не номер индекса: `/addresses/-` .
 
-### <a name="operations"></a>Operations
+### <a name="operations"></a>Операции
 
 В следующей таблице перечислены поддерживаемые операции, которые определены в [спецификации JSON Patch](https://tools.ietf.org/html/rfc6902).
 
@@ -139,7 +141,7 @@ ms.locfileid: "85405033"
 * принимает `JsonPatchDocument<T>` обычно с указанием `[FromBody]`;
 * вызывает `ApplyTo` для целевого документа, чтобы применить изменения.
 
-Ниже приведен пример:
+Ниже приведен пример.
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -245,7 +247,7 @@ ms.locfileid: "85405033"
 
 [!code-json[](jsonpatch/samples/2.2/JSON/test-fail.json)]
 
-## <a name="get-the-code"></a>Получите код
+## <a name="get-the-code"></a>Получение кода
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples). ([Инструкция по скачиванию](xref:index#how-to-download-a-sample).)
 
@@ -326,7 +328,7 @@ ms.locfileid: "85405033"
 
 Для указания элементов массива используются числовые индексы, начиная с нуля. Первый элемент массива `addresses` будет обозначаться как `/addresses/0`. Чтобы применить `add` для последнего элемента массива, укажите дефис (-) вместо номера индекса: `/addresses/-`.
 
-### <a name="operations"></a>Operations
+### <a name="operations"></a>Операции
 
 В следующей таблице перечислены поддерживаемые операции, которые определены в [спецификации JSON Patch](https://tools.ietf.org/html/rfc6902).
 
@@ -351,7 +353,7 @@ ms.locfileid: "85405033"
 * принимает `JsonPatchDocument<T>` обычно с указанием `[FromBody]`;
 * вызывает `ApplyTo` для целевого документа, чтобы применить изменения.
 
-Ниже приведен пример:
+Ниже приведен пример.
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -457,7 +459,7 @@ ms.locfileid: "85405033"
 
 [!code-json[](jsonpatch/samples/2.2/JSON/test-fail.json)]
 
-## <a name="get-the-code"></a>Получите код
+## <a name="get-the-code"></a>Получение кода
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([Инструкция по скачиванию](xref:index#how-to-download-a-sample).)
 

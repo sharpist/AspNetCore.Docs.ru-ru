@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/response-compression
-ms.openlocfilehash: 83f5b2da8fdba784131e8d159171b8433b13a091
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 1dd931d0ee654b888814df8a0d0675d32b5c3a20
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406476"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020968"
 ---
 # <a name="response-compression-in-aspnet-core"></a>Сжатие ответов в ASP.NET Core
 
@@ -50,15 +52,15 @@ ms.locfileid: "85406476"
 
 Когда клиент может обработать сжатое содержимое, клиент должен сообщить серверу о своих возможностях, отправив `Accept-Encoding` заголовок с запросом. Когда сервер отправляет сжатое содержимое, он должен содержать сведения в `Content-Encoding` заголовке процесса кодирования сжатого ответа. В следующей таблице показаны конструкции кодирования содержимого, поддерживаемые по промежуточного слоя.
 
-| `Accept-Encoding`значения заголовка | Поддерживается по промежуточного слоя | Описание: |
+| `Accept-Encoding`значения заголовка | Поддерживается по промежуточного слоя | Описание |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Да (по умолчанию)        | [Формат сжатых данных Brotli](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | Нет                   | [Сжатый формат сжатых данных](https://tools.ietf.org/html/rfc1951) |
 | `exi`                           | Нет                   | [Эффективный XML-обмен в формате W3C](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
-| `gzip`                          | Да                  | [Формат файла gzip](https://tools.ietf.org/html/rfc1952) |
-| `identity`                      | Да                  | Идентификатор "без кодирования": ответ не должен быть закодирован. |
+| `gzip`                          | да                  | [Формат файла gzip](https://tools.ietf.org/html/rfc1952) |
+| `identity`                      | да                  | Идентификатор "без кодирования": ответ не должен быть закодирован. |
 | `pack200-gzip`                  | Нет                   | [Формат сетевой пересылки для архивов Java](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
-| `*`                             | Да                  | Любая доступная кодировка содержимого, которая не запрашивается явно |
+| `*`                             | да                  | Любая доступная кодировка содержимого, которая не запрашивается явно |
 
 Дополнительные сведения см. в [списке официального кодирования содержимого IANA](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
 
@@ -70,7 +72,7 @@ ms.locfileid: "85406476"
 
 Заголовки, используемые для запроса, отправки, кэширования и получения сжатого содержимого, описаны в таблице ниже.
 
-| Header             | Роль |
+| Заголовок             | Роль |
 | ------------------ | ---- |
 | `Accept-Encoding`  | Отправляется с клиента на сервер, чтобы указать схемы кодировки содержимого, приемлемые для клиента. |
 | `Content-Encoding` | Отправляется с сервера клиенту для указания кодировки содержимого в полезных данных. |
@@ -88,7 +90,7 @@ ms.locfileid: "85406476"
 
 По промежуточного слоя сжатия ответа предоставляется пакетом [Microsoft. AspNetCore. респонсекомпрессион](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) , который неявно включается в ASP.NET Core приложения.
 
-## <a name="configuration"></a>Параметр Configuration
+## <a name="configuration"></a>Конфигурация
 
 В следующем коде показано, как включить по промежуточного слоя сжатия ответа для типов MIME по умолчанию и поставщиков сжатия ([Brotli](#brotli-compression-provider) и [gzip](#gzip-compression-provider)):
 
@@ -144,7 +146,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Задайте уровень сжатия с помощью <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions> . Поставщик сжатия Brotli по умолчанию имеет самый быстрый уровень сжатия ([CompressionLevel. самый быстрый](xref:System.IO.Compression.CompressionLevel)), что может привести к неэффективному сжатию. Если требуется наиболее эффективное сжатие, настройте по промежуточного слоя для оптимального сжатия.
 
-| Compression Level | Описание: |
+| Compression Level | Описание |
 | ----------------- | ----------- |
 | [CompressionLevel. самый быстрый](xref:System.IO.Compression.CompressionLevel) | Сжатие должно завершаться как можно быстрее, даже если полученные выходные данные не будут оптимально сжаты. |
 | [CompressionLevel. уплотнение](xref:System.IO.Compression.CompressionLevel) | Сжатие выполнять не нужно. |
@@ -184,7 +186,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Задайте уровень сжатия с помощью <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions> . Поставщик сжатия Gzip по умолчанию имеет самый быстрый уровень сжатия ([CompressionLevel. самый быстрый](xref:System.IO.Compression.CompressionLevel)), что может не привести к максимально эффективному сжатию. Если требуется наиболее эффективное сжатие, настройте по промежуточного слоя для оптимального сжатия.
 
-| Compression Level | Описание: |
+| Compression Level | Описание |
 | ----------------- | ----------- |
 | [CompressionLevel. самый быстрый](xref:System.IO.Compression.CompressionLevel) | Сжатие должно завершаться как можно быстрее, даже если полученные выходные данные не будут оптимально сжаты. |
 | [CompressionLevel. уплотнение](xref:System.IO.Compression.CompressionLevel) | Сжатие выполнять не нужно. |
@@ -250,7 +252,7 @@ public void ConfigureServices(IServiceCollection services)
 
 При наличии активного модуля динамического сжатия IIS, настроенного на уровне сервера, который вы хотите отключить для приложения, отключите модуль, дополнив добавление к файлу *web.config* . Дополнительные сведения см. в разделе [Отключение модулей IIS](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
-## <a name="troubleshooting"></a>Устранение неполадок
+## <a name="troubleshooting"></a>Диагностика
 
 Используйте такие средства, как [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)или [POST](https://www.getpostman.com/), которые позволяют задать `Accept-Encoding` заголовок запроса и изучить заголовки, размер и текст ответа. По умолчанию по промежуточного слоя для сжатия ответов сжимает ответы, соответствующие следующим условиям.
 
@@ -296,15 +298,15 @@ public void ConfigureServices(IServiceCollection services)
 
 Когда клиент может обработать сжатое содержимое, клиент должен сообщить серверу о своих возможностях, отправив `Accept-Encoding` заголовок с запросом. Когда сервер отправляет сжатое содержимое, он должен содержать сведения в `Content-Encoding` заголовке процесса кодирования сжатого ответа. В следующей таблице показаны конструкции кодирования содержимого, поддерживаемые по промежуточного слоя.
 
-| `Accept-Encoding`значения заголовка | Поддерживается по промежуточного слоя | Описание: |
+| `Accept-Encoding`значения заголовка | Поддерживается по промежуточного слоя | Описание |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Да (по умолчанию)        | [Формат сжатых данных Brotli](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | Нет                   | [Сжатый формат сжатых данных](https://tools.ietf.org/html/rfc1951) |
 | `exi`                           | Нет                   | [Эффективный XML-обмен в формате W3C](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
-| `gzip`                          | Да                  | [Формат файла gzip](https://tools.ietf.org/html/rfc1952) |
-| `identity`                      | Да                  | Идентификатор "без кодирования": ответ не должен быть закодирован. |
+| `gzip`                          | да                  | [Формат файла gzip](https://tools.ietf.org/html/rfc1952) |
+| `identity`                      | да                  | Идентификатор "без кодирования": ответ не должен быть закодирован. |
 | `pack200-gzip`                  | Нет                   | [Формат сетевой пересылки для архивов Java](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
-| `*`                             | Да                  | Любая доступная кодировка содержимого, которая не запрашивается явно |
+| `*`                             | да                  | Любая доступная кодировка содержимого, которая не запрашивается явно |
 
 Дополнительные сведения см. в [списке официального кодирования содержимого IANA](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
 
@@ -316,7 +318,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Заголовки, используемые для запроса, отправки, кэширования и получения сжатого содержимого, описаны в таблице ниже.
 
-| Header             | Роль |
+| Заголовок             | Роль |
 | ------------------ | ---- |
 | `Accept-Encoding`  | Отправляется с клиента на сервер, чтобы указать схемы кодировки содержимого, приемлемые для клиента. |
 | `Content-Encoding` | Отправляется с сервера клиенту для указания кодировки содержимого в полезных данных. |
@@ -334,7 +336,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Чтобы включить по промежуточного слоя в проект, добавьте ссылку на [Microsoft. AspNetCore. app метапакет](xref:fundamentals/metapackage-app), которая включает пакет [Microsoft. AspNetCore. респонсекомпрессион](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) .
 
-## <a name="configuration"></a>Параметр Configuration
+## <a name="configuration"></a>Конфигурация
 
 В следующем коде показано, как включить по промежуточного слоя сжатия ответа для типов MIME по умолчанию и поставщиков сжатия ([Brotli](#brotli-compression-provider) и [gzip](#gzip-compression-provider)):
 
@@ -390,7 +392,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Задайте уровень сжатия с помощью <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions> . Поставщик сжатия Brotli по умолчанию имеет самый быстрый уровень сжатия ([CompressionLevel. самый быстрый](xref:System.IO.Compression.CompressionLevel)), что может привести к неэффективному сжатию. Если требуется наиболее эффективное сжатие, настройте по промежуточного слоя для оптимального сжатия.
 
-| Compression Level | Описание: |
+| Compression Level | Описание |
 | ----------------- | ----------- |
 | [CompressionLevel. самый быстрый](xref:System.IO.Compression.CompressionLevel) | Сжатие должно завершаться как можно быстрее, даже если полученные выходные данные не будут оптимально сжаты. |
 | [CompressionLevel. уплотнение](xref:System.IO.Compression.CompressionLevel) | Сжатие выполнять не нужно. |
@@ -430,7 +432,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Задайте уровень сжатия с помощью <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions> . Поставщик сжатия Gzip по умолчанию имеет самый быстрый уровень сжатия ([CompressionLevel. самый быстрый](xref:System.IO.Compression.CompressionLevel)), что может не привести к максимально эффективному сжатию. Если требуется наиболее эффективное сжатие, настройте по промежуточного слоя для оптимального сжатия.
 
-| Compression Level | Описание: |
+| Compression Level | Описание |
 | ----------------- | ----------- |
 | [CompressionLevel. самый быстрый](xref:System.IO.Compression.CompressionLevel) | Сжатие должно завершаться как можно быстрее, даже если полученные выходные данные не будут оптимально сжаты. |
 | [CompressionLevel. уплотнение](xref:System.IO.Compression.CompressionLevel) | Сжатие выполнять не нужно. |
@@ -495,7 +497,7 @@ public void ConfigureServices(IServiceCollection services)
 
 При наличии активного модуля динамического сжатия IIS, настроенного на уровне сервера, который вы хотите отключить для приложения, отключите модуль, дополнив добавление к файлу *web.config* . Дополнительные сведения см. в разделе [Отключение модулей IIS](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
-## <a name="troubleshooting"></a>Устранение неполадок
+## <a name="troubleshooting"></a>Диагностика
 
 Используйте такие средства, как [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)или [POST](https://www.getpostman.com/), которые позволяют задать `Accept-Encoding` заголовок запроса и изучить заголовки, размер и текст ответа. По умолчанию по промежуточного слоя для сжатия ответов сжимает ответы, соответствующие следующим условиям.
 
@@ -541,15 +543,15 @@ public void ConfigureServices(IServiceCollection services)
 
 Когда клиент может обработать сжатое содержимое, клиент должен сообщить серверу о своих возможностях, отправив `Accept-Encoding` заголовок с запросом. Когда сервер отправляет сжатое содержимое, он должен содержать сведения в `Content-Encoding` заголовке процесса кодирования сжатого ответа. В следующей таблице показаны конструкции кодирования содержимого, поддерживаемые по промежуточного слоя.
 
-| `Accept-Encoding`значения заголовка | Поддерживается по промежуточного слоя | Описание: |
+| `Accept-Encoding`значения заголовка | Поддерживается по промежуточного слоя | Описание |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Нет                   | [Формат сжатых данных Brotli](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | Нет                   | [Сжатый формат сжатых данных](https://tools.ietf.org/html/rfc1951) |
 | `exi`                           | Нет                   | [Эффективный XML-обмен в формате W3C](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
 | `gzip`                          | Да (по умолчанию)        | [Формат файла gzip](https://tools.ietf.org/html/rfc1952) |
-| `identity`                      | Да                  | Идентификатор "без кодирования": ответ не должен быть закодирован. |
+| `identity`                      | да                  | Идентификатор "без кодирования": ответ не должен быть закодирован. |
 | `pack200-gzip`                  | Нет                   | [Формат сетевой пересылки для архивов Java](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
-| `*`                             | Да                  | Любая доступная кодировка содержимого, которая не запрашивается явно |
+| `*`                             | да                  | Любая доступная кодировка содержимого, которая не запрашивается явно |
 
 Дополнительные сведения см. в [списке официального кодирования содержимого IANA](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
 
@@ -561,7 +563,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Заголовки, используемые для запроса, отправки, кэширования и получения сжатого содержимого, описаны в таблице ниже.
 
-| Header             | Роль |
+| Заголовок             | Роль |
 | ------------------ | ---- |
 | `Accept-Encoding`  | Отправляется с клиента на сервер, чтобы указать схемы кодировки содержимого, приемлемые для клиента. |
 | `Content-Encoding` | Отправляется с сервера клиенту для указания кодировки содержимого в полезных данных. |
@@ -579,7 +581,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Чтобы включить по промежуточного слоя в проект, добавьте ссылку на [Microsoft. AspNetCore. app метапакет](xref:fundamentals/metapackage-app), которая включает пакет [Microsoft. AspNetCore. респонсекомпрессион](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) .
 
-## <a name="configuration"></a>Параметр Configuration
+## <a name="configuration"></a>Конфигурация
 
 В следующем коде показано, как включить по промежуточного слоя сжатия ответов для типов MIME по умолчанию и [поставщика сжатия Gzip](#gzip-compression-provider):
 
@@ -635,7 +637,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Задайте уровень сжатия с помощью <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions> . Поставщик сжатия Gzip по умолчанию имеет самый быстрый уровень сжатия ([CompressionLevel. самый быстрый](xref:System.IO.Compression.CompressionLevel)), что может не привести к максимально эффективному сжатию. Если требуется наиболее эффективное сжатие, настройте по промежуточного слоя для оптимального сжатия.
 
-| Compression Level | Описание: |
+| Compression Level | Описание |
 | ----------------- | ----------- |
 | [CompressionLevel. самый быстрый](xref:System.IO.Compression.CompressionLevel) | Сжатие должно завершаться как можно быстрее, даже если полученные выходные данные не будут оптимально сжаты. |
 | [CompressionLevel. уплотнение](xref:System.IO.Compression.CompressionLevel) | Сжатие выполнять не нужно. |
@@ -700,7 +702,7 @@ public void ConfigureServices(IServiceCollection services)
 
 При наличии активного модуля динамического сжатия IIS, настроенного на уровне сервера, который вы хотите отключить для приложения, отключите модуль, дополнив добавление к файлу *web.config* . Дополнительные сведения см. в разделе [Отключение модулей IIS](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
-## <a name="troubleshooting"></a>Устранение неполадок
+## <a name="troubleshooting"></a>Диагностика
 
 Используйте такие средства, как [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)или [POST](https://www.getpostman.com/), которые позволяют задать `Accept-Encoding` заголовок запроса и изучить заголовки, размер и текст ответа. По умолчанию по промежуточного слоя для сжатия ответов сжимает ответы, соответствующие следующим условиям.
 

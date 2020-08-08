@@ -5,6 +5,8 @@ description: Узнайте, как ограничить доступ к ASP.NET
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/roles
-ms.openlocfilehash: 5d2ea6b9be0c993d62fa75fb8b471b5923747bac
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 44e5f9a2a429c9f4a510d2f3e564ddd6bbe77205
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407867"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021124"
 ---
 # <a name="role-based-authorization-in-aspnet-core"></a>Авторизация на основе ролей в ASP.NET Core
 
@@ -173,7 +175,7 @@ options.AddPolicy("ElevatedRights", policy =>
 
 Этот пример разрешает пользователям, принадлежащим к `Administrator` ролям, `PowerUser` или `BackupAdministrator` .
 
-### <a name="add-role-services-to-identity"></a>Добавление служб ролей вIdentity
+### <a name="add-role-services-to-no-locidentity"></a>Добавление служб ролей вIdentity
 
 Добавление [аддролес](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) для добавления служб ролей:
 

@@ -6,6 +6,8 @@ ms.author: riande
 ms.date: 7/18/2020
 ms.custom: mvc, seodec18
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: 7d4c10fa0b1c569179fc3e0a518917ec0185c51f
-ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
+ms.openlocfilehash: 44777369693f9eb29d78c3ba638db2e692f430ae
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87160275"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021193"
 ---
 # <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>Создание ASP.NET Core веб-приложения с данными пользователя, защищенными с помощью авторизации
 
@@ -71,7 +73,7 @@ ms.locfileid: "87160275"
 * `ContactManagerAuthorizationHandler`: Позволяет руководителям утверждать или отклонять контакты.
 * `ContactAdministratorsAuthorizationHandler`: Позволяет администраторам утверждать или отклонять контакты, а также изменять и удалять контакты.
 
-## <a name="prerequisites"></a>Предварительные условия
+## <a name="prerequisites"></a>Предварительные требования
 
 Этот учебник расширен. Вы должны быть знакомы с:
 
@@ -331,8 +333,8 @@ dotnet user-secrets set SeedUserPW <PW>
 | Пользователь                | Заполнено приложением | Параметры                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
 | test@example.com    | Нет                | Изменение или удаление собственных данных.                |
-| manager@contoso.com | Да               | Утвердите, отклоните и измените или удалите собственные данные. |
-| admin@contoso.com   | Да               | Утвердите или отклоните и измените или удалите все данные. |
+| manager@contoso.com | да               | Утвердите, отклоните и измените или удалите собственные данные. |
+| admin@contoso.com   | да               | Утвердите или отклоните и измените или удалите все данные. |
 
 Создайте контакт в браузере администратора. Скопируйте URL-адрес для DELETE и Edit из контакта администратора. Вставьте эти ссылки в браузер тестового пользователя, чтобы убедиться, что тестовая пользователь не может выполнить эти операции.
 
@@ -425,7 +427,7 @@ dotnet ef database update
 * `ContactManagerAuthorizationHandler`: Позволяет руководителям утверждать или отклонять контакты.
 * `ContactAdministratorsAuthorizationHandler`: Позволяет администраторам утверждать или отклонять контакты, а также изменять и удалять контакты.
 
-## <a name="prerequisites"></a>Предварительные условия
+## <a name="prerequisites"></a>Предварительные требования
 
 Этот учебник расширен. Вы должны быть знакомы с:
 
@@ -658,8 +660,8 @@ dotnet user-secrets set SeedUserPW <PW>
 | Пользователь                | Заполнено приложением | Параметры                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
 | test@example.com    | Нет                | Изменение или удаление собственных данных.                |
-| manager@contoso.com | Да               | Утвердите, отклоните и измените или удалите собственные данные. |
-| admin@contoso.com   | Да               | Утвердите или отклоните и измените или удалите все данные. |
+| manager@contoso.com | да               | Утвердите, отклоните и измените или удалите собственные данные. |
+| admin@contoso.com   | да               | Утвердите или отклоните и измените или удалите все данные. |
 
 Создайте контакт в браузере администратора. Скопируйте URL-адрес для DELETE и Edit из контакта администратора. Вставьте эти ссылки в браузер тестового пользователя, чтобы убедиться, что тестовая пользователь не может выполнить эти операции.
 

@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: d261a26de7b9ba77e5f9787ae2eb37293257a0fc
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 09df67657c9b6e4e59d6a1379bf801c289028819
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406398"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020942"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Управление памятью и сборка мусора (GC) в ASP.NET Core
 
@@ -355,7 +357,7 @@ public async Task<int> GetHttpClient2(string url)
 * [Управление HttpClient и временем существования](/aspnet/core/fundamentals/http-requests#httpclient-and-lifetime-management)
 * [Блог фабрики HTTPClient](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/)
  
-### <a name="object-pooling"></a>Объединение объектов в пул
+### <a name="object-pooling"></a>Использование пулов объектов
 
 В предыдущем примере показано, как `HttpClient` экземпляр можно сделать статическим и повторно использовать во всех запросах. Повторное использование не доблокирует ресурсы.
 

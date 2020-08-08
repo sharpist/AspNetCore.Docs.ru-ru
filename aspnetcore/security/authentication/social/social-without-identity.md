@@ -5,6 +5,8 @@ description: Объяснение использования проверки п
 ms.author: riande
 ms.date: 12/10/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/social/social-without-identity
-ms.openlocfilehash: ed908526604b04f9aebb93935aa3ad4719621526
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 73055a262ac69c0fd6a7f59e77d23121e71ea3dd
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406047"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021670"
 ---
-# <a name="use-social-sign-in-provider-authentication-without-aspnet-core-identity"></a>Использовать проверку подлинности поставщика социальных сетей без ASP.NET CoreIdentity
+# <a name="use-social-sign-in-provider-authentication-without-aspnet-core-no-locidentity"></a>Использовать проверку подлинности поставщика социальных сетей без ASP.NET CoreIdentity
 
 [Kirk Ларкин](https://twitter.com/serpent5) и [Рик Андерсон (](https://twitter.com/RickAndMSFT)
 
@@ -37,7 +39,7 @@ ms.locfileid: "85406047"
 * [Проверка подлинности Twitter](xref:security/authentication/twitter-logins)
 * [Другие поставщики](xref:security/authentication/otherlogins)
 
-## <a name="configuration"></a>Параметр Configuration
+## <a name="configuration"></a>Конфигурация
 
 В `ConfigureServices` методе настройте схемы проверки подлинности приложения с помощью <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> методов, и <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle*> :
 
@@ -51,13 +53,13 @@ ms.locfileid: "85406047"
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*>
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*>
 
-Если задать для приложения `DefaultScheme` значение [Кукиеаусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) ("cookies"), приложение будет использовать файлы cookie в качестве схемы по умолчанию для этих методов расширения. Если задать для приложения <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> значение [Гугледефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme) ("Google"), приложение будет использовать Google в качестве схемы по умолчанию для вызовов `ChallengeAsync` . `DefaultChallengeScheme`переопределения `DefaultScheme` . <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions>Дополнительные свойства, которые переопределяются при установке, см. в разделе `DefaultScheme` .
+Если задать для приложения `DefaultScheme` значение [ Cookie аусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) (" Cookie s"), приложение будет использовать s в Cookie качестве схемы по умолчанию для этих методов расширения. Если задать для приложения <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> значение [Гугледефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme) ("Google"), приложение будет использовать Google в качестве схемы по умолчанию для вызовов `ChallengeAsync` . `DefaultChallengeScheme`переопределения `DefaultScheme` . <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions>Дополнительные свойства, которые переопределяются при установке, см. в разделе `DefaultScheme` .
 
 В `Startup.Configure` вызов `UseAuthentication` и `UseAuthorization` между вызовом `UseRouting` и `UseEndpoints` . При этом задается `HttpContext.User` свойство и выполняется по промежуточного слоя авторизации для запросов:
 
 [!code-csharp[](social-without-identity/samples_snapshot/3.x/Startup.cs?name=snippet2&highlight=3-4)]
 
-Дополнительные сведения о схемах проверки подлинности см. в разделе [Основные понятия проверки подлинности](xref:security/authentication/index#authentication-concepts). Дополнительные сведения о проверке подлинности файлов cookie см. в разделе <xref:security/authentication/cookie> .
+Дополнительные сведения о схемах проверки подлинности см. в разделе [Основные понятия проверки подлинности](xref:security/authentication/index#authentication-concepts). Дополнительные сведения о cookie проверке подлинности см. в разделе <xref:security/authentication/cookie> .
 
 ## <a name="apply-authorization"></a>Применить авторизацию
 
@@ -67,7 +69,7 @@ ms.locfileid: "85406047"
 
 ## <a name="sign-out"></a>Выйти
 
-Чтобы выйти из текущего пользователя и удалить его файл cookie, вызовите [сигнаутасинк](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*). Следующий код добавляет `Logout` обработчик страницы на страницу *индекса* :
+Чтобы выйти из текущего пользователя и удалить его cookie , вызовите [сигнаутасинк](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*). Следующий код добавляет `Logout` обработчик страницы на страницу *индекса* :
 
 [!code-csharp[](social-without-identity/samples_snapshot/3.x/Pages/Index.cshtml.cs?name=snippet&highlight=3-7)]
 
@@ -92,7 +94,7 @@ ms.locfileid: "85406047"
 * [Проверка подлинности Twitter](xref:security/authentication/twitter-logins)
 * [Другие поставщики](xref:security/authentication/otherlogins)
 
-## <a name="configuration"></a>Параметр Configuration
+## <a name="configuration"></a>Конфигурация
 
 В `ConfigureServices` методе настройте схемы проверки подлинности приложения с помощью `AddAuthentication` `AddCookie` методов, и `AddGoogle` :
 
@@ -106,13 +108,13 @@ ms.locfileid: "85406047"
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*>
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*>
 
-Если задать для приложения `DefaultScheme` значение [Кукиеаусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) ("cookies"), приложение будет использовать файлы cookie в качестве схемы по умолчанию для этих методов расширения. Если задать для приложения <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> значение [Гугледефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme) ("Google"), приложение будет использовать Google в качестве схемы по умолчанию для вызовов `ChallengeAsync` . `DefaultChallengeScheme`переопределения `DefaultScheme` . <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions>Дополнительные свойства, которые переопределяются при установке, см. в разделе `DefaultScheme` .
+Если задать для приложения `DefaultScheme` значение [ Cookie аусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) (" Cookie s"), приложение будет использовать s в Cookie качестве схемы по умолчанию для этих методов расширения. Если задать для приложения <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> значение [Гугледефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme) ("Google"), приложение будет использовать Google в качестве схемы по умолчанию для вызовов `ChallengeAsync` . `DefaultChallengeScheme`переопределения `DefaultScheme` . <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions>Дополнительные свойства, которые переопределяются при установке, см. в разделе `DefaultScheme` .
 
 В `Configure` методе вызовите `UseAuthentication` метод для вызова по промежуточного слоя проверки подлинности, устанавливающего `HttpContext.User` свойство. Вызовите `UseAuthentication` метод перед вызовом `UseMvcWithDefaultRoute` или `UseMvc` :
 
 [!code-csharp[](social-without-identity/samples_snapshot/2.x/Startup.cs?name=snippet2)]
 
-Дополнительные сведения о схемах проверки подлинности см. в разделе [Основные понятия проверки подлинности](xref:security/authentication/index#authentication-concepts). Дополнительные сведения о проверке подлинности файлов cookie см. в разделе <xref:security/authentication/cookie> .
+Дополнительные сведения о схемах проверки подлинности см. в разделе [Основные понятия проверки подлинности](xref:security/authentication/index#authentication-concepts). Дополнительные сведения о cookie проверке подлинности см. в разделе <xref:security/authentication/cookie> .
 
 ## <a name="apply-authorization"></a>Применить авторизацию
 
@@ -122,7 +124,7 @@ ms.locfileid: "85406047"
 
 ## <a name="sign-out"></a>Выйти
 
-Чтобы выйти из текущего пользователя и удалить его файл cookie, вызовите [сигнаутасинк](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*). Следующий код добавляет `Logout` обработчик страницы на страницу *индекса* :
+Чтобы выйти из текущего пользователя и удалить его cookie , вызовите [сигнаутасинк](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*). Следующий код добавляет `Logout` обработчик страницы на страницу *индекса* :
 
 [!code-csharp[](social-without-identity/samples_snapshot/2.x/Pages/Index.cshtml.cs?name=snippet&highlight=3-7)]
 

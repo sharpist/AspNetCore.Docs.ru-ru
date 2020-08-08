@@ -5,6 +5,8 @@ description: Узнайте, как добавить проверки утвер
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/claims
-ms.openlocfilehash: 404e26f0fb5e71dbc22b1c08a2f8caf8461ad7e1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 639cacbab2688adfe769ef2c6954ea877cf0c66a
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406385"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022359"
 ---
 # <a name="claims-based-authorization-in-aspnet-core"></a>Авторизация на основе утверждений в ASP.NET Core
 
@@ -154,7 +156,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="multiple-policy-evaluation"></a>Оценка нескольких политик
 
-При применении нескольких политик к контроллеру или действию все политики должны пройти до предоставления доступа. Пример.
+При применении нескольких политик к контроллеру или действию все политики должны пройти до предоставления доступа. Например:
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]

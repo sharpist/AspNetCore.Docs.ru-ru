@@ -5,6 +5,8 @@ description: Узнайте, как создать приложение ASP.NET 
 ms.author: riande
 ms.date: 03/11/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 1156ddd2921afbfeccaf077ca29d267f8b1e844a
-ms.sourcegitcommit: 3544941682869734ea0113e24e02ed0ec9e1a9ec
+ms.openlocfilehash: 7016c2c1997d961f4b3d3cf513fc1769bd65247b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/18/2020
-ms.locfileid: "86464557"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021618"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Подтверждение учетной записи и восстановление пароля в ASP.NET Core
 
@@ -27,7 +29,7 @@ ms.locfileid: "86464557"
 В этом руководстве показано, как создать приложение ASP.NET Core с подтверждением электронной почты и сбросом пароля. Это руководство **не** является началом статьи. Вы должны быть знакомы с:
 
 * [ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
-* [Authentication](xref:security/authentication/identity)
+* [Аутентификация](xref:security/authentication/identity)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 <!-- see C:/Dropbox/wrk/Code/SendGridConsole/Program.cs -->
@@ -67,7 +69,7 @@ dotnet run
 
 #### <a name="configure-sendgrid-user-secrets"></a>Настройка секретов пользователя SendGrid
 
-Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Пример:
+Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Например:
 
 ```dotnetcli
 dotnet user-secrets set SendGridUser RickAndMSFT
@@ -235,7 +237,7 @@ https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Ident
 
 [Пакет SDK для .NET Core 2,2 или более поздней версии](https://dotnet.microsoft.com/download/dotnet-core)
 
-## <a name="create-a-web--app-and-scaffold-identity"></a>Создание веб-приложения и шаблонаIdentity
+## <a name="create-a-web--app-and-scaffold-no-locidentity"></a>Создание веб-приложения и шаблонаIdentity
 
 Выполните следующие команды, чтобы создать веб-приложение с проверкой подлинности.
 
@@ -287,7 +289,7 @@ dotnet run
 
 #### <a name="configure-sendgrid-user-secrets"></a>Настройка секретов пользователя SendGrid
 
-Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Пример:
+Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Например:
 
 ```console
 C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT

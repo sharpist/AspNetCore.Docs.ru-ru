@@ -6,6 +6,8 @@ ms.author: riande
 ms.date: 03/26/2020
 ms.custom: mvc, seodec18
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/add-user-data
-ms.openlocfilehash: e5c23cc49a52b8772a43853e9e953dd416d69f69
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d65974e9ff8e2f5be52ab79b063ed9d2dca557ea
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408738"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020864"
 ---
-# <a name="add-download-and-delete-custom-user-data-to-identity-in-an-aspnet-core-project"></a>Добавление, скачивание и удаление пользовательских данных Identity в проекте ASP.NET Core
+# <a name="add-download-and-delete-custom-user-data-to-no-locidentity-in-an-aspnet-core-project"></a>Добавление, скачивание и удаление пользовательских данных Identity в проекте ASP.NET Core
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -48,7 +50,7 @@ ms.locfileid: "85408738"
 
 ::: moniker-end
 
-## <a name="create-a-razor-web-app"></a>Создание Razor веб-приложения
+## <a name="create-a-no-locrazor-web-app"></a>Создание Razor веб-приложения
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -81,7 +83,7 @@ dotnet new webapp -o WebApp1
 
 ---
 
-## <a name="run-the-identity-scaffolder"></a>Запуск Identity механизма формирования шаблонов
+## <a name="run-the-no-locidentity-scaffolder"></a>Запуск Identity механизма формирования шаблонов
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -94,7 +96,7 @@ dotnet new webapp -o WebApp1
     * **Учетная запись/управление/индекс**
   * Нажмите **+** кнопку, чтобы создать новый **класс контекста данных**. Примите тип ("имя_проекта **. Models. WebApp1Context** ", если проект называется " **APP1**").
   * Нажмите **+** кнопку, чтобы создать новый **класс пользователя**. Примите тип (**WebApp1User** , если проект называется "имя_проекта **") >** **добавить**.
-* Нажмите **Добавить**.
+* Нажмите кнопку **Добавить**.
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli)
 
@@ -137,7 +139,7 @@ dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account
   * Нажмите кнопку **скачать** и проверите *PersonalData.js* файла.
   * Протестируйте кнопку **Удалить** , которая удаляет пользователя, выполнившего вход в систему.
 
-## <a name="add-custom-user-data-to-the-identity-db"></a>Добавление пользовательских данных в базу данных Identity
+## <a name="add-custom-user-data-to-the-no-locidentity-db"></a>Добавление пользовательских данных в базу данных Identity
 
 Обновите `IdentityUser` производный класс с помощью пользовательских свойств. Если вы назвали имя проекта Project, файл будет называться *Areas/ Identity /Data/WebApp1User.CS*. Обновите файл, используя следующий код:
 
@@ -207,7 +209,7 @@ dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account
 ::: moniker-end
 
 
-Выполните построение проекта.
+Создайте проект.
 
 ### <a name="add-a-migration-for-the-custom-user-data"></a>Добавление миграции для настраиваемых данных пользователя
 
@@ -237,7 +239,7 @@ dotnet ef database update
 * Просмотр настраиваемых данных пользователя на `/Identity/Account/Manage` странице.
 * Скачайте и просмотрите персональные данные пользователей на `/Identity/Account/Manage/PersonalData` странице.
 
-## <a name="add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser"></a>Добавление утверждений для Identity использования иусерклаимспринЦипалфактори<ApplicationUser>
+## <a name="add-claims-to-no-locidentity-using-iuserclaimsprincipalfactoryapplicationuser"></a>Добавление утверждений для Identity использования иусерклаимспринЦипалфактори<ApplicationUser>
 
 > [!NOTE]
 > Этот раздел не является расширением предыдущего руководства. Чтобы применить следующие действия к приложению, созданному с помощью учебника, см. [эту ошибку в GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/18797).

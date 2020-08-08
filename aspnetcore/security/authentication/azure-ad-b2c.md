@@ -6,6 +6,8 @@ ms.author: casoper
 ms.custom: mvc
 ms.date: 01/21/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: 4933203b8bdd8f653268c1df7ff83b8e9423341f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 78fe4d5dd9e3f64789956e58a4490bef6bdbca1e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405072"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021709"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Проверка подлинности в облаке с помощью Azure Active Directory B2C в ASP.NET Core
 
@@ -42,7 +44,7 @@ ms.locfileid: "85405072"
 
 Для этого пошагового руководства необходимы следующие сведения.
 
-* [Подписка на Microsoft Azure](https://azure.microsoft.com/free/dotnet/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
+* [Подписка Microsoft Azure](https://azure.microsoft.com/free/dotnet/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 
 ## <a name="create-the-azure-active-directory-b2c-tenant"></a>Создание клиента Azure Active Directory B2C
@@ -53,15 +55,15 @@ ms.locfileid: "85405072"
 
 В созданном клиенте Azure AD B2C Зарегистрируйте приложение, выполнив [действия, описанные в документации](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application) в разделе **Регистрация веб-приложения** . Прерывать в разделе **Создание секрета клиента веб-приложения** . Секрет клиента не требуется для работы с этим руководством. 
 
-Используйте следующие значения:
+Используйте следующие значения.
 
 | Параметр                       | Значение                     | Примечания                                                                                                                                                                                              |
 |-------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **имя**;                      | *&lt;имя приложения&gt;*        | Введите **имя** приложения, которое описывает ваше приложение для потребителей.                                                                                                                                 |
-| **Включить веб-приложение или веб-интерфейс API** | Да                       |                                                                                                                                                                                                    |
-| **Разрешить неявный поток**       | Да                       |                                                                                                                                                                                                    |
+| **Имя**                      | *&lt;имя приложения&gt;*        | Введите **имя** приложения, которое описывает ваше приложение для потребителей.                                                                                                                                 |
+| **Включить веб-приложение или веб-интерфейс API** | да                       |                                                                                                                                                                                                    |
+| **Разрешить неявный поток**       | да                       |                                                                                                                                                                                                    |
 | **URL-адрес ответа**                 | `https://localhost:44300/signin-oidc` | URL-адреса ответа — это конечные точки, куда Azure AD B2C возвращает все токены, запрашиваемые вашим приложением. Visual Studio предоставляет URL-адрес ответа для использования. Пока введите, `https://localhost:44300/signin-oidc` чтобы заполнить форму. |
-| **URI кода приложения**                | Не указывайте               | Не требуется для работы с этим руководством.                                                                                                                                                                    |
+| **Универсальный код ресурса идентификатора приложения**                | Не указывайте               | Не требуется для работы с этим руководством.                                                                                                                                                                    |
 | **Включить собственный клиент**     | Нет                        |                                                                                                                                                                                                    |
 
 > [!WARNING]
@@ -114,7 +116,7 @@ ms.locfileid: "85405072"
 > [!WARNING]
 > Убедитесь, что имена политик в точности соответствуют описанию в документации, так как эти политики использовались в диалоговом окне **Изменение проверки подлинности** в Visual Studio. Имена политик можно проверить в *appsettings.json*.
 
-## <a name="configure-the-underlying-openidconnectoptionsjwtbearercookie-options"></a>Настройка базовых параметров Опенидконнектоптионс/JwtBearer/cookie
+## <a name="configure-the-underlying-openidconnectoptionsjwtbearerno-loccookie-options"></a>Настройка базовых Опенидконнектоптионс/JwtBearer/ Cookie Options
 
 Чтобы настроить базовые параметры напрямую, используйте соответствующую константу схемы в `Startup.ConfigureServices` :
 
@@ -140,7 +142,7 @@ services.Configure<JwtBearerOptions>(
 
 ## <a name="run-the-app"></a>Запуск приложения
 
-В Visual Studio нажмите клавишу **F5** , чтобы создать и запустить приложение. После запуска веб-приложения выберите **принять** , чтобы принять использование файлов cookie (при появлении запроса), а затем выберите **Вход**.
+В Visual Studio нажмите клавишу **F5** , чтобы создать и запустить приложение. После запуска веб-приложения выберите **принять** , чтобы принять использование cookie s (при появлении запроса), а затем выберите **Вход**.
 
 ![Вход в приложение](./azure-ad-b2c/_static/signin.png)
 

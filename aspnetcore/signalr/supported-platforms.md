@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/supported-platforms
-ms.openlocfilehash: 9d7dd946ae5cf83b76a83ba1faeed0bb3fc31cef
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e6989f431d0d72241a6e1b94759585c02ef7398f
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405826"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021553"
 ---
-# <a name="aspnet-core-signalr-supported-platforms"></a>Поддерживаемые платформы ASP.NET Core SignalR
+# <a name="aspnet-core-no-locsignalr-supported-platforms"></a>Поддерживаемые платформы ASP.NET Core SignalR
 
 ## <a name="server-system-requirements"></a>Системные требования к  Server
 
@@ -32,12 +34,12 @@ SignalRдля ASP.NET Core поддерживает любую серверну�
 
 [Клиент JavaScript](xref:signalr/javascript-client) работает на NodeJS 8 и более поздних версиях и в следующих браузерах:
 
-| Браузер                         | Version         |
+| Браузер                         | Версия         |
 | ------------------------------- | --------------- |
-| Microsoft Edge                  | Текущие&dagger; |
-| Mozilla Firefox                 | Текущие&dagger; |
-| Google Chrome; включает Android | Текущие&dagger; |
-| Обозревателе включает iOS            | Текущие&dagger; |
+| Microsoft Edge                  | Текущий&dagger; |
+| Mozilla Firefox;                 | Текущий&dagger; |
+| Google Chrome; включает Android | Данном&dagger; |
+| Обозревателе включает iOS            | Текущий&dagger; |
 | Microsoft Internet Explorer     | 11              |
 
 &dagger;*Current* ссылается на последнюю версию браузера.

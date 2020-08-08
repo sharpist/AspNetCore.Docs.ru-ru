@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,24 +17,24 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/hubs
-ms.openlocfilehash: 1757d205b583c8b3f3bbf845594d7228f8d45175
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: bd7432fc29d0cda003abed1f0e522bdddf2e4efc
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408556"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022216"
 ---
-# <a name="use-hubs-in-signalr-for-aspnet-core"></a>Использование концентраторов в SignalR для ASP.NET Core
+# <a name="use-hubs-in-no-locsignalr-for-aspnet-core"></a>Использование концентраторов в SignalR для ASP.NET Core
 
 [Рейчел Аппель (](https://twitter.com/rachelappel) и [Кевин Гриффин](https://twitter.com/1kevgriff)
 
-[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubs/sample/ ) [(описание загрузки)](xref:index#how-to-download-a-sample)
+[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubs/sample/ ) ([описание загрузки](xref:index#how-to-download-a-sample))
 
-## <a name="what-is-a-signalr-hub"></a>Что такое SignalR центр
+## <a name="what-is-a-no-locsignalr-hub"></a>Что такое SignalR центр
 
 SignalRAPI концентраторов позволяет вызывать методы на подключенных клиентах с сервера. В серверном коде определяются методы, вызываемые клиентом. В клиентском коде определяются методы, которые вызываются с сервера. SignalRпозаботится обо всем, за сценой, которая делает возможными обмен данными между клиентом и сервером в реальном времени.
 
-## <a name="configure-signalr-hubs"></a>Настройка SignalR концентраторов
+## <a name="configure-no-locsignalr-hubs"></a>Настройка SignalR концентраторов
 
 По SignalR промежуточного слоя требуются некоторые службы, которые настраиваются путем вызова `services.AddSignalR` .
 
@@ -86,7 +88,7 @@ public class ChatHub : Hub
 
 `Hub`Класс имеет `Context` свойство, которое содержит следующие свойства со сведениями о соединении:
 
-| Свойство | Описание: |
+| Свойство | Описание |
 | ------ | ----------- |
 | `ConnectionId` | Возвращает уникальный идентификатор соединения, присвоенный SignalR . Для каждого соединения существует один идентификатор подключения.|
 | `UserIdentifier` | Возвращает [идентификатор пользователя](xref:signalr/groups). По умолчанию SignalR использует `ClaimTypes.NameIdentifier` из из, `ClaimsPrincipal` связанного с соединением, в качестве идентификатора пользователя. |
@@ -106,7 +108,7 @@ public class ChatHub : Hub
 
 `Hub`Класс имеет `Clients` свойство, которое содержит следующие свойства для обмена данными между сервером и клиентом:
 
-| Свойство | Описание: |
+| Свойство | Описание |
 | ------ | ----------- |
 | `All` | Вызывает метод для всех подключенных клиентов |
 | `Caller` | Вызывает метод для клиента, который вызвал метод концентратора |
@@ -152,7 +154,7 @@ public class ChatHub : Hub
 
 Использование `Hub<IChatClient>` включает проверку клиентских методов во время компиляции. Это предотвращает проблемы, вызванные использованием волшебных строк, поскольку `Hub<T>` может предоставлять доступ только к методам, определенным в интерфейсе.
 
-Использование строго типизированного `Hub<T>` ключа отключает возможность использования `SendAsync` . Все методы, определенные в интерфейсе, по-прежнему могут быть определены как асинхронные. Фактически каждый из этих методов должен возвращать `Task` . Поскольку это интерфейс, не используйте `async` ключевое слово. Пример.
+Использование строго типизированного `Hub<T>` ключа отключает возможность использования `SendAsync` . Все методы, определенные в интерфейсе, по-прежнему могут быть определены как асинхронные. Фактически каждый из этих методов должен возвращать `Task` . Поскольку это интерфейс, не используйте `async` ключевое слово. Например:
 
 ```csharp
 public interface IClient
@@ -188,7 +190,7 @@ SignalRAPI концентраторов предоставляет `OnConnectedA
 
 [!code-javascript[Error](hubs/sample/wwwroot/js/chat.js?range=23)]
 
-Если концентратор создает исключение, соединения не закрываются. По умолчанию SignalR возвращает клиенту общее сообщение об ошибке. Пример.
+Если концентратор создает исключение, соединения не закрываются. По умолчанию SignalR возвращает клиенту общее сообщение об ошибке. Например:
 
 ```
 Microsoft.AspNetCore.SignalR.HubException: An unexpected error occurred invoking 'MethodName' on the server.

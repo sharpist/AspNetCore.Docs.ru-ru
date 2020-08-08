@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/redis-backplane
-ms.openlocfilehash: 58c1ff2c9334e75535f6e5f0f418976176822724
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d80bce204b467d436a3580933718147bc3fbe75c
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408478"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022489"
 ---
-# <a name="set-up-a-redis-backplane-for-aspnet-core-signalr-scale-out"></a>Настройка объединительной платы Redis для SignalR горизонтального масштабирования ASP.NET Core
+# <a name="set-up-a-redis-backplane-for-aspnet-core-no-locsignalr-scale-out"></a>Настройка объединительной платы Redis для SignalR горизонтального масштабирования ASP.NET Core
 
 [Эндрю Стантон-медперсонала](https://twitter.com/anurse), [Брейди Гастер](https://twitter.com/bradygaster)и [Tom Dykstra)](https://github.com/tdykstra),
 

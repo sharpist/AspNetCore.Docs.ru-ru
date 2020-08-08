@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/03/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 720da8a8fe22f0e1911fd554c094661b4465a335
-ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
+ms.openlocfilehash: a11e6325143b9db57d6fbd1cd67478dc1dd6122d
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86568838"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021254"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Передача файлов в ASP.NET Core
 
@@ -191,7 +193,7 @@ ms.locfileid: "86568838"
 Для выполнения отправки формы в JavaScript для клиентов, которые [не поддерживают Fetch API](https://caniuse.com/#feat=fetch), используйте один из следующих подходов:
 
 * Используйте функцию Fetch Polyfill (например, [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Используйте `XMLHttpRequest`. Пример:
+* Используйте команду `XMLHttpRequest`. Например:
 
   ```javascript
   <script>
@@ -414,7 +416,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 В приведенном ниже примере демонстрируется использование JavaScript для потоковой передачи файла в действие контроллера. Токен против подделки файла создается с помощью пользовательского атрибута фильтра и передается в заголовках HTTP клиента, а не в теле запроса. Так как метод действия обрабатывает передаваемые данные напрямую, привязка модели формы отключается другим пользовательским фильтром. Внутри действия содержимое формы считывается с помощью объекта `MultipartReader`, который считывает каждый объект `MultipartSection` по отдельности, обрабатывая файл или сохраняя содержимое. После считывания составных разделов действие выполняет собственную привязку модели.
 
-Вначале страница загружает форму и сохраняет токен против подделки в файле cookie (с помощью атрибута `GenerateAntiforgeryTokenCookieAttribute`). Атрибут использует встроенную поддержку [защиты от подделки](xref:security/anti-request-forgery) в ASP.NET Core, чтобы задать файл cookie с токеном запроса.
+Начальный ответ страницы загружает форму и сохраняет токен подделки в cookie (с помощью `GenerateAntiforgeryTokenCookieAttribute` атрибута). Для установки с помощью маркера запроса атрибут использует встроенную поддержку защиты от [подделки](xref:security/anti-request-forgery) ASP.NET Core cookie .
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Filters/Antiforgery.cs?name=snippet_GenerateAntiforgeryTokenCookieAttribute)]
 
@@ -464,7 +466,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 ### <a name="file-extension-validation"></a>Проверка расширения файла
 
-Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример:
+Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Например:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -918,7 +920,7 @@ The request filtering module is configured to deny a request that exceeds the re
 Для выполнения отправки формы в JavaScript для клиентов, которые [не поддерживают Fetch API](https://caniuse.com/#feat=fetch), используйте один из следующих подходов:
 
 * Используйте функцию Fetch Polyfill (например, [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Используйте `XMLHttpRequest`. Пример:
+* Используйте команду `XMLHttpRequest`. Например:
 
   ```javascript
   <script>
@@ -1141,7 +1143,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 В приведенном ниже примере демонстрируется использование JavaScript для потоковой передачи файла в действие контроллера. Токен против подделки файла создается с помощью пользовательского атрибута фильтра и передается в заголовках HTTP клиента, а не в теле запроса. Так как метод действия обрабатывает передаваемые данные напрямую, привязка модели формы отключается другим пользовательским фильтром. Внутри действия содержимое формы считывается с помощью объекта `MultipartReader`, который считывает каждый объект `MultipartSection` по отдельности, обрабатывая файл или сохраняя содержимое. После считывания составных разделов действие выполняет собственную привязку модели.
 
-Вначале страница загружает форму и сохраняет токен против подделки в файле cookie (с помощью атрибута `GenerateAntiforgeryTokenCookieAttribute`). Атрибут использует встроенную поддержку [защиты от подделки](xref:security/anti-request-forgery) в ASP.NET Core, чтобы задать файл cookie с токеном запроса.
+Начальный ответ страницы загружает форму и сохраняет токен подделки в cookie (с помощью `GenerateAntiforgeryTokenCookieAttribute` атрибута). Для установки с помощью маркера запроса атрибут использует встроенную поддержку защиты от [подделки](xref:security/anti-request-forgery) ASP.NET Core cookie .
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Filters/Antiforgery.cs?name=snippet_GenerateAntiforgeryTokenCookieAttribute)]
 
@@ -1191,7 +1193,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 ### <a name="file-extension-validation"></a>Проверка расширения файла
 
-Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример:
+Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Например:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };

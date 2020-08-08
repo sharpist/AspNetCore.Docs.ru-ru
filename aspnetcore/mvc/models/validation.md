@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: e76ddad795237991c49bf2a3b1ca840795989260
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: c0edf56c966cb90c1c308f300a8944d392fdc0e7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404916"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020981"
 ---
-# <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Проверка модели в ASP.NET Core MVC и Razor страницах
+# <a name="model-validation-in-aspnet-core-mvc-and-no-locrazor-pages"></a>Проверка модели в ASP.NET Core MVC и Razor страницах
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -72,13 +74,13 @@ ms.locfileid: "85404916"
 
 ### <a name="error-messages"></a>Сообщения об ошибках
 
-Атрибуты проверки позволяют указать сообщение об ошибке, которое будет отображаться, если входные данные недопустимы. Пример.
+Атрибуты проверки позволяют указать сообщение об ошибке, которое будет отображаться, если входные данные недопустимы. Например:
 
 ```csharp
 [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
 ```
 
-На внутреннем уровне атрибуты вызывают `String.Format` с заполнителем для имени поля и иногда дополнительным заполнителями. Пример.
+На внутреннем уровне атрибуты вызывают `String.Format` с заполнителем для имени поля и иногда дополнительным заполнителями. Например:
 
 ```csharp
 [StringLength(8, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 6)]
@@ -442,13 +444,13 @@ $.get({
 
 ### <a name="error-messages"></a>Сообщения об ошибках
 
-Атрибуты проверки позволяют указать сообщение об ошибке, которое будет отображаться, если входные данные недопустимы. Пример.
+Атрибуты проверки позволяют указать сообщение об ошибке, которое будет отображаться, если входные данные недопустимы. Например:
 
 ```csharp
 [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
 ```
 
-На внутреннем уровне атрибуты вызывают `String.Format` с заполнителем для имени поля и иногда дополнительным заполнителями. Пример.
+На внутреннем уровне атрибуты вызывают `String.Format` с заполнителем для имени поля и иногда дополнительным заполнителями. Например:
 
 ```csharp
 [StringLength(8, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 6)]

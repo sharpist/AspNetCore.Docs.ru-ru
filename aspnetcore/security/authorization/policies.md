@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/policies
-ms.openlocfilehash: 668c68bc328860ef17e1f2df09103fca07733ef7
-ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
+ms.openlocfilehash: 03d6e7fdc4ab4b5e4925508952bfd6c835d90486
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87160173"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021280"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Авторизация на основе политик в ASP.NET Core
 
@@ -119,13 +121,13 @@ public void ConfigureServices(IServiceCollection services)
 
 Если вы используете Razor страницы, см. раздел [применение политик к Razor страницам](#apply-policies-to-razor-pages) этого документа.
 
-Политики применяются к контроллерам с помощью `[Authorize]` атрибута с именем политики. Пример:
+Политики применяются к контроллерам с помощью `[Authorize]` атрибута с именем политики. Например:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
 ## <a name="apply-policies-to-no-locrazor-pages"></a>Применение политик к Razor страницам
 
-Политики применяются к Razor страницам с помощью `[Authorize]` атрибута с именем политики. Пример:
+Политики применяются к Razor страницам с помощью `[Authorize]` атрибута с именем политики. Например:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
@@ -174,7 +176,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### <a name="handler-registration"></a>Регистрация обработчика
 
-Обработчики регистрируются в коллекции служб во время настройки. Пример:
+Обработчики регистрируются в коллекции служб во время настройки. Например:
 
 [!code-csharp[](policies/samples/3.0PoliciesAuthApp1/Startup.cs?range=31-32,39-40,42-45, 53-55, 58)]
 
@@ -227,7 +229,7 @@ public void ConfigureServices(IServiceCollection services)
 
 `HandleRequirementAsync`Метод, реализуемый в обработчике авторизации, имеет два параметра: и обрабатываемый объект `AuthorizationHandlerContext` `TRequirement` . Платформы, такие как MVC или SignalR , могут добавлять любой объект в свойство в `Resource` `AuthorizationHandlerContext` для передачи дополнительной информации.
 
-При использовании маршрутизации конечных точек авторизация обычно обрабатывается по промежуточного слоя авторизации. В этом случае `Resource` свойство является экземпляром <xref:Microsoft.AspNetCore.Http.Endpoint> . Конечную точку можно использовать для проверки базового ресурса, с которым выполняется маршрутизация. Пример:
+При использовании маршрутизации конечных точек авторизация обычно обрабатывается по промежуточного слоя авторизации. В этом случае `Resource` свойство является экземпляром <xref:Microsoft.AspNetCore.Http.Endpoint> . Конечную точку можно использовать для проверки базового ресурса, с которым выполняется маршрутизация. Например:
 
 ```csharp
 if (context.Resource is Endpoint endpoint)
@@ -355,13 +357,13 @@ public void ConfigureServices(IServiceCollection services)
 
 Если вы используете Razor страницы, см. раздел [применение политик к Razor страницам](#apply-policies-to-razor-pages) этого документа.
 
-Политики применяются к контроллерам с помощью `[Authorize]` атрибута с именем политики. Пример:
+Политики применяются к контроллерам с помощью `[Authorize]` атрибута с именем политики. Например:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
 ## <a name="apply-policies-to-no-locrazor-pages"></a>Применение политик к Razor страницам
 
-Политики применяются к Razor страницам с помощью `[Authorize]` атрибута с именем политики. Пример:
+Политики применяются к Razor страницам с помощью `[Authorize]` атрибута с именем политики. Например:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
@@ -408,7 +410,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### <a name="handler-registration"></a>Регистрация обработчика
 
-Обработчики регистрируются в коллекции служб во время настройки. Пример:
+Обработчики регистрируются в коллекции служб во время настройки. Например:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,62-63,66)]
 

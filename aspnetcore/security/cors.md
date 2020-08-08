@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/17/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cors
-ms.openlocfilehash: dc8e68ef482025443147eeb27bd3f245c1a1a5ed
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: ee640ded37f40175e3e150f713fa970e9705b62c
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212891"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021111"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Включение запросов между источниками (CORS) в ASP.NET Core
 
@@ -123,7 +125,7 @@ ms.locfileid: "86212891"
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPt.cs?name=snippet2&highlight=3,7-15,32,40,43)]
 
-В предыдущем коде:
+В приведенном выше коде:
 
 * `app.UseCors`включает по промежуточного слоя CORS. Так как политика по умолчанию не настроена, `app.UseCors()` она не включает CORS.
 * `/echo`Конечные точки контроллера и позволяют выполнять запросы между источниками с помощью указанной политики.
@@ -272,7 +274,7 @@ Access-Control-Request-Headers: Cache-Control, Content-Language
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet5)]
 ### <a name="credentials-in-cross-origin-requests"></a>Учетные данные в запросах между источниками
 
-Учетные данные требует специальной обработки в запросе CORS. По умолчанию браузер не отправляет учетные данные с запросом между источниками. Учетные данные включают файлы cookie и схемы проверки подлинности HTTP. Чтобы отправить учетные данные с запросом между источниками, клиент должен установить `XMLHttpRequest.withCredentials` в значение `true` .
+Учетные данные требует специальной обработки в запросе CORS. По умолчанию браузер не отправляет учетные данные с запросом между источниками. Учетные данные включают cookie схемы проверки подлинности s и HTTP. Чтобы отправить учетные данные с запросом между источниками, клиент должен установить `XMLHttpRequest.withCredentials` в значение `true` .
 
 Использование `XMLHttpRequest` напрямую:
 
@@ -370,7 +372,7 @@ User-Agent: Mozilla/5.0
 
 С помощью средств F12 консольное приложение отображает ошибку, аналогичную одной из следующих в зависимости от браузера.
 
-* Firefox: запрос на перекрестное происхождение заблокирован: одна и та же политика происхождения запрещает чтение удаленного ресурса в `https://cors1.azurewebsites.net/api/TodoItems1/MyDelete2/5` . (Причина: запрос CORS не выполнен). [Дополнительные сведения](https://developer.mozilla.org/docs/Web/HTTP/CORS/Errors/CORSDidNotSucceed)
+* Firefox: запрос на перекрестное происхождение заблокирован: одна и та же политика происхождения запрещает чтение удаленного ресурса в `https://cors1.azurewebsites.net/api/TodoItems1/MyDelete2/5` . (Причина: запрос CORS не выполнен). [Подробнее](https://developer.mozilla.org/docs/Web/HTTP/CORS/Errors/CORSDidNotSucceed)
 * На основе Chromium: доступ к выборке в " https://cors1.azurewebsites.net/api/TodoItems1/MyDelete2/5 " из источника " https://cors3.azurewebsites.net " заблокирован политикой CORS: ответ на предварительный запрос не проходит проверку контроля доступа: в запрошенном ресурсе отсутствует заголовок "Access-Control-Allow-Origin". Если этот непрозрачный ответ вам подходит, задайте для режима запроса значение "no-cors", чтобы извлечь ресурс с отключенным параметром CORS.
 
 Чтобы разрешить определенные заголовки, вызовите <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*> :
@@ -464,7 +466,7 @@ Vary: Accept-Encoding
 X-Powered-By: ASP.NET
 ```
 
-**Заголовки запросов**
+**Заголовки запроса**
 
 ```
 Accept: */*
@@ -502,7 +504,7 @@ Vary: Origin
 X-Powered-By: ASP.NET
 ```
 
-**Заголовки запросов**
+**Заголовки запроса**
 
 ```
 Accept: */*
@@ -819,7 +821,7 @@ Access-Control-Request-Headers: Cache-Control, Content-Language
 
 ### <a name="credentials-in-cross-origin-requests"></a>Учетные данные в запросах между источниками
 
-Учетные данные требует специальной обработки в запросе CORS. По умолчанию браузер не отправляет учетные данные с запросом между источниками. Учетные данные включают файлы cookie и схемы проверки подлинности HTTP. Чтобы отправить учетные данные с запросом между источниками, клиент должен установить `XMLHttpRequest.withCredentials` в значение `true` .
+Учетные данные требует специальной обработки в запросе CORS. По умолчанию браузер не отправляет учетные данные с запросом между источниками. Учетные данные включают cookie схемы проверки подлинности s и HTTP. Чтобы отправить учетные данные с запросом между источниками, клиент должен установить `XMLHttpRequest.withCredentials` в значение `true` .
 
 Использование `XMLHttpRequest` напрямую:
 
@@ -988,7 +990,7 @@ Test message
 Тестирование CORS:
 
 1. [Создайте проект API](xref:tutorials/first-web-api). Кроме того, можно [загрузить пример](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/sample/Cors).
-1. Включите CORS с помощью одного из подходов, описанных в этом документе. Пример.
+1. Включите CORS с помощью одного из подходов, описанных в этом документе. Например:
 
   [!code-csharp[](cors/sample/Cors/WebAPI/StartupTest.cs?name=snippet2&highlight=13-18)]
 

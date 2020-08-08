@@ -5,6 +5,8 @@ description: Узнайте, как использовать ASP.NET Core API-и
 ms.author: riande
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/using-data-protection
-ms.openlocfilehash: 1b0dc6756de55d9ce35eb08ca037e4d4b1fede75
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0d088e0e974742e51d9ca39a5cec5b84b46f5d21
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405618"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022437"
 ---
 # <a name="get-started-with-the-data-protection-apis-in-aspnet-core"></a>Приступая к работе с API защиты данных в ASP.NET Core
 
@@ -41,4 +43,4 @@ ms.locfileid: "85405618"
 >[!TIP]
 > Экземпляры `IDataProtectionProvider` и `IDataProtector` являются потокобезопасными для нескольких вызывающих объектов. Предполагается, что после того, как компонент получает ссылку на объект `IDataProtector` через вызов `CreateProtector` , он будет использовать эту ссылку для нескольких вызовов функций `Protect` и `Unprotect` .
 >
->Вызов метода вызовет `Unprotect` исключение CryptographicException, если защищенные полезные данные не могут быть проверены или расшифрованы. Некоторым компонентам может потребоваться пропускать ошибки во время операций снятия защиты. компонент, считывающий файлы cookie проверки подлинности, может обработать эту ошибку и обрабатывать запрос так, как если бы он не имел ни одного файла cookie, а не завершать запрос неверно. Компоненты, которые должны использовать это поведение, должны специально перехватывать CryptographicException, а не проглатывание все исключения.
+>Вызов метода вызовет `Unprotect` исключение CryptographicException, если защищенные полезные данные не могут быть проверены или расшифрованы. Некоторым компонентам может потребоваться пропускать ошибки во время операций снятия защиты. компонент, считывающий проверку подлинности cookie , может обработать эту ошибку и обрабатывать запрос так, как если бы он имел вообще не cookie запрашивать ошибку. Компоненты, которые должны использовать это поведение, должны специально перехватывать CryptographicException, а не проглатывание все исключения.

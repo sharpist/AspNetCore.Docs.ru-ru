@@ -5,6 +5,8 @@ description: Сведения о реализации интерфейсов API
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-management
-ms.openlocfilehash: 68913d13c97ba6be73dabf79e03c146a37388ad3
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: c81e328d8774bfbd1309f854715fcda2152f9eeb
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408946"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021215"
 ---
 # <a name="key-management-in-aspnet-core"></a>Управление ключами в ASP.NET Core
 

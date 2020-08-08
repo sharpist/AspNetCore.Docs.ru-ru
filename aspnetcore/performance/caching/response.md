@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 5c3314991d05ea868fe9190bb3a0206b27fd920f
-ms.sourcegitcommit: b06511252f165dd4590ba9b5beca4153fa220779
+ms.openlocfilehash: 7d2d563eef60cb8eead95c6792bcac2cda16a859
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/27/2020
-ms.locfileid: "85459770"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021345"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Кэширование ответов в ASP.NET Core
 
@@ -49,7 +51,7 @@ ms.locfileid: "85459770"
 
 Другие заголовки кэша, которые играют роль в кэшировании, показаны в следующей таблице.
 
-| Header                                                     | Функция |
+| Заголовок                                                     | Функция |
 | ---------------------------------------------------------- | -------- |
 | [Возраст](https://tools.ietf.org/html/rfc7234#section-5.1)     | Оценка количества времени в секундах с момента создания или успешной проверки ответа на сервере источника. |
 | [Истекает](https://tools.ietf.org/html/rfc7234#section-5.3) | Время, после которого ответ считается устаревшим. |
@@ -132,8 +134,8 @@ Vary: User-Agent
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>переопределяет большинство других свойств. Если для этого свойства задано значение `true` , `Cache-Control` заголовок устанавливается в значение `no-store` . Если <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> параметр имеет значение `None` :
 
-* `Cache-Control` задан как `no-store,no-cache`.
-* `Pragma` задан как `no-cache`.
+* Параметру `Cache-Control` задается значение `no-store,no-cache`.
+* Параметру `Pragma` задается значение `no-cache`.
 
 Если <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> параметр имеет значение `false` <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> , а имеет значение, и, то `None` `Cache-Control` `Pragma` для свойства задаются значения `no-cache` .
 

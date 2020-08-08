@@ -1,12 +1,14 @@
 ---
-title: Пример файла cookie SameSite ASP.NET Core 2,1 MVC
+title: Пример SameSite ASP.NET Core 2,1 MVC cookie
 author: rick-anderson
-description: Пример файла cookie SameSite ASP.NET Core 2,1 MVC
+description: Пример SameSite ASP.NET Core 2,1 MVC cookie
 monikerRange: '>= aspnetcore-2.1 < aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/03/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,22 +17,22 @@ no-loc:
 - Razor
 - SignalR
 uid: security/samesite/mvc21
-ms.openlocfilehash: ce301cd7e2cbfbfc724d78bd5734dff231d0ab93
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 4285432d48ba11b5069d109c5667192a99fe115e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944731"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021787"
 ---
-# <a name="aspnet-core-21-mvc-samesite-cookie-sample"></a>Пример файла cookie SameSite ASP.NET Core 2,1 MVC
+# <a name="aspnet-core-21-mvc-samesite-no-loccookie-sample"></a>Пример SameSite ASP.NET Core 2,1 MVC cookie
 
-ASP.NET Core 2,1 имеет встроенную поддержку атрибута [SameSite](https://www.owasp.org/index.php/SameSite) , но она была записана в исходный стандарт. [Исправленное поведение](https://github.com/dotnet/aspnetcore/issues/8212) изменило значение параметра `SameSite.None` , чтобы выдать атрибут sameSite со значением `None` , а не выдавать значение вообще. Если вы не хотите выпустить значение, можно задать `SameSite` для свойства cookie значение-1.
+ASP.NET Core 2,1 имеет встроенную поддержку атрибута [SameSite](https://www.owasp.org/index.php/SameSite) , но она была записана в исходный стандарт. [Исправленное поведение](https://github.com/dotnet/aspnetcore/issues/8212) изменило значение параметра `SameSite.None` , чтобы выдать атрибут sameSite со значением `None` , а не выдавать значение вообще. Если вы не хотите выпустить значение, можно задать `SameSite` для свойства значение cookie -1.
 
 [!INCLUDE[](~/includes/SameSiteIdentity.md)]
 
 ## <a name="writing-the-samesite-attribute"></a><a name="sampleCode"></a>Написание атрибута SameSite
 
-Ниже приведен пример того, как записать атрибут SameSite в файл cookie:
+Ниже приведен пример того, как записать атрибут SameSite в cookie :
 
 ```c#
 var cookieOptions = new CookieOptions
@@ -52,9 +54,9 @@ var cookieOptions = new CookieOptions
 Response.Cookies.Append(CookieName, "cookieValue", cookieOptions);
 ```
 
-## <a name="setting-cookie-authentication-and-session-state-cookies"></a>Настройка файлов cookie для проверки подлинности файлов cookie и состояния сеанса
+## <a name="setting-no-loccookie-authentication-and-session-state-no-loccookies"></a>Настройка Cookie проверки подлинности и состояния сеанса cookie
 
-Проверка подлинности файлов cookie, состояние сеанса и [различные другие компоненты](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) задают свои параметры sameSite с помощью параметров cookie, например
+CookieПроверка подлинности, состояние сеанса и [различные другие компоненты](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) задают свои параметры sameSite Cookie с помощью параметров, например
 
 ```c#
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -73,21 +75,21 @@ services.AddSession(options =>
 });
 ```
 
-В приведенном выше коде проверка подлинности cookie и состояние сеанса устанавливают атрибут sameSite в, выдает `None` атрибут со `None` значением, а также устанавливает для атрибута Secure значение true.
+В приведенном выше коде как cookie Проверка подлинности, так и состояние сеанса устанавливают атрибут sameSite в, выдает `None` атрибут со `None` значением, а также присвойте атрибуту Secure значение true.
 
 ### <a name="run-the-sample"></a>Запуск примера
 
-При запуске [примера проекта](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)Загрузите отладчик браузера на начальной странице и используйте его для просмотра коллекции файлов cookie для сайта. Чтобы сделать это в пограничных и Chrome, нажмите на `F12` `Application` вкладку и щелкните URL-адрес сайта в `Cookies` параметре в `Storage` разделе.
+При запуске [примера проекта](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)Загрузите отладчик браузера на начальной странице и используйте его для просмотра cookie коллекции для сайта. Чтобы сделать это в пограничных и Chrome, нажмите на `F12` `Application` вкладку и щелкните URL-адрес сайта в `Cookies` параметре в `Storage` разделе.
 
-![Список файлов cookie отладчика браузера](BrowserDebugger.png)
+![Отладчик браузера::: No-Loc (cookie)::: List](BrowserDebugger.png)
 
-На рисунке выше показано, что файл cookie, созданный при нажатии кнопки "создать SameSite cookie", имеет значение атрибута SameSite `Lax` , совпадающее со значением, заданным в [образце кода](#sampleCode).
+На приведенном выше изображении можно увидеть, что cookie созданный примером при нажатии кнопки "создать SameSite Cookie " имеет значение атрибута SameSite `Lax` , совпадающее со значением, заданным в [образце кода](#sampleCode).
 
-## <a name="intercepting-cookies"></a><a name="interception"></a>Перехват файлов cookie
+## <a name="intercepting-no-loccookies"></a><a name="interception"></a>Перехват cookie s
 
-Чтобы перехватить файлы cookie, чтобы настроить значение None в соответствии с его поддержкой в агенте браузера пользователя, необходимо использовать по `CookiePolicy` промежуточного слоя. Он должен быть помещен в конвейер HTTP-запросов **перед** всеми компонентами, записывающими файлы cookie и настроенными в `ConfigureServices()` .
+Чтобы перехватить cookie , чтобы изменить значение None в соответствии с его поддержкой в агенте браузера пользователя, необходимо использовать по `CookiePolicy` промежуточного слоя. Он должен быть помещен в конвейер HTTP-запросов **перед** всеми компонентами, которые записывают cookie и настраиваются в `ConfigureServices()` .
 
-Чтобы вставить его в конвейер, используйте `app.UseCookiePolicy()` `Configure(IApplicationBuilder, IHostingEnvironment)` метод в [Startup.CS](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs). Пример:
+Чтобы вставить его в конвейер, используйте `app.UseCookiePolicy()` `Configure(IApplicationBuilder, IHostingEnvironment)` метод в [Startup.CS](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs). Например:
 
 ```c#
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -117,7 +119,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-Затем в `ConfigureServices(IServiceCollection services)` политике Настройка политики cookie для вызова вспомогательного класса при добавлении или удалении файлов cookie. Пример:
+Затем в `ConfigureServices(IServiceCollection services)` cookie политике настройте политику для вызова вспомогательного класса, когда cookie добавляются или удаляются. Например:
 
 ```c#
 public void ConfigureServices(IServiceCollection services)
@@ -148,7 +150,7 @@ private void CheckSameSite(HttpContext httpContext, CookieOptions options)
 
 Вспомогательная функция `CheckSameSite(HttpContext, CookieOptions)` :
 
-* Вызывается, когда файлы cookie добавляются в запрос или удаляются из запроса.
+* Вызывается, когда cookie s добавляется к запросу или удаляется из запроса.
 * Проверяет, `SameSite` имеет ли свойство значение `None` .
 * Если параметр `SameSite` имеет значение `None` , а для текущего агента пользователя известно, что он не поддерживает значение атрибута None. Проверка выполняется с помощью класса [самеситесуппорт](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/samesite/sample/snippets/SameSiteSupport.cs) :
   * Задает, чтобы не выдавало `SameSite` значение, задав для свойства`(SameSiteMode)(-1)`

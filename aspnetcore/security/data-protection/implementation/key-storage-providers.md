@@ -5,6 +5,8 @@ description: Узнайте о поставщиках хранилища клю�
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: 1bbea6f16d57d5cc107c95293e2788271bfce601
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d54e8078180ce978b550963a03c0d4fdc6e9b12e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408049"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021462"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Поставщики хранилища ключей в ASP.NET Core
 
@@ -43,7 +45,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="azure-storage"></a>Хранилище Azure
 
-Пакет [Microsoft. AspNetCore. Data Protection. AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) позволяет хранить ключи защиты данных в хранилище BLOB-объектов Azure. Ключи можно совместно использовать в нескольких экземплярах веб-приложения. Приложения могут совместно использовать файлы cookie проверки подлинности или защиту CSRF на нескольких серверах.
+Пакет [Microsoft. AspNetCore. Data Protection. AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) позволяет хранить ключи защиты данных в хранилище BLOB-объектов Azure. Ключи можно совместно использовать в нескольких экземплярах веб-приложения. Приложения могут совместно использовать проверку подлинности cookie или защиту CSRF на нескольких серверах.
 
 Чтобы настроить поставщик хранилища BLOB-объектов Azure, вызовите одну из перегрузок [персисткэйстоазуреблобстораже](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage) .
 
@@ -78,13 +80,13 @@ services.AddDataProtection()
 
 ::: moniker range=">= aspnetcore-2.2"
 
-Пакет [Microsoft. AspNetCore. Data Protection. стаккексчанжередис](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.StackExchangeRedis/) позволяет хранить ключи защиты данных в кэше Redis. Ключи можно совместно использовать в нескольких экземплярах веб-приложения. Приложения могут совместно использовать файлы cookie проверки подлинности или защиту CSRF на нескольких серверах.
+Пакет [Microsoft. AspNetCore. Data Protection. стаккексчанжередис](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.StackExchangeRedis/) позволяет хранить ключи защиты данных в кэше Redis. Ключи можно совместно использовать в нескольких экземплярах веб-приложения. Приложения могут совместно использовать проверку подлинности cookie или защиту CSRF на нескольких серверах.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
-Пакет [Microsoft. AspNetCore. Data Protection. Redis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Redis/) позволяет хранить ключи защиты данных в кэше Redis. Ключи можно совместно использовать в нескольких экземплярах веб-приложения. Приложения могут совместно использовать файлы cookie проверки подлинности или защиту CSRF на нескольких серверах.
+Пакет [Microsoft. AspNetCore. Data Protection. Redis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Redis/) позволяет хранить ключи защиты данных в кэше Redis. Ключи можно совместно использовать в нескольких экземплярах веб-приложения. Приложения могут совместно использовать проверку подлинности cookie или защиту CSRF на нескольких серверах.
 
 ::: moniker-end
 
@@ -121,7 +123,7 @@ public void ConfigureServices(IServiceCollection services)
 Дополнительные сведения см. в следующих разделах:
 
 * [StackExchange. Redis ConnectionMultiplexer](https://github.com/StackExchange/StackExchange.Redis/blob/master/docs/Basics.md)
-* [Кэш Azure Redis](/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache#connect-to-the-cache)
+* [кэш Azure Redis](/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache#connect-to-the-cache)
 * [ASP.NET Core примеры защиты](https://github.com/dotnet/AspNetCore/tree/2.2.0/src/DataProtection/samples)
 
 ## <a name="registry"></a>Реестр

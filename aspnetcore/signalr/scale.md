@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/17/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: cfa1a4c67649e1816f510a33cc53e559c4a59153
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2d128d54dc9b1189124563e45d72d74b19704ab1
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408686"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022528"
 ---
-# <a name="aspnet-core-signalr-hosting-and-scaling"></a>ASP.NET Core SignalR размещение и масштабирование
+# <a name="aspnet-core-no-locsignalr-hosting-and-scaling"></a>ASP.NET Core SignalR размещение и масштабирование
 
 [Эндрю Стантон-медперсонала](https://twitter.com/anurse), [Брейди Гастер](https://twitter.com/bradygaster)и [Tom Dykstra)](https://github.com/tdykstra),
 
@@ -48,7 +50,7 @@ SignalRтребует, чтобы все HTTP-запросы для опреде
 
 Интенсивное использование ресурсов, связанных с подключением, SignalR может повлиять на другие веб-приложения, размещенные на том же сервере. Когда SignalR открывает и сохраняет последние доступные подключения TCP, другие веб-приложения на том же сервере также будут иметь недоступные для них подключения.
 
-Если на сервере не хватает подключений, вы увидите случайные ошибки сокета и ошибки сброса соединения. Пример.
+Если на сервере не хватает подключений, вы увидите случайные ошибки сокета и ошибки сброса соединения. Например:
 
 ```
 An attempt was made to access a socket in a way forbidden by its access permissions...
@@ -58,19 +60,19 @@ An attempt was made to access a socket in a way forbidden by its access permissi
 
 Чтобы SignalR использование ресурсов не вызывало ошибок в SignalR приложении, необходимо выполнить масштабирование, чтобы ограничить число подключений, которое должен выполнять сервер.
 
-## <a name="scale-out"></a>Масштабирование
+## <a name="scale-out"></a>Горизонтальное увеличение масштаба
 
 Приложение, использующее, SignalR должно отследить все его подключения, что создает проблемы для фермы серверов. Добавьте сервер, и он получает новые подключения, о которых не известны другие серверы. Например, SignalR на каждом сервере на следующей схеме не знаются соединения на других серверах. Когда SignalR на одном из серверов требуется отправить сообщение всем клиентам, оно передается только тем клиентам, которые подключены к этому серверу.
 
-![Масштабирование SignalR без объединительной платы](scale/_static/scale-no-backplane.png)
+![Масштабирование::: No-Loc (SignalR)::: без объединительной платы](scale/_static/scale-no-backplane.png)
 
 Варианты решения этой проблемы: [ SignalR служба Azure](#azure-signalr-service) и [Redisная Объединительная плата](#redis-backplane).
 
-## <a name="azure-signalr-service"></a>Служба Azure SignalR
+## <a name="azure-no-locsignalr-service"></a>Служба Azure SignalR
 
 Служба Azure SignalR — это прокси-сервер, а не Объединительная плата. Каждый раз, когда клиент инициирует подключение к серверу, клиент перенаправляется для подключения к службе. Этот процесс показан на следующей схеме:
 
-![Установка подключения к SignalR службе Azure](scale/_static/azure-signalr-service-one-connection.png)
+![Установление соединения с Azure::: No-Loc (SignalR)::: Service](scale/_static/azure-signalr-service-one-connection.png)
 
 В результате служба управляет всеми клиентскими подключениями, в то время как каждому серверу требуется лишь небольшое постоянное число подключений к службе, как показано на следующей схеме:
 
@@ -126,7 +128,7 @@ proxy_set_header Connection $connection_upgrade;
 
 Дополнительные сведения см. в статье об [использовании NGINX в качестве прокси-сервера WebSocket](https://www.nginx.com/blog/websocket-nginx/).
 
-## <a name="third-party-signalr-backplane-providers"></a>Сторонние SignalR поставщики объединительной платы
+## <a name="third-party-no-locsignalr-backplane-providers"></a>Сторонние SignalR поставщики объединительной платы
 
 * [NCache](https://www.alachisoft.com/ncache/asp-net-core-signalr.html)
 * [Orleans](https://github.com/OrleansContrib/SignalR.Orleans)

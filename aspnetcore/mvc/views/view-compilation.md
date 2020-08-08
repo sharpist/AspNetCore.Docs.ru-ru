@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/14/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/view-compilation
-ms.openlocfilehash: 71487ff2d5d7d7cf96835778f386e5f30fa32254
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: fc7924f8f8b321ae017b7acd729fe11c4e0e3c7e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405449"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021085"
 ---
-# <a name="razor-file-compilation-in-aspnet-core"></a>RazorКомпиляция файла в ASP.NET Core
+# <a name="no-locrazor-file-compilation-in-aspnet-core"></a>RazorКомпиляция файла в ASP.NET Core
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -29,7 +31,7 @@ ms.locfileid: "85405449"
 
 Razorфайлы с расширением *. cshtml* компилируются как во время сборки, так и при публикации с помощью [ Razor пакета SDK](xref:razor-pages/sdk). Компиляцию среды выполнения можно дополнительно включить, настроив проект.
 
-## <a name="razor-compilation"></a>Razorкомпиляции
+## <a name="no-locrazor-compilation"></a>Razorкомпиляции
 
 Компиляция файлов во время сборки и времени публикации Razor по умолчанию включена Razor пакетом SDK. При включении компиляция среды выполнения дополняет компиляцию во время сборки, позволяя Razor обновлять файлы, если они редактируются.
 
@@ -59,7 +61,7 @@ dotnet new webapp --razor-runtime-compilation
 Включение компиляции во время выполнения для всех сред в существующем проекте:
 
 1. Установите [Microsoft. AspNetCore. MVC. Razor . ](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/)Пакет NuGet рунтимекомпилатион.
-1. обновите метод `Startup.ConfigureServices` в проекте, чтобы включить вызов <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*>. Пример.
+1. обновите метод `Startup.ConfigureServices` в проекте, чтобы включить вызов <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*>. Например:
 
     ```csharp
     public void ConfigureServices(IServiceCollection services)
@@ -83,7 +85,7 @@ dotnet new webapp --razor-runtime-compilation
 1. Установите [Microsoft. AspNetCore. MVC. Razor . ](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/)Пакет NuGet рунтимекомпилатион.
 1. Измените раздел "профиль запуска" `environmentVariables` в *launchSettings.js*:
     * `ASPNETCORE_ENVIRONMENT`Для параметра проверить задано значение `"Development"` .
-    * Присвойте параметру `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` значение `"Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"`.
+    * Задайте для параметра `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` значение `"Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"`.
 
 В следующем примере компиляция среды выполнения включается в среде разработки для `IIS Express` `RazorPagesApp` профилей запуска и.
 
@@ -91,7 +93,7 @@ dotnet new webapp --razor-runtime-compilation
 
 В классе проекта не требуется вносить изменения в код `Startup` . Во время выполнения ASP.NET Core выполняет поиск [атрибута хостингстартуп на уровне сборки](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) в `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation` . `HostingStartup`Атрибут указывает код запуска приложения для выполнения. Код запуска включает компиляцию среды выполнения.
 
-## <a name="enable-runtime-compilation-for-a-razor-class-library"></a>Включение компиляции среды выполнения для Razor библиотеки классов
+## <a name="enable-runtime-compilation-for-a-no-locrazor-class-library"></a>Включение компиляции среды выполнения для Razor библиотеки классов
 
 Рассмотрим ситуацию, в которой Razor проект страниц ссылается на [ Razor БИБЛИОТЕКУ классов (РКЛ)](xref:razor-pages/ui-class) с именем *микласслиб*. РКЛ содержит файл *_layout. cshtml* , который используется всеми проектами MVC и Razor pages вашей команды. Необходимо включить компиляцию среды выполнения для файла *_layout. cshtml* в этой РКЛ. Внесите следующие изменения в Razor проект страниц.
 
@@ -104,7 +106,7 @@ dotnet new webapp --razor-runtime-compilation
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* Свойства [разоркомпилеонбуилд и разоркомпилеонпублиш](xref:razor-pages/sdk#properties) .
+* Свойства [ Razor компилеонбуилд и Razor компилеонпублиш](xref:razor-pages/sdk#properties) .
 * <xref:razor-pages/index>
 * <xref:mvc/views/overview>
 * <xref:razor-pages/sdk>
@@ -115,7 +117,7 @@ dotnet new webapp --razor-runtime-compilation
 
 Razorфайлы с расширением *. cshtml* компилируются как во время сборки, так и при публикации с помощью [ Razor пакета SDK](xref:razor-pages/sdk). Компиляцию в среде выполнения при необходимости можно включить, настроив приложение.
 
-## <a name="razor-compilation"></a>Razorкомпиляции
+## <a name="no-locrazor-compilation"></a>Razorкомпиляции
 
 Компиляция файлов во время сборки и времени публикации Razor по умолчанию включена Razor пакетом SDK. При включении компиляция среды выполнения дополняет компиляцию во время сборки, позволяя Razor обновлять файлы, если они редактируются.
 
@@ -125,7 +127,7 @@ Razorфайлы с расширением *. cshtml* компилируются 
 
 1. Установите [Microsoft. AspNetCore. MVC. Razor . ](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/)Пакет NuGet рунтимекомпилатион.
 
-1. обновите метод `Startup.ConfigureServices` в проекте, чтобы включить вызов <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*>. Пример.
+1. обновите метод `Startup.ConfigureServices` в проекте, чтобы включить вызов <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*>. Например:
 
     ```csharp
     public void ConfigureServices(IServiceCollection services)
@@ -159,7 +161,7 @@ Razorфайлы с расширением *. cshtml* компилируются 
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* Свойства [разоркомпилеонбуилд и разоркомпилеонпублиш](xref:razor-pages/sdk#properties) .
+* Свойства [ Razor компилеонбуилд и Razor компилеонпублиш](xref:razor-pages/sdk#properties) .
 * <xref:razor-pages/index>
 * <xref:mvc/views/overview>
 * <xref:razor-pages/sdk>
@@ -171,7 +173,7 @@ Razorфайлы с расширением *. cshtml* компилируются 
 
 RazorФайл компилируется во время выполнения, когда Razor вызывается связанная страница или представление MVC. Razorфайлы компилируются как во время сборки, так и при публикации с помощью [ Razor пакета SDK](xref:razor-pages/sdk).
 
-## <a name="razor-compilation"></a>Razorкомпиляции
+## <a name="no-locrazor-compilation"></a>Razorкомпиляции
 
 Компиляция файлов и времени публикации Razor по умолчанию включается Razor пакетом SDK. Редактирование Razor файлов после их обновления поддерживается во время сборки. По умолчанию в приложении развертываются только скомпилированные *Views.dll* и файлы с *. cshtml* или ссылки на сборки, необходимые для компиляции Razor файлов.
 
