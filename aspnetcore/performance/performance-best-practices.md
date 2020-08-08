@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 04/06/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: f74f6ce93093adbc931dd90b32a14de5d4f89096
-ms.sourcegitcommit: b0fa7ff0cb158277df61bcd08058a81222c3fe10
+ms.openlocfilehash: 0d99c5881b1ca786287d8643c82cab6a3f98f988
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87913889"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019863"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Рекомендации по повышению производительности ASP.NET Core
 
@@ -108,7 +110,7 @@ ASP.NET Core приложения предназначены для одновр
 
 ## <a name="keep-common-code-paths-fast"></a>Быстрое отслеживание общих путей кода
 
-Необходимо, чтобы весь код был быстрым. Часто называемые путями кода наиболее важны для оптимизации. Сюда входит следующее.
+Необходимо, чтобы весь код был быстрым. Часто называемые путями кода наиболее важны для оптимизации. К ним относятся:
 
 * Компоненты по промежуточного слоя в конвейере обработки запросов приложения, особенно по промежуточного слоя выполняются на раннем этапе конвейера. Эти компоненты сильно влияют на производительность.
 * Код, который выполняется для каждого запроса или несколько раз для каждого запроса. Например, пользовательское ведение журнала, обработчики авторизации или инициализацию временных служб.

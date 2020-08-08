@@ -5,6 +5,8 @@ description: Узнайте, как использовать атрибут ав
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/simple
-ms.openlocfilehash: 09514032349d489b73d5bb785f11e44ca18b169c
-ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
+ms.openlocfilehash: b503f5e79cbfbbd3e74e18356884c3223ede66a6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87160246"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019031"
 ---
 # <a name="simple-authorization-in-aspnet-core"></a>Простая Авторизация в ASP.NET Core
 
@@ -60,7 +62,7 @@ public class AccountController : Controller
 
 Теперь доступ к функции могут получить только пользователи, прошедшие проверку подлинности `Logout` .
 
-Можно также использовать атрибут, `AllowAnonymous` чтобы разрешить пользователям без проверки подлинности выполнять отдельные действия. Пример:
+Можно также использовать атрибут, `AllowAnonymous` чтобы разрешить пользователям без проверки подлинности выполнять отдельные действия. Например:
 
 ```csharp
 [Authorize]

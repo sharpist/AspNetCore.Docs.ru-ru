@@ -5,6 +5,8 @@ description: Сведения о реализации ASP.NET Core заголо�
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/context-headers
-ms.openlocfilehash: 0995cd80c10f638c90a60630378518988ffb89ed
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 572f930dbf78aaef1ed47d1a154b5ba56633b4f1
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060102"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018823"
 ---
 # <a name="context-headers-in-aspnet-core"></a>Заголовки контекста в ASP.NET Core
 

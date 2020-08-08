@@ -5,6 +5,8 @@ description: Узнайте, как контроллеры MVC ASP.NET Core яв
 ms.author: riande
 ms.date: 02/24/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/dependency-injection
-ms.openlocfilehash: bae31e38c3b4146ec5e4b7a398a2e0fa290fd34c
-ms.sourcegitcommit: 99c784a873b62fbd97a73c5c07f4fe7a7f5db638
+ms.openlocfilehash: aabb7f893fd9650e2e901dcfdfe845faba391435
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/27/2020
-ms.locfileid: "85503543"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019176"
 ---
 # <a name="dependency-injection-into-controllers-in-aspnet-core"></a>Внедрение зависимостей в контроллеры в ASP.NET Core
 
@@ -62,7 +64,7 @@ ms.locfileid: "85503543"
 
 Доступ к параметрам приложения или конфигурации из контроллера относится к типичным шаблонам. *Шаблон параметров*, описанный в разделе <xref:fundamentals/configuration/options>, является предпочтительным подходом для управления параметрами. Как правило, не следует напрямую внедрять <xref:Microsoft.Extensions.Configuration.IConfiguration> в контроллер.
 
-Создайте класс, представляющий параметры. Пример:
+Создайте класс, представляющий параметры. Например:
 
 [!code-csharp[](dependency-injection/3.1sample/ControllerDI/Models/SampleWebSettings.cs?name=snippet)]
 
@@ -126,7 +128,7 @@ ms.locfileid: "85503543"
 
 Доступ к параметрам приложения или конфигурации из контроллера относится к типичным шаблонам. *Шаблон параметров*, описанный в разделе <xref:fundamentals/configuration/options>, является предпочтительным подходом для управления параметрами. Как правило, не следует напрямую внедрять <xref:Microsoft.Extensions.Configuration.IConfiguration> в контроллер.
 
-Создайте класс, представляющий параметры. Пример:
+Создайте класс, представляющий параметры. Например:
 
 [!code-csharp[](dependency-injection/sample/ControllerDI/Models/SampleWebSettings.cs?name=snippet)]
 

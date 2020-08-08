@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: 96d24940af6c591e3c02bfa26ed9d7d6ea60d27d
-ms.sourcegitcommit: d00a200bc8347af794b24184da14ad5c8b6bba9a
+ms.openlocfilehash: 11d0c514dd15e787224510991ffb81680c9fc479
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86869982"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019346"
 ---
 # <a name="filters-in-aspnet-core"></a>Фильтры в ASP.NET Core
 
@@ -188,12 +190,12 @@ ASP.NET Core включает встроенные фильтры на осно�
 
 | Последовательность | Область фильтра | Метод фильтра |
 |:--------:|:------------:|:-------------:|
-| 1 | Global | `OnActionExecuting` |
+| 1 | Глобальный | `OnActionExecuting` |
 | 2 | Контроллер или Razor страница| `OnActionExecuting` |
 | 3 | Метод | `OnActionExecuting` |
 | 4 | Метод | `OnActionExecuted` |
 | 5 | Контроллер или Razor страница | `OnActionExecuted` |
-| 6 | Global | `OnActionExecuted` |
+| 6 | Глобальный | `OnActionExecuted` |
 
 ### <a name="controller-level-filters"></a>Фильтры на уровне контроллера
 
@@ -734,19 +736,19 @@ ASP.NET Core включает встроенные фильтры на осно�
 
 | Последовательность | Область фильтра | Метод фильтра |
 |:--------:|:------------:|:-------------:|
-| 1 | Global | `OnActionExecuting` |
+| 1 | Глобальный | `OnActionExecuting` |
 | 2 | Контроллер | `OnActionExecuting` |
 | 3 | Метод | `OnActionExecuting` |
 | 4 | Метод | `OnActionExecuted` |
 | 5 | Контроллер | `OnActionExecuted` |
-| 6 | Global | `OnActionExecuted` |
+| 6 | Глобальный | `OnActionExecuted` |
 
 Эта последовательность показывает:
 
 * Фильтр метода вкладывается в фильтр контроллера.
 * Фильтр контроллера вкладывается в глобальный фильтр.
 
-### <a name="controller-and-razor-page-level-filters"></a>RazorФильтры уровня контроллера и страницы
+### <a name="controller-and-no-locrazor-page-level-filters"></a>RazorФильтры уровня контроллера и страницы
 
 Каждый контроллер, наследуемый от базового класса <xref:Microsoft.AspNetCore.Mvc.Controller> включает методы [Controller.OnActionExecuting](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting*), [Controller.OnActionExecutionAsync](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*) и [Controller.OnActionExecuted](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted*)
 `OnActionExecuted`. Эти методы:
@@ -792,12 +794,12 @@ ASP.NET Core включает встроенные фильтры на осно�
 
 Рассмотрим три фильтра действий, показанные в предыдущем примере. Если свойство `Order` контроллера и глобальные фильтры имеют значения 1 и 2 соответственно, порядок выполнения инвертируется.
 
-| Последовательность | Область фильтра | Свойство`Order` | Метод фильтра |
+| Последовательность | Область фильтра | Свойство `Order` | Метод фильтра |
 |:--------:|:------------:|:-----------------:|:-------------:|
 | 1 | Метод | 0 | `OnActionExecuting` |
 | 2 | Контроллер | 1  | `OnActionExecuting` |
-| 3 | Global | 2  | `OnActionExecuting` |
-| 4 | Global | 2  | `OnActionExecuted` |
+| 3 | Глобальный | 2  | `OnActionExecuting` |
+| 4 | Глобальный | 2  | `OnActionExecuted` |
 | 5 | Контроллер | 1  | `OnActionExecuted` |
 | 6 | Метод | 0  | `OnActionExecuted` |
 

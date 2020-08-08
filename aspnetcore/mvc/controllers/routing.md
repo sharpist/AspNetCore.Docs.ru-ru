@@ -5,6 +5,8 @@ description: Узнайте, как в MVC ASP.NET Core используется
 ms.author: riande
 ms.date: 3/25/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 962b42239b2101fc95e55fb38ce214481bf0ef01
-ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
+ms.openlocfilehash: 4d367a6b15fdcf9ef6be1bac749368fd48fa259e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87444135"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020370"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Маршрутизация к действиям контроллера в ASP.NET Core
 
@@ -216,7 +218,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 * Выберите лучший кандидат.
 * Создание исключения.
 
-Пример:
+Например:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
@@ -413,7 +415,7 @@ ASP.NET Core имеет следующие шаблоны маршрутов:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet)]
 
-В предыдущем примере:
+В предшествующем примере:
 
 * Путь URL-адреса `/products` может совпадать`ProductsApi.ListProducts`
 * Путь URL-адреса `/products/5` может совпадать `ProductsApi.GetProduct(int)` .
@@ -428,10 +430,10 @@ ASP.NET Core имеет следующие шаблоны маршрутов:
 
 | attribute               | Объединяет с`[Route("Home")]` | Определение шаблона маршрута |
 | ----------------- | ------------ | --------- |
-| `[Route("")]` | Да | `"Home"` |
-| `[Route("Index")]` | Да | `"Home/Index"` |
+| `[Route("")]` | да | `"Home"` |
+| `[Route("Index")]` | да | `"Home/Index"` |
 | `[Route("/")]` | **Нет** | `""` |
-| `[Route("About")]` | Да | `"Home/About"` |
+| `[Route("About")]` | да | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
 <a name="oar"></a>
@@ -1009,7 +1011,7 @@ app.UseMvc(routes =>
 
 ### <a name="disambiguating-actions"></a>Разрешение неоднозначности действий
 
-Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Пример:
+Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Например:
 
 ```csharp
 public class ProductsController : Controller

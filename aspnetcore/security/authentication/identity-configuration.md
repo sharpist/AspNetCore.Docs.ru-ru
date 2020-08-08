@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/11/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,16 +16,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-configuration
-ms.openlocfilehash: 5c999b426742cf75b1997f5b40223e2dda112901
-ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
+ms.openlocfilehash: b7f6eaba1a0e819a077e3d63b4f997e75b8cd317
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87160288"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020604"
 ---
 # <a name="configure-aspnet-core-no-locidentity"></a>Настройка ASP.NET CoreIdentity
 
-ASP.NET Core Identity использует значения по умолчанию для таких параметров, как политика паролей, блокировка и конфигурация файлов cookie. Эти параметры можно переопределить в `Startup` классе.
+ASP.NET Core Identity использует значения по умолчанию для таких параметров, как политика паролей, блокировка и cookie Конфигурация. Эти параметры можно переопределить в `Startup` классе.
 
 ## <a name="no-locidentity-options"></a>Параметры Identity
 
@@ -33,7 +35,7 @@ ASP.NET Core Identity использует значения по умолчан�
 
 [ Identity Options. Claims Identity ](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.claimsidentity) указывает [ Identity Параметры утверждений](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions) со свойствами, приведенными в следующей таблице.
 
-| Свойство | Описание | По умолчанию |
+| Свойство | Описание | Значение по умолчанию |
 | -------- | ----------- | :-----: |
 | [ролеклаимтипе](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions.roleclaimtype) | Возвращает или задает тип утверждения, используемого для утверждения роли. | [ClaimTypes. Role](/dotnet/api/system.security.claims.claimtypes.role) |
 | [секуритистампклаимтипе](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions.securitystampclaimtype) | Возвращает или задает тип утверждения, используемого для утверждения метки безопасности. | `AspNet.Identity.SecurityStamp` |
@@ -58,10 +60,10 @@ ASP.NET Core Identity использует значения по умолчан�
 
 [ Identity Options. блокировкой](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.lockout) задает [локкаутоптионс](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions) со свойствами, показанными в таблице.
 
-| Свойство | Описание | По умолчанию |
+| Свойство | Описание | Значение по умолчанию |
 | -------- | ----------- | :-----: |
 | [алловедфорневусерс](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.allowedfornewusers) | Определяет, можно ли заблокировать нового пользователя. | `true` |
-| [дефаултлоккауттимеспан](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.defaultlockouttimespan) | Количество времени, в течение которого пользователь блокируется в случае блокировки. | 5 минут |
+| [дефаултлоккауттимеспан](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.defaultlockouttimespan) | Количество времени, в течение которого пользователь блокируется в случае блокировки. | 5 мин |
 | [максфаиледакцессаттемптс](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.maxfailedaccessattempts) | Число неудачных попыток доступа, пока пользователь не будет заблокирован, если блокировка включена. | 5 |
 
 ### <a name="password"></a>Пароль
@@ -79,7 +81,7 @@ ASP.NET Core Identity использует значения по умолчан�
 
 [ Identity Параметры. Password](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.password) задает [пассвордоптионс](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) с свойствами, показанными в таблице.
 
-| Свойство | Описание | По умолчанию |
+| Свойство | Описание | Значение по умолчанию |
 | -------- | ----------- | :-----: |
 | [рекуиредигит](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requiredigit) | Требуется число от 0-9 в пароле. | `true` |
 | [рекуиредленгс](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requiredlength) | Минимальная длина пароля. | 6 |
@@ -96,7 +98,7 @@ ASP.NET Core Identity использует значения по умолчан�
 
 [ Identity Параметры. Signing](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.signin) указывает [сигниноптионс](/dotnet/api/microsoft.aspnetcore.identity.signinoptions) со свойствами, показанными в таблице.
 
-| Свойство | Описание | По умолчанию |
+| Свойство | Описание | Значение по умолчанию |
 | -------- | ----------- | :-----: |
 | [рекуиреконфирмедемаил](/dotnet/api/microsoft.aspnetcore.identity.signinoptions.requireconfirmedemail) | Для входа требуется подтвержденное электронное письмо. | `false` |
 | [рекуиреконфирмедфоненумбер](/dotnet/api/microsoft.aspnetcore.identity.signinoptions.requireconfirmedphonenumber) | Для входа требуется подтвержденный номер телефона. | `false` |
@@ -120,18 +122,18 @@ ASP.NET Core Identity использует значения по умолчан�
 
 [ Identity Параметры. User](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.user) указывает [UserOptions](/dotnet/api/microsoft.aspnetcore.identity.useroptions) со свойствами, показанными в таблице.
 
-| Свойство | Описание | По умолчанию |
+| Свойство | Описание | Значение по умолчанию |
 | -------- | ----------- | :-----: |
 | [алловедусернамечарактерс](/dotnet/api/microsoft.aspnetcore.identity.useroptions.allowedusernamecharacters) | Допустимые символы в имени пользователя. | абкдефгхижклмнопкрстуввксиз<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>0123456789<br>-.\_@+ |
 | [рекуиреуникуимаил](/dotnet/api/microsoft.aspnetcore.identity.useroptions.requireuniqueemail) | Требует, чтобы каждый пользователь имел уникальный адрес электронной почты. | `false` |
 
-### <a name="cookie-settings"></a>Параметры файлов cookie
+### <a name="no-loccookie-settings"></a>ПараметрыCookie
 
-Настройте файл cookie приложения в `Startup.ConfigureServices` . [Конфигуреаппликатионкукие](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) должен вызываться **после** вызова метода `AddIdentity` или `AddDefaultIdentity` .
+Настройте приложение cookie в `Startup.ConfigureServices` . [Конфигуреаппликатион Cookie ](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) должен вызываться **после** вызова метода `AddIdentity` или `AddDefaultIdentity` .
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_cookie)]
 
-Дополнительные сведения см. в разделе [CookieAuthenticationOptions](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions).
+Дополнительные сведения см. в разделе [ Cookie AuthenticationOptions](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions).
 
 ## <a name="password-hasher-options"></a>Параметры хэша пароля
 

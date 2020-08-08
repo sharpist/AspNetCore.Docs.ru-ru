@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 04/17/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/formatting
-ms.openlocfilehash: e6b78af3eeb858310eb772fdf0034510c10351c0
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 8aa94bd1f33d1dd8ce8e7f50468ed60b4ccb2515
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400366"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019941"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Форматирование данных отклика в веб-API ASP.NET Core
 
@@ -143,7 +145,7 @@ services.AddControllers().AddJsonOptions(options =>
 });
 ```
 
-Параметры сериализации выходных данных для отдельных действий можно настроить с помощью `JsonResult`. Пример.
+Параметры сериализации выходных данных для отдельных действий можно настроить с помощью `JsonResult`. Например:
 
 ```csharp
 public IActionResult Get()
@@ -182,7 +184,7 @@ services.AddControllers().AddNewtonsoftJson(options =>
 });
 ```
 
-Параметры сериализации выходных данных для отдельных действий можно настроить с помощью `JsonResult`. Пример.
+Параметры сериализации выходных данных для отдельных действий можно настроить с помощью `JsonResult`. Например:
 
 ```csharp
 public IActionResult Get()
@@ -238,7 +240,7 @@ public IActionResult Get()
 
 Без `StringOutputFormatter`, встроенный модуль форматирования JSON форматирует типы возвращаемого значения `string`. Если встроенный модуль форматирования JSON удален и доступен модуль форматирования XML, то типы возвращаемого значения `string` форматирует модуль форматирования XML. В противном случае, `string` типы возвращаемого значения возвращают `406 Not Acceptable`.
 
-Без `HttpNoContentOutputFormatter` объекты со значением null форматируются с помощью настроенного модуля форматирования. Пример.
+Без `HttpNoContentOutputFormatter` объекты со значением null форматируются с помощью настроенного модуля форматирования. Например:
 
 * Форматировщик JSON возвращает ответ с текстом `null`.
 * Форматировщик XML возвращает пустой XML-элемент с атрибутом `xsi:nil="true"`.
@@ -250,7 +252,7 @@ public IActionResult Get()
 * В строке запроса или в части пути.
 * С использованием расширения файла конкретного формата, такого как XML или JSON.
 
-Сопоставление из пути запроса должно быть указано в маршруте, используемом API. Пример.
+Сопоставление из пути запроса должно быть указано в маршруте, используемом API. Например:
 
 [!code-csharp[](./formatting/sample/Controllers/ProductsController.cs?name=snippet)]
 

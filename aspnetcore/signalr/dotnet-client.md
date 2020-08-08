@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/14/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/dotnet-client
-ms.openlocfilehash: 54e86479b9f9f0acc861769f9ab78958f79acfd3
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: a03598f887d628c8a2b6720d99826d4aef4e52fa
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400145"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020006"
 ---
-# <a name="aspnet-core-signalr-net-client"></a>ASP.NET Core SignalR клиент .NET
+# <a name="aspnet-core-no-locsignalr-net-client"></a>ASP.NET Core SignalR клиент .NET
 
 SignalRКлиентская библиотека ASP.NET Core .NET позволяет взаимодействовать с SignalR концентраторами из приложений .NET.
 
@@ -30,7 +32,7 @@ SignalRКлиентская библиотека ASP.NET Core .NET позвол�
 
 Пример кода в этой статье — это приложение WPF, которое использует клиент ASP.NET Core SignalR .NET.
 
-## <a name="install-the-signalr-net-client-package"></a>Установка SignalR клиентского пакета .NET
+## <a name="install-the-no-locsignalr-net-client-package"></a>Установка SignalR клиентского пакета .NET
 
 Элемент [Microsoft. AspNetCore. SignalR . ](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client)Для подключения клиентов .NET к концентраторам требуется клиентский пакет SignalR .
 

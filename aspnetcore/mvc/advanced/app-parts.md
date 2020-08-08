@@ -5,6 +5,8 @@ description: Совместное использование контролле�
 ms.author: riande
 ms.date: 11/11/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/extensibility/app-parts
-ms.openlocfilehash: cb1f8b045b8f2b143afc7895234733fbfb02cb07
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 690ef0843f567dc2335f4d51436e428207fd6eb1
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399755"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019577"
 ---
-# <a name="share-controllers-views-razor-pages-and-more-with-application-parts"></a>Совместное использование контроллеров, представлений, Razor страниц и других приложений с частями приложения
+# <a name="share-controllers-views-no-locrazor-pages-and-more-with-application-parts"></a>Совместное использование контроллеров, представлений, Razor страниц и других приложений с частями приложения
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -72,7 +74,7 @@ ms.locfileid: "85399755"
 * <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.TagHelperFeatureProvider>
 * <xref:Microsoft.AspNetCore.Mvc.Razor.Compilation.MetadataReferenceFeatureProvider>
 * <xref:Microsoft.AspNetCore.Mvc.Razor.Compilation.ViewsFeatureProvider>
-* `internal class` [RazorCompiledItemFeatureProvider](https://github.com/dotnet/AspNetCore/blob/master/src/Mvc/Mvc.Razor/src/ApplicationParts/RazorCompiledItemFeatureProvider.cs#L14)
+* `internal class`[ Razor Компиледитемфеатурепровидер](https://github.com/dotnet/AspNetCore/blob/master/src/Mvc/Mvc.Razor/src/ApplicationParts/RazorCompiledItemFeatureProvider.cs#L14)
 
 Поставщики компонентов наследуют от <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider`1>, где `T` является типом компонента. Поставщики компонентов можно реализовать для любого из перечисленных выше типов компонентов. Порядок поставщиков компонентов в `ApplicationPartManager.FeatureProviders` может повлиять на поведение во время выполнения. Поставщики, добавленные позднее, могут реагировать на действия, выполняемые ранее добавленными поставщиками.
 

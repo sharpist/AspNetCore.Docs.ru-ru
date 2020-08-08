@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/13/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: af0f07a0f50a79f25b6a14459402f9dd8b59dae2
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 25f1716b5c80492edb72bc9555954c9c93c02a49
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408257"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018770"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>Вспомогательная функция тега привязки в ASP.NET Core MVC
 
@@ -181,7 +183,7 @@ ms.locfileid: "85408257"
 
 Атрибут [asp-area](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area*) указывает имя области, используемое платформой для определения соответствующего маршрута. Ниже приведен пример того, как атрибут `asp-area` приводит к повторному сопоставлению маршрутов.
 
-#### <a name="usage-in-razor-pages"></a>Использование на Razor страницах
+#### <a name="usage-in-no-locrazor-pages"></a>Использование на Razor страницах
 
 RazorОбласти страниц поддерживаются в ASP.NET Core 2,1 или более поздней версии.
 
@@ -190,7 +192,7 @@ RazorОбласти страниц поддерживаются в ASP.NET Core 
 * **{Имя проекта}**
   * **wwwroot**
   * **Области**
-    * **Активных**
+    * **Сеансы**
       * **Страницы**
         * *\_Виевстарт. cshtml*
         * *Index.cshtml*
@@ -211,7 +213,7 @@ RazorОбласти страниц поддерживаются в ASP.NET Core 
 > Для поддержки областей в Razor приложении для страниц выполните одно из следующих `Startup.ConfigureServices` действий в.
 >
 > * Задайте [версию совместимости](xref:mvc/compatibility-version) 2.1 или более позднюю.
-> * Задайте для свойства [RazorPagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) значение `true`:
+> * Задайте для свойства [ Razor Пажесоптионс. алловареас](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) значение `true` :
 >
 >   [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_AllowAreas)]
 
@@ -226,7 +228,7 @@ RazorОбласти страниц поддерживаются в ASP.NET Core 
       * **Контроллеры**
         * *HomeController.cs*
       * **Представления**
-        * **Главная**
+        * **Корневая папка**
           * *AboutBlog.cshtml*
           * *Index.cshtml*
         * *\_Виевстарт. cshtml*
@@ -249,7 +251,7 @@ RazorОбласти страниц поддерживаются в ASP.NET Core 
 
 ### <a name="asp-protocol"></a>asp-protocol
 
-Атрибут [asp-protocol](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Protocol*) предназначен для указания протокола (например, `https`) в URL-адресе. Пример.
+Атрибут [asp-protocol](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Protocol*) предназначен для указания протокола (например, `https`) в URL-адресе. Например:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspProtocol)]
 
@@ -263,7 +265,7 @@ RazorОбласти страниц поддерживаются в ASP.NET Core 
 
 ### <a name="asp-host"></a>asp-host
 
-Атрибут [asp-host](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Host*) предназначен для определения имени узла в URL-адресе. Пример.
+Атрибут [asp-host](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Host*) предназначен для определения имени узла в URL-адресе. Например:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspHost)]
 

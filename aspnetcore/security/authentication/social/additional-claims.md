@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/15/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/social/additional-claims
-ms.openlocfilehash: 291897b06d3d8294bc170996683f36532712ebe4
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f7a440a13891cd51226cad12924cfc65684632ea
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399014"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020188"
 ---
 # <a name="persist-additional-claims-and-tokens-from-external-providers-in-aspnet-core"></a>Сохранение дополнительных утверждений и маркеров от внешних поставщиков в ASP.NET Core
 
@@ -80,19 +82,19 @@ options.Scope.Add("https://www.googleapis.com/auth/user.birthday.read");
 
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=35-51)]
 
-По умолчанию утверждения пользователя хранятся в файле cookie проверки подлинности. Если файл cookie для проверки подлинности слишком большой, это может привести к сбою приложения по следующим причинам:
+По умолчанию утверждения пользователя хранятся в проверке подлинности cookie . Если проверка подлинности cookie слишком велика, это может привести к сбою приложения по следующим причинам:
 
-* Браузер обнаруживает, что заголовок файла cookie слишком длинный.
+* Браузер обнаруживает, что cookie заголовок слишком длинный.
 * Общий размер запроса слишком велик.
 
 Если для обработки запросов пользователей требуется большой объем пользовательских данных:
 
 * Ограничьте количество и размер утверждений пользователей для обработки запроса только тем, что требуется приложению.
-* Используйте пользовательский <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> по промежуточного слоя для проверки подлинности файлов cookie <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> для хранения удостоверений в запросах. Сохраняйте большие объемы информации об удостоверениях на сервере, при этом клиенту отправляется только небольшой ключ идентификатора сеанса.
+* Используйте пользовательский <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> по Cookie промежуточного слоя для проверки подлинности <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> для хранения удостоверений в запросах. Сохраняйте большие объемы информации об удостоверениях на сервере, при этом клиенту отправляется только небольшой ключ идентификатора сеанса.
 
 ## <a name="save-the-access-token"></a>Сохранение маркера доступа
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*>Определяет, должны ли маркеры доступа и обновления храниться в <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> после успешной авторизации. `SaveTokens`по `false` умолчанию имеет значение, чтобы уменьшить размер файла cookie окончательной проверки подлинности.
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*>Определяет, должны ли маркеры доступа и обновления храниться в <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> после успешной авторизации. `SaveTokens`по `false` умолчанию имеет значение, чтобы уменьшить размер окончательной проверки подлинности cookie .
 
 Пример приложения задает для параметра значение `SaveTokens` `true` in <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> :
 
@@ -220,19 +222,19 @@ options.Scope.Add("https://www.googleapis.com/auth/user.birthday.read");
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=35-51)]
 
-По умолчанию утверждения пользователя хранятся в файле cookie проверки подлинности. Если файл cookie для проверки подлинности слишком большой, это может привести к сбою приложения по следующим причинам:
+По умолчанию утверждения пользователя хранятся в проверке подлинности cookie . Если проверка подлинности cookie слишком велика, это может привести к сбою приложения по следующим причинам:
 
-* Браузер обнаруживает, что заголовок файла cookie слишком длинный.
+* Браузер обнаруживает, что cookie заголовок слишком длинный.
 * Общий размер запроса слишком велик.
 
 Если для обработки запросов пользователей требуется большой объем пользовательских данных:
 
 * Ограничьте количество и размер утверждений пользователей для обработки запроса только тем, что требуется приложению.
-* Используйте пользовательский <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> по промежуточного слоя для проверки подлинности файлов cookie <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> для хранения удостоверений в запросах. Сохраняйте большие объемы информации об удостоверениях на сервере, при этом клиенту отправляется только небольшой ключ идентификатора сеанса.
+* Используйте пользовательский <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> по Cookie промежуточного слоя для проверки подлинности <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> для хранения удостоверений в запросах. Сохраняйте большие объемы информации об удостоверениях на сервере, при этом клиенту отправляется только небольшой ключ идентификатора сеанса.
 
 ## <a name="save-the-access-token"></a>Сохранение маркера доступа
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*>Определяет, должны ли маркеры доступа и обновления храниться в <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> после успешной авторизации. `SaveTokens`по `false` умолчанию имеет значение, чтобы уменьшить размер файла cookie окончательной проверки подлинности.
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*>Определяет, должны ли маркеры доступа и обновления храниться в <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> после успешной авторизации. `SaveTokens`по `false` умолчанию имеет значение, чтобы уменьшить размер окончательной проверки подлинности cookie .
 
 Пример приложения задает для параметра значение `SaveTokens` `true` in <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> :
 

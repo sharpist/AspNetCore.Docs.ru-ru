@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 03/19/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/google-logins
-ms.openlocfilehash: ba0b9a0da30f761f12f6015dace5ba8046535761
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 7a10b66be7f4dda25f94437b55bad9746bda97e0
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405423"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020487"
 ---
 # <a name="google-external-login-setup-in-aspnet-core"></a>Настройка внешнего входа Google в ASP.NET Core
 
@@ -32,7 +34,7 @@ ms.locfileid: "85405423"
 * Установите [Microsoft. AspNetCore. Authentication. Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google).
 * Перейдите к разделу [Интеграция Google-входа в веб-приложение](https://developers.google.com/identity/sign-in/web/sign-in) и выберите **Настройка проекта**.
 * В диалоговом окне **Настройка клиента OAuth** выберите **веб-сервер**.
-* В текстовом поле " **зарегистрированные URI перенаправления** " задайте URI перенаправления. Например `https://localhost:44312/signin-google`.
+* В текстовом поле " **зарегистрированные URI перенаправления** " задайте URI перенаправления. Например, `https://localhost:44312/signin-google`
 * Сохраните **идентификатор клиента** и **секрет клиента**.
 * При развертывании сайта зарегистрируйте новый общедоступный URL-адрес из **консоли Google**.
 
@@ -76,7 +78,7 @@ ms.locfileid: "85405423"
 
 Сегмент URI `/signin-google` задается в качестве обратного вызова по умолчанию для поставщика проверки подлинности Google. Вы можете изменить URI обратного вызова по умолчанию при настройке по промежуточного слоя для проверки подлинности Google с помощью унаследованного свойства [ремотеаусентикатионоптионс. каллбаккпас](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) класса [гуглеоптионс](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) .
 
-## <a name="troubleshooting"></a>Устранение неполадок
+## <a name="troubleshooting"></a>Диагностика
 
 * Если вход не работает и вы не получаете никаких ошибок, переключитесь в режим разработки, чтобы упростить отладку.
 * Если Identity не настроен с помощью вызова `services.AddIdentity` в `ConfigureServices` , попытка проверки подлинности результатов в *ArgumentException: необходимо указать параметр "сигнинсчеме"*. Шаблон проекта, используемый в этом руководстве, гарантирует, что это будет сделано.

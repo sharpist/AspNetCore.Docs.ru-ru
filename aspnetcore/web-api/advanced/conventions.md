@@ -7,6 +7,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/conventions
-ms.openlocfilehash: eece8130c152fdada1e1d86cf3c94932c5ee9f63
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e18a2096c3b9fa788ba2a9713d0f25c1e76af2db
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408452"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019967"
 ---
 # <a name="use-web-api-conventions"></a>Использование соглашений веб-API
 
@@ -81,7 +83,7 @@ ASP.NET Core MVC 2.2 и более поздних версий включает 
 
 ### <a name="response-types"></a>Типы ответов
 
-Эти методы помечаются атрибутами `[ProducesResponseType]` или `[ProducesDefaultResponseType]`. Пример.
+Эти методы помечаются атрибутами `[ProducesResponseType]` или `[ProducesDefaultResponseType]`. Например:
 
 ```csharp
 public static class MyAppConventions
@@ -101,7 +103,7 @@ public static class MyAppConventions
 
 ### <a name="naming-requirements"></a>Требования к именам
 
-Атрибуты `[ApiConventionNameMatch]` и `[ApiConventionTypeMatch]` можно применить к методу соглашения, определяющему действия, к которым они применяются. Пример.
+Атрибуты `[ApiConventionNameMatch]` и `[ApiConventionTypeMatch]` можно применить к методу соглашения, определяющему действия, к которым они применяются. Например:
 
 ```csharp
 [ProducesResponseType(StatusCodes.Status200OK)]

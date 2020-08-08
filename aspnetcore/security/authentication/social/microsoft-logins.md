@@ -7,6 +7,8 @@ ms.custom: mvc
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/microsoft-logins
-ms.openlocfilehash: df3e738880902e3005221c6047b6be9e924f2929
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ce0e56595611a8a34d0ad11680e67e2252da66c6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406138"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020617"
 ---
 # <a name="microsoft-account-external-login-setup-with-aspnet-core"></a>Настройка внешнего входа учетной записи Майкрософт с ASP.NET Core
 
@@ -43,7 +45,7 @@ ms.locfileid: "85406138"
 
 ### <a name="create-client-secret"></a>Создать секрет клиента
 
-* В левой области выберите **сертификаты & секреты**.
+* В области слева щелкните **Сертификаты и секреты**.
 * В разделе **секреты клиента**выберите **новый секрет клиента** .
 
   * Добавьте описание секрета клиента.
@@ -89,7 +91,7 @@ ms.locfileid: "85406138"
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
-## <a name="troubleshooting"></a>Устранение неполадок
+## <a name="troubleshooting"></a>Диагностика
 
 * Если поставщик учетных записей Майкрософт перенаправит вас на страницу ошибки входа, обратите внимание на заголовок ошибки и описание параметры строки запроса непосредственно после `#` (хэш-кода) в универсальном коде ресурса (URI).
 

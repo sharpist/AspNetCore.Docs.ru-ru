@@ -6,6 +6,8 @@ ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 12/18/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: b3dcb3a80e8d5150d8513ef558531749d0884568
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 6ec531a04a220f75f5793cb2c7b5232908dbd883
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400158"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019161"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Привязка модели в ASP.NET Core
 
@@ -155,13 +157,13 @@ public class Pet
 
 ### <a name="additional-sources"></a>Дополнительные источники
 
-Исходные данные предоставляются системой привязки модели *поставщиками значений*. Вы можете записать и зарегистрировать пользовательские поставщики значений, которые получают данные для привязки модели из других источников. Например, вам могут потребоваться данные из файлов cookie или состояния сеанса. Для получения данных из нового источника:
+Исходные данные предоставляются системой привязки модели *поставщиками значений*. Вы можете записать и зарегистрировать пользовательские поставщики значений, которые получают данные для привязки модели из других источников. Например, могут потребоваться данные из cookie s или из состояния сеанса. Для получения данных из нового источника:
 
 * Создайте класс, реализующий `IValueProvider`.
 * Создайте класс, реализующий `IValueProviderFactory`.
 * Зарегистрируйте класс фабрики в `Startup.ConfigureServices`.
 
-Пример приложения включает пример [поставщика значений](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProvider.cs) и [фабрики](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProviderFactory.cs), которая получает значения из файлов cookie. Ниже приведен код регистрации в `Startup.ConfigureServices`:
+Пример приложения включает в себя [поставщик значений](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProvider.cs) и пример [фабрики](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProviderFactory.cs) , который получает значения из cookie s. Ниже приведен код регистрации в `Startup.ConfigureServices`:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=4)]
 
@@ -208,7 +210,7 @@ public class Pet
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
 * [Перечисление](xref:System.ComponentModel.EnumConverter)
-* [Устройства](xref:System.ComponentModel.GuidConverter)
+* [Guid](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [Временной](xref:System.ComponentModel.TimeSpanConverter)
@@ -282,13 +284,13 @@ public IActionResult OnPost(
 
 ### <a name="bindrequired-attribute"></a>Атрибут [BindRequired]
 
-Может применяться только к свойствам модели, а не к параметрам метода. Приводит к тому, что привязка модели добавляет ошибку состояния модели, если привязка для свойства модели невозможна. Ниже приведен пример:
+Может применяться только к свойствам модели, а не к параметрам метода. Приводит к тому, что привязка модели добавляет ошибку состояния модели, если привязка для свойства модели невозможна. Ниже приведен пример.
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
 
 ### <a name="bindnever-attribute"></a>Атрибут [BindNever]
 
-Может применяться только к свойствам модели, а не к параметрам метода. Запрещает привязке модели задавать свойство модели. Ниже приведен пример:
+Может применяться только к свойствам модели, а не к параметрам метода. Запрещает привязке модели задавать свойство модели. Ниже приведен пример.
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
@@ -314,7 +316,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="collections"></a>Коллекции
 
-Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример.
+Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
 
 * Предположим, что параметром для привязки является массив с именем `selectedCourses`:
 
@@ -359,7 +361,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="dictionaries"></a>Словари
 
-Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример.
+Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
 
 * Предположим, что целевой параметр является `Dictionary<int, string>` с именем `selectedCourses`:
 
@@ -488,7 +490,7 @@ ASP.NET Core выбирает форматировщики входных дан
 
 ## <a name="manual-model-binding"></a>Привязка модели вручную 
 
-Привязка модели может вызываться вручную с помощью метода <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>. Этот метод определен в классах `ControllerBase` и `PageModel`. Перегрузки метода позволяют задать поставщик префиксов и значений. Этот метод возвращает `false` при сбое привязки модели. Ниже приведен пример:
+Привязка модели может вызываться вручную с помощью метода <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>. Этот метод определен в классах `ControllerBase` и `PageModel`. Перегрузки метода позволяют задать поставщик префиксов и значений. Этот метод возвращает `false` при сбое привязки модели. Ниже приведен пример.
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 
@@ -641,13 +643,13 @@ public class Pet
 
 ### <a name="additional-sources"></a>Дополнительные источники
 
-Исходные данные предоставляются системой привязки модели *поставщиками значений*. Вы можете записать и зарегистрировать пользовательские поставщики значений, которые получают данные для привязки модели из других источников. Например, вам могут потребоваться данные из файлов cookie или состояния сеанса. Для получения данных из нового источника:
+Исходные данные предоставляются системой привязки модели *поставщиками значений*. Вы можете записать и зарегистрировать пользовательские поставщики значений, которые получают данные для привязки модели из других источников. Например, могут потребоваться данные из cookie s или из состояния сеанса. Для получения данных из нового источника:
 
 * Создайте класс, реализующий `IValueProvider`.
 * Создайте класс, реализующий `IValueProviderFactory`.
 * Зарегистрируйте класс фабрики в `Startup.ConfigureServices`.
 
-Пример приложения включает пример [поставщика значений](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProvider.cs) и [фабрики](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProviderFactory.cs), которая получает значения из файлов cookie. Ниже приведен код регистрации в `Startup.ConfigureServices`:
+Пример приложения включает в себя [поставщик значений](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProvider.cs) и пример [фабрики](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProviderFactory.cs) , который получает значения из cookie s. Ниже приведен код регистрации в `Startup.ConfigureServices`:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=3)]
 
@@ -694,7 +696,7 @@ public class Pet
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
 * [Перечисление](xref:System.ComponentModel.EnumConverter)
-* [Устройства](xref:System.ComponentModel.GuidConverter)
+* [Guid](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [Временной](xref:System.ComponentModel.TimeSpanConverter)
@@ -768,13 +770,13 @@ public IActionResult OnPost(
 
 ### <a name="bindrequired-attribute"></a>Атрибут [BindRequired]
 
-Может применяться только к свойствам модели, а не к параметрам метода. Приводит к тому, что привязка модели добавляет ошибку состояния модели, если привязка для свойства модели невозможна. Ниже приведен пример:
+Может применяться только к свойствам модели, а не к параметрам метода. Приводит к тому, что привязка модели добавляет ошибку состояния модели, если привязка для свойства модели невозможна. Ниже приведен пример.
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
 
 ### <a name="bindnever-attribute"></a>Атрибут [BindNever]
 
-Может применяться только к свойствам модели, а не к параметрам метода. Запрещает привязке модели задавать свойство модели. Ниже приведен пример:
+Может применяться только к свойствам модели, а не к параметрам метода. Запрещает привязке модели задавать свойство модели. Ниже приведен пример.
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
@@ -800,7 +802,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="collections"></a>Коллекции
 
-Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример.
+Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
 
 * Предположим, что параметром для привязки является массив с именем `selectedCourses`:
 
@@ -845,7 +847,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="dictionaries"></a>Словари
 
-Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример.
+Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
 
 * Предположим, что целевой параметр является `Dictionary<int, string>` с именем `selectedCourses`:
 
@@ -956,7 +958,7 @@ ASP.NET Core выбирает форматировщики входных дан
 
 ## <a name="manual-model-binding"></a>Привязка модели вручную
 
-Привязка модели может вызываться вручную с помощью метода <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>. Этот метод определен в классах `ControllerBase` и `PageModel`. Перегрузки метода позволяют задать поставщик префиксов и значений. Этот метод возвращает `false` при сбое привязки модели. Ниже приведен пример:
+Привязка модели может вызываться вручную с помощью метода <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>. Этот метод определен в классах `ControllerBase` и `PageModel`. Перегрузки метода позволяют задать поставщик префиксов и значений. Этот метод возвращает `false` при сбое привязки модели. Ниже приведен пример.
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 
