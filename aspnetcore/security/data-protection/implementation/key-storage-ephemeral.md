@@ -5,6 +5,8 @@ description: Сведения о реализации ASP.NET Core времен�
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-ephemeral
-ms.openlocfilehash: baec19ef0c0b1e2bf5c176bf1b3c2245de0d3dd0
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f51553385d9481a1e96fe3e1a14e51e470b0e735
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408920"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018264"
 ---
 # <a name="ephemeral-data-protection-providers-in-aspnet-core"></a>Временные поставщики защиты данных в ASP.NET Core
 

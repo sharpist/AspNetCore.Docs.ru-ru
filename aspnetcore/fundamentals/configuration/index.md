@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 3/29/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 9f143523a6d02ac018ad2a869cc9d768ee25681f
-ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
+ms.openlocfilehash: 2352bbaa3c4123cd588609e22b65cd9e268f5637
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87819267"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017666"
 ---
 # <a name="configuration-in-aspnet-core"></a>Конфигурация в .NET Core
 
@@ -356,6 +358,8 @@ API конфигурации имеет особые правила обрабо
 | `SQLAZURECONNSTR_{KEY}`  | `ConnectionStrings:{KEY}`   | Ключ: `ConnectionStrings:{KEY}_ProviderName`:<br>Значение: `System.Data.SqlClient`  |
 | `SQLCONNSTR_{KEY}`       | `ConnectionStrings:{KEY}`   | Ключ: `ConnectionStrings:{KEY}_ProviderName`:<br>Значение: `System.Data.SqlClient`  |
 
+<a name="fcp"></a>
+
 ## <a name="file-configuration-provider"></a>Поставщик конфигурации файла
 
 <xref:Microsoft.Extensions.Configuration.FileConfigurationProvider> является базовым классом для загрузки конфигурации из файловой системы. Следующие поставщики конфигурации являются производными от `FileConfigurationProvider`:
@@ -425,8 +429,6 @@ API конфигурации имеет особые правила обрабо
 В следующем коде из [примера загрузки](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) отображаются некоторые из перечисленных выше параметров конфигурации:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
-
-<a name="fcp"></a>
 
 ### <a name="xml-configuration-provider"></a>Поставщик конфигурации XML
 

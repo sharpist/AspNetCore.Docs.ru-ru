@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 4/20/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/app-secrets
-ms.openlocfilehash: a12262d182ce84a326086935627b55d2edc4885e
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 917e698d34a5d4b6c2c3f4737c08f1a590f5df1a
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407009"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017952"
 ---
 # <a name="safe-storage-of-app-secrets-in-development-in-aspnet-core"></a>Надежное хранение секретов приложений в разработке в ASP.NET Core
 
@@ -97,7 +99,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345"
 
 В предыдущем примере двоеточие обозначает, что `Movies` является объектным литералом со `ServiceApiKey` свойством.
 
-Диспетчер секретов можно использовать и в других каталогах. Используйте `--project` параметр, чтобы указать путь файловой системы, в котором существует файл *. csproj* . Пример.
+Диспетчер секретов можно использовать и в других каталогах. Используйте `--project` параметр, чтобы указать путь файловой системы, в котором существует файл *. csproj* . Например:
 
 ```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"
@@ -105,7 +107,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ### <a name="json-structure-flattening-in-visual-studio"></a>Сведение структуры JSON в Visual Studio
 
-Жест **управления пользовательскими секретами** в Visual Studio открывает *secrets.jsдля* файла в текстовом редакторе. Замените содержимое *secrets.jsна* пары "ключ-значение", которые необходимо сохранить. Пример.
+Жест **управления пользовательскими секретами** в Visual Studio открывает *secrets.jsдля* файла в текстовом редакторе. Замените содержимое *secrets.jsна* пары "ключ-значение", которые необходимо сохранить. Например:
 
 ```json
 {
@@ -182,13 +184,13 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 [!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
-Более безопасный подход заключается в хранении пароля в качестве секрета. Пример.
+Более безопасный подход заключается в хранении пароля в качестве секрета. Например:
 
 ```dotnetcli
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Удалите `Password` пару "ключ-значение" из строки подключения в *appsettings.json*. Пример.
+Удалите `Password` пару "ключ-значение" из строки подключения в *appsettings.json*. Например:
 
 [!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
 
@@ -340,7 +342,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345"
 
 В предыдущем примере двоеточие обозначает, что `Movies` является объектным литералом со `ServiceApiKey` свойством.
 
-Диспетчер секретов можно использовать и в других каталогах. Используйте `--project` параметр, чтобы указать путь файловой системы, в котором существует файл *. csproj* . Пример.
+Диспетчер секретов можно использовать и в других каталогах. Используйте `--project` параметр, чтобы указать путь файловой системы, в котором существует файл *. csproj* . Например:
 
 ```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"
@@ -348,7 +350,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ### <a name="json-structure-flattening-in-visual-studio"></a>Сведение структуры JSON в Visual Studio
 
-Жест **управления пользовательскими секретами** в Visual Studio открывает *secrets.jsдля* файла в текстовом редакторе. Замените содержимое *secrets.jsна* пары "ключ-значение", которые необходимо сохранить. Пример.
+Жест **управления пользовательскими секретами** в Visual Studio открывает *secrets.jsдля* файла в текстовом редакторе. Замените содержимое *secrets.jsна* пары "ключ-значение", которые необходимо сохранить. Например:
 
 ```json
 {
@@ -427,13 +429,13 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
-Более безопасный подход заключается в хранении пароля в качестве секрета. Пример.
+Более безопасный подход заключается в хранении пароля в качестве секрета. Например:
 
 ```dotnetcli
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Удалите `Password` пару "ключ-значение" из строки подключения в *appsettings.json*. Пример.
+Удалите `Password` пару "ключ-значение" из строки подключения в *appsettings.json*. Например:
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings.json?highlight=3)]
 
