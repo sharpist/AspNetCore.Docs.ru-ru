@@ -1,181 +1,258 @@
 ---
-title: Управление состоянием ASP.NET Core [Blazor
+title: Управление состоянием ASP.NET Core Blazor
 author: guardrex
-description: Сведения о том, как сохранить состояние в приложениях [Blazor Server.
+description: Сведения о том, как сохранить состояние в приложениях Blazor Server.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/22/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/state-management
-ms.openlocfilehash: a6c646425145855538f408ec6cafdb151cd24b86
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+zone_pivot_groups: blazor-hosting-models
+ms.openlocfilehash: e4ec360e1f9fb0bc5784b3120d7842faf24cfa5b
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401952"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87818772"
 ---
-# <a name="aspnet-core-blazor-state-management"></a><span data-ttu-id="0646f-103">Управление состоянием ASP.NET Core [Blazor</span><span class="sxs-lookup"><span data-stu-id="0646f-103">ASP.NET Core [Blazor state management</span></span>
+# <a name="aspnet-core-no-locblazor-state-management"></a><span data-ttu-id="cb4d2-103">Управление состоянием ASP.NET Core Blazor</span><span class="sxs-lookup"><span data-stu-id="cb4d2-103">ASP.NET Core Blazor state management</span></span>
 
-<span data-ttu-id="0646f-104">Автор: [Стив Сандерсон](https://github.com/SteveSandersonMS) (Steve Sanderson)</span><span class="sxs-lookup"><span data-stu-id="0646f-104">By [Steve Sanderson](https://github.com/SteveSandersonMS)</span></span>
+<span data-ttu-id="cb4d2-104">Авторы: [Стив Сандерсон (Steve Sanderson)](https://github.com/SteveSandersonMS) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="cb4d2-104">By [Steve Sanderson](https://github.com/SteveSandersonMS) and [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="0646f-105">[Blazor Server — это платформа приложений с отслеживанием состояния.</span><span class="sxs-lookup"><span data-stu-id="0646f-105">[Blazor Server is a stateful app framework.</span></span> <span data-ttu-id="0646f-106">В большинстве случаев приложение поддерживает постоянное подключение к серверу.</span><span class="sxs-lookup"><span data-stu-id="0646f-106">Most of the time, the app maintains an ongoing connection to the server.</span></span> <span data-ttu-id="0646f-107">Состояние пользователя хранится в памяти сервера в *канале*.</span><span class="sxs-lookup"><span data-stu-id="0646f-107">The user's state is held in the server's memory in a *circuit*.</span></span> 
+::: zone pivot="webassembly"
 
-<span data-ttu-id="0646f-108">Ниже приведены примеры состояния, удерживаемого для канала пользователя.</span><span class="sxs-lookup"><span data-stu-id="0646f-108">Examples of state held for a user's circuit include:</span></span>
+<span data-ttu-id="cb4d2-105">Данные о состоянии пользователя, создаваемые в приложении Blazor WebAssembly, хранятся в памяти браузера.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-105">User state created in a Blazor WebAssembly app is held in the browser's memory.</span></span>
 
-* <span data-ttu-id="0646f-109">Отображаемый пользовательский интерфейс. Иерархия экземпляров компонента и их последних выходных данных отрисовки.</span><span class="sxs-lookup"><span data-stu-id="0646f-109">The rendered UI: The hierarchy of component instances and their most recent render output.</span></span>
-* <span data-ttu-id="0646f-110">Значения всех полей и свойств в экземплярах компонента.</span><span class="sxs-lookup"><span data-stu-id="0646f-110">The values of any fields and properties in component instances.</span></span>
-* <span data-ttu-id="0646f-111">Данные, хранящиеся во [внедрениях зависимостей (DI)](xref:fundamentals/dependency-injection) экземпляров службы, областью действия которых является канал.</span><span class="sxs-lookup"><span data-stu-id="0646f-111">Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit.</span></span>
+<span data-ttu-id="cb4d2-106">Ниже приведены примеры данных о состоянии пользователя, хранящиеся в памяти браузера.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-106">Examples of user state held in browser memory include:</span></span>
 
-> [!NOTE]
-> <span data-ttu-id="0646f-112">В этой статье рассматривается сохранение состояния в приложениях [Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="0646f-112">This article addresses state persistence in [Blazor Server apps.</span></span> <span data-ttu-id="0646f-113">В приложениях [Blazor WebAssembly можно использовать [сохранение состояния на стороне клиента в браузере](#client-side-in-the-browser), но для этого требуются пользовательские решения или сторонние пакеты, что выходит за рамки этой статьи.</span><span class="sxs-lookup"><span data-stu-id="0646f-113">[Blazor WebAssembly apps can take advantage of [client-side state persistence in the browser](#client-side-in-the-browser) but require custom solutions or 3rd party packages beyond the scope of this article.</span></span>
+* <span data-ttu-id="cb4d2-107">Иерархия экземпляров компонента и их последних выходных данных отрисовки в преобразованном для просмотра пользовательском интерфейсе.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-107">The hierarchy of component instances and their most recent render output in the rendered UI.</span></span>
+* <span data-ttu-id="cb4d2-108">Значения полей и свойств в экземплярах компонента.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-108">The values of fields and properties in component instances.</span></span>
+* <span data-ttu-id="cb4d2-109">Данные, хранящиеся во [внедрениях зависимостей (DI)](xref:fundamentals/dependency-injection) экземпляров службы.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-109">Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances.</span></span>
+* <span data-ttu-id="cb4d2-110">Значения, заданные через вызовы [взаимодействия с JavaScript](xref:blazor/call-javascript-from-dotnet).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-110">Values set through [JavaScript interop](xref:blazor/call-javascript-from-dotnet) calls.</span></span>
 
-## <a name="blazor-circuits"></a><span data-ttu-id="0646f-114">Каналы [Blazor</span><span class="sxs-lookup"><span data-stu-id="0646f-114">[Blazor circuits</span></span>
+<span data-ttu-id="cb4d2-111">Когда пользователь закрывает и повторно открывает браузер или перезагружает страницу, данные о состоянии пользователя, содержащиеся в памяти браузера, утрачиваются.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-111">When a user closes and re-opens their browser or reloads the page, user state held in the browser's memory is lost.</span></span>
 
-<span data-ttu-id="0646f-115">Если пользователь испытывает временный сбой сетевого подключения, [Blazor пытается повторно подключить пользователя к исходному каналу, чтобы он мог продолжить использовать приложение.</span><span class="sxs-lookup"><span data-stu-id="0646f-115">If a user experiences a temporary network connection loss, [Blazor attempts to reconnect the user to their original circuit so they can continue to use the app.</span></span> <span data-ttu-id="0646f-116">Однако повторное подключение пользователя к исходному каналу в памяти сервера не всегда возможно.</span><span class="sxs-lookup"><span data-stu-id="0646f-116">However, reconnecting a user to their original circuit in the server's memory isn't always possible:</span></span>
+## <a name="persist-state-across-browser-sessions"></a><span data-ttu-id="cb4d2-112">Сохранение состояния в сеансах браузера</span><span class="sxs-lookup"><span data-stu-id="cb4d2-112">Persist state across browser sessions</span></span>
 
-* <span data-ttu-id="0646f-117">Сервер не может постоянно хранить отключенную цепь.</span><span class="sxs-lookup"><span data-stu-id="0646f-117">The server can't retain a disconnected circuit forever.</span></span> <span data-ttu-id="0646f-118">Сервер должен освободить отключенную цепь после истечения времени ожидания или при нехватке памяти на сервере.</span><span class="sxs-lookup"><span data-stu-id="0646f-118">The server must release a disconnected circuit after a timeout or when the server is under memory pressure.</span></span>
-* <span data-ttu-id="0646f-119">В многосерверных средах развертывания с балансировкой нагрузки любые запросы на обработку сервера могут стать недоступными в любой конкретный момент времени.</span><span class="sxs-lookup"><span data-stu-id="0646f-119">In multiserver, load-balanced deployment environments, any server processing requests may become unavailable at any given time.</span></span> <span data-ttu-id="0646f-120">Отдельные серверы могут выйти из строя или быть автоматически удалены, если они больше не требуются для обработки общего объема запросов.</span><span class="sxs-lookup"><span data-stu-id="0646f-120">Individual servers may fail or be automatically removed when no longer required to handle the overall volume of requests.</span></span> <span data-ttu-id="0646f-121">Когда пользователь попытается подключиться повторно, исходный сервер может стать недоступным.</span><span class="sxs-lookup"><span data-stu-id="0646f-121">The original server may not be available when the user attempts to reconnect.</span></span>
-* <span data-ttu-id="0646f-122">Пользователь может закрыть и снова открыть браузер или перезагрузить страницу, что приведет к удалению всех состояний, хранящихся в памяти браузера.</span><span class="sxs-lookup"><span data-stu-id="0646f-122">The user might close and re-open their browser or reload the page, which removes any state held in the browser's memory.</span></span> <span data-ttu-id="0646f-123">Например, теряются значения, заданные через вызовы взаимодействия JavaScript.</span><span class="sxs-lookup"><span data-stu-id="0646f-123">For example, values set through JavaScript interop calls are lost.</span></span>
+<span data-ttu-id="cb4d2-113">Как правило, состояния поддерживаются между сеансами браузера, где пользователи активно могут создавать данные, а не просто считывать уже существующие данные.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-113">Generally, maintain state across browser sessions where users are actively creating data, not simply reading data that already exists.</span></span>
 
-<span data-ttu-id="0646f-124">Если пользователь не может повторно подключиться к исходному каналу, он получает новый канал с пустым состоянием.</span><span class="sxs-lookup"><span data-stu-id="0646f-124">When a user can't be reconnected to their original circuit, the user receives a new circuit with an empty state.</span></span> <span data-ttu-id="0646f-125">Это эквивалентно закрытию и повторному открытию классического приложения.</span><span class="sxs-lookup"><span data-stu-id="0646f-125">This is equivalent to closing and re-opening a desktop app.</span></span>
+<span data-ttu-id="cb4d2-114">Чтобы сохранять состояние между сеансами браузера, приложение должно хранить данные не в памяти браузера, а в другом месте.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-114">To preserve state across browser sessions, the app must persist the data to some other storage location than the browser's memory.</span></span> <span data-ttu-id="cb4d2-115">Сохраняемость состояния не обеспечивается автоматически.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-115">State persistence isn't automatic.</span></span> <span data-ttu-id="cb4d2-116">При разработке приложения необходимо выполнить определенные действия для реализации сохраняемости данных с отслеживанием состояния.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-116">You must take steps when developing the app to implement stateful data persistence.</span></span>
 
-## <a name="preserve-state-across-circuits"></a><span data-ttu-id="0646f-126">Сохранение состояния при смене каналов</span><span class="sxs-lookup"><span data-stu-id="0646f-126">Preserve state across circuits</span></span>
+<span data-ttu-id="cb4d2-117">Сохраняемость данных, как правило, требуется только для состояний высокой ценности, на создание которых пользователь затратил значительные усилия.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-117">Data persistence is typically only required for high-value state that users expended effort to create.</span></span> <span data-ttu-id="cb4d2-118">В следующих примерах сохранение состояния экономит время или средства в коммерческих действиях.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-118">In the following examples, persisting state either saves time or aids in commercial activities:</span></span>
 
-<span data-ttu-id="0646f-127">В некоторых сценариях желательно сохранять состояние при переходе от одного канала к другому.</span><span class="sxs-lookup"><span data-stu-id="0646f-127">In some scenarios, preserving state across circuits is desirable.</span></span> <span data-ttu-id="0646f-128">Приложение может хранить важные данные для пользователя в следующих случаях:</span><span class="sxs-lookup"><span data-stu-id="0646f-128">An app can retain important data for a user if:</span></span>
+* <span data-ttu-id="cb4d2-119">Веб-формы с многоэтапным заполнением. Пользователю потребуется много времени для повторного ввода данных на нескольких завершенных этапах заполнения таких форм, если данные об их состоянии будут утеряны.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-119">Multi-step web forms: It's time-consuming for a user to re-enter data for several completed steps of a multi-step web form if their state is lost.</span></span> <span data-ttu-id="cb4d2-120">В этом сценарии пользователь потеряет данные о своем состоянии, если он выйдет из формы и вернется в нее позже.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-120">A user loses state in this scenario if they navigate away from the form and return later.</span></span>
+* <span data-ttu-id="cb4d2-121">Корзины для покупок. Любой коммерчески важный компонент приложения, который представляет потенциальную прибыль.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-121">Shopping carts: Any commercially important component of an app that represents potential revenue can be maintained.</span></span> <span data-ttu-id="cb4d2-122">Пользователь, который теряет свое состояние, и, следовательно, свою корзину с покупками, может приобрести меньше товаров или услуг, когда вернется на сайт позже.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-122">A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.</span></span>
 
-* <span data-ttu-id="0646f-129">веб-сервер становится недоступным;</span><span class="sxs-lookup"><span data-stu-id="0646f-129">The web server becomes unavailable.</span></span>
-* <span data-ttu-id="0646f-130">браузер пользователя вынужден начать новый канал с новым веб-сервером.</span><span class="sxs-lookup"><span data-stu-id="0646f-130">The user's browser is forced to start a new circuit with a new web server.</span></span>
+<span data-ttu-id="cb4d2-123">Приложение может сохранять только *состояния приложения*.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-123">An app can only persist *app state*.</span></span> <span data-ttu-id="cb4d2-124">Пользовательские интерфейсы не могут быть сохранены, например экземпляры компонентов и их деревья отрисовки.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-124">UIs can't be persisted, such as component instances and their render trees.</span></span> <span data-ttu-id="cb4d2-125">Компоненты и деревья отрисовки обычно не являются сериализуемыми.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-125">Components and render trees aren't generally serializable.</span></span> <span data-ttu-id="cb4d2-126">Чтобы сохранить состояние пользовательского интерфейса, например развернутые узлы элементов управления иерархического представления, в приложении должен быть пользовательский код для моделирования поведения этого интерфейса как сериализуемого состояния приложения.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-126">To persist UI state, such as the expanded nodes of a tree view control, the app must use custom code to model the behavior of the UI state as serializable app state.</span></span>
 
-<span data-ttu-id="0646f-131">Как правило, поддержание состояния между каналами применяется к сценариям, где пользователи активно могут создавать данные, а не просто считывать уже существующие данные.</span><span class="sxs-lookup"><span data-stu-id="0646f-131">In general, maintaining state across circuits applies to scenarios where users are actively creating data, not simply reading data that already exists.</span></span>
+## <a name="where-to-persist-state"></a><span data-ttu-id="cb4d2-127">Место сохранения состояния</span><span class="sxs-lookup"><span data-stu-id="cb4d2-127">Where to persist state</span></span>
 
-<span data-ttu-id="0646f-132">Чтобы сохранить состояние за пределами одного канала, *недостаточно просто сохранить данные в памяти сервера*.</span><span class="sxs-lookup"><span data-stu-id="0646f-132">To preserve state beyond a single circuit, *don't merely store the data in the server's memory*.</span></span> <span data-ttu-id="0646f-133">Приложение должно сохранять данные в другое место хранения.</span><span class="sxs-lookup"><span data-stu-id="0646f-133">The app must persist the data to some other storage location.</span></span> <span data-ttu-id="0646f-134">Сохраняемость состояния не обеспечивается автоматически.</span><span class="sxs-lookup"><span data-stu-id="0646f-134">State persistence isn't automatic.</span></span> <span data-ttu-id="0646f-135">При разработке приложения необходимо выполнить определенные действия для реализации сохраняемости данных с отслеживанием состояния.</span><span class="sxs-lookup"><span data-stu-id="0646f-135">You must take steps when developing the app to implement stateful data persistence.</span></span>
+<span data-ttu-id="cb4d2-128">Данные о состоянии могут храниться в трех общих расположениях:</span><span class="sxs-lookup"><span data-stu-id="cb4d2-128">Three common locations exist for persisting state:</span></span>
 
-<span data-ttu-id="0646f-136">Сохраняемость данных, как правило, требуется только для состояния высокой ценности, на создание которого пользователь затратил значительные усилия.</span><span class="sxs-lookup"><span data-stu-id="0646f-136">Data persistence is typically only required for high-value state that users have expended effort to create.</span></span> <span data-ttu-id="0646f-137">В следующих примерах сохранение состояния экономит время или средства в коммерческих действиях.</span><span class="sxs-lookup"><span data-stu-id="0646f-137">In the following examples, persisting state either saves time or aids in commercial activities:</span></span>
+* [<span data-ttu-id="cb4d2-129">Хранилище на стороне сервера</span><span class="sxs-lookup"><span data-stu-id="cb4d2-129">Server-side storage</span></span>](#server-side-storage)
+* [<span data-ttu-id="cb4d2-130">URL-адрес</span><span class="sxs-lookup"><span data-stu-id="cb4d2-130">URL</span></span>](#url)
+* [<span data-ttu-id="cb4d2-131">Хранилище браузера</span><span class="sxs-lookup"><span data-stu-id="cb4d2-131">Browser storage</span></span>](#browser-storage)
 
-* <span data-ttu-id="0646f-138">Многошаговая веб-форма. Пользователю потребуется много времени для повторного ввода данных для нескольких завершенных шагов многоэтапного процесса, если их данные о состоянии будут утеряны.</span><span class="sxs-lookup"><span data-stu-id="0646f-138">Multistep webform: It's time-consuming for a user to re-enter data for several completed steps of a multistep process if their state is lost.</span></span> <span data-ttu-id="0646f-139">В этом сценарии пользователь потеряет состояние, если он выйдет из многошаговой формы и снова вернется в нее.</span><span class="sxs-lookup"><span data-stu-id="0646f-139">A user loses state in this scenario if they navigate away from the multistep form and return to the form later.</span></span>
-* <span data-ttu-id="0646f-140">Корзина для покупок. Любой коммерчески важный компонент приложения, который представляет потенциальную прибыль.</span><span class="sxs-lookup"><span data-stu-id="0646f-140">Shopping cart: Any commercially important component of an app that represents potential revenue can be maintained.</span></span> <span data-ttu-id="0646f-141">Пользователь, который теряет свое состояние, и, следовательно, свою корзину с покупками, может приобрести меньше товаров или услуг, когда вернется на сайт позже.</span><span class="sxs-lookup"><span data-stu-id="0646f-141">A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.</span></span>
+### <a name="server-side-storage"></a><span data-ttu-id="cb4d2-132">Хранилище на стороне сервера</span><span class="sxs-lookup"><span data-stu-id="cb4d2-132">Server-side storage</span></span>
 
-<span data-ttu-id="0646f-142">Обычно нет необходимости сохранять легко воссозданное состояние, например имя пользователя, введенное в диалоговое окно входа, которое еще не было отправлено.</span><span class="sxs-lookup"><span data-stu-id="0646f-142">It's usually not necessary to preserve easily-recreated state, such as the username entered into a sign-in dialog that hasn't been submitted.</span></span>
+<span data-ttu-id="cb4d2-133">Для постоянного хранения данных для нескольких пользователей и устройств приложение может использовать независимое хранилище на стороне сервера, доступ к которому осуществляется через веб-API.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-133">For permanent data persistence that spans multiple users and devices, the app can use independent server-side storage accessed via a web API.</span></span> <span data-ttu-id="cb4d2-134">Доступны следующие варианты:</span><span class="sxs-lookup"><span data-stu-id="cb4d2-134">Options include:</span></span>
 
-> [!IMPORTANT]
-> <span data-ttu-id="0646f-143">Приложение может сохранять только *состояния приложения*.</span><span class="sxs-lookup"><span data-stu-id="0646f-143">An app can only persist *app state*.</span></span> <span data-ttu-id="0646f-144">Пользовательские интерфейсы не могут быть сохранены, например экземпляры компонентов и их деревья отрисовки.</span><span class="sxs-lookup"><span data-stu-id="0646f-144">UIs can't be persisted, such as component instances and their render trees.</span></span> <span data-ttu-id="0646f-145">Компоненты и деревья отрисовки обычно не являются сериализуемыми.</span><span class="sxs-lookup"><span data-stu-id="0646f-145">Components and render trees aren't generally serializable.</span></span> <span data-ttu-id="0646f-146">Чтобы сохранить нечто похожее на состояние пользовательского интерфейса, например развернутые узлы элементов TreeView, приложение должно иметь пользовательский код для моделирования поведения как сериализуемого состояния приложения.</span><span class="sxs-lookup"><span data-stu-id="0646f-146">To persist something similar to UI state, such as the expanded nodes of a TreeView, the app must have custom code to model the behavior as serializable app state.</span></span>
+* <span data-ttu-id="cb4d2-135">Хранилище BLOB-объектов</span><span class="sxs-lookup"><span data-stu-id="cb4d2-135">Blob storage</span></span>
+* <span data-ttu-id="cb4d2-136">Хранилище значений ключей</span><span class="sxs-lookup"><span data-stu-id="cb4d2-136">Key-value storage</span></span>
+* <span data-ttu-id="cb4d2-137">Реляционная база данных</span><span class="sxs-lookup"><span data-stu-id="cb4d2-137">Relational database</span></span>
+* <span data-ttu-id="cb4d2-138">Хранилище таблиц</span><span class="sxs-lookup"><span data-stu-id="cb4d2-138">Table storage</span></span>
 
-## <a name="where-to-persist-state"></a><span data-ttu-id="0646f-147">Место сохранения состояния</span><span class="sxs-lookup"><span data-stu-id="0646f-147">Where to persist state</span></span>
+<span data-ttu-id="cb4d2-139">После сохранения данных состояние пользователя сохраняется и становится доступным во всех новых сеансах браузера.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-139">After data is saved, the user's state is retained and available in any new browser session.</span></span>
 
-<span data-ttu-id="0646f-148">Существует три общих расположения для сохранения состояния в приложении [Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="0646f-148">Three common locations exist for persisting state in a [Blazor Server app.</span></span> <span data-ttu-id="0646f-149">Каждый подход лучше всего подходит для определенных сценариев и имеет свои подводные камни:</span><span class="sxs-lookup"><span data-stu-id="0646f-149">Each approach is best suited to different scenarios and has different caveats:</span></span>
+<span data-ttu-id="cb4d2-140">Поскольку приложения Blazor WebAssembly полностью выполняются в браузере пользователя, им требуются дополнительные меры для доступа к защищенным внешним системам, например службам хранилища и базам данных.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-140">Because Blazor WebAssembly apps run entirely in the user's browser, they require additional measures to access secure external systems, such as storage services and databases.</span></span> <span data-ttu-id="cb4d2-141">Защита приложений Blazor WebAssembly обеспечивается аналогично защите одностраничных приложений (SPA).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-141">Blazor WebAssembly apps are secured in the same manner as Single Page Applications (SPAs).</span></span> <span data-ttu-id="cb4d2-142">Как правило, приложение выполняет проверку подлинности пользователя с помощью [OAuth](https://oauth.net)/[OpenID Connect (OIDC)](https://openid.net/connect/), а затем взаимодействует со службами хранилища и базами данных, отправляя вызовы веб-API в серверное приложение.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-142">Typically, an app authenticates a user via [OAuth](https://oauth.net)/[OpenID Connect (OIDC)](https://openid.net/connect/) and then interacts with storage services and databases through web API calls to a server-side app.</span></span> <span data-ttu-id="cb4d2-143">Приложение на стороне сервера обеспечивает перенос данных между приложением Blazor WebAssembly и службой хранилища или базой данных.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-143">The server-side app mediates the transfer of data between the Blazor WebAssembly app and the storage service or database.</span></span> <span data-ttu-id="cb4d2-144">Приложение Blazor WebAssembly поддерживает временное подключение к приложению на стороне сервера, в то время как приложение на стороне сервера подключено к хранилищу постоянно.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-144">The Blazor WebAssembly app maintains an ephemeral connection to the server-side app, while the server-side app has a persistent connection to storage.</span></span>
 
-* [<span data-ttu-id="0646f-150">На стороне сервера в базе данных</span><span class="sxs-lookup"><span data-stu-id="0646f-150">Server-side in a database</span></span>](#server-side-in-a-database)
-* [<span data-ttu-id="0646f-151">URL</span><span class="sxs-lookup"><span data-stu-id="0646f-151">URL</span></span>](#url)
-* [<span data-ttu-id="0646f-152">На стороне клиента в браузере</span><span class="sxs-lookup"><span data-stu-id="0646f-152">Client-side in the browser</span></span>](#client-side-in-the-browser)
+<span data-ttu-id="cb4d2-145">Дополнительные сведения см. в следующих ресурсах:</span><span class="sxs-lookup"><span data-stu-id="cb4d2-145">For more information, see the following resources:</span></span>
 
-### <a name="server-side-in-a-database"></a><span data-ttu-id="0646f-153">На стороне сервера в базе данных</span><span class="sxs-lookup"><span data-stu-id="0646f-153">Server-side in a database</span></span>
+* <xref:blazor/call-web-api>
+* <xref:blazor/security/webassembly/index>
+* <span data-ttu-id="cb4d2-146">Статьи по *безопасности и Identity* Blazor</span><span class="sxs-lookup"><span data-stu-id="cb4d2-146">Blazor *Security and Identity* articles</span></span>
 
-<span data-ttu-id="0646f-154">Для постоянного сохранения данных или для данных, которые должны охватывать несколько пользователей или устройств, независимая база данных на стороне сервера почти наверняка является лучшим выбором.</span><span class="sxs-lookup"><span data-stu-id="0646f-154">For permanent data persistence or for any data that must span multiple users or devices, an independent server-side database is almost certainly the best choice.</span></span> <span data-ttu-id="0646f-155">Возможны следующие значения.</span><span class="sxs-lookup"><span data-stu-id="0646f-155">Options include:</span></span>
+<span data-ttu-id="cb4d2-147">Дополнительные сведения о вариантах хранения данных в Azure см. здесь:</span><span class="sxs-lookup"><span data-stu-id="cb4d2-147">For more information on Azure data storage options, see the following:</span></span>
 
-* <span data-ttu-id="0646f-156">Реляционная база данных SQL</span><span class="sxs-lookup"><span data-stu-id="0646f-156">Relational SQL database</span></span>
-* <span data-ttu-id="0646f-157">Хранилище ключ-значение</span><span class="sxs-lookup"><span data-stu-id="0646f-157">Key-value store</span></span>
-* <span data-ttu-id="0646f-158">Хранилище больших двоичных объектов</span><span class="sxs-lookup"><span data-stu-id="0646f-158">Blob store</span></span>
-* <span data-ttu-id="0646f-159">Хранилище таблиц</span><span class="sxs-lookup"><span data-stu-id="0646f-159">Table store</span></span>
+* [<span data-ttu-id="cb4d2-148">Базы данных Azure</span><span class="sxs-lookup"><span data-stu-id="cb4d2-148">Azure Databases</span></span>](https://azure.microsoft.com/product-categories/databases/)
+* [<span data-ttu-id="cb4d2-149">Документация по хранилищу Azure</span><span class="sxs-lookup"><span data-stu-id="cb4d2-149">Azure Storage Documentation</span></span>](/azure/storage/)
 
-<span data-ttu-id="0646f-160">После сохранения данных в базе данных пользователь может запустить новый канал в любое время.</span><span class="sxs-lookup"><span data-stu-id="0646f-160">After data is saved in the database, a new circuit can be started by a user at any time.</span></span> <span data-ttu-id="0646f-161">Данные пользователя сохранены и доступны в любом новом канале.</span><span class="sxs-lookup"><span data-stu-id="0646f-161">The user's data is retained and available in any new circuit.</span></span>
+### <a name="url"></a><span data-ttu-id="cb4d2-150">URL-адрес</span><span class="sxs-lookup"><span data-stu-id="cb4d2-150">URL</span></span>
 
-<span data-ttu-id="0646f-162">Дополнительные сведения о вариантах хранения данных Azure см. в [документации по службе хранилища Azure](/azure/storage/) и [документации по базам данных Azure](https://azure.microsoft.com/product-categories/databases/).</span><span class="sxs-lookup"><span data-stu-id="0646f-162">For more information on Azure data storage options, see the [Azure Storage Documentation](/azure/storage/) and [Azure Databases](https://azure.microsoft.com/product-categories/databases/).</span></span>
+<span data-ttu-id="cb4d2-151">Для временных данных, представляющих состояние навигации, моделируют данные как часть URL-адреса.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-151">For transient data representing navigation state, model the data as a part of the URL.</span></span> <span data-ttu-id="cb4d2-152">Ниже приведены примеры данных о состоянии пользователя, которые моделируются в URL-адресе.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-152">Examples of user state modeled in the URL include:</span></span>
 
-### <a name="url"></a><span data-ttu-id="0646f-163">URL-адрес</span><span class="sxs-lookup"><span data-stu-id="0646f-163">URL</span></span>
+* <span data-ttu-id="cb4d2-153">Идентификатор просматриваемой сущности.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-153">The ID of a viewed entity.</span></span>
+* <span data-ttu-id="cb4d2-154">Номер текущей страницы в постраничной сетке.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-154">The current page number in a paged grid.</span></span>
 
-<span data-ttu-id="0646f-164">Для временных данных, представляющих состояние навигации, моделируют данные как часть URL-адреса.</span><span class="sxs-lookup"><span data-stu-id="0646f-164">For transient data representing navigation state, model the data as a part of the URL.</span></span> <span data-ttu-id="0646f-165">Ниже приведены примеры состояний, которые моделируются в URL-адресе.</span><span class="sxs-lookup"><span data-stu-id="0646f-165">Examples of state modeled in the URL include:</span></span>
+<span data-ttu-id="cb4d2-155">Если пользователь вручную перезагружает страницу, содержимое адресной строки браузера сохраняется.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-155">The contents of the browser's address bar are retained if the user manually reloads the page.</span></span>
 
-* <span data-ttu-id="0646f-166">Идентификатор просматриваемой сущности.</span><span class="sxs-lookup"><span data-stu-id="0646f-166">The ID of a viewed entity.</span></span>
-* <span data-ttu-id="0646f-167">Номер текущей страницы в постраничной сетке.</span><span class="sxs-lookup"><span data-stu-id="0646f-167">The current page number in a paged grid.</span></span>
+<span data-ttu-id="cb4d2-156">Сведения об определении шаблонов URL-адресов с помощью директивы [`@page`](xref:mvc/views/razor#page) см. в статье <xref:blazor/fundamentals/routing>.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-156">For information on defining URL patterns with the [`@page`](xref:mvc/views/razor#page) directive, see <xref:blazor/fundamentals/routing>.</span></span>
 
-<span data-ttu-id="0646f-168">Содержимое адресной строки браузера будет сохраняться в следующих случаях.</span><span class="sxs-lookup"><span data-stu-id="0646f-168">The contents of the browser's address bar are retained:</span></span>
+### <a name="browser-storage"></a><span data-ttu-id="cb4d2-157">Хранилище браузера</span><span class="sxs-lookup"><span data-stu-id="cb4d2-157">Browser storage</span></span>
 
-* <span data-ttu-id="0646f-169">Если пользователь вручную обновляет страницу.</span><span class="sxs-lookup"><span data-stu-id="0646f-169">If the user manually reloads the page.</span></span>
-* <span data-ttu-id="0646f-170">Если веб-сервер становится недоступным и пользователь вынужден перезагрузить страницу, чтобы подключиться к другому серверу.</span><span class="sxs-lookup"><span data-stu-id="0646f-170">If the web server becomes unavailable, and the user is forced to reload the page in order to connect to a different server.</span></span>
+<span data-ttu-id="cb4d2-158">Для хранения временных данных, создаваемых пользователем, обычно используются коллекции браузера [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) и [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-158">For transient data that the user is actively creating, a commonly used storage location is the browser's [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) collections:</span></span>
 
-<span data-ttu-id="0646f-171">Сведения об определении шаблонов URL-адресов с помощью директивы `@page` см. в разделе <xref:blazor/fundamentals/routing>.</span><span class="sxs-lookup"><span data-stu-id="0646f-171">For information on defining URL patterns with the `@page` directive, see <xref:blazor/fundamentals/routing>.</span></span>
-
-### <a name="client-side-in-the-browser"></a><span data-ttu-id="0646f-172">На стороне клиента в браузере</span><span class="sxs-lookup"><span data-stu-id="0646f-172">Client-side in the browser</span></span>
-
-<span data-ttu-id="0646f-173">Для временных данных, создаваемых пользователем, общим резервным хранилищем являются коллекции браузера `localStorage` и `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="0646f-173">For transient data that the user is actively creating, a common backing store is the browser's `localStorage` and `sessionStorage` collections.</span></span> <span data-ttu-id="0646f-174">Приложению не требуется управлять сохраненным состоянием или очищать его, если канал прерван, что является преимуществом по сравнению с хранилищем на стороне сервера.</span><span class="sxs-lookup"><span data-stu-id="0646f-174">The app isn't required to manage or clear the stored state if the circuit is abandoned, which is an advantage over server-side storage.</span></span>
+* <span data-ttu-id="cb4d2-159">`localStorage` ограничивается окном браузера.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-159">`localStorage` is scoped to the browser's window.</span></span> <span data-ttu-id="cb4d2-160">Если пользователь перезагружает страницу или закрывает и снова открывает браузер, состояние сохраняется.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-160">If the user reloads the page or closes and re-opens the browser, the state persists.</span></span> <span data-ttu-id="cb4d2-161">Если пользователь открывает несколько вкладок браузера, это состояние совместно используется на нескольких вкладках.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-161">If the user opens multiple browser tabs, the state is shared across the tabs.</span></span> <span data-ttu-id="cb4d2-162">Данные сохраняются в `localStorage` до тех пор, пока они не будут явно очищены.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-162">Data persists in `localStorage` until explicitly cleared.</span></span>
+* <span data-ttu-id="cb4d2-163">`sessionStorage` ограничивается вкладкой браузера. Если пользователь перезагружает вкладку, состояние сохраняется.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-163">`sessionStorage` is scoped to the browser tab. If the user reloads the tab, the state persists.</span></span> <span data-ttu-id="cb4d2-164">Если пользователь закрывает вкладку или браузер, состояние теряется.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-164">If the user closes the tab or the browser, the state is lost.</span></span> <span data-ttu-id="cb4d2-165">Если пользователь открывает несколько вкладок браузера, каждая вкладка имеет собственную независимую версию данных.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-165">If the user opens multiple browser tabs, each tab has its own independent version of the data.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="0646f-175">"На стороне клиента" в этом разделе относится к сценариям на стороне клиента в браузере, а не к [модели размещения [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly).</span><span class="sxs-lookup"><span data-stu-id="0646f-175">"Client-side" in this section refers to client-side scenarios in the browser, not the [[Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-webassembly).</span></span> <span data-ttu-id="0646f-176">`localStorage` и `sessionStorage` можно использовать в приложениях [Blazor WebAssembly, но только путем написания пользовательского кода или использования стороннего пакета.</span><span class="sxs-lookup"><span data-stu-id="0646f-176">`localStorage` and `sessionStorage` can be used in [Blazor WebAssembly apps but only by writing custom code or using a 3rd party package.</span></span>
+> <span data-ttu-id="cb4d2-166">`localStorage` и `sessionStorage` можно использовать в приложениях Blazor WebAssembly, но только путем написания пользовательского кода или использования стороннего пакета.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-166">`localStorage` and `sessionStorage` can be used in Blazor WebAssembly apps but only by writing custom code or using a third-party package.</span></span>
 
-<span data-ttu-id="0646f-177">`localStorage` и `sessionStorage` различаются следующим образом.</span><span class="sxs-lookup"><span data-stu-id="0646f-177">`localStorage` and `sessionStorage` differ as follows:</span></span>
+<span data-ttu-id="cb4d2-167">Как правило, `sessionStorage` более безопасно для использования.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-167">Generally, `sessionStorage` is safer to use.</span></span> <span data-ttu-id="cb4d2-168">`sessionStorage` позволяет избежать риска, когда пользователь открывает несколько вкладок и сталкивается со следующими проблемами.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-168">`sessionStorage` avoids the risk that a user opens multiple tabs and encounters the following:</span></span>
 
-* <span data-ttu-id="0646f-178">`localStorage` входит в область браузера пользователя.</span><span class="sxs-lookup"><span data-stu-id="0646f-178">`localStorage` is scoped to the user's browser.</span></span> <span data-ttu-id="0646f-179">Если пользователь перезагружает страницу или закрывает и снова открывает браузер, состояние сохраняется.</span><span class="sxs-lookup"><span data-stu-id="0646f-179">If the user reloads the page or closes and re-opens the browser, the state persists.</span></span> <span data-ttu-id="0646f-180">Если пользователь открывает несколько вкладок браузера, это состояние совместно используется на нескольких вкладках.</span><span class="sxs-lookup"><span data-stu-id="0646f-180">If the user opens multiple browser tabs, the state is shared across the tabs.</span></span> <span data-ttu-id="0646f-181">Данные сохраняются в `localStorage` до тех пор, пока они не будут явно очищены.</span><span class="sxs-lookup"><span data-stu-id="0646f-181">Data persists in `localStorage` until explicitly cleared.</span></span>
-* <span data-ttu-id="0646f-182">`sessionStorage` входит в область вкладки браузера пользователя. Если пользователь перезагружает вкладку, состояние сохраняется.</span><span class="sxs-lookup"><span data-stu-id="0646f-182">`sessionStorage` is scoped to the user's browser tab. If the user reloads the tab, the state persists.</span></span> <span data-ttu-id="0646f-183">Если пользователь закрывает вкладку или браузер, состояние теряется.</span><span class="sxs-lookup"><span data-stu-id="0646f-183">If the user closes the tab or the browser, the state is lost.</span></span> <span data-ttu-id="0646f-184">Если пользователь открывает несколько вкладок браузера, каждая вкладка имеет собственную независимую версию данных.</span><span class="sxs-lookup"><span data-stu-id="0646f-184">If the user opens multiple browser tabs, each tab has its own independent version of the data.</span></span>
+* <span data-ttu-id="cb4d2-169">Ошибки в хранилище состояний на разных вкладках.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-169">Bugs in state storage across tabs.</span></span>
+* <span data-ttu-id="cb4d2-170">Путаница в работе, когда одна вкладка перезаписывает состояние других.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-170">Confusing behavior when a tab overwrites the state of other tabs.</span></span>
 
-<span data-ttu-id="0646f-185">Как правило, `sessionStorage` более безопасно для использования.</span><span class="sxs-lookup"><span data-stu-id="0646f-185">Generally, `sessionStorage` is safer to use.</span></span> <span data-ttu-id="0646f-186">`sessionStorage` позволяет избежать риска, когда пользователь открывает несколько вкладок и сталкивается со следующими проблемами.</span><span class="sxs-lookup"><span data-stu-id="0646f-186">`sessionStorage` avoids the risk that a user opens multiple tabs and encounters the following:</span></span>
-
-* <span data-ttu-id="0646f-187">Ошибки в хранилище состояний на разных вкладках.</span><span class="sxs-lookup"><span data-stu-id="0646f-187">Bugs in state storage across tabs.</span></span>
-* <span data-ttu-id="0646f-188">Путаница в работе, когда одна вкладка перезаписывает состояние других.</span><span class="sxs-lookup"><span data-stu-id="0646f-188">Confusing behavior when a tab overwrites the state of other tabs.</span></span>
-
-<span data-ttu-id="0646f-189">`localStorage` является лучшим выбором, если приложение должно сохранять состояние в случае закрытия и повторного открытия браузера.</span><span class="sxs-lookup"><span data-stu-id="0646f-189">`localStorage` is the better choice if the app must persist state across closing and re-opening the browser.</span></span>
-
-<span data-ttu-id="0646f-190">Предостережения при использовании хранилища браузера.</span><span class="sxs-lookup"><span data-stu-id="0646f-190">Caveats for using browser storage:</span></span>
-
-* <span data-ttu-id="0646f-191">Аналогично использованию базы данных на стороне сервера, загрузка и сохранение данных выполняются асинхронно.</span><span class="sxs-lookup"><span data-stu-id="0646f-191">Similar to the use of a server-side database, loading and saving data are asynchronous.</span></span>
-* <span data-ttu-id="0646f-192">В отличие от базы данных на стороне сервера, хранилище недоступно во время предварительной отрисовки, так как запрошенная страница не существует в браузере во время выполнения этой стадии.</span><span class="sxs-lookup"><span data-stu-id="0646f-192">Unlike a server-side database, storage isn't available during prerendering because the requested page doesn't exist in the browser during the prerendering stage.</span></span>
-* <span data-ttu-id="0646f-193">Для приложений [Blazor Server имеет смысл хранить данные в пределах нескольких килобайт.</span><span class="sxs-lookup"><span data-stu-id="0646f-193">Storage of a few kilobytes of data is reasonable to persist for [Blazor Server apps.</span></span> <span data-ttu-id="0646f-194">При превышении этого порога необходимо учитывать последствия производительности, поскольку данные загружаются и сохраняются по сети.</span><span class="sxs-lookup"><span data-stu-id="0646f-194">Beyond a few kilobytes, you must consider the performance implications because the data is loaded and saved across the network.</span></span>
-* <span data-ttu-id="0646f-195">Пользователи могут просматривать и изменять данные.</span><span class="sxs-lookup"><span data-stu-id="0646f-195">Users may view or tamper with the data.</span></span> <span data-ttu-id="0646f-196">[Защита данных](xref:security/data-protection/introduction) ASP.NET Core может снизить этот риск.</span><span class="sxs-lookup"><span data-stu-id="0646f-196">ASP.NET Core [Data Protection](xref:security/data-protection/introduction) can mitigate the risk.</span></span>
-
-## <a name="third-party-browser-storage-solutions"></a><span data-ttu-id="0646f-197">Сторонние решения для хранения в браузере</span><span class="sxs-lookup"><span data-stu-id="0646f-197">Third-party browser storage solutions</span></span>
-
-<span data-ttu-id="0646f-198">Сторонние пакеты NuGet предоставляют интерфейсы API для работы с `localStorage` и `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="0646f-198">Third-party NuGet packages provide APIs for working with `localStorage` and `sessionStorage`.</span></span>
-
-<span data-ttu-id="0646f-199">Стоит рассмотреть выбор пакета, который прозрачно использует [защиту данных](xref:security/data-protection/introduction) ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="0646f-199">It's worth considering choosing a package that transparently uses ASP.NET Core's [Data Protection](xref:security/data-protection/introduction).</span></span> <span data-ttu-id="0646f-200">Защита данных ASP.NET Core шифрует хранимые данные и уменьшает потенциальный риск несанкционированного изменения хранимых данных.</span><span class="sxs-lookup"><span data-stu-id="0646f-200">ASP.NET Core Data Protection encrypts stored data and reduces the potential risk of tampering with stored data.</span></span> <span data-ttu-id="0646f-201">Если сериализованные данные JSON хранятся в виде обычного текста, пользователи могут просматривать данные с помощью средств разработчика браузера, а также изменять сохраненные данные.</span><span class="sxs-lookup"><span data-stu-id="0646f-201">If JSON-serialized data is stored in plaintext, users can see the data using browser developer tools and also modify the stored data.</span></span> <span data-ttu-id="0646f-202">Защита данных не всегда является проблемой, так как данные могут быть тривиальными по своей природе.</span><span class="sxs-lookup"><span data-stu-id="0646f-202">Securing data isn't always a problem because the data might be trivial in nature.</span></span> <span data-ttu-id="0646f-203">Например, чтение или изменение сохраненного цвета элемента пользовательского интерфейса не является серьезной угрозой безопасности для пользователя или организации.</span><span class="sxs-lookup"><span data-stu-id="0646f-203">For example, reading or modifying the stored color of a UI element isn't a significant security risk to the user or the organization.</span></span> <span data-ttu-id="0646f-204">Не разрешайте пользователям проверять или изменять *конфиденциальные данные*.</span><span class="sxs-lookup"><span data-stu-id="0646f-204">Avoid allowing users to inspect or tamper with *sensitive data*.</span></span>
-
-## <a name="protected-browser-storage-experimental-package"></a><span data-ttu-id="0646f-205">Экспериментальный пакет Protected Browser Storage</span><span class="sxs-lookup"><span data-stu-id="0646f-205">Protected Browser Storage experimental package</span></span>
-
-<span data-ttu-id="0646f-206">Примером пакета NuGet, который предоставляет [защиту данных](xref:security/data-protection/introduction) для `localStorage` и `sessionStorage`, является [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).</span><span class="sxs-lookup"><span data-stu-id="0646f-206">An example of a NuGet package that provides [Data Protection](xref:security/data-protection/introduction) for `localStorage` and `sessionStorage` is [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).</span></span>
+<span data-ttu-id="cb4d2-171">`localStorage` является лучшим выбором, если приложение должно сохранять состояние в случае закрытия и повторного открытия браузера.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-171">`localStorage` is the better choice if the app must persist state across closing and re-opening the browser.</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="0646f-207">`Microsoft.AspNetCore.ProtectedBrowserStorage` является неподдерживаемым экспериментальным пакетом, который в настоящее время не подходит для использования в рабочей среде.</span><span class="sxs-lookup"><span data-stu-id="0646f-207">`Microsoft.AspNetCore.ProtectedBrowserStorage` is an unsupported experimental package unsuitable for production use at this time.</span></span>
+> <span data-ttu-id="cb4d2-172">Пользователи могут просматривать и изменять данные, хранимые в `localStorage` и `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-172">Users may view or tamper with the data stored in `localStorage` and `sessionStorage`.</span></span>
 
-### <a name="installation"></a><span data-ttu-id="0646f-208">Установка</span><span class="sxs-lookup"><span data-stu-id="0646f-208">Installation</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="cb4d2-173">Дополнительные ресурсы</span><span class="sxs-lookup"><span data-stu-id="cb4d2-173">Additional resources</span></span>
 
-<span data-ttu-id="0646f-209">Чтобы установить пакет `Microsoft.AspNetCore.ProtectedBrowserStorage`, выполните следующие действия.</span><span class="sxs-lookup"><span data-stu-id="0646f-209">To install the `Microsoft.AspNetCore.ProtectedBrowserStorage` package:</span></span>
+* [<span data-ttu-id="cb4d2-174">Сохранение состояния приложения перед операцией проверки подлинности</span><span class="sxs-lookup"><span data-stu-id="cb4d2-174">Save app state before an authentication operation</span></span>](xref:blazor/security/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation)
+* <xref:blazor/call-web-api>
+* <xref:blazor/security/webassembly/index>
 
-1. <span data-ttu-id="0646f-210">В проекте приложения [Blazor Server добавьте ссылку на пакет [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).</span><span class="sxs-lookup"><span data-stu-id="0646f-210">In the [Blazor Server app project, add a package reference to [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).</span></span>
-1. <span data-ttu-id="0646f-211">В HTML верхнего уровня (например, в файле `Pages/_Host.cshtml` в шаблоне проекта по умолчанию) добавьте следующий тег `<script>`:</span><span class="sxs-lookup"><span data-stu-id="0646f-211">In the top-level HTML (for example, in the `Pages/_Host.cshtml` file in the default project template), add the following `<script>` tag:</span></span>
+::: zone-end
 
-   ```html
-   <script src="_content/Microsoft.AspNetCore.ProtectedBrowserStorage/protectedBrowserStorage.js"></script>
-   ```
+::: zone pivot="server"
 
-1. <span data-ttu-id="0646f-212">В методе `Startup.ConfigureServices` вызовите `AddProtectedBrowserStorage`, чтобы добавить службы `localStorage` и `sessionStorage` в коллекцию служб.</span><span class="sxs-lookup"><span data-stu-id="0646f-212">In the `Startup.ConfigureServices` method, call `AddProtectedBrowserStorage` to add `localStorage` and `sessionStorage` services to the service collection:</span></span>
+<span data-ttu-id="cb4d2-175">Blazor Server — это платформа приложений с отслеживанием состояния.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-175">Blazor Server is a stateful app framework.</span></span> <span data-ttu-id="cb4d2-176">В большинстве случаев приложение поддерживает подключение к серверу.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-176">Most of the time, the app maintains a connection to the server.</span></span> <span data-ttu-id="cb4d2-177">Состояние пользователя хранится в памяти сервера в *канале*.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-177">The user's state is held in the server's memory in a *circuit*.</span></span> 
+
+<span data-ttu-id="cb4d2-178">Ниже приведены примеры данных о состоянии пользователя, хранящиеся в канале.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-178">Examples of user state held in a circuit include:</span></span>
+
+* <span data-ttu-id="cb4d2-179">Иерархия экземпляров компонента и их последних выходных данных отрисовки в преобразованном для просмотра пользовательском интерфейсе.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-179">The hierarchy of component instances and their most recent render output in the rendered UI.</span></span>
+* <span data-ttu-id="cb4d2-180">Значения полей и свойств в экземплярах компонента.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-180">The values of fields and properties in component instances.</span></span>
+* <span data-ttu-id="cb4d2-181">Данные, хранящиеся во [внедрениях зависимостей (DI)](xref:fundamentals/dependency-injection) экземпляров службы, областью действия которых является канал.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-181">Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit.</span></span>
+
+<span data-ttu-id="cb4d2-182">Данные о состоянии пользователя также можно найти в переменных JavaScript в памяти браузера, заданной с помощью вызовов [взаимодействия с JavaScript](xref:blazor/call-javascript-from-dotnet).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-182">User state might also be found in JavaScript variables in the browser's memory set via [JavaScript interop](xref:blazor/call-javascript-from-dotnet) calls.</span></span>
+
+<span data-ttu-id="cb4d2-183">Если пользователь испытывает временный сбой сетевого подключения, Blazor пытается повторно подключить пользователя к исходному каналу с сохранением исходного состояния.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-183">If a user experiences a temporary network connection loss, Blazor attempts to reconnect the user to their original circuit with their original state.</span></span> <span data-ttu-id="cb4d2-184">Однако повторное подключение пользователя к исходному каналу в памяти сервера не всегда возможно.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-184">However, reconnecting a user to their original circuit in the server's memory isn't always possible:</span></span>
+
+* <span data-ttu-id="cb4d2-185">Сервер не может постоянно хранить отключенную цепь.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-185">The server can't retain a disconnected circuit forever.</span></span> <span data-ttu-id="cb4d2-186">Сервер должен освободить отключенную цепь после истечения времени ожидания или при нехватке памяти на сервере.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-186">The server must release a disconnected circuit after a timeout or when the server is under memory pressure.</span></span>
+* <span data-ttu-id="cb4d2-187">В средах развертывания с несколькими серверами и балансировкой нагрузки отдельные серверы могут выйти из строя или быть автоматически удалены, если они больше не требуются для обработки общего объема запросов.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-187">In multi-server, load-balanced deployment environments, individual servers may fail or be automatically removed when no longer required to handle the overall volume of requests.</span></span> <span data-ttu-id="cb4d2-188">В этом случае исходные запросы на обработку на сервере могут стать недоступными для пользователя, когда он попытается подключиться повторно.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-188">The original server processing requests for a user may become unavailable when the user attempts to reconnect.</span></span>
+* <span data-ttu-id="cb4d2-189">Пользователь может закрыть и снова открыть браузер или перезагрузить страницу, что приведет к удалению всех состояний, хранящихся в памяти браузера.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-189">The user might close and re-open their browser or reload the page, which removes any state held in the browser's memory.</span></span> <span data-ttu-id="cb4d2-190">Например, теряются значения переменных JavaScript, заданные через вызовы взаимодействия с JavaScript.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-190">For example, JavaScript variable values set through JavaScript interop calls are lost.</span></span>
+
+<span data-ttu-id="cb4d2-191">Если пользователь не может повторно подключиться к исходному каналу, он получает новый канал с пустым состоянием.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-191">When a user can't be reconnected to their original circuit, the user receives a new circuit with an empty state.</span></span> <span data-ttu-id="cb4d2-192">Это эквивалентно закрытию и повторному открытию классического приложения.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-192">This is equivalent to closing and re-opening a desktop app.</span></span>
+
+## <a name="persist-state-across-circuits"></a><span data-ttu-id="cb4d2-193">Сохранение состояния при смене каналов</span><span class="sxs-lookup"><span data-stu-id="cb4d2-193">Persist state across circuits</span></span>
+
+<span data-ttu-id="cb4d2-194">Как правило, состояния поддерживается при смене каналов, где пользователи активно могут создавать данные, а не просто считывать уже существующие данные.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-194">Generally, maintain state across circuits where users are actively creating data, not simply reading data that already exists.</span></span>
+
+<span data-ttu-id="cb4d2-195">Чтобы сохранять состояние при смене каналов, приложение должно хранить данные не в памяти сервера, а в другом месте.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-195">To preserve state across circuits, the app must persist the data to some other storage location than the server's memory.</span></span> <span data-ttu-id="cb4d2-196">Сохраняемость состояния не обеспечивается автоматически.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-196">State persistence isn't automatic.</span></span> <span data-ttu-id="cb4d2-197">При разработке приложения необходимо выполнить определенные действия для реализации сохраняемости данных с отслеживанием состояния.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-197">You must take steps when developing the app to implement stateful data persistence.</span></span>
+
+<span data-ttu-id="cb4d2-198">Сохраняемость данных, как правило, требуется только для состояний высокой ценности, на создание которых пользователь затратил значительные усилия.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-198">Data persistence is typically only required for high-value state that users expended effort to create.</span></span> <span data-ttu-id="cb4d2-199">В следующих примерах сохранение состояния экономит время или средства в коммерческих действиях.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-199">In the following examples, persisting state either saves time or aids in commercial activities:</span></span>
+
+* <span data-ttu-id="cb4d2-200">Веб-формы с многоэтапным заполнением. Пользователю потребуется много времени для повторного ввода данных на нескольких завершенных этапах заполнения таких форм, если данные об их состоянии будут утеряны.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-200">Multi-step web forms: It's time-consuming for a user to re-enter data for several completed steps of a multi-step web form if their state is lost.</span></span> <span data-ttu-id="cb4d2-201">В этом сценарии пользователь потеряет данные о своем состоянии, если он выйдет из формы и вернется в нее позже.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-201">A user loses state in this scenario if they navigate away from the form and return later.</span></span>
+* <span data-ttu-id="cb4d2-202">Корзины для покупок. Любой коммерчески важный компонент приложения, который представляет потенциальную прибыль.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-202">Shopping carts: Any commercially important component of an app that represents potential revenue can be maintained.</span></span> <span data-ttu-id="cb4d2-203">Пользователь, который теряет свое состояние, и, следовательно, свою корзину с покупками, может приобрести меньше товаров или услуг, когда вернется на сайт позже.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-203">A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.</span></span>
+
+<span data-ttu-id="cb4d2-204">Приложение может сохранять только *состояния приложения*.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-204">An app can only persist *app state*.</span></span> <span data-ttu-id="cb4d2-205">Пользовательские интерфейсы не могут быть сохранены, например экземпляры компонентов и их деревья отрисовки.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-205">UIs can't be persisted, such as component instances and their render trees.</span></span> <span data-ttu-id="cb4d2-206">Компоненты и деревья отрисовки обычно не являются сериализуемыми.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-206">Components and render trees aren't generally serializable.</span></span> <span data-ttu-id="cb4d2-207">Чтобы сохранить состояние пользовательского интерфейса, например развернутые узлы элементов управления иерархического представления, в приложении должен быть пользовательский код для моделирования поведения этого интерфейса как сериализуемого состояния приложения.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-207">To persist UI state, such as the expanded nodes of a tree view control, the app must use custom code to model the behavior of the UI state as serializable app state.</span></span>
+
+## <a name="where-to-persist-state"></a><span data-ttu-id="cb4d2-208">Место сохранения состояния</span><span class="sxs-lookup"><span data-stu-id="cb4d2-208">Where to persist state</span></span>
+
+<span data-ttu-id="cb4d2-209">Данные о состоянии могут храниться в трех общих расположениях:</span><span class="sxs-lookup"><span data-stu-id="cb4d2-209">Three common locations exist for persisting state:</span></span>
+
+* [<span data-ttu-id="cb4d2-210">Хранилище на стороне сервера</span><span class="sxs-lookup"><span data-stu-id="cb4d2-210">Server-side storage</span></span>](#server-side-storage)
+* [<span data-ttu-id="cb4d2-211">URL-адрес</span><span class="sxs-lookup"><span data-stu-id="cb4d2-211">URL</span></span>](#url)
+* [<span data-ttu-id="cb4d2-212">Хранилище браузера</span><span class="sxs-lookup"><span data-stu-id="cb4d2-212">Browser storage</span></span>](#browser-storage)
+
+### <a name="server-side-storage"></a><span data-ttu-id="cb4d2-213">Хранилище на стороне сервера</span><span class="sxs-lookup"><span data-stu-id="cb4d2-213">Server-side storage</span></span>
+
+<span data-ttu-id="cb4d2-214">Для постоянного хранения данных для нескольких пользователей и устройств приложение может использовать хранилище на стороне сервера.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-214">For permanent data persistence that spans multiple users and devices, the app can use server-side storage.</span></span> <span data-ttu-id="cb4d2-215">Доступны следующие варианты:</span><span class="sxs-lookup"><span data-stu-id="cb4d2-215">Options include:</span></span>
+
+* <span data-ttu-id="cb4d2-216">Хранилище BLOB-объектов</span><span class="sxs-lookup"><span data-stu-id="cb4d2-216">Blob storage</span></span>
+* <span data-ttu-id="cb4d2-217">Хранилище значений ключей</span><span class="sxs-lookup"><span data-stu-id="cb4d2-217">Key-value storage</span></span>
+* <span data-ttu-id="cb4d2-218">Реляционная база данных</span><span class="sxs-lookup"><span data-stu-id="cb4d2-218">Relational database</span></span>
+* <span data-ttu-id="cb4d2-219">Хранилище таблиц</span><span class="sxs-lookup"><span data-stu-id="cb4d2-219">Table storage</span></span>
+
+<span data-ttu-id="cb4d2-220">После сохранения данных состояние пользователя сохраняется и становится доступным во всех новых каналах.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-220">After data is saved, the user's state is retained and available in any new circuit.</span></span>
+
+<span data-ttu-id="cb4d2-221">Дополнительные сведения о вариантах хранения данных в Azure см. здесь:</span><span class="sxs-lookup"><span data-stu-id="cb4d2-221">For more information on Azure data storage options, see the following:</span></span>
+
+* [<span data-ttu-id="cb4d2-222">Базы данных Azure</span><span class="sxs-lookup"><span data-stu-id="cb4d2-222">Azure Databases</span></span>](https://azure.microsoft.com/product-categories/databases/)
+* [<span data-ttu-id="cb4d2-223">Документация по хранилищу Azure</span><span class="sxs-lookup"><span data-stu-id="cb4d2-223">Azure Storage Documentation</span></span>](/azure/storage/)
+
+### <a name="url"></a><span data-ttu-id="cb4d2-224">URL-адрес</span><span class="sxs-lookup"><span data-stu-id="cb4d2-224">URL</span></span>
+
+<span data-ttu-id="cb4d2-225">Для временных данных, представляющих состояние навигации, моделируют данные как часть URL-адреса.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-225">For transient data representing navigation state, model the data as a part of the URL.</span></span> <span data-ttu-id="cb4d2-226">Ниже приведены примеры данных о состоянии пользователя, которые моделируются в URL-адресе.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-226">Examples of user state modeled in the URL include:</span></span>
+
+* <span data-ttu-id="cb4d2-227">Идентификатор просматриваемой сущности.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-227">The ID of a viewed entity.</span></span>
+* <span data-ttu-id="cb4d2-228">Номер текущей страницы в постраничной сетке.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-228">The current page number in a paged grid.</span></span>
+
+<span data-ttu-id="cb4d2-229">Содержимое адресной строки браузера будет сохраняться в следующих случаях.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-229">The contents of the browser's address bar are retained:</span></span>
+
+* <span data-ttu-id="cb4d2-230">Если пользователь вручную обновляет страницу.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-230">If the user manually reloads the page.</span></span>
+* <span data-ttu-id="cb4d2-231">Если веб-сервер становится недоступным и пользователь вынужден перезагрузить страницу, чтобы подключиться к другому серверу.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-231">If the web server becomes unavailable, and the user is forced to reload the page in order to connect to a different server.</span></span>
+
+<span data-ttu-id="cb4d2-232">Сведения об определении шаблонов URL-адресов с помощью директивы [`@page`](xref:mvc/views/razor#page) см. в статье <xref:blazor/fundamentals/routing>.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-232">For information on defining URL patterns with the [`@page`](xref:mvc/views/razor#page) directive, see <xref:blazor/fundamentals/routing>.</span></span>
+
+### <a name="browser-storage"></a><span data-ttu-id="cb4d2-233">Хранилище браузера</span><span class="sxs-lookup"><span data-stu-id="cb4d2-233">Browser storage</span></span>
+
+<span data-ttu-id="cb4d2-234">Для хранения временных данных, создаваемых пользователем, обычно используются коллекции браузера [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) и [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-234">For transient data that the user is actively creating, a commonly used storage location is the browser's [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) collections:</span></span>
+
+* <span data-ttu-id="cb4d2-235">`localStorage` ограничивается окном браузера.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-235">`localStorage` is scoped to the browser's window.</span></span> <span data-ttu-id="cb4d2-236">Если пользователь перезагружает страницу или закрывает и снова открывает браузер, состояние сохраняется.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-236">If the user reloads the page or closes and re-opens the browser, the state persists.</span></span> <span data-ttu-id="cb4d2-237">Если пользователь открывает несколько вкладок браузера, это состояние совместно используется на нескольких вкладках.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-237">If the user opens multiple browser tabs, the state is shared across the tabs.</span></span> <span data-ttu-id="cb4d2-238">Данные сохраняются в `localStorage` до тех пор, пока они не будут явно очищены.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-238">Data persists in `localStorage` until explicitly cleared.</span></span>
+* <span data-ttu-id="cb4d2-239">`sessionStorage` ограничивается вкладкой браузера. Если пользователь перезагружает вкладку, состояние сохраняется.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-239">`sessionStorage` is scoped to the browser tab. If the user reloads the tab, the state persists.</span></span> <span data-ttu-id="cb4d2-240">Если пользователь закрывает вкладку или браузер, состояние теряется.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-240">If the user closes the tab or the browser, the state is lost.</span></span> <span data-ttu-id="cb4d2-241">Если пользователь открывает несколько вкладок браузера, каждая вкладка имеет собственную независимую версию данных.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-241">If the user opens multiple browser tabs, each tab has its own independent version of the data.</span></span>
+
+<span data-ttu-id="cb4d2-242">Как правило, `sessionStorage` более безопасно для использования.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-242">Generally, `sessionStorage` is safer to use.</span></span> <span data-ttu-id="cb4d2-243">`sessionStorage` позволяет избежать риска, когда пользователь открывает несколько вкладок и сталкивается со следующими проблемами.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-243">`sessionStorage` avoids the risk that a user opens multiple tabs and encounters the following:</span></span>
+
+* <span data-ttu-id="cb4d2-244">Ошибки в хранилище состояний на разных вкладках.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-244">Bugs in state storage across tabs.</span></span>
+* <span data-ttu-id="cb4d2-245">Путаница в работе, когда одна вкладка перезаписывает состояние других.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-245">Confusing behavior when a tab overwrites the state of other tabs.</span></span>
+
+<span data-ttu-id="cb4d2-246">`localStorage` является лучшим выбором, если приложение должно сохранять состояние в случае закрытия и повторного открытия браузера.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-246">`localStorage` is the better choice if the app must persist state across closing and re-opening the browser.</span></span>
+
+<span data-ttu-id="cb4d2-247">Предостережения при использовании хранилища браузера.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-247">Caveats for using browser storage:</span></span>
+
+* <span data-ttu-id="cb4d2-248">Аналогично использованию базы данных на стороне сервера, загрузка и сохранение данных выполняются асинхронно.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-248">Similar to the use of a server-side database, loading and saving data are asynchronous.</span></span>
+* <span data-ttu-id="cb4d2-249">В отличие от базы данных на стороне сервера, хранилище недоступно во время предварительной отрисовки, так как запрошенная страница не существует в браузере во время выполнения этой стадии.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-249">Unlike a server-side database, storage isn't available during prerendering because the requested page doesn't exist in the browser during the prerendering stage.</span></span>
+* <span data-ttu-id="cb4d2-250">Для приложений Blazor Server имеет смысл хранить данные в пределах нескольких килобайт.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-250">Storage of a few kilobytes of data is reasonable to persist for Blazor Server apps.</span></span> <span data-ttu-id="cb4d2-251">При превышении этого порога необходимо учитывать последствия производительности, поскольку данные загружаются и сохраняются по сети.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-251">Beyond a few kilobytes, you must consider the performance implications because the data is loaded and saved across the network.</span></span>
+* <span data-ttu-id="cb4d2-252">Пользователи могут просматривать и изменять данные.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-252">Users may view or tamper with the data.</span></span> <span data-ttu-id="cb4d2-253">[Защита данных ASP.NET Core](xref:security/data-protection/introduction) может снизить этот риск.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-253">[ASP.NET Core Data Protection](xref:security/data-protection/introduction) can mitigate the risk.</span></span> <span data-ttu-id="cb4d2-254">Например, [защищенное хранилище браузера ASP.NET Core](#aspnet-core-protected-browser-storage) использует защиту данных ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-254">For example, [ASP.NET Core Protected Browser Storage](#aspnet-core-protected-browser-storage) uses ASP.NET Core Data Protection.</span></span>
+
+<span data-ttu-id="cb4d2-255">Сторонние пакеты NuGet предоставляют интерфейсы API для работы с `localStorage` и `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-255">Third-party NuGet packages provide APIs for working with `localStorage` and `sessionStorage`.</span></span> <span data-ttu-id="cb4d2-256">Рекомендуется выбрать пакет, который прозрачно использует [защиту данных ASP.NET Core](xref:security/data-protection/introduction).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-256">It's worth considering choosing a package that transparently uses [ASP.NET Core Data Protection](xref:security/data-protection/introduction).</span></span> <span data-ttu-id="cb4d2-257">Функция защиты данных шифрует хранимые данные и уменьшает потенциальный риск несанкционированного изменения хранимых данных.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-257">Data Protection encrypts stored data and reduces the potential risk of tampering with stored data.</span></span> <span data-ttu-id="cb4d2-258">Если сериализованные данные JSON хранятся в виде обычного текста, пользователи могут просматривать данные с помощью средств разработчика браузера, а также изменять сохраненные данные.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-258">If JSON-serialized data is stored in plain text, users can see the data using browser developer tools and also modify the stored data.</span></span> <span data-ttu-id="cb4d2-259">Защита данных не всегда является проблемой, так как данные могут быть тривиальными по своей природе.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-259">Securing data isn't always a problem because the data might be trivial in nature.</span></span> <span data-ttu-id="cb4d2-260">Например, чтение или изменение сохраненного цвета элемента пользовательского интерфейса не является серьезной угрозой безопасности для пользователя или организации.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-260">For example, reading or modifying the stored color of a UI element isn't a significant security risk to the user or the organization.</span></span> <span data-ttu-id="cb4d2-261">Не разрешайте пользователям проверять или изменять *конфиденциальные данные*.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-261">Avoid allowing users to inspect or tamper with *sensitive data*.</span></span>
+
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="aspnet-core-protected-browser-storage"></a><span data-ttu-id="cb4d2-262">Защищенное хранилище браузера ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="cb4d2-262">ASP.NET Core Protected Browser Storage</span></span>
+
+<span data-ttu-id="cb4d2-263">Защищенное хранилище браузера ASP.NET Core использует [защиту данных ASP.NET Core](xref:security/data-protection/introduction) для [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) и [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-263">ASP.NET Core Protected Browser Storage leverages [ASP.NET Core Data Protection](xref:security/data-protection/introduction) for [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage).</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="cb4d2-264">Защищенное хранилище браузера использует защиту данных ASP.NET Core и поддерживается только для приложений Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-264">Protected Browser Storage relies on ASP.NET Core Data Protection and is only supported for Blazor Server apps.</span></span>
+
+### <a name="configuration"></a><span data-ttu-id="cb4d2-265">Конфигурация</span><span class="sxs-lookup"><span data-stu-id="cb4d2-265">Configuration</span></span>
+
+1. <span data-ttu-id="cb4d2-266">Добавьте ссылку на пакет для [`Microsoft.AspNetCore.Components.Web.Extensions`](https://www.nuget.org/packages/Microsoft.AspNetCore.Http.Extensions).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-266">Add a package reference to [`Microsoft.AspNetCore.Components.Web.Extensions`](https://www.nuget.org/packages/Microsoft.AspNetCore.Http.Extensions).</span></span>
+1. <span data-ttu-id="cb4d2-267">В `Startup.ConfigureServices` вызовите `AddProtectedBrowserStorage`, чтобы добавить службы `localStorage` и `sessionStorage` в коллекцию служб.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-267">In `Startup.ConfigureServices`, call `AddProtectedBrowserStorage` to add `localStorage` and `sessionStorage` services to the service collection:</span></span>
 
    ```csharp
    services.AddProtectedBrowserStorage();
    ```
 
-### <a name="save-and-load-data-within-a-component"></a><span data-ttu-id="0646f-213">Сохранение и загрузка данных в компоненте</span><span class="sxs-lookup"><span data-stu-id="0646f-213">Save and load data within a component</span></span>
+### <a name="save-and-load-data-within-a-component"></a><span data-ttu-id="cb4d2-268">Сохранение и загрузка данных в компоненте</span><span class="sxs-lookup"><span data-stu-id="cb4d2-268">Save and load data within a component</span></span>
 
-<span data-ttu-id="0646f-214">В любом компоненте, требующем загрузки или сохранения данных в хранилище браузера, используйте [`@inject`](xref:mvc/views/razor#inject) для вставки экземпляра одного из следующих компонентов.</span><span class="sxs-lookup"><span data-stu-id="0646f-214">In any component that requires loading or saving data to browser storage, use [`@inject`](xref:mvc/views/razor#inject) to inject an instance of either of the following:</span></span>
+<span data-ttu-id="cb4d2-269">В любом компоненте, требующем загрузки или сохранения данных в хранилище браузера, используйте директиву [`@inject`](xref:mvc/views/razor#inject) для вставки экземпляра одного из следующих компонентов.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-269">In any component that requires loading or saving data to browser storage, use the [`@inject`](xref:mvc/views/razor#inject) directive to inject an instance of either of the following:</span></span>
 
 * `ProtectedLocalStorage`
 * `ProtectedSessionStorage`
 
-<span data-ttu-id="0646f-215">Выбор зависит от того, какое резервное хранилище вы хотите использовать.</span><span class="sxs-lookup"><span data-stu-id="0646f-215">The choice depends on which backing store you wish to use.</span></span> <span data-ttu-id="0646f-216">В следующем примере используется `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="0646f-216">In the following example, `sessionStorage` is used:</span></span>
+<span data-ttu-id="cb4d2-270">Выбор зависит от расположения хранилища браузера, которое требуется использовать.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-270">The choice depends on which browser storage location you wish to use.</span></span> <span data-ttu-id="cb4d2-271">В следующем примере используется `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-271">In the following example, `sessionStorage` is used:</span></span>
 
 ```razor
-@using Microsoft.AspNetCore.ProtectedBrowserStorage
+@using Microsoft.AspNetCore.Components.Web.Extensions
 @inject ProtectedSessionStorage ProtectedSessionStore
 ```
 
-<span data-ttu-id="0646f-217">Инструкцию `@using` можно поместить в файл `_Imports.razor`, а не в компонент.</span><span class="sxs-lookup"><span data-stu-id="0646f-217">The `@using` statement can be placed into an `_Imports.razor` file instead of in the component.</span></span> <span data-ttu-id="0646f-218">Использование файла `_Imports.razor` делает пространство имен доступным для больших сегментов приложения или всего приложения.</span><span class="sxs-lookup"><span data-stu-id="0646f-218">Use of the `_Imports.razor` file makes the namespace available to larger segments of the app or the whole app.</span></span>
+<span data-ttu-id="cb4d2-272">Директиву `@using` можно поместить в файл приложения `_Imports.razor`, а не в компонент.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-272">The `@using` directive can be placed in the app's `_Imports.razor` file instead of in the component.</span></span> <span data-ttu-id="cb4d2-273">Использование файла `_Imports.razor` делает пространство имен доступным для больших сегментов приложения или всего приложения.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-273">Use of the `_Imports.razor` file makes the namespace available to larger segments of the app or the whole app.</span></span>
 
-<span data-ttu-id="0646f-219">Чтобы сохранить значение `currentCount` в компонент шаблона проекта `Counter`, измените метод `IncrementCount` для использования `ProtectedSessionStore.SetAsync`.</span><span class="sxs-lookup"><span data-stu-id="0646f-219">To persist the `currentCount` value in the `Counter` component of the project template, modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:</span></span>
+<span data-ttu-id="cb4d2-274">Чтобы сохранить значение `currentCount` в компоненте `Counter` приложения на основе шаблона проекта Blazor Server, измените метод `IncrementCount`, чтобы использовать в нем `ProtectedSessionStore.SetAsync`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-274">To persist the `currentCount` value in the `Counter` component of an app based on the Blazor Server project template, modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:</span></span>
 
 ```csharp
 private async Task IncrementCount()
@@ -185,45 +262,43 @@ private async Task IncrementCount()
 }
 ```
 
-<span data-ttu-id="0646f-220">В больших и более реалистичных приложениях хранение отдельных полей является маловероятной ситуацией.</span><span class="sxs-lookup"><span data-stu-id="0646f-220">In larger, more realistic apps, storage of individual fields is an unlikely scenario.</span></span> <span data-ttu-id="0646f-221">Приложения, скорее всего, будут хранить все объекты модели, включающие сложное состояние.</span><span class="sxs-lookup"><span data-stu-id="0646f-221">Apps are more likely to store entire model objects that include complex state.</span></span> <span data-ttu-id="0646f-222">`ProtectedSessionStore` автоматически сериализует и десериализует данные JSON.</span><span class="sxs-lookup"><span data-stu-id="0646f-222">`ProtectedSessionStore` automatically serializes and deserializes JSON data.</span></span>
+<span data-ttu-id="cb4d2-275">В больших и более реалистичных приложениях хранение отдельных полей является маловероятной ситуацией.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-275">In larger, more realistic apps, storage of individual fields is an unlikely scenario.</span></span> <span data-ttu-id="cb4d2-276">Приложения, скорее всего, будут хранить все объекты модели, включающие сложное состояние.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-276">Apps are more likely to store entire model objects that include complex state.</span></span> <span data-ttu-id="cb4d2-277">`ProtectedSessionStore` автоматически сериализует и десериализует данные JSON для хранения объектов со сложными состояниями.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-277">`ProtectedSessionStore` automatically serializes and deserializes JSON data to store complex state objects.</span></span>
 
-<span data-ttu-id="0646f-223">В предыдущем примере кода данные `currentCount` хранятся в виде `sessionStorage['count']` в браузере пользователя.</span><span class="sxs-lookup"><span data-stu-id="0646f-223">In the preceding code example, the `currentCount` data is stored as `sessionStorage['count']` in the user's browser.</span></span> <span data-ttu-id="0646f-224">Данные не хранятся в виде обычного текста, а защищаются с помощью [защиты данных](xref:security/data-protection/introduction) ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="0646f-224">The data isn't stored in plaintext but rather is protected using ASP.NET Core's [Data Protection](xref:security/data-protection/introduction).</span></span> <span data-ttu-id="0646f-225">Зашифрованные данные можно увидеть, если `sessionStorage['count']` оценивается в консоли разработчика браузера.</span><span class="sxs-lookup"><span data-stu-id="0646f-225">The encrypted data can be seen if `sessionStorage['count']` is evaluated in the browser's developer console.</span></span>
+<span data-ttu-id="cb4d2-278">В предыдущем примере кода данные `currentCount` хранятся в виде `sessionStorage['count']` в браузере пользователя.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-278">In the preceding code example, the `currentCount` data is stored as `sessionStorage['count']` in the user's browser.</span></span> <span data-ttu-id="cb4d2-279">Данные не хранятся в виде обычного текста, а защищаются с помощью функции защиты данных ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-279">The data isn't stored in plain text but rather is protected using ASP.NET Core Data Protection.</span></span> <span data-ttu-id="cb4d2-280">Зашифрованные данные можно проверить, если `sessionStorage['count']` вычисляется в консоли разработчика браузера.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-280">The encrypted data can be inspected if `sessionStorage['count']` is evaluated in the browser's developer console.</span></span>
 
-<span data-ttu-id="0646f-226">Чтобы восстановить данные `currentCount`, когда пользователь снова возвращается в компонент `Counter` (в том числе если он находится в совершенно новом канале), используйте `ProtectedSessionStore.GetAsync`.</span><span class="sxs-lookup"><span data-stu-id="0646f-226">To recover the `currentCount` data if the user returns to the `Counter` component later (including if they're on an entirely new circuit), use `ProtectedSessionStore.GetAsync`:</span></span>
+<span data-ttu-id="cb4d2-281">Чтобы данные `currentCount` восстанавливались, когда пользователь снова возвращается в компонент `Counter` (в том числе в новом канале), используйте `ProtectedSessionStore.GetAsync`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-281">To recover the `currentCount` data if the user returns to the `Counter` component later, including if the user is on a new circuit, use `ProtectedSessionStore.GetAsync`:</span></span>
 
 ```csharp
 protected override async Task OnInitializedAsync()
 {
-    currentCount = await ProtectedSessionStore.GetAsync<int>("count");
+    var result = await ProtectedSessionStore.GetAsync<int>("count");
+    currentCount = result.Success ? result.Value : 0;
 }
 ```
 
-<span data-ttu-id="0646f-227">Если параметры компонента включают состояние навигации, вызовите `ProtectedSessionStore.GetAsync` и назначьте результат в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, а не в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.</span><span class="sxs-lookup"><span data-stu-id="0646f-227">If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign the result in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, not <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.</span></span> <span data-ttu-id="0646f-228"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> вызывается только один раз при первом создании экземпляра компонента.</span><span class="sxs-lookup"><span data-stu-id="0646f-228"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is only called one time when the component is first instantiated.</span></span> <span data-ttu-id="0646f-229"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> не вызывается позже, если пользователь переходит на другой URL-адрес, оставаясь на той же странице.</span><span class="sxs-lookup"><span data-stu-id="0646f-229"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> isn't called again later if the user navigates to a different URL while remaining on the same page.</span></span> <span data-ttu-id="0646f-230">Для получения дополнительной информации см. <xref:blazor/components/lifecycle>.</span><span class="sxs-lookup"><span data-stu-id="0646f-230">For more information, see <xref:blazor/components/lifecycle>.</span></span>
+<span data-ttu-id="cb4d2-282">Если параметры компонента включают состояние навигации, вызовите `ProtectedSessionStore.GetAsync` и назначьте отличный от `null` результат в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, а не в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-282">If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign a non-`null` result in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, not <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.</span></span> <span data-ttu-id="cb4d2-283"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> вызывается только один раз при первом создании экземпляра компонента.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-283"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is only called once when the component is first instantiated.</span></span> <span data-ttu-id="cb4d2-284"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> не вызывается позже, если пользователь переходит на другой URL-адрес, оставаясь на той же странице.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-284"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> isn't called again later if the user navigates to a different URL while remaining on the same page.</span></span> <span data-ttu-id="cb4d2-285">Для получения дополнительной информации см. <xref:blazor/components/lifecycle>.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-285">For more information, see <xref:blazor/components/lifecycle>.</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="0646f-231">Примеры в этом разделе работают только в том случае, если на сервере не включена предварительная отрисовка.</span><span class="sxs-lookup"><span data-stu-id="0646f-231">The examples in this section only work if the server doesn't have prerendering enabled.</span></span> <span data-ttu-id="0646f-232">При включенной предварительной отрисовке возникает ошибка следующего вида.</span><span class="sxs-lookup"><span data-stu-id="0646f-232">With prerendering enabled, an error is generated similar to:</span></span>
+> <span data-ttu-id="cb4d2-286">Примеры в этом разделе работают только в том случае, если на сервере не включена предварительная отрисовка.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-286">The examples in this section only work if the server doesn't have prerendering enabled.</span></span> <span data-ttu-id="cb4d2-287">При включенной предварительной отрисовке выводится сообщение об ошибке, объясняющее, что вызовы взаимодействия с JavaScript осуществить невозможно, поскольку выполняется предварительная отрисовка компонента.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-287">With prerendering enabled, an error is generated explaining that JavaScript interop calls cannot be issued because the component is being prerendered.</span></span>
 >
-> > <span data-ttu-id="0646f-233">В настоящее время вызовы взаимодействия JavaScript не могут быть выполнены.</span><span class="sxs-lookup"><span data-stu-id="0646f-233">JavaScript interop calls cannot be issued at this time.</span></span> <span data-ttu-id="0646f-234">Это связано с тем, что компонент предварительно отрисовывается.</span><span class="sxs-lookup"><span data-stu-id="0646f-234">This is because the component is being prerendered.</span></span>
->
-> <span data-ttu-id="0646f-235">Отключите предварительную отрисовку или добавьте дополнительный код для работы с предварительной отрисовкой.</span><span class="sxs-lookup"><span data-stu-id="0646f-235">Either disable prerendering or add additional code to work with prerendering.</span></span> <span data-ttu-id="0646f-236">Дополнительные сведения о написании кода, который работает с предварительной отрисовкой, см. в разделе [Обработка предварительной отрисовки](#handle-prerendering).</span><span class="sxs-lookup"><span data-stu-id="0646f-236">To learn more about writing code that works with prerendering, see the [Handle prerendering](#handle-prerendering) section.</span></span>
+> <span data-ttu-id="cb4d2-288">Отключите предварительную отрисовку или добавьте дополнительный код для работы с предварительной отрисовкой.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-288">Either disable prerendering or add additional code to work with prerendering.</span></span> <span data-ttu-id="cb4d2-289">Дополнительные сведения о написании кода, который работает с предварительной отрисовкой, см. в разделе [Обработка предварительной отрисовки](#handle-prerendering).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-289">To learn more about writing code that works with prerendering, see the [Handle prerendering](#handle-prerendering) section.</span></span>
 
-### <a name="handle-the-loading-state"></a><span data-ttu-id="0646f-237">Обработка состояния загрузки</span><span class="sxs-lookup"><span data-stu-id="0646f-237">Handle the loading state</span></span>
+### <a name="handle-the-loading-state"></a><span data-ttu-id="cb4d2-290">Обработка состояния загрузки</span><span class="sxs-lookup"><span data-stu-id="cb4d2-290">Handle the loading state</span></span>
 
-<span data-ttu-id="0646f-238">Так как хранилище браузера является асинхронным (доступным через сетевое подключение), всегда есть период времени, прежде чем данные будут загружены и доступны для использования компонентом.</span><span class="sxs-lookup"><span data-stu-id="0646f-238">Since browser storage is asynchronous (accessed over a network connection), there's always a period of time before the data is loaded and available for use by a component.</span></span> <span data-ttu-id="0646f-239">Для достижения лучших результатов перед отображением пустых данных или данных по умолчанию выводится сообщение о состоянии загрузки.</span><span class="sxs-lookup"><span data-stu-id="0646f-239">For the best results, render a loading-state message while loading is in progress instead of displaying blank or default data.</span></span>
+<span data-ttu-id="cb4d2-291">Так как доступ к хранилищу браузера осуществляется асинхронно через сетевое подключение, всегда есть период времени, прежде чем данные будут загружены и станут доступны для компонента.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-291">Since browser storage is accessed asynchronously over a network connection, there's always a period of time before the data is loaded and available to a component.</span></span> <span data-ttu-id="cb4d2-292">Для достижения лучших результатов перед отображением пустых данных или данных по умолчанию выводится сообщение о состоянии загрузки.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-292">For the best results, render a loading-state message while loading is in progress instead of displaying blank or default data.</span></span>
 
-<span data-ttu-id="0646f-240">Один из подходов состоит в том, чтобы определить, является ли значение данных равным `null` (все еще загружаются) или нет.</span><span class="sxs-lookup"><span data-stu-id="0646f-240">One approach is to track whether the data is `null` (still loading) or not.</span></span> <span data-ttu-id="0646f-241">В компоненте `Counter` по умолчанию количество хранится в `int`.</span><span class="sxs-lookup"><span data-stu-id="0646f-241">In the default `Counter` component, the count is held in an `int`.</span></span> <span data-ttu-id="0646f-242">Сделайте `currentCount` допускающим значение NULL, добавив вопросительный знак (`?`) к типу (`int`).</span><span class="sxs-lookup"><span data-stu-id="0646f-242">Make `currentCount` nullable by adding a question mark (`?`) to the type (`int`):</span></span>
+<span data-ttu-id="cb4d2-293">Один из подходов состоит в том, чтобы определить, равно ли значение данных `null`. Если это так, данные еще загружаются.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-293">One approach is to track whether the data is `null`, which means that the data is still loading.</span></span> <span data-ttu-id="cb4d2-294">В компоненте `Counter` по умолчанию количество хранится в `int`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-294">In the default `Counter` component, the count is held in an `int`.</span></span> <span data-ttu-id="cb4d2-295">[Сделайте `currentCount` допускающим значение NULL](/dotnet/csharp/language-reference/builtin-types/nullable-value-types), добавив вопросительный знак (`?`) к типу (`int`).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-295">[Make `currentCount` nullable](/dotnet/csharp/language-reference/builtin-types/nullable-value-types) by adding a question mark (`?`) to the type (`int`):</span></span>
 
 ```csharp
 private int? currentCount;
 ```
 
-<span data-ttu-id="0646f-243">Вместо безусловного отображения количества и кнопки **`Increment`** настройте отображение этих элементов только в том случае, если данные загружены.</span><span class="sxs-lookup"><span data-stu-id="0646f-243">Instead of unconditionally displaying the count and **`Increment`** button, choose to display these elements only if the data is loaded:</span></span>
+<span data-ttu-id="cb4d2-296">Вместо безусловного отображения количества и кнопки **`Increment`** отображайте эти элементы только в том случае, если данные загружены, указав <xref:System.Nullable%601.HasValue%2A>.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-296">Instead of unconditionally displaying the count and **`Increment`** button, display these elements only if the data is loaded by checking <xref:System.Nullable%601.HasValue%2A>:</span></span>
 
 ```razor
 @if (currentCount.HasValue)
 {
     <p>Current count: <strong>@currentCount</strong></p>
-
     <button @onclick="IncrementCount">Increment</button>
 }
 else
@@ -232,39 +307,47 @@ else
 }
 ```
 
-### <a name="handle-prerendering"></a><span data-ttu-id="0646f-244">Обработка предварительной отрисовки</span><span class="sxs-lookup"><span data-stu-id="0646f-244">Handle prerendering</span></span>
+### <a name="handle-prerendering"></a><span data-ttu-id="cb4d2-297">Обработка предварительной отрисовки</span><span class="sxs-lookup"><span data-stu-id="cb4d2-297">Handle prerendering</span></span>
 
-<span data-ttu-id="0646f-245">Во время предварительной отрисовки происходит следующее:</span><span class="sxs-lookup"><span data-stu-id="0646f-245">During prerendering:</span></span>
+<span data-ttu-id="cb4d2-298">Во время предварительной отрисовки происходит следующее:</span><span class="sxs-lookup"><span data-stu-id="cb4d2-298">During prerendering:</span></span>
 
-* <span data-ttu-id="0646f-246">интерактивное подключение к браузеру пользователя не существует;</span><span class="sxs-lookup"><span data-stu-id="0646f-246">An interactive connection to the user's browser doesn't exist.</span></span>
-* <span data-ttu-id="0646f-247">в браузере еще нет страницы, на которой можно запустить код JavaScript.</span><span class="sxs-lookup"><span data-stu-id="0646f-247">The browser doesn't yet have a page in which it can run JavaScript code.</span></span>
+* <span data-ttu-id="cb4d2-299">интерактивное подключение к браузеру пользователя не существует;</span><span class="sxs-lookup"><span data-stu-id="cb4d2-299">An interactive connection to the user's browser doesn't exist.</span></span>
+* <span data-ttu-id="cb4d2-300">в браузере еще нет страницы, на которой можно запустить код JavaScript.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-300">The browser doesn't yet have a page in which it can run JavaScript code.</span></span>
 
-<span data-ttu-id="0646f-248">`localStorage` или `sessionStorage` недоступны во время предварительной отрисовки.</span><span class="sxs-lookup"><span data-stu-id="0646f-248">`localStorage` or `sessionStorage` aren't available during prerendering.</span></span> <span data-ttu-id="0646f-249">Если компонент пытается взаимодействовать с хранилищем, возникает ошибка следующего вида.</span><span class="sxs-lookup"><span data-stu-id="0646f-249">If the component attempts to interact with storage, an error is generated similar to:</span></span>
+<span data-ttu-id="cb4d2-301">`localStorage` или `sessionStorage` недоступны во время предварительной отрисовки.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-301">`localStorage` or `sessionStorage` aren't available during prerendering.</span></span> <span data-ttu-id="cb4d2-302">Если компонент пытается взаимодействовать с хранилищем, выводится сообщение об ошибке, объясняющее, что вызовы взаимодействия с JavaScript осуществить невозможно, поскольку выполняется предварительная отрисовка компонента.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-302">If the component attempts to interact with storage, an error is generated explaining that JavaScript interop calls cannot be issued because the component is being prerendered.</span></span>
 
-> <span data-ttu-id="0646f-250">В настоящее время вызовы взаимодействия JavaScript не могут быть выполнены.</span><span class="sxs-lookup"><span data-stu-id="0646f-250">JavaScript interop calls cannot be issued at this time.</span></span> <span data-ttu-id="0646f-251">Это связано с тем, что компонент предварительно отрисовывается.</span><span class="sxs-lookup"><span data-stu-id="0646f-251">This is because the component is being prerendered.</span></span>
+<span data-ttu-id="cb4d2-303">Одним из способов устранения этой ошибки является отключение предварительной отрисовки.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-303">One way to resolve the error is to disable prerendering.</span></span> <span data-ttu-id="cb4d2-304">Обычно это наилучший вариант, если приложение активно использует хранилище в браузере.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-304">This is usually the best choice if the app makes heavy use of browser-based storage.</span></span> <span data-ttu-id="cb4d2-305">Предварительная отрисовка увеличивает сложность и не дает приложению никаких преимуществ, так как приложение не может выдать какое-либо полезное содержимое, пока не станут доступны `localStorage` или `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-305">Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.</span></span>
 
-<span data-ttu-id="0646f-252">Одним из способов устранения этой ошибки является отключение предварительной отрисовки.</span><span class="sxs-lookup"><span data-stu-id="0646f-252">One way to resolve the error is to disable prerendering.</span></span> <span data-ttu-id="0646f-253">Обычно это наилучший вариант, если приложение активно использует хранилище в браузере.</span><span class="sxs-lookup"><span data-stu-id="0646f-253">This is usually the best choice if the app makes heavy use of browser-based storage.</span></span> <span data-ttu-id="0646f-254">Предварительная отрисовка увеличивает сложность и не дает приложению никаких преимуществ, так как приложение не может выдать какое-либо полезное содержимое, пока не станут доступны `localStorage` или `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="0646f-254">Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.</span></span>
+<span data-ttu-id="cb4d2-306">Чтобы отключить предварительную отрисовку, откройте файл `Pages/_Host.cshtml` и измените атрибут `render-mode` [вспомогательной функции тега компонента](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) на <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-306">To disable prerendering, open the `Pages/_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:</span></span>
 
-<span data-ttu-id="0646f-255">Чтобы отключить предварительную отрисовку, откройте файл `Pages/_Host.cshtml` и измените `render-mode` [вспомогательной функции тега компонента](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) на <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>.</span><span class="sxs-lookup"><span data-stu-id="0646f-255">To disable prerendering, open the `Pages/_Host.cshtml` file and change the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>.</span></span>
+```cshtml
+<component type="typeof(App)" render-mode="Server" />
+```
 
-<span data-ttu-id="0646f-256">Предварительная отрисовка может быть полезной для других страниц, которые не используют `localStorage` или `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="0646f-256">Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`.</span></span> <span data-ttu-id="0646f-257">Чтобы включить предварительную отрисовку, отложите операцию загрузки до тех пор, пока браузер не подключится к каналу.</span><span class="sxs-lookup"><span data-stu-id="0646f-257">To keep prerendering enabled, defer the loading operation until the browser is connected to the circuit.</span></span> <span data-ttu-id="0646f-258">Ниже приведен пример хранения значения счетчика.</span><span class="sxs-lookup"><span data-stu-id="0646f-258">The following is an example for storing a counter value:</span></span>
+<span data-ttu-id="cb4d2-307">Предварительная отрисовка может быть полезной для других страниц, которые не используют `localStorage` или `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-307">Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`.</span></span> <span data-ttu-id="cb4d2-308">Чтобы сохранить предварительную отрисовку, отложите операцию загрузки до тех пор, пока браузер не подключится к каналу.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-308">To retain prerendering, defer the loading operation until the browser is connected to the circuit.</span></span> <span data-ttu-id="cb4d2-309">Ниже приведен пример хранения значения счетчика.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-309">The following is an example for storing a counter value:</span></span>
 
 ```razor
-@using Microsoft.AspNetCore.ProtectedBrowserStorage
+@using Microsoft.AspNetCore.Components.Web.Extensions
 @inject ProtectedLocalStorage ProtectedLocalStore
 
-... rendering code goes here ...
+@if (isConnected)
+{
+    <p>Current count: <strong>@currentCount</strong></p>
+    <button @onclick="IncrementCount">Increment</button>
+}
+else
+{
+    <p>Loading...</p>
+}
 
 @code {
-    private int? currentCount;
-    private bool isConnected = false;
+    private int currentCount;
+    private bool isConnected;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            // When execution reaches this point, the first *interactive* render
-            // is complete. The component has an active connection to the browser.
             isConnected = true;
             await LoadStateAsync();
             StateHasChanged();
@@ -273,28 +356,29 @@ else
 
     private async Task LoadStateAsync()
     {
-        currentCount = await ProtectedLocalStore.GetAsync<int>("prerenderedCount");
+        var result = await ProtectedLocalStore.GetAsync<int>("count");
+        currentCount = result.Success ? result.Value : 0;
     }
 
     private async Task IncrementCount()
     {
         currentCount++;
-        await ProtectedSessionStore.SetAsync("count", currentCount);
+        await ProtectedLocalStore.SetAsync("count", currentCount);
     }
 }
 ```
 
-### <a name="factor-out-the-state-preservation-to-a-common-location"></a><span data-ttu-id="0646f-259">Перенос сохранения состояния в общее расположение</span><span class="sxs-lookup"><span data-stu-id="0646f-259">Factor out the state preservation to a common location</span></span>
+### <a name="factor-out-the-state-preservation-to-a-common-location"></a><span data-ttu-id="cb4d2-310">Перенос сохранения состояния в общее расположение</span><span class="sxs-lookup"><span data-stu-id="cb4d2-310">Factor out the state preservation to a common location</span></span>
 
-<span data-ttu-id="0646f-260">Если многие компоненты используют хранилище на основе браузера, повторная реализация кода поставщика состояний много раз создает дублирование кода.</span><span class="sxs-lookup"><span data-stu-id="0646f-260">If many components rely on browser-based storage, re-implementing state provider code many times creates code duplication.</span></span> <span data-ttu-id="0646f-261">Одним из вариантов предотвращения дублирования кода является создание *родительского компонента поставщика состояний*, который инкапсулирует логику поставщика состояний.</span><span class="sxs-lookup"><span data-stu-id="0646f-261">One option for avoiding code duplication is to create a *state provider parent component* that encapsulates the state provider logic.</span></span> <span data-ttu-id="0646f-262">Дочерние компоненты могут работать с сохраненными данными без учета механизма сохранения состояния.</span><span class="sxs-lookup"><span data-stu-id="0646f-262">Child components can work with persisted data without regard to the state persistence mechanism.</span></span>
+<span data-ttu-id="cb4d2-311">Если многие компоненты используют хранилище на основе браузера, повторная реализация кода поставщика состояний много раз создает дублирование кода.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-311">If many components rely on browser-based storage, re-implementing state provider code many times creates code duplication.</span></span> <span data-ttu-id="cb4d2-312">Одним из вариантов предотвращения дублирования кода является создание *родительского компонента поставщика состояний*, который инкапсулирует логику поставщика состояний.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-312">One option for avoiding code duplication is to create a *state provider parent component* that encapsulates the state provider logic.</span></span> <span data-ttu-id="cb4d2-313">Дочерние компоненты могут работать с сохраненными данными без учета механизма сохранения состояния.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-313">Child components can work with persisted data without regard to the state persistence mechanism.</span></span>
 
-<span data-ttu-id="0646f-263">В следующем примере компонента `CounterStateProvider` данные счетчика сохраняются.</span><span class="sxs-lookup"><span data-stu-id="0646f-263">In the following example of a `CounterStateProvider` component, counter data is persisted:</span></span>
+<span data-ttu-id="cb4d2-314">В следующем примере компонента `CounterStateProvider` данные счетчика сохраняются в `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-314">In the following example of a `CounterStateProvider` component, counter data is persisted to `sessionStorage`:</span></span>
 
 ```razor
-@using Microsoft.AspNetCore.ProtectedBrowserStorage
+@using Microsoft.AspNetCore.Components.Web.Extensions
 @inject ProtectedSessionStorage ProtectedSessionStore
 
-@if (hasLoaded)
+@if (isLoaded)
 {
     <CascadingValue Value="@this">
         @ChildContent
@@ -306,7 +390,7 @@ else
 }
 
 @code {
-    private bool hasLoaded;
+    private bool isLoaded;
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
@@ -315,8 +399,9 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentCount = await ProtectedSessionStore.GetAsync<int>("count");
-        hasLoaded = true;
+        var result = await ProtectedSessionStore.GetAsync<int>("count");
+        currentCount = result.Success ? result.Value : 0;
+        isLoaded = true;
     }
 
     public async Task SaveChangesAsync()
@@ -326,9 +411,9 @@ else
 }
 ```
 
-<span data-ttu-id="0646f-264">Компонент `CounterStateProvider` обрабатывает этап загрузки, не выполняя отрисовку его дочернего содержимого до завершения загрузки.</span><span class="sxs-lookup"><span data-stu-id="0646f-264">The `CounterStateProvider` component handles the loading phase by not rendering its child content until loading is complete.</span></span>
+<span data-ttu-id="cb4d2-315">Компонент `CounterStateProvider` обрабатывает этап загрузки, не выполняя отрисовку его дочернего содержимого до завершения загрузки.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-315">The `CounterStateProvider` component handles the loading phase by not rendering its child content until loading is complete.</span></span>
 
-<span data-ttu-id="0646f-265">Чтобы использовать компонент `CounterStateProvider`, оберните экземпляр компонента вокруг любого другого компонента, которому требуется доступ к состоянию счетчика.</span><span class="sxs-lookup"><span data-stu-id="0646f-265">To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state.</span></span> <span data-ttu-id="0646f-266">Чтобы сделать состояние доступным для всех компонентов в приложении, оберните `CounterStateProvider` компонент вокруг <xref:Microsoft.AspNetCore.Components.Routing.Router> в компоненте `App` (`App.razor`).</span><span class="sxs-lookup"><span data-stu-id="0646f-266">To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (`App.razor`):</span></span>
+<span data-ttu-id="cb4d2-316">Чтобы использовать компонент `CounterStateProvider`, оберните экземпляр компонента вокруг любого другого компонента, которому требуется доступ к состоянию счетчика.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-316">To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state.</span></span> <span data-ttu-id="cb4d2-317">Чтобы сделать состояние доступным для всех компонентов в приложении, оберните `CounterStateProvider` компонент вокруг <xref:Microsoft.AspNetCore.Components.Routing.Router> в компоненте `App` (`App.razor`).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-317">To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (`App.razor`):</span></span>
 
 ```razor
 <CounterStateProvider>
@@ -338,13 +423,12 @@ else
 </CounterStateProvider>
 ```
 
-<span data-ttu-id="0646f-267">Упакованные компоненты получают и могут изменять состояние сохраненного счетчика.</span><span class="sxs-lookup"><span data-stu-id="0646f-267">Wrapped components receive and can modify the persisted counter state.</span></span> <span data-ttu-id="0646f-268">Следующий компонент `Counter` реализует этот шаблон.</span><span class="sxs-lookup"><span data-stu-id="0646f-268">The following `Counter` component implements the pattern:</span></span>
+<span data-ttu-id="cb4d2-318">Упакованные компоненты получают и могут изменять состояние сохраненного счетчика.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-318">Wrapped components receive and can modify the persisted counter state.</span></span> <span data-ttu-id="cb4d2-319">Следующий компонент `Counter` реализует этот шаблон.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-319">The following `Counter` component implements the pattern:</span></span>
 
 ```razor
 @page "/counter"
 
 <p>Current count: <strong>@CounterStateProvider.CurrentCount</strong></p>
-
 <button @onclick="IncrementCount">Increment</button>
 
 @code {
@@ -359,13 +443,260 @@ else
 }
 ```
 
-<span data-ttu-id="0646f-269">Предыдущий компонент не требуется для взаимодействия с `ProtectedBrowserStorage` и не имеет отношения к этапу "загрузки".</span><span class="sxs-lookup"><span data-stu-id="0646f-269">The preceding component isn't required to interact with `ProtectedBrowserStorage`, nor does it deal with a "loading" phase.</span></span>
+<span data-ttu-id="cb4d2-320">Предыдущий компонент не требуется для взаимодействия с `ProtectedBrowserStorage` и не имеет отношения к этапу "загрузки".</span><span class="sxs-lookup"><span data-stu-id="cb4d2-320">The preceding component isn't required to interact with `ProtectedBrowserStorage`, nor does it deal with a "loading" phase.</span></span>
 
-<span data-ttu-id="0646f-270">Для работы с предварительной отрисовкой, как описано выше, `CounterStateProvider` можно сделать так, чтобы все компоненты, использующие данные счетчика, автоматически работали с предварительной отрисовкой.</span><span class="sxs-lookup"><span data-stu-id="0646f-270">To deal with prerendering as described earlier, `CounterStateProvider` can be amended so that all of the components that consume the counter data automatically work with prerendering.</span></span> <span data-ttu-id="0646f-271">Дополнительные сведения см. в разделе [Обработка предварительной отрисовки](#handle-prerendering).</span><span class="sxs-lookup"><span data-stu-id="0646f-271">See the [Handle prerendering](#handle-prerendering) section for details.</span></span>
+<span data-ttu-id="cb4d2-321">Для работы с предварительной отрисовкой, как описано выше, `CounterStateProvider` можно сделать так, чтобы все компоненты, использующие данные счетчика, автоматически работали с предварительной отрисовкой.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-321">To deal with prerendering as described earlier, `CounterStateProvider` can be amended so that all of the components that consume the counter data automatically work with prerendering.</span></span> <span data-ttu-id="cb4d2-322">Дополнительные сведения см. в разделе [Обработка предварительной отрисовки](#handle-prerendering).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-322">For more information, see the [Handle prerendering](#handle-prerendering) section.</span></span>
 
-<span data-ttu-id="0646f-272">В целом рекомендуется использовать шаблон *родительского компонента поставщика состояний* в следующих случаях.</span><span class="sxs-lookup"><span data-stu-id="0646f-272">In general, *state provider parent component* pattern is recommended:</span></span>
+<span data-ttu-id="cb4d2-323">В целом шаблон *родительского компонента поставщика состояний* рекомендуется использовать в следующих случаях:</span><span class="sxs-lookup"><span data-stu-id="cb4d2-323">In general, the *state provider parent component* pattern is recommended:</span></span>
 
-* <span data-ttu-id="0646f-273">Для использования состояния во многих других компонентах.</span><span class="sxs-lookup"><span data-stu-id="0646f-273">To consume state in many other components.</span></span>
-* <span data-ttu-id="0646f-274">Если имеется только один объект состояния верхнего уровня для сохранения.</span><span class="sxs-lookup"><span data-stu-id="0646f-274">If there's just one top-level state object to persist.</span></span>
+* <span data-ttu-id="cb4d2-324">Для использования состояния во множестве компонентов.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-324">To consume state across many components.</span></span>
+* <span data-ttu-id="cb4d2-325">Если имеется только один объект состояния верхнего уровня для сохранения.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-325">If there's just one top-level state object to persist.</span></span>
 
-<span data-ttu-id="0646f-275">Чтобы сохранить множество различных объектов состояния и использовать разные подмножества объектов в разных местах, лучше избегать глобальной обработки загрузки и сохранения состояния.</span><span class="sxs-lookup"><span data-stu-id="0646f-275">To persist many different state objects and consume different subsets of objects in different places, it's better to avoid handling the loading and saving of state globally.</span></span>
+<span data-ttu-id="cb4d2-326">Чтобы сохранить множество различных объектов состояния и использовать разные подмножества объектов в разных местах, лучше избегать глобального сохранения состояния.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-326">To persist many different state objects and consume different subsets of objects in different places, it's better to avoid persisting state globally.</span></span>
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+## <a name="protected-browser-storage-experimental-nuget-package"></a><span data-ttu-id="cb4d2-327">Экспериментальный пакет NuGet для защищенного хранилища браузера</span><span class="sxs-lookup"><span data-stu-id="cb4d2-327">Protected Browser Storage experimental NuGet package</span></span>
+
+<span data-ttu-id="cb4d2-328">Защищенное хранилище браузера ASP.NET Core использует [защиту данных ASP.NET Core](xref:security/data-protection/introduction) для [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) и [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-328">ASP.NET Core Protected Browser Storage leverages [ASP.NET Core Data Protection](xref:security/data-protection/introduction) for [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage).</span></span>
+
+> [!WARNING]
+> <span data-ttu-id="cb4d2-329">`Microsoft.AspNetCore.ProtectedBrowserStorage` является неподдерживаемым экспериментальным пакетом, который не подходит для использования в рабочей среде.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-329">`Microsoft.AspNetCore.ProtectedBrowserStorage` is an unsupported, experimental package unsuitable for production use.</span></span>
+>
+> <span data-ttu-id="cb4d2-330">Пакет можно использовать только в приложениях Blazor Server для ASP.NET Core 3.1.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-330">The package is only available for use in ASP.NET Core 3.1 Blazor Server apps.</span></span>
+
+### <a name="configuration"></a><span data-ttu-id="cb4d2-331">Конфигурация</span><span class="sxs-lookup"><span data-stu-id="cb4d2-331">Configuration</span></span>
+
+1. <span data-ttu-id="cb4d2-332">Добавьте ссылку на пакет для [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-332">Add a package reference to [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).</span></span>
+1. <span data-ttu-id="cb4d2-333">Добавьте следующий скрипт в файл `Pages/_Host.cshtml` до закрывающего тега `</body>`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-333">In the `Pages/_Host.cshtml` file, add the following script inside the closing `</body>` tag:</span></span>
+
+   ```cshtml
+   <script src="_content/Microsoft.AspNetCore.ProtectedBrowserStorage/protectedBrowserStorage.js"></script>
+   ```
+
+1. <span data-ttu-id="cb4d2-334">В `Startup.ConfigureServices` вызовите `AddProtectedBrowserStorage`, чтобы добавить службы `localStorage` и `sessionStorage` в коллекцию служб.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-334">In `Startup.ConfigureServices`, call `AddProtectedBrowserStorage` to add `localStorage` and `sessionStorage` services to the service collection:</span></span>
+
+   ```csharp
+   services.AddProtectedBrowserStorage();
+   ```
+
+### <a name="save-and-load-data-within-a-component"></a><span data-ttu-id="cb4d2-335">Сохранение и загрузка данных в компоненте</span><span class="sxs-lookup"><span data-stu-id="cb4d2-335">Save and load data within a component</span></span>
+
+<span data-ttu-id="cb4d2-336">В любом компоненте, требующем загрузки или сохранения данных в хранилище браузера, используйте директиву [`@inject`](xref:mvc/views/razor#inject) для вставки экземпляра одного из следующих компонентов.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-336">In any component that requires loading or saving data to browser storage, use the [`@inject`](xref:mvc/views/razor#inject) directive to inject an instance of either of the following:</span></span>
+
+* `ProtectedLocalStorage`
+* `ProtectedSessionStorage`
+
+<span data-ttu-id="cb4d2-337">Выбор зависит от расположения хранилища браузера, которое требуется использовать.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-337">The choice depends on which browser storage location you wish to use.</span></span> <span data-ttu-id="cb4d2-338">В следующем примере используется `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-338">In the following example, `sessionStorage` is used:</span></span>
+
+```razor
+@using Microsoft.AspNetCore.ProtectedBrowserStorage
+@inject ProtectedSessionStorage ProtectedSessionStore
+```
+
+<span data-ttu-id="cb4d2-339">Инструкцию `@using` можно поместить в файл `_Imports.razor`, а не в компонент.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-339">The `@using` statement can be placed into an `_Imports.razor` file instead of in the component.</span></span> <span data-ttu-id="cb4d2-340">Использование файла `_Imports.razor` делает пространство имен доступным для больших сегментов приложения или всего приложения.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-340">Use of the `_Imports.razor` file makes the namespace available to larger segments of the app or the whole app.</span></span>
+
+<span data-ttu-id="cb4d2-341">Чтобы сохранить значение `currentCount` в компоненте `Counter` приложения на основе шаблона проекта Blazor Server, измените метод `IncrementCount`, чтобы использовать в нем `ProtectedSessionStore.SetAsync`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-341">To persist the `currentCount` value in the `Counter` component of an app based on the Blazor Server project template, modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:</span></span>
+
+```csharp
+private async Task IncrementCount()
+{
+    currentCount++;
+    await ProtectedSessionStore.SetAsync("count", currentCount);
+}
+```
+
+<span data-ttu-id="cb4d2-342">В больших и более реалистичных приложениях хранение отдельных полей является маловероятной ситуацией.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-342">In larger, more realistic apps, storage of individual fields is an unlikely scenario.</span></span> <span data-ttu-id="cb4d2-343">Приложения, скорее всего, будут хранить все объекты модели, включающие сложное состояние.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-343">Apps are more likely to store entire model objects that include complex state.</span></span> <span data-ttu-id="cb4d2-344">`ProtectedSessionStore` автоматически сериализует и десериализует данные JSON.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-344">`ProtectedSessionStore` automatically serializes and deserializes JSON data.</span></span>
+
+<span data-ttu-id="cb4d2-345">В предыдущем примере кода данные `currentCount` хранятся в виде `sessionStorage['count']` в браузере пользователя.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-345">In the preceding code example, the `currentCount` data is stored as `sessionStorage['count']` in the user's browser.</span></span> <span data-ttu-id="cb4d2-346">Данные не хранятся в виде обычного текста, а защищаются с помощью функции защиты данных ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-346">The data isn't stored in plain text but rather is protected using ASP.NET Core Data Protection.</span></span> <span data-ttu-id="cb4d2-347">Зашифрованные данные можно проверить, если `sessionStorage['count']` вычисляется в консоли разработчика браузера.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-347">The encrypted data can be inspected if `sessionStorage['count']` is evaluated in the browser's developer console.</span></span>
+
+<span data-ttu-id="cb4d2-348">Чтобы восстановить данные `currentCount`, когда пользователь снова возвращается в компонент `Counter`, в том числе в совершенно новом канале, используйте `ProtectedSessionStore.GetAsync`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-348">To recover the `currentCount` data if the user returns to the `Counter` component later, including if they're on an entirely new circuit, use `ProtectedSessionStore.GetAsync`:</span></span>
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    currentCount = await ProtectedSessionStore.GetAsync<int>("count");
+}
+```
+
+<span data-ttu-id="cb4d2-349">Если параметры компонента включают состояние навигации, вызовите `ProtectedSessionStore.GetAsync` и назначьте результат в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, а не в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-349">If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign the result in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, not <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.</span></span> <span data-ttu-id="cb4d2-350"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> вызывается только один раз при первом создании экземпляра компонента.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-350"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is only called once when the component is first instantiated.</span></span> <span data-ttu-id="cb4d2-351"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> не вызывается позже, если пользователь переходит на другой URL-адрес, оставаясь на той же странице.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-351"><xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> isn't called again later if the user navigates to a different URL while remaining on the same page.</span></span> <span data-ttu-id="cb4d2-352">Для получения дополнительной информации см. <xref:blazor/components/lifecycle>.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-352">For more information, see <xref:blazor/components/lifecycle>.</span></span>
+
+> [!WARNING]
+> <span data-ttu-id="cb4d2-353">Примеры в этом разделе работают только в том случае, если на сервере не включена предварительная отрисовка.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-353">The examples in this section only work if the server doesn't have prerendering enabled.</span></span> <span data-ttu-id="cb4d2-354">При включенной предварительной отрисовке выводится сообщение об ошибке, объясняющее, что вызовы взаимодействия с JavaScript осуществить невозможно, поскольку выполняется предварительная отрисовка компонента.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-354">With prerendering enabled, an error is generated explaining that JavaScript interop calls cannot be issued because the component is being prerendered.</span></span>
+>
+> <span data-ttu-id="cb4d2-355">Отключите предварительную отрисовку или добавьте дополнительный код для работы с предварительной отрисовкой.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-355">Either disable prerendering or add additional code to work with prerendering.</span></span> <span data-ttu-id="cb4d2-356">Дополнительные сведения о написании кода, который работает с предварительной отрисовкой, см. в разделе [Обработка предварительной отрисовки](#handle-prerendering).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-356">To learn more about writing code that works with prerendering, see the [Handle prerendering](#handle-prerendering) section.</span></span>
+
+### <a name="handle-the-loading-state"></a><span data-ttu-id="cb4d2-357">Обработка состояния загрузки</span><span class="sxs-lookup"><span data-stu-id="cb4d2-357">Handle the loading state</span></span>
+
+<span data-ttu-id="cb4d2-358">Так как доступ к хранилищу браузера осуществляется асинхронно через сетевое подключение, всегда есть период времени, прежде чем данные будут загружены и станут доступны для компонента.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-358">Since browser storage is accessed asynchronously over a network connection, there's always a period of time before the data is loaded and available to a component.</span></span> <span data-ttu-id="cb4d2-359">Для достижения лучших результатов перед отображением пустых данных или данных по умолчанию выводится сообщение о состоянии загрузки.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-359">For the best results, render a loading-state message while loading is in progress instead of displaying blank or default data.</span></span>
+
+<span data-ttu-id="cb4d2-360">Один из подходов состоит в том, чтобы определить, равно ли значение данных `null`. Если это так, данные еще загружаются.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-360">One approach is to track whether the data is `null`, which means that the data is still loading.</span></span> <span data-ttu-id="cb4d2-361">В компоненте `Counter` по умолчанию количество хранится в `int`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-361">In the default `Counter` component, the count is held in an `int`.</span></span> <span data-ttu-id="cb4d2-362">[Сделайте `currentCount` допускающим значение NULL](/dotnet/csharp/language-reference/builtin-types/nullable-value-types), добавив вопросительный знак (`?`) к типу (`int`).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-362">[Make `currentCount` nullable](/dotnet/csharp/language-reference/builtin-types/nullable-value-types) by adding a question mark (`?`) to the type (`int`):</span></span>
+
+```csharp
+private int? currentCount;
+```
+
+<span data-ttu-id="cb4d2-363">Вместо безусловного отображения количества и кнопки **`Increment`** настройте отображение этих элементов только в том случае, если данные загружены.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-363">Instead of unconditionally displaying the count and **`Increment`** button, choose to display these elements only if the data is loaded:</span></span>
+
+```razor
+@if (currentCount.HasValue)
+{
+    <p>Current count: <strong>@currentCount</strong></p>
+    <button @onclick="IncrementCount">Increment</button>
+}
+else
+{
+    <p>Loading...</p>
+}
+```
+
+### <a name="handle-prerendering"></a><span data-ttu-id="cb4d2-364">Обработка предварительной отрисовки</span><span class="sxs-lookup"><span data-stu-id="cb4d2-364">Handle prerendering</span></span>
+
+<span data-ttu-id="cb4d2-365">Во время предварительной отрисовки происходит следующее:</span><span class="sxs-lookup"><span data-stu-id="cb4d2-365">During prerendering:</span></span>
+
+* <span data-ttu-id="cb4d2-366">интерактивное подключение к браузеру пользователя не существует;</span><span class="sxs-lookup"><span data-stu-id="cb4d2-366">An interactive connection to the user's browser doesn't exist.</span></span>
+* <span data-ttu-id="cb4d2-367">в браузере еще нет страницы, на которой можно запустить код JavaScript.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-367">The browser doesn't yet have a page in which it can run JavaScript code.</span></span>
+
+<span data-ttu-id="cb4d2-368">`localStorage` или `sessionStorage` недоступны во время предварительной отрисовки.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-368">`localStorage` or `sessionStorage` aren't available during prerendering.</span></span> <span data-ttu-id="cb4d2-369">Если компонент пытается взаимодействовать с хранилищем, выводится сообщение об ошибке, объясняющее, что вызовы взаимодействия с JavaScript осуществить невозможно, поскольку выполняется предварительная отрисовка компонента.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-369">If the component attempts to interact with storage, an error is generated explaining that JavaScript interop calls cannot be issued because the component is being prerendered.</span></span>
+
+<span data-ttu-id="cb4d2-370">Одним из способов устранения этой ошибки является отключение предварительной отрисовки.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-370">One way to resolve the error is to disable prerendering.</span></span> <span data-ttu-id="cb4d2-371">Обычно это наилучший вариант, если приложение активно использует хранилище в браузере.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-371">This is usually the best choice if the app makes heavy use of browser-based storage.</span></span> <span data-ttu-id="cb4d2-372">Предварительная отрисовка увеличивает сложность и не дает приложению никаких преимуществ, так как приложение не может выдать какое-либо полезное содержимое, пока не станут доступны `localStorage` или `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-372">Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.</span></span>
+
+<span data-ttu-id="cb4d2-373">Чтобы отключить предварительную отрисовку, откройте файл `Pages/_Host.cshtml` и измените атрибут `render-mode` [вспомогательной функции тега компонента](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) на <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-373">To disable prerendering, open the `Pages/_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:</span></span>
+
+```cshtml
+<component type="typeof(App)" render-mode="Server" />
+```
+
+<span data-ttu-id="cb4d2-374">Предварительная отрисовка может быть полезной для других страниц, которые не используют `localStorage` или `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-374">Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`.</span></span> <span data-ttu-id="cb4d2-375">Чтобы сохранить предварительную отрисовку, отложите операцию загрузки до тех пор, пока браузер не подключится к каналу.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-375">To retain prerendering, defer the loading operation until the browser is connected to the circuit.</span></span> <span data-ttu-id="cb4d2-376">Ниже приведен пример хранения значения счетчика.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-376">The following is an example for storing a counter value:</span></span>
+
+```razor
+@using Microsoft.AspNetCore.ProtectedBrowserStorage
+@inject ProtectedLocalStorage ProtectedLocalStore
+
+@if (isConnected)
+{
+    <p>Current count: <strong>@currentCount</strong></p>
+    <button @onclick="IncrementCount">Increment</button>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    private int? currentCount;
+    private bool isConnected = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            isConnected = true;
+            await LoadStateAsync();
+            StateHasChanged();
+        }
+    }
+
+    private async Task LoadStateAsync()
+    {
+        currentCount = await ProtectedLocalStore.GetAsync<int>("count");
+    }
+
+    private async Task IncrementCount()
+    {
+        currentCount++;
+        await ProtectedLocalStore.SetAsync("count", currentCount);
+    }
+}
+```
+
+### <a name="factor-out-the-state-preservation-to-a-common-location"></a><span data-ttu-id="cb4d2-377">Перенос сохранения состояния в общее расположение</span><span class="sxs-lookup"><span data-stu-id="cb4d2-377">Factor out the state preservation to a common location</span></span>
+
+<span data-ttu-id="cb4d2-378">Если многие компоненты используют хранилище на основе браузера, повторная реализация кода поставщика состояний много раз создает дублирование кода.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-378">If many components rely on browser-based storage, re-implementing state provider code many times creates code duplication.</span></span> <span data-ttu-id="cb4d2-379">Одним из вариантов предотвращения дублирования кода является создание *родительского компонента поставщика состояний*, который инкапсулирует логику поставщика состояний.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-379">One option for avoiding code duplication is to create a *state provider parent component* that encapsulates the state provider logic.</span></span> <span data-ttu-id="cb4d2-380">Дочерние компоненты могут работать с сохраненными данными без учета механизма сохранения состояния.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-380">Child components can work with persisted data without regard to the state persistence mechanism.</span></span>
+
+<span data-ttu-id="cb4d2-381">В следующем примере компонента `CounterStateProvider` данные счетчика сохраняются в `sessionStorage`.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-381">In the following example of a `CounterStateProvider` component, counter data is persisted to `sessionStorage`:</span></span>
+
+```razor
+@using Microsoft.AspNetCore.ProtectedBrowserStorage
+@inject ProtectedSessionStorage ProtectedSessionStore
+
+@if (isLoaded)
+{
+    <CascadingValue Value="@this">
+        @ChildContent
+    </CascadingValue>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    private bool isLoaded;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public int CurrentCount { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        CurrentCount = await ProtectedSessionStore.GetAsync<int>("count");
+        isLoaded = true;
+    }
+
+    public async Task SaveChangesAsync()
+    {
+        await ProtectedSessionStore.SetAsync("count", CurrentCount);
+    }
+}
+```
+
+<span data-ttu-id="cb4d2-382">Компонент `CounterStateProvider` обрабатывает этап загрузки, не выполняя отрисовку его дочернего содержимого до завершения загрузки.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-382">The `CounterStateProvider` component handles the loading phase by not rendering its child content until loading is complete.</span></span>
+
+<span data-ttu-id="cb4d2-383">Чтобы использовать компонент `CounterStateProvider`, оберните экземпляр компонента вокруг любого другого компонента, которому требуется доступ к состоянию счетчика.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-383">To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state.</span></span> <span data-ttu-id="cb4d2-384">Чтобы сделать состояние доступным для всех компонентов в приложении, оберните `CounterStateProvider` компонент вокруг <xref:Microsoft.AspNetCore.Components.Routing.Router> в компоненте `App` (`App.razor`).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-384">To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (`App.razor`):</span></span>
+
+```razor
+<CounterStateProvider>
+    <Router AppAssembly="typeof(Startup).Assembly">
+        ...
+    </Router>
+</CounterStateProvider>
+```
+
+<span data-ttu-id="cb4d2-385">Упакованные компоненты получают и могут изменять состояние сохраненного счетчика.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-385">Wrapped components receive and can modify the persisted counter state.</span></span> <span data-ttu-id="cb4d2-386">Следующий компонент `Counter` реализует этот шаблон.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-386">The following `Counter` component implements the pattern:</span></span>
+
+```razor
+@page "/counter"
+
+<p>Current count: <strong>@CounterStateProvider.CurrentCount</strong></p>
+<button @onclick="IncrementCount">Increment</button>
+
+@code {
+    [CascadingParameter]
+    private CounterStateProvider CounterStateProvider { get; set; }
+
+    private async Task IncrementCount()
+    {
+        CounterStateProvider.CurrentCount++;
+        await CounterStateProvider.SaveChangesAsync();
+    }
+}
+```
+
+<span data-ttu-id="cb4d2-387">Предыдущий компонент не требуется для взаимодействия с `ProtectedBrowserStorage` и не имеет отношения к этапу "загрузки".</span><span class="sxs-lookup"><span data-stu-id="cb4d2-387">The preceding component isn't required to interact with `ProtectedBrowserStorage`, nor does it deal with a "loading" phase.</span></span>
+
+<span data-ttu-id="cb4d2-388">Для работы с предварительной отрисовкой, как описано выше, `CounterStateProvider` можно сделать так, чтобы все компоненты, использующие данные счетчика, автоматически работали с предварительной отрисовкой.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-388">To deal with prerendering as described earlier, `CounterStateProvider` can be amended so that all of the components that consume the counter data automatically work with prerendering.</span></span> <span data-ttu-id="cb4d2-389">Дополнительные сведения см. в разделе [Обработка предварительной отрисовки](#handle-prerendering).</span><span class="sxs-lookup"><span data-stu-id="cb4d2-389">For more information, see the [Handle prerendering](#handle-prerendering) section.</span></span>
+
+<span data-ttu-id="cb4d2-390">В целом рекомендуется использовать шаблон *родительского компонента поставщика состояний* в следующих случаях.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-390">In general, *state provider parent component* pattern is recommended:</span></span>
+
+* <span data-ttu-id="cb4d2-391">Для использования состояния во множестве компонентов.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-391">To consume state across many components.</span></span>
+* <span data-ttu-id="cb4d2-392">Если имеется только один объект состояния верхнего уровня для сохранения.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-392">If there's just one top-level state object to persist.</span></span>
+
+<span data-ttu-id="cb4d2-393">Чтобы сохранить множество различных объектов состояния и использовать разные подмножества объектов в разных местах, лучше избегать глобального сохранения состояния.</span><span class="sxs-lookup"><span data-stu-id="cb4d2-393">To persist many different state objects and consume different subsets of objects in different places, it's better to avoid persisting state globally.</span></span>
+
+::: moniker-end
+
+::: zone-end
