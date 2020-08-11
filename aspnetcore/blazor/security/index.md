@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: 85446ac18608b39c469da766e1a9f2e92a1f5e11
-ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
+ms.openlocfilehash: d2ebb5d3c3a1c3629a5bf563aecfd6fc147715d6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86445116"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014026"
 ---
-# <a name="aspnet-core-blazor-authentication-and-authorization"></a>Проверка подлинности и авторизация в ASP.NET Core Blazor
+# <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>Проверка подлинности и авторизация в ASP.NET Core Blazor
 
 Авторы: [Стив Сандерсон (Steve Sanderson)](https://github.com/SteveSandersonMS) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)
 
@@ -44,7 +46,7 @@ ASP.NET Core поддерживает настройку и администри
 
 Blazor использует существующие механизмы проверки подлинности ASP.NET Core для установления личности пользователя. Конкретный механизм зависит от того, как размещается приложение Blazor (Blazor WebAssembly или Blazor Server).
 
-### <a name="blazor-webassembly-authentication"></a>Blazor WebAssembly аутентификация
+### <a name="no-locblazor-webassembly-authentication"></a>Blazor WebAssembly аутентификация
 
 В приложениях Blazor WebAssembly проверку подлинности можно обойти, так как пользователь может изменять весь код на стороне клиента. Это же справедливо для всех технологий на стороне клиента, включая платформы одностраничного приложения JavaScript или собственных приложений для любой операционной системы.
 
@@ -53,19 +55,19 @@ Blazor использует существующие механизмы пров
 * Ссылка на пакет для [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization/) для файла проекта приложения.
 * Пространство имен `Microsoft.AspNetCore.Components.Authorization` для файла `_Imports.razor` приложения.
 
-Вопросы обработки проверки подлинности и реализации встроенной или настраиваемой службы <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> рассматриваются в следующих разделах.
+Вопросы обработки проверки подлинности и использования встроенной или настраиваемой службы <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> рассматриваются в следующих разделах.
 
 Дополнительные сведения о создании и настройке приложений см. в статье <xref:blazor/security/webassembly/index>.
 
-### <a name="blazor-server-authentication"></a>Blazor Server аутентификация
+### <a name="no-locblazor-server-authentication"></a>Blazor Server аутентификация
 
-Приложения Blazor Server работают через подключение в реальном времени, созданное с помощью SignalR. [Проверка подлинности в приложениях на основе SignalR](xref:signalr/authn-and-authz) выполняется при установлении подключения. Аутентификация может выполняться на основе файлов cookie или других маркеров носителя.
+Приложения Blazor Server работают через подключение в реальном времени, созданное с помощью SignalR. [Проверка подлинности в приложениях на основе SignalR](xref:signalr/authn-and-authz) выполняется при установлении подключения. Аутентификация может выполняться на основе cookie или других маркеров носителя.
+
+Встроенная служба <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> для приложений Blazor Server получает данные о состоянии проверки подлинности из `HttpContext.User` в ASP.NET Core. Так состояние проверки подлинности интегрируется с существующими соответствующими механизмами проверки подлинности ASP.NET Core.
 
 Дополнительные сведения о создании и настройке приложений см. в статье <xref:blazor/security/server/index>.
 
 ## <a name="authenticationstateprovider-service"></a>Служба AuthenticationStateProvider
-
-Встроенная служба <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> получает данные о состоянии проверки подлинности из `HttpContext.User` в ASP.NET Core. Так состояние проверки подлинности интегрируется с существующими соответствующими механизмами проверки подлинности ASP.NET Core.
 
 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> является базовой службой, которую компоненты <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> и <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> используют для получения состояния аутентификации.
 

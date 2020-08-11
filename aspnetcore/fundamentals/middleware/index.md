@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/15/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/index
-ms.openlocfilehash: 7b0212ce6463d00a4c5cc87e2b36e1e7e7c5a54e
-ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
+ms.openlocfilehash: 560f25c9acabe2860bcaaddcdb42e2b15842a29d
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86445415"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017081"
 ---
 # <a name="aspnet-core-middleware"></a>ПО промежуточного слоя ASP.NET Core
 
@@ -108,11 +110,11 @@ ms.locfileid: "86445415"
      * ПО промежуточного слоя протокола HTTP Strict Transport Security Protocol (HSTS) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>) добавляет заголовок `Strict-Transport-Security`.
 1. ПО промежуточного слоя перенаправления HTTPS (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) перенаправляет запросы с HTTP на HTTPS.
 1. ПО промежуточного слоя статических файлов (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) возвращает статические файлы и сокращает дальнейшую обработку запросов.
-1. ПО промежуточного слоя политики файлов cookie (<xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>) обеспечивает соответствие приложения нормам Общего регламента по защите данных (GDPR) ЕС.
+1. ПО промежуточного слоя политики файлов Cookie (<xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>) обеспечивает соответствие приложения нормам Общего регламента по защите данных (GDPR) ЕС.
 1. ПО промежуточного слоя маршрутизации (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) для маршрутизации запросов.
 1. ПО промежуточного слоя проверки подлинности (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>) пытается проверить подлинность пользователя, прежде чем предоставить ему доступ к защищенным ресурсам.
 1. ПО промежуточного слоя авторизации (<xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>) разрешает пользователю доступ к защищенным ресурсам.
-1. ПО промежуточного слоя сеанса (<xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>) устанавливает и поддерживает состояние сеанса. Если в приложении используется состояние сеанса, вызовите ПО промежуточного слоя сеанса после ПО промежуточного слоя политики файлов cookie и до ПО промежуточного слоя MVC.
+1. ПО промежуточного слоя сеанса (<xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>) устанавливает и поддерживает состояние сеанса. Если в приложении используется состояние сеанса, вызовите ПО промежуточного слоя сеанса после ПО промежуточного слоя политики файлов Cookie и до ПО промежуточного слоя MVC.
 1. ПО промежуточного слоя маршрутизации конечных точек (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> с <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>) для добавления конечных точек Razor Pages в конвейер запросов.
 
 <!--
@@ -251,7 +253,7 @@ ASP.NET Core содержит следующие компоненты проме
 | ---------- | ----------- | ----- |
 | [Authentication](xref:security/authentication/identity) | Обеспечивает поддержку проверки подлинности. | Ставится перед тем, как потребуется `HttpContext.User`. Является конечным для обратных вызовов OAuth. |
 | [Авторизация](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) | Обеспечивает поддержку авторизации. | Непосредственно после ПО промежуточного слоя для проверки подлинности. |
-| [Cookie Policy](xref:security/gdpr) | Позволяет отслеживать согласие пользователей на хранение личных сведений и применять минимальные стандарты для полей файлов cookie, таких как `secure` и `SameSite`. | Перед ПО промежуточного слоя, которое использует файлы cookie. Примеры Authentication, Session, MVC (TempData). |
+| [Политика Cookie](xref:security/gdpr) | Позволяет отслеживать согласие пользователей на хранение личных сведений и применять минимальные стандарты для полей файлов cookie, таких как `secure` и `SameSite`. | Перед ПО промежуточного слоя, которое использует файлы cookie. Примеры Authentication, Session, MVC (TempData). |
 | [CORS](xref:security/cors) | Настраивает общий доступ к ресурсам независимо от источника. | Ставится перед компонентами, использующими CORS. `UseCors` сейчас нужно использовать перед `UseResponseCaching` из-за [этой ошибки](https://github.com/dotnet/aspnetcore/issues/23218).|
 | [Error Handling](xref:fundamentals/error-handling) | Отдельное ПО промежуточного слоя, которое обеспечивает обработку исключений, предоставляет страницу исключений для разработчика, страницы состояния кода, веб-страницу по умолчанию для новых приложений. | Ставится перед компонентами, выдающими ошибки. Является конечным для исключений или обслуживания веб-страницы по умолчанию для новых приложений. |
 | [Forwarded Headers](xref:host-and-deploy/proxy-load-balancer) | Пересылает заголовки, переданные через прокси-сервер, в текущий запрос. | Перед компонентами, использующими обновленные поля. Например: схема, узел, IP-адрес клиента, метод. |
@@ -353,9 +355,9 @@ ASP.NET Core содержит следующие компоненты проме
      * ПО промежуточного слоя протокола HTTP Strict Transport Security Protocol (HSTS) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>) добавляет заголовок `Strict-Transport-Security`.
 1. ПО промежуточного слоя перенаправления HTTPS (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) перенаправляет запросы с HTTP на HTTPS.
 1. ПО промежуточного слоя статических файлов (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) возвращает статические файлы и сокращает дальнейшую обработку запросов.
-1. ПО промежуточного слоя политики файлов cookie (<xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>) обеспечивает соответствие приложения нормам Общего регламента по защите данных (GDPR) ЕС.
+1. ПО промежуточного слоя политики файлов Cookie (<xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>) обеспечивает соответствие приложения нормам Общего регламента по защите данных (GDPR) ЕС.
 1. ПО промежуточного слоя проверки подлинности (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>) пытается проверить подлинность пользователя, прежде чем предоставить ему доступ к защищенным ресурсам.
-1. ПО промежуточного слоя сеанса (<xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>) устанавливает и поддерживает состояние сеанса. Если в приложении используется состояние сеанса, вызовите ПО промежуточного слоя сеанса после ПО промежуточного слоя политики файлов cookie и до ПО промежуточного слоя MVC.
+1. ПО промежуточного слоя сеанса (<xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>) устанавливает и поддерживает состояние сеанса. Если в приложении используется состояние сеанса, вызовите ПО промежуточного слоя сеанса после ПО промежуточного слоя политики файлов Cookie и до ПО промежуточного слоя MVC.
 1. ПО промежуточного слоя MVC (<xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc%2A>) добавляет MVC в конвейер запросов.
 
 ```csharp
@@ -457,7 +459,7 @@ ASP.NET Core содержит следующие компоненты проме
 | ПО промежуточного слоя | Описание | Номер |
 | ---------- | ----------- | ----- |
 | [Authentication](xref:security/authentication/identity) | Обеспечивает поддержку проверки подлинности. | Ставится перед тем, как потребуется `HttpContext.User`. Является конечным для обратных вызовов OAuth. |
-| [Cookie Policy](xref:security/gdpr) | Позволяет отслеживать согласие пользователей на хранение личных сведений и применять минимальные стандарты для полей файлов cookie, таких как `secure` и `SameSite`. | Перед ПО промежуточного слоя, которое использует файлы cookie. Примеры Authentication, Session, MVC (TempData). |
+| [Политика Cookie](xref:security/gdpr) | Позволяет отслеживать согласие пользователей на хранение личных сведений и применять минимальные стандарты для полей файлов cookie, таких как `secure` и `SameSite`. | Перед ПО промежуточного слоя, которое использует файлы cookie. Примеры Authentication, Session, MVC (TempData). |
 | [CORS](xref:security/cors) | Настраивает общий доступ к ресурсам независимо от источника. | Ставится перед компонентами, использующими CORS. |
 | [Error Handling](xref:fundamentals/error-handling) | Отдельное ПО промежуточного слоя, которое обеспечивает обработку исключений, предоставляет страницу исключений для разработчика, страницы состояния кода, веб-страницу по умолчанию для новых приложений. | Ставится перед компонентами, выдающими ошибки. Является конечным для исключений или обслуживания веб-страницы по умолчанию для новых приложений. |
 | [Forwarded Headers](xref:host-and-deploy/proxy-load-balancer) | Пересылает заголовки, переданные через прокси-сервер, в текущий запрос. | Перед компонентами, использующими обновленные поля. Например: схема, узел, IP-адрес клиента, метод. |

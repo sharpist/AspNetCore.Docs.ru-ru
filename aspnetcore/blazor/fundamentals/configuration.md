@@ -5,7 +5,7 @@ description: Сведения о настройке приложений Blazor,
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2020
+ms.date: 07/29/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,24 +15,29 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/configuration
-ms.openlocfilehash: f78803a3954feb98a39f26874b9de0aa08dc6327
-ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
+ms.openlocfilehash: 9ae0dcc16b9debd47a61010953243b0abe499c4f
+ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86445220"
+ms.lasthandoff: 07/30/2020
+ms.locfileid: "87443972"
 ---
-# <a name="aspnet-core-blazor-configuration"></a>Конфигурация Blazor ASP.NET Core
+# <a name="aspnet-core-no-locblazor-configuration"></a>Конфигурация Blazor ASP.NET Core
 
 > [!NOTE]
 > Эта статья относится к Blazor WebAssembly. Общие рекомендации по настройке приложений ASP.NET Core см. в разделе <xref:fundamentals/configuration/index>.
 
-Blazor WebAssembly загружает конфигурацию из следующих источников:
+Blazor WebAssembly загружает конфигурацию из файлов параметров приложения по умолчанию:
 
-* Файлы параметров приложения по умолчанию
-  * `wwwroot/appsettings.json`
-  * `wwwroot/appsettings.{ENVIRONMENT}.json`
-* Другие [поставщики конфигурации](xref:fundamentals/configuration/index), зарегистрированные приложением. Не все поставщики подходят для приложений Blazor WebAssembly. Сведения о том, какие поставщики поддерживаются для Blazor WebAssembly можно найти в разделе [Поставщики конфигурации для Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).
+* `wwwroot/appsettings.json`
+* `wwwroot/appsettings.{ENVIRONMENT}.json`
+
+Другие поставщики конфигурации, зарегистрированные приложением, также могут предоставлять конфигурацию.
+
+Не все поставщики или функции поставщиков подходят для приложений Blazor WebAssembly:
+
+* [Поставщик конфигурации Azure Key Vault](xref:security/key-vault-configuration): поставщик не поддерживается для сценариев управляемого удостоверения и идентификатора приложения (идентификатор клиента) с секретом клиента. Идентификатор приложения с секретом клиента не рекомендуется для приложений ASP.NET Core, особенно приложений Blazor WebAssembly, так как секрет клиента невозможно защитить на стороне клиента для доступа к службе.
+* [Поставщик конфигурации приложения Azure](/azure/azure-app-configuration/quickstart-aspnet-core-app): поставщик не подходит для приложений Blazor WebAssembly, так как приложения Blazor WebAssembly не выполняются на сервере в Azure.
 
 > [!WARNING]
 > Конфигурация в приложении Blazor WebAssembly видна пользователям. **Не храните учетные данные или секреты приложения в конфигурации.**
@@ -41,7 +46,7 @@ Blazor WebAssembly загружает конфигурацию из следую
 
 ## <a name="app-settings-configuration"></a>Конфигурация параметров приложения
 
-`wwwroot/appsettings.json`.
+`wwwroot/appsettings.json`:
 
 ```json
 {
@@ -61,7 +66,31 @@ Blazor WebAssembly загружает конфигурацию из следую
 <p>Message: @Configuration["message"]</p>
 ```
 
-## <a name="provider-configuration"></a>Конфигурация поставщика
+## <a name="custom-configuration-provider-with-ef-core"></a>Поставщик пользовательской конфигурации с EF Core
+
+Поставщик пользовательской конфигурации с EF Core, работа которого продемонстрирована в разделе <xref:fundamentals/configuration/index#custom-configuration-provider>, работает с приложениями Blazor WebAssembly.
+
+Добавьте поставщика конфигурации из примера с помощью следующего кода в `Program.Main` (`Program.cs`):
+
+```csharp
+builder.Configuration.AddEFConfiguration(
+    options => options.UseInMemoryDatabase("InMemoryDb"));
+```
+
+Внедрите экземпляр <xref:Microsoft.Extensions.Configuration.IConfiguration> в компонент для доступа к данным конфигурации:
+
+```razor
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<ul>
+    <li>@Configuration["quote1"]</li>
+    <li>@Configuration["quote2"]</li>
+    <li>@Configuration["quote3"]</li>
+</ul>
+```
+
+## <a name="memory-configuration-source"></a>Источник конфигурации памяти
 
 В следующем примере используется <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> для предоставления дополнительной конфигурации.
 
@@ -119,7 +148,7 @@ builder.Configuration.Add(memoryConfig);
 
 Для чтения других файлов конфигурации из папки `wwwroot` в конфигурацию используйте <xref:System.Net.Http.HttpClient> для получения содержимого файла. При использовании этого подхода существующая регистрация службы <xref:System.Net.Http.HttpClient> может использовать локальный клиент, созданный для чтения файла, как показано в следующем примере.
 
-`wwwroot/cars.json`.
+`wwwroot/cars.json`:
 
 ```json
 {
@@ -127,7 +156,7 @@ builder.Configuration.Add(memoryConfig);
 }
 ```
 
-`Program.Main`.
+`Program.Main`:
 
 ```csharp
 using Microsoft.Extensions.Configuration;
@@ -160,7 +189,7 @@ builder.Configuration.AddJsonStream(stream);
 }
 ```
 
-`Program.Main`.
+`Program.Main`:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -175,7 +204,7 @@ builder.Services.AddOidcAuthentication(options =>
 <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
 ```
 
-`wwwroot/appsettings.json`.
+`wwwroot/appsettings.json`:
 
 ```json
 {
@@ -189,7 +218,7 @@ builder.Services.AddOidcAuthentication(options =>
 }
 ```
 
-`Program.Main`.
+`Program.Main`:
 
 ```csharp
 using Microsoft.Extensions.Logging;
@@ -202,7 +231,7 @@ builder.Logging.AddConfiguration(
 
 ## <a name="host-builder-configuration"></a>Конфигурация построителя узлов
 
-`Program.Main`.
+`Program.Main`:
 
 ```csharp
 var hostname = builder.Configuration["HostName"];

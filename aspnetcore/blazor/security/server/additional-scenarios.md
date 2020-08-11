@@ -1,36 +1,36 @@
 ---
-title: Сценарии обеспечения дополнительной безопасности [Blazor Server для ASP.NET Core
+title: Сценарии обеспечения дополнительной безопасности Blazor Server для ASP.NET Core
 author: guardrex
-description: Узнайте, как настроить [Blazor Server для сценариев обеспечения дополнительной безопасности.
+description: Узнайте, как настроить Blazor Server для сценариев обеспечения дополнительной безопасности.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/security/server/additional-scenarios
-ms.openlocfilehash: 46de9a22dec540b8dfda7583b7a3c5c2dcbbc549
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 8f112a4d71e44cae112e9854fc77dfda4af5a47a
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402329"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87818915"
 ---
-# <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>Сценарии обеспечения дополнительной безопасности [Blazor Server для ASP.NET Core
+# <a name="aspnet-core-no-locblazor-server-additional-security-scenarios"></a>Сценарии обеспечения дополнительной безопасности Blazor Server для ASP.NET Core
 
 Автор: [Javier Calvarro Nelson](https://github.com/javiercn) (Хавьер Кальварро Нельсон)
 
-## <a name="pass-tokens-to-a-blazor-server-app"></a>Передача маркеров в приложение [Blazor Server
+## <a name="pass-tokens-to-a-no-locblazor-server-app"></a>Передача маркеров в приложение Blazor Server
 
-Маркеры, доступные за пределами компонентов [Razor в приложении [Blazor Server, можно передавать в компоненты с помощью подхода, описанного в этой статье. Пример кода, в том числе полный пример `Startup.ConfigureServices`, см. в разделе [Передача маркеров в серверные приложения [Blazor](https://github.com/javiercn/blazor-server-aad-sample).
+Маркеры, доступные за пределами компонентов Razor в приложении Blazor Server, можно передавать в компоненты с помощью подхода, описанного в этой статье. Пример кода, в том числе полный пример `Startup.ConfigureServices`, см. в разделе [Передача маркеров в серверные приложения Blazor](https://github.com/javiercn/blazor-server-aad-sample).
 
-Проверка подлинности приложения [Blazor Server выполняется так же, как и для обычного приложения [Razor Pages или MVC. Подготовьте и сохраните маркеры в файле cookie проверки подлинности. Пример:
+Проверка подлинности приложения Blazor Server выполняется так же, как и для обычного приложения Razor Pages или MVC. Подготовьте и сохраните маркеры в файле cookie проверки подлинности. Пример:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -58,7 +58,7 @@ public class InitialApplicationState
 }
 ```
 
-Определите службу поставщика маркеров **с областью**, которую можно использовать в приложении [Blazor для разрешения маркеров из [внедрения зависимостей (DI)](xref:blazor/fundamentals/dependency-injection).
+Определите службу поставщика маркеров **с областью**, которую можно использовать в приложении Blazor для разрешения маркеров из [внедрения зависимостей (DI)](xref:blazor/fundamentals/dependency-injection).
 
 ```csharp
 public class TokenProvider
@@ -152,7 +152,7 @@ public class WeatherForecastService
 
 ## <a name="set-the-authentication-scheme"></a>Настройка схемы проверки подлинности
 
-Для приложения, использующего более одного ПО промежуточного слоя для проверки подлинности и, таким образом, имеющего несколько схем проверки подлинности, схему, которую использует [Blazor, можно явно задать в конфигурации конечной точки `Startup.Configure`. В следующем примере задается схема Azure Active Directory:
+Для приложения, использующего более одного ПО промежуточного слоя для проверки подлинности и, таким образом, имеющего несколько схем проверки подлинности, схему, которую использует Blazor, можно явно задать в конфигурации конечной точки `Startup.Configure`. В следующем примере задается схема Azure Active Directory:
 
 ```csharp
 endpoints.MapBlazorHub().RequireAuthorization(
@@ -162,9 +162,9 @@ endpoints.MapBlazorHub().RequireAuthorization(
     });
 ```
 
-## <a name="use-open-id-connect-oidc-v20-endpoints"></a>Использование конечных точек Open ID Connect (OIDC) версии 2.0
+## <a name="use-openid-connect-oidc-v20-endpoints"></a>Использование конечных точек OpenID Connect (OIDC) версии 2.0
 
-В библиотеке проверки подлинности и шаблонах [Blazor используются конечные точки Open ID Connect (OIDC) версии 1.0. Чтобы использовать конечную точку версии 2.0, настройте параметр <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> в <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:
+В библиотеке проверки подлинности и шаблонах Blazor используются конечные точки OpenID Connect (OIDC) версии 1.0. Чтобы использовать конечную точку версии 2.0, настройте параметр <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> в <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:
 
 ```csharp
 services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, 
