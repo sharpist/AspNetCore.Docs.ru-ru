@@ -163,9 +163,14 @@
         - name: API веб-приложений >>
           displayName: tutorial
           href: /learn/modules/build-web-api-net-core/
-        - name: Ориентированные на облако микрослужбы >>
-          displayName: 'tutorial, kubernetes, aks, acr, docker'
-          href: /learn/modules/microservices-aspnet-core/
+        - name: Ориентированные на облако микрослужбы
+          items:
+            - name: "Создание и развертывание\_>>"
+              displayName: 'tutorial, kubernetes, aks, acr, docker'
+              href: /learn/modules/microservices-aspnet-core/
+            - name: "Реализация устойчивости\_>>"
+              displayName: 'tutorial, kubernetes, aks, acr, docker'
+              href: /learn/modules/microservices-resiliency-aspnet-core/
         - name: Доступ к данным >>
           displayName: 'tutorial, ef, entity framework'
           href: /learn/modules/persist-data-ef-core/
@@ -940,7 +945,7 @@
   items:
     - name: Обзор
       uid: security/index
-    - name: Проверка подлинности
+    - name: Аутентификация
       items:
         - name: Обзор
           uid: security/authentication/index
@@ -1191,6 +1196,8 @@
       uid: performance/diagnostic-tools
     - name: Нагрузочное тестирование
       uid: test/loadtests
+    - name: Счетчики событий
+      href: /dotnet/core/diagnostics/event-counter-perf
 - name: Глобализация и локализация
   items:
     - name: Обзор
