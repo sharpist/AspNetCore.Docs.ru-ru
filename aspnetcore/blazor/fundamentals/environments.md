@@ -1,35 +1,37 @@
 ---
-title: Среды ASP.NET Core [Blazor
+title: Среды ASP.NET Core Blazor
 author: guardrex
-description: Сведения о средах в [Blazor, в том числе о настройке среды для приложения [Blazor WebAssembly.
+description: Сведения о средах в Blazor, в том числе о настройке среды для приложения Blazor WebAssembly.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/fundamentals/environments
-ms.openlocfilehash: f8d0fc3cba22973628f405b4399cef39d562d6ed
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 8a672b3d2aff4dd2b80465b0f6dac038d299eaa9
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402901"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014429"
 ---
-# <a name="aspnet-core-blazor-environments"></a>Среды ASP.NET Core [Blazor
+# <a name="aspnet-core-no-locblazor-environments"></a>Среды ASP.NET Core Blazor
 
 > [!NOTE]
-> Эта статья относится к [Blazor WebAssembly. Общие рекомендации по настройке приложений ASP.NET Core см. в разделе <xref:fundamentals/environments>.
+> Эта статья относится к Blazor WebAssembly. Общие рекомендации по настройке приложений ASP.NET Core см. в разделе <xref:fundamentals/environments>.
 
 При локальном запуске приложения среда по умолчанию имеет значение Development. При публикации приложения среда по умолчанию имеет значение Production.
 
-Размещенное приложение [Blazor WebAssembly выбирает среду на сервере через ПО промежуточного слоя, которое передает данные о среде в браузер, добавляя заголовок `blazor-environment`. В заголовке содержится среда. Размещенное приложение [Blazor и серверное приложение совместно используют одну и ту же среду. Дополнительные сведения, в том числе о настройке среды, см. на странице <xref:fundamentals/environments>.
+Размещенное приложение Blazor WebAssembly выбирает среду на сервере через ПО промежуточного слоя, которое передает данные о среде в браузер, добавляя заголовок `blazor-environment`. В заголовке содержится среда. Размещенное приложение Blazor и серверное приложение совместно используют одну и ту же среду. Дополнительные сведения, в том числе о настройке среды, см. на странице <xref:fundamentals/environments>.
 
 Для автономного приложения, выполняемого локально, сервер разработки добавляет заголовок `blazor-environment`, чтобы указать среду разработки. Чтобы указать среду для других сред размещения, добавьте заголовок `blazor-environment`.
 

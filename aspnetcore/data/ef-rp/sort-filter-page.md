@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 496221bb4e34e1f9e4177d1934786a77d8c9b411
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: 5bfea63cc1ff85adbe5ce572858b78a8e86b2280
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212544"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017731"
 ---
-# <a name="part-3-razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Часть 3. Razor Pages с EF Core в ASP.NET Core — сортировка, фильтрация, разбиение на страницы
+# <a name="part-3-no-locrazor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Часть 3. Razor Pages с EF Core в ASP.NET Core — сортировка, фильтрация, разбиение на страницы
 
 Авторы: [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra), [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson) и [Йон П. Смит](https://twitter.com/thereformedprog) (Jon P Smith)
 
@@ -134,7 +136,7 @@ Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
 Дополнительные сведения см. в статье [Использование запроса без учета регистра с поставщиком SQLite](https://github.com/aspnet/EntityFrameworkCore/issues/11414).
 
-### <a name="update-the-razor-page"></a>Обновление страницы Razor
+### <a name="update-the-no-locrazor-page"></a>Обновление страницы Razor
 
 Замените код в файле *Pages/Students/Index.cshtml*, чтобы создать кнопку **Search** (Поиск) и различные элементы хрома.
 
@@ -211,7 +213,7 @@ https://localhost:<port>/Students?SearchString=an
 
   Два вопросительных знака после `pageIndex` в вызове `PaginatedList.CreateAsync` являются [оператором объединения с NULL](/dotnet/csharp/language-reference/operators/null-conditional-operator). Оператор объединения с null определяет значение по умолчанию для типа, допускающего значение null. Выражение `(pageIndex ?? 1)` означает возвращение значения `pageIndex`, если он имеет значение. Если у `pageIndex` нет значения, возвращается 1.
 
-### <a name="add-paging-links-to-the-razor-page"></a>Добавление ссылок для разбиения по страницам на страницу Razor
+### <a name="add-paging-links-to-the-no-locrazor-page"></a>Добавление ссылок для разбиения по страницам на страницу Razor
 
 Замените код в файле *Students/Index.cshtml* на приведенный ниже код. Изменения выделены:
 
@@ -247,7 +249,7 @@ https://localhost:<port>/Students?SearchString=an
 
 [!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### <a name="create-the-razor-page"></a>Создание Razor страницы
+### <a name="create-the-no-locrazor-page"></a>Создание Razor страницы
 
 Создайте файл *Pages/About.cshtml* со следующим кодом:
 
@@ -467,7 +469,7 @@ http://localhost:5000/Students?SearchString=an
 
 Два вопросительных знака в `PaginatedList.CreateAsync` являются [оператором объединения с null](/dotnet/csharp/language-reference/operators/null-conditional-operator). Оператор объединения с null определяет значение по умолчанию для типа, допускающего значение null. Выражение `(pageIndex ?? 1)` означает возвращение значения `pageIndex`, если он имеет значение. Если у `pageIndex` нет значения, возвращается 1.
 
-## <a name="add-paging-links-to-the-student-razor-page"></a>Добавление ссылок на страницу Razor учащихся
+## <a name="add-paging-links-to-the-student-no-locrazor-page"></a>Добавление ссылок на страницу Razor учащихся
 
 Измените разметку в *Students/Index.cshtml*. Изменения выделены:
 
@@ -521,7 +523,7 @@ http://localhost:5000/Students?SearchString=an
 
 Запрос LINQ группирует записи из таблицы студентов по дате зачисления, вычисляет число записей в каждой группе и сохраняет результаты в коллекцию объектов моделей представления `EnrollmentDateGroup`.
 
-### <a name="modify-the-about-razor-page"></a>Изменение страницы Razor About
+### <a name="modify-the-about-no-locrazor-page"></a>Изменение страницы Razor About
 
 Замените код в файле *Pages/About.cshtml* следующим кодом:
 

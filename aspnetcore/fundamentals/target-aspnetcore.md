@@ -6,20 +6,22 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/16/2019
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/target-aspnetcore
-ms.openlocfilehash: 1c794092b856a916a318956d7cfb357d46a22d1d
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: a6c20c61f7f33706e620fcbc239b2cc4bace15f0
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399651"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88016496"
 ---
 # <a name="use-aspnet-core-apis-in-a-class-library"></a>Использование интерфейсов API ASP.NET Core в библиотеке классов
 
@@ -40,7 +42,7 @@ ASP.NET Core соответствует [политике поддержки .NE
 
 В выпуске .NET Core версии 3.0 многие сборки ASP.NET Core больше не публикуются в NuGet в качестве пакетов. Вместо этого сборки включаются в состав общей платформы `Microsoft.AspNetCore.App`, которая устанавливается вместе с пакетом SDK для .NET Core и установщиками среды выполнения. Список пакетов, которые больше не публикуются, см. в разделе [Remove obsolete package references](xref:migration/22-to-30#remove-obsolete-package-references) (Удаление устаревших ссылок на пакеты).
 
-Начиная с .NET Core версии 3.0, проекты, использующие пакет SDK `Microsoft.NET.Sdk.Web` для MSBuild, неявно ссылаются на общую платформу. Проекты, использующие пакет SDK для `Microsoft.NET.Sdk` или `Microsoft.NET.Sdk.[Razor`, должны ссылаться на ASP.NET Core, чтобы использовать интерфейсы API ASP.NET Core в общей платформе.
+Начиная с .NET Core версии 3.0, проекты, использующие пакет SDK `Microsoft.NET.Sdk.Web` для MSBuild, неявно ссылаются на общую платформу. Проекты, использующие пакет SDK для `Microsoft.NET.Sdk` или `Microsoft.NET.Sdk.Razor`, должны ссылаться на ASP.NET Core, чтобы использовать интерфейсы API ASP.NET Core в общей платформе.
 
 Чтобы сослаться на ASP.NET Core, добавьте в файл проекта следующий элемент `<FrameworkReference>`:
 
@@ -48,17 +50,17 @@ ASP.NET Core соответствует [политике поддержки .NE
 
 Такая ссылка на ASP.NET Core поддерживается только для проектов, предназначенных для .NET Core 3.x.
 
-## <a name="include-blazor-extensibility"></a>Включение расширяемости [Blazor
+## <a name="include-no-locblazor-extensibility"></a>Включение расширяемости Blazor
 
-[Blazor поддерживает [модели размещения](xref:blazor/hosting-models) Server и WebAssembly (WASM). Если не требуется иное, то библиотека [компонентов [Razor](xref:blazor/components/index) должна поддерживать обе модели размещения. Библиотека компонентов [Razor должна использовать пакет SDK для [Microsoft.NET.Sdk.[Razor ](xref:razor-pages/sdk).
+Blazor поддерживает [модели размещения](xref:blazor/hosting-models) Server и WebAssembly (WASM). Если не требуется иное, то библиотека [компонентов Razor](xref:blazor/components/index) должна поддерживать обе модели размещения. Библиотека компонентов Razor должна использовать пакет SDK для [Microsoft.NET.Sdk.Razor ](xref:razor-pages/sdk).
 
 ### <a name="support-both-hosting-models"></a>Поддержка обеих моделей размещения
 
-Для поддержки использования компонентов [Razor из проектов [[Blazor Server](xref:blazor/hosting-models#blazor-server) и [[Blazor WASM](xref:blazor/hosting-models#blazor-webassembly) используйте следующие инструкции для редактора.
+Для поддержки использования компонентов Razor из проектов [Blazor Server](xref:blazor/hosting-models#blazor-server) и [Blazor WASM](xref:blazor/hosting-models#blazor-webassembly) используйте следующие инструкции для редактора.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Используйте шаблон проекта **библиотеки классов [Razor** . Снимите флажок **Support pages and views** (Представления и страницы поддержки).
+Используйте шаблон проекта **библиотеки классов Razor** . Снимите флажок **Support pages and views** (Представления и страницы поддержки).
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -70,7 +72,7 @@ dotnet new razorclasslib
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-Используйте шаблон проекта **библиотеки классов [Razor** .
+Используйте шаблон проекта **библиотеки классов Razor** .
 
 ---
 
@@ -88,7 +90,7 @@ dotnet new razorclasslib
 
 ### <a name="support-a-specific-hosting-model"></a>Поддержка определенной модели размещения
 
-Гораздо менее распространена поддержка одной модели размещения [Blazor. Например, для поддержки использования компонентов [Razor только из проектов [[Blazor Server](xref:blazor/hosting-models#blazor-server) понадобится:
+Гораздо менее распространена поддержка одной модели размещения Blazor. Например, для поддержки использования компонентов Razor только из проектов [Blazor Server](xref:blazor/hosting-models#blazor-server) понадобится:
 
 * Целевая версия .NET Core 3.x.
 * Добавьте элемент `<FrameworkReference>` для общей платформы.
@@ -97,32 +99,32 @@ dotnet new razorclasslib
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-razor-components-library.csproj)]
 
-Дополнительные сведения о библиотеках, содержащих компоненты [Razor, см. в статье [Библиотеки классов компонентов [Razor для ASP.NET Core](xref:blazor/components/class-libraries).
+Дополнительные сведения о библиотеках, содержащих компоненты Razor, см. в статье [Библиотеки классов компонентов Razor для ASP.NET Core](xref:blazor/components/class-libraries).
 
 ## <a name="include-mvc-extensibility"></a>Включение расширяемости MVC
 
 В этом разделе приведены рекомендации по библиотекам, включая:
 
-* [Представления [Razor или [Razor Pages](#razor-views-or-razor-pages)
+* [Представления Razor или Razor Pages](#razor-views-or-razor-pages)
 * [Вспомогательные функции тегов](#tag-helpers)
 * [Компоненты представлений](#view-components)
 
 В этом разделе не рассматривается настройка различных версий для поддержки нескольких версий MVC. Рекомендации по поддержке нескольких версий ASP.NET Core см. в разделе [Support multiple ASP.NET Core versions](#support-multiple-aspnet-core-versions) (Поддержка нескольких ASP.NET Core версий).
 
-### <a name="razor-views-or-razor-pages"></a>Представления [Razor или [Razor Pages
+### <a name="no-locrazor-views-or-no-locrazor-pages"></a>Представления Razor или Razor Pages
 
-Проект, включающий [представления [Razor](xref:mvc/views/overview) или [[Razor Pages](xref:razor-pages/index), должен использовать [пакет SDK Microsoft.NET.Sdk.[Razor ](xref:razor-pages/sdk).
+Проект, включающий [представления Razor](xref:mvc/views/overview) или [Razor Pages](xref:razor-pages/index), должен использовать [пакет SDK Microsoft.NET.Sdk.Razor ](xref:razor-pages/sdk).
 
 Если проект предназначен для .NET Core 3.x, для него требуется:
 
 * Для свойства MSBuild `AddRazorSupportForMvc` задать значение `true`.
 * Элемент `<FrameworkReference>` для общей платформы.
 
-Шаблон проекта **Библиотека классов [Razor** должен удовлетворять описанным выше требованиям для проектов, предназначенных для .NET Core 3.x. Для редактора следует использовать следующие инструкции.
+Шаблон проекта **Библиотека классов Razor** должен удовлетворять описанным выше требованиям для проектов, предназначенных для .NET Core 3.x. Для редактора следует использовать следующие инструкции.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Используйте шаблон проекта **библиотеки классов [Razor** . Установите флажок **Support pages and views** (Представления и страницы поддержки).
+Используйте шаблон проекта **библиотеки классов Razor** . Установите флажок **Support pages and views** (Представления и страницы поддержки).
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -152,7 +154,7 @@ dotnet new razorclasslib -s
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-basic-library.csproj)]
 
-Если используется .NET Standard (для поддержки версий, предшествующих ASP.NET Core 3.x), добавьте ссылку на пакет [Microsoft.AspNetCore.Mvc.[Razor](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.[Razor). Пакет `Microsoft.AspNetCore.Mvc.[Razor` перемещен в общую платформу и поэтому больше не публикуется. Пример:
+Если используется .NET Standard (для поддержки версий, предшествующих ASP.NET Core 3.x), добавьте ссылку на пакет [Microsoft.AspNetCore.Mvc.Razor](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor). Пакет `Microsoft.AspNetCore.Mvc.Razor` перемещен в общую платформу и поэтому больше не публикуется. Пример:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netstandard2.0-tag-helpers-library.csproj)]
 
@@ -181,8 +183,8 @@ dotnet new razorclasslib -s
 Для предыдущего файла проекта:
 
 * Для всех потребителей добавляется пакет `Markdig`.
-* Ссылка на [Microsoft.AspNetCore.Mvc.[Razor](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.[Razor) добавляется для пользователей .NET Framework 4.6.1 или более поздней версии или .NET Core 2.x. Версия 2.1.0 пакета работает с ASP.NET Core 2.2 из-за обратной совместимости.
-* На общую платформу ссылаются потребители, использующие .NET Core 3.x. Пакет `Microsoft.AspNetCore.Mvc.[Razor` включен в общую платформу.
+* Ссылка на [Microsoft.AspNetCore.Mvc.Razor](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor) добавляется для пользователей .NET Framework 4.6.1 или более поздней версии или .NET Core 2.x. Версия 2.1.0 пакета работает с ASP.NET Core 2.2 из-за обратной совместимости.
+* На общую платформу ссылаются потребители, использующие .NET Core 3.x. Пакет `Microsoft.AspNetCore.Mvc.Razor` включен в общую платформу.
 
 Кроме того, можно использовать .NET Standard 2.0 вместо .NET Core 2.1 и .NET Framework 4.6.1:
 

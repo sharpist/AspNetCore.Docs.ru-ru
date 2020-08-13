@@ -6,28 +6,30 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: aspnetcore-2.1
-ms.openlocfilehash: bf041965b009d5c10b96ad4f2a349c6efb346eb5
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 3fb524748b9e2aa2c12b64f67a7960c4f0f911b0
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408166"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021163"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>Новые возможности ASP.NET Core 2.1
 
 В этой статье описываются наиболее важные изменения в ASP.NET Core 2.1 со ссылками на соответствующую документацию.
 
-## [SignalR
+## SignalR
 
-[SignalR переписан для ASP.NET Core 2.1. В ASP.NET Core [SignalR внесен ряд усовершенствований:
+SignalR переписан для ASP.NET Core 2.1. В ASP.NET Core SignalR внесен ряд усовершенствований:
 
 * Упрощенная модель горизонтального масштабирования.
 * Новый клиент JavaScript без зависимости jQuery.
@@ -36,24 +38,24 @@ ms.locfileid: "85408166"
 * Новая модель потокового ответа.
 * Поддержка клиентов на базе только протокола WebSocket.
 
-Дополнительные сведения см. в статье об [ASP.NET [SignalR](xref:signalr/introduction).
+Дополнительные сведения см. в статье об [ASP.NET SignalR](xref:signalr/introduction).
 
-## <a name="razor-class-libraries"></a>Библиотеки класса [Razor
+## <a name="no-locrazor-class-libraries"></a>Библиотеки класса Razor
 
-В ASP.NET Core 2.1 проще создать и включить пользовательский интерфейс на основе [Razor в библиотеку, а затем использовать его сразу в нескольких проектах. Новый пакет SDK для [Razor позволяет создавать файлы [Razor в проекте библиотеки классов, который можно поместить в пакет NuGet. Представления и страницы в библиотеках обнаруживаются автоматически и могут переопределяться приложением. Благодаря интеграции компиляции [Razor в сборку:
+В ASP.NET Core 2.1 проще создать и включить пользовательский интерфейс на основе Razor в библиотеку, а затем использовать его сразу в нескольких проектах. Новый пакет SDK для Razor позволяет создавать файлы Razor в проекте библиотеки классов, который можно поместить в пакет NuGet. Представления и страницы в библиотеках обнаруживаются автоматически и могут переопределяться приложением. Благодаря интеграции компиляции Razor в сборку:
 
 * Время запуска приложения значительно сократилось.
-* Быстрые обновления для представлений и страниц [Razor во время выполнения по-прежнему доступны в рамках рабочего процесса последовательной разработки.
+* Быстрые обновления для представлений и страниц Razor во время выполнения по-прежнему доступны в рамках рабочего процесса последовательной разработки.
 
-Дополнительные сведения см. в разделе [Создание многоразового пользовательского интерфейса с помощью проекта библиотеки классов [Razor](xref:razor-pages/ui-class).
+Дополнительные сведения см. в разделе [Создание многоразового пользовательского интерфейса с помощью проекта библиотеки классов Razor](xref:razor-pages/ui-class).
 
-## <a name="identity-ui-library--scaffolding"></a>Библиотека пользовательского интерфейса [Identity и формирование шаблонов
+## <a name="no-locidentity-ui-library--scaffolding"></a>Библиотека пользовательского интерфейса Identity и формирование шаблонов
 
-ASP.NET Core 2.1 предоставляет [ASP.NET Core [Identity](xref:security/authentication/identity) как [библиотеку классов [Razor](xref:razor-pages/ui-class). Приложения, включающие [Identity, могут применить новый шаблон [Identity для выборочного добавления исходного кода из библиотеки классов [Identity (RCL) для [Razor. Вы можете создать исходный код, чтобы изменить код и тем самым изменить поведение. Например, вы можете указать шаблону создать код, используемый при регистрации. Созданный код имеет приоритет над тем же кодом в RCL для [Identity.
+ASP.NET Core 2.1 предоставляет [ASP.NET Core Identity](xref:security/authentication/identity) как [библиотеку классов Razor](xref:razor-pages/ui-class). Приложения, включающие Identity, могут применить новый шаблон Identity для выборочного добавления исходного кода из библиотеки классов Identity (RCL) для Razor. Вы можете создать исходный код, чтобы изменить код и тем самым изменить поведение. Например, вы можете указать шаблону создать код, используемый при регистрации. Созданный код имеет приоритет над тем же кодом в RCL для Identity.
 
-Приложения, которые **не** включают проверку подлинности, могут применить шаблон [Identity, чтобы добавить пакет RCL для [Identity. Вы можете выбрать, какой код [Identity будет создан.
+Приложения, которые **не** включают проверку подлинности, могут применить шаблон Identity, чтобы добавить пакет RCL для Identity. Вы можете выбрать, какой код Identity будет создан.
 
-Дополнительные сведения см. в разделе [Шаблоны [Identity в проектах ASP.NET Core](xref:security/authentication/scaffold-identity).
+Дополнительные сведения см. в разделе [Шаблоны Identity в проектах ASP.NET Core](xref:security/authentication/scaffold-identity).
 
 ## <a name="https"></a>HTTPS
 
@@ -159,17 +161,17 @@ ASP.NET Core 2.1 содержит новую службу `IHttpClientFactory`, 
 * <xref:spa/react>
 * <xref:spa/react-with-redux>
 
-## <a name="razor-pages-search-for-razor-assets"></a>Поиск в [Razor Pages активов [Razor
+## <a name="no-locrazor-pages-search-for-no-locrazor-assets"></a>Поиск в Razor Pages активов Razor
 
-В версии 2.1 [Razor Pages ищет ресурсы [Razor (например, макеты и частично выполненные строки) в следующих каталогах в указанном порядке.
+В версии 2.1 Razor Pages ищет ресурсы Razor (например, макеты и частично выполненные строки) в следующих каталогах в указанном порядке.
 
 1. Текущая папка Pages.
 1. */Pages/Shared/*
 1. */Views/Shared/*
 
-## <a name="razor-pages-in-an-area"></a>[Razor Pages в области
+## <a name="no-locrazor-pages-in-an-area"></a>Razor Pages в области
 
-[Razor Pages теперь поддерживает [области](xref:mvc/controllers/areas). Чтобы увидеть пример областей, создайте новое веб-приложение [Razor Pages с отдельными учетными записями пользователей. Веб-приложение [Razor Pages с отдельными учетными записями пользователей включает */Areas/[Identity/Pages*.
+Razor Pages теперь поддерживает [области](xref:mvc/controllers/areas). Чтобы увидеть пример областей, создайте новое веб-приложение Razor Pages с отдельными учетными записями пользователей. Веб-приложение Razor Pages с отдельными учетными записями пользователей включает */Areas/Identity/Pages*.
 
 ## <a name="mvc-compatibility-version"></a>Совместимая версия MVC
 

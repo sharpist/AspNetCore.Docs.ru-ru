@@ -5,6 +5,8 @@ description: Часть 4 серии руководств по ASP.NET Core MVC
 ms.author: riande
 ms.date: 01/13/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 77c12b98462c8a84ab807abef247573b6a028fcc
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: cc9c0447dc032ff0a88d379cd9d542e3406777bf
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86213162"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021969"
 ---
 # <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>Часть 4. Добавление модели в приложение MVC ASP.NET Core
 

@@ -6,20 +6,22 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/20/2018
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: client-side/libman/libman-vs
-ms.openlocfilehash: 504c34ccd8813273161b86504700704f8a932538
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2dc944ffd4307aa108a54b70d58f298c26959ce0
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403174"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013350"
 ---
 # <a name="use-libman-with-aspnet-core-in-visual-studio"></a>Использование LibMan с ASP.NET Core в Visual Studio
 
@@ -68,7 +70,7 @@ ms.locfileid: "85403174"
     * используется папка *lib*, если *wwwroot* не существует.
   * При запуске из папки проекта используется соответствующее имя папки.
 
-  После папки указывается имя библиотеки. В приведенной ниже таблице показаны папки, предлагаемые при установке jQuery в проекте [Razor Pages.
+  После папки указывается имя библиотеки. В приведенной ниже таблице показаны папки, предлагаемые при установке jQuery в проекте Razor Pages.
   
   |Место запуска                           |Предлагаемая папка      |
   |------------------------------------------|----------------------|

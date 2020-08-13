@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/23/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: 684d7b76c7500ec19c90eb696ec0127692923297
-ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
+ms.openlocfilehash: 68fc4c9bd516948eeb2c46c67fdb5bde7cfeefca
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86176250"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014156"
 ---
-# <a name="aspnet-core-blazor-layouts"></a>Макеты Blazor в ASP.NET Core
+# <a name="aspnet-core-no-locblazor-layouts"></a>Макеты Blazor в ASP.NET Core
 
 Авторы: [Райнер Стропек](https://www.timecockpit.com) (Rainer Stropek) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
@@ -104,7 +106,7 @@ ms.locfileid: "86176250"
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterLayout.razor?highlight=6)]
 
-## <a name="share-a-razor-pages-layout-with-integrated-components"></a>Совместное использование макета Razor Pages с интегрированными компонентами
+## <a name="share-a-no-locrazor-pages-layout-with-integrated-components"></a>Совместное использование макета Razor Pages с интегрированными компонентами
 
 Если маршрутизируемые компоненты интегрированы в приложение Razor Pages, общий макет приложения можно использовать с компонентами. Для получения дополнительной информации см. <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>.
 

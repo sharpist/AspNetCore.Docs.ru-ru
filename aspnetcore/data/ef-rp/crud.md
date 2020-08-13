@@ -5,6 +5,8 @@ description: Часть 2 серии руководств по Razor Pages и E
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: 46846d99230620e45d8a2baab46df320425cfb6c
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f205e7741c8e901e9219bec2028c7bee98129161
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401211"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018368"
 ---
-# <a name="part-2-razor-pages-with-ef-core-in-aspnet-core---crud"></a>Часть 2. Razor Pages с EF Core в ASP.NET Core — CRUD
+# <a name="part-2-no-locrazor-pages-with-ef-core-in-aspnet-core---crud"></a>Часть 2. Razor Pages с EF Core в ASP.NET Core — CRUD
 
 Авторы: [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra), [Йон П. Смит](https://twitter.com/thereformedprog) (Jon P Smith) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -221,7 +223,7 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 
 Чаще всего в шаблонном коде [FindAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.findasync#Microsoft_EntityFrameworkCore_DbContext_FindAsync_System_Type_System_Object___) можно использовать вместо `FirstOrDefaultAsync`.
 
-`FindAsync`.
+`FindAsync`:
 
 * Находит сущность с первичным ключом. Если сущность с первичным ключом отслеживается контекстом, она возвращается без запроса к базе данных.
 * Является простым и быстрым.
@@ -393,7 +395,7 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 * Вызывается исключение базы данных.
 * Вызывается метод `OnGetAsync` страницы Delete с параметром `saveChangesError=true`.
 
-### <a name="update-the-delete-razor-page"></a>Обновление страницы удаления Razor
+### <a name="update-the-delete-no-locrazor-page"></a>Обновление страницы удаления Razor
 
 Добавьте выделенное ниже сообщение об ошибке на страницу Delete Razor.
 <!--

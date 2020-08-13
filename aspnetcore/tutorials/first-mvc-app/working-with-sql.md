@@ -5,6 +5,8 @@ description: Часть 5. Добавление модели в приложе�
 ms.author: riande
 ms.date: 8/16/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/working-with-sql
-ms.openlocfilehash: a66359ec7ac6e5a84ae36ecc2e4f5e4bb791101a
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 88af3e724032f8324155a0a1e6c30c8558f97f72
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408309"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021267"
 ---
 # <a name="part-5-work-with-a-database-in-an-aspnet-core-mvc-app"></a>Часть 5. Работа с базой данных в приложении MVC ASP.NET Core
 

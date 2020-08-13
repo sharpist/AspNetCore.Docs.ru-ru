@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: 27ee69130bc455ab2570556091692053d59e89a5
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 384b6559b4ee6140da5cf785ffda3978aafbb132
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408231"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88016769"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Реализация веб-сервера HTTP.sys в ASP.NET Core
 
@@ -169,7 +171,7 @@ public IActionResult MyActionMethod()
 
    Этот параметр в `UrlPrefixes` переопределяет параметры `UseUrls`/`urls`/`ASPNETCORE_URLS`. Таким образом, преимущество переменных среды`UseUrls`, `urls`и `ASPNETCORE_URLS` заключается в возможности быстрого переключения между Kestrel и HTTP.sys.
 
-   HTTP.sys использует [форматы строк UrlPrefix API сервера HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
+   HTTP.sys использует [форматы строк UrlPrefix API сервера HTTP](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > **Не используйте** привязки с подстановочными знаками (`http://*:80/` и `http://+:80`) на верхнем уровне. Они создают уязвимости и ставят под угрозу безопасность приложения. Сюда относятся и строгие, и нестрогие подстановочные знаки. Вместо подстановочных знаков используйте имена узлов или IP-адреса в явном виде. Привязки с подстановочными знаками на уровне дочерних доменов (например, `*.mysub.com`) не создают таких угроз безопасности, если вы полностью контролируете родительский домен (в отличие от варианта `*.com`, создающего уязвимость). Дополнительные сведения см. в стандарте [RFC 7230, раздел 5.4, Host](https://tools.ietf.org/html/rfc7230#section-5.4).
@@ -253,7 +255,7 @@ public IActionResult MyActionMethod()
    Дополнительные сведения см. в справочной документации по *netsh.exe*:
 
    * [Команды netsh для протокола HTTP](https://technet.microsoft.com/library/cc725882.aspx)
-   * [Строки UrlPrefix](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+   * [Строки UrlPrefix](/windows/win32/http/urlprefix-strings)
 
 1. Запустите приложение.
 
@@ -272,7 +274,7 @@ public IActionResult MyActionMethod()
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * [Включить проверку подлинности Windows с использованием HTTP.sys](xref:security/authentication/windowsauth#httpsys)
-* [API сервера HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
+* [API сервера HTTP](/windows/win32/http/http-api-start-page)
 * [Репозиторий GitHub ASPNET/HttpSysServer (исходный код)](https://github.com/aspnet/HttpSysServer/)
 * [Узел](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
@@ -420,7 +422,7 @@ public IActionResult MyActionMethod()
 
    Этот параметр в `UrlPrefixes` переопределяет параметры `UseUrls`/`urls`/`ASPNETCORE_URLS`. Таким образом, преимущество переменных среды`UseUrls`, `urls`и `ASPNETCORE_URLS` заключается в возможности быстрого переключения между Kestrel и HTTP.sys.
 
-   HTTP.sys использует [форматы строк UrlPrefix API сервера HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
+   HTTP.sys использует [форматы строк UrlPrefix API сервера HTTP](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > **Не используйте** привязки с подстановочными знаками (`http://*:80/` и `http://+:80`) на верхнем уровне. Они создают уязвимости и ставят под угрозу безопасность приложения. Сюда относятся и строгие, и нестрогие подстановочные знаки. Вместо подстановочных знаков используйте имена узлов или IP-адреса в явном виде. Привязки с подстановочными знаками на уровне дочерних доменов (например, `*.mysub.com`) не создают таких угроз безопасности, если вы полностью контролируете родительский домен (в отличие от варианта `*.com`, создающего уязвимость). Дополнительные сведения см. в стандарте [RFC 7230, раздел 5.4, Host](https://tools.ietf.org/html/rfc7230#section-5.4).
@@ -504,7 +506,7 @@ public IActionResult MyActionMethod()
    Дополнительные сведения см. в справочной документации по *netsh.exe*:
 
    * [Команды netsh для протокола HTTP](https://technet.microsoft.com/library/cc725882.aspx)
-   * [Строки UrlPrefix](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+   * [Строки UrlPrefix](/windows/win32/http/urlprefix-strings)
 
 1. Запустите приложение.
 
@@ -523,7 +525,7 @@ public IActionResult MyActionMethod()
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * [Включить проверку подлинности Windows с использованием HTTP.sys](xref:security/authentication/windowsauth#httpsys)
-* [API сервера HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
+* [API сервера HTTP](/windows/win32/http/http-api-start-page)
 * [Репозиторий GitHub ASPNET/HttpSysServer (исходный код)](https://github.com/aspnet/HttpSysServer/)
 * [Узел](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
@@ -673,7 +675,7 @@ public IActionResult MyActionMethod()
 
    Этот параметр в `UrlPrefixes` переопределяет параметры `UseUrls`/`urls`/`ASPNETCORE_URLS`. Таким образом, преимущество переменных среды`UseUrls`, `urls`и `ASPNETCORE_URLS` заключается в возможности быстрого переключения между Kestrel и HTTP.sys.
 
-   HTTP.sys использует [форматы строк UrlPrefix API сервера HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
+   HTTP.sys использует [форматы строк UrlPrefix API сервера HTTP](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > **Не используйте** привязки с подстановочными знаками (`http://*:80/` и `http://+:80`) на верхнем уровне. Они создают уязвимости и ставят под угрозу безопасность приложения. Сюда относятся и строгие, и нестрогие подстановочные знаки. Вместо подстановочных знаков используйте имена узлов или IP-адреса в явном виде. Привязки с подстановочными знаками на уровне дочерних доменов (например, `*.mysub.com`) не создают таких угроз безопасности, если вы полностью контролируете родительский домен (в отличие от варианта `*.com`, создающего уязвимость). Дополнительные сведения см. в стандарте [RFC 7230, раздел 5.4, Host](https://tools.ietf.org/html/rfc7230#section-5.4).
@@ -757,7 +759,7 @@ public IActionResult MyActionMethod()
    Дополнительные сведения см. в справочной документации по *netsh.exe*:
 
    * [Команды netsh для протокола HTTP](https://technet.microsoft.com/library/cc725882.aspx)
-   * [Строки UrlPrefix](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+   * [Строки UrlPrefix](/windows/win32/http/urlprefix-strings)
 
 1. Запустите приложение.
 
@@ -776,7 +778,7 @@ public IActionResult MyActionMethod()
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * [Включить проверку подлинности Windows с использованием HTTP.sys](xref:security/authentication/windowsauth#httpsys)
-* [API сервера HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
+* [API сервера HTTP](/windows/win32/http/http-api-start-page)
 * [Репозиторий GitHub ASPNET/HttpSysServer (исходный код)](https://github.com/aspnet/HttpSysServer/)
 * [Узел](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
@@ -926,7 +928,7 @@ public IActionResult MyActionMethod()
 
    Этот параметр в `UrlPrefixes` переопределяет параметры `UseUrls`/`urls`/`ASPNETCORE_URLS`. Таким образом, преимущество переменных среды`UseUrls`, `urls`и `ASPNETCORE_URLS` заключается в возможности быстрого переключения между Kestrel и HTTP.sys.
 
-   HTTP.sys использует [форматы строк UrlPrefix API сервера HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
+   HTTP.sys использует [форматы строк UrlPrefix API сервера HTTP](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > **Не используйте** привязки с подстановочными знаками (`http://*:80/` и `http://+:80`) на верхнем уровне. Они создают уязвимости и ставят под угрозу безопасность приложения. Сюда относятся и строгие, и нестрогие подстановочные знаки. Вместо подстановочных знаков используйте имена узлов или IP-адреса в явном виде. Привязки с подстановочными знаками на уровне дочерних доменов (например, `*.mysub.com`) не создают таких угроз безопасности, если вы полностью контролируете родительский домен (в отличие от варианта `*.com`, создающего уязвимость). Дополнительные сведения см. в стандарте [RFC 7230, раздел 5.4, Host](https://tools.ietf.org/html/rfc7230#section-5.4).
@@ -1010,7 +1012,7 @@ public IActionResult MyActionMethod()
    Дополнительные сведения см. в справочной документации по *netsh.exe*:
 
    * [Команды netsh для протокола HTTP](https://technet.microsoft.com/library/cc725882.aspx)
-   * [Строки UrlPrefix](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+   * [Строки UrlPrefix](/windows/win32/http/urlprefix-strings)
 
 1. Запустите приложение.
 
@@ -1029,7 +1031,7 @@ public IActionResult MyActionMethod()
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * [Включить проверку подлинности Windows с использованием HTTP.sys](xref:security/authentication/windowsauth#httpsys)
-* [API сервера HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
+* [API сервера HTTP](/windows/win32/http/http-api-start-page)
 * [Репозиторий GitHub ASPNET/HttpSysServer (исходный код)](https://github.com/aspnet/HttpSysServer/)
 * [Узел](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>

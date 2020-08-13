@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 2/18/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/filter
-ms.openlocfilehash: 626003ad75333cfaf17a3ea97549ca82650469a8
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b8942020e98d0f985e5445bb1816c540bcb7829b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407373"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021410"
 ---
-# <a name="filter-methods-for-razor-pages-in-aspnet-core"></a>Методы фильтрации для Razor Pages в ASP.NET Core
+# <a name="filter-methods-for-no-locrazor-pages-in-aspnet-core"></a>Методы фильтрации для Razor Pages в ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -57,7 +59,7 @@ ms.locfileid: "85407373"
 
 Реализуйте синхронный **или** асинхронный интерфейс фильтра, но **не** оба варианта. Платформа сначала проверяет, реализует ли фильтр асинхронный интерфейс. Если да, вызывается он. В противном случае вызываются методы синхронного интерфейса. Если реализуются оба интерфейса, вызываются только асинхронные методы. Это же правило применяется к переопределению на страницах — реализуйте синхронную или асинхронную версию переопределения, но не обе сразу.
 
-## <a name="implement-razor-page-filters-globally"></a>Реализация фильтров страницы Razor глобально
+## <a name="implement-no-locrazor-page-filters-globally"></a>Реализация фильтров страницы Razor глобально
 
 В следующем коде реализуется фильтр `IAsyncPageFilter`:
 
@@ -81,7 +83,7 @@ ms.locfileid: "85407373"
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/StartupSync.cs?name=snippet2)]
 
-## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>Реализация фильтров страницы Razor путем переопределения методов фильтра
+## <a name="implement-no-locrazor-page-filters-by-overriding-filter-methods"></a>Реализация фильтров страницы Razor путем переопределения методов фильтра
 
 В следующем коде переопределяются асинхронные фильтры страницы Razor.
 
@@ -149,7 +151,7 @@ ms.locfileid: "85407373"
 > [!NOTE]
 > Реализуйте **либо** синхронный, либо асинхронный вариант интерфейса фильтра, но не оба варианта. Платформа сначала проверяет, реализует ли фильтр асинхронный интерфейс. Если да, вызывается он. В противном случае вызываются методы синхронного интерфейса. Если реализуются оба интерфейса, вызываются только асинхронные методы. Это же правило применяется к переопределению на страницах — реализуйте синхронную или асинхронную версию переопределения, но не обе сразу.
 
-## <a name="implement-razor-page-filters-globally"></a>Реализация фильтров страницы Razor глобально
+## <a name="implement-no-locrazor-page-filters-globally"></a>Реализация фильтров страницы Razor глобально
 
 В следующем коде реализуется фильтр `IAsyncPageFilter`:
 
@@ -177,7 +179,7 @@ ms.locfileid: "85407373"
 
 [!code-csharp[Main](filter/sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
 
-## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>Реализация фильтров страницы Razor путем переопределения методов фильтра
+## <a name="implement-no-locrazor-page-filters-by-overriding-filter-methods"></a>Реализация фильтров страницы Razor путем переопределения методов фильтра
 
 В следующем коде переопределяются синхронные фильтры страницы Razor.
 

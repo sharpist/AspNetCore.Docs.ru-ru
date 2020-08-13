@@ -1,46 +1,48 @@
 ---
-title: Размещение и развертывание ASP.NET Core [Blazor Server
+title: Размещение и развертывание ASP.NET Core Blazor Server
 author: guardrex
-description: Сведения о размещении и развертывании приложения [Blazor Server с помощью ASP.NET Core.
+description: Сведения о размещении и развертывании приложения Blazor Server с помощью ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/host-and-deploy/server
-ms.openlocfilehash: e59579046ecbfdbb4cca79bfb0e39d299e26913c
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e7c8627cd27fd30288b4bcfa1ac2ffe3e9b46e29
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402602"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014221"
 ---
-# <a name="host-and-deploy-blazor-server"></a>Размещение и развертывание [Blazor Server
+# <a name="host-and-deploy-no-locblazor-server"></a>Размещение и развертывание Blazor Server
 
 Авторы: [Люк Лэтем](https://github.com/guardrex), [Рэйнер Стропек](https://www.timecockpit.com) и [Дэниэл Рот](https://github.com/danroth27)
 
 ## <a name="host-configuration-values"></a>Значения конфигурации узла
 
-[Приложения [Blazor Server](xref:blazor/hosting-models#blazor-server) могут принимать [значения конфигурации универсального узла](xref:fundamentals/host/generic-host#host-configuration).
+[Приложения Blazor Server](xref:blazor/hosting-models#blazor-server) могут принимать [значения конфигурации универсального узла](xref:fundamentals/host/generic-host#host-configuration).
 
 ## <a name="deployment"></a>Развертывание
 
-Если используется [модель размещения [Blazor Server](xref:blazor/hosting-models#blazor-server), [Blazor выполняется на сервере из приложения ASP.NET Core. Обновление элементов пользовательского интерфейса, обработка событий и вызовы JavaScript обрабатываются через подключение [[SignalR](xref:signalr/introduction).
+Если используется [модель размещения Blazor Server](xref:blazor/hosting-models#blazor-server), Blazor выполняется на сервере из приложения ASP.NET Core. Обновление элементов пользовательского интерфейса, обработка событий и вызовы JavaScript обрабатываются через подключение [SignalR](xref:signalr/introduction).
 
-Необходим веб-сервер, позволяющий размещать приложения ASP.NET Core. Visual Studio содержит шаблон проекта **Приложение [Blazor Server** (шаблон `blazorserverside` при использовании команды [`dotnet new`](/dotnet/core/tools/dotnet-new)).
+Необходим веб-сервер, позволяющий размещать приложения ASP.NET Core. Visual Studio содержит шаблон проекта **Приложение Blazor Server** (шаблон `blazorserverside` при использовании команды [`dotnet new`](/dotnet/core/tools/dotnet-new)).
 
 ## <a name="scalability"></a>Масштабируемость
 
-Планируйте развертывание так, чтобы доступная инфраструктура максимально эффективно использовалась приложением [Blazor Server. См. сведения о масштабируемости приложений [Blazor Server:
+Планируйте развертывание так, чтобы доступная инфраструктура максимально эффективно использовалась приложением Blazor Server. См. сведения о масштабируемости приложений Blazor Server:
 
-* [Общие сведения о приложениях [Blazor Server](xref:blazor/hosting-models#blazor-server)
+* [Общие сведения о приложениях Blazor Server](xref:blazor/hosting-models#blazor-server)
 * <xref:blazor/security/server/threat-mitigation>
 
 ### <a name="deployment-server"></a>Сервер развертывания
@@ -50,19 +52,19 @@ ms.locfileid: "85402602"
 * число активных каналов, которые может поддерживать сервер;
 * задержку пользовательского интерфейса в клиенте.
 
-Рекомендации по созданию безопасных и масштабируемых серверных приложений [Blazor см. здесь: <xref:blazor/security/server/threat-mitigation>.
+Рекомендации по созданию безопасных и масштабируемых серверных приложений Blazor см. здесь: <xref:blazor/security/server/threat-mitigation>.
 
 Каждый канал использует около 250 КБ памяти для минималистичного приложения в стиле *Hello World*. Размер канала зависит от кода приложения и требований к обслуживанию состояний для каждого компонента. Мы рекомендуем определять требования к ресурсам во время разработки приложения и инфраструктуры, но при планировании цели развертывания можно использовать следующие базовые показатели: если вы предполагаете, что приложение будет одновременно поддерживать 5000 пользователей, выделите для приложения по меньшей мере 1,3 ГБ серверной памяти (или около 273 КБ на пользователя).
 
-### <a name="signalr-configuration"></a>Конфигурация [SignalR
+### <a name="no-locsignalr-configuration"></a>Конфигурация SignalR
 
-Приложения [Blazor Server используют [SignalR ASP.NET Core для обмена данными с браузером. [Условия размещения и масштабирования [SignalR](xref:signalr/publish-to-azure-web-app) применяются и к приложениям [Blazor Server.
+Приложения Blazor Server используют SignalR ASP.NET Core для обмена данными с браузером. [Условия размещения и масштабирования SignalR](xref:signalr/publish-to-azure-web-app) применяются и к приложениям Blazor Server.
 
-[Blazor лучше всего работает с WebSocket в качестве транспортного механизма [SignalR благодаря низкой задержке, надежности и [безопасности](xref:signalr/security). Продолжительный опрос используется службой [SignalR, если подключения WebSocket недоступны или если приложение явно настроено на применение продолжительного опроса. При развертывании Службы приложений Azure настройте приложение на использование WebSocket в параметрах службы на портале Azure. Подробные сведения о настройке приложения для Службы приложений Azure см. в статье с [рекомендациями по публикации приложения [SignalR](xref:signalr/publish-to-azure-web-app).
+Blazor лучше всего работает с WebSocket в качестве транспортного механизма SignalR благодаря низкой задержке, надежности и [безопасности](xref:signalr/security). Продолжительный опрос используется службой SignalR, если подключения WebSocket недоступны или если приложение явно настроено на применение продолжительного опроса. При развертывании Службы приложений Azure настройте приложение на использование WebSocket в параметрах службы на портале Azure. Подробные сведения о настройке приложения для Службы приложений Azure см. в статье с [рекомендациями по публикации приложения SignalR](xref:signalr/publish-to-azure-web-app).
 
-#### <a name="azure-signalr-service"></a>Служба Azure [SignalR
+#### <a name="azure-no-locsignalr-service"></a>Служба Azure SignalR
 
-Мы рекомендуем использовать для приложений [Blazor Server [службу Azure [SignalR](/azure/azure-signalr). Она позволяет вертикально масштабировать приложения [Blazor Server для одновременного использования большого числа подключений [SignalR. Кроме того, глобальный охват службы [SignalR и ее высокопроизводительные центры обработки данных обеспечивают низкую задержку благодаря доступности в разных регионах. Чтобы настроить приложение (и при необходимости подготовить к работе) для службы Azure [SignalR, сделайте следующее:
+Мы рекомендуем использовать для приложений Blazor Server [службу Azure SignalR](/azure/azure-signalr). Она позволяет вертикально масштабировать приложения Blazor Server для одновременного использования большого числа подключений SignalR. Кроме того, глобальный охват службы SignalR и ее высокопроизводительные центры обработки данных обеспечивают низкую задержку благодаря доступности в разных регионах. Чтобы настроить приложение (и при необходимости подготовить к работе) для службы Azure SignalR, сделайте следующее:
 
 1. Включите в службе поддержку *прикрепленных сеансов*, когда клиенты [перенаправляются обратно на тот же сервер при предварительной отрисовке](xref:blazor/hosting-models#connection-to-the-server). Установите параметр или значение конфигурации `ServerStickyMode` равным `Required`. Как правило, приложение создает конфигурацию, используя **один** из следующих подходов:
 
@@ -72,7 +74,7 @@ ms.locfileid: "85402602"
      services.AddSignalR().AddAzureSignalR(options =>
      {
          options.ServerStickyMode = 
-             Microsoft.Azure.[SignalR.ServerStickyMode.Required;
+             Microsoft.Azure.SignalR.ServerStickyMode.Required;
      });
      ```
 
@@ -81,13 +83,13 @@ ms.locfileid: "85402602"
      * `appsettings.json`.
 
        ```json
-       "Azure:[SignalR:ServerStickyMode": "Required"
+       "Azure:SignalR:ServerStickyMode": "Required"
        ```
 
-     * раздел **Конфигурация** > **Параметры приложения** для службы приложений на портале Azure (**Имя**: `Azure:[SignalR:ServerStickyMode`, **Значение**: `Required`).
+     * раздел **Конфигурация** > **Параметры приложения** для службы приложений на портале Azure (**Имя**: `Azure:SignalR:ServerStickyMode`, **Значение**: `Required`).
 
-1. Создайте профиль публикации приложений Azure Apps в Visual Studio для приложения [Blazor Server.
-1. Добавьте в профиль зависимость **службы Azure [SignalR** . Если подписка Azure не имеет уже существующего экземпляра службы Azure [SignalR для назначения приложению, выберите **Создайте новый экземпляр службы Azure [SignalR** для предоставления нового экземпляра службы.
+1. Создайте профиль публикации приложений Azure Apps в Visual Studio для приложения Blazor Server.
+1. Добавьте в профиль зависимость **службы Azure SignalR** . Если подписка Azure не имеет уже существующего экземпляра службы Azure SignalR для назначения приложению, выберите **Создайте новый экземпляр службы Azure SignalR** для предоставления нового экземпляра службы.
 1. Опубликуйте приложение в Azure.
 
 #### <a name="iis"></a>IIS
@@ -115,7 +117,7 @@ metadata:
 
 #### <a name="linux-with-nginx"></a>Linux с Nginx
 
-Для правильной работы WebSockets [SignalR убедитесь, что для заголовков `Upgrade` и `Connection` прокси-сервера заданы следующие значения и `$connection_upgrade` сопоставлен с одним из следующих элементов:
+Для правильной работы WebSockets SignalR убедитесь, что для заголовков `Upgrade` и `Connection` прокси-сервера заданы следующие значения и `$connection_upgrade` сопоставлен с одним из следующих элементов:
 
 * Значение заголовка обновления по умолчанию.
 * `close`, если заголовок обновления отсутствует или пуст.
@@ -152,7 +154,7 @@ http {
 
 ## <a name="linux-with-apache"></a>Linux c Apache
 
-Чтобы разместить приложение [Blazor на основе Apache в Linux, настройте `ProxyPass` для трафика HTTP и WebSockets.
+Чтобы разместить приложение Blazor на основе Apache в Linux, настройте `ProxyPass` для трафика HTTP и WebSockets.
 
 В следующем примере:
 

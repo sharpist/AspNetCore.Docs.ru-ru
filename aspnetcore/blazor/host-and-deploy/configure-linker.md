@@ -1,38 +1,40 @@
 ---
-title: Настройка компоновщика для ASP.NET Core [Blazor
+title: Настройка компоновщика для ASP.NET Core Blazor
 author: guardrex
-description: Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения [Blazor.
+description: Узнайте, как управлять компоновщиком для промежуточного языка (IL) при создании приложения Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/host-and-deploy/configure-linker
-ms.openlocfilehash: 568efe9971aefc11841c42789ac7f2af3004003f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e76d25dbbf5c7a166e5f58a5ad1f9b5a2ecacf79
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402706"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014259"
 ---
-# <a name="configure-the-linker-for-aspnet-core-blazor"></a>Настройка компоновщика для ASP.NET Core [Blazor
+# <a name="configure-the-linker-for-aspnet-core-no-locblazor"></a>Настройка компоновщика для ASP.NET Core Blazor
 
 Автор [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
-[Blazor WebAssembly выполняет компоновку [промежуточного языка (IL)](/dotnet/standard/managed-code#intermediate-language--execution) во время сборки, чтобы затем удалить ненужный IL из выходных сборок приложения. Компоновщик отключен при сборке в конфигурации отладки. Для включения компоновщика приложения должны быть построены в конфигурации выпуска. Мы рекомендуем создавать выпуск при развертывании приложений [Blazor WebAssembly. 
+Blazor WebAssembly выполняет компоновку [промежуточного языка (IL)](/dotnet/standard/managed-code#intermediate-language--execution) во время сборки, чтобы затем удалить ненужный IL из выходных сборок приложения. Компоновщик отключен при сборке в конфигурации отладки. Для включения компоновщика приложения должны быть построены в конфигурации выпуска. Мы рекомендуем создавать выпуск при развертывании приложений Blazor WebAssembly. 
 
 Компоновка приложения оптимизируется в зависимости от размера, но это может иметь негативные последствия. Приложения, использующие отражение или связанные динамические функции, могут прерываться при усечении, так как компоновщик не знает об этом динамическом поведении и не может определить, какие типы необходимы для отражения во время выполнения. Чтобы обрезать такие приложения, компоновщик должен быть уведомлен о любых типах, необходимых для отражения в коде и в пакетах или платформах, от которых зависит приложение. 
 
 Чтобы обеспечить правильную работу обрезанного приложения после его развертывания, важно часто тестировать сборки выпуска приложения при разработке.
 
-Компоновку приложений [Blazor можно настроить с помощью следующих функций MSBuild:
+Компоновку приложений Blazor можно настроить с помощью следующих функций MSBuild:
 
 * настройка компоновки глобально с помощью [свойства MSBuild](#control-linking-with-an-msbuild-property);
 * управлять компоновкой каждой сборки с помощью [файла конфигурации](#control-linking-with-a-configuration-file).
@@ -62,7 +64,7 @@ ms.locfileid: "85402706"
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-  This file specifies which parts of the BCL or [Blazor packages must not be
+  This file specifies which parts of the BCL or Blazor packages must not be
   stripped by the IL Linker even if they aren't referenced by user code.
 -->
 <linker>
@@ -107,7 +109,7 @@ ms.locfileid: "85402706"
 
 ### <a name="configure-the-linker-for-internationalization"></a>Настройка компоновщика для интернационализации
 
-По умолчанию конфигурация компоновщика [Blazor для приложений [Blazor WebAssembly исключает сведения об интернационализации, кроме явно запрошенных языковых стандартов. Удаление этих сборок уменьшает размер приложения.
+По умолчанию конфигурация компоновщика Blazor для приложений Blazor WebAssembly исключает сведения об интернационализации, кроме явно запрошенных языковых стандартов. Удаление этих сборок уменьшает размер приложения.
 
 Чтобы указать, какие сборки I18N необходимо оставить, задайте свойство MSBuild `<BlazorWebAssemblyI18NAssemblies>` в файле проекта:
 

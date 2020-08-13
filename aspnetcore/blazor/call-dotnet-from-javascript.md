@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/07/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: 5dc1c5a4fbaaa756cfaf09c751e516147a04c899
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 5a0731b45424ffd8560bb3b0d9123c686ae9e247
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060024"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88012570"
 ---
-# <a name="call-net-methods-from-javascript-functions-in-aspnet-core-blazor"></a>Вызов методов .NET из функций JavaScript в ASP.NET Core Blazor
+# <a name="call-net-methods-from-javascript-functions-in-aspnet-core-no-locblazor"></a>Вызов методов .NET из функций JavaScript в ASP.NET Core Blazor
 
 Авторы: [Хавьер Кальварро Нельсон](https://github.com/javiercn) (Javier Calvarro Nelson), [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth) и [Шашикант Рудравади](http://wisne.co) (Shashikant Rudrawadi) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 

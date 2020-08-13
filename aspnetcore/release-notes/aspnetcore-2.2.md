@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-2.2
-ms.openlocfilehash: c2e23871866565a3f4ea0b0c72af5ec4fb770e6f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 354839abe295b4adcbf6becfd3bd926330f0823f
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408712"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021150"
 ---
 # <a name="whats-new-in-aspnet-core-22"></a>Новые возможности ASP.NET Core 2.2
 
@@ -87,7 +89,7 @@ HTTP/2 является основной редакцией HTTP-протоко�
 
 Дополнительные сведения см. в статье [Внутрипроцессное размещение для служб IIS](xref:host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#in-process-hosting-model).
 
-## <a name="signalr-java-client"></a>Клиент Java SignalR
+## <a name="no-locsignalr-java-client"></a>Клиент Java SignalR
 
 В ASP.NET Core 2.2 представлен клиент Java для SignalR. Этот клиент поддерживает подключение к серверу SignalR ASP.NET Core из кода Java, в том числе из приложений Android.
 

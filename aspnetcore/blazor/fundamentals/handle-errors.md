@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/23/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/handle-errors
-ms.openlocfilehash: e3ce3a62f351255fd059adaa6e9b0a8e9bdc2ce7
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 5f7112d9a072f28d387e07bdf69ec0b7595ff6b4
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86059881"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014442"
 ---
-# <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Обработка ошибок в приложениях ASP.NET Core Blazor
+# <a name="handle-errors-in-aspnet-core-no-locblazor-apps"></a>Обработка ошибок в приложениях ASP.NET Core Blazor
 
 Автор: [Стив Сандерсон](https://github.com/SteveSandersonMS) (Steve Sanderson)
 
@@ -85,7 +87,7 @@ ms.locfileid: "86059881"
 }
 ```
 
-## <a name="how-a-blazor-server-app-reacts-to-unhandled-exceptions"></a>Как приложение Blazor Server реагирует на необработанные исключения
+## <a name="how-a-no-locblazor-server-app-reacts-to-unhandled-exceptions"></a>Как приложение Blazor Server реагирует на необработанные исключения
 
 Blazor Server — это платформа с отслеживанием состояния. Когда пользователи взаимодействуют с приложением, они поддерживают подключение к серверу, которое называется *каналом*. Канал содержит экземпляры активных компонентов, а также многие другие аспекты состояния, например:
 
@@ -221,7 +223,7 @@ Blazor обрабатывает большинство необработанн�
 * <xref:blazor/call-javascript-from-dotnet>
 * <xref:blazor/call-dotnet-from-javascript>
 
-### <a name="blazor-server-prerendering"></a>Предварительная отрисовка Blazor Server
+### <a name="no-locblazor-server-prerendering"></a>Предварительная отрисовка Blazor Server
 
 Компоненты Blazor можно предварительно отрисовать с помощью [вспомогательной функции тега компонента](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper), чтобы их отрисованная разметка HTML возвращалась как часть исходного HTTP-запроса пользователя. Это происходит следующим образом:
 

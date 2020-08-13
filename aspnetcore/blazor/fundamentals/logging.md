@@ -1,32 +1,34 @@
 ---
-title: Ведение журналов ASP.NET Core [Blazor
+title: Ведение журналов ASP.NET Core Blazor
 author: guardrex
-description: Сведения о ведении журналов в [Blazor приложениях, включая настройку уровня ведения журнала и запись сообщений журнала из компонентов [Razor.
+description: Сведения о ведении журналов в Blazor приложениях, включая настройку уровня ведения журнала и запись сообщений журнала из компонентов Razor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/fundamentals/logging
-ms.openlocfilehash: 1f4b18bdea02016fb76b75dd01a8fcbeab9b2bc9
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: c2e8ee24c135b3c2f9b6be5b0e0efa54750c68b2
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402836"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014363"
 ---
-# <a name="aspnet-core-blazor-logging"></a>Ведение журналов ASP.NET Core [Blazor
+# <a name="aspnet-core-no-locblazor-logging"></a>Ведение журналов ASP.NET Core Blazor
 
-## [Blazor WebAssembly
+## Blazor WebAssembly
 
-Настройте ведение журналов в приложениях [Blazor WebAssembly с помощью свойства `WebAssemblyHostBuilder.Logging` в `Program.Main`:
+Настройте ведение журналов в приложениях Blazor WebAssembly с помощью свойства `WebAssemblyHostBuilder.Logging` в `Program.Main`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -43,13 +45,13 @@ builder.Logging.AddProvider(new CustomLoggingProvider());
 
 Конфигурацию ведения журнала можно загрузить из файлов параметров приложения. Для получения дополнительной информации см. <xref:blazor/fundamentals/configuration#logging-configuration>.
 
-## [Blazor Server
+## Blazor Server
 
 Общие рекомендации по ведению журнала ASP.NET Core см. в разделе <xref:fundamentals/logging/index>.
 
-## <a name="blazor-webassembly-signalr-net-client-logging"></a>Ведение журнала клиента [Blazor WebAssembly [SignalR .NET
+## <a name="no-locblazor-webassembly-no-locsignalr-net-client-logging"></a>Ведение журнала клиента Blazor WebAssembly SignalR .NET
 
-Вставьте <xref:Microsoft.Extensions.Logging.ILoggerProvider>, чтобы добавить `WebAssemblyConsoleLogger` к регистраторам, передаваемым в <xref:Microsoft.AspNetCore.[SignalR.Client.HubConnectionBuilder>. В отличие от традиционных <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` является оболочкой для API-интерфейсов ведения журнала, характерных для браузера (например, `console.log`). Использование `WebAssemblyConsoleLogger` делает возможным ведение журнала в Mono внутри контекста браузера.
+Вставьте <xref:Microsoft.Extensions.Logging.ILoggerProvider>, чтобы добавить `WebAssemblyConsoleLogger` к регистраторам, передаваемым в <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. В отличие от традиционных <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` является оболочкой для API-интерфейсов ведения журнала, характерных для браузера (например, `console.log`). Использование `WebAssemblyConsoleLogger` делает возможным ведение журнала в Mono внутри контекста браузера.
 
 ```csharp
 @using Microsoft.Extensions.Logging
@@ -63,13 +65,13 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-## <a name="log-in-razor-components"></a>Ведение журнала в компонентах [Razor
+## <a name="log-in-no-locrazor-components"></a>Ведение журнала в компонентах Razor
 
 Средства ведения журнала учитывают конфигурацию запуска приложения.
 
 Директива `using` для <xref:Microsoft.Extensions.Logging> обеспечивает поддержку завершения IntelliSense для таких интерфейсов API, как <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> и <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A>.
 
-Следующий пример демонстрирует ведение журнала с помощью <xref:Microsoft.Extensions.Logging.ILogger> в компонентах [Razor:
+Следующий пример демонстрирует ведение журнала с помощью <xref:Microsoft.Extensions.Logging.ILogger> в компонентах Razor:
 
 ```razor
 @page "/counter"
@@ -94,7 +96,7 @@ var connection = new HubConnectionBuilder()
 }
 ```
 
-Следующий пример демонстрирует ведение журнала с помощью <xref:Microsoft.Extensions.Logging.ILoggerFactory> в компонентах [Razor:
+Следующий пример демонстрирует ведение журнала с помощью <xref:Microsoft.Extensions.Logging.ILoggerFactory> в компонентах Razor:
 
 ```razor
 @page "/counter"

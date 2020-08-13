@@ -5,6 +5,8 @@ description: В этом учебнике объясняется, как соз�
 ms.author: johluo
 ms.date: 04/08/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/grpc/grpc-start
-ms.openlocfilehash: c2ec543bd73c0c15c65358c95def0109c295a0f8
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b3c210e50f4bf2869100976176ded939b39e3712
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403473"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022060"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>Учебник. Создание клиента и сервера gRPC в ASP.NET Core
 
