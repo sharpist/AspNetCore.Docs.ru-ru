@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 03/26/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/sdk
-ms.openlocfilehash: 56b4d4c13023918a4ac25c8c5d8ad1ee2c346ac6
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b960460a50558a11bc47f9a1844931aa32e3d696
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403044"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021423"
 ---
-# <a name="aspnet-core-razor-sdk"></a>ASP.NET Core Razor SDK
+# <a name="aspnet-core-no-locrazor-sdk"></a>ASP.NET Core Razor SDK
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -52,7 +54,7 @@ ms.locfileid: "85403044"
 
 [!INCLUDE[](~/includes/2.1-SDK.md)]
 
-## <a name="use-the-razor-sdk"></a>Использование пакета SDK для Razor
+## <a name="use-the-no-locrazor-sdk"></a>Использование пакета SDK для Razor
 
 Большинству веб-приложений не требуется явная ссылка на пакет SDK для Razor.
 
@@ -133,7 +135,7 @@ ms.locfileid: "85403044"
 | `CopyRazorGenerateFilesToPublishDirectory` | При значении `true` копирует элементы `RazorGenerate` (файлы *CSHTML*) в каталог публикации. Обычно опубликованному приложению не нужны файлы Razor, если они участвуют в компиляции во время сборки или публикации. По умолчанию — `false`. |
 | `PreserveCompilationReferences` | При значении `true` копирует элементы базовой сборки в каталог публикации. Обычно опубликованному приложению не нужны базовые сборки, если компиляция Razor происходит во время сборки или публикации. Задайте значение `true`, если для опубликованного приложения требуется компиляция в среде выполнения. Например, задайте значение `true`, если приложение изменяет файлы *CSHTML* во время выполнения или использует внедренные представления. По умолчанию — `false`. |
 | `IncludeRazorContentInPack` | При значении `true` все элементы содержимого Razor (файлы *CSHTML*) помечаются для включения в создаваемый пакет NuGet. По умолчанию — `false`. |
-| `EmbedRazorGenerateSources` | При значении `true` элементы RazorGenerate (*CSHTML*) добавляются в виде внедренных файлов к создаваемой сборке Razor. По умолчанию — `false`. |
+| `EmbedRazorGenerateSources` | При значении `true` элементы RazorGenerate ( *.cshtml*) добавляются в виде внедренных файлов к создаваемой сборке Razor. По умолчанию — `false`. |
 | `UseRazorBuildServer` | При значении `true` использует серверный процесс постоянной сборки для разгрузки работы по созданию кода. По умолчанию используется значение `UseSharedCompilation`. |
 | `GenerateMvcApplicationPartsAssemblyAttributes` | При значении `true` пакет SDK создает дополнительные атрибуты, используемые MVC во время выполнения для обнаружения частей приложения. |
 | `DefaultWebContentItemExcludes` | Шаблон подстановки для элементов, которые должны быть исключены из группы элементов `Content` в проектах, предназначенных для веб-пакета или пакета SDK для Razor |
@@ -157,7 +159,7 @@ ms.locfileid: "85403044"
 | `CopyRazorGenerateFilesToPublishDirectory` | При значении `true` копирует элементы `RazorGenerate` (файлы *CSHTML*) в каталог публикации. Обычно опубликованному приложению не нужны файлы Razor, если они участвуют в компиляции во время сборки или публикации. По умолчанию — `false`. |
 | `CopyRefAssembliesToPublishDirectory` | При значении `true` копирует элементы базовой сборки в каталог публикации. Обычно опубликованному приложению не нужны базовые сборки, если компиляция Razor происходит во время сборки или публикации. Задайте значение `true`, если для опубликованного приложения требуется компиляция в среде выполнения. Например, задайте значение `true`, если приложение изменяет файлы *CSHTML* во время выполнения или использует внедренные представления. По умолчанию — `false`. |
 | `IncludeRazorContentInPack` | При значении `true` все элементы содержимого Razor (файлы *CSHTML*) помечаются для включения в создаваемый пакет NuGet. По умолчанию — `false`. |
-| `EmbedRazorGenerateSources` | При значении `true` элементы RazorGenerate (*CSHTML*) добавляются в виде внедренных файлов к создаваемой сборке Razor. По умолчанию — `false`. |
+| `EmbedRazorGenerateSources` | При значении `true` элементы RazorGenerate ( *.cshtml*) добавляются в виде внедренных файлов к создаваемой сборке Razor. По умолчанию — `false`. |
 | `UseRazorBuildServer` | При значении `true` использует серверный процесс постоянной сборки для разгрузки работы по созданию кода. По умолчанию используется значение `UseSharedCompilation`. |
 | `GenerateMvcApplicationPartsAssemblyAttributes` | При значении `true` пакет SDK создает дополнительные атрибуты, используемые MVC во время выполнения для обнаружения частей приложения. |
 | `DefaultWebContentItemExcludes` | Шаблон подстановки для элементов, которые должны быть исключены из группы элементов `Content` в проектах, предназначенных для веб-пакета или пакета SDK для Razor |
@@ -177,13 +179,13 @@ ms.locfileid: "85403044"
 * `RazorCompile`. Компилирует созданные файлы *CS* в сборку Razor. Используйте `RazorCompileDependsOn`, чтобы указать дополнительные целевые объекты, которые могут выполняться до или после этого целевого объекта.
 * `RazorComponentGenerate`. Код создает файлы *CS* для элементов `RazorComponent`. Используйте свойство `RazorComponentGenerateDependsOn`, чтобы указать дополнительные целевые объекты, которые могут выполняться до или после этого целевого объекта.
 
-### <a name="runtime-compilation-of-razor-views"></a>Компиляция среды выполнения представлений Razor
+### <a name="runtime-compilation-of-no-locrazor-views"></a>Компиляция среды выполнения представлений Razor
 
 * По умолчанию пакет SDK для Razor не публикует базовые сборки, необходимые для компиляции среды выполнения. Это приведет к сбою компиляции, если модель приложения зависит от компиляции среды выполнения &mdash; например, приложение использует внедренные представления или меняет представления после публикации. Установите для `CopyRefAssembliesToPublishDirectory` значение `true`, чтобы продолжить публикацию базовых сборок.
 
 * Для веб-приложений убедитесь, что приложение предназначено для пакета SDK `Microsoft.NET.Sdk.Web`.
 
-## <a name="razor-language-version"></a>Версия языка Razor
+## <a name="no-locrazor-language-version"></a>Версия языка Razor
 
 При использовании пакета SDK `Microsoft.NET.Sdk.Web` версия языка Razor выводится из целевой версии платформы приложения. Для проектов, предназначенных для SDK `Microsoft.NET.Sdk.Razor`, или в редких случаях, когда приложению требуется другая версия языка Razor, отличная от выводимого значения, можно настроить версию, задав свойство `<RazorLangVersion>` в файле проекта приложения.
 

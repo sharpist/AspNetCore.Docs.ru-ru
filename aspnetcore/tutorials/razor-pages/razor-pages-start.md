@@ -5,6 +5,8 @@ description: В этой серии учебников объясняется, �
 ms.author: riande
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 77b230f14b4eef60d771daf8fe09288a9dd3c69c
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: 5fb841de2fa9a04cf05aaf08f255041ee1952638
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212992"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021098"
 ---
-# <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Учебник. Начало работы с Razor Pages в ASP.NET Core
+# <a name="tutorial-get-started-with-no-locrazor-pages-in-aspnet-core"></a>Учебник. Начало работы с Razor Pages в ASP.NET Core
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -60,7 +62,7 @@ ms.locfileid: "86212992"
 
 ---
 
-## <a name="create-a-razor-pages-web-app"></a>Создание веб-приложения Razor Pages
+## <a name="create-a-no-locrazor-pages-web-app"></a>Создание веб-приложения Razor Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -204,7 +206,7 @@ ms.locfileid: "86212992"
 
 ---
 
-## <a name="create-a-razor-pages-web-app"></a>Создание веб-приложения Razor Pages
+## <a name="create-a-no-locrazor-pages-web-app"></a>Создание веб-приложения Razor Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

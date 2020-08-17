@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: d5aa7520a637b18e014519134dfe2d2139e7c11d
-ms.sourcegitcommit: f7873c02c1505c99106cbc708f37e18fc0a496d1
+ms.openlocfilehash: 3d7ae49142849c589a1a20c33d30e87747ad1935
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "86147774"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021631"
 ---
-# <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Использование SignalR для ASP.NET Core с Blazor WebAssembly
+# <a name="use-aspnet-core-no-locsignalr-with-no-locblazor-webassembly"></a>Использование SignalR для ASP.NET Core с Blazor WebAssembly
 
 Авторы: [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)
 
@@ -61,7 +63,7 @@ ms.locfileid: "86147774"
 
 ---
 
-## <a name="create-a-hosted-blazor-webassembly-app-project"></a>Создание проекта размещенного приложения Blazor WebAssembly
+## <a name="create-a-hosted-no-locblazor-webassembly-app-project"></a>Создание проекта размещенного приложения Blazor WebAssembly
 
 Следуйте указаниям по выбору инструментов:
 
@@ -122,7 +124,7 @@ dotnet new blazorwasm --hosted --output BlazorSignalRApp
 
 ---
 
-## <a name="add-the-signalr-client-library"></a>Добавление клиентской библиотеки SignalR
+## <a name="add-the-no-locsignalr-client-library"></a>Добавление клиентской библиотеки SignalR
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)
 
@@ -169,13 +171,13 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 ---
 
-## <a name="add-a-signalr-hub"></a>добавлять концентратор SignalR;
+## <a name="add-a-no-locsignalr-hub"></a>добавлять концентратор SignalR;
 
 В проекте `BlazorSignalRApp.Server` создайте папку `Hubs` (plural) и добавьте следующий класс `ChatHub` (`Hubs/ChatHub.cs`):
 
 [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
 
-## <a name="add-services-and-an-endpoint-for-the-signalr-hub"></a>Добавление служб и конечной точки для концентратора SignalR
+## <a name="add-services-and-an-endpoint-for-the-no-locsignalr-hub"></a>Добавление служб и конечной точки для концентратора SignalR
 
 1. В проекте `BlazorSignalRApp.Server` откройте файл `Startup.cs`.
 
@@ -196,7 +198,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
    [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
 
-## <a name="add-razor-component-code-for-chat"></a>добавлять код компонента Razor для чата.
+## <a name="add-no-locrazor-component-code-for-chat"></a>добавлять код компонента Razor для чата.
 
 1. В проекте `BlazorSignalRApp.Client` откройте файл `Pages/Index.razor`.
 
@@ -216,7 +218,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Выберите любой браузер, введите имя и сообщение и нажмите кнопку для отправки сообщения. Имя и сообщение отображаются на обеих страницах мгновенно:
 
-   Пример приложения Blazor WebAssembly для ![SignalR в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
+   ![SignalR Blazor WebAssembly Пример приложения в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
    Цитаты: *Звездный путь VI. Неоткрытая страна* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -234,7 +236,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Выберите любой браузер, введите имя и сообщение и нажмите кнопку для отправки сообщения. Имя и сообщение отображаются на обеих страницах мгновенно:
 
-   Пример приложения Blazor WebAssembly для ![SignalR в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
+   ![SignalR Blazor WebAssembly Пример приложения в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
    Цитаты: *Звездный путь VI. Неоткрытая страна* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -246,7 +248,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Выберите любой браузер, введите имя и сообщение и нажмите кнопку для отправки сообщения. Имя и сообщение отображаются на обеих страницах мгновенно:
 
-   Пример приложения Blazor WebAssembly для ![SignalR в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
+   ![SignalR Blazor WebAssembly Пример приложения в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
    Цитаты: *Звездный путь VI. Неоткрытая страна* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -263,7 +265,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Выберите любой браузер, введите имя и сообщение и нажмите кнопку для отправки сообщения. Имя и сообщение отображаются на обеих страницах мгновенно:
 
-   Пример приложения Blazor WebAssembly для ![SignalR в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
+   ![SignalR Blazor WebAssembly Пример приложения в двух окнах браузера, где отображается обмен сообщениями.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
    Цитаты: *Звездный путь VI. Неоткрытая страна* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 

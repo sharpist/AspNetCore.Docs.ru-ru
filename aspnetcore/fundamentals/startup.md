@@ -7,20 +7,22 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/startup
-ms.openlocfilehash: 0d1bf0dd23b7f3b99d6e9383ffc72291c1b138ec
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 84b2aa6185654789b925dc4a9262f446de6c0a3c
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400717"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88016600"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Запуск приложения в ASP.NET Core
 
@@ -41,7 +43,7 @@ ms.locfileid: "85400717"
 
 [!code-csharp[](startup/3.0_samples/StartupFilterSample/Startup.cs?name=snippet)]
 
-Предыдущий пример предназначен для [[Razor Pages](xref:razor-pages/index); версия для MVC похожа.
+Предыдущий пример предназначен для [Razor Pages](xref:razor-pages/index); версия для MVC похожа.
 
 
 Класс `Startup` указывается при создании [узла](xref:fundamentals/index#host) приложения. Класс `Startup` обычно указывается путем вызова метода [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) в построителе узлов.
@@ -93,12 +95,12 @@ ms.locfileid: "85400717"
 * [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [перенаправления HTTPS](xref:security/enforcing-ssl);
 * [Статические файлы](xref:fundamentals/static-files)
-* ASP.NET Core [MVC](xref:mvc/overview) и [[Razor Pages](xref:razor-pages/index)
+* ASP.NET Core [MVC](xref:mvc/overview) и [Razor Pages](xref:razor-pages/index)
 
 
 [!code-csharp[](startup/3.0_samples/StartupFilterSample/Startup.cs?name=snippet)]
 
-Предыдущий пример предназначен для [[Razor Pages](xref:razor-pages/index); версия для MVC похожа.
+Предыдущий пример предназначен для [Razor Pages](xref:razor-pages/index); версия для MVC похожа.
 
 Каждый метод расширения `Use` добавляет один или несколько компонентов ПО промежуточного слоя в конвейер запросов. Например, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> настраивает [ПО промежуточного слоя](xref:fundamentals/middleware/index) для обслуживания [статических файлов](xref:fundamentals/static-files).
 
@@ -227,7 +229,7 @@ ms.locfileid: "85400717"
 * [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [перенаправления HTTPS](xref:security/enforcing-ssl);
 * [Статические файлы](xref:fundamentals/static-files)
-* ASP.NET Core [MVC](xref:mvc/overview) и [[Razor Pages](xref:razor-pages/index)
+* ASP.NET Core [MVC](xref:mvc/overview) и [Razor Pages](xref:razor-pages/index)
 * [общего регламента по защите данных (GDPR)](xref:security/gdpr);
 
 [!code-csharp[](startup/sample_snapshot/Startup4.cs)]

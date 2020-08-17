@@ -7,20 +7,22 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/iis/modules
-ms.openlocfilehash: 124f2a629ebd14210cb21351a720e007bba48f02
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: c526fc779d778cd0f99bcdaae283b6a5a0fe09ab
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404019"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015612"
 ---
 # <a name="iis-modules-with-aspnet-core"></a>Модули IIS с ASP.NET Core
 
@@ -62,7 +64,7 @@ ms.locfileid: "85404019"
 | **Статическое содержимое**<br>`StaticFileModule`                                                         | Нет  | [ПО промежуточного слоя для статических файлов](xref:fundamentals/static-files) |
 | **Кэшировании маркеров**<br>`TokenCacheModule`                                                          | Да | |
 | **Кэширование URI**<br>`UriCacheModule`                                                              | Да | |
-| **Авторизация URL-адреса**<br>`UrlAuthorizationModule`                                                | Да | [ASP.NET Core [Identity](xref:security/authentication/identity) |
+| **Авторизация URL-адреса**<br>`UrlAuthorizationModule`                                                | Да | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | **Проверка подлинности Windows**<br>`WindowsAuthenticationModule`                                      | Да | |
 
 &#8224;В модуле переопределения URL-адресов типы сопоставления `isFile` и `isDirectory` не работают с приложениями ASP.NET Core из-за изменений в [структуре каталогов](xref:host-and-deploy/directory-structure).
@@ -76,7 +78,7 @@ ms.locfileid: "85404019"
 | AnonymousIdentification | |
 | DefaultAuthentication   | |
 | FileAuthorization       | |
-| FormsAuthentication     | [ПО промежуточного слоя для аутентификации по файлам cookie](xref:security/authentication/cookie) |
+| FormsAuthentication     | [ПО промежуточного слоя для аутентификации на основе файлов Cookie](xref:security/authentication/cookie) |
 | OutputCache             | [ПО промежуточного слоя для кэширования ответов](xref:performance/caching/middleware) |
 | Профиль                 | |
 | RoleManager             | |
@@ -84,7 +86,7 @@ ms.locfileid: "85404019"
 | Сеанс                 | [ПО промежуточного слоя для сеансов](xref:fundamentals/app-state) |
 | UrlAuthorization        | |
 | UrlMappingsModule       | [ПО промежуточного слоя для переопределения URL-адресов](xref:fundamentals/url-rewriting) |
-| UrlRoutingModule-4.0    | [ASP.NET Core [Identity](xref:security/authentication/identity) |
+| UrlRoutingModule-4.0    | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | WindowsAuthentication   | |
 
 ## <a name="iis-manager-application-changes"></a>Изменения в приложении диспетчера IIS

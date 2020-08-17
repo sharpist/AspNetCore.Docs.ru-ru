@@ -5,6 +5,8 @@ description: Часть 2 серии руководств по Razor Pages.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 053e35e78b2bf58fded49c9a2860060d6a81c544
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 6b50f46863a6dabb01bcf0976a42abb504e6f7b7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408114"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020461"
 ---
-# <a name="part-2-add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Часть 2. Добавление модели в приложение Razor Pages в ASP.NET Core
+# <a name="part-2-add-a-model-to-a-no-locrazor-pages-app-in-aspnet-core"></a>Часть 2. Добавление модели в приложение Razor Pages в ASP.NET Core
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -145,7 +147,7 @@ ms.locfileid: "85408114"
 Заполните поля в диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** :
 
 * В раскрывающемся списке **Класс модели** выберите или введите **Фильм (RazorPagesMovie.Models)** .
-* В строке **Data context class** (Класс контекста данных) введите имя нового класса RazorPagesMovie.**Data**.RazorPagesMovieContext. [Это изменение](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) не требуется. Оно создает класс контекста базы данных с правильным пространством имен.
+* В строке **Класс контекста данных** введите имя нового класса RazorPagesMovie.**Data**.RazorPagesMovieContext. [Это изменение](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) не требуется. Оно создает класс контекста базы данных с правильным пространством имен.
 * Нажмите **Добавить**.
 
 ![Изображение из предыдущих инструкций.](model/_static/arpMac.png)
@@ -422,7 +424,7 @@ to use Data, it should not use models. That will make the namespace the same for
 Заполните поля в диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** :
 
 * В раскрывающемся списке **Класс модели** выберите или введите **Фильм**.
-* В строке **Data context class** (Класс контекста данных) введите или выберите **RazorPagesMovieContext**. Это приведет к созданию класса контекста базы данных с правильным пространством имен. В этом случае это будет **RazorPagesMovie.Models.RazorPagesMovieContext**.
+* В строке **Класс контекста данных** введите или выберите **RazorPagesMovieContext**. Это приведет к созданию класса контекста базы данных с правильным пространством имен. В этом случае он будет **RazorPagesMovie.Models.RazorPagesMovieContext**.
 * Нажмите **Добавить**.
 
 ![Изображение из предыдущих инструкций.](model/_static/arpMac.png)

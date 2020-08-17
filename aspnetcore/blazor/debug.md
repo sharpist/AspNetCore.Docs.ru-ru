@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/30/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: cb0a8737fb975db285986d18b995e488f09580e8
-ms.sourcegitcommit: 37f6f2e13ceb4eae268d20973d76e4b83acf6a24
+ms.openlocfilehash: 225916411550cc8e89c604e1426316843bb0ff52
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87526294"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014546"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Отладка в ASP.NET Core Blazor WebAssembly
 
@@ -76,6 +78,10 @@ ms.locfileid: "87526294"
 
 1. Создайте новое приложение Blazor WebAssembly, размещенное в ASP.NET Core.
 1. Нажмите клавишу <kbd>F5</kbd>, чтобы запустить приложение в отладчике.
+
+   > [!NOTE]
+   > **Запуск без отладки** (<kbd>CTRL</kbd>+<kbd>F5</kbd>) не поддерживается.
+
 1. Установите точку останова в `Pages/Counter.razor` в методе `IncrementCount`.
 1. Перейдите на вкладку **`Counter`** и нажмите кнопку для попадания в точку останова:
 
@@ -116,10 +122,13 @@ ms.locfileid: "87526294"
    Если вы получили уведомление:
 
    * Убедитесь, что установлена актуальная версия [расширения C# для Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp). Чтобы проверить установленные расширения, откройте раздел **Вид** > **Расширения** в строке меню или выберите значок **Расширения** на боковой панели **Действия**.
-   * Убедитесь, что отладчик JavaScript включен. Откройте файл параметров в строке меню (**Файл** > **Настройки** > **Параметры**). Выполните поиск по ключевым словам `debug preview`. В результатах поиска убедитесь, что флажок **Отладка > JavaScript: Use Preview (JavaScript: использовать предварительную версию)** установлен.
+   * Убедитесь, что отладчик JavaScript включен. Откройте файл параметров в строке меню (**Файл** > **Настройки** > **Параметры**). Выполните поиск по ключевым словам `debug preview`. В результатах поиска убедитесь, что флажок **Отладка > JavaScript: Use Preview (JavaScript: использовать предварительную версию)** установлен. Если параметр включения отладки предварительной версии отсутствует, обновите VS Code до актуальной версии или установите [расширение отладчика JavaScript](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code версии 1.46 или более ранней).
    * Перезагрузите окно.
 
 1. Начните отладку, нажав клавишу <kbd>F5</kbd> или выбрав соответствующий пункт меню.
+
+   > [!NOTE]
+   > **Запуск без отладки** (<kbd>CTRL</kbd>+<kbd>F5</kbd>) не поддерживается.
 
 1. При появлении запроса выберите вариант **Blazor WebAssembly Debug** (Отладка Blazor WebAssembly), чтобы начать отладку.
 

@@ -5,6 +5,8 @@ description: Часть 2 серии руководств по ASP.NET Core MVC
 ms.author: riande
 ms.date: 08/05/2017
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: 30272900b2ff19879921f1954a1c9b3eba203ca4
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 46f8cbc5ef3d9fe00a5151160a9119f68a9fe572
+ms.sourcegitcommit: 68d03d1aee8906b53bda66f8f1e0747efc3007e6
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400457"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "88051814"
 ---
 # <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>Часть 2. Добавление контроллера в приложение MVC ASP.NET Core
 
@@ -45,7 +47,7 @@ ms.locfileid: "85400457"
 * В **обозревателе решений** щелкните правой кнопкой мыши **Контроллеры > Добавить > Контроллер**
   ![Контекстное меню](adding-controller/_static/add_controller.png).
 
-* В диалоговом окне **Добавление шаблона** выберите **Контроллер MVC — пустой**.
+* В диалоговом окне **Добавление шаблона** выберите **Класс контроллера — пустой**.
 
   ![Добавьте контроллер MVC и присвойте ему имя.](adding-controller/_static/ac.png)
 
@@ -62,7 +64,7 @@ ms.locfileid: "85400457"
 В **обозревателе решений** щелкните правой кнопкой мыши **Контроллеры > Добавить > Новый файл**.
 ![Контекстное меню](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
 
-Выберите **ASP.NET Core** и **Класс контроллера MVC**.
+Выберите **ASP.NET Core** и **Класс контроллера**.
 
 Присвойте контроллеру имя **HelloWorldController**.
 

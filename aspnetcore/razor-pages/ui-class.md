@@ -6,6 +6,8 @@ ms.author: riande
 ms.date: 01/25/2020
 ms.custom: mvc, seodec18
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/ui-class
-ms.openlocfilehash: 1d37ebaa913a2815b79b16875049bbf91f9fb941
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 042ef8dcc7135e0c60baec972d405380d85a6a10
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404396"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019226"
 ---
-# <a name="create-reusable-ui-using-the-razor-class-library-project-in-aspnet-core"></a>Создание многоразового пользовательского интерфейса с помощью проекта библиотеки классов Razor в ASP.NET Core
+# <a name="create-reusable-ui-using-the-no-locrazor-class-library-project-in-aspnet-core"></a>Создание многоразового пользовательского интерфейса с помощью проекта библиотеки классов Razor в ASP.NET Core
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
@@ -31,7 +33,7 @@ ms.locfileid: "85404396"
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
-## <a name="create-a-class-library-containing-razor-ui"></a>Создание библиотеки классов с пользовательским интерфейсом Razor
+## <a name="create-a-class-library-containing-no-locrazor-ui"></a>Создание библиотеки классов с пользовательским интерфейсом Razor
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -198,13 +200,13 @@ public class Program
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
-## <a name="create-a-class-library-containing-razor-ui"></a>Создание библиотеки классов с пользовательским интерфейсом Razor
+## <a name="create-a-class-library-containing-no-locrazor-ui"></a>Создание библиотеки классов с пользовательским интерфейсом Razor
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * В Visual Studio в меню **Файл** щелкните **Создать** > **Проект**.
 * Выберите **Новое веб-приложение ASP.NET Core**.
-* Назовите библиотеку (например, "RazorClassLib") > **OK**. Чтобы избежать конфликта имени файла с созданной библиотекой представлений, проверьте, что имя библиотеки не заканчивается на `.Views`.
+* Назовите библиотеку (например, "RazorClassLib") и нажмите кнопку **ОК**. Чтобы избежать конфликта имени файла с созданной библиотекой представлений, проверьте, что имя библиотеки не заканчивается на `.Views`.
 * Убедитесь, что выбрано **ASP.NET Core 2.1** или более поздней версии.
 * Выберите **Библиотека классов Razor** > **ОК**.
 
@@ -235,7 +237,7 @@ dotnet new razorclasslib -o RazorUIClassLib
 * Пакет NuGet. См. [Создание пакетов NuGet](/nuget/create-packages/creating-a-package), [dotnet add package](/dotnet/core/tools/dotnet-add-package) и [Создание и публикация пакета NuGet](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
 * *{ProjectName}.csproj*. См. [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
 
-## <a name="walkthrough-create-an-rcl-project-and-use-from-a-razor-pages-project"></a>Пошаговое руководство. Создание проекта RCL и его использование в проекте Razor Pages
+## <a name="walkthrough-create-an-rcl-project-and-use-from-a-no-locrazor-pages-project"></a>Пошаговое руководство. Создание проекта RCL и его использование в проекте Razor Pages
 
 Вы можете не создавать, а загрузить [целый проект](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) и протестировать его. Образец загрузки содержит дополнительный код и ссылки, что упрощает тестирование проекта. Оставьте свой комментарий о сравнении образцов загрузки с пошаговыми инструкциями в [этой проблеме GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/6098).
 
@@ -275,7 +277,7 @@ dotnet run
 
 * В Visual Studio в меню **Файл** щелкните **Создать** > **Проект**.
 * Выберите **Новое веб-приложение ASP.NET Core**.
-* Назовите приложение **RazorUIClassLib** > **ОК**.
+* Присвойте приложению имя **RazorUIClassLib** > **ОК**.
 * Убедитесь, что выбрано **ASP.NET Core 2.1** или более поздней версии.
 * Выберите **Библиотека классов Razor** > **ОК**.
 * Добавьте файл частичного представления Razor с именем *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*.
@@ -300,7 +302,7 @@ dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
 
 ---
 
-### <a name="add-razor-files-and-folders-to-the-project"></a>Добавление файлов и папок Razor в проект
+### <a name="add-no-locrazor-files-and-folders-to-the-project"></a>Добавление файлов и папок Razor в проект
 
 * Замените разметку в *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* следующим кодом:
 
@@ -326,7 +328,7 @@ dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
 
 Выходные данные сборки содержат библиотеки *RazorUIClassLib.dll* и *RazorUIClassLib.Views.dll*. В библиотеке *RazorUIClassLib.Views.dll* находится скомпилированное содержимое Razor.
 
-### <a name="use-the-razor-ui-library-from-a-razor-pages-project"></a>Использование библиотеки пользовательского интерфейса Razor в проекте Razor Pages
+### <a name="use-the-no-locrazor-ui-library-from-a-no-locrazor-pages-project"></a>Использование библиотеки пользовательского интерфейса Razor в проекте Razor Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -342,7 +344,7 @@ dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
 * В **обозревателе решений** щелкните правой кнопкой мыши **WebApp1** и выберите **Зависимости сборки** > **Зависимости проекта**.
 * Отметьте **RazorUIClassLib** как зависимость от **WebApp1**.
 * В **обозревателе решений** щелкните правой кнопкой мыши **WebApp1** и выберите **Добавить** > **Ссылка**.
-* В диалоговом окне **Диспетчер ссылок** нажмите **RazorUIClassLib** > **ОК**.
+* В диалоговом окне **Диспетчер ссылок** нажмите **RazorUIClassLib** > **ОК**.
 
 Запустите приложение.
 

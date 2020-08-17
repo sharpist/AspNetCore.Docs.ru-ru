@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/18/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/write
-ms.openlocfilehash: aeebc7d5a7cbfaaab6d48b8da76d35c47c2c552b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 480120718959a364ce8008949c3b76c558c0e995
+ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407854"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88130591"
 ---
 # <a name="write-custom-aspnet-core-middleware"></a>Написание пользовательского ПО промежуточного слоя ASP.NET Core
 
@@ -83,6 +85,8 @@ public class CustomMiddleware
 }
 ```
 
+[Параметры времени существования и регистрации](xref:fundamentals/dependency-injection#lifetime-and-registration-options) — раздел содержит полный пример ПО промежуточного слоя со службами, имеющими время существования *scoped* (с заданной областью).
+
 ## <a name="middleware-extension-method"></a>Метод расширения ПО промежуточного слоя
 
 Следующий метод расширения предоставляет ПО промежуточного слоя посредством <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder>:
@@ -95,6 +99,7 @@ public class CustomMiddleware
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
+* [Параметры времени существования и регистрации](xref:fundamentals/dependency-injection#lifetime-and-registration-options) — раздел содержит полный пример ПО промежуточного слоя со службами, имеющими время существования *scoped* (с заданной областью), *transient* (временное) и *singleton* (отдельное).
 * <xref:fundamentals/middleware/index>
 * <xref:test/middleware>
 * <xref:migration/http-modules>
