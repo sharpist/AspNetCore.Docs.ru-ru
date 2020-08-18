@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/java-client
-ms.openlocfilehash: ec1d83853b1596824914328d546c6c68cce3bfe7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 36994c9e579dc365de543c9b27bc8b7bfd34c81c
+ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88012557"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88504779"
 ---
 # <a name="aspnet-core-no-locsignalr-java-client"></a>SignalRКлиент Java ASP.NET Core
 
@@ -61,7 +61,7 @@ implementation 'com.microsoft.signalr:signalr:1.0.0'
 [!code-java[send method](java-client/sample/src/main/java/Chat.java?range=28)]
 
 > [!NOTE]
-> Если вы используете службу Azure SignalR в *бессерверном режиме*, вы не можете вызывать методы концентратора из клиента. Дополнительные сведения см. в [ SignalR документации по службе](/azure/azure-signalr/signalr-concept-serverless-development-config).
+> Вызов методов концентратора из клиента поддерживается только при использовании SignalR службы Azure в режиме *по умолчанию* . Дополнительные сведения см. в разделе [часто задаваемые вопросы (репозиторий GitHub Azure SignalR)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
 
 ## <a name="call-client-methods-from-hub"></a>Вызов методов клиента из концентратора
 
@@ -125,7 +125,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* [Справочные материалы по API для Java](/java/api/com.microsoft.signalr?view=aspnet-signalr-java)
+* [Справочник по API Java](/java/api/com.microsoft.signalr?view=aspnet-signalr-java)
 * <xref:signalr/hubs>
 * <xref:signalr/javascript-client>
 * <xref:signalr/publish-to-azure-web-app>
