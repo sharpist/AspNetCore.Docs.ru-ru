@@ -5,6 +5,7 @@ description: В этой статье описаны наиболее распр
 ms.author: scaddie
 ms.date: 06/21/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/1x-to-2x/identity-2x
-ms.openlocfilehash: 46f10df25235b532f188eda2a079aef71070cd6d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 63f2fadc328650063078339467e65c6b0e97a08e
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015294"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634323"
 ---
 # <a name="migrate-authentication-and-no-locidentity-to-aspnet-core-20"></a>Миграция проверки подлинности и Identity в ASP.NET Core 2,0
 
@@ -92,7 +93,7 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
 
 Выберите один из двух параметров ниже и внесите необходимые изменения в *Startup.CS*:
 
-1. Использовать cookie s сIdentity
+1. Использовать cookie s с Identity
     - Замените `UseIdentity` на `UseAuthentication` в `Configure` методе:
 
         ```csharp
@@ -110,7 +111,7 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
         services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/LogIn");
         ```
 
-2. Использовать cookie s безIdentity
+2. Использовать cookie s без Identity
     - Замените `UseCookieAuthentication` вызов метода в `Configure` методе на `UseAuthentication` :
 
         ```csharp
@@ -340,7 +341,7 @@ services.AddAuthentication(options =>
 
   > `System.InvalidOperationException`: Не указан Аусентикатионсчеме, и Дефаултчалленжесчеме не найден.
 
-Для получения дополнительной информации см. <xref:security/authentication/windowsauth>.
+Дополнительные сведения см. в разделе <xref:security/authentication/windowsauth>.
 
 <a name="identity-cookie-options"></a>
 

@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/redis-backplane
-ms.openlocfilehash: d80bce204b467d436a3580933718147bc3fbe75c
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: bc28eb3096e88455347f68ca381c9a280d5a153e
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022489"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633660"
 ---
 # <a name="set-up-a-redis-backplane-for-aspnet-core-no-locsignalr-scale-out"></a>Настройка объединительной платы Redis для SignalR горизонтального масштабирования ASP.NET Core
 
@@ -73,8 +74,8 @@ ms.locfileid: "88022489"
 
 * В SignalR приложении установите один из следующих пакетов NuGet:
 
-  * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`— Зависит от StackExchange. Redis 2. X.X. Это рекомендуемый пакет для ASP.NET Core 2,2 и более поздних версий.
-  * `Microsoft.AspNetCore.SignalR.Redis`— Зависит от StackExchange. Redis 1. X.X. Этот пакет не входит в ASP.NET Core 3,0 и более поздних версий.
+  * `Microsoft.AspNetCore.SignalR.StackExchangeRedis` — Зависит от StackExchange. Redis 2. X.X. Это рекомендуемый пакет для ASP.NET Core 2,2 и более поздних версий.
+  * `Microsoft.AspNetCore.SignalR.Redis` — Зависит от StackExchange. Redis 1. X.X. Этот пакет не входит в ASP.NET Core 3,0 и более поздних версий.
 
 * В `Startup.ConfigureServices` методе вызовите <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*> :
 
@@ -155,9 +156,9 @@ ms.locfileid: "88022489"
 * *Не удалось вызвать метод концентратора "имя_метода"*
 * *Сбой подключения к Redis*
 
-SignalRне замещает сообщения для отправки при резервном копировании сервера. Все сообщения, отправленные во время работы сервера Redis, теряются.
+SignalR не замещает сообщения для отправки при резервном копировании сервера. Все сообщения, отправленные во время работы сервера Redis, теряются.
 
-SignalRавтоматически повторно подключается, когда сервер Redis снова становится доступным.
+SignalR автоматически повторно подключается, когда сервер Redis снова становится доступным.
 
 ### <a name="custom-behavior-for-connection-failures"></a>Настраиваемое поведение для сбоев подключения
 

@@ -6,6 +6,7 @@ description: Узнайте, как использовать вспомогат�
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
-ms.openlocfilehash: 09291b537e35d00df6f8006aaccdf4db12acfaea
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 1a0422da6bd48049cac73debe7d335da91e311be
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018693"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633920"
 ---
 # <a name="component-tag-helper-in-aspnet-core"></a>Вспомогательная функция тега компонента в ASP.NET Core
 
@@ -155,7 +156,7 @@ public class MyClass
     param-MyObject="@myObject" />
 ```
 
-В предыдущем примере предполагается, что `MyComponent` компонент находится в *общей* папке приложения. Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `@using BlazorSample` и `@using BlazorSample.Shared` ). `MyClass`находится в пространстве имен приложения.
+В предыдущем примере предполагается, что `MyComponent` компонент находится в *общей* папке приложения. Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `@using BlazorSample` и `@using BlazorSample.Shared` ). `MyClass` находится в пространстве имен приложения.
 
 Параметр <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> настраивает одно из следующих поведений компонента:
 

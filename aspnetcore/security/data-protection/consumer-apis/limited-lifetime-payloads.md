@@ -5,6 +5,7 @@ description: Узнайте, как ограничить время сущест
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/limited-lifetime-payloads
-ms.openlocfilehash: c7bc86cd42a725f21cf66187c033376a8c5a9e65
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: f76aca460c293b5f814ba10ee6c8ac68b3d147bb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014832"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634427"
 ---
 # <a name="limit-the-lifetime-of-protected-payloads-in-aspnet-core"></a>Ограничить время существования защищенных полезных данных в ASP.NET Core
 
@@ -32,7 +33,7 @@ ms.locfileid: "88014832"
 
 `ITimeLimitedDataProtector`Интерфейс — это основной интерфейс для защиты и снятия защиты полезных данных с ограниченным временем или с самостоятельным истечением срока действия. Чтобы создать экземпляр класса `ITimeLimitedDataProtector` , сначала требуется экземпляр регулярного [идатапротектор](xref:security/data-protection/consumer-apis/overview) , созданный с определенной целью. После того как `IDataProtector` экземпляр доступен, вызовите `IDataProtector.ToTimeLimitedDataProtector` метод расширения для возврата предохранителя с помощью встроенных возможностей истечения срока действия.
 
-`ITimeLimitedDataProtector`предоставляет следующие интерфейсы API и интерфейсов расширения:
+`ITimeLimitedDataProtector` предоставляет следующие интерфейсы API и интерфейсов расширения:
 
 * Креатепротектор (Назначение строки): Итимелимитеддатапротектор — этот API аналогичен существующему `IDataProtectionProvider.CreateProtector` в том, что его можно использовать для создания [цепочек целей](xref:security/data-protection/consumer-apis/purpose-strings) из корневого средства защиты с ограниченным сроком действия.
 

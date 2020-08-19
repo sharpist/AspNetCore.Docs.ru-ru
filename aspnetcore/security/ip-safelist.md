@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/12/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/ip-safelist
-ms.openlocfilehash: 75c1ea3a6087f89a200d1f73b1ff65080c819ccd
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 621be5351acb251335a42f57e8ea670af1b35a87
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021774"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634453"
 ---
 # <a name="client-ip-safelist-for-aspnet-core"></a>Адрес списка надежных IP-адресов клиента для ASP.NET Core
 
@@ -32,7 +33,7 @@ ms.locfileid: "88021774"
 
 * По промежуточного слоя для проверки удаленного IP-адреса каждого запроса.
 * Фильтры действий MVC для проверки удаленного IP-адреса запросов для конкретных контроллеров или методов действий.
-* RazorСтраницы фильтруется для проверки удаленного IP-адреса запросов к Razor страницам.
+* Razor Страницы фильтруется для проверки удаленного IP-адреса запросов к Razor страницам.
 
 В каждом случае строка, содержащая утвержденные IP-адреса клиентов, сохраняется в параметре приложения. По промежуточного слоя или фильтра:
 
@@ -66,7 +67,7 @@ ms.locfileid: "88021774"
 
 ## <a name="action-filter"></a>Фильтр действий
 
-Если требуется управление доступом к спискам надежных отправителей для конкретных контроллеров MVC или методов действий, используйте фильтр действий. Например:
+Если требуется управление доступом к спискам надежных отправителей для конкретных контроллеров MVC или методов действий, используйте фильтр действий. Пример:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckActionFilter.cs?name=snippet_ClassOnly)]
 
@@ -101,9 +102,9 @@ ms.locfileid: "88021774"
 
 * Команда HTTP-запроса, отличная от GET, по `AdminSafeListMiddleware` промежуточного слоя проверяет IP-адрес клиента.
 
-## <a name="no-locrazor-pages-filter"></a>RazorФильтр страниц
+## <a name="no-locrazor-pages-filter"></a>Razor Фильтр страниц
 
-Если требуется управлять доступом к спискам надежных отправителей для Razor приложения страниц, используйте Razor Фильтр страниц. Например:
+Если требуется управлять доступом к спискам надежных отправителей для Razor приложения страниц, используйте Razor Фильтр страниц. Пример:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckPageFilter.cs?name=snippet_ClassOnly)]
 

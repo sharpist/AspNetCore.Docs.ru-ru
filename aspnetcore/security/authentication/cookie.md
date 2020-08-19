@@ -1,11 +1,12 @@
 ---
-title: Использовать cookie проверку подлинности без ASP.NET CoreIdentity
+title: Использовать cookie проверку подлинности без ASP.NET Core Identity
 author: rick-anderson
 description: Узнайте, как использовать cookie проверку подлинности без ASP.NET Core Identity .
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 02/11/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,20 +17,20 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/cookie
-ms.openlocfilehash: 325bc3dcd48517d93d5f6f2d56e92651c780d759
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 2e9eb58837d74343d8de6903372146570b43f330
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021891"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627147"
 ---
-# <a name="use-no-loccookie-authentication-without-aspnet-core-no-locidentity"></a>Использовать cookie проверку подлинности без ASP.NET CoreIdentity
+# <a name="use-no-loccookie-authentication-without-no-locaspnet-core-identity"></a>Использовать cookie проверку подлинности без ASP.NET Core Identity
 
 Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core — полноценный полнофункциональный Identity поставщик проверки подлинности для создания и обслуживания имен входа. Однако cookie можно использовать поставщик проверки подлинности на основе без ASP.NET Core Identity . Для получения дополнительной информации см. <xref:security/authentication/identity>.
+ASP.NET Core Identity — полноценный полнофункциональный поставщик проверки подлинности для создания и обслуживания имен входа. Однако cookie поставщик проверки подлинности на основе не ASP.NET Core Identity может использоваться. Для получения дополнительной информации см. <xref:security/authentication/identity>.
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
@@ -43,11 +44,11 @@ ASP.NET Core — полноценный полнофункциональный I
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Startup.cs?name=snippet1)]
 
-<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>переданный `AddAuthentication` параметр задает схему проверки подлинности по умолчанию для приложения. `AuthenticationScheme`полезен при наличии нескольких экземпляров cookie проверки подлинности и необходимости [авторизации с определенной схемой](xref:security/authorization/limitingidentitybyscheme). Присвоение параметру значения `AuthenticationScheme` [ Cookie аусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) предоставляет значение " Cookie s" для схемы. Можно указать любое строковое значение, которое различает схему.
+<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme> переданный `AddAuthentication` параметр задает схему проверки подлинности по умолчанию для приложения. `AuthenticationScheme` полезен при наличии нескольких экземпляров cookie проверки подлинности и необходимости [авторизации с определенной схемой](xref:security/authorization/limitingidentitybyscheme). Присвоение параметру значения `AuthenticationScheme` [ Cookie аусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) предоставляет значение " Cookie s" для схемы. Можно указать любое строковое значение, которое различает схему.
 
 Схема проверки подлинности приложения отличается от cookie схемы проверки подлинности приложения. Если cookie Схема проверки подлинности не указана в <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> , она использует `CookieAuthenticationDefaults.AuthenticationScheme` (" Cookie s").
 
-По cookie <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> умолчанию для свойства проверки подлинности задано значение `true` . Проверка подлинности cookie разрешена, когда посетитель сайта не был передан в сбор данных. Для получения дополнительной информации см. <xref:security/gdpr#essential-cookies>.
+По cookie <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> умолчанию для свойства проверки подлинности задано значение `true` . Проверка подлинности cookie разрешена, когда посетитель сайта не был передан в сбор данных. Дополнительные сведения см. в разделе <xref:security/gdpr#essential-cookies>.
 
 В `Startup.Configure` вызовите метод `UseAuthentication` и, `UseAuthorization` чтобы задать `HttpContext.User` свойство и запустить по промежуточного слоя авторизации для запросов. Вызовите `UseAuthentication` `UseAuthorization` методы и перед вызовом `UseEndpoints` :
 
@@ -65,7 +66,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     });
 ```
 
-## <a name="no-loccookie-policy-middleware"></a>CookieПо промежуточного слоя политики
+## <a name="no-loccookie-policy-middleware"></a>Cookie По промежуточного слоя политики
 
 По [ Cookie промежуточного слоя политики](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) включает cookie возможности политики. Добавление по промежуточного слоя в конвейер обработки приложений зависит от порядка, &mdash; оно влияет только на нисходящие компоненты, зарегистрированные в конвейере.
 
@@ -92,7 +93,7 @@ CookieПараметр по промежуточного слоя политик
 | Самеситемоде. нестрогий      | Самеситемоде. None<br>Самеситемоде. нестрогий<br>Самеситемоде. | Самеситемоде. нестрогий<br>Самеситемоде. нестрогий<br>Самеситемоде. |
 | Самеситемоде.   | Самеситемоде. None<br>Самеситемоде. нестрогий<br>Самеситемоде. | Самеситемоде.<br>Самеситемоде.<br>Самеситемоде. |
 
-## <a name="create-an-authentication-no-loccookie"></a>Создание проверки подлинностиcookie
+## <a name="create-an-authentication-no-loccookie"></a>Создание проверки подлинности cookie
 
 Чтобы создать cookie данные о пользователе, создайте <xref:System.Security.Claims.ClaimsPrincipal> . Сведения о пользователе сериализуются и хранятся в cookie . 
 
@@ -102,9 +103,9 @@ CookieПараметр по промежуточного слоя политик
 
 [!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
-`SignInAsync`создает зашифрованный объект cookie и добавляет его к текущему ответу. Если параметр `AuthenticationScheme` не указан, используется схема по умолчанию.
+`SignInAsync` создает зашифрованный объект cookie и добавляет его к текущему ответу. Если параметр `AuthenticationScheme` не указан, используется схема по умолчанию.
 
-<xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri>используется по умолчанию только для нескольких конкретных путей, например для пути входа и путей выхода. Дополнительные сведения см. в разделе [ Cookie источник аусентикатионхандлер](https://github.com/dotnet/aspnetcore/blob/f2e6e6ff334176540ef0b3291122e359c2106d1a/src/Security/Authentication/Cookies/src/CookieAuthenticationHandler.cs#L334).
+<xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri> используется по умолчанию только для нескольких конкретных путей, например для пути входа и путей выхода. Дополнительные сведения см. в разделе [ Cookie источник аусентикатионхандлер](https://github.com/dotnet/aspnetcore/blob/f2e6e6ff334176540ef0b3291122e359c2106d1a/src/Security/Authentication/Cookies/src/CookieAuthenticationHandler.cs#L334).
 
 Для шифрования используется система [защиты данных](xref:security/data-protection/using-data-protection) ASP.NET Core. Для приложения, размещенного на нескольких компьютерах, балансировки нагрузки между приложениями или с помощью веб-фермы, [Настройте защиту данных](xref:security/data-protection/configuration/overview) для использования одного и того же типа звонка и идентификатора приложения.
 
@@ -250,7 +251,7 @@ await HttpContext.SignInAsync(
 
 ::: moniker range="< aspnetcore-3.0"
 
-ASP.NET Core — полноценный полнофункциональный Identity поставщик проверки подлинности для создания и обслуживания имен входа. Однако cookie можно использовать поставщик проверки подлинности на основе аутентификации, не ASP.NET Core Identity . Для получения дополнительной информации см. <xref:security/authentication/identity>.
+ASP.NET Core Identity — полноценный полнофункциональный поставщик проверки подлинности для создания и обслуживания имен входа. Однако поставщик проверки подлинности cookie на основе аутентификации не ASP.NET Core Identity может использоваться. Для получения дополнительной информации см. <xref:security/authentication/identity>.
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
@@ -264,11 +265,11 @@ ASP.NET Core — полноценный полнофункциональный I
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Startup.cs?name=snippet1)]
 
-<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>переданный `AddAuthentication` параметр задает схему проверки подлинности по умолчанию для приложения. `AuthenticationScheme`полезен при наличии нескольких экземпляров cookie проверки подлинности и необходимости [авторизации с определенной схемой](xref:security/authorization/limitingidentitybyscheme). Присвоение параметру значения `AuthenticationScheme` [ Cookie аусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) предоставляет значение " Cookie s" для схемы. Можно указать любое строковое значение, которое различает схему.
+<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme> переданный `AddAuthentication` параметр задает схему проверки подлинности по умолчанию для приложения. `AuthenticationScheme` полезен при наличии нескольких экземпляров cookie проверки подлинности и необходимости [авторизации с определенной схемой](xref:security/authorization/limitingidentitybyscheme). Присвоение параметру значения `AuthenticationScheme` [ Cookie аусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) предоставляет значение " Cookie s" для схемы. Можно указать любое строковое значение, которое различает схему.
 
 Схема проверки подлинности приложения отличается от cookie схемы проверки подлинности приложения. Если cookie Схема проверки подлинности не указана в <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> , она использует `CookieAuthenticationDefaults.AuthenticationScheme` (" Cookie s").
 
-По cookie <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> умолчанию для свойства проверки подлинности задано значение `true` . Проверка подлинности cookie разрешена, когда посетитель сайта не был передан в сбор данных. Для получения дополнительной информации см. <xref:security/gdpr#essential-cookies>.
+По cookie <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> умолчанию для свойства проверки подлинности задано значение `true` . Проверка подлинности cookie разрешена, когда посетитель сайта не был передан в сбор данных. Дополнительные сведения см. в разделе <xref:security/gdpr#essential-cookies>.
 
 В `Startup.Configure` методе вызовите `UseAuthentication` метод для вызова по промежуточного слоя проверки подлинности, устанавливающего `HttpContext.User` свойство. Вызовите `UseAuthentication` метод перед вызовом `UseMvcWithDefaultRoute` или `UseMvc` :
 
@@ -286,7 +287,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     });
 ```
 
-## <a name="no-loccookie-policy-middleware"></a>CookieПо промежуточного слоя политики
+## <a name="no-loccookie-policy-middleware"></a>Cookie По промежуточного слоя политики
 
 По [ Cookie промежуточного слоя политики](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) включает cookie возможности политики. Добавление по промежуточного слоя в конвейер обработки приложений зависит от порядка, &mdash; оно влияет только на нисходящие компоненты, зарегистрированные в конвейере.
 
@@ -313,7 +314,7 @@ CookieПараметр по промежуточного слоя политик
 | Самеситемоде. нестрогий      | Самеситемоде. None<br>Самеситемоде. нестрогий<br>Самеситемоде. | Самеситемоде. нестрогий<br>Самеситемоде. нестрогий<br>Самеситемоде. |
 | Самеситемоде.   | Самеситемоде. None<br>Самеситемоде. нестрогий<br>Самеситемоде. | Самеситемоде.<br>Самеситемоде.<br>Самеситемоде. |
 
-## <a name="create-an-authentication-no-loccookie"></a>Создание проверки подлинностиcookie
+## <a name="create-an-authentication-no-loccookie"></a>Создание проверки подлинности cookie
 
 Чтобы создать cookie данные о пользователе, создайте <xref:System.Security.Claims.ClaimsPrincipal> . Сведения о пользователе сериализуются и хранятся в cookie . 
 
@@ -321,7 +322,7 @@ CookieПараметр по промежуточного слоя политик
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet1)]
 
-`SignInAsync`создает зашифрованный объект cookie и добавляет его к текущему ответу. Если параметр `AuthenticationScheme` не указан, используется схема по умолчанию.
+`SignInAsync` создает зашифрованный объект cookie и добавляет его к текущему ответу. Если параметр `AuthenticationScheme` не указан, используется схема по умолчанию.
 
 Для шифрования используется система [защиты данных](xref:security/data-protection/using-data-protection) ASP.NET Core. Для приложения, размещенного на нескольких компьютерах, балансировки нагрузки между приложениями или с помощью веб-фермы, [Настройте защиту данных](xref:security/data-protection/configuration/overview) для использования одного и того же типа звонка и идентификатора приложения.
 
