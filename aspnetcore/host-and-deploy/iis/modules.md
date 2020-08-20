@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/modules
-ms.openlocfilehash: c526fc779d778cd0f99bcdaae283b6a5a0fe09ab
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 7ddc1b0f80625fbc39ac49f305f745b005cbce46
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015612"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634674"
 ---
 # <a name="iis-modules-with-aspnet-core"></a>Модули IIS с ASP.NET Core
 
@@ -64,7 +65,7 @@ ms.locfileid: "88015612"
 | **Статическое содержимое**<br>`StaticFileModule`                                                         | Нет  | [ПО промежуточного слоя для статических файлов](xref:fundamentals/static-files) |
 | **Кэшировании маркеров**<br>`TokenCacheModule`                                                          | Да | |
 | **Кэширование URI**<br>`UriCacheModule`                                                              | Да | |
-| **Авторизация URL-адреса**<br>`UrlAuthorizationModule`                                                | Да | [ASP.NET Core Identity](xref:security/authentication/identity) |
+| **Авторизация URL-адреса**<br>`UrlAuthorizationModule`                                                | Да | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | **Проверка подлинности Windows**<br>`WindowsAuthenticationModule`                                      | Да | |
 
 &#8224;В модуле переопределения URL-адресов типы сопоставления `isFile` и `isDirectory` не работают с приложениями ASP.NET Core из-за изменений в [структуре каталогов](xref:host-and-deploy/directory-structure).
@@ -86,7 +87,7 @@ ms.locfileid: "88015612"
 | Сеанс                 | [ПО промежуточного слоя для сеансов](xref:fundamentals/app-state) |
 | UrlAuthorization        | |
 | UrlMappingsModule       | [ПО промежуточного слоя для переопределения URL-адресов](xref:fundamentals/url-rewriting) |
-| UrlRoutingModule-4.0    | [ASP.NET Core Identity](xref:security/authentication/identity) |
+| UrlRoutingModule-4.0    | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | WindowsAuthentication   | |
 
 ## <a name="iis-manager-application-changes"></a>Изменения в приложении диспетчера IIS

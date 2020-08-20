@@ -5,8 +5,9 @@ description: Сведения о размещении и развертыван�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/04/2020
+ms.date: 08/14/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/server
-ms.openlocfilehash: e7c8627cd27fd30288b4bcfa1ac2ffe3e9b46e29
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 72a22fc2dd50bbcda230bb1824bb4fe176bf2189
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014221"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628057"
 ---
 # <a name="host-and-deploy-no-locblazor-server"></a>Размещение и развертывание Blazor Server
 
@@ -203,16 +204,19 @@ else
     <span>@(latency.Value.TotalMilliseconds)ms</span>
 }
 
-@code
-{
+@code {
     private DateTime startTime;
     private TimeSpan? latency;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        startTime = DateTime.UtcNow;
-        var _ = await JS.InvokeAsync<string>("toString");
-        latency = DateTime.UtcNow - startTime;
+        if (firstRender)
+        {
+            startTime = DateTime.UtcNow;
+            var _ = await JS.InvokeAsync<string>("toString");
+            latency = DateTime.UtcNow - startTime;
+            StateHasChanged();
+        }
     }
 }
 ```

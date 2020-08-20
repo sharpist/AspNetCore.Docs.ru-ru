@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: bb29001e30578e0992e578c2f98cda82c5dcf185
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e03711d970c83c2b7d6cc76039cb0d556a751018
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018667"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628915"
 ---
 # <a name="part-8-no-locrazor-pages-with-ef-core-in-aspnet-core---concurrency"></a>Часть 8. Razor Pages с EF Core в ASP.NET Core — параллелизм
 
@@ -455,7 +456,7 @@ modelBuilder.Entity<Department>()
 
 ### <a name="detecting-concurrency-conflicts-on-a-row"></a>Обнаружение конфликтов параллелизма для строки
 
-Чтобы обнаружить конфликты параллелизма, в модель добавлен столбец отслеживания [rowversion](/sql/t-sql/data-types/rowversion-transact-sql).  `rowversion`:
+Чтобы обнаружить конфликты параллелизма, в модель добавлен столбец отслеживания [rowversion](/sql/t-sql/data-types/rowversion-transact-sql).  `rowversion` :
 
 * Относится к SQL Server. Другие базы данных могут не предоставлять подобную функцию.
 * Используется для определения того, что сущность не была изменена после ее получения из базы данных. 

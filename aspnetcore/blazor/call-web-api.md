@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/24/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: ef31d3d9b3914f3c86aa397ff214778fe295964b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: cffd9e33636f98d50300de851d696ae753c10a0d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88012593"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88625340"
 ---
 # <a name="call-a-web-api-from-aspnet-core-no-locblazor"></a>Вызов веб-API из ASP.NET Core Blazor
 
@@ -42,7 +43,7 @@ ms.locfileid: "88012593"
 
 ## <a name="packages"></a>Пакеты
 
-Сошлитесь на пакет NuGet [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json/) в файле проекта.
+Сошлитесь на пакет NuGet [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) в файле проекта.
 
 ## <a name="add-the-httpclient-service"></a>Добавление службы HttpClient
 
@@ -186,7 +187,7 @@ private class TodoItem
 
 Поддерживаются службы <xref:System.Net.Http.IHttpClientFactory> и конфигурация именованного класса <xref:System.Net.Http.HttpClient>.
 
-Сошлитесь на пакет NuGet [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http/) в файле проекта.
+Сошлитесь на пакет NuGet [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) в файле проекта.
 
 `Program.Main` (`Program.cs`):
 
