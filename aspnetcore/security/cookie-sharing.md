@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cookie-sharing
-ms.openlocfilehash: f4762871cbae77f690d8478e1342e0d53918eb51
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 6ac808d11790ae27e82606b442ff215d95b93e41
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022203"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631372"
 ---
 # <a name="share-authentication-no-loccookies-among-aspnet-apps"></a>Совместное использование проверки подлинности cookie между приложениями ASP.NET
 
@@ -35,20 +36,20 @@ ms.locfileid: "88022203"
 * Для имени проверки подлинности cookie задается общее значение `.AspNet.SharedCookie` .
 * Значение `AuthenticationType` задается `Identity.Application` явно или по умолчанию.
 * Общее имя приложения позволяет системе защиты данных совместно использовать ключи защиты данных ( `SharedCookieApp` ).
-* `Identity.Application`используется в качестве схемы проверки подлинности. Независимо от используемой схемы, ее необходимо использовать постоянно *в* общих приложениях и в cookie качестве схемы по умолчанию или путем явного задания. Схема используется при шифровании и расшифровке cookie s, поэтому согласованная схема должна использоваться в приложениях.
+* `Identity.Application` используется в качестве схемы проверки подлинности. Независимо от используемой схемы, ее необходимо использовать постоянно *в* общих приложениях и в cookie качестве схемы по умолчанию или путем явного задания. Схема используется при шифровании и расшифровке cookie s, поэтому согласованная схема должна использоваться в приложениях.
 * Используется общее место хранения [ключей защиты данных](xref:security/data-protection/implementation/key-management) .
   * В ASP.NET Core приложениях <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> используется для задания места хранения ключей.
-  * В .NET Framework приложениях по Cookie промежуточного слоя для проверки подлинности использует реализацию <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider> . `DataProtectionProvider`предоставляет службы защиты данных для шифрования и расшифровки полезных данных проверки подлинности cookie . `DataProtectionProvider`Экземпляр изолирован от системы защиты данных, используемой другими частями приложения. [Датапротектионпровидер. Create (System. IO. DirectoryInfo, Action \<IDataProtectionBuilder> )](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) принимает, <xref:System.IO.DirectoryInfo> чтобы указать расположение для хранилища ключей защиты данных.
-* `DataProtectionProvider`требуется пакет NuGet [Microsoft. AspNetCore. MDAC. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) :
+  * В .NET Framework приложениях по Cookie промежуточного слоя для проверки подлинности использует реализацию <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider> . `DataProtectionProvider` предоставляет службы защиты данных для шифрования и расшифровки полезных данных проверки подлинности cookie . `DataProtectionProvider`Экземпляр изолирован от системы защиты данных, используемой другими частями приложения. [Датапротектионпровидер. Create (System. IO. DirectoryInfo, Action \<IDataProtectionBuilder> )](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) принимает, <xref:System.IO.DirectoryInfo> чтобы указать расположение для хранилища ключей защиты данных.
+* `DataProtectionProvider` требуется пакет NuGet [Microsoft. AspNetCore. MDAC. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) :
   * В ASP.NET Core приложения 2. x сослаться на [Microsoft. AspNetCore. app метапакет](xref:fundamentals/metapackage-app).
   * В .NET Framework приложения добавьте ссылку на пакет в [Microsoft. AspNetCore. "Защита. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/).
-* <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*>Задает общее имя приложения.
+* <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> Задает общее имя приложения.
 
-## <a name="share-authentication-no-loccookies-with-aspnet-core-no-locidentity"></a>Совместное использование проверки подлинности cookie с ASP.NET CoreIdentity
+## <a name="share-authentication-no-loccookies-with-no-locaspnet-core-identity"></a>Совместное использование проверки подлинности cookie с помощью ASP.NET Core Identity
 
-При использовании ASP.NET Core Identity :
+Применяя ASP.NET Core Identity, помните следующие правила.
 
-* Ключи защиты данных и имя приложения должны быть общими для всех приложений. В следующих примерах для метода предоставляется общий путь к хранилищу ключей <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> . Используйте <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> для настройки общего имени общего приложения ( `SharedCookieApp` в следующих примерах). Для получения дополнительной информации см. <xref:security/data-protection/configuration/overview>.
+* Ключи защиты данных и имя приложения должны быть общими для всех приложений. В следующих примерах для метода предоставляется общий путь к хранилищу ключей <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> . Используйте <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> для настройки общего имени общего приложения ( `SharedCookieApp` в следующих примерах). Дополнительные сведения см. в разделе <xref:security/data-protection/configuration/overview>.
 * Используйте <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie*> метод расширения, чтобы настроить службу защиты данных для cookie s.
 * По умолчанию используется тип проверки подлинности `Identity.Application` .
 
@@ -64,7 +65,7 @@ services.ConfigureApplicationCookie(options => {
 });
 ```
 
-## <a name="share-authentication-no-loccookies-without-aspnet-core-no-locidentity"></a>Совместное использование проверки подлинности cookie без ASP.NET CoreIdentity
+## <a name="share-authentication-no-loccookies-without-no-locaspnet-core-identity"></a>Совместное использование проверки подлинности cookie без ASP.NET Core Identity
 
 Если вы используете cookie s напрямую без ASP.NET Core Identity , настройте защиту данных и проверку подлинности в `Startup.ConfigureServices` . В следующем примере тип проверки подлинности имеет значение `Identity.Application` :
 
@@ -105,7 +106,7 @@ options.Cookie.Domain = ".contoso.com";
 
 ## <a name="encrypt-data-protection-keys-at-rest"></a>Шифрование неактивных ключей защиты данных
 
-Для рабочих развертываний настройте `DataProtectionProvider` для шифрования неактивных ключей с помощью DPAPI или x509. Для получения дополнительной информации см. <xref:security/data-protection/implementation/key-encryption-at-rest>. В следующем примере отпечаток сертификата предоставляется для <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*> :
+Для рабочих развертываний настройте `DataProtectionProvider` для шифрования неактивных ключей с помощью DPAPI или x509. Дополнительные сведения см. в разделе <xref:security/data-protection/implementation/key-encryption-at-rest>. В следующем примере отпечаток сертификата предоставляется для <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*> :
 
 ```csharp
 services.AddDataProtection()

@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 03/26/2020
 ms.custom: mvc, seodec18
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/add-user-data
-ms.openlocfilehash: d65974e9ff8e2f5be52ab79b063ed9d2dca557ea
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a71395e82ed15dae753888a438471495208a14da
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020864"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631853"
 ---
 # <a name="add-download-and-delete-custom-user-data-to-no-locidentity-in-an-aspnet-core-project"></a>Добавление, скачивание и удаление пользовательских данных Identity в проекте ASP.NET Core
 
@@ -90,13 +91,13 @@ dotnet new webapp -o WebApp1
 * В **Обозреватель решений**щелкните правой кнопкой мыши проект > **Добавить**  >  **Новый**шаблонный элемент.
 * В левой области диалогового окна **Добавление шаблона** выберите **Identity**  >  **Добавить**.
 * В диалоговом окне **Добавить можно задать Identity ** следующие параметры.
-  * Выберите существующий файл макета *~/пажес/шаред/_layout. cshtml*
+  * Выберите существующий файл макета  *~/пажес/шаред/_layout. cshtml*
   * Выберите следующие файлы для переопределения:
     * **Учетная запись или регистр**
     * **Учетная запись/управление/индекс**
   * Нажмите **+** кнопку, чтобы создать новый **класс контекста данных**. Примите тип ("имя_проекта **. Models. WebApp1Context** ", если проект называется " **APP1**").
   * Нажмите **+** кнопку, чтобы создать новый **класс пользователя**. Примите тип (**WebApp1User** , если проект называется "имя_проекта **") >** **добавить**.
-* Нажмите кнопку **Добавить**.
+* Выберите **Добавить**.
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli)
 
@@ -209,7 +210,7 @@ dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account
 ::: moniker-end
 
 
-Создайте проект.
+Выполните построение проекта.
 
 ### <a name="add-a-migration-for-the-custom-user-data"></a>Добавление миграции для настраиваемых данных пользователя
 
@@ -244,7 +245,7 @@ dotnet ef database update
 > [!NOTE]
 > Этот раздел не является расширением предыдущего руководства. Чтобы применить следующие действия к приложению, созданному с помощью учебника, см. [эту ошибку в GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/18797).
 
-Дополнительные утверждения можно добавить в ASP.NET Core с Identity помощью `IUserClaimsPrincipalFactory<T>` интерфейса. Этот класс можно добавить в приложение в `Startup.ConfigureServices` методе. Добавьте пользовательскую реализацию класса следующим образом:
+Дополнительные утверждения можно добавить в с ASP.NET Core Identity помощью `IUserClaimsPrincipalFactory<T>` интерфейса. Этот класс можно добавить в приложение в `Startup.ConfigureServices` методе. Добавьте пользовательскую реализацию класса следующим образом:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

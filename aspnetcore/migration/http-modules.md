@@ -5,6 +5,7 @@ description: ''
 ms.author: riande
 ms.date: 12/07/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 92672b2d05ee6bbdfcf0255ae14529a5c28c41b7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 8be09171991964540cd41a1324fb87503591151f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014988"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632178"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Миграция обработчиков и модулей HTTP в ASP.NET Core по промежуточного слоя
 
@@ -169,7 +170,7 @@ ms.locfileid: "88014988"
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=27-34)]
 
-`MapWhen`принимает следующие параметры:
+`MapWhen` принимает следующие параметры:
 
 1. Лямбда-выражение, которое принимает `HttpContext` и возвращает, `true` Если запрос должен проходить по ветке. Это означает, что запросы ветвления можно выполнять не только на основе расширения, но и в заголовках запросов, параметрах строки запроса и т. д.
 
@@ -257,7 +258,7 @@ ms.locfileid: "88014988"
 public async Task Invoke(HttpContext context)
 ```
 
-`HttpContext`значительно изменился в ASP.NET Core. В этом разделе показано, как преобразовать наиболее часто используемые свойства [System. Web. HttpContext](/dotnet/api/system.web.httpcontext) в новый `Microsoft.AspNetCore.Http.HttpContext` .
+`HttpContext` значительно изменился в ASP.NET Core. В этом разделе показано, как преобразовать наиболее часто используемые свойства [System. Web. HttpContext](/dotnet/api/system.web.httpcontext) в новый `Microsoft.AspNetCore.Http.HttpContext` .
 
 ### <a name="httpcontext"></a>HttpContext
 
@@ -293,7 +294,7 @@ public async Task Invoke(HttpContext context)
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Host)]
 
-**HttpContext. Request. Cookie **преобразует в:
+**HttpContext. Request. Cookie ** преобразует в:
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Cookies)]
 

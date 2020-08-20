@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/08/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: e6feeb0009034d9ea92f09c44ed0ca882d80fe1b
-ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
+ms.openlocfilehash: 7b11172df902f0d6a26f357755f33c78e7f8d1ff
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88504766"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631424"
 ---
 # <a name="aspnet-core-no-locsignalr-javascript-client"></a>ASP.NET Core SignalR клиент JavaScript
 
@@ -62,7 +63,7 @@ NPM устанавливает содержимое пакета в папку *
 
 ::: moniker-end
 
-Сослаться на SignalR клиент JavaScript в `<script>` элементе. Например:
+Сослаться на SignalR клиент JavaScript в `<script>` элементе. Пример:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -70,7 +71,7 @@ NPM устанавливает содержимое пакета в папку *
 
 ### <a name="use-a-content-delivery-network-cdn"></a>Использование сети доставки содержимого (CDN)
 
-Чтобы использовать клиентскую библиотеку без необходимых компонентов NPM, сослаться на копию клиентской библиотеки, размещенную в CDN. Например:
+Чтобы использовать клиентскую библиотеку без необходимых компонентов NPM, сослаться на копию клиентской библиотеки, размещенную в CDN. Пример:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>

@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/background-services
-ms.openlocfilehash: 409ace5e3eaa4ab1de0b9d5f0cbd0e10d9243ea9
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: d2ac5ebf6c469c9ec842e7f3ea4f37069b4efdcb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022385"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631605"
 ---
 # <a name="host-aspnet-core-no-locsignalr-in-background-services"></a>ASP.NET Core узла SignalR в фоновых службах
 
@@ -35,12 +36,12 @@ ms.locfileid: "88022385"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/3.x) ([описание загрузки](xref:index#how-to-download-a-sample))
+[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/3.x) [(описание загрузки)](xref:index#how-to-download-a-sample)
 
 ::: moniker-end
 ::: moniker range="<= aspnetcore-2.2"
 
-[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/2.2) ([описание загрузки](xref:index#how-to-download-a-sample))
+[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/2.2) [(описание загрузки)](xref:index#how-to-download-a-sample)
 
 ::: moniker-end
 

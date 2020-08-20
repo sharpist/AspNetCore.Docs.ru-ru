@@ -5,6 +5,7 @@ description: Сведения о реализации ASP.NET Core шифров�
 ms.author: riande
 ms.date: 07/16/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-encryption-at-rest
-ms.openlocfilehash: 6e767c5a34f8bf4c512147e7966f7e2c363c57c5
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 4ca2d998141639406a8283c4c756c05a93251928
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018420"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633685"
 ---
 # <a name="key-encryption-at-rest-in-windows-and-azure-using-aspnet-core"></a>Шифрование неактивных ключей в Windows и Azure с помощью ASP.NET Core
 
@@ -31,7 +32,7 @@ ms.locfileid: "88018420"
 
 ::: moniker range=">= aspnetcore-2.1"
 
-## <a name="azure-key-vault"></a>Хранилище ключей Azure;
+## <a name="azure-key-vault"></a>Azure Key Vault
 
 Чтобы сохранить ключи в [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), настройте систему с помощью [протекткэйсвисазурекэйваулт](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) в `Startup` классе:
 

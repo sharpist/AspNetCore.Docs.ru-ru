@@ -1,11 +1,12 @@
 ---
-title: Различия между SignalR и ASP.NET CoreSignalR
+title: Различия между SignalR и ASP.NET Core SignalR
 author: bradygaster
-description: Различия между SignalR и ASP.NET CoreSignalR
+description: Различия между SignalR и ASP.NET Core SignalR
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.date: 11/21/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/version-differences
-ms.openlocfilehash: f52bf6c82cd5125e0905d9bcbda5dd5499d6455e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a8336a6c13c502f5a0fad150785cd9d484064618
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020045"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633010"
 ---
-# <a name="differences-between-aspnet-no-locsignalr-and-aspnet-core-no-locsignalr"></a>Различия между ASP.NET SignalR и ASP.NET CoreSignalR
+# <a name="differences-between-aspnet-no-locsignalr-and-aspnet-core-no-locsignalr"></a>Различия между ASP.NET SignalR и ASP.NET Core SignalR
 
 ASP.NET Core SignalR несовместим с клиентами или серверами для ASP.NET SignalR . В этой статье описываются функции, которые были удалены или изменены в ASP.NET Core SignalR .
 
@@ -31,7 +32,7 @@ ASP.NET Core SignalR несовместим с клиентами или сер�
 
 ::: moniker range=">= aspnetcore-3.0"
 
-|                      | ASP.NETSignalR | ASP.NET CoreSignalR |
+|                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
 | **Пакет NuGet сервера** | [Microsoft. AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | Нет. Входит в состав общей платформы [Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) . |
 | **Клиентские пакеты NuGet** | [Microsoft. AspNet. SignalR . Компьютера](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft. AspNet. SignalR . JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft. AspNetCore. SignalR . Компьютера](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
@@ -44,7 +45,7 @@ ASP.NET Core SignalR несовместим с клиентами или сер�
 
 ::: moniker range="<= aspnetcore-2.2"
 
-|                      | ASP.NETSignalR | ASP.NET CoreSignalR |
+|                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
 | **Пакет NuGet сервера** | [Microsoft. AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | [Microsoft. AspNetCore. app](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) (.NET Core)<br>[Microsoft. AspNetCore.SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR/) (.NET Framework) |
 | **Клиентские пакеты NuGet** | [Microsoft. AspNet. SignalR . Компьютера](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft. AspNet. SignalR . JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft. AspNetCore. SignalR . Компьютера](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
@@ -263,7 +264,7 @@ connection.start().catch(err => console.error(err));
 
 ### <a name="net-and-other-clients"></a>.NET и другие клиенты
 
-Элемент [Microsoft. AspNetCore. SignalR . ](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client)Пакет NuGet клиента содержит клиентские библиотеки .NET для ASP.NET Core SignalR .
+Элемент [Microsoft. AspNetCore. SignalR . ](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) Пакет NuGet клиента содержит клиентские библиотеки .NET для ASP.NET Core SignalR .
 
 Используйте <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder> для создания и построения экземпляра соединения с концентратором.
 
@@ -279,9 +280,9 @@ ASP.NET SignalR поддерживает SQL Server и Redis. ASP.NET Core Signa
 
 ### <a name="aspnet"></a>ASP.NET
 
-* [SignalRМасштабирование с помощью служебной шины Azure](/aspnet/signalr/overview/performance/scaleout-with-windows-azure-service-bus)
-* [SignalRМасштабирование с помощью Redis](/aspnet/signalr/overview/performance/scaleout-with-redis)
-* [SignalRМасштабирование с помощью SQL Server](/aspnet/signalr/overview/performance/scaleout-with-sql-server)
+* [SignalR Масштабирование с помощью служебной шины Azure](/aspnet/signalr/overview/performance/scaleout-with-windows-azure-service-bus)
+* [SignalR Масштабирование с помощью Redis](/aspnet/signalr/overview/performance/scaleout-with-redis)
+* [SignalR Масштабирование с помощью SQL Server](/aspnet/signalr/overview/performance/scaleout-with-sql-server)
 
 ### <a name="aspnet-core"></a>ASP.NET Core
 

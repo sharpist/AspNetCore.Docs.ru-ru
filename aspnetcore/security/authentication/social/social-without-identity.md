@@ -1,10 +1,11 @@
 ---
-title: Аутентификация Facebook, Google и внешнего поставщика без ASP.NET CoreIdentity
+title: Аутентификация Facebook, Google и внешнего поставщика без ASP.NET Core Identity
 author: rick-anderson
-description: Объяснение использования проверки подлинности пользователей Facebook, Google, Twitter и т. д. без ASP.NET Core Identity .
+description: Объяснение использования аутентификации Facebook, Google, Twitter и т. д. без учета пользователей ASP.NET Core Identity .
 ms.author: riande
 ms.date: 12/10/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,22 +16,22 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/social/social-without-identity
-ms.openlocfilehash: 73055a262ac69c0fd6a7f59e77d23121e71ea3dd
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a91a2f2fb7873e5a672c624e9cf863ae720c8005
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021670"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634232"
 ---
-# <a name="use-social-sign-in-provider-authentication-without-aspnet-core-no-locidentity"></a>Использовать проверку подлинности поставщика социальных сетей без ASP.NET CoreIdentity
+# <a name="use-social-sign-in-provider-authentication-without-no-locaspnet-core-identity"></a>Использовать проверку подлинности поставщика социальных сетей без ASP.NET Core Identity
 
 [Kirk Ларкин](https://twitter.com/serpent5) и [Рик Андерсон (](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<xref:security/authentication/social/index>Описывает, как разрешить пользователям входить в систему с помощью OAuth 2,0 с учетными данными от внешних поставщиков проверки подлинности. Подход, описанный в этом разделе, включает ASP.NET Core Identity в качестве поставщика проверки подлинности.
+<xref:security/authentication/social/index> Описывает, как разрешить пользователям входить в систему с помощью OAuth 2,0 с учетными данными от внешних поставщиков проверки подлинности. Подход, описанный в этом разделе, включает в себя ASP.NET Core Identity поставщика проверки подлинности.
 
-В этом примере показано, как использовать внешний поставщик проверки подлинности **без** ASP.NET Core Identity . Это полезно для приложений, не требующих всех функций ASP.NET Core Identity , но по-прежнему требуется интеграция с доверенным внешним поставщиком проверки подлинности.
+В этом примере демонстрируется использование внешнего поставщика проверки подлинности **без** ASP.NET Core Identity . Это полезно для приложений, которые не занимают все функции ASP.NET Core Identity , но по-прежнему нуждаются в интеграции с доверенным внешним поставщиком проверки подлинности.
 
 В этом примере для проверки подлинности пользователей используется [Проверка подлинности Google](xref:security/authentication/google-logins) . Использование аутентификации Google сдвигает многие сложности управления процессом входа в Google. Чтобы выполнить интеграцию с другим внешним поставщиком проверки подлинности, см. следующие разделы:
 
@@ -53,7 +54,7 @@ ms.locfileid: "88021670"
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*>
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*>
 
-Если задать для приложения `DefaultScheme` значение [ Cookie аусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) (" Cookie s"), приложение будет использовать s в Cookie качестве схемы по умолчанию для этих методов расширения. Если задать для приложения <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> значение [Гугледефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme) ("Google"), приложение будет использовать Google в качестве схемы по умолчанию для вызовов `ChallengeAsync` . `DefaultChallengeScheme`переопределения `DefaultScheme` . <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions>Дополнительные свойства, которые переопределяются при установке, см. в разделе `DefaultScheme` .
+Если задать для приложения `DefaultScheme` значение [ Cookie аусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) (" Cookie s"), приложение будет использовать s в Cookie качестве схемы по умолчанию для этих методов расширения. Если задать для приложения <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> значение [Гугледефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme) ("Google"), приложение будет использовать Google в качестве схемы по умолчанию для вызовов `ChallengeAsync` . `DefaultChallengeScheme` переопределения `DefaultScheme` . <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions>Дополнительные свойства, которые переопределяются при установке, см. в разделе `DefaultScheme` .
 
 В `Startup.Configure` вызов `UseAuthentication` и `UseAuthorization` между вызовом `UseRouting` и `UseEndpoints` . При этом задается `HttpContext.User` свойство и выполняется по промежуточного слоя авторизации для запросов:
 
@@ -83,9 +84,9 @@ ms.locfileid: "88021670"
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
 
-<xref:security/authentication/social/index>Описывает, как разрешить пользователям входить в систему с помощью OAuth 2,0 с учетными данными от внешних поставщиков проверки подлинности. Подход, описанный в этом разделе, включает ASP.NET Core Identity в качестве поставщика проверки подлинности.
+<xref:security/authentication/social/index> Описывает, как разрешить пользователям входить в систему с помощью OAuth 2,0 с учетными данными от внешних поставщиков проверки подлинности. Подход, описанный в этом разделе, включает в себя ASP.NET Core Identity поставщика проверки подлинности.
 
-В этом примере показано, как использовать внешний поставщик проверки подлинности **без** ASP.NET Core Identity . Это полезно для приложений, не требующих всех функций ASP.NET Core Identity , но по-прежнему требуется интеграция с доверенным внешним поставщиком проверки подлинности.
+В этом примере демонстрируется использование внешнего поставщика проверки подлинности **без** ASP.NET Core Identity . Это полезно для приложений, которые не занимают все функции ASP.NET Core Identity , но по-прежнему нуждаются в интеграции с доверенным внешним поставщиком проверки подлинности.
 
 В этом примере для проверки подлинности пользователей используется [Проверка подлинности Google](xref:security/authentication/google-logins) . Использование аутентификации Google сдвигает многие сложности управления процессом входа в Google. Чтобы выполнить интеграцию с другим внешним поставщиком проверки подлинности, см. следующие разделы:
 
@@ -108,7 +109,7 @@ ms.locfileid: "88021670"
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*>
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*>
 
-Если задать для приложения `DefaultScheme` значение [ Cookie аусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) (" Cookie s"), приложение будет использовать s в Cookie качестве схемы по умолчанию для этих методов расширения. Если задать для приложения <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> значение [Гугледефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme) ("Google"), приложение будет использовать Google в качестве схемы по умолчанию для вызовов `ChallengeAsync` . `DefaultChallengeScheme`переопределения `DefaultScheme` . <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions>Дополнительные свойства, которые переопределяются при установке, см. в разделе `DefaultScheme` .
+Если задать для приложения `DefaultScheme` значение [ Cookie аусентикатиондефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) (" Cookie s"), приложение будет использовать s в Cookie качестве схемы по умолчанию для этих методов расширения. Если задать для приложения <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> значение [Гугледефаултс. аусентикатионсчеме](xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme) ("Google"), приложение будет использовать Google в качестве схемы по умолчанию для вызовов `ChallengeAsync` . `DefaultChallengeScheme` переопределения `DefaultScheme` . <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions>Дополнительные свойства, которые переопределяются при установке, см. в разделе `DefaultScheme` .
 
 В `Configure` методе вызовите `UseAuthentication` метод для вызова по промежуточного слоя проверки подлинности, устанавливающего `HttpContext.User` свойство. Вызовите `UseAuthentication` метод перед вызовом `UseMvcWithDefaultRoute` или `UseMvc` :
 

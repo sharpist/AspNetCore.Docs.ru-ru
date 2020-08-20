@@ -1,5 +1,5 @@
 ---
-title: Использование потоковой передачи в ASP.NET CoreSignalR
+title: Использование потоковой передачи в ASP.NET Core SignalR
 author: bradygaster
 description: Узнайте, как выполнять потоковую передачу данных между клиентом и сервером.
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/streaming
-ms.openlocfilehash: e0eabe711fd69e42bd9bfa5e03a92e1df780e4db
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 29748ebe24fea03415b5a01b21300433e3fbc0f0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022515"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634219"
 ---
-# <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>Использование потоковой передачи в ASP.NET CoreSignalR
+# <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>Использование потоковой передачи в ASP.NET Core SignalR
 
 По [Бреннан Конрой](https://github.com/BrennanConroy)
 
@@ -269,7 +270,7 @@ channel.Writer.Complete();
 * Имя метода концентратора. В следующем примере имя метода концентратора — `Counter` .
 * Аргументы, определенные в методе концентратора. В следующем примере аргументы представляют число получаемых элементов потока и задержку между элементами потока.
 
-`connection.stream`Возвращает объект `IStreamResult` , который содержит `subscribe` метод. Передайте `IStreamSubscriber` в `subscribe` и задайте `next` `error` `complete` обратные вызовы, и, чтобы получать уведомления от `stream` вызова.
+`connection.stream` Возвращает объект `IStreamResult` , который содержит `subscribe` метод. Передайте `IStreamSubscriber` в `subscribe` и задайте `next` `error` `complete` обратные вызовы, и, чтобы получать уведомления от `stream` вызова.
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -303,7 +304,7 @@ channel.Writer.Complete();
 
 ### <a name="server-to-client-streaming"></a>Потоковая передача из сервера в клиент
 
-SignalRКлиент Java использует `stream` метод для вызова методов потоковой передачи. `stream`принимает три или более аргументов:
+SignalRКлиент Java использует `stream` метод для вызова методов потоковой передачи. `stream` принимает три или более аргументов:
 
 * Ожидаемый тип элементов потока.
 * Имя метода концентратора.

@@ -6,6 +6,7 @@ ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 12/18/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: 6ec531a04a220f75f5793cb2c7b5232908dbd883
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ec36ff6d646e0554550a4372389aed89aa267b1f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019161"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633985"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Привязка модели в ASP.NET Core
 
@@ -65,7 +66,7 @@ http://contoso.com/api/pets/2?DogsOnly=true
 
 В приведенном выше примере целевые объекты привязки модели — это параметры методов, которые являются примитивными типами. Целевые объекты также могут быть свойствами сложного типа. После успешной привязки каждого свойства осуществляется [проверка модели](xref:mvc/models/validation) для этого свойства. Записи о данных, привязанных к модели, а также об ошибках привязки или проверки хранятся в [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) или [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). Чтобы узнать об успешном выполнении этого процесса, приложение проверяет наличие флага [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid).
 
-## <a name="targets"></a>Целевые объекты
+## <a name="targets"></a>Цели
 
 Привязка модели попытается найти значения для следующих типов целевых объектов:
 
@@ -108,11 +109,11 @@ http://contoso.com/api/pets/2?DogsOnly=true
 
 Если источник по умолчанию неверен, используйте один из следующих атрибутов, чтобы указать источник:
 
-* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)— Получает значения из строки запроса. 
-* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)— Получает значения из данных маршрута.
-* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)— Получает значения из опубликованных полей формы.
-* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)— Получает значения из текста запроса.
-* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)— Получает значения из заголовков HTTP.
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) — Получает значения из строки запроса. 
+* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) — Получает значения из данных маршрута.
+* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) — Получает значения из опубликованных полей формы.
+* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) — Получает значения из текста запроса.
+* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) — Получает значения из заголовков HTTP.
 
 Эти атрибуты:
 
@@ -209,11 +210,11 @@ public class Pet
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
-* [Перечисление](xref:System.ComponentModel.EnumConverter)
-* [Guid](xref:System.ComponentModel.GuidConverter)
+* [Перечисления](xref:System.ComponentModel.EnumConverter)
+* [Устройства](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
-* [Временной](xref:System.ComponentModel.TimeSpanConverter)
+* [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [URI](xref:System.UriTypeConverter)
 * [Версия](xref:System.ComponentModel.VersionConverter)
@@ -273,30 +274,16 @@ public IActionResult OnPost(
 
 Несколько встроенных атрибутов доступны для управления привязкой моделей сложных типов:
 
+* `[Bind]`
 * `[BindRequired]`
 * `[BindNever]`
-* `[Bind]`
 
-> [!NOTE]
-> Эти атрибуты влияют на привязку модели, если опубликованные данные формы являются источником значений. Они не влияют на форматировщики входных данных, которые обрабатывают опубликованные тексты запросов JSON и XML. Форматировщики входных данных описываются [далее в этой статье](#input-formatters).
->
-> Также см. обсуждение атрибута `[Required]` в разделе [Проверка модели](xref:mvc/models/validation#required-attribute).
-
-### <a name="bindrequired-attribute"></a>Атрибут [BindRequired]
-
-Может применяться только к свойствам модели, а не к параметрам метода. Приводит к тому, что привязка модели добавляет ошибку состояния модели, если привязка для свойства модели невозможна. Ниже приведен пример.
-
-[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
-
-### <a name="bindnever-attribute"></a>Атрибут [BindNever]
-
-Может применяться только к свойствам модели, а не к параметрам метода. Запрещает привязке модели задавать свойство модели. Ниже приведен пример.
-
-[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
+> [!WARNING]
+> Эти атрибуты влияют на привязку модели, если опубликованные данные формы являются источником значений. Они ***не*** влияют на модули форматирования ввода, которые обрабатывают опубликованные тексты JSON и XML-запросов. Форматировщики входных данных описываются [далее в этой статье](#input-formatters).
 
 ### <a name="bind-attribute"></a>Атрибут [Bind]
 
-Может быть применен к классу или параметру метода. Указывает, какие свойства модели должны быть включены в привязку модели.
+Может быть применен к классу или параметру метода. Указывает, какие свойства модели должны быть включены в привязку модели. `[Bind]` не ***влияет на*** модули форматирования ввода.
 
 В следующем примере только указанные свойства модели `Instructor` привязываются, когда вызывается любой метод действия или обработчик:
 
@@ -314,9 +301,23 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 Атрибут `[Bind]` может использоваться для защиты от чрезмерной передачи данных при *создании*. Он не работает в сценариях редактирования, поскольку исключенным свойствам задается значение NULL или значение по умолчанию, но не оставляется значение без изменений. Для защиты от чрезмерной передачи данных рекомендуется использовать модели представлений вместо атрибута `[Bind]`. Дополнительные сведения см. в разделе [Примечание по безопасности о чрезмерной передаче данных](xref:data/ef-mvc/crud#security-note-about-overposting).
 
+### <a name="bindrequired-attribute"></a>Атрибут [BindRequired]
+
+Может применяться только к свойствам модели, а не к параметрам метода. Приводит к тому, что привязка модели добавляет ошибку состояния модели, если привязка для свойства модели невозможна. Ниже приведен пример.
+
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
+
+Также см. обсуждение атрибута `[Required]` в разделе [Проверка модели](xref:mvc/models/validation#required-attribute).
+
+### <a name="bindnever-attribute"></a>Атрибут [BindNever]
+
+Может применяться только к свойствам модели, а не к параметрам метода. Запрещает привязке модели задавать свойство модели. Ниже приведен пример.
+
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
+
 ## <a name="collections"></a>Коллекции
 
-Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
+Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример:
 
 * Предположим, что параметром для привязки является массив с именем `selectedCourses`:
 
@@ -361,7 +362,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="dictionaries"></a>Словари
 
-Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
+Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример:
 
 * Предположим, что целевой параметр является `Dictionary<int, string>` с именем `selectedCourses`:
 
@@ -551,7 +552,7 @@ http://contoso.com/api/pets/2?DogsOnly=true
 
 В приведенном выше примере целевые объекты привязки модели — это параметры методов, которые являются примитивными типами. Целевые объекты также могут быть свойствами сложного типа. После успешной привязки каждого свойства осуществляется [проверка модели](xref:mvc/models/validation) для этого свойства. Записи о данных, привязанных к модели, а также об ошибках привязки или проверки хранятся в [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) или [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). Чтобы узнать об успешном выполнении этого процесса, приложение проверяет наличие флага [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid).
 
-## <a name="targets"></a>Целевые объекты
+## <a name="targets"></a>Цели
 
 Привязка модели попытается найти значения для следующих типов целевых объектов:
 
@@ -594,11 +595,11 @@ http://contoso.com/api/pets/2?DogsOnly=true
 
 Если источник по умолчанию неверен, используйте один из следующих атрибутов, чтобы указать источник:
 
-* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)— Получает значения из строки запроса. 
-* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)— Получает значения из данных маршрута.
-* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)— Получает значения из опубликованных полей формы.
-* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)— Получает значения из текста запроса.
-* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)— Получает значения из заголовков HTTP.
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) — Получает значения из строки запроса. 
+* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) — Получает значения из данных маршрута.
+* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) — Получает значения из опубликованных полей формы.
+* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) — Получает значения из текста запроса.
+* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) — Получает значения из заголовков HTTP.
 
 Эти атрибуты:
 
@@ -695,11 +696,11 @@ public class Pet
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
-* [Перечисление](xref:System.ComponentModel.EnumConverter)
-* [Guid](xref:System.ComponentModel.GuidConverter)
+* [Перечисления](xref:System.ComponentModel.EnumConverter)
+* [Устройства](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
-* [Временной](xref:System.ComponentModel.TimeSpanConverter)
+* [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [URI](xref:System.UriTypeConverter)
 * [Версия](xref:System.ComponentModel.VersionConverter)
@@ -802,7 +803,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="collections"></a>Коллекции
 
-Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
+Для целевых объектов, которые являются коллекциями примитивных типов, привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример:
 
 * Предположим, что параметром для привязки является массив с именем `selectedCourses`:
 
@@ -847,7 +848,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="dictionaries"></a>Словари
 
-Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Например:
+Для целевых объектов `Dictionary` привязка модели ищет совпадения с *parameter_name* или *property_name*. Если совпадений не найдено, она ищет один из поддерживаемых форматов без префикса. Пример:
 
 * Предположим, что целевой параметр является `Dictionary<int, string>` с именем `selectedCourses`:
 

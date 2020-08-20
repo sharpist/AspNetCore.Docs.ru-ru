@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 5dcdf50ff9f750e4966ed3bdf24a71b9f433240a
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 1cb2c2d18b717dc99c6ef4dac9954fef149c6deb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019005"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631567"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Принудительное применение HTTPS в ASP.NET Core
 
@@ -39,7 +40,7 @@ ms.locfileid: "88019005"
 > [!WARNING]
 > ## <a name="api-projects"></a>Проекты API
 >
-> **Не** используйте [Рекуирехттпсаттрибуте](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) в веб-API, которые получают конфиденциальную информацию. `RequireHttpsAttribute`использует коды состояния HTTP для перенаправления браузеров из HTTP в HTTPS. Клиенты API могут не распознать или соблюдать перенаправления от HTTP к HTTPS. Такие клиенты могут передавать данные по протоколу HTTP. Веб-API должны быть:
+> **Не** используйте [Рекуирехттпсаттрибуте](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) в веб-API, которые получают конфиденциальную информацию. `RequireHttpsAttribute` использует коды состояния HTTP для перенаправления браузеров из HTTP в HTTPS. Клиенты API могут не распознать или соблюдать перенаправления от HTTP к HTTPS. Такие клиенты могут передавать данные по протоколу HTTP. Веб-API должны быть:
 >
 > * Не прослушивать по протоколу HTTP.
 > * Закройте подключение с кодом состояния 400 (недопустимый запрос) и не обслуживает запрос.
@@ -55,7 +56,7 @@ ms.locfileid: "88019005"
 > [!WARNING]
 > ## <a name="api-projects"></a>Проекты API
 >
-> **Не** используйте [Рекуирехттпсаттрибуте](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) в веб-API, которые получают конфиденциальную информацию. `RequireHttpsAttribute`использует коды состояния HTTP для перенаправления браузеров из HTTP в HTTPS. Клиенты API могут не распознать или соблюдать перенаправления от HTTP к HTTPS. Такие клиенты могут передавать данные по протоколу HTTP. Веб-API должны быть:
+> **Не** используйте [Рекуирехттпсаттрибуте](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) в веб-API, которые получают конфиденциальную информацию. `RequireHttpsAttribute` использует коды состояния HTTP для перенаправления браузеров из HTTP в HTTPS. Клиенты API могут не распознать или соблюдать перенаправления от HTTP к HTTPS. Такие клиенты могут передавать данные по протоколу HTTP. Веб-API должны быть:
 >
 > * Не прослушивать по протоколу HTTP.
 > * Закройте подключение с кодом состояния 400 (недопустимый запрос) и не обслуживает запрос.
@@ -234,7 +235,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="https-redirection-middleware-alternative-approach"></a>Альтернативный подход по промежуточного слоя перенаправления HTTPS
 
-Альтернативой по промежуточного слоя перенаправления HTTPS ( `UseHttpsRedirection` ) является использование по промежуточного слоя переписывания URL-адресов ( `AddRedirectToHttps` ). `AddRedirectToHttps`также может задавать код состояния и порт при выполнении перенаправления. Дополнительные сведения см. в разделе по [промежуточного слоя перезаписи URL-адресов](xref:fundamentals/url-rewriting).
+Альтернативой по промежуточного слоя перенаправления HTTPS ( `UseHttpsRedirection` ) является использование по промежуточного слоя переписывания URL-адресов ( `AddRedirectToHttps` ). `AddRedirectToHttps` также может задавать код состояния и порт при выполнении перенаправления. Дополнительные сведения см. в разделе по [промежуточного слоя перезаписи URL-адресов](xref:fundamentals/url-rewriting).
 
 При перенаправлении по протоколу HTTPS без требования дополнительных правил перенаправления рекомендуется использовать по промежуточного слоя перенаправления HTTPS ( `UseHttpsRedirection` ), описанные в этом разделе.
 
@@ -267,7 +268,7 @@ ASP.NET Core 2,1 и более поздних версий реализует HS
 
 ::: moniker-end
 
-`UseHsts`не рекомендуется в разработке, так как параметры HSTS очень кэшируются браузерами. По умолчанию `UseHsts` исключает локальный петлевой адрес.
+`UseHsts` не рекомендуется в разработке, так как параметры HSTS очень кэшируются браузерами. По умолчанию `UseHsts` исключает локальный петлевой адрес.
 
 Для рабочих сред, которые реализуют протокол HTTPS в первый раз, задайте для свойства Initial [хстсоптионс. MaxAge](xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge*) небольшое значение с помощью одного из <xref:System.TimeSpan> методов. Задайте в качестве значения в часах не более одного дня на случай, если необходимо вернуть инфраструктуру HTTPS к протоколу HTTP. Убедившись в устойчивости конфигурации HTTPS, увеличьте значение HSTS. `max-age` часто используемое значение — один год.
 
@@ -287,16 +288,16 @@ ASP.NET Core 2,1 и более поздних версий реализует HS
 ::: moniker-end
 
 
-* Задает параметр предварительной загрузки `Strict-Transport-Security` заголовка. Предварительная загрузка не является частью [спецификации RFC HSTS](https://tools.ietf.org/html/rfc6797), но поддерживается веб-браузерами для предварительной загрузки HSTS сайтов при новой установке. Дополнительные сведения см. в статье [https://hstspreload.org/](https://hstspreload.org/).
+* Задает параметр предварительной загрузки `Strict-Transport-Security` заголовка. Предварительная загрузка не является частью [спецификации RFC HSTS](https://tools.ietf.org/html/rfc6797), но поддерживается веб-браузерами для предварительной загрузки HSTS сайтов при новой установке. Дополнительные сведения см. в разделе [https://hstspreload.org/](https://hstspreload.org/).
 * Включает [инклудесубдомаин](https://tools.ietf.org/html/rfc6797#section-6.1.2), который применяет политику HSTS для размещения поддоменов.
 * Явно задает `max-age` `Strict-Transport-Security` для параметра заголовка значение 60 дней. Если значение не задано, по умолчанию используется значение 30 дней. Дополнительные сведения см. в разделе [директива max-age](https://tools.ietf.org/html/rfc6797#section-6.1.1).
 * Добавляет `example.com` в список узлов для исключения.
 
-`UseHsts`исключает следующие узлы замыкания на себя:
+`UseHsts` исключает следующие узлы замыкания на себя:
 
-* `localhost`: Адрес замыкания на себя IPv4.
-* `127.0.0.1`: Адрес замыкания на себя IPv4.
-* `[::1]`: IPv6-адрес замыкания на себя.
+* `localhost` : Адрес замыкания на себя IPv4.
+* `127.0.0.1` : Адрес замыкания на себя IPv4.
+* `[::1]` : IPv6-адрес замыкания на себя.
 
 ## <a name="opt-out-of-httpshsts-on-project-creation"></a>Отказ от HTTPS/HSTS при создании проекта
 
@@ -323,7 +324,7 @@ ASP.NET Core 2,1 и более поздних версий реализует HS
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli) 
 
-Использовать параметр `--no-https`. Пример
+Использовать параметр `--no-https`. Например.
 
 ```dotnetcli
 dotnet new webapp --no-https
@@ -361,6 +362,14 @@ dotnet dev-certs https --help
 ## <a name="how-to-set-up-a-developer-certificate-for-docker"></a>Как настроить сертификат разработчика для DOCKER
 
 Также см. [эту проблему в GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
+
+<a name="ssl-linux"></a>
+
+## <a name="trust-https-certificate-on-linux"></a>Доверенный HTTPS сертификат в Linux
+
+<!-- Instructions to be updated by engineering team after 5.0 RTM. -->
+
+Инструкции по Linux см. в документации по дистрибутиву.
 
 <a name="wsl"></a>
 
@@ -408,7 +417,7 @@ dotnet dev-certs https --trust
 
 ### <a name="windows---certificate-not-trusted"></a>Windows — сертификат не является доверенным
 
-* Проверьте сертификаты в хранилище сертификатов. Должен быть `localhost` сертификат с `ASP.NET Core HTTPS development certificate` понятным именем в `Current User > Personal > Certificates` и`Current User > Trusted root certification authorities > Certificates`
+* Проверьте сертификаты в хранилище сертификатов. Должен быть `localhost` сертификат с `ASP.NET Core HTTPS development certificate` понятным именем в `Current User > Personal > Certificates` и `Current User > Trusted root certification authorities > Certificates`
 * Удалите все найденные сертификаты из личных и доверенных корневых центров сертификации. **Не** удаляйте сертификат IIS Express localhost.
 * Выполните следующие команды:
 
