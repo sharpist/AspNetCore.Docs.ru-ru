@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: c0edf56c966cb90c1c308f300a8944d392fdc0e7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e911512c1dce892c670659f04959be89cea067bb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020981"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630111"
 ---
 # <a name="model-validation-in-aspnet-core-mvc-and-no-locrazor-pages"></a>Проверка модели в ASP.NET Core MVC и Razor страницах
 
@@ -74,13 +75,13 @@ ms.locfileid: "88020981"
 
 ### <a name="error-messages"></a>Сообщения об ошибках
 
-Атрибуты проверки позволяют указать сообщение об ошибке, которое будет отображаться, если входные данные недопустимы. Например:
+Атрибуты проверки позволяют указать сообщение об ошибке, которое будет отображаться, если входные данные недопустимы. Пример:
 
 ```csharp
 [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
 ```
 
-На внутреннем уровне атрибуты вызывают `String.Format` с заполнителем для имени поля и иногда дополнительным заполнителями. Например:
+На внутреннем уровне атрибуты вызывают `String.Format` с заполнителем для имени поля и иногда дополнительным заполнителями. Пример:
 
 ```csharp
 [StringLength(8, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 6)]
@@ -386,7 +387,7 @@ $.get({
 * Закомментируйте ссылку на `_ValidationScriptsPartial` во всех файлах с расширением *CSHTML*.
 * Удалите содержимое файла *Pages\Shared\_ValidationScriptsPartial.cshtml*.
 
-Предыдущий подход не помешает проверке на стороне клиента ASP.NET Core Identity Razor библиотеки классов. Для получения дополнительной информации см. <xref:security/authentication/scaffold-identity>.
+Предыдущий подход не помешает проверке на стороне клиента ASP.NET Core Identity Razor библиотеки классов. Дополнительные сведения см. в разделе <xref:security/authentication/scaffold-identity>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
@@ -444,13 +445,13 @@ $.get({
 
 ### <a name="error-messages"></a>Сообщения об ошибках
 
-Атрибуты проверки позволяют указать сообщение об ошибке, которое будет отображаться, если входные данные недопустимы. Например:
+Атрибуты проверки позволяют указать сообщение об ошибке, которое будет отображаться, если входные данные недопустимы. Пример:
 
 ```csharp
 [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
 ```
 
-На внутреннем уровне атрибуты вызывают `String.Format` с заполнителем для имени поля и иногда дополнительным заполнителями. Например:
+На внутреннем уровне атрибуты вызывают `String.Format` с заполнителем для имени поля и иногда дополнительным заполнителями. Пример:
 
 ```csharp
 [StringLength(8, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 6)]

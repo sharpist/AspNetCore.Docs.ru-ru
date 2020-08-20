@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/introduction
-ms.openlocfilehash: b29711e8e1ef1558731ba58ca2ff14000af19ca2
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 4f578e30a972b0d4ce5db08b2ec844e270c11406
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019360"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630085"
 ---
 # <a name="aspnet-core-data-protection"></a>ASP.NET Core Защита данных
 
@@ -83,9 +84,9 @@ ASP.NET Core API-интерфейсы защиты данных в основн�
 
 * [Microsoft. AspNetCore. в отношении защиты. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) содержит дополнительные интерфейсы API, которые могут оказаться полезными для разработчиков, но не входят в основной пакет. Например, этот пакет содержит заводские методы для создания экземпляра системы защиты данных для хранения ключей в расположении в файловой системе без внедрения зависимостей (см. раздел <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider> ). Он также содержит методы расширения для ограничения времени существования защищенных полезных данных (см <xref:Microsoft.AspNetCore.DataProtection.ITimeLimitedDataProtector> .).
 
-* [Microsoft.AspNetCore.DataProtection.Sysтемвеб](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.SystemWeb/) можно установить в существующее приложение ASP.NET 4. x, чтобы перенаправить его `<machineKey>` операции для использования нового стека защиты данных ASP.NET Core. Для получения дополнительной информации см. <xref:security/data-protection/compatibility/replacing-machinekey>.
+* [Microsoft.AspNetCore.DataProtection.Sysтемвеб](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.SystemWeb/) можно установить в существующее приложение ASP.NET 4. x, чтобы перенаправить его `<machineKey>` операции для использования нового стека защиты данных ASP.NET Core. Дополнительные сведения см. в разделе <xref:security/data-protection/compatibility/replacing-machinekey>.
 
-* [Microsoft. AspNetCore. Cryptography. KeyDerivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) предоставляет реализацию подпрограммы хэширования паролей PBKDF2 и может использоваться системами, которые должны безопасно обрабатывать пароли пользователей. Для получения дополнительной информации см. <xref:security/data-protection/consumer-apis/password-hashing>.
+* [Microsoft. AspNetCore. Cryptography. KeyDerivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) предоставляет реализацию подпрограммы хэширования паролей PBKDF2 и может использоваться системами, которые должны безопасно обрабатывать пароли пользователей. Дополнительные сведения см. в разделе <xref:security/data-protection/consumer-apis/password-hashing>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

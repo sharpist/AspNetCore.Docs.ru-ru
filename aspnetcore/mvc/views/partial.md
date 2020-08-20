@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/partial
-ms.openlocfilehash: 826d7cf96d95ee7eb98b0f05a233401a1e3bff33
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 7a370042520adfe5b06784b76acf41a81eb2c72d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020838"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630631"
 ---
 # <a name="partial-views-in-aspnet-core"></a>Частичные представления в ASP.NET Core
 
@@ -147,7 +148,7 @@ public IActionResult OnGetPartial() =>
 
 В следующем примере есть ссылка на частичное представление из корня приложения. Пути, начинающиеся с тильды и косой черты (`~/`) или с косой черты (`/`), используют корневой каталог приложения:
 
-**RazorСм**
+**Razor См**
 
 ```cshtml
 <partial name="~/Pages/Folder/_PartialName.cshtml" />
@@ -167,7 +168,7 @@ public IActionResult OnGetPartial() =>
 <partial name="../Account/_PartialName.cshtml" />
 ```
 
-Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>.
+Дополнительные сведения см. в разделе <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>.
 
 ::: moniker-end
 
@@ -189,7 +190,7 @@ public IActionResult OnGetPartial() =>
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**RazorСм**
+**Razor См**
 
 ```cshtml
 @await Html.PartialAsync("~/Pages/Folder/_PartialName.cshtml")
@@ -240,7 +241,7 @@ public IActionResult OnGetPartial() =>
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**RazorСм**
+**Razor См**
 
 1. папка текущей выполняемой страницы;
 1. граф каталога на уровень выше папки страницы.
@@ -296,7 +297,7 @@ public IActionResult OnGetPartial() =>
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**RazorСм**
+**Razor См**
 
 Следующая разметка для примера приложения взята со страницы *Pages/ArticlesRP/ReadRP.cshtml*. Эта страница содержит два частичных представления. Второе частичное представление передает модель и объект `ViewData` в первое частичное представление. Используйте перегрузку конструктора `ViewDataDictionary`, чтобы передать новый словарь `ViewData` и при этом сохранить существующий словарь `ViewData`.
 

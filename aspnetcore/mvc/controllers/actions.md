@@ -5,6 +5,7 @@ description: ''
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/actions
-ms.openlocfilehash: 05985acb559f63eb5f1d9854041be737291a3809
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 9542a7c0fd16c00f46ee69c5873878a7c70ef626
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019915"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630332"
 ---
 # <a name="handle-requests-with-controllers-in-aspnet-core-mvc"></a>Обработка запросов с помощью контроллеров в ASP.NET Core MVC
 
@@ -87,7 +88,7 @@ ms.locfileid: "88019915"
 
 В этой категории есть два типа результатов: [представление](xref:mvc/views/overview) и [форматированный отклик](xref:web-api/advanced/formatting).
 
-* **Просмотр**
+* **View** (Вид)
 
     Этот тип возвращает представление, использующее модель для отрисовки HTML. Например, `return View(customer);` передает модель в представление для привязки данных.
 

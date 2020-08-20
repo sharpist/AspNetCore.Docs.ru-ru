@@ -5,6 +5,7 @@ description: Узнайте, как хэшировать пароли с пом�
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/password-hashing
-ms.openlocfilehash: 643d468763c6a935fc618a22920cb79119258087
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 19263400397a9dfe2d9e6044109d6d063023f6f4
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018394"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629864"
 ---
 # <a name="hash-passwords-in-aspnet-core"></a>Хэширование паролей в ASP.NET Core
 
@@ -36,4 +37,4 @@ ms.locfileid: "88018394"
 
 [!code-csharp[](password-hashing/samples/passwordhasher.cs)]
 
-В [source code](https://github.com/dotnet/AspNetCore/blob/master/src/Identity/Extensions.Core/src/PasswordHasher.cs) Identity `PasswordHasher` реальном варианте использования см. исходный код для типа ASP.NET Core.
+Ознакомьтесь с типом [исходного кода](https://github.com/dotnet/AspNetCore/blob/master/src/Identity/Extensions.Core/src/PasswordHasher.cs) для ASP.NET Core Identity `PasswordHasher` реального варианта использования.

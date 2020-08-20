@@ -5,6 +5,7 @@ description: Сведения о реализации ASP.NET Core наслед�
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/subkeyderivation
-ms.openlocfilehash: ef9c100df69f9f7a1b51819ebb5721cb4f875ffd
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: d8038142ccb2597eb1c98738307b8b9a842dae5a
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019694"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630124"
 ---
 # <a name="subkey-derivation-and-authenticated-encryption-in-aspnet-core"></a>Наследование подраздела и шифрование с проверкой подлинности в ASP.NET Core
 
@@ -49,7 +50,7 @@ ms.locfileid: "88019694"
 
 Здесь мы вызываем директиву NIST SP800-108 ПОДПРОГРАММ в режиме счетчика (см. директиву [NIST SP800-108](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf), Sec. 5,1) со следующими параметрами:
 
-* Ключ наследования ключа (KDK) =`K_M`
+* Ключ наследования ключа (KDK) = `K_M`
 
 * PRF = HMACSHA512
 

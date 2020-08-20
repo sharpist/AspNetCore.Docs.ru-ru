@@ -7,6 +7,7 @@ ms.author: rick-anderson
 ms.custom: mvc
 ms.date: 03/17/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/mfa
-ms.openlocfilehash: 4538030b4ce6aba6c78edb69cf44fc5812ddff76
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 048d88a121d0a4a7ab3d3adee9b426b95fd68a80
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017861"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629591"
 ---
 # <a name="multi-factor-authentication-in-aspnet-core"></a>Многофакторная идентификация в ASP.NET Core
 
@@ -33,7 +34,7 @@ ms.locfileid: "88017861"
 В этой статье рассматриваются следующие вопросы:
 
 * Что такое MFA и какие потоки MFA рекомендуются
-* Настройка MFA для страниц администрирования с помощью ASP.NET CoreIdentity
+* Настройка MFA для страниц администрирования с помощью ASP.NET Core Identity
 * Отправка требования к входу MFA в OpenID Connect Connect Server
 * Принудительное ASP.NET Core OpenID Connect Connect Client для требования MFA
 
@@ -71,7 +72,7 @@ MFA с SMS значительно повышает безопасность с �
 
 [Рекомендации NIST](https://pages.nist.gov/800-63-3/sp800-63b.html)
 
-## <a name="configure-mfa-for-administration-pages-using-aspnet-core-no-locidentity"></a>Настройка MFA для страниц администрирования с помощью ASP.NET CoreIdentity
+## <a name="configure-mfa-for-administration-pages-using-no-locaspnet-core-identity"></a>Настройка MFA для страниц администрирования с помощью ASP.NET Core Identity
 
 MFA можно принудительно заставить пользователей получать доступ к конфиденциальным страницам в ASP.NET Core Identity приложении. Это может быть полезно для приложений, где существуют разные уровни доступа для разных удостоверений. Например, пользователи могут просматривать данные профиля с помощью имени входа с паролем, но для доступа к административным страницам администратору потребуется использовать MFA.
 
@@ -304,7 +305,7 @@ public void ConfigureServices(IServiceCollection services)
     });
 ```
 
-### <a name="example-openid-connect-no-locidentityserver-4-server-with-aspnet-core-no-locidentity"></a>Пример OpenID Connect Connect Identity Server 4 Server с ASP.NET CoreIdentity
+### <a name="example-openid-connect-no-locidentityserver-4-server-with-no-locaspnet-core-identity"></a>Пример OpenID Connect Connect Identity Server 4 Server с ASP.NET Core Identity
 
 На сервере OpenID Connect Connect, который реализуется с помощью ASP.NET Core Identity с представлениями MVC, создается новое представление с именем *ErrorEnable2FA. cshtml* . Представление:
 
@@ -329,7 +330,7 @@ You can enable MFA to login here:
 
 В `Login` методе `IIdentityServerInteractionService` Реализация интерфейса `_interaction` используется для доступа к параметрам запроса OpenID Connect Connect. `acr_values`Доступ к параметру осуществляется с помощью `AcrValues` Свойства. После отправки клиентом `mfa` значения SET его можно проверить.
 
-Если требуется MFA и пользователь в ASP.NET Core включил Identity MFA, то вход будет продолжен. Если для пользователя не включено MFA, пользователь перенаправляется к пользовательскому представлению *ErrorEnable2FA. cshtml*. Затем ASP.NET Core Identity подписывает пользователя в.
+Если требуется MFA и для пользователя в ASP.NET Core Identity включено MFA, то вход будет продолжен. Если для пользователя не включено MFA, пользователь перенаправляется к пользовательскому представлению *ErrorEnable2FA. cshtml*. Затем ASP.NET Core Identity подписывает пользователя в.
 
 ```csharp
 //
@@ -410,7 +411,7 @@ public async Task<IActionResult> ExternalLoginCallback(
 Если пользователь уже вошел в систему, клиентское приложение:
 
 * По-прежнему проверяет `amr` утверждение.
-* Может настроить MFA со ссылкой на Identity представление ASP.NET Core.
+* Может настроить MFA со ссылкой на ASP.NET Core Identity представление.
 
 ![acr_values-1](mfa/_static/acr_values-1.png)
 

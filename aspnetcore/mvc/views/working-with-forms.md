@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: 3f5b0287a4f9c6c6c05a47297e3e602b80bf6015
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: c337e727a4683b0b3c67307af93ef8efa246e2ad
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021488"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631021"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Вспомогательные функции тегов в формах в ASP.NET Core
 
@@ -501,7 +502,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 * Располагает альтернативой вспомогательному методу HTML — `Html.DropDownListFor` и `Html.ListBoxFor`.
 
-`Select Tag Helper` `asp-for` указывает имя свойства модели для элемента [select](https://www.w3.org/wiki/HTML/Elements/select), а `asp-items` указывает элементы [option](https://www.w3.org/wiki/HTML/Elements/option).  Например:
+`Select Tag Helper` `asp-for` указывает имя свойства модели для элемента [select](https://www.w3.org/wiki/HTML/Elements/select), а `asp-items` указывает элементы [option](https://www.w3.org/wiki/HTML/Elements/option).  Пример:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
 
@@ -580,7 +581,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 ### <a name="option-group"></a>Группа параметров
 
-Элемент HTML [\<optgroup>](https://www.w3.org/wiki/HTML/Elements/optgroup) создается, когда модель представления содержит один или несколько `SelectListGroup` объектов.
+Элемент HTML  [\<optgroup>](https://www.w3.org/wiki/HTML/Elements/optgroup) создается, когда модель представления содержит один или несколько `SelectListGroup` объектов.
 
 `CountryViewModelGroup` группирует элементы `SelectListItem` в группы "North America" и "Europe":
 

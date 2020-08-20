@@ -5,6 +5,7 @@ description: Узнайте, как использовать общие маке
 ms.author: riande
 ms.date: 07/30/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/layout
-ms.openlocfilehash: 4d5032f02db28341d7781dd57d58d776636fd16d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 308e567e0480f83972ab7a55c7b957af83a164fd
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020448"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630696"
 ---
 # <a name="layout-in-aspnet-core"></a>Макет в ASP.NET Core
 
@@ -34,7 +35,7 @@ ms.locfileid: "88020448"
 
 В этом документе рассматриваются два разных подхода к ASP.NET Core MVC: Razor страницы и контроллеры с представлениями. С этой точки зрения различия минимальны:
 
-* RazorСтраницы находятся в папке *pages* .
+* Razor Страницы находятся в папке *pages* .
 * Контроллеры с представлениями используют папку *Views* для представлений.
 
 ## <a name="what-is-a-layout"></a>Что такое макет
@@ -47,7 +48,7 @@ ms.locfileid: "88020448"
 
 В соответствии с соглашением макет по умолчанию для приложения ASP.NET Core имеет имя *_Layout.cshtml*. В новых проектах ASP.NET Core, созданных с применением шаблонов, используются следующие файлы макета.
 
-* RazorСтраницы: *pages/Shared/_layout. cshtml*
+* Razor Страницы: *pages/Shared/_layout. cshtml*
 
   ![Папка Pages в обозревателе решений](layout/_static/rp-web-project-views.png)
 
@@ -63,7 +64,7 @@ ms.locfileid: "88020448"
 
 ## <a name="specifying-a-layout"></a>Указание макета
 
-Razorпредставления имеют `Layout` свойство. С его помощью указывается макет в отдельных представлениях:
+Razor представления имеют `Layout` свойство. С его помощью указывается макет в отдельных представлениях:
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/_ViewStart.cshtml?highlight=2)]
 

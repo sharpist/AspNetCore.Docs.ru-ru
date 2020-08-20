@@ -5,6 +5,7 @@ description: Сведения о том, как создать внутренн�
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mobile/native-mobile-backend
-ms.openlocfilehash: 75943a15878634568830db74f895653571c54d0f
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 00e0c93d200e7eec6fd6bdac1f1246fe0909fc54
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019434"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630540"
 ---
 # <a name="create-backend-services-for-native-mobile-apps-with-aspnet-core"></a>Создание внутренних служб для собственных мобильных приложений в ASP.NET Core
 
@@ -36,7 +37,7 @@ ms.locfileid: "88019434"
 
 ![Приложение To Do Rest, запущенное на смартфоне Android](native-mobile-backend/_static/todo-android.png)
 
-### <a name="features"></a>Функции
+### <a name="features"></a>Компоненты
 
 Приложение ToDoRest поддерживает перечисление, добавление, удаление и обновление элементов задач. Каждый элемент имеет идентификатор, имя, заметки и свойство, указывающее, выполнен ли он.
 

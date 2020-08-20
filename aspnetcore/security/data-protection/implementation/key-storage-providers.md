@@ -5,6 +5,7 @@ description: Узнайте о поставщиках хранилища клю�
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: d54e8078180ce978b550963a03c0d4fdc6e9b12e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: fb21f7d4d784451096db5c420f2ffd4532c2b490
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021462"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631333"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Поставщики хранилища ключей в ASP.NET Core
 
@@ -183,7 +184,7 @@ dotnet ef database update --context MyKeysContext
 
 ---
 
-`MyKeysContext`параметр `DbContext` определен в предыдущем примере кода. Если вы используете `DbContext` с другим именем, замените `DbContext` имя на `MyKeysContext` .
+`MyKeysContext` параметр `DbContext` определен в предыдущем примере кода. Если вы используете `DbContext` с другим именем, замените `DbContext` имя на `MyKeysContext` .
 
 `DataProtectionKeys`Класс или сущность принимает структуру, показанную в следующей таблице.
 

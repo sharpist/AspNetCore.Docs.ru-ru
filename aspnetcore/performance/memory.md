@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: 09df67657c9b6e4e59d6a1379bf801c289028819
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: c409eaaf07109d363581ee7d61dc76521d6818d0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020942"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630670"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Управление памятью и сборка мусора (GC) в ASP.NET Core
 
@@ -149,7 +150,7 @@ public ActionResult<string> GetBigString()
 
 `ServerGarbageCollection`Для изменения в файле проекта требуется Перестроение приложения.
 
-**Примечание.** Сборка мусора сервера **недоступна** на компьютерах с одним ядром. Для получения дополнительной информации см. <xref:System.Runtime.GCSettings.IsServerGC>.
+**Примечание.** Сборка мусора сервера **недоступна** на компьютерах с одним ядром. Дополнительные сведения см. в разделе <xref:System.Runtime.GCSettings.IsServerGC>.
 
 На следующем рисунке показан профиль памяти в 5 КБ RPS с помощью сборщика мусора рабочей станции.
 
@@ -291,7 +292,7 @@ public int GetLOH1(int size)
 * [Респонсекачинг/Streams/Стреамутилитиес. CS](https://github.com/dotnet/AspNetCore/blob/v3.0.0/src/Middleware/ResponseCaching/src/Streams/StreamUtilities.cs#L16)
 * [Респонсекачинг/Мемориреспонсекаче. CS](https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Internal/MemoryResponseCache.cs#L55)
 
-Дополнительные сведения можно найти в разделе
+Дополнительные сведения см. в разделе:
 
 * [Обнаружена куча больших объектов](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)
 * [Куча больших объектов](/dotnet/standard/garbage-collection/large-object-heap)
@@ -305,9 +306,9 @@ public int GetLOH1(int size)
 
 Опытным разработчикам .NET известна возможность вызова <xref:System.IDisposable.Dispose*> для объектов, реализующих <xref:System.IDisposable> . Удаление объектов, которые реализуют, `IDisposable` как правило, приводит к утечке памяти или утечке системных ресурсов.
 
-`HttpClient`реализует `IDisposable` , но **не** следует удалять при каждом вызове. Вместо этого `HttpClient` следует использовать повторно.
+`HttpClient` реализует `IDisposable` , но **не** следует удалять при каждом вызове. Вместо этого `HttpClient` следует использовать повторно.
 
-Следующая Конечная точка создает и уничтожает новый `HttpClient` экземпляр при каждом запросе:
+Следующая Конечная точка создает и уничтожает новый  `HttpClient` экземпляр при каждом запросе:
 
 ```csharp
 [HttpGet("httpclient1")]
@@ -402,7 +403,7 @@ public async Task<int> GetHttpClient2(string url)
 * Инкапсулирует массив в пуле в удаляемый объект.
 * Зарегистрируйте объект poold с помощью [HttpContext. Response. регистерфордиспосе](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose*).
 
-`RegisterForDispose`будет выполнять вызов `Dispose` на целевом объекте, чтобы он выпускался только после завершения HTTP-запроса.
+`RegisterForDispose` будет выполнять вызов `Dispose` на целевом объекте, чтобы он выпускался только после завершения HTTP-запроса.
 
 ```csharp
 private static ArrayPool<byte> _arrayPool = ArrayPool<byte>.Create();

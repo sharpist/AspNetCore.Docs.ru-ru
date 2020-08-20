@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/1/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: 4404a5513d9dc989e50c904f3e7863de59991939
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 09535f41d15b90fa5e50eb1f22f6aecef0530f0c
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022333"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629565"
 ---
 # <a name="scaffold-no-locidentity-in-aspnet-core-projects"></a>Формирование шаблонов Identity в ASP.NET Core проектах
 
@@ -30,7 +31,7 @@ ms.locfileid: "88022333"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core предоставляет [ASP.NET Core Identity ](xref:security/authentication/identity) в виде [ Razor библиотеки классов](xref:razor-pages/ui-class). Приложения, которые включают в себя, Identity могут применять механизм формирования шаблонов для выборочного добавления исходного кода, содержащегося в Identity Razor библиотеке классов (РКЛ). Вы можете создать исходный код, чтобы изменить код и тем самым изменить поведение. Например, вы можете указать шаблону создать код, используемый при регистрации. Созданный код имеет приоритет над тем же кодом в RCL для Identity. Чтобы получить полный контроль над пользовательским интерфейсом и не использовать РКЛ по умолчанию, см. раздел [Создание полного Identity источника пользовательского интерфейса](#full).
+ASP.NET Core предоставляется [ASP.NET Core Identity](xref:security/authentication/identity) в виде [ Razor библиотеки классов](xref:razor-pages/ui-class). Приложения, которые включают в себя, Identity могут применять механизм формирования шаблонов для выборочного добавления исходного кода, содержащегося в Identity Razor библиотеке классов (РКЛ). Вы можете создать исходный код, чтобы изменить код и тем самым изменить поведение. Например, вы можете указать шаблону создать код, используемый при регистрации. Созданный код имеет приоритет над тем же кодом в RCL для Identity. Чтобы получить полный контроль над пользовательским интерфейсом и не использовать РКЛ по умолчанию, см. раздел [Создание полного Identity источника пользовательского интерфейса](#full).
 
 Приложения, которые **не** включают проверку подлинности, могут применять механизм формирования шаблонов для добавления Identity пакета РКЛ. Вы можете выбрать, какой код Identity будет создан.
 
@@ -197,9 +198,9 @@ Identityнастраивается в *области или Identity / Identity
 Маркеры можно передавать в компоненты:
 
 * Когда маркеры проверки подлинности подготавливаются и сохраняются в процессе проверки подлинности cookie , они могут передаваться в компоненты.
-* Razorкомпоненты не могут использовать `HttpContext` напрямую, поэтому не существует способа получить [маркер подделки для защиты от запроса (XSRF)](xref:security/anti-request-forgery) для размещения Identity конечной точки выхода в `/Identity/Account/Logout` . Токен XSRF может быть передан компонентам.
+* Razor компоненты не могут использовать `HttpContext` напрямую, поэтому не существует способа получить [маркер подделки для защиты от запроса (XSRF)](xref:security/anti-request-forgery) для размещения Identity конечной точки выхода в `/Identity/Account/Logout` . Токен XSRF может быть передан компонентам.
 
-Для получения дополнительной информации см. <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+Дополнительные сведения см. в разделе <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
 В файле *pages/_Host. cshtml* Установите маркер после его добавления в `InitialApplicationState` `TokenProvider` классы и:
 
@@ -416,7 +417,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 Чтобы отключить регистрацию пользователей, выполните следующие действия.
 
-* Шаблон Identity . Включить учетную запись. регистрация, учетная запись. Login и Account. Регистерконфирматион. Например:
+* Шаблон Identity . Включить учетную запись. регистрация, учетная запись. Login и Account. Регистерконфирматион. Пример:
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
@@ -490,7 +491,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 ::: moniker range="< aspnetcore-3.0"
 
-ASP.NET Core 2,1 и более поздних версий предоставляет [ASP.NET Core Identity ](xref:security/authentication/identity) в виде [ Razor библиотеки классов](xref:razor-pages/ui-class). Приложения, которые включают в себя, Identity могут применять механизм формирования шаблонов для выборочного добавления исходного кода, содержащегося в Identity Razor библиотеке классов (РКЛ). Вы можете создать исходный код, чтобы изменить код и тем самым изменить поведение. Например, вы можете указать шаблону создать код, используемый при регистрации. Созданный код имеет приоритет над тем же кодом в RCL для Identity. Чтобы получить полный контроль над пользовательским интерфейсом и не использовать РКЛ по умолчанию, см. раздел [Создание полного идентификатора пользовательского интерфейса идентификации](#full).
+ASP.NET Core 2,1 и более поздних версий предоставляет [ASP.NET Core Identity](xref:security/authentication/identity) [ Razor библиотеку классов](xref:razor-pages/ui-class). Приложения, которые включают в себя, Identity могут применять механизм формирования шаблонов для выборочного добавления исходного кода, содержащегося в Identity Razor библиотеке классов (РКЛ). Вы можете создать исходный код, чтобы изменить код и тем самым изменить поведение. Например, вы можете указать шаблону создать код, используемый при регистрации. Созданный код имеет приоритет над тем же кодом в RCL для Identity. Чтобы получить полный контроль над пользовательским интерфейсом и не использовать РКЛ по умолчанию, см. раздел [Создание полного идентификатора пользовательского интерфейса идентификации](#full).
 
 Приложения, которые **не** включают проверку подлинности, могут применять механизм формирования шаблонов для добавления Identity пакета РКЛ. Вы можете выбрать, какой код Identity будет создан.
 
@@ -669,7 +670,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 Чтобы отключить регистрацию пользователей, выполните следующие действия.
 
-* Шаблон Identity . Включить учетную запись. регистрация, учетная запись. Login и Account. Регистерконфирматион. Например:
+* Шаблон Identity . Включить учетную запись. регистрация, учетная запись. Login и Account. Регистерконфирматион. Пример:
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"

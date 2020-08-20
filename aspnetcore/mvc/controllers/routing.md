@@ -5,6 +5,7 @@ description: Узнайте, как в MVC ASP.NET Core используется
 ms.author: riande
 ms.date: 3/25/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 4d367a6b15fdcf9ef6be1bac749368fd48fa259e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 83ddb49f60058ecc744163faa2f5c454abc7b42d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020370"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630317"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Маршрутизация к действиям контроллера в ASP.NET Core
 
@@ -50,7 +51,7 @@ ms.locfileid: "88020370"
 
 ## <a name="set-up-conventional-route"></a>Настройка обычного маршрута
 
-`Startup.Configure`При использовании [обычной маршрутизации](#crd)обычно имеет код, аналогичный приведенному ниже.
+`Startup.Configure` При использовании [обычной маршрутизации](#crd)обычно имеет код, аналогичный приведенному ниже.
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet)]
 
@@ -58,22 +59,22 @@ ms.locfileid: "88020370"
 
 Шаблон маршрута `"{controller=Home}/{action=Index}/{id?}"` :
 
-* Соответствует URL-пути, например`/Products/Details/5`
+* Соответствует URL-пути, например `/Products/Details/5`
 * Извлекает значения маршрута `{ controller = Products, action = Details, id = 5 }` путем маркировки пути. Извлечение значений маршрута приводит к совпадению, если у приложения есть контроллер с именем `ProductsController` и `Details` действие:
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippetA)]
 
   [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
-* `/Products/Details/5`модель привязывает значение, `id = 5` чтобы задать `id` параметр `5` . Дополнительные сведения см. в разделе [Привязка модели](xref:mvc/models/model-binding) .
-* `{controller=Home}`Определяет `Home` как значение по умолчанию `controller` .
-* `{action=Index}`Определяет `Index` как значение по умолчанию `action` .
+* `/Products/Details/5` модель привязывает значение, `id = 5` чтобы задать `id` параметр `5` . Дополнительные сведения см. в разделе [Привязка модели](xref:mvc/models/model-binding) .
+* `{controller=Home}` Определяет `Home` как значение по умолчанию `controller` .
+* `{action=Index}` Определяет `Index` как значение по умолчанию `action` .
 *  `?`Символ в `{id?}` определяет `id` как необязательный.
   * Параметры маршрута по умолчанию и необязательные параметры необязательно должны присутствовать в пути URL-адреса для сопоставления. Подробное описание синтаксиса шаблона маршрута см. в разделе [Справочник по шаблону маршрута](xref:fundamentals/routing#route-template-reference).
 * Соответствует пути URL-адреса `/` .
 * Создает значения маршрута `{ controller = Home, action = Index }` .
 
-Значения для `controller` и `action` используют значения по умолчанию. `id`не создает значение, так как в URL-пути нет соответствующего сегмента. `/`соответствует, только если существует `HomeController` действие и `Index` :
+Значения для `controller` и `action` используют значения по умолчанию. `id` не создает значение, так как в URL-пути нет соответствующего сегмента. `/` соответствует, только если существует `HomeController` действие и `Index` :
 
 ```csharp
 public class HomeController : Controller
@@ -122,12 +123,12 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 
 * Первый сегмент пути, `{controller=Home}` сопоставляется с именем контроллера.
 * Второй сегмент, `{action=Index}` сопоставляется с именем [действия](#action) .
-* Третий сегмент `{id?}` используется для необязательного `id` . `?`В `{id?}` делает его необязательным. `id`используется для соотнесения с сущностью модели.
+* Третий сегмент `{id?}` используется для необязательного `id` . `?`В `{id?}` делает его необязательным. `id` используется для соотнесения с сущностью модели.
 
 При использовании этого `default` маршрута путь URL-адреса:
 
-* `/Products/List`сопоставляется с `ProductsController.List` действием.
-* `/Blog/Article/17`сопоставляется с `BlogController.Article` и, как правило, модель привязывает `id` параметр к 17.
+* `/Products/List` сопоставляется с `ProductsController.List` действием.
+* `/Blog/Article/17` сопоставляется с `BlogController.Article` и, как правило, модель привязывает `id` параметр к 17.
 
 Это сопоставление:
 
@@ -142,7 +143,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 > [!WARNING]
 > `id`В предыдущем коде шаблон маршрута определен как необязательный. Действия могут выполняться без дополнительного идентификатора, предоставленного в качестве части URL-адреса. Как правило, если `id` параметр опущен из URL-адреса:
 >
-> * `id`задается `0` привязкой модели.
+> * `id` задается `0` привязкой модели.
 > * Сущность не найдена в соответствующей базе данных `id == 0` .
 >
 > [Маршрутизация атрибутов](#ar) обеспечивает детальный контроль, чтобы сделать идентификатор необходимым для некоторых действий, а не для других. По соглашению в документации содержатся необязательные параметры, например, `id` если они, скорее всего, будут отображаться в правильном использовании.
@@ -153,7 +154,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 * Является отправной точкой для приложений на базе пользовательского интерфейса.
 * — Единственный шаблон маршрута, необходимый для многих приложений пользовательского веб-интерфейса. Для больших веб-приложений пользовательского интерфейса другой маршрут, использующий [области](#areas) , если это необходимо.
 
-<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A>и <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute%2A> :
+<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> и <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute%2A> :
 
 * Автоматически назначить значение **заказа** своим конечным точкам в соответствии с порядком их вызова.
 
@@ -190,7 +191,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 
 В предыдущем примере:
 
-* `blog`маршрут имеет более высокий приоритет для совпадений, чем `default` маршрут, так как он добавляется первым.
+* `blog` маршрут имеет более высокий приоритет для совпадений, чем `default` маршрут, так как он добавляется первым.
 * — Пример маршрутизации в [стиле "в формате"](https://developer.mozilla.org/docs/Glossary/Slug) , в которой имя статьи является частью URL-адреса.
 
 > [!WARNING]
@@ -218,24 +219,24 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 * Выберите лучший кандидат.
 * Создание исключения.
 
-Например:
+Пример:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
 Предыдущий контроллер определяет два соответствующих действия:
 
-* URL-путь`/Products33/Edit/17`
+* URL-путь `/Products33/Edit/17`
 * Перенаправление данных `{ controller = Products33, action = Edit, id = 17 }` .
 
 Это типичный шаблон для контроллеров MVC:
 
-* `Edit(int)`Отображает форму для изменения продукта.
-* `Edit(int, Product)`обрабатывает опубликованную форму.
+* `Edit(int)` Отображает форму для изменения продукта.
+* `Edit(int, Product)` обрабатывает опубликованную форму.
 
 Чтобы разрешить правильный маршрут, выполните следующие действия.
 
-* `Edit(int, Product)`выбирается, если запрос является HTTP `POST` .
-* `Edit(int)`выбран, если [команда HTTP](#verb) является любым другим. `Edit(int)`обычно вызывается через `GET` .
+* `Edit(int, Product)` выбирается, если запрос является HTTP `POST` .
+* `Edit(int)` выбран, если [команда HTTP](#verb) является любым другим. `Edit(int)` обычно вызывается через `GET` .
 
 Объект <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute> , `[HttpPost]` , предоставляется для маршрутизации, чтобы его можно было выбрать в зависимости от метода HTTP запроса. `HttpPostAttribute` `Edit(int, Product)` Чем больше, тем лучше соответствует `Edit(int)` .
 
@@ -247,7 +248,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 
 ### <a name="conventional-route-names"></a>Имена обычных маршрутов
 
-Строки `"blog"` и `"default"` в следующих примерах являются обычными именами маршрутов:
+Строки  `"blog"` и `"default"` в следующих примерах являются обычными именами маршрутов:
 
 [!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
@@ -279,7 +280,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 В следующем примере:
 
 * Используется предыдущий `Configure` метод.
-* `HomeController`совпадает с набором URL-адресов, похожим на стандартный маршрут по умолчанию `{controller=Home}/{action=Index}/{id?}` .
+* `HomeController` совпадает с набором URL-адресов, похожим на стандартный маршрут по умолчанию `{controller=Home}/{action=Index}/{id?}` .
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet2)]
 
@@ -383,7 +384,7 @@ ASP.NET Core имеет следующие шаблоны маршрутов:
 
 `Products2ApiController.GetProduct(int)`Действие:
 
-* Выполняется с URL-путем, например`/products2/3`
+* Выполняется с URL-путем, например `/products2/3`
 * Не выполняется с URL-адресом `/products2` .
 
 Атрибут [[Consumes]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) позволяет выполнять действие для ограничения поддерживаемых типов содержимого запросов. Дополнительные сведения см. [в разделе Определение поддерживаемых типов содержимого запросов с помощью атрибута использования](xref:web-api/index#consumes).
@@ -417,7 +418,7 @@ ASP.NET Core имеет следующие шаблоны маршрутов:
 
 В предшествующем примере:
 
-* Путь URL-адреса `/products` может совпадать`ProductsApi.ListProducts`
+* Путь URL-адреса `/products` может совпадать `ProductsApi.ListProducts`
 * Путь URL-адреса `/products/5` может совпадать `ProductsApi.GetProduct(int)` .
 
 Оба эти действия соответствуют только HTTP `GET` , так как они помечены `[HttpGet]` атрибутом.
@@ -428,12 +429,12 @@ ASP.NET Core имеет следующие шаблоны маршрутов:
 
 В следующей таблице описаны `[Route]` атрибуты в приведенном выше коде.
 
-| attribute               | Объединяет с`[Route("Home")]` | Определение шаблона маршрута |
+| attribute               | Объединяет с `[Route("Home")]` | Определение шаблона маршрута |
 | ----------------- | ------------ | --------- |
-| `[Route("")]` | да | `"Home"` |
-| `[Route("Index")]` | да | `"Home/Index"` |
+| `[Route("")]` | Да | `"Home"` |
+| `[Route("Index")]` | Да | `"Home/Index"` |
 | `[Route("/")]` | **Нет** | `""` |
-| `[Route("About")]` | да | `"Home/About"` |
+| `[Route("About")]` | Да | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
 <a name="oar"></a>
@@ -485,8 +486,8 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
 
 Для удобства маршруты к атрибутам поддерживают замену маркера для зарезервированных параметров маршрута путем заключения маркера в один из следующих элементов:
 
-* Квадратные скобки:`[]`
-* Фигурные скобки:`{}`
+* Квадратные скобки: `[]`
+* Фигурные скобки: `{}`
 
 Маркеры `[action]` , `[area]` и `[controller]` заменяются значениями имени действия, имени области и имени контроллера из действия, в котором определен маршрут.
 
@@ -496,11 +497,11 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet10)]
 
-  * Отвечающ`/Products0/List`
+  * Отвечающ `/Products0/List`
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet11)]
 
-  * Отвечающ`/Products0/Edit/{id}`
+  * Отвечающ `/Products0/Edit/{id}`
 
 Замена токенов происходит на последнем этапе создания маршрутов на основе атрибутов. Предыдущий пример ведет себя так же, как и следующий код:
 
@@ -695,7 +696,7 @@ result: /UrlGeneration/Destination
 
 `Source`Действие в предыдущем коде создает `custom/url/to/destination` .
 
-<xref:Microsoft.AspNetCore.Routing.LinkGenerator>был добавлен в ASP.NET Core 3,0 в качестве альтернативы `IUrlHelper` . `LinkGenerator`предлагает аналогичные, но более гибкие функции. Каждый метод в `IUrlHelper` имеет также соответствующее семейство методов `LinkGenerator` .
+<xref:Microsoft.AspNetCore.Routing.LinkGenerator> был добавлен в ASP.NET Core 3,0 в качестве альтернативы `IUrlHelper` . `LinkGenerator` предлагает аналогичные, но более гибкие функции. Каждый метод в `IUrlHelper` имеет также соответствующее семейство методов `LinkGenerator` .
 
 ### <a name="generating-urls-by-action-name"></a>Формирование URL-адресов по имени действия
 
@@ -747,7 +748,7 @@ result: /UrlGeneration/Destination
 
 ### <a name="generate-urls-by-route"></a>Создание URL-адресов по маршруту
 
-Приведенный выше код демонстрирует создание URL-адреса путем передачи контроллера и имени действия. `IUrlHelper`также предоставляет семейство методов [URL. RouteUrl](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl*) . Эти методы похожи на [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*), но не копируют текущие значения `action` и `controller` в значения маршрута. Наиболее распространенное использование `Url.RouteUrl` :
+Приведенный выше код демонстрирует создание URL-адреса путем передачи контроллера и имени действия. `IUrlHelper` также предоставляет семейство методов [URL. RouteUrl](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl*) . Эти методы похожи на [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*), но не копируют текущие значения `action` и `controller` в значения маршрута. Наиболее распространенное использование `Url.RouteUrl` :
 
 * Указывает имя маршрута для создания URL-адреса.
 * Обычно не указывает имя контроллера или действия.
@@ -760,9 +761,9 @@ result: /UrlGeneration/Destination
 
 <a name="routing-gen-urls-html-ref-label"></a>
 
-### <a name="generate-urls-in-html-and-no-locrazor"></a>Создание URL-адресов в HTML иRazor
+### <a name="generate-urls-in-html-and-no-locrazor"></a>Создание URL-адресов в HTML и Razor
 
-<xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper>предоставляет <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> методы [HTML. Бегинформ](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) и [HTML. ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) для создания `<form>` элементов и `<a>` соответственно. Эти методы используют метод [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) для создания URL-адреса и принимают аналогичные аргументы. Эквивалентами методов `Url.RouteUrl` для `HtmlHelper` являются методы `Html.BeginRouteForm` и `Html.RouteLink`, которые имеют схожие функции.
+<xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper> предоставляет <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> методы [HTML. Бегинформ](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) и [HTML. ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) для создания `<form>` элементов и `<a>` соответственно. Эти методы используют метод [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) для создания URL-адреса и принимают аналогичные аргументы. Эквивалентами методов `Url.RouteUrl` для `HtmlHelper` являются методы `Html.BeginRouteForm` и `Html.RouteLink`, которые имеют схожие функции.
 
 Для формирования URL-адресов используются вспомогательные функции тегов `form` и `<a>`. Обе они реализуются с помощью интерфейса `IUrlHelper`. Дополнительные сведения см. [в разделе вспомогательные функции тегов в формах](xref:mvc/views/working-with-forms) .
 
@@ -975,7 +976,7 @@ routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
 
 * Первый сегмент пути сопоставляется с именем контроллера.
 * Второй сопоставляется с именем действия.
-* Третий сегмент используется для необязательного `id` . `id`сопоставляется с сущностью модели.
+* Третий сегмент используется для необязательного `id` . `id` сопоставляется с сущностью модели.
 
 При использовании этого маршрута `default` путь URL-адреса `/Products/List` сопоставляется с действием `ProductsController.List`, а путь `/Blog/Article/17` сопоставляется с `BlogController.Article`. Такое сопоставление основывается **только** на именах контроллера и действия, но не на пространствах имен, расположениях исходных файлов или параметрах метода.
 
@@ -1011,7 +1012,7 @@ app.UseMvc(routes =>
 
 ### <a name="disambiguating-actions"></a>Разрешение неоднозначности действий
 
-Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Например:
+Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Пример:
 
 ```csharp
 public class ProductsController : Controller
