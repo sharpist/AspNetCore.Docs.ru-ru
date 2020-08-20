@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/03/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: a11e6325143b9db57d6fbd1cd67478dc1dd6122d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 93ffa3a5313e63a1e9b98fb5bf9788944254213f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021254"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635220"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Передача файлов в ASP.NET Core
 
@@ -193,7 +194,7 @@ ms.locfileid: "88021254"
 Для выполнения отправки формы в JavaScript для клиентов, которые [не поддерживают Fetch API](https://caniuse.com/#feat=fetch), используйте один из следующих подходов:
 
 * Используйте функцию Fetch Polyfill (например, [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Используйте команду `XMLHttpRequest`. Например:
+* Используйте команду `XMLHttpRequest`. Пример:
 
   ```javascript
   <script>
@@ -466,7 +467,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 ### <a name="file-extension-validation"></a>Проверка расширения файла
 
-Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Например:
+Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -512,7 +513,7 @@ using (var reader = new BinaryReader(uploadedFileData))
 
 Никогда не используйте для хранения файла в физическом хранилище имя, предоставляемое клиентом. Создайте надежное имя файла с помощью [Path.GetRandomFileName](xref:System.IO.Path.GetRandomFileName*) или [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*), чтобы получить полный путь (включая имя файла) для временного хранилища.
 
-Razorавтоматически кодирует значения свойств для вывода. Ниже приведен безопасный код, который можно использовать.
+Razor автоматически кодирует значения свойств для вывода. Ниже приведен безопасный код, который можно использовать.
 
 ```cshtml
 @foreach (var file in Model.DatabaseFiles) {
@@ -920,7 +921,7 @@ The request filtering module is configured to deny a request that exceeds the re
 Для выполнения отправки формы в JavaScript для клиентов, которые [не поддерживают Fetch API](https://caniuse.com/#feat=fetch), используйте один из следующих подходов:
 
 * Используйте функцию Fetch Polyfill (например, [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Используйте команду `XMLHttpRequest`. Например:
+* Используйте команду `XMLHttpRequest`. Пример:
 
   ```javascript
   <script>
@@ -1193,7 +1194,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 ### <a name="file-extension-validation"></a>Проверка расширения файла
 
-Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Например:
+Расширение переданного файла должно проверяться в соответствии со списком разрешенных расширений. Пример:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -1239,7 +1240,7 @@ using (var reader = new BinaryReader(uploadedFileData))
 
 Никогда не используйте для хранения файла в физическом хранилище имя, предоставляемое клиентом. Создайте надежное имя файла с помощью [Path.GetRandomFileName](xref:System.IO.Path.GetRandomFileName*) или [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*), чтобы получить полный путь (включая имя файла) для временного хранилища.
 
-Razorавтоматически кодирует значения свойств для вывода. Ниже приведен безопасный код, который можно использовать.
+Razor автоматически кодирует значения свойств для вывода. Ниже приведен безопасный код, который можно использовать.
 
 ```cshtml
 @foreach (var file in Model.DatabaseFiles) {

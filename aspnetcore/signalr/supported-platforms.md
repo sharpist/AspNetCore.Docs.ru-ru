@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/supported-platforms
-ms.openlocfilehash: e6989f431d0d72241a6e1b94759585c02ef7398f
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 91fd2553803d855b338b1d1b46d55e1d1e4cc21e
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021553"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635155"
 ---
 # <a name="aspnet-core-no-locsignalr-supported-platforms"></a>Поддерживаемые платформы ASP.NET Core SignalR
 
 ## <a name="server-system-requirements"></a>Системные требования к  Server
 
-SignalRдля ASP.NET Core поддерживает любую серверную платформу, поддерживаемую ASP.NET Core.
+SignalR для ASP.NET Core поддерживает любую серверную платформу, поддерживаемую ASP.NET Core.
 
 ## <a name="javascript-client"></a>Клиент JavaScript
 

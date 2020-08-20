@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/anti-request-forgery
-ms.openlocfilehash: cc6f7c7e6692224f537f5eeba50b214aa84029db
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: d0cce4f48151ab56774ab28eb6d89a687b3747af
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018836"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635129"
 ---
 # <a name="prevent-cross-site-request-forgery-xsrfcsrf-attacks-in-aspnet-core"></a>Предотвращение атак с подделкой межсайтовых запросов (XSRF/CSRF) в ASP.NET Core
 
@@ -117,7 +118,7 @@ CookieАутентификация на основе — это популярн
 
 ::: moniker range="< aspnetcore-3.0"
 
-По промежуточного слоя для подделки добавляется в контейнер [внедрения зависимостей](xref:fundamentals/dependency-injection) при <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*> вызове в`Startup.ConfigureServices`
+По промежуточного слоя для подделки добавляется в контейнер [внедрения зависимостей](xref:fundamentals/dependency-injection) при <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*> вызове в `Startup.ConfigureServices`
 
 ::: moniker-end
 
@@ -248,7 +249,7 @@ services.AddAntiforgery(options =>
 | ------ | ----------- |
 | [Cookie](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie) | Определяет параметры, используемые для создания защиты от подделки cookie . |
 | [CookieДомен](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiedomain) | Домен cookie . По умолчанию — `null`. Это свойство устарело и будет удалено в следующей версии. Взамен рекомендуется использовать Cookie . Поддомен. |
-| [CookieИмя](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiename) | Имя cookie. Если значение не задано, система создает уникальное имя, начинающееся [с Cookie префикса по умолчанию](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.defaultcookieprefix) (". AspNetCore. подделка. "). Это свойство устарело и будет удалено в следующей версии. Взамен рекомендуется использовать Cookie . Безымян. |
+| [CookieБезымян](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiename) | Имя cookie. Если значение не задано, система создает уникальное имя, начинающееся [с Cookie префикса по умолчанию](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.defaultcookieprefix) (". AspNetCore. подделка. "). Это свойство устарело и будет удалено в следующей версии. Взамен рекомендуется использовать Cookie . Безымян. |
 | [CookieПуть](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | Путь, заданный для cookie . Это свойство устарело и будет удалено в следующей версии. Взамен рекомендуется использовать Cookie . Путь. |
 | [формфиелднаме](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.formfieldname) | Имя скрытого поля формы, используемое системой защиты от подделки для отображения маркеров подделки в представлениях. |
 | [хеадернаме](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.headername) | Имя заголовка, используемого системой защиты от подделки. Если `null` значение равно, система рассматривает только данные формы. |
@@ -261,7 +262,7 @@ services.AddAntiforgery(options =>
 
 ## <a name="configure-antiforgery-features-with-iantiforgery"></a>Настройка функций защиты от подделки с помощью Иантифоржери
 
-[Иантифоржери](/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery) предоставляет API для настройки функций защиты от подделки. `IAntiforgery`может быть запрошен в `Configure` методе `Startup` класса. В следующем примере по промежуточного слоя с домашней страницы приложения используется для создания токена защиты от подделки и его отправки в ответе в виде cookie (с использованием по умолчанию углового соглашения об именовании, описанном далее в этом разделе):
+[Иантифоржери](/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery) предоставляет API для настройки функций защиты от подделки. `IAntiforgery` может быть запрошен в `Configure` методе `Startup` класса. В следующем примере по промежуточного слоя с домашней страницы приложения используется для создания токена защиты от подделки и его отправки в ответе в виде cookie (с использованием по умолчанию углового соглашения об именовании, описанном далее в этом разделе):
 
 ```csharp
 public void Configure(IApplicationBuilder app, IAntiforgery antiforgery)

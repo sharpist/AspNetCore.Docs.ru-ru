@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 05/26/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/webapi
-ms.openlocfilehash: 4888de6ad55037be540cb62b6e4f02878e2b57ab
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e3e46f8050ba87c3108885341675c9d2a2cb7847
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014819"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635168"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Переход с веб-API ASP.NET на ASP.NET Core
 
@@ -63,7 +64,7 @@ ms.locfileid: "88014819"
 
 1. В меню **Файл** выберите пункт **Создать** > **Проект**.
 1. Выберите шаблон **пустое решение** и нажмите кнопку **Далее**.
-1. Назовите решение *вебапимигратион*. Нажмите кнопку **создания**.
+1. Назовите решение *вебапимигратион*. Щелкните **Создать**.
 1. Добавьте существующий проект *продуктсапп* в решение.
 
 Добавьте новый проект API для переноса в:
@@ -84,7 +85,7 @@ ASP.NET Core не использует папку *App_Start* или файл *G
 * Заменяет *Global. asax*.
 * Обрабатывает все задачи запуска приложения.
 
-Для получения дополнительной информации см. <xref:fundamentals/startup>.
+Дополнительные сведения см. в разделе <xref:fundamentals/startup>.
 
 ## <a name="migrate-models-and-controllers"></a>Перенос моделей и контроллеров
 
@@ -197,7 +198,7 @@ ASP.NET Core не использует:
 * Заменяет *Global. asax*.
 * Обрабатывает все задачи запуска приложения.
 
-Для получения дополнительной информации см. <xref:fundamentals/startup>.
+Дополнительные сведения см. в разделе <xref:fundamentals/startup>.
 
 В ASP.NET Core MVC маршрутизация атрибутов включается по умолчанию при <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*> вызове в `Startup.Configure` . Следующий `UseMvc` вызов заменяет файл *App_Start/Вебапиконфиг.КС* проекта *продуктсапп* :
 
@@ -205,7 +206,7 @@ ASP.NET Core не использует:
 
 ## <a name="migrate-models-and-controllers"></a>Перенос моделей и контроллеров
 
-В следующем коде показано `ProductsController` Обновление для ASP.NET Core.[!code-csharp[](webapi/sample/2.x/ProductsApp/Controllers/ProductsController.cs)]
+В следующем коде показано `ProductsController` Обновление для ASP.NET Core. [!code-csharp[](webapi/sample/2.x/ProductsApp/Controllers/ProductsController.cs)]
 
 Обновите `ProductsController` для ASP.NET Core:
 
@@ -272,7 +273,7 @@ ASP.NET Core не использует:
 * Расширяет привязку модели, чтобы действия контроллера могли принимать параметры типа `HttpRequestMessage` .
 * Добавляет модули форматирования сообщений, позволяя действиям возвращать результаты типа `HttpResponseMessage` .
 * Добавляет дополнительные методы ответа, которые могут использоваться действиями веб-API 2 для обслуживания ответов:
-  * `HttpResponseMessage`Каждый
+  * `HttpResponseMessage` Каждый
     * `CreateResponse<T>`
     * `CreateErrorResponse`
   * Методы результата действия:

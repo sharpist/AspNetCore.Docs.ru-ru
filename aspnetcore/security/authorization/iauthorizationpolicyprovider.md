@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/14/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/iauthorizationpolicyprovider
-ms.openlocfilehash: 724b1f065e83302137d920fe4e0e2b381be505b7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 2d231440847270b3b2fe47fbe29359f494900292
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022138"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635207"
 ---
 # <a name="custom-authorization-policy-providers-using-iauthorizationpolicyprovider-in-aspnet-core"></a>Пользовательские поставщики политики авторизации с использованием Иаусоризатионполиципровидер в ASP.NET Core 
 
@@ -39,7 +40,7 @@ ms.locfileid: "88022138"
 
 ## <a name="customize-policy-retrieval"></a>Настройка получения политики
 
-ASP.NET Core приложения используют реализацию `IAuthorizationPolicyProvider` интерфейса для получения политик авторизации. По умолчанию [дефаултаусоризатионполиципровидер](/dotnet/api/microsoft.aspnetcore.authorization.defaultauthorizationpolicyprovider) регистрируется и используется. `DefaultAuthorizationPolicyProvider`Возвращает политики из `AuthorizationOptions` предоставленного в `IServiceCollection.AddAuthorization` вызове.
+ASP.NET Core приложения используют реализацию `IAuthorizationPolicyProvider` интерфейса для получения политик авторизации. По умолчанию [дефаултаусоризатионполиципровидер](/dotnet/api/microsoft.aspnetcore.authorization.defaultauthorizationpolicyprovider) регистрируется и используется. `DefaultAuthorizationPolicyProvider` Возвращает политики из `AuthorizationOptions` предоставленного в `IServiceCollection.AddAuthorization` вызове.
 
 Настройте это поведение, зарегистрировав другую `IAuthorizationPolicyProvider` реализацию в контейнере [внедрения зависимостей](xref:fundamentals/dependency-injection) приложения. 
 
@@ -101,7 +102,7 @@ public IActionResult RequiresMinimumAge10()
 При использовании `MinimumAgeAuthorizationAttribute` имена политик авторизации будут соответствовать шаблону `"MinimumAge" + Age` , поэтому пользователь `IAuthorizationPolicyProvider` должен создать политики авторизации следующим образом.
 
 * Анализ возраста на основе имени политики.
-* Использование `AuthorizationPolicyBuilder` для создания нового`AuthorizationPolicy`
+* Использование `AuthorizationPolicyBuilder` для создания нового `AuthorizationPolicy`
 * В этом и следующих примерах предполагается, что пользователь прошел проверку подлинности через cookie . Значение `AuthorizationPolicyBuilder` должно быть создано по крайней мере с одним именем схемы авторизации или всегда выполняться. В противном случае нет информации о том, как предоставить пользователю запрос, и будет выдано исключение.
 * Добавление требований к политике на основе возраста с `AuthorizationPolicyBuilder.AddRequirements` . В других сценариях вы можете использовать `RequireClaim` , `RequireRole` или `RequireUserName` .
 

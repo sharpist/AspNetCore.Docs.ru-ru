@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: 11d0c514dd15e787224510991ffb81680c9fc479
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 7134344abb5bc724aceb9a2adb117b3749435f55
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019346"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634856"
 ---
 # <a name="filters-in-aspnet-core"></a>Фильтры в ASP.NET Core
 
@@ -188,7 +189,7 @@ ASP.NET Core включает встроенные фильтры на осно�
   
 В следующем примере показан порядок вызова методов фильтров для синхронных фильтров действий.
 
-| Последовательность | Область фильтра | Метод фильтра |
+| Sequence | Область фильтра | Метод фильтра |
 |:--------:|:------------:|:-------------:|
 | 1 | Глобальный | `OnActionExecuting` |
 | 2 | Контроллер или Razor страница| `OnActionExecuting` |
@@ -408,7 +409,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 
 ## <a name="action-filters"></a>Фильтры действий
 
-Фильтры действий **не** применяются к Razor страницам. RazorСтраницы поддерживают <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> и <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Дополнительные сведения см. в разделе [Методы фильтрации для Razor Pages](xref:razor-pages/filter).
+Фильтры действий **не** применяются к Razor страницам. Razor Страницы поддерживают <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> и <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Дополнительные сведения см. в разделе [Методы фильтрации для Razor Pages](xref:razor-pages/filter).
 
 Фильтры действий:
 
@@ -504,7 +505,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 Фильтры результатов:
 
 * Реализация интерфейса:
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter> или <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter> либо <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>
   * <xref:Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter> или <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncAlwaysRunResultFilter>
 * Их выполнение охватывает выполнение результатов действий.
 
@@ -564,7 +565,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 Проверьте приведенный выше код, выполнив [скачиваемый пример](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/3.1sample):
 
 * Вызовите средства для разработчика (F12).
-* Перейдите к `https://localhost:5001/Sample/HeaderWithFactory`.
+* Перейдите на страницу `https://localhost:5001/Sample/HeaderWithFactory`.
 
 В средствах для разработчика (F12) отобразятся следующие заголовки ответа, добавленные примером кода:
 
@@ -734,7 +735,7 @@ ASP.NET Core включает встроенные фильтры на осно�
   
 В следующем примере показан порядок вызова методов фильтров для синхронных фильтров действий.
 
-| Последовательность | Область фильтра | Метод фильтра |
+| Sequence | Область фильтра | Метод фильтра |
 |:--------:|:------------:|:-------------:|
 | 1 | Глобальный | `OnActionExecuting` |
 | 2 | Контроллер | `OnActionExecuting` |
@@ -794,7 +795,7 @@ ASP.NET Core включает встроенные фильтры на осно�
 
 Рассмотрим три фильтра действий, показанные в предыдущем примере. Если свойство `Order` контроллера и глобальные фильтры имеют значения 1 и 2 соответственно, порядок выполнения инвертируется.
 
-| Последовательность | Область фильтра | Свойство `Order` | Метод фильтра |
+| Sequence | Область фильтра | Свойство`Order` | Метод фильтра |
 |:--------:|:------------:|:-----------------:|:-------------:|
 | 1 | Метод | 0 | `OnActionExecuting` |
 | 2 | Контроллер | 1  | `OnActionExecuting` |
@@ -942,7 +943,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 ## <a name="action-filters"></a>Фильтры действий
 
 > [!IMPORTANT]
-> Фильтры действий **не** применяются к Razor страницам. RazorСтраницы поддерживают <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> и <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Дополнительные сведения см. в разделе [Методы фильтрации для Razor Pages](xref:razor-pages/filter).
+> Фильтры действий **не** применяются к Razor страницам. Razor Страницы поддерживают <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> и <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Дополнительные сведения см. в разделе [Методы фильтрации для Razor Pages](xref:razor-pages/filter).
 
 Фильтры действий:
 
@@ -1031,7 +1032,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 Фильтры результатов:
 
 * Реализация интерфейса:
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter> или <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter> либо <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>
   * <xref:Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter> или <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncAlwaysRunResultFilter>
 * Их выполнение охватывает выполнение результатов действий.
 
@@ -1087,7 +1088,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 Приведенный выше код можно проверить, выполнив [скачиваемый пример](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample):
 
 * Вызовите средства для разработчика (F12).
-* Перейдите к `https://localhost:5001/Sample/HeaderWithFactory`.
+* Перейдите на страницу `https://localhost:5001/Sample/HeaderWithFactory`.
 
 В средствах для разработчика (F12) отобразятся следующие заголовки ответа, добавленные примером кода:
 

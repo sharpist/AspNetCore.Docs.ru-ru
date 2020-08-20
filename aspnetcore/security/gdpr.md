@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/gdpr
-ms.openlocfilehash: 6392a22e316f903da18cd1a91d1eb779d8dde1b3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 35a12cb8d2a9617e51d886e798cff5ee60b0a8ad
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020019"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634713"
 ---
 # <a name="eu-general-data-protection-regulation-gdpr-support-in-aspnet-core"></a>Поддержка ЕС Общий регламент по защите данных (GDPR) в ASP.NET Core
 
@@ -67,7 +68,7 @@ ASP.NET Core предоставляет интерфейсы API и шаблон
 
 ## <a name="aspnet-core-gdpr-support-in-template-generated-code"></a>ASP.NET Core поддержка GDPR в коде, созданном шаблоном
 
-RazorСтраницы и проекты MVC, созданные с помощью шаблонов проектов, включают следующую поддержку GDPR:
+Razor Страницы и проекты MVC, созданные с помощью шаблонов проектов, включают следующую поддержку GDPR:
 
 * [ Cookie Политики](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) [ Cookie полициоптионс](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) и use задаются в `Startup` классе.
 * [Частичное представление](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper) * \_ Cookie консентпартиал. cshtml* . В этот файл входит кнопка **принять** . Когда пользователь нажимает кнопку " **принять** ", предоставляется согласие на доступ к магазину cookie .
@@ -142,13 +143,13 @@ ASP.NET Core приложения, созданные с учетными зап
 * — Самый простой и надежный вариант.
 * Позволяет базе данных управлять ключами и шифрованием.
 
-Например:
+Пример:
 
 * Microsoft SQL и Azure SQL предоставляют [прозрачное шифрование данных](/sql/relational-databases/security/encryption/transparent-data-encryption) (TDE).
 * [По умолчанию SQL Azure шифрует базу данных](https://azure.microsoft.com/updates/newly-created-azure-sql-databases-encrypted-by-default/)
 * [Большие двоичные объекты Azure, файлы, таблицы и хранилища очередей шифруются по умолчанию](https://azure.microsoft.com/blog/announcing-default-encryption-for-azure-blobs-files-table-and-queue-storage/).
 
-Для баз данных, которые не предоставляют встроенное шифрование, вы можете использовать шифрование дисков для обеспечения такой же защиты. Например:
+Для баз данных, которые не предоставляют встроенное шифрование, вы можете использовать шифрование дисков для обеспечения такой же защиты. Пример:
 
 * [BitLocker для Windows Server](/windows/security/information-protection/bitlocker/bitlocker-how-to-deploy-on-windows-server)
 * Linux:

@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/08/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 21bd1db322a984b5644b817e82a293b6c0b2d91e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 913f8f1e43586ce71353c080e72be3b80f4c0573
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019333"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634271"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Проверка подлинности и авторизация для одностраничные приложения
 
-ASP.NET Core 3,0 или более поздней версии обеспечивает проверку подлинности в одностраничных приложениях (одностраничные приложения) с помощью поддержки авторизации API. ASP.NET Core Identity для проверки подлинности и хранения пользователей объединяется с [ Identity сервером](https://identityserver.io/) для реализации OpenID Connect Connect.
+ASP.NET Core 3,0 или более поздней версии обеспечивает проверку подлинности в одностраничных приложениях (одностраничные приложения) с помощью поддержки авторизации API. ASP.NET Core Identityдля проверки подлинности и сохранения пользователей в сочетании с [ Identity сервером](https://identityserver.io/) для реализации OpenID Connect Connect.
 
 В шаблоны проектов " **угловой** " и " **отреагировать** " был добавлен параметр проверки подлинности, аналогичный параметру проверки подлинности в шаблонах проектов **веб-приложения (модель-представление-контроллер)** (MVC) и **веб-приложение** ( Razor страницы). Допустимые значения параметра: **None** и **индивидуальных**. Шаблон проекта **React.js и Redux** в настоящее время не поддерживает параметр проверки подлинности.
 
@@ -54,12 +55,12 @@ dotnet new react -o <output_directory_name> -au Individual
 
 ### <a name="startup-class"></a>Класс Startup
 
-В следующих примерах кода используются [Microsoft. AspNetCore. апиаусоризатион. Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer)Пакет NuGet сервера. В примерах настраивается проверка подлинности и авторизация API с помощью <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> методов расширения и. Проекты, использующие шаблоны проектов "реагирующий" или "угловой SPA" с проверкой подлинности, включают ссылку на этот пакет.
+В следующих примерах кода используются [Microsoft. AspNetCore. апиаусоризатион. Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) Пакет NuGet сервера. В примерах настраивается проверка подлинности и авторизация API с помощью <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> методов расширения и. Проекты, использующие шаблоны проектов "реагирующий" или "угловой SPA" с проверкой подлинности, включают ссылку на этот пакет.
 
 `Startup`Класс имеет следующие дополнения:
 
 * Внутри `Startup.ConfigureServices` метода:
-  * Identityс помощью пользовательского интерфейса по умолчанию:
+  * Identity с помощью пользовательского интерфейса по умолчанию:
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
@@ -196,7 +197,7 @@ services.Configure<JwtBearerOptions>(
 
 Обработчик JWT API создает события, которые обеспечивают контроль над процессом проверки подлинности с помощью `JwtBearerEvents` . Чтобы обеспечить поддержку авторизации API, `AddIdentityServerJwt` регистрирует собственные обработчики событий.
 
-Чтобы настроить обработку события, заключите существующий обработчик событий в требуемую дополнительную логику. Например:
+Чтобы настроить обработку события, заключите существующий обработчик событий в требуемую дополнительную логику. Пример:
 
 ```csharp
 services.Configure<JwtBearerOptions>(

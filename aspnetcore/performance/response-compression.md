@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/response-compression
-ms.openlocfilehash: 1dd931d0ee654b888814df8a0d0675d32b5c3a20
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b8947e3c3c4f634fbd838c22ff60799257143480
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020968"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634999"
 ---
 # <a name="response-compression-in-aspnet-core"></a>Сжатие ответов в ASP.NET Core
 
@@ -43,7 +44,7 @@ ms.locfileid: "88020968"
   * [Модуль Apache mod_deflate](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
   * [Сжатие и распаковка nginx](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Размещение непосредственно в:
-  * [СерверHTTP.sys](xref:fundamentals/servers/httpsys) (ранее назывался «прослушиваемый»)
+  * [ СерверHTTP.sys](xref:fundamentals/servers/httpsys) (ранее назывался «прослушиваемый»)
   * [Сервер Kestrel](xref:fundamentals/servers/kestrel)
 
 ## <a name="response-compression"></a>Сжатие ответов
@@ -52,15 +53,15 @@ ms.locfileid: "88020968"
 
 Когда клиент может обработать сжатое содержимое, клиент должен сообщить серверу о своих возможностях, отправив `Accept-Encoding` заголовок с запросом. Когда сервер отправляет сжатое содержимое, он должен содержать сведения в `Content-Encoding` заголовке процесса кодирования сжатого ответа. В следующей таблице показаны конструкции кодирования содержимого, поддерживаемые по промежуточного слоя.
 
-| `Accept-Encoding`значения заголовка | Поддерживается по промежуточного слоя | Описание |
+| `Accept-Encoding` значения заголовка | Поддерживается по промежуточного слоя | Описание |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Да (по умолчанию)        | [Формат сжатых данных Brotli](https://tools.ietf.org/html/rfc7932) |
-| `deflate`                       | Нет                   | [Сжатый формат сжатых данных](https://tools.ietf.org/html/rfc1951) |
-| `exi`                           | Нет                   | [Эффективный XML-обмен в формате W3C](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
-| `gzip`                          | да                  | [Формат файла gzip](https://tools.ietf.org/html/rfc1952) |
-| `identity`                      | да                  | Идентификатор "без кодирования": ответ не должен быть закодирован. |
-| `pack200-gzip`                  | Нет                   | [Формат сетевой пересылки для архивов Java](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
-| `*`                             | да                  | Любая доступная кодировка содержимого, которая не запрашивается явно |
+| `deflate`                       | нет                   | [Сжатый формат сжатых данных](https://tools.ietf.org/html/rfc1951) |
+| `exi`                           | нет                   | [Эффективный XML-обмен в формате W3C](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
+| `gzip`                          | Да                  | [Формат файла gzip](https://tools.ietf.org/html/rfc1952) |
+| `identity`                      | Да                  | Идентификатор "без кодирования": ответ не должен быть закодирован. |
+| `pack200-gzip`                  | нет                   | [Формат сетевой пересылки для архивов Java](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
+| `*`                             | Да                  | Любая доступная кодировка содержимого, которая не запрашивается явно |
 
 Дополнительные сведения см. в [списке официального кодирования содержимого IANA](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
 
@@ -111,7 +112,7 @@ public class Startup
 
 Примечания.
 
-* `app.UseResponseCompression`должен вызываться до любого по промежуточного слоя, которое сжимает ответы. Для получения дополнительной информации см. <xref:fundamentals/middleware/index#middleware-order>.
+* `app.UseResponseCompression` должен вызываться до любого по промежуточного слоя, которое сжимает ответы. Дополнительные сведения см. в разделе <xref:fundamentals/middleware/index#middleware-order>.
 * Используйте такое средство, как [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)или [POST](https://www.getpostman.com/) , чтобы задать `Accept-Encoding` заголовок запроса и изучить заголовки, размер и текст ответа.
 
 Отправьте запрос в пример приложения без `Accept-Encoding` заголовка и обратите внимание, что ответ не сжат. `Content-Encoding`Заголовки и `Vary` отсутствуют в ответе.
@@ -252,7 +253,7 @@ public void ConfigureServices(IServiceCollection services)
 
 При наличии активного модуля динамического сжатия IIS, настроенного на уровне сервера, который вы хотите отключить для приложения, отключите модуль, дополнив добавление к файлу *web.config* . Дополнительные сведения см. в разделе [Отключение модулей IIS](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
-## <a name="troubleshooting"></a>Диагностика
+## <a name="troubleshooting"></a>Устранение неполадок
 
 Используйте такие средства, как [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)или [POST](https://www.getpostman.com/), которые позволяют задать `Accept-Encoding` заголовок запроса и изучить заголовки, размер и текст ответа. По умолчанию по промежуточного слоя для сжатия ответов сжимает ответы, соответствующие следующим условиям.
 
@@ -289,7 +290,7 @@ public void ConfigureServices(IServiceCollection services)
   * [Модуль Apache mod_deflate](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
   * [Сжатие и распаковка nginx](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Размещение непосредственно в:
-  * [СерверHTTP.sys](xref:fundamentals/servers/httpsys) (ранее назывался «прослушиваемый»)
+  * [ СерверHTTP.sys](xref:fundamentals/servers/httpsys) (ранее назывался «прослушиваемый»)
   * [Сервер Kestrel](xref:fundamentals/servers/kestrel)
 
 ## <a name="response-compression"></a>Сжатие ответов
@@ -298,15 +299,15 @@ public void ConfigureServices(IServiceCollection services)
 
 Когда клиент может обработать сжатое содержимое, клиент должен сообщить серверу о своих возможностях, отправив `Accept-Encoding` заголовок с запросом. Когда сервер отправляет сжатое содержимое, он должен содержать сведения в `Content-Encoding` заголовке процесса кодирования сжатого ответа. В следующей таблице показаны конструкции кодирования содержимого, поддерживаемые по промежуточного слоя.
 
-| `Accept-Encoding`значения заголовка | Поддерживается по промежуточного слоя | Описание |
+| `Accept-Encoding` значения заголовка | Поддерживается по промежуточного слоя | Описание |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Да (по умолчанию)        | [Формат сжатых данных Brotli](https://tools.ietf.org/html/rfc7932) |
-| `deflate`                       | Нет                   | [Сжатый формат сжатых данных](https://tools.ietf.org/html/rfc1951) |
-| `exi`                           | Нет                   | [Эффективный XML-обмен в формате W3C](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
-| `gzip`                          | да                  | [Формат файла gzip](https://tools.ietf.org/html/rfc1952) |
-| `identity`                      | да                  | Идентификатор "без кодирования": ответ не должен быть закодирован. |
-| `pack200-gzip`                  | Нет                   | [Формат сетевой пересылки для архивов Java](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
-| `*`                             | да                  | Любая доступная кодировка содержимого, которая не запрашивается явно |
+| `deflate`                       | нет                   | [Сжатый формат сжатых данных](https://tools.ietf.org/html/rfc1951) |
+| `exi`                           | нет                   | [Эффективный XML-обмен в формате W3C](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
+| `gzip`                          | Да                  | [Формат файла gzip](https://tools.ietf.org/html/rfc1952) |
+| `identity`                      | Да                  | Идентификатор "без кодирования": ответ не должен быть закодирован. |
+| `pack200-gzip`                  | нет                   | [Формат сетевой пересылки для архивов Java](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
+| `*`                             | Да                  | Любая доступная кодировка содержимого, которая не запрашивается явно |
 
 Дополнительные сведения см. в [списке официального кодирования содержимого IANA](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
 
@@ -357,7 +358,7 @@ public class Startup
 
 Примечания.
 
-* `app.UseResponseCompression`должен вызываться до любого по промежуточного слоя, которое сжимает ответы. Для получения дополнительной информации см. <xref:fundamentals/middleware/index#middleware-order>.
+* `app.UseResponseCompression` должен вызываться до любого по промежуточного слоя, которое сжимает ответы. Дополнительные сведения см. в разделе <xref:fundamentals/middleware/index#middleware-order>.
 * Используйте такое средство, как [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)или [POST](https://www.getpostman.com/) , чтобы задать `Accept-Encoding` заголовок запроса и изучить заголовки, размер и текст ответа.
 
 Отправьте запрос в пример приложения без `Accept-Encoding` заголовка и обратите внимание, что ответ не сжат. `Content-Encoding`Заголовки и `Vary` отсутствуют в ответе.
@@ -497,7 +498,7 @@ public void ConfigureServices(IServiceCollection services)
 
 При наличии активного модуля динамического сжатия IIS, настроенного на уровне сервера, который вы хотите отключить для приложения, отключите модуль, дополнив добавление к файлу *web.config* . Дополнительные сведения см. в разделе [Отключение модулей IIS](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
-## <a name="troubleshooting"></a>Диагностика
+## <a name="troubleshooting"></a>Устранение неполадок
 
 Используйте такие средства, как [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)или [POST](https://www.getpostman.com/), которые позволяют задать `Accept-Encoding` заголовок запроса и изучить заголовки, размер и текст ответа. По умолчанию по промежуточного слоя для сжатия ответов сжимает ответы, соответствующие следующим условиям.
 
@@ -534,7 +535,7 @@ public void ConfigureServices(IServiceCollection services)
   * [Модуль Apache mod_deflate](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
   * [Сжатие и распаковка nginx](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Размещение непосредственно в:
-  * [СерверHTTP.sys](xref:fundamentals/servers/httpsys) (ранее назывался «прослушиваемый»)
+  * [ СерверHTTP.sys](xref:fundamentals/servers/httpsys) (ранее назывался «прослушиваемый»)
   * [Сервер Kestrel](xref:fundamentals/servers/kestrel)
 
 ## <a name="response-compression"></a>Сжатие ответов
@@ -543,15 +544,15 @@ public void ConfigureServices(IServiceCollection services)
 
 Когда клиент может обработать сжатое содержимое, клиент должен сообщить серверу о своих возможностях, отправив `Accept-Encoding` заголовок с запросом. Когда сервер отправляет сжатое содержимое, он должен содержать сведения в `Content-Encoding` заголовке процесса кодирования сжатого ответа. В следующей таблице показаны конструкции кодирования содержимого, поддерживаемые по промежуточного слоя.
 
-| `Accept-Encoding`значения заголовка | Поддерживается по промежуточного слоя | Описание |
+| `Accept-Encoding` значения заголовка | Поддерживается по промежуточного слоя | Описание |
 | ------------------------------- | :------------------: | ----------- |
-| `br`                            | Нет                   | [Формат сжатых данных Brotli](https://tools.ietf.org/html/rfc7932) |
-| `deflate`                       | Нет                   | [Сжатый формат сжатых данных](https://tools.ietf.org/html/rfc1951) |
-| `exi`                           | Нет                   | [Эффективный XML-обмен в формате W3C](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
+| `br`                            | нет                   | [Формат сжатых данных Brotli](https://tools.ietf.org/html/rfc7932) |
+| `deflate`                       | нет                   | [Сжатый формат сжатых данных](https://tools.ietf.org/html/rfc1951) |
+| `exi`                           | нет                   | [Эффективный XML-обмен в формате W3C](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
 | `gzip`                          | Да (по умолчанию)        | [Формат файла gzip](https://tools.ietf.org/html/rfc1952) |
-| `identity`                      | да                  | Идентификатор "без кодирования": ответ не должен быть закодирован. |
-| `pack200-gzip`                  | Нет                   | [Формат сетевой пересылки для архивов Java](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
-| `*`                             | да                  | Любая доступная кодировка содержимого, которая не запрашивается явно |
+| `identity`                      | Да                  | Идентификатор "без кодирования": ответ не должен быть закодирован. |
+| `pack200-gzip`                  | нет                   | [Формат сетевой пересылки для архивов Java](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
+| `*`                             | Да                  | Любая доступная кодировка содержимого, которая не запрашивается явно |
 
 Дополнительные сведения см. в [списке официального кодирования содержимого IANA](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
 
@@ -602,7 +603,7 @@ public class Startup
 
 Примечания.
 
-* `app.UseResponseCompression`должен вызываться до любого по промежуточного слоя, которое сжимает ответы. Для получения дополнительной информации см. <xref:fundamentals/middleware/index#middleware-order>.
+* `app.UseResponseCompression` должен вызываться до любого по промежуточного слоя, которое сжимает ответы. Дополнительные сведения см. в разделе <xref:fundamentals/middleware/index#middleware-order>.
 * Используйте такое средство, как [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)или [POST](https://www.getpostman.com/) , чтобы задать `Accept-Encoding` заголовок запроса и изучить заголовки, размер и текст ответа.
 
 Отправьте запрос в пример приложения без `Accept-Encoding` заголовка и обратите внимание, что ответ не сжат. `Content-Encoding`Заголовки и `Vary` отсутствуют в ответе.
@@ -702,7 +703,7 @@ public void ConfigureServices(IServiceCollection services)
 
 При наличии активного модуля динамического сжатия IIS, настроенного на уровне сервера, который вы хотите отключить для приложения, отключите модуль, дополнив добавление к файлу *web.config* . Дополнительные сведения см. в разделе [Отключение модулей IIS](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
-## <a name="troubleshooting"></a>Диагностика
+## <a name="troubleshooting"></a>Устранение неполадок
 
 Используйте такие средства, как [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)или [POST](https://www.getpostman.com/), которые позволяют задать `Accept-Encoding` заголовок запроса и изучить заголовки, размер и текст ответа. По умолчанию по промежуточного слоя для сжатия ответов сжимает ответы, соответствующие следующим условиям.
 

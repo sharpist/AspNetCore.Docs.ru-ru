@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/policies
-ms.openlocfilehash: 03d6e7fdc4ab4b5e4925508952bfd6c835d90486
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 82ed4cc2ce47d3bd85ca9c2ba2bbeb075eaefcef
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021280"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635337"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Авторизация на основе политик в ASP.NET Core
 
@@ -43,7 +44,7 @@ ms.locfileid: "88021280"
 
 В приведенном выше коде показаны два метода [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>— это служба маркеров без методов, а также механизм отслеживания успешности авторизации.
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> — это служба маркеров без методов, а также механизм отслеживания успешности авторизации.
 
 Каждый из них <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> отвечает за проверку соблюдения требований:
 <!--The following code is a copy/paste from 
@@ -121,13 +122,13 @@ public void ConfigureServices(IServiceCollection services)
 
 Если вы используете Razor страницы, см. раздел [применение политик к Razor страницам](#apply-policies-to-razor-pages) этого документа.
 
-Политики применяются к контроллерам с помощью `[Authorize]` атрибута с именем политики. Например:
+Политики применяются к контроллерам с помощью `[Authorize]` атрибута с именем политики. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
 ## <a name="apply-policies-to-no-locrazor-pages"></a>Применение политик к Razor страницам
 
-Политики применяются к Razor страницам с помощью `[Authorize]` атрибута с именем политики. Например:
+Политики применяются к Razor страницам с помощью `[Authorize]` атрибута с именем политики. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
@@ -176,7 +177,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### <a name="handler-registration"></a>Регистрация обработчика
 
-Обработчики регистрируются в коллекции служб во время настройки. Например:
+Обработчики регистрируются в коллекции служб во время настройки. Пример:
 
 [!code-csharp[](policies/samples/3.0PoliciesAuthApp1/Startup.cs?range=31-32,39-40,42-45, 53-55, 58)]
 
@@ -192,7 +193,7 @@ public void ConfigureServices(IServiceCollection services)
 
 * Чтобы гарантировать сбой, даже если другие обработчики требований выполняются успешно, вызовите `context.Fail` .
 
-Если обработчик вызывает `context.Succeed` или `context.Fail` , все остальные обработчики все еще вызываются. Это позволяет создавать побочные эффекты, например ведение журнала, которое выполняется, даже если другой обработчик прошел проверку или не прошел требование. Если задано значение `false` , свойство [инвокехандлерсафтерфаилуре](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) (доступно в ASP.NET Core 1,1 и более поздних версиях) сокращено при `context.Fail` вызове обработчиков. `InvokeHandlersAfterFailure`по умолчанию имеет значение `true` , в этом случае вызываются все обработчики.
+Если обработчик вызывает `context.Succeed` или `context.Fail` , все остальные обработчики все еще вызываются. Это позволяет создавать побочные эффекты, например ведение журнала, которое выполняется, даже если другой обработчик прошел проверку или не прошел требование. Если задано значение `false` , свойство [инвокехандлерсафтерфаилуре](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) (доступно в ASP.NET Core 1,1 и более поздних версиях) сокращено при `context.Fail` вызове обработчиков. `InvokeHandlersAfterFailure` по умолчанию имеет значение `true` , в этом случае вызываются все обработчики.
 
 > [!NOTE]
 > Обработчики авторизации вызываются даже в случае сбоя проверки подлинности.
@@ -229,7 +230,7 @@ public void ConfigureServices(IServiceCollection services)
 
 `HandleRequirementAsync`Метод, реализуемый в обработчике авторизации, имеет два параметра: и обрабатываемый объект `AuthorizationHandlerContext` `TRequirement` . Платформы, такие как MVC или SignalR , могут добавлять любой объект в свойство в `Resource` `AuthorizationHandlerContext` для передачи дополнительной информации.
 
-При использовании маршрутизации конечных точек авторизация обычно обрабатывается по промежуточного слоя авторизации. В этом случае `Resource` свойство является экземпляром <xref:Microsoft.AspNetCore.Http.Endpoint> . Конечную точку можно использовать для проверки базового ресурса, с которым выполняется маршрутизация. Например:
+При использовании маршрутизации конечных точек авторизация обычно обрабатывается по промежуточного слоя авторизации. В этом случае `Resource` свойство является экземпляром <xref:Microsoft.AspNetCore.Http.Endpoint> . Конечную точку можно использовать для проверки базового ресурса, с которым выполняется маршрутизация. Пример:
 
 ```csharp
 if (context.Resource is Endpoint endpoint)
@@ -280,7 +281,7 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 
 В приведенном выше коде показаны два метода [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>— это служба маркеров без методов, а также механизм отслеживания успешности авторизации.
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> — это служба маркеров без методов, а также механизм отслеживания успешности авторизации.
 
 Каждый из них <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> отвечает за проверку соблюдения требований:
 <!--The following code is a copy/paste from 
@@ -357,13 +358,13 @@ public void ConfigureServices(IServiceCollection services)
 
 Если вы используете Razor страницы, см. раздел [применение политик к Razor страницам](#apply-policies-to-razor-pages) этого документа.
 
-Политики применяются к контроллерам с помощью `[Authorize]` атрибута с именем политики. Например:
+Политики применяются к контроллерам с помощью `[Authorize]` атрибута с именем политики. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
 ## <a name="apply-policies-to-no-locrazor-pages"></a>Применение политик к Razor страницам
 
-Политики применяются к Razor страницам с помощью `[Authorize]` атрибута с именем политики. Например:
+Политики применяются к Razor страницам с помощью `[Authorize]` атрибута с именем политики. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
@@ -410,7 +411,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### <a name="handler-registration"></a>Регистрация обработчика
 
-Обработчики регистрируются в коллекции служб во время настройки. Например:
+Обработчики регистрируются в коллекции служб во время настройки. Пример:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,62-63,66)]
 
@@ -426,7 +427,7 @@ public void ConfigureServices(IServiceCollection services)
 
 * Чтобы гарантировать сбой, даже если другие обработчики требований выполняются успешно, вызовите `context.Fail` .
 
-Если обработчик вызывает `context.Succeed` или `context.Fail` , все остальные обработчики все еще вызываются. Это позволяет создавать побочные эффекты, например ведение журнала, которое выполняется, даже если другой обработчик прошел проверку или не прошел требование. Если задано значение `false` , свойство [инвокехандлерсафтерфаилуре](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) (доступно в ASP.NET Core 1,1 и более поздних версиях) сокращено при `context.Fail` вызове обработчиков. `InvokeHandlersAfterFailure`по умолчанию имеет значение `true` , в этом случае вызываются все обработчики.
+Если обработчик вызывает `context.Succeed` или `context.Fail` , все остальные обработчики все еще вызываются. Это позволяет создавать побочные эффекты, например ведение журнала, которое выполняется, даже если другой обработчик прошел проверку или не прошел требование. Если задано значение `false` , свойство [инвокехандлерсафтерфаилуре](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) (доступно в ASP.NET Core 1,1 и более поздних версиях) сокращено при `context.Fail` вызове обработчиков. `InvokeHandlersAfterFailure` по умолчанию имеет значение `true` , в этом случае вызываются все обработчики.
 
 > [!NOTE]
 > Обработчики авторизации вызываются даже в случае сбоя проверки подлинности.

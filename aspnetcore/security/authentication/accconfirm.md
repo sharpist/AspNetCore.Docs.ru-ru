@@ -5,6 +5,7 @@ description: Узнайте, как создать приложение ASP.NET 
 ms.author: riande
 ms.date: 03/11/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 7016c2c1997d961f4b3d3cf513fc1769bd65247b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 57607390e7d5e58df9f27437faecd57504ad64df
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021618"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635376"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Подтверждение учетной записи и восстановление пароля в ASP.NET Core
 
@@ -52,7 +53,7 @@ dotnet run
 
 Запустите приложение, выберите ссылку **Register** и зарегистрируйте пользователя. После регистрации вы будете перенаправлены на `/Identity/Account/RegisterConfirmation` страницу, содержащую ссылку для имитации подтверждения по электронной почте:
 
-* Выберите `Click here to confirm your account` ссылку.
+* Выберите ссылку `Click here to confirm your account`.
 * Выберите ссылку для **входа** и выполните вход с теми же учетными данными.
 * Выберите `Hello YourEmail@provider.com!` ссылку, которая перенаправит вас на `/Identity/Account/Manage/PersonalData` страницу.
 * Выберите вкладку **личные данные** слева, а затем щелкните **Удалить**.
@@ -69,7 +70,7 @@ dotnet run
 
 #### <a name="configure-sendgrid-user-secrets"></a>Настройка секретов пользователя SendGrid
 
-Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Например:
+Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Пример:
 
 ```dotnetcli
 dotnet user-secrets set SendGridUser RickAndMSFT
@@ -237,7 +238,7 @@ https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Ident
 
 [Пакет SDK для .NET Core 2,2 или более поздней версии](https://dotnet.microsoft.com/download/dotnet-core)
 
-## <a name="create-a-web--app-and-scaffold-no-locidentity"></a>Создание веб-приложения и шаблонаIdentity
+## <a name="create-a-web--app-and-scaffold-no-locidentity"></a>Создание веб-приложения и шаблона Identity
 
 Выполните следующие команды, чтобы создать веб-приложение с проверкой подлинности.
 
@@ -273,11 +274,11 @@ dotnet run
 
 Обычно требуется запретить новым пользователям отправлять данные на ваш веб-сайт, прежде чем они будут иметь подтвержденное сообщение электронной почты.
 
-Обновление `Startup.ConfigureServices` для запроса подтвержденного адреса электронной почты:
+Обновление `Startup.ConfigureServices`  для запроса подтвержденного адреса электронной почты:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=8-11)]
 
-`config.SignIn.RequireConfirmedEmail = true;`запрещает зарегистрированным пользователям входить в систему, пока не будет подтверждено их электронная почта.
+`config.SignIn.RequireConfirmedEmail = true;` запрещает зарегистрированным пользователям входить в систему, пока не будет подтверждено их электронная почта.
 
 ### <a name="configure-email-provider"></a>Настройка поставщика электронной почты
 
@@ -289,7 +290,7 @@ dotnet run
 
 #### <a name="configure-sendgrid-user-secrets"></a>Настройка секретов пользователя SendGrid
 
-Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Например:
+Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Пример:
 
 ```console
 C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT
