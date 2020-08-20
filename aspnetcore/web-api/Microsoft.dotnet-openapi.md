@@ -6,6 +6,7 @@ ms.author: rybrande
 ms.date: 09/26/2019
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/Microsoft.dotnet-openapi
-ms.openlocfilehash: 6a9b80e868a54bd76503a6421c34ae159421699b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 45921deb35452876b0a92a8731da68539a880c1d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022242"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626562"
 ---
 # <a name="develop-aspnet-core-apps-using-openapi-tools"></a>Разработка приложений ASP.NET Core с использованием средств OpenAPI
 
@@ -37,7 +38,7 @@ ms.locfileid: "88022242"
 dotnet tool install -g Microsoft.dotnet-openapi
 ```
 
-## <a name="add"></a>Add
+## <a name="add"></a>Добавить
 
 Добавление ссылки OpenAPI с помощью любой команды на этой странице добавляет `<OpenApiReference />` в *CSPROJ* -файл элемент, аналогичный следующему:
 

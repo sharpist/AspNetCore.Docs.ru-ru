@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/13/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/messagepackhubprotocol
-ms.openlocfilehash: 8e590c87f75d35cbafde1adbc87dea9c45eac92d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ab9bd11e37182f5b24db5595d5d050f4cc0e32da
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022554"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626653"
 ---
 # <a name="use-messagepack-hub-protocol-in-no-locsignalr-for-aspnet-core"></a>Использование протокола концентратора MessagePack в SignalR для ASP.NET Core
 
@@ -32,7 +33,7 @@ ms.locfileid: "88022554"
 
 ## <a name="what-is-messagepack"></a>Что такое MessagePack?
 
-[MessagePack](https://msgpack.org/index.html) — это быстрый и компактный формат двоичной сериализации. Это полезно, когда производительность и пропускная способность являются важным фактором, поскольку они создают меньшие сообщения по сравнению с [JSON](https://www.json.org/). Двоичные сообщения недоступны для чтения при просмотре трассировки сети и журналов, если только эти байты не передаются через средство синтаксического анализа MessagePack. SignalRимеет встроенную поддержку формата MessagePack и предоставляет API-интерфейсы для использования клиентом и сервером.
+[MessagePack](https://msgpack.org/index.html) — это быстрый и компактный формат двоичной сериализации. Это полезно, когда производительность и пропускная способность являются важным фактором, поскольку они создают меньшие сообщения по сравнению с [JSON](https://www.json.org/). Двоичные сообщения недоступны для чтения при просмотре трассировки сети и журналов, если только эти байты не передаются через средство синтаксического анализа MessagePack. SignalR имеет встроенную поддержку формата MessagePack и предоставляет API-интерфейсы для использования клиентом и сервером.
 
 ## <a name="configure-messagepack-on-the-server"></a>Настройка MessagePack на сервере
 
@@ -131,7 +132,7 @@ public class ChatMessage
 }
 ```
 
-При отправке из клиента JavaScript необходимо использовать `PascalCased` имена свойств, поскольку регистр должен точно соответствовать классу C#. Например:
+При отправке из клиента JavaScript необходимо использовать `PascalCased` имена свойств, поскольку регистр должен точно соответствовать классу C#. Пример:
 
 ```javascript
 connection.invoke("SomeMethod", { Sender: "Sally", Message: "Hello!" });
@@ -197,7 +198,7 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 
 ## <a name="what-is-messagepack"></a>Что такое MessagePack?
 
-[MessagePack](https://msgpack.org/index.html) — это быстрый и компактный формат двоичной сериализации. Это полезно, когда производительность и пропускная способность являются важным фактором, поскольку они создают меньшие сообщения по сравнению с [JSON](https://www.json.org/). Двоичные сообщения недоступны для чтения при просмотре трассировки сети и журналов, если только эти байты не передаются через средство синтаксического анализа MessagePack. SignalRимеет встроенную поддержку формата MessagePack и предоставляет API-интерфейсы для использования клиентом и сервером.
+[MessagePack](https://msgpack.org/index.html) — это быстрый и компактный формат двоичной сериализации. Это полезно, когда производительность и пропускная способность являются важным фактором, поскольку они создают меньшие сообщения по сравнению с [JSON](https://www.json.org/). Двоичные сообщения недоступны для чтения при просмотре трассировки сети и журналов, если только эти байты не передаются через средство синтаксического анализа MessagePack. SignalR имеет встроенную поддержку формата MessagePack и предоставляет API-интерфейсы для использования клиентом и сервером.
 
 ## <a name="configure-messagepack-on-the-server"></a>Настройка MessagePack на сервере
 
@@ -306,7 +307,7 @@ public class ChatMessage
 }
 ```
 
-При отправке из клиента JavaScript необходимо использовать `PascalCased` имена свойств, поскольку регистр должен точно соответствовать классу C#. Например:
+При отправке из клиента JavaScript необходимо использовать `PascalCased` имена свойств, поскольку регистр должен точно соответствовать классу C#. Пример:
 
 ```javascript
 connection.invoke("SomeMethod", { Sender: "Sally", Message: "Hello!" });
@@ -372,7 +373,7 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 
 ## <a name="what-is-messagepack"></a>Что такое MessagePack?
 
-[MessagePack](https://msgpack.org/index.html) — это быстрый и компактный формат двоичной сериализации. Это полезно, когда производительность и пропускная способность являются важным фактором, поскольку они создают меньшие сообщения по сравнению с [JSON](https://www.json.org/). Двоичные сообщения недоступны для чтения при просмотре трассировки сети и журналов, если только эти байты не передаются через средство синтаксического анализа MessagePack. SignalRимеет встроенную поддержку формата MessagePack и предоставляет API-интерфейсы для использования клиентом и сервером.
+[MessagePack](https://msgpack.org/index.html) — это быстрый и компактный формат двоичной сериализации. Это полезно, когда производительность и пропускная способность являются важным фактором, поскольку они создают меньшие сообщения по сравнению с [JSON](https://www.json.org/). Двоичные сообщения недоступны для чтения при просмотре трассировки сети и журналов, если только эти байты не передаются через средство синтаксического анализа MessagePack. SignalR имеет встроенную поддержку формата MessagePack и предоставляет API-интерфейсы для использования клиентом и сервером.
 
 ## <a name="configure-messagepack-on-the-server"></a>Настройка MessagePack на сервере
 
@@ -481,7 +482,7 @@ public class ChatMessage
 }
 ```
 
-При отправке из клиента JavaScript необходимо использовать `PascalCased` имена свойств, поскольку регистр должен точно соответствовать классу C#. Например:
+При отправке из клиента JavaScript необходимо использовать `PascalCased` имена свойств, поскольку регистр должен точно соответствовать классу C#. Пример:
 
 ```javascript
 connection.invoke("SomeMethod", { Sender: "Sally", Message: "Hello!" });

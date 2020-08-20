@@ -1,11 +1,12 @@
 ---
 title: Создание приложения ASP.NET Core с данными пользователя, защищенными с помощью авторизации
 author: rick-anderson
-description: Узнайте, как создать ASP.NET Core веб-приложение с данными пользователя, защищенными с помощью авторизации. Включает протокол HTTPS, проверку подлинности, Безопасность ASP.NET Core Identity .
+description: Узнайте, как создать ASP.NET Core веб-приложение с данными пользователя, защищенными с помощью авторизации. Включает протокол HTTPS, проверку подлинности, безопасность, ASP.NET Core Identity .
 ms.author: riande
 ms.date: 7/18/2020
 ms.custom: mvc, seodec18
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: 44777369693f9eb29d78c3ba638db2e692f430ae
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 5f86e514ee6339888171d83ab3117e9b3fcf107e
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021193"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627823"
 ---
 # <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>Создание ASP.NET Core веб-приложения с данными пользователя, защищенными с помощью авторизации
 
@@ -103,7 +104,7 @@ ms.locfileid: "88021193"
 
 [!code-csharp[](secure-data/samples/final3/Models/Contact.cs?name=snippet1&highlight=5-6,16-999)]
 
-`OwnerID`Идентификатор пользователя из `AspNetUser` таблицы в [Identity](xref:security/authentication/identity) базе данных. `Status`Поле определяет, можно ли просматривать контакт обычными пользователями.
+`OwnerID` Идентификатор пользователя из `AspNetUser` таблицы в [Identity](xref:security/authentication/identity) базе данных. `Status`Поле определяет, можно ли просматривать контакт обычными пользователями.
 
 Создайте новую миграцию и обновите базу данных:
 
@@ -112,7 +113,7 @@ dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
 
-### <a name="add-role-services-to-no-locidentity"></a>Добавление служб ролей вIdentity
+### <a name="add-role-services-to-no-locidentity"></a>Добавление служб ролей в Identity
 
 Добавление [аддролес](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) для добавления служб ролей:
 
@@ -134,7 +135,7 @@ dotnet ef database update
 
 Настройка политики резервной проверки подлинности на требование проверки подлинности пользователей защищает вновь добавленные Razor страницы и контроллеры. Необходимость проверки подлинности по умолчанию более безопасна, чем использование новых контроллеров и Razor страниц для включения `[Authorize]` атрибута.
 
-<xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions>Класс также содержит <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType> . `DefaultPolicy`— Это политика, используемая с `[Authorize]` атрибутом, если не указана политика. `[Authorize]`не содержит именованную политику, в отличие от `[Authorize(PolicyName="MyPolicy")]` .
+<xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions>Класс также содержит <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType> . `DefaultPolicy`— Это политика, используемая с `[Authorize]` атрибутом, если не указана политика. `[Authorize]` не содержит именованную политику, в отличие от `[Authorize(PolicyName="MyPolicy")]` .
 
 Дополнительные сведения о политиках см. в разделе <xref:security/authorization/policies> .
 
@@ -181,11 +182,11 @@ dotnet user-secrets set SeedUserPW <PW>
 `ContactIsOwnerAuthorizationHandler`Контекст вызовов [. Считается успешной](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) , если текущий пользователь, прошедший проверку подлинности, является владельцем контакта. Обычно обработчики авторизации:
 
 * Возврат `context.Succeed` при соблюдении требований.
-* Возврат `Task.CompletedTask` , если требования не выполнены. `Task.CompletedTask`не является успешным или неудачным, &mdash; что позволяет запускать другие обработчики авторизации.
+* Возврат `Task.CompletedTask` , если требования не выполнены. `Task.CompletedTask` не является успешным или неудачным, &mdash; что позволяет запускать другие обработчики авторизации.
 
 Если необходимо явное завершение, возвращаемый [контекст. Не пройдено](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
-Приложение позволяет владельцам контактов изменять, удалять и создавать собственные данные. `ContactIsOwnerAuthorizationHandler`не требуется проверять операцию, переданную в параметре требования.
+Приложение позволяет владельцам контактов изменять, удалять и создавать собственные данные. `ContactIsOwnerAuthorizationHandler` не требуется проверять операцию, переданную в параметре требования.
 
 ### <a name="create-a-manager-authorization-handler"></a>Создание обработчика авторизации диспетчера
 
@@ -205,7 +206,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet_defaultPolicy&highlight=23-99)]
 
-`ContactAdministratorsAuthorizationHandler`и `ContactManagerAuthorizationHandler` добавляются в виде Singleton. Они являются Singleton-классом, поскольку не используют EF, а вся необходимая информация находится в `Context` параметре `HandleRequirementAsync` метода.
+`ContactAdministratorsAuthorizationHandler` и `ContactManagerAuthorizationHandler` добавляются в виде Singleton. Они являются Singleton-классом, поскольку не используют EF, а вся необходимая информация находится в `Context` параметре `HandleRequirementAsync` метода.
 
 ## <a name="support-authorization"></a>Поддержка авторизации
 
@@ -332,9 +333,9 @@ dotnet user-secrets set SeedUserPW <PW>
 
 | Пользователь                | Заполнено приложением | Параметры                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | Нет                | Изменение или удаление собственных данных.                |
-| manager@contoso.com | да               | Утвердите, отклоните и измените или удалите собственные данные. |
-| admin@contoso.com   | да               | Утвердите или отклоните и измените или удалите все данные. |
+| test@example.com    | нет                | Изменение или удаление собственных данных.                |
+| manager@contoso.com | Да               | Утвердите, отклоните и измените или удалите собственные данные. |
+| admin@contoso.com   | Да               | Утвердите или отклоните и измените или удалите все данные. |
 
 Создайте контакт в браузере администратора. Скопируйте URL-адрес для DELETE и Edit из контакта администратора. Вставьте эти ссылки в браузер тестового пользователя, чтобы убедиться, что тестовая пользователь не может выполнить эти операции.
 
@@ -343,7 +344,7 @@ dotnet user-secrets set SeedUserPW <PW>
 * Создание Razor страницы приложения с именем "ContactManager"
   * Создайте приложение с **учетными записями отдельных пользователей**.
   * Назовите его "ContactManager", чтобы пространство имен совпадало с пространством имен, используемым в примере.
-  * `-uld`Указывает LocalDB вместо SQLite
+  * `-uld` Указывает LocalDB вместо SQLite
 
   ```dotnetcli
   dotnet new webapp -o ContactManager -au Individual -uld
@@ -457,7 +458,7 @@ dotnet ef database update
 
 [!code-csharp[](secure-data/samples/final2.1/Models/Contact.cs?name=snippet1&highlight=5-6,16-999)]
 
-`OwnerID`Идентификатор пользователя из `AspNetUser` таблицы в [Identity](xref:security/authentication/identity) базе данных. `Status`Поле определяет, можно ли просматривать контакт обычными пользователями.
+`OwnerID` Идентификатор пользователя из `AspNetUser` таблицы в [Identity](xref:security/authentication/identity) базе данных. `Status`Поле определяет, можно ли просматривать контакт обычными пользователями.
 
 Создайте новую миграцию и обновите базу данных:
 
@@ -466,7 +467,7 @@ dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
 
-### <a name="add-role-services-to-no-locidentity"></a>Добавление служб ролей вIdentity
+### <a name="add-role-services-to-no-locidentity"></a>Добавление служб ролей в Identity
 
 Добавление [аддролес](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) для добавления служб ролей:
 
@@ -517,11 +518,11 @@ dotnet user-secrets set SeedUserPW <PW>
 `ContactIsOwnerAuthorizationHandler`Контекст вызовов [. Считается успешной](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) , если текущий пользователь, прошедший проверку подлинности, является владельцем контакта. Обычно обработчики авторизации:
 
 * Возврат `context.Succeed` при соблюдении требований.
-* Возврат `Task.CompletedTask` , если требования не выполнены. `Task.CompletedTask`не является успешным или неудачным, &mdash; что позволяет запускать другие обработчики авторизации.
+* Возврат `Task.CompletedTask` , если требования не выполнены. `Task.CompletedTask` не является успешным или неудачным, &mdash; что позволяет запускать другие обработчики авторизации.
 
 Если необходимо явное завершение, возвращаемый [контекст. Не пройдено](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
-Приложение позволяет владельцам контактов изменять, удалять и создавать собственные данные. `ContactIsOwnerAuthorizationHandler`не требуется проверять операцию, переданную в параметре требования.
+Приложение позволяет владельцам контактов изменять, удалять и создавать собственные данные. `ContactIsOwnerAuthorizationHandler` не требуется проверять операцию, переданную в параметре требования.
 
 ### <a name="create-a-manager-authorization-handler"></a>Создание обработчика авторизации диспетчера
 
@@ -541,7 +542,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 [!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet_defaultPolicy&highlight=27-99)]
 
-`ContactAdministratorsAuthorizationHandler`и `ContactManagerAuthorizationHandler` добавляются в виде Singleton. Они являются Singleton-классом, поскольку не используют EF, а вся необходимая информация находится в `Context` параметре `HandleRequirementAsync` метода.
+`ContactAdministratorsAuthorizationHandler` и `ContactManagerAuthorizationHandler` добавляются в виде Singleton. Они являются Singleton-классом, поскольку не используют EF, а вся необходимая информация находится в `Context` параметре `HandleRequirementAsync` метода.
 
 ## <a name="support-authorization"></a>Поддержка авторизации
 
@@ -659,9 +660,9 @@ dotnet user-secrets set SeedUserPW <PW>
 
 | Пользователь                | Заполнено приложением | Параметры                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | Нет                | Изменение или удаление собственных данных.                |
-| manager@contoso.com | да               | Утвердите, отклоните и измените или удалите собственные данные. |
-| admin@contoso.com   | да               | Утвердите или отклоните и измените или удалите все данные. |
+| test@example.com    | нет                | Изменение или удаление собственных данных.                |
+| manager@contoso.com | Да               | Утвердите, отклоните и измените или удалите собственные данные. |
+| admin@contoso.com   | Да               | Утвердите или отклоните и измените или удалите все данные. |
 
 Создайте контакт в браузере администратора. Скопируйте URL-адрес для DELETE и Edit из контакта администратора. Вставьте эти ссылки в браузер тестового пользователя, чтобы убедиться, что тестовая пользователь не может выполнить эти операции.
 
@@ -670,7 +671,7 @@ dotnet user-secrets set SeedUserPW <PW>
 * Создание Razor страницы приложения с именем "ContactManager"
   * Создайте приложение с **учетными записями отдельных пользователей**.
   * Назовите его "ContactManager", чтобы пространство имен совпадало с пространством имен, используемым в примере.
-  * `-uld`Указывает LocalDB вместо SQLite
+  * `-uld` Указывает LocalDB вместо SQLite
 
   ```dotnetcli
   dotnet new webapp -o ContactManager -au Individual -uld
