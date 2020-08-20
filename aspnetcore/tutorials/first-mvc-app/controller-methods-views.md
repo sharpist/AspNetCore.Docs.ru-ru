@@ -5,6 +5,7 @@ description: Часть 6. Добавление модели в приложе�
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: b5b54adb1d86e4ab982647dc8207839cc9afdac9
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 07b67cd7c267c39b99277114b73642b5caa3e312
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021072"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632841"
 ---
 # <a name="part-6-controller-methods-and-views-in-aspnet-core"></a>Часть 6. Методы и представления контроллера в ASP.NET Core
 
@@ -110,7 +111,7 @@ ASP.NET Core преобразует `https://localhost:5001/Movies/Edit/4` в з
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/Edit.cshtml?range=9)]
 
-[Вспомогательная функция тега Form](xref:mvc/views/working-with-forms) создает скрытый маркер защиты от подделки, который должен соответствовать `[ValidateAntiForgeryToken]` аналогичному маркеру безопасности в методе `Edit` контроллера Movies. Дополнительные сведения см. в разделе [Защита от подделки запросов](xref:security/anti-request-forgery).
+[Вспомогательная функция тега Form](xref:mvc/views/working-with-forms) создает скрытый маркер защиты от подделки, который должен соответствовать `[ValidateAntiForgeryToken]` аналогичному маркеру безопасности в методе `Edit` контроллера Movies. Дополнительные сведения см. в разделе <xref:security/anti-request-forgery>.
 
 Метод `HttpGet Edit` принимает параметр фильма `ID`, выполняет поиск фильма с использованием метода `FindAsync` платформы Entity Framework и возвращает выбранный фильм в представление редактирования. Если фильм найти не удается, возвращается ошибка `NotFound` (HTTP 404).
 
@@ -161,7 +162,7 @@ ASP.NET Core преобразует `https://localhost:5001/Movies/Edit/4` в з
 * [Глобализация и локализация](xref:fundamentals/localization)
 * [Общие сведения о вспомогательных функциях тегов](xref:mvc/views/tag-helpers/intro)
 * [Создание вспомогательных функций тегов](xref:mvc/views/tag-helpers/authoring)
-* [Защита от подделки запросов](xref:security/anti-request-forgery)
+* <xref:security/anti-request-forgery>
 * Защита контроллера от [чрезмерной передачи данных](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application)
 * [ViewModels](https://rachelappel.com/use-viewmodels-to-manage-data-amp-organize-code-in-asp-net-mvc-applications/)
 * [Вспомогательная функция тега Form](xref:mvc/views/working-with-forms)

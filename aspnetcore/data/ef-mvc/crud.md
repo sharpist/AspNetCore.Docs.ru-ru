@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 02/04/2019
 ms.topic: tutorial
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/crud
-ms.openlocfilehash: 2c71ea0eaccf4daeb8937dd5839481a506864fbe
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: c17461f8d1d43335230a967a4b62943c055c06b9
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88012856"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629214"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF Core. Реализация функциональности CRUD
 
@@ -130,7 +131,7 @@ http://localhost:1230/Instructor/Index?id=1&CourseID=2021
 
 Помимо атрибута `Bind`, в шаблонном коде изменяется только блок try-catch. Если во время сохранения изменений перехватывается исключение, производное от `DbUpdateException`, отображается сообщение об общей ошибке. Исключения `DbUpdateException` иногда связаны с внешними факторами, а не с ошибкой при программировании приложения, поэтому рекомендуется попробовать повторить выполненные действия снова. В этом примере такое поведение не реализовано, однако в рабочем приложении, как правило, исключения заносятся в журнал. Дополнительные сведения см. в разделе **Ведение журналов для анализа** статьи [Мониторинг и телеметрия (построение реальных облачных приложений для Azure)](/aspnet/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry).
 
-Атрибут `ValidateAntiForgeryToken` позволяет предотвратить атаки с подделкой межсайтовых запросов. Токен автоматически вставляется в представление с помощью [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) и включается при отправке формы пользователем. Токен проверяется по атрибуту `ValidateAntiForgeryToken`. Дополнительные сведения об атаках с подделкой межсайтовых запросов см. в разделе [Защита от подделки запросов](../../security/anti-request-forgery.md).
+Атрибут `ValidateAntiForgeryToken` позволяет предотвратить атаки с подделкой межсайтовых запросов. Токен автоматически вставляется в представление с помощью [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) и включается при отправке формы пользователем. Токен проверяется по атрибуту `ValidateAntiForgeryToken`. Дополнительные сведения см. в разделе <xref:security/anti-request-forgery>.
 
 <a id="overpost"></a>
 
