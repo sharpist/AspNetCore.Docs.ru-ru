@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: fe0a0d3dbb87455be602234825d702fab02df936
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ed40800f3e363cc3fd6f57492d76a42095e5b97b
+ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634596"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88712562"
 ---
 # <a name="configuration-in-aspnet-core"></a>Конфигурация в .NET Core
 
@@ -98,6 +98,8 @@ ms.locfileid: "88634596"
 С помощью конфигурации [по умолчанию](#default) файлы *appsettings.json* и *appsettings.* `Environment` *.json* включаются с помощью [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). Изменения, внесенные в файл *appsettings.json* и *appsettings.* `Environment` *.json*, ***после*** запуска приложения, считываются [поставщиком конфигурации JSON](#jcp).
 
 Сведения о добавлении дополнительных файлов конфигурации JSON см. в разделе [Поставщик конфигурации JSON](#jcp) в этом документе.
+
+## <a name="combining-service-collection"></a>Объединение коллекций служб
 
 [!INCLUDE[](~/includes/combine-di.md)]
 
@@ -758,7 +760,7 @@ Index: 5  Value: value5
 
 ## <a name="add-configuration-from-an-external-assembly"></a>Добавление конфигурации из внешней сборки
 
-Реализация <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> позволяет при запуске добавлять в приложение улучшения из внешней сборки вне приложения класса `Startup`. Дополнительные сведения см. в разделе <xref:fundamentals/configuration/platform-specific-configuration>.
+Реализация <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> позволяет при запуске добавлять в приложение улучшения из внешней сборки вне приложения класса `Startup`. Для получения дополнительной информации см. <xref:fundamentals/configuration/platform-specific-configuration>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
@@ -1840,7 +1842,7 @@ public class Startup
 
 ## <a name="add-configuration-from-an-external-assembly"></a>Добавление конфигурации из внешней сборки
 
-Реализация <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> позволяет при запуске добавлять в приложение улучшения из внешней сборки вне приложения класса `Startup`. Дополнительные сведения см. в разделе <xref:fundamentals/configuration/platform-specific-configuration>.
+Реализация <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> позволяет при запуске добавлять в приложение улучшения из внешней сборки вне приложения класса `Startup`. Для получения дополнительной информации см. <xref:fundamentals/configuration/platform-specific-configuration>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
