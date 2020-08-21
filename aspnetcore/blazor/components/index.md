@@ -5,8 +5,9 @@ description: Сведения о том, как создавать и испол
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/14/2020
+ms.date: 08/19/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: a145cfd551650445f9ff35259cbedf71ebb686f0
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 6ee767ee76b622e15a1dc5a7fe2f3e05f03dabd0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014598"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628499"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
@@ -265,7 +266,7 @@ namespace BlazorSample
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
 > [!WARNING]
-> Не создавайте компоненты, записывающие их в собственные *параметры компонентов*, — используйте вместо этого закрытое поле. Дополнительные сведения см. в разделе [Не создавать компоненты, которые записываются в собственные свойства параметров](#dont-create-components-that-write-to-their-own-parameter-properties).
+> Не создавайте компоненты, записывающие их в собственные *параметры компонентов*, если содержимое компонента выводится с <xref:Microsoft.AspNetCore.Components.RenderFragment>, — используйте вместо этого закрытое поле. Дополнительные сведения см. в разделе [Перезаписанные параметры с `RenderFragment`](#overwritten-parameters-with-renderfragment).
 
 ## <a name="child-content"></a>Дочернее содержимое
 
@@ -317,28 +318,20 @@ namespace BlazorSample
 
 ```razor
 <input id="useIndividualParams"
-       maxlength="@Maxlength"
-       placeholder="@Placeholder"
-       required="@Required"
-       size="@Size" />
+       maxlength="@maxlength"
+       placeholder="@placeholder"
+       required="@required"
+       size="@size" />
 
 <input id="useAttributesDict"
        @attributes="InputAttributes" />
 
 @code {
-    [Parameter]
-    public string Maxlength { get; set; } = "10";
+    public string maxlength = "10";
+    public string placeholder = "Input placeholder text";
+    public string required = "required";
+    public string size = "50";
 
-    [Parameter]
-    public string Placeholder { get; set; } = "Input placeholder text";
-
-    [Parameter]
-    public string Required { get; set; } = "required";
-
-    [Parameter]
-    public string Size { get; set; } = "50";
-
-    [Parameter]
     public Dictionary<string, object> InputAttributes { get; set; } =
         new Dictionary<string, object>()
         {
@@ -350,7 +343,7 @@ namespace BlazorSample
 }
 ```
 
-Тип параметра должен реализовывать `IEnumerable<KeyValuePair<string, object>>` с ключами строки. В этом сценарии также можно использовать `IReadOnlyDictionary<string, object>`.
+Тип параметра должен реализовывать `IEnumerable<KeyValuePair<string, object>>` или `IReadOnlyDictionary<string, object>` с ключами строки.
 
 При использовании обоих подходов получаются идентичные отрисованные элементы `<input>`:
 
@@ -433,10 +426,10 @@ public IDictionary<string, object> AdditionalAttributes { get; set; }
 * Определите поле с тем же типом, что и у дочернего компонента.
 
 ```razor
-<MyLoginDialog @ref="loginDialog" ... />
+<CustomLoginDialog @ref="loginDialog" ... />
 
 @code {
-    private MyLoginDialog loginDialog;
+    private CustomLoginDialog loginDialog;
 
     private void OnSomething()
     {
@@ -632,7 +625,7 @@ public class NotifierService
 
 Убедитесь, что значения, используемые для [`@key`][5], не конфликтуют. Если в одном родительском элементе обнаруживаются конфликтующие значения, Blazor выдает исключение, поскольку не может детерминированно сопоставлять старые элементы или компоненты с новыми. Используйте только уникальные значения, такие как экземпляры объекта или значения первичного ключа.
 
-## <a name="dont-create-components-that-write-to-their-own-parameter-properties"></a>Не создавать компоненты, которые записываются в собственные свойства параметров
+## <a name="overwritten-parameters-with-renderfragment"></a>Перезаписанные параметры с `RenderFragment`
 
 Параметры перезаписываются при следующих условиях.
 
@@ -647,17 +640,13 @@ public class NotifierService
 * переключает отображение дочернего содержимого с помощью параметра компонента.
 
 ```razor
-<div @onclick="@Toggle" class="card text-white bg-success mb-3">
+<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
-        <div class="panel-heading">
-            <h2>Toggle (<code>Expanded</code> = @Expanded)</h2>
-        </div>
+        <h2 class="card-title">Toggle (<code>Expanded</code> = @Expanded)</h2>
 
         @if (Expanded)
         {
-            <div class="card-text">
-                @ChildContent
-            </div>
+            <p class="card-text">@ChildContent</p>
         }
     </div>
 </div>
@@ -703,17 +692,13 @@ public class NotifierService
 * Использует закрытое поле для поддержания внутреннего состояния переключения.
 
 ```razor
-<div @onclick="@Toggle" class="card text-white bg-success mb-3">
+<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
-        <div class="panel-heading">
-            <h2>Toggle (<code>expanded</code> = @expanded)</h2>
-        </div>
+        <h2 class="card-title">Toggle (<code>expanded</code> = @expanded)</h2>
 
         @if (expanded)
         {
-            <div class="card-text">
-                @ChildContent
-            </div>
+            <p class="card-text">@ChildContent</p>
         }
     </div>
 </div>

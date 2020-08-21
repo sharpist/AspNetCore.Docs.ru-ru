@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/1x-to-2x/index
-ms.openlocfilehash: cad1cd868ef8c972d7e0fbfec79cd1d8b49c3b6e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 6160dfd117235065ba4b990b95bbc1f4abdf1626
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015339"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634349"
 ---
 # <a name="migrate-from-aspnet-core-1x-to-20"></a>Миграция с ASP.NET Core 1.x на 2.0
 
@@ -202,7 +203,7 @@ Unable to create an object of type '<Context>'. Add an implementation of 'IDesig
 
 ## <a name="adopt-authenticationno-locidentity-improvements"></a>Внедрение улучшений проверки подлинности или Identity
 
-В ASP.NET Core 2.0 реализована новая модель проверки подлинности и внесен ряд важных изменений в ASP.NET Core Identity. Если при создании проекта вы включили отдельные учетные записи пользователей либо вручную добавили проверку подлинности или Identity, см. сведения на странице [Миграция на другой метод проверки подлинности и Identity в ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x).
+В ASP.NET Core 2.0 реализована новая модель аутентификации и внесен ряд важных изменений в ASP.NET Core Identity. Если при создании проекта вы включили отдельные учетные записи пользователей либо вручную добавили проверку подлинности или Identity, см. сведения на странице [Миграция на другой метод проверки подлинности и Identity в ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x).
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

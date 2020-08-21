@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/02/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: 4dc9040b9410304eb33e5df7c47db2f9a42152d3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ba9fe3c0149679fa5760c0c9214cd426f1804c31
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014000"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626458"
 ---
 # <a name="secure-aspnet-core-no-locblazor-server-apps"></a>Защита приложений ASP.NET Core Blazor Server
 
@@ -62,7 +63,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 | Механизм аутентификации | Описание |
 | ------------------------ | ----------- |
 | `None` (по умолчанию)         | без аутентификации; |
-| `Individual`             | Хранение пользователей в приложении с помощью ASP.NET Core Identity |
+| `Individual`             | Пользователи, сохраненные в приложении с помощью ASP.NET Core Identity |
 | `IndividualB2C`          | Пользователи, сохраненные в [Azure AD B2C](xref:security/authentication/azure-ad-b2c). |
 | `SingleOrg`              | Корпоративная аутентификация для отдельного клиента |
 | `MultiOrg`               | Корпоративная аутентификация для нескольких клиентов |
@@ -81,7 +82,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 1. На шаге **Настройка нового приложения Blazor Server** выберите **Индивидуальная проверка подлинности (в приложении)** из раскрывающегося списка **Проверка подлинности**.
 
-1. Приложение будет создано для отдельных пользователей, хранимых в приложении с помощью ASP.NET Core Identity.
+1. Приложение будет создано для отдельных пользователей, сохраненных в приложении с помощью ASP.NET Core Identity.
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli/)
 
@@ -96,7 +97,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 | Механизм аутентификации | Описание |
 | ------------------------ | ----------- |
 | `None` (по умолчанию)         | без аутентификации; |
-| `Individual`             | Хранение пользователей в приложении с помощью ASP.NET Core Identity |
+| `Individual`             | Пользователи, сохраненные в приложении с помощью ASP.NET Core Identity |
 | `IndividualB2C`          | Пользователи, сохраненные в [Azure AD B2C](xref:security/authentication/azure-ad-b2c). |
 | `SingleOrg`              | Корпоративная аутентификация для отдельного клиента |
 | `MultiOrg`               | Корпоративная аутентификация для нескольких клиентов |
