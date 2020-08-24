@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 7f5d2835d93631ac73b3da0c3dc26d87ef64c57d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f1a5af60f8dce83d9622ed9d2c6bcb4b8fc22b73
+ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634765"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88712497"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Миграция с ASP.NET на ASP.NET Core
 
@@ -203,6 +203,12 @@ services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"
     ├── ...
     └── web.config
 ```
+
+## <a name="bind-and-input-formatters"></a>[BIND] и форматировщики входных данных
+
+В [предыдущих версиях ASP.NET](/aspnet/mvc/overview/getting-started/introduction/examining-the-edit-methods-and-edit-view) использовался атрибут `[Bind]` для защиты от атак чрезмерной передачи данных. [Форматировщики входных данных](xref:mvc/models/model-binding#input-formatters) работают по-разному в ASP.NET Core. Атрибут `[Bind]` больше не предназначен для предотвращения чрезмерной передачи данных при использовании с форматировщиками входных данных для анализа JSON или XML. Эти атрибуты влияют на привязку модели, когда источником данных являются данные формы, опубликованные с типом содержимого `x-www-form-urlencoded`.
+
+Для приложений, которые передают данные JSON в контроллеры и используют форматировщики входных данных JSON для анализа данных, рекомендуется заменить атрибут `[Bind]` моделью представления, которая соответствует свойствам, определенным атрибутом `[Bind]`.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
