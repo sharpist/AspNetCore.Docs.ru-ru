@@ -4,8 +4,9 @@ author: rick-anderson
 description: Узнайте, как создать веб-API с помощью ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 2/25/2020
+ms.date: 08/13/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: ad6eac246e5bc7039158981bbe96036389512e4f
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ce0dfdf1ce88b55790d33918a2d20bc19a09b288
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019239"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626900"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Учебник. Создание веб-API с помощью ASP.NET Core
 
@@ -116,7 +117,7 @@ ms.locfileid: "88019239"
 
   ![Выбор шаблона API macOS](first-web-api-mac/_static/api_template.png)
 
-* В диалоговом окне **Настройка нового веб-API ASP.NET Core** в качестве **целевой платформы** выберите последнюю версию .NET Core 3.x. Выберите **Далее**.
+* В диалоговом окне **Настройка нового веб-API ASP.NET Core** в качестве **целевой платформы** выберите последнюю версию .NET Core 3.x. Выберите **Далее**.
 
 * Введите *TodoApi* в поле **Имя проекта** и выберите команду **Создать**.
 
@@ -293,7 +294,8 @@ ms.locfileid: "88019239"
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
+dotnet tool update -g Dotnet-aspnet-codegenerator
+dotnet-aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
 Предыдущие команды:
@@ -324,6 +326,8 @@ dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m 
 
 Предыдущий код является методом HTTP POST, обозначенным атрибутом [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute). Этот метод получает значение элемента списка дел из текста HTTP-запроса.
 
+Дополнительные сведения см. в разделе [Маршрутизация атрибутов с помощью атрибутов Http[Verb]](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
+
 Метод <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*>:
 
 * В случае успеха возвращает код состояния HTTP 201. HTTP 201 представляет собой стандартный ответ для метода HTTP POST, создающий ресурс на сервере.
@@ -348,6 +352,7 @@ dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m 
 
 * Создайте новый запрос.
 * Установите HTTP-метод `POST`.
+* Задайте для URI значение `https://localhost:<port>/api/TodoItems`. Например, `https://localhost:5001/api/TodoItems`.
 * Откройте вкладку **Тело**.
 * Установите переключатель **без обработки**.
 * Задайте тип **JSON (приложение/json)** .
@@ -364,15 +369,15 @@ dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m 
 
   ![Postman с запросом Create](first-web-api/_static/3/create.png)
 
-### <a name="test-the-location-header-uri"></a>Тестирование URI заголовка расположения
+### <a name="test-the-location-header-uri-with-postman"></a>Тестирование URI заголовка расположения с помощью Postman
 
 * Перейдите на вкладку **Заголовки** в области **Ответ**.
 * Скопируйте значение заголовка **Расположение**:
 
   ![Вкладка "Заголовки" в консоли Postman](first-web-api/_static/3/create.png)
 
-* Укажите метод GET.
-* Вставьте URI (например, `https://localhost:5001/api/TodoItems/1`).
+* Установите HTTP-метод `GET`.
+* Задайте для URI значение `https://localhost:<port>/api/TodoItems/1`. Например, `https://localhost:5001/api/TodoItems/1`.
 * Нажмите кнопку **Отправить**.
 
 ## <a name="examine-the-get-methods"></a>Знакомство с методами GET
@@ -403,7 +408,7 @@ dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m 
 
 * Создайте новый запрос.
 * Укажите метод HTTP **GET**.
-* Укажите URL-адрес запроса `https://localhost:<port>/api/TodoItems`. Например, `https://localhost:5001/api/TodoItems`.
+* Задайте для URI запроса значение `https://localhost:<port>/api/TodoItems`. Например, `https://localhost:5001/api/TodoItems`.
 * Выберите режим **Представление с двумя областями** в Postman.
 * Нажмите кнопку **Отправить**.
 
@@ -594,7 +599,7 @@ DTO можно использовать для следующего:
 
 * В версии Visual Studio для Mac, предшествующей 8.6, последовательно выберите **.NET Core** > **Приложение** > **API** > **Далее**. В версии 8.6 или более поздней последовательно выберите **Интернет и консоль** > **Приложение** > **API** > **Далее**.
   
-* В диалоговом окне **Настройка нового веб-API ASP.NET Core** в качестве **целевой платформы** выберите последнюю версию .NET Core 2.x. Выберите **Далее**.
+* В диалоговом окне **Настройка нового веб-API ASP.NET Core** в качестве **целевой платформы** выберите последнюю версию .NET Core 2.x. Выберите **Далее**.
 
 * Введите *TodoApi* в поле **Имя проекта** и выберите команду **Создать**.
 
@@ -804,7 +809,7 @@ DTO можно использовать для следующего:
 
 * Создайте новый запрос.
   * Укажите метод HTTP **GET**.
-  * Укажите URL-адрес запроса `https://localhost:<port>/api/todo`. Например, `https://localhost:5001/api/todo`.
+  * Задайте для URI запроса значение `https://localhost:<port>/api/todo`. Например, `https://localhost:5001/api/todo`.
 * Выберите режим **Представление с двумя областями** в Postman.
 * Нажмите кнопку **Отправить**.
 
@@ -830,6 +835,7 @@ DTO можно использовать для следующего:
 
 * Выполните построение проекта.
 * В Postman укажите метод HTTP `POST`.
+* Задайте для URI значение `https://localhost:<port>/api/TodoItem`. Например, `https://localhost:5001/api/TodoItem`.
 * Откройте вкладку **Тело**.
 * Установите переключатель **без обработки**.
 * Задайте тип **JSON (приложение/json)** .
@@ -856,7 +862,7 @@ DTO можно использовать для следующего:
   ![Вкладка "Заголовки" в консоли Postman](first-web-api/_static/pmc2.png)
 
 * Укажите метод GET.
-* Вставьте URI (например, `https://localhost:5001/api/Todo/2`).
+* Задайте для URI значение  `https://localhost:<port>/api/TodoItems/2`. Например:  `https://localhost:5001/api/TodoItems/2`.
 * Нажмите кнопку **Отправить**.
 
 ## <a name="add-a-puttodoitem-method"></a>Добавление метода PutTodoItem

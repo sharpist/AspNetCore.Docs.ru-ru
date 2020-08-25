@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 6/23/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -14,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: 32f794d498533e846343831d2360e98939105fb1
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 24fda96dbe48945d172eb36e8a91af31f168ff7f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88016684"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627667"
 ---
 # <a name="static-files-in-aspnet-core"></a>Статические файлы в ASP.NET Core
 
@@ -103,6 +104,19 @@ ms.locfileid: "88016684"
 ## <a name="static-file-authorization"></a>Авторизация статических файлов
 
 ПО промежуточного слоя для статических файлов не предоставляет возможности авторизации. Все обслуживаемые им файлы, включая расположенные в `wwwroot`, находятся в открытом доступе. Для обслуживания файлов с авторизацией:
+
+* Сохраните файлы за пределами каталога `wwwroot` в любом каталоге, к которому ПО промежуточного слоя для статических файлов имеет доступ по умолчанию.
+* Вызовите `UseStaticFiles` после `UseAuthorization` и укажите путь.
+
+  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet2)]
+  
+  Предыдущий подход требует, чтобы пользователи прошли проверку подлинности.
+
+  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet1&highlight=20-99)]
+
+   [!INCLUDE[](~/includes/requireAuth.md)]
+
+Альтернативный подход к обработке файлов на основе авторизации
 
 * Сохраните файлы за пределами каталога `wwwroot` в любом каталоге, к которому имеет доступ ПО промежуточного слоя для статических файлов.
 * Обслуживайте их через метод действия, к которому применима авторизация, и получите объект <xref:Microsoft.AspNetCore.Mvc.FileResult>:
@@ -445,6 +459,8 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupFileExtensionContentTypeProvider.cs?name=snippet_ConfigureMethod&highlight=3-12,19)]
 
 См. раздел [Типы содержимого MIME](https://www.iana.org/assignments/media-types/media-types.xhtml).
+
+Сведения об использовании настраиваемых <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> и настройке других <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> в приложениях Blazor Server см. в разделе <xref:blazor/fundamentals/additional-scenarios#static-files>.
 
 ## <a name="non-standard-content-types"></a>Нестандартные типы содержимого
 

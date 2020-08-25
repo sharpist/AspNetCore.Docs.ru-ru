@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/error-handling
-ms.openlocfilehash: 2e6aabda449a24496916c6ea9fcbd38062b54c04
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a1f40bdcdd4f2472aa86b311bfd9302e6aa8adc0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017458"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635103"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Обработка ошибок в ASP.NET Core
 
@@ -34,7 +35,7 @@ ms.locfileid: "88017458"
 
 ## <a name="developer-exception-page"></a>Страница со сведениями об исключении для разработчика
 
-*Страница исключений для разработчика* содержит подробные сведения об исключениях запросов. Эта страница доступна в пакете [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) из [метапакета Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app). Добавьте код в метод `Startup.Configure`, чтобы включить страницу во время выполнения приложения в [среде](xref:fundamentals/environments) разработки:
+*Страница исключений для разработчика* содержит подробные сведения об исключениях запросов. Страница становится доступной для сборки `Microsoft.AspNetCore.Diagnostics`, которая находится в [общей платформе `Microsoft.AspNetCore.App`](xref:fundamentals/metapackage-app). Добавьте код в метод `Startup.Configure`, чтобы включить страницу во время выполнения приложения в [среде](xref:fundamentals/environments) разработки:
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=1-4)]
 

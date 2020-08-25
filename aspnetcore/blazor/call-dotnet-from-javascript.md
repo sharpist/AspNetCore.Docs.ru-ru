@@ -5,8 +5,9 @@ description: Узнайте, как вызывать методы .NET из фу
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/07/2020
+ms.date: 08/12/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: 5a0731b45424ffd8560bb3b0d9123c686ae9e247
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 3df0fafe85d6decac3be41d4e25a4db51d8d72d8
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88012570"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627056"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-no-locblazor"></a>Вызов методов .NET из функций JavaScript в ASP.NET Core Blazor
 
@@ -233,17 +234,22 @@ Hello, Blazor!
 * Используйте функцию `invokeMethod` или `invokeMethodAsync`, чтобы вызвать статический метод для компонента.
 * Статический метод компонента создает программу-оболочку вызова метода экземпляра в виде вызванного <xref:System.Action>.
 
+> [!NOTE]
+> Для приложений Blazor Server, в которых несколько пользователей могут одновременно использовать один и тот же компонент, используйте вспомогательный класс для вызова методов экземпляра.
+>
+> Дополнительные сведения см. в разделе [Вспомогательный класс для метода экземпляра компонента](#component-instance-method-helper-class).
+
 В JavaScript на стороне клиента:
 
 ```javascript
 function updateMessageCallerJS() {
-  DotNet.invokeMethod('{APP ASSEMBLY}', 'UpdateMessageCaller');
+  DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'UpdateMessageCaller');
 }
 ```
 
 Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `BlazorSample`).
 
-`Pages/JSInteropComponent.razor`.
+`Pages/JSInteropComponent.razor`:
 
 ```razor
 @page "/JSInteropComponent"
@@ -279,7 +285,70 @@ function updateMessageCallerJS() {
 }
 ```
 
-При наличии нескольких компонентов, каждый из которых содержит методы экземпляра, используйте вспомогательный класс для вызова методов экземпляра (как <xref:System.Action>) для каждого компонента.
+Для передачи аргументов в метод экземпляра выполните следующие действия.
+
+* Добавьте параметры в вызов метода JS. В приведенном ниже примере в метод передается имя. При необходимости в список можно добавить дополнительные параметры.
+
+  ```javascript
+  function updateMessageCallerJS(name) {
+    DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'UpdateMessageCaller', name);
+  }
+  ```
+  
+  Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `BlazorSample`).
+
+* Укажите правильные типы для параметров <xref:System.Action>. Укажите список параметров для методов C#. Вызовите <xref:System.Action> (`UpdateMessage`) с параметрами (`action.Invoke(name)`).
+
+  `Pages/JSInteropComponent.razor`:
+
+  ```razor
+  @page "/JSInteropComponent"
+
+  <p>
+      Message: @message
+  </p>
+
+  <p>
+      <button onclick="updateMessageCallerJS('Sarah Jane')">
+          Call JS Method
+      </button>
+  </p>
+
+  @code {
+      private static Action<string> action;
+      private string message = "Select the button.";
+
+      protected override void OnInitialized()
+      {
+          action = UpdateMessage;
+      }
+
+      private void UpdateMessage(string name)
+      {
+          message = $"{name}, UpdateMessage Called!";
+          StateHasChanged();
+      }
+
+      [JSInvokable]
+      public static void UpdateMessageCaller(string name)
+      {
+          action.Invoke(name);
+      }
+  }
+  ```
+
+  Вывод `message` при нажатии кнопки **Call JS Method**:
+
+  ```
+  Sarah Jane, UpdateMessage Called!
+  ```
+
+## <a name="component-instance-method-helper-class"></a>Вспомогательный класс для метода экземпляра компонента
+
+Вспомогательный класс используется для вызова метода экземпляра в качестве <xref:System.Action>. Вспомогательные классы полезны в следующих случаях.
+
+* На одной странице отображается несколько компонентов одного типа.
+* Используется приложение Blazor Server, в котором несколько пользователей могут одновременно использовать один компонент.
 
 В следующем примере:
 
@@ -287,7 +356,7 @@ function updateMessageCallerJS() {
 * Каждый компонент `ListItem` состоит из сообщения и кнопки.
 * При выборе кнопки компонента `ListItem` метод `UpdateMessage` `ListItem`изменяет текст элемента списка и скрывает кнопку.
 
-`MessageUpdateInvokeHelper.cs`.
+`MessageUpdateInvokeHelper.cs`:
 
 ```csharp
 using System;
@@ -321,7 +390,7 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 }
 ```
 
-`Shared/ListItem.razor`.
+`Shared/ListItem.razor`:
 
 ```razor
 @inject IJSRuntime JsRuntime
@@ -356,7 +425,7 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 }
 ```
 
-`Pages/JSInteropExample.razor`.
+`Pages/JSInteropExample.razor`:
 
 ```razor
 @page "/JSInteropExample"

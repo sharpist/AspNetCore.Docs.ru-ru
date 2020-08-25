@@ -5,8 +5,9 @@ description: Узнайте, как использовать сценарии п
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 08/18/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 3e719261315ed3a17833da7751d801d79a11ee6c
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 4690c279c24ef23806a6e72aece5f7cd821752bc
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014482"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628330"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>Формы и проверка ASP.NET Core Blazor
 
-Авторы: [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и [Люк Лэтем (Luke Latham)](https://github.com/guardrex)
+Авторы: [Дэниел Рот](https://github.com/danroth27) (Daniel Roth), [Реми Бургарель](https://remibou.github.io/) (Rémi Bourgarel) и [Люк Лэтем](https://github.com/guardrex) (Luke Latham)
 
 Формы и проверка поддерживаются в Blazor с помощью [заметок к данным](xref:mvc/models/validation).
 
@@ -60,7 +61,7 @@ public class ExampleModel
 
     private void HandleValidSubmit()
     {
-        Console.WriteLine("OnValidSubmit");
+        ...
     }
 }
 ```
@@ -71,7 +72,7 @@ public class ExampleModel
 * Элемент `@bind-Value` компонента <xref:Microsoft.AspNetCore.Components.Forms.InputText> привязывает:
   * Свойство модели (`exampleModel.Name`) к свойству `Value` компонента <xref:Microsoft.AspNetCore.Components.Forms.InputText>. См. сведения о привязке свойств здесь: <xref:blazor/components/data-binding#parent-to-child-binding-with-component-parameters>.
   * Делегат события изменения к свойству `ValueChanged` компонента <xref:Microsoft.AspNetCore.Components.Forms.InputText>.
-* Компонент <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> привязывает поддержку проверки с помощью заметок к данным.
+* [Компонент проверяющего элемента управления](#validator-components) <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> привязывает поддержку проверки с помощью заметок к данным.
 * Компонент <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> обобщает сообщения проверки.
 * `HandleValidSubmit` активируется, когда форма успешно отправляется (проходит проверку).
 
@@ -189,23 +190,31 @@ public class Starship
 </EditForm>
 
 @code {
-    private Starship starship = new Starship();
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
 
     private void HandleValidSubmit()
     {
-        Console.WriteLine("OnValidSubmit");
+        ...
     }
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.Forms.EditForm> создает <xref:Microsoft.AspNetCore.Components.Forms.EditContext> в виде [каскадного значения](xref:blazor/components/cascading-values-and-parameters), которое отслеживает метаданные процесса редактирования, включая измененные поля и текущие сообщения проверки. <xref:Microsoft.AspNetCore.Components.Forms.EditForm> также предоставляет удобные события для допустимых и недопустимых отправок (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>, <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit>). Кроме того, можно использовать <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit>, чтобы активировать проверку полей значений с помощью пользовательского кода проверки.
+<xref:Microsoft.AspNetCore.Components.Forms.EditForm> создает <xref:Microsoft.AspNetCore.Components.Forms.EditContext> в виде [каскадного значения](xref:blazor/components/cascading-values-and-parameters), которое отслеживает метаданные процесса редактирования, включая измененные поля и текущие сообщения проверки.
+
+Назначайте <xref:Microsoft.AspNetCore.Components.Forms.EditForm> **либо** <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, **либо** <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>. Назначение обоих значений не поддерживается, и возникает **ошибка времени выполнения**.
+
+<xref:Microsoft.AspNetCore.Components.Forms.EditForm> предоставляет удобные события для допустимой и недопустимой отправки формы.
+
+* <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>
+* <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit>
+
+Используйте <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit>, чтобы применять пользовательский код для активации проверки и выполнения проверки значений полей.
 
 В следующем примере:
 
 * Метод `HandleSubmit` выполняется при нажатии кнопки **`Submit`** .
-* Форма проверяется с помощью <xref:Microsoft.AspNetCore.Components.Forms.EditContext> формы.
-* Затем форма проверяется с помощью передачи <xref:Microsoft.AspNetCore.Components.Forms.EditContext> методу `ServerValidate`, который вызывает конечную точку веб-API на сервере (*не отображается*).
-* Дополнительный код выполняется в зависимости от результатов проверки на стороне клиента и сервера путем проверки `isValid`.
+* Форма проверяется путем вызова <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType>.
+* В зависимости от результата проверки выполняется дополнительный код. Поместите бизнес-логику в метод, назначенный <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit>.
 
 ```razor
 <EditForm EditContext="@editContext" OnSubmit="HandleSubmit">
@@ -216,7 +225,7 @@ public class Starship
 </EditForm>
 
 @code {
-    private Starship starship = new Starship();
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
     private EditContext editContext;
 
     protected override void OnInitialized()
@@ -226,8 +235,7 @@ public class Starship
 
     private async Task HandleSubmit()
     {
-        var isValid = editContext.Validate() && 
-            await ServerValidate(editContext);
+        var isValid = editContext.Validate();
 
         if (isValid)
         {
@@ -238,15 +246,428 @@ public class Starship
             ...
         }
     }
+}
+```
 
-    private async Task<bool> ServerValidate(EditContext editContext)
+> [!NOTE]
+> API платформы для очистки сообщений проверки непосредственно от <xref:Microsoft.AspNetCore.Components.Forms.EditContext> не существует. Поэтому в целом не рекомендуется добавлять сообщения проверки в новый класс <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> в форме. Для управления сообщениями проверки используйте [компонент проверяющего элемента управления](#validator-components) с [кодом проверки бизнес-логики](#business-logic-validation), как описано в этой статье.
+
+## <a name="validator-components"></a>Компоненты проверяющего элемента управления
+
+Компоненты проверяющего элемента управления поддерживают проверку форм путем управления <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> для класса <xref:Microsoft.AspNetCore.Components.Forms.EditContext> формы.
+
+Платформа Blazor предоставляет компонент <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> для прикрепления к формам поддержки проверки на основе [атрибутов проверки (заметок к данным)](xref:mvc/models/validation#validation-attributes). Создайте настраиваемые компоненты проверяющего элемента управления, чтобы обрабатывать сообщения проверки для различных форм на одной странице или одной и той же формы на разных этапах обработки, например проверку на стороне клиента с последующей проверкой на стороне сервера. Показанный в этом разделе пример компонента проверяющего элемента управления (`CustomValidator`) используется в следующих разделах этой статьи.
+
+* [Проверка бизнес-логики](#business-logic-validation)
+* [Серверная проверка](#server-validation)
+
+> [!NOTE]
+> Во многих случаях вместо настраиваемых компонентов проверяющего элемента управления можно использовать настраиваемые атрибуты проверки заметок к данным. Настраиваемые атрибуты, применяемые к модели формы, активируются с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. При использовании вместе с проверкой на стороне сервера любые настраиваемые атрибуты, применяемые к модели, должны быть исполняемыми на сервере. Дополнительные сведения см. в разделе <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
+
+Создайте компонент проверяющего элемента управления из класса <xref:Microsoft.AspNetCore.Components.ComponentBase>.
+
+* Класс <xref:Microsoft.AspNetCore.Components.Forms.EditContext> формы является [каскадным параметром](xref:blazor/components/cascading-values-and-parameters) компонента.
+* При инициализации компонента проверяющего элемента управления создается новый класс <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> для поддержки текущего списка ошибок формы.
+* Хранилище сообщений получает ошибки, когда код разработчика в компоненте формы вызывает метод `DisplayErrors`. Ошибки передаются в метод `DisplayErrors` в классе [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary`2). В словаре ключом является имя поля формы, в котором есть одна ошибка или несколько. Значением является список ошибок.
+* Сообщения очищаются, когда происходит любое из следующих событий.
+  * В <xref:Microsoft.AspNetCore.Components.Forms.EditContext> запрашивается проверка при возникновении события <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested>. Все ошибки очищаются.
+  * В форме изменяется поле при возникновении события <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged>. Очищаются только ошибки для этого поля.
+  * В коде разработчика вызывается метод `ClearErrors`. Все ошибки очищаются.
+
+```csharp
+using System;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+
+namespace BlazorSample.Client
+{
+    public class CustomValidator : ComponentBase
     {
-        var serverChecksValid = ...
+        private ValidationMessageStore messageStore;
 
-        return serverChecksValid;
+        [CascadingParameter]
+        private EditContext CurrentEditContext { get; set; }
+
+        protected override void OnInitialized()
+        {
+            if (CurrentEditContext == null)
+            {
+                throw new InvalidOperationException(
+                    $"{nameof(CustomValidator)} requires a cascading " +
+                    $"parameter of type {nameof(EditContext)}. " +
+                    $"For example, you can use {nameof(CustomValidator)} " +
+                    $"inside an {nameof(EditForm)}.");
+            }
+
+            messageStore = new ValidationMessageStore(CurrentEditContext);
+
+            CurrentEditContext.OnValidationRequested += (s, e) => 
+                messageStore.Clear();
+            CurrentEditContext.OnFieldChanged += (s, e) => 
+                messageStore.Clear(e.FieldIdentifier);
+        }
+
+        public void DisplayErrors(Dictionary<string, List<string>> errors)
+        {
+            foreach (var err in errors)
+            {
+                messageStore.Add(CurrentEditContext.Field(err.Key), err.Value);
+            }
+
+            CurrentEditContext.NotifyValidationStateChanged();
+        }
+
+        public void ClearErrors()
+        {
+            messageStore.Clear();
+            CurrentEditContext.NotifyValidationStateChanged();
+        }
     }
 }
 ```
+
+## <a name="business-logic-validation"></a>Проверка бизнес-логики
+
+Проверку бизнес-логики можно выполнить с помощью [компонента проверяющего элемента управления](#validator-components), который получает ошибки формы в словаре.
+
+В следующем примере:
+
+* Используется компонент `CustomValidator` из раздела [Компоненты проверяющего элемента управления](#validator-components) этой статьи.
+* Проверка требует значение для описания доставки (`Description`), если пользователь выбирает классификацию доставки `Defense` (`Classification`).
+
+Когда сообщения проверки задаются в компоненте, они добавляются в класс <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> проверяющего элемента управления и отображаются в классе <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
+
+```csharp
+@page "/FormsValidation"
+
+<h1>Starfleet Starship Database</h1>
+
+<h2>New Ship Entry Form</h2>
+
+<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <CustomValidator @ref="customValidator" />
+    <ValidationSummary />
+
+    ...
+
+</EditForm>
+
+@code {
+    private CustomValidator customValidator;
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
+
+    private void HandleValidSubmit()
+    {
+        customValidator.ClearErrors();
+
+        var errors = new Dictionary<string, List<string>>();
+
+        if (starship.Classification == "Defense" &&
+                string.IsNullOrEmpty(starship.Description))
+        {
+            errors.Add(nameof(starship.Description),
+                new List<string>() { "For a 'Defense' ship classification, " +
+                "'Description' is required." });
+        }
+
+        if (errors.Count() > 0)
+        {
+            customValidator.DisplayErrors(errors);
+        }
+        else
+        {
+            // Process the form
+        }
+    }
+}
+```
+
+> [!NOTE]
+> Вместо [компонентов проверки](#validator-components) можно использовать атрибуты проверки заметок к данным. Настраиваемые атрибуты, применяемые к модели формы, активируются с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. При использовании вместе с проверкой на стороне сервера атрибуты должны быть исполняемыми на сервере. Дополнительные сведения см. в разделе <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
+
+## <a name="server-validation"></a>Серверная проверка
+
+Серверную проверку можно выполнить с помощью [компонента проверяющего элемента управления](#validator-components) сервера.
+
+* Обрабатывайте проверку на стороне клиента в форме с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>.
+* Когда форма проходит проверку на стороне клиента (вызывается <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>), отправляйте <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> в API внутреннего сервера для обработки формы.
+* Обрабатывайте проверку модели на сервере.
+* Серверный API включает как встроенную платформенную проверку заметок к данным, так и настраиваемую логику проверки, предоставленную разработчиком. Если проверка на сервере пройдена, выполните обработку формы и отправьте обратно код состояния успеха (*200 — OK*). Если проверка завершается неудачно, возвращайте код состояния сбоя (*400 — неверный запрос*) и ошибки проверки полей.
+* Отключите форму в случае успешного выполнения или отобразите ошибки.
+
+Основу приведенного ниже примера составляют следующие компоненты.
+
+* Размещенное решение Blazor, созданное [шаблоном проекта Blazor Hosted](xref:blazor/hosting-models#blazor-webassembly). Этот пример можно использовать с любыми защищенными размещенными решениями Blazor, описанными в [документации по безопасности и Identity](xref:blazor/security/webassembly/index#implementation-guidance).
+* Пример формы *Starfleet Starship Database* из предыдущего раздела [Встроенные компоненты форм](#built-in-forms-components).
+* Компонент <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> платформы Blazor.
+* Компонент `CustomValidator`, показанный в разделе [Компоненты проверяющего элемента управления](#validator-components).
+
+В следующем примере серверный API проверяет, предоставлено ли значение для описания доставки (`Description`), если пользователь выбирает классификацию (`Classification`) доставки `Defense`.
+
+Поместите модель `Starship` в проект `Shared` решения, чтобы эту модель могли использовать клиентские и серверные приложения. Так как для модели требуются заметки к данным, добавьте ссылку на пакет для [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) в файл проекта `Shared`.
+
+```xml
+<ItemGroup>
+  <PackageReference Include="System.ComponentModel.Annotations" Version="{VERSION}" />
+</ItemGroup>
+```
+
+Чтобы определить последнюю версию пакета, не являющуюся предварительной, просмотрите **журнал версий** пакета по адресу [NuGet.org](https://www.nuget.org/packages/System.ComponentModel.Annotations).
+
+В проекте серверного API добавьте контроллер для обработки запросов проверки Starship (`Controllers/StarshipValidation.cs`) и возвращайте сообщения о неудачной проверке.
+
+```csharp
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using BlazorSample.Shared;
+
+namespace BlazorSample.Server.Controllers
+{
+    [Authorize]
+    [ApiController]
+    [Route("[controller]")]
+    public class StarshipValidationController : ControllerBase
+    {
+        private readonly ILogger<StarshipValidationController> logger;
+
+        public StarshipValidationController(
+            ILogger<StarshipValidationController> logger)
+        {
+            this.logger = logger;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(Starship starship)
+        {
+            try
+            {
+                if (starship.Classification == "Defense" && 
+                    string.IsNullOrEmpty(starship.Description))
+                {
+                    ModelState.AddModelError(nameof(starship.Description),
+                        "For a 'Defense' ship " +
+                        "classification, 'Description' is required.");
+                }
+                else
+                {
+                    // Process the form asynchronously
+                    // async ...
+
+                    return Ok(ModelState);
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError("Validation Error: {MESSAGE}", ex.Message);
+            }
+
+            return BadRequest(ModelState);
+        }
+    }
+}
+```
+
+Если на сервере возникает ошибка проверки привязки модели, то [`ApiController`](xref:web-api/index) (<xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>) обычно возвращает [ответ о неверном запросе по умолчанию](xref:web-api/index#default-badrequest-response) с <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. Этот ответ, помимо ошибок проверки, содержит дополнительные данные, как показано в следующем примере, когда все поля формы *Starfleet Starship Database* не отправляются и форма не проходит проверку.
+
+```json
+{
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "errors": {
+    "Identifier": ["The Identifier field is required."],
+    "Classification": ["The Classification field is required."],
+    "IsValidatedDesign": ["This form disallows unapproved ships."],
+    "MaximumAccommodation": ["Accommodation invalid (1-100000)."]
+  }
+}
+```
+
+Если серверный API возвращает предыдущий ответ JSON по умолчанию, клиент может выполнить анализ ответа, чтобы получить дочерние элементы узла `errors`. Однако анализировать этот файл неудобно. Для выполнения анализа JSON необходимо добавить дополнительный код после вызова <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>, чтобы создавать [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary`2) ошибок при обработке ошибок проверки форм. В идеале серверный API должен возвращать только ошибки проверки.
+
+```json
+{
+  "Identifier": ["The Identifier field is required."],
+  "Classification": ["The Classification field is required."],
+  "IsValidatedDesign": ["This form disallows unapproved ships."],
+  "MaximumAccommodation": ["Accommodation invalid (1-100000)."]
+}
+```
+
+Чтобы изменить ответ серверного API так, чтобы он возвращал только ошибки проверки, измените делегат, который вызывается для действий, помеченных <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> в `Startup.ConfigureServices`. Для конечной точки API (`/StarshipValidation`) возвращайте <xref:Microsoft.AspNetCore.Mvc.BadRequestObjectResult> с помощью <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary>. Для других конечных точек API сохраните поведение по умолчанию, возвращая результат объекта с помощью нового <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
+
+```csharp
+using Microsoft.AspNetCore.Mvc;
+
+...
+
+services.AddControllersWithViews()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            if (context.HttpContext.Request.Path == "/StarshipValidation")
+            {
+                return new BadRequestObjectResult(context.ModelState);
+            }
+            else
+            {
+                return new BadRequestObjectResult(
+                    new ValidationProblemDetails(context.ModelState));
+            }
+        };
+    });
+```
+
+Дополнительные сведения см. в разделе <xref:web-api/handle-errors#validation-failure-error-response>.
+
+В клиентском проекте добавьте компонент проверяющего элемента управления, показанный в разделе [Компоненты проверяющего элемента управления](#validator-components).
+
+В клиентском проекте форма *Starfleet Starship Database* обновляется для отображения ошибок серверной проверки с помощью компонента `CustomValidator`. Когда серверный API возвращает сообщения проверки, они добавляются в <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> компонента `CustomValidator`. Эти ошибки можно вывести из <xref:Microsoft.AspNetCore.Components.Forms.EditContext> формы с помощью <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> формы.
+
+```csharp
+@page "/FormValidation"
+@using System.Net
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.Extensions.Logging
+@using BlazorSample.Shared
+@attribute [Authorize]
+@inject HttpClient Http
+@inject ILogger<FormValidation> Logger
+
+<h1>Starfleet Starship Database</h1>
+
+<h2>New Ship Entry Form</h2>
+
+<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <CustomValidator @ref="customValidator" />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Identifier:
+            <InputText @bind-Value="starship.Identifier" disabled="@disabled" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Description (optional):
+            <InputTextArea @bind-Value="starship.Description" 
+                disabled="@disabled" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Primary Classification:
+            <InputSelect @bind-Value="starship.Classification" disabled="@disabled">
+                <option value="">Select classification ...</option>
+                <option value="Exploration">Exploration</option>
+                <option value="Diplomacy">Diplomacy</option>
+                <option value="Defense">Defense</option>
+            </InputSelect>
+        </label>
+    </p>
+    <p>
+        <label>
+            Maximum Accommodation:
+            <InputNumber @bind-Value="starship.MaximumAccommodation" 
+                disabled="@disabled" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Engineering Approval:
+            <InputCheckbox @bind-Value="starship.IsValidatedDesign" 
+                disabled="@disabled" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Production Date:
+            <InputDate @bind-Value="starship.ProductionDate" disabled="@disabled" />
+        </label>
+    </p>
+
+    <button type="submit" disabled="@disabled">Submit</button>
+
+    <p style="@messageStyles">
+        @message
+    </p>
+
+    <p>
+        <a href="http://www.startrek.com/">Star Trek</a>,
+        &copy;1966-2019 CBS Studios, Inc. and
+        <a href="https://www.paramount.com">Paramount Pictures</a>
+    </p>
+</EditForm>
+
+@code {
+    private bool disabled;
+    private string message;
+    private string messageStyles = "visibility:hidden";
+    private CustomValidator customValidator;
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
+
+    private async Task HandleValidSubmit(EditContext editContext)
+    {
+        customValidator.ClearErrors();
+
+        try
+        {
+            var response = await Http.PostAsJsonAsync<Starship>(
+                "StarshipValidation", (Starship)editContext.Model);
+
+            var errors = await response.Content
+                .ReadFromJsonAsync<Dictionary<string, List<string>>>();
+
+            if (response.StatusCode == HttpStatusCode.BadRequest && 
+                errors.Count() > 0)
+            {
+                customValidator.DisplayErrors(errors);
+            }
+            else if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException(
+                    $"Validation failed. Status Code: {response.StatusCode}");
+            }
+            else
+            {
+                disabled = true;
+                messageStyles = "color:green";
+                message = "The form has been processed.";
+            }
+        }
+        catch (AccessTokenNotAvailableException ex)
+        {
+            ex.Redirect();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("Form processing error: {MESSAGE}", ex.Message);
+            disabled = true;
+            messageStyles = "color:red";
+            message = "There was an error processing the form.";
+        }
+    }
+}
+```
+
+> [!NOTE]
+> Вместо [компонентов проверки](#validator-components) можно использовать атрибуты проверки заметок к данным. Настраиваемые атрибуты, применяемые к модели формы, активируются с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. При использовании вместе с проверкой на стороне сервера атрибуты должны быть исполняемыми на сервере. Дополнительные сведения см. в разделе <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
+
+> [!NOTE]
+> Метод проверки на стороне сервера в этом разделе подходит для любого из примеров размещенного решения Blazor WebAssembly в этом наборе документации.
+>
+> * [Azure Active Directory (AAD)](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
+> * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
+> * [Сервер Identity](xref:blazor/security/webassembly/hosted-with-identity-server)
 
 ## <a name="inputtext-based-on-the-input-event"></a>InputText на основе события ввода
 
@@ -254,7 +675,7 @@ public class Starship
 
 В следующем примере компонент `CustomInputText` наследует компонент `InputText` платформы задает привязку события (<xref:Microsoft.AspNetCore.Components.EventCallbackFactoryBinderExtensions.CreateBinder%2A>) к событию `oninput`.
 
-`Shared/CustomInputText.razor`.
+`Shared/CustomInputText.razor`:
 
 ```razor
 @inherits InputText
@@ -270,7 +691,7 @@ public class Starship
 
 Компонент `CustomInputText` можно использовать везде, где используется <xref:Microsoft.AspNetCore.Components.Forms.InputText>:
 
-`Pages/TestForm.razor`.
+`Pages/TestForm.razor`:
 
 ```razor
 @page  "/testform"
@@ -294,7 +715,7 @@ public class Starship
 
     private void HandleValidSubmit()
     {
-        Console.WriteLine("OnValidSubmit");
+        ...
     }
 
     public class ExampleModel
@@ -383,7 +804,7 @@ public class Starship
 
     private void HandleValidSubmit()
     {
-        Console.WriteLine("valid");
+        ...
     }
 
     public class Model
@@ -485,6 +906,9 @@ private class CustomValidator : ValidationAttribute
 
 [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) — это пакет, который выполняет проверку пропусков заполнения с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. В настоящее время пакет является *экспериментальным*.
 
+> [!NOTE]
+> Пакет [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) имеет последнюю версию *RC* на [Nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). В настоящее время продолжайте использовать *экспериментальный* пакет RC. В будущем выпуске сборка пакета может быть перемещена в платформу или в среду выполнения. Дополнительные обновления смотрите в [репозитории объявлений GitHub](https://github.com/aspnet/Announcements), [репозитории GitHub dotnet/aspnetcore](https://github.com/dotnet/aspnetcore) или в этом разделе.
+
 ### <a name="compareproperty-attribute"></a>Атрибут [CompareProperty]
 
 <xref:System.ComponentModel.DataAnnotations.CompareAttribute> плохо работает с компонентом <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>, так как он не связывает результат проверки с конкретным элементом. Это может привести к несогласованному поведению при проверке на уровне полей и при проверке всей модели при отправке. *Экспериментальный* пакет [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) содержит дополнительный атрибут проверки `ComparePropertyAttribute`, который обходит эти ограничения. В приложении Blazor объект `[CompareProperty]` является непосредственной заменой атрибута [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute).
@@ -504,7 +928,7 @@ Blazor обеспечивает поддержку проверки входны
 
 Делайте заметки для свойств модели с помощью `[ValidateComplexType]`. В следующих классах модели класс `ShipDescription` содержит дополнительные заметки к данным для проверки, когда модель привязана к форме:
 
-`Starship.cs`.
+`Starship.cs`:
 
 ```csharp
 using System;
@@ -521,7 +945,7 @@ public class Starship
 }
 ```
 
-`ShipDescription.cs`.
+`ShipDescription.cs`:
 
 ```csharp
 using System;
@@ -545,7 +969,10 @@ public class ShipDescription
 
 * Используйте <xref:Microsoft.AspNetCore.Components.Forms.EditContext> формы, чтобы назначить модель при инициализации компонента.
 * Проверьте форму в обратном вызове <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> контекста, чтобы включить и отключить кнопку "Отправить".
-* Отсоедините обработчик событий в методе `Dispose`. Для получения дополнительной информации см. <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+* Отсоедините обработчик событий в методе `Dispose`. Дополнительные сведения см. в разделе <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+
+> [!NOTE]
+> При использовании <xref:Microsoft.AspNetCore.Components.Forms.EditContext> не следует также назначать <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> классу <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
 ```razor
 @implements IDisposable
@@ -560,7 +987,7 @@ public class ShipDescription
 </EditForm>
 
 @code {
-    private Starship starship = new Starship();
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
     private bool formInvalid = true;
     private EditContext editContext;
 
@@ -619,7 +1046,7 @@ public class ShipDescription
 
 > InvalidOperationException: EditForm requires a Model parameter, or an EditContext parameter, but not both (Для EditForm требуется указать параметр Model или EditContext, но не оба).
 
-Убедитесь, что <xref:Microsoft.AspNetCore.Components.Forms.EditForm> назначен параметр <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> или <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
+Убедитесь, что <xref:Microsoft.AspNetCore.Components.Forms.EditForm> имеет <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> **или** <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Не используйте оба варианта для одной и той же формы.
 
 При назначении <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> форме убедитесь, что создается экземпляр типа модели, как показано в следующем примере:
 

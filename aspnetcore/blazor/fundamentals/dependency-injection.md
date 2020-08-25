@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/dependency-injection
-ms.openlocfilehash: c8209b9374b448562c173f9f879e75a5da5f2301
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 3dc15f5efcc8f48a809bf9132588fb38732a7b35
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014416"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628291"
 ---
 # <a name="aspnet-core-no-locblazor-dependency-injection"></a>Внедрение зависимостей Blazor в ASP.NET Core
 
@@ -289,94 +290,9 @@ public class DataAccess : IDataAccess
   </ul>
   ```
 
-## <a name="use-of-entity-framework-dbcontext-from-di"></a>Использование DbContext Entity Framework из системы внедрения зависимостей
+## <a name="use-of-an-entity-framework-core-ef-core-dbcontext-from-di"></a>Использование DbContext Entity Framework Core (EF Core) из внедрения зависимостей
 
-Одним из распространенных типов службы, извлекаемым из системы внедрения зависимостей в веб-приложениях, являются объекты <xref:Microsoft.EntityFrameworkCore.DbContext> Entity Framework (EF). Регистрация служб EF с помощью <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> добавляет <xref:Microsoft.EntityFrameworkCore.DbContext> в качестве службы с заданной областью по умолчанию. Регистрация в качестве службы с заданной областью может привести к проблемам в приложениях Blazor, так как это приводит к длительному существованию экземпляров <xref:Microsoft.EntityFrameworkCore.DbContext> и их совместному использованию в приложении. <xref:Microsoft.EntityFrameworkCore.DbContext> не является потокобезопасным и не должен использоваться параллельно.
-
-В зависимости от приложения использование <xref:Microsoft.AspNetCore.Components.OwningComponentBase> для ограничения области <xref:Microsoft.EntityFrameworkCore.DbContext> одним компонентом *может* решить эту проблему. Если компонент не использует <xref:Microsoft.EntityFrameworkCore.DbContext> параллельно, достаточно создать производный компонент от <xref:Microsoft.AspNetCore.Components.OwningComponentBase> и извлечь <xref:Microsoft.EntityFrameworkCore.DbContext> из <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices>, так как это гарантирует следующее:
-
-* Отдельные компоненты не используют <xref:Microsoft.EntityFrameworkCore.DbContext> совместно.
-* <xref:Microsoft.EntityFrameworkCore.DbContext> существует столько же, сколько и зависящий от него компонент.
-
-Если отдельный компонент может использовать <xref:Microsoft.EntityFrameworkCore.DbContext> параллельно (например, каждый раз, когда пользователь нажимает кнопку), даже использование <xref:Microsoft.AspNetCore.Components.OwningComponentBase> не позволяет избежать проблем с параллельными операциями EF. В этом случае используйте разные <xref:Microsoft.EntityFrameworkCore.DbContext> для каждой логической операции EF. Вы можете использовать один из следующих подходов:
-
-* Создайте <xref:Microsoft.EntityFrameworkCore.DbContext> напрямую с использованием <xref:Microsoft.EntityFrameworkCore.DbContextOptions%601> в качестве аргумента, который можно извлечь из системы внедрения зависимостей и является потокобезопасным.
-
-    ```razor
-    @page "/example"
-    @inject DbContextOptions<AppDbContext> DbContextOptions
-
-    <ul>
-        @foreach (var item in data)
-        {
-            <li>@item</li>
-        }
-    </ul>
-
-    <button @onclick="LoadData">Load Data</button>
-
-    @code {
-        private List<string> data = new List<string>();
-
-        private async Task LoadData()
-        {
-            data = await GetAsync();
-            StateHasChanged();
-        }
-
-        public async Task<List<string>> GetAsync()
-        {
-            using (var context = new AppDbContext(DbContextOptions))
-            {
-                return await context.Products.Select(p => p.Name).ToListAsync();
-            }
-        }
-    }
-    ```
-
-* Зарегистрируйте <xref:Microsoft.EntityFrameworkCore.DbContext> в контейнере службы с временным существованием:
-  * При регистрации контекста используйте <xref:Microsoft.OData.ServiceLifetime.Transient?displayProperty=nameWithType>. Метод расширения <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> принимает два необязательных параметра типа <xref:Microsoft.Extensions.DependencyInjection.ServiceLifetime>. Чтобы использовать этот подход, только параметр `contextLifetime` должен иметь значение <xref:Microsoft.OData.ServiceLifetime.Transient?displayProperty=nameWithType>. `optionsLifetime` может иметь значение по умолчанию <xref:Microsoft.OData.ServiceLifetime.Scoped?displayProperty=nameWithType>.
-
-    ```csharp
-    services.AddDbContext<AppDbContext>(options =>
-         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),
-         ServiceLifetime.Transient);
-    ```  
-
-  * Временный объект <xref:Microsoft.EntityFrameworkCore.DbContext> можно внедрить как обычный (с помощью [`@inject`](xref:mvc/views/razor#inject)) в компоненты, которые не будут выполнять несколько операций EF параллельно. Те компоненты, которые могут выполнять несколько операций EF одновременно, могут запрашивать отдельные объекты <xref:Microsoft.EntityFrameworkCore.DbContext> для каждой параллельной операции с помощью <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A>.
-
-    ```razor
-    @page "/example"
-    @using Microsoft.Extensions.DependencyInjection
-    @inject IServiceProvider ServiceProvider
-
-    <ul>
-        @foreach (var item in data)
-        {
-            <li>@item</li>
-        }
-    </ul>
-
-    <button @onclick="LoadData">Load Data</button>
-
-    @code {
-        private List<string> data = new List<string>();
-
-        private async Task LoadData()
-        {
-            data = await GetAsync();
-            StateHasChanged();
-        }
-
-        public async Task<List<string>> GetAsync()
-        {
-            using (var context = ServiceProvider.GetRequiredService<AppDbContext>())
-            {
-                return await context.Products.Select(p => p.Name).ToListAsync();
-            }
-        }
-    }
-    ```
+Дополнительные сведения см. в разделе <xref:blazor/blazor-server-ef-core>.
 
 ## <a name="detect-transient-disposables"></a>Обнаружение высвобождаемых временных служб
 

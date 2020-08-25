@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/21/2020
 no-loc:
+- ASP.NET Core Identity
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 0d8b349d0381e2902907ea841e07bbc96db5b847
-ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
+ms.openlocfilehash: ececea3c7cc2f0cdf39bbfd29feec061f9bc6764
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88130673"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628798"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Внедрение зависимостей в ASP.NET Core
 
@@ -608,6 +609,7 @@ Service1.Dispose
 * <xref:mvc/controllers/dependency-injection>
 * <xref:security/authorization/dependencyinjection>
 * <xref:blazor/fundamentals/dependency-injection>
+* [Шаблоны конференций NDC для разработки приложений с внедрением зависимостей](https://www.youtube.com/watch?v=x-C-CNBVTaY)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/extensibility>
 * [Четыре способа удаления интерфейсов IDisposable в ASP.NET Core](https://andrewlock.net/four-ways-to-dispose-idisposables-in-asp-net-core/)
@@ -740,7 +742,7 @@ public void Configure(IApplicationBuilder app, IOptions<MyOptions> options)
 }
 ```
 
-Для получения дополнительной информации см. <xref:fundamentals/startup>.
+Дополнительные сведения см. в разделе <xref:fundamentals/startup>.
 
 ## <a name="framework-provided-services"></a>Платформенные службы
 
@@ -802,7 +804,7 @@ public void ConfigureServices(IServiceCollection services)
 В приложениях, обрабатывающих запросы, службы с заданной областью удаляются в конце запроса.
 
 > [!WARNING]
-> При использовании такой службы в ПО промежуточного слоя внедрите ее в метод `Invoke` или `InvokeAsync`. Не внедряйте службу с помощью [внедрения через конструктор](xref:mvc/controllers/dependency-injection#constructor-injection), поскольку в таком случае служба будет вести себя как одноэлементный объект. Для получения дополнительной информации см. <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
+> При использовании такой службы в ПО промежуточного слоя внедрите ее в метод `Invoke` или `InvokeAsync`. Не внедряйте службу с помощью [внедрения через конструктор](xref:mvc/controllers/dependency-injection#constructor-injection), поскольку в таком случае служба будет вести себя как одноэлементный объект. Дополнительные сведения см. в разделе <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
 
 ### <a name="singleton"></a>Одноэлементный
 
@@ -817,7 +819,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Методы расширения регистрации службы предлагают перегрузки, которые полезны в определенных сценариях.
 
-| Метод | Автоматически<br>object<br>удаление | Несколько<br>реализации | Передача аргументов |
+| Метод | Автоматически<br>объект<br>удаление | Несколько<br>реализации | Передача аргументов |
 | ------ | :-----------------------------: | :-------------------------: | :-------: |
 | `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Пример<br>`services.AddSingleton<IMyDep, MyDep>();` | Да | Да | Нет |
 | `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Да | Да | Да |
@@ -999,7 +1001,7 @@ public class Program
 
 Службы с заданной областью удаляются создавшим их контейнером. Если служба с заданной областью создается в корневом контейнере, время существования службы повышается до уровня одноэлементного объекта, поскольку она удаляется только корневым контейнером при завершении работы приложения или сервера. Проверка областей службы перехватывает эти ситуации при вызове `BuildServiceProvider`.
 
-Для получения дополнительной информации см. <xref:fundamentals/host/web-host#scope-validation>.   
+Дополнительные сведения см. в разделе <xref:fundamentals/host/web-host#scope-validation>.   
 
 ## <a name="request-services"></a>Службы запросов
 

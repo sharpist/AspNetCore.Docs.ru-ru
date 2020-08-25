@@ -5,8 +5,9 @@ description: Сведения о функциях привязки данных 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 08/19/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: 6f5ad6b8f225834c92d6e33d8bcf608b56678e67
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 3b41aedcbd0d2c22b20d8fa3a21b8af97d1fbb2c
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014676"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628564"
 ---
 # <a name="aspnet-core-no-locblazor-data-binding"></a>Привязка к данным в ASP.NET Core Blazor
 
@@ -30,19 +31,27 @@ ms.locfileid: "88014676"
 
 Компоненты Razor реализуют функции привязки данных для поля, свойства или значения выражения Razor с помощью атрибута HTML-элемента [`@bind`](xref:mvc/views/razor#bind).
 
-В следующем примере показана привязка свойства `CurrentValue` к значению текстового поля:
+В следующем примере выполняется привязка элемента `<input>` к полю `currentValue`, а элемента `<input>` — к свойству `CurrentValue`.
 
 ```razor
-<input @bind="CurrentValue" />
+<p>
+    <input @bind="currentValue" /> Current value: @currentValue
+</p>
+
+<p>
+    <input @bind="CurrentValue" /> Current value: @CurrentValue
+</p>
 
 @code {
+    private string currentValue;
+
     private string CurrentValue { get; set; }
 }
 ```
 
-Когда текстовое поле теряет фокус, значение свойства обновляется.
+Когда один из элементов теряет фокус, привязанное поле или свойство обновляется.
 
-Текстовое поле обновляется в пользовательском интерфейсе только при отрисовке компонента, а не в ответ на изменение значения свойства. Так как компоненты отрисовываются после выполнения кода обработчика событий, изменения свойств *обычно* отражаются в пользовательском интерфейсе сразу после активации обработчика событий.
+Текстовое поле обновляется в пользовательском интерфейсе только при отрисовке компонента, а не в ответ на изменение значения поля или свойства. Так как компоненты отрисовываются после выполнения кода обработчика событий, изменения полей и свойств *обычно* отражаются в пользовательском интерфейсе сразу после активации обработчика событий.
 
 Использование [`@bind`](xref:mvc/views/razor#bind) со свойством `CurrentValue` (`<input @bind="CurrentValue" />`) фактически эквивалентно следующему:
 
@@ -50,13 +59,13 @@ ms.locfileid: "88014676"
 <input value="@CurrentValue"
     @onchange="@((ChangeEventArgs __e) => CurrentValue = 
         __e.Value.ToString())" />
-        
+
 @code {
     private string CurrentValue { get; set; }
 }
 ```
 
-Когда компонент отрисовывается, значение `value` элемента input берется из свойства `CurrentValue`. Когда пользователь вводит данные в текстовом поле, а затем переводит фокус, инициируется событие `onchange`, и свойству `CurrentValue` присваивается измененное значение. На практике код обычно сложнее, так как [`@bind`](xref:mvc/views/razor#bind) применяется в случаях, когда выполняется преобразование типов. Как правило, [`@bind`](xref:mvc/views/razor#bind) связывает текущее значение выражения с атрибутом `value` и обрабатывает изменения с помощью зарегистрированного обработчика.
+Когда компонент отрисовывается, значение `value` элемента input берется из свойства `CurrentValue`. Когда пользователь вводит данные в текстовом поле, а затем переводит фокус, инициируется событие `onchange`, и свойству `CurrentValue` присваивается измененное значение. На практике код обычно сложнее этого, так как [`@bind`](xref:mvc/views/razor#bind) применяется в случаях, когда выполняется преобразование типов. Как правило, [`@bind`](xref:mvc/views/razor#bind) связывает текущее значение выражения с атрибутом `value` и обрабатывает изменения с помощью зарегистрированного обработчика.
 
 Чтобы привязать свойство или поле к другим событиям, можно использовать атрибут `@bind:event` с параметром `event`. В следующем примере свойство `CurrentValue` привязывается к событию `oninput`:
 
@@ -70,11 +79,15 @@ ms.locfileid: "88014676"
 
 В отличие от события `onchange`, которое происходит, когда элемент теряет фокус, событие `oninput` происходит при изменении значения в текстовом поле.
 
-Для привязки атрибутов элементов, отличных от `value`, используйте `@bind-{ATTRIBUTE}` с синтаксисом `@bind-{ATTRIBUTE}:event`. В следующем примере стиль абзаца обновляется при изменении значения `paragraphStyle`:
+Для привязки атрибутов элементов, отличных от `value`, используйте `@bind-{ATTRIBUTE}` с синтаксисом `@bind-{ATTRIBUTE}:event`. В следующем примере:
+
+* При загрузке компонента у абзаца **красный** стиль (`style="color:red"`).
+* Пользователь изменяет значение текстового поля, чтобы отразить другой цветовой стиль CSS, и изменяет фокус элемента страницы. Например, пользователь изменяет значение текстового поля на `color:blue` и нажимает клавишу <kbd>TAB</kbd> на клавиатуре.
+* При изменении фокуса элемента:
+  * Значение `paragraphStyle` присваивается из значения элемента `<input>`.
+  * Стиль абзаца изменяется для отражения нового стиля в `paragraphStyle`. Если стиль изменяется на `color:blue`, цвет текста становится **синим**.
 
 ```razor
-@page "/binding-example"
-
 <p>
     <input type="text" @bind="paragraphStyle" />
 </p>
@@ -102,13 +115,13 @@ ms.locfileid: "88014676"
 * Элемент `<input>` привязан к типу `int` с начальным значением `123`:
 
   ```razor
-  <input @bind="MyProperty" />
+  <input @bind="inputValue" />
 
   @code {
-      [Parameter]
-      public int MyProperty { get; set; } = 123;
+      private int inputValue = 123;
   }
   ```
+
 * Пользователь изменяет значение элемента на `123.45` на странице и переводит фокус.
 
 В приведенном выше сценарии восстанавливается значение элемента `123`. Когда значение `123.45` отклоняется и вместо него используется исходное значение `123`, пользователь понимает, что его значение не было принято.
@@ -117,7 +130,7 @@ ms.locfileid: "88014676"
 
 * Не используйте событие `oninput`. Используйте вместо этого событие `onchange` по умолчанию (укажите просто `@bind="{PROPERTY OR FIELD}"`). В этом случае недопустимое значение не будет меняться на исходное, пока элемент не потеряет фокус.
 * Выполните привязку к типу, допускающему значение NULL, например `int?` или `string`, и предоставьте пользовательскую логику для обработки недопустимых значений.
-* Используйте [компонент для проверки формы](xref:blazor/forms-validation), например <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> или <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Компоненты для проверки форм имеют встроенную поддержку управления недопустимыми входными данными. Компоненты для проверки форм:
+* Используйте [компонент для проверки формы](xref:blazor/forms-validation), например <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> или <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Компоненты для проверки форм имеют встроенную поддержку управления недопустимыми входными данными. Дополнительные сведения см. в разделе <xref:blazor/forms-validation>. Компоненты для проверки форм:
   * позволяют пользователю вводить недопустимые данные и получать ошибки проверки в соответствующем контексте <xref:Microsoft.AspNetCore.Components.Forms.EditContext>;
   * выводят ошибки проверки в пользовательском интерфейсе, не мешая пользователю вводить дополнительные данные в веб-форме.
 
@@ -126,11 +139,10 @@ ms.locfileid: "88014676"
 Привязка данных работает со строками формата <xref:System.DateTime> с использованием `@bind:format`. Другие выражения форматирования, например денежные или числовые форматы, в настоящее время недоступны.
 
 ```razor
-<input @bind="StartDate" @bind:format="yyyy-MM-dd" />
+<input @bind="startDate" @bind:format="yyyy-MM-dd" />
 
 @code {
-    [Parameter]
-    public DateTime StartDate { get; set; } = new DateTime(2020, 1, 1);
+    private DateTime startDate = new DateTime(2020, 1, 1);
 }
 ```
 
@@ -146,103 +158,86 @@ ms.locfileid: "88014676"
 Указывать формат для типа поля `date` не рекомендуется, так как в Blazor есть встроенная поддержка форматирования дат. Если все же для типа поля `date` указывается формат, для правильной работы привязки используйте только формат даты `yyyy-MM-dd`.
 
 ```razor
-<input type="date" @bind="StartDate" @bind:format="yyyy-MM-dd">
+<input type="date" @bind="startDate" @bind:format="yyyy-MM-dd">
 ```
 
 ## <a name="parent-to-child-binding-with-component-parameters"></a>Привязка родительского компонента к дочернему с помощью параметров компонентов
 
-Привязка поддерживает параметры компонентов: с помощью атрибута `@bind-{PROPERTY}` можно выполнить привязку значения свойства от родительского компонента к дочернему. Привязка дочернего компонента к родительскому рассматривается в разделе [Привязка дочернего компонента к родительскому посредством цепочки привязки](#child-to-parent-binding-with-chained-bind).
+Параметры компонента позволяют привязывать свойства и поля родительского компонента с помощью синтаксиса `@bind-{PROPERTY OR FIELD}`.
 
-Следующий дочерний компонент (`ChildComponent`) имеет параметр компонента `Year` и обратный вызов `YearChanged`:
+Следующий компонент `Child` (`Child.razor`) имеет параметр компонента `Year` и обратный вызов `YearChanged`.
 
 ```razor
-<h2>Child Component</h2>
-
-<p>Year: @Year</p>
+<div class="card bg-light mt-3" style="width:18rem ">
+    <div class="card-body">
+        <h3 class="card-title">Child Component</h3>
+        <p class="card-text">Child <code>Year</code>: @Year</p>
+        <p>
+            <button @onclick="UpdateYear">
+                Update Child <code>Year</code> and call 
+                <code>YearChanged.InvokeAsync(Year)</code>
+            </button>
+        </p>
+    </div>
+</div>
 
 @code {
+    private Random r = new Random();
+
     [Parameter]
     public int Year { get; set; }
 
     [Parameter]
     public EventCallback<int> YearChanged { get; set; }
-}
-```
 
-Имя <xref:Microsoft.AspNetCore.Components.EventCallback%601> должно включать имя параметра компонента, за которым следует суффикс `Changed` (`{PARAMETER NAME}Changed`) (`YearChanged` в предыдущем примере). Дополнительные сведения о методе <xref:Microsoft.AspNetCore.Components.EventCallback%601> см. в разделе <xref:blazor/components/event-handling#eventcallback>.
-
-Рассмотрим представленный ниже родительский компонент.
-
-* Он использует `ChildComponent`, а его параметр `ParentYear` привязывается к параметру `Year` дочернего компонента.
-* Событие `onclick` используется для активации метода `ChangeTheYear`. Дополнительные сведения см. в разделе <xref:blazor/components/event-handling>.
-
-```razor
-@page "/ParentComponent"
-
-<h1>Parent Component</h1>
-
-<p>ParentYear: @ParentYear</p>
-
-<ChildComponent @bind-Year="ParentYear" />
-
-<button class="btn btn-primary" @onclick="ChangeTheYear">
-    Change Year to 1986
-</button>
-
-@code {
-    [Parameter]
-    public int ParentYear { get; set; } = 1978;
-
-    private void ChangeTheYear()
+    private Task UpdateYear()
     {
-        ParentYear = 1986;
+        Year = r.Next(10050, 12021);
+
+        return YearChanged.InvokeAsync(Year);
     }
 }
 ```
 
-При загрузке `ParentComponent` создается следующая разметка:
+Имя обратного вызова (<xref:Microsoft.AspNetCore.Components.EventCallback%601>) должно включать имя параметра компонента, за которым следует суффикс "`Changed`" (`{PARAMETER NAME}Changed`). В предыдущем примере обратный вызов назывался `YearChanged`. Дополнительные сведения о методе <xref:Microsoft.AspNetCore.Components.EventCallback%601> см. в разделе <xref:blazor/components/event-handling#eventcallback>.
 
-```html
+В следующем компоненте `Parent` (`Parent.razor`) поле `year` привязано к параметру `Year` дочернего компонента.
+
+```razor
+@page "/Parent"
+
 <h1>Parent Component</h1>
 
-<p>ParentYear: 1978</p>
+<p>Parent <code>year</code>: @year</p>
 
-<h2>Child Component</h2>
+<button @onclick="UpdateYear">Update Parent <code>year</code></button>
 
-<p>Year: 1978</p>
-```
+<Child @bind-Year="year" />
 
-Если значение свойства `ParentYear` изменяется в результате нажатия кнопки в `ParentComponent`, свойство `Year` компонента `ChildComponent` обновляется. Новое значение свойства `Year` отображается в пользовательском интерфейсе при повторной отрисовке компонента `ParentComponent`:
+@code {
+    private Random r = new Random();
+    private int year = 1978;
 
-```html
-<h1>Parent Component</h1>
-
-<p>ParentYear: 1986</p>
-
-<h2>Child Component</h2>
-
-<p>Year: 1986</p>
+    private void UpdateYear()
+    {
+        year = r.Next(1950, 2021);
+    }
+}
 ```
 
 Параметр `Year` допускает привязку, так как он имеет сопутствующее событие `YearChanged`, соответствующее типу параметра `Year`.
 
-В соответствии с соглашением `<ChildComponent @bind-Year="ParentYear" />` фактически эквивалентно следующему коду:
+По соглашению свойство можно привязать к соответствующему обработчику событий, включив атрибут `@bind-{PROPERTY}:event`, назначенный обработчику. Запись `<Child @bind-Year="year" />` эквивалентна следующей.
 
 ```razor
-<ChildComponent @bind-Year="ParentYear" @bind-Year:event="YearChanged" />
-```
-
-Как правило, свойство можно привязать к соответствующему обработчику событий, включив атрибут `@bind-{PROPRETY}:event`. Например, свойство `MyProp` можно привязать к `MyEventHandler` с помощью следующих двух атрибутов:
-
-```razor
-<MyComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />
+<Child @bind-Year="year" @bind-Year:event="YearChanged" />
 ```
 
 ## <a name="child-to-parent-binding-with-chained-bind"></a>Привязка дочернего компонента к родительскому посредством цепочки привязки
 
 Распространенным сценарием является связывание привязанного к данным параметра к элементу страницы в выходных данных компонента. Такой сценарий называется *цепочкой привязки*, так как одновременно имеется несколько уровней привязки.
 
-Цепочку привязки нельзя реализовать с помощью синтаксиса [`@bind`](xref:mvc/views/razor#bind) в элементе страницы. Обработчик событий и значение необходимо указывать отдельно. Но родительский компонент может использовать синтаксис [`@bind`](xref:mvc/views/razor#bind) с параметром компонента.
+Цепочку привязки нельзя реализовать с помощью синтаксиса [`@bind`](xref:mvc/views/razor#bind) в дочернем компоненте. Обработчик событий и значение необходимо указывать отдельно. Но родительский компонент может использовать синтаксис [`@bind`](xref:mvc/views/razor#bind) с параметром дочернего компонента.
 
 Следующий компонент `PasswordField` (`PasswordField.razor`):
 
@@ -253,7 +248,7 @@ ms.locfileid: "88014676"
 ```razor
 <h1>Child Component</h1>
 
-Password: 
+Password:
 
 <input @oninput="OnPasswordChanged" 
        required 
@@ -290,7 +285,7 @@ Password:
 Компонент `PasswordField` используется в другом компоненте:
 
 ```razor
-@page "/ParentComponent"
+@page "/Parent"
 
 <h1>Parent Component</h1>
 
