@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/membership-to-core-identity
-ms.openlocfilehash: de9d1e5f6f595269595212fbab60d12dfd5a29e4
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a9ec02381b156a6599042d8e504a476036246302
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633647"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865559"
 ---
 # <a name="migrate-from-aspnet-membership-authentication-to-aspnet-core-20-no-locidentity"></a>Миграция с аутентификации членства ASP.NET на ASP.NET Core 2,0 Identity
 
@@ -35,7 +35,7 @@ ms.locfileid: "88633647"
 
 ## <a name="review-of-membership-schema"></a>Проверка схемы членства
 
-До ASP.NET 2,0 разработчики создавали задачу создания всего процесса проверки подлинности и авторизации для своих приложений. Благодаря ASP.NET 2,0 было введено членство, предоставляя стандартное решение для обработки безопасности в приложениях ASP.NET. Теперь разработчикам удалось выполнить загрузку схемы в SQL Server базу данных с помощью команды [aspnet_regsql.exe](https://msdn.microsoft.com/library/ms229862.aspx) . После выполнения этой команды в базе данных были созданы следующие таблицы.
+До ASP.NET 2,0 разработчики создавали задачу создания всего процесса проверки подлинности и авторизации для своих приложений. Благодаря ASP.NET 2,0 было введено членство, предоставляя стандартное решение для обработки безопасности в приложениях ASP.NET. Теперь разработчикам удалось выполнить загрузку схемы в SQL Server базу данных с помощью <https://docs.microsoft.com/previous-versions/ms229862(v=vs.140)> команды. После выполнения этой команды в базе данных были созданы следующие таблицы.
 
   ![Таблицы членства](identity/_static/membership-tables.png)
 

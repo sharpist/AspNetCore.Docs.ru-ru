@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/advanced/custom-model-binding
-ms.openlocfilehash: 4bef68fffbdfaff023f71964a27ead56863e4192
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 7e1151b04f39f637f889e690bccc97eb6f0c91ea
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630436"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865573"
 ---
 # <a name="custom-model-binding-in-aspnet-core"></a>Пользовательская привязка модели в ASP.NET Core
 
@@ -127,7 +127,7 @@ public IModelBinder GetBinder(ModelBinderProviderContext context)
 
 [!code-csharp[](custom-model-binding/samples/3.x/CustomModelBindingSample/Startup.cs?name=snippet_ConfigureServices&highlight=5-8)]
 
-При оценке связывателей моделей коллекция поставщиков проверяется в определенном порядке. Используется первый поставщик, который возвращает связыватель. Добавление поставщика в конец коллекции может привести к вызову встроенного связывателя модели раньше, чем будет вызван ваш собственный настраиваемый связыватель. В этом примере настраиваемый поставщик добавляется в начало коллекции, чтобы использоваться для аргументов действия `Author`.
+При оценке связывателей моделей коллекция поставщиков проверяется в определенном порядке. Первый поставщик, возвращающий связыватель, который соответствует входной модели. Таким образом, Добавление поставщика в конец коллекции может привести к вызову встроенного связывателя модели до того, как пользовательский связыватель будет иметь шанс. В этом примере пользовательский поставщик добавляется в начало коллекции, чтобы гарантировать, что оно всегда используется для `Author` аргументов действия.
 
 ### <a name="polymorphic-model-binding"></a>Полиморфная привязка моделей
 

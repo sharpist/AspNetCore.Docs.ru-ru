@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 8be09171991964540cd41a1324fb87503591151f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 213807634a2a6990e9025de7871295cf97a81faf
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632178"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865593"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Миграция обработчиков и модулей HTTP в ASP.NET Core по промежуточного слоя
 
@@ -55,7 +55,7 @@ ms.locfileid: "88632178"
 
 **Порядок, в котором модули обрабатывают входящие запросы, определяется следующим образом.**
 
-1. [Жизненный цикл приложения](https://msdn.microsoft.com/library/ms227673.aspx)— это события серии, запускаемые ASP.NET: [beginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest)и т. д. Каждый модуль может создать обработчик для одного или нескольких событий.
+1. <https://docs.microsoft.com/previous-versions/ms227673(v=vs.140)>, Представляющий собой события серии, запускаемые ASP.NET: [beginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest)и т. д. Каждый модуль может создать обработчик для одного или нескольких событий.
 
 2. Для того же события порядок, в котором они настроены в *Web.config*.
 
@@ -92,7 +92,7 @@ ms.locfileid: "88632178"
 
 **По промежуточного слоя и модули обрабатываются в другом порядке:**
 
-* Порядок по промежуточного слоя основан на порядке, в котором они вставляются в конвейер запросов, а порядок модулей в основном основан на событиях [жизненного цикла приложения](https://msdn.microsoft.com/library/ms227673.aspx) .
+* Порядок по промежуточного слоя основан на порядке, в котором они вставляются в конвейер запросов, а порядок модулей в основном основан на <https://docs.microsoft.com/previous-versions/ms227673(v=vs.140)> событиях
 
 * Порядок по промежуточного слоя для ответов является обратным по отношению к запросам, а порядок модулей одинаков для запросов и ответов
 

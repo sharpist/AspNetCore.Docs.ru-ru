@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 42a7231b529dd9f8ecbce4f8116111e1c96c830d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 345d20494111b808dac9678637de060169730a53
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633101"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865355"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>Вспомогательные функции тегов в ASP.NET Core
 
@@ -254,9 +254,9 @@ IntelliSense помогает написать всю строку.
 
 ## <a name="tag-helpers-compared-to-web-server-controls"></a>Сравнение вспомогательных функций тегов с серверными веб-элементами управления
 
-* Вспомогательным функциям тегов не принадлежит элемент, с которыми они связаны. Они просто участвуют в отрисовке элемента и содержимого. [Серверные веб-элементы управления](https://msdn.microsoft.com/library/7698y1f0.aspx) ASP.NET объявляются и вызываются на странице.
+* Вспомогательным функциям тегов не принадлежит элемент, с которыми они связаны. Они просто участвуют в отрисовке элемента и содержимого. ASP.NET <https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/7698y1f0(v=vs.85)> объявляются и вызываются на странице.
 
-* [Серверные веб-элементы управления](https://msdn.microsoft.com/library/zsyt68f1.aspx) имеют нестандартный жизненный цикл, что усложняет разработку и отладку.
+* <https://docs.microsoft.com/previous-versions/zsyt68f1(v=vs.140)> наличие нетривиальных жизненных циклов, которые могут усложнить разработку и отладку.
 
 * Серверные веб-элементы управления позволяют добавлять функционал в элементы DOM с помощью клиентского элемента управления. У вспомогательных функций тегов отсутствует DOM.
 

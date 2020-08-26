@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Electron
 uid: security/samesite
-ms.openlocfilehash: c95952face8763dc9f2dd12312cab1a1bc07528a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 3ba033b4165b19131d11311e5ae9d64e6afe48ca
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632347"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865434"
 ---
 # <a name="work-with-samesite-no-loccookies-in-aspnet-core"></a>Работа с SameSite cookie s в ASP.NET Core
 
@@ -73,11 +73,11 @@ SameSite — это стандартный черновик [IETF](https://ietf.
 
 ## <a name="net-core-support-for-the-samesite-attribute"></a>Поддержка .NET Core для атрибута sameSite
 
-.NET Core 2,2 поддерживает черновой стандарт 2019 для SameSite с момента выпуска обновлений в декабре 2019. Разработчики могут программно управлять значением атрибута sameSite с помощью `HttpCookie.SameSite` Свойства. Если задать `SameSite` для свойства строгое, нестрогое или пустое значение, то эти значения будут записаны в сети с помощью cookie . Задание равно (Самеситемоде) (-1) означает, что атрибут sameSite не должен включаться в сеть с cookie
+.NET Core 2,2 и более поздних версий поддерживают стандарт 2019 для SameSite с момента выпуска обновлений в декабре 2019. Разработчики могут программно управлять значением атрибута sameSite с помощью `HttpCookie.SameSite` Свойства. Если задать `SameSite` для свойства строгое, нестрогое или пустое значение, то эти значения будут записаны в сети с помощью cookie . Если задано значение `(SameSiteMode)(-1)` , то атрибут sameSite не должен включаться в сеть с cookie
 
 [!code-csharp[](samesite/snippets/Privacy.cshtml.cs?name=snippet)]
 
-.NET Core 3,0 поддерживает обновленные значения SameSite и добавляет дополнительное значение enum `SameSiteMode.Unspecified` в `SameSiteMode` перечисление.
+.NET Core 3,0 и более поздних версий поддерживают обновленные значения SameSite и добавляют `SameSiteMode.Unspecified` к `SameSiteMode` перечислению дополнительное значение enum.
 Это новое значение указывает, что sameSite не следует отправлять с помощью cookie .
 
 ::: moniker-end
@@ -100,7 +100,7 @@ SameSite — это стандартный черновик [IETF](https://ietf.
 
 Все компоненты ASP.NET Core, которые выдают cookie s, переопределяют предыдущие значения по умолчанию параметрами, подходящими для их сценариев. Переопределенные ранее значения по умолчанию не изменились.
 
-| Компонент | cookie | По умолчанию |
+| Компонент | cookie | Значение по умолчанию |
 | ------------- | ------------- |
 | <xref:Microsoft.AspNetCore.Http.CookieBuilder> | <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite> | `Unspecified` |
 | <xref:Microsoft.AspNetCore.Http.HttpContext.Session>  | [Сессионоптионс.Cookie](xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie) |`Lax` |
