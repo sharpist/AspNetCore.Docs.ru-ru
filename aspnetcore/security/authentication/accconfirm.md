@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 57607390e7d5e58df9f27437faecd57504ad64df
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d6ea37ceb83ffbaa94187e0c541c79428594e4b4
+ms.sourcegitcommit: 2039e60eb7b482da8298f82dcd5eda27cf747f32
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635376"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88906453"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Подтверждение учетной записи и восстановление пароля в ASP.NET Core
 
@@ -70,7 +70,7 @@ dotnet run
 
 #### <a name="configure-sendgrid-user-secrets"></a>Настройка секретов пользователя SendGrid
 
-Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Пример:
+Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Например:
 
 ```dotnetcli
 dotnet user-secrets set SendGridUser RickAndMSFT
@@ -160,7 +160,13 @@ https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Ident
 * Введите адрес электронной почты, использованный для регистрации учетной записи.
 * Отправляется сообщение электронной почты со ссылкой для сброса пароля. Проверьте свой адрес электронной почты и щелкните ссылку, чтобы сбросить пароль. После успешного сброса пароля можно выполнить вход с помощью электронной почты и нового пароля.
 
-## <a name="change-email-and-activity-timeout"></a>Изменить время ожидания для электронной почты и активности
+<a name="resend"></a>
+
+## <a name="resend-email-confirmation"></a>Подтверждение повторной отправки электронной почты
+
+В ASP.NET Core 5,0 и более поздних версиях выберите ссылку повторно **Отправить подтверждение по электронной почте** на странице **входа** .
+
+### <a name="change-email-and-activity-timeout"></a>Изменить время ожидания для электронной почты и активности
 
 Время ожидания бездействия по умолчанию составляет 14 дней. Следующий код задает время ожидания простоя в 5 дней:
 
@@ -185,10 +191,6 @@ https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Ident
 Добавьте настраиваемый поставщик в контейнер службы:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/StartupEmail.cs?name=snippet1&highlight=10-16)]
-
-### <a name="resend-email-confirmation"></a>Подтверждение повторной отправки электронной почты
-
-Также см. [эту проблему в GitHub](https://github.com/dotnet/AspNetCore/issues/5410).
 
 <a name="debug"></a>
 
@@ -290,7 +292,7 @@ dotnet run
 
 #### <a name="configure-sendgrid-user-secrets"></a>Настройка секретов пользователя SendGrid
 
-Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Пример:
+Задайте `SendGridUser` и `SendGridKey` с помощью [средства Secret-Manager](xref:security/app-secrets). Например:
 
 ```console
 C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT
