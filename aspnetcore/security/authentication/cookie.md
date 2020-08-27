@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/cookie
-ms.openlocfilehash: 04d2f0d289e2c9ec13aeb880df47240bec19d3ec
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: 24ba49828db08fdd67723c81ac0c8d9981ab3404
+ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876767"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88945419"
 ---
 # <a name="use-no-loccookie-authentication-without-no-locaspnet-core-identity"></a>Использовать cookie проверку подлинности без ASP.NET Core Identity
 
@@ -117,7 +117,7 @@ CookieПараметр по промежуточного слоя политик
 
 Если `CookieAuthenticationDefaults.AuthenticationScheme` (или " Cookie s") не используется в качестве схемы (например, "Contoso Cookie "), укажите схему, используемую при настройке поставщика проверки подлинности. В противном случае используется схема по умолчанию.
 
-Сервер не управляет браузером клиентов. Если пользователь закрывает браузер или вкладку, сервер не может выйти из этого пользователя. Чтобы реализовать выход пользователя при закрытии браузера, необходимо определить его с помощью JavaScript. Выполните поиск по фразе "как обнаружить событие закрытия вкладки окна браузера?".
+Когда браузер закрывается, он автоматически удаляет сеансы на основе сеанса cookie (не постоянные cookie ), но cookie при закрытии отдельной вкладки никакие из них не удаляются. Сервер не уведомлен о событиях закрытия вкладки или браузера.
 
 ## <a name="react-to-back-end-changes"></a>Реагирование на изменения серверной части
 
