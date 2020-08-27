@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 6ee767ee76b622e15a1dc5a7fe2f3e05f03dabd0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 26e8239634c3edb99c7606ab2e250c69af4e746f
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628499"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865289"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
@@ -249,7 +249,7 @@ namespace BlazorSample
 
 Необязательные параметры не поддерживаются, поэтому в предыдущем примере применяются две директивы [`@page`][9]. Первая позволяет переходить к компоненту без параметра. Вторая директива [`@page`][9] принимает параметр маршрута `{text}` и присваивает значение свойству `Text`.
 
-Синтаксис параметра *catch-all* (`*`/`**`), который захватывает путь через границы нескольких папок, **не** поддерживается в компонентах Razor (`.razor`).
+Сведения об универсальных параметрах маршрута (`{*pageRoute}`), которые захватывают пути в нескольких папках, см. в разделе <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
 ### <a name="component-parameters"></a>Параметры компонентов
 
