@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/versioning
-ms.openlocfilehash: 079cca8a7d47897827c314b82136e9eb10b7a516
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 0d8c5d953c9d703788a1686bbc800248c46efa48
+ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633959"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88945406"
 ---
 # <a name="versioning-grpc-services"></a>Управление версиями gRPC Services
 
@@ -117,3 +117,7 @@ app.UseEndpoints(endpoints =>
 [!code-csharp[](versioning/sample/GreeterServiceV1.cs?highlight=10,19)]
 
 Службы и сообщения, созданные с разными именами пакетов, являются **различными типами .NET**. Для перемещения бизнес-логики в централизованное расположение требуется сопоставление сообщений с общими типами.
+
+## <a name="additional-resources"></a>Дополнительные ресурсы
+
+* <xref:grpc/protobuf>

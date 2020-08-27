@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: 254cae2b66773d7bb71aa6313fd08b6f739b7682
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d5be01c67f455a2706a654574ef9f5e273551e70
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634648"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865449"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Глобализация и локализация в ASP.NET Core
 
@@ -250,7 +250,7 @@ using Microsoft.Extensions.Localization;
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-Некоторые приложения используют строку запроса для указания [языка и региональных параметров самого приложения и пользовательского интерфейса](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx). Если в приложении для этого применяется файл cookie или заголовок Accept-Language, добавление строки запроса к URL-адресу может быть полезным в целях отладки и тестирования кода. По умолчанию поставщик `QueryStringRequestCultureProvider` регистрируется в качестве первого поставщика локализации в списке `RequestCultureProvider`. Вы передаете параметры строки запроса `culture` и `ui-culture`. В следующем примере в качестве языка и региональных параметров (язык и регион) задаются испанский язык и Мексика:
+Некоторые приложения используют строку запроса для указания <https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo?view=netcore-3.1>. Если в приложении для этого применяется файл cookie или заголовок Accept-Language, добавление строки запроса к URL-адресу может быть полезным в целях отладки и тестирования кода. По умолчанию поставщик `QueryStringRequestCultureProvider` регистрируется в качестве первого поставщика локализации в списке `RequestCultureProvider`. Вы передаете параметры строки запроса `culture` и `ui-culture`. В следующем примере в качестве языка и региональных параметров (язык и регион) задаются испанский язык и Мексика:
 
    `http://localhost:5000/?culture=es-MX&ui-culture=es-MX`
 
@@ -349,7 +349,7 @@ services.Configure<RequestLocalizationOptions>(options =>
 
 [Возможность локализации](/dotnet/standard/globalization-localization/localizability-review) — это определяемое на промежуточной стадии состояние готовности глобализованного приложения к локализации.
 
-Формат [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) для названия языка и региональных параметров имеет вид `<languagecode2>-<country/regioncode2>`, где `<languagecode2>` — это код языка, а `<country/regioncode2>` — код субкультуры. Примеры: `es-CL` для испанского языка (Чили), `en-US` для английского языка (США), `en-AU` для английского языка (Австралия). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) — это комбинация двухбуквенного кода культуры ISO 639 в нижнем регистре (он связан с языком) и двухбуквенного кода субкультуры ISO 3166 в верхнем регистре (он связан со страной или регионом). См. статью [Имя языка и региональных параметров](https://msdn.microsoft.com/library/ee825488(v=cs.20).aspx).
+Формат [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) для названия языка и региональных параметров имеет вид `<languagecode2>-<country/regioncode2>`, где `<languagecode2>` — это код языка, а `<country/regioncode2>` — код субкультуры. Примеры: `es-CL` для испанского языка (Чили), `en-US` для английского языка (США), `en-AU` для английского языка (Австралия). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) — это комбинация двухбуквенного кода культуры ISO 639 в нижнем регистре (он связан с языком) и двухбуквенного кода субкультуры ISO 3166 в верхнем регистре (он связан со страной или регионом). См. раздел <https://docs.microsoft.com/previous-versions/commerce-server/ee825488(v=cs.20)>.
 
 Вместо слова "интернационализация" (internationalization) часто используют аббревиатуру "I18N". В аббревиатуру включаются первая и последняя буквы слова, а также число букв между ними, то есть 18 — это число букв между первой ("I") и последней ("N") буквами. То же самое касается глобализации (Globalization — G11N) и локализации (Localization — L10N).
 
@@ -604,7 +604,7 @@ using Microsoft.Extensions.Localization;
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-Некоторые приложения используют строку запроса для указания [языка и региональных параметров самого приложения и пользовательского интерфейса](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx). Если в приложении для этого применяется файл cookie или заголовок Accept-Language, добавление строки запроса к URL-адресу может быть полезным в целях отладки и тестирования кода. По умолчанию поставщик `QueryStringRequestCultureProvider` регистрируется в качестве первого поставщика локализации в списке `RequestCultureProvider`. Вы передаете параметры строки запроса `culture` и `ui-culture`. В следующем примере в качестве языка и региональных параметров (язык и регион) задаются испанский язык и Мексика:
+Некоторые приложения используют строку запроса для указания <https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo?view=netcore-3.1>. Если в приложении для этого применяется файл cookie или заголовок Accept-Language, добавление строки запроса к URL-адресу может быть полезным в целях отладки и тестирования кода. По умолчанию поставщик `QueryStringRequestCultureProvider` регистрируется в качестве первого поставщика локализации в списке `RequestCultureProvider`. Вы передаете параметры строки запроса `culture` и `ui-culture`. В следующем примере в качестве языка и региональных параметров (язык и регион) задаются испанский язык и Мексика:
 
 ```
 http://localhost:5000/?culture=es-MX&ui-culture=es-MX
@@ -705,7 +705,7 @@ services.Configure<RequestLocalizationOptions>(options =>
 
 [Возможность локализации](/dotnet/standard/globalization-localization/localizability-review) — это определяемое на промежуточной стадии состояние готовности глобализованного приложения к локализации.
 
-Формат [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) для названия языка и региональных параметров имеет вид `<languagecode2>-<country/regioncode2>`, где `<languagecode2>` — это код языка, а `<country/regioncode2>` — код субкультуры. Примеры: `es-CL` для испанского языка (Чили), `en-US` для английского языка (США), `en-AU` для английского языка (Австралия). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) — это комбинация двухбуквенного кода культуры ISO 639 в нижнем регистре (он связан с языком) и двухбуквенного кода субкультуры ISO 3166 в верхнем регистре (он связан со страной или регионом). См. статью [Имя языка и региональных параметров](https://msdn.microsoft.com/library/ee825488(v=cs.20).aspx).
+Формат [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) для названия языка и региональных параметров имеет вид `<languagecode2>-<country/regioncode2>`, где `<languagecode2>` — это код языка, а `<country/regioncode2>` — код субкультуры. Примеры: `es-CL` для испанского языка (Чили), `en-US` для английского языка (США), `en-AU` для английского языка (Австралия). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) — это комбинация двухбуквенного кода культуры ISO 639 в нижнем регистре (он связан с языком) и двухбуквенного кода субкультуры ISO 3166 в верхнем регистре (он связан со страной или регионом). См. раздел <https://docs.microsoft.com/previous-versions/commerce-server/ee825488(v=cs.20)>.
 
 Вместо слова "интернационализация" (internationalization) часто используют аббревиатуру "I18N". В аббревиатуру включаются первая и последняя буквы слова, а также число букв между ними, то есть 18 — это число букв между первой ("I") и последней ("N") буквами. То же самое касается глобализации (Globalization — G11N) и локализации (Localization — L10N).
 
@@ -959,7 +959,7 @@ using Microsoft.Extensions.Localization;
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-Некоторые приложения используют строку запроса для указания [языка и региональных параметров самого приложения и пользовательского интерфейса](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx). Если в приложении для этого применяется файл cookie или заголовок Accept-Language, добавление строки запроса к URL-адресу может быть полезным в целях отладки и тестирования кода. По умолчанию поставщик `QueryStringRequestCultureProvider` регистрируется в качестве первого поставщика локализации в списке `RequestCultureProvider`. Вы передаете параметры строки запроса `culture` и `ui-culture`. В следующем примере в качестве языка и региональных параметров (язык и регион) задаются испанский язык и Мексика:
+Некоторые приложения используют строку запроса для указания <https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo?view=netcore-3.1>. Если в приложении для этого применяется файл cookie или заголовок Accept-Language, добавление строки запроса к URL-адресу может быть полезным в целях отладки и тестирования кода. По умолчанию поставщик `QueryStringRequestCultureProvider` регистрируется в качестве первого поставщика локализации в списке `RequestCultureProvider`. Вы передаете параметры строки запроса `culture` и `ui-culture`. В следующем примере в качестве языка и региональных параметров (язык и регион) задаются испанский язык и Мексика:
 
 ```
 http://localhost:5000/?culture=es-MX&ui-culture=es-MX
@@ -1007,7 +1007,7 @@ c=en-UK|uic=en-US
 
 ### <a name="the-content-language-http-header"></a>Заголовок HTTP Content-Language
 
-Заголовок сущности [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language):
+Заголовок сущности [Content-Language](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Language):
 
 * Используется для описания языков, предназначенных для аудитории.
 * Позволяет пользователю различать в соответствии с предпочтительным языком пользователя.
@@ -1083,7 +1083,7 @@ services.Configure<RequestLocalizationOptions>(options =>
 
 [Возможность локализации](/dotnet/standard/globalization-localization/localizability-review) — это определяемое на промежуточной стадии состояние готовности глобализованного приложения к локализации.
 
-Формат [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) для названия языка и региональных параметров имеет вид `<languagecode2>-<country/regioncode2>`, где `<languagecode2>` — это код языка, а `<country/regioncode2>` — код субкультуры. Примеры: `es-CL` для испанского языка (Чили), `en-US` для английского языка (США), `en-AU` для английского языка (Австралия). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) — это комбинация двухбуквенного кода культуры ISO 639 в нижнем регистре (он связан с языком) и двухбуквенного кода субкультуры ISO 3166 в верхнем регистре (он связан со страной или регионом). См. статью [Имя языка и региональных параметров](https://msdn.microsoft.com/library/ee825488(v=cs.20).aspx).
+Формат [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) для названия языка и региональных параметров имеет вид `<languagecode2>-<country/regioncode2>`, где `<languagecode2>` — это код языка, а `<country/regioncode2>` — код субкультуры. Примеры: `es-CL` для испанского языка (Чили), `en-US` для английского языка (США), `en-AU` для английского языка (Австралия). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) — это комбинация двухбуквенного кода культуры ISO 639 в нижнем регистре (он связан с языком) и двухбуквенного кода субкультуры ISO 3166 в верхнем регистре (он связан со страной или регионом). См. раздел <https://docs.microsoft.com/previous-versions/commerce-server/ee825488(v=cs.20)>.
 
 Вместо слова "интернационализация" (internationalization) часто используют аббревиатуру "I18N". В аббревиатуру включаются первая и последняя буквы слова, а также число букв между ними, то есть 18 — это число букв между первой ("I") и последней ("N") буквами. То же самое касается глобализации (Globalization — G11N) и локализации (Localization — L10N).
 

@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/entity-framework-6
-ms.openlocfilehash: d01c0a1bdf29dbb79c04504d747b319fff710d89
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 64d420d7076f1da453ee423cc4a3732eeb47b221
+ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633764"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88876702"
 ---
 # <a name="aspnet-core-and-entity-framework-6"></a>ASP.NET Core и Entity Framework 6
 ::: moniker range=">= aspnetcore-3.0"
@@ -51,7 +51,7 @@ ms.locfileid: "88633764"
 
 Контекст EF6 нельзя поместить в проект ASP.NET Core, поскольку проекты .NET Core поддерживают не все функции, используемые командами EF6, например *Enable-Migrations*.    
 
-Независимо от типа проекта, в котором размещается контекст EF6, в этом контексте работают только средства командной строки EF6. Например, команда `Scaffold-DbContext` доступна только в Entity Framework Core. Дополнительные сведения о реконструировании базы данных в модель EF6 см. в разделе [Code First для существующей базы данных](https://msdn.microsoft.com/jj200620).  
+Независимо от типа проекта, в котором размещается контекст EF6, в этом контексте работают только средства командной строки EF6. Например, команда `Scaffold-DbContext` доступна только в Entity Framework Core. Дополнительные сведения о реконструировании базы данных в модель EF6 см. в разделе <https://docs.microsoft.com/ef/ef6/modeling/code-first/workflows/existing-database>.    
 
 ## <a name="reference-full-framework-and-ef6-in-the-aspnet-core-project"></a>Использование ссылок на полную платформу и EF6 в проекте ASP.NET Core 
 
@@ -67,7 +67,7 @@ ms.locfileid: "88633764"
 
 [!code-csharp[](entity-framework-6/sample/EF6/SchoolContext.cs?name=snippet_Constructor)]   
 
-Поскольку в контексте EF6 отсутствует конструктор без параметров, в проекте EF6 необходимо предоставить реализацию [IDbContextFactory](https://msdn.microsoft.com/library/hh506876). Средства командной строки EF6 будут находить и использовать эту реализацию для создания экземпляра контекста. Рассмотрим пример.    
+Поскольку в контексте EF6 отсутствует конструктор без параметров, в проекте EF6 необходимо предоставить реализацию <https://docs.microsoft.com/dotnet/api/system.data.entity.infrastructure.idbcontextfactory-1?view=entity-framework-6.2.0>. Средства командной строки EF6 будут находить и использовать эту реализацию для создания экземпляра контекста. Рассмотрим пример.   
 
 [!code-csharp[](entity-framework-6/sample/EF6/SchoolContextFactory.cs?name=snippet_IDbContextFactory)]  
 
