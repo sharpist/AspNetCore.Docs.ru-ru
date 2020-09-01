@@ -1,7 +1,7 @@
 ---
 title: Защита размещенного приложения ASP.NET Core Blazor WebAssembly с помощью IdentityServer
 author: guardrex
-description: Создание нового размещенного решения Blazor с поддержкой аутентификации в Visual Studio с использованием [IdentityServer](https://identityserver.io/) в качестве серверной части
+description: Узнайте, как защитить размещенное приложение ASP.NET Core Blazor WebAssembly с помощью Identity Server.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-identity-server
-ms.openlocfilehash: ef5e9e1becb511ef383b22fc96441b0f61537354
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 58c21f4dbe831e99570ca8b0d7bc78616c1e5bfb
+ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626224"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88712380"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-no-locidentity-server"></a>Защита размещенного приложения ASP.NET Core Blazor WebAssembly с помощью Identity Server
 

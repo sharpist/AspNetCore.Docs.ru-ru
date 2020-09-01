@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 230b2a801a76e2d719fba8e2b97fddb0b32a9634
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 4f184a1264614b16ce98ba5474aacd60f175bd8a
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627966"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865208"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>Создание прогрессивных веб-приложений с помощью ASP.NET Core Blazor WebAssembly
 
@@ -72,7 +72,7 @@ dotnet new blazorwasm -o MyNewProject --pwa
 
 При посещении приложения, созданного с использованием параметра шаблона прогрессивного веб-приложения, пользователи могут установить его в меню "Пуск", меню закрепления или на начальном экране своей операционной системы. Порядок применения этого параметра зависит от того, какой браузер используется. В классических версиях браузеров на основе Chromium, таких как Microsoft Edge или Chrome, в строке URL-адреса появляется кнопка **Добавить**. После того как пользователь нажмет кнопку **Добавить**, отобразится диалоговое окно подтверждения.
 
-![Диалоговое окно подтверждения в Google Chrome с кнопкой "Установить" для приложения "MyBlazorPwa"](progressive-web-app/_static/image2.png)
+![Диалоговое окно подтверждения в Google Chrome с кнопкой "Установить" для приложения MyBlazorPwa.](progressive-web-app/_static/image2.png)
 
 В iOS посетители могут установить прогрессивное веб-приложение с помощью кнопки **Поделиться** в браузере Safari, а также используя параметр **Добавить на главный экран**. В браузере Chrome для Android для этой цели следует нажать кнопку **Меню** в правом верхнем углу окна, а затем выбрать команду **Добавить на главный экран**.
 

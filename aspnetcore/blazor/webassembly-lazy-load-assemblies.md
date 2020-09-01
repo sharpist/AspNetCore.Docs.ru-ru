@@ -5,7 +5,7 @@ description: Узнайте, как выполнять отложенную за
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/16/2020
+ms.date: 08/25/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
-ms.openlocfilehash: 31e6c9638d3262d3cb0a5e0fbcf34d24e2d1e91c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 46f98080ad40f614f9cb1af2190f263d205c1016
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625808"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865162"
 ---
 # <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>Сборки с отложенной загрузкой в ASP.NET Core Blazor WebAssembly
 
@@ -47,6 +47,15 @@ ms.locfileid: "88625808"
 ```
 
 Отложить загрузку можно только тех сборок, которые используются приложением. Компоновщик удаляет неиспользуемые сборки из выходных данных публикации.
+
+> [!NOTE]
+> В релизе-кандидате 1 (RC1) платформы .NET 5 или более поздней версии, которая будет выпущена в середине сентября, для имени сборки потребуется расширение `.dll`:
+>
+> ```xml
+> <ItemGroup>
+>  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
+> </ItemGroup>
+> ```
 
 ## <a name="router-component"></a>`Router`
 
@@ -170,6 +179,15 @@ ms.locfileid: "88625808"
 
 > [!NOTE]
 > Если не отбросить маршрут, если токен отмены в `NavigationContext` отменяется, то это может привести к непредсказуемому поведению, например рендерингу компонента из предыдущей навигации.
+
+### <a name="onnavigateasync-events-and-renamed-assembly-files"></a>События `OnNavigateAsync` и переименованные файлы сборки
+
+Загрузчик ресурсов использует имена сборок, определенные в файле `blazor.boot.json`. Если [сборки переименованы](xref:blazor/host-and-deploy/webassembly#change-the-filename-extension-of-dll-files), то имена сборок, используемые в методах `OnNavigateAsync`, и имена сборок в файле `blazor.boot.json` не синхронизированы.
+
+Чтобы исправить это, сделайте следующее.
+
+* Проверьте, выполняется ли приложение в рабочей среде при определении используемых имен сборок.
+* Сохраните имена переименованных сборок в отдельном файле и выполните чтение из этого файла, чтобы определить, какое имя сборки использовать в методах `LazyLoadAssemblyService` и `OnNavigateAsync`.
 
 ### <a name="complete-example"></a>Полный пример
 

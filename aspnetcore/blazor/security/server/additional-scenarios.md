@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/additional-scenarios
-ms.openlocfilehash: 62cf16e3e495e3e9a015a3be4e7fffd6a3ce08bc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 4d3aa2db7939313088fbc7b20e7cba2d75463b84
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626471"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865149"
 ---
 # <a name="aspnet-core-no-locblazor-server-additional-security-scenarios"></a>Сценарии обеспечения дополнительной безопасности Blazor Server для ASP.NET Core
 
@@ -193,7 +193,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme,
 ### <a name="code-changes"></a>Изменения кода
 
 * Список утверждений в маркере идентификатора отличается для конечных точек версии 2.0. Дополнительные сведения см. в статье [Зачем выполнять обновление до платформы удостоверений Майкрософт (версия 2.0)?](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison) документации по Azure.
-* Поскольку ресурсы указываются в URI области для конечных точек версии 2.0, удалите параметр <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Resource?displayProperty=nameWithType> свойства в <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:
+* Поскольку ресурсы указываются в URI области для конечных точек версии 2.0, удалите параметр <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Resource?displayProperty=nameWithType> свойства в <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>.
 
   ```csharp
   services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options => 

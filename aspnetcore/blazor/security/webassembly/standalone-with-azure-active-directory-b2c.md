@@ -1,7 +1,7 @@
 ---
 title: Защита изолированного приложения ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory B2C
 author: guardrex
-description: ''
+description: Узнайте, как защитить изолированное приложение ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory B2C.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
-ms.openlocfilehash: d52804d0bff7069046e4c88122c5bc7b052192cc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 93644484cbff4c03fb25136afe9c1646104b652a
+ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626133"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88712471"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Защита изолированного приложения ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory B2C
 

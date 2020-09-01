@@ -5,7 +5,7 @@ description: Узнайте, как размещать и развертыват
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/03/2020
+ms.date: 08/25/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 9e3933d8800c00eb135c041bb1c65fbf01d4ef83
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6b4c3d55d77af104c969cac0fcbf642f35c7dd7f
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628044"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865256"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Размещение и развертывание ASP.NET Core Blazor WebAssembly
 
@@ -52,7 +52,7 @@ ms.locfileid: "88628044"
 * При размещении в статических решениях размещения, которые не поддерживают согласование содержимого статически сжатых файлов, например на страницах GitHub, рассмотрите возможность настройки приложения для извлечения и декодирования сжатых файлов Brotli:
 
   * Получите декодер JavaScript Brotli из [репозитория GitHub google/brotli](https://github.com/google/brotli). По состоянию на июль 2020 г. файл декодера называется `decode.min.js` и находится в папке [`js` репозитория](https://github.com/google/brotli/tree/master/js).
-  * обновите приложение для использования декодера. Измените разметку в закрывающем теге `<body>` в `wwwroot/index.html` следующим образом:
+  * обновите приложение для использования декодера. Измените разметку в закрывающем теге `<body>` в `wwwroot/index.html` следующим образом.
   
     ```html
     <script src="decode.min.js"></script>
@@ -848,5 +848,8 @@ Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
   <Exec Command="powershell.exe -command &quot;&amp; { .\ChangeDLLExtensions.ps1 '$(SolutionDir)' '$(TargetFramework)'}&quot;" />
 </Target>
 ```
+
+> [!NOTE]
+> В случае переименования и отложенной загрузки тех же сборок см. инструкции в разделе <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files>.
 
 Чтобы оставить отзыв, перейдите на страницу [aspnetcore/issues #5477](https://github.com/dotnet/aspnetcore/issues/5477).

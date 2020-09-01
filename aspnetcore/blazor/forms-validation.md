@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 4690c279c24ef23806a6e72aece5f7cd821752bc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6fde5800a6a791c4a5923c13964c34977a59c017
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628330"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865312"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>Формы и проверка ASP.NET Core Blazor
 
@@ -47,7 +47,7 @@ public class ExampleModel
 Форма определяется с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. В следующей форме показаны типичные элементы, компоненты и код Razor:
 
 ```razor
-<EditForm Model="@exampleModel" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -78,20 +78,39 @@ public class ExampleModel
 
 ## <a name="built-in-forms-components"></a>Встроенные компоненты форм
 
-Для получения и проверки вводимых пользователем данных доступны наборы встроенных компонентов ввода. Входные данные проверяются при их изменении и отправке формы. В приведенной ниже таблице показаны доступные компоненты ввода.
+Для получения и проверки вводимых пользователем данных доступен набор встроенных компонентов. Входные данные проверяются при их изменении и отправке формы. В приведенной ниже таблице показаны доступные компоненты ввода.
+
+::: moniker range=">= aspnetcore-5.0"
 
 | Компонент ввода | Отображается как &hellip; |
 | --------------- | ------------------- |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
+| [`InputRadio`](#radio-buttons) | `<input type="radio">` |
+| [`InputRadioGroup`](#radio-buttons) | `<input type="radio">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+| Компонент ввода | Отображается как &hellip; |
+| --------------- | ------------------- |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+
+::: moniker-end
 
 Все компоненты ввода, включая <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, поддерживают произвольные атрибуты. В отрисованный HTML-элемент добавляется любой атрибут, который не соответствует параметру компонента.
 
-Входные компоненты предоставляют поведение по умолчанию для проверки редактирования и изменения класса CSS в соответствии с состоянием поля. Некоторые компоненты включают в себя полезную логику синтаксического анализа. Например, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> и <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> обрабатывают не анализируемые значения надлежащим образом, регистрируя их как ошибки проверки. Типы, которые могут принимать значения NULL, также поддерживают допустимость значений NULL для целевого поля (например, `int?`).
+Компоненты ввода обеспечивают поведение проверки по умолчанию при изменении поля, включая изменение класса CSS поля в соответствии с состоянием поля. Некоторые компоненты включают в себя полезную логику синтаксического анализа. Например, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> и <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> обрабатывают не анализируемые значения надлежащим образом, регистрируя их как ошибки проверки. Типы, которые могут принимать значения NULL, также поддерживают допустимость значений NULL для целевого поля (например, `int?`).
 
 Следующий тип `Starship` определяет логику проверки, используя более широкий набор свойств и заметок к данным, чем предыдущий `ExampleModel`:
 
@@ -134,7 +153,7 @@ public class Starship
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -252,6 +271,39 @@ public class Starship
 > [!NOTE]
 > API платформы для очистки сообщений проверки непосредственно от <xref:Microsoft.AspNetCore.Components.Forms.EditContext> не существует. Поэтому в целом не рекомендуется добавлять сообщения проверки в новый класс <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> в форме. Для управления сообщениями проверки используйте [компонент проверяющего элемента управления](#validator-components) с [кодом проверки бизнес-логики](#business-logic-validation), как описано в этой статье.
 
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="display-name-support"></a>Поддержка отображаемого имени
+
+*Этот раздел относится к релизу-кандидату 1 (RC1) платформы .NET 5 или более поздней версии, которая будет выпущена в середине сентября.*
+
+Следующие встроенные компоненты поддерживают отображаемые имена с помощью параметра `DisplayName`.
+
+* <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601>
+
+В следующем примере компонента `InputDate`:
+
+* Отображаемое имя (`DisplayName`) задается как `birthday`.
+* Компонент привязан к свойству `BirthDate` как тип `DateTime`.
+
+```razor
+<InputDate @bind-Value="@BirthDate" DisplayName="birthday" />
+
+@code {
+    public DateTime BirthDate { get; set; }
+}
+```
+
+Если пользователь предоставляет не дату, возникает следующая ошибка проверки.
+
+```
+The birthday must be a date.
+```
+
+::: moniker-end
+
 ## <a name="validator-components"></a>Компоненты проверяющего элемента управления
 
 Компоненты проверяющего элемента управления поддерживают проверку форм путем управления <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> для класса <xref:Microsoft.AspNetCore.Components.Forms.EditContext> формы.
@@ -345,7 +397,7 @@ namespace BlazorSample.Client
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <CustomValidator @ref="customValidator" />
     <ValidationSummary />
@@ -545,7 +597,7 @@ services.AddControllersWithViews()
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <CustomValidator @ref="customValidator" />
     <ValidationSummary />
@@ -694,10 +746,10 @@ services.AddControllersWithViews()
 `Pages/TestForm.razor`:
 
 ```razor
-@page  "/testform"
+@page "/testform"
 @using System.ComponentModel.DataAnnotations;
 
-<EditForm Model="@exampleModel" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -728,6 +780,77 @@ services.AddControllersWithViews()
 ```
 
 ## <a name="radio-buttons"></a>Переключатели
+
+::: moniker range=">= aspnetcore-5.0"
+
+Используйте компоненты `InputRadio` с компонентом `InputRadioGroup`, чтобы создать группу переключателей. В следующем примере свойства добавляются в модель `Starship`, описанную в разделе [Встроенные компоненты форм](#built-in-forms-components).
+
+```csharp
+[Required]
+[Range(typeof(Manufacturer), nameof(Manufacturer.SpaceX), 
+    nameof(Manufacturer.VirginGalactic), ErrorMessage = "Pick a manufacturer.")]
+public Manufacturer Manufacturer { get; set; } = Manufacturer.Unknown;
+
+[Required, EnumDataType(typeof(Color))]
+public Color? Color { get; set; } = null;
+
+[Required, EnumDataType(typeof(Engine))]
+public Engine? Engine { get; set; } = null;
+```
+
+Добавьте в приложение указанные ниже перечисления (`enums`). Создайте файл для хранения `enums` или добавьте `enums` в файл `Starship.cs`. Сделайте `enums` доступным для модели `Starship` и формы *Starfleet Starship Database*.
+
+```csharp
+public enum Manufacturer { SpaceX, NASA, ULA, Virgin, Unknown }
+public enum Color { ImperialRed, SpacecruiserGreen, StarshipBlue, VoyagerOrange }
+public enum Engine { Ion, Plasma, Fusion, Warp }
+```
+
+Обновите форму *Starfleet Starship Database*, описанную в разделе [Встроенные компоненты форм](#built-in-forms-components). Добавьте компоненты для создания следующих элементов:
+
+* группы переключателей для выбора производителя корабля;
+* группы переключателей для выбора цвета и типа двигателя корабля.
+
+```razor
+<p>
+    <InputRadioGroup @bind-Value="starship.Manufacturer">
+        Manufacturer:
+        <br>
+        @foreach (var manufacturer in (Manufacturer[])Enum
+            .GetValues(typeof(Manufacturer)))
+        {
+            <InputRadio Value="manufacturer" />
+            @manufacturer
+            <br>
+        }
+    </InputRadioGroup>
+</p>
+
+<p>
+    Pick one color and one engine:
+    <InputRadioGroup Name="engine" @bind-Value="starship.Engine">
+        <InputRadioGroup Name="color" @bind-Value="starship.Color">
+            <InputRadio Name="color" Value="Color.ImperialRed" />Imperial Red<br>
+            <InputRadio Name="engine" Value="Engine.Ion" />Ion<br>
+            <InputRadio Name="color" Value="Color.SpacecruiserGreen" />
+                Spacecruiser Green<br>
+            <InputRadio Name="engine" Value="Engine.Plasma" />Plasma<br>
+            <InputRadio Name="color" Value="Color.StarshipBlue" />Starship Blue<br>
+            <InputRadio Name="engine" Value="Engine.Fusion" />Fusion<br>
+            <InputRadio Name="color" Value="Color.VoyagerOrange" />
+                Voyager Orange<br>
+            <InputRadio Name="engine" Value="Engine.Warp" />Warp<br>
+        </InputRadioGroup>
+    </InputRadioGroup>
+</p>
+```
+
+> [!NOTE]
+> Если опустить `Name`, компоненты `InputRadio` будут группироваться по последнему предку.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 При работе с переключателями в форме привязка данных обрабатывается иначе, чем другие элементы, так как переключатели оцениваются как группа. Значение каждого переключателя является фиксированным, но значение группы переключателей является значением выбранного переключателя. В приведенном ниже примере показано, как выполнить следующие задачи.
 
@@ -782,7 +905,7 @@ services.AddControllersWithViews()
 
 <h1>Radio Button Group Test</h1>
 
-<EditForm Model="model" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -814,6 +937,8 @@ services.AddControllersWithViews()
     }
 }
 ```
+
+::: moniker-end
 
 ## <a name="binding-select-element-options-to-c-object-null-values"></a>Привязка параметров элемента `<select>` к значениям `null` объекта C#
 
@@ -920,7 +1045,7 @@ Blazor обеспечивает поддержку проверки входны
 Чтобы проверить весь граф объектов привязанной модели, включая свойства типа коллекции и сложного типа, используйте `ObjectGraphDataAnnotationsValidator`, предоставляемый *экспериментальным* пакетом [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation):
 
 ```razor
-<EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
     <ObjectGraphDataAnnotationsValidator />
     ...
 </EditForm>
@@ -1021,7 +1146,7 @@ public class ShipDescription
 * Сделайте компонент <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> видимым при нажатии кнопки "Отправить" (например, в методе `HandleValidSubmit`).
 
 ```razor
-<EditForm EditContext="@editContext" OnValidSubmit="HandleValidSubmit">
+<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary style="@displaySummary" />
 
@@ -1042,7 +1167,7 @@ public class ShipDescription
 }
 ```
 
-## <a name="troubleshoot"></a>Устранение неполадок
+## <a name="troubleshoot"></a>Диагностика
 
 > InvalidOperationException: EditForm requires a Model parameter, or an EditContext parameter, but not both (Для EditForm требуется указать параметр Model или EditContext, но не оба).
 

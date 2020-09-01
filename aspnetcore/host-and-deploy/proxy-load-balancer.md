@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/proxy-load-balancer
-ms.openlocfilehash: 737575667be0e6b776a4d9ec9fb75bc0d11309dc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 209f75edc2901422b94c619a505e0b8316aec699
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634180"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865397"
 ---
 # <a name="configure-aspnet-core-to-work-with-proxy-servers-and-load-balancers"></a>Настройка ASP.NET Core для работы с прокси-серверами и подсистемами балансировки нагрузки
 
@@ -78,7 +78,7 @@ ms.locfileid: "88634180"
 
 ### <a name="forwarded-headers-middleware-order"></a>Порядок ПО промежуточного слоя перенаправления заголовков
 
-ПО промежуточного слоя перенаправления заголовков должно выполняться до другого ПО промежуточного слоя. Такой порядок гарантирует, что ПО промежуточного слоя, полагающееся на сведения о перенаправленных заголовках, может использовать значения заголовков для обработки. ПО промежуточного слоя перенаправления заголовков может выполняться после диагностики и обработки ошибок, однако его необходимо выполнить перед вызовом `UseHsts`:
+ПО промежуточного слоя перенаправления заголовков должно выполняться до другого ПО промежуточного слоя. Такой порядок гарантирует, что ПО промежуточного слоя, полагающееся на сведения о перенаправленных заголовках, может использовать значения заголовков для обработки. ПО промежуточного слоя перенаправления заголовков может выполняться после диагностики и обработки ошибок, однако его необходимо выполнить перед вызовом `UseHsts`.
 
 [!code-csharp[](~/host-and-deploy/proxy-load-balancer/3.1samples/Startup.cs?name=snippet&highlight=13-17,25,30)]
 
@@ -208,7 +208,7 @@ IPv4-адрес: `10.11.12.1/8`
 
 ```csharp
 // To access IPNetwork and IPAddress, add the following namespaces:
-// using using System.Net;
+// using System.Net;
 // using Microsoft.AspNetCore.HttpOverrides;
 services.Configure<ForwardedHeadersOptions>(options =>
 {
@@ -586,7 +586,7 @@ IPv4-адрес: `10.11.12.1/8`
 
 ```csharp
 // To access IPNetwork and IPAddress, add the following namespaces:
-// using using System.Net;
+// using System.Net;
 // using Microsoft.AspNetCore.HttpOverrides;
 services.Configure<ForwardedHeadersOptions>(options =>
 {

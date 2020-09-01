@@ -1,7 +1,7 @@
 ---
 title: Защита размещенного приложения ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory
 author: guardrex
-description: ''
+description: Узнайте о том, как защитить размещенное приложение ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: devx-track-csharp, mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-azure-active-directory
-ms.openlocfilehash: efa424f0d763cdc1deacf1129b76a2ac377c0591
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 12a2509998bb9b4d56e250518b2db91f73dd0e67
+ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626276"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88712419"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-azure-active-directory"></a>Защита размещенного приложения ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory
 
@@ -101,7 +101,7 @@ URI идентификатора приложения может требова�
 1. Откройте список **API**.
 1. Разрешите доступ к API (например, `API.Access`).
 1. Выберите **Добавить разрешения**.
-1. Нажмите кнопку **Предоставить согласие администратора для {ИМЯ КЛИЕНТА}** . Выберите **Да** для подтверждения.
+1. Нажмите кнопку **Предоставить согласие администратора для {имя клиента}** . Выберите **Да** для подтверждения.
 
 ### <a name="create-the-app"></a>Создание приложения
 
