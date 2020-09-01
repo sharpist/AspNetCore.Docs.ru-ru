@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: e42ee7a80475e784ea4791395d9b0665aca94a03
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 9c2bbd2d463af8a2ea7db716d01bf1436338ea77
+ms.sourcegitcommit: cd861463faf44956855e3c4b3669483bbc4a7463
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865172"
+ms.lasthandoff: 08/29/2020
+ms.locfileid: "89101365"
 ---
 # <a name="no-locrazor-syntax-reference-for-aspnet-core"></a>Razor Справочник по синтаксису для ASP.NET Core
 
@@ -131,17 +131,15 @@ HTML-атрибуты и содержимое, включающие адреса
 @("<span>Hello World</span>")
 ```
 
-Код отображает следующий HTML:
+Приведенный выше код отображает следующий HTML:
 
 ```html
 &lt;span&gt;Hello World&lt;/span&gt;
 ```
 
-HTML отображается в обозревателе следующим образом:
+HTML-код отображается в браузере как обычный текст:
 
-```html
-<span>Hello World</span>
-```
+&lt;охват &gt; Hello World &lt; /span&gt;
 
 Выходные данные `HtmlHelper.Raw` не кодируются, но отображаются в виде разметки HTML.
 
@@ -400,7 +398,7 @@ Razor имеет возможность защищать критические 
 }
 ```
 
-### <a name="comments"></a>Комментарии
+### <a name="comments"></a>Примечания
 
 Razor поддерживает комментарии C# и HTML:
 
@@ -885,7 +883,7 @@ public class Pet
 
 Существует три директивы, которые относятся к [вспомогательным функциям тегов](xref:mvc/views/tag-helpers/intro).
 
-| Директива | Функция |
+| Директива | Компонент |
 | --------- | -------- |
 | [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#add-helper-label) | Делает вспомогательные функции тегов доступными в представлении. |
 | [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Удаляет из представления вспомогательные функции тегов, добавленные ранее. |
