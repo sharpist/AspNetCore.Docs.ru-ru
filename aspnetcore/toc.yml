@@ -94,6 +94,9 @@
         - name: Серверная часть для мобильных приложений
           displayName: tutorial
           uid: mobile/native-mobile-backend
+        - name: Публикация в службе "Управление API Azure"
+          displayName: tutorial
+          uid: tutorials/publish-to-azure-api-management-using-vs
     - name: Веб-приложения в режиме реального времени
       items:
         - name: Использование SignalR с JavaScript
@@ -702,7 +705,11 @@
         - name: "Начало работы со службой\_gRPC"
           uid: tutorials/grpc/grpc-start
     - name: Службы gRPC на языке C#
-      uid: grpc/basics
+      items:
+        - name: Обзор
+          uid: grpc/basics
+        - name: Создание служб gRPC
+          uid: grpc/services
     - name: Службы gRPC в ASP.NET Core
       uid: grpc/aspnetcore
     - name: Вызов служб gRPC Services с помощью клиента .NET
@@ -711,6 +718,8 @@
       uid: grpc/clientfactory
     - name: Использование gRPC в приложениях на основе браузера
       uid: grpc/browser
+    - name: Межпроцессное взаимодействие с помощью gRPC
+      uid: grpc/interprocess
     - name: Параметр Configuration
       uid: grpc/configuration
     - name: Аутентификация и авторизация
@@ -719,6 +728,8 @@
       uid: grpc/diagnostics
     - name: Замечания по безопасности
       uid: grpc/security
+    - name: Создание сообщений Protobuf
+      uid: grpc/protobuf
     - name: Оптимальные методы повышения производительности
       uid: grpc/performance
     - name: Управление версиями gRPC Services
@@ -955,7 +966,7 @@
   items:
     - name: Обзор
       uid: security/index
-    - name: Аутентификация
+    - name: Проверка подлинности
       items:
         - name: Обзор
           uid: security/authentication/index
