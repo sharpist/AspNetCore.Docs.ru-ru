@@ -710,6 +710,8 @@
           uid: grpc/basics
         - name: Создание служб gRPC
           uid: grpc/services
+        - name: Создание сообщений Protobuf
+          uid: grpc/protobuf
     - name: Службы gRPC в ASP.NET Core
       uid: grpc/aspnetcore
     - name: Вызов служб gRPC Services с помощью клиента .NET
@@ -720,6 +722,8 @@
       uid: grpc/browser
     - name: Межпроцессное взаимодействие с помощью gRPC
       uid: grpc/interprocess
+    - name: Создание веб-интерфейсов API JSON из gRPC
+      uid: grpc/httpapi
     - name: Параметр Configuration
       uid: grpc/configuration
     - name: Аутентификация и авторизация
@@ -728,8 +732,6 @@
       uid: grpc/diagnostics
     - name: Замечания по безопасности
       uid: grpc/security
-    - name: Создание сообщений Protobuf
-      uid: grpc/protobuf
     - name: Оптимальные методы повышения производительности
       uid: grpc/performance
     - name: Управление версиями gRPC Services
@@ -966,7 +968,7 @@
   items:
     - name: Обзор
       uid: security/index
-    - name: Проверка подлинности
+    - name: Аутентификация
       items:
         - name: Обзор
           uid: security/authentication/index
