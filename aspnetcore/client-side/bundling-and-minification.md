@@ -4,7 +4,7 @@ author: scottaddie
 description: Узнайте, как оптимизировать статические ресурсы в веб-приложении ASP.NET Core, применяя методы объединения и минификации.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/23/2020
+ms.date: 09/02/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: 84123464e8f01f8a3caa65035b3174cc04aea7cf
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f696df0b421e5aab6f50cfaec3ca8edac894cea9
+ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625860"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89379397"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Объединение и минификация статических ресурсов в ASP.NET Core
 
@@ -77,6 +77,9 @@ ms.locfileid: "88625860"
 Шаблоны проектов MVC и Razor Pages предоставляют решения для объединения и минификации, состоящие из файла конфигурации JSON. Сторонние средства, такие как запускатель задач [Grunt](xref:client-side/using-grunt), выполняют те же задачи, но с несколько более сложной реализацией. Сторонние средства отлично подходят в случаях, когда в рамках рабочего процесса разработки, помимо объединения и минификации, требуется другая обработка, &mdash; такая как контроль качества кода и оптимизация изображений. С помощью объединения и минификации во время разработки уменьшенные файлы создаются до развертывания приложения. Объединение и минификация до развертывания обеспечивают преимущества снижения нагрузки на сервер. Однако важно понимать, что объединение и минификация во время разработки повышает сложность сборки и применяется только со статическими файлами.
 
 ## <a name="configure-bundling-and-minification"></a>Настройка объединения и минификации
+
+> [!NOTE]
+> Чтобы это работало, необходимо добавить в ваш проект пакет NuGet [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier).
 
 ::: moniker range="<= aspnetcore-2.0"
 

@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 0a51647463362d6cfac335688d42d4be013f8b9c
-ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
+ms.openlocfilehash: 2d002e075f9d57654589b540e522307c363d9660
+ms.sourcegitcommit: 4cce99cbd44372fd4575e8da8c0f4345949f4d9a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88712521"
+ms.lasthandoff: 08/31/2020
+ms.locfileid: "89153549"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Внедрение зависимостей в ASP.NET Core
 
@@ -345,7 +345,6 @@ An `OperationService` is registered that depends on each of the other `Operation
 
 * Службы с заданной областью не разрешаются из корневого поставщика службы.
 * Службы с заданной областью не вводятся в одноэлементные объекты.
-* Временные службы не вводятся в одноэлементные объекты или службы с заданной областью.
 
 Корневой поставщик службы создается при вызове <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A>. Время существования корневого поставщика службы соответствует времени существования приложения — поставщик запускается с приложением и удаляется, когда приложение завершает работу.
 
@@ -518,7 +517,7 @@ Service1.Dispose
   [!code-csharp[](dependency-injection/samples/3.x/AntiPattern3/Startup.cs?name=snippet)]
 
 * Неудаляемые временные службы фиксируются контейнером для их удаления. Это может привести к утечке памяти, если она разрешена из контейнера верхнего уровня.
-* Включите проверку области, чтобы убедиться, что приложение не имеет служб с заданной областью, записывающих одноэлементные объекты. Дополнительные сведения см. в разделе [Проверка области](#scope-validation).
+* Включите проверку области, чтобы убедиться, что в приложении нет отдельных объектов, записывающих службы с заданной областью. Дополнительные сведения см. в разделе [Проверка области](#scope-validation).
 
 Как и с любыми рекомендациями, у вас могут возникнуть ситуации, когда нужно отступить от одного из правил. Исключения возникают редко, — как правило, это особые случаи, связанные с самой платформой.
 
@@ -774,7 +773,7 @@ public void ConfigureServices(IServiceCollection services)
 | `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Пример.<br>`services.AddSingleton<IMyDep, MyDep>();` | Да | Да | Нет |
 | `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Да | Да | Да |
 | `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Пример.<br>`services.AddSingleton<MyDep>();` | Да | Нет | Нет |
-| `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | Нет | Да | Да |
+| `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | Нет | да | Да |
 | `AddSingleton(new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));` | Нет | Нет | Да |
 
 Дополнительные сведения об удалении типа см. в разделе [Удаление служб](#disposal-of-services). Распространенный сценарий для нескольких реализаций — [макеты типов для тестирования](xref:test/integration-tests#inject-mock-services).
@@ -789,7 +788,7 @@ services.AddSingleton<IMyDependency, MyDependency>();
 services.TryAddSingleton<IMyDependency, DifferentDependency>();
 ```
 
-Дополнительные сведения см. в разделе:
+Дополнительные сведения можно найти в разделе
 
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAdd*>
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddTransient*>

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/browser
-ms.openlocfilehash: 8d1f761731ab3840d009eba1ff5316808bafec40
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5c9501b3e7cbdcbb02e3d78d67185a0a75ccba7c
+ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634414"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89379411"
 ---
 # <a name="use-grpc-in-browser-apps"></a>Использование gRPC в приложениях на основе браузера
 
@@ -132,7 +132,32 @@ ms.locfileid: "88634414"
 > [!IMPORTANT]
 > Созданные клиенты gRPC имеют синхронные и асинхронные методы для вызова унарных методов. Например, `SayHello` является синхронным, а `SayHelloAsync` — асинхронным. Вызов синхронного метода в приложении Blazor WebAssembly приведет к тому, что приложение перестанет отвечать на запросы. В Blazor WebAssembly всегда следует использовать асинхронные методы.
 
+### <a name="use-grpc-client-factory-with-grpc-web"></a>Использование фабрики клиента gRPC с gRPC-Web
+
+Клиент .NET, совместимый с gRPC-Web, можно создать путем интеграции gRPC с [HttpClientFactory](xref:System.Net.Http.IHttpClientFactory).
+
+Чтобы использовать gRPC-Web с фабрикой клиента, выполните следующие действия.
+
+* Добавьте в файл проекта следующие ссылки на пакеты:
+  * [Grpc.Net.Client.Web](https://www.nuget.org/packages/Grpc.Net.Client.Web)
+  * [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory)
+* Зарегистрируйте клиент gRPC с внедрением зависимостей (DI) с помощью универсального метода расширения `AddGrpcClient`. В приложении Blazor WebAssembly службы регистрируются с внедрением зависимостей в `Program.cs`.
+* Настройте `GrpcWebHandler` с помощью метода расширения <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A>.
+
+```csharp
+builder.Services
+    .AddGrpcClient<Greet.GreeterClient>((services, options) =>
+    {
+        options.Address = new Uri("https://localhost:5001");
+    })
+    .ConfigurePrimaryHttpMessageHandler(
+        () => new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler()));
+```
+
+Для получения дополнительной информации см. <xref:grpc/clientfactory>.
+
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * [Проект GitHub — gRPC для веб-клиентов](https://github.com/grpc/grpc-web)
 * <xref:security/cors>
+* <xref:grpc/httpapi>
