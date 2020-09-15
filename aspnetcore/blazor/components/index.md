@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 26e8239634c3edb99c7606ab2e250c69af4e746f
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: be1584e72fc1504ac9f8ca10a6b084c95a579b5b
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865289"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009626"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
@@ -266,7 +266,7 @@ namespace BlazorSample
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
 > [!WARNING]
-> Не создавайте компоненты, записывающие их в собственные *параметры компонентов*, если содержимое компонента выводится с <xref:Microsoft.AspNetCore.Components.RenderFragment>, — используйте вместо этого закрытое поле. Дополнительные сведения см. в разделе [Перезаписанные параметры с `RenderFragment`](#overwritten-parameters-with-renderfragment).
+> Не создавайте компоненты, записывающие их в собственные *параметры компонентов*, — используйте вместо этого закрытое поле. Дополнительные сведения см. в разделе [Перезаписанные параметры](#overwritten-parameters).
 
 ## <a name="child-content"></a>Дочернее содержимое
 
@@ -625,14 +625,9 @@ public class NotifierService
 
 Убедитесь, что значения, используемые для [`@key`][5], не конфликтуют. Если в одном родительском элементе обнаруживаются конфликтующие значения, Blazor выдает исключение, поскольку не может детерминированно сопоставлять старые элементы или компоненты с новыми. Используйте только уникальные значения, такие как экземпляры объекта или значения первичного ключа.
 
-## <a name="overwritten-parameters-with-renderfragment"></a>Перезаписанные параметры с `RenderFragment`
+## <a name="overwritten-parameters"></a>Перезаписанные параметры
 
-Параметры перезаписываются при следующих условиях.
-
-* Содержимое дочернего компонента подготавливается к просмотру с помощью <xref:Microsoft.AspNetCore.Components.RenderFragment>.
-* <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> вызывается в родительском компоненте.
-
-Параметры сбрасываются, так как родительский компонент перерисовывается при вызове <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>, а новые значения параметров передаются дочернему компоненту.
+Предоставляются новые значения параметров, которые обычно переопределяют существующие, когда родительский компонент отрисовывается повторно.
 
 Рассмотрим следующий компонент `Expander`, который:
 
