@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cross-site-scripting
-ms.openlocfilehash: ec8b321be08447ca634a1e28799f790f723f17d1
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 03bdfe9260ef6433456ba53d0cab8c7bf9f86377
+ms.sourcegitcommit: 422e02bad384775bfe19a90910737340ad106c5b
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625626"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90083470"
 ---
 # <a name="prevent-cross-site-scripting-xss-in-aspnet-core"></a>Предотвращение межсайтовых сценариев (XSS) в ASP.NET Core
 
@@ -72,84 +72,102 @@ RazorЯдро, используемое в MVC, автоматически ко�
 
 ```cshtml
 @{
-       var untrustedInput = "<\"123\">";
-   }
+    var untrustedInput = "<script>alert(1)</script>";
+}
 
-   <div
-       id="injectedData"
-       data-untrustedinput="@untrustedInput" />
+<div id="injectedData"
+     data-untrustedinput="@untrustedInput" />
 
-   <script>
-     var injectedData = document.getElementById("injectedData");
+<div id="scriptedWrite" />
+<div id="scriptedWrite-html5" />
 
-     // All clients
-     var clientSideUntrustedInputOldStyle =
-         injectedData.getAttribute("data-untrustedinput");
-
-     // HTML 5 clients only
-     var clientSideUntrustedInputHtml5 =
-         injectedData.dataset.untrustedinput;
-
-     document.write(clientSideUntrustedInputOldStyle);
-     document.write("<br />")
-     document.write(clientSideUntrustedInputHtml5);
-   </script>
-   ```
-
-Это приведет к созданию следующего HTML-кода
-
-```html
-<div
-     id="injectedData"
-     data-untrustedinput="&lt;&quot;123&quot;&gt;" />
-
-   <script>
-     var injectedData = document.getElementById("injectedData");
-
-     var clientSideUntrustedInputOldStyle =
-         injectedData.getAttribute("data-untrustedinput");
-
-     var clientSideUntrustedInputHtml5 =
-         injectedData.dataset.untrustedinput;
-
-     document.write(clientSideUntrustedInputOldStyle);
-     document.write("<br />")
-     document.write(clientSideUntrustedInputHtml5);
-   </script>
-   ```
-
-При запуске будет отображаться следующее:
-
-```
-<"123">
-   <"123">
-```
-
-Вы также можете вызвать кодировщик JavaScript напрямую:
-
-```cshtml
-@using System.Text.Encodings.Web;
-   @inject JavaScriptEncoder encoder;
-
-   @{
-       var untrustedInput = "<\"123\">";
-   }
-
-   <script>
-       document.write("@encoder.Encode(untrustedInput)");
-   </script>
-```
-
-Это будет отображаться в браузере следующим образом:
-
-```html
 <script>
-    document.write("\u003C\u0022123\u0022\u003E");
+    var injectedData = document.getElementById("injectedData");
+
+    // All clients
+    var clientSideUntrustedInputOldStyle =
+        injectedData.getAttribute("data-untrustedinput");
+
+    // HTML 5 clients only
+    var clientSideUntrustedInputHtml5 =
+        injectedData.dataset.untrustedinput;
+
+    // Put the injected, untrusted data into the scriptedWrite div tag.
+    // Do NOT use document.write() on dynamically generated data as it
+    // can lead to XSS.
+
+    document.getElementById("scriptedWrite").innerText += clientSideUntrustedInputOldStyle;
+
+    // Or you can use createElement() to dynamically create document elements
+    // This time we're using textContent to ensure the data is properly encoded.
+    var x = document.createElement("div");
+    x.textContent = clientSideUntrustedInputHtml5;
+    document.body.appendChild(x);
+
+    // You can also use createTextNode on an element to ensure data is properly encoded.
+    var y = document.createElement("div");
+    y.appendChild(document.createTextNode(clientSideUntrustedInputHtml5));
+    document.body.appendChild(y);
+
 </script>
+   ```
+
+Приведенная выше разметка создает следующий код HTML:
+
+```html
+<div id="injectedData"
+     data-untrustedinput="&lt;script&gt;alert(1)&lt;/script&gt;" />
+
+<div id="scriptedWrite" />
+<div id="scriptedWrite-html5" />
+
+<script>
+    var injectedData = document.getElementById("injectedData");
+
+    // All clients
+    var clientSideUntrustedInputOldStyle =
+        injectedData.getAttribute("data-untrustedinput");
+
+    // HTML 5 clients only
+    var clientSideUntrustedInputHtml5 =
+        injectedData.dataset.untrustedinput;
+
+    // Put the injected, untrusted data into the scriptedWrite div tag.
+// Do NOT use document.write() on dynamically generated data as it can
+// lead to XSS.
+
+    document.getElementById("scriptedWrite").innerText += clientSideUntrustedInputOldStyle;
+
+    // Or you can use createElement() to dynamically create document elements
+    // This time we're using textContent to ensure the data is properly encoded.
+    var x = document.createElement("div");
+    x.textContent = clientSideUntrustedInputHtml5;
+    document.body.appendChild(x);
+
+    // You can also use createTextNode on an element to ensure data is properly encoded.
+    var y = document.createElement("div");
+    y.appendChild(document.createTextNode(clientSideUntrustedInputHtml5));
+    document.body.appendChild(y);
+
+</script>
+   ```
+
+Приведенный выше код создает следующие выходные данные:
+
+```
+<script>alert(1)</script>
+<script>alert(1)</script>
+<script>alert(1)</script>
 ```
 
 >[!WARNING]
-> Не следует объединять ненадежные входные данные в JavaScript для создания элементов DOM. Следует использовать `createElement()` и назначать значения свойств соответствующим образом `node.TextContent=` , например, или использовать `element.SetAttribute()` / `element[attribute]=` в противном случае — для XSS на основе DOM.
+> ***Не*** следует объединять ненадежные входные данные в JavaScript для создания элементов DOM или использования `document.write()` в динамически генерируемом содержимом.
+>
+> Используйте один из следующих подходов, чтобы предотвратить недоступность кода к XSS на основе DOM.
+> * `createElement()` и присваиваются значения свойств с помощью соответствующих методов или свойств, таких как `node.textContent=` или Node. InnerText = ".
+> * `document.CreateTextNode()` и добавьте его в соответствующее расположение DOM.
+> * `element.SetAttribute()`
+> * `element[attribute]=`
 
 ## <a name="accessing-encoders-in-code"></a>Доступ к кодировщикам в коде
 
@@ -177,7 +195,7 @@ public class HomeController : Controller
 
 ## <a name="encoding-url-parameters"></a>Параметры URL-адреса кодировки
 
-Если требуется создать строку запроса URL-адреса с ненадежным входом в качестве значения, используйте `UrlEncoder` для кодирования значения. Например,
+Если требуется создать строку запроса URL-адреса с ненадежным входом в качестве значения, используйте `UrlEncoder` для кодирования значения. Например, примененная к объекту директива
 
 ```csharp
 var example = "\"Quoted Value with spaces and &\"";
