@@ -447,6 +447,8 @@
               uid: blazor/host-and-deploy/server
             - name: Настройка компоновщика
               uid: blazor/host-and-deploy/configure-linker
+            - name: Настройка средства обрезки
+              uid: blazor/host-and-deploy/configure-trimmer
         - name: Blazor Server и EF Core
           uid: blazor/blazor-server-ef-core
         - name: Сложные сценарии
