@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/redis-backplane
-ms.openlocfilehash: bc28eb3096e88455347f68ca381c9a280d5a153e
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a57176409c5f9bcc620db7e070f6616951eb9a54
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633660"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722778"
 ---
 # <a name="set-up-a-redis-backplane-for-aspnet-core-no-locsignalr-scale-out"></a>Настройка объединительной платы Redis для SignalR горизонтального масштабирования ASP.NET Core
 
@@ -42,7 +42,7 @@ ms.locfileid: "88633660"
 
   * <xref:signalr/scale>
   * [Документация по Redis](https://redis.io/)
-  * [Документация по Кэшу Redis для Azure](https://docs.microsoft.com/azure/redis-cache/)
+  * [Документация по Кэшу Redis для Azure](/azure/redis-cache/)
 
 ::: moniker range="= aspnetcore-2.1"
 
@@ -233,11 +233,11 @@ services.AddSignalR()
 
 [Кластеризация Redis](https://redis.io/topics/cluster-spec) — это метод достижения высокого уровня доступности с помощью нескольких серверов Redis. Кластеризация официально не поддерживается, но может работать.
 
-## <a name="next-steps"></a>Дальнейшие действия
+## <a name="next-steps"></a>Следующие шаги
 
 Дополнительные сведения см. в следующих ресурсах:
 
 * <xref:signalr/scale>
 * [Документация по Redis](https://redis.io/documentation)
 * [Документация по StackExchange Redis](https://stackexchange.github.io/StackExchange.Redis/)
-* [Документация по Кэшу Redis для Azure](https://docs.microsoft.com/azure/redis-cache/)
+* [Документация по Кэшу Redis для Azure](/azure/redis-cache/)

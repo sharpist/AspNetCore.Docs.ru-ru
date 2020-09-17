@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/version-differences
-ms.openlocfilehash: a8336a6c13c502f5a0fad150785cd9d484064618
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 965fbb3d8007cb64aaf51d82d87ed7a3a5298e9b
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633010"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721792"
 ---
 # <a name="differences-between-aspnet-no-locsignalr-and-aspnet-core-no-locsignalr"></a>Различия между ASP.NET SignalR и ASP.NET Core SignalR
 
@@ -146,7 +146,7 @@ app.UseSignalR(routes =>
 
 В ASP.NET Core SignalR модель подключения была упрощена. Подключения осуществляются непосредственно в одном концентраторе, а не в одном соединении, используемом для совместного доступа к нескольким концентраторам.
 
-### <a name="streaming"></a>Потоковая передача
+### <a name="streaming"></a>Потоковые операторы
 
 ASP.NET Core SignalR теперь поддерживает [потоковую передачу данных](xref:signalr/streaming) от концентратора клиенту.
 
@@ -156,7 +156,7 @@ ASP.NET Core SignalR теперь поддерживает [потоковую �
 
 ### <a name="persistentconnection-removal"></a>Удаление Персистентконнектион
 
-В ASP.NET Core SignalR класс [персистентконнектион](https://docs.microsoft.com/previous-versions/aspnet/jj919047(v%3dvs.118)) был удален.
+В ASP.NET Core SignalR класс [персистентконнектион](/previous-versions/aspnet/jj919047(v=vs.118)) был удален.
 
 ### <a name="globalhost"></a>GlobalHost
 

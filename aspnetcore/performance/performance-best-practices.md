@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 587872b269d897d7c86eb77c110a4b6432218ed3
-ms.sourcegitcommit: dd0e87abf2bb50ee992d9185bb256ed79d48f545
+ms.openlocfilehash: 01575ec87d2d346da7367523ca5e257d53de4983
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88746563"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722622"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Рекомендации по повышению производительности ASP.NET Core
 
@@ -42,7 +42,7 @@ ms.locfileid: "88746563"
 
 ASP.NET Core приложения предназначены для одновременной обработки нескольких запросов. Асинхронные интерфейсы API позволяют небольшому пулу потоков работать с тысячами одновременных запросов, не дожидаясь блокировки вызовов. Вместо ожидания завершения длительной синхронной задачи поток может работать с другим запросом.
 
-Распространенная проблема производительности в ASP.NET Core приложениях — блокировка вызовов, которые могут быть асинхронными. Многие синхронные блокирующие вызовы ведут к нехватке [пула потоков](https://blogs.msdn.microsoft.com/vancem/2018/10/16/diagnosing-net-core-threadpool-starvation-with-perfview-why-my-service-is-not-saturating-all-cores-or-seems-to-stall/) и снижению времени отклика.
+Распространенная проблема производительности в ASP.NET Core приложениях — блокировка вызовов, которые могут быть асинхронными. Многие синхронные блокирующие вызовы ведут к нехватке [пула потоков](/archive/blogs/vancem/diagnosing-net-core-threadpool-starvation-with-perfview-why-my-service-is-not-saturating-all-cores-or-seems-to-stall) и снижению времени отклика.
 
 **Не выполнять**:
 

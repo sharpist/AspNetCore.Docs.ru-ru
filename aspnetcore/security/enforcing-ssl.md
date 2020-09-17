@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 1cb2c2d18b717dc99c6ef4dac9954fef149c6deb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b5260084c2fdd296168e918f06d8b54faf1865d5
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631567"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722661"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Принудительное применение HTTPS в ASP.NET Core
 
@@ -109,7 +109,7 @@ ms.locfileid: "88631567"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* Задайте `https_port` [параметр узла](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#https_port):
+* Задайте `https_port` [параметр узла](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#https_port):
 
   * В конфигурации узла.
   * Путем задания `ASPNETCORE_HTTPS_PORT` переменной среды.
@@ -117,7 +117,7 @@ ms.locfileid: "88631567"
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
-* Укажите порт с защитой схемы, используя [переменную среды ASPNETCORE_URLS](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#urls). Переменная среды настраивает сервер. По промежуточного слоя косвенно обнаруживает HTTPS порт с помощью <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> . Этот подход не работает в обратных развертываниях прокси-сервера.
+* Укажите порт с защитой схемы, используя [переменную среды ASPNETCORE_URLS](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#urls). Переменная среды настраивает сервер. По промежуточного слоя косвенно обнаруживает HTTPS порт с помощью <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> . Этот подход не работает в обратных развертываниях прокси-сервера.
 
 ::: moniker-end
 
@@ -288,7 +288,7 @@ ASP.NET Core 2,1 и более поздних версий реализует HS
 ::: moniker-end
 
 
-* Задает параметр предварительной загрузки `Strict-Transport-Security` заголовка. Предварительная загрузка не является частью [спецификации RFC HSTS](https://tools.ietf.org/html/rfc6797), но поддерживается веб-браузерами для предварительной загрузки HSTS сайтов при новой установке. Дополнительные сведения см. в разделе [https://hstspreload.org/](https://hstspreload.org/).
+* Задает параметр предварительной загрузки `Strict-Transport-Security` заголовка. Предварительная загрузка не является частью [спецификации RFC HSTS](https://tools.ietf.org/html/rfc6797), но поддерживается веб-браузерами для предварительной загрузки HSTS сайтов при новой установке. Дополнительные сведения см. на веб-сайте [https://hstspreload.org/](https://hstspreload.org/).
 * Включает [инклудесубдомаин](https://tools.ietf.org/html/rfc6797#section-6.1.2), который применяет политику HSTS для размещения поддоменов.
 * Явно задает `max-age` `Strict-Transport-Security` для параметра заголовка значение 60 дней. Если значение не задано, по умолчанию используется значение 30 дней. Дополнительные сведения см. в разделе [директива max-age](https://tools.ietf.org/html/rfc6797#section-6.1.1).
 * Добавляет `example.com` в список узлов для исключения.

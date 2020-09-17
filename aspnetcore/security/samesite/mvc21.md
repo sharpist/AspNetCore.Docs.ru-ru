@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/samesite/mvc21
-ms.openlocfilehash: 0a719ae48199f7854ded534446045eb304d4d9f0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 38e5f0d1a2ecf5b46f73bf8574f73934a070880f
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632360"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722609"
 ---
 # <a name="aspnet-core-21-mvc-samesite-no-loccookie-sample"></a>Пример SameSite ASP.NET Core 2,1 MVC cookie
 
@@ -57,7 +57,7 @@ Response.Cookies.Append(CookieName, "cookieValue", cookieOptions);
 
 ## <a name="setting-no-loccookie-authentication-and-session-state-no-loccookies"></a>Настройка Cookie проверки подлинности и состояния сеанса cookie
 
-Cookie Проверка подлинности, состояние сеанса и [различные другие компоненты](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) задают свои параметры sameSite Cookie с помощью параметров, например
+Cookie Проверка подлинности, состояние сеанса и [различные другие компоненты](../samesite.md?view=aspnetcore-2.1) задают свои параметры sameSite Cookie с помощью параметров, например
 
 ```c#
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -172,5 +172,5 @@ ASP.NET Core в .NET требует обновления зависимосте�
 ### <a name="more-information"></a>Дополнительные сведения
  
 [Обновления Chrome](https://www.chromium.org/updates/same-site) 
- [Документация по](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) 
+ [Документация по](../samesite.md?view=aspnetcore-2.1) 
  ASP.NET Core SameSite [ASP.NET Core 2,1 SameSite объявление об изменениях](https://github.com/dotnet/aspnetcore/issues/8212)
