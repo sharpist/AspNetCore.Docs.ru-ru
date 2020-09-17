@@ -722,8 +722,8 @@
       uid: grpc/clientfactory
     - name: Использование gRPC в приложениях на основе браузера
       uid: grpc/browser
-    - name: Создание веб-интерфейсов API JSON из gRPC
-      uid: grpc/httpapi
+    - name: Предельные сроки и отмена
+      uid: grpc/deadlines-cancellation
     - name: Параметр Configuration
       uid: grpc/configuration
     - name: Аутентификация и авторизация
@@ -738,12 +738,16 @@
       uid: grpc/versioning
     - name: Управление ссылками protobuf с помощью .NET gRPC
       uid: grpc/dotnet-grpc
+    - name: Службы тестирования со средствами gRPC
+      uid: grpc/test-tools
     - name: Миграция служб gRPC с C-Core
       uid: grpc/migration
     - name: Зачем выполнять миграцию WCF на ASP.NET Core gRPC
       uid: grpc/wcf
     - name: Сравнение служб gRPC с API-интерфейсами HTTP
       uid: grpc/comparison
+    - name: Создание веб-интерфейсов API JSON из gRPC
+      uid: grpc/httpapi
     - name: Примеры
       href: 'https://github.com/grpc/grpc-dotnet/tree/master/examples'
     - name: Устранение неполадок
