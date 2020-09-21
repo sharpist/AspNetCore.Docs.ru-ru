@@ -337,6 +337,8 @@
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputDate
                   href: blazor/forms-validation.md#built-in-forms-components
+                - name: InputFile
+                  href: blazor/file-uploads.md
                 - name: InputNumber
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputRadio
@@ -363,6 +365,8 @@
                   href: blazor/fundamentals/routing.md#route-templates
                 - name: Заголовок
                   href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
+                - name: Virtualize
+                  href: blazor/components/virtualization.md
             - name: Каскадные значения и параметры
               uid: blazor/components/cascading-values-and-parameters
             - name: 'привязка данных,'
@@ -371,6 +375,8 @@
               uid: blazor/components/event-handling
             - name: Жизненный цикл
               uid: blazor/components/lifecycle
+            - name: Виртуализация компонентов
+              uid: blazor/components/virtualization
             - name: Шаблонные компоненты
               uid: blazor/components/templated-components
             - name: Интеграция компонентов
@@ -383,6 +389,8 @@
           uid: blazor/layouts
         - name: Формы и проверка
           uid: blazor/forms-validation
+        - name: Передача файлов
+          uid: blazor/file-uploads
         - name: Вызов JavaScript из .NET
           uid: blazor/call-javascript-from-dotnet
         - name: Вызов .NET из JavaScript
@@ -714,16 +722,20 @@
           uid: grpc/services
         - name: Создание сообщений Protobuf
           uid: grpc/protobuf
+        - name: Управление версиями gRPC Services
+          uid: grpc/versioning
+    - name: Вызов служб gRPC на языке C#
+      items:
+        - name: Обзор
+          uid: grpc/client
+        - name: Интеграция фабрики клиента gRPC
+          uid: grpc/clientfactory
+        - name: Предельные сроки и отмена
+          uid: grpc/deadlines-cancellation
     - name: Службы gRPC в ASP.NET Core
       uid: grpc/aspnetcore
-    - name: Вызов служб gRPC Services с помощью клиента .NET
-      uid: grpc/client
-    - name: Интеграция фабрики клиента gRPC
-      uid: grpc/clientfactory
     - name: Использование gRPC в приложениях на основе браузера
       uid: grpc/browser
-    - name: Предельные сроки и отмена
-      uid: grpc/deadlines-cancellation
     - name: Параметр Configuration
       uid: grpc/configuration
     - name: Аутентификация и авторизация
@@ -734,11 +746,13 @@
       uid: grpc/security
     - name: Оптимальные методы повышения производительности
       uid: grpc/performance
-    - name: Управление версиями gRPC Services
-      uid: grpc/versioning
+    - name: Межпроцессное взаимодействие
+      uid: grpc/interprocess
+    - name: Создание веб-интерфейсов API JSON из gRPC
+      uid: grpc/httpapi
     - name: Управление ссылками protobuf с помощью .NET gRPC
       uid: grpc/dotnet-grpc
-    - name: Службы тестирования со средствами gRPC
+    - name: Тестирование служб gRPC с помощью gRPCurl
       uid: grpc/test-tools
     - name: Миграция служб gRPC с C-Core
       uid: grpc/migration
@@ -746,8 +760,6 @@
       uid: grpc/wcf
     - name: Сравнение служб gRPC с API-интерфейсами HTTP
       uid: grpc/comparison
-    - name: Создание веб-интерфейсов API JSON из gRPC
-      uid: grpc/httpapi
     - name: Примеры
       href: 'https://github.com/grpc/grpc-dotnet/tree/master/examples'
     - name: Устранение неполадок
