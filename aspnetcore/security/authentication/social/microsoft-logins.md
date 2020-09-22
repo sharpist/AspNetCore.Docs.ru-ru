@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/microsoft-logins
-ms.openlocfilehash: 3430d842b6a4f7da30370977f72e6f132e28bb7f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 36341a0e439be57d7da4f787aa6103b92c624e96
+ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634258"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90847589"
 ---
 # <a name="microsoft-account-external-login-setup-with-aspnet-core"></a>Настройка внешнего входа учетной записи Майкрософт с ASP.NET Core
 
@@ -41,6 +41,8 @@ ms.locfileid: "88634258"
 * Выбрать **новую регистрацию**
 * Введите **Имя**.
 * Выберите вариант для **поддерживаемых типов учетных записей**.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts. It took 24 hours after setting this up for the keys to work -->
+  * `MicrosoftAccount`Пакет поддерживает регистрацию приложений, созданных с помощью параметров "учетные записи в любом каталоге организации" или "учетные записи в любом организационном каталоге и учетных записях Майкрософт" по умолчанию.
+  * Чтобы использовать другие параметры, установите `AuthorizationEndpoint` и `TokenEndpoint` члены, `MicrosoftAccountOptions` используемые для инициализации проверки подлинности учетной записи Майкрософт на URL-адреса, отображаемые на странице **конечные точки** регистрации приложения после ее создания (доступ к которой можно получить, щелкнув конечные точки на странице **Обзор** ).
 * В разделе **URI перенаправления**введите URL-адрес разработки с `/signin-microsoft` добавлением. Например, `https://localhost:5001/signin-microsoft`. Схема проверки подлинности Майкрософт, настроенная далее в этом примере, автоматически обрабатывает запросы по `/signin-microsoft` маршруту для реализации потока OAuth.
 * Нажмите кнопку **Зарегистрировать**.
 
