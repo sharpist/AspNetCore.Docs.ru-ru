@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: 6f092f3f9a18883c31b217b59d0b0abe802aff01
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 870509a3cbbcbea9b1c4804185c49a831af22630
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628305"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009639"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a>Конфигурация модели размещения ASP.NET Core Blazor
 
@@ -128,20 +128,62 @@ ms.locfileid: "88628305"
 
 Отрисовка компонентов сервера из статической HTML-страницы не поддерживается.
 
-## <a name="configure-the-no-locsignalr-client-for-no-locblazor-server-apps"></a>Настройка клиента SignalR для приложений Blazor Server
+## <a name="initialize-the-no-locblazor-circuit"></a>Инициализация канала Blazor
 
 *Этот раздел относится к Blazor Server.*
 
-Настройте клиент SignalR, используемый приложениями Blazor Server, в файле `Pages/_Host.cshtml`. Разместите скрипт, который вызывает `Blazor.start` после скрипта `_framework/blazor.server.js` и внутри тега `</body>`.
-
-### <a name="logging"></a>Ведение журнала
-
-Чтобы настроить ведение журнала для клиента SignalR, выполните следующие действия:
+Настройте ручной запуск [ канала SignalR](xref:blazor/hosting-models#circuits) приложения Blazor Server в файле `Pages/_Host.cshtml`:
 
 * добавьте атрибут `autostart="false"` в тег `<script>` для сценария `blazor.server.js`;
-* передайте объект конфигурации (`configureSignalR`), который вызывает `configureLogging` с уровнем журнала для построителя клиента.
+* Разместите скрипт, который вызывает `Blazor.start` после тега скрипта `blazor.server.js` и внутри закрывающего тега `</body>`.
+
+При отключении `autostart` все части приложения, которые не зависят от канала, работают нормально. Например, работает маршрутизация на стороне клиента. Однако все аспекты, зависящие от канала, не будут работать до вызова `Blazor.start`. Пока не будет установлен канал, поведение приложения будет непредсказуемым. Например, когда канал отключен, методы компонентов не выполняются.
+
+### <a name="initialize-no-locblazor-when-the-document-is-ready"></a>Инициализация Blazor при готовности документа
+
+Чтобы инициализировать приложение Blazor, когда документ готов, используйте следующий код:
 
 ```cshtml
+<body>
+
+    ...
+
+    <script autostart="false" src="_framework/blazor.server.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        Blazor.start();
+      });
+    </script>
+</body>
+```
+
+### <a name="chain-to-the-promise-that-results-from-a-manual-start"></a>Связывание с `Promise` в результате запуска вручную
+
+Для выполнения дополнительных задач, таких как инициализация взаимодействия JS, используйте `then` для привязки к объекту `Promise`, полученному в результате запуска приложения Blazor вручную.
+
+```cshtml
+<body>
+
+    ...
+
+    <script autostart="false" src="_framework/blazor.server.js"></script>
+    <script>
+      Blazor.start().then(function () {
+        ...
+      });
+    </script>
+</body>
+```
+
+### <a name="configure-the-no-locsignalr-client"></a>Настройка клиента SignalR
+
+#### <a name="logging"></a>Ведение журнала
+
+Чтобы настроить ведение журнала клиента SignalR, передайте объект конфигурации (`configureSignalR`), который вызывает `configureLogging` с уровнем журнала для построителя клиента:
+
+```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
@@ -164,12 +206,16 @@ ms.locfileid: "88628305"
 * уведомлять пользователя, если подключение было разорвано;.
 * вносить записи в журнал (со стороны клиента) при подключении канала.
 
-Чтобы изменить события подключения, сделайте следующее:
+Чтобы изменить события соединения, зарегистрируйте обратные вызовы для следующих изменений соединения:
 
-* добавьте атрибут `autostart="false"` в тег `<script>` для сценария `blazor.server.js`;
-* регистрируйте обратные вызовы по изменениям подключений для разорванных подключений (`onConnectionDown`) и установленных (в том числе повторно) подключений (`onConnectionUp`), при этом укажите **оба** метода `onConnectionDown` и `onConnectionUp`.
+* для прерванных соединений используется `onConnectionDown`;
+* для устанавливаемых и повторно устанавливаемых соединений используется `onConnectionUp`.
+
+Необходимо задать **как** `onConnectionDown`, так и `onConnectionUp`:
 
 ```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
@@ -186,12 +232,11 @@ ms.locfileid: "88628305"
 
 ### <a name="adjust-the-reconnection-retry-count-and-interval"></a>Настройка числа попыток и интервала повторного подключения
 
-Чтобы настроить число попыток и интервал повторного подключения, выполните следующие действия:
-
-* добавьте атрибут `autostart="false"` в тег `<script>` для сценария `blazor.server.js`;
-* задайте число повторных попыток (`maxRetries`) и периодичность в миллисекундах для каждой повторной попытки (`retryIntervalMilliseconds`).
+Чтобы настроить число попыток и интервал повторного подключения, задайте число повторных попыток (`maxRetries`) и периодичность в миллисекундах для каждой повторной попытки (`retryIntervalMilliseconds`):
 
 ```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
@@ -206,14 +251,13 @@ ms.locfileid: "88628305"
 </body>
 ```
 
-### <a name="hide-or-replace-the-reconnection-display"></a>Скрытие или замена отображаемого элемента повторного подключения
+## <a name="hide-or-replace-the-reconnection-display"></a>Скрытие или замена отображаемого элемента повторного подключения
 
-Чтобы скрыть отображаемый элемент повторного подключения, выполните следующие действия:
-
-* добавьте атрибут `autostart="false"` в тег `<script>` для сценария `blazor.server.js`;
-* задайте для свойства `_reconnectionDisplay` обработчика повторных подключений пустой объект (`{}` или `new Object()`).
+Чтобы скрыть отображаемый элемент повторного подключения, задайте для свойства `_reconnectionDisplay` обработчика повторных подключений пустой объект (`{}` или `new Object()`):
 
 ```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
@@ -221,6 +265,8 @@ ms.locfileid: "88628305"
       window.addEventListener('beforeunload', function () {
         Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
       });
+
+      Blazor.start();
     </script>
 </body>
 ```
@@ -233,6 +279,18 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 ```
 
 Заполнитель `{ELEMENT ID}` — это идентификатор элемента HTML для отображения.
+
+::: moniker range=">= aspnetcore-5.0"
+
+Чтобы настроить задержку перед появлением отображаемого элемента повторного подключения, задайте свойство `transition-delay` в файле CSS приложения (`wwwroot/css/site.css`) для модального элемента. В следующем примере задержка перехода изменяется с 500 мс (по умолчанию) на 1000 мс (1 секунда):
+
+```css
+#components-reconnect-modal {
+    transition: visibility 0s linear 1000ms;
+}
+```
+
+::: moniker-end
 
 ## <a name="influence-html-head-tag-elements"></a>Влияние элементов тегов HTML `<head>`
 

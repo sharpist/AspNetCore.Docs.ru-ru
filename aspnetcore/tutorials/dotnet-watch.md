@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/dotnet-watch
-ms.openlocfilehash: cc152c2ca553b00619ddbf829f6044867c53bb98
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 3569e9440b8e431ec0e5357e548af2e3783481ac
+ms.sourcegitcommit: 422e02bad384775bfe19a90910737340ad106c5b
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635142"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90083457"
 ---
 # <a name="develop-aspnet-core-apps-using-a-file-watcher"></a>Разработка приложений ASP.NET Core с использованием наблюдателя файлов
 
@@ -85,11 +85,25 @@ Application started. Press Ctrl+C to shut down.
 | Команда | Команда с контрольным значением |
 | ---- | ----- |
 | dotnet run | dotnet watch run |
-| dotnet run -f netcoreapp2.0 | dotnet watch run -f netcoreapp2.0 |
-| dotnet run -f netcoreapp2.0 -- --arg1 | dotnet watch run -f netcoreapp2.0 -- --arg1 |
+| dotnet run -f netcoreapp3.1 | dotnet watch run -f netcoreapp3.1 |
+| dotnet run -f netcoreapp3.1 -- --arg1 | dotnet watch run -f netcoreapp3.1 -- --arg1 |
 | dotnet test | dotnet watch test |
 
 Запустите `dotnet watch run` в папке *WebApp*. В выходных данных консоли будет указано, что запущен `watch`.
+
+::: moniker range=">= aspnetcore-5.0"
+При выполнении `dotnet watch run` в веб-приложении запускается браузер с переходом по URL-адресу приложения, когда оно будет готово. Для этого `dotnet watch` считывает выходные данные из консоли приложения и ожидает, когда <xref:Microsoft.AspNetCore.WebHost> выведет сообщение о готовности.
+
+`dotnet watch` обновляет содержимое в браузере при обнаружении изменений в отслеживаемых файлах. Для этого команда watch вставляет в приложение ПО промежуточного слоя, которое изменяет ответы HTML, создаваемые приложением. ПО промежуточного слоя добавляет на страницу блок скрипта JavaScript, позволяющий `dotnet watch` давать команду на обновление содержимого в браузере. В настоящее время изменения в любых отслеживаемых файлах, включая статическое содержимое, такое как файлы *HTML* и *CSS*, приводят к повторной сборке приложения.
+
+`dotnet watch`:
+
+* По умолчанию отслеживаются только файлы, которые влияют на сборку.
+* Дополнительные отслеживаемые файлы (указанные в конфигурации) по-прежнему приводят к сборке.
+
+Дополнительные сведения о конфигурации см. в разделе [Конфигурация dotnet-watch](#dotnet-watch-configuration) этой документации.
+
+::: moniker-end
 
 > [!NOTE]
 > Можно использовать `dotnet watch --project <PROJECT>`, чтобы указать проект для наблюдения. Например, при выполнении `dotnet watch --project WebApp run` из корневой папки примера приложения также будет запущен проект *WebApp*, в том числе для наблюдения.
@@ -193,6 +207,17 @@ dotnet watch msbuild /t:Test
 ```
 
 VSTest выполняется при изменении любого файла в любом из тестовых проектов.
+
+## <a name="dotnet-watch-configuration"></a>Конфигурация dotnet-watch
+
+Некоторые параметры конфигурации можно передавать в `dotnet watch` с помощью переменных среды. Доступные переменные:
+
+| Параметр  | Описание |
+| ------------- | ------------- |
+| `DOTNET_USE_POLLING_FILE_WATCHER`                | Если задано значение 1 или true, `dotnet watch` использует опрашивающий наблюдатель за файлами вместо `FileSystemWatcher` в CoreFx. Используется при отслеживании файлов в сетевых папках или подключенных томах Docker.                       |
+| `DOTNET_WATCH_SUPPRESS_MSBUILD_INCREMENTALISM`   | По умолчанию `dotnet watch` оптимизирует сборку, исключая определенные операции, такие как восстановление или повторная оценка набора отслеживаемых файлов при каждом изменении. Если задано значение 1 или true, эти оптимизации отключены. |
+| `DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER`   | `dotnet watch run` пытается запускать веб-приложения в браузерах с использованием параметра `launchBrowser`, настроенного в файле *launchSettings.json*. Если задано значение 1 или true, это поведение подавляется. |
+| `DOTNET_WATCH_SUPPRESS_BROWSER_REFRESH`   | `dotnet watch run` пытается обновлять содержимое в браузерах при обнаружении изменений в файлах. Если задано значение 1 или true, это поведение подавляется. Это поведение также подавляется, если задан параметр `DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER`. |
 
 ## <a name="dotnet-watch-in-github"></a>`dotnet-watch` на GitHub
 

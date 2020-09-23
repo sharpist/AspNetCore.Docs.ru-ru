@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: b485a62c61d404a91134f49cf2a49134ec9f5123
-ms.sourcegitcommit: 8ed9a413bdc2d665ad11add8828898d726ccb106
+ms.openlocfilehash: 5efea1728a1460c728a0d90002fb1504fe5b3bbb
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/01/2020
-ms.locfileid: "89280391"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90593025"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>Формы и проверка ASP.NET Core Blazor
 
@@ -105,6 +105,9 @@ public class ExampleModel
 | <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+
+> [!NOTE]
+> Компоненты `InputRadio` и `InputRadioGroup` доступны в ASP.NET Core 5.0 и более поздних версий. Для получения дополнительных сведений выберите вариант этой статьи для версии 5.0 или более поздней.
 
 ::: moniker-end
 
@@ -275,7 +278,7 @@ public class Starship
 
 ## <a name="display-name-support"></a>Поддержка отображаемого имени
 
-*Этот раздел относится к релизу-кандидату 1 (RC1) платформы .NET 5 или более поздней версии, которая будет выпущена в середине сентября.*
+*Этот раздел относится к ASP.NET Core в релизе-кандидате 1 (RC1) платформы .NET 5 или более поздней версии.*
 
 Следующие встроенные компоненты поддерживают отображаемые имена с помощью параметра `DisplayName`.
 
@@ -390,7 +393,7 @@ namespace BlazorSample.Client
 
 Когда сообщения проверки задаются в компоненте, они добавляются в класс <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> проверяющего элемента управления и отображаются в классе <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
-```csharp
+```razor
 @page "/FormsValidation"
 
 <h1>Starfleet Starship Database</h1>
@@ -581,7 +584,7 @@ services.AddControllersWithViews()
 
 В клиентском проекте форма *Starfleet Starship Database* обновляется для отображения ошибок серверной проверки с помощью компонента `CustomValidator`. Когда серверный API возвращает сообщения проверки, они добавляются в <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> компонента `CustomValidator`. Эти ошибки можно вывести из <xref:Microsoft.AspNetCore.Components.Forms.EditContext> формы с помощью <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> формы.
 
-```csharp
+```razor
 @page "/FormValidation"
 @using System.Net
 @using System.Net.Http.Json
@@ -1168,7 +1171,7 @@ public class ShipDescription
 }
 ```
 
-## <a name="troubleshoot"></a>Диагностика
+## <a name="troubleshoot"></a>Устранение неполадок
 
 > InvalidOperationException: EditForm requires a Model parameter, or an EditContext parameter, but not both (Для EditForm требуется указать параметр Model или EditContext, но не оба).
 

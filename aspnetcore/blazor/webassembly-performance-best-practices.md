@@ -5,7 +5,7 @@ description: Советы по повышению производительно
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/25/2020
+ms.date: 09/09/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: 819947be90e7f09c7ba853df1af1f3c7066c0219
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5d3cd1480dd37f437b2d6d5a89af0a842286be95
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625821"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080268"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>Рекомендации по повышению производительности ASP.NET Core Blazor WebAssembly
 
@@ -141,9 +141,21 @@ Blazor WebAssembly предлагает две дополнительные ве
 
 ## <a name="reduce-app-size"></a>Уменьшение размера приложения
 
+::: moniker range=">= aspnetcore-5.0"
+
+### <a name="intermediate-language-il-trimming"></a>Обрезка промежуточного языка (IL)
+
+[Обрезка неиспользуемых сборок в приложении Blazor WebAssembly](xref:blazor/host-and-deploy/configure-trimmer) уменьшает размер приложения за счет удаления неиспользуемого кода в двоичных файлах приложения. По умолчанию средство обрезки выполняется при публикации приложения. Чтобы воспользоваться обрезкой, опубликуйте приложение для развертывания с помощью команды [`dotnet publish`](/dotnet/core/tools/dotnet-publish) с параметром [-c|--configuration](/dotnet/core/tools/dotnet-publish#options), имеющим значение `Release`:
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ### <a name="intermediate-language-il-linking"></a>Компоновка промежуточного языка (IL)
 
-[Компоновка приложения Blazor WebAssembly](xref:blazor/host-and-deploy/configure-linker) уменьшает размер приложения за счет удаления неиспользуемого кода в двоичных файлах приложения. По умолчанию компоновщик включается только при сборке в конфигурации `Release`. Чтобы воспользоваться этой возможностью, опубликуйте приложение для развертывания с помощью команды [`dotnet publish`](/dotnet/core/tools/dotnet-publish) с параметром [-c|--configuration](/dotnet/core/tools/dotnet-publish#options), имеющим значение `Release`:
+[Компоновка приложения Blazor WebAssembly](xref:blazor/host-and-deploy/configure-linker) уменьшает размер приложения за счет удаления неиспользуемого кода в двоичных файлах приложения. По умолчанию компоновщик промежуточного языка (IL) включается только при сборке в конфигурации `Release`. Чтобы воспользоваться этой возможностью, опубликуйте приложение для развертывания с помощью команды [`dotnet publish`](/dotnet/core/tools/dotnet-publish) с параметром [-c|--configuration](/dotnet/core/tools/dotnet-publish#options), имеющим значение `Release`:
+
+::: moniker-end
 
 ```dotnetcli
 dotnet publish -c Release
@@ -171,6 +183,20 @@ dotnet publish -c Release
   </PropertyGroup>
   ```
 
+::: moniker range=">= aspnetcore-5.0"
+
+* По умолчанию Blazor WebAssembly содержит ресурсы глобализации, необходимые для отображения значений, таких как даты и денежные единицы, на языке пользователя и с его региональными параметрами. Если приложению не требуется локализация, можно [настроить поддержку инвариантных языка и региональных параметров](xref:blazor/globalization-localization), основанных на языке и региональных параметрах `en-US`:
+
+  ```xml
+  <PropertyGroup>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+  ```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 * Для правильной работы таких интерфейсов API, как <xref:System.StringComparison.InvariantCultureIgnoreCase?displayProperty=nameWithType>, включаются сведения о параметрах сортировки. Если вы уверены, что приложению не нужны сведения о параметрах сортировки, эту функцию можно отключить, присвоив свойству MSBuild `BlazorWebAssemblyPreserveCollationData` в файле проекта приложения значение `false`:
 
   ```xml
@@ -178,3 +204,5 @@ dotnet publish -c Release
     <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
   </PropertyGroup>
   ```
+
+::: moniker-end

@@ -5,7 +5,7 @@ description: Узнайте, как выполнять отложенную за
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/25/2020
+ms.date: 09/09/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
-ms.openlocfilehash: 46f98080ad40f614f9cb1af2190f263d205c1016
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: eb4aaa2f3d412cdf650ed2daf7c12166991d92a1
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865162"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90592908"
 ---
 # <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>Сборки с отложенной загрузкой в ASP.NET Core Blazor WebAssembly
 
@@ -42,20 +42,9 @@ ms.locfileid: "88865162"
 
 ```xml
 <ItemGroup>
-  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls" />
+  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
 </ItemGroup>
 ```
-
-Отложить загрузку можно только тех сборок, которые используются приложением. Компоновщик удаляет неиспользуемые сборки из выходных данных публикации.
-
-> [!NOTE]
-> В релизе-кандидате 1 (RC1) платформы .NET 5 или более поздней версии, которая будет выпущена в середине сентября, для имени сборки потребуется расширение `.dll`:
->
-> ```xml
-> <ItemGroup>
->  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
-> </ItemGroup>
-> ```
 
 ## <a name="router-component"></a>`Router`
 
@@ -114,8 +103,11 @@ ms.locfileid: "88865162"
 * Использует взаимодействие JS для выборки сборок через сетевой вызов.
 * Загружает сборки в среду выполнения в WebAssembly в браузере.
 
-> [!NOTE]
-> Реализация отложенной загрузки на платформе поддерживает предварительную отрисовку на сервере. Во время предварительной отрисовки предполагается, что будут загружены все сборки, включая те, которые отмечены для отложенной загрузки.
+Реализация отложенной загрузки на платформе поддерживает отложенную загрузку с предварительной отрисовкой в размещенном решении Blazor. Во время предварительной отрисовки предполагается, что будут загружены все сборки, включая те, которые отмечены для отложенной загрузки. Вручную зарегистрируйте `LazyAssemblyLoader` в методе `Startup.ConfigureServices` проекта *сервера* (`Startup.cs`):
+
+```csharp
+services.AddSingleton<LazyAssemblyLoader>();
+```
 
 ### <a name="user-interaction-with-navigating-content"></a>Взаимодействие пользователей с содержимым `<Navigating>`
 

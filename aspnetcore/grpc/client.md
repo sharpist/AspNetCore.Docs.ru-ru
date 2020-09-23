@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/client
-ms.openlocfilehash: 28e4f372e301a673644bfa97763ebc930f2d0ad5
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9406c2a34126f3e5cd1406a55c3585e7a28f3dd9
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634336"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90593051"
 ---
 # <a name="call-grpc-services-with-the-net-client"></a>Вызов служб gRPC с помощью клиента .NET
 
@@ -260,7 +260,18 @@ catch (RpcException ex)
 }
 ```
 
+## <a name="configure-deadline"></a>Настройка крайнего срока
+
+Настраивать крайний срок в вызове gRPC рекомендуется по той причине, что он ограничивает длительность выполнения вызова. Это позволяет предотвратить бесконечное выполнение служб и исчерпание ресурсов сервера. Крайние сроки — это полезное средство для повышения надежности приложений.
+
+Чтобы задать крайний срок для вызова gRPC, настройте `CallOptions.Deadline`:
+
+[!code-csharp[](~/grpc/deadlines-cancellation/deadline-client.cs?highlight=7,12)]
+
+Для получения дополнительной информации см. <xref:grpc/deadlines-cancellation#deadlines>.
+
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * <xref:grpc/clientfactory>
+* <xref:grpc/deadlines-cancellation>
 * <xref:grpc/basics>

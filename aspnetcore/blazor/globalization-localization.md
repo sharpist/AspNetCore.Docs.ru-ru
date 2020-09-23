@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: deb68b50f408532af22d20ba9b06a9ee3eccb335
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 2b8820acba564bdfb85f8338ed5482573960fbb4
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628226"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080281"
 ---
 # <a name="aspnet-core-no-locblazor-globalization-and-localization"></a>Глобализация и локализация в ASP.NET Core Blazor
 
@@ -74,7 +74,23 @@ ms.locfileid: "88628226"
 
 Чтобы явно настроить язык и региональные параметры, задайте <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> и <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> в `Program.Main`.
 
-По умолчанию конфигурация компоновщика Blazor для приложений Blazor WebAssembly исключает сведения об интернационализации, кроме явно запрошенных языковых стандартов. Дополнительные сведения и рекомендации по управлению поведением компоновщика см. в разделе <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
+::: moniker range=">= aspnetcore-5.0"
+
+По умолчанию Blazor WebAssembly содержит ресурсы глобализации, необходимые для отображения значений, таких как даты и денежные единицы, на языке пользователя и с его региональными параметрами. Если приложению не требуется локализация, можно настроить поддержку инвариантных языка и региональных параметров, основанных на языке и региональных параметрах `en-US`:
+
+```xml
+<PropertyGroup>
+  <InvariantGlobalization>true</InvariantGlobalization>
+</PropertyGroup>
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+По умолчанию конфигурация компоновщика промежуточного языка (IL) для приложений Blazor WebAssembly исключает сведения об интернационализации, кроме явно запрошенных языковых стандартов. Для получения дополнительной информации см. <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
+
+::: moniker-end
 
 Хотя язык и региональные параметры, выбираемые Blazor по умолчанию, могут быть достаточными для большинства пользователей, рекомендуется предоставить пользователям возможность указать предпочитаемый языковой стандарт. Пример приложения Blazor WebAssembly с выбором языка и региональных параметров см. в описании примера приложения локализации [`LocSample`](https://github.com/pranavkm/LocSample).
 
