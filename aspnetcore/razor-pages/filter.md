@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/filter
-ms.openlocfilehash: b6d6585c0cbd52715c4192d4ab3bee756dbb41b3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 436d640130b378e2c770322186020c6e252872ef
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635051"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722518"
 ---
 # <a name="filter-methods-for-no-locrazor-pages-in-aspnet-core"></a>Методы фильтрации для Razor Pages в ASP.NET Core
 
@@ -39,7 +39,7 @@ ms.locfileid: "88635051"
 * Запускают код после выполнения метода обработчика.
 * Могут реализовываться глобально или на странице.
 * Не могут применяться к методам обработчика для конкретной страницы.
-* Могут иметь зависимости конструктора, заполняемые путем [внедрения зависимостей](xref:fundamentals/dependency-injection). Дополнительные сведения см. в описаниях атрибутов [ServiceFilterAttribute](/aspnet/core/mvc/controllers/filters#servicefilterattribute) и [TypeFilterAttribute](/aspnet/core/mvc/controllers/filters#typefilterattribute).
+* Могут иметь зависимости конструктора, заполняемые путем [внедрения зависимостей](xref:fundamentals/dependency-injection). Дополнительные сведения см. в описаниях атрибутов [ServiceFilterAttribute](../mvc/controllers/filters.md#servicefilterattribute) и [TypeFilterAttribute](../mvc/controllers/filters.md#typefilterattribute).
 
 Хотя конструкторы страниц и ПО промежуточного слоя позволяют выполнять пользовательский код до выполнения метода обработчика, только фильтры страницы Razor предоставляют доступ к <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext> и странице. ПО промежуточного слоя имеет доступ к `HttpContext`, но не к контексту страницы. Фильтры имеют производный параметр <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext>, который предоставляет доступ к `HttpContext`. Вот пример фильтра страницы: [Применение атрибута фильтра](#ifa), который добавляет заголовок к ответу. Это невозможно сделать с помощью конструкторов или ПО промежуточного слоя. Доступ к контексту страницы, который включает в себя доступ к экземплярам страницы и ее модели, возможен только при выполнении фильтров, обработчиков или текста страницы Razor.
 

@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: 603c5e7c9f095c380461f8c6e4ead783ad35abe2
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 17b200f0ba90035c417c96689798263af16551de
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630865"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722823"
 ---
 # <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Часть 7. Razor Pages с EF Core в ASP.NET Core — обновление связанных данных
 
@@ -46,7 +46,7 @@ ms.locfileid: "88630865"
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/DepartmentNamePageModel.cs)]
 
-Приведенный выше код создает [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0), содержащий список названий кафедр. Если указан параметр `selectedDepartment`, кафедра выбрана в списке `SelectList`.
+Приведенный выше код создает [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist), содержащий список названий кафедр. Если указан параметр `selectedDepartment`, кафедра выбрана в списке `SelectList`.
 
 Классы моделей страниц Create и Edit являются производными от `DepartmentNamePageModel`.
 
@@ -111,7 +111,7 @@ ms.locfileid: "88630865"
 
 ## <a name="update-the-course-details-and-delete-pages"></a>Обновление страниц сведений и удаления курсов
 
-Применение [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) позволяет повысить производительность в тех сценариях, где не требуется отслеживание.
+Применение [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) позволяет повысить производительность в тех сценариях, где не требуется отслеживание.
 
 ### <a name="update-the-course-page-models"></a>Обновление моделей для страниц курсов
 
@@ -263,7 +263,7 @@ ms.locfileid: "88630865"
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/DepartmentNamePageModel.cshtml.cs?highlight=9,11,20-21)]
 
-Приведенный выше код создает [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0), содержащий список названий кафедр. Если указан параметр `selectedDepartment`, кафедра выбрана в списке `SelectList`.
+Приведенный выше код создает [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist), содержащий список названий кафедр. Если указан параметр `selectedDepartment`, кафедра выбрана в списке `SelectList`.
 
 Классы моделей страниц Create и Edit являются производными от `DepartmentNamePageModel`.
 
@@ -328,7 +328,7 @@ ms.locfileid: "88630865"
 
 ## <a name="add-asnotracking-to-the-details-and-delete-page-models"></a>Добавление AsNoTracking в модели страниц Details и Delete
 
-Применение [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) позволяет повысить производительность в тех сценариях, где не требуется отслеживание. Добавьте `AsNoTracking` в модели страниц Delete и Details. Следующий код отображает обновленную модель страницы Delete:
+Применение [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) позволяет повысить производительность в тех сценариях, где не требуется отслеживание. Добавьте `AsNoTracking` в модели страниц Delete и Details. Следующий код отображает обновленную модель страницы Delete:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 

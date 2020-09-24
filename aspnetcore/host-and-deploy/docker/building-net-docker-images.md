@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: dfb807d5e8d8b949feb0ea87f7f6bcecd04817e8
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 791cc14feac30ad8a571d155624ab821dfd77981
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627329"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722862"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Образы Docker для ASP.NET Core
 
@@ -264,8 +264,8 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 * [Команда Docker build](https://docs.docker.com/engine/reference/commandline/build)
 * [Команда Docker run](https://docs.docker.com/engine/reference/commandline/run)
 * [Пример ASP.NET Core для Docker](https://github.com/dotnet/dotnet-docker) (который используется в этом руководстве).
-* [Настройка ASP.NET Core для работы с прокси-серверами и подсистемами балансировки нагрузки](/aspnet/core/host-and-deploy/proxy-load-balancer)
-* [Работа со средствами Visual Studio для Docker](https://docs.microsoft.com/aspnet/core/publishing/visual-studio-tools-for-docker)
+* [Настройка ASP.NET Core для работы с прокси-серверами и подсистемами балансировки нагрузки](../proxy-load-balancer.md)
+* [Работа со средствами Visual Studio для Docker](./visual-studio-tools-for-docker.md)
 * [Отладка с помощью Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
 * [GC с использованием DOCKER и небольших контейнеров](xref:performance/memory#sc)
 

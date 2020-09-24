@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/integration-tests
-ms.openlocfilehash: b06c06fb5e525a0bdc3df1de50236fa8f76daca9
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9b36a77730a43c7515fcd2c56621412453784c9d
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635116"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722544"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Интеграционные тесты на платформе ASP.NET Core
 
@@ -388,7 +388,7 @@ dotnet test
 
 &#8224;В разделе документации о EF [Тестирование с помощью InMemory](/ef/core/miscellaneous/testing/in-memory) объясняется, как использовать базу данных в памяти для тестов с помощью MSTest. В этом разделе используется платформа тестирования [xUnit](https://xunit.github.io/). Концепции тестирования и реализации тестов в разных платформах тестирования похожи, но не идентичны.
 
-Несмотря на то, что приложение не использует шаблон репозитория и не является эффективным примером [шаблона "единица работы" (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages поддерживает такие шаблоны разработки. Дополнительные сведения см. в разделах [Проектирование уровня сохраняемости инфраструктуры](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) и [Логика контроллера тестирования](/aspnet/core/mvc/controllers/testing) (пример реализует шаблон репозитория).
+Несмотря на то, что приложение не использует шаблон репозитория и не является эффективным примером [шаблона "единица работы" (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages поддерживает такие шаблоны разработки. Дополнительные сведения см. в разделах [Проектирование уровня сохраняемости инфраструктуры](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) и [Логика контроллера тестирования](../mvc/controllers/testing.md) (пример реализует шаблон репозитория).
 
 ### <a name="test-app-organization"></a>Организация приложения для тестирования
 
@@ -779,7 +779,7 @@ dotnet test
 
 &#8224;В разделе документации о EF [Тестирование с помощью InMemory](/ef/core/miscellaneous/testing/in-memory) объясняется, как использовать базу данных в памяти для тестов с помощью MSTest. В этом разделе используется платформа тестирования [xUnit](https://xunit.github.io/). Концепции тестирования и реализации тестов в разных платформах тестирования похожи, но не идентичны.
 
-Несмотря на то, что приложение не использует шаблон репозитория и не является эффективным примером [шаблона "единица работы" (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages поддерживает такие шаблоны разработки. Дополнительные сведения см. в разделах [Проектирование уровня сохраняемости инфраструктуры](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) и [Логика контроллера тестирования](/aspnet/core/mvc/controllers/testing) (пример реализует шаблон репозитория).
+Несмотря на то, что приложение не использует шаблон репозитория и не является эффективным примером [шаблона "единица работы" (UoW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages поддерживает такие шаблоны разработки. Дополнительные сведения см. в разделах [Проектирование уровня сохраняемости инфраструктуры](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) и [Логика контроллера тестирования](../mvc/controllers/testing.md) (пример реализует шаблон репозитория).
 
 ### <a name="test-app-organization"></a>Организация приложения для тестирования
 

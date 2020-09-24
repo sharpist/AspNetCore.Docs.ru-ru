@@ -4,7 +4,7 @@ author: rick-anderson
 description: Сведения о том, как создать приложение Razor Pages с помощью Entity Framework Core
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 09/26/2019
+ms.date: 9/26/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 00d5c348b7ab06f9044e6705026e43feb7807ae3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9dd8d293e189eebe6b61f6f0b35aee71977d2f77
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630313"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722557"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Использование Razor Pages с Entity Framework Core в ASP.NET Core: руководство 1 из 8
 
 Авторы: [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-5.0"
 
 Это первое руководство из серии, посвященной использованию Entity Framework (EF) Core в приложении [ASP.NET Core Razor Pages](xref:razor-pages/index). В учебниках создается веб-сайт для вымышленного университета Contoso. На сайте предусмотрены различные функции, в том числе прием учащихся, создание курсов и назначение преподавателей. В этом руководстве используется подход Code First. См. сведения о работе с этим руководством при использовании подхода Database First в [этой проблеме GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
@@ -188,7 +188,442 @@ ms.locfileid: "88630313"
 
 Свойство `EnrollmentID` является первичным ключом. В этой сущности используется шаблон `classnameID` вместо `ID`. Для рабочей модели данных выберите один шаблон и используйте только его. В этом учебнике используются оба шаблона, чтобы проиллюстрировать их работу. Использование `ID` без `classname` упрощает внесение некоторых изменений в модель данных.
 
-Свойство `Grade` имеет тип `enum`. Знак вопроса после объявления типа `Grade` указывает, что свойство `Grade`[допускает значение NULL](https://docs.microsoft.com/dotnet/csharp/programming-guide/nullable-types/). Оценка со значением NULL отличается от нулевой оценки тем, что при таком значении оценка еще не известна или не назначена.
+Свойство `Grade` имеет тип `enum`. Знак вопроса после объявления типа `Grade` указывает, что свойство `Grade`[допускает значение NULL](/dotnet/csharp/programming-guide/nullable-types/). Оценка со значением NULL отличается от нулевой оценки тем, что при таком значении оценка еще не известна или не назначена.
+
+Свойство `StudentID` представляет собой внешний ключ. Ему соответствует свойство навигации `Student`. Сущность `Enrollment` связана с одной сущностью `Student`, поэтому свойство содержит отдельную сущность `Student`.
+
+Свойство `CourseID` представляет собой внешний ключ. Ему соответствует свойство навигации `Course`. Сущность `Enrollment` связана с одной сущностью `Course`.
+
+EF Core воспринимает свойство как внешний ключ, если он имеет имя `<navigation property name><primary key property name>`. Например, `StudentID` является внешним ключом для свойства навигации `Student`, так как сущность `Student` имеет первичный ключ `ID`. Свойства внешнего ключа также могут называться `<primary key property name>`. Например, `CourseID`, так как сущность `Course` имеет первичный ключ `CourseID`.
+
+## <a name="the-course-entity"></a>Сущность Course
+
+![Схема сущности Course](intro/_static/course-entity.png)
+
+Создайте файл *Models/Course.cs* со следующим кодом:
+
+[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Course.cs)]
+
+Свойство `Enrollments` является свойством навигации. Сущность `Course` может быть связана с любым числом сущностей `Enrollment`.
+
+Атрибут `DatabaseGenerated` позволяет приложению указать первичный ключ, а не использовать созданный базой данных.
+
+Выполните сборку проекта и убедитесь в отсутствии ошибок компилятора.
+
+## <a name="scaffold-student-pages"></a>Формирование шаблона для страниц Student
+
+В этом разделе вы используете средство формирования шаблонов ASP.NET Core для создания указанных ниже компонентов.
+
+* Класс *контекста* EF Core. Контекст —это основной класс, который координирует функциональные возможности Entity Framework для определенной модели данных. Он является производным от класса `Microsoft.EntityFrameworkCore.DbContext`.
+* Razor Pages с поддержкой операций создания, чтения, обновления и удаления (CRUD) для сущности `Student`.
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* В папке *Pages* создайте папку *Students*.
+* В **обозревателе решений** щелкните правой кнопкой мыши папку *Pages/Students* и выберите **Добавить** > **Создать шаблонный элемент**.
+* В диалоговом окне **Добавление шаблона** щелкните **Razor Pages на основе Entity Framework (CRUD)** > **Добавить**.
+* В диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** сделайте следующее:
+  * В раскрывающемся списке **Класс модели** выберите **Student (ContosoUniversity.Models)** .
+  * В строке **Класс контекста данных** щелкните знак плюса ( **+** ).
+  * Измените имя контекста данных с *ContosoUniversity.Models.ContosoUniversityContext* на *ContosoUniversity.Data.SchoolContext*.
+  * Нажмите **Добавить**.
+
+Следующие пакеты устанавливаются автоматически:
+
+* `Microsoft.VisualStudio.Web.CodeGeneration.Design`
+* `Microsoft.EntityFrameworkCore.SqlServer`
+* `Microsoft.Extensions.Logging.Debug`
+* `Microsoft.EntityFrameworkCore.Tools`
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+* Выполните следующие команды интерфейса командной строки .NET Core, чтобы установить необходимые пакеты NuGet:
+<!-- TO DO  After testing, Replace with
+[!INCLUDE[](~/includes/includes/add-EF-NuGet-SQLite-CLI.md)]
+remove dotnet tool install --global  below
+ -->
+  ```dotnetcli
+  dotnet add package Microsoft.EntityFrameworkCore.SQLite
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+  dotnet add package Microsoft.EntityFrameworkCore.Design
+  dotnet add package Microsoft.EntityFrameworkCore.Tools
+  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+  dotnet add package Microsoft.Extensions.Logging.Debug
+  ```
+
+  Пакет Microsoft.VisualStudio.Web.CodeGeneration.Design требуется для формирования шаблонов. Хотя приложение не будет использовать SQL Server, средству формирования шаблонов требуется пакет SQL Server.
+
+* Создайте папку *Pages/Students*.
+
+* Выполните приведенную ниже команду, чтобы установить [средство формирования шаблонов aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+
+  ```dotnetcli
+  dotnet tool install --global dotnet-aspnet-codegenerator
+  ```
+
+* Выполните приведенную ниже команду, чтобы сформировать шаблон для страниц Student.
+
+  **В Windows**
+
+  ```dotnetcli
+  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
+  ```
+
+  **В macOS или Linux**
+
+  ```dotnetcli
+  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
+  ```
+
+---
+
+Если в предыдущем шаге возникает проблема, выполните сборку проекта и повторите шаг формирования шаблона.
+
+В процессе формирования шаблона выполняются следующие действия:
+
+* создаются страницы Razor в папке *Pages/Students*:
+  * *Create.cshtml* и *Create.cshtml.cs*;
+  * *Delete.cshtml* и *Delete.cshtml.cs*;
+  * *Details.cshtml* и *Details.cshtml.cs*;
+  * *Edit.cshtml* и *Edit.cshtml.cs*;
+  * *Index.cshtml* и *Index.cshtml.cs*;
+* создается файл *Data/SchoolContext.cs*;
+* добавляется контекст для внедрения зависимостей в файле *Startup.cs*;
+* добавляется строка подключения к базе данных в файл *appsettings.json*.
+
+## <a name="database-connection-string"></a>Строка подключения к базе данных
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+Строка подключения указывает базу данных [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb). 
+
+[!code-json[Main](intro/samples/cu30/appsettings.json?highlight=11)]
+
+LocalDB — это упрощенная версия ядра СУБД SQL Server Express, предназначенная для разработки приложений и не ориентированная на использование в рабочей среде. По умолчанию LocalDB создает файлы *MDF* в каталоге `C:/Users/<user>`.
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+Измените строку подключения так, чтобы она указывала на файл базы данных SQLite с именем *CU.db*.
+
+[!code-json[Main](intro/samples/cu30/appsettingsSQLite.json?highlight=11)]
+
+---
+
+## <a name="update-the-database-context-class"></a>Обновление класса контекста базы данных
+
+Контекст базы данных — это основной класс, который координирует функциональные возможности EF Core для определенной модели данных. Контекст наследуется от [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). Контекст указывает сущности, которые включаются в модель данных. В этом проекте соответствующий класс называется `SchoolContext`.
+
+Обновите файл *SchoolContext.cs*, добавив в него следующий код:
+
+[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
+
+Выделенный код создает свойство [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) для каждого набора сущностей. В терминологии EF Core:
+
+* Набор сущностей обычно соответствует таблице базы данных.
+* Сущность соответствует строке в таблице.
+
+Так как набор сущностей содержит несколько сущностей, свойства DBSet должны иметь имена во множественном числе. Так как средство формирования шаблонов создало DBSet `Student`, в этом шаге его имя меняется на имя во множественном числе: `Students`. 
+
+Чтобы код Razor Pages соответствовал новому имени DBSet, измените `_context.Student` на `_context.Students` во всем проекте.  Всего это имя встречается 8 раз.
+
+Выполните сборку проекта и убедитесь в отсутствии ошибок компилятора.
+
+## <a name="startupcs"></a>Startup.cs
+
+ASP.NET Core поддерживает [внедрение зависимостей](xref:fundamentals/dependency-injection). С помощью внедрения зависимостей службы (например, контекст базы данных EF Core) регистрируются во время запуска приложения. Затем компоненты, которые используют эти службы (например, Razor Pages), обращаются к ним через параметры конструктора. Код конструктора, который получает экземпляр контекста базы данных, приведен далее в этом руководстве.
+
+Средство формирования шаблонов автоматически зарегистрировало класс контекста в контейнере внедрения зависимостей.
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* Выделенные строки в `ConfigureServices` были добавлены средством формирования шаблонов:
+
+  [!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+* Убедитесь в том, что код, добавленный средством формирования шаблонов в `ConfigureServices`, вызывает `UseSqlite`.
+
+  [!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
+
+---
+
+Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json*.
+
+## <a name="create-the-database"></a>Создание базы данных
+
+Обновите файл *Program.cs*, чтобы создать базу данных, если она не существует.
+
+[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
+
+Метод [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated#Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_EnsureCreated) не выполняет никаких действий, если база данных для контекста существует. Если база данных не существует, она создается вместе со схемой. `EnsureCreated` обеспечивает описанный ниже рабочий процесс для обработки изменений модели данных.
+
+* База данных удаляется. Все существующие данные теряются.
+* Модель данных изменяется. Например, добавляется поле `EmailAddress`.
+* Запустите приложение.
+* Метод `EnsureCreated` создает базу данных с новой схемой.
+
+Этот рабочий процесс хорошо подходит для ранних стадий разработки, когда схема часто меняется, если данные сохранять не требуется. Однако если данные, введенные в базу данных, необходимо сохранять, ситуация будет иной. В таком случае используйте перенос.
+
+Далее в этой серии учебников вы удалите базу данных, созданную методом `EnsureCreated`, и используете вместо этого перенос. Созданную методом `EnsureCreated` базу данных нельзя обновить, используя перенос.
+
+### <a name="test-the-app"></a>Тестирование приложения
+
+* Запустите приложение.
+* Щелкните ссылку **Students** и выберите **Создать**.
+* Протестируйте ссылки Edit, Details и Delete.
+
+## <a name="seed-the-database"></a>Заполнение базы данных
+
+Метод `EnsureCreated` создает пустую базу данных. В этом разделе добавляется код, который заполняет базу данных тестовыми данными.
+
+Создайте файл *Data/DbInitializer.cs* со следующим кодом:
+<!-- next update, keep this file in the project and surround with #if -->
+  [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/DbInitializer.cs)]
+
+  Этот код проверяет наличие учащихся в базе данных. Если учащихся нет, в базу данных добавляются тестовые данные. Для повышения производительности тестовые данные создаются массивами, а не коллекциями `List<T>`.
+
+* В файле *Program.cs* замените вызов `EnsureCreated` вызовом `DbInitializer.Initialize`:
+
+  ```csharp
+  // context.Database.EnsureCreated();
+  DbInitializer.Initialize(context);
+  ```
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+Завершите работу приложения, если оно запущено, и выполните следующую команду в **консоли диспетчера пакетов** (PMC):
+
+```powershell
+Drop-Database
+```
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+* Остановите приложение, если оно выполняется, и удалите файл *CU.db*.
+
+---
+
+* Перезапустите приложение.
+
+* Выберите страницу учащихся, чтобы увидеть заполненные данные.
+
+## <a name="view-the-database"></a>Просмотр базы данных
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* Откройте **обозреватель объектов SQL Server** (SSOX) из меню **Вид** в Visual Studio.
+* В SSOX щелкните **(localdb)\MSSQLLocalDB > Базы данных > SchoolContext-{GUID}** . Имя базы данных создается на основе имени контекста, которое вы указали ранее, а также включает дефис и GUID.
+* Разверните узел **Таблицы**.
+* Щелкните правой кнопкой мыши таблицу **Student** (Учащийся) и выберите пункт **Просмотр данных**, чтобы просмотреть созданные столбцы и строки, вставленные в таблицу.
+* Щелкните правой кнопкой мыши таблицу **Student** (Учащийся) и выберите пункт **Просмотреть код**, чтобы увидеть, как модель `Student` соотносится со схемой таблицы `Student`.
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+Используйте средство SQLite для просмотра схемы базы данных и заполненных данных. Файл базы данных называется *CU.db* и находится в папке проекта.
+
+---
+
+## <a name="asynchronous-code"></a>Асинхронный код
+
+Асинхронное программирование по умолчанию применяется в ASP.NET Core и EF Core.
+
+Веб-сервер имеет ограниченное число потоков, поэтому при высокой загрузке могут использоваться все доступные потоки. В таких случаях сервер не может обрабатывать новые запросы до тех пор, пока не будут высвобождены потоки. В синхронном коде многие потоки могут быть заняты, не выполняя при этом какие-либо операции и ожидая завершения ввода-вывода. В асинхронном коде в то время, когда процесс ожидает завершения ввода-вывода, его поток высвобождается и может использоваться сервером для обработки других запросов. Таким образом, асинхронный код позволяет более эффективно использовать ресурсы сервера, который может обрабатывать больше трафика без задержек.
+
+Во время выполнения асинхронный код использует немного больше служебных ресурсов. Однако при низком объеме трафика этим можно пренебречь. Тем не менее в случае большого объема трафика это дает существенный выигрыш в производительности.
+
+В следующем коде для асинхронного выполнения используются ключевое слово [async](/dotnet/csharp/language-reference/keywords/async), возвращаемое значение `Task<T>`, ключевое слово `await` и метод `ToListAsync`.
+
+```csharp
+public async Task OnGetAsync()
+{
+    Students = await _context.Students.ToListAsync();
+}
+```
+
+* Ключевое слово `async` указывает компилятору:
+  * создавать обратные вызовы для частей тела метода;
+  * создавать возвращаемый объект [Task](/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
+* Тип возвращаемого значения `Task<T>` представляет текущую операцию.
+* Ключевое слово `await` предписывает компилятору разделить метод на две части. Первая часть завершается операцией, которая запускается в асинхронном режиме. Вторая часть помещается в метод обратного вызова, который вызывается при завершении операции.
+* `ToListAsync` является асинхронной версией метода расширения `ToList`.
+
+При написании асинхронного кода, который использует EF Core, нужно учитывать некоторые моменты:
+
+* Асинхронно выполняются только те инструкции, в результате которых в базу данных отправляются запросы или команды. К ним относятся `ToListAsync`, `SingleOrDefaultAsync`, `FirstOrDefaultAsync` и `SaveChangesAsync`. В их число не входят операторы, которые просто изменяют `IQueryable`, такие как `var students = context.Students.Where(s => s.LastName == "Davolio")`.
+* Контекст EF Core не является потокобезопасным, поэтому не следует пытаться выполнять несколько операций параллельно.
+* Чтобы воспользоваться преимуществами повышенной производительности асинхронного кода, убедитесь в том, что пакеты библиотек (например, для разбиения на страницы) используют асинхронную модель, когда вызывают методы EF Core, которые направляют запросы в базу данных.
+
+Дополнительные сведения об асинхронном программировании см. в разделах [Обзор асинхронной модели](/dotnet/standard/async) и [Асинхронное программирование с использованием ключевых слов Async и Await](/dotnet/csharp/programming-guide/concepts/async/).
+
+## <a name="next-steps"></a>Следующие шаги
+
+> [!div class="step-by-step"]
+> [Следующий учебник](xref:data/ef-rp/crud)
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
+Это первое руководство из серии, посвященной использованию Entity Framework (EF) Core в приложении [ASP.NET Core Razor Pages](xref:razor-pages/index). В учебниках создается веб-сайт для вымышленного университета Contoso. На сайте предусмотрены различные функции, в том числе прием учащихся, создание курсов и назначение преподавателей. В этом руководстве используется подход Code First. См. сведения о работе с этим руководством при использовании подхода Database First в [этой проблеме GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
+
+[Скачайте или ознакомьтесь с готовым приложением.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Указания по скачиванию](xref:index#how-to-download-a-sample).
+
+## <a name="prerequisites"></a>Предварительные требования
+
+* Если у вас нет опыта работы с Razor Pages, ознакомьтесь с серией руководств [Начало работы с Razor Pages](xref:tutorials/razor-pages/razor-pages-start), прежде чем приступать к изучению этого руководства.
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+[!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-3.0.md)]
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[VS Code prereqs](~/includes/net-core-prereqs-vsc-3.0.md)]
+
+---
+
+## <a name="database-engines"></a>Ядра СУБД
+
+В инструкциях для Visual Studio используется [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb), версия SQL Server Express, которая работает только в Windows.
+
+В инструкциях для Visual Studio Code используется [SQLite](https://www.sqlite.org/), кроссплатформенное ядро СУБД.
+
+Если вы решили использовать SQLite, скачайте и установите стороннее средство для управления базой данных SQLite и ее просмотра, например [обозреватель базы данных для SQLite](https://sqlitebrowser.org/).
+
+## <a name="troubleshooting"></a>Устранение неполадок
+
+Если вы столкнулись с проблемой, которую не можете решить, сравните свой код с кодом [готового проекта](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). Чтобы получить помощь, вы можете опубликовать вопрос на веб-сайте StackOverflow.com, используя [тег ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) или [тег EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
+
+## <a name="the-sample-app"></a>Пример приложения
+
+Приложение, создаваемое в этих руководствах, является простым веб-сайтом университета. Пользователи приложения могут просматривать и обновлять сведения об учащихся, курсах и преподавателях. Здесь приведено несколько экранов, создаваемых в руководстве.
+
+![Страница указателя учащихся](intro/_static/students-index30.png)
+
+![Страница редактирования учащихся](intro/_static/student-edit30.png)
+
+Стиль пользовательского интерфейса для этого сайта основан на встроенных шаблонах проектов. Это руководство посвящено использованию EF Core, а не настройке пользовательского интерфейса.
+
+Чтобы получить исходный код готового проекта, перейдите по ссылке в верхней части страницы. В папке *cu30* содержится код для версии учебника по ASP.NET Core 3.0. Файлы, отражающие состояние кода для учебников 1–7, находятся в папке *cu30snapshots*.
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+Чтобы запустить приложение после скачивания готового проекта, выполните указанные ниже действия.
+
+* Выполните построение проекта.
+* В консоли диспетчера пакетов (PMC) выполните следующую команду:
+
+  ```powershell
+  Update-Database
+  ```
+
+* Запустите проект, чтобы заполнить базу данных.
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+Чтобы запустить приложение после скачивания готового проекта, выполните указанные ниже действия.
+
+* Удалите файл *ContosoUniversity.csproj*, а файл *ContosoUniversitySQLite.csproj* переименуйте в *ContosoUniversity.csproj*.
+* В файле *Program.cs* закомментируйте `#define Startup`, чтобы использовать `StartupSQLite`.
+* Удалите файл *appSettings.json*, а файл *appSettingsSQLite.json* переименуйте в *appSettings.json*.
+* Удалите папку *Migrations*, а папку *MigrationsSQL* переименуйте в *Migrations*.
+* Выполните глобальный поиск `#if SQLiteVersion` и удалите `#if SQLiteVersion` и связанную инструкцию `#endif`.
+* Выполните построение проекта.
+* В командной строке в папке проекта выполните следующие команды:
+
+  ```dotnetcli
+  dotnet tool install --global dotnet-ef
+  dotnet ef database update
+  ```
+
+* В средстве SQLite выполните следующую инструкцию SQL:
+
+  ```sql
+  UPDATE Department SET RowVersion = randomblob(8)
+  ```
+
+* Запустите проект, чтобы заполнить базу данных.
+
+---
+
+## <a name="create-the-web-app-project"></a>Создание проекта веб-приложения
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* В Visual Studio в меню **Файл** щелкните **Создать** > **Проект**.
+* Выберите **Новое веб-приложение ASP.NET Core**.
+* Назовите проект *ContosoUniversity*. Очень важно использовать именно такое имя с учетом регистра символов, чтобы пространства имен совпадали при копировании и вставке кода.
+* Выберите в раскрывающихся списках пункты **.NET Core** и **ASP.NET Core 3.0**, а затем выберите **Веб-приложение**.
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+* В терминале перейдите в папку, в которой следует создать папку проекта.
+
+* Выполните следующие команды, чтобы создать проект Razor Pages и перейти (`cd`) в новую папку проекта:
+
+  ```dotnetcli
+  dotnet new webapp -o ContosoUniversity
+  cd ContosoUniversity
+  ```
+
+---
+
+## <a name="set-up-the-site-style"></a>Настройка стиля сайта
+
+Настройте заголовок сайта, нижний колонтитул и меню, внеся изменения в файл *Pages/Shared/_Layout.cshtml*.
+
+* Замените все вхождения "ContosoUniversity" на "Contoso University". Таких элементов будет три.
+
+* Удалите пункты меню **Home** (Главная) и **Privacy** (Конфиденциальность). Добавьте пункты **About** (Сведения), **Students** (Учащиеся), **Courses** (Курсы), **Instructors** (Преподаватели) и **Departments** (Кафедры).
+
+Изменения выделены.
+
+[!code-cshtml[Main](intro/samples/cu30/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
+
+Замените содержимое файла *Pages/Index.cshtml* следующим кодом, который заменяет текст об ASP.NET Core описанием этого приложения:
+
+[!code-cshtml[Main](intro/samples/cu30/Pages/Index.cshtml)]
+
+Запустите приложение, чтобы проверить правильность отображения домашней страницы.
+
+## <a name="the-data-model"></a>Модель данных
+
+В следующих разделах создается модель данных.
+
+![Схема модели данных "курс-регистрация-учащийся"](intro/_static/data-model-diagram.png)
+
+Учащийся может зарегистрироваться в любом количестве курсов, а в отдельном курсе может быть зарегистрировано любое количество учащихся.
+
+## <a name="the-student-entity"></a>Сущность Student
+
+![Схема сущности Student](intro/_static/student-entity.png)
+
+* Создайте папку *Models* (Модели) в папке проекта. 
+
+* Создайте файл *Models/Student.cs* со следующим кодом:
+
+  [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Student.cs)]
+
+Свойство `ID` используется в качестве столбца первичного ключа в таблице базы данных, соответствующей этому классу. По умолчанию платформа EF Core интерпретирует в качестве первичного ключа свойство `ID` или `classnameID`. Поэтому альтернативным автоматически распознаваемым именем для первичного ключа класса `Student` является `StudentID`. Дополнительные сведения см. в разделе [EF Core — Управление ключами](/ef/core/modeling/keys?tabs=data-annotations)
+
+Свойство `Enrollments` является [свойством навигации](/ef/core/modeling/relationships). Свойства навигации содержат другие сущности, связанные с этой сущностью. В этом случае свойство `Enrollments` сущности `Student` содержит все сущности `Enrollment`, которые связаны с этим учащимся. Например, если строка Student (Учащийся) в базе данных имеет две связанные строки Enrollment (Регистрация), свойство навигации `Enrollments` содержит две эти сущности Enrollment. 
+
+В базе данных строка Enrollment связана со строкой Student, если ее столбец StudentID содержит идентификатор учащегося. Например, предположим, что строка Student содержит идентификатор 1. Связанные строки Enrollment будут содержать значение StudentID (идентификатор учащегося), равное 1. StudentID — это *внешний ключ* в таблице Enrollment. 
+
+Свойство `Enrollments` определено как `ICollection<Enrollment>`, так как может быть несколько связанных сущностей Enrollment. Можно использовать и другие типы коллекций, например `List<Enrollment>` или `HashSet<Enrollment>`. Если используется `ICollection<Enrollment>`, платформа EF Core по умолчанию создает коллекцию `HashSet<Enrollment>`.
+
+## <a name="the-enrollment-entity"></a>Сущность Enrollment
+
+![Схема сущности Enrollment](intro/_static/enrollment-entity.png)
+
+Создайте файл *Models/Enrollment.cs* со следующим кодом:
+
+[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Enrollment.cs)]
+
+Свойство `EnrollmentID` является первичным ключом. В этой сущности используется шаблон `classnameID` вместо `ID`. Для рабочей модели данных выберите один шаблон и используйте только его. В этом учебнике используются оба шаблона, чтобы проиллюстрировать их работу. Использование `ID` без `classname` упрощает внесение некоторых изменений в модель данных.
+
+Свойство `Grade` имеет тип `enum`. Знак вопроса после объявления типа `Grade` указывает, что свойство `Grade`[допускает значение NULL](/dotnet/csharp/programming-guide/nullable-types/). Оценка со значением NULL отличается от нулевой оценки тем, что при таком значении оценка еще не известна или не назначена.
 
 Свойство `StudentID` представляет собой внешний ключ. Ему соответствует свойство навигации `Student`. Сущность `Enrollment` связана с одной сущностью `Student`, поэтому свойство содержит отдельную сущность `Student`.
 

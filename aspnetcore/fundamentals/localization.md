@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: d5be01c67f455a2706a654574ef9f5e273551e70
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 478e9e58f265a8c372dd048f9ba8593424050e01
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865449"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722674"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Глобализация и локализация в ASP.NET Core
 
@@ -66,7 +66,7 @@ ms.locfileid: "88865449"
 
 Вы можете разбивать локализованные строки по контроллеру, области или использовать всего один конвейер. В образце приложения для общих ресурсов применяется класс-заглушка с именем `SharedResource`.
 
-[!code-csharp[](localization/sample/3.x/Localization/Resources/SharedResource.cs)]
+[!code-csharp[](localization/sample/3.x/Localization/SharedResource.cs)]
 
 Некоторые разработчики используют класс `Startup` для хранения глобальных или общих строк. В примере ниже используются средства локализации `InfoController` и `SharedResource`.
 
@@ -420,7 +420,7 @@ services.Configure<RequestLocalizationOptions>(options =>
 
 Вы можете разбивать локализованные строки по контроллеру, области или использовать всего один конвейер. В образце приложения для общих ресурсов применяется класс-заглушка с именем `SharedResource`.
 
-[!code-csharp[](localization/sample/3.x/Localization/Resources/SharedResource.cs)]
+[!code-csharp[](localization/sample/3.x/Localization/SharedResource.cs)]
 
 Некоторые разработчики используют класс `Startup` для хранения глобальных или общих строк. В примере ниже используются средства локализации `InfoController` и `SharedResource`.
 
@@ -775,7 +775,7 @@ services.Configure<RequestLocalizationOptions>(options =>
 
 Вы можете разбивать локализованные строки по контроллеру, области или использовать всего один конвейер. В образце приложения для общих ресурсов применяется класс-заглушка с именем `SharedResource`.
 
-[!code-csharp[](localization/sample/3.x/Localization/Resources/SharedResource.cs)]
+[!code-csharp[](localization/sample/3.x/Localization/SharedResource.cs)]
 
 Некоторые разработчики используют класс `Startup` для хранения глобальных или общих строк. В примере ниже используются средства локализации `InfoController` и `SharedResource`.
 

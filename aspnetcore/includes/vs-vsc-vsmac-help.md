@@ -2,8 +2,8 @@
 
 ## <a name="visual-studio-help"></a>Справка по Visual Studio
 
-* [Сведения об отладке кода C# с помощью Visual Studio](https://docs.microsoft.com/visualstudio/debugger/getting-started-with-the-debugger?view=vs-2017)
-* [Введение в интегрированную среду разработки Visual Studio](https://docs.microsoft.com/visualstudio/ide/visual-studio-ide?view=vs-2017)
+* [Сведения об отладке кода C# с помощью Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger?view=vs-2017)
+* [Введение в интегрированную среду разработки Visual Studio](/visualstudio/ide/visual-studio-ide?view=vs-2017)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -22,7 +22,7 @@
 
 ## <a name="visual-studio-for-mac-help"></a>Справка по Visual Studio для Mac
 
-* [Обзор Visual Studio для Mac](https://docs.microsoft.com/visualstudio/mac/ide-tour)
-* [Знакомство с Visual Studio для Mac](https://docs.microsoft.com/visualstudio/mac/)
+* [Обзор Visual Studio для Mac](/visualstudio/mac/ide-tour)
+* [Знакомство с Visual Studio для Mac](/visualstudio/mac/)
 
 ---

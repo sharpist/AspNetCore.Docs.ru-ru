@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: cf450385db3c7327de233357d4c13d556ee44bad
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1b8ccb510927fbc8a40f7424ae1ca4a131799095
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633675"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722888"
 ---
 # <a name="routing-in-aspnet-core"></a>Маршрутизация в ASP.NET Core
 
@@ -50,7 +50,7 @@ ms.locfileid: "88633675"
 Система маршрутизации конечных точек, описанная в этом документе, применима к ASP.NET Core 3.0 и более поздних версий. Чтобы получить сведения о предыдущей системе маршрутизации на основе <xref:Microsoft.AspNetCore.Routing.IRouter>, выберите версию ASP.NET Core 2.1, используя один из следующих методов.
 
 * Выбор версии для предыдущей версии.
-* Выберите [маршрутизацию ASP.NET Core 2.1](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-2.1).
+* Выберите [маршрутизацию ASP.NET Core 2.1](?view=aspnetcore-2.1).
 
 [Просмотреть или скачать образец кода](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x) ([как скачивать](xref:index#how-to-download-a-sample))
 
@@ -1025,7 +1025,7 @@ services.AddMvc(options => options.EnableEndpointRouting = false)
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-Дополнительные сведения о маршрутизации на основе <xref:Microsoft.AspNetCore.Routing.IRouter> см. в разделе [о версии ASP.NET Core 2.1 в этой статье](/aspnet/core/fundamentals/routing?view=aspnetcore-2.1).
+Дополнительные сведения о маршрутизации на основе <xref:Microsoft.AspNetCore.Routing.IRouter> см. в разделе [о версии ASP.NET Core 2.1 в этой статье](?view=aspnetcore-2.1).
 
 > [!IMPORTANT]
 > В этом документе рассматривается низкоуровневая маршрутизация ASP.NET Core. Сведения о маршрутизации ASP.NET Core MVC см. в разделе <xref:mvc/controllers/routing>. Сведения о соглашениях о маршрутизации в Razor Pages см. в разделе <xref:razor-pages/razor-pages-conventions>.
@@ -1557,8 +1557,8 @@ routes.MapRoute(
 
 ASP.NET Core предоставляет соглашения об API для использования преобразователей параметров со сформированными маршрутами:
 
-* ASP.NET Core MVC поддерживает соглашение об API `Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention`. Это соглашение применяет указанный преобразователь параметров ко всем маршрутам атрибутов в приложении. Преобразователь параметров преобразует маркеры маршрутов атрибутов по мере их замены. Дополнительные сведения см. в разделе об [использовании преобразователя параметров для настройки замены маркеров](/aspnet/core/mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement).
-* Razor Pages поддерживает соглашение об API `Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention`. Это соглашение применяет указанный преобразователь параметров ко всем автоматически обнаруженным страницам Razor Pages. Преобразователь параметров преобразует сегменты папок и имен файлов маршрутов Razor Pages. Дополнительные сведения см. в разделе об [использовании преобразователя параметров для настройки маршрутов страниц](/aspnet/core/razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes).
+* ASP.NET Core MVC поддерживает соглашение об API `Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention`. Это соглашение применяет указанный преобразователь параметров ко всем маршрутам атрибутов в приложении. Преобразователь параметров преобразует маркеры маршрутов атрибутов по мере их замены. Дополнительные сведения см. в разделе об [использовании преобразователя параметров для настройки замены маркеров](xref:mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement).
+* Razor Pages поддерживает соглашение об API `Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention`. Это соглашение применяет указанный преобразователь параметров ко всем автоматически обнаруженным страницам Razor Pages. Преобразователь параметров преобразует сегменты папок и имен файлов маршрутов Razor Pages. Дополнительные сведения см. в разделе об [использовании преобразователя параметров для настройки маршрутов страниц](xref:razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes).
 
 ## <a name="url-generation-reference"></a>Справочник по формированию URL-адресов
 

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 3fab57df84e6902a8041940939c067da41f1674c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 55269c6985534b49cc2567b2d197e46d9b7b1fd7
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629734"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722531"
 ---
 # <a name="part-5-no-locrazor-pages-with-ef-core-in-aspnet-core---data-model"></a>Часть 5. Razor Pages с EF Core в ASP.NET Core — модель данных
 
@@ -70,7 +70,7 @@ ms.locfileid: "88629734"
 
 Сейчас для дат зачисления учащихся на всех страницах отображаются время и дата, хотя важна только дата. Используя атрибуты заметок к данным, вы можете внести в код одно изменение, позволяющее исправить формат отображения на каждой странице, где отображаются эти данные. 
 
-Атрибут [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) указывает тип данных более точно по сравнению со встроенным типом базы данных. В этом случае следует отображать отобразить только дату, а не дату и время. В [перечислении DataType](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) представлено множество типов данных, таких как Date, Time, PhoneNumber, Currency, EmailAddress и других. Атрибут `DataType` также обеспечивает автоматическое предоставление функций для определенных типов в приложении. Пример:
+Атрибут [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute) указывает тип данных более точно по сравнению со встроенным типом базы данных. В этом случае следует отображать отобразить только дату, а не дату и время. В [перечислении DataType](/dotnet/api/system.componentmodel.dataannotations.datatype) представлено множество типов данных, таких как Date, Time, PhoneNumber, Currency, EmailAddress и других. Атрибут `DataType` также обеспечивает автоматическое предоставление функций для определенных типов в приложении. Пример:
 
 * Ссылка `mailto:` для `DataType.EmailAddress` создается автоматически.
 * Средство выбора даты предоставляется для `DataType.Date` в большинстве браузеров.
@@ -100,11 +100,11 @@ ms.locfileid: "88629734"
 [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
 ```
 
-С помощью атрибутов можно указать правила проверки данных и сообщения об ошибках проверки. Атрибут [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1) указывает минимальную и максимальную длину символов, разрешенных в поле данных. Представленный код задает ограничение длины имен в 50 символов. Пример, в котором задается минимальная длина строки, приводится [далее](#the-required-attribute).
+С помощью атрибутов можно указать правила проверки данных и сообщения об ошибках проверки. Атрибут [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute) указывает минимальную и максимальную длину символов, разрешенных в поле данных. Представленный код задает ограничение длины имен в 50 символов. Пример, в котором задается минимальная длина строки, приводится [далее](#the-required-attribute).
 
 Атрибут `StringLength` также обеспечивает проверку на стороне клиента и на стороне сервера. Минимальное значение не оказывает влияния на схему базы данных.
 
-Атрибут `StringLength` не запрещает пользователю ввести пробел в качестве имени пользователя. Атрибут [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) можно использовать для применения ограничений к входным данным. Например, следующий код требует, чтобы первый символ был прописной буквой, а остальные символы были буквенными:
+Атрибут `StringLength` не запрещает пользователю ввести пробел в качестве имени пользователя. Атрибут [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute) можно использовать для применения ограничений к входным данным. Например, следующий код требует, чтобы первый символ был прописной буквой, а остальные символы были буквенными:
 
 ```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
@@ -760,7 +760,7 @@ https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intr
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
-Атрибут [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) указывает тип данных более точно по сравнению со встроенным типом базы данных. В этом случае следует отображать отобразить только дату, а не дату и время. В [перечислении DataType](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) представлено множество типов данных, таких как Date, Time, PhoneNumber, Currency, EmailAddress и других. Атрибут `DataType` также обеспечивает автоматическое предоставление функций для определенных типов в приложении. Пример:
+Атрибут [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute) указывает тип данных более точно по сравнению со встроенным типом базы данных. В этом случае следует отображать отобразить только дату, а не дату и время. В [перечислении DataType](/dotnet/api/system.componentmodel.dataannotations.datatype) представлено множество типов данных, таких как Date, Time, PhoneNumber, Currency, EmailAddress и других. Атрибут `DataType` также обеспечивает автоматическое предоставление функций для определенных типов в приложении. Пример:
 
 * Ссылка `mailto:` для `DataType.EmailAddress` создается автоматически.
 * Средство выбора даты предоставляется для `DataType.Date` в большинстве браузеров.
@@ -790,13 +790,13 @@ https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intr
 
 ### <a name="the-stringlength-attribute"></a>Атрибут StringLength
 
-С помощью атрибутов можно указать правила проверки данных и сообщения об ошибках проверки. Атрибут [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1) указывает минимальную и максимальную длину символов, разрешенных в поле данных. Атрибут `StringLength` также обеспечивает проверку на стороне клиента и на стороне сервера. Минимальное значение не оказывает влияния на схему базы данных.
+С помощью атрибутов можно указать правила проверки данных и сообщения об ошибках проверки. Атрибут [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute) указывает минимальную и максимальную длину символов, разрешенных в поле данных. Атрибут `StringLength` также обеспечивает проверку на стороне клиента и на стороне сервера. Минимальное значение не оказывает влияния на схему базы данных.
 
 Обновите модель`Student`, используя следующий код:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_StringLength&highlight=10,12)]
 
-Предыдущий код задает ограничение длины имен в 50 символов. Атрибут `StringLength` не запрещает пользователю ввести пробел в качестве имени пользователя. Атрибут [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) используется для применения ограничений к входным данным. Например, следующий код требует, чтобы первый символ был прописной буквой, а остальные символы были буквенными:
+Предыдущий код задает ограничение длины имен в 50 символов. Атрибут `StringLength` не запрещает пользователю ввести пробел в качестве имени пользователя. Атрибут [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute) используется для применения ограничений к входным данным. Например, следующий код требует, чтобы первый символ был прописной буквой, а остальные символы были буквенными:
 
 ```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
