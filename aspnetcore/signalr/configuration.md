@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/configuration
-ms.openlocfilehash: fc0e6398884bb5c3b806a587a8a361d7f279461f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 579491cfe60a26593ca038a1691f9b52f0fb1d06
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625561"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393877"
 ---
 # <a name="aspnet-core-no-locsignalr-configuration"></a>Конфигурация SignalR ASP.NET Core
 
@@ -85,6 +85,7 @@ MessagePack сериализацию можно настроить, предос
 | `EnableDetailedErrors` | `false` | Если значение `true` равно, подробные сообщения об исключениях возвращаются клиентам при возникновении исключения в методе концентратора. Значение по умолчанию — `false` , так как эти сообщения об исключениях могут содержать конфиденциальные сведения. |
 | `StreamBufferCapacity` | `10` | Максимальное число элементов, которые могут быть помещены в буфер для потоков загрузки клиента. При достижении этого предела обработка вызовов блокируется до тех пор, пока сервер не обработает потоковые элементы.|
 | `MaximumReceiveMessageSize` | 32 КБ | Максимальный размер одного входящего сообщения концентратора. |
+| `MaximumParallelInvocationsPerClient` | 1 | Максимальное число методов концентратора, которые каждый клиент может вызывать параллельно перед постановкой в очередь. |
 
 Параметры можно настроить для всех концентраторов, предоставив делегаты параметров для `AddSignalR` вызова в `Startup.ConfigureServices` .
 

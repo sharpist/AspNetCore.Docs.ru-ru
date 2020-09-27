@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/partial
-ms.openlocfilehash: 7a370042520adfe5b06784b76acf41a81eb2c72d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: bb75d8b7d78c82c9c32605ac645b8895fdfb78e3
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630631"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393656"
 ---
 # <a name="partial-views-in-aspnet-core"></a>Частичные представления в ASP.NET Core
 
 Авторы: [Стив Смит](https://ardalis.com/) (Steve Smith), [Махер Джендуби](https://twitter.com/maherjend) (Maher JENDOUBI), [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson) и [Скотт Саубер](https://twitter.com/scottsauber) (Scott Sauber)
 
-Частичное представление — это [Razor](xref:mvc/views/razor) файл разметки (*. cshtml*), который отображает выходные данные HTML в виде выходных данных, отображаемых *в* другом файле разметки.
+Частичное представление — это [Razor](xref:mvc/views/razor) файл разметки (*. cshtml*) без [`@page`](xref:mvc/views/razor#page) директивы, которая отображает выходные данные HTML *в* виде выходных данных, отображаемых в другом файле разметки.
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -57,7 +57,7 @@ ms.locfileid: "88630631"
 
 ::: moniker range=">= aspnetcore-2.0"
 
-Частичное представление — это файл с *расширением. cshtml* , поддерживаемый в папке *views* (MVC) или папке *pages* ( Razor страницы).
+Частичное представление — это файл разметки *. cshtml* без [`@page`](xref:mvc/views/razor#page) директивы, поддерживаемой в папке *views* (MVC) или папке *pages* ( Razor страницы).
 
 В модели ASP.NET Core MVC элемент контроллера <xref:Microsoft.AspNetCore.Mvc.ViewResult> может возвращать представление или частичное представление. На Razor страницах объект <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> может возвращать частичное представление, представленное в виде <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> объекта. См. дополнительные сведения о [создании ссылок на частичные представления и их отображении](#reference-a-partial-view).
 
@@ -168,7 +168,7 @@ public IActionResult OnGetPartial() =>
 <partial name="../Account/_PartialName.cshtml" />
 ```
 
-Дополнительные сведения см. в разделе <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>.
+Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>.
 
 ::: moniker-end
 

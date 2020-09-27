@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-compose-https
-ms.openlocfilehash: 71ead7dcce32dab090a9b0b3573aa855d00fa7f1
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: cd46fdcbe10dc0b7829fbe7eaef821889f395df4
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722765"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393708"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-compose-over-https"></a>Размещение образов ASP.NET Core с Docker Compose по протоколу HTTPS
 
@@ -36,7 +36,7 @@ ms.locfileid: "90722765"
 
 Для этого примера требуется [docker 17,06](https://docs.docker.com/release-notes/docker-ce) или более поздней версии [клиента DOCKER](https://www.docker.com/products/docker).
 
-## <a name="prerequisites"></a>Предварительные условия
+## <a name="prerequisites"></a>Предварительные требования
 
 Для выполнения некоторых инструкций в этом документе требуется [пакет SDK для .NET Core 2,2](https://dotnet.microsoft.com/download) или более поздней версии.
 
@@ -74,7 +74,7 @@ dotnet dev-certs https --trust
 
 Создайте файл _DOCKER-Compose. Debug. yml_ со следующим содержимым:
 
-```json
+```yaml
 version: '3.4'
 
 services:
@@ -114,7 +114,7 @@ dotnet dev-certs https --trust
 
 Создайте файл _DOCKER-Compose. Debug. yml_ со следующим содержимым:
 
-```json
+```yaml
 version: '3.4'
 
 services:
@@ -152,7 +152,7 @@ dotnet dev-certs https --trust
 
 Создайте файл _DOCKER-Compose. Debug. yml_ со следующим содержимым:
 
-```json
+```yaml
 version: '3.4'
 
 services:

@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 08cd6396cca78488827dfa7c2cca62a35c500dbd
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: e451d511ab7791a05024d88635d8005132ad4edd
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009704"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393929"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Маршрутизация к действиям контроллера в ASP.NET Core
 
@@ -219,7 +219,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 * Выберите лучший кандидат.
 * Создание исключения.
 
-Например:
+Пример:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
@@ -353,7 +353,7 @@ ASP.NET Core имеет следующие шаблоны маршрутов:
 В приведенном выше коде:
 
 * Каждое действие содержит `[HttpGet]` атрибут, который ограничивает сопоставление только запросами HTTP GET.
-* `GetProduct`Действие включает `"{id}"` шаблон, поэтому `id` добавляется к `"api/[controller]"` шаблону на контроллере. Шаблон методов — `"api/[controller]/"{id}""` . Поэтому это действие соответствует только запросам Get для формы `/api/test2/xyz` ,, `/api/test2/123` `/api/test2/{any string}` и т. д.
+* `GetProduct`Действие включает `"{id}"` шаблон, поэтому `id` добавляется к `"api/[controller]"` шаблону на контроллере. Шаблон методов — `"api/[controller]/"{id}""` . Поэтому это действие соответствует только запросам Get для формы `/api/test2/xyz` , `/api/test2/123` , `/api/test2/{any string}` и т. д.
   [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet2)]
 * `GetIntProduct`Действие содержит `"int/{id:int}")` шаблон. `:int`Часть шаблона ограничивает `id` значения маршрута строками, которые могут быть преобразованы в целые числа. Запрос GET к `/api/test2/int/abc` :
   * Не соответствует этому действию.
@@ -416,7 +416,7 @@ ASP.NET Core имеет следующие шаблоны маршрутов:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet)]
 
-В предшествующем примере:
+В предыдущем примере:
 
 * Путь URL-адреса `/products` может совпадать `ProductsApi.ListProducts`
 * Путь URL-адреса `/products/5` может совпадать `ProductsApi.GetProduct(int)` .
@@ -1012,7 +1012,7 @@ app.UseMvc(routes =>
 
 ### <a name="disambiguating-actions"></a>Разрешение неоднозначности действий
 
-Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Например:
+Если при маршрутизации найдены два соответствующих действия, платформа MVC должна устранить неоднозначность, выбрав наиболее подходящее из них, или создать исключение. Пример:
 
 ```csharp
 public class ProductsController : Controller
@@ -1410,7 +1410,7 @@ public class MyApiControllerAttribute : Attribute, IRouteTemplateProvider
 
 ## <a name="complex-segments"></a>Сложные сегменты
 
-Сложные сегменты (например, `[Route("/dog{token}cat")]`) обрабатываются путем "нежадного" сопоставления литералов справа налево. Описание см. в [исходном коде](https://github.com/aspnet/Routing/blob/9cea167cfac36cf034dbb780e3f783114ef94780/src/Microsoft.AspNetCore.Routing/Patterns/RoutePatternMatcher.cs#L296). Дополнительные сведения см. в [этой проблеме](https://github.com/dotnet/AspNetCore.Docs/issues/8197).
+Сложные сегменты (например, `[Route("/dog{token}cat")]`) обрабатываются путем "нежадного" сопоставления литералов справа налево. Описание см. в [исходном коде](https://github.com/aspnet/Routing/blob/9cea167cfac36cf034dbb780e3f783114ef94780/src/Microsoft.AspNetCore.Routing/Patterns/RoutePatternMatcher.cs#L296). Дополнительные сведения см. в [этой статье](https://github.com/dotnet/AspNetCore.Docs/issues/8197).
 
 <a name="routing-url-gen-ref-label"></a>
 

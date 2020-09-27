@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/streaming
-ms.openlocfilehash: 29748ebe24fea03415b5a01b21300433e3fbc0f0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5a172818f8910a637b731dc1b1315965f448b2ba
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634219"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393578"
 ---
 # <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>Использование потоковой передачи в ASP.NET Core SignalR
 
@@ -74,7 +74,7 @@ ASP.NET Core SignalR поддерживает потоковые возвращ�
 > [!NOTE]
 > Запись в `ChannelWriter<T>` фоновом потоке и возврат `ChannelReader` как можно быстрее. Другие вызовы концентратора блокируются до тех пор, пока `ChannelReader` не будет возвращен.
 >
-> Переносить логику в `try ... catch` . Завершите работу `Channel` в `catch` и вне, `catch` чтобы убедиться, что вызов метода концентратора завершен правильно.
+> Включить логику в [ `try ... catch` инструкцию](/dotnet/csharp/language-reference/keywords/try-catch). Завершите работу `Channel` в [ `finally` блоке](/dotnet/csharp/language-reference/keywords/try-catch-finally). Если вы хотите передать ошибку, запишите ее внутри `catch` блока и запишите в `finally` блок.
 
 ::: moniker range=">= aspnetcore-3.0"
 
