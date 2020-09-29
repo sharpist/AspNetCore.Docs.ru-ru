@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/policies
-ms.openlocfilehash: 82ed4cc2ce47d3bd85ca9c2ba2bbeb075eaefcef
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: af282ec1f82b2ac31fd0b46b2406110e24e9211b
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635337"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424247"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Авторизация на основе политик в ASP.NET Core
 
@@ -193,7 +193,7 @@ public void ConfigureServices(IServiceCollection services)
 
 * Чтобы гарантировать сбой, даже если другие обработчики требований выполняются успешно, вызовите `context.Fail` .
 
-Если обработчик вызывает `context.Succeed` или `context.Fail` , все остальные обработчики все еще вызываются. Это позволяет создавать побочные эффекты, например ведение журнала, которое выполняется, даже если другой обработчик прошел проверку или не прошел требование. Если задано значение `false` , свойство [инвокехандлерсафтерфаилуре](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) (доступно в ASP.NET Core 1,1 и более поздних версиях) сокращено при `context.Fail` вызове обработчиков. `InvokeHandlersAfterFailure` по умолчанию имеет значение `true` , в этом случае вызываются все обработчики.
+Если обработчик вызывает `context.Succeed` или `context.Fail` , все остальные обработчики все еще вызываются. Это позволяет создавать побочные эффекты, например ведение журнала, которое выполняется, даже если другой обработчик прошел проверку или не прошел требование. Если задано значение `false` , свойство [инвокехандлерсафтерфаилуре](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) сокращенно вызывает выполнение обработчиков при `context.Fail` вызове метода. `InvokeHandlersAfterFailure` по умолчанию имеет значение `true` , в этом случае вызываются все обработчики.
 
 > [!NOTE]
 > Обработчики авторизации вызываются даже в случае сбоя проверки подлинности.
@@ -427,7 +427,7 @@ public void ConfigureServices(IServiceCollection services)
 
 * Чтобы гарантировать сбой, даже если другие обработчики требований выполняются успешно, вызовите `context.Fail` .
 
-Если обработчик вызывает `context.Succeed` или `context.Fail` , все остальные обработчики все еще вызываются. Это позволяет создавать побочные эффекты, например ведение журнала, которое выполняется, даже если другой обработчик прошел проверку или не прошел требование. Если задано значение `false` , свойство [инвокехандлерсафтерфаилуре](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) (доступно в ASP.NET Core 1,1 и более поздних версиях) сокращено при `context.Fail` вызове обработчиков. `InvokeHandlersAfterFailure` по умолчанию имеет значение `true` , в этом случае вызываются все обработчики.
+Если обработчик вызывает `context.Succeed` или `context.Fail` , все остальные обработчики все еще вызываются. Это позволяет создавать побочные эффекты, например ведение журнала, которое выполняется, даже если другой обработчик прошел проверку или не прошел требование. Если задано значение `false` , свойство [инвокехандлерсафтерфаилуре](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) сокращенно вызывает выполнение обработчиков при `context.Fail` вызове метода. `InvokeHandlersAfterFailure` по умолчанию имеет значение `true` , в этом случае вызываются все обработчики.
 
 > [!NOTE]
 > Обработчики авторизации вызываются даже в случае сбоя проверки подлинности.

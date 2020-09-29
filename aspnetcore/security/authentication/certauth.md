@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 54780e2d67c70d945fd875c41c8d6483aa358bbf
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 57d46e34993148943b1e9680a372405be9c80605
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627199"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424208"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Настройка проверки подлинности сертификата в ASP.NET Core
 
@@ -198,7 +198,7 @@ services.AddAuthentication(
             {
                 var validationService =
                     context.HttpContext.RequestServices
-                        .GetService<ICertificateValidationService>();
+                        .GetRequiredService<ICertificateValidationService>();
                 
                 if (validationService.ValidateCertificate(
                     context.ClientCertificate))
@@ -639,11 +639,11 @@ ASP.NET Core 5 Preview 7 и более поздней версии добавл�
 
 * Настройка привязки для домена и поддомена:
   * Например, настройте привязки для `contoso.com` и `myClient.contoso.com` . `contoso.com`Узлу не требуется сертификат клиента, но он `myClient.contoso.com` выполняется.
-  * Дополнительные сведения см. в разделе:
+  * Дополнительные сведения можно найти в разделе
     * [Kestrel](/fundamentals/servers/kestrel):
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel#listenoptionsusehttps)
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
-      * Примечание. Kestrel в настоящее время не поддерживает несколько конфигураций TLS для одной привязки, вам потребуются две привязки с уникальными IP-адресами или портами. См. раздел https://github.com/dotnet/runtime/issues/31097
+      * Примечание. Kestrel в настоящее время не поддерживает несколько конфигураций TLS для одной привязки, вам потребуются две привязки с уникальными IP-адресами или портами. См. раздел https://github.com/dotnet/runtime/issues/31097.
     * IIS
       * [Размещение IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
       * [Настройка безопасности служб IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
@@ -651,7 +651,7 @@ ASP.NET Core 5 Preview 7 и более поздней версии добавл�
 * Для запросов к веб-приложению, которому требуется сертификат клиента, и у которых нет такого сертификата:
   * Перенаправление на ту же страницу с помощью защищенного поддомена сертификата клиента.
   * Например, перенаправление в `myClient.contoso.com/requestedPage` . Так как запрос на `myClient.contoso.com/requestedPage` имя узла отличается от `contoso.com/requestedPage` , клиент устанавливает другое соединение и предоставляется сертификат клиента.
-  * Дополнительные сведения см. в разделе <xref:security/authorization/introduction>.
+  * Для получения дополнительной информации см. <xref:security/authorization/introduction>.
 
 Оставьте вопросы, комментарии и другие отзывы о необязательных сертификатах клиентов в этой статье об [этом обсуждении GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/18720) .
 
