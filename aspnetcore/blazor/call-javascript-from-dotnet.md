@@ -5,7 +5,7 @@ description: Узнайте, как вызывать функции JavaScript �
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/07/2020
+ms.date: 09/17/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: e7f23a4b44a0adb1d0b97c88e1d17f96aa2d28bd
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a62462e3a0a2366a8662573ada5d2e7589c14c0d
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625392"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722479"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor
 
@@ -110,13 +110,20 @@ ms.locfileid: "88625392"
 
 Абстракция <xref:Microsoft.JSInterop.IJSRuntime> является асинхронной для поддержки сценариев Blazor Server. Если вы используете приложение Blazor WebAssembly и вам нужно вызывать функцию JavaScript синхронно, выполните нисходящее приведение к <xref:Microsoft.JSInterop.IJSInProcessRuntime> и вызовите <xref:Microsoft.JSInterop.IJSInProcessRuntime.Invoke%2A> вместо этого. В большинстве библиотек взаимодействия с JS рекомендуется использовать асинхронные интерфейсы API, чтобы обеспечить доступность библиотек в любых сценариях.
 
+::: moniker range=">= aspnetcore-5.0"
+
+> [!NOTE]
+> Сведения о включении изоляции JavaScript в стандартных [модулях JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) см. в разделе об [изоляции JavaScript Blazor и ссылках на объекты](#blazor-javascript-isolation-and-object-references).
+
+::: moniker-end
+
 Пример приложения включает в себя компонент для демонстрации взаимодействия с JS. Он выполняет следующие действия:
 
 * принимает вводимые пользователем данные посредством запроса JavaScript;
 * возвращает текст компоненту для обработки;
 * вызывает еще одну функцию JavaScript, которая взаимодействует с моделью DOM для вывода приветственного сообщения.
 
-`Pages/JsInterop.razor`.
+`Pages/JsInterop.razor`:
 
 ```razor
 @page "/JSInterop"
@@ -200,7 +207,7 @@ ms.locfileid: "88625392"
 
 Например, в приведенном ниже коде определяется метод расширения .NET, который позволяет установить фокус на элемент.
 
-`exampleJsInterop.js`.
+`exampleJsInterop.js`:
 
 ```javascript
 window.exampleJsFunctions = {
@@ -289,7 +296,7 @@ Welcome to your new app.
 <SurveyPrompt Parent="this" Title="How is Blazor working for you?" />
 ```
 
-`Pages/Index.razor.cs`.
+`Pages/Index.razor.cs`:
 
 ```csharp
 using System;
@@ -398,7 +405,7 @@ namespace {APP ASSEMBLY}.Pages
 }
 ```
 
-`Shared/SurveyPrompt.razor.cs`.
+`Shared/SurveyPrompt.razor.cs`:
 
 ```csharp
 using System;
@@ -485,6 +492,43 @@ namespace {APP ASSEMBLY}.Shared
 
 * [Циклические ссылки не поддерживаются, вторая серия (DotNet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525)
 * [Предложение. Добавить механизм для обработки циклических ссылок при сериализации (dotnet/runtime #30820)](https://github.com/dotnet/runtime/issues/30820)
+
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="no-locblazor-javascript-isolation-and-object-references"></a>Изоляция Blazor JavaScript и ссылки на объекты
+
+Blazor реализует изоляцию JavaScript в стандартных [модулях JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). Изоляция JavaScript обеспечивает следующие преимущества:
+
+* Импортированный JavaScript больше не засоряет глобальное пространство имен.
+* Пользователям библиотеки и компонентов не требуется импортировать связанный код JavaScript.
+
+Например, следующий модуль JavaScript экспортирует функцию JavaScript для отображения запроса браузера:
+
+```javascript
+export function showPrompt(message) {
+  return prompt(message, 'Type anything here');
+}
+```
+
+Добавьте предыдущий модуль JavaScript в библиотеку .NET в виде статического веб-ресурса (`wwwroot/exampleJsInterop.js`), а затем импортируйте модуль в код .NET с помощью службы <xref:Microsoft.JSInterop.IJSRuntime>. Служба внедряется как `jsRuntime` (не показано) в следующем примере:
+
+```csharp
+var module = await jsRuntime.InvokeAsync<JSObjectReference>(
+    "import", "./_content/MyComponents/exampleJsInterop.js");
+```
+
+Идентификатором `import` в предыдущем примере является специальный идентификатор, используемый специально для импорта модуля JavaScript. Укажите модуль, используя путь к статическому стабильному веб-ресурсу: `_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`. Заполнитель `{LIBRARY NAME}` — это имя библиотеки. Заполнитель `{PATH UNDER WWWROOT}` — это путь к скрипту в разделе `wwwroot`.
+
+<xref:Microsoft.JSInterop.IJSRuntime> импортирует модуль как `JSObjectReference`, который представляет ссылку на объект JavaScript из кода .NET. Используйте `JSObjectReference` для вызова экспортированных функций JavaScript из модуля:
+
+```csharp
+public async ValueTask<string> Prompt(string message)
+{
+    return await module.InvokeAsync<string>("showPrompt", message);
+}
+```
+
+::: moniker-end
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

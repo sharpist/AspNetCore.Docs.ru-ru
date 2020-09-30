@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: 41b2ce35a6910df7587af7ebabe8a4984cda6ae5
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: dd00b9d7faf467857ec1e47f4cfb0296d84e5d3f
+ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634973"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90847706"
 ---
 # <a name="part-6-no-locrazor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Часть 6. Razor Pages с EF Core в ASP.NET Core — чтение связанных данных
 
@@ -63,7 +63,7 @@ ms.locfileid: "88634973"
 
   ![Пример явной загрузки](read-related-data/_static/explicit-loading.png)
 
-* [Отложенная загрузка](/ef/core/querying/related-data#lazy-loading). [В EF Core версии 2.1 добавлена отложенная загрузка](/ef/core/querying/related-data#lazy-loading). При первом чтении сущности связанные данные не извлекаются. При первом обращении к свойству навигации необходимые для этого свойства данные извлекаются автоматически. Запрос к базе данных отправляется при каждом первом обращении к свойству навигации.
+* [Отложенная загрузка](/ef/core/querying/related-data#lazy-loading). При первом чтении сущности связанные данные не извлекаются. При первом обращении к свойству навигации необходимые для этого свойства данные извлекаются автоматически. Запрос к базе данных отправляется при каждом первом обращении к свойству навигации. Отложенная загрузка может снизить производительность, например когда разработчики используют шаблоны N+1, загружая родительский объект и перечисляя дочерние объекты.
 
 ## <a name="create-course-pages"></a>Создание страниц курсов
 

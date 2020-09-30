@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr
-ms.openlocfilehash: e98cfc5e95233ce4d1001ab1225fc15e5fd23733
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b69d60e7d0e24f6d3c8032b391c98a6cd1589305
+ms.sourcegitcommit: 9c031530d2e652fe422e786bd43392bc500d622f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634505"
+ms.lasthandoff: 09/18/2020
+ms.locfileid: "90770185"
 ---
 # <a name="tutorial-get-started-with-aspnet-core-no-locsignalr"></a>Учебник. Начало работы с SignalR ASP.NET Core
 
@@ -45,15 +45,15 @@ ms.locfileid: "88634505"
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
 
 ---
 
@@ -67,7 +67,7 @@ ms.locfileid: "88634505"
 
 * В диалоговом окне **Настроить новый проект** укажите имя проекта *SignalRChat*, а затем выберите **Создать**.
 
-* В диалоговом окне **Создание веб-приложения ASP.NET Core** выберите платформы **.NET Core** и **ASP.NET Core 3.0**. 
+* В диалоговом окне **Создание веб-приложения ASP.NET Core** выберите платформы **.NET Core** и **ASP.NET Core 3.1**. 
 
 * Выберите **Веб-приложение**, чтобы создать проект, который использует Razor Pages, и нажмите **Создать**.
 
@@ -90,7 +90,7 @@ ms.locfileid: "88634505"
 
 * Выберите **.NET Core > Приложение > Веб-приложение** (не выбирайте **Веб-приложение (модель — представление — контроллер)** ), а затем выберите **Далее**.
 
-* Убедитесь, что для параметра **Требуемая версия .NET Framework** указано **.NET Core 3.0**, а затем выберите **Далее**.
+* Убедитесь, что для параметра **Требуемая версия .NET Framework** указано **.NET Core 3.1**, а затем нажмите кнопку **Далее**.
 
 * Присвойте проекту имя *SignalRChat* и нажмите кнопку **Создать**.
 
@@ -98,7 +98,7 @@ ms.locfileid: "88634505"
 
 ## <a name="add-the-no-locsignalr-client-library"></a>Добавление клиентской библиотеки SignalR
 
-Серверная библиотека SignalR входит в состав общей платформы ASP.NET Core 3.0. Клиентская библиотека JavaScript не добавляется в проект автоматически. В рамках этого руководства вы будете использовать диспетчер библиотек (LibMan), чтобы получить клиентскую библиотеку из *unpkg*. unpkg — это сеть доставки содержимого, которая позволяет доставить любое содержимое из npm (диспетчера пакетов Node.js).
+Серверная библиотека SignalR входит в состав общей платформы ASP.NET Core 3.1. Клиентская библиотека JavaScript не добавляется в проект автоматически. В рамках этого руководства вы будете использовать диспетчер библиотек (LibMan), чтобы получить клиентскую библиотеку из *unpkg*. unpkg — это сеть доставки содержимого, которая позволяет доставить любое содержимое из npm (диспетчера пакетов Node.js).
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)
 

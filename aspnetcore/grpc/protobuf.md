@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/protobuf
-ms.openlocfilehash: 60af1add9ae2f8b2b94bc19b65667d7af91fb122
-ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
+ms.openlocfilehash: ea46e04bc4aa6269efbf8917d5f32194402a66ef
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/29/2020
-ms.locfileid: "89102670"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722700"
 ---
 # <a name="create-protobuf-messages-for-net-apps"></a>Создание сообщений protobuf для приложений .NET
 
@@ -85,6 +85,10 @@ Protobuf поддерживает ряд собственных скалярны
 | `string`      | `string`     |
 | `bytes`       | `ByteString` |
 
+Скалярные значения всегда имеют значение по умолчанию. Им невозможно задать значение `null`. Это ограничение действует для `string` и `ByteString`, которые являются классами C#. Значением по умолчанию `string` является пустое строковое значение, а для `ByteString` по умолчанию используется пустое байтовое значение. При попытке задать для них значение `null` возникает ошибка.
+
+[Типы оболочек, допускающие значение NULL](#nullable-types), могут использоваться для поддержки значений NULL.
+
 ### <a name="dates-and-times"></a>Даты и время
 
 Собственные скалярные типы не предоставляют значения даты и времени, что эквивалентно <xref:System.DateTimeOffset>, <xref:System.DateTime> и <xref:System.TimeSpan> в .NET. Эти типы можно задавать с помощью некоторых из расширений *хорошо известных типов* Protobuf. Эти расширения обеспечивают поддержку создания кода и среды выполнения для сложных типов полей в поддерживаемых платформах.
@@ -145,19 +149,42 @@ message Person {
 }
 ```
 
-Protobuf использует типы .NET, допускающие значение NULL, например `int?`, для созданного свойства сообщения.
+Типы `wrappers.proto` не представлены в созданных свойствах. Protobuf автоматически сопоставляет их с соответствующими типами .NET, допускающими значение NULL, в сообщениях C#. Например, поле `google.protobuf.Int32Value` создает свойство `int?`. Свойства ссылочного типа, такие как `string` и `ByteString`, не изменяются, за исключением того, что значение `null` может быть назначено им без ошибок.
 
 В следующей таблице приведен полный список типов оболочек с эквивалентным им типом C#.
 
-| Тип C#   | Оболочка хорошо известного типа       |
-| --------- | ----------------------------- |
-| `bool?`   | `google.protobuf.BoolValue`   |
-| `double?` | `google.protobuf.DoubleValue` |
-| `float?`  | `google.protobuf.FloatValue`  |
-| `int?`    | `google.protobuf.Int32Value`  |
-| `long?`   | `google.protobuf.Int64Value`  |
-| `uint?`   | `google.protobuf.UInt32Value` |
-| `ulong?`  | `google.protobuf.UInt64Value` |
+| Тип C#      | Оболочка хорошо известного типа       |
+| ------------ | ----------------------------- |
+| `bool?`      | `google.protobuf.BoolValue`   |
+| `double?`    | `google.protobuf.DoubleValue` |
+| `float?`     | `google.protobuf.FloatValue`  |
+| `int?`       | `google.protobuf.Int32Value`  |
+| `long?`      | `google.protobuf.Int64Value`  |
+| `uint?`      | `google.protobuf.UInt32Value` |
+| `ulong?`     | `google.protobuf.UInt64Value` |
+| `string`     | `google.protobuf.StringValue` |
+| `ByteString` | `google.protobuf.BytesValue`  |
+
+### <a name="bytes"></a>Байты
+
+Двоичные полезные данные поддерживаются в Protobuf со скалярным типом значений `bytes`. Созданное свойство в C# использует `ByteString` как тип свойства.
+
+Используйте `ByteString.CopyFrom(byte[] data)` для создания экземпляра из массива байтов:
+
+```csharp
+var data = await File.ReadAllBytesAsync(path);
+
+var payload = new PayloadResponse();
+payload.Data = ByteString.CopyFrom(data);
+```
+
+Доступ к данным `ByteString` осуществляется напрямую с помощью `ByteString.Span` или `ByteString.Memory`. Или вызовите `ByteString.ToByteArray()`, чтобы преобразовать экземпляр обратно в массив байтов:
+
+```csharp
+var payload = await client.GetPayload(new PayloadRequest());
+
+await File.WriteAllBytesAsync(path, payload.Data.ToByteArray());
+```
 
 ### <a name="decimals"></a>Десятичные знаки
 

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/performance
-ms.openlocfilehash: a0a1a6901e07fb0074ca403870378f267d3d4403
-ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
+ms.openlocfilehash: 4d50698b8c55f7fb3ef9a2c3102e73e046a22a9c
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89379449"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722849"
 ---
 # <a name="performance-best-practices-with-grpc"></a>Лучшие методики повышения производительности gRPC
 
@@ -121,6 +121,12 @@ var channel = GrpcChannel.ForAddress("https://localhost", new GrpcChannelOptions
 * [YARP: обратный прокси-сервер](https://microsoft.github.io/reverse-proxy/) — предварительная версия прокси-сервера с открытым кодом, написанным на .NET.
 
 ::: moniker range=">= aspnetcore-5.0"
+
+## <a name="inter-process-communication"></a>Межпроцессное взаимодействие
+
+Вызовы gRPC между клиентом и службой обычно отправляются через сокеты TCP. Протокол TCP отлично подходит для обмена данными по сети, однако [межпроцессное взаимодействие (IPC)](https://wikipedia.org/wiki/Inter-process_communication) более эффективно, если клиент и служба находятся на одном компьютере.
+
+Для вызовов gRPC между процессами на одном компьютере рассмотрите возможность использования такого транспорта, как сокеты доменов UNIX или именованные каналы. Для получения дополнительной информации см. <xref:grpc/interprocess>.
 
 ## <a name="keep-alive-pings"></a>Пакеты проверки активности
 

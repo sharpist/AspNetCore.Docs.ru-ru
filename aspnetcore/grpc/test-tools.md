@@ -1,5 +1,5 @@
 ---
-title: Службы тестирования со средствами gRPC
+title: Тестирование служб gRPC с помощью gRPCurl в ASP.NET Core
 author: jamesnk
 description: Узнайте, как тестировать службы с помощью средств gRPC. gRPCurl — программа командной строки для взаимодействия со службами gRPC. gRPCui — интерактивный пользовательский веб-интерфейс.
 monikerRange: '>= aspnetcore-3.0'
@@ -17,18 +17,21 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/test-tools
-ms.openlocfilehash: ba51d9b5db2e9fbc7583856d79ab8658eff9b586
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: 800b320413552e73f05e0359e67eeb2caf4e0e2a
+ms.sourcegitcommit: 9c031530d2e652fe422e786bd43392bc500d622f
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90594376"
+ms.lasthandoff: 09/18/2020
+ms.locfileid: "90770172"
 ---
-# <a name="test-services-with-grpc-tools"></a>Службы тестирования со средствами gRPC
+# <a name="test-grpc-services-with-grpcurl-in-aspnet-core"></a>Тестирование служб gRPC с помощью gRPCurl в ASP.NET Core
 
 Автор: [Джеймс Ньютон-Кинг](https://twitter.com/jamesnk) (James Newton-King)
 
-Для gRPC доступен инструментарий, позволяющий разработчикам тестировать службы без сборки клиентских приложений. [gRPCurl](https://github.com/fullstorydev/grpcurl) — это программа командной строки, которая обеспечивает взаимодействие со службами gRPC. [gRPCui](https://github.com/fullstorydev/grpcui) предоставляет интерактивный пользовательский веб-интерфейс для gRPC.
+Для gRPC доступен инструментарий, позволяющий разработчикам тестировать службы без сборки клиентских приложений.
+
+* [gRPCurl](https://github.com/fullstorydev/grpcurl) — это программа командной строки, которая обеспечивает взаимодействие со службами gRPC.
+* [gRPCui](https://github.com/fullstorydev/grpcui) создается на основе gRPCurl и имеет интерактивный веб-интерфейс для gRPC, аналогичный таким средствам, как интерфейс Postman и Swagger.
 
 В этой статье рассматриваются следующие задачи:
 
@@ -48,36 +51,46 @@ gRPCurl — это программа командной строки, разр
 
 Сведения о скачивании и установке `grpcurl` см. на [домашней странице gRPCurl в GitHub](https://github.com/fullstorydev/grpcurl#installation).
 
-## <a name="setup-grpc-reflection"></a>Настройка отражения gRPC
+![Командная строка gRPCurl](~/grpc/test-tools/static/grpcurl.png)
+
+## <a name="set-up-grpc-reflection"></a>Настройка отражения gRPC
 
 `grpcurl` должен быть известен контракт Protobuf служб, чтобы их можно было вызывать. Это можно сделать двумя способами.
 
-* Используйте отражение gRPC для обнаружения контрактов служб.
-* Укажите файлы *PROTO* в аргументах командной строки.
+* Настройка [отражения gRPC](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) на сервере. gRPCurl автоматически обнаруживает контракты служб.
+* Указание файлов `.proto` в аргументах командной строки.
 
-gRPCurl проще использовать с отражением gRPC и обнаружением служб. В gRPC ASP.NET Core есть встроенная поддержка отражения gRPC, обеспечиваемая пакетом [Grpc.AspNetCore.Server.Reflection](https://www.nuget.org/packages/Grpc.AspNetCore.Server.Reflection). Чтобы настроить отражение в приложении, выполните указанные ниже действия.
+gRPCurl проще использовать с отражением gRPC. Отражение gRPC добавляет в приложение новую службу gRPC, которую клиенты могут вызывать для обнаружения служб.
+
+В gRPC ASP.NET Core есть встроенная поддержка отражения gRPC, обеспечиваемая пакетом [`Grpc.AspNetCore.Server.Reflection`](https://www.nuget.org/packages/Grpc.AspNetCore.Server.Reflection). Чтобы настроить отражение в приложении, выполните указанные ниже действия.
 
 * Добавьте ссылку на пакет `Grpc.AspNetCore.Server.Reflection`.
-* Зарегистрируйте отражение в файле *Startup.cs*:
+* Зарегистрируйте отражение в файле `Startup.cs`:
   * `AddGrpcReflection` для регистрации служб, обеспечивающих отражение;
   * `MapGrpcReflectionService` для добавления конечной точки службы отражения.
 
-[!code-csharp[](~/grpc/test-tools/Startup.cs?name=snippet_1&highlight=4,14)]
+[!code-csharp[](~/grpc/test-tools/Startup.cs?name=snippet_1&highlight=4,15-18)]
+
+После настройки отражения gRPC:
+
+* Служба отражения gRPC добавляется в серверное приложение.
+* Клиентские приложения, поддерживающие отражение gRPC, могут вызывать службу отражения для обнаружения служб, размещенных на сервере.
+* Службы gRPC по-прежнему вызываются из клиента. Отражение обеспечивает только обнаружение службы и не выполняет обход безопасности на стороне сервера. Для успешного вызова конечных точек, защищенных с помощью [проверки подлинности и авторизации](xref:grpc/authn-and-authz), требуется, чтобы вызывающий объект передавал конечной точке учетные данные.
 
 ## <a name="use-grpcurl"></a>Используйте `grpcurl`.
 
 Аргумент `-help` описывает параметры командной строки `grpcurl`.
 
-```powershell
-> grpcurl.exe -help
+```console
+$ grpcurl -help
 ```
 
 ### <a name="discover-services"></a>Обнаружение служб
 
 Используйте команду `describe` для просмотра служб, определенных сервером:
 
-```powershell
-> grpcurl.exe localhost:5001 describe
+```console
+$ grpcurl localhost:5001 describe
 greet.Greeter is a service:
 service Greeter {
   rpc SayHello ( .greet.HelloRequest ) returns ( .greet.HelloReply );
@@ -99,7 +112,7 @@ service ServerReflection {
 Используйте `describe` в сочетании с именем службы, метода или сообщения, чтобы просмотреть сведения о них:
 
 ```powershell
-> grpcurl.exe localhost:5001 describe greet.HelloRequest
+$ grpcurl localhost:5001 describe greet.HelloRequest
 greet.HelloRequest is a message:
 message HelloRequest {
   string name = 1;
@@ -110,14 +123,14 @@ message HelloRequest {
 
 Вызовите службу gRPC, указав имена службы и метода вместе с аргументом JSON, который представляет сообщение запроса. Сообщение JSON преобразуется в Protobuf и отправляется службе.
 
-```powershell
-> grpcurl.exe -d '{ \"name\": \"World\" }' localhost:5001 greet.Greeter/SayHello
+```console
+$ grpcurl -d '{ \"name\": \"World\" }' localhost:5001 greet.Greeter/SayHello
 {
   "message": "Hello World"
 }
 ```
 
-Предшествующий пример:
+В предыдущем примере:
 
 * Аргумент `-d` задает сообщение запроса с помощью JSON. Этот аргумент должен предшествовать адресу сервера и имени метода.
 * Вызывает метод `SayHello` для службы `greeter.Greeter`.
@@ -125,16 +138,16 @@ message HelloRequest {
 
 ## <a name="about-grpcui"></a>Сведения о gRPCui
 
-gRPCui — это интерактивный пользовательский веб-интерфейс для gRPC. Он основан на gRPCurl и обеспечивает графический пользовательский интерфейс для обнаружения и тестирования служб gRPC, аналогичный таким средствам HTTP, как Postman.
+gRPCui — это интерактивный пользовательский веб-интерфейс для gRPC. Он основан на gRPCurl и обеспечивает графический пользовательский интерфейс для обнаружения и тестирования служб gRPC, аналогичный таким средствам HTTP, как интерфейс Postman или Swagger.
 
 Сведения о скачивании и установке `grpcui` см. на [домашней странице gRPCui в GitHub](https://github.com/fullstorydev/grpcui#installation).
 
 ## <a name="using-grpcui"></a>Использование `grpcui`
 
-Выполните команду `grpcui`, указав адрес нужного сервера в качестве аргумента.
+Выполните команду `grpcui`, указав адрес нужного сервера в качестве аргумента:
 
 ```powershell
-> grpcui.exe localhost:5001
+$ grpcui localhost:5001
 gRPC Web UI available at http://127.0.0.1:55038/
 ```
 
@@ -146,4 +159,4 @@ gRPC Web UI available at http://127.0.0.1:55038/
 
 * [Домашняя страница gRPCurl в GitHub](https://github.com/fullstorydev/grpcurl)
 * [Домашняя страница gRPCui в GitHub](https://github.com/fullstorydev/grpcui)
-* [Grpc.AspNetCore.Server.Reflection](https://www.nuget.org/packages/Grpc.AspNetCore.Server.Reflection)
+* [`Grpc.AspNetCore.Server.Reflection`](https://www.nuget.org/packages/Grpc.AspNetCore.Server.Reflection)
