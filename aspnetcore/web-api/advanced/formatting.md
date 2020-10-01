@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 618bb60ea382437b2787adb814f319b1f0cea4ca
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b89be93fc33d1eba5c2ad9508adf93fa54014ff8
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626536"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606787"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Форматирование данных отклика в веб-API ASP.NET Core
 
@@ -36,7 +36,7 @@ ms.locfileid: "88626536"
 
 Некоторые типы результатов действий характерны для определенного формата, например <xref:Microsoft.AspNetCore.Mvc.JsonResult> и <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Действия могут возвращать результаты в определенном формате независимо от настроек клиента. Например, при возврате `JsonResult` возвращаются данные в формате JSON. При возврате `ContentResult` или строки возвращаются строковые данные в формате обычного текста.
 
-Действие не должно возвращать данные конкретного типа. ASP.NET Core поддерживает любое возвращаемое значение объекта.  Результаты из действий, возвращающих объекты, которые не являются типами <xref:Microsoft.AspNetCore.Mvc.IActionResult>, сериализуются с помощью соответствующей реализации <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>. Дополнительные сведения см. в разделе <xref:web-api/action-return-types>.
+Действие не должно возвращать данные конкретного типа. ASP.NET Core поддерживает любое возвращаемое значение объекта.  Результаты из действий, возвращающих объекты, которые не являются типами <xref:Microsoft.AspNetCore.Mvc.IActionResult>, сериализуются с помощью соответствующей реализации <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>. Для получения дополнительной информации см. <xref:web-api/action-return-types>.
 
 Встроенный вспомогательный метод <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> возвращает данные в формате JSON: [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_get)]
 
@@ -163,6 +163,14 @@ public IActionResult Get()
 До выпуска версии ASP.NET Core 3.0 по умолчанию использовались форматировщики JSON, реализованные с помощью пакета `Newtonsoft.Json`. В ASP.NET Core 3.0 или более поздней версии форматировщики JSON по умолчанию основаны на `System.Text.Json`. Поддержка `Newtonsoft.Json` модулей форматирования и функций на основе данных доступна путем установки [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) пакета NuGet и его настройки в `Startup.ConfigureServices` .
 
 [!code-csharp[](./formatting/3.0sample/StartupNewtonsoftJson.cs?name=snippet)]
+
+В приведенном выше коде вызов `AddNewtonsoftJson` настраивает следующие функции веб-API, MVC и Razor страниц для использования `Newtonsoft.Json` :
+
+* Модули форматирования ввода и вывода, считывающие и записывающие JSON
+* <xref:Microsoft.AspNetCore.Mvc.JsonResult>
+* [JSON PATCH](xref:web-api/jsonpatch)
+* <xref:Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper>
+* [TempData](xref:fundamentals/app-state#tempdata)
 
 Возможно, некоторые функции не будут оптимально работать с форматировщиками на основе `System.Text.Json` и будут требовать ссылки на форматировщики на основе `Newtonsoft.Json`. Продолжайте использовать форматировщики на основе `Newtonsoft.Json`, если приложение:
 
