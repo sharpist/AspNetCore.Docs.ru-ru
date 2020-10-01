@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: 1b8ccb510927fbc8a40f7424ae1ca4a131799095
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 46a9fc7776022a29bedf1c88e8230e1fd52d1607
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722888"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606761"
 ---
 # <a name="routing-in-aspnet-core"></a>Маршрутизация в ASP.NET Core
 
@@ -1592,7 +1592,7 @@ routes.MapRoute("blog_route", "blog/{*slug}",
 
 ## <a name="complex-segments"></a>Сложные сегменты
 
-Сложные сегменты (например, `[Route("/x{token}y")]`) обрабатываются путем "нежадного" сопоставления литералов справа налево. Подробные сведения о сопоставлении сложных сегментов см. в [этом коде](https://github.com/dotnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293). [Пример кода](https://github.com/dotnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) не используется в ASP.NET Core, но он предоставляет подробное объяснение сложных сегментов.
+Сложные сегменты (например, `[Route("/x{token}y")]`) обрабатываются путем "нежадного" сопоставления литералов справа налево. Подробные сведения о сопоставлении сложных сегментов см. в [этом коде](https://github.com/dotnet/aspnetcore/blob/v2.2.13/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293). [Пример кода](https://github.com/dotnet/aspnetcore/blob/v2.2.13/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) не используется в ASP.NET Core, но он предоставляет подробное объяснение сложных сегментов.
 <!-- While that code is no longer used by ASP.NET Core for complex segment matching, it provides a good match to the current algorithm. The [current code](https://github.com/dotnet/AspNetCore/blob/91514c9af7e0f4c44029b51f05a01c6fe4c96e4c/src/Http/Routing/src/Matching/DfaMatcherBuilder.cs#L227-L244) is too abstracted from matching to be useful for understanding complex segment matching.
 -->
 
@@ -1998,6 +1998,6 @@ routes.MapRoute("blog_route", "blog/{*slug}",
 
 ## <a name="complex-segments"></a>Сложные сегменты
 
-Сложные сегменты (например, `[Route("/x{token}y")]`) обрабатываются путем "нежадного" сопоставления литералов справа налево. Подробные сведения о сопоставлении сложных сегментов см. в [этом коде](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293). [Пример кода](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) не используется в ASP.NET Core, но он предоставляет подробное объяснение сложных сегментов.
+Сложные сегменты (например, `[Route("/x{token}y")]`) обрабатываются путем "нежадного" сопоставления литералов справа налево. Подробные сведения о сопоставлении сложных сегментов см. в [этом коде](https://github.com/dotnet/aspnetcore/blob/v2.2.13/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293). [Пример кода](https://github.com/dotnet/aspnetcore/blob/v2.2.13/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) не используется в ASP.NET Core, но он предоставляет подробное объяснение сложных сегментов.
 
 ::: moniker-end

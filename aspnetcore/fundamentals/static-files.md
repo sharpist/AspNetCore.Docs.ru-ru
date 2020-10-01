@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: 24fda96dbe48945d172eb36e8a91af31f168ff7f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 36eeb3532ed5ea6f5f75c20cbe14331ed840a788
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627667"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393942"
 ---
 # <a name="static-files-in-aspnet-core"></a>Статические файлы в ASP.NET Core
 
@@ -127,7 +127,7 @@ ms.locfileid: "88627667"
 
 Просмотр каталогов позволяет просматривать список каталогов в указанных каталогах.
 
-По соображениям безопасности просмотр каталогов отключен по умолчанию. См. раздел [Безопасность статических файлов](#sc).
+По соображениям безопасности просмотр каталогов отключен по умолчанию. См. раздел [Безопасность статических файлов](#considerations).
 
 Включите просмотр каталогов с помощью:
 
@@ -363,7 +363,7 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 
 ## <a name="enable-directory-browsing"></a>Просмотр каталогов
 
-Просмотр каталогов позволяет пользователям веб-приложениям просматривать файлы и каталоги внутри определенного каталога. По соображениям безопасности просмотр каталогов отключен по умолчанию (см. раздел [Особенности](#sc)). Включите просмотр каталогов, вызвав метод <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A> в `Startup.Configure`:
+Просмотр каталогов позволяет пользователям веб-приложениям просматривать файлы и каталоги внутри определенного каталога. По соображениям безопасности просмотр каталогов отключен по умолчанию (см. раздел [Особенности](#considerations)). Включите просмотр каталогов, вызвав метод <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A> в `Startup.Configure`:
 
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupBrowse.cs?name=snippet_ConfigureMethod&highlight=12-17)]
 

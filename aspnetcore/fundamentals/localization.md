@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: 478e9e58f265a8c372dd048f9ba8593424050e01
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: fcf69bdaaed5cf0283ae27440c28061857d2cbcb
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722674"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606776"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Глобализация и локализация в ASP.NET Core
 
@@ -959,7 +959,7 @@ using Microsoft.Extensions.Localization;
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-Некоторые приложения используют строку запроса для указания <https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo?view=netcore-3.1>. Если в приложении для этого применяется файл cookie или заголовок Accept-Language, добавление строки запроса к URL-адресу может быть полезным в целях отладки и тестирования кода. По умолчанию поставщик `QueryStringRequestCultureProvider` регистрируется в качестве первого поставщика локализации в списке `RequestCultureProvider`. Вы передаете параметры строки запроса `culture` и `ui-culture`. В следующем примере в качестве языка и региональных параметров (язык и регион) задаются испанский язык и Мексика:
+Некоторые приложения используют строку запроса для указания <xref:System.Globalization.CultureInfo>. Если в приложении для этого применяется файл cookie или заголовок Accept-Language, добавление строки запроса к URL-адресу может быть полезным в целях отладки и тестирования кода. По умолчанию поставщик `QueryStringRequestCultureProvider` регистрируется в качестве первого поставщика локализации в списке `RequestCultureProvider`. Вы передаете параметры строки запроса `culture` и `ui-culture`. В следующем примере в качестве языка и региональных параметров (язык и регион) задаются испанский язык и Мексика:
 
 ```
 http://localhost:5000/?culture=es-MX&ui-culture=es-MX
