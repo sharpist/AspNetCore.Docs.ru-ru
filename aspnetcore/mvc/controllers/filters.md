@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: c97e3afbbf94a4cb721c5d814a377eec3e26a03b
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: eeae167286e793ecd5a547cea0142cf7d8014ece
+ms.sourcegitcommit: c0a15ab8549cb729731a0fdf1d7da0b7feaa11ff
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865405"
+ms.lasthandoff: 10/02/2020
+ms.locfileid: "91671786"
 ---
 # <a name="filters-in-aspnet-core"></a>Фильтры в ASP.NET Core
 
@@ -221,7 +221,7 @@ ASP.NET Core включает встроенные фильтры на осно�
 
 <!-- test via  webBuilder.UseStartup<Startup>(); -->
 
-Переходит к `https://localhost:5001/Test2/FilterTest2` для выполнения следующего кода:
+Переходит к `https://localhost:5001/Test/FilterTest2` для выполнения следующего кода:
 
 * `TestController.OnActionExecuting`
   * `MySampleActionFilter.OnActionExecuting`
@@ -260,8 +260,8 @@ ASP.NET Core включает встроенные фильтры на осно�
   * `MySampleActionFilter.OnActionExecuting`
     * `MyAction2FilterAttribute.OnActionExecuting`
       * `Test2Controller.FilterTest2`
-    * `MySampleActionFilter.OnActionExecuted`
-  * `MyAction2FilterAttribute.OnResultExecuting`
+    * `MyAction2FilterAttribute.OnResultExecuting`
+  * `MySampleActionFilter.OnActionExecuted`
 * `Test2Controller.OnActionExecuted`
 
 Свойство `Order` переопределяет область при определении порядка выполнения фильтров. Фильтры сначала сортируются по порядку, а затем очередность окончательно определяется по области. Все встроенные фильтры реализуют `IOrderedFilter` и задают значение по умолчанию `Order`, равное 0. Как упоминалось ранее, фильтры на уровне контроллера задают для свойства [Order](https://github.com/dotnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L15-L17) значение `int.MinValue`. Во встроенных фильтрах область определяет порядок, если для `Order` не задано ненулевое значение.
@@ -795,7 +795,7 @@ ASP.NET Core включает встроенные фильтры на осно�
 
 Рассмотрим три фильтра действий, показанные в предыдущем примере. Если свойство `Order` контроллера и глобальные фильтры имеют значения 1 и 2 соответственно, порядок выполнения инвертируется.
 
-| Sequence | Область фильтра | Свойство `Order` | Метод фильтра |
+| Sequence | Область фильтра | Свойство`Order` | Метод фильтра |
 |:--------:|:------------:|:-----------------:|:-------------:|
 | 1 | Метод | 0 | `OnActionExecuting` |
 | 2 | Контроллер | 1  | `OnActionExecuting` |
