@@ -18,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 913f8f1e43586ce71353c080e72be3b80f4c0573
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1e50fb2f2f5e3621b189f756c53e80a2dd64c8a6
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634271"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754532"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Проверка подлинности и авторизация для одностраничные приложения
 
-ASP.NET Core 3,0 или более поздней версии обеспечивает проверку подлинности в одностраничных приложениях (одностраничные приложения) с помощью поддержки авторизации API. ASP.NET Core Identityдля проверки подлинности и сохранения пользователей в сочетании с [ Identity сервером](https://identityserver.io/) для реализации OpenID Connect Connect.
+Шаблоны ASP.NET Core 3,1 и более поздних версий обеспечивают проверку подлинности в одностраничных приложениях (одностраничные приложения) с помощью поддержки авторизации API. ASP.NET Core Identityдля проверки подлинности и сохранения пользователей в сочетании с [ Identity сервером](https://identityserver.io/) для реализации OpenID Connect Connect.
 
 В шаблоны проектов " **угловой** " и " **отреагировать** " был добавлен параметр проверки подлинности, аналогичный параметру проверки подлинности в шаблонах проектов **веб-приложения (модель-представление-контроллер)** (MVC) и **веб-приложение** ( Razor страницы). Допустимые значения параметра: **None** и **индивидуальных**. Шаблон проекта **React.js и Redux** в настоящее время не поддерживает параметр проверки подлинности.
 
