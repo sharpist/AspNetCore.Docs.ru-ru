@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: dadf6076e7f07c07381856aa225667a6eb38046a
-ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
+ms.openlocfilehash: 3436620123618ab32daa44c4a37057aaadb89563
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90080320"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393695"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Размещение и развертывание ASP.NET Core Blazor WebAssembly
 
@@ -51,11 +51,15 @@ ms.locfileid: "90080320"
 * Сведения о конфигурации сжатия `web.config` IIS см. в статье [IIS: алгоритмы сжатия Brotli и Gzip](#brotli-and-gzip-compression). 
 * При размещении в статических решениях размещения, которые не поддерживают согласование содержимого статически сжатых файлов, например на страницах GitHub, рассмотрите возможность настройки приложения для извлечения и декодирования сжатых файлов Brotli:
 
-  * Получите декодер JavaScript Brotli из [репозитория GitHub google/brotli](https://github.com/google/brotli). По состоянию на июль 2020 г. файл декодера называется `decode.min.js` и находится в папке [`js` репозитория](https://github.com/google/brotli/tree/master/js).
+  * Получите декодер JavaScript Brotli из [репозитория GitHub google/brotli](https://github.com/google/brotli). По состоянию на сентябрь 2020 г. файл декодера называется `decode.js` и находится в [папке `js`](https://github.com/google/brotli/tree/master/js) репозитория.
+  
+    > [!NOTE]
+    > Регрессия содержится в сокращенной версии скрипта `decode.js` (`decode.min.js`) в [репозитории GitHub google/brotli](https://github.com/google/brotli). Либо сократите скрипт самостоятельно, либо используйте [пакет npm](https://www.npmjs.com/package/brotli), пока проблема [Параметр Window.BrotliDecode не задан в decode.min.js (google/brotli № 844)](https://github.com/google/brotli/issues/844) не будет устранена. В примере кода в этом разделе используется **не сокращенная** версия скрипта.
+
   * обновите приложение для использования декодера. Измените разметку в закрывающем теге `<body>` в `wwwroot/index.html` следующим образом.
   
     ```html
-    <script src="decode.min.js"></script>
+    <script src="decode.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script>
       Blazor.start({
@@ -712,7 +716,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 ## <a name="configure-the-trimmer"></a>Настройка средства обрезки
 
-Blazor выполняет фильтрацию для промежуточного языка (IL) в каждой сборке выпуска, чтобы удалить ненужный промежуточный язык из выходных сборок. Дополнительные сведения см. в разделе <xref:blazor/host-and-deploy/configure-trimmer>.
+Blazor выполняет фильтрацию для промежуточного языка (IL) в каждой сборке выпуска, чтобы удалить ненужный промежуточный язык из выходных сборок. Для получения дополнительной информации см. <xref:blazor/host-and-deploy/configure-trimmer>.
 
 ::: moniker-end
 
@@ -863,5 +867,3 @@ Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
 
 > [!NOTE]
 > В случае переименования и отложенной загрузки тех же сборок см. инструкции в разделе <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files>.
-
-Чтобы оставить отзыв, перейдите на страницу [aspnetcore/issues #5477](https://github.com/dotnet/aspnetcore/issues/5477).

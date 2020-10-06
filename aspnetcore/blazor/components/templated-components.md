@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/templated-components
-ms.openlocfilehash: 293154658e9d39166213c0a465bed1166ba39b54
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 74601905b7317ad8d9763fe0d747ba36bd0b1389
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628356"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393799"
 ---
 # <a name="aspnet-core-no-locblazor-templated-components"></a>Шаблонные компоненты Blazor в ASP.NET Core
 
@@ -34,11 +34,13 @@ ms.locfileid: "88628356"
 * компонент таблицы, позволяющий пользователю задавать шаблоны для заголовка, строк и нижнего колонтитула таблицы;
 * компонент списка, позволяющий пользователю задавать шаблон для отрисовываемых элементов списка.
 
+[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([как скачивать](xref:index#how-to-download-a-sample))
+
 ## <a name="template-parameters"></a>Параметры шаблона
 
 Шаблонный компонент определяется путем указания одного или нескольких параметров компонента типа <xref:Microsoft.AspNetCore.Components.RenderFragment> или <xref:Microsoft.AspNetCore.Components.RenderFragment%601>. Фрагмент отрисовки представляет часть пользовательского интерфейса, подлежащую отрисовке. <xref:Microsoft.AspNetCore.Components.RenderFragment%601> принимает параметр типа, который можно задать при вызове фрагмента отрисовки.
 
-Компонент `TableTemplate`:
+Компонент `TableTemplate` (`TableTemplate.razor`):
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
 
@@ -55,6 +57,21 @@ ms.locfileid: "88628356"
         <td>@context.Name</td>
     </RowTemplate>
 </TableTemplate>
+
+@code {
+    private List<Pet> pets = new List<Pet>
+    {
+        new Pet { PetId = 2, Name = "Mr. Bigglesworth" },
+        new Pet { PetId = 4, Name = "Salem Saberhagen" },
+        new Pet { PetId = 7, Name = "K-9" }
+    };
+
+    private class Pet
+    {
+        public int PetId { get; set; }
+        public string Name { get; set; }
+    }
+}
 ```
 
 > [!NOTE]
@@ -75,6 +92,10 @@ ms.locfileid: "88628356"
         <td>@pet.Name</td>
     </RowTemplate>
 </TableTemplate>
+
+@code {
+    ...
+}
 ```
 
 Кроме того, атрибут `Context` можно задать для элемента компонента. Заданный атрибут `Context` применяется ко всем указанным параметрам шаблона. Это может быть полезно, если необходимо указать имя параметра содержимого для неявного дочернего содержимого (без содержащего дочернего элемента). В следующем примере элемент `TableTemplate` имеет атрибут `Context`, который применяется ко всем параметрам шаблона:
@@ -90,11 +111,15 @@ ms.locfileid: "88628356"
         <td>@pet.Name</td>
     </RowTemplate>
 </TableTemplate>
+
+@code {
+    ...
+}
 ```
 
 ## <a name="generic-typed-components"></a>Компоненты универсального типа
 
-Шаблонные компоненты часто имеют универсальный тип. Например, универсальный компонент `ListViewTemplate` можно использовать для отрисовки значений `IEnumerable<T>`. Чтобы определить универсальный компонент, используйте директиву [`@typeparam`](xref:mvc/views/razor#typeparam) и укажите параметры типа:
+Шаблонные компоненты часто имеют универсальный тип. Например, универсальный компонент `ListViewTemplate` (`ListViewTemplate.razor`) можно использовать для отрисовки значений `IEnumerable<T>`. Чтобы определить универсальный компонент, используйте директиву [`@typeparam`](xref:mvc/views/razor#typeparam) и укажите параметры типа:
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
 
@@ -106,6 +131,20 @@ ms.locfileid: "88628356"
         <li>@pet.Name</li>
     </ItemTemplate>
 </ListViewTemplate>
+
+@code {
+    private List<Pet> pets = new List<Pet>
+    {
+        new Pet { Name = "Mr. Bigglesworth" },
+        new Pet { Name = "Salem Saberhagen" },
+        new Pet { Name = "K-9" }
+    };
+
+    private class Pet
+    {
+        public string Name { get; set; }
+    }
+}
 ```
 
 В противном случае параметр типа необходимо указать явно с помощью атрибута, совпадающего с именем параметра типа. В следующем примере `TItem="Pet"` задает тип:
@@ -116,4 +155,8 @@ ms.locfileid: "88628356"
         <li>@pet.Name</li>
     </ItemTemplate>
 </ListViewTemplate>
+
+@code {
+    ...
+}
 ```

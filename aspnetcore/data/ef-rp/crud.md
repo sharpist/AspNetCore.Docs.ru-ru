@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: a6a99d736a60a55b81eb7e852413dc52b733d2fb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 083214c01dbec6c6f44d6b82f5b514a029e57cbe
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627537"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606736"
 ---
 # <a name="part-2-no-locrazor-pages-with-ef-core-in-aspnet-core---crud"></a>Часть 2. Razor Pages с EF Core в ASP.NET Core — CRUD
 
@@ -29,7 +29,7 @@ ms.locfileid: "88627537"
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-5.0"
 
 В этом учебнике описывается проверка и настройка шаблонного кода операций CRUD (создание, чтение, обновление и удаление).
 
@@ -40,6 +40,174 @@ ms.locfileid: "88627537"
 ## <a name="update-the-details-page"></a>Обновление страницы Details (сведения)
 
 Шаблонный код для страниц учащихся не включает в себя сведения о регистрации. В этом разделе вы добавите регистрации на страницу сведений.
+
+### <a name="read-enrollments"></a>Считывание сведений о регистрации
+
+Чтобы отобразить сведения о регистрации учащегося на странице, необходимо считать их. Шаблонный код в файле *Pages/Students/Details.cshtml.cs* считывает только сведения об учащихся, но не сведения о регистрации:
+
+[!code-csharp[Main](intro/samples/cu30snapshots/2-crud/Pages/Students/Details1.cshtml.cs?name=snippet_OnGetAsync&highlight=8)]
+
+Замените метод `OnGetAsync` приведенным ниже кодом для считывания сведений о регистрации для выбранного учащегося. Изменения выделены.
+
+[!code-csharp[Main](intro/samples/cu30/Pages/Students/Details.cshtml.cs?name=snippet_OnGetAsync&highlight=8-12)]
+
+Методы [Include](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.include) и [ThenInclude](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.theninclude#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_ThenInclude__3_Microsoft_EntityFrameworkCore_Query_IIncludableQueryable___0_System_Collections_Generic_IEnumerable___1___System_Linq_Expressions_Expression_System_Func___1___2___) инструктируют контекст для загрузки свойства навигации `Student.Enrollments`, а также свойства навигации `Enrollment.Course` в пределах каждой регистрации. Эти методы более подробно рассматриваются в учебнике, посвященном [чтению связанных данных](xref:data/ef-rp/read-related-data).
+
+Метод [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) повышает производительность в тех сценариях, где возвращаемые сущности не обновляются в текущем контексте. `AsNoTracking` рассматривается позднее в этом учебнике.
+
+### <a name="display-enrollments"></a>Отображение регистраций
+
+Замените код в файле *Pages/Students/Details.cshtml* приведенным ниже кодом для отображения списка регистраций. Изменения выделены.
+
+[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Details.cshtml?highlight=32-53)]
+
+Приведенный выше код циклически обрабатывает сущности в свойстве навигации `Enrollments`. Для каждой регистрации он отображает название курса и оценку. Название курса извлекается из сущности Course, которая хранится в свойстве навигации `Course` сущности Enrollments.
+
+Запустите приложение, выберите вкладку **Students** (Учащиеся) и щелкните ссылку **Details** (Сведения) для учащегося. Отобразится список курсов и оценок для выбранного учащегося.
+
+### <a name="ways-to-read-one-entity"></a>Способы чтения одной сущности
+
+В созданном коде для чтения одной сущности используется метод [FirstOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_). Этот метод возвращает значение NULL, если ничего не найдено. В противном случае возвращается первая найденная строка, удовлетворяющая условиям фильтра запросов. `FirstOrDefaultAsync` обычно предпочтительнее, чем следующие варианты:
+
+* [SingleOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_) — вызывает исключение при наличии нескольких сущностей, соответствующих фильтру запросов. Для определения того, может ли запрос вернуть более одной строки, `SingleOrDefaultAsync` пытается получить несколько строк. Это дополнительное действие не требуется, если запрос может вернуть только одну сущность, как при поиске по уникальному ключу.
+* [FindAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.findasync#Microsoft_EntityFrameworkCore_DbContext_FindAsync_System_Type_System_Object___) — находит сущность с первичным ключом. Если сущность с первичным ключом отслеживается контекстом, она возвращается без запроса к базе данных. Этот метод оптимизирован для поиска одной сущности, однако вызвать `Include` с `FindAsync` невозможно.  Поэтому если требуются связанные данные, лучше использовать `FirstOrDefaultAsync`.
+
+### <a name="route-data-vs-query-string"></a>Данные маршрута или строка запроса
+
+URL-адрес страницы сведений — `https://localhost:<port>/Students/Details?id=1`. Значение первичного ключа сущности содержится в строке запроса. Некоторые разработчики предпочитают передавать значение ключа в данных маршрута: `https://localhost:<port>/Students/Details/1`. Дополнительные сведения см. в разделе [Обновление созданного кода](xref:tutorials/razor-pages/da1#update-the-generated-code).
+
+## <a name="update-the-create-page"></a>Обновление страницы Create
+
+Шаблонный код `OnPostAsync` для страницы создания уязвим к [чрезмерной передаче данных](#overposting). Замените метод `OnPostAsync` в файле *Pages/Students/Create.cshtml.cs*, используя следующий код:
+
+[!code-csharp[Main](intro/samples/cu30/Pages/Students/Create.cshtml.cs?name=snippet_OnPostAsync)]
+
+<a name="TryUpdateModelAsync"></a>
+
+### <a name="tryupdatemodelasync"></a>TryUpdateModelAsync
+
+В приведенном выше коде создается объект Student, после чего опубликованные поля формы используются для обновления свойств этого объекта. Метод [TryUpdateModelAsync](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.tryupdatemodelasync#Microsoft_AspNetCore_Mvc_ControllerBase_TryUpdateModelAsync_System_Object_System_Type_System_String_) выполняет указанные ниже действия.
+
+* Использует опубликованные значения формы из свойства [PageContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.pagecontext#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_PageContext) в [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel).
+* Обновляет только перечисленные свойства (`s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate`).
+* Ищет поля формы с префиксом "student". Например, `Student.FirstMidName`. Задается без учета регистра символов.
+* Использует систему [привязки модели](xref:mvc/models/model-binding) для преобразования значений формы из строк в типы модели `Student`. Например, `EnrollmentDate` преобразуется в `DateTime`.
+
+Запустите приложение и создайте сущность учащегося для тестирования страницы создания.
+
+## <a name="overposting"></a>Чрезмерная передача данных
+
+В целях повышения безопасности рекомендуется использовать `TryUpdateModel` для обновления полей на основе отправленных значений, поскольку в этом случае исключается чрезмерная передача данных. Например, сущность Student включает свойство `Secret`, которое веб-страница не должна обновлять или добавлять:
+
+[!code-csharp[Main](intro/samples/cu30snapshots/2-crud/Models/StudentZsecret.cs?name=snippet_Intro&highlight=7)]
+
+Даже если приложение не имеет поля `Secret` на странице создания или обновления Razor, злоумышленник может установить значение `Secret` посредством чрезмерной передачи данных. Злоумышленник может использовать такие средства, как Fiddler, или собственный код JavaScript для отправки значения формы `Secret`. В исходном коде не ограничиваются поля, которые используются при создании экземпляра Student связывателем модели.
+
+Какое бы значение ни задал злоумышленник для поля формы `Secret`, оно будет обновлено в базе данных. На следующем рисунке показано средство Fiddler, с помощью которого в отправленные значения формы добавляется поле `Secret` со значением "OverPost".
+
+![Добавление поля Secret с помощью средства Fiddler](../ef-mvc/crud/_static/fiddler.png)
+
+Значение "OverPost" успешно добавлено в свойство `Secret` вставленной строки. Это происходит несмотря на то, что разработчик приложения не планировал, что свойство `Secret` будет устанавливаться на странице создания.
+
+### <a name="view-model"></a>Модель представления
+
+Модели представления реализуют альтернативный подход к защите от чрезмерной передачи данных.
+
+Модель приложения часто называют моделью домена. Модель предметной области обычно содержит все свойства, необходимые для соответствующей сущности в базе данных. Модель представления содержит только те свойства, которые необходимы для страницы пользовательского интерфейса, например страницы Create.
+
+Помимо модели представления в некоторых приложениях используется модель привязки или модель ввода для передачи данных между классом модели страницы Razor Pages и браузером. 
+
+Рассмотрим следующую модель представления `StudentVM`:
+
+[!code-csharp[Main](intro/samples/cu50/ViewModels/StudentVM.cs?name=snippet)]
+
+В следующем коде модель представления используется `StudentVM` для создания нового учащегося:
+
+[!code-csharp[Main](intro/samples/cu50/Pages/Students/CreateVM.cshtml.cs?name=snippet)]
+
+Метод [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues.setvalues#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyValues_SetValues_System_Object_) устанавливает значения этого объекта, считывая значения из другого объекта [PropertyValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues). `SetValues` использует сопоставление имен свойств. Тип модели представления:
+
+* не обязательно должен быть связан с типом модели;
+* должен иметь соответствующие свойства.
+
+При использовании `StudentVM` требуется, чтобы страница Create использовала `StudentVM`, а не `Student`:
+
+[!code-cshtml[Main](intro/samples/cu50/Pages/Students/CreateVM.cshtml)]
+
+## <a name="update-the-edit-page"></a>Обновление страницы редактирования
+
+В файле *Pages/Students/Edit.cshtml.cs* замените методы `OnGetAsync` и `OnPostAsync` приведенным ниже кодом.
+
+[!code-csharp[Main](intro/samples/cu30/Pages/Students/Edit.cshtml.cs?name=snippet_OnGetPost)]
+
+Изменения в коде аналогичны странице Create за некоторыми исключениями:
+
+* `FirstOrDefaultAsync` заменен на [FindAsync](/dotnet/api/microsoft.entityframeworkcore.dbset-1.findasync). Если включать связанные данные не требуется, более эффективным будет метод `FindAsync`.
+* `OnPostAsync` имеет параметр `id`.
+* Текущий учащийся извлекается из базы данных вместо того, чтобы создавать нового учащегося.
+
+Запустите приложение и протестируйте его, создав и изменив учащегося.
+
+## <a name="entity-states"></a>Состояния сущностей
+
+Контекст базы данных отслеживает синхронизацию сущностей в памяти с соответствующими им строками в базе данных. Данные отслеживания определяют поведение при вызове метода [SaveChangesAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_). Например, при передаче новой сущности в метод [AddAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.addasync) ей присваивается состояние [Added](/dotnet/api/microsoft.entityframeworkcore.entitystate#Microsoft_EntityFrameworkCore_EntityState_Added). При вызове метода `SaveChangesAsync` контекст базы данных выполняет команду SQL `INSERT`.
+
+Возможны следующие [состояния сущности](/dotnet/api/microsoft.entityframeworkcore.entitystate):
+
+* `Added`. Сущность еще не существует в базе данных. Метод `SaveChanges` выполняет инструкцию `INSERT`.
+
+* `Unchanged`. изменения сущности не сохраняются. Сущность находится в этом состоянии при считывании из базы данных.
+
+* `Modified`. Были изменены значения некоторых или всех свойств сущности. Метод `SaveChanges` выполняет инструкцию `UPDATE`.
+
+* `Deleted`. Сущность отмечена для удаления. Метод `SaveChanges` выполняет инструкцию `DELETE`.
+
+* `Detached`. Сущность не отслеживается контекстом базы данных.
+
+В классическом приложении изменения состояния обычно осуществляются автоматически. После считывания сущности и ее изменения ей автоматически присваивается состояние `Modified`. При вызове метода `SaveChanges` создается инструкция SQL `UPDATE`, которая обновляет только измененные свойства.
+
+В веб-приложении объект `DbContext`, который считывает сущность и отображает ее данные, ликвидируется после отрисовки страницы. При вызове метода страницы `OnPostAsync` выполняется новый веб-запрос с новым экземпляром `DbContext`. Если повторно считать сущность в этот новый контекст, будет смоделирована обработка в классическом приложении.
+
+## <a name="update-the-delete-page"></a>Обновление страницы удаления
+
+В этом разделе реализуется пользовательское сообщение об ошибке на случай сбоя при вызове `SaveChanges`.
+
+Замените код в файле *Pages/Students/Delete.cshtml.cs* на приведенный ниже. Изменения выделены:
+
+[!code-csharp[Main](intro/samples/cu50/Pages/Students/Delete.cshtml.cs?name=snippet_All&highlight=12-14,22,30-33,45-99)]
+
+В предыдущем коде в сигнатуру метода `OnGetAsync` добавляется необязательный параметр `saveChangesError`. `saveChangesError` указывает, был ли метод вызван после того, как произошел сбой при удалении объекта учащегося. Операция удаления может завершиться сбоем из-за временных проблем с сетью. Вероятность возникновения временных проблем с сетью выше, когда база данных размещается в облаке. Параметр `saveChangesError` имеет значение `false` при вызове метода `OnGetAsync` страницы удаления из пользовательского интерфейса. Если `OnGetAsync` вызывается методом `OnPostAsync` из-за сбоя операции удаления, параметру `saveChangesError` присваивается значение `true`.
+
+Метод `OnPostAsync` извлекает выбранную сущность и вызывает метод [Remove](/dotnet/api/microsoft.entityframeworkcore.dbcontext.remove#Microsoft_EntityFrameworkCore_DbContext_Remove_System_Object_), чтобы присвоить ей состояние `Deleted`. При вызове метода `SaveChanges` создается инструкция SQL `DELETE`. В случае сбоя `Remove`:
+
+* Возникает исключение базы данных.
+* Вызывается метод `OnGetAsync` страницы Delete с параметром `saveChangesError=true`.
+
+Добавьте сообщение об ошибке в файл *Pages/Students/Delete.cshtml*:
+
+[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
+
+Запустите приложение и удалите учащегося, чтобы протестировать страницу удаления.
+
+## <a name="next-steps"></a>Следующие шаги
+
+> [!div class="step-by-step"]
+> [Предыдущий учебник](xref:data/ef-rp/intro)
+> [Следующий учебник](xref:data/ef-rp/sort-filter-page)
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
+В этом учебнике описывается проверка и настройка шаблонного кода операций CRUD (создание, чтение, обновление и удаление).
+
+## <a name="no-repository"></a>Репозиторий отсутствует.
+
+Некоторые разработчики используют уровень служб или шаблон репозитория, чтобы создать уровень абстракции между пользовательским интерфейсом (Razor Pages) и уровнем доступа к данным. В данном учебнике этого не делается. Чтобы максимально упростить код и сконцентрироваться на работе с EF Core, код EF Core добавляется непосредственно в классы моделей страниц. 
+
+## <a name="update-the-details-page"></a>Обновление страницы Details (сведения)
+
+Шаблонный код для страниц учащихся не включает в себя сведения о регистрации. В этом разделе регистрации добавляются на страницу сведений.
 
 ### <a name="read-enrollments"></a>Считывание сведений о регистрации
 

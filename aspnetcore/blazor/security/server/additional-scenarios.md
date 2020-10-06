@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/additional-scenarios
-ms.openlocfilehash: c8bce9572f0c21fdbd7ed585772c2b7965f40598
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: 9b3698489300e45cf77c3d51611ff44e2f4e16a5
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90592947"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393669"
 ---
 # <a name="aspnet-core-no-locblazor-server-additional-security-scenarios"></a>Сценарии обеспечения дополнительной безопасности Blazor Server для ASP.NET Core
 
@@ -208,15 +208,15 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme,
           options.Resource = "...";    // REMOVE THIS LINE
           ...
       }
-      ```
+  ```
 
-  For more information, see [Scopes, not resources](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison#scopes-not-resources) in the Azure documentation.
+  Дополнительные сведения см. в разделе [Области, а не ресурсы](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison#scopes-not-resources) в документации Azure.
 
-### App ID URI
+### <a name="app-id-uri"></a>Универсальный код ресурса идентификатора приложения
 
-* When using v2.0 endpoints, APIs define an *`App ID URI`*, which is meant to represent a unique identifier for the API.
-* All scopes include the App ID URI as a prefix, and v2.0 endpoints emit access tokens with the App ID URI as the audience.
-* When using V2.0 endpoints, the client ID configured in the Server API changes from the API Application ID (Client ID) to the App ID URI.
+* При использовании конечных точек версии 2.0 в интерфейсах API определяется код *`App ID URI`* , который должен представлять уникальный идентификатор интерфейса API.
+* Универсальный код ресурса (URI) идентификатора приложения включается во все области в качестве префикса, а конечные точки версии 2.0 выдают маркеры доступа с кодом URI идентификатора приложения в качестве аудитории.
+* При использовании конечных точек версии 2.0 идентификатор клиента, настроенный в API сервера, изменяется с идентификатора приложения API (идентификатора клиента) на код URI идентификатора приложения.
 
 `appsettings.json`:
 

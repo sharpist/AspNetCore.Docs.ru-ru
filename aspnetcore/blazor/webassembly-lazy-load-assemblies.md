@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
-ms.openlocfilehash: eb4aaa2f3d412cdf650ed2daf7c12166991d92a1
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: e874ec6f24d8b03fc6c7133013147498cbbc293a
+ms.sourcegitcommit: 4febe4efaf6e1a7be65d772b500c00fca0af216a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90592908"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91451164"
 ---
 # <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>Сборки с отложенной загрузкой в ASP.NET Core Blazor WebAssembly
 
@@ -38,7 +38,7 @@ ms.locfileid: "90592908"
 
 ## <a name="project-file"></a>Файл проекта
 
-Пометьте сборки для отложенной загрузки в файле проекта приложения (`.csproj`) с помощью элемента `BlazorWebAssemblyLazyLoad`. Используйте имя сборки без расширения `.dll`. Платформа Blazor предотвращает загрузку сборок, заданных этой группой элементов, при запуске приложения. Следующий пример помечает большую пользовательскую сборку (`GrantImaharaRobotControls.dll`) для отложенной загрузки. Если сборка, помеченная для отложенной загрузки, содержит зависимости, они также должны быть помечены для отложенной загрузки в файле проекта.
+Пометьте сборки для отложенной загрузки в файле проекта приложения (`.csproj`) с помощью элемента `BlazorWebAssemblyLazyLoad`. Используйте имя сборки с расширением `.dll`. Платформа Blazor предотвращает загрузку сборок, заданных этой группой элементов, при запуске приложения. Следующий пример помечает большую пользовательскую сборку (`GrantImaharaRobotControls.dll`) для отложенной загрузки. Если сборка, помеченная для отложенной загрузки, содержит зависимости, они также должны быть помечены для отложенной загрузки в файле проекта.
 
 ```xml
 <ItemGroup>
@@ -106,7 +106,7 @@ ms.locfileid: "90592908"
 Реализация отложенной загрузки на платформе поддерживает отложенную загрузку с предварительной отрисовкой в размещенном решении Blazor. Во время предварительной отрисовки предполагается, что будут загружены все сборки, включая те, которые отмечены для отложенной загрузки. Вручную зарегистрируйте `LazyAssemblyLoader` в методе `Startup.ConfigureServices` проекта *сервера* (`Startup.cs`):
 
 ```csharp
-services.AddSingleton<LazyAssemblyLoader>();
+services.AddScoped<LazyAssemblyLoader>();
 ```
 
 ### <a name="user-interaction-with-navigating-content"></a>Взаимодействие пользователей с содержимым `<Navigating>`

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/blazor-server-ef-core
-ms.openlocfilehash: e548465b3d79279802fbfacd66c69724d864d14d
-ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
+ms.openlocfilehash: 36c0915649d9a25cf1b6b2d9ec69c3919aa7bc2c
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90080333"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424169"
 ---
 # <a name="aspnet-core-no-locblazor-server-with-entity-framework-core-efcore"></a>ASP.NET Core Blazor Server и Entity Framework Core (EF Core)
 
@@ -202,7 +202,10 @@ EF Core опирается на <xref:Microsoft.EntityFrameworkCore.DbContext> 
 
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/DbContextFactory.cs)]
 
-В предыдущей фабрике <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance%2A?displayProperty=nameWithType> удовлетворяет все зависимости через поставщика услуг.
+В предыдущей фабрике:
+
+* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance%2A?displayProperty=nameWithType> удовлетворяет все зависимости через поставщика услуг;
+* `IDbContextFactory` доступен в EF Core ASP.NET Core 5.0 или более поздней версии, поэтому интерфейс [реализован в примере приложения для ASP.NET Core 3.x](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/IDbContextFactory.cs).
 
 В следующем примере настраивается [SQLite](https://www.sqlite.org/index.html) и включается ведение журнала данных. Этот код использует метод расширения для настройки фабрики баз данных для внедрения зависимостей и предоставления параметров по умолчанию.
 

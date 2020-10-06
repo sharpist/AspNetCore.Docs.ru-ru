@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 9dd8d293e189eebe6b61f6f0b35aee71977d2f77
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 35a5758500ae2bc691c8d08eccb22340f9998c39
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722557"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424295"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Использование Razor Pages с Entity Framework Core в ASP.NET Core: руководство 1 из 8
 
@@ -40,11 +40,11 @@ ms.locfileid: "90722557"
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-3.0.md)]
+[!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-5.0.md)]
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[VS Code prereqs](~/includes/net-core-prereqs-vsc-3.0.md)]
+[!INCLUDE[VS Code prereqs](~/includes/net-core-prereqs-vsc-5.0.md)]
 
 ---
 
@@ -68,49 +68,51 @@ ms.locfileid: "90722557"
 
 ![Страница редактирования учащихся](intro/_static/student-edit30.png)
 
-Стиль пользовательского интерфейса для этого сайта основан на встроенных шаблонах проектов. Это руководство посвящено использованию EF Core, а не настройке пользовательского интерфейса.
+Стиль пользовательского интерфейса для этого сайта основан на встроенных шаблонах проектов. Это руководство посвящено использованию EF Core с ASP.NET Core, а не настройке пользовательского интерфейса.
 
-Чтобы получить исходный код готового проекта, перейдите по ссылке в верхней части страницы. В папке *cu30* содержится код для версии учебника по ASP.NET Core 3.0. Файлы, отражающие состояние кода для учебников 1–7, находятся в папке *cu30snapshots*.
+<!-- 
+Follow the link at the top of the page to get the source code for the completed project. The *cu50* folder has the code for the ASP.NET Core 5.0 version of the tutorial. Files that reflect the state of the code for tutorials 1-7 can be found in the *cu50snapshots* folder.
 
-# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
-Чтобы запустить приложение после скачивания готового проекта, выполните указанные ниже действия.
+To run the app after downloading the completed project:
 
-* Выполните построение проекта.
-* В консоли диспетчера пакетов (PMC) выполните следующую команду:
+* Build the project.
+* In Package Manager Console (PMC) run the following command:
 
   ```powershell
   Update-Database
   ```
 
-* Запустите проект, чтобы заполнить базу данных.
+* Run the project to seed the database.
 
-# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code](#tab/visual-studio-code)
 
-Чтобы запустить приложение после скачивания готового проекта, выполните указанные ниже действия.
+To run the app after downloading the completed project:
 
-* Удалите файл *ContosoUniversity.csproj*, а файл *ContosoUniversitySQLite.csproj* переименуйте в *ContosoUniversity.csproj*.
-* В файле *Program.cs* закомментируйте `#define Startup`, чтобы использовать `StartupSQLite`.
-* Удалите файл *appSettings.json*, а файл *appSettingsSQLite.json* переименуйте в *appSettings.json*.
-* Удалите папку *Migrations*, а папку *MigrationsSQL* переименуйте в *Migrations*.
-* Выполните глобальный поиск `#if SQLiteVersion` и удалите `#if SQLiteVersion` и связанную инструкцию `#endif`.
-* Выполните построение проекта.
-* В командной строке в папке проекта выполните следующие команды:
+* In *Program.cs*, remove the comments from `// webBuilder.UseStartup<StartupSQLite>();`  so `StartupSQLite` is used.
+* Copy the contents of *appSettingsSQLite.json* into *appSettings.json*.
+* Delete the *Migrations* folder, and rename *MigrationsSQL* to *Migrations*.
+* Do a global search for `#if SQLiteVersion` and remove `#if SQLiteVersion` and the associated `#endif` statement.
+* Build the project.
+* At a command prompt in the project folder, run the following commands:
 
   ```dotnetcli
-  dotnet tool install --global dotnet-ef
+  dotnet tool install --global dotnet-ef -v 5.0.0-*
   dotnet ef database update
   ```
 
-* В средстве SQLite выполните следующую инструкцию SQL:
+* In your SQLite tool, run the following SQL statement:
 
   ```sql
   UPDATE Department SET RowVersion = randomblob(8)
   ```
 
-* Запустите проект, чтобы заполнить базу данных.
+* Run the project to seed the database.
 
 ---
+
+-->
 
 ## <a name="create-the-web-app-project"></a>Создание проекта веб-приложения
 
@@ -119,36 +121,35 @@ ms.locfileid: "90722557"
 * В Visual Studio в меню **Файл** щелкните **Создать** > **Проект**.
 * Выберите **Новое веб-приложение ASP.NET Core**.
 * Назовите проект *ContosoUniversity*. Очень важно использовать именно такое имя с учетом регистра символов, чтобы пространства имен совпадали при копировании и вставке кода.
-* Выберите в раскрывающихся списках пункты **.NET Core** и **ASP.NET Core 3.0**, а затем выберите **Веб-приложение**.
+* Выберите в раскрывающихся списках пункты **.NET Core** и **ASP.NET Core 5.0**, а затем выберите **Веб-приложение**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 * В терминале перейдите в папку, в которой следует создать папку проекта.
-
 * Выполните следующие команды, чтобы создать проект Razor Pages и перейти (`cd`) в новую папку проекта:
 
   ```dotnetcli
   dotnet new webapp -o ContosoUniversity
-  cd ContosoUniversity
+  cd ContosoUniversity  
   ```
 
 ---
 
 ## <a name="set-up-the-site-style"></a>Настройка стиля сайта
 
-Настройте заголовок сайта, нижний колонтитул и меню, внеся изменения в файл *Pages/Shared/_Layout.cshtml*.
+Скопируйте следующий код и вставьте его в файл *Pages/Shared/_Layout.cshtml*: [!code-cshtml[Main](intro/samples/cu50/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
 
-* Замените все вхождения "ContosoUniversity" на "Contoso University". Таких элементов будет три.
+Файл макета задает заголовок, нижний колонтитул и меню для сайта. Приведенный выше код вносит следующие изменения:
 
-* Удалите пункты меню **Home** (Главная) и **Privacy** (Конфиденциальность). Добавьте пункты **About** (Сведения), **Students** (Учащиеся), **Courses** (Курсы), **Instructors** (Преподаватели) и **Departments** (Кафедры).
+* Заменяет все вхождения "ContosoUniversity" на "Contoso University". Таких элементов будет три.
+* Удаляются пункты меню **Home** (Главная) и **Privacy** (Конфиденциальность).
+* Добавляются пункты меню **About** (Сведения), **Students** (Учащиеся), **Courses** (Курсы), **Instructors** (Преподаватели) и **Departments** (Кафедры).
 
-Изменения выделены.
+Замените содержимое файла *Pages/Index.cshtml* следующим кодом:
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
+[!code-cshtml[Main](intro/samples/cu50/Pages/Index.cshtml)]
 
-Замените содержимое файла *Pages/Index.cshtml* следующим кодом, который заменяет текст об ASP.NET Core описанием этого приложения:
-
-[!code-cshtml[Main](intro/samples/cu30/Pages/Index.cshtml)]
+Приведенный выше код заменяет текст об ASP.NET Core текстом об этом приложении.
 
 Запустите приложение, чтобы проверить правильность отображения домашней страницы.
 
@@ -214,51 +215,50 @@ EF Core воспринимает свойство как внешний ключ
 
 В этом разделе вы используете средство формирования шаблонов ASP.NET Core для создания указанных ниже компонентов.
 
-* Класс *контекста* EF Core. Контекст —это основной класс, который координирует функциональные возможности Entity Framework для определенной модели данных. Он является производным от класса `Microsoft.EntityFrameworkCore.DbContext`.
+* Класс `DbContext` EF Core. Контекст —это основной класс, который координирует функциональные возможности Entity Framework для определенной модели данных. Он является производным от класса <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName>.
 * Razor Pages с поддержкой операций создания, чтения, обновления и удаления (CRUD) для сущности `Student`.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* В папке *Pages* создайте папку *Students*.
+* Создайте папку *Pages/Students*.
 * В **обозревателе решений** щелкните правой кнопкой мыши папку *Pages/Students* и выберите **Добавить** > **Создать шаблонный элемент**.
-* В диалоговом окне **Добавление шаблона** щелкните **Razor Pages на основе Entity Framework (CRUD)** > **Добавить**.
+* В диалоговом окне **Добавление нового элемента шаблона** выполните указанные ниже действия.
+  * На левой вкладке выберите **Установленные > Общие > Страницы Razor** .
+  * Выберите **Razor Pages на основе Entity Framework (CRUD)**  > **Добавить**.
 * В диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** сделайте следующее:
   * В раскрывающемся списке **Класс модели** выберите **Student (ContosoUniversity.Models)** .
   * В строке **Класс контекста данных** щелкните знак плюса ( **+** ).
-  * Измените имя контекста данных с *ContosoUniversity.Models.ContosoUniversityContext* на *ContosoUniversity.Data.SchoolContext*.
-  * Нажмите **Добавить**.
+    * Измените имя контекста данных так, чтобы оно заканчивалось на `SchoolContext`, а не на `ContosoUniversityContext`. Новое имя контекста: `ContosoUniversity.Data.SchoolContext`.
+   * Нажмите **Добавить**.
 
 Следующие пакеты устанавливаются автоматически:
 
-* `Microsoft.VisualStudio.Web.CodeGeneration.Design`
 * `Microsoft.EntityFrameworkCore.SqlServer`
-* `Microsoft.Extensions.Logging.Debug`
 * `Microsoft.EntityFrameworkCore.Tools`
+* `Microsoft.VisualStudio.Web.CodeGeneration.Design`
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 * Выполните следующие команды интерфейса командной строки .NET Core, чтобы установить необходимые пакеты NuGet:
-<!-- TO DO  After testing, Replace with
-[!INCLUDE[](~/includes/includes/add-EF-NuGet-SQLite-CLI.md)]
-remove dotnet tool install --global  below
- -->
+
   ```dotnetcli
-  dotnet add package Microsoft.EntityFrameworkCore.SQLite
-  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-  dotnet add package Microsoft.EntityFrameworkCore.Design
-  dotnet add package Microsoft.EntityFrameworkCore.Tools
-  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-  dotnet add package Microsoft.Extensions.Logging.Debug
+  dotnet add package Microsoft.EntityFrameworkCore.SQLite -v 5.0.0-*
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 5.0.0-*
+  dotnet add package Microsoft.EntityFrameworkCore.Design -v 5.0.0-*
+  dotnet add package Microsoft.EntityFrameworkCore.Tools -v 5.0.0-*
+  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 5.0.0-*
+  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -v 5.0.0-*  
   ```
 
-  Пакет Microsoft.VisualStudio.Web.CodeGeneration.Design требуется для формирования шаблонов. Хотя приложение не будет использовать SQL Server, средству формирования шаблонов требуется пакет SQL Server.
+   Пакет Microsoft.VisualStudio.Web.CodeGeneration.Design требуется для формирования шаблонов. Хотя приложение не будет использовать SQL Server, средству формирования шаблонов требуется пакет SQL Server.
 
 * Создайте папку *Pages/Students*.
 
 * Выполните приведенную ниже команду, чтобы установить [средство формирования шаблонов aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
   ```dotnetcli
-  dotnet tool install --global dotnet-aspnet-codegenerator
+  dotnet tool uninstall --global dotnet-aspnet-codegenerator
+  dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0-*  
   ```
 
 * Выполните приведенную ниже команду, чтобы сформировать шаблон для страниц Student.
@@ -266,18 +266,18 @@ remove dotnet tool install --global  below
   **В Windows**
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries -sqlite  
   ```
 
   **В macOS или Linux**
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries -sqlite  
   ```
 
 ---
 
-Если в предыдущем шаге возникает проблема, выполните сборку проекта и повторите шаг формирования шаблона.
+Если предыдущий шаг завершился сбоем, выполните сборку проекта и повторите шаг формирования шаблона.
 
 В процессе формирования шаблона выполняются следующие действия:
 
@@ -293,19 +293,21 @@ remove dotnet tool install --global  below
 
 ## <a name="database-connection-string"></a>Строка подключения к базе данных
 
+Средство формирования шаблонов создает строку подключения в файле *appsettings.json*.
+
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Строка подключения указывает базу данных [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb). 
+Строка подключения указывает базу данных [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb).
 
-[!code-json[Main](intro/samples/cu30/appsettings.json?highlight=11)]
+[!code-json[Main](intro/samples/cu50/appsettings.json?highlight=11)]
 
 LocalDB — это упрощенная версия ядра СУБД SQL Server Express, предназначенная для разработки приложений и не ориентированная на использование в рабочей среде. По умолчанию LocalDB создает файлы *MDF* в каталоге `C:/Users/<user>`.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Измените строку подключения так, чтобы она указывала на файл базы данных SQLite с именем *CU.db*.
+Сократите строку подключения SQLite до *CU.db*:
 
-[!code-json[Main](intro/samples/cu30/appsettingsSQLite.json?highlight=11)]
+[!code-json[Main](intro/samples/cu50/appsettingsSQLite.json?highlight=11)]
 
 ---
 
@@ -313,42 +315,76 @@ LocalDB — это упрощенная версия ядра СУБД SQL Serve
 
 Контекст базы данных — это основной класс, который координирует функциональные возможности EF Core для определенной модели данных. Контекст наследуется от [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). Контекст указывает сущности, которые включаются в модель данных. В этом проекте соответствующий класс называется `SchoolContext`.
 
-Обновите файл *SchoolContext.cs*, добавив в него следующий код:
+Обновите файл *Data/SchoolContext.cs*, добавив в него следующий код:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 
-Выделенный код создает свойство [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) для каждого набора сущностей. В терминологии EF Core:
+Приведенный выше код изменяет форму слова `DbSet<Student> Student` на множественную: `DbSet<Student> Students`. Чтобы код Razor Pages соответствовал новому имени `DBSet`, произведите глобальное изменение `_context.Student.`
+на `_context.Students.`.
 
-* Набор сущностей обычно соответствует таблице базы данных.
-* Сущность соответствует строке в таблице.
+Всего это имя встречается 8 раз.
 
-Так как набор сущностей содержит несколько сущностей, свойства DBSet должны иметь имена во множественном числе. Так как средство формирования шаблонов создало DBSet `Student`, в этом шаге его имя меняется на имя во множественном числе: `Students`. 
+Так как набор сущностей содержит несколько сущностей, многие разработчики предпочитают имена свойств `DBSet` во множественном числе.
 
-Чтобы код Razor Pages соответствовал новому имени DBSet, измените `_context.Student` на `_context.Students` во всем проекте.  Всего это имя встречается 8 раз.
+Выделенный код:
+
+* создает свойство [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) для каждого набора сущностей. В терминологии EF Core:
+  * Набор сущностей обычно соответствует таблице базы данных.
+  * Сущность соответствует строке в таблице.
+* Вызывает <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A>. `OnModelCreating`:
+  * вызывается, когда контекст `SchoolContext` был инициализирован, но прежде чем модель была заблокирована и использована для инициализации контекста;
+  * является обязательным, так как далее в руководстве сущность `Student` будет содержать ссылки на другие сущности.
+  <!-- Review, OnModelCreating needs review -->
 
 Выполните сборку проекта и убедитесь в отсутствии ошибок компилятора.
 
 ## <a name="startupcs"></a>Startup.cs
 
-ASP.NET Core поддерживает [внедрение зависимостей](xref:fundamentals/dependency-injection). С помощью внедрения зависимостей службы (например, контекст базы данных EF Core) регистрируются во время запуска приложения. Затем компоненты, которые используют эти службы (например, Razor Pages), обращаются к ним через параметры конструктора. Код конструктора, который получает экземпляр контекста базы данных, приведен далее в этом руководстве.
+ASP.NET Core поддерживает [внедрение зависимостей](xref:fundamentals/dependency-injection). С помощью внедрения зависимостей службы, например `SchoolContext`, регистрируются во время запуска приложения. Затем компоненты, которые используют эти службы, например Razor Pages, обращаются к ним через параметры конструктора. Код конструктора, который получает экземпляр контекста базы данных, приведен далее в этом руководстве.
 
 Средство формирования шаблонов автоматически зарегистрировало класс контекста в контейнере внедрения зависимостей.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Выделенные строки в `ConfigureServices` были добавлены средством формирования шаблонов:
+Следующие выделенные строки были добавлены средством формирования шаблонов:
 
-  [!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+[!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Убедитесь в том, что код, добавленный средством формирования шаблонов в `ConfigureServices`, вызывает `UseSqlite`.
+Убедитесь в том, что код, добавленный средством формирования шаблонов, вызывает `UseSqlite`.
 
-  [!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
+[!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
+
+Сведения об использовании рабочей базы данных см. в статье [Использование SQLite для среды разработки и SQL Server для рабочей среды](xref:tutorials/razor-pages/model#use-sqlite-for-development-sql-server-for-production).
 
 ---
 
 Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json*.
+
+### <a name="add-the-database-exception-filter"></a>Добавление фильтра исключений базы данных
+
+Добавьте `AddDatabaseDeveloperPageExceptionFilter` в `ConfigureServices`, как показано в следующем коде:
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+[!code-csharp[Main](intro/samples/cu50/Startup.cs?name=snippet_ConfigureServices&highlight=8)]
+
+Добавьте пакет NuGet [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore).
+
+Чтобы добавить пакет NuGet, в PMC введите следующую команду:
+
+```powershell
+Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.0.0-rc.1.20451.17
+```
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+[!code-csharp[Main](intro/samples/cu50/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=8)]
+
+---
+
+Пакет NuGet `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` предоставляет ПО промежуточного слоя ASP.NET Core для страниц ошибок Entity Framework Core. Это ПО промежуточного слоя помогает обнаруживать и диагностировать ошибки с помощью миграций Entity Framework Core.
 
 ## <a name="create-the-database"></a>Создание базы данных
 
@@ -383,7 +419,7 @@ ASP.NET Core поддерживает [внедрение зависимосте
 
   Этот код проверяет наличие учащихся в базе данных. Если учащихся нет, в базу данных добавляются тестовые данные. Для повышения производительности тестовые данные создаются массивами, а не коллекциями `List<T>`.
 
-* В файле *Program.cs* замените вызов `EnsureCreated` вызовом `DbInitializer.Initialize`:
+В файле *Program.cs* замените вызов `EnsureCreated` вызовом `DbInitializer.Initialize`:
 
   ```csharp
   // context.Database.EnsureCreated();
@@ -395,8 +431,10 @@ ASP.NET Core поддерживает [внедрение зависимосте
 Завершите работу приложения, если оно запущено, и выполните следующую команду в **консоли диспетчера пакетов** (PMC):
 
 ```powershell
-Drop-Database
+Drop-Database -Confirm
 ```
+
+Выберите `Y`, чтобы удалить базу данных.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -405,7 +443,6 @@ Drop-Database
 ---
 
 * Перезапустите приложение.
-
 * Выберите страницу учащихся, чтобы увидеть заполненные данные.
 
 ## <a name="view-the-database"></a>Просмотр базы данных
@@ -455,6 +492,21 @@ public async Task OnGetAsync()
 * Чтобы воспользоваться преимуществами повышенной производительности асинхронного кода, убедитесь в том, что пакеты библиотек (например, для разбиения на страницы) используют асинхронную модель, когда вызывают методы EF Core, которые направляют запросы в базу данных.
 
 Дополнительные сведения об асинхронном программировании см. в разделах [Обзор асинхронной модели](/dotnet/standard/async) и [Асинхронное программирование с использованием ключевых слов Async и Await](/dotnet/csharp/programming-guide/concepts/async/).
+
+<!-- Review: See https://github.com/dotnet/AspNetCore.Docs/issues/14528 -->
+## <a name="performance-considerations"></a>Вопросы производительности
+
+Как правило, веб-страница не должна загружать произвольное число строк. Запрос должен использовать разбиение на страницы или применять ограничение. Например, предыдущий запрос может использовать `Take` для ограничения количества возвращаемых строк:
+
+[!code-csharp[Main](intro/samples/cu50snapshots/Index.cshtml.cs?name=snippet)]
+
+Если в процессе перечисления большой таблицы в представлении возникло исключение базы данных, может быть возвращен ответ HTTP 200 с сообщением о частично сформированных данных.
+
+Значение <xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxModelBindingCollectionSize> по умолчанию равно 1024. Следующий код задает `MaxModelBindingCollectionSize`:
+
+[!code-csharp[Main](intro/samples/cu50/StartupMaxMBsize.cs?name=snippet_ConfigureServices)]
+
+Разбиение на страницы рассматривается далее в этом руководстве.
 
 ## <a name="next-steps"></a>Следующие шаги
 
@@ -533,7 +585,8 @@ public async Task OnGetAsync()
 * В командной строке в папке проекта выполните следующие команды:
 
   ```dotnetcli
-  dotnet tool install --global dotnet-ef
+  dotnet tool uninstall --global dotnet-ef
+  dotnet tool install --global dotnet-ef --version 5.0.0-*
   dotnet ef database update
   ```
 
@@ -542,7 +595,7 @@ public async Task OnGetAsync()
   ```sql
   UPDATE Department SET RowVersion = randomblob(8)
   ```
-
+  
 * Запустите проект, чтобы заполнить базу данных.
 
 ---
@@ -599,8 +652,7 @@ public async Task OnGetAsync()
 
 ![Схема сущности Student](intro/_static/student-entity.png)
 
-* Создайте папку *Models* (Модели) в папке проекта. 
-
+* Создайте папку *Models* (Модели) в папке проекта.
 * Создайте файл *Models/Student.cs* со следующим кодом:
 
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Student.cs)]
@@ -730,7 +782,7 @@ remove dotnet tool install --global  below
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Строка подключения указывает базу данных [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb). 
+В файле *appsettings.json* указывается строка подключения для [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb).
 
 [!code-json[Main](intro/samples/cu30/appsettings.json?highlight=11)]
 
@@ -748,7 +800,7 @@ LocalDB — это упрощенная версия ядра СУБД SQL Serve
 
 Контекст базы данных — это основной класс, который координирует функциональные возможности EF Core для определенной модели данных. Контекст наследуется от [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). Контекст указывает сущности, которые включаются в модель данных. В этом проекте соответствующий класс называется `SchoolContext`.
 
-Обновите файл *SchoolContext.cs*, добавив в него следующий код:
+Обновите файл *Data/SchoolContext.cs*, добавив в него следующий код:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 

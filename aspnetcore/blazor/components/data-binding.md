@@ -18,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: eef08d8236241d2930a1a1a45ca0181669f2432c
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: 3f823ca9cf96b7ff439ade59f946db222b7f7e60
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009652"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606698"
 ---
 # <a name="aspnet-core-no-locblazor-data-binding"></a>Привязка к данным в ASP.NET Core Blazor
 
-Авторы: [Люк Латэм](https://github.com/guardrex) (Luke Latham) и [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
+Авторы: [Люк Латэм](https://github.com/guardrex) (Luke Latham), [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth) и [Стив Сандерсон](https://github.com/SteveSandersonMS) (Steve Sanderson)
 
 Компоненты Razor реализуют функции привязки данных для поля, свойства или значения выражения Razor с помощью атрибута HTML-элемента [`@bind`](xref:mvc/views/razor#bind).
 
@@ -313,6 +313,104 @@ Password:
     }
 }
 ```
+
+## <a name="bind-across-more-than-two-components"></a>Привязка через более чем два компонента
+
+Привязку можно выполнять через любое число вложенных компонентов, но необходимо соблюдать односторонний поток данных:
+
+* уведомления об изменениях *передаются вверх по иерархии*;
+* новые значения параметров *передаются вниз по иерархии*.
+
+Распространенный и рекомендуемый подход заключается в хранении базовых данных только в родительском компоненте, что позволяет избежать путаницы в отношении того, какое состояние необходимо обновить.
+
+Эти принципы демонстрируются на примере следующих компонентов:
+
+`ParentComponent.razor`:
+
+```razor
+<h1>Parent Component</h1>
+
+<p>Parent Property: <b>@parentValue</b></p>
+
+<p>
+    <button @onclick="ChangeValue">Change from Parent</button>
+</p>
+
+<ChildComponent @bind-Property="parentValue" />
+
+@code {
+    private string parentValue = "Initial value set in Parent";
+
+    private void ChangeValue()
+    {
+        parentValue = $"Set in Parent {DateTime.Now}";
+    }
+}
+```
+
+`ChildComponent.razor`:
+
+```razor
+<div class="border rounded m-1 p-1">
+    <h2>Child Component</h2>
+
+    <p>Child Property: <b>@Property</b></p>
+
+    <p>
+        <button @onclick="ChangeValue">Change from Child</button>
+    </p>
+
+    <GrandchildComponent @bind-Property="BoundValue" />
+</div>
+
+@code {
+    [Parameter]
+    public string Property { get; set; }
+
+    [Parameter]
+    public EventCallback<string> PropertyChanged { get; set; }
+
+    private string BoundValue
+    {
+        get => Property;
+        set => PropertyChanged.InvokeAsync(value);
+    }
+
+    private Task ChangeValue()
+    {
+        return PropertyChanged.InvokeAsync($"Set in Child {DateTime.Now}");
+    }
+}
+```
+
+`GrandchildComponent.razor`:
+
+```razor
+<div class="border rounded m-1 p-1">
+    <h3>Grandchild Component</h3>
+
+    <p>Grandchild Property: <b>@Property</b></p>
+
+    <p>
+        <button @onclick="ChangeValue">Change from Grandchild</button>
+    </p>
+</div>
+
+@code {
+    [Parameter]
+    public string Property { get; set; }
+
+    [Parameter]
+    public EventCallback<string> PropertyChanged { get; set; }
+
+    private Task ChangeValue()
+    {
+        return PropertyChanged.InvokeAsync($"Set in Grandchild {DateTime.Now}");
+    }
+}
+```
+
+Описание альтернативного подхода, подходящего для совместного использования данными в памяти компонентами, которые не обязательно являются вложенными, см. в разделе <xref:blazor/state-management#in-memory-state-container-service>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

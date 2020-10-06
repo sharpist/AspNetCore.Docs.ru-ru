@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 7681deb70610a8fbc27ccda7317b73921646794a
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: e12b0e6d1bf9eab751f6605b9a156f637f2b0c0f
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876780"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393838"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Отладка в ASP.NET Core Blazor WebAssembly
 
@@ -109,11 +109,55 @@ ms.locfileid: "88876780"
 > [!NOTE]
 > Попадание в точки останова **не** происходит во время запуска приложения перед запуском прокси-сервера отладки. Сюда входят точки останова в `Program.Main` (`Program.cs`) и точки останова в [методах `OnInitialized{Async}`](xref:blazor/components/lifecycle#component-initialization-methods) компонентов, загружаемых первой страницей, запрошенной из приложения.
 
+Если приложение находится по [базовому пути](xref:blazor/host-and-deploy/index#app-base-path), отличному от `/`, измените следующие свойства в `Properties/launchSettings.json` в соответствии с базовым путем приложения:
+
+* `applicationUrl`:
+
+  ```json
+  "iisSettings": {
+    ...
+    "iisExpress": {
+      "applicationUrl": "http://localhost:{INSECURE PORT}/{APP BASE PATH}/",
+      "sslPort": {SECURE PORT}
+    }
+  },
+  ```
+
+* `inspectUri` каждого профиля:
+
+  ```json
+  "profiles": {
+    ...
+    "{PROFILE 1, 2, ... N}": {
+      ...
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/{APP BASE PATH}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      ...
+    }
+  }
+  ```
+
+Заполнители в указанных выше параметрах:
+
+* `{INSECURE PORT}` — незащищенный порт; по умолчанию предоставляется случайное значение, но допускается пользовательский порт;
+* `{APP BASE PATH}` — базовый путь приложения;
+* `{SECURE PORT}` — защищенный порт; по умолчанию предоставляется случайное значение, но допускается пользовательский порт;
+* `{PROFILE 1, 2, ... N}` — профили параметров запуска. Как правило, в приложении по умолчанию указывается более одного профиля (например, профиль для IIS Express и профиль проекта, который используется сервером Kestrel).
+
+В следующих примерах приложение размещается в `/OAT` с базовым путем, настроенным в `wwwroot/index.html` как `<base href="/OAT/">`:
+
+```json
+"applicationUrl": "http://localhost:{INSECURE PORT}/OAT/",
+```
+
+```json
+"inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/OAT/_framework/debug/ws-proxy?browser={browserInspectUri}",
+```
+
+Сведения об использовании пользовательского базового пути для приложений Blazor WebAssembly см. в разделе <xref:blazor/host-and-deploy/index#app-base-path>.
+
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-<a id="vscode"></a>
-
-## <a name="debug-standalone-no-locblazor-webassembly"></a>Отладка автономного приложения Blazor WebAssembly
+<h2 id="vscode">Отладка автономного приложения Blazor WebAssembly</h2>
 
 1. Откройте автономное приложение Blazor WebAssembly в VS Code.
 
@@ -257,7 +301,7 @@ ms.locfileid: "88876780"
 > [!NOTE]
 > Попадание в точки останова **не** происходит во время запуска приложения перед запуском прокси-сервера отладки. Сюда входят точки останова в `Program.Main` (`Program.cs`) и точки останова в [методах `OnInitialized{Async}`](xref:blazor/components/lifecycle#component-initialization-methods) компонентов, загружаемых первой страницей, запрошенной из приложения.
 
-Дополнительные сведения см. в статье [Отладка с помощью Visual Studio для Mac](/visualstudio/mac/debugging?view=vsmac-2019).
+Дополнительные сведения см. в статье [Отладка с помощью Visual Studio для Mac](/visualstudio/mac/debugging).
 
 ---
 

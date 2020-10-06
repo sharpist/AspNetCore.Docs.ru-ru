@@ -5,7 +5,7 @@ description: Узнайте, как отправлять файлы в Blazor с
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/17/2020
+ms.date: 09/29/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,24 +18,38 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/file-uploads
-ms.openlocfilehash: de4654f2efc401143e066628b096052efa65d7a0
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 06d1464cb731a8008362fc911f463e4ff8a37b6b
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722945"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606659"
 ---
 # <a name="aspnet-core-no-locblazor-file-uploads"></a>Отправка файлов в ASP.NET Core Blazor
 
-Автор: [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
+Авторы: [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth) и [Пранав Кришнамурти](https://github.com/pranavkm) (Pranav Krishnamoorthy)
 
-Используйте компонент `InputFile` для считывания данных файла браузера в код .NET, в том числе для отправки файлов. Компонент `InputFile` отрисовывается как входные данные HTML типа `file`.
+[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/file-uploads/samples/) ([как скачивать](xref:index#how-to-download-a-sample))
+
+Используйте компонент `InputFile` для считывания данных файла браузера в код .NET, в том числе для отправки файлов.
+
+> [!WARNING]
+> Всегда следуйте рекомендациям по безопасности при отправке файлов. Для получения дополнительной информации см. <xref:mvc/models/file-uploads#security-considerations>.
+
+## <a name="inputfile-component"></a>`InputFile`
+
+Компонент `InputFile` отрисовывается как входные данные HTML типа `file`.
 
 По умолчанию пользователь выбирает отдельные файлы. Добавьте атрибут `multiple`, чтобы разрешить пользователю отправлять несколько файлов одновременно. Когда пользователь выбирает один или несколько файлов, компонент `InputFile` вызывает событие `OnChange` и передает `InputFileChangeEventArgs`, который предоставляет доступ к выбранному списку файлов и сведениям о каждом файле.
 
+Чтобы считать данные из выбранного пользователем файла, выполните указанные ниже действия.
+
+* Вызовите `OpenReadStream` для файла и считайте данные из возвращенного потока. Дополнительные сведения см. в разделе [Файловые потоки](#file-streams).
+* Используйте ключевое слово `ReadAsync`. По умолчанию `ReadAsync` допускает чтение файла размером менее 524 288 КБ (512 КБ). Это ограничение позволяет предотвратить случайное считывание больших файлов в память. Если должно поддерживаться считывание файлов большего размера, укажите разумный максимальный ожидаемый размер файла. Избегайте считывания входящего файлового потока непосредственно в память. Например, не копируйте байты файлов в <xref:System.IO.MemoryStream> и не считывайте файлы как массив байтов. Это может привести к проблемам с производительностью и безопасностью, особенно в Blazor Server. Вместо этого рекомендуется копировать байты файлов во внешнее хранилище, например в большой двоичный объект или файл на диске.
+
 Компонент, получающий файл изображения, может вызвать для файла удобный метод `RequestImageFileAsync`, чтобы изменить размер данных изображения в среде выполнения JavaScript браузера до передачи изображения в приложение.
 
-В следующем примере показана отправка нескольких файлов изображений в компоненте:
+В приведенном ниже примере показана отправка нескольких файлов изображений в компоненте. `InputFileChangeEventArgs.GetMultipleFiles` позволяет считывать несколько файлов. Укажите максимальное число считываемых файлов, чтобы предотвратить отправку злоумышленником большего количества файлов, чем то, на которое рассчитано приложение. `InputFileChangeEventArgs.File` позволяет считывать только первый файл, если отправка нескольких файлов не поддерживается.
 
 ```razor
 <h3>Upload PNG images</h3>
@@ -46,7 +60,7 @@ ms.locfileid: "90722945"
 
 @if (imageDataUrls.Count > 0)
 {
-    <h3>Images</h3>
+    <h4>Images</h4>
 
     <div class="card" style="width:30rem;">
         <div class="card-body">
@@ -63,10 +77,10 @@ ms.locfileid: "90722945"
 
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {
-        var imageFiles = e.GetMultipleFiles();
+        var maxAllowedFiles = 3;
         var format = "image/png";
 
-        foreach (var imageFile in imageFiles)
+        foreach (var imageFile in e.GetMultipleFiles(maxAllowedFiles))
         {
             var resizedImageFile = await imageFile.RequestImageFileAsync(format, 
                 100, 100);
@@ -80,4 +94,15 @@ ms.locfileid: "90722945"
 }
 ```
 
-Чтобы считать данные из выбранного пользователем файла, вызовите `OpenReadStream` для файла и считайте данные из возвращенного потока. В приложении Blazor WebAssembly данные передаются непосредственно в код .NET в браузере. В приложении Blazor Server данные файлов передаются в код .NET на сервере, так как файл считывается из потока. 
+`IBrowserFile` возвращает метаданные, [предоставленные браузером](https://developer.mozilla.org/docs/Web/API/File#Instance_properties), как свойства. Эти метаданные могут быть полезны для предварительной проверки. Например, см. [примеры компонентов `FileUpload.razor` и `FilePreview.razor`](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/file-uploads/samples/).
+
+## <a name="file-streams"></a>Файловые потоки
+
+В приложении Blazor WebAssembly данные передаются непосредственно в код .NET в браузере.
+
+В приложении Blazor Server данные файлов передаются через подключение SignalR в код .NET на сервере, так как файл считывается из потока. [`Forms.RemoteBrowserFileStreamOptions`](https://github.com/dotnet/aspnetcore/blob/master/src/Components/Web/src/Forms/InputFile/RemoteBrowserFileStreamOptions.cs) позволяет настраивать характеристики отправки файлов для Blazor Server.
+
+## <a name="additional-resources"></a>Дополнительные ресурсы
+
+* <xref:mvc/models/file-uploads#security-considerations>
+* <xref:blazor/forms-validation>

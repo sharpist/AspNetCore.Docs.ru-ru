@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/new-field
-ms.openlocfilehash: 40e615d0698a0ed1d3ef40a222e064d72184f0c8
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a0c53755bd56b6c169437ca9f0ea915e46ad79ec
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635298"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606752"
 ---
 # <a name="part-8-add-a-new-field-to-an-aspnet-core-mvc-app"></a>Часть 8. Добавление нового поля в приложение MVC ASP.NET Core
 
@@ -62,7 +62,7 @@ Command ⌘ + B
 
 ------
 
-Поскольку в класс `Movie` было добавлено новое поле, необходимо обновить утвержденный список привязки, включив в него новое свойство. В файле *MoviesController.cs* обновите атрибут `[Bind]` для методов действия `Create` и `Edit`, включив свойство `Rating`:
+Поскольку в класс `Movie` было добавлено новое поле, необходимо обновить список привязки свойств, включив в него новое свойство. В файле *MoviesController.cs* обновите атрибут `[Bind]` для методов действия `Create` и `Edit`, включив свойство `Rating`:
 
 ```csharp
 [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")]
@@ -133,7 +133,7 @@ Update-Database
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Удалите базу данных и используйте миграции для повторного создания базы данных. Чтобы удалить базу данных, удалите файл базы данных (*MvcMovie.db*). Затем выполните команду `ef database update`:
+Удалите базу данных и используйте миграции для повторного создания базы данных. Чтобы удалить базу данных, удалите файл базы данных *MvcMovie.db*. Затем выполните команду `ef database update`:
 
 ```dotnetcli
 dotnet ef database update

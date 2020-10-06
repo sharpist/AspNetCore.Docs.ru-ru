@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: a62462e3a0a2366a8662573ada5d2e7589c14c0d
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: da4ce8a2610fc07d22153f66831d693ae66e0fe5
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722479"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424156"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor
 
@@ -36,6 +36,8 @@ ms.locfileid: "90722479"
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([как скачивать](xref:index#how-to-download-a-sample))
 
 Для вызова JavaScript из .NET используйте абстракцию <xref:Microsoft.JSInterop.IJSRuntime>. Чтобы выполнять вызовы взаимодействия с JS, внедрите абстракцию <xref:Microsoft.JSInterop.IJSRuntime> в компонент. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> принимает идентификатор функции JavaScript, которую нужно вызвать, вместе с любым числом аргументов, сериализуемых в JSON. Идентификатор функции задается относительно глобальной области (`window`). Если нужно вызвать функцию `window.someScope.someFunction`, идентификатором будет `someScope.someFunction`. Регистрировать функцию перед ее вызовом не требуется. Тип возвращаемого значения `T` также должен сериализоваться в JSON. Тип `T` должен соответствовать типу .NET, который лучше всего соответствует возвращаемому типу JSON.
+
+Функции JavaScript, возвращающие [обещание](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), вызываются с помощью <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>. `InvokeAsync` распаковывает обещание и возвращает значение, ожидаемое обещанием.
 
 Для приложений Blazor Server с включенной предварительной обработкой вызвать JavaScript нельзя во время первоначальной предварительной обработки. Вызовы взаимодействия с JavaScript должны быть отложены до тех пор, пока не будет установлено соединение с браузером. См. раздел [Обнаружение предварительной обработки в приложении Blazor Server](#detect-when-a-blazor-server-app-is-prerendering).
 
@@ -90,7 +92,7 @@ ms.locfileid: "90722479"
 * `showPrompt`. Создает запрос на ввод пользователем данных (имени пользователя) и возвращает имя вызвавшему объекту.
 * `displayWelcome`. Назначает приветственное сообщение от вызывающего объекта объекту модели DOM со значением `id`, равным `welcome`.
 
-`wwwroot/exampleJsInterop.js`.
+`wwwroot/exampleJsInterop.js`:
 
 [!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
 
