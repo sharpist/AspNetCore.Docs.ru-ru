@@ -918,18 +918,36 @@
         - name: Модуль ASP.NET Core
           displayName: 'deploy, publish'
           uid: host-and-deploy/aspnet-core-module
+        - name: Внутрипроцессное размещение
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/in-process-hosting
+        - name: Внепроцессное размещение
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/out-of-process-hosting
+        - name: Пакет размещения
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/hosting-bundle
+        - name: Файл web.config
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/web-config
         - name: Поддержка IIS в Visual Studio
           displayName: 'deploy, publish'
           uid: host-and-deploy/iis/development-time-iis-support
         - name: Модули IIS
           displayName: 'deploy, publish'
           uid: host-and-deploy/iis/modules
+        - name: Ведение журнала и диагностика
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/logging-and-diagnostics
         - name: Устранение неполадок
           displayName: 'deploy, publish'
           uid: test/troubleshoot-azure-iis
         - name: Справочник по ошибкам
           displayName: 'deploy, publish'
           uid: host-and-deploy/azure-iis-errors-reference
+        - name: Продвинутый уровень
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/advanced
         - name: Преобразование web.config
           displayName: 'deploy, publish'
           uid: host-and-deploy/iis/transform-webconfig
