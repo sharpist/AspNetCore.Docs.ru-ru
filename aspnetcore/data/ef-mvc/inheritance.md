@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/inheritance
-ms.openlocfilehash: 34c4ea28103b9eb12601b383a46091084391f120
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: fabb0ed9c0f64a529b516d521d60a7d862e2654a
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847602"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754571"
 ---
 # <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF Core. Реализация наследования
 
@@ -64,7 +64,7 @@ ms.locfileid: "90847602"
 В качестве альтернативы можно создать базу данных, которая будет иметь приближенный к структуре наследования вид. Например, можно хранить в таблице Person только поля с именами и создать отдельные таблицы Instructor и Student с полями дат.
 
 > [!WARNING]
-> Наследование типа "одна таблица на тип" (TPT) не поддерживается в EF Core 3.x, однако оно реализовано в [EF Core 5.0](https://docs.microsoft.com/ef/core/what-is-new/ef-core-5.0/plan).
+> Наследование типа "одна таблица на тип" (TPT) не поддерживается в EF Core 3.x, однако оно реализовано в [EF Core 5.0](/ef/core/what-is-new/ef-core-5.0/plan).
 
 ![Наследование типа «одна таблица на тип»](inheritance/_static/tpt.png)
 
