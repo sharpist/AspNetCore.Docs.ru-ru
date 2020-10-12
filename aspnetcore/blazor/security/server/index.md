@@ -5,7 +5,7 @@ description: Сведения о защите приложений Blazor Server
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/02/2020
+ms.date: 10/06/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: ba9fe3c0149679fa5760c0c9214cd426f1804c31
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d6d0f6f859dbaef98c6c8a9c53fe9858705cdc0a
+ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626458"
+ms.lasthandoff: 10/07/2020
+ms.locfileid: "91805509"
 ---
 # <a name="secure-aspnet-core-no-locblazor-server-apps"></a>Защита приложений ASP.NET Core Blazor Server
 
 Автор [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
-Приложения Blazor Server настраиваются для обеспечения безопасности так же, как приложения ASP.NET Core. Дополнительные сведения см. в статьях в документе <xref:security/index>. Разделы в этом обзоре посвящены Blazor Server. 
+Приложения Blazor Server настраиваются для обеспечения безопасности так же, как приложения ASP.NET Core. Дополнительные сведения см. в статьях в документе <xref:security/index>. Разделы в этом обзоре посвящены Blazor Server.
 
 ## <a name="no-locblazor-server-project-template"></a>Шаблон проекта Blazor Server
 
@@ -108,7 +108,14 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 * Создайте папку для проекта.
 * Дайте проекту имя.
 
-См. сведения о команде [`dotnet new`](/dotnet/core/tools/dotnet-new) в руководстве по .NET Core.
+Дополнительные сведения
+
+* Сведения о команде [`dotnet new`](/dotnet/core/tools/dotnet-new) см. в руководстве по .NET Core.
+* Выполните команду help для шаблона Blazor Server (`blazorserver`) в командной оболочке:
+
+  ```dotnetcli
+  dotnet new blazorserver --help
+  ```
 
 ---
 
@@ -118,3 +125,8 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 * [Без существующей авторизации](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization).
 * [С авторизацией](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-with-authorization).
+
+## <a name="additional-resources"></a>Дополнительные ресурсы
+
+* [Краткое руководство. Добавление входа через Майкрософт в веб-приложение ASP.NET Core](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp)
+* [Краткое руководство. Защита веб-API ASP.NET Core с помощью платформы удостоверений Майкрософт](/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api)

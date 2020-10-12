@@ -18,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
-ms.openlocfilehash: 81114768a3600544dda46efbc886e2f56932aba7
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: 7a0c606d82dd625c179ec89e22b9313dfa5d18b4
+ms.sourcegitcommit: c026bf76a0e14a5ee68983519a63574c674e9ff7
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90592933"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91636781"
 ---
-# <a name="azure-ad-groups-administrative-roles-and-user-defined-roles"></a>Группы Azure AD, административные роли и определяемые пользователем роли
+# <a name="azure-active-directory-aad-groups-administrator-roles-and-user-defined-roles"></a>Группы, роли администратора и определяемые пользователем роли в Azure Active Directory (AAD)
 
 Авторы: [Люк Латэм](https://github.com/javiercn) (Luke Latham) и [Хавьер Кальварро Нельсон](https://github.com/guardrex) (Javier Calvarro Nelson)
 
@@ -36,7 +36,7 @@ Azure Active Directory (AAD) предоставляет несколько п�
   * Microsoft 365
   * Распределение
 * Роли
-  * Встроенные административные роли
+  * Роли администратора в AAD
   * Определяемые пользователем роли
 
 Рекомендации в этой статье относятся к сценариям развертывания Blazor WebAssembly AAD, описанным в следующих разделах:
@@ -47,7 +47,7 @@ Azure Active Directory (AAD) предоставляет несколько п�
 
 ## <a name="microsoft-graph-api-permission"></a>Разрешения API Microsoft Graph
 
-Для любого пользователя приложения с более чем пятью встроенными ролями администратора AAD и членством в группах безопасности требуется вызов [API Microsoft Graph](/graph/use-the-api).
+Для любого пользователя приложения с более чем пятью ролями администратора AAD и членством в группах безопасности требуется вызов [API Microsoft Graph](/graph/use-the-api).
 
 Чтобы разрешить API Graph вызовы, предоставьте автономному или клиентскому приложению размещенного решения Blazor любое из следующих [разрешений API Graph](/graph/permissions-reference) на портале Azure:
 
@@ -57,18 +57,18 @@ Azure Active Directory (AAD) предоставляет несколько п�
 
 `Directory.Read.All` является разрешением с наименьшими привилегиями, используемым для примера, описанного в этой статье.
 
-## <a name="user-defined-groups-and-built-in-administrative-roles"></a>Определяемые пользователем группы и встроенные административные роли
+## <a name="user-defined-groups-and-administrator-roles"></a>Определяемые пользователем группы и роли администратора
 
-Сведения о том, как настроить приложение на портале Azure для предоставления утверждения о членстве `groups`, см. в следующих статьях Azure. Назначение пользователей для определяемых пользователем групп AAD и встроенных административных ролей.
+Сведения о том, как настроить приложение на портале Azure для предоставления утверждения о членстве `groups`, см. в следующих статьях Azure. Включите пользователей в определяемые пользователем группы AAD и роли администратора AAD.
 
 * [Роли, использующие группы безопасности Azure AD](/azure/architecture/multitenant-identity/app-roles#roles-using-azure-ad-security-groups)
 * [Атрибут `groupMembershipClaims`](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute)
 
-В следующих примерах предполагается, что пользователю назначена встроенная роль *Администратор выставления счетов*.
+В следующих примерах предполагается, что пользователю назначена роль *Администратор выставления счетов*.
 
 Одно утверждение `groups`, отправленное AAD, представляет группы и роли пользователя в виде идентификаторов объектов (GUID) в массиве JSON. Приложение должно преобразовать массив JSON групп и ролей в отдельные утверждения `group`, для которых приложение может создавать [политики](xref:security/authorization/policies).
 
-Когда число назначенных встроенных административных ролей Azure и определяемых пользователем групп превышает пять, AAD отправляет `hasgroups` утверждение со значением `true` вместо отправки утверждения `groups`. Любое приложение, которое может иметь более пяти ролей и групп, назначенных пользователям, должно выполнять отдельный вызов API Graph для получения таких пользовательских ролей и групп. Пример реализации, приведенный в этой статье, посвящен этому сценарию. Дополнительные сведения см. в сведениях об утверждениях `groups` и `hasgroups` см. в статье [Маркеры доступа платформы идентификации Майкрософт. Утверждение полезных данных](/azure/active-directory/develop/access-tokens#payload-claims).
+Когда число назначенных ролей администратора AAD и определяемых пользователем групп превысит пять, AAD отправит утверждение `hasgroups` со значением `true` вместо отправки утверждения `groups`. Любое приложение, которое может иметь более пяти ролей и групп, назначенных пользователям, должно выполнять отдельный вызов API Graph для получения таких пользовательских ролей и групп. Пример реализации, приведенный в этой статье, посвящен этому сценарию. Дополнительные сведения см. в сведениях об утверждениях `groups` и `hasgroups` см. в статье [Маркеры доступа платформы идентификации Майкрософт. Утверждение полезных данных](/azure/active-directory/develop/access-tokens#payload-claims).
 
 Расширьте <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, чтобы включить свойства массива для групп и ролей. Присвойте каждому свойству пустой массив, чтобы проверка `null` не требовалась, если эти свойства используются в циклах `foreach` позже.
 
@@ -267,7 +267,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
     CustomUserFactory>();
 ```
 
-Создайте [политики](xref:security/authorization/policies) для каждой группы или роли в `Program.Main`. В следующем примере создается политика для встроенной роли *Администратор выставления счетов*:
+Создайте [политики](xref:security/authorization/policies) для каждой группы или роли в `Program.Main`. В следующем примере создается политика для роли AAD *Администратор выставления счетов*:
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
@@ -277,7 +277,7 @@ builder.Services.AddAuthorizationCore(options =>
 });
 ```
 
-Полный список идентификаторов объектов ролей AAD см. в разделе [Идентификаторы группы административных ролей AAD](#aad-adminstrative-role-group-ids).
+Полный список идентификаторов объектов ролей AAD см. в разделе [Идентификаторы объектов ролей администратора в AAD](#aad-administrator-role-object-ids).
 
 В следующих примерах приложение использует предыдущую политику для авторизации пользователя.
 
@@ -287,7 +287,7 @@ builder.Services.AddAuthorizationCore(options =>
 <AuthorizeView Policy="BillingAdministrator">
     <Authorized>
         <p>
-            The user is in the 'Billing Administrator' AAD Administrative Role
+            The user is in the 'Billing Administrator' AAD Administrator Role
             and can see this content.
         </p>
     </Authorized>
@@ -348,6 +348,291 @@ builder.Services.AddAuthorizationCore(options =>
 }
 ```
 
+## <a name="authorize-server-api-access-for-user-defined-groups-and-administrator-roles"></a>Авторизация доступа к API сервера для определяемых пользователем групп и ролей администратора
+
+Кроме авторизации пользователей в приложении WebAssembly на стороне клиента для доступа к страницам и ресурсам, API сервера может выполнять авторизацию пользователей для доступа к защищенным конечным точкам API. После того как приложение *Server* проверит маркер доступа пользователя:
+
+* Приложение использует неизменяемое [утверждение идентификатора объекта (`oid`)](/azure/active-directory/develop/id-tokens#payload-claims) пользователя из JWT (`id_token`) для получения маркера доступа для API Graph.
+* Вызов API Graph получает определяемую пользователем Azure группу безопасности пользователя и членство для ролей администратора.
+* Членство используется для реализации утверждений `group`.
+* [Политики авторизации](xref:security/authorization/policies) позволяют ограничить доступ пользователей к конечным точкам API сервера.
+
+> [!NOTE]
+> Сейчас это руководство не предусматривает авторизацию пользователей на основе [определяемых пользователем ролей AAD](#user-defined-roles).
+
+### <a name="packages"></a>Пакеты
+
+Добавьте в приложение *Server* ссылки на следующие пакеты:
+
+* [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph)
+* [Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages?q=Microsoft.IdentityModel.Clients.ActiveDirectory)
+
+### <a name="azure-configuration"></a>Конфигурация Azure
+
+* Убедитесь, что регистрации приложения *Server* предоставлен доступ к API Graph с уровнем `Directory.Read.All`, который является уровнем доступа с минимальным набором прав для групп безопасности. Убедитесь, что согласие администратора применяется к разрешению после создания назначения разрешений.
+* Назначьте приложению *Server* новый секрет клиента. Запишите секрет для конфигурации приложения в разделе [Параметры приложения](#app-settings).
+
+### <a name="app-settings"></a>Параметры приложения
+
+В файле параметров приложения (`appsettings.json` или `appsettings.Production.json`) создайте запись `ClientSecret` с секретом приложения *Server* с портала Azure:
+
+```json
+"AzureAd": {
+  "Instance": "https://login.microsoftonline.com/",
+  "Domain": "XXXXXXXXXXXX.onmicrosoft.com",
+  "TenantId": "{GUID}",
+  "ClientId": "{GUID}",
+  "ClientSecret": "{CLIENT SECRET}"
+},
+```
+
+Пример:
+
+```json
+"AzureAd": {
+  "Instance": "https://login.microsoftonline.com/",
+  "Domain": "contoso.onmicrosoft.com",
+  "TenantId": "34bf0ec1-7aeb-4b5d-ba42-82b059b3abe8",
+  "ClientId": "05d198e0-38c6-4efc-a67c-8ee87ed9bd3d",
+  "ClientSecret": "54uE~9a.-wW91fe8cRR25ag~-I5gEq_92~"
+},
+```
+
+### <a name="authorization-policies"></a>Политики авторизации,
+
+Создайте [политики авторизации](xref:security/authorization/policies) для групп безопасности AAD и ролей администратора AAD в методе `Startup.ConfigureServices` приложения *Server* (`Startup.cs`) на основе идентификаторов объектов групп и [идентификаторов объектов ролей администратора AAD](#aad-administrator-role-object-ids).
+
+Например, политика роли администратора выставления счетов в Azure имеет следующую конфигурацию:
+
+```csharp
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("BillingAdmin", policy => 
+        policy.RequireClaim("group", "69ff516a-b57d-4697-a429-9de4af7b5609"));
+});
+```
+
+Для получения дополнительной информации см. <xref:security/authorization/policies>.
+
+### <a name="controller-access"></a>Доступ к контроллеру
+
+Задайте обязательные политики на контроллерах приложения *Server*.
+
+Следующий пример ограничивает доступ к данным выставления счетов с `BillingDataController` для администраторов выставления счетов Azure с использованием имени политики `BillingAdmin`, которое задано в разделе [Политики авторизации](#authorization-policies):
+
+```csharp
+[Authorize(Policy = "BillingAdmin")]
+[ApiController]
+[Route("[controller]")]
+public class BillingDataController : ControllerBase
+{
+    ...
+}
+```
+
+### <a name="service-configuration"></a>Конфигурация службы
+
+Добавьте логику в метод `Startup.ConfigureServices` приложения *Server*, чтобы API Graph вызывал и реализовывал утверждения `group` для групп безопасности и ролей пользователя.
+
+> [!NOTE]
+> В примере кода в этом разделе используется библиотека проверки подлинности Active Directory (ADAL), которая основана на платформе Microsoft Identity Platform версии 1.0. Этот раздел будет обновлен для Identity версии 2.0 для .NET 5. Отслеживайте ход этого процесса с помощью платформы [[RC1] Microsoft Identity Platform 2.0 для Blazor (dotnet/AspNetCore.Docs #19503)](https://github.com/dotnet/AspNetCore.Docs/issues/19503).
+
+Код в классе `Startup` приложения *Server* требует дополнительные пространства имен. Следующий набор операторов `using` включает необходимые пространства имен для кода, который приведен в этом разделе:
+
+```csharp
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.AzureAD.UI;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Graph;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.IdentityModel.Logging;
+```
+
+При настройке <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents>:
+
+* При необходимости включите обработку для <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnAuthenticationFailed?displayProperty=nameWithType>. Например, приложение может регистрировать неудачные попытки аутентификации.
+* В <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnTokenValidated?displayProperty=nameWithType> создайте вызов API Graph для получения групп и ролей пользователя.
+
+> [!WARNING]
+> <xref:Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII?displayProperty=nameWithType> предоставляет персональные данные в записях сообщений в журнале. Активируйте персональные данные только для отладки в тестовых учетных записях пользователей.
+
+В `Startup.ConfigureServices`:
+
+```csharp
+#if DEBUG
+IdentityModelEventSource.ShowPII = true;
+#endif
+
+services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
+    .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+
+services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationScheme, 
+    options =>
+{
+    options.Events = new JwtBearerEvents()
+    {
+        OnAuthenticationFailed = context =>
+        {
+            // Optional: Log the exception
+
+#if DEBUG
+            Console.WriteLine($"OnAuthenticationFailed: {context.Exception}");
+#endif
+
+            return Task.FromResult(0);
+        },
+        OnTokenValidated = async context =>
+        {
+            var accessToken = context.SecurityToken as JwtSecurityToken;
+            var oid = accessToken.Claims.FirstOrDefault(x => x.Type == "oid")?
+                .Value;
+
+            if (!string.IsNullOrEmpty(oid))
+            {
+                var authContext = new AuthenticationContext(
+                    Configuration["AzureAd:Instance"] +
+                    Configuration["AzureAd:TenantId"]);
+                AuthenticationResult authResult = null;
+
+                try
+                {
+                    authResult = await authContext.AcquireTokenSilentAsync(
+                        "https://graph.microsoft.com", 
+                        Configuration["AzureAd:ClientId"]);
+                }
+                catch (AdalException adalException)
+                {
+                    if (adalException.ErrorCode == 
+                        AdalError.FailedToAcquireTokenSilently || 
+                        adalException.ErrorCode == 
+                        AdalError.UserInteractionRequired)
+                    {
+                        var userAssertion = new UserAssertion(accessToken.RawData,
+                            "urn:ietf:params:oauth:grant-type:jwt-bearer", oid);
+                        var clientCredential = new ClientCredential(
+                            Configuration["AzureAd:ClientId"],
+                            Configuration["AzureAd:ClientSecret"]);
+                        authResult = await authContext.AcquireTokenAsync(
+                            "https://graph.microsoft.com", clientCredential, 
+                            userAssertion);
+                    }
+                }
+
+                var graphClient = new GraphServiceClient(
+                    new DelegateAuthenticationProvider(async requestMessage => {
+                        requestMessage.Headers.Authorization =
+                            new AuthenticationHeaderValue("Bearer", 
+                                authResult.AccessToken);
+
+                        await Task.CompletedTask;
+                    }));
+
+                var userIdentity = (ClaimsIdentity)context.Principal.Identity;
+
+                IUserMemberOfCollectionWithReferencesPage groupsAndAzureRoles = 
+                    null;
+
+                try
+                {
+                    groupsAndAzureRoles = await graphClient.Users[oid].MemberOf
+                        .Request().GetAsync();
+                }
+                catch (ServiceException serviceException)
+                {
+                    // Optional: Log the error
+
+#if DEBUG
+                    Console.WriteLine(
+                        "OnTokenValidated: Service Exception: " +
+                        $"{serviceException.Message}");
+#endif
+                }
+
+                if (groupsAndAzureRoles != null)
+                {
+                    foreach (var entry in groupsAndAzureRoles)
+                    {
+                        userIdentity.AddClaim(new Claim("group", entry.Id));
+                    }
+                }
+            }
+            else
+            {
+                // Optional: Log missing OID claim
+
+#if DEBUG
+                Console.WriteLine($"OnTokenValidated: OID missing: " +
+                    $"{accessToken.RawData}");
+#endif
+            }
+
+            await Task.FromResult(0);
+        }
+    };
+});
+```
+
+В предыдущем примере:
+
+* Автоматическое получение маркера (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext.AcquireTokenSilentAsync%2A>) выполняется первым, так как маркер доступа может быть уже сохранен в кэше маркеров ADAL. Получить маркер из кэша быстрее, чем запросить новый маркер.
+* Если маркер доступа не получен из кэша (возникает исключение <xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AdalError.FailedToAcquireTokenSilently?displayProperty=nameWithType> или <xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AdalError.UserInteractionRequired?displayProperty=nameWithType>), операция утверждения пользователя (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.UserAssertion>) выполняется с учетными данными клиента (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential>) для получения маркера от имени пользователя (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext.AcquireTokenAsync%2A>). Затем `Microsoft.Graph.GraphServiceClient` может выполнить вызов API Graph с помощью маркера. Маркер помещается в кэш маркеров ADAL. При будущих вызовах API Graph к этому же пользователю маркер будет автоматически получен из кэша с помощью <xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext.AcquireTokenSilentAsync%2A>.
+
+Код в <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnTokenValidated> не получает сведения о временном членстве. Чтобы изменить код для получения сведений о непосредственном и временном членстве, выполните следующие действия:
+
+* Для строки кода:
+
+  ```csharp
+  IUserMemberOfCollectionWithReferencesPage groupsAndAzureRoles = null;
+  ```
+
+  Замените предыдущую строку следующим:
+
+  ```csharp
+  IUserTransitiveMemberOfCollectionWithReferencesPage groupsAndAzureRoles = null;
+  ```
+
+* Для строки кода:
+
+  ```csharp
+  groupsAndAzureRoles = await graphClient.Users[oid].MemberOf.Request().GetAsync();
+  ```
+
+  Замените предыдущую строку следующим:
+
+  ```csharp
+  groupsAndAzureRoles = await graphClient.Users[oid].TransitiveMemberOf.Request()
+      .GetAsync();
+  ```
+
+Код в <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnTokenValidated> не различает группы безопасности AAD и роли администратора AAD при создании утверждений. Чтобы приложение различало группы и роли, проверьте `entry.ODataType` при итерации по группам и ролям. Чтобы создать отдельные утверждения для групп безопасности и ролей, используйте код, аналогичный приведенному ниже:
+
+```csharp
+foreach (var entry in groupsAndAzureRoles)
+{
+    if (entry.ODataType == "#microsoft.graph.group")
+    {
+        userIdentity.AddClaim(new Claim("group", entry.Id));
+    }
+    else
+    {
+        // entry.ODataType == "#microsoft.graph.directoryRole"
+        userIdentity.AddClaim(new Claim("role", entry.Id));
+    }
+}
+```
+
 ## <a name="user-defined-roles"></a>Определяемые пользователем роли
 
 Приложение, зарегистрированное в AAD, можно также настроить для использования определяемых пользователем ролей.
@@ -366,7 +651,7 @@ builder.Services.AddAuthorizationCore(options =>
 
 Одно утверждение `roles`, отправленное AAD, представляет определяемые пользователем роли как `appRoles` `value` в массиве JSON. Приложение должно преобразовать массив JSON из ролей в индивидуальные утверждения `role`.
 
-`CustomUserFactory`, показанные в разделе [Определяемые пользователем группы и административные роли AAD](#user-defined-groups-and-built-in-administrative-roles), настроены для работы с утверждением `roles` со значением массива JSON. Добавьте и зарегистрируйте `CustomUserFactory` в изолированном приложении или клиентском приложении размещенного решения Blazor, как показано в разделе [Определяемые пользователем группы и встроенные административные роли AAD](#user-defined-groups-and-built-in-administrative-roles). Нет необходимости предоставлять код для удаления исходного утверждения `roles`, поскольку оно автоматически удаляется платформой.
+Класс `CustomUserFactory`, приведенный в разделе [Определяемые пользователем группы и роли администратора AAD](#user-defined-groups-and-administrator-roles), настроен на выполнение действий с утверждением `roles` с использованием значения массива JSON. Добавьте и зарегистрируйте `CustomUserFactory` в изолированном приложении или клиентском приложении размещенного решения Blazor, как показано в разделе [Определяемые пользователем группы и роли администратора AAD](#user-defined-groups-and-administrator-roles). Нет необходимости предоставлять код для удаления исходного утверждения `roles`, поскольку оно автоматически удаляется платформой.
 
 В `Program.Main` автономного приложения или клиентского приложения размещенного решения Blazor укажите утверждение с именем "`role`" в качестве утверждения роли:
 
@@ -394,11 +679,11 @@ builder.Services.AddMsalAuthentication(options =>
   }
   ```
 
-## <a name="aad-adminstrative-role-group-ids"></a>Идентификаторы группы административных ролей AAD
+## <a name="aad-administrator-role-object-ids"></a>Идентификаторы объектов ролей администратора AAD
 
-Идентификаторы объектов, приведенные в следующей таблице, используются для создания [политик](xref:security/authorization/policies) для утверждений `group`. Политики позволяют приложению авторизовать пользователей для различных действий в приложении. Дополнительные сведения см. в разделе [Определяемые пользователем группы и встроенные административные роли AAD](#user-defined-groups-and-built-in-administrative-roles).
+Идентификаторы объектов, приведенные в следующей таблице, используются для создания [политик](xref:security/authorization/policies) для утверждений `group`. Политики позволяют приложению авторизовать пользователей для различных действий в приложении. Дополнительные сведения см. в разделе [Определяемые пользователем группы и роли администратора AAD](#user-defined-groups-and-administrator-roles).
 
-Административная роль AAD | Идентификатор объекта.
+Роли администратора в AAD | Идентификатор объекта.
 --- | ---
 администратор приложений; | fa11557b-4f15-4ddd-85d5-313c7cd74047
 Разработчик приложений | 68adcbb8-9504-44f6-89f2-5cd48dc74a2c
