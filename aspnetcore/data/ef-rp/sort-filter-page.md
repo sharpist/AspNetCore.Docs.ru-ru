@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 5e073845acbecdf0db4c30c4725f12033cfc42ac
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e01704cb10c88f3e9442e74034f5e5d39787f300
+ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634687"
+ms.lasthandoff: 10/02/2020
+ms.locfileid: "91653897"
 ---
 # <a name="part-3-no-locrazor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Часть 3. Razor Pages с EF Core в ASP.NET Core — сортировка, фильтрация, разбиение на страницы
 
@@ -42,25 +42,26 @@ ms.locfileid: "88634687"
 
 Чтобы добавить сортировку, замените код в файле *Pages/Students/Index.cshtml.cs* на приведенный ниже.
 
-[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_All&highlight=21-24,26,28-52)]
+[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_All)]
 
 Предыдущий код:
 
+* Требует добавления `using System;`.
 * добавляет свойства, которые будут содержать параметры сортировки;
 * изменяет имя свойства `Student` на `Students`;
 * заменяет код в методе `OnGetAsync`.
 
-Метод `OnGetAsync` принимает параметр `sortOrder` из строки запроса в URL-адресе. URL-адрес (включая строку запроса) формируется [вспомогательной функцией тегов привязки](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper).
+Метод `OnGetAsync` принимает параметр `sortOrder` из строки запроса в URL-адресе. URL-адрес и строка запроса формируются [вспомогательной функцией тегов привязки](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper).
 
-Параметр `sortOrder` имеет значение "Name" или "Date". После параметра `sortOrder` может стоять "_desc", чтобы указать порядок по убыванию. По умолчанию используется порядок сортировки по возрастанию.
+Параметр `sortOrder` имеет значение `Name` или `Date`. После параметра `sortOrder` может стоять `_desc`, чтобы указать порядок по убыванию. По умолчанию используется порядок сортировки по возрастанию.
 
-При запросе страницы "Index" по ссылке **Students** строка запроса отсутствует. Учащиеся отображаются по фамилии в порядке возрастания. В операторе `switch` сортировка по фамилии в порядке возрастания используется по умолчанию. Когда пользователь щелкает ссылку заголовка столбца, в строке запроса указывается соответствующее значение `sortOrder`.
+При запросе страницы "Index" по ссылке **Students** строка запроса отсутствует. Учащиеся отображаются по фамилии в порядке возрастания. В операторе `default` сортировка по фамилии в порядке возрастания используется по умолчанию (`switch`). Когда пользователь щелкает ссылку заголовка столбца, в строке запроса указывается соответствующее значение `sortOrder`.
 
 Для формирования гиперссылок в заголовках столбцов страница Razor использует `NameSort` и `DateSort` с соответствующими значениями строки запроса:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_Ternary)]
 
-В коде используется условный оператор C# [?:](/dotnet/csharp/language-reference/operators/conditional-operator). Оператор `?:` является тернарным (принимает три операнда). Первая строка указывает, что когда `sortOrder` равен null или пуст, `NameSort` имеет значение "name_desc". Если `sortOrder`**не является** равным null или пустым, для `NameSort` задается пустая строка.
+В коде используется [условный оператор C# ?:](/dotnet/csharp/language-reference/operators/conditional-operator). Оператор `?:` является тернарным (принимает три операнда). Первая строка указывает, что, когда `sortOrder` равен null или пуст, `NameSort` имеет значение `name_desc`. Если `sortOrder`***не является*** равным null или пустым, для `NameSort` задается пустая строка.
 
 Следующие два оператора устанавливают гиперссылки в заголовках столбцов на странице следующим образом:
 
@@ -110,7 +111,7 @@ ms.locfileid: "88634687"
 
 Чтобы добавить фильтрацию, замените код в файле *Students/Index.cshtml.cs* на приведенный ниже.
 
-[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml.cs?name=snippet_All&highlight=28,33,37-41)]
+[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml.cs?name=snippet_All&highlight=17,22,26-30)]
 
 Предыдущий код:
 
@@ -119,7 +120,7 @@ ms.locfileid: "88634687"
 
 ### <a name="iqueryable-vs-ienumerable"></a>IQueryable и IEnumerable
 
-Код вызывает метод `Where` объекта `IQueryable`, при этом фильтр обрабатывается на сервере. В некоторых случаях приложение может вызывать метод `Where` как метод расширения для коллекции в памяти. Предположим, например, что `_context.Students` меняется с EF Core `DbSet` на метод репозитория, возвращающий коллекцию `IEnumerable`. Обычно результат остается прежним, но в некоторых случаях он может отличаться.
+Код вызывает метод <xref:System.Linq.Queryable.Where%2A> объекта `IQueryable`, при этом фильтр обрабатывается на сервере. В некоторых случаях приложение может вызывать метод `Where` как метод расширения для коллекции в памяти. Предположим, например, что `_context.Students` меняется с EF Core `DbSet` на метод репозитория, возвращающий коллекцию `IEnumerable`. Обычно результат остается прежним, но в некоторых случаях он может отличаться.
 
 Например, реализация `Contains` в .NET Framework по умолчанию выполняет сравнение с учетом регистра. В SQL Server `Contains` учет регистра определяется параметрами сортировки у экземпляра SQL Server. По умолчанию SQL Server не учитывает регистр. В SQLite по умолчанию регистр учитывается. Можно вызвать `ToUpper`, чтобы явно велеть тесту не учитывать регистр.
 
@@ -139,7 +140,7 @@ Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
 ### <a name="update-the-no-locrazor-page"></a>Обновление страницы Razor
 
-Замените код в файле *Pages/Students/Index.cshtml*, чтобы создать кнопку **Search** (Поиск) и различные элементы хрома.
+Замените код в файле *Pages/Students/Index.cshtml*, чтобы создать кнопку **Search** (Поиск).
 
 [!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml?highlight=14-23)]
 
@@ -153,8 +154,8 @@ Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
 Обратите внимание, что URL-адрес содержит строку поиска. Пример:
 
-```
-https://localhost:<port>/Students?SearchString=an
+```browser-address-bar
+https://localhost:5001/Students?SearchString=an
 ```
 
 Если страница добавлена в закладки, закладка содержит URL-адрес страницы и строку запроса `SearchString`. Формирование строки запроса обеспечивает `method="get"` в теге `form`.
@@ -181,15 +182,16 @@ https://localhost:<port>/Students?SearchString=an
 
 Чтобы добавить разбиение на страницы, замените код в файле *Students/Index.cshtml.cs*.
 
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=26,28-29,31,34-41,68-70)]
+[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=15-20,23-30,57-59)]
 
 Предыдущий код:
 
 * изменяет тип свойства `Students` с `IList<Student>` на `PaginatedList<Student>`;
 * добавляет индекс страницы, текущий порядок `sortOrder` и фильтр `currentFilter` в сигнатуру метода `OnGetAsync`;
-* сохраняет порядок сортировки в свойстве CurrentSort;
+* сохраняет порядок сортировки в свойстве `CurrentSort`;
 * сбрасывает индекс страницы в значение 1 при получении новой строки поиска;
 * использует класс `PaginatedList` для получения сущностей Student.
+* задает для `pageSize` значение 3. Реальное приложение будет использовать [конфигурацию](xref:fundamentals/configuration/index) для задания значение размера страницы.
 
 Все параметры, получаемые методом `OnGetAsync`, равны NULL, когда:
 
@@ -212,7 +214,7 @@ https://localhost:<port>/Students?SearchString=an
 
   Метод `PaginatedList.CreateAsync` преобразует результат запроса учащихся в отдельную страницу коллекции, поддерживающую разбиение на страницы. Эта страница с учащимися передается на страницу Razor.
 
-  Два вопросительных знака после `pageIndex` в вызове `PaginatedList.CreateAsync` являются [оператором объединения с NULL](/dotnet/csharp/language-reference/operators/null-conditional-operator). Оператор объединения с null определяет значение по умолчанию для типа, допускающего значение null. Выражение `(pageIndex ?? 1)` означает возвращение значения `pageIndex`, если он имеет значение. Если у `pageIndex` нет значения, возвращается 1.
+  Два вопросительных знака после `pageIndex` в вызове `PaginatedList.CreateAsync` являются [оператором объединения с NULL](/dotnet/csharp/language-reference/operators/null-conditional-operator). Оператор объединения с null определяет значение по умолчанию для типа, допускающего значение null. Выражение `pageIndex ?? 1` возвращает значение свойства `pageIndex`, если оно есть. В противном случае возвращается значение 1.
 
 ### <a name="add-paging-links-to-the-no-locrazor-page"></a>Добавление ссылок для разбиения по страницам на страницу Razor
 
@@ -258,7 +260,7 @@ https://localhost:<port>/Students?SearchString=an
 
 ### <a name="create-the-page-model"></a>Создание модели страницы
 
-Создайте файл *Pages/About.cshtml.cs* со следующим кодом:
+Измените файл *Pages/About.cshtml.cs*, используя следующий код:
 
 [!code-csharp[Main](intro/samples/cu30/Pages/About.cshtml.cs)]
 

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: e12b0e6d1bf9eab751f6605b9a156f637f2b0c0f
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: d4fd0d501ff14e37bb55b78bb6493ad43f9e5a87
+ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393838"
+ms.lasthandoff: 10/07/2020
+ms.locfileid: "91805574"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Отладка в ASP.NET Core Blazor WebAssembly
 
@@ -345,6 +345,9 @@ Blazor предоставляет прокси-сервер отладки, ко
 * На вкладке **Отладчик** откройте средства разработчика в браузере. В консоли выполните `localStorage.clear()`, чтобы удалить все точки останова.
 * Убедитесь, что вы установили и сделали доверенным сертификат разработки HTTPS ASP.NET Core. Для получения дополнительной информации см. <xref:security/enforcing-ssl#troubleshoot-certificate-problems>.
 * В Visual Studio должен быть включен параметр **Включить отладку JavaScript для ASP.NET (Chrome, Edge и IE)** в разделе **Инструменты** > **Параметры** > **Отладка** > **Общие**. Этот параметр включен в Visual Studio по умолчанию. Если отладка не работает, проверьте, выбран ли этот параметр.
+* Если в среде используется прокси-сервер HTTP, необходимо включить `localhost` в параметры обхода прокси-сервера. Для этого можно задать переменную среды `NO_PROXY` в одном из двух мест:
+  * файл `launchSettings.json` проекта;
+  * на уровне пользовательских или системных переменных среды для применения ко всем приложениям. Перезапустите Visual Studio, чтобы изменение переменной среды вступило в силу.
 
 ### <a name="breakpoints-in-oninitializedasync-not-hit"></a>Точки останова в `OnInitialized{Async}` не срабатывают
 

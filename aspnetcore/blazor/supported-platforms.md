@@ -5,7 +5,7 @@ description: Сведения о поддерживаемых платформа
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 10/01/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,43 +18,63 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/supported-platforms
-ms.openlocfilehash: 692ab63bb48dbfa29021d59cdf035e9549d3039c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1ffe98636ed200adbf00e89c2c3499eb69792d3f
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625951"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754545"
 ---
 # <a name="aspnet-core-no-locblazor-supported-platforms"></a>Поддерживаемые платформы ASP.NET Core Blazor
 
 Автор [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
-## <a name="browser-requirements"></a>Требования к браузеру
+::: moniker range=">= aspnetcore-5.0"
 
-### Blazor WebAssembly
+Blazor WebAssembly и Blazor Server поддерживаются в браузерах, приведенных в таблице ниже.
 
-| Браузер                          | Version               |
-| -------------------------------- | :-------------------: |
-| Microsoft Edge                   | Текущие               |
-| Mozilla Firefox                  | Текущие               |
-| Google Chrome, включая Android | Текущие               |
-| Safari, включая iOS            | Текущие               |
-| Microsoft Internet Explorer      | Не поддерживается&dagger; |
+| Браузер                          | Version         |
+| -------------------------------- | --------------- |
+| Apple Safari, включая iOS      | Текущий&dagger; |
+| Google Chrome, включая Android | Текущий&dagger; |
+| Microsoft Edge                   | Текущий&dagger; |
+| Mozilla Firefox;                  | Текущий&dagger; |  
 
-&dagger;Microsoft Internet Explorer не поддерживает [WebAssembly](https://webassembly.org).
+&dagger;*Текущий* означает последнюю версию браузера.  
 
-### Blazor Server
+::: moniker-end
 
-| Браузер                          | Version    |
-| -------------------------------- | :--------: |
-| Microsoft Edge                   | Текущие    |
-| Mozilla Firefox                  | Текущие    |
-| Google Chrome, включая Android | Текущие    |
-| Safari, включая iOS            | Текущие    |
-| Microsoft Internet Explorer      | 11&dagger; |
+::: moniker range="< aspnetcore-5.0"
 
-&dagger;Требуются дополнительные заполнения (например, обещания можно добавить с помощью пакета [`Polyfill.io`](https://polyfill.io/v3/)).
+## Blazor WebAssembly
+
+| Браузер                          | Версия               |
+| -------------------------------- | --------------------- |
+| Apple Safari, включая iOS      | Текущий&dagger;       |
+| Google Chrome, включая Android | Текущий&dagger;       |
+| Microsoft Edge                   | Текущий&dagger;       |
+| Microsoft Internet Explorer      | Не поддерживается&Dagger; |
+| Mozilla Firefox;                  | Текущий&dagger;       |  
+
+&dagger;*Текущий* означает последнюю версию браузера.  
+&Dagger;Microsoft Internet Explorer не поддерживает [WebAssembly](https://webassembly.org).
+
+## Blazor Server
+
+| Браузер                          | Версия         |
+| -------------------------------- | --------------- |
+| Apple Safari, включая iOS      | Текущий&dagger; |
+| Google Chrome, включая Android | Текущий&dagger; |
+| Microsoft Edge                   | Текущий&dagger; |
+| Microsoft Internet Explorer      | 11&Dagger;      |
+| Mozilla Firefox;                  | Текущий&dagger; |
+
+&dagger;*Текущий* означает последнюю версию браузера.  
+&Dagger;Требуются дополнительные заполнения. Например, обещания можно добавить с помощью пакета [`Polyfill.io`](https://polyfill.io/v3/).
+
+::: moniker-end
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * <xref:blazor/hosting-models>
+* <xref:signalr/supported-platforms>

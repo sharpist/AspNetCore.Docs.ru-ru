@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: e5346c1e58127747d777b5040fe7bc7d99b9a489
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 8ed9ec3447205107194ffa5c329c0e5ae0fc5553
+ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722875"
+ms.lasthandoff: 10/02/2020
+ms.locfileid: "91653975"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Реализация веб-сервера HTTP.sys в ASP.NET Core
 
@@ -272,6 +272,23 @@ public IActionResult MyActionMethod()
 
 Для приложений, размещенных с помощью файла HTTP.sys, которые взаимодействуют с запросами из Интернета или корпоративной сети, может потребоваться дополнительная настройка при размещении за прокси-серверами и подсистемами балансировки нагрузки. Дополнительные сведения см. в разделе [Настройка ASP.NET Core для работы с прокси-серверами и подсистемами балансировки нагрузки](xref:host-and-deploy/proxy-load-balancer).
 
+## <a name="advanced-http2-features-to-support-grpc"></a>Расширенные возможности HTTP/2 для поддержки gRPC
+
+Дополнительные возможности HTTP/2 в HTTP.SYS поддерживают gRPC, включая трейлеры ответов и отправку кадров сброса.
+
+Требования для выполнения gRPC в HTTP.SYS
+
+* Сборка 19041.508 или более поздняя ОС Windows 10.
+* Подключение TLS 1.2 или более поздней версии.
+
+### <a name="trailers"></a>Трейлеры
+
+[!INCLUDE[](~/includes/trailers.md)]
+
+### <a name="reset"></a>Reset
+
+[!INCLUDE[](~/includes/reset.md)]
+
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * [Включить проверку подлинности Windows с использованием HTTP.sys](xref:security/authentication/windowsauth#httpsys)
@@ -326,7 +343,7 @@ HTTP.sys — это проверенная технология, которая 
 
 * установлена ОС Windows Server 2016 либо Windows 10 или более поздних версий;
 * установлено подключение с поддержкой [согласования протокола уровня приложений (ALPN)](https://tools.ietf.org/html/rfc7301#section-3);
-* установлено подключение TLS 1.2 или более поздней версии.
+* Подключение TLS 1.2 или более поздней версии.
 
 Если установлено подключение HTTP/2, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) возвращает `HTTP/2`.
 
@@ -577,7 +594,7 @@ HTTP.sys — это проверенная технология, которая 
 
 * установлена ОС Windows Server 2016 либо Windows 10 или более поздних версий;
 * установлено подключение с поддержкой [согласования протокола уровня приложений (ALPN)](https://tools.ietf.org/html/rfc7301#section-3);
-* установлено подключение TLS 1.2 или более поздней версии.
+* Подключение TLS 1.2 или более поздней версии.
 
 Если установлено подключение HTTP/2, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) возвращает `HTTP/2`.
 
@@ -830,7 +847,7 @@ HTTP.sys — это проверенная технология, которая 
 
 * установлена ОС Windows Server 2016 либо Windows 10 или более поздних версий;
 * установлено подключение с поддержкой [согласования протокола уровня приложений (ALPN)](https://tools.ietf.org/html/rfc7301#section-3);
-* установлено подключение TLS 1.2 или более поздней версии.
+* Подключение TLS 1.2 или более поздней версии.
 
 Если установлено подключение HTTP/2, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) возвращает `HTTP/1.1`.
 

@@ -5,7 +5,7 @@ description: Узнайте, как использовать методы жиз
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 10/06/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,18 +18,48 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: 00573f87b65e53a7bfd9cc2aed1d2ed7772b9a4a
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: 0acf757c21d444136e7a6d81d5958be5bc72c2fc
+ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847615"
+ms.lasthandoff: 10/07/2020
+ms.locfileid: "91805548"
 ---
 # <a name="aspnet-core-no-locblazor-lifecycle"></a>Жизненный цикл ASP.NET Core Blazor
 
 Авторы: [Люк Латэм](https://github.com/guardrex) (Luke Latham) и [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)
 
 Платформа Blazor содержит синхронные и асинхронные методы жизненного цикла. Переопределяйте методы жизненного цикла для выполнения дополнительных операций с компонентами во время инициализации и отрисовки компонента.
+
+На приведенных ниже схемах показан жизненный цикл Blazor. Определение методов жизненного цикла с примерами приводится в следующих разделах этой статьи.
+
+События жизненного цикла компонента
+
+1. Если компонент отрисовывается в первый раз по запросу:
+   * Создайте экземпляр компонента.
+   * Выполните внедрение свойств. Выполните [`SetParametersAsync`](#before-parameters-are-set) .
+   * Вызовите [`OnInitialized{Async}`](#component-initialization-methods). Если возвращается значение <xref:System.Threading.Tasks.Task>, ожидается <xref:System.Threading.Tasks.Task>, а затем компонент отрисовывается. Если значение <xref:System.Threading.Tasks.Task> не возвращается, компонент отрисовывается сразу.
+1. Вызовите [`OnParametersSet{Async}`](#after-parameters-are-set). Если возвращается значение <xref:System.Threading.Tasks.Task>, ожидается <xref:System.Threading.Tasks.Task>, а затем компонент отрисовывается. Если значение <xref:System.Threading.Tasks.Task> не возвращается, компонент отрисовывается сразу.
+
+<img src="lifecycle/_static/lifecycle1.png" alt="Component lifecycle events of a Razor component in Blazor" data-linktype="relative-path" style="max-width:350px;display:block;margin:0 auto">
+
+Обработка событий модели DOM
+
+1. Выполняется обработчик событий.
+1. Если возвращается значение <xref:System.Threading.Tasks.Task>, ожидается <xref:System.Threading.Tasks.Task>, а затем компонент отрисовывается. Если значение <xref:System.Threading.Tasks.Task> не возвращается, компонент отрисовывается сразу.
+
+<img src="lifecycle/_static/lifecycle2.png" alt="Document Object Model (DOM) event processing" data-linktype="relative-path" style="max-width:350px;display:block;margin:0 auto">
+
+Жизненный цикл `Render`
+
+1. Если это не первая отрисовка компонента или [`ShouldRender`](#suppress-ui-refreshing) принимает значение `false`, дальнейшие операции с компонентом выполнять не следует.
+1. Выполните сборку отличий дерева отрисовки и отрисуйте компонент.
+1. Подождите, пока модель DOM обновится.
+1. Вызовите [`OnAfterRender{Async}`](#after-component-render).
+
+<img src="lifecycle/_static/lifecycle3.png" alt="Render lifecycle" data-linktype="relative-path" style="max-width:350px;display:block;margin:0 auto">
+
+Вызовы [`StateHasChanged`](#state-changes) разработчиком приводят к отрисовке.
 
 ## <a name="lifecycle-methods"></a>Методы жизненного цикла
 
@@ -191,7 +221,7 @@ protected override bool ShouldRender()
 
 `Pages/FetchData.razor` в шаблоне Blazor Server:
 
-[!code-razor[](lifecycle/samples_snapshot/3.x/FetchData.razor?highlight=9,21,25)]
+[!code-razor[](lifecycle/samples_snapshot/FetchData.razor?highlight=9,21,25)]
 
 ## <a name="handle-errors"></a>Обработка ошибок
 
@@ -286,11 +316,11 @@ public class WeatherForecastService
 
 * Подход с использованием частного поля и лямбда-выражения
 
-  [!code-razor[](lifecycle/samples_snapshot/3.x/event-handler-disposal-1.razor?highlight=23,28)]
+  [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-1.razor?highlight=23,28)]
 
 * Подход с использованием частного метода
 
-  [!code-razor[](lifecycle/samples_snapshot/3.x/event-handler-disposal-2.razor?highlight=16,26)]
+  [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-2.razor?highlight=16,26)]
 
 ## <a name="cancelable-background-work"></a>Отменяемая фоновая операция
 

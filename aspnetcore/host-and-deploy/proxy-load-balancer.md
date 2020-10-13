@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/proxy-load-balancer
-ms.openlocfilehash: 209f75edc2901422b94c619a505e0b8316aec699
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 2babfb33921412f5da20d2b5060766b7ee483392
+ms.sourcegitcommit: c0a15ab8549cb729731a0fdf1d7da0b7feaa11ff
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865397"
+ms.lasthandoff: 10/02/2020
+ms.locfileid: "91671760"
 ---
 # <a name="configure-aspnet-core-to-work-with-proxy-servers-and-load-balancers"></a>Настройка ASP.NET Core для работы с прокси-серверами и подсистемами балансировки нагрузки
 
@@ -48,7 +48,7 @@ ms.locfileid: "88865397"
 | X-Forwarded-Proto | Значение исходной схемы передачи данных (HTTP/HTTPS). Здесь может быть указан целый список схем, если запрос прошел через несколько прокси-серверов. |
 | X-Forwarded-Host | Исходное значение поля Host в заголовке запроса. Обычно прокси-серверы не изменяют заголовок Host. В [рекомендациях Макрософт по безопасности CVE-2018-0787](https://github.com/aspnet/Announcements/issues/295) представлены сведения о связанной с повышением привилегий уязвимости, которая затрагивает системы, где прокси-сервер не проверяет заголовок Host и не ограничивает его значения известными допустимыми значениями. |
 
-ПО промежуточного слоя перенаправления заголовков, входящее в пакет [Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/), считывает эти заголовки и заполняет соответствующие поля <xref:Microsoft.AspNetCore.Http.HttpContext>.
+ПО промежуточного слоя перенаправления заголовков (<xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersMiddleware>) считывает эти заголовки и заполняет соответствующие поля <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
 Это ПО промежуточного слоя обновляет следующие сведения:
 

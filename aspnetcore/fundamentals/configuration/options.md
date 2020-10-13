@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/options
-ms.openlocfilehash: a6af5a7b1b4bc066a563c7cac59274fd39594cf6
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6eafad63bd4c49cee6a85108b37a8b61e1214bce
+ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632594"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91762338"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>Шаблон параметров в ASP.NET Core
 
@@ -38,6 +38,8 @@ ms.locfileid: "88632594"
 
 В параметрах также предусмотрен механизм для проверки данных конфигурации. Дополнительные сведения см. в разделе [Проверка параметров](#options-validation).
 
+В этом разделе приводятся сведения о шаблоне параметров в ASP.NET Core. Сведения об использовании шаблона параметров в консольных приложениях см. в разделе [Шаблон параметров в .NET](/dotnet/core/extensions/options).
+
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
 <a name="optpat"></a>
@@ -50,20 +52,20 @@ ms.locfileid: "88632594"
 
 ## <a name="options-interfaces"></a>Интерфейсы параметров
 
-<xref:Microsoft.Extensions.Options.IOptions%601>.
+<xref:Microsoft.Extensions.Options.IOptions%601>:
 
 * ***Не*** поддерживает:
   * чтение данных конфигурации после запуска приложения;
   * [именованные параметры](#named);
 * Регистрируется в качестве элемента [singleton](xref:fundamentals/dependency-injection#singleton) и может быть внедрен в любое [время существования службы](xref:fundamentals/dependency-injection#service-lifetimes).
 
-<xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>.
+<xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
 
 * Полезно использовать в сценариях, когда параметры нужно заново вычислять при каждом запросе. Дополнительные сведения см. в разделе [Использование IOptionsSnapshot для чтения обновленных данных](#ios).
 * Регистрируется как [Scoped](xref:fundamentals/dependency-injection#scoped) (с областью), поэтому его нельзя внедрить в службу singleton.
 * Поддерживает [именованные параметры](#named).
 
-<xref:Microsoft.Extensions.Options.IOptionsMonitor%601>.
+<xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
 
 * Используется для извлечения параметров и управления уведомлениями о параметрах для экземпляров `TOptions`.
 * Регистрируется в качестве элемента [singleton](xref:fundamentals/dependency-injection#singleton) и может быть внедрен в любое [время существования службы](xref:fundamentals/dependency-injection#service-lifetimes).

@@ -5,7 +5,7 @@ description: Создание приложения чата, которое ис
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2020
+ms.date: 10/01/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 4d33e99ceb8273487144447eae324469df67c9ff
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e4c77bd5bf5a26a11cdd23664ac24ae50986969b
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633387"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754714"
 ---
 # <a name="use-aspnet-core-no-locsignalr-with-no-locblazor-webassembly"></a>Использование SignalR для ASP.NET Core с Blazor WebAssembly
 
@@ -43,6 +43,34 @@ ms.locfileid: "88633387"
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-blazor-webassembly/samples/) ([как скачивать](xref:index#how-to-download-a-sample))
 
 ## <a name="prerequisites"></a>Предварительные требования
+
+::: moniker range=">= aspnetcore-5.0"
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+<!-- * [Visual Studio 2019 16.8 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload -->
+* [Visual Studio 2019 16.8 или более поздней версии (в предварительной версии)](https://visualstudio.microsoft.com/vs/preview/) с рабочей нагрузкой **ASP.NET и разработка веб-приложений**
+* [!INCLUDE [.NET Core 5.0 SDK](~/includes/5.0-SDK.md)]
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-5.0.md)]
+
+# <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
+
+<!-- * [Visual Studio for Mac version 8.8 or later (in preview)](https://visualstudio.microsoft.com/vs/mac/) -->
+* [Visual Studio для Mac 8.8 или более поздней версии (в предварительной версии)](/visualstudio/releasenotes/vs2019-mac-preview-relnotes)
+* [!INCLUDE [.NET Core 5.0 SDK](~/includes/5.0-SDK.md)]
+
+# <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli/)
+
+[!INCLUDE[](~/includes/5.0-SDK.md)]
+
+---
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -64,14 +92,27 @@ ms.locfileid: "88633387"
 
 ---
 
+::: moniker-end
+
 ## <a name="create-a-hosted-no-locblazor-webassembly-app-project"></a>Создание проекта размещенного приложения Blazor WebAssembly
 
 Следуйте указаниям по выбору инструментов:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
+::: moniker range=">= aspnetcore-5.0"
+
+> [!NOTE]
+> Требуются Visual Studio 16.8 или более поздней версии и пакет SDK для .NET Core 5.0.0 или более поздней версии.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 > [!NOTE]
 > Требуются Visual Studio 16.6 или более поздней версии и пакет SDK для .NET Core 3.1.300 или более поздней версии.
+
+::: moniker-end
 
 1. Создайте новый проект.
 
@@ -83,7 +124,7 @@ ms.locfileid: "88633387"
 
 1. В разделе **Дополнительно** установите флажок **Размещенный проект ASP.NET Core**.
 
-1. Выберите **Создать**.
+1. Нажмите кнопку **создания**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -109,7 +150,7 @@ ms.locfileid: "88633387"
 
 1. Убедитесь, что для параметра **Аутентификация** задано значение **Без аутентификации**. Установите флажок **Размещенный проект ASP.NET Core**. Выберите **Далее**.
 
-1. В поле **Имя проекта** присвойте имя приложению `BlazorSignalRApp`. Выберите **Создать**.
+1. В поле **Имя проекта** присвойте имя приложению `BlazorSignalRApp`. Нажмите кнопку **создания**.
 
    При появлении подтверждения доверия к сертификату разработки подтвердите доверие, чтобы продолжить. Для доверия к сертификату необходимы пароли пользователя и цепочки ключей.
 
@@ -176,7 +217,17 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 В проекте `BlazorSignalRApp.Server` создайте папку `Hubs` (plural) и добавьте следующий класс `ChatHub` (`Hubs/ChatHub.cs`):
 
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
+
+::: moniker-end
 
 ## <a name="add-services-and-an-endpoint-for-the-no-locsignalr-hub"></a>Добавление служб и конечной точки для концентратора SignalR
 
@@ -190,14 +241,34 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Добавьте службы SignalR и промежуточного ПО для сжатия ответа в `Startup.ConfigureServices`:
 
+::: moniker range=">= aspnetcore-5.0"
+
+   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
    [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
+
+::: moniker-end
 
 1. В `Startup.Configure`:
 
    * Используйте ПО промежуточного слоя для сжатия ответа в верхней части конфигурации конвейера обработки.
    * Между конечными точками для контроллера и отката на стороне клиента добавьте конечную точку для концентратора.
 
+::: moniker range=">= aspnetcore-5.0"
+
+   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
    [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
+
+::: moniker-end
 
 ## <a name="add-no-locrazor-component-code-for-chat"></a>добавлять код компонента Razor для чата.
 
@@ -205,9 +276,19 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Замените разметку следующим кодом:
 
-[!code-razor[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Client/Pages/Index.razor)]
+::: moniker range=">= aspnetcore-5.0"
 
-## <a name="run-the-app"></a>Запуск приложения
+   [!code-razor[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Client/Pages/Index.razor)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+   [!code-razor[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Client/Pages/Index.razor)]
+
+::: moniker-end
+
+## <a name="run-the-app"></a>Запустите приложение
 
 1. Следуйте указаниям по выбору инструментов:
 
@@ -227,9 +308,21 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Когда VS Code предлагает создать профиль запуска для серверного приложения (`.vscode/launch.json`), запись `program` выглядит примерно так, как показано ниже, чтобы указать сборку приложения (`{APPLICATION NAME}.Server.dll`):
 
+::: moniker range=">= aspnetcore-5.0"
+
+   ```json
+   "program": "${workspaceFolder}/Server/bin/Debug/net5.0/{APPLICATION NAME}.Server.dll"
+   ```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
    ```json
    "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/{APPLICATION NAME}.Server.dll"
    ```
+
+::: moniker-end
 
 1. Нажмите клавишу <kbd>F5</kbd>, чтобы запустить программу с отладкой, или <kbd>Ctrl</kbd>+<kbd>F5</kbd>, чтобы запустить ее без отладки.
 
@@ -272,7 +365,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 ---
 
-## <a name="next-steps"></a>Следующие шаги
+## <a name="next-steps"></a>Дальнейшие действия
 
 В этом руководстве вы узнали, как:
 

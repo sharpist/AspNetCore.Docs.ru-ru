@@ -1,7 +1,7 @@
 ---
-title: Универсальный узел .NET
+title: Универсальный узел .NET в ASP.NET Core
 author: rick-anderson
-description: Сведения об универсальном узле .NET Core, который отвечает за запуск приложений и управление временем существования.
+description: Используйте универсальный узел .NET в приложениях ASP.NET Core.  Универсальный узел отвечает за запуск приложения и управление временем существования.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
@@ -18,18 +18,521 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: e606812c1c2164a7e4d0926a76d2ff7ada4c9a87
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d3de81ce7248372279b423da865513ee5db73c79
+ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635389"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91762325"
 ---
-# <a name="net-generic-host"></a>Универсальный узел .NET
+# <a name="net-generic-host-in-aspnet-core"></a>Универсальный узел .NET в ASP.NET Core
 
-::: moniker range=">= aspnetcore-3.0 <= aspnetcore-3.1"
+::: moniker range=">= aspnetcore-5.0"
 
-Шаблоны ASP.NET Core создают .NET Core Generic Host, <xref:Microsoft.Extensions.Hosting.HostBuilder>.
+Шаблоны ASP.NET Core создают .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
+
+В этой статье приведены сведения об использовании универсального узла .NET в ASP.NET Core. Сведения об использовании универсального узла .NET в консольных приложениях см. в статье [Универсальный узел .NET](/dotnet/core/extensions/generic-host).
+
+## <a name="host-definition"></a>Определение узла
+
+*Узел* — это объект, который инкапсулирует все ресурсы приложения, такие как:
+
+* Внедрение зависимостей
+* Ведение журнала
+* Параметр Configuration
+* Реализации `IHostedService`
+
+После запуска узла он вызывает <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A?displayProperty=nameWithType> в каждой реализации <xref:Microsoft.Extensions.Hosting.IHostedService>, зарегистрированной в коллекции размещенных служб контейнера службы. В веб-приложении одна из реализаций `IHostedService` является веб-службой, которая запускает [реализацию сервера HTTP](xref:fundamentals/index#servers).
+
+Основной причиной включения всех взаимозависимых ресурсов приложения в один объект является управление жизненным циклом: контроль запуска и корректного завершения работы приложения.
+
+## <a name="set-up-a-host"></a>Создание узла
+
+Узел обычно настраивается, собирается и выполняется кодом в классе `Program`. Метод `Main`:
+
+* Вызывает метод `CreateHostBuilder` для создания и настройки объекта построителя.
+* Вызывает методы `Build` и `Run` в объекте построителя.
+
+Веб-шаблоны ASP.NET Core создают следующий код для создания узла:
+
+```csharp
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
+}
+```
+
+Следующий код создают нагрузку, отличную от HTTP, с одной реализацией `IHostedService`, добавленной в контейнер внедрения зависимостей.
+
+```csharp
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureServices((hostContext, services) =>
+            {
+               services.AddHostedService<Worker>();
+            });
+}
+```
+
+При использовании рабочей нагрузки HTTP метод `Main` остается прежним, но `CreateHostBuilder` вызывает `ConfigureWebHostDefaults`:
+
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.UseStartup<Startup>();
+        });
+```
+
+Если приложение использует Entity Framework Core, не изменяйте имя или сигнатуру метода `CreateHostBuilder`. [Инструменты Entity Framework Core](/ef/core/miscellaneous/cli/) ищут метод `CreateHostBuilder`, который настраивает узел без необходимости запускать приложение. Подробные сведения см. в статье [Design-time DbContext Creation](/ef/core/miscellaneous/cli/dbcontext-creation) (Создание экземпляра DbContext во время разработки).
+
+## <a name="default-builder-settings"></a>Параметры построителя по умолчанию
+
+Метод <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>:
+
+* В качестве [корневого каталога содержимого](xref:fundamentals/index#content-root) задает путь, возвращенный методом <xref:System.IO.Directory.GetCurrentDirectory*>.
+* Загружает конфигурацию узла из:
+  * Переменные среды с префиксом `DOTNET_`.
+  * аргументы командной строки.
+* Загружает конфигурацию приложения из:
+  * *appsettings.json*;
+  * *appsettings.{Environment}.json*;
+  * [диспетчер секретов](xref:security/app-secrets), когда приложение выполняется в среде `Development`;
+  * Переменные среды.
+  * аргументы командной строки.
+* Добавляет следующие [регистраторы](xref:fundamentals/logging/index):
+  * Консоль
+  * Отладка
+  * EventSource
+  * Журнал событий (только при запуске в Windows)
+* Включает [проверку области](xref:fundamentals/dependency-injection#scope-validation) и [проверку зависимостей](xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild), если это среда разработки.
+
+Метод `ConfigureWebHostDefaults`:
+
+* Загружает конфигурацию узла из переменных среды с префиксом `ASPNETCORE_`.
+* Задает сервер [Kestrel](xref:fundamentals/servers/kestrel) в качестве веб-сервера и настраивает его с помощью поставщиков конфигурации размещения приложения. Параметры сервера Kestrel по умолчанию см. в разделе <xref:fundamentals/servers/kestrel#kestrel-options>.
+* Добавляет [ПО промежуточного слоя фильтрации узлов](xref:fundamentals/servers/kestrel#host-filtering).
+* Добавляет [Параметры ПО промежуточного слоя перенаправления заголовков](xref:host-and-deploy/proxy-load-balancer#forwarded-headers), если `ASPNETCORE_FORWARDEDHEADERS_ENABLED` равно `true`.
+* Обеспечивает интеграцию служб IIS. Параметры IIS по умолчанию см. в разделе <xref:host-and-deploy/iis/index#iis-options>.
+
+Разделы [Параметры для всех типов приложений](#settings-for-all-app-types) и [Параметры для веб-приложений](#settings-for-web-apps) далее в этой статье описывают, как переопределить параметры построителя по умолчанию.
+
+## <a name="framework-provided-services"></a>Платформенные службы
+
+Следующие службы регистрируются автоматически.
+
+* [IHostApplicationLifetime](#ihostapplicationlifetime)
+* [IHostLifetime](#ihostlifetime)
+* [IHostEnvironment / IWebHostEnvironment](#ihostenvironment)
+
+Дополнительные сведения о службах, предоставляемых платформой, см. в разделе <xref:fundamentals/dependency-injection#framework-provided-services>.
+
+## <a name="ihostapplicationlifetime"></a>IHostApplicationLifetime
+
+Внедрите <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (прежнее название — `IApplicationLifetime`) в любой класс для выполнения задач после запуска и корректного завершения работы. Три свойства этого интерфейса представляют собой токены отмены, которые служат для регистрации методов обработчика событий запуска и завершения работы приложения. Этот интерфейс также включает метод `StopApplication`.
+
+Ниже приведен пример реализации `IHostedService`, которая регистрирует события `IHostApplicationLifetime`:
+
+[!code-csharp[](generic-host/samples-snapshot/3.x/LifetimeEventsHostedService.cs?name=snippet_LifetimeEvents)]
+
+## <a name="ihostlifetime"></a>IHostLifetime
+
+Реализация <xref:Microsoft.Extensions.Hosting.IHostLifetime> контролирует, когда узел запускается и останавливается. Используется последняя зарегистрированная реализация.
+
+`Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` — это реализация `IHostLifetime` по умолчанию. `ConsoleLifetime`:
+
+* Прослушивает сигналы <kbd>CTRL</kbd>+<kbd>C</kbd>/SIGINT или SIGTERM и вызывает метод <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication*> для запуска процесса завершения работы.
+* разблокирует расширения, такие как [RunAsync](#runasync) и [WaitForShutdownAsync](#waitforshutdownasync).
+
+## <a name="ihostenvironment"></a>IHostEnvironment
+
+Внедряет службу <xref:Microsoft.Extensions.Hosting.IHostEnvironment> в класс, чтобы получить сведения о следующих параметрах.
+
+* [ApplicationName](#applicationname)
+* [EnvironmentName](#environmentname)
+* [ContentRootPath](#contentroot)
+
+Веб-приложения реализуют интерфейс `IWebHostEnvironment`, который наследует `IHostEnvironment` и добавляет [WebRootPath](#webroot).
+
+## <a name="host-configuration"></a>Конфигурация узла
+
+Конфигурация узла используется для свойств реализации <xref:Microsoft.Extensions.Hosting.IHostEnvironment>.
+
+Конфигурация узла доступна из [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration) внутри <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>. После `ConfigureAppConfiguration``HostBuilderContext.Configuration` заменяется конфигурацией приложения.
+
+Чтобы добавить конфигурацию узла, вызовите <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> в `IHostBuilder`. Метод `ConfigureHostConfiguration` может вызываться несколько раз с накоплением результатов. Узел использует значение, заданное последним для данного ключа.
+
+Поставщик переменных среды с префиксом `DOTNET_` и аргументы командной строки включены в `CreateDefaultBuilder`. Для веб-приложений добавляется поставщик переменных среды с префиксом `ASPNETCORE_`. Префикс удаляется при чтении переменных среды. Например, значение переменной среды для `ASPNETCORE_ENVIRONMENT` становится значением конфигурации узла для ключа `environment`.
+
+В следующем примере создается конфигурация узла:
+
+[!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippet_HostConfig)]
+
+## <a name="app-configuration"></a>Конфигурация приложения
+
+Конфигурация приложения создается путем вызова метода <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> в `IHostBuilder`. Метод `ConfigureAppConfiguration` может вызываться несколько раз с накоплением результатов. Приложение использует значение, заданное последним для данного ключа. 
+
+Конфигурация, созданная с помощью `ConfigureAppConfiguration`, доступна в свойствах [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*) для последующих операций и как служба из внедрения зависимостей. Конфигурация узла также добавляется к конфигурации приложения.
+
+Дополнительные сведения см. в разделе [Конфигурация в ASP.NET Core](xref:fundamentals/configuration/index#configureappconfiguration).
+
+## <a name="settings-for-all-app-types"></a>Параметры для всех типов приложений
+
+В этом разделе перечислены параметры узла, которые применяются к рабочим нагрузкам HTTP и остальным. По умолчанию переменные среды, используемые для настройки этих параметров, могут иметь префикс `DOTNET_` или `ASPNETCORE_`.
+
+<!-- In the following sections, two spaces at end of line are used to force line breaks in the rendered page. -->
+
+### <a name="applicationname"></a>ApplicationName
+
+Свойство [IHostEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName*) задается в конфигурации узла во время создания узла.
+
+**Ключ**: `applicationName`  
+**Тип**: `string`  
+**По умолчанию**: Имя сборки, содержащей точку входа приложения.  
+**Переменная среды**: `<PREFIX_>APPLICATIONNAME`
+
+Чтобы задать это значение, используйте переменную среды. 
+
+### <a name="contentroot"></a>ContentRoot
+
+Свойство [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath*) определяет, где узел начинает поиск файлов содержимого. Если путь не существует, узел не запускается.
+
+**Ключ**: `contentRoot`  
+**Тип**: `string`  
+**По умолчанию**: папка, в которой находится сборка приложения.  
+**Переменная среды**: `<PREFIX_>CONTENTROOT`
+
+Чтобы задать это значение, используйте переменную среды или вызов `UseContentRoot` в `IHostBuilder`:
+
+```csharp
+Host.CreateDefaultBuilder(args)
+    .UseContentRoot("c:\\content-root")
+    //...
+```
+
+Дополнительные сведения можно найти в разделе
+
+* [Корневой каталог содержимого](xref:fundamentals/index#content-root)
+* [Корневой каталог документов](#webroot)
+
+### <a name="environmentname"></a>EnvironmentName
+
+Свойству [IHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName*) может быть присвоено любое значение. В платформе определены значения `Development`, `Staging` и `Production`. Регистр символов в значениях не учитывается.
+
+**Ключ**: `environment`  
+**Тип**: `string`  
+**По умолчанию**: `Production`  
+**Переменная среды**: `<PREFIX_>ENVIRONMENT`
+
+Чтобы задать это значение, используйте переменную среды или вызов `UseEnvironment` в `IHostBuilder`:
+
+```csharp
+Host.CreateDefaultBuilder(args)
+    .UseEnvironment("Development")
+    //...
+```
+
+### <a name="shutdowntimeout"></a>ShutdownTimeout
+
+[HostOptions.ShutdownTimeout](xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*) задает время ожидания для <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>. Значение по умолчанию — пять секунд.  Во время ожидания узел:
+
+* Активирует [IHostApplicationLifetime.ApplicationStopping](/dotnet/api/microsoft.extensions.hosting.ihostapplicationlifetime.applicationstopping).
+* Пытается остановить размещенные службы, записывая в журнал ошибки для служб, которые не удалось остановить.
+
+Если время ожидания истекает до остановки всех размещенных служб, активные службы останавливаются при завершении работы приложения. Службы останавливаются даже в том случае, если еще не завершили обработку. Если службе требуется дополнительное время для остановки, увеличьте время ожидания.
+
+**Ключ**: `shutdownTimeoutSeconds`  
+**Тип**: `int`  
+**По умолчанию**: 5 секунд  
+**Переменная среды**: `<PREFIX_>SHUTDOWNTIMEOUTSECONDS`
+
+Чтобы задать это значение, используйте переменную среды или настройте `HostOptions`. В следующем примере устанавливается время ожидания в 20 секунд:
+
+[!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippet_HostOptions)]
+
+### <a name="disable-app-configuration-reload-on-change"></a>Отключение перезагрузки конфигурации приложения при изменении
+
+[По умолчанию](xref:fundamentals/configuration/index#default) при изменении файла выполняется перезагрузка *appsettings.json* и *appsettings.{Environment}.json*. Чтобы отключить эту функцию перезагрузки в ASP.NET Core 5.0 или более поздней версии, присвойте ключу `hostBuilder:reloadConfigOnChange` значение `false`.
+
+**Ключ**: `hostBuilder:reloadConfigOnChange`  
+**Тип**: `bool` (`true` или `1`)  
+**По умолчанию**: `true`  
+**Аргумент командной строки**: `hostBuilder:reloadConfigOnChange`  
+**Переменная среды**: `<PREFIX_>hostBuilder:reloadConfigOnChange`
+
+> [!WARNING]
+> Двоеточие (`:`) не работает в качестве разделителя с иерархическими ключами переменных среды на всех платформах. Дополнительную информацию см. в разделе [Переменные среды](xref:fundamentals/configuration/index#environment-variables).
+
+## <a name="settings-for-web-apps"></a>Параметры для веб-приложений
+
+Некоторые параметры узла применяются только к рабочим нагрузкам HTTP. По умолчанию переменные среды, используемые для настройки этих параметров, могут иметь префикс `DOTNET_` или `ASPNETCORE_`.
+
+Методы расширения в `IWebHostBuilder` доступны для этих параметров. В примерах кода, которые показывают, как вызывать методы расширения, предполагается, что `webBuilder` является экземпляром `IWebHostBuilder`, как показано в следующем примере:
+
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.CaptureStartupErrors(true);
+            webBuilder.UseStartup<Startup>();
+        });
+```
+
+### <a name="capturestartuperrors"></a>CaptureStartupErrors
+
+Если задано значение `false`, ошибки во время запуска приводят к завершению работы узла. Если задано значение `true`, узел перехватывает исключения во время запуска и пытается запустить сервер.
+
+**Ключ**: `captureStartupErrors`  
+**Тип**: `bool` (`true` или `1`)  
+**По умолчанию**: `false`, если только приложение не работает с сервером Kestrel за службами IIS; в этом случае значение по умолчанию — `true`.  
+**Переменная среды**: `<PREFIX_>CAPTURESTARTUPERRORS`
+
+Чтобы задать это значение, используйте конфигурацию или вызов `CaptureStartupErrors`:
+
+```csharp
+webBuilder.CaptureStartupErrors(true);
+```
+
+### <a name="detailederrors"></a>DetailedErrors
+
+Если этот параметр включен или если среда имеет значение `Development`, приложение перехватывает подробные ошибки.
+
+**Ключ**: `detailedErrors`  
+**Тип**: `bool` (`true` или `1`)  
+**По умолчанию**: `false`  
+**Переменная среды**: `<PREFIX_>_DETAILEDERRORS`
+
+Чтобы задать это значение, используйте конфигурацию или вызов `UseSetting`:
+
+```csharp
+webBuilder.UseSetting(WebHostDefaults.DetailedErrorsKey, "true");
+```
+
+### <a name="hostingstartupassemblies"></a>HostingStartupAssemblies
+
+Разделенная точками с запятой строка начальных сборок размещения, загружаемых при запуске. Хотя значением по умолчанию этого параметра конфигурации является пустая строка, начальные сборки размещения всегда включают в себя сборку приложения. Если начальные сборки размещения указаны, они добавляются к сборке приложения для загрузки во время построения приложением общих служб при запуске.
+
+**Ключ**: `hostingStartupAssemblies`  
+**Тип**: `string`  
+**По умолчанию**: Пустая строка  
+**Переменная среды**: `<PREFIX_>_HOSTINGSTARTUPASSEMBLIES`
+
+Чтобы задать это значение, используйте конфигурацию или вызов `UseSetting`:
+
+```csharp
+webBuilder.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "assembly1;assembly2");
+```
+
+### <a name="hostingstartupexcludeassemblies"></a>HostingStartupExcludeAssemblies
+
+Разделенная точками с запятой строка начальных сборок размещения, которые необходимо исключить при запуске.
+
+**Ключ**: `hostingStartupExcludeAssemblies`  
+**Тип**: `string`  
+**По умолчанию**: Пустая строка  
+**Переменная среды**: `<PREFIX_>_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
+
+Чтобы задать это значение, используйте конфигурацию или вызов `UseSetting`:
+
+```csharp
+webBuilder.UseSetting(WebHostDefaults.HostingStartupExcludeAssembliesKey, "assembly1;assembly2");
+```
+
+### <a name="https_port"></a>HTTPS_Port
+
+Порт перенаправления HTTPS. Используется при [принудительном применении HTTPS](xref:security/enforcing-ssl).
+
+**Ключ**: `https_port`  
+**Тип**: `string`  
+**По умолчанию**: значение по умолчанию не задано.  
+**Переменная среды**: `<PREFIX_>HTTPS_PORT`
+
+Чтобы задать это значение, используйте конфигурацию или вызов `UseSetting`:
+
+```csharp
+webBuilder.UseSetting("https_port", "8080");
+```
+
+### <a name="preferhostingurls"></a>PreferHostingUrls
+
+Указывает, должен ли узел ожидать передачи данных по URL-адресам, настроенным с помощью `IWebHostBuilder`, вместо URL-адресов, настроенных с помощью реализации `IServer`.
+
+**Ключ**: `preferHostingUrls`  
+**Тип**: `bool` (`true` или `1`)  
+**По умолчанию**: `true`  
+**Переменная среды**: `<PREFIX_>_PREFERHOSTINGURLS`
+
+Чтобы задать это значение, используйте переменную среды или вызов `PreferHostingUrls`:
+
+```csharp
+webBuilder.PreferHostingUrls(false);
+```
+
+### <a name="preventhostingstartup"></a>PreventHostingStartup
+
+Запрещает автоматическую загрузку начальных сборок размещения, включая начальные сборки размещения, настроенные сборкой приложения. Для получения дополнительной информации см. <xref:fundamentals/configuration/platform-specific-configuration>.
+
+**Ключ**: `preventHostingStartup`  
+**Тип**: `bool` (`true` или `1`)  
+**По умолчанию**: `false`  
+**Переменная среды**: `<PREFIX_>_PREVENTHOSTINGSTARTUP`
+
+Чтобы задать это значение, используйте переменную среды или вызов `UseSetting`:
+
+```csharp
+webBuilder.UseSetting(WebHostDefaults.PreventHostingStartupKey, "true");
+```
+
+### <a name="startupassembly"></a>StartupAssembly
+
+Сборка, в которой необходимо искать класс `Startup`.
+
+**Ключ**: `startupAssembly`  
+**Тип**: `string`  
+**По умолчанию**: сборка приложения  
+**Переменная среды**: `<PREFIX_>STARTUPASSEMBLY`
+
+Чтобы задать это значение, используйте переменную среды или вызов `UseStartup`. `UseStartup` может использовать имя сборки (`string`) или тип (`TStartup`). При вызове нескольких методов `UseStartup` приоритет имеет последний.
+
+```csharp
+webBuilder.UseStartup("StartupAssemblyName");
+```
+
+```csharp
+webBuilder.UseStartup<Startup>();
+```
+
+### <a name="urls"></a>URL-адреса
+
+Разделенный точками с запятой список IP-адресов или адресов узлов с портами и протоколами, по которым сервер должен ожидать получения запросов. Например, `http://localhost:123`. Используйте символ "\*", чтобы указать, что сервер должен ожидать получения запросов через определенный порт и по определенному протоколу по любому IP-адресу или имени узла (например, `http://*:5000`). Протокол (`http://` или `https://`) должен указываться для каждого URL-адреса. Поддерживаемые форматы зависят от сервера.
+
+**Ключ**: `urls`  
+**Тип**: `string`  
+**Значения по умолчанию**: `http://localhost:5000` и `https://localhost:5001`  
+**Переменная среды**: `<PREFIX_>URLS`
+
+Чтобы задать это значение, используйте переменную среды или вызов `UseUrls`:
+
+```csharp
+webBuilder.UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002");
+```
+
+Kestrel имеет собственный интерфейс API настройки конечных точек. Для получения дополнительной информации см. <xref:fundamentals/servers/kestrel#endpoint-configuration>.
+
+### <a name="webroot"></a>WebRoot
+
+Свойство [IWebHostEnvironment.WebRootPath](xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath) определяет относительный путь к статическим ресурсам приложения. Если этот путь не существует, используется фиктивный поставщик файлов.  
+
+**Ключ:** `webroot`  
+**Тип**: `string`  
+**По умолчанию**: Значение по умолчанию — `wwwroot`. Наличие пути *{корневой_каталог_содержимого}/wwwroot* обязательно.  
+**Переменная среды**: `<PREFIX_>WEBROOT`
+
+Чтобы задать это значение, используйте переменную среды или вызов `UseWebRoot` в `IWebHostBuilder`:
+
+```csharp
+webBuilder.UseWebRoot("public");
+```
+
+Дополнительные сведения можно найти в разделе
+
+* [Корневой каталог документов](xref:fundamentals/index#web-root)
+* [ContentRoot](#contentroot)
+
+## <a name="manage-the-host-lifetime"></a>Управление временем существования узла
+
+Вызывает методы в реализации <xref:Microsoft.Extensions.Hosting.IHost> для запуска и остановки приложения. Эти методы влияют на все реализации <xref:Microsoft.Extensions.Hosting.IHostedService>, зарегистрированные в контейнере службы.
+
+### <a name="run"></a>Выполнить
+
+Метод <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run*> запускает приложение и блокирует вызывающий поток, пока работа узла не будет завершена.
+
+### <a name="runasync"></a>RunAsync
+
+Метод <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync*> запускает приложение и возвращает объект <xref:System.Threading.Tasks.Task>, который завершается при активации токена отмены или завершении работы.
+
+### <a name="runconsoleasync"></a>RunConsoleAsync
+
+Метод <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.RunConsoleAsync*> включает поддержку консоли, собирает и запускает узел и ожидает сигналы <kbd>CTRL</kbd>+<kbd>C</kbd>/SIGINT или SIGTERM для завершения работы.
+
+### <a name="start"></a>Начало
+
+Метод <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Start*> запускает узел синхронно.
+
+### <a name="startasync"></a>StartAsync
+
+Метод <xref:Microsoft.Extensions.Hosting.IHost.StartAsync*> запускает узел и возвращает объект <xref:System.Threading.Tasks.Task>, который завершается при активации токена отмены или завершении работы. 
+
+Метод <xref:Microsoft.Extensions.Hosting.IHostLifetime.WaitForStartAsync*> вызывается в начале `StartAsync`, который ждет, пока он не будет завершен, прежде чем продолжить. Можно отложить запуск до получения сигнала от внешнего события.
+
+### <a name="stopasync"></a>StopAsync
+
+Метод <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.StopAsync*> пытается остановить узел в течение указанного периода ожидания.
+
+### <a name="waitforshutdown"></a>WaitForShutdown
+
+<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> блокирует вызывающий поток до завершения работы, активированного IHostLifetime, например через <kbd>CTRL</kbd>+<kbd>C</kbd>/SIGINT или SIGTERM.
+
+### <a name="waitforshutdownasync"></a>WaitForShutdownAsync
+
+Метод <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdownAsync*> возвращает объект <xref:System.Threading.Tasks.Task>, который завершается после активации завершения работы через токен, и вызывает метод <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>.
+
+### <a name="external-control"></a>Внешнее управление
+
+Прямое управление временем существования узла может осуществляться с помощью методов, которые могут быть вызваны извне:
+
+```csharp
+public class Program
+{
+    private IHost _host;
+
+    public Program()
+    {
+        _host = new HostBuilder()
+            .Build();
+    }
+
+    public async Task StartAsync()
+    {
+        _host.StartAsync();
+    }
+
+    public async Task StopAsync()
+    {
+        using (_host)
+        {
+            await _host.StopAsync(TimeSpan.FromSeconds(5));
+        }
+    }
+}
+```
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
+Шаблоны ASP.NET Core создают .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
+
+В этой статье приведены сведения об использовании универсального узла .NET в ASP.NET Core. Сведения об использовании универсального узла .NET в консольных приложениях см. в статье [Универсальный узел .NET](/dotnet/core/extensions/generic-host).
 
 ## <a name="host-definition"></a>Определение узла
 
@@ -106,9 +609,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ## <a name="default-builder-settings"></a>Параметры построителя по умолчанию
 
-Метод <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>:
+Метод <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>:
 
-* В качестве [корневого каталога содержимого](xref:fundamentals/index#content-root) задает путь, возвращенный методом <xref:System.IO.Directory.GetCurrentDirectory*>.
+* В качестве [корневого каталога содержимого](xref:fundamentals/index#content-root) задает путь, возвращенный методом <xref:System.IO.Directory.GetCurrentDirectory%2A>.
 * Загружает конфигурацию узла из:
   * Переменные среды с префиксом `DOTNET_`.
   * аргументы командной строки.
@@ -157,9 +660,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 Реализация <xref:Microsoft.Extensions.Hosting.IHostLifetime> контролирует, когда узел запускается и останавливается. Используется последняя зарегистрированная реализация.
 
-`Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` — это реализация `IHostLifetime` по умолчанию. `ConsoleLifetime`.
+`Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` — это реализация `IHostLifetime` по умолчанию. `ConsoleLifetime`:
 
-* Прослушивает сигналы <kbd>CTRL</kbd>+<kbd>C</kbd>/SIGINT или SIGTERM и вызывает метод <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication*> для запуска процесса завершения работы.
+* Прослушивает сигналы <kbd>CTRL</kbd>+<kbd>C</kbd>/SIGINT или SIGTERM и вызывает метод <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication%2A> для запуска процесса завершения работы.
 * разблокирует расширения, такие как [RunAsync](#runasync) и [WaitForShutdownAsync](#waitforshutdownasync).
 
 ## <a name="ihostenvironment"></a>IHostEnvironment
@@ -176,9 +679,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 Конфигурация узла используется для свойств реализации <xref:Microsoft.Extensions.Hosting.IHostEnvironment>.
 
-Конфигурация узла доступна из [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration) внутри <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>. После `ConfigureAppConfiguration``HostBuilderContext.Configuration` заменяется конфигурацией приложения.
+Конфигурация узла доступна из [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration) внутри <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A>. После `ConfigureAppConfiguration``HostBuilderContext.Configuration` заменяется конфигурацией приложения.
 
-Чтобы добавить конфигурацию узла, вызовите <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> в `IHostBuilder`. Метод `ConfigureHostConfiguration` может вызываться несколько раз с накоплением результатов. Узел использует значение, заданное последним для данного ключа.
+Чтобы добавить конфигурацию узла, вызовите <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration%2A> в `IHostBuilder`. Метод `ConfigureHostConfiguration` может вызываться несколько раз с накоплением результатов. Узел использует значение, заданное последним для данного ключа.
 
 Поставщик переменных среды с префиксом `DOTNET_` и аргументы командной строки включены в `CreateDefaultBuilder`. Для веб-приложений добавляется поставщик переменных среды с префиксом `ASPNETCORE_`. Префикс удаляется при чтении переменных среды. Например, значение переменной среды для `ASPNETCORE_ENVIRONMENT` становится значением конфигурации узла для ключа `environment`.
 
@@ -998,505 +1501,6 @@ public class MyClass
     public void Shutdown()
     {
         _appLifetime.StopApplication();
-    }
-}
-```
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-5.0"
-
-Шаблоны ASP.NET Core создают .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
-
-## <a name="host-definition"></a>Определение узла
-
-*Узел* — это объект, который инкапсулирует все ресурсы приложения, такие как:
-
-* Внедрение зависимостей
-* Ведение журнала
-* Параметр Configuration
-* Реализации `IHostedService`
-
-После запуска узла он вызывает <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A?displayProperty=nameWithType> в каждой реализации <xref:Microsoft.Extensions.Hosting.IHostedService>, зарегистрированной в коллекции размещенных служб контейнера службы. В веб-приложении одна из реализаций `IHostedService` является веб-службой, которая запускает [реализацию сервера HTTP](xref:fundamentals/index#servers).
-
-Основной причиной включения всех взаимозависимых ресурсов приложения в один объект является управление жизненным циклом: контроль запуска и корректного завершения работы приложения.
-
-## <a name="set-up-a-host"></a>Создание узла
-
-Узел обычно настраивается, собирается и выполняется кодом в классе `Program`. Метод `Main`:
-
-* Вызывает метод `CreateHostBuilder` для создания и настройки объекта построителя.
-* Вызывает методы `Build` и `Run` в объекте построителя.
-
-Веб-шаблоны ASP.NET Core создают следующий код для создания узла:
-
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
-
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
-}
-```
-
-Следующий код создают нагрузку, отличную от HTTP, с одной реализацией `IHostedService`, добавленной в контейнер внедрения зависимостей.
-
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
-
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureServices((hostContext, services) =>
-            {
-               services.AddHostedService<Worker>();
-            });
-}
-```
-
-При использовании рабочей нагрузки HTTP метод `Main` остается прежним, но `CreateHostBuilder` вызывает `ConfigureWebHostDefaults`:
-
-```csharp
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
-```
-
-Если приложение использует Entity Framework Core, не изменяйте имя или сигнатуру метода `CreateHostBuilder`. [Инструменты Entity Framework Core](/ef/core/miscellaneous/cli/) ищут метод `CreateHostBuilder`, который настраивает узел без необходимости запускать приложение. Подробные сведения см. в статье [Design-time DbContext Creation](/ef/core/miscellaneous/cli/dbcontext-creation) (Создание экземпляра DbContext во время разработки).
-
-## <a name="default-builder-settings"></a>Параметры построителя по умолчанию
-
-Метод <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>:
-
-* В качестве [корневого каталога содержимого](xref:fundamentals/index#content-root) задает путь, возвращенный методом <xref:System.IO.Directory.GetCurrentDirectory*>.
-* Загружает конфигурацию узла из:
-  * Переменные среды с префиксом `DOTNET_`.
-  * аргументы командной строки.
-* Загружает конфигурацию приложения из:
-  * *appsettings.json*;
-  * *appsettings.{Environment}.json*;
-  * [диспетчер секретов](xref:security/app-secrets), когда приложение выполняется в среде `Development`;
-  * Переменные среды.
-  * аргументы командной строки.
-* Добавляет следующие [регистраторы](xref:fundamentals/logging/index):
-  * Консоль
-  * Отладка
-  * EventSource
-  * Журнал событий (только при запуске в Windows)
-* Включает [проверку области](xref:fundamentals/dependency-injection#scope-validation) и [проверку зависимостей](xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild), если это среда разработки.
-
-Метод `ConfigureWebHostDefaults`:
-
-* Загружает конфигурацию узла из переменных среды с префиксом `ASPNETCORE_`.
-* Задает сервер [Kestrel](xref:fundamentals/servers/kestrel) в качестве веб-сервера и настраивает его с помощью поставщиков конфигурации размещения приложения. Параметры сервера Kestrel по умолчанию см. в разделе <xref:fundamentals/servers/kestrel#kestrel-options>.
-* Добавляет [ПО промежуточного слоя фильтрации узлов](xref:fundamentals/servers/kestrel#host-filtering).
-* Добавляет [Параметры ПО промежуточного слоя перенаправления заголовков](xref:host-and-deploy/proxy-load-balancer#forwarded-headers), если `ASPNETCORE_FORWARDEDHEADERS_ENABLED` равно `true`.
-* Обеспечивает интеграцию служб IIS. Параметры IIS по умолчанию см. в разделе <xref:host-and-deploy/iis/index#iis-options>.
-
-Разделы [Параметры для всех типов приложений](#settings-for-all-app-types) и [Параметры для веб-приложений](#settings-for-web-apps) далее в этой статье описывают, как переопределить параметры построителя по умолчанию.
-
-## <a name="framework-provided-services"></a>Платформенные службы
-
-Следующие службы регистрируются автоматически.
-
-* [IHostApplicationLifetime](#ihostapplicationlifetime)
-* [IHostLifetime](#ihostlifetime)
-* [IHostEnvironment / IWebHostEnvironment](#ihostenvironment)
-
-Дополнительные сведения о службах, предоставляемых платформой, см. в разделе <xref:fundamentals/dependency-injection#framework-provided-services>.
-
-## <a name="ihostapplicationlifetime"></a>IHostApplicationLifetime
-
-Внедрите <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (прежнее название — `IApplicationLifetime`) в любой класс для выполнения задач после запуска и корректного завершения работы. Три свойства этого интерфейса представляют собой токены отмены, которые служат для регистрации методов обработчика событий запуска и завершения работы приложения. Этот интерфейс также включает метод `StopApplication`.
-
-Ниже приведен пример реализации `IHostedService`, которая регистрирует события `IHostApplicationLifetime`:
-
-[!code-csharp[](generic-host/samples-snapshot/3.x/LifetimeEventsHostedService.cs?name=snippet_LifetimeEvents)]
-
-## <a name="ihostlifetime"></a>IHostLifetime
-
-Реализация <xref:Microsoft.Extensions.Hosting.IHostLifetime> контролирует, когда узел запускается и останавливается. Используется последняя зарегистрированная реализация.
-
-`Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` — это реализация `IHostLifetime` по умолчанию. `ConsoleLifetime`.
-
-* Прослушивает сигналы <kbd>CTRL</kbd>+<kbd>C</kbd>/SIGINT или SIGTERM и вызывает метод <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication*> для запуска процесса завершения работы.
-* разблокирует расширения, такие как [RunAsync](#runasync) и [WaitForShutdownAsync](#waitforshutdownasync).
-
-## <a name="ihostenvironment"></a>IHostEnvironment
-
-Внедряет службу <xref:Microsoft.Extensions.Hosting.IHostEnvironment> в класс, чтобы получить сведения о следующих параметрах.
-
-* [ApplicationName](#applicationname)
-* [EnvironmentName](#environmentname)
-* [ContentRootPath](#contentroot)
-
-Веб-приложения реализуют интерфейс `IWebHostEnvironment`, который наследует `IHostEnvironment` и добавляет [WebRootPath](#webroot).
-
-## <a name="host-configuration"></a>Конфигурация узла
-
-Конфигурация узла используется для свойств реализации <xref:Microsoft.Extensions.Hosting.IHostEnvironment>.
-
-Конфигурация узла доступна из [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration) внутри <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>. После `ConfigureAppConfiguration``HostBuilderContext.Configuration` заменяется конфигурацией приложения.
-
-Чтобы добавить конфигурацию узла, вызовите <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> в `IHostBuilder`. Метод `ConfigureHostConfiguration` может вызываться несколько раз с накоплением результатов. Узел использует значение, заданное последним для данного ключа.
-
-Поставщик переменных среды с префиксом `DOTNET_` и аргументы командной строки включены в `CreateDefaultBuilder`. Для веб-приложений добавляется поставщик переменных среды с префиксом `ASPNETCORE_`. Префикс удаляется при чтении переменных среды. Например, значение переменной среды для `ASPNETCORE_ENVIRONMENT` становится значением конфигурации узла для ключа `environment`.
-
-В следующем примере создается конфигурация узла:
-
-[!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippet_HostConfig)]
-
-## <a name="app-configuration"></a>Конфигурация приложения
-
-Конфигурация приложения создается путем вызова метода <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> в `IHostBuilder`. Метод `ConfigureAppConfiguration` может вызываться несколько раз с накоплением результатов. Приложение использует значение, заданное последним для данного ключа. 
-
-Конфигурация, созданная с помощью `ConfigureAppConfiguration`, доступна в свойствах [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*) для последующих операций и как служба из внедрения зависимостей. Конфигурация узла также добавляется к конфигурации приложения.
-
-Дополнительные сведения см. в разделе [Конфигурация в ASP.NET Core](xref:fundamentals/configuration/index#configureappconfiguration).
-
-## <a name="settings-for-all-app-types"></a>Параметры для всех типов приложений
-
-В этом разделе перечислены параметры узла, которые применяются к рабочим нагрузкам HTTP и остальным. По умолчанию переменные среды, используемые для настройки этих параметров, могут иметь префикс `DOTNET_` или `ASPNETCORE_`.
-
-<!-- In the following sections, two spaces at end of line are used to force line breaks in the rendered page. -->
-
-### <a name="applicationname"></a>ApplicationName
-
-Свойство [IHostEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName*) задается в конфигурации узла во время создания узла.
-
-**Ключ**: `applicationName`  
-**Тип**: `string`  
-**По умолчанию**: Имя сборки, содержащей точку входа приложения.  
-**Переменная среды**: `<PREFIX_>APPLICATIONNAME`
-
-Чтобы задать это значение, используйте переменную среды. 
-
-### <a name="contentroot"></a>ContentRoot
-
-Свойство [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath*) определяет, где узел начинает поиск файлов содержимого. Если путь не существует, узел не запускается.
-
-**Ключ**: `contentRoot`  
-**Тип**: `string`  
-**По умолчанию**: папка, в которой находится сборка приложения.  
-**Переменная среды**: `<PREFIX_>CONTENTROOT`
-
-Чтобы задать это значение, используйте переменную среды или вызов `UseContentRoot` в `IHostBuilder`:
-
-```csharp
-Host.CreateDefaultBuilder(args)
-    .UseContentRoot("c:\\content-root")
-    //...
-```
-
-Дополнительные сведения можно найти в разделе
-
-* [Корневой каталог содержимого](xref:fundamentals/index#content-root)
-* [Корневой каталог документов](#webroot)
-
-### <a name="environmentname"></a>EnvironmentName
-
-Свойству [IHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName*) может быть присвоено любое значение. В платформе определены значения `Development`, `Staging` и `Production`. Регистр символов в значениях не учитывается.
-
-**Ключ**: `environment`  
-**Тип**: `string`  
-**По умолчанию**: `Production`  
-**Переменная среды**: `<PREFIX_>ENVIRONMENT`
-
-Чтобы задать это значение, используйте переменную среды или вызов `UseEnvironment` в `IHostBuilder`:
-
-```csharp
-Host.CreateDefaultBuilder(args)
-    .UseEnvironment("Development")
-    //...
-```
-
-### <a name="shutdowntimeout"></a>ShutdownTimeout
-
-[HostOptions.ShutdownTimeout](xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*) задает время ожидания для <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>. Значение по умолчанию — пять секунд.  Во время ожидания узел:
-
-* Активирует [IHostApplicationLifetime.ApplicationStopping](/dotnet/api/microsoft.extensions.hosting.ihostapplicationlifetime.applicationstopping).
-* Пытается остановить размещенные службы, записывая в журнал ошибки для служб, которые не удалось остановить.
-
-Если время ожидания истекает до остановки всех размещенных служб, активные службы останавливаются при завершении работы приложения. Службы останавливаются даже в том случае, если еще не завершили обработку. Если службе требуется дополнительное время для остановки, увеличьте время ожидания.
-
-**Ключ**: `shutdownTimeoutSeconds`  
-**Тип**: `int`  
-**По умолчанию**: 5 секунд  
-**Переменная среды**: `<PREFIX_>SHUTDOWNTIMEOUTSECONDS`
-
-Чтобы задать это значение, используйте переменную среды или настройте `HostOptions`. В следующем примере устанавливается время ожидания в 20 секунд:
-
-[!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippet_HostOptions)]
-
-### <a name="disable-app-configuration-reload-on-change"></a>Отключение перезагрузки конфигурации приложения при изменении
-
-[По умолчанию](xref:fundamentals/configuration/index#default) при изменении файла выполняется перезагрузка *appsettings.json* и *appsettings.{Environment}.json*. Чтобы отключить эту функцию перезагрузки в ASP.NET Core 5.0, предварительная версия 3 или более поздняя, присвойте ключу `hostBuilder:reloadConfigOnChange` значение `false`.
-
-**Ключ**: `hostBuilder:reloadConfigOnChange`  
-**Тип**: `bool` (`true` или `1`)  
-**По умолчанию**: `true`  
-**Аргумент командной строки**: `hostBuilder:reloadConfigOnChange`  
-**Переменная среды**: `<PREFIX_>hostBuilder:reloadConfigOnChange`
-
-> [!WARNING]
-> Двоеточие (`:`) не работает в качестве разделителя с иерархическими ключами переменных среды на всех платформах. Дополнительную информацию см. в разделе [Переменные среды](xref:fundamentals/configuration/index#environment-variables).
-
-## <a name="settings-for-web-apps"></a>Параметры для веб-приложений
-
-Некоторые параметры узла применяются только к рабочим нагрузкам HTTP. По умолчанию переменные среды, используемые для настройки этих параметров, могут иметь префикс `DOTNET_` или `ASPNETCORE_`.
-
-Методы расширения в `IWebHostBuilder` доступны для этих параметров. В примерах кода, которые показывают, как вызывать методы расширения, предполагается, что `webBuilder` является экземпляром `IWebHostBuilder`, как показано в следующем примере:
-
-```csharp
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.CaptureStartupErrors(true);
-            webBuilder.UseStartup<Startup>();
-        });
-```
-
-### <a name="capturestartuperrors"></a>CaptureStartupErrors
-
-Если задано значение `false`, ошибки во время запуска приводят к завершению работы узла. Если задано значение `true`, узел перехватывает исключения во время запуска и пытается запустить сервер.
-
-**Ключ**: `captureStartupErrors`  
-**Тип**: `bool` (`true` или `1`)  
-**По умолчанию**: `false`, если только приложение не работает с сервером Kestrel за службами IIS; в этом случае значение по умолчанию — `true`.  
-**Переменная среды**: `<PREFIX_>CAPTURESTARTUPERRORS`
-
-Чтобы задать это значение, используйте конфигурацию или вызов `CaptureStartupErrors`:
-
-```csharp
-webBuilder.CaptureStartupErrors(true);
-```
-
-### <a name="detailederrors"></a>DetailedErrors
-
-Если этот параметр включен или если среда имеет значение `Development`, приложение перехватывает подробные ошибки.
-
-**Ключ**: `detailedErrors`  
-**Тип**: `bool` (`true` или `1`)  
-**По умолчанию**: `false`  
-**Переменная среды**: `<PREFIX_>_DETAILEDERRORS`
-
-Чтобы задать это значение, используйте конфигурацию или вызов `UseSetting`:
-
-```csharp
-webBuilder.UseSetting(WebHostDefaults.DetailedErrorsKey, "true");
-```
-
-### <a name="hostingstartupassemblies"></a>HostingStartupAssemblies
-
-Разделенная точками с запятой строка начальных сборок размещения, загружаемых при запуске. Хотя значением по умолчанию этого параметра конфигурации является пустая строка, начальные сборки размещения всегда включают в себя сборку приложения. Если начальные сборки размещения указаны, они добавляются к сборке приложения для загрузки во время построения приложением общих служб при запуске.
-
-**Ключ**: `hostingStartupAssemblies`  
-**Тип**: `string`  
-**По умолчанию**: Пустая строка  
-**Переменная среды**: `<PREFIX_>_HOSTINGSTARTUPASSEMBLIES`
-
-Чтобы задать это значение, используйте конфигурацию или вызов `UseSetting`:
-
-```csharp
-webBuilder.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "assembly1;assembly2");
-```
-
-### <a name="hostingstartupexcludeassemblies"></a>HostingStartupExcludeAssemblies
-
-Разделенная точками с запятой строка начальных сборок размещения, которые необходимо исключить при запуске.
-
-**Ключ**: `hostingStartupExcludeAssemblies`  
-**Тип**: `string`  
-**По умолчанию**: Пустая строка  
-**Переменная среды**: `<PREFIX_>_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
-
-Чтобы задать это значение, используйте конфигурацию или вызов `UseSetting`:
-
-```csharp
-webBuilder.UseSetting(WebHostDefaults.HostingStartupExcludeAssembliesKey, "assembly1;assembly2");
-```
-
-### <a name="https_port"></a>HTTPS_Port
-
-Порт перенаправления HTTPS. Используется при [принудительном применении HTTPS](xref:security/enforcing-ssl).
-
-**Ключ**: `https_port`  
-**Тип**: `string`  
-**По умолчанию**: значение по умолчанию не задано.  
-**Переменная среды**: `<PREFIX_>HTTPS_PORT`
-
-Чтобы задать это значение, используйте конфигурацию или вызов `UseSetting`:
-
-```csharp
-webBuilder.UseSetting("https_port", "8080");
-```
-
-### <a name="preferhostingurls"></a>PreferHostingUrls
-
-Указывает, должен ли узел ожидать передачи данных по URL-адресам, настроенным с помощью `IWebHostBuilder`, вместо URL-адресов, настроенных с помощью реализации `IServer`.
-
-**Ключ**: `preferHostingUrls`  
-**Тип**: `bool` (`true` или `1`)  
-**По умолчанию**: `true`  
-**Переменная среды**: `<PREFIX_>_PREFERHOSTINGURLS`
-
-Чтобы задать это значение, используйте переменную среды или вызов `PreferHostingUrls`:
-
-```csharp
-webBuilder.PreferHostingUrls(false);
-```
-
-### <a name="preventhostingstartup"></a>PreventHostingStartup
-
-Запрещает автоматическую загрузку начальных сборок размещения, включая начальные сборки размещения, настроенные сборкой приложения. Для получения дополнительной информации см. <xref:fundamentals/configuration/platform-specific-configuration>.
-
-**Ключ**: `preventHostingStartup`  
-**Тип**: `bool` (`true` или `1`)  
-**По умолчанию**: `false`  
-**Переменная среды**: `<PREFIX_>_PREVENTHOSTINGSTARTUP`
-
-Чтобы задать это значение, используйте переменную среды или вызов `UseSetting`:
-
-```csharp
-webBuilder.UseSetting(WebHostDefaults.PreventHostingStartupKey, "true");
-```
-
-### <a name="startupassembly"></a>StartupAssembly
-
-Сборка, в которой необходимо искать класс `Startup`.
-
-**Ключ**: `startupAssembly`  
-**Тип**: `string`  
-**По умолчанию**: сборка приложения  
-**Переменная среды**: `<PREFIX_>STARTUPASSEMBLY`
-
-Чтобы задать это значение, используйте переменную среды или вызов `UseStartup`. `UseStartup` может использовать имя сборки (`string`) или тип (`TStartup`). При вызове нескольких методов `UseStartup` приоритет имеет последний.
-
-```csharp
-webBuilder.UseStartup("StartupAssemblyName");
-```
-
-```csharp
-webBuilder.UseStartup<Startup>();
-```
-
-### <a name="urls"></a>URL-адреса
-
-Разделенный точками с запятой список IP-адресов или адресов узлов с портами и протоколами, по которым сервер должен ожидать получения запросов. Например, `http://localhost:123`. Используйте символ "\*", чтобы указать, что сервер должен ожидать получения запросов через определенный порт и по определенному протоколу по любому IP-адресу или имени узла (например, `http://*:5000`). Протокол (`http://` или `https://`) должен указываться для каждого URL-адреса. Поддерживаемые форматы зависят от сервера.
-
-**Ключ**: `urls`  
-**Тип**: `string`  
-**Значения по умолчанию**: `http://localhost:5000` и `https://localhost:5001`  
-**Переменная среды**: `<PREFIX_>URLS`
-
-Чтобы задать это значение, используйте переменную среды или вызов `UseUrls`:
-
-```csharp
-webBuilder.UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002");
-```
-
-Kestrel имеет собственный интерфейс API настройки конечных точек. Для получения дополнительной информации см. <xref:fundamentals/servers/kestrel#endpoint-configuration>.
-
-### <a name="webroot"></a>WebRoot
-
-Свойство [IWebHostEnvironment.WebRootPath](xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath) определяет относительный путь к статическим ресурсам приложения. Если этот путь не существует, используется фиктивный поставщик файлов.  
-
-**Ключ:** `webroot`  
-**Тип**: `string`  
-**По умолчанию**: Значение по умолчанию — `wwwroot`. Наличие пути *{корневой_каталог_содержимого}/wwwroot* обязательно.  
-**Переменная среды**: `<PREFIX_>WEBROOT`
-
-Чтобы задать это значение, используйте переменную среды или вызов `UseWebRoot` в `IWebHostBuilder`:
-
-```csharp
-webBuilder.UseWebRoot("public");
-```
-
-Дополнительные сведения можно найти в разделе
-
-* [Корневой каталог документов](xref:fundamentals/index#web-root)
-* [ContentRoot](#contentroot)
-
-## <a name="manage-the-host-lifetime"></a>Управление временем существования узла
-
-Вызывает методы в реализации <xref:Microsoft.Extensions.Hosting.IHost> для запуска и остановки приложения. Эти методы влияют на все реализации <xref:Microsoft.Extensions.Hosting.IHostedService>, зарегистрированные в контейнере службы.
-
-### <a name="run"></a>Выполнить
-
-Метод <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run*> запускает приложение и блокирует вызывающий поток, пока работа узла не будет завершена.
-
-### <a name="runasync"></a>RunAsync
-
-Метод <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync*> запускает приложение и возвращает объект <xref:System.Threading.Tasks.Task>, который завершается при активации токена отмены или завершении работы.
-
-### <a name="runconsoleasync"></a>RunConsoleAsync
-
-Метод <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.RunConsoleAsync*> включает поддержку консоли, собирает и запускает узел и ожидает сигналы <kbd>CTRL</kbd>+<kbd>C</kbd>/SIGINT или SIGTERM для завершения работы.
-
-### <a name="start"></a>Начало
-
-Метод <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Start*> запускает узел синхронно.
-
-### <a name="startasync"></a>StartAsync
-
-Метод <xref:Microsoft.Extensions.Hosting.IHost.StartAsync*> запускает узел и возвращает объект <xref:System.Threading.Tasks.Task>, который завершается при активации токена отмены или завершении работы. 
-
-Метод <xref:Microsoft.Extensions.Hosting.IHostLifetime.WaitForStartAsync*> вызывается в начале `StartAsync`, который ждет, пока он не будет завершен, прежде чем продолжить. Можно отложить запуск до получения сигнала от внешнего события.
-
-### <a name="stopasync"></a>StopAsync
-
-Метод <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.StopAsync*> пытается остановить узел в течение указанного периода ожидания.
-
-### <a name="waitforshutdown"></a>WaitForShutdown
-
-<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> блокирует вызывающий поток до завершения работы, активированного IHostLifetime, например через <kbd>CTRL</kbd>+<kbd>C</kbd>/SIGINT или SIGTERM.
-
-### <a name="waitforshutdownasync"></a>WaitForShutdownAsync
-
-Метод <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdownAsync*> возвращает объект <xref:System.Threading.Tasks.Task>, который завершается после активации завершения работы через токен, и вызывает метод <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>.
-
-### <a name="external-control"></a>Внешнее управление
-
-Прямое управление временем существования узла может осуществляться с помощью методов, которые могут быть вызваны извне:
-
-```csharp
-public class Program
-{
-    private IHost _host;
-
-    public Program()
-    {
-        _host = new HostBuilder()
-            .Build();
-    }
-
-    public async Task StartAsync()
-    {
-        _host.StartAsync();
-    }
-
-    public async Task StopAsync()
-    {
-        using (_host)
-        {
-            await _host.StopAsync(TimeSpan.FromSeconds(5));
-        }
     }
 }
 ```

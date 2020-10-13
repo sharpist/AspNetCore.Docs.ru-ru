@@ -5,7 +5,7 @@ description: Узнайте, как настроить Blazor Server для сц
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/04/2020
+ms.date: 10/06/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,37 +18,190 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/additional-scenarios
-ms.openlocfilehash: 9b3698489300e45cf77c3d51611ff44e2f4e16a5
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: 89288f3fce2dbb6f2647693ba8aaf29500b5bb2b
+ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393669"
+ms.lasthandoff: 10/07/2020
+ms.locfileid: "91805496"
 ---
 # <a name="aspnet-core-no-locblazor-server-additional-security-scenarios"></a>Сценарии обеспечения дополнительной безопасности Blazor Server для ASP.NET Core
 
 Автор: [Javier Calvarro Nelson](https://github.com/javiercn) (Хавьер Кальварро Нельсон)
 
-## <a name="pass-tokens-to-a-no-locblazor-server-app"></a>Передача маркеров в приложение Blazor Server
+::: moniker range=">= aspnetcore-5.0"
 
-Маркеры, доступные за пределами компонентов Razor в приложении Blazor Server, можно передавать в компоненты с помощью подхода, описанного в этой статье. Пример кода, в том числе полный пример `Startup.ConfigureServices`, см. в разделе [Передача маркеров в серверные приложения Blazor](https://github.com/javiercn/blazor-server-aad-sample).
+<h2 id="pass-tokens-to-a-blazor-server-app">Передача маркеров в приложение Blazor Server</h2>
+
+Маркеры, доступные за пределами компонентов Razor в приложении Blazor Server, можно передавать в компоненты с помощью подхода, описанного в этой статье.
 
 Проверка подлинности приложения Blazor Server выполняется так же, как и для обычного приложения Razor Pages или MVC. Подготовьте и сохраните маркеры в файле cookie проверки подлинности. Пример:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 ...
 
 services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
 {
-    options.ResponseType = "code";
+    options.ResponseType = OpenIdConnectResponseType.Code;
     options.SaveTokens = true;
 
     options.Scope.Add("offline_access");
-    options.Scope.Add("{SCOPE}");
-    options.Resource = "{RESOURCE}";
 });
+```
+
+При необходимости дополнительные области добавляются с помощью `options.Scope.Add("{SCOPE}");`, где заполнитель `{SCOPE}` — это добавляемая дополнительная область.
+
+Определите службу поставщика маркеров **с областью**, которую можно использовать в приложении Blazor для разрешения маркеров из [внедрения зависимостей (DI)](xref:blazor/fundamentals/dependency-injection).
+
+```csharp
+public class TokenProvider
+{
+    public string AccessToken { get; set; }
+    public string RefreshToken { get; set; }
+}
+```
+
+В `Startup.ConfigureServices` добавьте службы для следующего:
+
+* `IHttpClientFactory`
+* `TokenProvider`
+
+```csharp
+services.AddHttpClient();
+services.AddScoped<TokenProvider>();
+```
+
+Определите класс для передачи исходного состояния приложения с маркерами доступа и обновления:
+
+```csharp
+public class InitialApplicationState
+{
+    public string AccessToken { get; set; }
+    public string RefreshToken { get; set; }
+}
+```
+
+В файле `_Host.cshtml` создайте экземпляр `InitialApplicationState` и передайте его в качестве параметра в приложение:
+
+```cshtml
+@using Microsoft.AspNetCore.Authentication
+
+...
+
+@{
+    var tokens = new InitialApplicationState
+    {
+        AccessToken = await HttpContext.GetTokenAsync("access_token"),
+        RefreshToken = await HttpContext.GetTokenAsync("refresh_token")
+    };
+}
+
+<component type="typeof(App)" param-InitialState="tokens" 
+    render-mode="ServerPrerendered" />
+```
+
+В компоненте `App` (`App.razor`) разрешите службу и инициализируйте ее с помощью данных из параметра:
+
+```razor
+@inject TokenProvider TokenProvider
+
+...
+
+@code {
+    [Parameter]
+    public InitialApplicationState InitialState { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        TokenProvider.AccessToken = InitialState.AccessToken;
+        TokenProvider.RefreshToken = InitialState.RefreshToken;
+
+        return base.OnInitializedAsync();
+    }
+}
+```
+
+Добавьте в приложение ссылку на пакет NuGet [`Microsoft.AspNet.WebApi.Client`](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client).
+
+В службе, которая выполняет запрос безопасного API, внедрите поставщик токена и получите токен для запроса API.
+
+```csharp
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+public class WeatherForecastService
+{
+    private readonly HttpClient client;
+    private readonly TokenProvider tokenProvider;
+
+    public WeatherForecastService(IHttpClientFactory clientFactory, 
+        TokenProvider tokenProvider)
+    {
+        client = clientFactory.CreateClient();
+        this.tokenProvider = tokenProvider;
+    }
+
+    public async Task<WeatherForecast[]> GetForecastAsync()
+    {
+        var token = tokenProvider.AccessToken;
+        var request = new HttpRequestMessage(HttpMethod.Get, 
+            "https://localhost:5003/WeatherForecast");
+        request.Headers.Add("Authorization", $"Bearer {token}");
+        var response = await client.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadAsAsync<WeatherForecast[]>();
+    }
+}
+```
+
+<h2 id="set-the-authentication-scheme">Настройка схемы проверки подлинности</h2>
+
+Для приложения, использующего более одного ПО промежуточного слоя для проверки подлинности и, таким образом, имеющего несколько схем проверки подлинности, схему, которую использует Blazor, можно явно задать в конфигурации конечной точки `Startup.Configure`. В следующем примере задается схема Azure Active Directory:
+
+```csharp
+endpoints.MapBlazorHub().RequireAuthorization(
+    new AuthorizeAttribute 
+    {
+        AuthenticationSchemes = AzureADDefaults.AuthenticationScheme
+    });
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+<h2 id="pass-tokens-to-a-blazor-server-app">Передача маркеров в приложение Blazor Server</h2>
+
+Маркеры, доступные за пределами компонентов Razor в приложении Blazor Server, можно передавать в компоненты с помощью подхода, описанного в этой статье.
+
+Проверка подлинности приложения Blazor Server выполняется так же, как и для обычного приложения Razor Pages или MVC. Подготовьте и сохраните маркеры в файле cookie проверки подлинности. Пример:
+
+```csharp
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+
+...
+
+services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
+{
+    options.ResponseType = OpenIdConnectResponseType.Code;
+    options.SaveTokens = true;
+
+    options.Scope.Add("offline_access");
+});
+```
+
+При необходимости дополнительные области добавляются с помощью `options.Scope.Add("{SCOPE}");`, где заполнитель `{SCOPE}` — это добавляемая дополнительная область.
+
+При необходимости можно указать ресурс с помощью `options.Resource = "{RESOURCE}";`, где заполнитель `{RESOURCE}` — это ресурс. Пример:
+
+```csharp
+options.Resource = "https://graph.microsoft.com";
 ```
 
 Определите класс для передачи исходного состояния приложения с маркерами доступа и обновления:
@@ -123,9 +276,9 @@ services.AddScoped<TokenProvider>();
 }
 ```
 
-Добавьте в приложение ссылку на пакет NuGet [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client).
+Добавьте в приложение ссылку на пакет NuGet [`Microsoft.AspNet.WebApi.Client`](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client).
 
-В службе, которая выполняет запрос безопасного API, вставьте поставщик маркера и получите маркер для вызова API:
+В службе, которая выполняет запрос безопасного API, внедрите поставщик токена и получите токен для запроса API.
 
 ```csharp
 using System;
@@ -134,24 +287,23 @@ using System.Threading.Tasks;
 
 public class WeatherForecastService
 {
-    private readonly TokenProvider store;
+    private readonly HttpClient client;
+    private readonly TokenProvider tokenProvider;
 
     public WeatherForecastService(IHttpClientFactory clientFactory, 
         TokenProvider tokenProvider)
     {
-        Client = clientFactory.CreateClient();
-        store = tokenProvider;
+        client = clientFactory.CreateClient();
+        this.tokenProvider = tokenProvider;
     }
 
-    public HttpClient Client { get; }
-
-    public async Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
+    public async Task<WeatherForecast[]> GetForecastAsync()
     {
-        var token = store.AccessToken;
+        var token = tokenProvider.AccessToken;
         var request = new HttpRequestMessage(HttpMethod.Get, 
             "https://localhost:5003/WeatherForecast");
         request.Headers.Add("Authorization", $"Bearer {token}");
-        var response = await Client.SendAsync(request);
+        var response = await client.SendAsync(request);
         response.EnsureSuccessStatusCode();
 
         return await response.Content.ReadAsAsync<WeatherForecast[]>();
@@ -159,7 +311,7 @@ public class WeatherForecastService
 }
 ```
 
-## <a name="set-the-authentication-scheme"></a>Настройка схемы проверки подлинности
+<h2 id="set-the-authentication-scheme">Настройка схемы проверки подлинности</h2>
 
 Для приложения, использующего более одного ПО промежуточного слоя для проверки подлинности и, таким образом, имеющего несколько схем проверки подлинности, схему, которую использует Blazor, можно явно задать в конфигурации конечной точки `Startup.Configure`. В следующем примере задается схема Azure Active Directory:
 
@@ -173,7 +325,7 @@ endpoints.MapBlazorHub().RequireAuthorization(
 
 ## <a name="use-openid-connect-oidc-v20-endpoints"></a>Использование конечных точек OpenID Connect (OIDC) версии 2.0
 
-В библиотеке проверки подлинности и шаблонах Blazor используются конечные точки OpenID Connect (OIDC) версии 1.0. Чтобы использовать конечную точку версии 2.0, настройте параметр <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> в <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:
+До версии ASP.NET Core 5.0 в библиотеке проверки подлинности и шаблонах Blazor используются конечные точки OpenID Connect (OIDC) версии 1.0. Чтобы использовать конечную точку версии 2.0 с версиями ASP.NET Core до 5.0, настройте параметр <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> в <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>.
 
 ```csharp
 services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, 
@@ -231,3 +383,5 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme,
 ```
 
 URI идентификатора приложения для использования находится в описании регистрации приложения поставщика OIDC.
+
+::: moniker-end
