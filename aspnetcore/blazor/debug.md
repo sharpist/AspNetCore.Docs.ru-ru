@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: d4fd0d501ff14e37bb55b78bb6493ad43f9e5a87
-ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
+ms.openlocfilehash: b8dd272d673e84b45a39272531385ebfd1d06175
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91805574"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900990"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Отладка в ASP.NET Core Blazor WebAssembly
 
@@ -93,7 +93,7 @@ ms.locfileid: "91805574"
    > [!NOTE]
    > **Запуск без отладки** (<kbd>CTRL</kbd>+<kbd>F5</kbd>) не поддерживается. При запуске приложения в конфигурации отладки затраты на отладку всегда приводят к небольшому снижению производительности.
 
-1. В *клиентском* приложении установите точку останова в строке `currentCount++;` в `Pages/Counter.razor`.
+1. В `*Client*` приложении установите точку останова в строке `currentCount++;` в `Pages/Counter.razor`.
 1. В браузере перейдите на страницу `Counter` и нажмите кнопку **Click me**, чтобы попасть в точку останова.
 1. В Visual Studio просмотрите значение поля `currentCount` в окне **Локальные переменные**.
 1. Нажмите клавишу <kbd>F5</kbd>, чтобы продолжить выполнение.
@@ -180,7 +180,7 @@ ms.locfileid: "91805574"
 
 1. Автономное приложение запустится и откроется браузер отладки.
 
-1. В *клиентском* приложении установите точку останова в строке `currentCount++;` в `Pages/Counter.razor`.
+1. В `*Client*` приложении установите точку останова в строке `currentCount++;` в `Pages/Counter.razor`.
 
 1. В браузере перейдите на страницу `Counter` и нажмите кнопку **Click me**, чтобы попасть в точку останова.
 
@@ -285,7 +285,7 @@ ms.locfileid: "91805574"
    > [!IMPORTANT]
    > Для сеанса отладки должен быть выбран браузер Google Chrome или Microsoft Edge.
 
-1. В *клиентском* приложении установите точку останова в строке `currentCount++;` в `Pages/Counter.razor`.
+1. В `*Client*` приложении установите точку останова в строке `currentCount++;` в `Pages/Counter.razor`.
 1. В браузере перейдите на страницу `Counter` и нажмите кнопку **Click me**, чтобы попасть в точку останова.
 1. В Visual Studio просмотрите значение поля `currentCount` в окне **Локальные переменные**.
 1. Нажмите <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd>, чтобы продолжить выполнение.
