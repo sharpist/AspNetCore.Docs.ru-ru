@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/azure-active-directory/index
-ms.openlocfilehash: b807681e00b196449c74dbe4240e9d6996af51fc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a71f81b4fca6d9a84ad98e0e8935748cfd358fa0
+ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633088"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92113781"
 ---
 # <a name="azure-active-directory-with-aspnet-core"></a>Azure Active Directory с ASP.NET Core
 
@@ -41,8 +41,6 @@ ms.locfileid: "88633088"
 
 * [Разрешите приложению ASP.NET Core реализовать вход пользователей в систему и вызывать веб-API с помощью Azure AD v2](/samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/enable-webapp-signin/): 
   * Смотрите [ролик на эту тему](https://channel9.msdn.com/Events/Build/2018/THR5001)
-
 * [Вызов веб-API ASP.NET Core 2.0 из приложения WPF с помощью Azure AD V2](/samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/calling-an-aspnet-core-web-api-from-a-wpf-application-using-azure-ad-v2/): 
   * Смотрите [ролик на эту тему](https://channel9.msdn.com/Events/Build/2018/THR5000)
-
-* [ASP.NET Core API с Azure AD B2C](https://azure.microsoft.com/resources/samples/active-directory-b2c-dotnetcore-webapi/)
+* [ASP.NET Core с Azure AD B2C](/samples/azure-samples/active-directory-b2c-dotnetcore-webapp/an-aspnet-core-web-app-with-azure-ad-b2c/)
