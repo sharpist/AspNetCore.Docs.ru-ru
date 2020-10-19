@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/index
-ms.openlocfilehash: 0111b7944bc95932937f0fd74524e3960c5fb681
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f8271d71f34487062484581ba6b3b8445a62439c
+ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634622"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92113795"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Размещение и развертывание ASP.NET Core
 
@@ -70,7 +70,7 @@ ms.locfileid: "88634622"
 
 ## <a name="use-visual-studio-and-msbuild-to-automate-deployments"></a>Использование Visual Studio и MSBuild для автоматизации развертывания
 
-Помимо копирования выходных данных из [dotnet publish](/dotnet/core/tools/dotnet-publish) на сервер в процессе развертывания часто требуется выполнение и других задач. Например, может потребоваться включить дополнительные файлы в папку *publish* или исключить их из нее. Visual Studio использует для веб-развертывания MSBuild и настраивает MSBuild для решения многих других задач в процессе развертывания. Дополнительные сведения см. в статье <xref:host-and-deploy/visual-studio-publish-profiles> (Профили публикации в Visual Studio) и книге [Using MSBuild and Team Foundation Build](http://msbuildbook.com/) (Использование MSBuild и сборки Team Foundation).
+Помимо копирования выходных данных из [dotnet publish](/dotnet/core/tools/dotnet-publish) на сервер в процессе развертывания часто требуется выполнение и других задач. Например, может потребоваться включить дополнительные файлы в папку *publish* или исключить их из нее. Visual Studio использует для веб-развертывания [MSBuild](/visualstudio/msbuild/msbuild) и настраивает MSBuild для решения многих других задач в процессе развертывания. Дополнительные сведения см. в статье <xref:host-and-deploy/visual-studio-publish-profiles> (Профили публикации в Visual Studio) и книге [Using MSBuild and Team Foundation Build](http://msbuildbook.com/) (Использование MSBuild и сборки Team Foundation).
 
 Развертывание приложений можно выполнять напрямую из Visual Studio в службу приложений Azure, используя [компонент веб-публикации](xref:tutorials/publish-to-azure-webapp-using-vs) или [встроенную поддержку Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment). Azure DevOps Services поддерживает [непрерывное развертывание в Службе приложений Azure](/azure/devops/pipelines/targets/webapp). Дополнительные сведения см. в разделе [Сборка DevOps с использованием ASP.NET Core и Azure](xref:azure/devops/index).
 
