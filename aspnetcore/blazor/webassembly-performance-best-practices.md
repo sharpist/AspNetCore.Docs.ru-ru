@@ -2,10 +2,10 @@
 title: Рекомендации по повышению производительности ASP.NET Core Blazor WebAssembly
 author: pranavkm
 description: Советы по повышению производительности приложений ASP.NET Core Blazor WebAssembly и избежанию распространенных проблем с производительностью.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/09/2020
+ms.date: 10/09/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,24 +18,48 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: d1ad646f82e5c9ba611a60fc9be8378bedef8dee
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: ea3f197e5bab82f4fb40238fe31cd5ce29ab62ad
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90721727"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900977"
 ---
-# <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a><span data-ttu-id="ed218-103">Рекомендации по повышению производительности ASP.NET Core Blazor WebAssembly</span><span class="sxs-lookup"><span data-stu-id="ed218-103">ASP.NET Core Blazor WebAssembly performance best practices</span></span>
+# <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a><span data-ttu-id="3e0ce-103">Рекомендации по повышению производительности ASP.NET Core Blazor WebAssembly</span><span class="sxs-lookup"><span data-stu-id="3e0ce-103">ASP.NET Core Blazor WebAssembly performance best practices</span></span>
 
-<span data-ttu-id="ed218-104">Автор: [Пранав Кришнамурти](https://github.com/pranavkm) (Pranav Krishnamoorthy)</span><span class="sxs-lookup"><span data-stu-id="ed218-104">By [Pranav Krishnamoorthy](https://github.com/pranavkm)</span></span>
+<span data-ttu-id="3e0ce-104">Авторы: [Пранав Кришнамурти](https://github.com/pranavkm) (Pranav Krishnamoorthy) и [Стив Сандерсон](https://github.com/SteveSandersonMS) (Steve Sanderson)</span><span class="sxs-lookup"><span data-stu-id="3e0ce-104">By [Pranav Krishnamoorthy](https://github.com/pranavkm) and [Steve Sanderson](https://github.com/SteveSandersonMS)</span></span>
 
-<span data-ttu-id="ed218-105">В этой статье приводятся рекомендации по обеспечению высокой производительности ASP.NET Core Blazor WebAssembly.</span><span class="sxs-lookup"><span data-stu-id="ed218-105">This article provides guidelines for ASP.NET Core Blazor WebAssembly performance best practices.</span></span>
+<span data-ttu-id="3e0ce-105">Среда Blazor WebAssembly тщательно спроектирована и оптимизирована для обеспечения высокой производительности в наиболее часто применимых сценариях пользовательского интерфейса в приложениях.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-105">Blazor WebAssembly is carefully designed and optimized to enable high performance in most realistic application UI scenarios.</span></span> <span data-ttu-id="3e0ce-106">Но качество результатов зависит еще и от того, насколько правильно разработчики используют шаблоны и функции.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-106">However, producing the best results depends on developers using the right patterns and features.</span></span> <span data-ttu-id="3e0ce-107">Давайте рассмотрим следующие аспекты.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-107">Consider the following aspects:</span></span>
 
-## <a name="avoid-unnecessary-component-renders"></a><span data-ttu-id="ed218-106">Устранение лишних отрисовок компонентов</span><span class="sxs-lookup"><span data-stu-id="ed218-106">Avoid unnecessary component renders</span></span>
+* <span data-ttu-id="3e0ce-108">**Пропускная способность среды выполнения.** Код .NET выполняется в интерпретаторе в среде выполнения WebAssembly, что ограничивает пропускную способность ЦП.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-108">**Runtime throughput**: The .NET code runs on an interpreter within the WebAssembly runtime, so CPU throughput is limited.</span></span> <span data-ttu-id="3e0ce-109">Для ресурсоемких сценариев стоит применить в приложении [оптимизацию скорости отрисовки](#optimize-rendering-speed).</span><span class="sxs-lookup"><span data-stu-id="3e0ce-109">In demanding scenarios, the app benefits from [optimizing rendering speed](#optimize-rendering-speed).</span></span>
+* <span data-ttu-id="3e0ce-110">**Время запуска.** Приложение передает среду выполнения .NET в браузер, поэтому важно использовать функции, которые позволяют [уменьшить размер скачиваемого приложения](#minimize-app-download-size).</span><span class="sxs-lookup"><span data-stu-id="3e0ce-110">**Startup time**: The app transfers a .NET runtime to the browser, so it's important to use features that [minimize the application download size](#minimize-app-download-size).</span></span>
 
-<span data-ttu-id="ed218-107">Алгоритм сравнения Blazor позволяет избежать повторной отрисовки компонентов, которые не изменялись.</span><span class="sxs-lookup"><span data-stu-id="ed218-107">Blazor's diffing algorithm avoids rerendering a component when the algorithm perceives that the component hasn't changed.</span></span> <span data-ttu-id="ed218-108">Переопределите <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A?displayProperty=nameWithType> для точного управления отрисовкой компонентов.</span><span class="sxs-lookup"><span data-stu-id="ed218-108">Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A?displayProperty=nameWithType> for fine-grained control over component rendering.</span></span>
+## <a name="optimize-rendering-speed"></a><span data-ttu-id="3e0ce-111">Оптимизация скорости отрисовки</span><span class="sxs-lookup"><span data-stu-id="3e0ce-111">Optimize rendering speed</span></span>
 
-<span data-ttu-id="ed218-109">При создании компонента, который используется только в пользовательском интерфейсе и не изменяется после первоначальной отрисовки, настройте метод <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> так, чтобы он возвращал значение `false`:</span><span class="sxs-lookup"><span data-stu-id="ed218-109">If authoring a UI-only component that never changes after the initial render, configure <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to return `false`:</span></span>
+<span data-ttu-id="3e0ce-112">В следующих разделах собраны рекомендации по уменьшению рабочей нагрузки для отрисовки и повышению скорости реагирования пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-112">The following sections provide recommendations to minimize rendering workload and improve UI responsiveness.</span></span> <span data-ttu-id="3e0ce-113">Применение этих советов часто позволяет ускорить отрисовку пользовательского интерфейса *в десять и более раз*.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-113">Following this advice could easily make a *ten-fold or higher improvement* in UI rendering speeds.</span></span>
+
+### <a name="avoid-unnecessary-rendering-of-component-subtrees"></a><span data-ttu-id="3e0ce-114">Избегайте ненужной отрисовки поддеревьев компонентов</span><span class="sxs-lookup"><span data-stu-id="3e0ce-114">Avoid unnecessary rendering of component subtrees</span></span>
+
+<span data-ttu-id="3e0ce-115">В среде выполнения все компоненты занимают определенное место в иерархии.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-115">At runtime, components exist as a hierarchy.</span></span> <span data-ttu-id="3e0ce-116">Корневой компонент содержит дочерние компоненты.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-116">A root component has child components.</span></span> <span data-ttu-id="3e0ce-117">Каждый из этих дочерних элементов может содержать собственные дочерние компоненты, и так далее.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-117">In turn, the root's children have their own child components, and so on.</span></span> <span data-ttu-id="3e0ce-118">При возникновении события, например при нажатии кнопки, Blazor выбирает компоненты для визуализации по следующему алгоритму:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-118">When an event occurs, such as a user selecting a button, this is how Blazor decides which components to rerender:</span></span>
+
+ 1. <span data-ttu-id="3e0ce-119">Возникшее событие отправляется в тот компонент, который создал обработчик такого события.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-119">The event itself is dispatched to whichever component rendered the event's handler.</span></span> <span data-ttu-id="3e0ce-120">После выполнения обработчика событий соответствующий компонент повторно отрисовывается.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-120">After executing the event handler, that component is rerendered.</span></span>
+ 1. <span data-ttu-id="3e0ce-121">При каждой повторной отрисовке компонент предоставляет новую копию значений параметров каждому из своих дочерних компонентов.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-121">Whenever any component is rerendered, it supplies a new copy of the parameter values to each of its child components.</span></span>
+ 1. <span data-ttu-id="3e0ce-122">Получив новый набор значений параметров, каждый компонент самостоятельно решает, нужно ли выполнять повторную отрисовку.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-122">When receiving a new set of parameter values, each component chooses whether to rerender.</span></span> <span data-ttu-id="3e0ce-123">По умолчанию это происходит в том случае, если значения параметров могли измениться (например, если они являются изменяемыми объектами).</span><span class="sxs-lookup"><span data-stu-id="3e0ce-123">By default, components rerender if the parameter values may have changed (for example, if they are mutable objects).</span></span>
+
+<span data-ttu-id="3e0ce-124">И далее два последних шага рекурсивно повторяются для всех компонентов вниз по иерархии.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-124">The last two steps of this sequence continue recursively down the component hierarchy.</span></span> <span data-ttu-id="3e0ce-125">Во многих случаях это приводит к перерисовке всего дерева.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-125">In many cases, the entire subtree is rerendered.</span></span> <span data-ttu-id="3e0ce-126">Это означает, что события для компонентов высокого уровня могут приводить к высоким затратам на перерисовку всех компонентов вниз по иерархии, начиная с целевого.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-126">This means that events targeting high-level components can cause expensive rerendering processes because everything below that point must be rerendered.</span></span>
+
+<span data-ttu-id="3e0ce-127">Прервать такой процесс и избежать рекурсивной перерисовки всех компонентов в поддереве можно одним из следующих способов:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-127">If you want to interrupt this process and prevent rendering recursion into a particular subtree, then you can either:</span></span>
+
+ * <span data-ttu-id="3e0ce-128">Присвойте всем параметрам каждого компонента примитивные неизменяемые типы (`string`, `int`, `bool`, `DateTime` и т. п.).</span><span class="sxs-lookup"><span data-stu-id="3e0ce-128">Ensure that all parameters to a certain component are of primitive immutable types (for example, `string`, `int`, `bool`, `DateTime`, and others).</span></span> <span data-ttu-id="3e0ce-129">В этом случае встроенная логика отслеживания изменений будет пропускать перерисовку, когда значения параметров не изменились явным образом.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-129">The built-in logic for detecting changes automatically skips rerendering if none of these parameter values have changed.</span></span> <span data-ttu-id="3e0ce-130">Если для отрисовки дочернего компонента используется `<Customer CustomerId="@item.CustomerId" />`, где значение `CustomerId` имеет тип `int`, то он будет перерисовываться только при изменении `item.CustomerId`.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-130">If you render a child component with `<Customer CustomerId="@item.CustomerId" />`, where `CustomerId` is an `int` value, then it isn't rerendered except when `item.CustomerId` changes.</span></span>
+ * <span data-ttu-id="3e0ce-131">Если вы не можете обойтись только примитивными значениями параметров (например, вам нужны пользовательские типы моделей, обратные вызовы событий или значения <xref:Microsoft.AspNetCore.Components.RenderFragment>), можно переопределить <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> для принятия собственного решения об отрисовке при изменениях, как описано в разделе об [использовании `ShouldRender`](#use-of-shouldrender).</span><span class="sxs-lookup"><span data-stu-id="3e0ce-131">If you need to accept nonprimitive parameter values, such as custom model types, event callbacks, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values, then you can override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to control the decision about whether to render, which is described in the [Use of `ShouldRender`](#use-of-shouldrender) section.</span></span>
+
+<span data-ttu-id="3e0ce-132">Пропуская перерисовку целых поддеревьев, вы сможете устранить почти все затраты на отрисовку при возникновении событий.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-132">By skipping rerendering of whole subtrees, you may be able to remove the vast majority of the rendering cost when an event occurs.</span></span>
+
+<span data-ttu-id="3e0ce-133">Возможно, вы захотите исключить конкретные дочерние компоненты, чтобы пропустить перерисовку соответствующей ветви пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-133">You may wish to factor out child components specifically so that you can skip rerendering that part of the UI.</span></span> <span data-ttu-id="3e0ce-134">Это допустимый способ снижения затрат на отрисовку родительского компонента.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-134">This is a valid way to reduce the rendering cost of a parent component.</span></span>
+
+#### <a name="use-of-shouldrender"></a><span data-ttu-id="3e0ce-135">Использование `ShouldRender`</span><span class="sxs-lookup"><span data-stu-id="3e0ce-135">Use of `ShouldRender`</span></span>
+
+<span data-ttu-id="3e0ce-136">При создании компонента, который используется только в пользовательском интерфейсе и не изменяется после первоначальной отрисовки (независимо от значений параметров), настройте метод <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> так, чтобы он возвращал значение `false`:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-136">If authoring a UI-only component that never changes after the initial render (regardless of any parameter values), configure <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to return `false`:</span></span>
 
 ```razor
 @code {
@@ -43,114 +67,512 @@ ms.locfileid: "90721727"
 }
 ```
 
-<span data-ttu-id="ed218-110">Большинству приложений не требуется детализированный контроль, но метод <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> можно использовать для выборочной отрисовки компонентов, отвечающих на события пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="ed218-110">Most apps don't require fine-grained control, but <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> can be used to selectively render a component responding to a UI event.</span></span> <span data-ttu-id="ed218-111">Метод <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> также может потребоваться в сценариях с отрисовкой большого числа компонентов.</span><span class="sxs-lookup"><span data-stu-id="ed218-111">Using <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> might also be important in scenarios where a large number of components are rendered.</span></span> <span data-ttu-id="ed218-112">Например, рассмотрим сетку, в которой использование <xref:Microsoft.AspNetCore.Components.EventCallback> в одном компоненте одной ячейки сетки вызывает метод <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> для всей сетки.</span><span class="sxs-lookup"><span data-stu-id="ed218-112">Consider a grid, where use of <xref:Microsoft.AspNetCore.Components.EventCallback> in one component in one cell of the grid calls <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on the grid.</span></span> <span data-ttu-id="ed218-113">При вызове <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> повторно отрисовываются все дочерние компоненты.</span><span class="sxs-lookup"><span data-stu-id="ed218-113">Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> causes a re-render of every child component.</span></span> <span data-ttu-id="ed218-114">Если нужно повторно отрисовать только несколько ячеек, используйте <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, чтобы не снижать производительность из-за ненужных операций.</span><span class="sxs-lookup"><span data-stu-id="ed218-114">If only a small number of cells require rerendering, use <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to avoid the performance penalty of unnecessary renders.</span></span>
-
-<span data-ttu-id="ed218-115">В следующем примере:</span><span class="sxs-lookup"><span data-stu-id="ed218-115">In the following example:</span></span>
-
-* <span data-ttu-id="ed218-116">Метод <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> переопределяется, и ему присваивается значение поля <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, которое при загрузке компонента изначально имеет значение `false`.</span><span class="sxs-lookup"><span data-stu-id="ed218-116"><xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is overridden and set to the value of the <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> field, which is initially `false` when the component loads.</span></span>
-* <span data-ttu-id="ed218-117">При нажатии кнопки методу <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> присваивается значение `true`, что приводит к повторной отрисовке компонента с обновленным `currentCount`.</span><span class="sxs-lookup"><span data-stu-id="ed218-117">When the button is selected, <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is set to `true`, which forces the component to rerender with the updated `currentCount`.</span></span>
-* <span data-ttu-id="ed218-118">Сразу после повторной отрисовки <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> снова устанавливает для <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> значение `false`, чтобы предотвратить дальнейшую повторную отрисовку до тех пор, пока кнопка не будет нажата еще раз.</span><span class="sxs-lookup"><span data-stu-id="ed218-118">Immediately after rerendering, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> sets the value of <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> back to `false` to prevent further rerendering until the next time the button is selected.</span></span>
+<span data-ttu-id="3e0ce-137">Если перерисовка компонента требуется только при некоторых изменениях значений его параметров, вы можете использовать скрытые поля для отслеживания важной информации с целью обнаружения изменений.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-137">If the component only requires rerendering when its parameter values mutate in particular ways, then you can use private fields to track the necessary information to detect changes.</span></span> <span data-ttu-id="3e0ce-138">В следующем примере значение `shouldRender` вычисляется по наличию таких изменений или преобразований, которые требуют перерисовки.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-138">In the following example, `shouldRender` is based on checking for any kind of change or mutation that should prompt a rerender.</span></span> <span data-ttu-id="3e0ce-139">`prevOutboundFlightId` и `prevInboundFlightId` отслеживают сведения, которые определяют необходимость следующего обновления.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-139">`prevOutboundFlightId` and `prevInboundFlightId` track information for the next potential update:</span></span>
 
 ```razor
-<p>Current count: @currentCount</p>
-
-<button @onclick="IncrementCount">Click me</button>
-
 @code {
-    private int currentCount = 0;
+    [Parameter]
+    public FlightInfo OutboundFlight { get; set; }
+    
+    [Parameter]
+    public FlightInfo InboundFlight { get; set; }
+
+    private int prevOutboundFlightId;
+    private int prevInboundFlightId;
     private bool shouldRender;
 
-    protected override bool ShouldRender() => shouldRender;
-
-    protected override void OnAfterRender(bool first)
+    protected override void OnParametersSet()
     {
-        shouldRender = false;
+        shouldRender = OutboundFlight.FlightId != prevOutboundFlightId
+            || InboundFlight.FlightId != prevInboundFlightId;
+
+        prevOutboundFlightId = OutboundFlight.FlightId;
+        prevInboundFlightId = InboundFlight.FlightId;
     }
 
-    private void IncrementCount()
+    protected override void ShouldRender() => shouldRender;
+
+    // Note that 
+}
+```
+
+<span data-ttu-id="3e0ce-140">В приведенном выше коде обработчик событий может установить для `shouldRender` значение `true`, чтобы выполнить перерисовку компонента после обработки события.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-140">In the preceding code, an event handler may also set `shouldRender` to `true` so that the component is rerendered after the event.</span></span>
+
+<span data-ttu-id="3e0ce-141">Для большинства компонентов такой уровень управления вручную не требуется.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-141">For most components, this level of manual control isn't necessary.</span></span> <span data-ttu-id="3e0ce-142">Достаточно лишь обеспечить пропуск отрисовки для тех поддеревьев, отрисовка которых особенно трудоемка и может приводить к задержкам в пользовательском интерфейсе.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-142">You should only be concerned about skipping rendering subtrees if those subtrees are particularly expensive to render and are causing UI lag.</span></span>
+
+<span data-ttu-id="3e0ce-143">Для получения дополнительной информации см. <xref:blazor/components/lifecycle>.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-143">For more information, see <xref:blazor/components/lifecycle>.</span></span>
+
+::: moniker range=">= aspnetcore-5.0"
+
+### <a name="virtualization"></a><span data-ttu-id="3e0ce-144">Виртуализация</span><span class="sxs-lookup"><span data-stu-id="3e0ce-144">Virtualization</span></span>
+
+<span data-ttu-id="3e0ce-145">Если в некотором цикле выполняется отрисовка значительной части пользовательского интерфейса, например списка или сетки с тысячами записей, само по себе количество операций может приводить к задержке в отрисовке пользовательского интерфейса и ухудшению взаимодействия с пользователем.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-145">When rendering large amounts of UI within a loop, for example a list or grid with thousands of entries, the sheer quantity of rendering operations can lead to a lag in UI rendering and thus a poor user experience.</span></span> <span data-ttu-id="3e0ce-146">Учитывая, что пользователь одновременно без прокрутки видит лишь небольшое количество таких элементов, зачастую излишне тратить время на отрисовку тех элементов, которые пока не видны.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-146">Given that the user can only see a small number of elements at once without scrolling, it seems wasteful to spend so much time rendering elements that aren't currently visible.</span></span>
+
+<span data-ttu-id="3e0ce-147">Чтобы решить эту проблему, в Blazor предоставляется встроенный [компонент `<Virtualize>`](xref:blazor/components/virtualization), который эмулирует поведение отображения и прокрутки для произвольно большого списка, фактически отображая только те из них, которые попадают в текущее окно просмотра с учетом прокрутки.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-147">To address this, Blazor provides a built-in [`<Virtualize>` component](xref:blazor/components/virtualization) that creates the appearance and scroll behaviors of an arbitrarily-large list but actually only renders the list items that are within the current scroll viewport.</span></span> <span data-ttu-id="3e0ce-148">Например, вы сможете создать в приложении список со 100 000 записей, тратя ресурсы отрисовки только на те 20 элементов, которые видимы в конкретный момент времени.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-148">For example, this means that the app can have a list with 100,000 entries but only pay the rendering cost of 20 items that are visible at any one time.</span></span> <span data-ttu-id="3e0ce-149">Использование компонента `<Virtualize>` позволяет повысить производительность пользовательского интерфейса в несколько раз.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-149">Use of the `<Virtualize>` component can scale up UI performance by orders of magnitude.</span></span>
+
+<span data-ttu-id="3e0ce-150">Можно использовать `<Virtualize>` в следующих сценариях:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-150">`<Virtualize>` can be used when:</span></span>
+
+ * <span data-ttu-id="3e0ce-151">при отрисовке набора элементов данных в цикле;</span><span class="sxs-lookup"><span data-stu-id="3e0ce-151">Rendering a set of data items in a loop.</span></span>
+ * <span data-ttu-id="3e0ce-152">если большинство элементов не видны из-за настроек прокрутки;</span><span class="sxs-lookup"><span data-stu-id="3e0ce-152">Most of the items aren't visible due to scrolling.</span></span>
+ * <span data-ttu-id="3e0ce-153">если все отображаемые элементы имеют одинаковый размер.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-153">The rendered items are exactly the same size.</span></span> <span data-ttu-id="3e0ce-154">Когда пользователь прокручивает список до произвольной точки, этот компонент вычисляет все видимые элементы, чтобы отобразить их.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-154">When the user scrolls to an arbitrary point, the component can calculate the visible items to show.</span></span>
+
+<span data-ttu-id="3e0ce-155">Ниже приведен пример невиртуализованного списка.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-155">The following shows an example of a non-virtualized list:</span></span>
+
+```razor
+<div class="all-flights" style="height:500px;overflow-y:scroll">
+    @foreach (var flight in allFlights)
     {
-        currentCount++;
-        shouldRender = true;
+        <FlightSummary @key="flight.FlightId" Flight="@flight" />
+    }
+</div>
+```
+
+<span data-ttu-id="3e0ce-156">Если коллекция `allFlights` содержит 10 000 элементов, он создает 10 000 экземпляров компонентов `<FlightSummary>` и отрисовывает их.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-156">If the `allFlights` collection holds 10,000 items, it instantiates and renders 10,000 `<FlightSummary>` component instances.</span></span> <span data-ttu-id="3e0ce-157">А вот аналогичный пример с виртуализованным списком.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-157">In comparison, the following shows an example of a virtualized list:</span></span>
+
+```razor
+<div class="all-flights" style="height:500px;overflow-y:scroll">
+    <Virtualize Items="@allFlights" Context="flight">
+        <FlightSummary @key="flight.FlightId" Flight="@flight" />
+    </Virtualize>
+</div>
+```
+
+<span data-ttu-id="3e0ce-158">В результате пользовательский интерфейс выглядит для пользователя точно так же, но по сути этот компонент создает и отрисовывает лишь то количество экземпляров `<FlightSummary>`, которое требуется для заполнения прокручиваемой области.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-158">Even though the resulting UI looks the same to a user, behind the scenes the component only instantiates and renders as many `<FlightSummary>` instances as are required to fill the scrollable region.</span></span> <span data-ttu-id="3e0ce-159">Набор отображаемых экземпляров `<FlightSummary>` повторно вычисляется и отрисовывается заново, когда пользователь выполняет прокрутку.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-159">The set of `<FlightSummary>` instances displayed is recalculated and rendered as the user scrolls.</span></span>
+
+<span data-ttu-id="3e0ce-160">`<Virtualize>` имеет и другие преимущества.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-160">`<Virtualize>` has other benefits, too.</span></span> <span data-ttu-id="3e0ce-161">Например, когда компонент запрашивает данные из внешнего API, `<Virtualize>` позволяет выбрать только срез записей, соответствующих текущей видимой области, не скачивая все данные из коллекции.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-161">For example when a component requests data from an external API, `<Virtualize>` permits the component to only fetch the slice of records that correspond to the current visible region, instead of downloading all the data from the collection.</span></span>
+
+<span data-ttu-id="3e0ce-162">Для получения дополнительной информации см. <xref:blazor/components/virtualization>.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-162">For more information, see <xref:blazor/components/virtualization>.</span></span>
+
+::: moniker-end
+
+### <a name="create-lightweight-optimized-components"></a><span data-ttu-id="3e0ce-163">Создание простых и оптимизированных компонентов</span><span class="sxs-lookup"><span data-stu-id="3e0ce-163">Create lightweight, optimized components</span></span>
+
+<span data-ttu-id="3e0ce-164">Для большинства компонентов Blazor не требуются агрессивные действия по оптимизации.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-164">Most Blazor components don't require aggressive optimization efforts.</span></span> <span data-ttu-id="3e0ce-165">Это связано с тем, что большинство компонентов присутствуют в пользовательском интерфейсе в малом количестве копий и не отрисовываются с высокой частотой.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-165">This is because most components don't often repeat in the UI and don't rerender at high frequency.</span></span> <span data-ttu-id="3e0ce-166">Например, компоненты `@page` и компоненты, представляющие высокоуровневые элементы пользовательского интерфейса (диалоговые окна, формы и т. п.), обычно отображаются только в одно экземпляре и отрисовываются только в ответ на жест пользователя.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-166">For example, `@page` components and components representing high-level UI pieces such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture.</span></span> <span data-ttu-id="3e0ce-167">Такие компоненты не создают высокой нагрузки на подсистему отрисовки, что позволяет свободно использовать любые сочетания функций платформы, не беспокоясь о производительности при отрисовке.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-167">These components don't create a high rendering workload, so you can freely use any combination of framework features you want without worrying much about rendering performance.</span></span>
+
+<span data-ttu-id="3e0ce-168">Но есть и другие, не менее распространенные сценарии, в которых компоненты создаются в большом количестве экземпляров.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-168">However, there are also common scenarios where you build components that need to be repeated at scale.</span></span> <span data-ttu-id="3e0ce-169">Пример:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-169">For example:</span></span>
+
+ * <span data-ttu-id="3e0ce-170">Большие вложенные формы могут иметь сотни полей для ввода, меток и других элементов.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-170">Large nested forms may have hundreds of individual inputs, labels, and other elements.</span></span>
+ * <span data-ttu-id="3e0ce-171">Сетки могут содержать тысячи ячеек.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-171">Grids may have thousands of cells.</span></span>
+ * <span data-ttu-id="3e0ce-172">Точечные диаграммы могут содержать миллионы точек данных.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-172">Scatter plots may have millions of data points.</span></span>
+
+<span data-ttu-id="3e0ce-173">Если каждая такая единица будет существовать в виде отдельного экземпляра компонента, их количество приведет к критической нагрузке на производительность отрисовки.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-173">If modelling each unit as separate component instances, there will be so many of them that their rendering performance does become critical.</span></span> <span data-ttu-id="3e0ce-174">В этом разделе собраны рекомендации по упрощению систем с такими компонентами, которые позволят сохранить скорость работы и реагирования пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-174">This section provides advice on making such components lightweight so that the UI remains fast and responsive.</span></span>
+
+#### <a name="avoid-thousands-of-component-instances"></a><span data-ttu-id="3e0ce-175">Не создавайте тысячи экземпляров компонентов</span><span class="sxs-lookup"><span data-stu-id="3e0ce-175">Avoid thousands of component instances</span></span>
+
+<span data-ttu-id="3e0ce-176">Каждый компонент является обособленным объектом, который можно отрисовывать отдельно, независимо от его родительских и дочерних элементов.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-176">Each component is a separate island that can render independently of its parents and children.</span></span> <span data-ttu-id="3e0ce-177">Правильный выбор способа для структурирования пользовательского интерфейса в иерархии компонентов позволяет контролировать степень детализации для отрисовки пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-177">By choosing how to split up the UI into a hierarchy of components, you are taking control over the granularity of UI rendering.</span></span> <span data-ttu-id="3e0ce-178">Это может по-разному влиять на производительность.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-178">This can be either good or bad for performance.</span></span>
+
+ * <span data-ttu-id="3e0ce-179">Разделяя пользовательский интерфейс на большое число компонентов, вы уменьшаете объем перерисовки при возникновении событий пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-179">By splitting the UI into more components, you can have smaller portions of the UI rerender when events occur.</span></span> <span data-ttu-id="3e0ce-180">Например, когда пользователь нажимает кнопку в строке таблицы, можно вместо всей страницы или таблицы повторно отрисовать только одну строку.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-180">For example when a user clicks a button in a table row, you may be able to have only that single row rerender instead of the whole page or table.</span></span>
+ * <span data-ttu-id="3e0ce-181">Но каждый дополнительный компонент требует дополнительный объем памяти и времени ЦП для поддержки индивидуального состояния и жизненного цикла визуализации.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-181">However, each extra component involves some extra memory and CPU overhead to deal with its independent state and rendering lifecycle.</span></span>
+
+<span data-ttu-id="3e0ce-182">При настройке производительности Blazor WebAssembly в .NET 5 мы пришли к выводу, что на отрисовку каждого экземпляра компонента требуется около 0,06 мс.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-182">When tuning the performance of Blazor WebAssembly on .NET 5, we measured a rendering overhead of around 0.06 ms per component instance.</span></span> <span data-ttu-id="3e0ce-183">Расчеты проводились для простого компонента, который принимает три параметра, при выполнении на типичном ноутбуке.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-183">This is based on a simple component that accepts three parameters running on a typical laptop.</span></span> <span data-ttu-id="3e0ce-184">На внутреннем уровне издержки связаны в первую очередь с извлечением из словарей состояния для каждого компонента, а также с передачей и получением параметров.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-184">Internally, the overhead is largely due to retrieving per-component state from dictionaries and passing and receiving parameters.</span></span> <span data-ttu-id="3e0ce-185">Умножая это значение на число компонентов, легко заметить, что 2000 экземпляров компонентов увеличат время отрисовки на 0,12 секунд, что для пользователя означает уже заметное замедление пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-185">By multiplication, you can see that adding 2,000 extra component instances would add 0.12 seconds to the rendering time and the UI would begin feeling slow to users.</span></span>
+
+<span data-ttu-id="3e0ce-186">Вы можете сделать компоненты более простыми, чтобы поддерживать большее их число, но часто лучшим подходом будет уменьшение количества компонентов.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-186">It's possible to make components more lightweight so that you can have more of them, but often the more powerful technique is not to have so many components.</span></span> <span data-ttu-id="3e0ce-187">В следующих разделах мы опишем оба подхода.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-187">The following sections describe two approaches.</span></span>
+
+##### <a name="inline-child-components-into-their-parents"></a><span data-ttu-id="3e0ce-188">Дочерние компоненты, встроенные в родительские</span><span class="sxs-lookup"><span data-stu-id="3e0ce-188">Inline child components into their parents</span></span>
+
+<span data-ttu-id="3e0ce-189">Давайте рассмотрим такой компонент, который отрисовывает серию дочерних компонентов:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-189">Consider the following component that renders a sequence of child components:</span></span>
+
+```razor
+<div class="chat">
+    @foreach (var message in messages)
+    {
+        <ChatMessageDisplay Message="@message" />
+    }
+</div>
+```
+
+<span data-ttu-id="3e0ce-190">В приведенном выше примере кода компонент `<ChatMessageDisplay>` определяется в файле `ChatMessageDisplay.razor` следующего содержания:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-190">For the preceding example code, the `<ChatMessageDisplay>` component is defined in a file `ChatMessageDisplay.razor` containing:</span></span>
+
+```razor
+<div class="chat-message">
+    <span class="author">@Message.Author</span>
+    <span class="text">@Message.Text</span>
+</div>
+
+@code {
+    [Parameter]
+    public ChatMessage Message { get; set; }
+}
+```
+
+<span data-ttu-id="3e0ce-191">Представленный выше пример хорошо работает, пока не придется отобразить одновременно несколько тысяч сообщений.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-191">The preceding example works fine and performs well as long as thousands of messages aren't shown at once.</span></span> <span data-ttu-id="3e0ce-192">Чтобы отобразить все эти сообщения, мы можем *отказаться* от создания отдельных компонентов `ChatMessageDisplay`.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-192">To show thousands of messages at once, consider *not* factoring out the separate `ChatMessageDisplay` component.</span></span> <span data-ttu-id="3e0ce-193">Вместо этого мы встроим этот компонент отрисовки напрямую в родительский компонент:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-193">Instead, inline the rendering directly into the parent:</span></span>
+
+```razor
+<div class="chat">
+    @foreach (var message in messages)
+    {
+        <div class="chat-message">
+            <span class="author">@message.Author</span>
+            <span class="text">@message.Text</span>
+        </div>
+    }
+</div>
+```
+
+<span data-ttu-id="3e0ce-194">Так мы избежим накладных расходов на отрисовку большого числа дочерних компонентов, но зато потеряем возможность отрисовывать их независимо друг от друга.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-194">This avoids the per-component overhead of rendering so many child components at the cost of not being able to rerender each of them independently.</span></span>
+
+##### <a name="define-reusable-renderfragments-in-code"></a><span data-ttu-id="3e0ce-195">Определение повторно используемого делегата `RenderFragments` в коде</span><span class="sxs-lookup"><span data-stu-id="3e0ce-195">Define reusable `RenderFragments` in code</span></span>
+
+<span data-ttu-id="3e0ce-196">Возможно, вы создаете дочерние компоненты просто для того, чтобы повторно использовать логику отрисовки.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-196">You may be factoring out child components purely as a way of reusing rendering logic.</span></span> <span data-ttu-id="3e0ce-197">В этом сценарии есть возможность повторно использовать логику отрисовки без объявления фактических компонентов.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-197">If that's the case, it's still possible to reuse rendering logic without declaring actual components.</span></span> <span data-ttu-id="3e0ce-198">В блоке `@code` любого компонента объявите <xref:Microsoft.AspNetCore.Components.RenderFragment>, который возвращает пользовательский интерфейс и может вызываться из любого места:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-198">In any component's `@code` block, you can define a <xref:Microsoft.AspNetCore.Components.RenderFragment> that emits UI and can be called from anywhere:</span></span>
+
+```razor
+<h1>Hello, world!</h1>
+
+@RenderWelcomeInfo
+
+@code {
+    RenderFragment RenderWelcomeInfo = __builder =>
+    {
+        <div>
+            <p>Welcome to your new app!</p>
+
+            <SurveyPrompt Title="How is Blazor working for you?" />
+        </div>
+    };
+}
+```
+
+<span data-ttu-id="3e0ce-199">Как показано в предыдущем примере, компоненты могут создавать разметку как в коде блока `@code`, так и вне его.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-199">As demonstated in the preceding example, components can emit markup from code within their `@code` block and outside it.</span></span> <span data-ttu-id="3e0ce-200">Такой подход использует объявление делегата <xref:Microsoft.AspNetCore.Components.RenderFragment>, который можно отрисовывать в выходном потоке отрисовки компонента, в том числе из нескольких разных мест.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-200">This approach defines a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate that you can render inside the component's normal render output, optionally in multiple places.</span></span> <span data-ttu-id="3e0ce-201">Важно, чтобы этот делегат принимал параметр с именем `__builder` и типом <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>, на основе которого компилятор Razor будет создавать инструкции отрисовки.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-201">It's necessary for the delegate to accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for it.</span></span>
+
+<span data-ttu-id="3e0ce-202">Если вы хотите использовать его в нескольких компонентах, можно объявить элемент `public static`:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-202">If you want to make this reusable across multiple components, consider declaring it as a `public static` member:</span></span>
+
+```razor
+public static RenderFragment SayHello = __builder =>
+{
+    <h1>Hello!</h1>
+};
+```
+
+<span data-ttu-id="3e0ce-203">Теперь его можно вызывать из любого компонента, даже не являющегося родственным.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-203">This could now be invoked from an unrelated component.</span></span> <span data-ttu-id="3e0ce-204">Такая методика удобна для создания библиотек повторно используемых фрагментов кода разметки, которые позволяют избавиться от накладных расходов на создание каждого компонента.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-204">This technique is useful for building libraries of reusable markup snippets that render without any per-component overhead.</span></span>
+
+<span data-ttu-id="3e0ce-205">Делегаты <xref:Microsoft.AspNetCore.Components.RenderFragment> могут принимать параметры.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-205"><xref:Microsoft.AspNetCore.Components.RenderFragment> delegates can also accept parameters.</span></span> <span data-ttu-id="3e0ce-206">Так вы можете создать структуру, эквивалентную компоненту `ChatMessageDisplay` из предыдущего примера:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-206">To create the equivalent of the `ChatMessageDisplay` component from the earlier example:</span></span>
+
+```razor
+<div class="chat">
+    @foreach (var message in messages)
+    {
+        @DisplayChatMessage(message)
+    }
+</div>
+
+@code {
+    RenderFragment<ChatMessage> DisplayChatMessage = message => __builder =>
+    {
+        <div class="chat-message">
+            <span class="author">@message.Author</span>
+            <span class="text">@message.Text</span>
+        </div>
+    };
+}
+```
+
+<span data-ttu-id="3e0ce-207">Такой подход позволяет повторно использовать логику отрисовки без дополнительных затрат на компоненты.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-207">This approach provides the benefit of reusing rendering logic without per-component overhead.</span></span> <span data-ttu-id="3e0ce-208">Но зато здесь невозможно независимо обновлять поддерево пользовательского интерфейса или пропускать визуализацию этого поддерева при отрисовке родительского элемента, так как мы убрали границу между компонентами.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-208">However, it doesn't have the benefit of being able to refresh its subtree of the UI independently, nor does it have the ability to skip rendering that subtree of the UI when its parent renders, since there's no component boundary.</span></span>
+
+#### <a name="dont-receive-too-many-parameters"></a><span data-ttu-id="3e0ce-209">Не принимайте слишком много параметров</span><span class="sxs-lookup"><span data-stu-id="3e0ce-209">Don't receive too many parameters</span></span>
+
+<span data-ttu-id="3e0ce-210">Если компонент повторяется очень часто, например сотни или тысячи раз, важно помнить о накладных расходах на передачу и получение каждого параметра.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-210">If a component repeats extremely often, for example hundreds or thousands of times, then bear in mind that the overhead of passing and receiving each parameter builds up.</span></span>
+
+<span data-ttu-id="3e0ce-211">Маловероятно, что большое число параметров само по себе ухудшит производительность, но оно может усложнить ситуацию при наличии других проблем.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-211">It's rare that too many parameters severely restricts performance, but it can be a factor.</span></span> <span data-ttu-id="3e0ce-212">Для компонента `<TableCell>`, который отображается 1000 раз в сетке, каждый дополнительный передаваемый параметр увеличивает время отрисовки примерно на 15 мс.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-212">For a `<TableCell>` component that renders 1,000 times within a grid, each extra parameter passed to it could add around 15 ms to the total rendering cost.</span></span> <span data-ttu-id="3e0ce-213">Если каждая ячейка принимает 10 параметров, то передача параметров займет около 150 мс на каждый компонент, то есть 150 000 мс (150 секунд) в целом, что сделает пользовательский интерфейс очень медленным.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-213">If each cell accepted 10 parameters, parameter passing takes around 150 ms per component render and  thus perhaps 150,000 ms (150 seconds) and on its own cause a laggy UI.</span></span>
+
+<span data-ttu-id="3e0ce-214">Чтобы уменьшить эту нагрузку, объедините несколько параметров в пакет с помощью пользовательских классов.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-214">To reduce this load, you could bundle together multiple parameters via custom classes.</span></span> <span data-ttu-id="3e0ce-215">Например, компонент `<TableCell>` может принимать параметры так:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-215">For example, a `<TableCell>` component might accept:</span></span>
+
+```razor
+@typeparam TItem
+
+...
+
+@code {
+    [Parameter]
+    public TItem Data { get; set; }
+    
+    [Parameter]
+    public GridOptions Options { get; set; }
+}
+```
+
+<span data-ttu-id="3e0ce-216">В предыдущем примере значение `Data` будет разным для каждой ячейки, но `Options` является общим для всех.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-216">In the preceding example, `Data` is different for every cell, but `Options` is common across all of them.</span></span> <span data-ttu-id="3e0ce-217">Разумеется, еще лучше будет отказаться от компонента `<TableCell>`, встроив его логику в родительский компонент.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-217">Of course, it might be an improvement not to have a `<TableCell>` component and instead inline its logic into the parent component.</span></span>
+
+#### <a name="ensure-cascading-parameters-are-fixed"></a><span data-ttu-id="3e0ce-218">Сделайте все каскадные параметры фиксированными</span><span class="sxs-lookup"><span data-stu-id="3e0ce-218">Ensure cascading parameters are fixed</span></span>
+
+<span data-ttu-id="3e0ce-219">Компонент `<CascadingValue>` принимает необязательный параметр с именем `IsFixed`.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-219">The `<CascadingValue>` component has an optional parameter called `IsFixed`.</span></span>
+
+ * <span data-ttu-id="3e0ce-220">Если значение `IsFixed` равно `false` (вариант по умолчанию), то каждый получатель каскадного значения настраивает подписку для получения уведомлений об изменениях.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-220">If the `IsFixed` value is `false` (the default), then every recipient of the cascaded value sets up a subscription to receive change notifications.</span></span> <span data-ttu-id="3e0ce-221">В этом примере каждый `[CascadingParameter]` обойдется **значительно дороже** обычного `[Parameter]` из-за затрат на отслеживания подписки.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-221">In this case, each each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.</span></span>
+ * <span data-ttu-id="3e0ce-222">Если значение `IsFixed` равно `true` (например, `<CascadingValue Value="@someValue" IsFixed="true">`), то получатели получают начальное значение, но *не настраивают* подписку для получения обновлений.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-222">If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then receipients receive the initial value but do *not* set up any subscription to receive updates.</span></span> <span data-ttu-id="3e0ce-223">Тогда каждый элемент `[CascadingParameter]` будет достаточно легким и **не дороже**, чем обычный `[Parameter]`.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-223">In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.</span></span>
+
+<span data-ttu-id="3e0ce-224">Старайтесь везде, где возможно, использовать `IsFixed="true"` в каскадных значениях.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-224">So wherever possible, you should use `IsFixed="true"` on cascaded values.</span></span> <span data-ttu-id="3e0ce-225">Это не вызовет затруднений, если передаваемое значение не меняется со временем.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-225">You can do this whenever the value being supplied doesn't change over time.</span></span> <span data-ttu-id="3e0ce-226">В типичной ситуации, когда компонент передает `this` в виде каскадного значения, следует использовать `IsFixed="true"`:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-226">In the common pattern where a component passes `this` as a cascaded value, you should use `IsFixed="true"`:</span></span>
+
+```razor
+<CascadingValue Value="this" IsFixed="true">
+    <SomeOtherComponents>
+</CascadingValue>
+```
+
+<span data-ttu-id="3e0ce-227">Это даст огромную разницу в производительности, если большое число других компонентов получают это каскадное значение.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-227">This makes a huge difference if there are a large number of other components that receive the cascaded value.</span></span> <span data-ttu-id="3e0ce-228">Для получения дополнительной информации см. <xref:blazor/components/cascading-values-and-parameters>.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-228">For more information, see <xref:blazor/components/cascading-values-and-parameters>.</span></span>
+
+#### <a name="avoid-attribute-splatting-with-captureunmatchedvalues"></a><span data-ttu-id="3e0ce-229">Не используйте сплаттинг атрибутов с `CaptureUnmatchedValues`</span><span class="sxs-lookup"><span data-stu-id="3e0ce-229">Avoid attribute splatting with `CaptureUnmatchedValues`</span></span>
+
+<span data-ttu-id="3e0ce-230">Компоненты могут получать "несопоставленные" значения параметров с помощью флага <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues>:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-230">Components can elect to receive "unmatched" parameter values using the <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> flag:</span></span>
+
+```razor
+<div @attributes="OtherAttributes">...</div>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IDictionary<string, object> OtherAttributes { get; set; }
+}
+```
+
+<span data-ttu-id="3e0ce-231">Такой подход позволяет передать элементу произвольные дополнительные атрибуты.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-231">This approach allows passing through arbitrary additional attributes to the element.</span></span> <span data-ttu-id="3e0ce-232">Но этот подход довольно дорогой, поскольку отрисовщик будет выполнять следующие действия:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-232">However, it is also quite expensive because the renderer must:</span></span>
+
+* <span data-ttu-id="3e0ce-233">сопоставление всех полученных параметров с набором известных параметров для построения словаря;</span><span class="sxs-lookup"><span data-stu-id="3e0ce-233">Match all of the supplied parameters against the set of known parameters to build a dictionary.</span></span>
+* <span data-ttu-id="3e0ce-234">отслеживание копий одного атрибута, которые переопределяют друг друга.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-234">Keep track of how multiple copies of the same attribute overwrite each other.</span></span>
+
+<span data-ttu-id="3e0ce-235">Вы можете использовать <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> для тех компонентов, которые не создают критической нагрузки на производительность, например редко повторяются.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-235">Feel free to use <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> on non-performance-critical components, such as ones that are not repeated frequently.</span></span> <span data-ttu-id="3e0ce-236">Но для компонентов с большим масштабом отрисовки, таких как элементы большого списка или ячейки сетки, избегайте сплаттинга атрибутов.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-236">However for components that render at scale, such as each items in a large list or cells in a grid, try to avoid attribute splatting.</span></span>
+
+<span data-ttu-id="3e0ce-237">Для получения дополнительной информации см. <xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters>.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-237">For more information, see <xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters>.</span></span>
+
+#### <a name="implement-setparametersasync-manually"></a><span data-ttu-id="3e0ce-238">Реализуйте `SetParametersAsync` вручную</span><span class="sxs-lookup"><span data-stu-id="3e0ce-238">Implement `SetParametersAsync` manually</span></span>
+
+<span data-ttu-id="3e0ce-239">Одним из основных аспектов, влияющих на затраты отрисовки каждого компонента, является запись значений входящих параметров в свойства `[Parameter]`.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-239">One of the main aspects of the per-component rendering overhead is writing incoming parameter values to the `[Parameter]` properties.</span></span> <span data-ttu-id="3e0ce-240">Для них отрисовщик использует отражение.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-240">The renderer has to use reflection to do this.</span></span> <span data-ttu-id="3e0ce-241">Этот механизм имеет некоторую оптимизацию, но отсутствие поддержки JIT в среде выполнения WebAssembly налагает определенные ограничения.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-241">Even though this is somewhat optimized, the absence of JIT support on the WebAssembly runtime imposes limits.</span></span>
+
+<span data-ttu-id="3e0ce-242">В некоторых крайних случаях следует избегать отражений и вручную реализовать собственную логику настройки параметров.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-242">In some extreme cases, you may wish to avoid the reflection and implement your own parameter setting logic manually.</span></span> <span data-ttu-id="3e0ce-243">Это может уместно в следующих случаях:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-243">This may be applicable when:</span></span>
+
+ * <span data-ttu-id="3e0ce-244">у вас есть компонент, который отображается чрезвычайно часто (например, существуют сотни или тысячи его копий в пользовательском интерфейсе);</span><span class="sxs-lookup"><span data-stu-id="3e0ce-244">You have a component that renders extremely often (for example, there are hundreds or thousands of copies of it in the UI).</span></span>
+ * <span data-ttu-id="3e0ce-245">компонент принимает много параметров;</span><span class="sxs-lookup"><span data-stu-id="3e0ce-245">It accepts many parameters.</span></span>
+ * <span data-ttu-id="3e0ce-246">вы заметили, что издержки на получение параметров заметно влияют на скорость реагирования пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-246">You find that the overhead of receiving parameters has an observable impact on UI responsiveness.</span></span>
+
+<span data-ttu-id="3e0ce-247">В таких случаях вы можете переопределить виртуальный метод <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> компонента и реализовать собственную логику для конкретного компонента.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-247">In these cases, you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic.</span></span> <span data-ttu-id="3e0ce-248">Следующий пример намеренно создан так, чтобы избежать поиска в словаре:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-248">The following example deliberately avoids any dictionary lookups:</span></span>
+
+```razor
+@code {
+    [Parameter]
+    public int MessageId { get; set; }
+
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public EventCallback<string> TextChanged { get; set; }
+
+    [Parameter]
+    public Theme CurrentTheme { get; set; }
+
+    public override Task SetParametersAsync(ParameterView parameters)
+    {
+        foreach (var parameter in parameters)
+        {
+            switch (parameter.Name)
+            {
+                case nameof(MessageId):
+                    MessageId = (int)parameter.Value;
+                    break;
+                case nameof(Text):
+                    Text = (string)parameter.Value;
+                    break;
+                case nameof(TextChanged):
+                    TextChanged = (EventCallback<string>)parameter.Value;
+                    break;
+                case nameof(CurrentTheme):
+                    CurrentTheme = (Theme)parameter.Value;
+                    break;
+                default:
+                    throw new ArgumentException($"Unknown parameter: {parameter.Name}");
+            }
+        }
+
+        return base.SetParametersAsync(ParameterView.Empty);
     }
 }
 ```
 
-<span data-ttu-id="ed218-119">Для получения дополнительной информации см. <xref:blazor/components/lifecycle#after-component-render>.</span><span class="sxs-lookup"><span data-stu-id="ed218-119">For more information, see <xref:blazor/components/lifecycle#after-component-render>.</span></span>
+<span data-ttu-id="3e0ce-249">В приведенном выше коде возвращение базового класса <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> запускает обычные методы жизненного цикла без повторного назначения параметров.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-249">In the preceding code, returning the base class <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> runs the normal lifecycle methods without assigning parameters again.</span></span>
 
-## <a name="virtualize-re-usable-fragments"></a><span data-ttu-id="ed218-120">Виртуализация повторно используемых фрагментов</span><span class="sxs-lookup"><span data-stu-id="ed218-120">Virtualize re-usable fragments</span></span>
+<span data-ttu-id="3e0ce-250">Как мы видим в приведенном выше коде, переопределение <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> и предоставление пользовательской логики достаточно сложны и трудоемки, поэтому мы не рекомендуем использовать этот подход в общем случае.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-250">As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> and supplying custom logic is complicated and laborious, so we don't recommend this approach in general.</span></span> <span data-ttu-id="3e0ce-251">В исключительных ситуациях он может повысить производительность отрисовки на 20–25 %, но его стоит применять только в перечисленных выше сценариях.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-251">In extreme cases, it can improve rendering performance by 20-25%, but you should only consider this approach in the scenarios listed earlier.</span></span>
 
-<span data-ttu-id="ed218-121">Компоненты обеспечивают удобный подход для создания многократно используемых фрагментов кода и разметки.</span><span class="sxs-lookup"><span data-stu-id="ed218-121">Components offer a convenient approach to produce re-usable fragments of code and markup.</span></span> <span data-ttu-id="ed218-122">Как правило, рекомендуется создавать отдельные компоненты, которые наилучшим образом согласовываются с требованиями приложения.</span><span class="sxs-lookup"><span data-stu-id="ed218-122">In general, we recommend authoring individual components that best align with the app's requirements.</span></span> <span data-ttu-id="ed218-123">Одним из недостатков является то, что каждый дополнительный дочерний компонент увеличивает общее время, необходимое для отрисовки родительского компонента.</span><span class="sxs-lookup"><span data-stu-id="ed218-123">One caveat is that each additional child component contributes to the total time it takes to render a parent component.</span></span> <span data-ttu-id="ed218-124">Для большинства приложений этими дополнительными накладными расходами можно пренебречь.</span><span class="sxs-lookup"><span data-stu-id="ed218-124">For most apps, the additional overhead is negligible.</span></span> <span data-ttu-id="ed218-125">Однако в случае с приложениями, которые создают большое количество компонентов, следует предусмотреть стратегии по снижению затрат на обработку, например путем ограничения количества отрисовываемых компонентов.</span><span class="sxs-lookup"><span data-stu-id="ed218-125">Apps that produce a large number of components should consider using strategies to reduce processing overhead, such as limiting the number of rendered components.</span></span>
+### <a name="dont-trigger-events-too-rapidly"></a><span data-ttu-id="3e0ce-252">Не активируйте события слишком часто</span><span class="sxs-lookup"><span data-stu-id="3e0ce-252">Don't trigger events too rapidly</span></span>
 
-<span data-ttu-id="ed218-126">Для получения дополнительной информации см. <xref:blazor/components/virtualization>.</span><span class="sxs-lookup"><span data-stu-id="ed218-126">For more information, see <xref:blazor/components/virtualization>.</span></span>
+<span data-ttu-id="3e0ce-253">Некоторые события браузера происходят очень часто, например `onmousemove` и `onscroll` могут запускаться десятки или даже сотни раз в секунду.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-253">Some browser events fire extremely frequently, for example `onmousemove` and `onscroll`, which can fire tens or hundreds of times per second.</span></span> <span data-ttu-id="3e0ce-254">В большинстве случаев вам не нужно так часто обновлять интерфейс.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-254">In most cases, you don't need to perform UI updates this frequently.</span></span> <span data-ttu-id="3e0ce-255">Такое частое обновление может снижать скорость реагирования пользовательского интерфейса или создавать чрезмерную нагрузку на ЦП.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-255">If you try to do so, you may harm UI responsiveness or consume excessive CPU time.</span></span>
 
-## <a name="avoid-javascript-interop-to-marshal-data"></a><span data-ttu-id="ed218-127">Избегайте использования взаимодействия с JavaScript для маршалирования данных</span><span class="sxs-lookup"><span data-stu-id="ed218-127">Avoid JavaScript interop to marshal data</span></span>
+<span data-ttu-id="3e0ce-256">Вместо системных событий `@onmousemove` или `@onscroll` вам лучше применить механизм взаимодействия JS, чтобы зарегистрировать более редко вызываемый обратный вызов.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-256">Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to use JS interop to register a callback that fires less frequently.</span></span> <span data-ttu-id="3e0ce-257">Например, следующий компонент `MyComponent.razor` отображает текущее положение мыши только один раз в каждые 500 мс:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-257">For example, the following component (`MyComponent.razor`) displays the position of the mouse but only updates at most once every 500 ms:</span></span>
 
-<span data-ttu-id="ed218-128">В Blazor WebAssembly вызов взаимодействия с JavaScript (JS) должен пересекать границу между WebAssembly и JS.</span><span class="sxs-lookup"><span data-stu-id="ed218-128">In Blazor WebAssembly, a JavaScript (JS) interop call must traverse the WebAssembly-JS boundary.</span></span> <span data-ttu-id="ed218-129">Сериализация и десериализация содержимого в двух контекстах вызывают дополнительные накладные расходы на обработку в приложении.</span><span class="sxs-lookup"><span data-stu-id="ed218-129">Serializing and deserializing content across the two contexts creates processing overhead for the app.</span></span> <span data-ttu-id="ed218-130">Частые вызовы взаимодействия с JS часто негативно влияют на производительность.</span><span class="sxs-lookup"><span data-stu-id="ed218-130">Frequent JS interop calls often adversely affects performance.</span></span> <span data-ttu-id="ed218-131">Чтобы уменьшить объем маршалирования данных через границу, определите, может ли приложение объединить множество небольших фрагментов полезных данных в один большой фрагмент. Это позволит избежать частых переключений контекста между WebAssembly и JS.</span><span class="sxs-lookup"><span data-stu-id="ed218-131">To reduce the marshalling of data across the boundary, determine if the app can consolidate many small payloads into a single large payload to avoid the high volume of context switching between WebAssembly and JS.</span></span>
+```razor
+@inject IJSRuntime JS
+@implements IDisposable
 
-## <a name="use-systemtextjson"></a><span data-ttu-id="ed218-132">Использование System.Text.Json</span><span class="sxs-lookup"><span data-stu-id="ed218-132">Use System.Text.Json</span></span>
+<h1>@message</h1>
 
-<span data-ttu-id="ed218-133">Реализация взаимодействия с JS в Blazor основана на <xref:System.Text.Json>, высокопроизводительной библиотеке сериализации JSON, занимающей мало места в памяти.</span><span class="sxs-lookup"><span data-stu-id="ed218-133">Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a high-performance JSON serialization library with low memory allocation.</span></span> <span data-ttu-id="ed218-134">Использование <xref:System.Text.Json> не приводит к увеличению размера полезных данных в приложении, в отличие от добавления одной или нескольких альтернативных библиотек JSON.</span><span class="sxs-lookup"><span data-stu-id="ed218-134">Using <xref:System.Text.Json> doesn't result in additional app payload size over adding one or more alternate JSON libraries.</span></span>
+<div @ref="myMouseMoveElement" style="border:1px dashed red;height:200px;">
+    Move mouse here
+</div>
 
-<span data-ttu-id="ed218-135">Руководство по миграции см. в статье [Миграция с `Newtonsoft.Json` на `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).</span><span class="sxs-lookup"><span data-stu-id="ed218-135">For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).</span></span>
+@code {
+    ElementReference myMouseMoveElement;
+    DotNetObjectReference<MyComponent> selfReference;
+    private string message = "Move the mouse in the box";
 
-## <a name="use-synchronous-and-unmarshalled-js-interop-apis-where-appropriate"></a><span data-ttu-id="ed218-136">Использование синхронных и немаршалируемых интерфейсов API взаимодействия с JS, где они применимы</span><span class="sxs-lookup"><span data-stu-id="ed218-136">Use synchronous and unmarshalled JS interop APIs where appropriate</span></span>
+    [JSInvokable]
+    public void HandleMouseMove(int x, int y)
+    {
+        message = $"Mouse move at {x}, {y}";
+        StateHasChanged();
+    }
 
-<span data-ttu-id="ed218-137">Blazor WebAssembly предлагает две дополнительные версии <xref:Microsoft.JSInterop.IJSRuntime>, помимо версии, доступной для приложений Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="ed218-137">Blazor WebAssembly offers two additional versions of <xref:Microsoft.JSInterop.IJSRuntime> over the single version available to Blazor Server apps:</span></span>
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            selfReference = DotNetObjectReference.Create(this);
+            var minInterval = 500; // Only notify every 500 ms
+            await JS.InvokeVoidAsync("onThrottledMouseMove", 
+                myMouseMoveElement, selfReference, minInterval);
+        }
+    }
 
-* <span data-ttu-id="ed218-138"><xref:Microsoft.JSInterop.IJSInProcessRuntime> позволяет синхронно совершать вызовы взаимодействия с JS, что требует меньше ресурсов, чем асинхронные вызовы:</span><span class="sxs-lookup"><span data-stu-id="ed218-138"><xref:Microsoft.JSInterop.IJSInProcessRuntime> allows invoking JS interop calls synchronously, which has less overhead than the asynchronous versions:</span></span>
+    public void Dispose() => selfReference?.Dispose();
+}
+```
 
-  ```razor
-  @inject IJSRuntime JS
+<span data-ttu-id="3e0ce-258">Соответствующий код JavaScript, который можно поместить на страницу `index.html` или загрузить в виде модуля ES6, регистрирует прослушиватель событий DOM.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-258">The corresponding JavaScript code, which can be placed in the `index.html` page or loaded as an ES6 module, registers the actual DOM event listener.</span></span> <span data-ttu-id="3e0ce-259">В нашем примере прослушиватель событий использует [функцию Lodash `throttle`](https://lodash.com/docs/4.17.15#throttle), чтобы ограничить частоту вызовов:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-259">In this example, the event listener uses [Lodash's `throttle` function](https://lodash.com/docs/4.17.15#throttle) to limit the rate of invocations:</span></span>
 
-  @code {
-      protected override void OnInitialized()
-      {
-          var jsInProcess = (IJSInProcessRuntime)JS;
-
-          var value = jsInProcess.Invoke<string>("jsInteropCall");
-      }
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+<script>
+  function onThrottledMouseMove(elem, component, interval) {
+    elem.addEventListener('mousemove', _.throttle(e => {
+      component.invokeMethodAsync('HandleMouseMove', e.offsetX, e.offsetY);
+    }, interval));
   }
-  ```
+</script>
+```
 
-* <span data-ttu-id="ed218-139"><xref:Microsoft.JSInterop.WebAssembly.WebAssemblyJSRuntime> обеспечивает немаршалируемые вызовы взаимодействия с JS:</span><span class="sxs-lookup"><span data-stu-id="ed218-139"><xref:Microsoft.JSInterop.WebAssembly.WebAssemblyJSRuntime> permits unmarshalled JS interop calls:</span></span>
+<span data-ttu-id="3e0ce-260">Этот подход даст еще более заметный результат для Blazor Server, так как каждый вызов события требует доставки сообщения по сети.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-260">This technique can be even more important for Blazor Server, since each event invocation involves delivering a message over the network.</span></span> <span data-ttu-id="3e0ce-261">Для Blazor WebAssembly это полезно тем, что может значительно снизить объем работы по отрисовке.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-261">It's valuable for Blazor WebAssembly because it can greatly reduce the amount of rendering work.</span></span>
 
-  ```javascript
-  function jsInteropCall() {
-    return BINDING.js_to_mono_obj("Hello world");
-  }
-  ```
+## <a name="optimize-javascript-interop-speed"></a><span data-ttu-id="3e0ce-262">Оптимизируйте скорость взаимодействия в JavaScript</span><span class="sxs-lookup"><span data-stu-id="3e0ce-262">Optimize JavaScript interop speed</span></span>
 
-  ```razor
-  @inject IJSRuntime JS
+<span data-ttu-id="3e0ce-263">Передача вызовов между .NET и JavaScript требует дополнительных затрат по нескольким причинам:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-263">Calls between .NET and JavaScript involve some additional overhead because:</span></span>
 
-  @code {
-      protected override void OnInitialized()
-      {
-          var jsInProcess = (WebAssemblyJSRuntime)JS;
+ * <span data-ttu-id="3e0ce-264">все вызовы по умолчанию асинхронны;</span><span class="sxs-lookup"><span data-stu-id="3e0ce-264">By default, calls are asynchronous.</span></span>
+ * <span data-ttu-id="3e0ce-265">все параметры и возвращаемые значения по умолчанию сериализуются в формат JSON.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-265">By default, parameters and return values are JSON-serialized.</span></span> <span data-ttu-id="3e0ce-266">Это нужно для того, чтобы создать простой для понимания механизм преобразования типов между .NET и JavaScript.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-266">This is to provide an easy-to-understand conversion mechanism between .NET and JavaScript types.</span></span>
 
-          var value = jsInProcess.InvokeUnmarshalled<string>("jsInteropCall");
-      }
-  }
-  ```
+<span data-ttu-id="3e0ce-267">Кроме того, в Blazor Server эти вызовы передаются по сети.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-267">Additionally on Blazor Server, these calls are passed across the network.</span></span>
 
-  > [!WARNING]
-  > <span data-ttu-id="ed218-140">Хотя использование <xref:Microsoft.JSInterop.WebAssembly.WebAssemblyJSRuntime> обеспечивает наименьшие издержки по сравнению с другими подходами к взаимодействию с JS, интерфейсы API JavaScript, необходимые для взаимодействия с этими интерфейсами API, в настоящее время не документированы и могут подвернуться критическим изменениям в будущих выпусках.</span><span class="sxs-lookup"><span data-stu-id="ed218-140">While using <xref:Microsoft.JSInterop.WebAssembly.WebAssemblyJSRuntime> has the least overhead of the JS interop approaches, the JavaScript APIs required to interact with these APIs are currently undocumented and subject to breaking changes in future releases.</span></span>
+### <a name="avoid-excessively-fine-grained-calls"></a><span data-ttu-id="3e0ce-268">Не используйте чрезмерно подробные вызовы</span><span class="sxs-lookup"><span data-stu-id="3e0ce-268">Avoid excessively fine-grained calls</span></span>
 
-## <a name="reduce-app-size"></a><span data-ttu-id="ed218-141">Уменьшение размера приложения</span><span class="sxs-lookup"><span data-stu-id="ed218-141">Reduce app size</span></span>
+<span data-ttu-id="3e0ce-269">Поскольку каждый вызов влечет за собой накладные расходы, будет полезно снизить их количество.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-269">Since each call involves some overhead, it can be valuable to reduce the number of calls.</span></span> <span data-ttu-id="3e0ce-270">Давайте рассмотрим следующий код, который сохраняет коллекцию элементов в хранилище `localStorage` браузера:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-270">Consider the following code, which stores a collection of items in the browser's `localStorage` store:</span></span>
+
+```csharp
+private async Task StoreAllInLocalStorage(IEnumerable<TodoItem> items)
+{
+    foreach (var item in items)
+    {
+        await JS.InvokeVoidAsync("localStorage.setItem", item.Id, 
+            JsonSerializer.Serialize(item));
+    }
+}
+```
+
+<span data-ttu-id="3e0ce-271">В предшествующем примере для каждого элемента создается отдельный вызов для взаимодействия с JS.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-271">The preceding example makes a separate JS interop call for each item.</span></span> <span data-ttu-id="3e0ce-272">Вместо этого можно ограничить взаимодействие с JS пределами одного вызова:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-272">Instead, the following approach reduces the JS interop to a single call:</span></span>
+
+```csharp
+private async Task StoreAllInLocalStorage(IEnumerable<TodoItem> items)
+{
+    await JS.InvokeVoidAsync("storeAllInLocalStorage", items);
+}
+```
+
+<span data-ttu-id="3e0ce-273">Ниже определяется соответствующая функция JavaScript:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-273">The corresponding JavaScript function defined as follows:</span></span>
+
+```javascript
+function storeAllInLocalStorage(items) {
+  items.forEach(item => {
+    localStorage.setItem(item.id, JSON.stringify(item));
+  });
+}
+```
+
+<span data-ttu-id="3e0ce-274">Для Blazor WebAssembly это важно лишь при очень большом числе вызовов для взаимодействия с JS.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-274">For Blazor WebAssembly, this usually only matters if you're making a large number of JS interop calls.</span></span>
+
+### <a name="consider-making-synchronous-calls"></a><span data-ttu-id="3e0ce-275">Старайтесь использовать синхронные вызовы</span><span class="sxs-lookup"><span data-stu-id="3e0ce-275">Consider making synchronous calls</span></span>
+
+<span data-ttu-id="3e0ce-276">Вызовы для взаимодействия с JavaScript по умолчанию асинхронны, независимо от поддержки синхронности в вызываемом коде.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-276">JavaScript interop calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous.</span></span> <span data-ttu-id="3e0ce-277">Это нужно для совместимости всех компонентов как с Blazor WebAssembly, так и с Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-277">This is to ensure components are compatible with both Blazor WebAssembly and Blazor Server.</span></span> <span data-ttu-id="3e0ce-278">Дело в том, что в Blazor Server все вызовы для взаимодействия с JavaScript передаются через сетевое подключение, поэтому они должны быть асинхронными.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-278">On Blazor Server, all JavaScript interop calls must be asynchronous because they are sent over a network connection.</span></span>
+
+<span data-ttu-id="3e0ce-279">Если же вам точно известно, что приложение будет выполняться только на Blazor WebAssembly, вы можете переключиться на использование синхронных вызовов для взаимодействия с JavaScript.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-279">If you know for certain that your app only ever runs on Blazor WebAssembly, you can choose to make synchronous JavaScript interop calls.</span></span> <span data-ttu-id="3e0ce-280">Они создают чуть меньше нагрузки, чем асинхронные вызовы, и снижают число циклов отрисовки благодаря отсутствию промежуточного состояния на время ожидания результатов.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-280">This has slightly less overhead than making asynchronous calls and can result in fewer render cycles because there is no intermediate state while awaiting results.</span></span>
+
+<span data-ttu-id="3e0ce-281">Чтобы выполнить синхронный вызов из .NET к JavaScript, приведите <xref:Microsoft.JSInterop.IJSRuntime> к <xref:Microsoft.JSInterop.IJSInProcessRuntime>:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-281">To make a synchronous call from .NET to JavaScript, cast <xref:Microsoft.JSInterop.IJSRuntime> to <xref:Microsoft.JSInterop.IJSInProcessRuntime>:</span></span>
+
+```razor
+@inject IJSRuntime JS
+
+...
+
+@code {
+    protected override void HandleSomeEvent()
+    {
+        var jsInProcess = (IJSInProcessRuntime)JS;
+        var value = jsInProcess.Invoke<string>("javascriptFunctionIdentifier");
+    }
+}
+```
 
 ::: moniker range=">= aspnetcore-5.0"
 
-### <a name="intermediate-language-il-trimming"></a><span data-ttu-id="ed218-142">Обрезка промежуточного языка (IL)</span><span class="sxs-lookup"><span data-stu-id="ed218-142">Intermediate Language (IL) trimming</span></span>
+<span data-ttu-id="3e0ce-282">При работе с `IJSObjectReference` синхронный вызов выполняется приведением к `IJSInProcessObjectReference`.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-282">When working with `IJSObjectReference`, you can make a synchronous call by casting to `IJSInProcessObjectReference`.</span></span>
 
-<span data-ttu-id="ed218-143">[Обрезка неиспользуемых сборок в приложении Blazor WebAssembly](xref:blazor/host-and-deploy/configure-trimmer) уменьшает размер приложения за счет удаления неиспользуемого кода в двоичных файлах приложения.</span><span class="sxs-lookup"><span data-stu-id="ed218-143">[Trimming unused assemblies from a Blazor WebAssembly app](xref:blazor/host-and-deploy/configure-trimmer) reduces the app's size by removing unused code in the app's binaries.</span></span> <span data-ttu-id="ed218-144">По умолчанию средство обрезки выполняется при публикации приложения.</span><span class="sxs-lookup"><span data-stu-id="ed218-144">By default, the Trimmer is executed when publishing an application.</span></span> <span data-ttu-id="ed218-145">Чтобы воспользоваться обрезкой, опубликуйте приложение для развертывания с помощью команды [`dotnet publish`](/dotnet/core/tools/dotnet-publish) с параметром [-c|--configuration](/dotnet/core/tools/dotnet-publish#options), имеющим значение `Release`:</span><span class="sxs-lookup"><span data-stu-id="ed218-145">To benefit from trimming, publish the app for deployment using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option set to `Release`:</span></span>
+::: moniker-end
+
+<span data-ttu-id="3e0ce-283">Чтобы выполнить синхронный вызов из JavaScript к .NET, используйте `DotNet.invokeMethod` вместо `DotNet.invokeMethodAsync`.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-283">To make a synchronous call from JavaScript to .NET, use `DotNet.invokeMethod` instead of `DotNet.invokeMethodAsync`.</span></span>
+
+<span data-ttu-id="3e0ce-284">Синхронные вызовы возможны, если соблюдаются следующие условия:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-284">Synchronous calls work if:</span></span>
+
+* <span data-ttu-id="3e0ce-285">приложение работает только на Blazor WebAssembly, но не на Blazor Server;</span><span class="sxs-lookup"><span data-stu-id="3e0ce-285">The app is running on Blazor WebAssembly, not Blazor Server.</span></span>
+* <span data-ttu-id="3e0ce-286">вызываемся функция возвращает значение синхронным способом (то есть не является методом `async` и не возвращает <xref:System.Threading.Tasks.Task> в .NET или `Promise` в JavaScript).</span><span class="sxs-lookup"><span data-stu-id="3e0ce-286">The called function returns a value synchronously (it isn't an `async` method and doesn't return a .NET <xref:System.Threading.Tasks.Task> or JavaScript `Promise`).</span></span>
+
+<span data-ttu-id="3e0ce-287">Для получения дополнительной информации см. <xref:blazor/call-javascript-from-dotnet>.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-287">For more information, see <xref:blazor/call-javascript-from-dotnet>.</span></span>
+
+::: moniker range=">= aspnetcore-5.0"
+ 
+### <a name="consider-making-unmarshalled-calls"></a><span data-ttu-id="3e0ce-288">Старайтесь использовать демаршалированные вызовы</span><span class="sxs-lookup"><span data-stu-id="3e0ce-288">Consider making unmarshalled calls</span></span>
+
+<span data-ttu-id="3e0ce-289">При работе в Blazor WebAssembly есть возможность выполнять демаршалированные вызовы из .NET к JavaScript.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-289">When running on Blazor WebAssembly, it's possible to make unmarshalled calls from .NET to JavaScript.</span></span> <span data-ttu-id="3e0ce-290">Так называются синхронные вызовы, которые не используют сериализацию в JSON для аргументов или возвращаемых значений.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-290">These are synchronous calls that don't perform JSON serialization of arguments or return values.</span></span> <span data-ttu-id="3e0ce-291">Все аспекты управления памятью и преобразования представлений для .NET и JavaScript остаются на усмотрение разработчика.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-291">All aspects of memory management and translations between .NET and JavaScript representations are left up to the developer.</span></span>
+
+> [!WARNING]
+> <span data-ttu-id="3e0ce-292">Хотя использование `IJSUnmarshalledRuntime` обеспечивает наименьшие издержки по сравнению с другими подходами к взаимодействию с JS, интерфейсы API JavaScript, необходимые для взаимодействия с этими интерфейсами API, в настоящее время не документированы и могут подвернуться критическим изменениям в будущих выпусках.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-292">While using `IJSUnmarshalledRuntime` has the least overhead of the JS interop approaches, the JavaScript APIs required to interact with these APIs are currently undocumented and subject to breaking changes in future releases.</span></span>
+
+```javascript
+function jsInteropCall() {
+    return BINDING.js_to_mono_obj("Hello world");
+}
+```
+
+```razor
+@inject IJSRuntime JS
+
+@code {
+    protected override void OnInitialized()
+    {
+        var unmarshalledJs = (IJSUnmarshalledRuntime)JS;
+        var value = unmarshalledJs.InvokeUnmarshalled<string>("jsInteropCall");
+    }
+}
+```
+
+::: moniker-end
+
+## <a name="minimize-app-download-size"></a><span data-ttu-id="3e0ce-293">Уменьшайте размер скачиваемого приложения</span><span class="sxs-lookup"><span data-stu-id="3e0ce-293">Minimize app download size</span></span>
+
+::: moniker range=">= aspnetcore-5.0"
+
+### <a name="intermediate-language-il-trimming"></a><span data-ttu-id="3e0ce-294">Обрезка промежуточного языка (IL)</span><span class="sxs-lookup"><span data-stu-id="3e0ce-294">Intermediate Language (IL) trimming</span></span>
+
+<span data-ttu-id="3e0ce-295">[Обрезка неиспользуемых сборок в приложении Blazor WebAssembly](xref:blazor/host-and-deploy/configure-trimmer) уменьшает размер приложения за счет удаления неиспользуемого кода в двоичных файлах приложения.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-295">[Trimming unused assemblies from a Blazor WebAssembly app](xref:blazor/host-and-deploy/configure-trimmer) reduces the app's size by removing unused code in the app's binaries.</span></span> <span data-ttu-id="3e0ce-296">По умолчанию средство обрезки выполняется при публикации приложения.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-296">By default, the Trimmer is executed when publishing an application.</span></span> <span data-ttu-id="3e0ce-297">Чтобы воспользоваться обрезкой, опубликуйте приложение для развертывания с помощью команды [`dotnet publish`](/dotnet/core/tools/dotnet-publish) с параметром [-c|--configuration](/dotnet/core/tools/dotnet-publish#options), имеющим значение `Release`:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-297">To benefit from trimming, publish the app for deployment using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option set to `Release`:</span></span>
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-### <a name="intermediate-language-il-linking"></a><span data-ttu-id="ed218-146">Компоновка промежуточного языка (IL)</span><span class="sxs-lookup"><span data-stu-id="ed218-146">Intermediate Language (IL) linking</span></span>
+### <a name="intermediate-language-il-linking"></a><span data-ttu-id="3e0ce-298">Компоновка промежуточного языка (IL)</span><span class="sxs-lookup"><span data-stu-id="3e0ce-298">Intermediate Language (IL) linking</span></span>
 
-<span data-ttu-id="ed218-147">[Компоновка приложения Blazor WebAssembly](xref:blazor/host-and-deploy/configure-linker) уменьшает размер приложения за счет удаления неиспользуемого кода в двоичных файлах приложения.</span><span class="sxs-lookup"><span data-stu-id="ed218-147">[Linking a Blazor WebAssembly app](xref:blazor/host-and-deploy/configure-linker) reduces the app's size by trimming unused code in the app's binaries.</span></span> <span data-ttu-id="ed218-148">По умолчанию компоновщик промежуточного языка (IL) включается только при сборке в конфигурации `Release`.</span><span class="sxs-lookup"><span data-stu-id="ed218-148">By default, the Intermediate Language (IL) Linker is only enabled when building in `Release` configuration.</span></span> <span data-ttu-id="ed218-149">Чтобы воспользоваться этой возможностью, опубликуйте приложение для развертывания с помощью команды [`dotnet publish`](/dotnet/core/tools/dotnet-publish) с параметром [-c|--configuration](/dotnet/core/tools/dotnet-publish#options), имеющим значение `Release`:</span><span class="sxs-lookup"><span data-stu-id="ed218-149">To benefit from this, publish the app for deployment using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option set to `Release`:</span></span>
+<span data-ttu-id="3e0ce-299">[Компоновка приложения Blazor WebAssembly](xref:blazor/host-and-deploy/configure-linker) уменьшает размер приложения за счет удаления неиспользуемого кода в двоичных файлах приложения.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-299">[Linking a Blazor WebAssembly app](xref:blazor/host-and-deploy/configure-linker) reduces the app's size by trimming unused code in the app's binaries.</span></span> <span data-ttu-id="3e0ce-300">По умолчанию компоновщик промежуточного языка (IL) включается только при сборке в конфигурации `Release`.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-300">By default, the Intermediate Language (IL) Linker is only enabled when building in `Release` configuration.</span></span> <span data-ttu-id="3e0ce-301">Чтобы воспользоваться этой возможностью, опубликуйте приложение для развертывания с помощью команды [`dotnet publish`](/dotnet/core/tools/dotnet-publish) с параметром [-c|--configuration](/dotnet/core/tools/dotnet-publish#options), имеющим значение `Release`:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-301">To benefit from this, publish the app for deployment using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option set to `Release`:</span></span>
 
 ::: moniker-end
 
@@ -158,21 +580,27 @@ ms.locfileid: "90721727"
 dotnet publish -c Release
 ```
 
-### <a name="lazy-load-assemblies"></a><span data-ttu-id="ed218-150">Сборки с отложенной загрузкой</span><span class="sxs-lookup"><span data-stu-id="ed218-150">Lazy load assemblies</span></span>
+### <a name="use-systemtextjson"></a><span data-ttu-id="3e0ce-302">Использование System.Text.Json</span><span class="sxs-lookup"><span data-stu-id="3e0ce-302">Use System.Text.Json</span></span>
 
-<span data-ttu-id="ed218-151">Загрузка сборок во время выполнения на том этапе, когда они необходимы для маршрута.</span><span class="sxs-lookup"><span data-stu-id="ed218-151">Load assemblies at runtime when the assemblies are required by a route.</span></span> <span data-ttu-id="ed218-152">Для получения дополнительной информации см. <xref:blazor/webassembly-lazy-load-assemblies>.</span><span class="sxs-lookup"><span data-stu-id="ed218-152">For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.</span></span>
+<span data-ttu-id="3e0ce-303">Реализация взаимодействия с JS в Blazor основана на <xref:System.Text.Json>, высокопроизводительной библиотеке сериализации JSON, занимающей мало места в памяти.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-303">Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a high-performance JSON serialization library with low memory allocation.</span></span> <span data-ttu-id="3e0ce-304">Использование <xref:System.Text.Json> не приводит к увеличению размера полезных данных в приложении, в отличие от добавления одной или нескольких альтернативных библиотек JSON.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-304">Using <xref:System.Text.Json> doesn't result in additional app payload size over adding one or more alternate JSON libraries.</span></span>
 
-### <a name="compression"></a><span data-ttu-id="ed218-153">Сжатие</span><span class="sxs-lookup"><span data-stu-id="ed218-153">Compression</span></span>
+<span data-ttu-id="3e0ce-305">Руководство по миграции см. в статье [Миграция с `Newtonsoft.Json` на `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).</span><span class="sxs-lookup"><span data-stu-id="3e0ce-305">For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).</span></span>
 
-<span data-ttu-id="ed218-154">При публикации приложения Blazor WebAssembly выходные данные статически сжимаются, чтобы уменьшить размер приложения и исключить издержки на сжатие среды выполнения.</span><span class="sxs-lookup"><span data-stu-id="ed218-154">When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression.</span></span> <span data-ttu-id="ed218-155">Blazor использует сервер для согласования содержимого и предоставления статически сжатых файлов.</span><span class="sxs-lookup"><span data-stu-id="ed218-155">Blazor relies on the server to perform content negotation and serve statically-compressed files.</span></span>
+### <a name="lazy-load-assemblies"></a><span data-ttu-id="3e0ce-306">Сборки с отложенной загрузкой</span><span class="sxs-lookup"><span data-stu-id="3e0ce-306">Lazy load assemblies</span></span>
 
-<span data-ttu-id="ed218-156">После развертывания приложения убедитесь в том, что приложение предоставляет сжатые файлы.</span><span class="sxs-lookup"><span data-stu-id="ed218-156">After an app is deployed, verify that the app serves compressed files.</span></span> <span data-ttu-id="ed218-157">В браузере откройте вкладку "Сеть" в Средствах для разработчиков и убедитесь в том, что файлы предоставляются с `Content-Encoding: br` или `Content-Encoding: gz`.</span><span class="sxs-lookup"><span data-stu-id="ed218-157">Inspect the Network tab in a browser's Developer Tools and verify that the files are served with `Content-Encoding: br` or `Content-Encoding: gz`.</span></span> <span data-ttu-id="ed218-158">Если узел не предоставляет сжатые файлы, выполните инструкции в разделе <xref:blazor/host-and-deploy/webassembly#compression>.</span><span class="sxs-lookup"><span data-stu-id="ed218-158">If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.</span></span>
+<span data-ttu-id="3e0ce-307">Загрузка сборок во время выполнения на том этапе, когда они необходимы для маршрута.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-307">Load assemblies at runtime when the assemblies are required by a route.</span></span> <span data-ttu-id="3e0ce-308">Для получения дополнительной информации см. <xref:blazor/webassembly-lazy-load-assemblies>.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-308">For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.</span></span>
 
-### <a name="disable-unused-features"></a><span data-ttu-id="ed218-159">Отключение неиспользуемых функций</span><span class="sxs-lookup"><span data-stu-id="ed218-159">Disable unused features</span></span>
+### <a name="compression"></a><span data-ttu-id="3e0ce-309">Сжатие</span><span class="sxs-lookup"><span data-stu-id="3e0ce-309">Compression</span></span>
 
-<span data-ttu-id="ed218-160">Среда выполнения Blazor WebAssembly включает в себя следующие функции .NET, которые можно отключить, если они не требуются приложению, для уменьшения размера полезных данных:</span><span class="sxs-lookup"><span data-stu-id="ed218-160">Blazor WebAssembly's runtime includes the following .NET features that can be disabled if the app doesn't require them for a smaller payload size:</span></span>
+<span data-ttu-id="3e0ce-310">При публикации приложения Blazor WebAssembly выходные данные статически сжимаются, чтобы уменьшить размер приложения и исключить издержки на сжатие среды выполнения.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-310">When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression.</span></span> <span data-ttu-id="3e0ce-311">Blazor использует сервер для согласования содержимого и предоставления статически сжатых файлов.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-311">Blazor relies on the server to perform content negotation and serve statically-compressed files.</span></span>
 
-* <span data-ttu-id="ed218-161">Для обеспечения правильности сведений о часовом поясе включается файл данных.</span><span class="sxs-lookup"><span data-stu-id="ed218-161">A data file is included to make timezone information correct.</span></span> <span data-ttu-id="ed218-162">Если приложению не нужна эта функция, ее можно отключить, присвоив свойству MSBuild `BlazorEnableTimeZoneSupport` в файле проекта приложения значение `false`:</span><span class="sxs-lookup"><span data-stu-id="ed218-162">If the app doesn't require this feature, consider disabling it by setting the `BlazorEnableTimeZoneSupport` MSBuild property in the app's project file to `false`:</span></span>
+<span data-ttu-id="3e0ce-312">После развертывания приложения убедитесь в том, что приложение предоставляет сжатые файлы.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-312">After an app is deployed, verify that the app serves compressed files.</span></span> <span data-ttu-id="3e0ce-313">В браузере откройте вкладку "Сеть" в Средствах для разработчиков и убедитесь в том, что файлы предоставляются с `Content-Encoding: br` или `Content-Encoding: gz`.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-313">Inspect the Network tab in a browser's Developer Tools and verify that the files are served with `Content-Encoding: br` or `Content-Encoding: gz`.</span></span> <span data-ttu-id="3e0ce-314">Если узел не предоставляет сжатые файлы, выполните инструкции в разделе <xref:blazor/host-and-deploy/webassembly#compression>.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-314">If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.</span></span>
+
+### <a name="disable-unused-features"></a><span data-ttu-id="3e0ce-315">Отключение неиспользуемых функций</span><span class="sxs-lookup"><span data-stu-id="3e0ce-315">Disable unused features</span></span>
+
+<span data-ttu-id="3e0ce-316">Среда выполнения Blazor WebAssembly включает в себя следующие функции .NET, которые можно отключить, если они не требуются приложению, для уменьшения размера полезных данных:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-316">Blazor WebAssembly's runtime includes the following .NET features that can be disabled if the app doesn't require them for a smaller payload size:</span></span>
+
+* <span data-ttu-id="3e0ce-317">Для обеспечения правильности сведений о часовом поясе включается файл данных.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-317">A data file is included to make timezone information correct.</span></span> <span data-ttu-id="3e0ce-318">Если приложению не нужна эта функция, ее можно отключить, присвоив свойству MSBuild `BlazorEnableTimeZoneSupport` в файле проекта приложения значение `false`:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-318">If the app doesn't require this feature, consider disabling it by setting the `BlazorEnableTimeZoneSupport` MSBuild property in the app's project file to `false`:</span></span>
 
   ```xml
   <PropertyGroup>
@@ -182,7 +610,7 @@ dotnet publish -c Release
 
 ::: moniker range=">= aspnetcore-5.0"
 
-* <span data-ttu-id="ed218-163">По умолчанию Blazor WebAssembly содержит ресурсы глобализации, необходимые для отображения значений, таких как даты и денежные единицы, на языке пользователя и с его региональными параметрами.</span><span class="sxs-lookup"><span data-stu-id="ed218-163">By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture.</span></span> <span data-ttu-id="ed218-164">Если приложению не требуется локализация, можно [настроить поддержку инвариантных языка и региональных параметров](xref:blazor/globalization-localization), основанных на языке и региональных параметрах `en-US`:</span><span class="sxs-lookup"><span data-stu-id="ed218-164">If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization), which is based on the `en-US` culture:</span></span>
+* <span data-ttu-id="3e0ce-319">По умолчанию Blazor WebAssembly содержит ресурсы глобализации, необходимые для отображения значений, таких как даты и денежные единицы, на языке пользователя и с его региональными параметрами.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-319">By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture.</span></span> <span data-ttu-id="3e0ce-320">Если приложению не требуется локализация, можно [настроить поддержку инвариантных языка и региональных параметров](xref:blazor/globalization-localization), основанных на языке и региональных параметрах `en-US`:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-320">If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization), which is based on the `en-US` culture:</span></span>
 
   ```xml
   <PropertyGroup>
@@ -194,7 +622,7 @@ dotnet publish -c Release
 
 ::: moniker range="< aspnetcore-5.0"
 
-* <span data-ttu-id="ed218-165">Для правильной работы таких интерфейсов API, как <xref:System.StringComparison.InvariantCultureIgnoreCase?displayProperty=nameWithType>, включаются сведения о параметрах сортировки.</span><span class="sxs-lookup"><span data-stu-id="ed218-165">Collation information is included to make APIs such as <xref:System.StringComparison.InvariantCultureIgnoreCase?displayProperty=nameWithType> work correctly.</span></span> <span data-ttu-id="ed218-166">Если вы уверены, что приложению не нужны сведения о параметрах сортировки, эту функцию можно отключить, присвоив свойству MSBuild `BlazorWebAssemblyPreserveCollationData` в файле проекта приложения значение `false`:</span><span class="sxs-lookup"><span data-stu-id="ed218-166">If you're certain that the app doesn't require the collation data, consider disabling it by setting the `BlazorWebAssemblyPreserveCollationData` MSBuild property in the app's project file to `false`:</span></span>
+* <span data-ttu-id="3e0ce-321">Для правильной работы таких интерфейсов API, как <xref:System.StringComparison.InvariantCultureIgnoreCase?displayProperty=nameWithType>, включаются сведения о параметрах сортировки.</span><span class="sxs-lookup"><span data-stu-id="3e0ce-321">Collation information is included to make APIs such as <xref:System.StringComparison.InvariantCultureIgnoreCase?displayProperty=nameWithType> work correctly.</span></span> <span data-ttu-id="3e0ce-322">Если вы уверены, что приложению не нужны сведения о параметрах сортировки, эту функцию можно отключить, присвоив свойству MSBuild `BlazorWebAssemblyPreserveCollationData` в файле проекта приложения значение `false`:</span><span class="sxs-lookup"><span data-stu-id="3e0ce-322">If you're certain that the app doesn't require the collation data, consider disabling it by setting the `BlazorWebAssemblyPreserveCollationData` MSBuild property in the app's project file to `false`:</span></span>
 
   ```xml
   <PropertyGroup>
