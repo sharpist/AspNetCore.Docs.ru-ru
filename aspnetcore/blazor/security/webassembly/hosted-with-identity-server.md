@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-identity-server
-ms.openlocfilehash: 91cc7ffc46f5f1f68efd7e481479b19938476cb0
-ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
+ms.openlocfilehash: 6ae8c55fcfc85dc725a7dd20a7dbecba063a13e9
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91762247"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900793"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-no-locidentity-server"></a>Защита размещенного приложения ASP.NET Core Blazor WebAssembly с помощью Identity Server
 
@@ -72,7 +72,7 @@ dotnet new blazorwasm -au Individual -ho -o {APP NAME}
 
 ---
 
-## <a name="server-app-configuration"></a>Конфигурация серверного приложения
+## <a name="server-app-configuration"></a>Конфигурация приложения *`Server`*
 
 В следующих разделах описываются дополнения к проекту при включенной поддержке проверки подлинности.
 
@@ -170,7 +170,7 @@ dotnet new blazorwasm -au Individual -ho -o {APP NAME}
 
 Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `BlazorSample.Client`).
 
-## <a name="client-app-configuration"></a>Конфигурация клиентского приложения
+## <a name="client-app-configuration"></a>Конфигурация приложения *`Client`*
 
 ### <a name="authentication-package"></a>Пакет проверки подлинности
 
@@ -287,7 +287,7 @@ builder.Services.AddApiAuthorization();
 
 ### <a name="custom-user-factory"></a>Настраиваемая фабрика пользователей
 
-В клиентском приложении создайте настраиваемую фабрику пользователей. Identity Server отправляет несколько ролей в виде массива JSON в одном утверждении `role`. Одна роль отправляется как строковое значение в утверждении. Фабрика создает отдельное утверждение `role` для каждой из ролей пользователя.
+В приложении *`Client`* создайте настраиваемую фабрику пользователей. Identity Server отправляет несколько ролей в виде массива JSON в одном утверждении `role`. Одна роль отправляется как строковое значение в утверждении. Фабрика создает отдельное утверждение `role` для каждой из ролей пользователя.
 
 `CustomUserFactory.cs`:
 
@@ -349,14 +349,14 @@ public class CustomUserFactory
 }
 ```
 
-В клиентском приложении зарегистрируйте фабрику в `Program.Main` (`Program.cs`):
+В приложении *`Client`* зарегистрируйте фабрику в `Program.Main` (`Program.cs`):
 
 ```csharp
 builder.Services.AddApiAuthorization()
     .AddAccountClaimsPrincipalFactory<CustomUserFactory>();
 ```
 
-В серверном приложении вызовите <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> в построителе Identity, который добавляет службы, связанные с ролями:
+В приложении *`Server`* вызовите <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> в построителе Identity, который добавляет службы, связанные с ролями:
 
 ```csharp
 using Microsoft.AspNetCore.Identity;
@@ -378,7 +378,7 @@ services.AddDefaultIdentity<ApplicationUser>(options =>
 
 #### <a name="api-authorization-options"></a>Параметры авторизации API
 
-В серверном приложении:
+В приложении *`Server`* :
 
 * Настройте Identity Server для размещения утверждений `name` и `role` в маркере идентификации и маркере доступа.
 * Запретите сопоставление по умолчанию для ролей в обработчике маркера JWT.
@@ -402,7 +402,7 @@ JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 
 #### <a name="profile-service"></a>Служба профилей
 
-В серверном приложении создайте реализацию `ProfileService`.
+В приложении *`Server`* создайте реализацию `ProfileService`.
 
 `ProfileService.cs`:
 
@@ -436,7 +436,7 @@ public class ProfileService : IProfileService
 }
 ```
 
-В приложении сервера зарегистрируйте службу профиля в `Startup.ConfigureServices`:
+В приложении *`Server`* зарегистрируйте службу профиля в `Startup.ConfigureServices`:
 
 ```csharp
 using IdentityServer4.Services;
@@ -448,7 +448,7 @@ services.AddTransient<IProfileService, ProfileService>();
 
 ### <a name="use-authorization-mechanisms"></a>Использование механизмов авторизации
 
-На этом этапе подходы с авторизацией компонентов в клиентском приложении являются функциональными. Любой из механизмов авторизации в компонентах может использовать роль для авторизации пользователя:
+На этом этапе подходы с авторизацией компонентов в приложении *`Client`* являются функциональными. Любой из механизмов авторизации в компонентах может использовать роль для авторизации пользователя:
 
 * [Компонент `AuthorizeView`](xref:blazor/security/index#authorizeview-component) (например: `<AuthorizeView Roles="admin">`)
 * [Директива атрибута `[Authorize]`](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (например: `@attribute [Authorize(Roles = "admin")]`)
@@ -463,7 +463,7 @@ services.AddTransient<IProfileService, ProfileService>();
   }
   ```
 
-Для `User.Identity.Name` в клиентском приложении указывается имя пользователя, которое обычно является адресом электронной почты для входа.
+Для `User.Identity.Name` в приложении *`Client`* указывается имя пользователя, которое обычно является адресом электронной почты для входа.
 
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
 

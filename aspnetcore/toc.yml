@@ -177,6 +177,9 @@
             - name: Развертывание с помощью GitHub Actions >>
               display: 'tutorial, kubernetes, aks, acr, docker, devops'
               href: /learn/modules/microservices-devops-aspnet-core/
+            - name: Ведение журнала и мониторинг >>
+              display: 'tutorial, kubernetes, aks, acr, docker, serilog'
+              href: /learn/modules/microservices-logging-aspnet-core/
         - name: Доступ к данным >>
           displayName: 'tutorial, ef, entity framework'
           href: /learn/modules/persist-data-ef-core/
@@ -1118,6 +1121,8 @@
           uid: security/authorization/policies
         - name: Поставщики политики авторизации
           uid: security/authorization/iauthorizationpolicyprovider
+        - name: Настройка поведения AuthorizationMiddleware
+          uid: security/authorization/authorizationmiddlewareresulthandler
         - name: Внедрение зависимостей в обработчики требований
           uid: security/authorization/dependencyinjection
         - name: Авторизация на основе ресурсов

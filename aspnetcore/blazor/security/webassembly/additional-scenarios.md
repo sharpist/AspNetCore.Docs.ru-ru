@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: 2881b5d01f3b2e41659e3166a4e77b64a450f017
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: 50d455b37c51fdd6d3b52b10b3e819eb45526de4
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90592923"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900964"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-additional-security-scenarios"></a>Сценарии обеспечения дополнительной безопасности Blazor WebAssembly для ASP.NET Core
 
@@ -177,7 +177,7 @@ builder.Services.AddScoped(sp => new HttpClient(
 
 ### <a name="graph-api-example"></a>Пример API Graph
 
-В приведенном ниже примере именованный клиент <xref:System.Net.Http.HttpClient> для API Graph используется для получения номера мобильного телефона пользователя с целью обработки вызова. После добавления разрешения `User.Read` API Microsoft Graph в области AAD на портале Azure область действия настраивается для именованного клиента в автономном приложении или клиентском приложении размещенного решения Blazor.
+В приведенном ниже примере именованный клиент <xref:System.Net.Http.HttpClient> для API Graph используется для получения номера мобильного телефона пользователя с целью обработки вызова. После добавления разрешения `User.Read` API Microsoft Graph в области AAD на портале Azure область действия настраивается для именованного клиента в автономном приложении или приложении *`Client`* размещенного решения Blazor.
 
 > [!NOTE]
 > В примере в этом разделе данные API Graph для пользователя получаются в *коде компонента*. Сведения о создании утверждений пользователя в API Graph см. в следующих ресурсах.
@@ -1070,7 +1070,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 * предварительно отрисовывает пути, не требующие авторизации;
 * не выполняет предварительную отрисовку путей, требующих авторизации.
 
-В классе `Program` клиентского приложения (`Program.cs`) включите регистрации общих служб в отдельный метод (например, `ConfigureCommonServices`):
+В классе  *приложения `Client`* `Program` (`Program.cs`) включите регистрации общих служб в отдельный метод (например, `ConfigureCommonServices`):
 
 ```csharp
 public class Program
@@ -1130,7 +1130,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-В серверном приложении создайте папку `Pages`, если она отсутствует. В папке серверного приложения `Pages` создайте страницу `_Host.cshtml`. Вставьте содержимое из файла `wwwroot/index.html` клиентского приложения в файл `Pages/_Host.cshtml`. Обновите содержимое файла:
+В серверном приложении создайте папку `Pages`, если она отсутствует. В папке серверного приложения `Pages` создайте страницу `_Host.cshtml`. Вставьте содержимое из файла `wwwroot/index.html` приложения *`Client`* в файл `Pages/_Host.cshtml`. Обновите содержимое файла:
 
 * Добавьте `@page "_Host"` в начало файла.
 * Замените тег `<app>Loading...</app>` следующим:

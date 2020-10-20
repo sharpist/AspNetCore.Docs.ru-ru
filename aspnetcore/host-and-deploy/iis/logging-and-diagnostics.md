@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/logging-and-diagnostics
-ms.openlocfilehash: 9af2311dd1f42cce3547c8215af22d2613453510
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: 523eec53d7d21723dcf136c4e5ce299533a78cc6
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91755219"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91901029"
 ---
 # <a name="log-creation-and-redirection"></a>Создание и перенаправление журнала
 
@@ -98,4 +98,4 @@ ms.locfileid: "91755219"
 > [!WARNING]
 > **Не** оставляйте ведение журнала отладки включенным в развертывании дольше того времени, которое требуется для устранения проблемы. Размер журнала не ограничен. Если оставить журнал отладки включенным, он может исчерпать все доступное место на диске и привести к сбою сервера или службы приложений.
 
-Пример элемента `aspNetCore` в файле `web.config` см. в разделе [Настройка с помощью `web.config`](xref:host-and-deploy/iis/web-config#configuration-with-webconfig).
+Пример использования элемента `aspNetCore` в файле `web.config` см. в статье [Настройка модуля ASP.NET Core с помощью `web.config`](xref:host-and-deploy/iis/web-config#configuration-of-aspnet-core-module-with-webconfig).
