@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/mvc
-ms.openlocfilehash: d615f67fc5cb23499ee7e14b747390a7a1b5a693
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 51228e59284b5edf0554e9929b16deafe08ea31e
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865135"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326630"
 ---
 # <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>Миграция с ASP.NET MVC на ASP.NET Core MVC
 
@@ -38,7 +38,7 @@ ms.locfileid: "88865135"
 
 Сведения о переносе конфигурации и Identity кода см. в разделе [Миграция конфигурации в ASP.NET Core](xref:migration/configuration) и [Миграция проверки подлинности и Identity ASP.NET Core](xref:migration/identity).
 
-## <a name="prerequisites"></a>Обязательные условия
+## <a name="prerequisites"></a>Предварительные требования
 
 [!INCLUDE [prerequisites](../includes/net-core-prereqs-vs-3.1.md)]
 
@@ -57,7 +57,7 @@ ms.locfileid: "88865135"
 
 1. Запустите второй экземпляр Visual Studio.
 1. В меню **Файл** выберите пункт **Создать** > **Проект**.
-1. Выберите **веб-приложение ASP.NET Web Core** и нажмите кнопку **Далее**.
+1. Выберите пункт **Веб-приложение ASP.NET Core** и нажмите кнопку **Далее**.
 1. В диалоговом окне **Настройка нового проекта** присвойте проекту имя *APP1*.
 1. В качестве расположения укажите каталог, отличный от каталога предыдущего проекта, для использования того же имени проекта. Использование одного и того же пространства имен упрощает копирование кода между двумя проектами. Нажмите кнопку **создания**.
 1. В диалоговом окне **Создание веб-приложения ASP.NET Core** убедитесь в том, что выбраны платформы **.NET Core** и **ASP.NET Core 3.1**. Выберите шаблон проекта **веб-приложение (модель-представление-контроллер)** и щелкните **создать**.

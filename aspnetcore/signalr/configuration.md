@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/configuration
-ms.openlocfilehash: 579491cfe60a26593ca038a1691f9b52f0fb1d06
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: 8851246dbaa076af1fdbc4e5e4f1ada0e4e3988a
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393877"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326595"
 ---
 # <a name="aspnet-core-no-locsignalr-configuration"></a>Конфигурация SignalR ASP.NET Core
 
@@ -233,7 +233,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 Транспорты, используемые, SignalR можно настроить в `WithUrl` вызове ( `withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
 
-Например, чтобы отключить транспорт событий, отправленных сервером, но разрешить соединения WebSockets и long опрашиваете:
+Например, чтобы отключить транспорт Server-Sent событий, но разрешить соединения WebSockets и long опрашиваете:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -264,7 +264,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 
 ### <a name="configure-bearer-authentication"></a>Настройка проверки подлинности носителя
 
-Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
+Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, в Server-Sent событиях и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
 
 В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl` :
 
@@ -358,6 +358,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 | Параметр JavaScript | Значение по умолчанию | Описание |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
+| `transport` | `null` | <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType>Значение, указывающее транспорт, используемый для соединения. |
 | `headers` | `null` | Словарь заголовков, отправленных с каждым HTTP-запросом. Отправка заголовков в браузере не работает для WebSockets или <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType.ServerSentEvents> потока. |
 | `logMessageContent` | `null` | Задайте значение `true` , чтобы записывать в журнал байты и символы сообщений, отправленных и полученных клиентом. |
 | `skipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
@@ -379,6 +380,8 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 var connection = new HubConnectionBuilder()
     .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
+        options.SkipNegotiation = true;
+        options.Transports = HttpTransportType.WebSockets;
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
     })
@@ -390,8 +393,9 @@ var connection = new HubConnectionBuilder()
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
     .withUrl("/chathub", {
-        skipNegotiation: true,
-        transport: signalR.HttpTransportType.WebSockets
+        // "Foo: Bar" will not be sent with WebSockets or Server-Sent Events requests
+        headers: { "Foo": "Bar" },
+        transport: signalR.HttpTransportType.LongPolling 
     })
     .build();
 ```
@@ -621,7 +625,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 Транспорты, используемые, SignalR можно настроить в `WithUrl` вызове ( `withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
 
-Например, чтобы отключить транспорт событий, отправленных сервером, но разрешить соединения WebSockets и long опрашиваете:
+Например, чтобы отключить транспорт Server-Sent событий, но разрешить соединения WebSockets и long опрашиваете:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -652,7 +656,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 
 ### <a name="configure-bearer-authentication"></a>Настройка проверки подлинности носителя
 
-Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
+Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, в Server-Sent событиях и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
 
 В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl` :
 
@@ -746,6 +750,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 | Параметр JavaScript | Значение по умолчанию | Описание |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
+| `transport` | `null` | <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType>Значение, указывающее транспорт, используемый для соединения. |
 | `logMessageContent` | `null` | Задайте значение `true` , чтобы записывать в журнал байты и символы сообщений, отправленных и полученных клиентом. |
 | `skipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 
@@ -1006,7 +1011,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 Транспорты, используемые, SignalR можно настроить в `WithUrl` вызове ( `withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
 
-Например, чтобы отключить транспорт событий, отправленных сервером, но разрешить соединения WebSockets и long опрашиваете:
+Например, чтобы отключить транспорт Server-Sent событий, но разрешить соединения WebSockets и long опрашиваете:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -1037,7 +1042,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 
 ### <a name="configure-bearer-authentication"></a>Настройка проверки подлинности носителя
 
-Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
+Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, в Server-Sent событиях и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
 
 В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl` :
 
@@ -1131,6 +1136,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 | Параметр JavaScript | Значение по умолчанию | Описание |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
+| `transport` | `null` | <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType>Значение, указывающее транспорт, используемый для соединения. |
 | `logMessageContent` | `null` | Задайте значение `true` , чтобы записывать в журнал байты и символы сообщений, отправленных и полученных клиентом. |
 | `skipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 
@@ -1366,7 +1372,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 Транспорты, используемые, SignalR можно настроить в `WithUrl` вызове ( `withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
 
-Например, чтобы отключить транспорт событий, отправленных сервером, но разрешить соединения WebSockets и long опрашиваете:
+Например, чтобы отключить транспорт Server-Sent событий, но разрешить соединения WebSockets и long опрашиваете:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -1386,7 +1392,7 @@ let connection = new signalR.HubConnectionBuilder()
 
 ### <a name="configure-bearer-authentication"></a>Настройка проверки подлинности носителя
 
-Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
+Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, в Server-Sent событиях и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
 
 В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl` :
 
@@ -1480,6 +1486,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 | Параметр JavaScript | Значение по умолчанию | Описание |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
+| `transport` | `null` | <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType>Значение, указывающее транспорт, используемый для соединения. |
 | `logMessageContent` | `null` | Задайте значение `true` , чтобы записывать в журнал байты и символы сообщений, отправленных и полученных клиентом. |
 | `skipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 
@@ -1714,7 +1721,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
 Транспорты, используемые, SignalR можно настроить в `WithUrl` вызове ( `withUrl` в JavaScript). Побитовое или для значений `HttpTransportType` можно использовать, чтобы ограничить клиент использованием только указанных транспортов. По умолчанию все транспорты включены.
 
-Например, чтобы отключить транспорт событий, отправленных сервером, но разрешить соединения WebSockets и long опрашиваете:
+Например, чтобы отключить транспорт Server-Sent событий, но разрешить соединения WebSockets и long опрашиваете:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -1732,7 +1739,7 @@ let connection = new signalR.HubConnectionBuilder()
 
 ### <a name="configure-bearer-authentication"></a>Настройка проверки подлинности носителя
 
-Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, при отправке сервером событий и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
+Чтобы предоставить данные проверки подлинности вместе с SignalR запросами, используйте `AccessTokenProvider` параметр ( `accessTokenFactory` в JavaScript), чтобы указать функцию, которая возвращает нужный маркер доступа. В клиенте .NET этот маркер доступа передается в качестве токена "Проверка подлинности носителя" HTTP (с использованием `Authorization` заголовка с типом `Bearer` ). В клиенте JavaScript маркер доступа используется в качестве токена носителя, **за исключением** случаев, когда интерфейсы API браузера ограничивают возможность применения заголовков (в частности, в Server-Sent событиях и запросах WebSocket). В этих случаях маркер доступа предоставляется как значение строки запроса `access_token` .
 
 В клиенте .NET `AccessTokenProvider` параметр можно указать с помощью делегата Options в `WithUrl` :
 
@@ -1823,6 +1830,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 | Параметр JavaScript | Значение по умолчанию | Описание |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Функция, возвращающая строку, которая предоставляется в качестве маркера проверки подлинности носителя в HTTP-запросах. |
+| `transport` | `null` | <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType>Значение, указывающее транспорт, используемый для соединения. |
 | `logMessageContent` | `null` | Задайте значение `true` , чтобы записывать в журнал байты и символы сообщений, отправленных и полученных клиентом. |
 | `skipNegotiation` | `false` | Установите этот параметр в значение `true` , чтобы пропустить шаг согласования. **Поддерживается только в том случае, если транспорт WebSocket является единственным включенным транспортом**. Этот параметр нельзя включить при использовании SignalR службы Azure. |
 
