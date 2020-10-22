@@ -705,6 +705,9 @@
     - name: Ведение журнала и диагностика
       displayName: signalr
       uid: signalr/diagnostics
+    - name: Устранение неполадок
+      displayName: signalr
+      uid: signalr/troubleshoot
     - name: Характеристики
       displayName: 'signalr, specs'
       items:
