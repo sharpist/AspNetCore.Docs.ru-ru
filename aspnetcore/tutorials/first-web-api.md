@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: 212d8a80bdc466479c34bc5fbd9c3261ca9d54c4
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: 9f67f8104eb5c21f244449ca3a4aaa96c750836d
+ms.sourcegitcommit: fad0cd264c9d07a48a8c6ba1690807e0f8728898
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393916"
+ms.lasthandoff: 10/22/2020
+ms.locfileid: "92379478"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Учебник. Создание веб-API с помощью ASP.NET Core
 
@@ -520,7 +520,7 @@ URI заголовка расположения можно протестиро�
 * Укажите URI удаляемого объекта (например, `https://localhost:5001/api/TodoItems/1`).
 * Нажмите кнопку **Отправить**.
 
-<a name="over-post"></a>
+<a name="over-post-v5"></a>
 
 ## <a name="prevent-over-posting"></a>Предотвращение избыточной публикации
 
@@ -1008,6 +1008,7 @@ dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m 
 * Нажмите кнопку **Отправить**.
 
 <a name="over-post"></a>
+<a name="over-post-v3"></a>
 
 ## <a name="prevent-over-posting"></a>Предотвращение избыточной публикации
 
@@ -1389,7 +1390,7 @@ DTO можно использовать для следующего:
   ![Вкладка "Заголовки" в консоли Postman](first-web-api/_static/pmc2.png)
 
 * Укажите метод GET.
-* Задайте для URI значение  `https://localhost:<port>/api/TodoItems/2`. Например:  `https://localhost:5001/api/TodoItems/2`.
+* Задайте для URI значение `https://localhost:<port>/api/TodoItems/2`. Например, `https://localhost:5001/api/TodoItems/2`.
 * Нажмите кнопку **Отправить**.
 
 ## <a name="add-a-puttodoitem-method-21"></a>2\.1. Добавление метода PutTodoItem
