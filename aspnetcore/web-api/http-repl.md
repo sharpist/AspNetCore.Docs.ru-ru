@@ -4,7 +4,7 @@ author: scottaddie
 description: Узнайте, как использовать глобальное средство .NET Core HTTP REPL для просмотра и тестирования веб-API ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
-ms.custom: mvc
+ms.custom: mvc, devx-track-azurecli
 ms.date: 05/20/2020
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: e6263f19cdb7f9957fa8360f9e782e622589ea18
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b12f4b10230f2631392011a6e443156bf9a2d843
+ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633322"
+ms.lasthandoff: 10/23/2020
+ms.locfileid: "92491448"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Тестирование веб-API с помощью HTTP REPL
 
@@ -39,11 +39,11 @@ HTTP read-eval-print loop (REPL):
 
 * [DELETE](#test-http-delete-requests)
 * [GET](#test-http-get-requests)
-* [HEAD](#test-http-head-requests)
+* [Глава](#test-http-head-requests)
 * [Параметры](#test-http-options-requests)
 * [ЗАЩИТЫ](#test-http-patch-requests)
 * [POST](#test-http-post-requests)
-* [ОТПРАВКА](#test-http-put-requests)
+* [PUT](#test-http-put-requests)
 
 Для выполнения дальнейших инструкций [просмотрите или скачайте пример веб-API ASP.NET Core](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([как скачивать](xref:index#how-to-download-a-sample)).
 
@@ -145,7 +145,7 @@ For detailed tool info, see https://aka.ms/http-repl-doc.
 httprepl <ROOT URI>
 ```
 
-`<ROOT URI>` — это базовый универсальный код ресурса (URI) для веб-API. Пример:
+`<ROOT URI>` — это базовый универсальный код ресурса (URI) для веб-API. Например:
 
 ```console
 httprepl https://localhost:5001
@@ -157,7 +157,7 @@ httprepl https://localhost:5001
 connect <ROOT URI>
 ```
 
-Пример:
+Например:
 
 ```console
 (Disconnected)~ connect https://localhost:5001
@@ -171,7 +171,7 @@ connect <ROOT URI>
 connect <ROOT URI> --swagger <SWAGGER URI>
 ```
 
-Пример:
+Например:
 
 ```console
 (Disconnected)~ connect https://localhost:5001 --swagger /swagger/v1/swagger.json
@@ -210,7 +210,7 @@ https://localhost:5001/fruits~ ls
 https://localhost:5001/fruits~
 ```
 
-Кроме того, можно выполнить команду `ui`, чтобы открыть страницу с пользовательским интерфейсом Swagger веб-API в браузере. Пример:
+Кроме того, можно выполнить команду `ui`, чтобы открыть страницу с пользовательским интерфейсом Swagger веб-API в браузере. Например:
 
 ```console
 https://localhost:5001/~ ui
@@ -254,7 +254,7 @@ https://localhost:5001/people~
 
 ### <a name="view-the-settings"></a>Просмотр параметров
 
-Чтобы просмотреть доступные параметры, выполните команду `pref get`. Пример:
+Чтобы просмотреть доступные параметры, выполните команду `pref get`. Например:
 
 ```console
 https://localhost:5001/~ pref get
@@ -292,7 +292,7 @@ https://localhost:5001/people~ pref set colors.json White
 
 ### <a name="set-indentation-size"></a>Установка размера отступа
 
-Настройка размера отступа в ответах в настоящее время поддерживается только для JSON. Размер по умолчанию — два пробела. Пример:
+Настройка размера отступа в ответах в настоящее время поддерживается только для JSON. Размер по умолчанию — два пробела. Например:
 
 ```json
 [
@@ -381,7 +381,7 @@ pref set editor.command.default.arguments "--disable-extensions --new-window"
 - */swagger.jsна*
 - */swagger/v1/swagger.json*
 
-Чтобы использовать другой набор путей поиска в среде, используйте параметр `swagger.searchPaths`. Значение должно представлять собой список относительных путей, разделенных символом вертикальной черты. Пример:
+Чтобы использовать другой набор путей поиска в среде, используйте параметр `swagger.searchPaths`. Значение должно представлять собой список относительных путей, разделенных символом вертикальной черты. Например:
 
 ```console
 pref set swagger.searchPaths "swagger/v2/swagger.json|swagger/v3/swagger.json"
@@ -501,7 +501,7 @@ post <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-f
     https://localhost:5001/people~ post -h Content-Type=application/json
     ```
 
-    В приведенной выше команде в заголовке HTTP-запроса `Content-Type` указан формат текста запроса JSON. В текстовом редакторе по умолчанию открывается файл *TMP* с шаблоном JSON, представляющим текст HTTP-запроса. Пример:
+    В приведенной выше команде в заголовке HTTP-запроса `Content-Type` указан формат текста запроса JSON. В текстовом редакторе по умолчанию открывается файл *TMP* с шаблоном JSON, представляющим текст HTTP-запроса. Например:
 
     ```json
     {
@@ -597,7 +597,7 @@ put <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-fo
     https://localhost:5001/fruits~ put 2 -h Content-Type=application/json
     ```
 
-    В приведенной выше команде в заголовке HTTP-запроса `Content-Type` указан формат текста запроса JSON. В текстовом редакторе по умолчанию открывается файл *TMP* с шаблоном JSON, представляющим текст HTTP-запроса. Пример:
+    В приведенной выше команде в заголовке HTTP-запроса `Content-Type` указан формат текста запроса JSON. В текстовом редакторе по умолчанию открывается файл *TMP* с шаблоном JSON, представляющим текст HTTP-запроса. Например:
 
     ```json
     {
@@ -803,7 +803,7 @@ options <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:
 
 Задать заголовок HTTP-запроса можно одним из следующих способов.
 
-* Внутри HTTP-запроса. Пример:
+* Внутри HTTP-запроса. Например:
 
     ```console
     https://localhost:5001/people~ post -h Content-Type=application/json
@@ -811,13 +811,13 @@ options <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:
     
     При таком подходе для каждого заголовка HTTP-запроса требуется собственный параметр `-h`.
 
-* Перед отправкой HTTP-запроса. Пример:
+* Перед отправкой HTTP-запроса. Например:
 
     ```console
     https://localhost:5001/people~ set header Content-Type application/json
     ```
     
-    Если заголовок задается перед отправкой запроса, он продолжает действовать на протяжении всего сеанса командной оболочки. Чтобы очистить заголовок, укажите пустое значение. Пример:
+    Если заголовок задается перед отправкой запроса, он продолжает действовать на протяжении всего сеанса командной оболочки. Чтобы очистить заголовок, укажите пустое значение. Например:
     
     ```console
     https://localhost:5001/people~ set header Content-Type
@@ -927,14 +927,14 @@ set header Authorization "bearer <TOKEN VALUE>"
 
 ### <a name="enable-request-display"></a>Включение отображения запроса
 
-Чтобы отправляемый HTTP-запрос отображался, выполните команду `echo on`. Пример:
+Чтобы отправляемый HTTP-запрос отображался, выполните команду `echo on`. Например:
 
 ```console
 https://localhost:5001/people~ echo on
 Request echoing is on
 ```
 
-При отправке последующих HTTP-запросов в рамках текущего сеанса заголовки запросов будут отображаться. Пример:
+При отправке последующих HTTP-запросов в рамках текущего сеанса заголовки запросов будут отображаться. Например:
 
 ```console
 https://localhost:5001/people~ post
@@ -972,7 +972,7 @@ https://localhost:5001/people~
 
 ### <a name="disable-request-display"></a>Отключение отображения запроса
 
-Чтобы отправляемый HTTP-запрос не отображался, выполните команду `echo off`. Пример:
+Чтобы отправляемый HTTP-запрос не отображался, выполните команду `echo off`. Например:
 
 ```console
 https://localhost:5001/people~ echo off
@@ -981,7 +981,7 @@ Request echoing is off
 
 ## <a name="run-a-script"></a>Выполнить сценарий
 
-Если вы часто выполняете один и тот же набор команд HTTP REPL, их можно сохранить в текстовом файле. Команды в файле имеют тот же формат, что и выполняемые вручную в командной строке. Их можно выполнять в пакетном режиме с помощью команды `run`. Пример:
+Если вы часто выполняете один и тот же набор команд HTTP REPL, их можно сохранить в текстовом файле. Команды в файле имеют тот же формат, что и выполняемые вручную в командной строке. Их можно выполнять в пакетном режиме с помощью команды `run`. Например:
 
 1. Создайте текстовый файл с набором команд, разделенных символами новой строки. Например, это может быть файл *people-script.txt* со следующими командами:
 
@@ -993,7 +993,7 @@ Request echoing is off
     get 1
     ```
 
-1. Выполните команду `run`, передав в нее путь к текстовому файлу. Пример:
+1. Выполните команду `run`, передав в нее путь к текстовому файлу. Например:
 
     ```console
     https://localhost:5001/~ run C:\http-repl-scripts\people-script.txt

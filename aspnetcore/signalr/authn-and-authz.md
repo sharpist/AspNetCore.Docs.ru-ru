@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/authn-and-authz
-ms.openlocfilehash: 3a2ae5c7bc4853bad7b94af0d26ad5cd0358688f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e16efa59a82d0f3cb1a2272ae0c07654ebec6a51
+ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628941"
+ms.lasthandoff: 10/23/2020
+ms.locfileid: "92491565"
 ---
 # <a name="authentication-and-authorization-in-aspnet-core-no-locsignalr"></a>Проверка подлинности и авторизация в ASP.NET Core SignalR
 
@@ -99,8 +99,6 @@ Cookies — это способ отправки маркеров доступа
 
 Клиент может предоставить маркер доступа вместо использования cookie . Сервер проверяет маркер и использует его для обнаружения пользователя. Эта проверка выполняется только при установленном соединении. Во время жизни соединения сервер не выполняет автоматическую повторную проверку, чтобы проверить отзыв маркера.
 
-На сервере проверка подлинности маркера носителя настраивается с помощью [По промежуточного слоя JWT Bearer](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer).
-
 В клиенте JavaScript маркер можно указать с помощью параметра [акцесстокенфактори](xref:signalr/configuration#configure-bearer-authentication) .
 
 [!code-typescript[Configure Access Token](authn-and-authz/sample/wwwroot/js/chat.ts?range=52-55)]
@@ -119,14 +117,60 @@ var connection = new HubConnectionBuilder()
 > [!NOTE]
 > Предоставляемая функция токена доступа вызывается перед **каждым** HTTP-запросом, выполненным SignalR . Если необходимо обновить токен, чтобы подключение было активно (так как оно может истечь во время подключения), сделайте это в этой функции и возвратите обновленный маркер.
 
-В стандартных веб-API токены носителя отправляются в заголовке HTTP. Однако SignalR не может задать эти заголовки в браузерах при использовании некоторых транспортов. При использовании соединений WebSockets и серверных событий токен передается как параметр строки запроса. Для поддержки этого на сервере требуется дополнительная настройка:
+В стандартных веб-API токены носителя отправляются в заголовке HTTP. Однако SignalR не может задать эти заголовки в браузерах при использовании некоторых транспортов. При использовании WebSockets и Server-Sent событий маркер передается как параметр строки запроса. 
+
+#### <a name="built-in-jwt-authentication"></a>Встроенная проверка подлинности JWT
+
+На сервере проверка подлинности токена носителя настраивается с помощью по [промежуточного слоя JWT Bearer](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A):
 
 [!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?name=snippet)]
 
 [!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
 > [!NOTE]
-> Строка запроса используется в браузерах при соединении с веб-сокетами и событиями, отправленными сервером из-за ограничений API браузера. При использовании HTTPS значения строки запроса защищаются с помощью подключения TLS. Однако многие серверы заносить в журнал значения строки запроса. Дополнительные сведения см. [в разделе вопросы безопасности в SignalR ASP.NET Core ](xref:signalr/security). SignalR использует заголовки для передачи токенов в средах, которые их поддерживают (например, клиенты .NET и Java).
+> Строка запроса используется в браузерах при подключении с помощью WebSockets и событий Server-Sent из-за ограничений API браузера. При использовании HTTPS значения строки запроса защищаются с помощью подключения TLS. Однако многие серверы заносить в журнал значения строки запроса. Дополнительные сведения см. [в разделе вопросы безопасности в SignalR ASP.NET Core ](xref:signalr/security). SignalR использует заголовки для передачи токенов в средах, которые их поддерживают (например, клиенты .NET и Java).
+
+#### <a name="no-locidentity-server-jwt-authentication"></a>Identity Проверка подлинности сервера JWT
+
+При использовании Identity сервера добавьте <xref:Microsoft.Extensions.Options.PostConfigureOptions%601> службу в проект:
+
+```csharp
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
+public class ConfigureJwtBearerOptions : IPostConfigureOptions<JwtBearerOptions>
+{
+    public void PostConfigure(string name, JwtBearerOptions options)
+    {
+        var originalOnMessageReceived = options.Events.OnMessageReceived;
+        options.Events.OnMessageReceived = async context =>
+        {
+            await originalOnMessageReceived(context);
+                
+            if (string.IsNullOrEmpty(context.Token))
+            {
+                var accessToken = context.Request.Query["access_token"];
+                var path = context.HttpContext.Request.Path;
+                
+                if (!string.IsNullOrEmpty(accessToken) && 
+                    path.StartsWithSegments("/hubs"))
+                {
+                    context.Token = accessToken;
+                }
+            }
+        };
+    }
+}
+```
+
+Зарегистрируйте службу в `Startup.ConfigureServices` после добавления служб для проверки подлинности ( <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> ) и обработчика проверки подлинности для Identity сервера ( <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> ):
+
+```csharp
+services.AddAuthentication()
+    .AddIdentityServerJwt();
+services.TryAddEnumerable(
+    ServiceDescriptor.Singleton<IPostConfigureOptions<JwtBearerOptions>, 
+        ConfigureJwtBearerOptions>());
+```
 
 ### <a name="no-loccookies-vs-bearer-tokens"></a>Cookieи токены носителя 
 
