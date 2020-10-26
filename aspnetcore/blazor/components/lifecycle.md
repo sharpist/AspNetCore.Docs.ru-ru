@@ -5,7 +5,7 @@ description: Узнайте, как использовать методы жиз
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/06/2020
+ms.date: 10/14/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: 0acf757c21d444136e7a6d81d5958be5bc72c2fc
-ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
+ms.openlocfilehash: 035de12d17b676aac6af42e706f3741937d90fb3
+ms.sourcegitcommit: b3ec60f7682e43211c2b40c60eab3d4e45a48ab1
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91805548"
+ms.lasthandoff: 10/17/2020
+ms.locfileid: "92153585"
 ---
 # <a name="aspnet-core-no-locblazor-lifecycle"></a>Жизненный цикл ASP.NET Core Blazor
 
@@ -41,14 +41,14 @@ ms.locfileid: "91805548"
    * Вызовите [`OnInitialized{Async}`](#component-initialization-methods). Если возвращается значение <xref:System.Threading.Tasks.Task>, ожидается <xref:System.Threading.Tasks.Task>, а затем компонент отрисовывается. Если значение <xref:System.Threading.Tasks.Task> не возвращается, компонент отрисовывается сразу.
 1. Вызовите [`OnParametersSet{Async}`](#after-parameters-are-set). Если возвращается значение <xref:System.Threading.Tasks.Task>, ожидается <xref:System.Threading.Tasks.Task>, а затем компонент отрисовывается. Если значение <xref:System.Threading.Tasks.Task> не возвращается, компонент отрисовывается сразу.
 
-<img src="lifecycle/_static/lifecycle1.png" alt="Component lifecycle events of a Razor component in Blazor" data-linktype="relative-path" style="max-width:350px;display:block;margin:0 auto">
+![События жизненного цикла компонента Razor в Blazor](lifecycle/_static/lifecycle1.png)
 
 Обработка событий модели DOM
 
 1. Выполняется обработчик событий.
 1. Если возвращается значение <xref:System.Threading.Tasks.Task>, ожидается <xref:System.Threading.Tasks.Task>, а затем компонент отрисовывается. Если значение <xref:System.Threading.Tasks.Task> не возвращается, компонент отрисовывается сразу.
 
-<img src="lifecycle/_static/lifecycle2.png" alt="Document Object Model (DOM) event processing" data-linktype="relative-path" style="max-width:350px;display:block;margin:0 auto">
+![Обработка событий модели DOM](lifecycle/_static/lifecycle2.png)
 
 Жизненный цикл `Render`
 
@@ -57,7 +57,7 @@ ms.locfileid: "91805548"
 1. Подождите, пока модель DOM обновится.
 1. Вызовите [`OnAfterRender{Async}`](#after-component-render).
 
-<img src="lifecycle/_static/lifecycle3.png" alt="Render lifecycle" data-linktype="relative-path" style="max-width:350px;display:block;margin:0 auto">
+![Жизненный цикл процесса отрисовки](lifecycle/_static/lifecycle3.png)
 
 Вызовы [`StateHasChanged`](#state-changes) разработчиком приводят к отрисовке.
 
@@ -108,7 +108,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Приложения Blazor Server, которые [предварительно отрисовывают свое содержимое](xref:blazor/fundamentals/additional-scenarios#render-mode), вызывают <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> **_дважды_**:
+Приложения Blazor Server, которые [предварительно отрисовывают свое содержимое](xref:blazor/fundamentals/additional-scenarios#render-mode), вызывают <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> **_дважды_** :
 
 * Один раз, когда компонент изначально отрисовывается статически как часть страницы.
 * Второй раз, когда браузер устанавливает соединение с сервером.
@@ -181,7 +181,7 @@ protected override void OnAfterRender(bool firstRender)
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> *не вызываются при предварительной отрисовке на сервере*. Методы вызываются, когда компонент отрисовывается в интерактивном режиме после завершения предварительной отрисовки. При предварительной отрисовке приложения происходит следующее.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> *не вызываются при предварительной отрисовке на сервере* . Методы вызываются, когда компонент отрисовывается в интерактивном режиме после завершения предварительной отрисовки. При предварительной отрисовке приложения происходит следующее.
 
 1. Компонент выполняется на сервере для создания статической HTML-разметки в HTTP-ответе. На этом этапе <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> не вызываются.
 1. При запуске `blazor.server.js` или `blazor.webassembly.js` в браузере компонент перезапускается в режиме интерактивной отрисовки. После перезапуска компонента **вызываются** методы <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> и <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, так как приложение больше не находится на этапе предварительной отрисовки.
@@ -229,7 +229,7 @@ protected override bool ShouldRender()
 
 ## <a name="stateful-reconnection-after-prerendering"></a>Повторное подключение с отслеживанием состояния после предварительной отрисовки
 
-В приложении Blazor Server, если <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> имеет значение <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered>, компонент изначально отрисовывается статически как часть страницы. После того как браузер установит соединение с сервером, компонент отрисовывается *снова* и становится интерактивным. Если метод жизненного цикла [`OnInitialized{Async}`](#component-initialization-methods) для инициализации компонента присутствует, он выполняется *дважды*:
+В приложении Blazor Server, если <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> имеет значение <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered>, компонент изначально отрисовывается статически как часть страницы. После того как браузер установит соединение с сервером, компонент отрисовывается *снова* и становится интерактивным. Если метод жизненного цикла [`OnInitialized{Async}`](#component-initialization-methods) для инициализации компонента присутствует, он выполняется *дважды* :
 
 * Когда компонент предварительно отрисовывается статически.
 * После установления соединения с сервером.

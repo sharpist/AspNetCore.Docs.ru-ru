@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: d36140067ba6e75f2d00cb86ea488e40d28bd86f
-ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
+ms.openlocfilehash: 3bd881b124e00b91ab0aa9d3eb7531f10ef895f2
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91762169"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326499"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor
 
 Авторы: [Хавьер Кальварро Нельсон](https://github.com/javiercn) (Javier Calvarro Nelson), [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
-Приложение Blazor может вызывать функции JavaScript из методов .NET и методы .NET из функций JavaScript. Такой подход называется *взаимодействием с JavaScript* (*JS*).
+Приложение Blazor может вызывать функции JavaScript из методов .NET и методы .NET из функций JavaScript. Такой подход называется *взаимодействием с JavaScript* ( *JS* ).
 
 В этой статье рассматривается вызов функций JavaScript из .NET. Сведения о том, как вызывать методы .NET из JavaScript, см. в статье <xref:blazor/call-dotnet-from-javascript>.
 
@@ -164,7 +164,10 @@ ms.locfileid: "91762169"
 
 ## <a name="call-a-void-javascript-function"></a>Вызов функции void JavaScript
 
-Функции JavaScript, возвращающие значение [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) или [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined), вызываются с помощью метода <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>.
+Используйте <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> в следующих случаях:
+
+* для функций JavaScript, возвращающих значение [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) или [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined);
+* если .NET не нужно считывать результат вызова JavaScript.
 
 ## <a name="detect-when-a-no-locblazor-server-app-is-prerendering"></a>Обнаружение предварительной отрисовки в приложении Blazor Server
  
@@ -192,7 +195,7 @@ ms.locfileid: "91762169"
 > [!WARNING]
 > Ссылку на элемент следует использовать только для изменения содержимого пустого элемента, который не взаимодействует с Blazor. Этот сценарий полезен, если сторонний интерфейс API предоставляет содержимое элементу. Так как Blazor не взаимодействует с элементом, риск конфликта между представлением Blazor элемента и моделью DOM отсутствует.
 >
-> В следующем примере изменять содержимое неупорядоченного списка (`ul`) *опасно*, так как Blazor взаимодействует с моделью DOM для заполнения элементов этого списка (`<li>`):
+> В следующем примере изменять содержимое неупорядоченного списка (`ul`) *опасно* , так как Blazor взаимодействует с моделью DOM для заполнения элементов этого списка (`<li>`):
 >
 > ```razor
 > <ul ref="MyList">
@@ -205,7 +208,7 @@ ms.locfileid: "91762169"
 >
 > Если при взаимодействии с JS содержимое элемента `MyList` изменяется и Blazor пытается применить изменения к элементу, эти изменения не будут соответствовать модели DOM.
 
-В случае с кодом .NET <xref:Microsoft.AspNetCore.Components.ElementReference> является непрозрачным дескриптором. *Единственное*, что можно сделать с <xref:Microsoft.AspNetCore.Components.ElementReference>, — передать в код JavaScript посредством взаимодействия с JS. При этом код на стороне JavaScript получает экземпляр `HTMLElement`, который может использоваться с обычными интерфейсами API DOM.
+В случае с кодом .NET <xref:Microsoft.AspNetCore.Components.ElementReference> является непрозрачным дескриптором. *Единственное* , что можно сделать с <xref:Microsoft.AspNetCore.Components.ElementReference>, — передать в код JavaScript посредством взаимодействия с JS. При этом код на стороне JavaScript получает экземпляр `HTMLElement`, который может использоваться с обычными интерфейсами API DOM.
 
 Например, в приведенном ниже коде определяется метод расширения .NET, который позволяет установить фокус на элемент.
 
@@ -257,9 +260,7 @@ public static ValueTask<T> GenericMethod<T>(this ElementReference elementRef,
 
 ## <a name="reference-elements-across-components"></a>Ссылки на элементы между компонентами
 
-Ссылка <xref:Microsoft.AspNetCore.Components.ElementReference> гарантированно действует только в методе <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> компонента (причем ссылка на элемент является `struct`), поэтому ссылка на элемент не может передаваться между компонентами.
-
-Чтобы сделать ссылку на элемент доступной для других компонентов, родительский компонент может:
+Экземпляр <xref:Microsoft.AspNetCore.Components.ElementReference> является гарантированно допустимым только в методе <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> компонента (причем ссылка на элемент имеет тип `struct`), поэтому ссылка на элемент не может передаваться между компонентами. Чтобы сделать ссылку на элемент доступной для других компонентов, родительский компонент может:
 
 * разрешить дочерним компонентам регистрировать обратные вызовы;
 * вызывать зарегистрированные обратные вызовы во время события <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> с помощью переданной ссылки на элемент. Такой подход позволяет дочерним компонентам взаимодействовать со ссылкой на элемент родительского компонента косвенным образом.
@@ -658,15 +659,40 @@ export function setMapCenter(map, latitude, longitude) {
 
 Важном понимать следующие основные моменты.
 
- * В случае с Blazor `<div>` с `@ref="mapElement"` остается пустым. Поэтому `mapbox-gl.js` может спокойно заполнять его и затем изменять его содержимое. Этот метод можно использовать с любой библиотекой JavaScript, которая отрисовывает пользовательский интерфейс. В компоненты Blazor можно даже внедрять компоненты из сторонней платформы одностраничных приложений JavaScript, если они не пытаются изменить другие части страницы. Ситуация, когда внешний код JavaScript изменяет элементы, которые Blazor не считает пустыми, *небезопасна*.
+ * В случае с Blazor `<div>` с `@ref="mapElement"` остается пустым. Поэтому `mapbox-gl.js` может спокойно заполнять его и затем изменять его содержимое. Этот метод можно использовать с любой библиотекой JavaScript, которая отрисовывает пользовательский интерфейс. В компоненты Blazor можно даже внедрять компоненты из сторонней платформы одностраничных приложений JavaScript, если они не пытаются изменить другие части страницы. Ситуация, когда внешний код JavaScript изменяет элементы, которые Blazor не считает пустыми, *небезопасна* .
  * При использовании этого подхода необходимо учитывать то, как Blazor удерживает или уничтожает элементы DOM. В предыдущем примере компонент безопасно обрабатывает события нажатия кнопок и обновляет существующий экземпляр карты, так как по умолчанию элементы DOM по возможности сохраняются без изменений. При отрисовке списка элементов карты из цикла `@foreach` необходимо использовать `@key`, чтобы гарантировать сохранность экземпляров компонента. В противном случае изменения в данных списка могут приводить к нежелательному сохранению состояния предыдущих экземпляров компонента. Дополнительные сведения см. в разделе об [использовании @key для сохранения элементов и компонентов](xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components).
 
 Кроме того, в предыдущем примере показано, как можно инкапсулировать логику и зависимости JavaScript в модуле ES6 и динамически загружать его с помощью идентификатора `import`. Дополнительные сведения см.в статье [Изоляция JavaScript и ссылки на объекты](#blazor-javascript-isolation-and-object-references).
 
 ::: moniker-end
 
+## <a name="size-limits-on-js-interop-calls"></a>Ограничения размера для вызовов взаимодействия с JS
+
+При использовании Blazor WebAssembly платформа не накладывает ограничений на размер входных и выходных данных в вызовах взаимодействия с JS.
+
+При использовании Blazor Server результат вызова взаимодействия с JS ограничен максимальным размером полезных данных, который настраивается в SignalR (<xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>) или имеет значение по умолчанию 32 КБ. Если приложение попытается ответить на вызов взаимодействия с JS, в котором размер полезных данных превышает значение <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>, возникает ошибка. Можно увеличить предельный размер, изменив значение <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>. В следующем примере для размера получаемого сообщения устанавливается максимальный размер 64 КБ (64×1024×1024):
+
+```csharp
+services.AddServerSideBlazor()
+   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024 * 1024);
+```
+
+Увеличение предельного размера SignalR потребует больше серверных ресурсов для обработки, а также повысит уязвимость сервера к злонамеренным действиям пользователей. Кроме того, считывание большого объема содержимого в память в виде строк или массивов байтов может привести к неудачным выделениям памяти, которые плохо обрабатываются сборщиком мусора, что дополнительно снизит производительность. Чтобы считывать полезные данные большого размера, можно отправлять такое содержимое меньшими фрагментами и обрабатывать их как <xref:System.IO.Stream>. Это удобно для чтения полезных данных большого объема в формате JSON или необработанных байтов из JavaScript. Вы можете изучить отправку больших двоичных данных в Blazor Server с помощью методов, эквивалентных работе компонента `InputFile`, в [примере приложения с отправкой двоичных данных](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/BinarySubmit).
+
+При разработке кода, который передает данные большого объема между JavaScript и Blazor, учитывайте следующие рекомендации:
+
+* Разделите данные на небольшие части и отправляйте сегменты данных последовательно, пока все данные не будут получены сервером.
+* Не выделяйте большие объекты в коде C# и JavaScript.
+* Не блокируйте основной поток пользовательского интерфейса на длительные периоды при отправке или получении данных.
+* Освободите занятую память при завершении или отмене процесса.
+* Применяйте следующие дополнительные требования в целях безопасности:
+  * Объявите максимальный размер файла или данных, который может быть передан.
+  * Объявите минимальную скорость передачи от клиента к серверу.
+* После получения данных сервером данные могут быть:
+  * Временно сохранены в буфере памяти до тех пор, пока не будут собраны все сегменты.
+  * Использованы немедленно. Например, данные могут храниться сразу в базе данных или записываться на диск по мере получения каждого сегмента.
+
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * <xref:blazor/call-dotnet-from-javascript>
 * [Пример InteropComponent.razor (репозиторий GitHub dotnet/AspNetCore, ветвь выпуска 3.1)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
-* [Выполнение передачи больших объемов данных в приложениях Blazor Server](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)

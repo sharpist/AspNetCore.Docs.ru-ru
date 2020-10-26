@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/new-field
-ms.openlocfilehash: a0c53755bd56b6c169437ca9f0ea915e46ad79ec
-ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
+ms.openlocfilehash: 2a80a9c4848703802b15348a30f2564f9580a24b
+ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91606752"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92113885"
 ---
 # <a name="part-8-add-a-new-field-to-an-aspnet-core-mvc-app"></a>Часть 8. Добавление нового поля в приложение MVC ASP.NET Core
 
@@ -40,7 +40,7 @@ ms.locfileid: "91606752"
 
 ## <a name="add-a-rating-property-to-the-movie-model"></a>Добавление свойства Rating в модель Movie
 
-Добавьте свойство `Rating` в *Models/Movie.cs*:
+Добавьте свойство `Rating` в *Models/Movie.cs* :
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 
@@ -74,7 +74,7 @@ Command ⌘ + B
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGenreRating.cshtml?highlight=16,38&range=24-64)]
 
-Обновите файл */Views/Movies/Create.cshtml*, указав поле `Rating`.
+Обновите файл */Views/Movies/Create.cshtml* , указав поле `Rating`.
 
 # <a name="visual-studio--visual-studio-for-mac"></a>[Visual Studio / Visual Studio для Mac](#tab/visual-studio+visual-studio-mac)
 
@@ -112,7 +112,7 @@ Command ⌘ + B
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-В меню **Сервис** последовательно выберите пункты **Диспетчер пакетов NuGet > Консоль диспетчера пакетов**.
+В меню **Сервис** последовательно выберите пункты **Диспетчер пакетов NuGet > Консоль диспетчера пакетов** .
 
   ![Меню PMC](adding-model/_static/pmc.png)
 
@@ -133,11 +133,16 @@ Update-Database
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Удалите базу данных и используйте миграции для повторного создания базы данных. Чтобы удалить базу данных, удалите файл базы данных *MvcMovie.db*. Затем выполните команду `ef database update`:
+Удалите базу данных и предыдущую миграцию, а затем используйте функцию миграций для повторного создания базы данных.
 
 ```dotnetcli
+dotnet ef migrations remove
+dotnet ef database drop
+dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
+
+Для удаления последней миграции используйте `dotnet ef migrations remove`. При наличии нескольких миграций, удалите папку Migrations.
 
 ---
 <!-- End of VS tabs -->

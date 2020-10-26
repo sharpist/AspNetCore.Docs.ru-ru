@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: 791cc14feac30ad8a571d155624ab821dfd77981
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 6f94323873937d1428d6cfa1b0ef15e44611fd47
+ms.sourcegitcommit: b3ec60f7682e43211c2b40c60eab3d4e45a48ab1
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722862"
+ms.lasthandoff: 10/17/2020
+ms.locfileid: "92153643"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Образы Docker для ASP.NET Core
 
@@ -85,7 +85,7 @@ ms.locfileid: "90722862"
 
 ## <a name="run-the-app-locally"></a>Локальный запуск приложения
 
-* Перейдите в папку проекта *dotnet-docker/samples/aspnetapp/aspnetapp*.
+* Перейдите в папку проекта *dotnet-docker/samples/aspnetapp/aspnetapp* .
 
 * Выполните следующую команду, чтобы собрать и запустить приложение локально:
 
@@ -99,9 +99,9 @@ ms.locfileid: "90722862"
 
 ## <a name="run-in-a-linux-container"></a>Выполнение в контейнере Linux
 
-* Переключите клиент Docker на контейнеры Linux.
+* Переключите клиент Docker на [контейнеры Linux](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
-* Перейдите в папку проекта Dockerfile *dotnet-docker/samples/aspnetapp*.
+* Перейдите в папку проекта Dockerfile *dotnet-docker/samples/aspnetapp* .
 
 * Выполните следующие команды, чтобы собрать и запустить пример в Docker:
 
@@ -125,7 +125,7 @@ ms.locfileid: "90722862"
 
 ## <a name="run-in-a-windows-container"></a>Запуск в контейнере Windows
 
-* Переключите клиент Docker на контейнеры Windows.
+* Переключите клиент Docker на [контейнеры Windows](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
 Перейдите к папке файла docker: `dotnet-docker/samples/aspnetapp`.
 
@@ -157,7 +157,7 @@ ms.locfileid: "90722862"
 
 В некоторых сценариях вам потребуется развернуть приложение в контейнер, скопировав нужные для выполнения файлы приложения. В этом разделе показано, как развернуть приложение вручную.
 
-* Перейдите в папку проекта *dotnet-docker/samples/aspnetapp/aspnetapp*.
+* Перейдите в папку проекта *dotnet-docker/samples/aspnetapp/aspnetapp* .
 
 * Выполните команду [dotnet publish](/dotnet/core/tools/dotnet-publish).
 
@@ -167,7 +167,7 @@ ms.locfileid: "90722862"
 
   Эта команда выполняет следующее:
   * собирает приложение в режиме выпуска (по умолчанию используется режим отладки);
-  * создает файлы в папке *published*.
+  * создает файлы в папке *published* .
 
 * Запустите приложение.
 
@@ -255,7 +255,7 @@ COPY --from=build /app/aspnetapp/out ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
-Как отмечалось в предыдущем Dockerfile, файлы `*.csproj` копируются и восстанавливаются в виде отдельных *слоев*. При создании образа команда `docker build` использует встроенный кэш. Если файлы `*.csproj` не изменялись с момента последнего запуска команды `docker build`, выполнять команду `dotnet restore` повторно не нужно. Вместо нее используется встроенный кэш для соответствующего слоя `dotnet restore`. Дополнительные сведения см. в статье [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache) (Рекомендации по созданию файлов Dockerfile).
+Как отмечалось в предыдущем Dockerfile, файлы `*.csproj` копируются и восстанавливаются в виде отдельных *слоев* . При создании образа команда `docker build` использует встроенный кэш. Если файлы `*.csproj` не изменялись с момента последнего запуска команды `docker build`, выполнять команду `dotnet restore` повторно не нужно. Вместо нее используется встроенный кэш для соответствующего слоя `dotnet restore`. Дополнительные сведения см. в статье [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache) (Рекомендации по созданию файлов Dockerfile).
 
 ::: moniker-end
 
