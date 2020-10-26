@@ -385,6 +385,8 @@
               uid: blazor/components/virtualization
             - name: Шаблонные компоненты
               uid: blazor/components/templated-components
+            - name: "Изоляция\_CSS"
+              uid: blazor/components/css-isolation
             - name: Интеграция компонентов
               uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
             - name: Библиотеки компонентов
@@ -447,7 +449,7 @@
           uid: blazor/webassembly-lazy-load-assemblies
         - name: Производительность WebAssembly
           uid: blazor/webassembly-performance-best-practices
-        - name: Тест
+        - name: Тестирование компонентов
           uid: blazor/test
         - name: Прогрессивные веб-приложения
           uid: blazor/progressive-web-app
