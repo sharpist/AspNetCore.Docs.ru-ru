@@ -4,7 +4,7 @@ author: anurse
 description: Узнайте, как собирать диагностические сведения из SignalR приложения ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
-ms.custom: devx-track-csharp, signalr
+ms.custom: devx-track-csharp, signalr, devx-track-js
 ms.date: 06/12/2020
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 649398a3868117b2e7f3358aa25544c99cc625b3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 890359c9e9f6c3c60f3105124f52c66b09a8a4fb
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631346"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690671"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Ведение журнала и диагностика в ASP.NET Core SignalR
 
@@ -41,7 +41,7 @@ ms.locfileid: "88631346"
 SignalR использует две категории регистратора:
 
 * `Microsoft.AspNetCore.SignalR`: Для журналов, связанных с протоколами концентраторов, активации концентраторов, вызова методов и других действий, связанных с концентратором.
-* `Microsoft.AspNetCore.Http.Connections`: Для журналов, связанных с транспортом, таких как WebSockets, длительный опрос, серверные события и инфраструктура низкого уровня SignalR .
+* `Microsoft.AspNetCore.Http.Connections`: Для журналов, связанных с транспортами, таких как WebSockets, длительный опрос, Server-Sent событий и низкоуровневых SignalR инфраструктуре.
 
 Чтобы включить подробные журналы из SignalR , настройте оба предыдущих префикса на `Debug` уровень в *appsettings.js* в файле, добавив следующие элементы в `LogLevel` подраздел в `Logging` :
 
@@ -177,7 +177,7 @@ tcpdump -i [interface] -w trace.pcap
 
 Этот метод работает только для приложений на основе браузера.
 
-Большинство Средства для разработчиков браузера имеют вкладку "сеть", позволяющую записывать сетевые активности между браузером и сервером. Однако эти трассировки не включают WebSocket и сообщения, отправляемые сервером. Если вы используете эти транспорты, лучше подходить с помощью такого средства, как Fiddler или TcpDump (описанное ниже).
+Большинство Средства для разработчиков браузера имеют вкладку "сеть", позволяющую записывать сетевые активности между браузером и сервером. Однако эти трассировки не включают WebSocket и Server-Sent сообщения о событиях. Если вы используете эти транспорты, лучше подходить с помощью такого средства, как Fiddler или TcpDump (описанное ниже).
 
 ### <a name="microsoft-edge-and-internet-explorer"></a>Microsoft Edge и Internet Explorer
 

@@ -4,7 +4,7 @@ author: bradygaster
 description: Сведения о поддерживаемых платформах для ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
-ms.custom: mvc
+ms.custom: mvc, devx-track-js
 ms.date: 01/16/2020
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/supported-platforms
-ms.openlocfilehash: a342dd787eceadd22ac26b57a3615a6b0b21f461
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: 761edbbe7bab28d2340207a0adea0718b37c7ec1
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91754506"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690334"
 ---
 # <a name="aspnet-core-no-locsignalr-supported-platforms"></a>Поддерживаемые платформы ASP.NET Core SignalR
 
@@ -37,12 +37,12 @@ SignalR для ASP.NET Core поддерживает любую серверну
 
 | Браузер                          | Версия         |
 | -------------------------------- | --------------- |
-| Apple Safari, включая iOS      | Текущий&dagger; |
+| Apple Safari, включая iOS      | Текущий&dagger; |
 | Google Chrome, включая Android | Текущий&dagger; |
 | Microsoft Edge                   | Текущий&dagger; |
 | Mozilla Firefox;                  | Текущий&dagger; |
 
-&dagger;*Current* ссылается на последнюю версию браузера.
+&dagger;*Текущий* означает последнюю версию браузера.
 
 ## <a name="net-client"></a>Клиент .NET
 

@@ -4,7 +4,7 @@ author: bradygaster
 description: Общие сведения о ASP.NET Core SignalR клиента JavaScript.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
-ms.custom: mvc
+ms.custom: mvc, devx-track-js
 ms.date: 04/08/2020
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: 6f611e56ec62ad7aea8a93e4761e1f67d0f76574
-ms.sourcegitcommit: fad0cd264c9d07a48a8c6ba1690807e0f8728898
+ms.openlocfilehash: be271272c952487fccc5136307c84fdf49391848
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/22/2020
-ms.locfileid: "92379466"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690648"
 ---
 # <a name="aspnet-core-no-locsignalr-javascript-client"></a>ASP.NET Core SignalR клиент JavaScript
 
@@ -41,14 +41,14 @@ SignalRКлиентская библиотека JavaScript доставляет
 
 ### <a name="install-with-npm"></a>Установка с помощью NPM
 
-Для Visual Studio выполните следующие команды из **консоли диспетчера пакетов** , находясь в корневой папке. Для Visual Studio Code выполните следующие команды в **интегрированном терминале**.
+Для Visual Studio выполните следующие команды из **консоли диспетчера пакетов** , находясь в корневой папке. Для Visual Studio Code выполните следующие команды в **интегрированном терминале** .
 
 ```bash
 npm init -y
 npm install @microsoft/signalr
 ```
 
-NPM устанавливает содержимое пакета в папку *node_modules \\ @microsoft\signalr\dist\browser * . Создайте новую папку с именем *SignalR* в папке *wwwroot \\ lib* . Скопируйте файл *signalr.js* в папку *ввврут\либ\сигналр*
+NPM устанавливает содержимое пакета в папку *node_modules \\ @microsoft\signalr\dist\browser* . Создайте новую папку с именем *SignalR* в папке *wwwroot \\ lib* . Скопируйте файл *signalr.js* в папку *ввврут\либ\сигналр*
 
 Сослаться на SignalR клиент JavaScript в `<script>` элементе. Пример:
 
@@ -306,14 +306,14 @@ SignalRКлиентская библиотека JavaScript доставляет
 
 ### <a name="install-with-npm"></a>Установка с помощью NPM
 
-При использовании Visual Studio выполните следующие команды из **консоли диспетчера пакетов** , находясь в корневой папке. Для Visual Studio Code выполните следующие команды в **интегрированном терминале**.
+При использовании Visual Studio выполните следующие команды из **консоли диспетчера пакетов** , находясь в корневой папке. Для Visual Studio Code выполните следующие команды в **интегрированном терминале** .
 
 ```bash
 npm init -y
 npm install @aspnet/signalr
 ```
 
-NPM устанавливает содержимое пакета в папку *node_modules \\ @aspnet\signalr\dist\browser * . Создайте новую папку с именем *SignalR* в папке *wwwroot \\ lib* . Скопируйте файл *signalr.js* в папку *ввврут\либ\сигналр*
+NPM устанавливает содержимое пакета в папку *node_modules \\ @aspnet\signalr\dist\browser* . Создайте новую папку с именем *SignalR* в папке *wwwroot \\ lib* . Скопируйте файл *signalr.js* в папку *ввврут\либ\сигналр*
 
 Сослаться на SignalR клиент JavaScript в `<script>` элементе. Пример:
 
