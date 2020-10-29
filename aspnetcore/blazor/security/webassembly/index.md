@@ -5,7 +5,7 @@ description: Узнайте о защите приложений Blazor WebAssem
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/16/2020
+ms.date: 10/27/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: e1af8f1de61edd934505a44e75ea07e0f09a67b5
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: 2c160f21ccccb44f9047cf23c67bc191ad1b2b3d
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90592960"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690377"
 ---
 # <a name="secure-aspnet-core-no-locblazor-webassembly"></a>Защита ASP.NET Core Blazor WebAssembly
 
@@ -123,4 +123,17 @@ Blazor WebAssembly поддерживает проверку подлиннос�
 * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
 * [Сервер Identity](xref:blazor/security/webassembly/hosted-with-identity-server)
 
-Дополнительные рекомендации по настройке см. по этой ссылке: <xref:blazor/security/webassembly/additional-scenarios>.
+::: moniker range=">= aspnetcore-5.0"
+
+Дополнительное руководство по конфигурации см. в следующих статьях:
+
+* <xref:blazor/security/webassembly/additional-scenarios>
+* <xref:blazor/security/webassembly/graph-api>
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Дополнительное руководство по настройке: <xref:blazor/security/webassembly/additional-scenarios>.
+
+::: moniker-end

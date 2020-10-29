@@ -4,7 +4,7 @@ author: pranavkm
 description: Советы по повышению производительности приложений ASP.NET Core Blazor WebAssembly и избежанию распространенных проблем с производительностью.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, devx-track-js
 ms.date: 10/09/2020
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: ea3f197e5bab82f4fb40238fe31cd5ce29ab62ad
-ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
+ms.openlocfilehash: 0e827680e7024eabed09b989466476a3a80eb225
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91900977"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690277"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>Рекомендации по повышению производительности ASP.NET Core Blazor WebAssembly
 
@@ -36,7 +36,7 @@ ms.locfileid: "91900977"
 
 ## <a name="optimize-rendering-speed"></a>Оптимизация скорости отрисовки
 
-В следующих разделах собраны рекомендации по уменьшению рабочей нагрузки для отрисовки и повышению скорости реагирования пользовательского интерфейса. Применение этих советов часто позволяет ускорить отрисовку пользовательского интерфейса *в десять и более раз*.
+В следующих разделах собраны рекомендации по уменьшению рабочей нагрузки для отрисовки и повышению скорости реагирования пользовательского интерфейса. Применение этих советов часто позволяет ускорить отрисовку пользовательского интерфейса *в десять и более раз* .
 
 ### <a name="avoid-unnecessary-rendering-of-component-subtrees"></a>Избегайте ненужной отрисовки поддеревьев компонентов
 
@@ -297,7 +297,7 @@ public static RenderFragment SayHello = __builder =>
 Компонент `<CascadingValue>` принимает необязательный параметр с именем `IsFixed`.
 
  * Если значение `IsFixed` равно `false` (вариант по умолчанию), то каждый получатель каскадного значения настраивает подписку для получения уведомлений об изменениях. В этом примере каждый `[CascadingParameter]` обойдется **значительно дороже** обычного `[Parameter]` из-за затрат на отслеживания подписки.
- * Если значение `IsFixed` равно `true` (например, `<CascadingValue Value="@someValue" IsFixed="true">`), то получатели получают начальное значение, но *не настраивают* подписку для получения обновлений. Тогда каждый элемент `[CascadingParameter]` будет достаточно легким и **не дороже**, чем обычный `[Parameter]`.
+ * Если значение `IsFixed` равно `true` (например, `<CascadingValue Value="@someValue" IsFixed="true">`), то получатели получают начальное значение, но *не настраивают* подписку для получения обновлений. Тогда каждый элемент `[CascadingParameter]` будет достаточно легким и **не дороже** , чем обычный `[Parameter]`.
 
 Старайтесь везде, где возможно, использовать `IsFixed="true"` в каскадных значениях. Это не вызовет затруднений, если передаваемое значение не меняется со временем. В типичной ситуации, когда компонент передает `this` в виде каскадного значения, следует использовать `IsFixed="true"`:
 

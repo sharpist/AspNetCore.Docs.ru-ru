@@ -4,7 +4,7 @@ author: scottaddie
 description: Ознакомьтесь с преимуществами использования служб JavaScript для создания одностраничных приложений на основе ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
-ms.custom: H1Hack27Feb2017
+ms.custom: H1Hack27Feb2017, devx-track-js
 ms.date: 09/06/2019
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/spa-services
-ms.openlocfilehash: 379a8f52dab36d331bc42c1fee8d64b3971e9e91
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 33ae16c033142aa1c0f4cea53ca746e8a6aaf052
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625665"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690662"
 ---
 # <a name="use-javascript-services-to-create-single-page-applications-in-aspnet-core"></a>Создание одностраничных приложений в ASP.NET Core с помощью служб JavaScript
 
@@ -84,7 +84,7 @@ ms.locfileid: "88625665"
 
 * [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
 
-  * В ОС Windows с Visual Studio 2017 для установки пакета SDK нужно выбрать рабочую нагрузку **Кроссплатформенная разработка .NET Core**.
+  * В ОС Windows с Visual Studio 2017 для установки пакета SDK нужно выбрать рабочую нагрузку **Кроссплатформенная разработка .NET Core** .
 
 * Пакет NuGet [Microsoft.AspNetCore.SpaServices](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/)
 
@@ -114,7 +114,7 @@ npm i -S aspnet-prerendering
 
 ### <a name="asp-prerender-module-tag-helper"></a>Вспомогательная функция тегов asp-prerender-module
 
-Вспомогательная функция тегов `asp-prerender-module`, используемая в предыдущем примере кода, выполняет файл *ClientApp/dist/main-server.js* на сервере с помощью Node.js. Чтобы было понятно, уточним, что файл *main-server.js* — это артефакт, получаемый в результате выполнения задачи транспилирования TypeScript в JavaScript в процессе сборки [Webpack](https://webpack.github.io/). В Webpack определен псевдоним точки входа `main-server`. Обход схемы зависимостей для этого псевдонима начинается с файла *ClientApp/boot-server.ts*:
+Вспомогательная функция тегов `asp-prerender-module`, используемая в предыдущем примере кода, выполняет файл *ClientApp/dist/main-server.js* на сервере с помощью Node.js. Чтобы было понятно, уточним, что файл *main-server.js*  — это артефакт, получаемый в результате выполнения задачи транспилирования TypeScript в JavaScript в процессе сборки [Webpack](https://webpack.github.io/). В Webpack определен псевдоним точки входа `main-server`. Обход схемы зависимостей для этого псевдонима начинается с файла *ClientApp/boot-server.ts* :
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=53)]
 
@@ -132,7 +132,7 @@ npm i -S aspnet-prerendering
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-21,38-52,79-)]
 
-Имена свойств, передаваемые во вспомогательных функциях тегов, представлены в нотации **РегистрПаскаля**. В отличие от этого, в JavaScript те же самые имена свойств представлены в **верблюжьем регистре**. Это различие обуславливается конфигурацией сериализации JSON по умолчанию.
+Имена свойств, передаваемые во вспомогательных функциях тегов, представлены в нотации **РегистрПаскаля** . В отличие от этого, в JavaScript те же самые имена свойств представлены в **верблюжьем регистре** . Это различие обуславливается конфигурацией сериализации JSON по умолчанию.
 
 Если продолжить предыдущий пример кода, данные можно передать с сервера в представление путем расконсервации свойства `globals`, предоставляемого функции `resolve`:
 
@@ -160,7 +160,7 @@ npm i -D aspnet-webpack
 
 ### <a name="webpack-dev-middleware-configuration"></a>Настройка ПО промежуточного слоя Webpack для разработки
 
-ПО промежуточного слоя Webpack для разработки регистрируется в конвейере HTTP-запросов с помощью следующего кода в методе `Configure` в файле *Startup.cs*:
+ПО промежуточного слоя Webpack для разработки регистрируется в конвейере HTTP-запросов с помощью следующего кода в методе `Configure` в файле *Startup.cs* :
 
 [!code-csharp[](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=snippet_WebpackMiddlewareRegistration&highlight=4)]
 
@@ -252,10 +252,10 @@ dotnet new angular
 
 Существует два основных режима конфигурации среды выполнения:
 
-* **Разработка**:
+* **Разработка** :
   * включает сопоставители с исходным кодом для упрощения отладки;
   * не оптимизирует производительность кода на стороне клиента.
-* **Рабочая среда**:
+* **Рабочая среда** :
   * исключает сопоставители с исходным кодом;
   * оптимизирует код на стороне клиента посредством объединения и минификации.
 
@@ -279,7 +279,7 @@ dotnet run
 
 ### <a name="run-with-visual-studio-2017"></a>Запуск с помощью Visual Studio 2017
 
-Откройте файл *CSPROJ*, созданный с помощью команды [dotnet new](/dotnet/core/tools/dotnet-new). Необходимые пакеты NuGet и npm восстанавливаются автоматически при открытии проекта: Процесс восстановления может занять несколько минут. По его завершении приложение будет готово к запуску. Нажмите зеленую кнопку запуска или клавиши `Ctrl + F5`, и в браузере откроется целевая страница приложения. Приложение запускается на узле localhost в соответствии с [режимом конфигурации среды выполнения](#set-the-runtime-configuration-mode).
+Откройте файл *CSPROJ* , созданный с помощью команды [dotnet new](/dotnet/core/tools/dotnet-new). Необходимые пакеты NuGet и npm восстанавливаются автоматически при открытии проекта: Процесс восстановления может занять несколько минут. По его завершении приложение будет готово к запуску. Нажмите зеленую кнопку запуска или клавиши `Ctrl + F5`, и в браузере откроется целевая страница приложения. Приложение запускается на узле localhost в соответствии с [режимом конфигурации среды выполнения](#set-the-runtime-configuration-mode).
 
 ## <a name="test-the-app"></a>Тестирование приложения
 
@@ -289,13 +289,13 @@ dotnet run
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/app/components/counter/counter.component.spec.ts?range=15-28)]
 
-Откройте командную строку в каталоге *ClientApp*. Выполните следующую команду:
+Откройте командную строку в каталоге *ClientApp* . Выполните следующую команду:
 
 ```console
 npm test
 ```
 
-Скрипт запускает средство Karma, которое считывает параметры, определенные в файле *karma.conf.js*. Помимо прочих параметров, в файле *karma.conf.js* определены тестовые файлы, которые должны выполняться для массива `files`:
+Скрипт запускает средство Karma, которое считывает параметры, определенные в файле *karma.conf.js* . Помимо прочих параметров, в файле *karma.conf.js* определены тестовые файлы, которые должны выполняться для массива `files`:
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/test/karma.conf.js?range=4-5,8-11)]
 

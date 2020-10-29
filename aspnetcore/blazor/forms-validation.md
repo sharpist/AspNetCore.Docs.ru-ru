@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 88c3ded79db65557d9426fde6f43aace4d9d8ae2
-ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
+ms.openlocfilehash: ad244c29c8e8e904793745119366cd677389b12d
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91606676"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690612"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>Формы и проверка ASP.NET Core Blazor
 
@@ -224,7 +224,7 @@ public class Starship
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditForm> создает <xref:Microsoft.AspNetCore.Components.Forms.EditContext> в виде [каскадного значения](xref:blazor/components/cascading-values-and-parameters), которое отслеживает метаданные процесса редактирования, включая измененные поля и текущие сообщения проверки.
 
-Назначайте <xref:Microsoft.AspNetCore.Components.Forms.EditForm> **либо** <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, **либо** <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>. Назначение обоих значений не поддерживается, и возникает **ошибка времени выполнения**.
+Назначайте <xref:Microsoft.AspNetCore.Components.Forms.EditForm> **либо** <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, **либо** <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>. Назначение обоих значений не поддерживается, и возникает **ошибка времени выполнения** .
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditForm> предоставляет удобные события для допустимой и недопустимой отправки формы.
 
@@ -450,7 +450,7 @@ namespace BlazorSample.Client
 * Обрабатывайте проверку на стороне клиента в форме с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>.
 * Когда форма проходит проверку на стороне клиента (вызывается <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>), отправляйте <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> в API внутреннего сервера для обработки формы.
 * Обрабатывайте проверку модели на сервере.
-* Серверный API включает как встроенную платформенную проверку заметок к данным, так и настраиваемую логику проверки, предоставленную разработчиком. Если проверка на сервере пройдена, выполните обработку формы и отправьте обратно код состояния успеха (*200 — OK*). Если проверка завершается неудачно, возвращайте код состояния сбоя (*400 — неверный запрос*) и ошибки проверки полей.
+* Серверный API включает как встроенную платформенную проверку заметок к данным, так и настраиваемую логику проверки, предоставленную разработчиком. Если проверка на сервере пройдена, выполните обработку формы и отправьте обратно код состояния успеха ( *200 — OK* ). Если проверка завершается неудачно, возвращайте код состояния сбоя ( *400 — неверный запрос* ) и ошибки проверки полей.
 * Отключите форму в случае успешного выполнения или отобразите ошибки.
 
 Основу приведенного ниже примера составляют следующие компоненты.
@@ -519,7 +519,7 @@ namespace BlazorSample.Server.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError("Validation Error: {MESSAGE}", ex.Message);
+                logger.LogError("Validation Error: {Message}", ex.Message);
             }
 
             return BadRequest(ModelState);
@@ -706,7 +706,7 @@ services.AddControllersWithViews()
         }
         catch (Exception ex)
         {
-            Logger.LogError("Form processing error: {MESSAGE}", ex.Message);
+            Logger.LogError("Form processing error: {Message}", ex.Message);
             disabled = true;
             messageStyles = "color:red";
             message = "There was an error processing the form.";
@@ -802,7 +802,7 @@ public Color? Color { get; set; } = null;
 public Engine? Engine { get; set; } = null;
 ```
 
-Добавьте в приложение указанные ниже перечисления (`enums`). Создайте файл для хранения `enums` или добавьте `enums` в файл `Starship.cs`. Сделайте `enums` доступным для модели `Starship` и формы *Starfleet Starship Database*.
+Добавьте в приложение указанные ниже перечисления (`enums`). Создайте файл для хранения `enums` или добавьте `enums` в файл `Starship.cs`. Сделайте `enums` доступным для модели `Starship` и формы *Starfleet Starship Database* .
 
 ```csharp
 public enum Manufacturer { SpaceX, NASA, ULA, Virgin, Unknown }
@@ -810,7 +810,7 @@ public enum Color { ImperialRed, SpacecruiserGreen, StarshipBlue, VoyagerOrange 
 public enum Engine { Ion, Plasma, Fusion, Warp }
 ```
 
-Обновите форму *Starfleet Starship Database*, описанную в разделе [Встроенные компоненты форм](#built-in-forms-components). Добавьте компоненты для создания следующих элементов:
+Обновите форму *Starfleet Starship Database* , описанную в разделе [Встроенные компоненты форм](#built-in-forms-components). Добавьте компоненты для создания следующих элементов:
 
 * группы переключателей для выбора производителя корабля;
 * группы переключателей для выбора цвета и типа двигателя корабля.
@@ -1059,7 +1059,7 @@ private class MyFieldClassProvider : FieldCssClassProvider
 
 ### <a name="no-locblazor-data-annotations-validation-package"></a>Пакет проверки заметок к данным в Blazor
 
-[`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) — это пакет, который выполняет проверку пропусков заполнения с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. В настоящее время пакет является *экспериментальным*.
+[`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) — это пакет, который выполняет проверку пропусков заполнения с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. В настоящее время пакет является *экспериментальным* .
 
 > [!NOTE]
 > Пакет [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) имеет последнюю версию *RC* на [Nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). В настоящее время продолжайте использовать *экспериментальный* пакет RC. В будущем выпуске сборка пакета может быть перемещена в платформу или в среду выполнения. Дополнительные обновления смотрите в [репозитории объявлений GitHub](https://github.com/aspnet/Announcements), [репозитории GitHub dotnet/aspnetcore](https://github.com/dotnet/aspnetcore) или в этом разделе.

@@ -5,7 +5,7 @@ description: Узнайте, как защитить изолированное 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/08/2020
+ms.date: 10/27/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: 03abaf0676860f50a3e4c1cba64039070910ff9d
-ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
+ms.openlocfilehash: 332bf73d21dfe36d2f79e4c016f7f8391c67a1f7
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91900884"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690363"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-the-authentication-library"></a>Защита изолированного приложения ASP.NET Core Blazor WebAssembly с помощью библиотеки проверки подлинности
 
@@ -37,9 +37,9 @@ ms.locfileid: "91900884"
 
 Чтобы создать новый проект Blazor WebAssembly с механизмом аутентификации, выполните следующие действия:
 
-1. Выбрав шаблон **Приложение Blazor WebAssembly** в диалоговом окне **Создание веб-приложения ASP.NET Core**, щелкните **Изменить** в разделе **Проверка подлинности**.
+1. Выбрав шаблон **Приложение Blazor WebAssembly** в диалоговом окне **Создание веб-приложения ASP.NET Core** , щелкните **Изменить** в разделе **Проверка подлинности** .
 
-1. Выберите **Учетные записи отдельных пользователей** с параметром **Хранить учетные записи пользователей в приложении**, чтобы хранить пользователей в приложении с помощью системы [Identity](xref:security/authentication/identity) ASP.NET Core.
+1. Выберите **Учетные записи отдельных пользователей** с параметром **Хранить учетные записи пользователей в приложении** , чтобы хранить пользователей в приложении с помощью системы [Identity](xref:security/authentication/identity) ASP.NET Core.
 
 # <a name="visual-studio-code--net-core-cli"></a>[Visual Studio Code или .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
@@ -61,7 +61,7 @@ dotnet new blazorwasm -au Individual -o {APP NAME}
 
 Чтобы создать новый проект Blazor WebAssembly с механизмом аутентификации, выполните следующие действия:
 
-1. На шаге **Настройка нового приложения Blazor WebAssembly** выберите **Индивидуальная проверка подлинности (в приложении)** из раскрывающегося списка **Проверка подлинности**.
+1. На шаге **Настройка нового приложения Blazor WebAssembly** выберите **Индивидуальная проверка подлинности (в приложении)** из раскрывающегося списка **Проверка подлинности** .
 
 1. Приложение будет создано для отдельных пользователей, хранимых в приложении, с помощью [Identity](xref:security/authentication/identity) ASP.NET Core.
 
@@ -121,9 +121,7 @@ builder.Services.AddOidcAuthentication(options =>
 });
 ```
 
-[!INCLUDE[](~/includes/blazor-security/azure-scope-3x.md)]
-
-Дополнительные сведения см. в следующих разделах статьи *Дополнительные сценарии*:
+Дополнительные сведения см. в следующих разделах статьи *Дополнительные сценарии* :
 
 * [Запрашивание дополнительных маркеров доступа](xref:blazor/security/webassembly/additional-scenarios#request-additional-access-tokens)
 * [Присоединение маркеров к исходящим запросам](xref:blazor/security/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)

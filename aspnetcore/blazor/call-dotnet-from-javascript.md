@@ -4,7 +4,7 @@ author: guardrex
 description: Узнайте, как вызывать методы .NET из функций JavaScript в приложениях Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, devx-track-js
 ms.date: 08/12/2020
 no-loc:
 - ASP.NET Core Identity
@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: 2a3685dbc654fb8be3420da73e5a62fe729092e6
-ms.sourcegitcommit: ad63e131224f3217bbafff4eb0e6fa1b25294460
+ms.openlocfilehash: 4a7c06ed985c290eb4b3ffca6d5ed74c6bc4e031
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/31/2020
-ms.locfileid: "89199697"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690294"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-no-locblazor"></a>Вызов методов .NET из функций JavaScript в ASP.NET Core Blazor
 
 Авторы: [Хавьер Кальварро Нельсон](https://github.com/javiercn) (Javier Calvarro Nelson), [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth) и [Шашикант Рудравади](http://wisne.co) (Shashikant Rudrawadi) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
-Приложение Blazor может вызывать функции JavaScript из методов .NET и методы .NET из функций JavaScript. Такой подход называется *взаимодействием с JavaScript* (*JS*).
+Приложение Blazor может вызывать функции JavaScript из методов .NET и методы .NET из функций JavaScript. Такой подход называется *взаимодействием с JavaScript* ( *JS* ).
 
 В этой статье рассматривается вызов методов .NET из JavaScript. Сведения о том, как вызывать функции JavaScript из .NET, см. в разделе <xref:blazor/call-javascript-from-dotnet>.
 
@@ -337,7 +337,7 @@ function updateMessageCallerJS() {
   }
   ```
 
-  Вывод `message` при нажатии кнопки **Call JS Method**:
+  Вывод `message` при нажатии кнопки **Call JS Method** :
 
   ```
   Sarah Jane, UpdateMessage Called!
