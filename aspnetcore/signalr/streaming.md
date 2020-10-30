@@ -5,7 +5,7 @@ description: Узнайте, как выполнять потоковую пер
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc, devx-track-js
-ms.date: 11/12/2019
+ms.date: 10/29/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/streaming
-ms.openlocfilehash: 2f21248934395b682adf8060dae4e3d145e52215
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: b07c280f271ccdd525128b973da065001a5cf0ed
+ms.sourcegitcommit: 0d40fc4932531ce13fc4ee9432144584e03c2f1c
 ms.translationtype: MT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 10/30/2020
-ms.locfileid: "93058211"
+ms.locfileid: "93062445"
 ---
 # <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>Использование потоковой передачи в ASP.NET Core SignalR
 
@@ -320,6 +320,22 @@ hubConnection.stream(String.class, "ExampleStreamingHubMethod", "Arg1")
 ```
 
 `stream`Метод для `HubConnection` Возвращает наблюдаемый тип элемента потока. Метод наблюдаемого типа `subscribe` определяет `onNext` , где `onError` и `onCompleted` какие обработчики определены.
+
+### <a name="client-to-server-streaming"></a>Потоковая передача клиента в сервер
+
+SignalRКлиент Java может вызывать методы потоковой передачи клиента на сервер на концентраторах, передавая [наблюдаемый](https://rxjs-dev.firebaseapp.com/api/index/class/Observable) объект в качестве аргумента в `send` , `invoke` или `stream` , в зависимости от вызванного метода концентратора.
+
+```java
+ReplaySubject<String> stream = ReplaySubject.create();
+hubConnection.send("UploadStream", stream);
+stream.onNext("FirstItem");
+stream.onNext("SecondItem");
+stream.onComplete();
+```
+
+Вызов `stream.onNext(item)` с помощью элемента записывает элемент в поток, а метод концентратора получает элемент на сервере.
+
+Чтобы завершить поток, вызовите `stream.onComplete()` .
 
 ::: moniker-end
 
