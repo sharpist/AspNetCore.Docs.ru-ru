@@ -6,38 +6,39 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/02/2020
 no-loc:
-- ASP.NET Core Identity
-- cookie
-- Cookie
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- ':::no-loc(appsettings.json):::'
+- ':::no-loc(ASP.NET Core Identity):::'
+- ':::no-loc(cookie):::'
+- ':::no-loc(Cookie):::'
+- ':::no-loc(Blazor):::'
+- ':::no-loc(Blazor Server):::'
+- ':::no-loc(Blazor WebAssembly):::'
+- ':::no-loc(Identity):::'
+- ":::no-loc(Let's Encrypt):::"
+- ':::no-loc(Razor):::'
+- ':::no-loc(SignalR):::'
 uid: web-api/jsonpatch
-ms.openlocfilehash: e57c5185323305ccbef7960653c9174931e45d75
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: da507974b88c21de22e2c7a56950943207565138
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635402"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060551"
 ---
-# <a name="jsonpatch-in-aspnet-core-web-api"></a><span data-ttu-id="5f3e1-103">JsonPatch в веб-API ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="5f3e1-103">JsonPatch in ASP.NET Core web API</span></span>
+# <a name="jsonpatch-in-aspnet-core-web-api"></a><span data-ttu-id="e4a15-103">JsonPatch в веб-API ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="e4a15-103">JsonPatch in ASP.NET Core web API</span></span>
 
-<span data-ttu-id="5f3e1-104">Авторы: [Том Дикстра](https://github.com/tdykstra) (Tom Dykstra) и [Kirk Larkin](https://github.com/serpent5) (Кирк Ларкин)</span><span class="sxs-lookup"><span data-stu-id="5f3e1-104">By [Tom Dykstra](https://github.com/tdykstra) and [Kirk Larkin](https://github.com/serpent5)</span></span>
+<span data-ttu-id="e4a15-104">Авторы: [Том Дикстра](https://github.com/tdykstra) (Tom Dykstra) и [Kirk Larkin](https://github.com/serpent5) (Кирк Ларкин)</span><span class="sxs-lookup"><span data-stu-id="e4a15-104">By [Tom Dykstra](https://github.com/tdykstra) and [Kirk Larkin](https://github.com/serpent5)</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<span data-ttu-id="5f3e1-105">В этой статье описывается обработка запросов JSON Patch в веб-API ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-105">This article explains how to handle JSON Patch requests in an ASP.NET Core web API.</span></span>
+<span data-ttu-id="e4a15-105">В этой статье описывается обработка запросов JSON Patch в веб-API ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="e4a15-105">This article explains how to handle JSON Patch requests in an ASP.NET Core web API.</span></span>
 
-## <a name="package-installation"></a><span data-ttu-id="5f3e1-106">Установка пакета</span><span class="sxs-lookup"><span data-stu-id="5f3e1-106">Package installation</span></span>
+## <a name="package-installation"></a><span data-ttu-id="e4a15-106">Установка пакета</span><span class="sxs-lookup"><span data-stu-id="e4a15-106">Package installation</span></span>
 
-<span data-ttu-id="5f3e1-107">Чтобы включить поддержку исправления JSON в приложении, выполните следующие действия.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-107">To enable JSON Patch support in your app, complete the following steps:</span></span>
+<span data-ttu-id="e4a15-107">Чтобы включить поддержку исправления JSON в приложении, выполните следующие действия.</span><span class="sxs-lookup"><span data-stu-id="e4a15-107">To enable JSON Patch support in your app, complete the following steps:</span></span>
 
-1. <span data-ttu-id="5f3e1-108">Установите [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) пакет NuGet.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-108">Install the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.</span></span>
-1. <span data-ttu-id="5f3e1-109">Обновите метод проекта `Startup.ConfigureServices` для вызова <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*> .</span><span class="sxs-lookup"><span data-stu-id="5f3e1-109">Update the project's `Startup.ConfigureServices` method to call <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*>.</span></span> <span data-ttu-id="5f3e1-110">Пример:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-110">For example:</span></span>
+1. <span data-ttu-id="e4a15-108">Установите [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) пакет NuGet.</span><span class="sxs-lookup"><span data-stu-id="e4a15-108">Install the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.</span></span>
+1. <span data-ttu-id="e4a15-109">Обновите метод проекта `Startup.ConfigureServices` для вызова <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*> .</span><span class="sxs-lookup"><span data-stu-id="e4a15-109">Update the project's `Startup.ConfigureServices` method to call <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*>.</span></span> <span data-ttu-id="e4a15-110">Пример:</span><span class="sxs-lookup"><span data-stu-id="e4a15-110">For example:</span></span>
 
     ```csharp
     services
@@ -45,49 +46,49 @@ ms.locfileid: "88635402"
         .AddNewtonsoftJson();
     ```
 
-<span data-ttu-id="5f3e1-111">`AddNewtonsoftJson` совместим с методами регистрации службы MVC:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-111">`AddNewtonsoftJson` is compatible with the MVC service registration methods:</span></span>
+<span data-ttu-id="e4a15-111">`AddNewtonsoftJson` совместим с методами регистрации службы MVC:</span><span class="sxs-lookup"><span data-stu-id="e4a15-111">`AddNewtonsoftJson` is compatible with the MVC service registration methods:</span></span>
 
-* <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages*>
+* <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.Add:::no-loc(Razor):::Pages*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers*>
 
-## <a name="json-patch-addnewtonsoftjson-and-systemtextjson"></a><span data-ttu-id="5f3e1-112">Исправление JSON, Аддневтонсофтжсон и System.Text.Jsна</span><span class="sxs-lookup"><span data-stu-id="5f3e1-112">JSON Patch, AddNewtonsoftJson, and System.Text.Json</span></span>
+## <a name="json-patch-addnewtonsoftjson-and-systemtextjson"></a><span data-ttu-id="e4a15-112">Исправление JSON, Аддневтонсофтжсон и System.Text.Jsна</span><span class="sxs-lookup"><span data-stu-id="e4a15-112">JSON Patch, AddNewtonsoftJson, and System.Text.Json</span></span>
 
-<span data-ttu-id="5f3e1-113">`AddNewtonsoftJson` заменяет `System.Text.Json` модули форматирования ввода и вывода, используемые для форматирования **всего** содержимого JSON.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-113">`AddNewtonsoftJson` replaces the `System.Text.Json`-based input and output formatters used for formatting **all** JSON content.</span></span> <span data-ttu-id="5f3e1-114">Чтобы добавить поддержку обновления JSON с помощью `Newtonsoft.Json` , при этом другие модули форматирования не меняются, обновите метод проекта следующим образом `Startup.ConfigureServices` :</span><span class="sxs-lookup"><span data-stu-id="5f3e1-114">To add support for JSON Patch using `Newtonsoft.Json`, while leaving the other formatters unchanged, update the project's `Startup.ConfigureServices` method as follows:</span></span>
+<span data-ttu-id="e4a15-113">`AddNewtonsoftJson` заменяет `System.Text.Json` модули форматирования ввода и вывода, используемые для форматирования **всего** содержимого JSON.</span><span class="sxs-lookup"><span data-stu-id="e4a15-113">`AddNewtonsoftJson` replaces the `System.Text.Json`-based input and output formatters used for formatting **all** JSON content.</span></span> <span data-ttu-id="e4a15-114">Чтобы добавить поддержку обновления JSON с помощью `Newtonsoft.Json` , при этом другие модули форматирования не меняются, обновите метод проекта следующим образом `Startup.ConfigureServices` :</span><span class="sxs-lookup"><span data-stu-id="e4a15-114">To add support for JSON Patch using `Newtonsoft.Json`, while leaving the other formatters unchanged, update the project's `Startup.ConfigureServices` method as follows:</span></span>
 
 [!code-csharp[](jsonpatch/samples/3.0/WebApp1/Startup.cs?name=snippet)]
 
-<span data-ttu-id="5f3e1-115">Для приведенного выше кода требуется `Microsoft.AspNetCore.Mvc.NewtonsoftJson` пакет и следующие `using` инструкции:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-115">The preceding code requires the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package and the following `using` statements:</span></span>
+<span data-ttu-id="e4a15-115">Для приведенного выше кода требуется `Microsoft.AspNetCore.Mvc.NewtonsoftJson` пакет и следующие `using` инструкции:</span><span class="sxs-lookup"><span data-stu-id="e4a15-115">The preceding code requires the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package and the following `using` statements:</span></span>
 
 [!code-csharp[](jsonpatch/samples/3.0/WebApp1/Startup.cs?name=snippet1)]
 
-## <a name="patch-http-request-method"></a><span data-ttu-id="5f3e1-116">Метод HTTP-запроса PATCH</span><span class="sxs-lookup"><span data-stu-id="5f3e1-116">PATCH HTTP request method</span></span>
+## <a name="patch-http-request-method"></a><span data-ttu-id="e4a15-116">Метод HTTP-запроса PATCH</span><span class="sxs-lookup"><span data-stu-id="e4a15-116">PATCH HTTP request method</span></span>
 
-<span data-ttu-id="5f3e1-117">Методы PUT и [PATCH](https://tools.ietf.org/html/rfc5789) используются для обновления существующего ресурса.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-117">The PUT and [PATCH](https://tools.ietf.org/html/rfc5789) methods are used to update an existing resource.</span></span> <span data-ttu-id="5f3e1-118">Различие между ними заключается в том, что PUT заменяет весь ресурс, а PATCH указывает только изменения.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-118">The difference between them is that PUT replaces the entire resource, while PATCH specifies only the changes.</span></span>
+<span data-ttu-id="e4a15-117">Методы PUT и [PATCH](https://tools.ietf.org/html/rfc5789) используются для обновления существующего ресурса.</span><span class="sxs-lookup"><span data-stu-id="e4a15-117">The PUT and [PATCH](https://tools.ietf.org/html/rfc5789) methods are used to update an existing resource.</span></span> <span data-ttu-id="e4a15-118">Различие между ними заключается в том, что PUT заменяет весь ресурс, а PATCH указывает только изменения.</span><span class="sxs-lookup"><span data-stu-id="e4a15-118">The difference between them is that PUT replaces the entire resource, while PATCH specifies only the changes.</span></span>
 
-## <a name="json-patch"></a><span data-ttu-id="5f3e1-119">JSON PATCH</span><span class="sxs-lookup"><span data-stu-id="5f3e1-119">JSON Patch</span></span>
+## <a name="json-patch"></a><span data-ttu-id="e4a15-119">JSON PATCH</span><span class="sxs-lookup"><span data-stu-id="e4a15-119">JSON Patch</span></span>
 
-<span data-ttu-id="5f3e1-120">Формат [JSON Patch](https://tools.ietf.org/html/rfc6902) используется для указания обновлений, применяемых к ресурсу.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-120">[JSON Patch](https://tools.ietf.org/html/rfc6902) is a format for specifying updates to be applied to a resource.</span></span> <span data-ttu-id="5f3e1-121">Документ JSON Patch содержит массив *операций*.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-121">A JSON Patch document has an array of *operations*.</span></span> <span data-ttu-id="5f3e1-122">Каждая операция определяет конкретный тип изменения.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-122">Each operation identifies a particular type of change.</span></span> <span data-ttu-id="5f3e1-123">Примерами таких изменений являются добавление элемента массива или замена значения свойства.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-123">Examples of such changes include adding an array element or replacing a property value.</span></span>
+<span data-ttu-id="e4a15-120">Формат [JSON Patch](https://tools.ietf.org/html/rfc6902) используется для указания обновлений, применяемых к ресурсу.</span><span class="sxs-lookup"><span data-stu-id="e4a15-120">[JSON Patch](https://tools.ietf.org/html/rfc6902) is a format for specifying updates to be applied to a resource.</span></span> <span data-ttu-id="e4a15-121">Документ JSON Patch содержит массив *операций* .</span><span class="sxs-lookup"><span data-stu-id="e4a15-121">A JSON Patch document has an array of *operations* .</span></span> <span data-ttu-id="e4a15-122">Каждая операция определяет конкретный тип изменения.</span><span class="sxs-lookup"><span data-stu-id="e4a15-122">Each operation identifies a particular type of change.</span></span> <span data-ttu-id="e4a15-123">Примерами таких изменений являются добавление элемента массива или замена значения свойства.</span><span class="sxs-lookup"><span data-stu-id="e4a15-123">Examples of such changes include adding an array element or replacing a property value.</span></span>
 
-<span data-ttu-id="5f3e1-124">Например, следующие документы JSON представляют ресурс, документ исправления JSON для ресурса и результат применения операций исправления.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-124">For example, the following JSON documents represent a resource, a JSON Patch document for the resource, and the result of applying the Patch operations.</span></span>
+<span data-ttu-id="e4a15-124">Например, следующие документы JSON представляют ресурс, документ исправления JSON для ресурса и результат применения операций исправления.</span><span class="sxs-lookup"><span data-stu-id="e4a15-124">For example, the following JSON documents represent a resource, a JSON Patch document for the resource, and the result of applying the Patch operations.</span></span>
 
-### <a name="resource-example"></a><span data-ttu-id="5f3e1-125">Пример ресурса</span><span class="sxs-lookup"><span data-stu-id="5f3e1-125">Resource example</span></span>
+### <a name="resource-example"></a><span data-ttu-id="e4a15-125">Пример ресурса</span><span class="sxs-lookup"><span data-stu-id="e4a15-125">Resource example</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/customer.json)]
 
-### <a name="json-patch-example"></a><span data-ttu-id="5f3e1-126">Пример JSON Patch</span><span class="sxs-lookup"><span data-stu-id="5f3e1-126">JSON patch example</span></span>
+### <a name="json-patch-example"></a><span data-ttu-id="e4a15-126">Пример JSON Patch</span><span class="sxs-lookup"><span data-stu-id="e4a15-126">JSON patch example</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/add.json)]
 
-<span data-ttu-id="5f3e1-127">В приведенном выше документе JSON:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-127">In the preceding JSON:</span></span>
+<span data-ttu-id="e4a15-127">В приведенном выше документе JSON:</span><span class="sxs-lookup"><span data-stu-id="e4a15-127">In the preceding JSON:</span></span>
 
-* <span data-ttu-id="5f3e1-128">свойство `op` указывает тип операции;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-128">The `op` property indicates the type of operation.</span></span>
-* <span data-ttu-id="5f3e1-129">свойство `path` указывает обновляемый элемент;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-129">The `path` property indicates the element to update.</span></span>
-* <span data-ttu-id="5f3e1-130">свойство `value` предоставляет новое значение.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-130">The `value` property provides the new value.</span></span>
+* <span data-ttu-id="e4a15-128">свойство `op` указывает тип операции;</span><span class="sxs-lookup"><span data-stu-id="e4a15-128">The `op` property indicates the type of operation.</span></span>
+* <span data-ttu-id="e4a15-129">свойство `path` указывает обновляемый элемент;</span><span class="sxs-lookup"><span data-stu-id="e4a15-129">The `path` property indicates the element to update.</span></span>
+* <span data-ttu-id="e4a15-130">свойство `value` предоставляет новое значение.</span><span class="sxs-lookup"><span data-stu-id="e4a15-130">The `value` property provides the new value.</span></span>
 
-### <a name="resource-after-patch"></a><span data-ttu-id="5f3e1-131">Ресурс после обновления</span><span class="sxs-lookup"><span data-stu-id="5f3e1-131">Resource after patch</span></span>
+### <a name="resource-after-patch"></a><span data-ttu-id="e4a15-131">Ресурс после обновления</span><span class="sxs-lookup"><span data-stu-id="e4a15-131">Resource after patch</span></span>
 
-<span data-ttu-id="5f3e1-132">Ниже показан ресурс в том состоянии, которое он принимает после применения приведенного выше документа JSON Patch.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-132">Here's the resource after applying the preceding JSON Patch document:</span></span>
+<span data-ttu-id="e4a15-132">Ниже показан ресурс в том состоянии, которое он принимает после применения приведенного выше документа JSON Patch.</span><span class="sxs-lookup"><span data-stu-id="e4a15-132">Here's the resource after applying the preceding JSON Patch document:</span></span>
 
 ```json
 {
@@ -109,60 +110,60 @@ ms.locfileid: "88635402"
 }
 ```
 
-<span data-ttu-id="5f3e1-133">Изменения, внесенные путем применения документа исправления JSON к ресурсу, являются атомарными.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-133">The changes made by applying a JSON Patch document to a resource are atomic.</span></span> <span data-ttu-id="5f3e1-134">Если какая-либо операция в списке завершается ошибкой, операция в списке не применяется.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-134">If any operation in the list fails, no operation in the list is applied.</span></span>
+<span data-ttu-id="e4a15-133">Изменения, внесенные путем применения документа исправления JSON к ресурсу, являются атомарными.</span><span class="sxs-lookup"><span data-stu-id="e4a15-133">The changes made by applying a JSON Patch document to a resource are atomic.</span></span> <span data-ttu-id="e4a15-134">Если какая-либо операция в списке завершается ошибкой, операция в списке не применяется.</span><span class="sxs-lookup"><span data-stu-id="e4a15-134">If any operation in the list fails, no operation in the list is applied.</span></span>
 
-## <a name="path-syntax"></a><span data-ttu-id="5f3e1-135">Синтаксис Path</span><span class="sxs-lookup"><span data-stu-id="5f3e1-135">Path syntax</span></span>
+## <a name="path-syntax"></a><span data-ttu-id="e4a15-135">Синтаксис Path</span><span class="sxs-lookup"><span data-stu-id="e4a15-135">Path syntax</span></span>
 
-<span data-ttu-id="5f3e1-136">Свойство [Path](https://tools.ietf.org/html/rfc6901) в объекте операции содержит косые черты между уровнями.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-136">The [path](https://tools.ietf.org/html/rfc6901) property of an operation object has slashes between levels.</span></span> <span data-ttu-id="5f3e1-137">Например, `"/address/zipCode"`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-137">For example, `"/address/zipCode"`.</span></span>
+<span data-ttu-id="e4a15-136">Свойство [Path](https://tools.ietf.org/html/rfc6901) в объекте операции содержит косые черты между уровнями.</span><span class="sxs-lookup"><span data-stu-id="e4a15-136">The [path](https://tools.ietf.org/html/rfc6901) property of an operation object has slashes between levels.</span></span> <span data-ttu-id="e4a15-137">Например, `"/address/zipCode"`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-137">For example, `"/address/zipCode"`.</span></span>
 
-<span data-ttu-id="5f3e1-138">Для указания элементов массива используются числовые индексы, начиная с нуля.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-138">Zero-based indexes are used to specify array elements.</span></span> <span data-ttu-id="5f3e1-139">Первый элемент массива `addresses` будет обозначаться как `/addresses/0`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-139">The first element of the `addresses` array would be at `/addresses/0`.</span></span> <span data-ttu-id="5f3e1-140">В `add` конец массива используйте дефис ( `-` ), а не номер индекса: `/addresses/-` .</span><span class="sxs-lookup"><span data-stu-id="5f3e1-140">To `add` to the end of an array, use a hyphen (`-`) rather than an index number: `/addresses/-`.</span></span>
+<span data-ttu-id="e4a15-138">Для указания элементов массива используются числовые индексы, начиная с нуля.</span><span class="sxs-lookup"><span data-stu-id="e4a15-138">Zero-based indexes are used to specify array elements.</span></span> <span data-ttu-id="e4a15-139">Первый элемент массива `addresses` будет обозначаться как `/addresses/0`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-139">The first element of the `addresses` array would be at `/addresses/0`.</span></span> <span data-ttu-id="e4a15-140">В `add` конец массива используйте дефис ( `-` ), а не номер индекса: `/addresses/-` .</span><span class="sxs-lookup"><span data-stu-id="e4a15-140">To `add` to the end of an array, use a hyphen (`-`) rather than an index number: `/addresses/-`.</span></span>
 
-### <a name="operations"></a><span data-ttu-id="5f3e1-141">Операции</span><span class="sxs-lookup"><span data-stu-id="5f3e1-141">Operations</span></span>
+### <a name="operations"></a><span data-ttu-id="e4a15-141">Операции</span><span class="sxs-lookup"><span data-stu-id="e4a15-141">Operations</span></span>
 
-<span data-ttu-id="5f3e1-142">В следующей таблице перечислены поддерживаемые операции, которые определены в [спецификации JSON Patch](https://tools.ietf.org/html/rfc6902).</span><span class="sxs-lookup"><span data-stu-id="5f3e1-142">The following table shows supported operations as defined in the [JSON Patch specification](https://tools.ietf.org/html/rfc6902):</span></span>
+<span data-ttu-id="e4a15-142">В следующей таблице перечислены поддерживаемые операции, которые определены в [спецификации JSON Patch](https://tools.ietf.org/html/rfc6902).</span><span class="sxs-lookup"><span data-stu-id="e4a15-142">The following table shows supported operations as defined in the [JSON Patch specification](https://tools.ietf.org/html/rfc6902):</span></span>
 
-|<span data-ttu-id="5f3e1-143">Операция</span><span class="sxs-lookup"><span data-stu-id="5f3e1-143">Operation</span></span>  | <span data-ttu-id="5f3e1-144">Примечания</span><span class="sxs-lookup"><span data-stu-id="5f3e1-144">Notes</span></span> |
+|<span data-ttu-id="e4a15-143">Операция</span><span class="sxs-lookup"><span data-stu-id="e4a15-143">Operation</span></span>  | <span data-ttu-id="e4a15-144">Примечания</span><span class="sxs-lookup"><span data-stu-id="e4a15-144">Notes</span></span> |
 |-----------|--------------------------------|
-| `add`     | <span data-ttu-id="5f3e1-145">Добавляет свойство или элемент массива.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-145">Add a property or array element.</span></span> <span data-ttu-id="5f3e1-146">Для существующего свойства устанавливает значение.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-146">For existing property: set value.</span></span>|
-| `remove`  | <span data-ttu-id="5f3e1-147">Удаляет свойство или элемент массива.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-147">Remove a property or array element.</span></span> |
-| `replace` | <span data-ttu-id="5f3e1-148">Действует так же, как `remove` с последующим `add` в том же расположении.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-148">Same as `remove` followed by `add` at same location.</span></span> |
-| `move`    | <span data-ttu-id="5f3e1-149">Действует так же, как `remove` из источника с последующим `add`, в котором указаны место назначения и значение из источника.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-149">Same as `remove` from source followed by `add` to destination using value from source.</span></span> |
-| `copy`    | <span data-ttu-id="5f3e1-150">Действует так же, как `add`, в котором указаны место назначения и значение из источника.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-150">Same as `add` to destination using value from source.</span></span> |
-| `test`    | <span data-ttu-id="5f3e1-151">Возвращает успешный код состояния, если значение `path` совпадает с предоставленным `value`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-151">Return success status code if value at `path` = provided `value`.</span></span>|
+| `add`     | <span data-ttu-id="e4a15-145">Добавляет свойство или элемент массива.</span><span class="sxs-lookup"><span data-stu-id="e4a15-145">Add a property or array element.</span></span> <span data-ttu-id="e4a15-146">Для существующего свойства устанавливает значение.</span><span class="sxs-lookup"><span data-stu-id="e4a15-146">For existing property: set value.</span></span>|
+| `remove`  | <span data-ttu-id="e4a15-147">Удаляет свойство или элемент массива.</span><span class="sxs-lookup"><span data-stu-id="e4a15-147">Remove a property or array element.</span></span> |
+| `replace` | <span data-ttu-id="e4a15-148">Действует так же, как `remove` с последующим `add` в том же расположении.</span><span class="sxs-lookup"><span data-stu-id="e4a15-148">Same as `remove` followed by `add` at same location.</span></span> |
+| `move`    | <span data-ttu-id="e4a15-149">Действует так же, как `remove` из источника с последующим `add`, в котором указаны место назначения и значение из источника.</span><span class="sxs-lookup"><span data-stu-id="e4a15-149">Same as `remove` from source followed by `add` to destination using value from source.</span></span> |
+| `copy`    | <span data-ttu-id="e4a15-150">Действует так же, как `add`, в котором указаны место назначения и значение из источника.</span><span class="sxs-lookup"><span data-stu-id="e4a15-150">Same as `add` to destination using value from source.</span></span> |
+| `test`    | <span data-ttu-id="e4a15-151">Возвращает успешный код состояния, если значение `path` совпадает с предоставленным `value`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-151">Return success status code if value at `path` = provided `value`.</span></span>|
 
-## <a name="json-patch-in-aspnet-core"></a><span data-ttu-id="5f3e1-152">Обновление JSON в ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="5f3e1-152">JSON Patch in ASP.NET Core</span></span>
+## <a name="json-patch-in-aspnet-core"></a><span data-ttu-id="e4a15-152">Обновление JSON в ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="e4a15-152">JSON Patch in ASP.NET Core</span></span>
 
-<span data-ttu-id="5f3e1-153">Реализация ASP.NET Core для JSON Patch предоставляется в пакете NuGet [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/).</span><span class="sxs-lookup"><span data-stu-id="5f3e1-153">The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package.</span></span>
+<span data-ttu-id="e4a15-153">Реализация ASP.NET Core для JSON Patch предоставляется в пакете NuGet [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/).</span><span class="sxs-lookup"><span data-stu-id="e4a15-153">The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package.</span></span>
 
-## <a name="action-method-code"></a><span data-ttu-id="5f3e1-154">Код метода действия</span><span class="sxs-lookup"><span data-stu-id="5f3e1-154">Action method code</span></span>
+## <a name="action-method-code"></a><span data-ttu-id="e4a15-154">Код метода действия</span><span class="sxs-lookup"><span data-stu-id="e4a15-154">Action method code</span></span>
 
-<span data-ttu-id="5f3e1-155">В контроллере API есть метод действия для JSON Patch, который:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-155">In an API controller, an action method for JSON Patch:</span></span>
+<span data-ttu-id="e4a15-155">В контроллере API есть метод действия для JSON Patch, который:</span><span class="sxs-lookup"><span data-stu-id="e4a15-155">In an API controller, an action method for JSON Patch:</span></span>
 
-* <span data-ttu-id="5f3e1-156">помечен атрибутом `HttpPatch`;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-156">Is annotated with the `HttpPatch` attribute.</span></span>
-* <span data-ttu-id="5f3e1-157">принимает `JsonPatchDocument<T>` обычно с указанием `[FromBody]`;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-157">Accepts a `JsonPatchDocument<T>`, typically with `[FromBody]`.</span></span>
-* <span data-ttu-id="5f3e1-158">вызывает `ApplyTo` для целевого документа, чтобы применить изменения.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-158">Calls `ApplyTo` on the patch document to apply the changes.</span></span>
+* <span data-ttu-id="e4a15-156">помечен атрибутом `HttpPatch`;</span><span class="sxs-lookup"><span data-stu-id="e4a15-156">Is annotated with the `HttpPatch` attribute.</span></span>
+* <span data-ttu-id="e4a15-157">принимает `JsonPatchDocument<T>` обычно с указанием `[FromBody]`;</span><span class="sxs-lookup"><span data-stu-id="e4a15-157">Accepts a `JsonPatchDocument<T>`, typically with `[FromBody]`.</span></span>
+* <span data-ttu-id="e4a15-158">вызывает `ApplyTo` для целевого документа, чтобы применить изменения.</span><span class="sxs-lookup"><span data-stu-id="e4a15-158">Calls `ApplyTo` on the patch document to apply the changes.</span></span>
 
-<span data-ttu-id="5f3e1-159">Ниже приведен пример.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-159">Here's an example:</span></span>
+<span data-ttu-id="e4a15-159">Ниже приведен пример:</span><span class="sxs-lookup"><span data-stu-id="e4a15-159">Here's an example:</span></span>
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
-<span data-ttu-id="5f3e1-160">Этот код из примера приложения работает со следующей `Customer` моделью:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-160">This code from the sample app works with the following `Customer` model:</span></span>
+<span data-ttu-id="e4a15-160">Этот код из примера приложения работает со следующей `Customer` моделью:</span><span class="sxs-lookup"><span data-stu-id="e4a15-160">This code from the sample app works with the following `Customer` model:</span></span>
 
 [!code-csharp[](jsonpatch/samples/2.2/Models/Customer.cs?name=snippet_Customer)]
 
 [!code-csharp[](jsonpatch/samples/2.2/Models/Order.cs?name=snippet_Order)]
 
-<span data-ttu-id="5f3e1-161">Этот пример метода действия:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-161">The sample action method:</span></span>
+<span data-ttu-id="e4a15-161">Этот пример метода действия:</span><span class="sxs-lookup"><span data-stu-id="e4a15-161">The sample action method:</span></span>
 
-* <span data-ttu-id="5f3e1-162">Создает документ `Customer`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-162">Constructs a `Customer`.</span></span>
-* <span data-ttu-id="5f3e1-163">применяет изменения;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-163">Applies the patch.</span></span>
-* <span data-ttu-id="5f3e1-164">возвращает результат в тексте ответа.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-164">Returns the result in the body of the response.</span></span>
+* <span data-ttu-id="e4a15-162">Создает документ `Customer`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-162">Constructs a `Customer`.</span></span>
+* <span data-ttu-id="e4a15-163">применяет изменения;</span><span class="sxs-lookup"><span data-stu-id="e4a15-163">Applies the patch.</span></span>
+* <span data-ttu-id="e4a15-164">возвращает результат в тексте ответа.</span><span class="sxs-lookup"><span data-stu-id="e4a15-164">Returns the result in the body of the response.</span></span>
 
-<span data-ttu-id="5f3e1-165">В реальном приложении код будет извлекать данные из хранилища, например из базы данных, и обновлять эту базу данных после применения исправлений.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-165">In a real app, the code would retrieve the data from a store such as a database and update the database after applying the patch.</span></span>
+<span data-ttu-id="e4a15-165">В реальном приложении код будет извлекать данные из хранилища, например из базы данных, и обновлять эту базу данных после применения исправлений.</span><span class="sxs-lookup"><span data-stu-id="e4a15-165">In a real app, the code would retrieve the data from a store such as a database and update the database after applying the patch.</span></span>
 
-### <a name="model-state"></a><span data-ttu-id="5f3e1-166">Состояние модели</span><span class="sxs-lookup"><span data-stu-id="5f3e1-166">Model state</span></span>
+### <a name="model-state"></a><span data-ttu-id="e4a15-166">Состояние модели</span><span class="sxs-lookup"><span data-stu-id="e4a15-166">Model state</span></span>
 
-<span data-ttu-id="5f3e1-167">Указанный выше пример метода действия вызывает перегрузку `ApplyTo`, которая принимает состояние модели в качестве одного из параметров.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-167">The preceding action method example calls an overload of `ApplyTo` that takes model state as one of its parameters.</span></span> <span data-ttu-id="5f3e1-168">В этом случае вы получаете в ответах сообщения об ошибках.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-168">With this option, you can get error messages in responses.</span></span> <span data-ttu-id="5f3e1-169">В следующем примере показан текст ответа с кодом 400 "Неверный запрос" для операции `test`:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-169">The following example shows the body of a 400 Bad Request response for a `test` operation:</span></span>
+<span data-ttu-id="e4a15-167">Указанный выше пример метода действия вызывает перегрузку `ApplyTo`, которая принимает состояние модели в качестве одного из параметров.</span><span class="sxs-lookup"><span data-stu-id="e4a15-167">The preceding action method example calls an overload of `ApplyTo` that takes model state as one of its parameters.</span></span> <span data-ttu-id="e4a15-168">В этом случае вы получаете в ответах сообщения об ошибках.</span><span class="sxs-lookup"><span data-stu-id="e4a15-168">With this option, you can get error messages in responses.</span></span> <span data-ttu-id="e4a15-169">В следующем примере показан текст ответа с кодом 400 "Неверный запрос" для операции `test`:</span><span class="sxs-lookup"><span data-stu-id="e4a15-169">The following example shows the body of a 400 Bad Request response for a `test` operation:</span></span>
 
 ```json
 {
@@ -172,134 +173,134 @@ ms.locfileid: "88635402"
 }
 ```
 
-### <a name="dynamic-objects"></a><span data-ttu-id="5f3e1-170">Динамические объекты</span><span class="sxs-lookup"><span data-stu-id="5f3e1-170">Dynamic objects</span></span>
+### <a name="dynamic-objects"></a><span data-ttu-id="e4a15-170">Динамические объекты</span><span class="sxs-lookup"><span data-stu-id="e4a15-170">Dynamic objects</span></span>
 
-<span data-ttu-id="5f3e1-171">В следующем примере метода действия показано, как применить исправление к динамическому объекту.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-171">The following action method example shows how to apply a patch to a dynamic object:</span></span>
+<span data-ttu-id="e4a15-171">В следующем примере метода действия показано, как применить исправление к динамическому объекту.</span><span class="sxs-lookup"><span data-stu-id="e4a15-171">The following action method example shows how to apply a patch to a dynamic object:</span></span>
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_Dynamic)]
 
-## <a name="the-add-operation"></a><span data-ttu-id="5f3e1-172">Операция добавления</span><span class="sxs-lookup"><span data-stu-id="5f3e1-172">The add operation</span></span>
+## <a name="the-add-operation"></a><span data-ttu-id="e4a15-172">Операция добавления</span><span class="sxs-lookup"><span data-stu-id="e4a15-172">The add operation</span></span>
 
-* <span data-ttu-id="5f3e1-173">Если `path` указывает на элемент массива, новый элемент вставляется перед тем, который указан в параметре `path`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-173">If `path` points to an array element: inserts new element before the one specified by `path`.</span></span>
-* <span data-ttu-id="5f3e1-174">Если `path` указывает на свойство, задается значение свойства.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-174">If `path` points to a property: sets the property value.</span></span>
-* <span data-ttu-id="5f3e1-175">Если `path` указывает на несуществующее расположение:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-175">If `path` points to a nonexistent location:</span></span>
-  * <span data-ttu-id="5f3e1-176">Если обновляемый ресурс является динамическим объектом, добавляется свойство.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-176">If the resource to patch is a dynamic object: adds a property.</span></span>
-  * <span data-ttu-id="5f3e1-177">Если обновляемый ресурс является статическим объектом, запрос завершается ошибкой.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-177">If the resource to patch is a static object: the request fails.</span></span>
+* <span data-ttu-id="e4a15-173">Если `path` указывает на элемент массива, новый элемент вставляется перед тем, который указан в параметре `path`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-173">If `path` points to an array element: inserts new element before the one specified by `path`.</span></span>
+* <span data-ttu-id="e4a15-174">Если `path` указывает на свойство, задается значение свойства.</span><span class="sxs-lookup"><span data-stu-id="e4a15-174">If `path` points to a property: sets the property value.</span></span>
+* <span data-ttu-id="e4a15-175">Если `path` указывает на несуществующее расположение:</span><span class="sxs-lookup"><span data-stu-id="e4a15-175">If `path` points to a nonexistent location:</span></span>
+  * <span data-ttu-id="e4a15-176">Если обновляемый ресурс является динамическим объектом, добавляется свойство.</span><span class="sxs-lookup"><span data-stu-id="e4a15-176">If the resource to patch is a dynamic object: adds a property.</span></span>
+  * <span data-ttu-id="e4a15-177">Если обновляемый ресурс является статическим объектом, запрос завершается ошибкой.</span><span class="sxs-lookup"><span data-stu-id="e4a15-177">If the resource to patch is a static object: the request fails.</span></span>
 
-<span data-ttu-id="5f3e1-178">Следующий пример документа с исправлениями устанавливает значение `CustomerName` и добавляет объект `Order` в конец массива `Orders`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-178">The following sample patch document sets the value of `CustomerName` and adds an `Order` object to the end of the `Orders` array.</span></span>
+<span data-ttu-id="e4a15-178">Следующий пример документа с исправлениями устанавливает значение `CustomerName` и добавляет объект `Order` в конец массива `Orders`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-178">The following sample patch document sets the value of `CustomerName` and adds an `Order` object to the end of the `Orders` array.</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/add.json)]
 
-## <a name="the-remove-operation"></a><span data-ttu-id="5f3e1-179">Операция удаления</span><span class="sxs-lookup"><span data-stu-id="5f3e1-179">The remove operation</span></span>
+## <a name="the-remove-operation"></a><span data-ttu-id="e4a15-179">Операция удаления</span><span class="sxs-lookup"><span data-stu-id="e4a15-179">The remove operation</span></span>
 
-* <span data-ttu-id="5f3e1-180">Если `path` указывает на элемент массива, элемент удаляется.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-180">If `path` points to an array element: removes the element.</span></span>
-* <span data-ttu-id="5f3e1-181">Если `path` указывает на свойство:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-181">If `path` points to a property:</span></span>
-  * <span data-ttu-id="5f3e1-182">Если обновляемый ресурс является динамическим объектом, свойство удаляется.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-182">If resource to patch is a dynamic object: removes the property.</span></span>
-  * <span data-ttu-id="5f3e1-183">Если обновляемый ресурс является статическим объектом:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-183">If resource to patch is a static object:</span></span>
-    * <span data-ttu-id="5f3e1-184">Если свойство может принимать значения NULL, ему присваивается значение NULL.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-184">If the property is nullable: sets it to null.</span></span>
-    * <span data-ttu-id="5f3e1-185">Если свойство не может принимать значения NULL, ему присваивается значение `default<T>`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-185">If the property is non-nullable, sets it to `default<T>`.</span></span>
+* <span data-ttu-id="e4a15-180">Если `path` указывает на элемент массива, элемент удаляется.</span><span class="sxs-lookup"><span data-stu-id="e4a15-180">If `path` points to an array element: removes the element.</span></span>
+* <span data-ttu-id="e4a15-181">Если `path` указывает на свойство:</span><span class="sxs-lookup"><span data-stu-id="e4a15-181">If `path` points to a property:</span></span>
+  * <span data-ttu-id="e4a15-182">Если обновляемый ресурс является динамическим объектом, свойство удаляется.</span><span class="sxs-lookup"><span data-stu-id="e4a15-182">If resource to patch is a dynamic object: removes the property.</span></span>
+  * <span data-ttu-id="e4a15-183">Если обновляемый ресурс является статическим объектом:</span><span class="sxs-lookup"><span data-stu-id="e4a15-183">If resource to patch is a static object:</span></span>
+    * <span data-ttu-id="e4a15-184">Если свойство может принимать значения NULL, ему присваивается значение NULL.</span><span class="sxs-lookup"><span data-stu-id="e4a15-184">If the property is nullable: sets it to null.</span></span>
+    * <span data-ttu-id="e4a15-185">Если свойство не может принимать значения NULL, ему присваивается значение `default<T>`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-185">If the property is non-nullable, sets it to `default<T>`.</span></span>
 
-<span data-ttu-id="5f3e1-186">В следующем образце документа исправления устанавливается `CustomerName` значение NULL и удаляются `Orders[0]` следующие значения:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-186">The following sample patch document sets `CustomerName` to null and deletes `Orders[0]`:</span></span>
+<span data-ttu-id="e4a15-186">В следующем образце документа исправления устанавливается `CustomerName` значение NULL и удаляются `Orders[0]` следующие значения:</span><span class="sxs-lookup"><span data-stu-id="e4a15-186">The following sample patch document sets `CustomerName` to null and deletes `Orders[0]`:</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/remove.json)]
 
-## <a name="the-replace-operation"></a><span data-ttu-id="5f3e1-187">Операция замены</span><span class="sxs-lookup"><span data-stu-id="5f3e1-187">The replace operation</span></span>
+## <a name="the-replace-operation"></a><span data-ttu-id="e4a15-187">Операция замены</span><span class="sxs-lookup"><span data-stu-id="e4a15-187">The replace operation</span></span>
 
-<span data-ttu-id="5f3e1-188">Эта операция функционально идентична операции `remove` с последующей `add`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-188">This operation is functionally the same as a `remove` followed by an `add`.</span></span>
+<span data-ttu-id="e4a15-188">Эта операция функционально идентична операции `remove` с последующей `add`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-188">This operation is functionally the same as a `remove` followed by an `add`.</span></span>
 
-<span data-ttu-id="5f3e1-189">В следующем образце документа исправления значение параметра `CustomerName` и заменяется `Orders[0]` новым `Order` объектом:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-189">The following sample patch document sets the value of `CustomerName` and replaces `Orders[0]`with a new `Order` object:</span></span>
+<span data-ttu-id="e4a15-189">В следующем образце документа исправления значение параметра `CustomerName` и заменяется `Orders[0]` новым `Order` объектом:</span><span class="sxs-lookup"><span data-stu-id="e4a15-189">The following sample patch document sets the value of `CustomerName` and replaces `Orders[0]`with a new `Order` object:</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/replace.json)]
 
-## <a name="the-move-operation"></a><span data-ttu-id="5f3e1-190">Операция перемещения</span><span class="sxs-lookup"><span data-stu-id="5f3e1-190">The move operation</span></span>
+## <a name="the-move-operation"></a><span data-ttu-id="e4a15-190">Операция перемещения</span><span class="sxs-lookup"><span data-stu-id="e4a15-190">The move operation</span></span>
 
-* <span data-ttu-id="5f3e1-191">Если `path` указывает на элемент массива, элемент `from` копируется в расположение элемента `path`, а затем выполняется операция `remove` для элемента `from`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-191">If `path` points to an array element: copies `from` element to location of `path` element, then runs a `remove` operation on the `from` element.</span></span>
-* <span data-ttu-id="5f3e1-192">Если `path` указывает на свойство, значение свойства `from` копируется в свойство `path`, а затем выполняется операция `remove` для свойства `from`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-192">If `path` points to a property: copies value of `from` property to `path` property, then runs a `remove` operation on the `from` property.</span></span>
-* <span data-ttu-id="5f3e1-193">Если `path` указывает на несуществующее свойство:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-193">If `path` points to a nonexistent property:</span></span>
-  * <span data-ttu-id="5f3e1-194">Если обновляемый ресурс является статическим объектом, запрос завершается ошибкой.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-194">If the resource to patch is a static object: the request fails.</span></span>
-  * <span data-ttu-id="5f3e1-195">Если исправляемый ресурс является динамическим объектом, значение `from` копируется в местоположение, указанное параметром `path`, а затем выполняется операция `remove` для свойства `from`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-195">If the resource to patch is a dynamic object: copies `from` property to location indicated by `path`, then runs a `remove` operation on the `from` property.</span></span>
+* <span data-ttu-id="e4a15-191">Если `path` указывает на элемент массива, элемент `from` копируется в расположение элемента `path`, а затем выполняется операция `remove` для элемента `from`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-191">If `path` points to an array element: copies `from` element to location of `path` element, then runs a `remove` operation on the `from` element.</span></span>
+* <span data-ttu-id="e4a15-192">Если `path` указывает на свойство, значение свойства `from` копируется в свойство `path`, а затем выполняется операция `remove` для свойства `from`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-192">If `path` points to a property: copies value of `from` property to `path` property, then runs a `remove` operation on the `from` property.</span></span>
+* <span data-ttu-id="e4a15-193">Если `path` указывает на несуществующее свойство:</span><span class="sxs-lookup"><span data-stu-id="e4a15-193">If `path` points to a nonexistent property:</span></span>
+  * <span data-ttu-id="e4a15-194">Если обновляемый ресурс является статическим объектом, запрос завершается ошибкой.</span><span class="sxs-lookup"><span data-stu-id="e4a15-194">If the resource to patch is a static object: the request fails.</span></span>
+  * <span data-ttu-id="e4a15-195">Если исправляемый ресурс является динамическим объектом, значение `from` копируется в местоположение, указанное параметром `path`, а затем выполняется операция `remove` для свойства `from`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-195">If the resource to patch is a dynamic object: copies `from` property to location indicated by `path`, then runs a `remove` operation on the `from` property.</span></span>
 
-<span data-ttu-id="5f3e1-196">Следующий пример документа исправления выполняет следующие действия:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-196">The following sample patch document:</span></span>
+<span data-ttu-id="e4a15-196">Следующий пример документа исправления выполняет следующие действия:</span><span class="sxs-lookup"><span data-stu-id="e4a15-196">The following sample patch document:</span></span>
 
-* <span data-ttu-id="5f3e1-197">копирует значение `Orders[0].OrderName` в `CustomerName`;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-197">Copies the value of `Orders[0].OrderName` to `CustomerName`.</span></span>
-* <span data-ttu-id="5f3e1-198">присваивает `Orders[0].OrderName` значение NULL;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-198">Sets `Orders[0].OrderName` to null.</span></span>
-* <span data-ttu-id="5f3e1-199">перемещает `Orders[1]` в расположение перед `Orders[0]`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-199">Moves `Orders[1]` to before `Orders[0]`.</span></span>
+* <span data-ttu-id="e4a15-197">копирует значение `Orders[0].OrderName` в `CustomerName`;</span><span class="sxs-lookup"><span data-stu-id="e4a15-197">Copies the value of `Orders[0].OrderName` to `CustomerName`.</span></span>
+* <span data-ttu-id="e4a15-198">присваивает `Orders[0].OrderName` значение NULL;</span><span class="sxs-lookup"><span data-stu-id="e4a15-198">Sets `Orders[0].OrderName` to null.</span></span>
+* <span data-ttu-id="e4a15-199">перемещает `Orders[1]` в расположение перед `Orders[0]`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-199">Moves `Orders[1]` to before `Orders[0]`.</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/move.json)]
 
-## <a name="the-copy-operation"></a><span data-ttu-id="5f3e1-200">Операция копирования</span><span class="sxs-lookup"><span data-stu-id="5f3e1-200">The copy operation</span></span>
+## <a name="the-copy-operation"></a><span data-ttu-id="e4a15-200">Операция копирования</span><span class="sxs-lookup"><span data-stu-id="e4a15-200">The copy operation</span></span>
 
-<span data-ttu-id="5f3e1-201">Эта операция функционально аналогична операции `move` без последнего шага `remove`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-201">This operation is functionally the same as a `move` operation without the final `remove` step.</span></span>
+<span data-ttu-id="e4a15-201">Эта операция функционально аналогична операции `move` без последнего шага `remove`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-201">This operation is functionally the same as a `move` operation without the final `remove` step.</span></span>
 
-<span data-ttu-id="5f3e1-202">Следующий пример документа исправления выполняет следующие действия:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-202">The following sample patch document:</span></span>
+<span data-ttu-id="e4a15-202">Следующий пример документа исправления выполняет следующие действия:</span><span class="sxs-lookup"><span data-stu-id="e4a15-202">The following sample patch document:</span></span>
 
-* <span data-ttu-id="5f3e1-203">копирует значение `Orders[0].OrderName` в `CustomerName`;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-203">Copies the value of `Orders[0].OrderName` to `CustomerName`.</span></span>
-* <span data-ttu-id="5f3e1-204">вставляет копию `Orders[1]` перед `Orders[0]`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-204">Inserts a copy of `Orders[1]` before `Orders[0]`.</span></span>
+* <span data-ttu-id="e4a15-203">копирует значение `Orders[0].OrderName` в `CustomerName`;</span><span class="sxs-lookup"><span data-stu-id="e4a15-203">Copies the value of `Orders[0].OrderName` to `CustomerName`.</span></span>
+* <span data-ttu-id="e4a15-204">вставляет копию `Orders[1]` перед `Orders[0]`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-204">Inserts a copy of `Orders[1]` before `Orders[0]`.</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/copy.json)]
 
-## <a name="the-test-operation"></a><span data-ttu-id="5f3e1-205">Операция тестирования</span><span class="sxs-lookup"><span data-stu-id="5f3e1-205">The test operation</span></span>
+## <a name="the-test-operation"></a><span data-ttu-id="e4a15-205">Операция тестирования</span><span class="sxs-lookup"><span data-stu-id="e4a15-205">The test operation</span></span>
 
-<span data-ttu-id="5f3e1-206">Если значение в расположении, которое задано параметром `path`, отличается от предоставленного в `value` значения, запрос завершится ошибкой.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-206">If the value at the location indicated by `path` is different from the value provided in `value`, the request fails.</span></span> <span data-ttu-id="5f3e1-207">В этом случае сбой распространяется на весь запрос PATCH, даже если все остальные операции в документе с исправлениями могли быть выполнены успешно.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-207">In that case, the whole PATCH request fails even if all other operations in the patch document would otherwise succeed.</span></span>
+<span data-ttu-id="e4a15-206">Если значение в расположении, которое задано параметром `path`, отличается от предоставленного в `value` значения, запрос завершится ошибкой.</span><span class="sxs-lookup"><span data-stu-id="e4a15-206">If the value at the location indicated by `path` is different from the value provided in `value`, the request fails.</span></span> <span data-ttu-id="e4a15-207">В этом случае сбой распространяется на весь запрос PATCH, даже если все остальные операции в документе с исправлениями могли быть выполнены успешно.</span><span class="sxs-lookup"><span data-stu-id="e4a15-207">In that case, the whole PATCH request fails even if all other operations in the patch document would otherwise succeed.</span></span>
 
-<span data-ttu-id="5f3e1-208">Операция `test` традиционно используется для предотвращения обновлений при возможных конфликтах параллелизма.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-208">The `test` operation is commonly used to prevent an update when there's a concurrency conflict.</span></span>
+<span data-ttu-id="e4a15-208">Операция `test` традиционно используется для предотвращения обновлений при возможных конфликтах параллелизма.</span><span class="sxs-lookup"><span data-stu-id="e4a15-208">The `test` operation is commonly used to prevent an update when there's a concurrency conflict.</span></span>
 
-<span data-ttu-id="5f3e1-209">Следующий пример документа с исправлениями не изменяет прежнее значение `CustomerName` (John), так как тест завершается ошибкой:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-209">The following sample patch document has no effect if the initial value of `CustomerName` is "John", because the test fails:</span></span>
+<span data-ttu-id="e4a15-209">Следующий пример документа с исправлениями не изменяет прежнее значение `CustomerName` (John), так как тест завершается ошибкой:</span><span class="sxs-lookup"><span data-stu-id="e4a15-209">The following sample patch document has no effect if the initial value of `CustomerName` is "John", because the test fails:</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/test-fail.json)]
 
-## <a name="get-the-code"></a><span data-ttu-id="5f3e1-210">Получите код</span><span class="sxs-lookup"><span data-stu-id="5f3e1-210">Get the code</span></span>
+## <a name="get-the-code"></a><span data-ttu-id="e4a15-210">Получение кода</span><span class="sxs-lookup"><span data-stu-id="e4a15-210">Get the code</span></span>
 
-<span data-ttu-id="5f3e1-211">[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples).</span><span class="sxs-lookup"><span data-stu-id="5f3e1-211">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples).</span></span> <span data-ttu-id="5f3e1-212">([Инструкция по скачиванию](xref:index#how-to-download-a-sample).)</span><span class="sxs-lookup"><span data-stu-id="5f3e1-212">([How to download](xref:index#how-to-download-a-sample)).</span></span>
+<span data-ttu-id="e4a15-211">[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples).</span><span class="sxs-lookup"><span data-stu-id="e4a15-211">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples).</span></span> <span data-ttu-id="e4a15-212">([Инструкция по скачиванию](xref:index#how-to-download-a-sample).)</span><span class="sxs-lookup"><span data-stu-id="e4a15-212">([How to download](xref:index#how-to-download-a-sample)).</span></span>
 
-<span data-ttu-id="5f3e1-213">Чтобы проверить этот пример, запустите приложение и отправьте HTTP-запросы со следующими параметрами:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-213">To test the sample, run the app and send HTTP requests with the following settings:</span></span>
+<span data-ttu-id="e4a15-213">Чтобы проверить этот пример, запустите приложение и отправьте HTTP-запросы со следующими параметрами:</span><span class="sxs-lookup"><span data-stu-id="e4a15-213">To test the sample, run the app and send HTTP requests with the following settings:</span></span>
 
-* <span data-ttu-id="5f3e1-214">URL-адрес: `http://localhost:{port}/jsonpatch/jsonpatchwithmodelstate`</span><span class="sxs-lookup"><span data-stu-id="5f3e1-214">URL: `http://localhost:{port}/jsonpatch/jsonpatchwithmodelstate`</span></span>
-* <span data-ttu-id="5f3e1-215">Метод HTTP: `PATCH`</span><span class="sxs-lookup"><span data-stu-id="5f3e1-215">HTTP method: `PATCH`</span></span>
-* <span data-ttu-id="5f3e1-216">Заголовок: `Content-Type: application/json-patch+json`</span><span class="sxs-lookup"><span data-stu-id="5f3e1-216">Header: `Content-Type: application/json-patch+json`</span></span>
-* <span data-ttu-id="5f3e1-217">Текст: Скопируйте и вставьте один из примеров документа JSON исправления из папки проекта *JSON* .</span><span class="sxs-lookup"><span data-stu-id="5f3e1-217">Body: Copy and paste one of the JSON patch document samples from the *JSON* project folder.</span></span>
+* <span data-ttu-id="e4a15-214">URL-адрес: `http://localhost:{port}/jsonpatch/jsonpatchwithmodelstate`</span><span class="sxs-lookup"><span data-stu-id="e4a15-214">URL: `http://localhost:{port}/jsonpatch/jsonpatchwithmodelstate`</span></span>
+* <span data-ttu-id="e4a15-215">Метод HTTP: `PATCH`</span><span class="sxs-lookup"><span data-stu-id="e4a15-215">HTTP method: `PATCH`</span></span>
+* <span data-ttu-id="e4a15-216">Заголовок: `Content-Type: application/json-patch+json`</span><span class="sxs-lookup"><span data-stu-id="e4a15-216">Header: `Content-Type: application/json-patch+json`</span></span>
+* <span data-ttu-id="e4a15-217">Текст: Скопируйте и вставьте один из примеров документа JSON исправления из папки проекта *JSON* .</span><span class="sxs-lookup"><span data-stu-id="e4a15-217">Body: Copy and paste one of the JSON patch document samples from the *JSON* project folder.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="5f3e1-218">Дополнительные ресурсы</span><span class="sxs-lookup"><span data-stu-id="5f3e1-218">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="e4a15-218">Дополнительные ресурсы</span><span class="sxs-lookup"><span data-stu-id="e4a15-218">Additional resources</span></span>
 
-* [<span data-ttu-id="5f3e1-219">Спецификация IETF RFC 5789 для метода PATCH</span><span class="sxs-lookup"><span data-stu-id="5f3e1-219">IETF RFC 5789 PATCH method specification</span></span>](https://tools.ietf.org/html/rfc5789)
-* [<span data-ttu-id="5f3e1-220">Спецификация IETF RFC 6902 для JSON Patch</span><span class="sxs-lookup"><span data-stu-id="5f3e1-220">IETF RFC 6902 JSON Patch specification</span></span>](https://tools.ietf.org/html/rfc6902)
-* [<span data-ttu-id="5f3e1-221">Спецификация IETF RFC 6901 для формата Path в JSON Patch</span><span class="sxs-lookup"><span data-stu-id="5f3e1-221">IETF RFC 6901 JSON Patch path format spec</span></span>](https://tools.ietf.org/html/rfc6901)
-* <span data-ttu-id="5f3e1-222">[Документация по JSON Patch](https://jsonpatch.com/).</span><span class="sxs-lookup"><span data-stu-id="5f3e1-222">[JSON Patch documentation](https://jsonpatch.com/).</span></span> <span data-ttu-id="5f3e1-223">Содержит ссылки на ресурсы для создания документов JSON Patch.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-223">Includes links to resources for creating JSON Patch documents.</span></span>
-* [<span data-ttu-id="5f3e1-224">Исходный код JSON Patch для ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="5f3e1-224">ASP.NET Core JSON Patch source code</span></span>](https://github.com/dotnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
+* [<span data-ttu-id="e4a15-219">Спецификация IETF RFC 5789 для метода PATCH</span><span class="sxs-lookup"><span data-stu-id="e4a15-219">IETF RFC 5789 PATCH method specification</span></span>](https://tools.ietf.org/html/rfc5789)
+* [<span data-ttu-id="e4a15-220">Спецификация IETF RFC 6902 для JSON Patch</span><span class="sxs-lookup"><span data-stu-id="e4a15-220">IETF RFC 6902 JSON Patch specification</span></span>](https://tools.ietf.org/html/rfc6902)
+* [<span data-ttu-id="e4a15-221">Спецификация IETF RFC 6901 для формата Path в JSON Patch</span><span class="sxs-lookup"><span data-stu-id="e4a15-221">IETF RFC 6901 JSON Patch path format spec</span></span>](https://tools.ietf.org/html/rfc6901)
+* <span data-ttu-id="e4a15-222">[Документация по JSON Patch](https://jsonpatch.com/).</span><span class="sxs-lookup"><span data-stu-id="e4a15-222">[JSON Patch documentation](https://jsonpatch.com/).</span></span> <span data-ttu-id="e4a15-223">Содержит ссылки на ресурсы для создания документов JSON Patch.</span><span class="sxs-lookup"><span data-stu-id="e4a15-223">Includes links to resources for creating JSON Patch documents.</span></span>
+* [<span data-ttu-id="e4a15-224">Исходный код JSON Patch для ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="e4a15-224">ASP.NET Core JSON Patch source code</span></span>](https://github.com/dotnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-<span data-ttu-id="5f3e1-225">В этой статье описывается обработка запросов JSON Patch в веб-API ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-225">This article explains how to handle JSON Patch requests in an ASP.NET Core web API.</span></span>
+<span data-ttu-id="e4a15-225">В этой статье описывается обработка запросов JSON Patch в веб-API ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="e4a15-225">This article explains how to handle JSON Patch requests in an ASP.NET Core web API.</span></span>
 
-## <a name="patch-http-request-method"></a><span data-ttu-id="5f3e1-226">Метод HTTP-запроса PATCH</span><span class="sxs-lookup"><span data-stu-id="5f3e1-226">PATCH HTTP request method</span></span>
+## <a name="patch-http-request-method"></a><span data-ttu-id="e4a15-226">Метод HTTP-запроса PATCH</span><span class="sxs-lookup"><span data-stu-id="e4a15-226">PATCH HTTP request method</span></span>
 
-<span data-ttu-id="5f3e1-227">Методы PUT и [PATCH](https://tools.ietf.org/html/rfc5789) используются для обновления существующего ресурса.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-227">The PUT and [PATCH](https://tools.ietf.org/html/rfc5789) methods are used to update an existing resource.</span></span> <span data-ttu-id="5f3e1-228">Различие между ними заключается в том, что PUT заменяет весь ресурс, а PATCH указывает только изменения.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-228">The difference between them is that PUT replaces the entire resource, while PATCH specifies only the changes.</span></span>
+<span data-ttu-id="e4a15-227">Методы PUT и [PATCH](https://tools.ietf.org/html/rfc5789) используются для обновления существующего ресурса.</span><span class="sxs-lookup"><span data-stu-id="e4a15-227">The PUT and [PATCH](https://tools.ietf.org/html/rfc5789) methods are used to update an existing resource.</span></span> <span data-ttu-id="e4a15-228">Различие между ними заключается в том, что PUT заменяет весь ресурс, а PATCH указывает только изменения.</span><span class="sxs-lookup"><span data-stu-id="e4a15-228">The difference between them is that PUT replaces the entire resource, while PATCH specifies only the changes.</span></span>
 
-## <a name="json-patch"></a><span data-ttu-id="5f3e1-229">JSON PATCH</span><span class="sxs-lookup"><span data-stu-id="5f3e1-229">JSON Patch</span></span>
+## <a name="json-patch"></a><span data-ttu-id="e4a15-229">JSON PATCH</span><span class="sxs-lookup"><span data-stu-id="e4a15-229">JSON Patch</span></span>
 
-<span data-ttu-id="5f3e1-230">Формат [JSON Patch](https://tools.ietf.org/html/rfc6902) используется для указания обновлений, применяемых к ресурсу.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-230">[JSON Patch](https://tools.ietf.org/html/rfc6902) is a format for specifying updates to be applied to a resource.</span></span> <span data-ttu-id="5f3e1-231">Документ JSON Patch содержит массив *операций*.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-231">A JSON Patch document has an array of *operations*.</span></span> <span data-ttu-id="5f3e1-232">Каждая операция обозначает определенный тип изменений, например добавление элемента массива или замену значения свойства.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-232">Each operation identifies a particular type of change, such as add an array element or replace a property value.</span></span>
+<span data-ttu-id="e4a15-230">Формат [JSON Patch](https://tools.ietf.org/html/rfc6902) используется для указания обновлений, применяемых к ресурсу.</span><span class="sxs-lookup"><span data-stu-id="e4a15-230">[JSON Patch](https://tools.ietf.org/html/rfc6902) is a format for specifying updates to be applied to a resource.</span></span> <span data-ttu-id="e4a15-231">Документ JSON Patch содержит массив *операций* .</span><span class="sxs-lookup"><span data-stu-id="e4a15-231">A JSON Patch document has an array of *operations* .</span></span> <span data-ttu-id="e4a15-232">Каждая операция обозначает определенный тип изменений, например добавление элемента массива или замену значения свойства.</span><span class="sxs-lookup"><span data-stu-id="e4a15-232">Each operation identifies a particular type of change, such as add an array element or replace a property value.</span></span>
 
-<span data-ttu-id="5f3e1-233">Так, следующие документы JSON описывают ресурс, сведения JSON Patch для изменения этого ресурса и результат применения операций изменения.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-233">For example, the following JSON documents represent a resource, a JSON patch document for the resource, and the result of applying the patch operations.</span></span>
+<span data-ttu-id="e4a15-233">Так, следующие документы JSON описывают ресурс, сведения JSON Patch для изменения этого ресурса и результат применения операций изменения.</span><span class="sxs-lookup"><span data-stu-id="e4a15-233">For example, the following JSON documents represent a resource, a JSON patch document for the resource, and the result of applying the patch operations.</span></span>
 
-### <a name="resource-example"></a><span data-ttu-id="5f3e1-234">Пример ресурса</span><span class="sxs-lookup"><span data-stu-id="5f3e1-234">Resource example</span></span>
+### <a name="resource-example"></a><span data-ttu-id="e4a15-234">Пример ресурса</span><span class="sxs-lookup"><span data-stu-id="e4a15-234">Resource example</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/customer.json)]
 
-### <a name="json-patch-example"></a><span data-ttu-id="5f3e1-235">Пример JSON Patch</span><span class="sxs-lookup"><span data-stu-id="5f3e1-235">JSON patch example</span></span>
+### <a name="json-patch-example"></a><span data-ttu-id="e4a15-235">Пример JSON Patch</span><span class="sxs-lookup"><span data-stu-id="e4a15-235">JSON patch example</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/add.json)]
 
-<span data-ttu-id="5f3e1-236">В приведенном выше документе JSON:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-236">In the preceding JSON:</span></span>
+<span data-ttu-id="e4a15-236">В приведенном выше документе JSON:</span><span class="sxs-lookup"><span data-stu-id="e4a15-236">In the preceding JSON:</span></span>
 
-* <span data-ttu-id="5f3e1-237">свойство `op` указывает тип операции;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-237">The `op` property indicates the type of operation.</span></span>
-* <span data-ttu-id="5f3e1-238">свойство `path` указывает обновляемый элемент;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-238">The `path` property indicates the element to update.</span></span>
-* <span data-ttu-id="5f3e1-239">свойство `value` предоставляет новое значение.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-239">The `value` property provides the new value.</span></span>
+* <span data-ttu-id="e4a15-237">свойство `op` указывает тип операции;</span><span class="sxs-lookup"><span data-stu-id="e4a15-237">The `op` property indicates the type of operation.</span></span>
+* <span data-ttu-id="e4a15-238">свойство `path` указывает обновляемый элемент;</span><span class="sxs-lookup"><span data-stu-id="e4a15-238">The `path` property indicates the element to update.</span></span>
+* <span data-ttu-id="e4a15-239">свойство `value` предоставляет новое значение.</span><span class="sxs-lookup"><span data-stu-id="e4a15-239">The `value` property provides the new value.</span></span>
 
-### <a name="resource-after-patch"></a><span data-ttu-id="5f3e1-240">Ресурс после обновления</span><span class="sxs-lookup"><span data-stu-id="5f3e1-240">Resource after patch</span></span>
+### <a name="resource-after-patch"></a><span data-ttu-id="e4a15-240">Ресурс после обновления</span><span class="sxs-lookup"><span data-stu-id="e4a15-240">Resource after patch</span></span>
 
-<span data-ttu-id="5f3e1-241">Ниже показан ресурс в том состоянии, которое он принимает после применения приведенного выше документа JSON Patch.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-241">Here's the resource after applying the preceding JSON Patch document:</span></span>
+<span data-ttu-id="e4a15-241">Ниже показан ресурс в том состоянии, которое он принимает после применения приведенного выше документа JSON Patch.</span><span class="sxs-lookup"><span data-stu-id="e4a15-241">Here's the resource after applying the preceding JSON Patch document:</span></span>
 
 ```json
 {
@@ -321,60 +322,60 @@ ms.locfileid: "88635402"
 }
 ```
 
-<span data-ttu-id="5f3e1-242">Изменения, внесенные при применении к ресурсу документа JSON Patch, являются атомарными, то есть ни одна из операций не будет применена, если любая из них завершится сбоем.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-242">The changes made by applying a JSON Patch document to a resource are atomic: if any operation in the list fails, no operation in the list is applied.</span></span>
+<span data-ttu-id="e4a15-242">Изменения, внесенные при применении к ресурсу документа JSON Patch, являются атомарными, то есть ни одна из операций не будет применена, если любая из них завершится сбоем.</span><span class="sxs-lookup"><span data-stu-id="e4a15-242">The changes made by applying a JSON Patch document to a resource are atomic: if any operation in the list fails, no operation in the list is applied.</span></span>
 
-## <a name="path-syntax"></a><span data-ttu-id="5f3e1-243">Синтаксис Path</span><span class="sxs-lookup"><span data-stu-id="5f3e1-243">Path syntax</span></span>
+## <a name="path-syntax"></a><span data-ttu-id="e4a15-243">Синтаксис Path</span><span class="sxs-lookup"><span data-stu-id="e4a15-243">Path syntax</span></span>
 
-<span data-ttu-id="5f3e1-244">Свойство [Path](https://tools.ietf.org/html/rfc6901) в объекте операции содержит косые черты между уровнями.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-244">The [path](https://tools.ietf.org/html/rfc6901) property of an operation object has slashes between levels.</span></span> <span data-ttu-id="5f3e1-245">Например, `"/address/zipCode"`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-245">For example, `"/address/zipCode"`.</span></span>
+<span data-ttu-id="e4a15-244">Свойство [Path](https://tools.ietf.org/html/rfc6901) в объекте операции содержит косые черты между уровнями.</span><span class="sxs-lookup"><span data-stu-id="e4a15-244">The [path](https://tools.ietf.org/html/rfc6901) property of an operation object has slashes between levels.</span></span> <span data-ttu-id="e4a15-245">Например, `"/address/zipCode"`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-245">For example, `"/address/zipCode"`.</span></span>
 
-<span data-ttu-id="5f3e1-246">Для указания элементов массива используются числовые индексы, начиная с нуля.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-246">Zero-based indexes are used to specify array elements.</span></span> <span data-ttu-id="5f3e1-247">Первый элемент массива `addresses` будет обозначаться как `/addresses/0`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-247">The first element of the `addresses` array would be at `/addresses/0`.</span></span> <span data-ttu-id="5f3e1-248">Чтобы применить `add` для последнего элемента массива, укажите дефис (-) вместо номера индекса: `/addresses/-`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-248">To `add` to the end of an array, use a hyphen (-) rather than an index number: `/addresses/-`.</span></span>
+<span data-ttu-id="e4a15-246">Для указания элементов массива используются числовые индексы, начиная с нуля.</span><span class="sxs-lookup"><span data-stu-id="e4a15-246">Zero-based indexes are used to specify array elements.</span></span> <span data-ttu-id="e4a15-247">Первый элемент массива `addresses` будет обозначаться как `/addresses/0`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-247">The first element of the `addresses` array would be at `/addresses/0`.</span></span> <span data-ttu-id="e4a15-248">Чтобы применить `add` для последнего элемента массива, укажите дефис (-) вместо номера индекса: `/addresses/-`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-248">To `add` to the end of an array, use a hyphen (-) rather than an index number: `/addresses/-`.</span></span>
 
-### <a name="operations"></a><span data-ttu-id="5f3e1-249">Операции</span><span class="sxs-lookup"><span data-stu-id="5f3e1-249">Operations</span></span>
+### <a name="operations"></a><span data-ttu-id="e4a15-249">Операции</span><span class="sxs-lookup"><span data-stu-id="e4a15-249">Operations</span></span>
 
-<span data-ttu-id="5f3e1-250">В следующей таблице перечислены поддерживаемые операции, которые определены в [спецификации JSON Patch](https://tools.ietf.org/html/rfc6902).</span><span class="sxs-lookup"><span data-stu-id="5f3e1-250">The following table shows supported operations as defined in the [JSON Patch specification](https://tools.ietf.org/html/rfc6902):</span></span>
+<span data-ttu-id="e4a15-250">В следующей таблице перечислены поддерживаемые операции, которые определены в [спецификации JSON Patch](https://tools.ietf.org/html/rfc6902).</span><span class="sxs-lookup"><span data-stu-id="e4a15-250">The following table shows supported operations as defined in the [JSON Patch specification](https://tools.ietf.org/html/rfc6902):</span></span>
 
-|<span data-ttu-id="5f3e1-251">Операция</span><span class="sxs-lookup"><span data-stu-id="5f3e1-251">Operation</span></span>  | <span data-ttu-id="5f3e1-252">Примечания</span><span class="sxs-lookup"><span data-stu-id="5f3e1-252">Notes</span></span> |
+|<span data-ttu-id="e4a15-251">Операция</span><span class="sxs-lookup"><span data-stu-id="e4a15-251">Operation</span></span>  | <span data-ttu-id="e4a15-252">Примечания</span><span class="sxs-lookup"><span data-stu-id="e4a15-252">Notes</span></span> |
 |-----------|--------------------------------|
-| `add`     | <span data-ttu-id="5f3e1-253">Добавляет свойство или элемент массива.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-253">Add a property or array element.</span></span> <span data-ttu-id="5f3e1-254">Для существующего свойства устанавливает значение.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-254">For existing property: set value.</span></span>|
-| `remove`  | <span data-ttu-id="5f3e1-255">Удаляет свойство или элемент массива.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-255">Remove a property or array element.</span></span> |
-| `replace` | <span data-ttu-id="5f3e1-256">Действует так же, как `remove` с последующим `add` в том же расположении.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-256">Same as `remove` followed by `add` at same location.</span></span> |
-| `move`    | <span data-ttu-id="5f3e1-257">Действует так же, как `remove` из источника с последующим `add`, в котором указаны место назначения и значение из источника.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-257">Same as `remove` from source followed by `add` to destination using value from source.</span></span> |
-| `copy`    | <span data-ttu-id="5f3e1-258">Действует так же, как `add`, в котором указаны место назначения и значение из источника.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-258">Same as `add` to destination using value from source.</span></span> |
-| `test`    | <span data-ttu-id="5f3e1-259">Возвращает успешный код состояния, если значение `path` совпадает с предоставленным `value`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-259">Return success status code if value at `path` = provided `value`.</span></span>|
+| `add`     | <span data-ttu-id="e4a15-253">Добавляет свойство или элемент массива.</span><span class="sxs-lookup"><span data-stu-id="e4a15-253">Add a property or array element.</span></span> <span data-ttu-id="e4a15-254">Для существующего свойства устанавливает значение.</span><span class="sxs-lookup"><span data-stu-id="e4a15-254">For existing property: set value.</span></span>|
+| `remove`  | <span data-ttu-id="e4a15-255">Удаляет свойство или элемент массива.</span><span class="sxs-lookup"><span data-stu-id="e4a15-255">Remove a property or array element.</span></span> |
+| `replace` | <span data-ttu-id="e4a15-256">Действует так же, как `remove` с последующим `add` в том же расположении.</span><span class="sxs-lookup"><span data-stu-id="e4a15-256">Same as `remove` followed by `add` at same location.</span></span> |
+| `move`    | <span data-ttu-id="e4a15-257">Действует так же, как `remove` из источника с последующим `add`, в котором указаны место назначения и значение из источника.</span><span class="sxs-lookup"><span data-stu-id="e4a15-257">Same as `remove` from source followed by `add` to destination using value from source.</span></span> |
+| `copy`    | <span data-ttu-id="e4a15-258">Действует так же, как `add`, в котором указаны место назначения и значение из источника.</span><span class="sxs-lookup"><span data-stu-id="e4a15-258">Same as `add` to destination using value from source.</span></span> |
+| `test`    | <span data-ttu-id="e4a15-259">Возвращает успешный код состояния, если значение `path` совпадает с предоставленным `value`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-259">Return success status code if value at `path` = provided `value`.</span></span>|
 
-## <a name="jsonpatch-in-aspnet-core"></a><span data-ttu-id="5f3e1-260">JsonPatch в ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="5f3e1-260">JsonPatch in ASP.NET Core</span></span>
+## <a name="jsonpatch-in-aspnet-core"></a><span data-ttu-id="e4a15-260">JsonPatch в ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="e4a15-260">JsonPatch in ASP.NET Core</span></span>
 
-<span data-ttu-id="5f3e1-261">Реализация ASP.NET Core для JSON Patch предоставляется в пакете NuGet [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/).</span><span class="sxs-lookup"><span data-stu-id="5f3e1-261">The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package.</span></span> <span data-ttu-id="5f3e1-262">Этот пакет входит в состав метапакета [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app).</span><span class="sxs-lookup"><span data-stu-id="5f3e1-262">The package is included in the [Microsoft.AspnetCore.App](xref:fundamentals/metapackage-app) metapackage.</span></span>
+<span data-ttu-id="e4a15-261">Реализация ASP.NET Core для JSON Patch предоставляется в пакете NuGet [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/).</span><span class="sxs-lookup"><span data-stu-id="e4a15-261">The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package.</span></span> <span data-ttu-id="e4a15-262">Этот пакет входит в состав метапакета [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app).</span><span class="sxs-lookup"><span data-stu-id="e4a15-262">The package is included in the [Microsoft.AspnetCore.App](xref:fundamentals/metapackage-app) metapackage.</span></span>
 
-## <a name="action-method-code"></a><span data-ttu-id="5f3e1-263">Код метода действия</span><span class="sxs-lookup"><span data-stu-id="5f3e1-263">Action method code</span></span>
+## <a name="action-method-code"></a><span data-ttu-id="e4a15-263">Код метода действия</span><span class="sxs-lookup"><span data-stu-id="e4a15-263">Action method code</span></span>
 
-<span data-ttu-id="5f3e1-264">В контроллере API есть метод действия для JSON Patch, который:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-264">In an API controller, an action method for JSON Patch:</span></span>
+<span data-ttu-id="e4a15-264">В контроллере API есть метод действия для JSON Patch, который:</span><span class="sxs-lookup"><span data-stu-id="e4a15-264">In an API controller, an action method for JSON Patch:</span></span>
 
-* <span data-ttu-id="5f3e1-265">помечен атрибутом `HttpPatch`;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-265">Is annotated with the `HttpPatch` attribute.</span></span>
-* <span data-ttu-id="5f3e1-266">принимает `JsonPatchDocument<T>` обычно с указанием `[FromBody]`;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-266">Accepts a `JsonPatchDocument<T>`, typically with `[FromBody]`.</span></span>
-* <span data-ttu-id="5f3e1-267">вызывает `ApplyTo` для целевого документа, чтобы применить изменения.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-267">Calls `ApplyTo` on the patch document to apply the changes.</span></span>
+* <span data-ttu-id="e4a15-265">помечен атрибутом `HttpPatch`;</span><span class="sxs-lookup"><span data-stu-id="e4a15-265">Is annotated with the `HttpPatch` attribute.</span></span>
+* <span data-ttu-id="e4a15-266">принимает `JsonPatchDocument<T>` обычно с указанием `[FromBody]`;</span><span class="sxs-lookup"><span data-stu-id="e4a15-266">Accepts a `JsonPatchDocument<T>`, typically with `[FromBody]`.</span></span>
+* <span data-ttu-id="e4a15-267">вызывает `ApplyTo` для целевого документа, чтобы применить изменения.</span><span class="sxs-lookup"><span data-stu-id="e4a15-267">Calls `ApplyTo` on the patch document to apply the changes.</span></span>
 
-<span data-ttu-id="5f3e1-268">Ниже приведен пример.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-268">Here's an example:</span></span>
+<span data-ttu-id="e4a15-268">Ниже приведен пример:</span><span class="sxs-lookup"><span data-stu-id="e4a15-268">Here's an example:</span></span>
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
-<span data-ttu-id="5f3e1-269">Этот код из примера приложения работает со следующей моделью `Customer`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-269">This code from the sample app works with the following `Customer` model.</span></span>
+<span data-ttu-id="e4a15-269">Этот код из примера приложения работает со следующей моделью `Customer`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-269">This code from the sample app works with the following `Customer` model.</span></span>
 
 [!code-csharp[](jsonpatch/samples/2.2/Models/Customer.cs?name=snippet_Customer)]
 
 [!code-csharp[](jsonpatch/samples/2.2/Models/Order.cs?name=snippet_Order)]
 
-<span data-ttu-id="5f3e1-270">Этот пример метода действия:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-270">The sample action method:</span></span>
+<span data-ttu-id="e4a15-270">Этот пример метода действия:</span><span class="sxs-lookup"><span data-stu-id="e4a15-270">The sample action method:</span></span>
 
-* <span data-ttu-id="5f3e1-271">Создает документ `Customer`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-271">Constructs a `Customer`.</span></span>
-* <span data-ttu-id="5f3e1-272">применяет изменения;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-272">Applies the patch.</span></span>
-* <span data-ttu-id="5f3e1-273">возвращает результат в тексте ответа.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-273">Returns the result in the body of the response.</span></span>
+* <span data-ttu-id="e4a15-271">Создает документ `Customer`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-271">Constructs a `Customer`.</span></span>
+* <span data-ttu-id="e4a15-272">применяет изменения;</span><span class="sxs-lookup"><span data-stu-id="e4a15-272">Applies the patch.</span></span>
+* <span data-ttu-id="e4a15-273">возвращает результат в тексте ответа.</span><span class="sxs-lookup"><span data-stu-id="e4a15-273">Returns the result in the body of the response.</span></span>
 
- <span data-ttu-id="5f3e1-274">В реальном приложении код будет извлекать данные из хранилища, например из базы данных, и обновлять эту базу данных после применения исправлений.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-274">In a real app, the code would retrieve the data from a store such as a database and update the database after applying the patch.</span></span>
+ <span data-ttu-id="e4a15-274">В реальном приложении код будет извлекать данные из хранилища, например из базы данных, и обновлять эту базу данных после применения исправлений.</span><span class="sxs-lookup"><span data-stu-id="e4a15-274">In a real app, the code would retrieve the data from a store such as a database and update the database after applying the patch.</span></span>
 
-### <a name="model-state"></a><span data-ttu-id="5f3e1-275">Состояние модели</span><span class="sxs-lookup"><span data-stu-id="5f3e1-275">Model state</span></span>
+### <a name="model-state"></a><span data-ttu-id="e4a15-275">Состояние модели</span><span class="sxs-lookup"><span data-stu-id="e4a15-275">Model state</span></span>
 
-<span data-ttu-id="5f3e1-276">Указанный выше пример метода действия вызывает перегрузку `ApplyTo`, которая принимает состояние модели в качестве одного из параметров.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-276">The preceding action method example calls an overload of `ApplyTo` that takes model state as one of its parameters.</span></span> <span data-ttu-id="5f3e1-277">В этом случае вы получаете в ответах сообщения об ошибках.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-277">With this option, you can get error messages in responses.</span></span> <span data-ttu-id="5f3e1-278">В следующем примере показан текст ответа с кодом 400 "Неверный запрос" для операции `test`:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-278">The following example shows the body of a 400 Bad Request response for a `test` operation:</span></span>
+<span data-ttu-id="e4a15-276">Указанный выше пример метода действия вызывает перегрузку `ApplyTo`, которая принимает состояние модели в качестве одного из параметров.</span><span class="sxs-lookup"><span data-stu-id="e4a15-276">The preceding action method example calls an overload of `ApplyTo` that takes model state as one of its parameters.</span></span> <span data-ttu-id="e4a15-277">В этом случае вы получаете в ответах сообщения об ошибках.</span><span class="sxs-lookup"><span data-stu-id="e4a15-277">With this option, you can get error messages in responses.</span></span> <span data-ttu-id="e4a15-278">В следующем примере показан текст ответа с кодом 400 "Неверный запрос" для операции `test`:</span><span class="sxs-lookup"><span data-stu-id="e4a15-278">The following example shows the body of a 400 Bad Request response for a `test` operation:</span></span>
 
 ```json
 {
@@ -384,99 +385,99 @@ ms.locfileid: "88635402"
 }
 ```
 
-### <a name="dynamic-objects"></a><span data-ttu-id="5f3e1-279">Динамические объекты</span><span class="sxs-lookup"><span data-stu-id="5f3e1-279">Dynamic objects</span></span>
+### <a name="dynamic-objects"></a><span data-ttu-id="e4a15-279">Динамические объекты</span><span class="sxs-lookup"><span data-stu-id="e4a15-279">Dynamic objects</span></span>
 
-<span data-ttu-id="5f3e1-280">Следующий пример метода действия демонстрирует, как применить исправление к динамическому объекту.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-280">The following action method example shows how to apply a patch to a dynamic object.</span></span>
+<span data-ttu-id="e4a15-280">Следующий пример метода действия демонстрирует, как применить исправление к динамическому объекту.</span><span class="sxs-lookup"><span data-stu-id="e4a15-280">The following action method example shows how to apply a patch to a dynamic object.</span></span>
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_Dynamic)]
 
-## <a name="the-add-operation"></a><span data-ttu-id="5f3e1-281">Операция добавления</span><span class="sxs-lookup"><span data-stu-id="5f3e1-281">The add operation</span></span>
+## <a name="the-add-operation"></a><span data-ttu-id="e4a15-281">Операция добавления</span><span class="sxs-lookup"><span data-stu-id="e4a15-281">The add operation</span></span>
 
-* <span data-ttu-id="5f3e1-282">Если `path` указывает на элемент массива, новый элемент вставляется перед тем, который указан в параметре `path`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-282">If `path` points to an array element: inserts new element before the one specified by `path`.</span></span>
-* <span data-ttu-id="5f3e1-283">Если `path` указывает на свойство, задается значение свойства.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-283">If `path` points to a property: sets the property value.</span></span>
-* <span data-ttu-id="5f3e1-284">Если `path` указывает на несуществующее расположение:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-284">If `path` points to a nonexistent location:</span></span>
-  * <span data-ttu-id="5f3e1-285">Если обновляемый ресурс является динамическим объектом, добавляется свойство.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-285">If the resource to patch is a dynamic object: adds a property.</span></span>
-  * <span data-ttu-id="5f3e1-286">Если обновляемый ресурс является статическим объектом, запрос завершается ошибкой.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-286">If the resource to patch is a static object: the request fails.</span></span>
+* <span data-ttu-id="e4a15-282">Если `path` указывает на элемент массива, новый элемент вставляется перед тем, который указан в параметре `path`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-282">If `path` points to an array element: inserts new element before the one specified by `path`.</span></span>
+* <span data-ttu-id="e4a15-283">Если `path` указывает на свойство, задается значение свойства.</span><span class="sxs-lookup"><span data-stu-id="e4a15-283">If `path` points to a property: sets the property value.</span></span>
+* <span data-ttu-id="e4a15-284">Если `path` указывает на несуществующее расположение:</span><span class="sxs-lookup"><span data-stu-id="e4a15-284">If `path` points to a nonexistent location:</span></span>
+  * <span data-ttu-id="e4a15-285">Если обновляемый ресурс является динамическим объектом, добавляется свойство.</span><span class="sxs-lookup"><span data-stu-id="e4a15-285">If the resource to patch is a dynamic object: adds a property.</span></span>
+  * <span data-ttu-id="e4a15-286">Если обновляемый ресурс является статическим объектом, запрос завершается ошибкой.</span><span class="sxs-lookup"><span data-stu-id="e4a15-286">If the resource to patch is a static object: the request fails.</span></span>
 
-<span data-ttu-id="5f3e1-287">Следующий пример документа с исправлениями устанавливает значение `CustomerName` и добавляет объект `Order` в конец массива `Orders`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-287">The following sample patch document sets the value of `CustomerName` and adds an `Order` object to the end of the `Orders` array.</span></span>
+<span data-ttu-id="e4a15-287">Следующий пример документа с исправлениями устанавливает значение `CustomerName` и добавляет объект `Order` в конец массива `Orders`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-287">The following sample patch document sets the value of `CustomerName` and adds an `Order` object to the end of the `Orders` array.</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/add.json)]
 
-## <a name="the-remove-operation"></a><span data-ttu-id="5f3e1-288">Операция удаления</span><span class="sxs-lookup"><span data-stu-id="5f3e1-288">The remove operation</span></span>
+## <a name="the-remove-operation"></a><span data-ttu-id="e4a15-288">Операция удаления</span><span class="sxs-lookup"><span data-stu-id="e4a15-288">The remove operation</span></span>
 
-* <span data-ttu-id="5f3e1-289">Если `path` указывает на элемент массива, элемент удаляется.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-289">If `path` points to an array element: removes the element.</span></span>
-* <span data-ttu-id="5f3e1-290">Если `path` указывает на свойство:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-290">If `path` points to a property:</span></span>
-  * <span data-ttu-id="5f3e1-291">Если обновляемый ресурс является динамическим объектом, свойство удаляется.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-291">If resource to patch is a dynamic object: removes the property.</span></span>
-  * <span data-ttu-id="5f3e1-292">Если обновляемый ресурс является статическим объектом:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-292">If resource to patch is a static object:</span></span>
-    * <span data-ttu-id="5f3e1-293">Если свойство может принимать значения NULL, ему присваивается значение NULL.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-293">If the property is nullable: sets it to null.</span></span>
-    * <span data-ttu-id="5f3e1-294">Если свойство не может принимать значения NULL, ему присваивается значение `default<T>`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-294">If the property is non-nullable, sets it to `default<T>`.</span></span>
+* <span data-ttu-id="e4a15-289">Если `path` указывает на элемент массива, элемент удаляется.</span><span class="sxs-lookup"><span data-stu-id="e4a15-289">If `path` points to an array element: removes the element.</span></span>
+* <span data-ttu-id="e4a15-290">Если `path` указывает на свойство:</span><span class="sxs-lookup"><span data-stu-id="e4a15-290">If `path` points to a property:</span></span>
+  * <span data-ttu-id="e4a15-291">Если обновляемый ресурс является динамическим объектом, свойство удаляется.</span><span class="sxs-lookup"><span data-stu-id="e4a15-291">If resource to patch is a dynamic object: removes the property.</span></span>
+  * <span data-ttu-id="e4a15-292">Если обновляемый ресурс является статическим объектом:</span><span class="sxs-lookup"><span data-stu-id="e4a15-292">If resource to patch is a static object:</span></span>
+    * <span data-ttu-id="e4a15-293">Если свойство может принимать значения NULL, ему присваивается значение NULL.</span><span class="sxs-lookup"><span data-stu-id="e4a15-293">If the property is nullable: sets it to null.</span></span>
+    * <span data-ttu-id="e4a15-294">Если свойство не может принимать значения NULL, ему присваивается значение `default<T>`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-294">If the property is non-nullable, sets it to `default<T>`.</span></span>
 
-<span data-ttu-id="5f3e1-295">Следующий пример документа с исправлениями присваивает `CustomerName` значение NULL и удаляет `Orders[0]`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-295">The following sample patch document sets `CustomerName` to null and deletes `Orders[0]`.</span></span>
+<span data-ttu-id="e4a15-295">Следующий пример документа с исправлениями присваивает `CustomerName` значение NULL и удаляет `Orders[0]`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-295">The following sample patch document sets `CustomerName` to null and deletes `Orders[0]`.</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/remove.json)]
 
-## <a name="the-replace-operation"></a><span data-ttu-id="5f3e1-296">Операция замены</span><span class="sxs-lookup"><span data-stu-id="5f3e1-296">The replace operation</span></span>
+## <a name="the-replace-operation"></a><span data-ttu-id="e4a15-296">Операция замены</span><span class="sxs-lookup"><span data-stu-id="e4a15-296">The replace operation</span></span>
 
-<span data-ttu-id="5f3e1-297">Эта операция функционально идентична операции `remove` с последующей `add`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-297">This operation is functionally the same as a `remove` followed by an `add`.</span></span>
+<span data-ttu-id="e4a15-297">Эта операция функционально идентична операции `remove` с последующей `add`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-297">This operation is functionally the same as a `remove` followed by an `add`.</span></span>
 
-<span data-ttu-id="5f3e1-298">Следующий пример документа с исправлениями устанавливает значение `CustomerName` и заменяет `Orders[0]` новым объектом `Order`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-298">The following sample patch document sets the value of `CustomerName` and replaces `Orders[0]`with a new `Order` object.</span></span>
+<span data-ttu-id="e4a15-298">Следующий пример документа с исправлениями устанавливает значение `CustomerName` и заменяет `Orders[0]` новым объектом `Order`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-298">The following sample patch document sets the value of `CustomerName` and replaces `Orders[0]`with a new `Order` object.</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/replace.json)]
 
-## <a name="the-move-operation"></a><span data-ttu-id="5f3e1-299">Операция перемещения</span><span class="sxs-lookup"><span data-stu-id="5f3e1-299">The move operation</span></span>
+## <a name="the-move-operation"></a><span data-ttu-id="e4a15-299">Операция перемещения</span><span class="sxs-lookup"><span data-stu-id="e4a15-299">The move operation</span></span>
 
-* <span data-ttu-id="5f3e1-300">Если `path` указывает на элемент массива, элемент `from` копируется в расположение элемента `path`, а затем выполняется операция `remove` для элемента `from`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-300">If `path` points to an array element: copies `from` element to location of `path` element, then runs a `remove` operation on the `from` element.</span></span>
-* <span data-ttu-id="5f3e1-301">Если `path` указывает на свойство, значение свойства `from` копируется в свойство `path`, а затем выполняется операция `remove` для свойства `from`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-301">If `path` points to a property: copies value of `from` property to `path` property, then runs a `remove` operation on the `from` property.</span></span>
-* <span data-ttu-id="5f3e1-302">Если `path` указывает на несуществующее свойство:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-302">If `path` points to a nonexistent property:</span></span>
-  * <span data-ttu-id="5f3e1-303">Если обновляемый ресурс является статическим объектом, запрос завершается ошибкой.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-303">If the resource to patch is a static object: the request fails.</span></span>
-  * <span data-ttu-id="5f3e1-304">Если исправляемый ресурс является динамическим объектом, значение `from` копируется в местоположение, указанное параметром `path`, а затем выполняется операция `remove` для свойства `from`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-304">If the resource to patch is a dynamic object: copies `from` property to location indicated by `path`, then runs a `remove` operation on the `from` property.</span></span>
+* <span data-ttu-id="e4a15-300">Если `path` указывает на элемент массива, элемент `from` копируется в расположение элемента `path`, а затем выполняется операция `remove` для элемента `from`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-300">If `path` points to an array element: copies `from` element to location of `path` element, then runs a `remove` operation on the `from` element.</span></span>
+* <span data-ttu-id="e4a15-301">Если `path` указывает на свойство, значение свойства `from` копируется в свойство `path`, а затем выполняется операция `remove` для свойства `from`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-301">If `path` points to a property: copies value of `from` property to `path` property, then runs a `remove` operation on the `from` property.</span></span>
+* <span data-ttu-id="e4a15-302">Если `path` указывает на несуществующее свойство:</span><span class="sxs-lookup"><span data-stu-id="e4a15-302">If `path` points to a nonexistent property:</span></span>
+  * <span data-ttu-id="e4a15-303">Если обновляемый ресурс является статическим объектом, запрос завершается ошибкой.</span><span class="sxs-lookup"><span data-stu-id="e4a15-303">If the resource to patch is a static object: the request fails.</span></span>
+  * <span data-ttu-id="e4a15-304">Если исправляемый ресурс является динамическим объектом, значение `from` копируется в местоположение, указанное параметром `path`, а затем выполняется операция `remove` для свойства `from`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-304">If the resource to patch is a dynamic object: copies `from` property to location indicated by `path`, then runs a `remove` operation on the `from` property.</span></span>
 
-<span data-ttu-id="5f3e1-305">Следующий пример документа исправления выполняет следующие действия:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-305">The following sample patch document:</span></span>
+<span data-ttu-id="e4a15-305">Следующий пример документа исправления выполняет следующие действия:</span><span class="sxs-lookup"><span data-stu-id="e4a15-305">The following sample patch document:</span></span>
 
-* <span data-ttu-id="5f3e1-306">копирует значение `Orders[0].OrderName` в `CustomerName`;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-306">Copies the value of `Orders[0].OrderName` to `CustomerName`.</span></span>
-* <span data-ttu-id="5f3e1-307">присваивает `Orders[0].OrderName` значение NULL;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-307">Sets `Orders[0].OrderName` to null.</span></span>
-* <span data-ttu-id="5f3e1-308">перемещает `Orders[1]` в расположение перед `Orders[0]`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-308">Moves `Orders[1]` to before `Orders[0]`.</span></span>
+* <span data-ttu-id="e4a15-306">копирует значение `Orders[0].OrderName` в `CustomerName`;</span><span class="sxs-lookup"><span data-stu-id="e4a15-306">Copies the value of `Orders[0].OrderName` to `CustomerName`.</span></span>
+* <span data-ttu-id="e4a15-307">присваивает `Orders[0].OrderName` значение NULL;</span><span class="sxs-lookup"><span data-stu-id="e4a15-307">Sets `Orders[0].OrderName` to null.</span></span>
+* <span data-ttu-id="e4a15-308">перемещает `Orders[1]` в расположение перед `Orders[0]`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-308">Moves `Orders[1]` to before `Orders[0]`.</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/move.json)]
 
-## <a name="the-copy-operation"></a><span data-ttu-id="5f3e1-309">Операция копирования</span><span class="sxs-lookup"><span data-stu-id="5f3e1-309">The copy operation</span></span>
+## <a name="the-copy-operation"></a><span data-ttu-id="e4a15-309">Операция копирования</span><span class="sxs-lookup"><span data-stu-id="e4a15-309">The copy operation</span></span>
 
-<span data-ttu-id="5f3e1-310">Эта операция функционально аналогична операции `move` без последнего шага `remove`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-310">This operation is functionally the same as a `move` operation without the final `remove` step.</span></span>
+<span data-ttu-id="e4a15-310">Эта операция функционально аналогична операции `move` без последнего шага `remove`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-310">This operation is functionally the same as a `move` operation without the final `remove` step.</span></span>
 
-<span data-ttu-id="5f3e1-311">Следующий пример документа исправления выполняет следующие действия:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-311">The following sample patch document:</span></span>
+<span data-ttu-id="e4a15-311">Следующий пример документа исправления выполняет следующие действия:</span><span class="sxs-lookup"><span data-stu-id="e4a15-311">The following sample patch document:</span></span>
 
-* <span data-ttu-id="5f3e1-312">копирует значение `Orders[0].OrderName` в `CustomerName`;</span><span class="sxs-lookup"><span data-stu-id="5f3e1-312">Copies the value of `Orders[0].OrderName` to `CustomerName`.</span></span>
-* <span data-ttu-id="5f3e1-313">вставляет копию `Orders[1]` перед `Orders[0]`.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-313">Inserts a copy of `Orders[1]` before `Orders[0]`.</span></span>
+* <span data-ttu-id="e4a15-312">копирует значение `Orders[0].OrderName` в `CustomerName`;</span><span class="sxs-lookup"><span data-stu-id="e4a15-312">Copies the value of `Orders[0].OrderName` to `CustomerName`.</span></span>
+* <span data-ttu-id="e4a15-313">вставляет копию `Orders[1]` перед `Orders[0]`.</span><span class="sxs-lookup"><span data-stu-id="e4a15-313">Inserts a copy of `Orders[1]` before `Orders[0]`.</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/copy.json)]
 
-## <a name="the-test-operation"></a><span data-ttu-id="5f3e1-314">Операция тестирования</span><span class="sxs-lookup"><span data-stu-id="5f3e1-314">The test operation</span></span>
+## <a name="the-test-operation"></a><span data-ttu-id="e4a15-314">Операция тестирования</span><span class="sxs-lookup"><span data-stu-id="e4a15-314">The test operation</span></span>
 
-<span data-ttu-id="5f3e1-315">Если значение в расположении, которое задано параметром `path`, отличается от предоставленного в `value` значения, запрос завершится ошибкой.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-315">If the value at the location indicated by `path` is different from the value provided in `value`, the request fails.</span></span> <span data-ttu-id="5f3e1-316">В этом случае сбой распространяется на весь запрос PATCH, даже если все остальные операции в документе с исправлениями могли быть выполнены успешно.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-316">In that case, the whole PATCH request fails even if all other operations in the patch document would otherwise succeed.</span></span>
+<span data-ttu-id="e4a15-315">Если значение в расположении, которое задано параметром `path`, отличается от предоставленного в `value` значения, запрос завершится ошибкой.</span><span class="sxs-lookup"><span data-stu-id="e4a15-315">If the value at the location indicated by `path` is different from the value provided in `value`, the request fails.</span></span> <span data-ttu-id="e4a15-316">В этом случае сбой распространяется на весь запрос PATCH, даже если все остальные операции в документе с исправлениями могли быть выполнены успешно.</span><span class="sxs-lookup"><span data-stu-id="e4a15-316">In that case, the whole PATCH request fails even if all other operations in the patch document would otherwise succeed.</span></span>
 
-<span data-ttu-id="5f3e1-317">Операция `test` традиционно используется для предотвращения обновлений при возможных конфликтах параллелизма.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-317">The `test` operation is commonly used to prevent an update when there's a concurrency conflict.</span></span>
+<span data-ttu-id="e4a15-317">Операция `test` традиционно используется для предотвращения обновлений при возможных конфликтах параллелизма.</span><span class="sxs-lookup"><span data-stu-id="e4a15-317">The `test` operation is commonly used to prevent an update when there's a concurrency conflict.</span></span>
 
-<span data-ttu-id="5f3e1-318">Следующий пример документа с исправлениями не изменяет прежнее значение `CustomerName` (John), так как тест завершается ошибкой:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-318">The following sample patch document has no effect if the initial value of `CustomerName` is "John", because the test fails:</span></span>
+<span data-ttu-id="e4a15-318">Следующий пример документа с исправлениями не изменяет прежнее значение `CustomerName` (John), так как тест завершается ошибкой:</span><span class="sxs-lookup"><span data-stu-id="e4a15-318">The following sample patch document has no effect if the initial value of `CustomerName` is "John", because the test fails:</span></span>
 
 [!code-json[](jsonpatch/samples/2.2/JSON/test-fail.json)]
 
-## <a name="get-the-code"></a><span data-ttu-id="5f3e1-319">Получите код</span><span class="sxs-lookup"><span data-stu-id="5f3e1-319">Get the code</span></span>
+## <a name="get-the-code"></a><span data-ttu-id="e4a15-319">Получение кода</span><span class="sxs-lookup"><span data-stu-id="e4a15-319">Get the code</span></span>
 
-<span data-ttu-id="5f3e1-320">[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2).</span><span class="sxs-lookup"><span data-stu-id="5f3e1-320">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2).</span></span> <span data-ttu-id="5f3e1-321">([Инструкция по скачиванию](xref:index#how-to-download-a-sample).)</span><span class="sxs-lookup"><span data-stu-id="5f3e1-321">([How to download](xref:index#how-to-download-a-sample)).</span></span>
+<span data-ttu-id="e4a15-320">[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2).</span><span class="sxs-lookup"><span data-stu-id="e4a15-320">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2).</span></span> <span data-ttu-id="e4a15-321">([Инструкция по скачиванию](xref:index#how-to-download-a-sample).)</span><span class="sxs-lookup"><span data-stu-id="e4a15-321">([How to download](xref:index#how-to-download-a-sample)).</span></span>
 
-<span data-ttu-id="5f3e1-322">Чтобы проверить этот пример, запустите приложение и отправьте HTTP-запросы со следующими параметрами:</span><span class="sxs-lookup"><span data-stu-id="5f3e1-322">To test the sample, run the app and send HTTP requests with the following settings:</span></span>
+<span data-ttu-id="e4a15-322">Чтобы проверить этот пример, запустите приложение и отправьте HTTP-запросы со следующими параметрами:</span><span class="sxs-lookup"><span data-stu-id="e4a15-322">To test the sample, run the app and send HTTP requests with the following settings:</span></span>
 
-* <span data-ttu-id="5f3e1-323">URL-адрес: `http://localhost:{port}/jsonpatch/jsonpatchwithmodelstate`</span><span class="sxs-lookup"><span data-stu-id="5f3e1-323">URL: `http://localhost:{port}/jsonpatch/jsonpatchwithmodelstate`</span></span>
-* <span data-ttu-id="5f3e1-324">Метод HTTP: `PATCH`</span><span class="sxs-lookup"><span data-stu-id="5f3e1-324">HTTP method: `PATCH`</span></span>
-* <span data-ttu-id="5f3e1-325">Заголовок: `Content-Type: application/json-patch+json`</span><span class="sxs-lookup"><span data-stu-id="5f3e1-325">Header: `Content-Type: application/json-patch+json`</span></span>
-* <span data-ttu-id="5f3e1-326">Текст: Скопируйте и вставьте один из примеров документа JSON исправления из папки проекта *JSON* .</span><span class="sxs-lookup"><span data-stu-id="5f3e1-326">Body: Copy and paste one of the JSON patch document samples from the *JSON* project folder.</span></span>
+* <span data-ttu-id="e4a15-323">URL-адрес: `http://localhost:{port}/jsonpatch/jsonpatchwithmodelstate`</span><span class="sxs-lookup"><span data-stu-id="e4a15-323">URL: `http://localhost:{port}/jsonpatch/jsonpatchwithmodelstate`</span></span>
+* <span data-ttu-id="e4a15-324">Метод HTTP: `PATCH`</span><span class="sxs-lookup"><span data-stu-id="e4a15-324">HTTP method: `PATCH`</span></span>
+* <span data-ttu-id="e4a15-325">Заголовок: `Content-Type: application/json-patch+json`</span><span class="sxs-lookup"><span data-stu-id="e4a15-325">Header: `Content-Type: application/json-patch+json`</span></span>
+* <span data-ttu-id="e4a15-326">Текст: Скопируйте и вставьте один из примеров документа JSON исправления из папки проекта *JSON* .</span><span class="sxs-lookup"><span data-stu-id="e4a15-326">Body: Copy and paste one of the JSON patch document samples from the *JSON* project folder.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="5f3e1-327">Дополнительные ресурсы</span><span class="sxs-lookup"><span data-stu-id="5f3e1-327">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="e4a15-327">Дополнительные ресурсы</span><span class="sxs-lookup"><span data-stu-id="e4a15-327">Additional resources</span></span>
 
-* [<span data-ttu-id="5f3e1-328">Спецификация IETF RFC 5789 для метода PATCH</span><span class="sxs-lookup"><span data-stu-id="5f3e1-328">IETF RFC 5789 PATCH method specification</span></span>](https://tools.ietf.org/html/rfc5789)
-* [<span data-ttu-id="5f3e1-329">Спецификация IETF RFC 6902 для JSON Patch</span><span class="sxs-lookup"><span data-stu-id="5f3e1-329">IETF RFC 6902 JSON Patch specification</span></span>](https://tools.ietf.org/html/rfc6902)
-* [<span data-ttu-id="5f3e1-330">Спецификация IETF RFC 6901 для формата Path в JSON Patch</span><span class="sxs-lookup"><span data-stu-id="5f3e1-330">IETF RFC 6901 JSON Patch path format spec</span></span>](https://tools.ietf.org/html/rfc6901)
-* <span data-ttu-id="5f3e1-331">[Документация по JSON Patch](https://jsonpatch.com/).</span><span class="sxs-lookup"><span data-stu-id="5f3e1-331">[JSON Patch documentation](https://jsonpatch.com/).</span></span> <span data-ttu-id="5f3e1-332">Содержит ссылки на ресурсы для создания документов JSON Patch.</span><span class="sxs-lookup"><span data-stu-id="5f3e1-332">Includes links to resources for creating JSON Patch documents.</span></span>
-* [<span data-ttu-id="5f3e1-333">Исходный код JSON Patch для ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="5f3e1-333">ASP.NET Core JSON Patch source code</span></span>](https://github.com/dotnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
+* [<span data-ttu-id="e4a15-328">Спецификация IETF RFC 5789 для метода PATCH</span><span class="sxs-lookup"><span data-stu-id="e4a15-328">IETF RFC 5789 PATCH method specification</span></span>](https://tools.ietf.org/html/rfc5789)
+* [<span data-ttu-id="e4a15-329">Спецификация IETF RFC 6902 для JSON Patch</span><span class="sxs-lookup"><span data-stu-id="e4a15-329">IETF RFC 6902 JSON Patch specification</span></span>](https://tools.ietf.org/html/rfc6902)
+* [<span data-ttu-id="e4a15-330">Спецификация IETF RFC 6901 для формата Path в JSON Patch</span><span class="sxs-lookup"><span data-stu-id="e4a15-330">IETF RFC 6901 JSON Patch path format spec</span></span>](https://tools.ietf.org/html/rfc6901)
+* <span data-ttu-id="e4a15-331">[Документация по JSON Patch](https://jsonpatch.com/).</span><span class="sxs-lookup"><span data-stu-id="e4a15-331">[JSON Patch documentation](https://jsonpatch.com/).</span></span> <span data-ttu-id="e4a15-332">Содержит ссылки на ресурсы для создания документов JSON Patch.</span><span class="sxs-lookup"><span data-stu-id="e4a15-332">Includes links to resources for creating JSON Patch documents.</span></span>
+* [<span data-ttu-id="e4a15-333">Исходный код JSON Patch для ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="e4a15-333">ASP.NET Core JSON Patch source code</span></span>](https://github.com/dotnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
 
 ::: moniker-end
