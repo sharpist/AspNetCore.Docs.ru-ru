@@ -7,6 +7,7 @@ ms.custom: seoapril2019, mvc, seodec18
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/facebook-logins
-ms.openlocfilehash: ce0e7ad30c137562b74dc9fe5c53235e3599e575
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: be0b655645fd2bd0eab9f9c30a65485f386cead3
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634362"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053362"
 ---
 # <a name="facebook-external-login-setup-in-aspnet-core"></a>Настройка внешнего входа Facebook в ASP.NET Core
 
@@ -48,7 +49,7 @@ ms.locfileid: "88634362"
 
   ![Создание новой формы идентификатора приложения](index/_static/FBNewAppId.png)
 
-* В карточке нового приложения выберите **Добавить продукт**.  На карточке **входа Facebook** щелкните **настроить** . 
+* В карточке нового приложения выберите **Добавить продукт** .  На карточке **входа Facebook** щелкните **настроить** . 
 
   ![Страница «Настройка продукта»](index/_static/FBProductSetup.png)
 
@@ -65,7 +66,7 @@ ms.locfileid: "88634362"
 > [!NOTE]
 > URI */сигнин-фацебук* задается в качестве обратного вызова по умолчанию для поставщика проверки подлинности Facebook. URI обратного вызова по умолчанию можно изменить при настройке по промежуточного слоя проверки подлинности Facebook с помощью унаследованного свойства [ремотеаусентикатионоптионс. каллбаккпас](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) класса [фацебукоптионс](/dotnet/api/microsoft.aspnetcore.authentication.facebook.facebookoptions) .
 
-* Щелкните **Сохранить изменения**.
+* Щелкните **Сохранить изменения** .
 
 * Щелкните ссылку **Параметры**  >  **Базовая** ссылка в области навигации слева.
 
@@ -103,8 +104,8 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 
 ## <a name="sign-in-with-facebook"></a>Вход с помощью Facebook
 
-* Запустите приложение и выберите **Вход**. 
-* В разделе **использовать другую службу для входа в систему**выберите Facebook.
+* Запустите приложение и выберите **Вход** . 
+* В разделе **использовать другую службу для входа в систему** выберите Facebook.
 * Вы будете перенаправлены на **Facebook** для проверки подлинности.
 * Введите учетные данные Facebook.
 * Вы будете перенаправлены на сайт, где можно задать свой адрес электронной почты.
@@ -132,7 +133,7 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 * Перейдите по адресу [Facebook.com](https://www.facebook.com/)
 * Если вы вошли в систему, необходимо выйти из нее.
 * Запустите приложение и выберите пункт Вход в Facebook.
-* Выберите **не сейчас**. Вы будете перенаправлены на указанную `AccessDeniedPath` страницу.
+* Выберите **не сейчас** . Вы будете перенаправлены на указанную `AccessDeniedPath` страницу.
 
 <!-- End of React  -->
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
@@ -146,7 +147,7 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 
 ## <a name="troubleshooting"></a>Устранение неполадок
 
-* **Только ASP.NET Core 2. x:** Если Identity параметр не настроен с помощью вызова `services.AddIdentity` в `ConfigureServices` , попытка проверки подлинности приведет к тому, что будет получено исключение *"сигнинсчеме"*. Шаблон проекта, используемый в этом руководстве, гарантирует, что это будет сделано.
+* **Только ASP.NET Core 2. x:** Если Identity параметр не настроен с помощью вызова `services.AddIdentity` в `ConfigureServices` , попытка проверки подлинности приведет к тому, что будет получено исключение *"сигнинсчеме"* . Шаблон проекта, используемый в этом руководстве, гарантирует, что это будет сделано.
 * Если база данных сайта не была создана путем применения первоначальной миграции, то при обработке ошибки запроса возникнет *Ошибка операции с базой данных* . Выберите **Применить миграции** , чтобы создать базу данных и обновить, чтобы продолжить выполнение после ошибки.
 
 ## <a name="next-steps"></a>Дальнейшие действия

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/1/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: 09535f41d15b90fa5e50eb1f22f6aecef0530f0c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: c79dfc64d4311088c3f9ea03aad7570189000e2a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629565"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053323"
 ---
 # <a name="scaffold-no-locidentity-in-aspnet-core-projects"></a>Формирование шаблонов Identity в ASP.NET Core проектах
 
@@ -53,7 +54,7 @@ ASP.NET Core предоставляется [ASP.NET Core Identity](xref:securit
 
 Предшествующий код записывает в комментарий код, который дублируется в *области или Identity / Identity HostingStartup.CS*
 
-Как правило, приложения, созданные с помощью отдельных учетных записей, ***не*** должны создавать новый контекст данных.
+Как правило, приложения, созданные с отдельными учетными записями, должны * **не** _, создать новый контекст данных.
 
 ## <a name="scaffold-no-locidentity-into-an-empty-project"></a>Формирование шаблона Identity в пустой проект
 
@@ -96,7 +97,7 @@ before dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identityнастраивается в *области или Identity / Identity HostingStartup.CS*. Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Identityнастраивается в _Areas/ Identity / Identity HostingStartup.cs *. Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 <a name="efm"></a>
 
@@ -135,7 +136,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Некоторые Identity параметры настраиваются в *области или Identity / Identity HostingStartup.CS*. Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Некоторые Identity параметры настраиваются в *области или Identity / Identity HostingStartup.CS* . Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## <a name="scaffold-no-locidentity-into-an-mvc-project-without-existing-authorization"></a>Формирование шаблонов Identity в проекте MVC без существующей авторизации
 
@@ -161,7 +162,7 @@ dotnet ef database update
 
 * Переместить файл *pages/Shared/_LoginPartial. cshtml* в *views/shared/_LoginPartial. cshtml*
 
-Identityнастраивается в *области или Identity / Identity HostingStartup.CS*. Дополнительные сведения см. в разделе IHostingStartup.
+Identityнастраивается в *области или Identity / Identity HostingStartup.CS* . Дополнительные сведения см. в разделе IHostingStartup.
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
@@ -187,7 +188,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identityнастраивается в *области или Identity / Identity HostingStartup.CS*. Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Identityнастраивается в *области или Identity / Identity HostingStartup.CS* . Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ### <a name="migrations"></a>Миграции
 
@@ -200,7 +201,7 @@ Identityнастраивается в *области или Identity / Identity
 * Когда маркеры проверки подлинности подготавливаются и сохраняются в процессе проверки подлинности cookie , они могут передаваться в компоненты.
 * Razor компоненты не могут использовать `HttpContext` напрямую, поэтому не существует способа получить [маркер подделки для защиты от запроса (XSRF)](xref:security/anti-request-forgery) для размещения Identity конечной точки выхода в `/Identity/Account/Logout` . Токен XSRF может быть передан компонентам.
 
-Дополнительные сведения см. в разделе <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+Для получения дополнительной информации см. <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
 В файле *pages/_Host. cshtml* Установите маркер после его добавления в `InitialApplicationState` `TokenProvider` классы и:
 
@@ -217,7 +218,7 @@ var tokens = new InitialApplicationState
 };
 ```
 
-Обновите `App` компонент (*app. Razor*), чтобы назначить `InitialState.XsrfToken` :
+Обновите `App` компонент ( *app. Razor* ), чтобы назначить `InitialState.XsrfToken` :
 
 ```csharp
 @inject TokenProvider TokenProvider
@@ -245,7 +246,7 @@ TokenProvider.XsrfToken = InitialState.XsrfToken;
 
 ### <a name="layout-and-authentication-flow-changes"></a>Изменения в потоке макета и проверки подлинности
 
-Добавьте `RedirectToLogin` компонент (*редиректтологин. Razor*) в *общую* папку приложения в корневом каталоге проекта:
+Добавьте `RedirectToLogin` компонент ( *редиректтологин. Razor* ) в *общую* папку приложения в корневом каталоге проекта:
 
 ```razor
 @inject NavigationManager Navigation
@@ -258,7 +259,7 @@ TokenProvider.XsrfToken = InitialState.XsrfToken;
 }
 ```
 
-Добавьте `LoginDisplay` компонент (*логиндисплай. Razor*) в *общую* папку приложения. [Служба TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) предоставляет маркер XSRF для HTML-формы, которая отправляет в Identity конечную точку выхода.
+Добавьте `LoginDisplay` компонент ( *логиндисплай. Razor* ) в *общую* папку приложения. [Служба TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) предоставляет маркер XSRF для HTML-формы, которая отправляет в Identity конечную точку выхода.
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
@@ -283,7 +284,7 @@ TokenProvider.XsrfToken = InitialState.XsrfToken;
 </AuthorizeView>
 ```
 
-В `MainLayout` компоненте (*Shared/маинлайаут. Razor*) добавьте `LoginDisplay` компонент в `<div>` содержимое элемента верхней строки:
+В `MainLayout` компоненте ( *Shared/маинлайаут. Razor* ) добавьте `LoginDisplay` компонент в `<div>` содержимое элемента верхней строки:
 
 ```razor
 <div class="top-row px-4 auth">
@@ -307,7 +308,7 @@ IdentityМакет и стили страниц можно изменить дл
 > [!NOTE]
 > Пример в этом разделе является просто начальной точкой для настройки. Для лучшего взаимодействия с пользователем, скорее всего, потребуется дополнительная работа.
 
-Создайте новый `NavMenu_IdentityLayout` компонент (*Shared/NavMenu_ Identity Layout. Razor*). Для разметки и кода компонента используйте то же содержимое `NavMenu` компонента приложения (*Shared/навмену. Razor*). Вывлекайте все `NavLink` компоненты, которые не могут быть анонимно подключены, так как автоматическое перенаправление в `RedirectToLogin` компоненте не выполняется для компонентов, нуждающихся в проверке подлинности или авторизации.
+Создайте новый `NavMenu_IdentityLayout` компонент ( *Shared/NavMenu_ Identity Layout. Razor* ). Для разметки и кода компонента используйте то же содержимое `NavMenu` компонента приложения ( *Shared/навмену. Razor* ). Вывлекайте все `NavLink` компоненты, которые не могут быть анонимно подключены, так как автоматическое перенаправление в `RedirectToLogin` компоненте не выполняется для компонентов, нуждающихся в проверке подлинности или авторизации.
 
 В файле *pages/Shared/Layout. cshtml* внесите следующие изменения:
 
@@ -369,13 +370,13 @@ IdentityМакет и стили страниц можно изменить дл
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Некоторые Identity параметры настраиваются в *области или Identity / Identity HostingStartup.CS*. Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Некоторые Identity параметры настраиваются в *области или Identity / Identity HostingStartup.CS* . Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 <a name="full"></a>
 
 ## <a name="create-full-no-locidentity-ui-source"></a>Создание полного Identity источника пользовательского интерфейса
 
-Чтобы обеспечить полный контроль над Identity пользовательским интерфейсом, запустите шаблон Identity и выберите **переопределить все файлы**.
+Чтобы обеспечить полный контроль над Identity пользовательским интерфейсом, запустите шаблон Identity и выберите **переопределить все файлы** .
 
 В следующем выделенном коде показаны изменения для замены пользовательского интерфейса по умолчанию Identity Identity в веб-приложении ASP.NET Core 2,1. Это может потребоваться для полного контроля над Identity пользовательским интерфейсом.
 
@@ -537,7 +538,7 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identityнастраивается в *области или Identity / Identity HostingStartup.CS*. Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Identityнастраивается в *области или Identity / Identity HostingStartup.CS* . Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 <a name="efm"></a>
 
@@ -576,7 +577,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Некоторые Identity параметры настраиваются в *области или Identity / Identity HostingStartup.CS*. Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Некоторые Identity параметры настраиваются в *области или Identity / Identity HostingStartup.CS* . Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## <a name="scaffold-no-locidentity-into-an-mvc-project-without-existing-authorization"></a>Формирование шаблонов Identity в проекте MVC без существующей авторизации
 
@@ -602,7 +603,7 @@ dotnet ef database update
 
 * Переместить файл *pages/Shared/_LoginPartial. cshtml* в *views/shared/_LoginPartial. cshtml*
 
-Identityнастраивается в *области или Identity / Identity HostingStartup.CS*. Дополнительные сведения см. в разделе IHostingStartup.
+Identityнастраивается в *области или Identity / Identity HostingStartup.CS* . Дополнительные сведения см. в разделе IHostingStartup.
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
@@ -630,7 +631,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 ## <a name="create-full-no-locidentity-ui-source"></a>Создание полного Identity источника пользовательского интерфейса
 
-Чтобы обеспечить полный контроль над Identity пользовательским интерфейсом, запустите шаблон Identity и выберите **переопределить все файлы**.
+Чтобы обеспечить полный контроль над Identity пользовательским интерфейсом, запустите шаблон Identity и выберите **переопределить все файлы** .
 
 В следующем выделенном коде показаны изменения для замены пользовательского интерфейса по умолчанию Identity Identity в веб-приложении ASP.NET Core 2,1. Это может потребоваться для полного контроля над Identity пользовательским интерфейсом.
 

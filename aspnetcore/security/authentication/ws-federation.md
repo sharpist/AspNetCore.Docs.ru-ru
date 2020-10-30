@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/16/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/ws-federation
-ms.openlocfilehash: 8a593efd799e900483d0337a06e02c3558b63bfb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ed78923a2bdd1ed683a72c0a6f34337a38350035
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634089"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053375"
 ---
 # <a name="authenticate-users-with-ws-federation-in-aspnet-core"></a>Проверка подлинности пользователей с помощью WS-Federation в ASP.NET Core
 
-В этом руководстве показано, как разрешить пользователям выполнять вход с помощью поставщика проверки подлинности WS-Federation, например службы федерации Active Directory (AD FS) (ADFS) или [Azure Active Directory](/azure/active-directory/) (AAD). В нем используется ASP.NET Core пример приложения, описанный в статье [Аутентификация Facebook, Google и внешнего поставщика](xref:security/authentication/social/index).
+В этом учебнике показано, как разрешить пользователям выполнять вход с помощью WS-Federation поставщика проверки подлинности, например службы федерации Active Directory (AD FS) (ADFS) или [Azure Active Directory](/azure/active-directory/) (AAD). В нем используется ASP.NET Core пример приложения, описанный в статье [Аутентификация Facebook, Google и внешнего поставщика](xref:security/authentication/social/index).
 
-Для ASP.NET Core приложений Поддержка WS-Federation предоставляется службой [Microsoft. AspNetCore. Authentication. WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation). Этот компонент переносится из [Microsoft. Owin. Security. WsFederation](https://www.nuget.org/packages/Microsoft.Owin.Security.WsFederation) и разделяет многие механики этого компонента. Однако эти компоненты отличаются друг от друга несколькими важными способами.
+Для ASP.NET Core приложений поддержка WS-Federation предоставляется [Microsoft. AspNetCore. Authentication. WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation). Этот компонент переносится из [Microsoft. Owin. Security. WsFederation](https://www.nuget.org/packages/Microsoft.Owin.Security.WsFederation) и разделяет многие механики этого компонента. Однако эти компоненты отличаются друг от друга несколькими важными способами.
 
 По умолчанию новое по промежуточного слоя:
 
@@ -53,7 +54,7 @@ ms.locfileid: "88634089"
 
 ![Мастер добавления отношения доверия с проверяющей стороной: Настройка сертификата](ws-federation/_static/AdfsConfigureCert.png)
 
-* Включите поддержку пассивного протокола WS-Federation с помощью URL-адреса приложения. Проверьте правильность порта для приложения:
+* Включите поддержку пассивного протокола WS-Federation, используя URL-адрес приложения. Проверьте правильность порта для приложения:
 
 ![Мастер добавления отношения доверия с проверяющей стороной: Настройка URL-адреса](ws-federation/_static/AdfsConfigureUrl.png)
 
@@ -66,32 +67,32 @@ ms.locfileid: "88634089"
 
 ![Изменение правил утверждения](ws-federation/_static/EditClaimRules.png)
 
-* В **мастере добавления правила преобразования утверждений**Оставьте выбранный по умолчанию шаблон **отправки атрибутов LDAP в качестве шаблона утверждений** и нажмите кнопку **Далее**. Добавьте правило, сопоставленное с атрибутом **SAM-Account-Name** LDAP к исходящему утверждению **ID** :
+* В **мастере добавления правила преобразования утверждений** Оставьте выбранный по умолчанию шаблон **отправки атрибутов LDAP в качестве шаблона утверждений** и нажмите кнопку **Далее** . Добавьте правило, сопоставленное с атрибутом **SAM-Account-Name** LDAP к исходящему утверждению **ID** :
 
 ![Мастер добавления правила преобразования утверждений: Настройка правила для утверждений](ws-federation/_static/AddTransformClaimRule.png)
 
-* **Finish**  >  В окне **изменение правил утверждений** нажмите кнопку Готово**ОК** .
+* **Finish**  >  В окне **изменение правил утверждений** нажмите кнопку Готово **ОК** .
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
 
-* Перейдите в колонку регистрации приложений клиента AAD. Щелкните **Регистрация нового приложения**:
+* Перейдите в колонку регистрации приложений клиента AAD. Щелкните **Регистрация нового приложения** :
 
 ![Azure Active Directory: Регистрация приложений](ws-federation/_static/AadNewAppRegistration.png)
 
 * Введите имя для регистрации приложения. Это не имеет значения для ASP.NET Core приложения.
-* Введите URL-адрес, который прослушивает приложение в качестве **URL-адреса входа**:
+* Введите URL-адрес, который прослушивает приложение в качестве **URL-адреса входа** :
 
 ![Azure Active Directory: создание регистрации приложения](ws-federation/_static/AadCreateAppRegistration.png)
 
-* Щелкните **конечные точки** и запишите URL-адрес **документа метаданных федерации** . Это по промежуточного слоя WS-Federation `MetadataAddress` :
+* Щелкните **конечные точки** и запишите URL-адрес **документа метаданных федерации** . Это WS-Federation по промежуточного слоя `MetadataAddress` :
 
 ![Azure Active Directory: конечные точки](ws-federation/_static/AadFederationMetadataDocument.png)
 
-* Перейдите к новой регистрации приложения. Щелкните **предоставить API**. Щелкните идентификатор приложения URI **Set**  >  **Save (сохранить**). Запишите  **URI идентификатора приложения**. Это по промежуточного слоя WS-Federation `Wtrealm` :
+* Перейдите к новой регистрации приложения. Щелкните **предоставить API** . Щелкните идентификатор приложения URI **Set**  >  **Save (сохранить** ). Запишите  **URI идентификатора приложения** . Это WS-Federation по промежуточного слоя `Wtrealm` :
 
 ![Azure Active Directory: свойства регистрации приложения](ws-federation/_static/AadAppIdUri.png)
 
-## <a name="use-ws-federation-without-no-locaspnet-core-identity"></a>Использовать WS-Federation без ASP.NET Core Identity
+## <a name="use-ws-federation-without-no-locaspnet-core-identity"></a>Используйте WS-Federation без ASP.NET Core Identity
 
 По промежуточного слоя WS-Federation можно использовать без Identity . Пример:
 ::: moniker range=">= aspnetcore-3.0"
