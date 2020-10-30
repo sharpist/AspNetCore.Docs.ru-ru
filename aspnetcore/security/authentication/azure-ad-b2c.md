@@ -6,6 +6,7 @@ ms.author: casoper
 ms.custom: devx-track-csharp, mvc
 ms.date: 01/21/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: edacded5df4d5f4819b3657bc7eff99e6d96d394
-ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
+ms.openlocfilehash: f917bec8f2d929e62bf43494159a63458f135c5f
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88712549"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061396"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Проверка подлинности в облаке с помощью Azure Active Directory B2C в ASP.NET Core
 
@@ -46,7 +47,7 @@ ms.locfileid: "88712549"
 Для этого пошагового руководства необходимы следующие сведения.
 
 * [Подписка Microsoft Azure](https://azure.microsoft.com/free/dotnet/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 
 ## <a name="create-the-azure-active-directory-b2c-tenant"></a>Создание клиента Azure Active Directory B2C
 
@@ -60,7 +61,7 @@ ms.locfileid: "88712549"
 
 | Параметр                       | Значение                     | Примечания                                                                                                                                                                                              |
 |-------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **имя**;                      | *&lt;имя приложения&gt;*        | Введите **имя** приложения, которое описывает ваше приложение для потребителей.                                                                                                                                 |
+| **Имя**                      | *&lt;имя приложения&gt;*        | Введите **имя** приложения, которое описывает ваше приложение для потребителей.                                                                                                                                 |
 | **Включить веб-приложение или веб-интерфейс API** | Да                       |                                                                                                                                                                                                    |
 | **Разрешить неявный поток**       | Да                       |                                                                                                                                                                                                    |
 | **URL-адрес ответа**                 | `https://localhost:44300/signin-oidc` | URL-адреса ответа — это конечные точки, куда Azure AD B2C возвращает все токены, запрашиваемые вашим приложением. Visual Studio предоставляет URL-адрес ответа для использования. Пока введите, `https://localhost:44300/signin-oidc` чтобы заполнить форму. |
@@ -86,7 +87,7 @@ ms.locfileid: "88712549"
     
     ![Кнопка изменения проверки подлинности](./azure-ad-b2c/_static/changeauth.png)
 
-4. В диалоговом окне **Изменение проверки подлинности** выберите **отдельные учетные записи пользователей**, а затем в раскрывающемся списке выберите **подключиться к существующему хранилищу пользователя в облаке** . 
+4. В диалоговом окне **Изменение проверки подлинности** выберите **отдельные учетные записи пользователей** , а затем в раскрывающемся списке выберите **подключиться к существующему хранилищу пользователя в облаке** . 
     
     ![Диалоговое окно изменения проверки подлинности](./azure-ad-b2c/_static/changeauthdialog.png)
 
@@ -108,14 +109,14 @@ ms.locfileid: "88712549"
 Вернитесь в окно браузера, в котором все еще открыты свойства приложения B2C. Измените указанный ранее **URL-адрес временного ответа** на значение, скопированное из Visual Studio. Нажмите кнопку **сохранить** в верхней части окна.
 
 > [!TIP]
-> Если вы не скопировали URL-адрес ответа, используйте адрес HTTPS на вкладке "Отладка" в свойствах веб-проекта и добавьте значение **каллбаккпас** из *appsettings.jsв*.
+> Если вы не скопировали URL-адрес ответа, используйте адрес HTTPS на вкладке "Отладка" в свойствах веб-проекта и добавьте значение **каллбаккпас** из *appsettings.json* .
 
 ## <a name="configure-policies"></a>Настройка политик
 
-Выполните действия, описанные в Azure AD B2C документации, чтобы [создать политику регистрации или входа](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions), а затем [Создайте политику сброса паролей](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Используйте примеры значений, приведенные в документации по ** Identity поставщикам**, **атрибутам регистрации**и **утверждениям приложений**. Использование кнопки **выполнить сейчас** для проверки политик, как описано в документации, является необязательным.
+Выполните действия, описанные в Azure AD B2C документации, чтобы [создать политику регистрации или входа](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions), а затем [Создайте политику сброса паролей](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Используйте примеры значений, приведенные в документации по **Identity поставщикам** , **атрибутам регистрации** и **утверждениям приложений** . Использование кнопки **выполнить сейчас** для проверки политик, как описано в документации, является необязательным.
 
 > [!WARNING]
-> Убедитесь, что имена политик в точности соответствуют описанию в документации, так как эти политики использовались в диалоговом окне **Изменение проверки подлинности** в Visual Studio. Имена политик можно проверить в *appsettings.json*.
+> Убедитесь, что имена политик в точности соответствуют описанию в документации, так как эти политики использовались в диалоговом окне **Изменение проверки подлинности** в Visual Studio. Имена политик можно проверить в *appsettings.json* .
 
 ## <a name="configure-the-underlying-openidconnectoptionsjwtbearerno-loccookie-options"></a>Настройка базовых Опенидконнектоптионс/JwtBearer/ Cookie Options
 
@@ -141,9 +142,9 @@ services.Configure<JwtBearerOptions>(
     });
 ```
 
-## <a name="run-the-app"></a>Запуск приложения
+## <a name="run-the-app"></a>Запустите приложение
 
-В Visual Studio нажмите клавишу **F5** , чтобы создать и запустить приложение. После запуска веб-приложения выберите **принять** , чтобы принять использование cookie s (при появлении запроса), а затем выберите **Вход**.
+В Visual Studio нажмите клавишу **F5** , чтобы создать и запустить приложение. После запуска веб-приложения выберите **принять** , чтобы принять использование cookie s (при появлении запроса), а затем выберите **Вход** .
 
 ![Вход в приложение](./azure-ad-b2c/_static/signin.png)
 
@@ -153,7 +154,7 @@ services.Configure<JwtBearerOptions>(
 
 После успешного входа в систему браузер перенаправляется в веб-приложение.
 
-![Успешно](./azure-ad-b2c/_static/success.png)
+![Успех](./azure-ad-b2c/_static/success.png)
 
 ## <a name="next-steps"></a>Дальнейшие действия
 

@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: b1cab7ab8b491529ee4208d92fb30082be795eda
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a87f91255bd1f280b1567f522423a6f4e88a6dd8
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635064"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060889"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Вспомогательная функция тегов кэша в MVC-моделях ASP.NET Core
 
@@ -46,7 +47,7 @@ ms.locfileid: "88635064"
 
 | Тип атрибута  | Примеры        | По умолчанию |
 | --------------- | --------------- | ------- |
-| Логическое         | `true`, `false` | `true`  |
+| Логическое значение         | `true`, `false` | `true`  |
 
 `enabled` определяет, кэшируется ли содержимое, охватываемое вспомогательной функцией тегов кэша. Значение по умолчанию — `true`. Если установлено значение `false`, выводимые данные **не** кэшируются.
 
@@ -150,7 +151,7 @@ RazorОбработчик представлений задает значени
 
 Пример
 
-*Startup.cs*:
+*Startup.cs* :
 
 ```csharp
 routes.MapRoute(
@@ -158,7 +159,7 @@ routes.MapRoute(
     template: "{controller=Home}/{action=Index}/{Make?}/{Model?}");
 ```
 
-*Index. cshtml*:
+*Index. cshtml* :
 
 ```cshtml
 <cache vary-by-route="Make,Model">
@@ -186,7 +187,7 @@ routes.MapRoute(
 
 | Тип атрибута  | Примеры        | По умолчанию |
 | --------------- | --------------- | ------- |
-| Логическое         | `true`, `false` | `true`  |
+| Логическое значение         | `true`, `false` | `true`  |
 
 `vary-by-user` указывает, следует ли сбрасывать кэш при изменении вошедшего в систему пользователя (или участника контекста). Текущий пользователь также известен как участник контекста запроса, и его можно просмотреть в Razor представлении, обратившись к `@User.Identity.Name` .
 
@@ -223,7 +224,7 @@ public IActionResult Index(string myParam1, string myParam2, string myParam3)
 }
 ```
 
-*Index. cshtml*:
+*Index. cshtml* :
 
 ```cshtml
 <cache vary-by="@Model">

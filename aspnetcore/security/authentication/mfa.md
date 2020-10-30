@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/17/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/mfa
-ms.openlocfilehash: 76a11aa7b89b3ce60ed11bd7553a7e5898f661f4
-ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
+ms.openlocfilehash: 873f7d113df84c931ad7fbf2c72aa292e4e87c48
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91606799"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060395"
 ---
 # <a name="multi-factor-authentication-in-aspnet-core"></a>Многофакторная идентификация в ASP.NET Core
 
@@ -151,7 +152,7 @@ namespace IdentityStandaloneMfa
 }
 ```
 
-Поскольку Identity программа установки службы изменилась в `Startup` классе, необходимо обновить макеты Identity . Формирование шаблонов Identity страниц в приложении. Определите макет в файле * Identity /аккаунт/манаже/_layout. cshtml* .
+Поскольку Identity программа установки службы изменилась в `Startup` классе, необходимо обновить макеты Identity . Формирование шаблонов Identity страниц в приложении. Определите макет в файле *Identity /аккаунт/манаже/_layout. cshtml* .
 
 ```cshtml
 @{
@@ -332,7 +333,7 @@ You can enable MFA to login here:
 
 В `Login` методе `IIdentityServerInteractionService` Реализация интерфейса `_interaction` используется для доступа к параметрам запроса OpenID Connect Connect. `acr_values`Доступ к параметру осуществляется с помощью `AcrValues` Свойства. После отправки клиентом `mfa` значения SET его можно проверить.
 
-Если требуется MFA и для пользователя в ASP.NET Core Identity включено MFA, то вход будет продолжен. Если для пользователя не включено MFA, пользователь перенаправляется к пользовательскому представлению *ErrorEnable2FA. cshtml*. Затем ASP.NET Core Identity подписывает пользователя в.
+Если требуется MFA и для пользователя в ASP.NET Core Identity включено MFA, то вход будет продолжен. Если для пользователя не включено MFA, пользователь перенаправляется к пользовательскому представлению *ErrorEnable2FA. cshtml* . Затем ASP.NET Core Identity подписывает пользователя в.
 
 ```csharp
 //

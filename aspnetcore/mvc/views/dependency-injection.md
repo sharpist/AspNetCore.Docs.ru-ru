@@ -5,6 +5,7 @@ description: Узнайте, как ASP.NET Core поддерживает вн�
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/dependency-injection
-ms.openlocfilehash: 5ab79740d2068a50e4138e5b86f1622af8ef5ec7
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a596d05e3d1d73d4faa2f84d97a40e4a2c1234e4
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633608"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059290"
 ---
 # <a name="dependency-injection-into-views-in-aspnet-core"></a>Внедрение зависимостей в представления в ASP.NET Core
 
@@ -33,9 +34,9 @@ ASP.NET Core поддерживает [внедрение зависимост�
 
 ## <a name="configuration-injection"></a>Внедрение конфигурации
 
-Значения *appSettings.JSON* можно внедрить непосредственно в представление.
+*appsettings.json* значения могут быть введены непосредственно в представление.
 
-Вот пример файла *appsettings.json*:
+Пример *appsettings.json* файла:
 
 ```json
 {
@@ -66,7 +67,7 @@ ASP.NET Core поддерживает [внедрение зависимост�
 
 [!code-cshtml[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/ToDo/Index.cshtml?highlight=4,5,15,16,17)]
 
-Это представление отображает список экземпляров `ToDoItem`, а также сводку по общей статистике. Сводка заполняется из внедренного `StatisticsService`. Эта служба регистрируется для внедрения зависимости в `ConfigureServices` в файле *Startup.cs*:
+Это представление отображает список экземпляров `ToDoItem`, а также сводку по общей статистике. Сводка заполняется из внедренного `StatisticsService`. Эта служба регистрируется для внедрения зависимости в `ConfigureServices` в файле *Startup.cs* :
 
 [!code-csharp[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Startup.cs?highlight=6,7&range=15-22)]
 

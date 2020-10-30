@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, devx-track-js
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/anti-request-forgery
-ms.openlocfilehash: 201ffe692c1ded3661a5e1ac566f90b29d61ce9e
-ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
+ms.openlocfilehash: 197954965ee57b2a44ad0217d79ba142114e7df6
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92690352"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060850"
 ---
 # <a name="prevent-cross-site-request-forgery-xsrfcsrf-attacks-in-aspnet-core"></a>Предотвращение атак с подделкой межсайтовых запросов (XSRF/CSRF) в ASP.NET Core
 
@@ -250,7 +251,7 @@ services.AddAntiforgery(options =>
 | [Cookie](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie) | Определяет параметры, используемые для создания защиты от подделки cookie . |
 | [CookieДомен](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiedomain) | Домен cookie . По умолчанию — `null`. Это свойство устарело и будет удалено в следующей версии. Взамен рекомендуется использовать Cookie . Поддомен. |
 | [CookieИмя](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiename) | Имя cookie. Если значение не задано, система создает уникальное имя, начинающееся [с Cookie префикса по умолчанию](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.defaultcookieprefix) (". AspNetCore. подделка. "). Это свойство устарело и будет удалено в следующей версии. Взамен рекомендуется использовать Cookie . Безымян. |
-| [Cookieпуть](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | Путь, заданный для cookie . Это свойство устарело и будет удалено в следующей версии. Взамен рекомендуется использовать Cookie . Путь. |
+| [CookieПуть](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | Путь, заданный для cookie . Это свойство устарело и будет удалено в следующей версии. Взамен рекомендуется использовать Cookie . Путь. |
 | [формфиелднаме](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.formfieldname) | Имя скрытого поля формы, используемое системой защиты от подделки для отображения маркеров подделки в представлениях. |
 | [хеадернаме](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.headername) | Имя заголовка, используемого системой защиты от подделки. Если `null` значение равно, система рассматривает только данные формы. |
 | [RequireSsl](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.requiressl) | Указывает, требуется ли протокол HTTPS в системе защиты от подделки. Если значение равно `true` , то запросы, не относящиеся к HTTPS, завершаются ошибкой. По умолчанию — `false`. Это свойство устарело и будет удалено в следующей версии. Рекомендуемая альтернатива — задать Cookie . Секуреполици. |

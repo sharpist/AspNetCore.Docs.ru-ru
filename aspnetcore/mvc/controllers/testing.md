@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/22/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/testing
-ms.openlocfilehash: d6c70d828d6c2f62f9e7b849a299df3077f2da32
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 962c1cf0be0f80ecd6c3adda7d22db7f16519a2a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635233"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060356"
 ---
 # <a name="unit-test-controller-logic-in-aspnet-core"></a>Модульное тестирование логики контроллера в ASP.NET Core
 
@@ -35,7 +36,7 @@ ms.locfileid: "88635233"
 
 ## <a name="unit-testing-controllers"></a>Модульное тестирование контроллеров
 
-Настройте модульные тесты для действий контроллера, чтобы сосредоточиться на поведении контроллера. В модульных тестах контроллера не учитываются такие аспекты, как [фильтрация](xref:mvc/controllers/filters), [маршрутизация](xref:fundamentals/routing) и (или) [привязка модели](xref:mvc/models/model-binding). Тесты, учитывающие взаимодействие компонентов, участвующих в ответе на запрос, включены в *интеграционные тесты*. Дополнительные сведения об интеграционных тестах см. в статье <xref:test/integration-tests>.
+Настройте модульные тесты для действий контроллера, чтобы сосредоточиться на поведении контроллера. В модульных тестах контроллера не учитываются такие аспекты, как [фильтрация](xref:mvc/controllers/filters), [маршрутизация](xref:fundamentals/routing) и (или) [привязка модели](xref:mvc/models/model-binding). Тесты, учитывающие взаимодействие компонентов, участвующих в ответе на запрос, включены в *интеграционные тесты* . Дополнительные сведения об интеграционных тестах см. в статье <xref:test/integration-tests>.
 
 Если вы создаете пользовательские фильтры и маршруты, проводите для них модульное тестирование изолированно, но не в рамках тестирования определенного действия контроллера.
 
@@ -89,7 +90,7 @@ ms.locfileid: "88635233"
 > [!NOTE]
 > Библиотека Moq, используемая в этом примере, позволяет сочетать проверяемые (строгие) и непроверяемые макеты (которые также называют нестрогими макетами или заглушками). Узнайте больше о [настройке поведения макетов с помощью Moq](https://github.com/Moq/moq4/wiki/Quickstart#customizing-mock-behavior).
 
-[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) в примере приложения выводит сведения, связанные с определенным сеансом мозгового штурма. Этот контроллер содержит логику для работы с недопустимыми значениями `id` (два сценария `return` в следующем примере посвящены этим сценариям). Конечная инструкция `return` возвращает новый `StormSessionViewModel` в представление (*Controllers/SessionController.cs*):
+[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) в примере приложения выводит сведения, связанные с определенным сеансом мозгового штурма. Этот контроллер содержит логику для работы с недопустимыми значениями `id` (два сценария `return` в следующем примере посвящены этим сценариям). Конечная инструкция `return` возвращает новый `StormSessionViewModel` в представление ( *Controllers/SessionController.cs* ):
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs?name=snippet_SessionController&highlight=12-16,18-22,31)]
 
@@ -202,7 +203,7 @@ ms.locfileid: "88635233"
 
 [Модульное тестирование](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) предполагает тестирование части приложения изолированно от его инфраструктуры и зависимостей. При модульном тестировании логики контроллера тестируется только содержимое отдельного действия, но не поведение его зависимостей или самой платформы.
 
-Настройте модульные тесты для действий контроллера, чтобы сосредоточиться на поведении контроллера. В модульных тестах контроллера не учитываются такие аспекты, как [фильтрация](xref:mvc/controllers/filters), [маршрутизация](xref:fundamentals/routing) и (или) [привязка модели](xref:mvc/models/model-binding). Тесты, учитывающие взаимодействие компонентов, участвующих в ответе на запрос, включены в *интеграционные тесты*. Дополнительные сведения об интеграционных тестах см. в статье <xref:test/integration-tests>.
+Настройте модульные тесты для действий контроллера, чтобы сосредоточиться на поведении контроллера. В модульных тестах контроллера не учитываются такие аспекты, как [фильтрация](xref:mvc/controllers/filters), [маршрутизация](xref:fundamentals/routing) и (или) [привязка модели](xref:mvc/models/model-binding). Тесты, учитывающие взаимодействие компонентов, участвующих в ответе на запрос, включены в *интеграционные тесты* . Дополнительные сведения об интеграционных тестах см. в статье <xref:test/integration-tests>.
 
 Если вы создаете пользовательские фильтры и маршруты, проводите для них модульное тестирование изолированно, но не в рамках тестирования определенного действия контроллера.
 
@@ -252,7 +253,7 @@ ms.locfileid: "88635233"
 > [!NOTE]
 > Библиотека Moq, используемая в этом примере, позволяет сочетать проверяемые (строгие) и непроверяемые макеты (которые также называют нестрогими макетами или заглушками). Узнайте больше о [настройке поведения макетов с помощью Moq](https://github.com/Moq/moq4/wiki/Quickstart#customizing-mock-behavior).
 
-[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) в примере приложения выводит сведения, связанные с определенным сеансом мозгового штурма. Этот контроллер содержит логику для работы с недопустимыми значениями `id` (два сценария `return` в следующем примере посвящены этим сценариям). Конечная инструкция `return` возвращает новый `StormSessionViewModel` в представление (*Controllers/SessionController.cs*):
+[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) в примере приложения выводит сведения, связанные с определенным сеансом мозгового штурма. Этот контроллер содержит логику для работы с недопустимыми значениями `id` (два сценария `return` в следующем примере посвящены этим сценариям). Конечная инструкция `return` возвращает новый `StormSessionViewModel` в представление ( *Controllers/SessionController.cs* ):
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs?name=snippet_SessionController&highlight=12-16,18-22,31)]
 
@@ -359,6 +360,6 @@ ms.locfileid: "88635233"
 
 * <xref:test/integration-tests>
 * [Создание и запуск модульных тестов с помощью Visual Studio](/visualstudio/test/unit-test-your-code)
-* [Библиотека тестирования митестед. AspNetCore. MVC-Fluent для ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): строго типизированная Библиотека модульного тестирования, предоставляющая интерфейс Fluent для тестирования приложений MVC и веб-API. (*Не поддерживается и не обслуживается Майкрософт.* )
-* [JustMockLite](https://github.com/telerik/JustMockLite): платформа макетирования для разработчиков на .NET. (*Не поддерживается и не обслуживается Майкрософт.* )
+* [Библиотека тестирования митестед. AspNetCore. MVC-Fluent для ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): строго типизированная Библиотека модульного тестирования, предоставляющая интерфейс Fluent для тестирования приложений MVC и веб-API. ( *Не поддерживается и не обслуживается Майкрософт.* )
+* [JustMockLite](https://github.com/telerik/JustMockLite): платформа макетирования для разработчиков на .NET. ( *Не поддерживается и не обслуживается Майкрософт.* )
 

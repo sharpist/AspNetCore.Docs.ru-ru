@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/13/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: fcb58e2e0bfc6598edeb8c7f79986c3faf84e316
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d39db59b0fc273fe4193a4864f302ecd3f4ad348
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633933"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060915"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>Вспомогательная функция тега привязки в ASP.NET Core MVC
 
@@ -52,7 +53,7 @@ ms.locfileid: "88633933"
 <a href="/Speaker">All Speakers</a>
 ```
 
-Если атрибут `asp-controller` указан, а атрибут `asp-action` — нет, действием контроллера, связанным с выполняющимся представлением, будет заданное по умолчанию значение `asp-action`. Если `asp-action` исключается из предыдущего исправления, а в представлении *Index* (*/Home*) *HomeController* используется вспомогательная функция тега привязки, создается следующий код HTML:
+Если атрибут `asp-controller` указан, а атрибут `asp-action` — нет, действием контроллера, связанным с выполняющимся представлением, будет заданное по умолчанию значение `asp-action`. Если `asp-action` исключается из предыдущего исправления, а в представлении *Index* ( */Home* ) *HomeController* используется вспомогательная функция тега привязки, создается следующий код HTML:
 
 ```html
 <a href="/Home">All Speakers</a>
@@ -82,7 +83,7 @@ ms.locfileid: "88633933"
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Controllers/BuiltInTagController.cs?name=snippet_AnchorTagHelperAction)]
 
-С шаблоном маршрута по умолчанию, определенным в *Startup.Configure*:
+С шаблоном маршрута по умолчанию, определенным в *Startup.Configure* :
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_UseMvc&highlight=8-10)]
 
@@ -235,7 +236,7 @@ Razor Области страниц поддерживаются в ASP.NET Core
         * *\_Виевстарт. cshtml*
   * **Контроллеры**
 
-При установке для атрибута `asp-area` значения Blogs перед маршрутами связанных контроллеров и представлений для этого тега привязки добавляется каталог *Areas/Blogs*. Исправления для ссылки на представление *AboutBlog*:
+При установке для атрибута `asp-area` значения Blogs перед маршрутами связанных контроллеров и представлений для этого тега привязки добавляется каталог *Areas/Blogs* . Исправления для ссылки на представление *AboutBlog* :
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspArea)]
 
@@ -246,7 +247,7 @@ Razor Области страниц поддерживаются в ASP.NET Core
 ```
 
 > [!TIP]
-> Для поддержки областей в приложении MVC в шаблон маршрута необходимо включить ссылку на область, если она существует. Этот шаблон представлен вторым параметром `routes.MapRoute` вызова метода в *Startup.Configключать*:
+> Для поддержки областей в приложении MVC в шаблон маршрута необходимо включить ссылку на область, если она существует. Этот шаблон представлен вторым параметром `routes.MapRoute` вызова метода в *Startup.Configключать* :
 >
 > [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_UseMvc&highlight=5)]
 

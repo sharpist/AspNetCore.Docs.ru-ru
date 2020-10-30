@@ -7,6 +7,7 @@ ms.author: anurse
 ms.custom: devx-track-csharp, signalr, devx-track-js
 ms.date: 06/12/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 890359c9e9f6c3c60f3105124f52c66b09a8a4fb
-ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
+ms.openlocfilehash: 6e5e9d866a1e03e69856cc63dcfe30284048dd6d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92690671"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061318"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Ведение журнала и диагностика в ASP.NET Core SignalR
 
@@ -43,7 +44,7 @@ SignalR использует две категории регистратора:
 * `Microsoft.AspNetCore.SignalR`: Для журналов, связанных с протоколами концентраторов, активации концентраторов, вызова методов и других действий, связанных с концентратором.
 * `Microsoft.AspNetCore.Http.Connections`: Для журналов, связанных с транспортами, таких как WebSockets, длительный опрос, Server-Sent событий и низкоуровневых SignalR инфраструктуре.
 
-Чтобы включить подробные журналы из SignalR , настройте оба предыдущих префикса на `Debug` уровень в *appsettings.js* в файле, добавив следующие элементы в `LogLevel` подраздел в `Logging` :
+Чтобы включить подробные журналы из SignalR , настройте оба предыдущих префикса на `Debug` уровень в *appsettings.json* файле, добавив следующие элементы в `LogLevel` подраздел в `Logging` :
 
 [!code-json[](diagnostics/logging-config.json?highlight=7-8)]
 
@@ -225,7 +226,7 @@ tcpdump -i [interface] -w trace.pcap
 
 SignalR метрики сервера указываются в <xref:Microsoft.AspNetCore.Http.Connections> источнике событий.
 
-| Имя                    | Описание                 |
+| name                    | Описание                 |
 |-------------------------|-----------------------------|
 | `connections-started`   | Всего запущенных подключений   |
 | `connections-stopped`   | Всего остановленных подключений   |

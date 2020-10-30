@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/02/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/jsonpatch
-ms.openlocfilehash: e57c5185323305ccbef7960653c9174931e45d75
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: da507974b88c21de22e2c7a56950943207565138
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635402"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060551"
 ---
 # <a name="jsonpatch-in-aspnet-core-web-api"></a>JsonPatch в веб-API ASP.NET Core
 
@@ -67,7 +68,7 @@ ms.locfileid: "88635402"
 
 ## <a name="json-patch"></a>JSON PATCH
 
-Формат [JSON Patch](https://tools.ietf.org/html/rfc6902) используется для указания обновлений, применяемых к ресурсу. Документ JSON Patch содержит массив *операций*. Каждая операция определяет конкретный тип изменения. Примерами таких изменений являются добавление элемента массива или замена значения свойства.
+Формат [JSON Patch](https://tools.ietf.org/html/rfc6902) используется для указания обновлений, применяемых к ресурсу. Документ JSON Patch содержит массив *операций* . Каждая операция определяет конкретный тип изменения. Примерами таких изменений являются добавление элемента массива или замена значения свойства.
 
 Например, следующие документы JSON представляют ресурс, документ исправления JSON для ресурса и результат применения операций исправления.
 
@@ -142,7 +143,7 @@ ms.locfileid: "88635402"
 * принимает `JsonPatchDocument<T>` обычно с указанием `[FromBody]`;
 * вызывает `ApplyTo` для целевого документа, чтобы применить изменения.
 
-Ниже приведен пример.
+Ниже приведен пример:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -248,7 +249,7 @@ ms.locfileid: "88635402"
 
 [!code-json[](jsonpatch/samples/2.2/JSON/test-fail.json)]
 
-## <a name="get-the-code"></a>Получите код
+## <a name="get-the-code"></a>Получение кода
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples). ([Инструкция по скачиванию](xref:index#how-to-download-a-sample).)
 
@@ -279,7 +280,7 @@ ms.locfileid: "88635402"
 
 ## <a name="json-patch"></a>JSON PATCH
 
-Формат [JSON Patch](https://tools.ietf.org/html/rfc6902) используется для указания обновлений, применяемых к ресурсу. Документ JSON Patch содержит массив *операций*. Каждая операция обозначает определенный тип изменений, например добавление элемента массива или замену значения свойства.
+Формат [JSON Patch](https://tools.ietf.org/html/rfc6902) используется для указания обновлений, применяемых к ресурсу. Документ JSON Patch содержит массив *операций* . Каждая операция обозначает определенный тип изменений, например добавление элемента массива или замену значения свойства.
 
 Так, следующие документы JSON описывают ресурс, сведения JSON Patch для изменения этого ресурса и результат применения операций изменения.
 
@@ -354,7 +355,7 @@ ms.locfileid: "88635402"
 * принимает `JsonPatchDocument<T>` обычно с указанием `[FromBody]`;
 * вызывает `ApplyTo` для целевого документа, чтобы применить изменения.
 
-Ниже приведен пример.
+Ниже приведен пример:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -460,7 +461,7 @@ ms.locfileid: "88635402"
 
 [!code-json[](jsonpatch/samples/2.2/JSON/test-fail.json)]
 
-## <a name="get-the-code"></a>Получите код
+## <a name="get-the-code"></a>Получение кода
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([Инструкция по скачиванию](xref:index#how-to-download-a-sample).)
 

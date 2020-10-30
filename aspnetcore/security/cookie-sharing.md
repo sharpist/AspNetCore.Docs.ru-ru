@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cookie-sharing
-ms.openlocfilehash: 6ac808d11790ae27e82606b442ff215d95b93e41
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 8f54f2e4894328f8471d5f80c8184839ce47add6
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631372"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059693"
 ---
 # <a name="share-authentication-no-loccookies-among-aspnet-apps"></a>Совместное использование проверки подлинности cookie между приложениями ASP.NET
 
@@ -49,7 +50,7 @@ ms.locfileid: "88631372"
 
 Применяя ASP.NET Core Identity, помните следующие правила.
 
-* Ключи защиты данных и имя приложения должны быть общими для всех приложений. В следующих примерах для метода предоставляется общий путь к хранилищу ключей <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> . Используйте <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> для настройки общего имени общего приложения ( `SharedCookieApp` в следующих примерах). Дополнительные сведения см. в разделе <xref:security/data-protection/configuration/overview>.
+* Ключи защиты данных и имя приложения должны быть общими для всех приложений. В следующих примерах для метода предоставляется общий путь к хранилищу ключей <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> . Используйте <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> для настройки общего имени общего приложения ( `SharedCookieApp` в следующих примерах). Для получения дополнительной информации см. <xref:security/data-protection/configuration/overview>.
 * Используйте <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie*> метод расширения, чтобы настроить службу защиты данных для cookie s.
 * По умолчанию используется тип проверки подлинности `Identity.Application` .
 
@@ -106,7 +107,7 @@ options.Cookie.Domain = ".contoso.com";
 
 ## <a name="encrypt-data-protection-keys-at-rest"></a>Шифрование неактивных ключей защиты данных
 
-Для рабочих развертываний настройте `DataProtectionProvider` для шифрования неактивных ключей с помощью DPAPI или x509. Дополнительные сведения см. в разделе <xref:security/data-protection/implementation/key-encryption-at-rest>. В следующем примере отпечаток сертификата предоставляется для <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*> :
+Для рабочих развертываний настройте `DataProtectionProvider` для шифрования неактивных ключей с помощью DPAPI или x509. Для получения дополнительной информации см. <xref:security/data-protection/implementation/key-encryption-at-rest>. В следующем примере отпечаток сертификата предоставляется для <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*> :
 
 ```csharp
 services.AddDataProtection()
@@ -134,7 +135,7 @@ services.AddDataProtection()
 
 Если не задано значение `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier` и `http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider` , задайте <xref:System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier> утверждение, которое различает уникальных пользователей.
 
-*App_Start/стартуп.АУС.КС*:
+*App_Start/стартуп.АУС.КС* :
 
 ```csharp
 app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -167,9 +168,9 @@ System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier =
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
 ```
 
-При создании удостоверения пользователя тип проверки подлинности ( `Identity.Application` ) должен соответствовать типу, определенному в `AuthenticationType` наборе, `UseCookieAuthentication` в *App_Start/стартуп.АУС.КС*.
+При создании удостоверения пользователя тип проверки подлинности ( `Identity.Application` ) должен соответствовать типу, определенному в `AuthenticationType` наборе, `UseCookieAuthentication` в *App_Start/стартуп.АУС.КС* .
 
-*Модели/ Identity Models.cs*:
+*Модели/ Identity Models.cs* :
 
 ```csharp
 public class ApplicationUser : IdentityUser

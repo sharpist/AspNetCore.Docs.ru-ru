@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: c337e727a4683b0b3c67307af93ef8efa246e2ad
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a568ad481eb09587e2ddce8e84d0ac3eff01e990
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631021"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060902"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Вспомогательные функции тегов в формах в ASP.NET Core
 
@@ -67,7 +68,7 @@ ms.locfileid: "88631021"
 
 [!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterRoute.cshtml)]
 
-Многие представления в папке *Views/Account* (сформированные при создании веб-приложения с *учетными записями отдельных пользователей*) содержат атрибут [asp-route-returnurl](xref:mvc/views/working-with-forms):
+Многие представления в папке *Views/Account* (сформированные при создании веб-приложения с *учетными записями отдельных пользователей* ) содержат атрибут [asp-route-returnurl](xref:mvc/views/working-with-forms):
 
 ```cshtml
 <form asp-controller="Account" asp-action="Login"
@@ -182,7 +183,7 @@ public class HomeController : Controller
 
 Вспомогательная функция тега входных данных:
 
-* Создает атрибуты HTML `id` и `name` для имени выражения, указанного в атрибуте `asp-for`. `asp-for="Property1.Property2"` эквивалентно правилу `m => m.Property1.Property2`. Имя выражения совпадает со значением атрибута `asp-for`. Дополнительные сведения см. в разделе [Имена выражений](#expression-names) .
+* Создает атрибуты HTML `id` и `name` для имени выражения, указанного в атрибуте `asp-for`. `asp-for="Property1.Property2"` равно `m => m.Property1.Property2`. Имя выражения совпадает со значением атрибута `asp-for`. Дополнительные сведения см. в разделе [Имена выражений](#expression-names) .
 
 * Задает значение атрибута HTML `type` на основе атрибутов типа модели и [заметок к данным](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter), примененным к свойству модели.
 
@@ -190,7 +191,7 @@ public class HomeController : Controller
 
 * Создает атрибуты проверки [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) из атрибутов [заметок к данным](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter), примененным к свойствам модели.
 
-* Располагает перекрытием вспомогательного метода HTML с `Html.TextBoxFor` и `Html.EditorFor`. Дополнительные сведения см. в разделе **Альтернативы вспомогательного метода HTML вспомогательной функции тега входных данных**.
+* Располагает перекрытием вспомогательного метода HTML с `Html.TextBoxFor` и `Html.EditorFor`. Дополнительные сведения см. в разделе **Альтернативы вспомогательного метода HTML вспомогательной функции тега входных данных** .
 
 * Обеспечивает строгую типизацию. Если после изменения имени свойства не выполнить обновление вспомогательной функции тега, возникнет ошибка следующего вида:
 
@@ -330,7 +331,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Demo/EditColor.cshtml)]
 
-Шаблон *Views/Shared/EditorTemplates/String.cshtml*:
+Шаблон *Views/Shared/EditorTemplates/String.cshtml* :
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/String.cshtml)]
 
@@ -342,7 +343,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Demo/Edit.cshtml)]
 
-Шаблон *Views/Shared/EditorTemplates/ToDoItem.cshtml*:
+Шаблон *Views/Shared/EditorTemplates/ToDoItem.cshtml* :
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
 
@@ -467,7 +468,7 @@ public IActionResult Edit(int id, int colorIndex)
 |ValidationSummary.ModelOnly|Модель|
 |ValidationSummary.None|Нет|
 
-### <a name="sample"></a>Образец
+### <a name="sample"></a>Пример
 
 В следующем примере модель данных имеет атрибуты `DataAnnotation`, в результате чего создаются сообщения об ошибках проверки для элемента `<input>`.  При возникновении ошибки проверки вспомогательная функция тега проверки отображает следующее сообщение об ошибке:
 
@@ -646,7 +647,7 @@ public IActionResult Edit(int id, int colorIndex)
 
 [!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=5)]
 
-Шаблон *Views/Shared/EditorTemplates/CountryViewModel.cshtml*:
+Шаблон *Views/Shared/EditorTemplates/CountryViewModel.cshtml* :
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
 

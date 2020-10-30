@@ -5,6 +5,7 @@ description: Узнайте, как контроллеры MVC ASP.NET Core яв
 ms.author: riande
 ms.date: 02/24/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/dependency-injection
-ms.openlocfilehash: 74c43e4f01e5b0d6923bf06f8859341c49088ef6
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1282cd984584be423fba755e64e5d2f1afd2af89
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635246"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060616"
 ---
 # <a name="dependency-injection-into-controllers-in-aspnet-core"></a>Внедрение зависимостей в контроллеры в ASP.NET Core
 
@@ -63,7 +64,7 @@ ms.locfileid: "88635246"
 
 ## <a name="access-settings-from-a-controller"></a>Доступ к параметрам из контроллера
 
-Доступ к параметрам приложения или конфигурации из контроллера относится к типичным шаблонам. *Шаблон параметров*, описанный в разделе <xref:fundamentals/configuration/options>, является предпочтительным подходом для управления параметрами. Как правило, не следует напрямую внедрять <xref:Microsoft.Extensions.Configuration.IConfiguration> в контроллер.
+Доступ к параметрам приложения или конфигурации из контроллера относится к типичным шаблонам. *Шаблон параметров* , описанный в разделе <xref:fundamentals/configuration/options>, является предпочтительным подходом для управления параметрами. Как правило, не следует напрямую внедрять <xref:Microsoft.Extensions.Configuration.IConfiguration> в контроллер.
 
 Создайте класс, представляющий параметры. Пример:
 
@@ -127,7 +128,7 @@ ms.locfileid: "88635246"
 
 ## <a name="access-settings-from-a-controller"></a>Доступ к параметрам из контроллера
 
-Доступ к параметрам приложения или конфигурации из контроллера относится к типичным шаблонам. *Шаблон параметров*, описанный в разделе <xref:fundamentals/configuration/options>, является предпочтительным подходом для управления параметрами. Как правило, не следует напрямую внедрять <xref:Microsoft.Extensions.Configuration.IConfiguration> в контроллер.
+Доступ к параметрам приложения или конфигурации из контроллера относится к типичным шаблонам. *Шаблон параметров* , описанный в разделе <xref:fundamentals/configuration/options>, является предпочтительным подходом для управления параметрами. Как правило, не следует напрямую внедрять <xref:Microsoft.Extensions.Configuration.IConfiguration> в контроллер.
 
 Создайте класс, представляющий параметры. Пример:
 

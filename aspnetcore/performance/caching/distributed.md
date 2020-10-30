@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/distributed
-ms.openlocfilehash: 0d27206412a098f4ea749ec10189bf24d2322de1
-ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
+ms.openlocfilehash: 6d87c8de66bf5600189465b96dee903841106b6f
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88712484"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061149"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>Распределенное кэширование в ASP.NET Core
 
@@ -112,7 +113,7 @@ Table and index were created successfully.
 [!code-csharp[](distributed/samples/3.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*>(И, при необходимости, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> и <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) обычно хранятся вне системы управления версиями (например, хранится в [диспетчере секретов](xref:security/app-secrets) или вappsettings.jsв *appsettings.json* / *appSettings. { Файлы среды}. JSON* ). Строка подключения может содержать учетные данные, которые должны содержаться в системе управления версиями.
+> <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*>(И, при необходимости, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> и <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) обычно хранятся вне системы управления версиями (например, хранится в [диспетчере секретов](xref:security/app-secrets) или в *appsettings.json* / *appSettings. { Файлы среды}. JSON* ). Строка подключения может содержать учетные данные, которые должны содержаться в системе управления версиями.
 
 ### <a name="distributed-redis-cache"></a>Распределенный кэш Redis
 
@@ -155,7 +156,7 @@ Table and index were created successfully.
 
 Пример приложения внедряет <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> в объект `IndexModel` для использования на странице индекса.
 
-При каждой загрузке страницы индекса кэш проверяется на наличие кэшированного времени в `OnGetAsync` . Если время кэширования не истекло, отображается время. Если прошло 20 секунд с момента последнего обращения к кэшированному времени (время последней загрузки этой страницы), на странице отображается *время ожидания кэширования*.
+При каждой загрузке страницы индекса кэш проверяется на наличие кэшированного времени в `OnGetAsync` . Если время кэширования не истекло, отображается время. Если прошло 20 секунд с момента последнего обращения к кэшированному времени (время последней загрузки этой страницы), на странице отображается *время ожидания кэширования* .
 
 Немедленно обновите кэшированное время на текущее время, нажав кнопку **сбросить кэшированное** время. Кнопка запускает `OnPostResetCachedTime` метод обработчика.
 
@@ -172,7 +173,7 @@ Table and index were created successfully.
 
 * Существующая инфраструктура
 * Требования к производительности
-* Cost
+* Стоимость
 * Опыт работы в группе
 
 Для обеспечения быстрого извлечения кэшированных данных решения кэширования обычно используют хранилище в памяти, но память является ограниченным ресурсом и может быть расширена. Хранение часто используемых данных в кэше.
@@ -279,7 +280,7 @@ Table and index were created successfully.
 [!code-csharp[](distributed/samples/2.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*>(И, при необходимости, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> и <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) обычно хранятся вне системы управления версиями (например, хранится в [диспетчере секретов](xref:security/app-secrets) или вappsettings.jsв *appsettings.json* / *appSettings. { Файлы среды}. JSON* ). Строка подключения может содержать учетные данные, которые должны содержаться в системе управления версиями.
+> <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*>(И, при необходимости, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> и <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) обычно хранятся вне системы управления версиями (например, хранится в [диспетчере секретов](xref:security/app-secrets) или в *appsettings.json* / *appSettings. { Файлы среды}. JSON* ). Строка подключения может содержать учетные данные, которые должны содержаться в системе управления версиями.
 
 ### <a name="distributed-redis-cache"></a>Распределенный кэш Redis
 
@@ -325,7 +326,7 @@ Table and index were created successfully.
 
 Пример приложения внедряет <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> в объект `IndexModel` для использования на странице индекса.
 
-При каждой загрузке страницы индекса кэш проверяется на наличие кэшированного времени в `OnGetAsync` . Если время кэширования не истекло, отображается время. Если прошло 20 секунд с момента последнего обращения к кэшированному времени (время последней загрузки этой страницы), на странице отображается *время ожидания кэширования*.
+При каждой загрузке страницы индекса кэш проверяется на наличие кэшированного времени в `OnGetAsync` . Если время кэширования не истекло, отображается время. Если прошло 20 секунд с момента последнего обращения к кэшированному времени (время последней загрузки этой страницы), на странице отображается *время ожидания кэширования* .
 
 Немедленно обновите кэшированное время на текущее время, нажав кнопку **сбросить кэшированное** время. Кнопка запускает `OnPostResetCachedTime` метод обработчика.
 
@@ -342,7 +343,7 @@ Table and index were created successfully.
 
 * Существующая инфраструктура
 * Требования к производительности
-* Cost
+* Стоимость
 * Опыт работы в группе
 
 Для обеспечения быстрого извлечения кэшированных данных решения кэширования обычно используют хранилище в памяти, но память является ограниченным ресурсом и может быть расширена. Хранение часто используемых данных в кэше.
@@ -449,7 +450,7 @@ Table and index were created successfully.
 [!code-csharp[](distributed/samples/2.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*>(И, при необходимости, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> и <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) обычно хранятся вне системы управления версиями (например, хранится в [диспетчере секретов](xref:security/app-secrets) или вappsettings.jsв *appsettings.json* / *appSettings. { Файлы среды}. JSON* ). Строка подключения может содержать учетные данные, которые должны содержаться в системе управления версиями.
+> <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*>(И, при необходимости, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> и <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) обычно хранятся вне системы управления версиями (например, хранится в [диспетчере секретов](xref:security/app-secrets) или в *appsettings.json* / *appSettings. { Файлы среды}. JSON* ). Строка подключения может содержать учетные данные, которые должны содержаться в системе управления версиями.
 
 ### <a name="distributed-redis-cache"></a>Распределенный кэш Redis
 
@@ -501,7 +502,7 @@ services.AddDistributedRedisCache(options =>
 
 Пример приложения внедряет <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> в объект `IndexModel` для использования на странице индекса.
 
-При каждой загрузке страницы индекса кэш проверяется на наличие кэшированного времени в `OnGetAsync` . Если время кэширования не истекло, отображается время. Если прошло 20 секунд с момента последнего обращения к кэшированному времени (время последней загрузки этой страницы), на странице отображается *время ожидания кэширования*.
+При каждой загрузке страницы индекса кэш проверяется на наличие кэшированного времени в `OnGetAsync` . Если время кэширования не истекло, отображается время. Если прошло 20 секунд с момента последнего обращения к кэшированному времени (время последней загрузки этой страницы), на странице отображается *время ожидания кэширования* .
 
 Немедленно обновите кэшированное время на текущее время, нажав кнопку **сбросить кэшированное** время. Кнопка запускает `OnPostResetCachedTime` метод обработчика.
 
@@ -518,7 +519,7 @@ services.AddDistributedRedisCache(options =>
 
 * Существующая инфраструктура
 * Требования к производительности
-* Cost
+* Стоимость
 * Опыт работы в группе
 
 Для обеспечения быстрого извлечения кэшированных данных решения кэширования обычно используют хранилище в памяти, но память является ограниченным ресурсом и может быть расширена. Хранение часто используемых данных в кэше.

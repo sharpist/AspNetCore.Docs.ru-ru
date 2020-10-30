@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/15/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/resourcebased
-ms.openlocfilehash: bb47f3452d29dfeea0e4d3c4a9c22a06869a3fe7
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 202ca681a66ddf7f729d8835e2f77da846583df1
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631359"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060174"
 ---
 # <a name="resource-based-authorization-in-aspnet-core"></a>Авторизация на основе ресурсов в ASP.NET Core
 
 Стратегия авторизации зависит от ресурса, к которому осуществляется доступ. Рассмотрим документ со свойством Author. Обновление документа разрешено только автору. Следовательно, документ необходимо извлечь из хранилища данных, прежде чем может выполняться оценка авторизации.
 
-Оценка атрибутов выполняется перед привязкой данных и перед выполнением обработчика страницы или действия, которое загружает документ. По этим причинам декларативная авторизация с `[Authorize]` атрибутом недостаточна. Вместо этого можно вызвать пользовательский метод авторизации &mdash; с помощью стиля, известного как *императивная авторизация*.
+Оценка атрибутов выполняется перед привязкой данных и перед выполнением обработчика страницы или действия, которое загружает документ. По этим причинам декларативная авторизация с `[Authorize]` атрибутом недостаточна. Вместо этого можно вызвать пользовательский метод авторизации &mdash; с помощью стиля, известного как *императивная авторизация* .
 
 ::: moniker range=">= aspnetcore-3.0"
 [Просмотреть или скачать пример кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/resourcebased/samples/3_0) ([описание скачивания](xref:index#how-to-download-a-sample)).

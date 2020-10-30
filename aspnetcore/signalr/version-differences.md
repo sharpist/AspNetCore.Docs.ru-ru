@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.date: 11/21/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/version-differences
-ms.openlocfilehash: 965fbb3d8007cb64aaf51d82d87ed7a3a5298e9b
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: c4c0ff83cb789e9aa35085496daa461404615726
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90721792"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061214"
 ---
 # <a name="differences-between-aspnet-no-locsignalr-and-aspnet-core-no-locsignalr"></a>Различия между ASP.NET SignalR и ASP.NET Core SignalR
 
@@ -34,7 +35,7 @@ ASP.NET Core SignalR несовместим с клиентами или сер�
 
 |                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
-| **Пакет NuGet сервера** | [Microsoft. AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | Нет. Входит в состав общей платформы [Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) . |
+| **Пакет NuGet сервера** | [Microsoft. AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | Отсутствует. Входит в состав общей платформы [Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) . |
 | **Клиентские пакеты NuGet** | [Microsoft. AspNet. SignalR . Компьютера](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft. AspNet. SignalR . JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft. AspNetCore. SignalR . Компьютера](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
 | **Пакет NPM клиента JavaScript** | [SignalR](https://www.npmjs.com/package/signalr) | [`@microsoft/signalr`](https://www.npmjs.com/package/@microsoft/signalr) |
 | **Клиент Java** | [Репозиторий GitHub](https://github.com/SignalR/java-client) (не рекомендуется)  | Пакет Maven [com. Microsoft. SignalR](https://search.maven.org/artifact/com.microsoft.signalr/signalr) |
@@ -146,7 +147,7 @@ app.UseSignalR(routes =>
 
 В ASP.NET Core SignalR модель подключения была упрощена. Подключения осуществляются непосредственно в одном концентраторе, а не в одном соединении, используемом для совместного доступа к нескольким концентраторам.
 
-### <a name="streaming"></a>Потоковые операторы
+### <a name="streaming"></a>Потоковая передача
 
 ASP.NET Core SignalR теперь поддерживает [потоковую передачу данных](xref:signalr/streaming) от концентратора клиенту.
 
@@ -202,7 +203,8 @@ npm install @aspnet/signalr
 
 ### <a name="internet-explorer-support"></a>Поддержка Internet Explorer
 
-Для ASP.NET Core SignalR требуется Microsoft Internet Explorer 11 или более поздняя версия (ASP.NET SignalR поддерживал Microsoft Internet Explorer 8 и более поздние версии).
+ASP.NET Core SignalR поддерживает Microsoft Internet Explorer 11 или более поздней версии, тогда как ASP.NET SignalR поддерживает Microsoft Internet Explorer 8 или более поздней версии.
+Дополнительные сведения о поддержке браузеров можно найти на странице [Поддерживаемые платформы](xref:signalr/supported-platforms#javascript-client).
 
 ### <a name="javascript-client-method-syntax"></a>Синтаксис клиентского метода JavaScript
 

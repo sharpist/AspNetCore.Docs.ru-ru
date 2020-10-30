@@ -5,6 +5,7 @@ description: Объяснение использования аутентифи�
 ms.author: riande
 ms.date: 12/10/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/social/social-without-identity
-ms.openlocfilehash: a91a2f2fb7873e5a672c624e9cf863ae720c8005
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: cd7545a3ddaccedfa64ef5e9d5458c21c651257a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634232"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060291"
 ---
 # <a name="use-social-sign-in-provider-authentication-without-no-locaspnet-core-identity"></a>Использовать проверку подлинности поставщика социальных сетей без ASP.NET Core Identity
 
@@ -40,7 +41,7 @@ ms.locfileid: "88634232"
 * [Проверка подлинности Twitter](xref:security/authentication/twitter-logins)
 * [Другие поставщики](xref:security/authentication/otherlogins)
 
-## <a name="configuration"></a>Конфигурация
+## <a name="configuration"></a>Параметр Configuration
 
 В `ConfigureServices` методе настройте схемы проверки подлинности приложения с помощью <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> методов, и <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle*> :
 
@@ -95,7 +96,7 @@ ms.locfileid: "88634232"
 * [Проверка подлинности Twitter](xref:security/authentication/twitter-logins)
 * [Другие поставщики](xref:security/authentication/otherlogins)
 
-## <a name="configuration"></a>Конфигурация
+## <a name="configuration"></a>Параметр Configuration
 
 В `ConfigureServices` методе настройте схемы проверки подлинности приложения с помощью `AddAuthentication` `AddCookie` методов, и `AddGoogle` :
 

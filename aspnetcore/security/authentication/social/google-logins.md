@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 03/19/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/google-logins
-ms.openlocfilehash: a7a5260a2446ac3f3be00755ef051e56080a7485
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 111ea7c972778dfd5296d0401c16563aeaa36a63
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634297"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060317"
 ---
 # <a name="google-external-login-setup-in-aspnet-core"></a>Настройка внешнего входа Google в ASP.NET Core
 
@@ -33,11 +34,11 @@ ms.locfileid: "88634297"
 ## <a name="create-a-google-api-console-project-and-client-id"></a>Создание проекта консоли Google API и идентификатора клиента
 
 * Установите [Microsoft. AspNetCore. Authentication. Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google).
-* Перейдите к разделу [Интеграция Google-входа в веб-приложение](https://developers.google.com/identity/sign-in/web/sign-in) и выберите **Настройка проекта**.
-* В диалоговом окне **Настройка клиента OAuth** выберите **веб-сервер**.
+* Перейдите к [разделу интеграция Google Sign-In в веб-приложение](https://developers.google.com/identity/sign-in/web/sign-in) и выберите **Настройка проекта** .
+* В диалоговом окне **Настройка клиента OAuth** выберите **веб-сервер** .
 * В текстовом поле " **зарегистрированные URI перенаправления** " задайте URI перенаправления. Например `https://localhost:44312/signin-google`.
-* Сохраните **идентификатор клиента** и **секрет клиента**.
-* При развертывании сайта зарегистрируйте новый общедоступный URL-адрес из **консоли Google**.
+* Сохраните **идентификатор клиента** и **секрет клиента** .
+* При развертывании сайта зарегистрируйте новый общедоступный URL-адрес из **консоли Google** .
 
 ## <a name="store-the-google-client-id-and-secret"></a>Хранение идентификатора и секрета клиента Google
 
@@ -65,7 +66,7 @@ ms.locfileid: "88634297"
 
 ## <a name="sign-in-with-google"></a>Вход с учетными данными Google
 
-* Запустите приложение и нажмите кнопку **войти**. Появится возможность войти в систему с помощью Google.
+* Запустите приложение и нажмите кнопку **войти** . Появится возможность войти в систему с помощью Google.
 * Нажмите кнопку **Google** , которая перенаправляет на Google для проверки подлинности.
 * После ввода учетных данных Google вы будете перенаправлены обратно на веб-сайт.
 
@@ -82,7 +83,7 @@ ms.locfileid: "88634297"
 ## <a name="troubleshooting"></a>Устранение неполадок
 
 * Если вход не работает и вы не получаете никаких ошибок, переключитесь в режим разработки, чтобы упростить отладку.
-* Если Identity не настроен с помощью вызова `services.AddIdentity` в `ConfigureServices` , попытка проверки подлинности результатов в *ArgumentException: необходимо указать параметр "сигнинсчеме"*. Шаблон проекта, используемый в этом руководстве, гарантирует, что это будет сделано.
+* Если Identity не настроен с помощью вызова `services.AddIdentity` в `ConfigureServices` , попытка проверки подлинности результатов в *ArgumentException: необходимо указать параметр "сигнинсчеме"* . Шаблон проекта, используемый в этом руководстве, гарантирует, что это будет сделано.
 * Если база данных сайта не была создана путем применения первоначальной миграции, то при обработке ошибки запроса возникнет *Ошибка операции с базой данных* . Выберите **Применить миграции** , чтобы создать базу данных, и обновите страницу, чтобы продолжить работу после ошибки.
 
 ## <a name="next-steps"></a>Дальнейшие действия

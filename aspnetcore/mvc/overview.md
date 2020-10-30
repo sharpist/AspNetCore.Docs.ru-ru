@@ -5,6 +5,7 @@ description: Узнайте, почему ASP.NET MVC является мног�
 ms.author: riande
 ms.date: 02/12/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/overview
-ms.openlocfilehash: 29701506d9f6c1ff90081a548d524bc0deb65cda
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: c55421efa1fd559f462549bfaceb794d4a9c35b8
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633621"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059316"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Общие сведения ASP.NET Core MVC
 
@@ -268,5 +269,5 @@ Razor представления в MVC могут быть строго тип�
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
-* [Библиотека тестирования митестед. AspNetCore. MVC-Fluent для ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): строго типизированная Библиотека модульного тестирования, предоставляющая интерфейс Fluent для тестирования приложений MVC и веб-API. (*Не поддерживается и не обслуживается Майкрософт.* )
+* [Библиотека тестирования митестед. AspNetCore. MVC-Fluent для ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): строго типизированная Библиотека модульного тестирования, предоставляющая интерфейс Fluent для тестирования приложений MVC и веб-API. ( *Не поддерживается и не обслуживается Майкрософт.* )
 * <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>

@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: c1891b8093c5a4c1599cd3c4ed4e5e60e2fd13e8
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 306416db3d9ae0219f859c3cf459eb08a5b778cf
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629006"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060928"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Создание вспомогательных функций тегов в ASP.NET Core
 
@@ -36,9 +37,9 @@ ms.locfileid: "88629006"
 
 Вспомогательная функция тега — это любой класс, реализующий интерфейс `ITagHelper`. Однако при разработке вспомогательной функции тега обычно производится наследование `TagHelper`, так как это дает доступ к методу `Process`.
 
-1. Создайте проект ASP.NET Core с именем **AuthoringTagHelpers**. Проверка подлинности для этого проекта не потребуется.
+1. Создайте проект ASP.NET Core с именем **AuthoringTagHelpers** . Проверка подлинности для этого проекта не потребуется.
 
-1. Создайте папку, в которой будут помещаться вспомогательные функции тегов, с именем *TagHelpers*. Папка *TagHelpers**не* является обязательной; она создается согласно принятому соглашению. Теперь приступим к написанию простейших вспомогательных функций тегов.
+1. Создайте папку, в которой будут помещаться вспомогательные функции тегов, с именем *TagHelpers* . Папка *TagHelpers**не* является обязательной; она создается согласно принятому соглашению. Теперь приступим к написанию простейших вспомогательных функций тегов.
 
 ## <a name="a-minimal-tag-helper"></a>Простейшая вспомогательная функция тега
 
@@ -56,11 +57,11 @@ ms.locfileid: "88629006"
 
 Это тег привязки, который преобразует элемент в ссылку с адресом электронной почты. Он может потребоваться, если вы создаете подсистему ведения блогов и вам нужно реализовать отправку электронной почты в отдел маркетинга, службу технической поддержки и на другие адреса в одном домене.
 
-1. Добавьте приведенный ниже класс `EmailTagHelper` в папку *TagHelpers*.
+1. Добавьте приведенный ниже класс `EmailTagHelper` в папку *TagHelpers* .
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1EmailTagHelperCopy.cs)]
 
-   * Для вспомогательных функций тегов используется соглашение об именовании в отношении элементов имени корневого класса (за исключением части *TagHelper* этого имени). В этом примере корневое имя **емаилтагхелпер** — *e-mail*, поэтому `<email>` тег будет целевым. Это соглашение об именовании подходит для большинства вспомогательных функций тегов, позднее мы покажем, как переопределить его.
+   * Для вспомогательных функций тегов используется соглашение об именовании в отношении элементов имени корневого класса (за исключением части *TagHelper* этого имени). В этом примере корневое имя **емаилтагхелпер** — *e-mail* , поэтому `<email>` тег будет целевым. Это соглашение об именовании подходит для большинства вспомогательных функций тегов, позднее мы покажем, как переопределить его.
 
    * Класс `EmailTagHelper` является производным от `TagHelper`. Класс `TagHelper` предоставляет методы и свойства для написания вспомогательных функций тегов.
 
@@ -70,7 +71,7 @@ ms.locfileid: "88629006"
 
    * Выходной параметр метода `Process` (и `ProcessAsync`) содержит элемент HTML с отслеживанием состояния, который представляет источник, используемый для формирования HTML-тега и содержимого.
 
-   * В нашем случае имя класса имеет суффикс **TagHelper**, который *не* является обязательным, но считается рекомендуемым соглашением. Класс можно объявить следующим образом:
+   * В нашем случае имя класса имеет суффикс **TagHelper** , который *не* является обязательным, но считается рекомендуемым соглашением. Класс можно объявить следующим образом:
 
    ```csharp
    public class Email : TagHelper
@@ -93,9 +94,9 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
     [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImports.cshtml?highlight=3&range=1-3)]
 -->
 
-Чтобы добавить вспомогательную функцию тега в представление с помощью полного имени, сначала добавьте полное имя (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`), а затем — **имя сборки** (*AuthoringTagHelpers*, не обязательно `namespace`). Большинство разработчиков предпочитают использовать синтаксис с подстановочным знаком. В статье [Общие сведения о вспомогательных функциях тегов](intro.md) подробно рассматривается добавление и удаление вспомогательных функций тегов, их иерархия и синтаксис с подстановочным знаком.
+Чтобы добавить вспомогательную функцию тега в представление с помощью полного имени, сначала добавьте полное имя (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`), а затем — **имя сборки** ( *AuthoringTagHelpers* , не обязательно `namespace`). Большинство разработчиков предпочитают использовать синтаксис с подстановочным знаком. В статье [Общие сведения о вспомогательных функциях тегов](intro.md) подробно рассматривается добавление и удаление вспомогательных функций тегов, их иерархия и синтаксис с подстановочным знаком.
 
-1. Внесите следующие изменения в разметку в файле *Views/Home/Contact.cshtml*: 
+1. Внесите следующие изменения в разметку в файле *Views/Home/Contact.cshtml* : 
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
 
@@ -119,7 +120,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 Такой подход работает для атрибута href, если его в настоящее время нет в коллекции атрибутов. Вы также можете добавить атрибут вспомогательной функции тега в конец коллекции атрибутов тегов с помощью метода `output.Attributes.Add`.
 
-1. Внесите следующие изменения в разметку в файле *Views/Home/Contact.cshtml*: 
+1. Внесите следующие изменения в разметку в файле *Views/Home/Contact.cshtml* : 
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml?highlight=15,16)]
 
@@ -148,7 +149,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
    * Для получения содержимого элемента HTML используйте параметр `output`.
 
-1. Чтобы вспомогательная функция тега могла получить целевой адрес электронной почты, внесите следующее изменение в файл *Views/Home/Contact.cshtml*:
+1. Чтобы вспомогательная функция тега могла получить целевой адрес электронной почты, внесите следующее изменение в файл *Views/Home/Contact.cshtml* :
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
 
@@ -156,7 +157,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 ### <a name="removeall-precontentsethtmlcontent-and-postcontentsethtmlcontent"></a>RemoveAll, PreContent.SetHtmlContent и PostContent.SetHtmlContent
 
-1. Добавьте приведенный ниже класс `BoldTagHelper` в папку *TagHelpers*.
+1. Добавьте приведенный ниже класс `BoldTagHelper` в папку *TagHelpers* .
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/BoldTagHelper.cs)]
 
@@ -172,7 +173,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
    Представленный выше атрибут `[HtmlTargetElement]` предназначен только для разметки HTML, которая предоставляет имя атрибута bold. Элемент `<bold>` не был изменен вспомогательной функцией тега.
 
-1. Если закомментировать строку с атрибутом `[HtmlTargetElement]`, функция будет нацелена по умолчанию на теги `<bold>`, то есть на разметку HTML в форме `<bold>`. Помните, что в соответствии с соглашением об именовании по умолчанию имя класса **Bold**TagHelper соответствует тегам `<bold>`.
+1. Если закомментировать строку с атрибутом `[HtmlTargetElement]`, функция будет нацелена по умолчанию на теги `<bold>`, то есть на разметку HTML в форме `<bold>`. Помните, что в соответствии с соглашением об именовании по умолчанию имя класса **Bold** TagHelper соответствует тегам `<bold>`.
 
 1. Запустите приложение и убедитесь в том, что тег `<bold>` обрабатывается вспомогательной функцией тега.
 
@@ -194,13 +195,13 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 ## <a name="pass-a-model-to-a-tag-helper"></a>Передача модели во вспомогательную функцию тега
 
-1. Добавьте папку *Models*.
+1. Добавьте папку *Models* .
 
-1. Добавьте следующий класс `WebsiteContext` в папку *Models*:
+1. Добавьте следующий класс `WebsiteContext` в папку *Models* :
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Models/WebsiteContext.cs)]
 
-1. Добавьте приведенный ниже класс `WebsiteInformationTagHelper` в папку *TagHelpers*.
+1. Добавьте приведенный ниже класс `WebsiteInformationTagHelper` в папку *TagHelpers* .
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/WebsiteInformationTagHelper.cs)]
 
@@ -226,7 +227,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
    $@"<ul><li><strong>Version:</strong> {Info.Version}</li>
    ```
 
-1. Добавьте приведенную ниже разметку в представление *About.cshtml*. Выделенная разметка служит для вывода сведений о веб-сайте.
+1. Добавьте приведенную ниже разметку в представление *About.cshtml* . Выделенная разметка служит для вывода сведений о веб-сайте.
 
    [!code-cshtml[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,4-8, 18-999)]
 
@@ -248,7 +249,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 Вспомогательная функция тега условия преобразовывает выходные данные для просмотра, если в нее передано значение true.
 
-1. Добавьте приведенный ниже класс `ConditionTagHelper` в папку *TagHelpers*.
+1. Добавьте приведенный ниже класс `ConditionTagHelper` в папку *TagHelpers* .
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/ConditionTagHelper.cs)]
 
@@ -275,14 +276,14 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 Так как эти две вспомогательные функции тесно связаны друг с другом и в будущем может потребоваться их рефакторинг, мы поместим их в один файл.
 
-1. Добавьте приведенный ниже класс `AutoLinkerHttpTagHelper` в папку *TagHelpers*.
+1. Добавьте приведенный ниже класс `AutoLinkerHttpTagHelper` в папку *TagHelpers* .
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1AutoLinker.cs?range=7-19)]
 
    >[!NOTE]
    >Для класса `AutoLinkerHttpTagHelper` целевыми являются элементы `p`, и в нем используется [регулярное выражение](/dotnet/standard/base-types/regular-expression-language-quick-reference) для создания привязки.
 
-1. Добавьте следующую разметку в конец файла *Views/Home/Contact.cshtml*:
+1. Добавьте следующую разметку в конец файла *Views/Home/Contact.cshtml* :
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=19)]
 

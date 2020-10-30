@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.0'
 ms.author: scaddie
 ms.date: 06/12/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/th-components
-ms.openlocfilehash: d3bae9cd5b4a5c7315c795229c7eafbf1e44e22d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 15bddd8ce18546bef7ee7e6ec2e32e369d0858a3
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627589"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060564"
 ---
 # <a name="tag-helper-components-in-aspnet-core"></a>Вспомогательные компоненты тегов в ASP.NET Core
 
@@ -30,7 +31,7 @@ ms.locfileid: "88627589"
 
 Вспомогательный компонент тегов позволяет на основе условий изменять или добавлять элементы HTML из серверного кода. Эта функция доступна в ASP.NET Core 2.0 и более поздних версий.
 
-ASP.NET Core включает в себя два встроенных вспомогательных компонента тегов: `head` и `body`. Они находятся в <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> пространстве имен и могут использоваться как в MVC, так и на Razor страницах. Вспомогательные компоненты тегов не нужно регистрировать в *_ViewImports.cshtml*.
+ASP.NET Core включает в себя два встроенных вспомогательных компонента тегов: `head` и `body`. Они находятся в <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> пространстве имен и могут использоваться как в MVC, так и на Razor страницах. Вспомогательные компоненты тегов не нужно регистрировать в *_ViewImports.cshtml* .
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
@@ -49,7 +50,7 @@ ASP.NET Core включает в себя два встроенных вспом
 
 [!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressStyleTagHelperComponent.cs)]
 
-В приведенном выше коде:
+В предыдущем коде:
 
 * Объект `AddressStyleTagHelperComponent` реализует интерфейс <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent>. Абстракция:
   * Позволяет инициализировать класс с <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext>.
@@ -91,7 +92,7 @@ ASP.NET Core включает в себя два встроенных вспом
 
 [!code-cshtml[](th-components/samples/RazorPagesSample/Pages/Contact.cshtml?name=snippet_ITagHelperComponentManager)]
 
-В приведенном выше коде:
+В предыдущем коде:
 
 * Директива `@inject` предоставляет экземпляр `ITagHelperComponentManager`. Экземпляр присваивается переменной с именем `manager` для доступа в Razor файле.
 * Экземпляр `AddressTagHelperComponent` добавляется в коллекцию вспомогательных компонентов тегов.
@@ -112,7 +113,7 @@ ASP.NET Core включает в себя два встроенных вспом
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Pages/Index.cshtml.cs?name=snippet_IndexModelClass)]
 
-В приведенном выше коде:
+В предыдущем коде:
 
 * Для доступа к экземпляру `ITagHelperComponentManager` внедряется конструктор.
 * Экземпляр `AddressTagHelperComponent` добавляется в коллекцию вспомогательных компонентов тегов.
@@ -123,7 +124,7 @@ ASP.NET Core включает в себя два встроенных вспом
 
 * Создайте открытый класс, который наследует от <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.TagHelperComponentTagHelper>.
 * Примените [`[HtmlTargetElement]`](xref:Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute) к классу атрибут. Укажите имя целевого элемента HTML.
-* *Необязательно*: применение [`[EditorBrowsable(EditorBrowsableState.Never)]`](xref:System.ComponentModel.EditorBrowsableAttribute) атрибута к классу для подавления отображения типа в IntelliSense.
+* *Необязательно* : применение [`[EditorBrowsable(EditorBrowsableState.Never)]`](xref:System.ComponentModel.EditorBrowsableAttribute) атрибута к классу для подавления отображения типа в IntelliSense.
 
 Следующий код позволяет создать пользовательский вспомогательный компонент тегов, который работает с элементом HTML `<address>`:
 

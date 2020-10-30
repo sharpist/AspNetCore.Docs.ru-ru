@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
 ms.date: 07/16/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 57d46e34993148943b1e9680a372405be9c80605
-ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
+ms.openlocfilehash: 83525a4c1e87a60b57130c1bba14360c7d03f552
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91424208"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061383"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Настройка проверки подлинности сертификата в ASP.NET Core
 
@@ -39,7 +40,7 @@ ms.locfileid: "91424208"
 
 Альтернативой для проверки подлинности на сертификат в средах, где используются прокси-серверы и подсистемы балансировки нагрузки, являются Active Directory Федеративные службы (ADFS) с OpenID Connect Connect (OIDC).
 
-## <a name="get-started"></a>Начало работы
+## <a name="get-started"></a>Приступая к работе
 
 Получите HTTPS сертификат, примените его и [Настройте сервер](#configure-your-server-to-require-certificates) для использования сертификатов.
 
@@ -234,7 +235,7 @@ services.AddAuthentication(
 
 ### <a name="kestrel"></a>Kestrel
 
-В *Program.CS*настройте Kestrel следующим образом:
+В *Program.CS* настройте Kestrel следующим образом:
 
 ```csharp
 public static void Main(string[] args)
@@ -639,7 +640,7 @@ ASP.NET Core 5 Preview 7 и более поздней версии добавл�
 
 * Настройка привязки для домена и поддомена:
   * Например, настройте привязки для `contoso.com` и `myClient.contoso.com` . `contoso.com`Узлу не требуется сертификат клиента, но он `myClient.contoso.com` выполняется.
-  * Дополнительные сведения можно найти в разделе
+  * Дополнительные сведения см. в разделе:
     * [Kestrel](/fundamentals/servers/kestrel):
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel#listenoptionsusehttps)
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>

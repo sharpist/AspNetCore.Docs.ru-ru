@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/17/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cors
-ms.openlocfilehash: cebaa9ae65557ca5d938c5728882382830deca9d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 03008f40fc1c4b323535d08a1bb4c4007bc145f7
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629266"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060824"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Включение запросов между источниками (CORS) в ASP.NET Core
 
@@ -32,7 +33,7 @@ ms.locfileid: "88629266"
 
 В этой статье показано, как включить CORS в приложении ASP.NET Core.
 
-Система безопасности браузера предотвращает запросы веб-страницы к другому домену, отличному от того, который обслуживает веб-страницу. Это ограничение называется *политика одного источника*. Эта политика предотвращает чтение вредоносным сайтом конфиденциальных данных с другого сайта. Иногда может потребоваться разрешить другим сайтам выполнять запросы между источниками в приложении. Дополнительные сведения см. в [статье Mozilla CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS).
+Система безопасности браузера предотвращает запросы веб-страницы к другому домену, отличному от того, который обслуживает веб-страницу. Это ограничение называется *политика одного источника* . Эта политика предотвращает чтение вредоносным сайтом конфиденциальных данных с другого сайта. Иногда может потребоваться разрешить другим сайтам выполнять запросы между источниками в приложении. Дополнительные сведения см. в [статье Mozilla CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS).
 
 [Общий доступ к ресурсам в разных источниках](https://www.w3.org/TR/cors/) (CORS):
 
@@ -126,7 +127,7 @@ ms.locfileid: "88629266"
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPt.cs?name=snippet2&highlight=3,7-15,32,40,43)]
 
-В приведенном выше коде:
+В предыдущем коде:
 
 * `app.UseCors` включает по промежуточного слоя CORS. Так как политика по умолчанию не настроена, `app.UseCors()` она не включает CORS.
 * `/echo`Конечные точки контроллера и позволяют выполнять запросы между источниками с помощью указанной политики.
@@ -270,7 +271,7 @@ Access-Control-Request-Headers: Cache-Control, Content-Language
 * `Last-Modified`
 * `Pragma`
 
-Спецификация CORS вызывает эти заголовки *простых заголовков ответа*. Чтобы сделать другие заголовки доступными для приложения, вызовите <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*> :
+Спецификация CORS вызывает эти заголовки *простых заголовков ответа* . Чтобы сделать другие заголовки доступными для приложения, вызовите <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*> :
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet5)]
 ### <a name="credentials-in-cross-origin-requests"></a>Учетные данные в запросах между источниками
@@ -523,7 +524,7 @@ Sec-Fetch-Site: cross-site
 User-Agent: Mozilla/5.0
 ```
 
-В предыдущих **заголовках ответа**сервер задает заголовок [Access-Control-Allow-Origin](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) в ответе. `https://cors1.azurewebsites.net`Значение этого заголовка соответствует `Origin` заголовку запроса.
+В предыдущих **заголовках ответа** сервер задает заголовок [Access-Control-Allow-Origin](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) в ответе. `https://cors1.azurewebsites.net`Значение этого заголовка соответствует `Origin` заголовку запроса.
 
 Если <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrigin*> вызывается метод, `Access-Control-Allow-Origin: *` возвращается значение с подстановочным знаком. `AllowAnyOrigin` разрешает любой источник.
 
@@ -535,7 +536,7 @@ User-Agent: Mozilla/5.0
 
 По умолчанию браузеры Chrome и ребра не отображают запросы параметров на вкладке Сеть средств F12. Отображение запросов OPTIONS в следующих браузерах:
 
-* `chrome://flags/#out-of-blink-cors` либо `edge://flags/#out-of-blink-cors`
+* `chrome://flags/#out-of-blink-cors` или `edge://flags/#out-of-blink-cors`
 * отключите флаг.
 * перезагрузить.
 
@@ -618,7 +619,7 @@ C:\Program Files\Git\mingw64\bin\
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/TodoItems2Controller.cs?name=snippet2)]
 
-Протестируйте предыдущий код на [странице тест](https://cors1.azurewebsites.net/test?number=2) в развернутом примере. В раскрывающемся списке **контроллер** выберите Предварительная **Проверка** , а затем **Задайте значение контроллер**. Все вызовы CORS к `TodoItems2Controller` конечным точкам выполнены.
+Протестируйте предыдущий код на [странице тест](https://cors1.azurewebsites.net/test?number=2) в развернутом примере. В раскрывающемся списке **контроллер** выберите Предварительная **Проверка** , а затем **Задайте значение контроллер** . Все вызовы CORS к `TodoItems2Controller` конечным точкам выполнены.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
@@ -633,7 +634,7 @@ C:\Program Files\Git\mingw64\bin\
 
 В этой статье показано, как включить CORS в приложении ASP.NET Core.
 
-Система безопасности браузера предотвращает запросы веб-страницы к другому домену, отличному от того, который обслуживает веб-страницу. Это ограничение называется *политика одного источника*. Эта политика предотвращает чтение вредоносным сайтом конфиденциальных данных с другого сайта. Иногда может потребоваться разрешить другим сайтам выполнять запросы между источниками в приложении. Дополнительные сведения см. в [статье Mozilla CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS).
+Система безопасности браузера предотвращает запросы веб-страницы к другому домену, отличному от того, который обслуживает веб-страницу. Это ограничение называется *политика одного источника* . Эта политика предотвращает чтение вредоносным сайтом конфиденциальных данных с другого сайта. Иногда может потребоваться разрешить другим сайтам выполнять запросы между источниками в приложении. Дополнительные сведения см. в [статье Mozilla CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS).
 
 [Общий доступ к ресурсам в разных источниках](https://www.w3.org/TR/cors/) (CORS):
 
@@ -723,7 +724,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 * Контроллер
 * Метод действия контроллера
 
-С атрибутом можно применить различные политики для контроллера, модели страницы или действия  `[EnableCors]` . Если `[EnableCors]` атрибут применяется к контроллеру, модели страницы или методу действия, а CORS включен по промежуточного слоя, применяются **обе** политики. **Не** рекомендуется объединять политики. Используйте `[EnableCors]` атрибут или по промежуточного слоя, а **не оба**. При использовании не `[EnableCors]` определяйте **not** политику по умолчанию.
+С атрибутом можно применить различные политики для контроллера, модели страницы или действия  `[EnableCors]` . Если `[EnableCors]` атрибут применяется к контроллеру, модели страницы или методу действия, а CORS включен по промежуточного слоя, применяются **обе** политики. **Не** рекомендуется объединять политики. Используйте `[EnableCors]` атрибут или по промежуточного слоя, а **не оба** . При использовании не `[EnableCors]` определяйте **not** политику по умолчанию.
 
 Следующий код применяет к каждому методу другую политику:
 
@@ -774,7 +775,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 ### <a name="set-the-allowed-request-headers"></a>Задание разрешенных заголовков запроса
 
-Чтобы разрешить отправку конкретных заголовков в запрос CORS, именуемый *заголовком запроса на создание*, вызовите <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*> и укажите разрешенные заголовки:
+Чтобы разрешить отправку конкретных заголовков в запрос CORS, именуемый *заголовком запроса на создание* , вызовите <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*> и укажите разрешенные заголовки:
 
 [!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=55-60&highlight=5)]
 
@@ -816,7 +817,7 @@ Access-Control-Request-Headers: Cache-Control, Content-Language
 * `Last-Modified`
 * `Pragma`
 
-Спецификация CORS вызывает эти заголовки *простых заголовков ответа*. Чтобы сделать другие заголовки доступными для приложения, вызовите <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*> :
+Спецификация CORS вызывает эти заголовки *простых заголовков ответа* . Чтобы сделать другие заголовки доступными для приложения, вызовите <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*> :
 
 [!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=73-78&highlight=5)]
 
@@ -867,7 +868,7 @@ I don't like "all CORS enabled domains must be trusted", because it implies that
 
 ### <a name="preflight-requests"></a>Предпечатные запросы
 
-Для некоторых запросов CORS браузер отправляет дополнительный запрос перед выполнением фактического запроса. Этот запрос называется *предпечатным запросом*. Браузер может пропустить Предпечатный запрос, если выполняются следующие условия.
+Для некоторых запросов CORS браузер отправляет дополнительный запрос перед выполнением фактического запроса. Этот запрос называется *предпечатным запросом* . Браузер может пропустить Предпечатный запрос, если выполняются следующие условия.
 
 * Метод запроса — GET, HEAD или POST.
 * Приложение не устанавливает заголовки запроса `Accept` , кроме, `Accept-Language` , `Content-Language` , `Content-Type` или `Last-Event-ID` .
@@ -876,7 +877,7 @@ I don't like "all CORS enabled domains must be trusted", because it implies that
   * `multipart/form-data`
   * `text/plain`
 
-Правило для заголовков запросов, заданных для запроса клиента, применяется к заголовкам, которые устанавливаются приложением путем вызова `setRequestHeader` для `XMLHttpRequest` объекта. Спецификация CORS вызывает заголовки *запроса автора*заголовков. Правило не применяется к заголовкам, которые может задать браузер, например `User-Agent` , `Host` или `Content-Length` .
+Правило для заголовков запросов, заданных для запроса клиента, применяется к заголовкам, которые устанавливаются приложением путем вызова `setRequestHeader` для `XMLHttpRequest` объекта. Спецификация CORS вызывает заголовки *запроса автора* заголовков. Правило не применяется к заголовкам, которые может задать браузер, например `User-Agent` , `Host` или `Content-Length` .
 
 Ниже приведен пример предпечатного запроса.
 

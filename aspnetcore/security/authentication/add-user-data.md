@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 03/26/2020
 ms.custom: mvc, seodec18
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/add-user-data
-ms.openlocfilehash: a71395e82ed15dae753888a438471495208a14da
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a4e1fd780947cfa5f09fb1e03964595fa09f0f18
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631853"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061422"
 ---
 # <a name="add-download-and-delete-custom-user-data-to-no-locidentity-in-an-aspnet-core-project"></a>Добавление, скачивание и удаление пользовательских данных Identity в проекте ASP.NET Core
 
@@ -57,7 +58,7 @@ ms.locfileid: "88631853"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* В Visual Studio в меню **Файл** щелкните **Создать** > **Проект**. Присвойте проекту имя **APP1** , если вы хотите, чтобы оно соответствовало пространству имен примера кода для [скачивания](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) .
+* В Visual Studio в меню **Файл** щелкните **Создать** > **Проект** . Присвойте проекту имя **APP1** , если вы хотите, чтобы оно соответствовало пространству имен примера кода для [скачивания](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) .
 * Выберите **ASP.NET Core веб-приложение** > **ОК**
 * Выберите **ASP.NET Core 3,0** в раскрывающемся списке.
 * Выберите **веб-приложение** > **ОК** .
@@ -67,7 +68,7 @@ ms.locfileid: "88631853"
 
 ::: moniker range="< aspnetcore-3.0"
 
-* В Visual Studio в меню **Файл** щелкните **Создать** > **Проект**. Присвойте проекту имя **APP1** , если вы хотите, чтобы оно соответствовало пространству имен примера кода для [скачивания](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) .
+* В Visual Studio в меню **Файл** щелкните **Создать** > **Проект** . Присвойте проекту имя **APP1** , если вы хотите, чтобы оно соответствовало пространству имен примера кода для [скачивания](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) .
 * Выберите **ASP.NET Core веб-приложение** > **ОК**
 * Выберите **ASP.NET Core 2,2** в раскрывающемся списке.
 * Выберите **веб-приложение** > **ОК** .
@@ -88,16 +89,16 @@ dotnet new webapp -o WebApp1
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* В **Обозреватель решений**щелкните правой кнопкой мыши проект > **Добавить**  >  **Новый**шаблонный элемент.
-* В левой области диалогового окна **Добавление шаблона** выберите **Identity**  >  **Добавить**.
-* В диалоговом окне **Добавить можно задать Identity ** следующие параметры.
+* В **Обозреватель решений** щелкните правой кнопкой мыши проект > **Добавить**  >  **Новый** шаблонный элемент.
+* В левой области диалогового окна **Добавление шаблона** выберите **Identity**  >  **Добавить** .
+* В диалоговом окне **Добавить можно задать Identity** следующие параметры.
   * Выберите существующий файл макета  *~/пажес/шаред/_layout. cshtml*
   * Выберите следующие файлы для переопределения:
     * **Учетная запись или регистр**
     * **Учетная запись/управление/индекс**
-  * Нажмите **+** кнопку, чтобы создать новый **класс контекста данных**. Примите тип ("имя_проекта **. Models. WebApp1Context** ", если проект называется " **APP1**").
-  * Нажмите **+** кнопку, чтобы создать новый **класс пользователя**. Примите тип (**WebApp1User** , если проект называется "имя_проекта **") >** **добавить**.
-* Выберите **Добавить**.
+  * Нажмите **+** кнопку, чтобы создать новый **класс контекста данных** . Примите тип ("имя_проекта **. Models. WebApp1Context** ", если проект называется " **APP1** ").
+  * Нажмите **+** кнопку, чтобы создать новый **класс пользователя** . Примите тип ( **WebApp1User** , если проект называется "имя_проекта **") >** **добавить** .
+* Выберите **Добавить** .
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli)
 
@@ -131,7 +132,7 @@ dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account
 Следуйте инструкциям в разделе [миграция, усеаусентикатион и макет](xref:security/authentication/scaffold-identity#efm) , чтобы выполнить следующие действия.
 
 * Создайте миграцию и обновите базу данных.
-* Добавьте `UseAuthentication` в `Startup.Configure`.
+* Добавлен `UseAuthentication` в `Startup.Configure`.
 * Добавьте `<partial name="_LoginPartial" />` в файл макета.
 * Проверьте работу приложения:
   * Регистрация пользователя
@@ -142,7 +143,7 @@ dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account
 
 ## <a name="add-custom-user-data-to-the-no-locidentity-db"></a>Добавление пользовательских данных в базу данных Identity
 
-Обновите `IdentityUser` производный класс с помощью пользовательских свойств. Если вы назвали имя проекта Project, файл будет называться *Areas/ Identity /Data/WebApp1User.CS*. Обновите файл, используя следующий код:
+Обновите `IdentityUser` производный класс с помощью пользовательских свойств. Если вы назвали имя проекта Project, файл будет называться *Areas/ Identity /Data/WebApp1User.CS* . Обновите файл, используя следующий код:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -216,7 +217,7 @@ dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-В **консоли диспетчера пакетов**Visual Studio:
+В **консоли диспетчера пакетов** Visual Studio:
 
 ```powershell
 Add-Migration CustomUserData

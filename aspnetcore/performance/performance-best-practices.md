@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 04/06/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 01575ec87d2d346da7367523ca5e257d53de4983
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: a3fc398569fafefc0b4634e80433a5d4e0e1b4ff
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722622"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061006"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Рекомендации по повышению производительности ASP.NET Core
 
@@ -44,13 +45,13 @@ ASP.NET Core приложения предназначены для одновр
 
 Распространенная проблема производительности в ASP.NET Core приложениях — блокировка вызовов, которые могут быть асинхронными. Многие синхронные блокирующие вызовы ведут к нехватке [пула потоков](/archive/blogs/vancem/diagnosing-net-core-threadpool-starvation-with-perfview-why-my-service-is-not-saturating-all-cores-or-seems-to-stall) и снижению времени отклика.
 
-**Не выполнять**:
+**Не выполнять** :
 
 * Блокировать асинхронное выполнение путем вызова [Task. Wait](/dotnet/api/system.threading.tasks.task.wait) или [Task. Result](/dotnet/api/system.threading.tasks.task-1.result).
 * Получение блокировок в общих путях кода. ASP.NET Core приложения являются наиболее производительными при разработке архитектуры для параллельного выполнения кода.
 * Вызовите [Task. Run](/dotnet/api/system.threading.tasks.task.run) и немедленно ожидайте ее. ASP.NET Core уже выполняет код приложения в обычных потоках пула потоков, поэтому вызов задачи. выполнение приведет только к ненужному планированию пула потоков. Даже если запланированный код блокирует поток, Task. Run не препятствует этому.
 
-**Выполните**следующие действия.
+**Выполните** следующие действия.
 
 * Сделайте [неактивные пути к коду](#understand-hot-code-paths) асинхронными.
 * Асинхронно вызывайте API доступа к данным, ввода-вывода и длительные операции, если доступен асинхронный API. **Не** используйте [Task. Run](/dotnet/api/system.threading.tasks.task.run) , чтобы сделать синхронный API асинхронным.
@@ -71,7 +72,7 @@ ASP.NET Core приложения предназначены для одновр
 Рекомендации
 
 * **Рассмотрите возможность** кэширования больших объектов, которые часто используются. Кэширование больших объектов предотвращает дорогостоящее выделение памяти.
-* **Сделайте** буферы пула с помощью [аррайпул \<T> ](/dotnet/api/system.buffers.arraypool-1) для хранения больших массивов.
+* **Сделайте** буферы пула с помощью [аррайпул \<T>](/dotnet/api/system.buffers.arraypool-1) для хранения больших массивов.
 * **Не** выделяйте большое количество кратковременных больших объектов в [пути горячего кода](#understand-hot-code-paths).
 
 Проблемы с памятью, например предшествующие, можно диагностировать путем просмотра статистики сборщика мусора (GC) в [PerfView](https://github.com/Microsoft/perfview) и изучения:

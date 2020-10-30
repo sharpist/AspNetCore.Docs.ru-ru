@@ -5,6 +5,7 @@ description: Сведения о Иаусентикатеденкриптор, �
 ms.author: riande
 ms.date: 08/11/2017
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/extensibility/core-crypto
-ms.openlocfilehash: 4c802bc4beb1f1fde812e6c3f55fc43b5d569b66
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 99ce283d56a6010ddd846f21e0ca9a9a324d55fc
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635324"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060785"
 ---
 # <a name="core-cryptography-extensibility-in-aspnet-core"></a>Расширяемость ядра криптографии в ASP.NET Core
 

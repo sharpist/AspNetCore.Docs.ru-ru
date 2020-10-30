@@ -5,6 +5,7 @@ description: ''
 ms.author: riande
 ms.date: 12/07/2016
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 808215d103db9c5d63fe63b6875a222e6b0ba1fa
-ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
+ms.openlocfilehash: 9664f49bd709d2c9e46130773211c339e391d1f6
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92326618"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060707"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Миграция обработчиков и модулей HTTP в ASP.NET Core по промежуточного слоя
 
@@ -57,7 +58,7 @@ ms.locfileid: "92326618"
 
 1. <https://docs.microsoft.com/previous-versions/ms227673(v=vs.140)>, Представляющий собой события серии, запускаемые ASP.NET: [beginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest)и т. д. Каждый модуль может создать обработчик для одного или нескольких событий.
 
-2. Для того же события порядок, в котором они настроены в *Web.config*.
+2. Для того же события порядок, в котором они настроены в *Web.config* .
 
 В дополнение к модулям можно добавлять обработчики для событий жизненного цикла в файл *Global.asax.CS* . Эти обработчики запускаются после обработчиков в настроенных модулях.
 
@@ -65,7 +66,7 @@ ms.locfileid: "92326618"
 
 **По промежуточного слоя проще, чем модули HTTP и обработчики:**
 
-* Модули, обработчики, *Global.asax.CS*, *Web.config* (за исключением конфигурации IIS) и жизненного цикла приложения исчезают
+* Модули, обработчики, *Global.asax.CS* , *Web.config* (за исключением конфигурации IIS) и жизненного цикла приложения исчезают
 
 * Роли обоих модулей и обработчиков были взяты по промежуточного слоя
 
@@ -132,7 +133,7 @@ ms.locfileid: "92326618"
 
 ## <a name="migrating-module-insertion-into-the-request-pipeline"></a>Перенос вставки модуля в конвейер запросов
 
-Модули HTTP обычно добавляются в конвейер запросов с помощью *Web.config*:
+Модули HTTP обычно добавляются в конвейер запросов с помощью *Web.config* :
 
 [!code-xml[](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Web.config?highlight=6&range=1-3,32-33,36,43,50,101)]
 
@@ -140,7 +141,7 @@ ms.locfileid: "92326618"
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=16)]
 
-Точное место в конвейере, где вы вставляете новое по промежуточного слоя, зависит от события, которое оно обрабатывает как модуль ( `BeginRequest` , и `EndRequest` т. д.) и его порядок в списке модулей в *Web.config*.
+Точное место в конвейере, где вы вставляете новое по промежуточного слоя, зависит от события, которое оно обрабатывает как модуль ( `BeginRequest` , и `EndRequest` т. д.) и его порядок в списке модулей в *Web.config* .
 
 Как было сказано выше, в ASP.NET Core нет жизненного цикла приложения, и порядок обработки ответов по промежуточного слоя отличается от порядка, используемого модулями. Это может сделать решение по упорядочиванию более сложным.
 
@@ -180,7 +181,7 @@ ms.locfileid: "92326618"
 
 ## <a name="loading-middleware-options-using-the-options-pattern"></a>Загрузка параметров по промежуточного слоя с помощью шаблона параметров
 
-Некоторые модули и обработчики имеют параметры конфигурации, которые хранятся в *Web.config*. Однако в ASP.NET Core вместо *Web.config*используется новая модель конфигурации.
+Некоторые модули и обработчики имеют параметры конфигурации, которые хранятся в *Web.config* . Однако в ASP.NET Core вместо *Web.config* используется новая модель конфигурации.
 
 Новая [система конфигурации](xref:fundamentals/configuration/index) предоставляет следующие возможности для решения этой задачи:
 
@@ -194,7 +195,7 @@ ms.locfileid: "92326618"
 
 2. Сохранение значений параметров
 
-   Система конфигурации позволяет хранить значения параметров в любом месте. Однако большинство сайтов использует *appsettings.jsв*, поэтому мы будем использовать такой подход:
+   Система конфигурации позволяет хранить значения параметров в любом месте. Однако большинство сайтов используют *appsettings.json* , поэтому мы будем использовать такой подход:
 
    [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,14-18)]
 
@@ -206,7 +207,7 @@ ms.locfileid: "92326618"
 
     Обновите свой `Startup` класс:
 
-   1. Если вы используете *appsettings.js*, добавьте его в построитель конфигураций в `Startup` конструкторе:
+   1. Если вы используете *appsettings.json* , добавьте его в построитель конфигураций в `Startup` конструкторе:
 
       [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Ctor&highlight=5-6)]
 
@@ -234,9 +235,9 @@ ms.locfileid: "92326618"
 
 Решение заключается в получении объектов Options с фактическими значениями параметров в `Startup` классе и передачей их непосредственно в каждый экземпляр по промежуточного слоя.
 
-1. Добавьте второй ключ для *appsettings.jsна*
+1. Добавьте второй ключ в *appsettings.json*
 
-   Чтобы добавить второй набор параметров к *appsettings.jsв* файле, используйте новый ключ для уникальной идентификации.
+   Чтобы добавить в файл второй набор параметров *appsettings.json* , используйте новый ключ для уникальной идентификации.
 
    [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
 
@@ -294,7 +295,7 @@ public async Task Invoke(HttpContext context)
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Host)]
 
-**HttpContext. Request. Cookie ** преобразует в:
+**HttpContext. Request. Cookie** преобразует в:
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Cookies)]
 
@@ -323,7 +324,7 @@ public async Task Invoke(HttpContext context)
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Form)]
 
 > [!WARNING]
-> Чтение значений формы происходит только в том случае, если подтип содержимого имеет вид *x-www-Form-UrlEncoded* или *form-data*.
+> Чтение значений формы происходит только в том случае, если подтип содержимого имеет вид *x-www-Form-UrlEncoded* или *form-data* .
 
 **HttpContext. Request. InputStream** преобразуется в:
 
