@@ -5,6 +5,7 @@ description: В этой статье описывается, как настр�
 ms.author: avickers
 ms.date: 07/01/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/customize_identity_model
-ms.openlocfilehash: 71f532aa00c2afeeb0d6b93c01cb6a1fbd0a686c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6e520c76a3377e889166ca8d08b75754ef34b6a1
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634310"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052049"
 ---
 # <a name="no-locidentity-model-customization-in-aspnet-core"></a>Identity Настройка модели в ASP.NET Core
 
@@ -366,7 +367,7 @@ services.AddIdentity<ApplicationUser>()
         .AddDefaultUI();
 ```
 
-В ASP.NET Core 2,1 или более поздней версии Identity предоставляется в виде Razor библиотеки классов. Дополнительные сведения см. в разделе <xref:security/authentication/scaffold-identity>. Следовательно, приведенный выше код требует вызова <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*> . Если для Identity добавления файлов в проект использовался механизм формирования шаблонов Identity , удалите вызов `AddDefaultUI` . Дополнительные сведения см. в разделе:
+В ASP.NET Core 2,1 или более поздней версии Identity предоставляется в виде Razor библиотеки классов. Для получения дополнительной информации см. <xref:security/authentication/scaffold-identity>. Следовательно, приведенный выше код требует вызова <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*> . Если для Identity добавления файлов в проект использовался механизм формирования шаблонов Identity , удалите вызов `AddDefaultUI` . Дополнительные сведения см. в разделе:
 
 * [Шаблона Identity](xref:security/authentication/scaffold-identity)
 * [Добавление, скачивание и удаление настраиваемых данных пользователя в Identity](xref:security/authentication/add-user-data)
@@ -475,7 +476,7 @@ services.AddIdentity<ApplicationUser>()
 
     Тип данных первичного ключа выводится путем анализа объекта [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) .
 
-    В ASP.NET Core 2,1 или более поздней версии Identity предоставляется в виде Razor библиотеки классов. Дополнительные сведения см. в разделе <xref:security/authentication/scaffold-identity>. Следовательно, приведенный выше код требует вызова <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*> . Если для Identity добавления файлов в проект использовался механизм формирования шаблонов Identity , удалите вызов `AddDefaultUI` .
+    В ASP.NET Core 2,1 или более поздней версии Identity предоставляется в виде Razor библиотеки классов. Для получения дополнительной информации см. <xref:security/authentication/scaffold-identity>. Следовательно, приведенный выше код требует вызова <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*> . Если для Identity добавления файлов в проект использовался механизм формирования шаблонов Identity , удалите вызов `AddDefaultUI` .
 
     ::: moniker-end
 
@@ -519,7 +520,7 @@ services.AddIdentity<ApplicationUser>()
 
     Тип данных первичного ключа выводится путем анализа объекта [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) .
 
-    В ASP.NET Core 2,1 или более поздней версии Identity предоставляется в виде Razor библиотеки классов. Дополнительные сведения см. в разделе <xref:security/authentication/scaffold-identity>. Следовательно, приведенный выше код требует вызова <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*> . Если для Identity добавления файлов в проект использовался механизм формирования шаблонов Identity , удалите вызов `AddDefaultUI` .
+    В ASP.NET Core 2,1 или более поздней версии Identity предоставляется в виде Razor библиотеки классов. Для получения дополнительной информации см. <xref:security/authentication/scaffold-identity>. Следовательно, приведенный выше код требует вызова <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*> . Если для Identity добавления файлов в проект использовался механизм формирования шаблонов Identity , удалите вызов `AddDefaultUI` .
 
     ::: moniker-end
 

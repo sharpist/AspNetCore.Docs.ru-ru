@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/conventions
-ms.openlocfilehash: 425f1aaf1fa86f10d857c34e621c302f2db258e5
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 0c5ea8ba69e4c6287afce1771ac9cee65bb188a8
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626796"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052543"
 ---
 # <a name="use-web-api-conventions"></a>Использование соглашений веб-API
 
@@ -36,7 +37,7 @@ ms.locfileid: "88626796"
 * Определять наиболее распространенные типы возврата и коды состояния, возвращаемые из определенного типа действия.
 * Выявлять действия, отличающиеся от определенного стандарта.
 
-ASP.NET Core MVC 2.2 и более поздних версий включает в себя набор соглашений по умолчанию в <xref:Microsoft.AspNetCore.Mvc.DefaultApiConventions?displayProperty=fullName>. Соглашения основаны на контроллере (*ValuesController.cs*), предоставляемым в шаблоне проекта **API** ASP.NET Core. Если ваши действия соответствуют схеме в шаблоне, вы сможете успешно использовать соглашения по умолчанию. Если соглашения по умолчанию не соответствуют вашим потребностям, см. раздел [Создание соглашений веб-API](#create-web-api-conventions).
+ASP.NET Core MVC 2.2 и более поздних версий включает в себя набор соглашений по умолчанию в <xref:Microsoft.AspNetCore.Mvc.DefaultApiConventions?displayProperty=fullName>. Соглашения основаны на контроллере ( *ValuesController.cs* ), предоставляемым в шаблоне проекта **API** ASP.NET Core. Если ваши действия соответствуют схеме в шаблоне, вы сможете успешно использовать соглашения по умолчанию. Если соглашения по умолчанию не соответствуют вашим потребностям, см. раздел [Создание соглашений веб-API](#create-web-api-conventions).
 
 Во время выполнения <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> понимает соглашения. `ApiExplorer` является абстракцией MVC для взаимодействия с генераторами документов [OpenAPI](https://www.openapis.org/) (также называется Swagger). Атрибуты из примененного соглашения связываются с действием и включаются в документацию OpenAPI для действия. [Анализаторы API](xref:web-api/advanced/analyzers) также понимают соглашения. Если ваше действие является нестандартным (например, возвращает код состояния, который не задокументирован примененным соглашением), выводится предупреждение, позволяющее задокументировать код состояния.
 
@@ -65,11 +66,11 @@ ASP.NET Core MVC 2.2 и более поздних версий включает 
 
 1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute`, примененный к контроллеру &mdash;, применяет определенный тип соглашения ко всем действиям в контроллере. Метод соглашения снабжен указаниями, определяющими действия, к которым применяется метод соглашения. Дополнительные сведения об указаниях см. в разделе [Создание соглашений веб-API](#create-web-api-conventions).
 
-    В следующем примере набор соглашений по умолчанию применяется ко всем действиям в *ContactsConventionController*:
+    В следующем примере набор соглашений по умолчанию применяется ко всем действиям в *ContactsConventionController* :
 
     [!code-csharp[](conventions/sample/Controllers/ContactsConventionController.cs?name=snippet_ApiConventionTypeAttribute&highlight=2)]
 
-1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute`, примененный к сборке &mdash;, применяет определенный тип соглашения ко всем контроллерам в текущей сборке. Атрибуты уровня сборки рекомендуется применять в файле *Startup.cs*.
+1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute`, примененный к сборке &mdash;, применяет определенный тип соглашения ко всем контроллерам в текущей сборке. Атрибуты уровня сборки рекомендуется применять в файле *Startup.cs* .
 
     В следующем примере набор соглашений по умолчанию применяется ко всем контроллерам в сборке:
 
@@ -102,7 +103,7 @@ public static class MyAppConventions
 * Метод соглашение применяется к любому действию с именем `Find`.
 * Параметр с именем `id` присутствует для действия `Find`.
 
-### <a name="naming-requirements"></a>Требования к именам
+### <a name="naming-requirements"></a>Требования к именованию
 
 Атрибуты `[ApiConventionNameMatch]` и `[ApiConventionTypeMatch]` можно применить к методу соглашения, определяющему действия, к которым они применяются. Пример:
 

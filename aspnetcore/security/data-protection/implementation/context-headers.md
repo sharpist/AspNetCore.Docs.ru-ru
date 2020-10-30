@@ -5,6 +5,7 @@ description: Сведения о реализации ASP.NET Core заголо�
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/context-headers
-ms.openlocfilehash: 2f07db4b7d8bca9f64aee5d60e88fc92dc8965eb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 45463c9d96ad58e1721f7cb5c16912f783f646ed
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633712"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051724"
 ---
 # <a name="context-headers-in-aspnet-core"></a>Заголовки контекста в ASP.NET Core
 

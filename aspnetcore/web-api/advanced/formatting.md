@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 04/17/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/formatting
-ms.openlocfilehash: b89be93fc33d1eba5c2ad9508adf93fa54014ff8
-ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
+ms.openlocfilehash: 89e3e51373db5f7cff974b7a8c69d06bedf856ca
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91606787"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052517"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Форматирование данных отклика в веб-API ASP.NET Core
 
@@ -238,7 +239,7 @@ public IActionResult Get()
 
 ### <a name="special-case-formatters"></a>Специальные форматировщики
 
-Встроенные модули форматирования реализуют некоторые специальные возможности. По умолчанию типы возвращаемых значений `string` форматируются как *text/plain* (*text/html*, если того требует заголовок `Accept`). Это поведение можно отключить, удалив <xref:Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter>. Форматировщики удаляются в методе `ConfigureServices`. Действия, у которых типом возвращаемого объекта является модель, возвращают ответ `204 No Content` при возврате значения `null`. Это поведение можно отключить, удалив <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter>. Приведенный ниже код удаляет `StringOutputFormatter` и `HttpNoContentOutputFormatter`.
+Встроенные модули форматирования реализуют некоторые специальные возможности. По умолчанию типы возвращаемых значений `string` форматируются как *text/plain* ( *text/html* , если того требует заголовок `Accept`). Это поведение можно отключить, удалив <xref:Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter>. Форматировщики удаляются в методе `ConfigureServices`. Действия, у которых типом возвращаемого объекта является модель, возвращают ответ `204 No Content` при возврате значения `null`. Это поведение можно отключить, удалив <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter>. Приведенный ниже код удаляет `StringOutputFormatter` и `HttpNoContentOutputFormatter`.
 
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](./formatting/3.0sample/StartupStringOutputFormatter.cs?name=snippet)]

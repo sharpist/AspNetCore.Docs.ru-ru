@@ -5,6 +5,7 @@ description: Сведения об управлении ключами защи�
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/configuration/default-settings
-ms.openlocfilehash: b4578737a0ea36463b3c44254aad85a484c46090
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1303c5c2c993f1d20383457666aebfa2a583e938
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634479"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053011"
 ---
 # <a name="data-protection-key-management-and-lifetime-in-aspnet-core"></a>Управление ключами для защиты данных и время существования в ASP.NET Core
 
@@ -40,8 +41,8 @@ ms.locfileid: "88634479"
 
    Также необходимо включить атрибут [setProfileEnvironment](/iis/configuration/system.applicationhost/applicationpools/add/processmodel#configuration) пула приложений. Значением свойства `setProfileEnvironment` по умолчанию является `true`. В некоторых сценариях (например, в ОС Windows) для параметра `setProfileEnvironment` установлено значение `false`. Если ключи не хранятся в каталоге профиля пользователя:
 
-   1. Перейдите к папке *%windir%/system32/inetsrv/config*.
-   1. Откройте файл *applicationHost.config*.
+   1. Перейдите к папке *%windir%/system32/inetsrv/config* .
+   1. Откройте файл *applicationHost.config* .
    1. Найдите элемент `<system.applicationHost><applicationPools><applicationPoolDefaults><processModel>` .
    1. Убедитесь, что атрибут `setProfileEnvironment` отсутствует и установлено значение по умолчанию `true`, или же явно задайте для атрибута значение `true`.
 

@@ -5,6 +5,7 @@ description: Узнайте о поставщиках хранилища клю�
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: fb21f7d4d784451096db5c420f2ffd4532c2b490
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 36e8bc494125d0770347ddf32390365d83a91d27
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631333"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051750"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Поставщики хранилища ключей в ASP.NET Core
 
@@ -131,7 +132,7 @@ public void ConfigureServices(IServiceCollection services)
 
 **Применяется только к развертываниям Windows.**
 
-Иногда приложение может не иметь доступа на запись в файловую систему. Рассмотрим ситуацию, когда приложение работает как учетная запись виртуальной службы (например, удостоверение пула приложений *w3wp.exe*). В таких случаях администратор может предоставить раздел реестра, доступный для удостоверения учетной записи службы. Вызовите метод расширения [персисткэйсторегистри](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystoregistry) , как показано ниже. Укажите [RegistryKey](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository.registrykey) , указывающий на расположение, в котором должны храниться криптографические ключи:
+Иногда приложение может не иметь доступа на запись в файловую систему. Рассмотрим ситуацию, когда приложение работает как учетная запись виртуальной службы (например, удостоверение пула приложений *w3wp.exe* ). В таких случаях администратор может предоставить раздел реестра, доступный для удостоверения учетной записи службы. Вызовите метод расширения [персисткэйсторегистри](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystoregistry) , как показано ниже. Укажите [RegistryKey](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository.registrykey) , указывающий на расположение, в котором должны храниться криптографические ключи:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

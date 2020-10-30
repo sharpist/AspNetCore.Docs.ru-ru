@@ -7,6 +7,7 @@ ms.author: brecon
 ms.custom: mvc
 ms.date: 05/22/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/hub-filters
-ms.openlocfilehash: c3c44efcb3702f3edb51c821d042c2e7eb1748cd
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5a4cb5122080b72875ac11cf2e682162d017d7b9
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626670"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052725"
 ---
 # <a name="use-hub-filters-in-aspnet-core-no-locsignalr"></a>Использование фильтров концентратора в ASP.NET Core SignalR
 
@@ -142,7 +143,7 @@ public class CustomFilter : IHubFilter
     }
     ```
 
-1. Определите фильтр концентратора для проверки атрибута и замените запрещенные фразы в аргументе метода концентратора `***` следующим:
+1. Определите фильтр концентратора для проверки атрибута и замените запрещенные фразы в аргументе метода концентратора `**_` следующим:
 
     ```csharp
     public class LanguageFilter : IHubFilter
@@ -161,7 +162,7 @@ public class CustomFilter : IHubFilter
             {
                 foreach (var bannedPhrase in bannedPhrases)
                 {
-                    str = str.Replace(bannedPhrase, "***");
+                    str = str.Replace(bannedPhrase, "_**");
                 }
 
                 arguments = invocationContext.HubMethodArguments.ToArray();
@@ -196,7 +197,7 @@ public class CustomFilter : IHubFilter
 
 `HubInvocationContext`Содержит сведения о текущем вызове метода концентратора.
 
-| Свойство | Описание | Тип |
+| Свойство. | Описание | Тип |
 | ------ | ------ | ----------- |
 | `Context ` | `HubCallerContext`Содержит сведения о соединении. | `HubCallerContext` |
 | `Hub` | Экземпляр концентратора, используемый для этого вызова метода концентратора. | `Hub` |
@@ -209,7 +210,7 @@ public class CustomFilter : IHubFilter
 
 `HubLifetimeContext`Содержит сведения для `OnConnectedAsync` `OnDisconnectedAsync` методов концентратора и.
 
-| Свойство | Описание | Тип |
+| Свойство. | Описание | Тип |
 | ------ | ------ | ----------- |
 | `Context ` | `HubCallerContext`Содержит сведения о соединении. | `HubCallerContext` |
 | `Hub` | Экземпляр концентратора, используемый для этого вызова метода концентратора. | `Hub` |

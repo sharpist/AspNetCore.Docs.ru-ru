@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/gdpr
-ms.openlocfilehash: 35a12cb8d2a9617e51d886e798cff5ee60b0a8ad
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ec65a2c8362c15716bebd6b22f5639785ba74c98
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634713"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051009"
 ---
 # <a name="eu-general-data-protection-regulation-gdpr-support-in-aspnet-core"></a>Поддержка ЕС Общий регламент по защите данных (GDPR) в ASP.NET Core
 
@@ -46,7 +47,7 @@ ASP.NET Core предоставляет интерфейсы API и шаблон
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_Layout.cshtml?name=snippet&highlight=4)]
 
-* Добавьте в проект файл * \_ Cookie консентпартиал. cshtml* :
+* Добавьте в проект файл *\_ Cookie консентпартиал. cshtml* :
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_CookieConsentPartial.cshtml)]
 
@@ -71,8 +72,8 @@ ASP.NET Core предоставляет интерфейсы API и шаблон
 Razor Страницы и проекты MVC, созданные с помощью шаблонов проектов, включают следующую поддержку GDPR:
 
 * [ Cookie Политики](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) [ Cookie полициоптионс](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) и use задаются в `Startup` классе.
-* [Частичное представление](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper) * \_ Cookie консентпартиал. cshtml* . В этот файл входит кнопка **принять** . Когда пользователь нажимает кнопку " **принять** ", предоставляется согласие на доступ к магазину cookie .
-* Страница Pages */privacy. cshtml* или views */Home/privacy. cshtml* предоставляет страницу для детализации политики конфиденциальности сайта. Файл * \_ Cookie консентпартиал. cshtml* создает ссылку на страницу «конфиденциальность».
+* [Частичное представление](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper) *\_ Cookie консентпартиал. cshtml* . В этот файл входит кнопка **принять** . Когда пользователь нажимает кнопку " **принять** ", предоставляется согласие на доступ к магазину cookie .
+* Страница Pages */privacy. cshtml* или views */Home/privacy. cshtml* предоставляет страницу для детализации политики конфиденциальности сайта. Файл *\_ Cookie консентпартиал. cshtml* создает ссылку на страницу «конфиденциальность».
 * Для приложений, созданных с учетными записями отдельных пользователей, страница Управление предоставляет ссылки для скачивания и удаления [персональных данных пользователя](#pd).
 
 ### <a name="no-loccookiepolicyoptions-and-useno-loccookiepolicy"></a>CookieПолициоптионс и использование Cookie политики
@@ -87,13 +88,13 @@ Razor Страницы и проекты MVC, созданные с помощь
 
 ### <a name="_no-loccookieconsentpartialcshtml-partial-view"></a>\_CookieЧастичное представление Консентпартиал. cshtml
 
-Частичное представление * \_ Cookie консентпартиал. cshtml* :
+Частичное представление *\_ Cookie консентпартиал. cshtml* :
 
 [!code-cshtml[](gdpr/sample/RP2.2/Pages/Shared/_CookieConsentPartial.cshtml)]
 
 Это частичное:
 
-* Получает состояние отслеживания для пользователя. Если приложение настроено для обязательного согласия, пользователь должен согласиться перед тем, как cookie можно будет относиться к нему. Если требуется согласие, cookie панель согласия зафиксирована в верхней части панели навигации, созданной файлом * \_ Layout. cshtml* .
+* Получает состояние отслеживания для пользователя. Если приложение настроено для обязательного согласия, пользователь должен согласиться перед тем, как cookie можно будет относиться к нему. Если требуется согласие, cookie панель согласия зафиксирована в верхней части панели навигации, созданной файлом *\_ Layout. cshtml* .
 * Предоставляет элемент HTML `<p>` для суммирования политики конфиденциальности и cookie использования.
 * Содержит ссылку на страницу конфиденциальности или представление, где можно подробно описать политику конфиденциальности сайта.
 
@@ -121,7 +122,7 @@ Razor Страницы и проекты MVC, созданные с помощь
 
 ASP.NET Core приложения, созданные с учетными записями отдельных пользователей, включают код для загрузки и удаления персональных данных.
 
-Выберите имя пользователя, а затем выберите **личные данные**:
+Выберите имя пользователя, а затем выберите **личные данные** :
 
 ![Страница «Управление личными данными»](gdpr/_static/pd.png)
 

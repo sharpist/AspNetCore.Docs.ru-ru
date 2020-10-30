@@ -7,6 +7,7 @@ ms.author: ravipal
 ms.custom: mvc
 ms.date: 03/28/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-compose-https
-ms.openlocfilehash: cd46fdcbe10dc0b7829fbe7eaef821889f395df4
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: 37a0142dac1e26afd26dbf2aad46bee20693652e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393708"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051646"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-compose-over-https"></a>Размещение образов ASP.NET Core с Docker Compose по протоколу HTTPS
 
@@ -51,7 +52,7 @@ ms.locfileid: "91393708"
 * `dotnet dev-certs`Средство не требуется.
 * Сертификаты не нужно хранить в расположении, используемом в инструкциях. Храните сертификаты в любом расположении за пределами каталога сайта.
 
-Инструкции, приведенные в следующем разделе, содержат сведения о подключении сертификатов в контейнеры с помощью `volumes` свойства в *DOCKER-Compose. yml.* Вы можете добавить сертификаты в образы контейнеров с помощью `COPY` команды в *Dockerfile*, но это не рекомендуется. Копирование сертификатов в образ не рекомендуется по следующим причинам:
+Инструкции, приведенные в следующем разделе, содержат сведения о подключении сертификатов в контейнеры с помощью `volumes` свойства в *DOCKER-Compose. yml.* Вы можете добавить сертификаты в образы контейнеров с помощью `COPY` команды в *Dockerfile* , но это не рекомендуется. Копирование сертификатов в образ не рекомендуется по следующим причинам:
 
 * Это затрудняет использование одного и того же образа для тестирования с помощью сертификатов разработчика.
 * Это затрудняет использование одного и того же образа для размещения с производственными сертификатами.

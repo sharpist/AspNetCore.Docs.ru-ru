@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/hubs
-ms.openlocfilehash: 71ca0896bc645b7625f60c3a9e8fe321079d524a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 4a31c16eb44e2244574d0df49c30e7a44b2bba6e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631281"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93050944"
 ---
 # <a name="use-hubs-in-no-locsignalr-for-aspnet-core"></a>Использование концентраторов в SignalR для ASP.NET Core
 
@@ -89,7 +90,7 @@ public class ChatHub : Hub
 
 `Hub`Класс имеет `Context` свойство, которое содержит следующие свойства со сведениями о соединении:
 
-| Свойство | Описание |
+| Свойство. | Описание |
 | ------ | ----------- |
 | `ConnectionId` | Возвращает уникальный идентификатор соединения, присвоенный SignalR . Для каждого соединения существует один идентификатор подключения.|
 | `UserIdentifier` | Возвращает [идентификатор пользователя](xref:signalr/groups). По умолчанию SignalR использует `ClaimTypes.NameIdentifier` из из, `ClaimsPrincipal` связанного с соединением, в качестве идентификатора пользователя. |
@@ -109,7 +110,7 @@ public class ChatHub : Hub
 
 `Hub`Класс имеет `Clients` свойство, которое содержит следующие свойства для обмена данными между сервером и клиентом:
 
-| Свойство | Описание |
+| Свойство. | Описание |
 | ------ | ----------- |
 | `All` | Вызывает метод для всех подключенных клиентов |
 | `Caller` | Вызывает метод для клиента, который вызвал метод концентратора |

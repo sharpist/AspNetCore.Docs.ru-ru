@@ -7,6 +7,7 @@ ms.author: anurse
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/security
-ms.openlocfilehash: 12293c5cb3dc49d505225f1b44e824e9273cfffc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5ecbf07b1527e9c68443870f7fce77adc29a5416
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630995"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93050840"
 ---
 # <a name="security-considerations-in-aspnet-core-no-locsignalr"></a>Вопросы безопасности в ASP.NET Core SignalR
 
@@ -123,7 +124,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 ## <a name="access-token-logging"></a>Ведение журнала маркеров доступа
 
-При использовании веб-сокетов или событий, отправленных сервером, клиент браузера отправляет маркер доступа в строку запроса. Получение маркера доступа через строку запроса, как правило, безопасно с использованием стандартного `Authorization` заголовка. Всегда используйте протокол HTTPS, чтобы обеспечить безопасное сквозное подключение между клиентом и сервером. Многие веб-серверы заключают в журнал URL-адрес каждого запроса, включая строку запроса. Ведение журнала URL-адресов может регистрировать маркер доступа. ASP.NET Core записывает URL-адрес для каждого запроса по умолчанию, который будет включать строку запроса. Пример:
+При использовании WebSockets или Server-Sent событий клиент браузера отправляет маркер доступа в строке запроса. Получение маркера доступа через строку запроса, как правило, безопасно с использованием стандартного `Authorization` заголовка. Всегда используйте протокол HTTPS, чтобы обеспечить безопасное сквозное подключение между клиентом и сервером. Многие веб-серверы заключают в журнал URL-адрес каждого запроса, включая строку запроса. Ведение журнала URL-адресов может регистрировать маркер доступа. ASP.NET Core записывает URL-адрес для каждого запроса по умолчанию, который будет включать строку запроса. Пример:
 
 ```
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]

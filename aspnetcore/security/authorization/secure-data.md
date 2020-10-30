@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 7/18/2020
 ms.custom: mvc, seodec18
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: 5f86e514ee6339888171d83ab3117e9b3fcf107e
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: accfd46fa72c33976f8af2a39267c993447e036e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627823"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051945"
 ---
 # <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>Создание ASP.NET Core веб-приложения с данными пользователя, защищенными с помощью авторизации
 
@@ -127,11 +128,11 @@ dotnet ef database update
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=13-99)]
 
-Выделенный выше код задает [политику резервной проверки подлинности](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). Политика резервной проверки подлинности требует, чтобы ***все*** пользователи прошли проверку подлинности, за исключением Razor страниц, контроллеров или методов действий с атрибутом проверки подлинности. Например, Razor страницы, контроллеры или методы действий с `[AllowAnonymous]` или `[Authorize(PolicyName="MyPolicy")]` используют примененный атрибут проверки подлинности, а не политику резервной проверки подлинности.
+Выделенный выше код задает [политику резервной проверки подлинности](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). Для применения политики резервной проверки подлинности требуется * *_ALL_* _ Users, за исключением Razor страниц, контроллеров или методов действий с атрибутом проверки подлинности. Например, Razor страницы, контроллеры или методы действий с `[AllowAnonymous]` или `[Authorize(PolicyName="MyPolicy")]` используют примененный атрибут проверки подлинности, а не политику резервной проверки подлинности.
 
 Резервная политика проверки подлинности:
 
-* Применяется ко всем запросам, которые не указывают политику проверки подлинности явным образом. Для запросов, обслуживаемых маршрутизацией конечных точек, сюда входят все конечные точки, не указывающие атрибут авторизации. Для запросов, обслуживаемых другим по промежуточного слоя, после по промежуточного слоя авторизации, например [статических файлов](xref:fundamentals/static-files), эта политика будет применена ко всем запросам.
+_ Применяется ко всем запросам, которые не указывают политику проверки подлинности явным образом. Для запросов, обслуживаемых маршрутизацией конечных точек, сюда входят все конечные точки, не указывающие атрибут авторизации. Для запросов, обслуживаемых другим по промежуточного слоя, после по промежуточного слоя авторизации, например [статических файлов](xref:fundamentals/static-files), эта политика будет применена ко всем запросам.
 
 Настройка политики резервной проверки подлинности на требование проверки подлинности пользователей защищает вновь добавленные Razor страницы и контроллеры. Необходимость проверки подлинности по умолчанию более безопасна, чем использование новых контроллеров и Razor страниц для включения `[Authorize]` атрибута.
 
@@ -151,7 +152,7 @@ dotnet ef database update
 
 ### <a name="configure-the-test-account"></a>Настройка тестовой учетной записи
 
-`SeedData`Класс создает две учетные записи: Administrator и Manager. Используйте [средство диспетчера секретов](xref:security/app-secrets) , чтобы задать пароль для этих учетных записей. Задайте пароль из каталога проекта (каталога, содержащего *Program.CS*):
+`SeedData`Класс создает две учетные записи: Administrator и Manager. Используйте [средство диспетчера секретов](xref:security/app-secrets) , чтобы задать пароль для этих учетных записей. Задайте пароль из каталога проекта (каталога, содержащего *Program.CS* ):
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -303,7 +304,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 [!code-csharp[](secure-data/samples/final3/Pages/Contacts/Details2.cshtml.cs?name=snippet)]
 
-В приведенном выше коде:
+В предыдущем коде:
 
 * Если пользователь **не** прошел проверку подлинности, `ChallengeResult` возвращается значение. Когда `ChallengeResult` возвращается, пользователь перенаправляется на страницу входа.
 * Если пользователь прошел проверку подлинности, но не авторизован, `ForbidResult` возвращается значение. Когда `ForbidResult` возвращается значение, пользователь перенаправляется на страницу отказ в доступе.
@@ -333,7 +334,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 | Пользователь                | Заполнено приложением | Параметры                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | нет                | Изменение или удаление собственных данных.                |
+| test@example.com    | Нет                | Изменение или удаление собственных данных.                |
 | manager@contoso.com | Да               | Утвердите, отклоните и измените или удалите собственные данные. |
 | admin@contoso.com   | Да               | Утвердите или отклоните и измените или удалите все данные. |
 
@@ -342,7 +343,7 @@ dotnet user-secrets set SeedUserPW <PW>
 ## <a name="create-the-starter-app"></a>Создание начального приложения
 
 * Создание Razor страницы приложения с именем "ContactManager"
-  * Создайте приложение с **учетными записями отдельных пользователей**.
+  * Создайте приложение с **учетными записями отдельных пользователей** .
   * Назовите его "ContactManager", чтобы пространство имен совпадало с пространством имен, используемым в примере.
   * `-uld` Указывает LocalDB вместо SQLite
 
@@ -350,7 +351,7 @@ dotnet user-secrets set SeedUserPW <PW>
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* Добавление *моделей/Contact. CS*:
+* Добавление *моделей/Contact. CS* :
 
   [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
@@ -487,7 +488,7 @@ dotnet ef database update
 
 ### <a name="configure-the-test-account"></a>Настройка тестовой учетной записи
 
-`SeedData`Класс создает две учетные записи: Administrator и Manager. Используйте [средство диспетчера секретов](xref:security/app-secrets) , чтобы задать пароль для этих учетных записей. Задайте пароль из каталога проекта (каталога, содержащего *Program.CS*):
+`SeedData`Класс создает две учетные записи: Administrator и Manager. Используйте [средство диспетчера секретов](xref:security/app-secrets) , чтобы задать пароль для этих учетных записей. Задайте пароль из каталога проекта (каталога, содержащего *Program.CS* ):
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -660,7 +661,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 | Пользователь                | Заполнено приложением | Параметры                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | нет                | Изменение или удаление собственных данных.                |
+| test@example.com    | Нет                | Изменение или удаление собственных данных.                |
 | manager@contoso.com | Да               | Утвердите, отклоните и измените или удалите собственные данные. |
 | admin@contoso.com   | Да               | Утвердите или отклоните и измените или удалите все данные. |
 
@@ -669,7 +670,7 @@ dotnet user-secrets set SeedUserPW <PW>
 ## <a name="create-the-starter-app"></a>Создание начального приложения
 
 * Создание Razor страницы приложения с именем "ContactManager"
-  * Создайте приложение с **учетными записями отдельных пользователей**.
+  * Создайте приложение с **учетными записями отдельных пользователей** .
   * Назовите его "ContactManager", чтобы пространство имен совпадало с пространством имен, используемым в примере.
   * `-uld` Указывает LocalDB вместо SQLite
 
@@ -677,7 +678,7 @@ dotnet user-secrets set SeedUserPW <PW>
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* Добавление *моделей/Contact. CS*:
+* Добавление *моделей/Contact. CS* :
 
   [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 

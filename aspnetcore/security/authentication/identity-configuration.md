@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/11/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-configuration
-ms.openlocfilehash: ae4a2eb9d95339651c3810a9f8489d703d73a3fe
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b11a2d584b7275a9065c9915021ac945823531f8
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632685"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051997"
 ---
 # <a name="configure-no-locaspnet-core-identity"></a>Настройка ASP.NET Core Identity
 
@@ -64,7 +65,7 @@ ASP.NET Core Identity использует значения по умолчан�
 | Свойство | Описание | По умолчанию |
 | -------- | ----------- | :-----: |
 | [алловедфорневусерс](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.allowedfornewusers) | Определяет, можно ли заблокировать нового пользователя. | `true` |
-| [дефаултлоккауттимеспан](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.defaultlockouttimespan) | Количество времени, в течение которого пользователь блокируется в случае блокировки. | 5 мин |
+| [дефаултлоккауттимеспан](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.defaultlockouttimespan) | Количество времени, в течение которого пользователь блокируется в случае блокировки. | 5 минут |
 | [максфаиледакцессаттемптс](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.maxfailedaccessattempts) | Число неудачных попыток доступа, пока пользователь не будет заблокирован, если блокировка включена. | 5 |
 
 ### <a name="password"></a>Пароль
@@ -130,7 +131,7 @@ ASP.NET Core Identity использует значения по умолчан�
 
 ### <a name="no-loccookie-settings"></a>ПараметрыCookie
 
-Настройте приложение cookie в `Startup.ConfigureServices` . [Конфигуреаппликатион Cookie ](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) должен вызываться **после** вызова метода `AddIdentity` или `AddDefaultIdentity` .
+Настройте приложение cookie в `Startup.ConfigureServices` . [Конфигуреаппликатион Cookie](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) должен вызываться **после** вызова метода `AddIdentity` или `AddDefaultIdentity` .
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_cookie)]
 
@@ -142,7 +143,7 @@ ASP.NET Core Identity использует значения по умолчан�
 
 | Параметр | Описание |
 | ------ | ----------- |
-| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> | Режим совместимости, используемый при хэшировании новых паролей. По умолчанию — <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. Первый байт хэшированного пароля, называемый *маркером формата*, указывает версию алгоритма хэширования, используемого для хэширования пароля. При проверке пароля по хэшу <xref:Microsoft.AspNetCore.Identity.PasswordHasher`1.VerifyHashedPassword*> метод выбирает правильный алгоритм на основе первого байта. Клиент может проходить проверку подлинности независимо от того, какая версия алгоритма использовалась для хэширования пароля. Установка режима совместимости влияет на хэширование *новых паролей*. |
+| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> | Режим совместимости, используемый при хэшировании новых паролей. По умолчанию — <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. Первый байт хэшированного пароля, называемый *маркером формата* , указывает версию алгоритма хэширования, используемого для хэширования пароля. При проверке пароля по хэшу <xref:Microsoft.AspNetCore.Identity.PasswordHasher`1.VerifyHashedPassword*> метод выбирает правильный алгоритм на основе первого байта. Клиент может проходить проверку подлинности независимо от того, какая версия алгоритма использовалась для хэширования пароля. Установка режима совместимости влияет на хэширование *новых паролей* . |
 | <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> | Число итераций, используемых при хэшировании паролей с помощью PBKDF2. Это значение используется только в том случае, если <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> свойству присвоено значение <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3> . Значение должно быть положительным целым числом, а по умолчанию — `10000` . |
 
 В следующем примере для задано значение <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> `12000` в `Startup.ConfigureServices` :

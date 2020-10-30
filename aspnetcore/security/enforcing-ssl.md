@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: b5260084c2fdd296168e918f06d8b54faf1865d5
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: e473da9a7cbd91a601ad4af0c7c02c7f576f348c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722661"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051126"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Принудительное применение HTTPS в ASP.NET Core
 
@@ -113,7 +114,7 @@ ms.locfileid: "90722661"
 
   * В конфигурации узла.
   * Путем задания `ASPNETCORE_HTTPS_PORT` переменной среды.
-  * Добавив запись верхнего уровня в *appsettings.js*:
+  * Путем добавления записи верхнего уровня в *appsettings.json* :
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
@@ -127,7 +128,7 @@ ms.locfileid: "90722661"
 
   * В конфигурации узла.
   * Путем задания `ASPNETCORE_HTTPS_PORT` переменной среды.
-  * Добавив запись верхнего уровня в *appsettings.js*:
+  * Путем добавления записи верхнего уровня в *appsettings.json* :
 
     [!code-json[](enforcing-ssl/sample-snapshot/2.x/appsettings.json?highlight=2)]
 
@@ -135,7 +136,7 @@ ms.locfileid: "90722661"
 
 ::: moniker-end
 
-* В среде разработки задайте URL-адрес HTTPS в *launchsettings.json*. При использовании IIS Express включите протокол HTTPS.
+* В среде разработки задайте URL-адрес HTTPS в *launchsettings.json* . При использовании IIS Express включите протокол HTTPS.
 
 * Настройте конечную точку HTTPS URL для общедоступного пограничной развертывания сервера [Kestrel](xref:fundamentals/servers/kestrel) или сервера [HTTP.sys](xref:fundamentals/servers/httpsys) . Приложение использует только **один HTTPS-порт** . По промежуточного слоя обнаруживает порт через <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .
 
@@ -192,7 +193,7 @@ ms.locfileid: "90722661"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-При настройке служб в *Startup.CS*:
+При настройке служб в *Startup.CS* :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -213,7 +214,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker range="<= aspnetcore-2.2"
 
-При настройке служб в *Startup.CS*:
+При настройке служб в *Startup.CS* :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -288,7 +289,7 @@ ASP.NET Core 2,1 и более поздних версий реализует HS
 ::: moniker-end
 
 
-* Задает параметр предварительной загрузки `Strict-Transport-Security` заголовка. Предварительная загрузка не является частью [спецификации RFC HSTS](https://tools.ietf.org/html/rfc6797), но поддерживается веб-браузерами для предварительной загрузки HSTS сайтов при новой установке. Дополнительные сведения см. на веб-сайте [https://hstspreload.org/](https://hstspreload.org/).
+* Задает параметр предварительной загрузки `Strict-Transport-Security` заголовка. Предварительная загрузка не является частью [спецификации RFC HSTS](https://tools.ietf.org/html/rfc6797), но поддерживается веб-браузерами для предварительной загрузки HSTS сайтов при новой установке. Дополнительные сведения см. в статье [https://hstspreload.org/](https://hstspreload.org/).
 * Включает [инклудесубдомаин](https://tools.ietf.org/html/rfc6797#section-6.1.2), который применяет политику HSTS для размещения поддоменов.
 * Явно задает `max-age` `Strict-Transport-Security` для параметра заголовка значение 60 дней. Если значение не задано, по умолчанию используется значение 30 дней. Дополнительные сведения см. в разделе [директива max-age](https://tools.ietf.org/html/rfc6797#section-6.1.1).
 * Добавляет `example.com` в список узлов для исключения.
@@ -411,8 +412,8 @@ dotnet dev-certs https --trust
 
 ### <a name="docker---certificate-not-trusted"></a>DOCKER — сертификат не является доверенным
 
-* Удалите папку * \{ \Аппдата\роаминг\асп.нет\хттпс C:\Users User}* .
-* Очистите решение. Удалите папки *bin* и *obj*.
+* Удалите папку *\{ \Аппдата\роаминг\асп.нет\хттпс C:\Users User}* .
+* Очистите решение. Удалите папки *bin* и *obj* .
 * Перезапустите средство разработки. Например, Visual Studio, Visual Studio Code или Visual Studio для Mac.
 
 ### <a name="windows---certificate-not-trusted"></a>Windows — сертификат не является доверенным
