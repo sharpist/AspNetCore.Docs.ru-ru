@@ -7,6 +7,7 @@ ms.author: prkrishn
 ms.custom: mvc
 ms.date: 09/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/analyzers
-ms.openlocfilehash: 1bc76f3965009dbdd66c58b197f4c12bd44faf18
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: cf0415e7d72e21a48db8bbeb4540f05e0b0a4198
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633036"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057925"
 ---
 # <a name="use-web-api-analyzers"></a>Использование анализаторов веб-API
 
@@ -59,7 +60,7 @@ ASP.NET Core 2.2 и более поздних версий предоставл
 ### <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 В окне **Консоль диспетчера пакетов**
-  * Перейдите к разделу **Просмотр** > **других** > **консолей диспетчера пакетов**Windows.
+  * Перейдите к разделу **Просмотр** > **других** > **консолей диспетчера пакетов** Windows.
   * Перейдите в каталог, в котором находится файл *ApiConventions.csproj*
   * Выполните следующую команду:
 
@@ -69,10 +70,10 @@ ASP.NET Core 2.2 и более поздних версий предоставл
 
 ### <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-* Щелкните правой кнопкой мыши папку *пакеты* в **панель решения** > **Добавить пакеты..**..
+* Щелкните правой кнопкой мыши папку *пакеты* в **панель решения** > **Добавить пакеты..** ..
 * Задайте в раскрывающемся списке " **Добавить пакеты** " **источник** "NuGet.org".
 * В поле поиска введите "Microsoft.AspNetCore.Mvc.Api.Analyzers".
-* В области результатов выберите пакет "Microsoft.AspNetCore.Mvc.Api.Analyzers", а затем нажмите кнопку **Добавить пакет**.
+* В области результатов выберите пакет "Microsoft.AspNetCore.Mvc.Api.Analyzers", а затем нажмите кнопку **Добавить пакет** .
 
 ### <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -98,7 +99,7 @@ dotnet add ApiConventions.csproj package Microsoft.AspNetCore.Mvc.Api.Analyzers
 
 Документы OpenAPI содержат коды состояний и типы ответов, которые может возвращать действие. В ASP.NET Core MVC атрибуты, такие как <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> и <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute>, используются для документирования действия. <xref:tutorials/web-api-help-pages-using-swagger> позволяет более подробно документировать веб-API.
 
-Один из анализаторов в пакете проверяет контроллеры, которые аннотированы <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, и определяет действия, которые не полностью документируют их ответы. Рассмотрим следующий пример:
+Один из анализаторов в пакете проверяет контроллеры, которые аннотированы <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, и определяет действия, которые не полностью документируют их ответы. Рассмотрим следующий пример.
 
 [!code-csharp[](conventions/sample/Controllers/ContactsController.cs?name=missing404docs&highlight=10)]
 

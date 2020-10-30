@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/14/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/view-compilation
-ms.openlocfilehash: 3d76eff93d5c7c53b57136e5183e1ca5287dec81
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 77ca96b329136ee044ab6fc5f6b5ebb5b67fe64c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631125"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059082"
 ---
 # <a name="no-locrazor-file-compilation-in-aspnet-core"></a>Razor Компиляция файла в ASP.NET Core
 
@@ -84,9 +85,9 @@ dotnet new webapp --razor-runtime-compilation
 Включение компиляции во время выполнения только в среде разработки:
 
 1. Установите [Microsoft. AspNetCore. MVC. Razor . ](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) Пакет NuGet рунтимекомпилатион.
-1. Измените раздел "профиль запуска" `environmentVariables` в *launchSettings.js*:
+1. Измените раздел "профиль запуска" `environmentVariables` в *launchSettings.js* :
     * `ASPNETCORE_ENVIRONMENT`Для параметра проверить задано значение `"Development"` .
-    * Задайте для параметра `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` значение `"Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"`.
+    * Присвойте свойству `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` значение `"Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"`.
 
 В следующем примере компиляция среды выполнения включается в среде разработки для `IIS Express` `RazorPagesApp` профилей запуска и.
 
@@ -96,7 +97,7 @@ dotnet new webapp --razor-runtime-compilation
 
 ## <a name="enable-runtime-compilation-for-a-no-locrazor-class-library"></a>Включение компиляции среды выполнения для Razor библиотеки классов
 
-Рассмотрим ситуацию, в которой Razor проект страниц ссылается на [ Razor БИБЛИОТЕКУ классов (РКЛ)](xref:razor-pages/ui-class) с именем *микласслиб*. РКЛ содержит файл *_layout. cshtml* , который используется всеми проектами MVC и Razor pages вашей команды. Необходимо включить компиляцию среды выполнения для файла *_layout. cshtml* в этой РКЛ. Внесите следующие изменения в Razor проект страниц.
+Рассмотрим ситуацию, в которой Razor проект страниц ссылается на [ Razor БИБЛИОТЕКУ классов (РКЛ)](xref:razor-pages/ui-class) с именем *микласслиб* . РКЛ содержит файл *_layout. cshtml* , который используется всеми проектами MVC и Razor pages вашей команды. Необходимо включить компиляцию среды выполнения для файла *_layout. cshtml* в этой РКЛ. Внесите следующие изменения в Razor проект страниц.
 
 1. Включите компиляцию среды выполнения с инструкциями по [условию включить компиляцию среды выполнения в существующем проекте](#conditionally-enable-runtime-compilation-in-an-existing-project).
 1. Настройте параметры компиляции среды выполнения в `Startup.ConfigureServices` :

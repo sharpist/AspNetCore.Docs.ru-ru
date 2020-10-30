@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: e911512c1dce892c670659f04959be89cea067bb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 77d49710b9d69f6fbbe92970f1c455de32489444
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630111"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056963"
 ---
 # <a name="model-validation-in-aspnet-core-mvc-and-no-locrazor-pages"></a>Проверка модели в ASP.NET Core MVC и Razor страницах
 
@@ -175,7 +176,7 @@ public string MiddleName { get; set; }
 
 Для сценариев, где не годятся встроенные атрибуты проверки, можно создать настраиваемые атрибуты. Создайте класс, наследуемый от <xref:System.ComponentModel.DataAnnotations.ValidationAttribute>, и переопределите метод <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid*>.
 
-Метод `IsValid` принимает объект с именем *value*, который является входными данными для проверки. Перегрузка также принимает объект `ValidationContext`, который предоставляет дополнительные сведения, такие как экземпляр модели, созданный с помощью привязки модели.
+Метод `IsValid` принимает объект с именем *value* , который является входными данными для проверки. Перегрузка также принимает объект `ValidationContext`, который предоставляет дополнительные сведения, такие как экземпляр модели, созданный с помощью привязки модели.
 
 В следующем примере проверяется, что дата выпуска фильмов в *классическом* жанре задана не позднее указанного года. Атрибут `[ClassicMovie]`:
 
@@ -209,7 +210,7 @@ public string MiddleName { get; set; }
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Controllers/UsersController.cs?name=snippet_CheckAgeSignature)]
 
-На странице "Check Age" (Проверка возраста) (*CheckAge.cshtml*) находятся две формы. Первая форма отправляет значение `Age`, равное `99`, в виде параметра строки запроса: `https://localhost:5001/Users/CheckAge?Age=99`.
+На странице "Check Age" (Проверка возраста) ( *CheckAge.cshtml* ) находятся две формы. Первая форма отправляет значение `Age`, равное `99`, в виде параметра строки запроса: `https://localhost:5001/Users/CheckAge?Age=99`.
 
 Если из строки запроса отправлен параметр `age` в правильном формате, форма проходит проверку.
 
@@ -384,10 +385,10 @@ $.get({
 
 Другие параметры отключения проверки на стороне клиента:
 
-* Закомментируйте ссылку на `_ValidationScriptsPartial` во всех файлах с расширением *CSHTML*.
-* Удалите содержимое файла *Pages\Shared\_ValidationScriptsPartial.cshtml*.
+* Закомментируйте ссылку на `_ValidationScriptsPartial` во всех файлах с расширением *CSHTML* .
+* Удалите содержимое файла *Pages\Shared\_ValidationScriptsPartial.cshtml* .
 
-Предыдущий подход не помешает проверке на стороне клиента ASP.NET Core Identity Razor библиотеки классов. Дополнительные сведения см. в разделе <xref:security/authentication/scaffold-identity>.
+Предыдущий подход не помешает проверке на стороне клиента ASP.NET Core Identity Razor библиотеки классов. Для получения дополнительной информации см. <xref:security/authentication/scaffold-identity>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
@@ -541,9 +542,9 @@ public string MiddleName { get; set; }
 
 Для сценариев, где не годятся встроенные атрибуты проверки, можно создать настраиваемые атрибуты. Создайте класс, наследуемый от <xref:System.ComponentModel.DataAnnotations.ValidationAttribute>, и переопределите метод <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid*>.
 
-Метод `IsValid` принимает объект с именем *value*, который является входными данными для проверки. Перегрузка также принимает объект `ValidationContext`, который предоставляет дополнительные сведения, такие как экземпляр модели, созданный с помощью привязки модели.
+Метод `IsValid` принимает объект с именем *value* , который является входными данными для проверки. Перегрузка также принимает объект `ValidationContext`, который предоставляет дополнительные сведения, такие как экземпляр модели, созданный с помощью привязки модели.
 
-В следующем примере проверяется, что дата выпуска фильмов в *классическом* жанре задана не позднее указанного года. Атрибут `[ClassicMovie2]` сначала проверяет жанр и продолжает проверку, только если он *классический*. У фильмов, попавших в классику, система проверяет даты выпуска, чтобы убедиться в том, что она не является более поздней, чем ограничение, переданное в конструктор атрибута.
+В следующем примере проверяется, что дата выпуска фильмов в *классическом* жанре задана не позднее указанного года. Атрибут `[ClassicMovie2]` сначала проверяет жанр и продолжает проверку, только если он *классический* . У фильмов, попавших в классику, система проверяет даты выпуска, чтобы убедиться в том, что она не является более поздней, чем ограничение, переданное в конструктор атрибута.
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Attributes/ClassicMovieAttribute.cs?name=snippet_ClassicMovieAttribute)]
 
@@ -572,7 +573,7 @@ public string MiddleName { get; set; }
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Controllers/UsersController.cs?name=snippet_CheckAge)]
 
-На странице "Check Age" (Проверка возраста) (*CheckAge.cshtml*) находятся две формы. Первая форма отправляет значение `Age`, равное `99`, в виде строки запроса: `https://localhost:5001/Users/CheckAge?Age=99`.
+На странице "Check Age" (Проверка возраста) ( *CheckAge.cshtml* ) находятся две формы. Первая форма отправляет значение `Age`, равное `99`, в виде строки запроса: `https://localhost:5001/Users/CheckAge?Age=99`.
 
 Если из строки запроса отправлен параметр `age` в правильном формате, форма проходит проверку.
 
@@ -757,7 +758,7 @@ $.get({
 
 [!code-csharp[](validation/samples_snapshot/2.x/Startup3.cs?name=snippet_DisableClientValidation)]
 
-Еще один вариант отключения клиентской проверки клиента — закомментировать ссылку на `_ValidationScriptsPartial` в вашем файле *.cshtml*.
+Еще один вариант отключения клиентской проверки клиента — закомментировать ссылку на `_ValidationScriptsPartial` в вашем файле *.cshtml* .
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

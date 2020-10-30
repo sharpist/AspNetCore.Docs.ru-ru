@@ -6,6 +6,7 @@ description: Обнаруживайте атрибуты вспомогател�
 ms.custom: mvc
 ms.date: 09/24/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
-ms.openlocfilehash: 09507294b90f08bbaf134f611aad0b91504ccffb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 7998cec94ebb56cbe6dbc321f7cb499260d6fe74
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635077"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059121"
 ---
 # <a name="link-tag-helper-in-aspnet-core"></a>Вспомогательная функция тега ссылки в ASP.NET Core
 
@@ -58,15 +59,15 @@ URL-адрес таблицы стилей CSS, к которой можно п�
 
 ### <a name="asp-fallback-test-class"></a>asp-fallback-test-class
 
-Имя класса, определенное в таблице стилей для использования в качестве теста резервного экземпляра. Дополнительные сведения см. в разделе <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestClass>.
+Имя класса, определенное в таблице стилей для использования в качестве теста резервного экземпляра. Для получения дополнительной информации см. <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestClass>.
 
 ### <a name="asp-fallback-test-property"></a>asp-fallback-test-property
 
-Имя свойства CSS, используемое для теста резервного экземпляра. Дополнительные сведения см. в разделе <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestProperty>.
+Имя свойства CSS, используемое для теста резервного экземпляра. Для получения дополнительной информации см. <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestProperty>.
 
 ### <a name="asp-fallback-test-value"></a>asp-fallback-test-value
 
-Значение свойства CSS, используемое для теста резервного экземпляра. Дополнительные сведения см. в разделе <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestValue>.
+Значение свойства CSS, используемое для теста резервного экземпляра. Для получения дополнительной информации см. <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestValue>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
