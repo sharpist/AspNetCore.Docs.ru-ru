@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: f198cef0cf990dcc2806d3967130db64af47c1d0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6110f51eb5d5ee40d6ce5a5d49ddda3329d1f033
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627836"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055546"
 ---
 # <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>Проверка подлинности и авторизация в ASP.NET Core Blazor
 
@@ -241,14 +242,14 @@ builder.Services.AddAuthorizationCore();
 
 ## <a name="authorization"></a>Авторизация
 
-После аутентификации пользователя применяются правила *авторизации*, которые определяют доступные этому пользователю действия.
+После аутентификации пользователя применяются правила *авторизации* , которые определяют доступные этому пользователю действия.
 
 Доступ обычно предоставляется или запрещается в зависимости от следующих аспектов:
 
 * выполнена ли аутентификация (выполнен ли вход);
-* есть ли у пользователя определенная *роль*;
-* есть ли у пользователя определенное *утверждение*;
-* выполняются ли требования *политики*.
+* есть ли у пользователя определенная *роль* ;
+* есть ли у пользователя определенное *утверждение* ;
+* выполняются ли требования *политики* .
 
 Каждый из этих аспектов применяется здесь так же, как в приложениях ASP.NET Core MVC или Razor Pages. Дополнительные сведения о безопасности в ASP.NET Core вы найдете в статьях [о безопасности и Identity в ASP.NET Core](xref:security/index).
 
@@ -293,7 +294,7 @@ builder.Services.AddAuthorizationCore();
 
 ### <a name="role-based-and-policy-based-authorization"></a>Авторизация на основе ролей и политик
 
-Компонент <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> поддерживает авторизацию на основе *ролей* или *политик*.
+Компонент <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> поддерживает авторизацию на основе *ролей* или *политик* .
 
 Для авторизации на основе ролей примените параметр <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles>:
 

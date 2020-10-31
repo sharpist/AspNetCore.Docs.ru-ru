@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/15/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/index
-ms.openlocfilehash: 7bde61b0ff1d122b449ccc9d7ea9629fc8fb6108
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 082072d2b70abfe60da8e2cd40daa8b93ebcc9ac
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628096"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055819"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor"></a>Размещение и развертывание ASP.NET Core Blazor
 
@@ -36,12 +37,12 @@ ms.locfileid: "88628096"
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. На панели навигации выберите **Сборка** > **Опубликовать {приложение}** .
-1. Выберите *целевой объект публикации*. Чтобы опубликовать объект в локальной среде, выберите **папку**.
+1. Выберите *целевой объект публикации* . Чтобы опубликовать объект в локальной среде, выберите **папку** .
 1. Оставьте расположение по умолчанию в поле **выбора папки** или укажите другое расположение. Нажмите кнопку **`Publish`** .
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-1. Щелкните **Сборка** > **Опубликовать в папке**.
+1. Щелкните **Сборка** > **Опубликовать в папке** .
 1. Подтвердите, что папка должна получить опубликованные ресурсы, и щелкните **`Publish`** .
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli)
@@ -96,7 +97,7 @@ app.UsePathBase("/CoolApp");
 
 Чтобы задать базовый путь к приложению, измените тег `<base>` в элементах `<head>` тега файла `Pages/_Host.cshtml` (Blazor Server) или файла `wwwroot/index.html` (Blazor WebAssembly). Задайте значение атрибута `href` как `/{RELATIVE URL PATH}/` (косая черта в конце обязательна), где `{RELATIVE URL PATH}` — полный относительный путь URL приложения.
 
-Приложение Blazor WebAssembly с некорневым относительным путем URL (например, `<base href="/CoolApp/">`) не сможет найти свои ресурсы при *локальном запуске*. Для решения этой проблемы во время локальной разработки и тестирования можно предоставить аргумент *базового пути*, который соответствует значению `href` тега `<base>` во время выполнения. Не добавляйте в конце косую черту. Для передачи аргумента базового пути при локальном запуске приложения выполните из каталога приложения команду `dotnet run` с параметром `--pathbase`:
+Приложение Blazor WebAssembly с некорневым относительным путем URL (например, `<base href="/CoolApp/">`) не сможет найти свои ресурсы при *локальном запуске* . Для решения этой проблемы во время локальной разработки и тестирования можно предоставить аргумент *базового пути* , который соответствует значению `href` тега `<base>` во время выполнения. Не добавляйте в конце косую черту. Для передачи аргумента базового пути при локальном запуске приложения выполните из каталога приложения команду `dotnet run` с параметром `--pathbase`:
 
 ```dotnetcli
 dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}

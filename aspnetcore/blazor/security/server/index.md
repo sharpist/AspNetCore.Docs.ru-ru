@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/06/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: d6d0f6f859dbaef98c6c8a9c53fe9858705cdc0a
-ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
+ms.openlocfilehash: 108fb3a8a24295cad43fd8c83303abd95a7ecd33
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91805509"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055481"
 ---
 # <a name="secure-aspnet-core-no-locblazor-server-apps"></a>Защита приложений ASP.NET Core Blazor Server
 
@@ -39,15 +40,15 @@ ms.locfileid: "91805509"
 
 Следуйте инструкциям по работе с Visual Studio (<xref:blazor/tooling>), чтобы создать проект Blazor Server с механизмом проверки подлинности.
 
-Выбрав шаблон **Приложение Blazor Server** в диалоговом окне **Создание веб-приложения ASP.NET Core**, щелкните **Изменить** в разделе **Проверка подлинности**.
+Выбрав шаблон **Приложение Blazor Server** в диалоговом окне **Создание веб-приложения ASP.NET Core** , щелкните **Изменить** в разделе **Проверка подлинности** .
 
 Откроется диалоговое окно с тем же набором механизмов аутентификации, которые доступны для других проектов ASP.NET Core.
 
-* **Без аутентификации**.
-* **Учетные записи отдельных пользователей**. Учетные записи пользователей могут храниться:
+* **Без аутентификации** .
+* **Учетные записи отдельных пользователей** . Учетные записи пользователей могут храниться:
   * Внутри приложения с помощью системы [Identity](xref:security/authentication/identity) в ASP.NET Core.
   * в [Azure AD B2C](xref:security/authentication/azure-ad-b2c);
-* **рабочие или учебные учетные записи**.
+* **рабочие или учебные учетные записи** .
 * **Проверка подлинности Windows**
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
@@ -80,7 +81,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 1. Следуйте инструкциям по работе с Visual Studio для Mac (<xref:blazor/tooling>).
 
-1. На шаге **Настройка нового приложения Blazor Server** выберите **Индивидуальная проверка подлинности (в приложении)** из раскрывающегося списка **Проверка подлинности**.
+1. На шаге **Настройка нового приложения Blazor Server** выберите **Индивидуальная проверка подлинности (в приложении)** из раскрывающегося списка **Проверка подлинности** .
 
 1. Приложение будет создано для отдельных пользователей, сохраненных в приложении с помощью ASP.NET Core Identity.
 

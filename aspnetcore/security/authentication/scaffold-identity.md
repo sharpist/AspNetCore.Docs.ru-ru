@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: c79dfc64d4311088c3f9ea03aad7570189000e2a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 813dd7837c265c78c584d66dd51bc23399d12fbe
+ms.sourcegitcommit: 5156eab2118584405eb663e1fcd82f8bd7764504
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053323"
+ms.lasthandoff: 10/31/2020
+ms.locfileid: "93141499"
 ---
 # <a name="scaffold-no-locidentity-in-aspnet-core-projects"></a>Формирование шаблонов Identity в ASP.NET Core проектах
 
@@ -372,6 +372,14 @@ IdentityМакет и стили страниц можно изменить дл
 
 Некоторые Identity параметры настраиваются в *области или Identity / Identity HostingStartup.CS* . Дополнительные сведения см. в разделе [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
+## <a name="standalone-or-hosted-no-locblazor-webassembly-apps"></a>Автономные или размещенные Blazor WebAssembly приложения
+
+Клиентские Blazor WebAssembly приложения используют собственные Identity подходы пользовательского интерфейса и не могут использовать ASP.NET Core Identity формирование шаблонов. ASP.NET Core приложения на стороне сервера для размещенных Blazor решений могут следовать инструкциям по Razor страницам и MVC в этой статье и настраиваться так же, как и любые другие типы ASP.NET Core приложений, которые поддерживаются Identity .
+
+BlazorПлатформа не включает Razor версии компонентов Identity пользовательского интерфейса. IdentityRazorПользовательские компоненты пользовательского интерфейса могут быть созданы или получены из неподдерживаемых сторонних источников.
+
+Дополнительные сведения см. в разделе [ Blazor безопасность и Identity статьи](xref:blazor/security/index).
+
 <a name="full"></a>
 
 ## <a name="create-full-no-locidentity-ui-source"></a>Создание полного Identity источника пользовательского интерфейса
@@ -550,7 +558,7 @@ Identityнастраивается в *области или Identity / Identity
 
 ### <a name="enable-authentication"></a>Включить проверку подлинности
 
-В `Configure` методе `Startup` класса вызовите [усеаусентикатион](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) после `UseStaticFiles` :
+В `Configure` методе `Startup` класса вызовите <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> после `UseStaticFiles` :
 
 [!code-csharp[](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
 
@@ -607,7 +615,7 @@ Identityнастраивается в *области или Identity / Identity
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-Вызовите [усеаусентикатион](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) после `UseStaticFiles` :
+Вызов <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> после `UseStaticFiles` :
 
 [!code-csharp[](scaffold-identity/sample/StartupMvcNoAuth.cs?name=snippet1&highlight=23)]
 
