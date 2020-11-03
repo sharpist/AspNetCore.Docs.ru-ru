@@ -12,8 +12,10 @@
       href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Начало работы
   uid: getting-started
-- name: заметки о выпуске;
+- name: Новые возможности
   items:
+    - name: "Новые возможности версии\_5.0"
+      uid: aspnetcore-5.0
     - name: "Новые возможности версии\_3.1"
       uid: aspnetcore-3.1
     - name: Новые возможности версии 3.0
@@ -357,20 +359,14 @@
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputTextArea
                   href: blazor/forms-validation.md#built-in-forms-components
-                - name: Ссылка
-                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: MainLayout
                   href: blazor/layouts.md#mainlayout-component
-                - name: Meta
-                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: NavLink
                   href: blazor/fundamentals/routing.md#navlink-component
                 - name: NavMenu
                   href: blazor/fundamentals/routing.md#navlink-component
                 - name: Маршрутизатор
                   href: blazor/fundamentals/routing.md#route-templates
-                - name: Заголовок
-                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: Virtualize
                   uid: blazor/components/virtualization
             - name: Каскадные значения и параметры
