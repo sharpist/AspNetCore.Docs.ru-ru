@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/1x-to-2x/index
-ms.openlocfilehash: 6160dfd117235065ba4b990b95bbc1f4abdf1626
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6d67924d87cdbe72cb08c5305dfe45c5b22b31bc
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634349"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057119"
 ---
 # <a name="migrate-from-aspnet-core-1x-to-20"></a>Миграция с ASP.NET Core 1.x на 2.0
 
@@ -129,7 +130,7 @@ Unable to create an object of type '<Context>'. Add an implementation of 'IDesig
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Startup.cs?name=snippet_1xStartup)]
 
-В примере выше происходит загрузка элемента `Configuration` с параметрами конфигурации из *appsettings.json* и любого файла *appsettings.\<EnvironmentName\>.json*, соответствующего свойству `IHostingEnvironment.EnvironmentName`. Эти файлы располагаются по тому же пути, что и *Startup.cs*.
+В примере выше происходит загрузка элемента `Configuration` с параметрами конфигурации из файла *appsettings.json* и любого файла *appsettings.\<EnvironmentName\>.json* , соответствующего свойству `IHostingEnvironment.EnvironmentName`. Эти файлы располагаются по тому же пути, что и *Startup.cs*.
 
 В проектах 2.0 стереотипный код конфигурации из проектов 1.x запускается "за кулисами". Например, переменные сред и параметры приложений загружаются при запуске. Эквивалентный код *Startup.cs* сокращается до инициализации `IConfiguration` с внедрением экземпляра.
 
@@ -155,11 +156,11 @@ Unable to create an object of type '<Context>'. Add an implementation of 'IDesig
 
 В проектах 2.0, где используется EF Core 2.0, вызывается `Program.BuildWebHost`, чтобы получить службы приложений. В отличие от 1.x, это также приводит к вызову `Startup.Configure`. Если ваше приложение 1.x вызвало код инициализации базы данных в своем методе `Configure`, могут возникнуть непредвиденные проблемы. Например, если база данных еще не существует, код заполнения запускается до выполнения команды миграции EF Core. Из-за этой проблемы, если база данных еще не существует, команда `dotnet ef migrations list` не срабатывает.
 
-В качестве примера из версии 1.x возьмем следующий код инициализации заполнения в методе `Configure` из *Startup.cs*:
+В качестве примера из версии 1.x возьмем следующий код инициализации заполнения в методе `Configure` из *Startup.cs* :
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Startup.cs?name=snippet_ConfigureSeedData&highlight=8)]
 
-В проектах 2.0 поместите вызов `SeedData.Initialize` в метод `Main` из *Program.cs*:
+В проектах 2.0 поместите вызов `SeedData.Initialize` в метод `Main` из *Program.cs* :
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Program2.cs?name=snippet_Main2Code&highlight=10)]
 
@@ -173,7 +174,7 @@ Unable to create an object of type '<Context>'. Add an implementation of 'IDesig
 
 Присваивать свойству `MvcRazorCompileOnPublish` значение true больше не нужно. Если вы не собираетесь отключать компиляцию представлений, это свойство можно удалить из файла *CSPROJ*.
 
-Если проект предназначен для .NET Framework, необходимо по-прежнему явно указывать ссылку на пакет NuGet [Microsoft.AspNetCore.Mvc.Razor.ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation) в файле *CSPROJ*:
+Если проект предназначен для .NET Framework, необходимо по-прежнему явно указывать ссылку на пакет NuGet [Microsoft.AspNetCore.Mvc.Razor.ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation) в файле *CSPROJ* :
 
 [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App.csproj?range=15)]
 
@@ -183,13 +184,13 @@ Unable to create an object of type '<Context>'. Add an implementation of 'IDesig
 
 Простота настройки инструментария для обеспечения производительности приложений имеет большое значение. Теперь вам доступны новые функции подготовки [Application Insights](/azure/application-insights/app-insights-overview) в составе средств Visual Studio 2017.
 
-При создании проектов ASP.NET Core 1.1 в Visual Studio 2017 служба Application Insights добавлялась по умолчанию. Если вы не используете пакет SDK для Application Insights напрямую вне файлов *Program.cs* и *Startup.cs*, выполните указанные ниже действия.
+При создании проектов ASP.NET Core 1.1 в Visual Studio 2017 служба Application Insights добавлялась по умолчанию. Если вы не используете пакет SDK для Application Insights напрямую вне файлов *Program.cs* и *Startup.cs* , выполните указанные ниже действия.
 
 1. Для работы с .NET Core удалите из файла *CSPROJ* следующий узел `<PackageReference />`:
 
     [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App.csproj?range=10)]
 
-2. Для работы с .NET Core удалите вызов метода расширения `UseApplicationInsights` из файла *Program.cs*:
+2. Для работы с .NET Core удалите вызов метода расширения `UseApplicationInsights` из файла *Program.cs* :
 
     [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Program.cs?name=snippet_ProgramCsMain&highlight=8)]
 

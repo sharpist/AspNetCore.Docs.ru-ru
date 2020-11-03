@@ -5,7 +5,7 @@ description: Узнайте, как защитить изолированное 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: devx-track-csharp, mvc
-ms.date: 10/08/2020
+ms.date: 10/27/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,16 +18,25 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-azure-active-directory
-ms.openlocfilehash: b44c5372d694dcc16ff66e24233171e3320d7294
-ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
+ms.openlocfilehash: 46e5a422864dd8f6aef72afddb3b406bc99f9163
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91900910"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690427"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-azure-active-directory"></a>Защита изолированного приложения ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory
 
 Авторы: [Хавьер Кальварро Нельсон](https://github.com/javiercn) (Javier Calvarro Nelson) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)
+
+В этой статье описывается, как защитить изолированное приложение ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory (AAD).
+
+::: moniker range=">= aspnetcore-5.0"
+
+> [!NOTE]
+> Для приложений Blazor WebAssembly, созданных в Visual Studio, которые настроены для поддержки учетных записей в каталоге AAD организации, Visual Studio неправильно настраивает приложение при создании проекта. Эта проблема будет устранена в следующем выпуске Visual Studio. В этой статье показано, как создать приложение с помощью команды `dotnet new` в .NET Core CLI. Если вы предпочитаете создать приложение в среде Visual Studio до ее обновления до последних шаблонов Blazor в ASP.NET Core 5.0, ознакомьтесь с каждым из разделов этой статьи и подтвердите или обновите конфигурацию приложения после того, как Visual Studio создаст приложение.
+
+::: moniker-end
 
 Чтобы создать [изолированное приложение Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly), использующее [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) для проверки подлинности, выполните приведенные ниже действия.
 
@@ -37,7 +46,7 @@ ms.locfileid: "91900910"
 
 ::: moniker range=">= aspnetcore-5.0"
 
-1. Укажите **имя** приложения (например, **BlazorИзолированный AAD**).
+1. Укажите **имя** приложения (например, **BlazorИзолированный AAD** ).
 1. Выберите **поддерживаемые типы учетных записей**. Можно выбрать **Учетные записи только в этом каталоге организации**.
 1. Выберите в раскрывающемся списке **URI перенаправления** значение **Одностраничное приложение (SPA)** и укажите следующий URI перенаправления: `https://localhost:{PORT}/authentication/login-callback`. Порт по умолчанию для приложения, работающего на Kestrel, — 5001. Если приложение выполняется на другом порте Kestrel, используйте порт приложения. Для IIS Express созданный случайным образом порт для приложения указан в свойствах приложения на панели **Отладка**. Поскольку на этом этапе приложение не существует и порт IIS Express неизвестен, вернитесь к этому шагу после создания приложения и обновите URI перенаправления. В этом разделе появится замечание с напоминанием для пользователей IIS Express о необходимости обновить URI перенаправления.
 1. Снимите флажок **Разрешения** > **Предоставьте согласие администратора для разрешений openid и offline_access**.
@@ -59,7 +68,7 @@ ms.locfileid: "91900910"
 
 ::: moniker range="< aspnetcore-5.0"
 
-1. Укажите **имя** приложения (например, **BlazorИзолированный AAD**).
+1. Укажите **имя** приложения (например, **BlazorИзолированный AAD** ).
 1. Выберите **поддерживаемые типы учетных записей**. Можно выбрать **Учетные записи только в этом каталоге организации**.
 1. В раскрывающемся списке **URI перенаправления** оставьте значение **Интернет** и укажите следующий URI перенаправления: `https://localhost:{PORT}/authentication/login-callback`. Порт по умолчанию для приложения, работающего на Kestrel, — 5001. Если приложение выполняется на другом порте Kestrel, используйте порт приложения. Для IIS Express созданный случайным образом порт для приложения указан в свойствах приложения на панели **Отладка**. Поскольку на этом этапе приложение не существует и порт IIS Express неизвестен, вернитесь к этому шагу после создания приложения и обновите URI перенаправления. В этом разделе появится замечание с напоминанием для пользователей IIS Express о необходимости обновить URI перенаправления.
 1. Снимите флажок **Разрешения** > **Предоставьте согласие администратора для разрешений openid и offline_access**.
@@ -191,7 +200,7 @@ options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
 
 ::: moniker-end
 
-Дополнительные сведения см. в следующих разделах статьи *Дополнительные сценарии*:
+Дополнительные сведения см. в следующих разделах статьи *Дополнительные сценарии* :
 
 * [Запрашивание дополнительных маркеров доступа](xref:blazor/security/webassembly/additional-scenarios#request-additional-access-tokens)
 * [Присоединение маркеров к исходящим запросам](xref:blazor/security/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)

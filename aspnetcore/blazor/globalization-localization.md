@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: 4345dd8525c2e72aaddc8e45a4fd4d9bfdd63040
-ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
+ms.openlocfilehash: 52810cb5a5961ffe932a7f5ac2a3a03033781cc9
+ms.sourcegitcommit: c06a5bf419541d17595af30e4cf6f2787c21855e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92326521"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92678484"
 ---
 # <a name="aspnet-core-no-locblazor-globalization-and-localization"></a>Глобализация и локализация в ASP.NET Core Blazor
 
@@ -165,9 +165,22 @@ ms.locfileid: "92326521"
 1. ПО промежуточного слоя для локализации считывает файл cookie и назначает язык и региональные параметры.
 1. Сеанс Blazor Server начинается с нужными языком и региональными параметрами.
 
+При работе с <xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage> используйте свойство <xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context>:
+
+```razor
+@{
+    this.Context.Response.Cookies.Append(
+        CookieRequestCultureProvider.DefaultCookieName,
+        CookieRequestCultureProvider.MakeCookieValue(
+            new RequestCulture(
+                CultureInfo.CurrentCulture,
+                CultureInfo.CurrentUICulture)));
+}
+```
+
 #### <a name="provide-ui-to-choose-the-culture"></a>Предоставление пользовательского интерфейса для выбора языка и региональных параметров
 
-Чтобы предоставить пользовательский интерфейс, позволяющий пользователю выбрать язык и региональные параметры, рекомендуется *подход на основе перенаправления* . Процесс аналогичен тому, что происходит в веб-приложении, когда пользователь пытается получить доступ к защищенному ресурсу. Пользователь перенаправляется на страницу входа, а затем обратно к исходному ресурсу. 
+Чтобы предоставить пользовательский интерфейс, позволяющий пользователю выбрать язык и региональные параметры, рекомендуется *подход на основе перенаправления*. Процесс аналогичен тому, что происходит в веб-приложении, когда пользователь пытается получить доступ к защищенному ресурсу. Пользователь перенаправляется на страницу входа, а затем обратно к исходному ресурсу. 
 
 Приложение сохраняет выбранный язык и региональные параметры пользователя с помощью перенаправления к контроллеру. Контроллер устанавливает выбранный язык и региональные параметры пользователя в файл cookie и перенаправляет пользователя обратно в исходный URI.
 

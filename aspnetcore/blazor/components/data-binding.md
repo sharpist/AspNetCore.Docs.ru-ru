@@ -5,7 +5,7 @@ description: Сведения о функциях привязки данных 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/19/2020
+ms.date: 10/22/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: 0884b0bedd9ed31b8c85790c6950c7c5d63bdf44
-ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
+ms.openlocfilehash: fd337a6fb54c418ff08af18014073a6b3f07bb8c
+ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/02/2020
-ms.locfileid: "91653910"
+ms.lasthandoff: 10/23/2020
+ms.locfileid: "92491472"
 ---
 # <a name="aspnet-core-no-locblazor-data-binding"></a>Привязка к данным в ASP.NET Core Blazor
 
@@ -141,9 +141,15 @@ ms.locfileid: "91653910"
 <input type="date" @bind="startDate" @bind:format="yyyy-MM-dd">
 ```
 
-## <a name="parent-to-child-binding-with-component-parameters"></a>Привязка родительского компонента к дочернему с помощью параметров компонентов
+## <a name="binding-with-component-parameters"></a>Привязка с помощью параметров компонентов
+
+Распространенным сценарием является привязка свойства дочернего компонента к свойству родительского компонента. Такой сценарий называется *цепочкой привязки* , так как одновременно имеется несколько уровней привязки.
 
 Параметры компонента позволяют привязывать свойства и поля родительского компонента с помощью синтаксиса `@bind-{PROPERTY OR FIELD}`.
+
+Цепочку привязки нельзя реализовать с помощью синтаксиса [`@bind`](xref:mvc/views/razor#bind) в дочернем компоненте. Обработчик событий и значение должны быть указаны отдельно для поддержки изменения свойства родительского компонента из дочернего.
+
+Родительский компонент по-прежнему использует синтаксис [`@bind`](xref:mvc/views/razor#bind) для настройки привязки данных к дочернему компоненту.
 
 Следующий компонент `Child` (`Shared/Child.razor`) имеет параметр компонента `Year` и обратный вызов `YearChanged`.
 
@@ -155,16 +161,25 @@ ms.locfileid: "91653910"
     </div>
 </div>
 
+<button @onclick="UpdateYearFromChild">Update Year from Child</button>
+
 @code {
+    private Random r = new Random();
+
     [Parameter]
     public int Year { get; set; }
 
     [Parameter]
     public EventCallback<int> YearChanged { get; set; }
+
+    private async Task UpdateYearFromChild()
+    {
+        await YearChanged.InvokeAsync(r.Next(1950, 2021));
+    }
 }
 ```
 
-Имя обратного вызова (<xref:Microsoft.AspNetCore.Components.EventCallback%601>) должно включать имя параметра компонента, за которым следует суффикс "`Changed`" (`{PARAMETER NAME}Changed`). В предыдущем примере обратный вызов назывался `YearChanged`. Дополнительные сведения о методе <xref:Microsoft.AspNetCore.Components.EventCallback%601> см. в разделе <xref:blazor/components/event-handling#eventcallback>.
+Имя обратного вызова (<xref:Microsoft.AspNetCore.Components.EventCallback%601>) должно включать имя параметра компонента, за которым следует суффикс "`Changed`" (`{PARAMETER NAME}Changed`). В предыдущем примере обратный вызов назывался `YearChanged`. <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> вызывает делегат, связанный с привязкой с указанным аргументом, и отправляет уведомление о событии для измененного свойства.
 
 В следующем компоненте `Parent` (`Parent.razor`) поле `year` привязано к параметру `Year` дочернего компонента.
 
@@ -198,13 +213,7 @@ ms.locfileid: "91653910"
 <Child @bind-Year="year" @bind-Year:event="YearChanged" />
 ```
 
-## <a name="child-to-parent-binding-with-chained-bind"></a>Привязка дочернего компонента к родительскому посредством цепочки привязки
-
-Распространенным сценарием является связывание привязанного к данным параметра к элементу страницы в выходных данных компонента. Такой сценарий называется *цепочкой привязки*, так как одновременно имеется несколько уровней привязки.
-
-Цепочку привязки нельзя реализовать с помощью синтаксиса [`@bind`](xref:mvc/views/razor#bind) в дочернем компоненте. Обработчик событий и значение необходимо указывать отдельно. Но родительский компонент может использовать синтаксис [`@bind`](xref:mvc/views/razor#bind) с параметром дочернего компонента.
-
-Следующий компонент `PasswordField` (`PasswordField.razor`):
+В более сложных и реальных примерах следующий компонент `PasswordField`(`PasswordField.razor`):
 
 * присваивает элементу `<input>` значение поля `password`;
 * сообщает об изменениях свойства `Password` родительскому компоненту с помощью вызова [`EventCallback`](xref:blazor/components/event-handling#eventcallback), который передает текущее значение поля `password` дочернего компонента в качестве аргумента;
@@ -234,11 +243,11 @@ Password:
     [Parameter]
     public EventCallback<string> PasswordChanged { get; set; }
 
-    private Task OnPasswordChanged(ChangeEventArgs e)
+    private async Task OnPasswordChanged(ChangeEventArgs e)
     {
         password = e.Value.ToString();
 
-        return PasswordChanged.InvokeAsync(password);
+        await PasswordChanged.InvokeAsync(password);
     }
 
     private void ToggleShowPassword()
@@ -294,7 +303,7 @@ Password:
     private Task OnPasswordChanged(ChangeEventArgs e)
     {
         password = e.Value.ToString();
-        
+
         if (password.Contains(' '))
         {
             validationMessage = "Spaces not allowed!";
@@ -316,11 +325,13 @@ Password:
 }
 ```
 
+Дополнительные сведения о методе <xref:Microsoft.AspNetCore.Components.EventCallback%601> см. в разделе <xref:blazor/components/event-handling#eventcallback>.
+
 ## <a name="bind-across-more-than-two-components"></a>Привязка через более чем два компонента
 
 Привязку можно выполнять через любое число вложенных компонентов, но необходимо соблюдать односторонний поток данных:
 
-* уведомления об изменениях *передаются вверх по иерархии*;
+* уведомления об изменениях *передаются вверх по иерархии* ;
 * новые значения параметров *передаются вниз по иерархии*.
 
 Распространенный и рекомендуемый подход заключается в хранении базовых данных только в родительском компоненте, что позволяет избежать путаницы в отношении того, какое состояние необходимо обновить.
@@ -378,9 +389,9 @@ Password:
         set => PropertyChanged.InvokeAsync(value);
     }
 
-    private Task ChangeValue()
+    private async Task ChangeValue()
     {
-        return PropertyChanged.InvokeAsync($"Set in Child {DateTime.Now}");
+        await PropertyChanged.InvokeAsync($"Set in Child {DateTime.Now}");
     }
 }
 ```
@@ -405,9 +416,9 @@ Password:
     [Parameter]
     public EventCallback<string> PropertyChanged { get; set; }
 
-    private Task ChangeValue()
+    private async Task ChangeValue()
     {
-        return PropertyChanged.InvokeAsync($"Set in Grandchild {DateTime.Now}");
+        await PropertyChanged.InvokeAsync($"Set in Grandchild {DateTime.Now}");
     }
 }
 ```

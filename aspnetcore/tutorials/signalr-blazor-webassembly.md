@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: e4c77bd5bf5a26a11cdd23664ac24ae50986969b
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: 6086c422b2d0598af309bbf8b900b9e03a3fe147
+ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91754714"
+ms.lasthandoff: 10/23/2020
+ms.locfileid: "92491591"
 ---
 # <a name="use-aspnet-core-no-locsignalr-with-no-locblazor-webassembly"></a>Использование SignalR для ASP.NET Core с Blazor WebAssembly
 
@@ -174,17 +174,17 @@ dotnet new blazorwasm --hosted --output BlazorSignalRApp
 
 1. Убедитесь, что в диалоговом окне **Управление пакетами NuGet** для параметра **Источник пакета** установлено значение `nuget.org`.
 
-1. Нажав кнопку **Обзор**, введите `Microsoft.AspNetCore.SignalR.Client` в поле поиска.
+1. Нажав кнопку **Обзор** , введите `Microsoft.AspNetCore.SignalR.Client` в поле поиска.
 
 1. В результатах поиска выберите пакет [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) и нажмите **Установить**.
 
-1. Если откроется диалоговое окно **Просмотр изменений**, нажмите кнопку **ОК**.
+1. Если откроется диалоговое окно **Просмотр изменений** , нажмите кнопку **ОК**.
 
-1. Если откроется диалоговое окно **Принятие условий лицензионного соглашения**, выберите **Я принимаю**, если принимаете условия.
+1. Если откроется диалоговое окно **Принятие условий лицензионного соглашения** , выберите **Я принимаю** , если принимаете условия.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code/)
 
-Во **встроенном терминале** (**Просмотр** > **Терминал** на панели инструментов) выполните следующие команды:
+Во **встроенном терминале** ( **Просмотр** > **Терминал** на панели инструментов) выполните следующие команды:
 
 ```dotnetcli
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
@@ -196,11 +196,11 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Убедитесь, что в диалоговом окне **Управление пакетами NuGet** в раскрывающемся меню источника установлено значение `nuget.org`.
 
-1. Нажав кнопку **Обзор**, введите `Microsoft.AspNetCore.SignalR.Client` в поле поиска.
+1. Нажав кнопку **Обзор** , введите `Microsoft.AspNetCore.SignalR.Client` в поле поиска.
 
 1. В результатах поиска установите флажок рядом с пакетом [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) и выберите **Добавить пакет**.
 
-1. Если откроется диалоговое окно **Принятие условий лицензионного соглашения**, выберите **Принять**, чтобы принять условия.
+1. Если откроется диалоговое окно **Принятие условий лицензионного соглашения** , выберите **Принять** , чтобы принять условия.
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli/)
 
@@ -380,6 +380,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 > [!div class="nextstepaction"]
 > <xref:blazor/index>
+> [Проверка подлинности маркера носителя с помощью сервера Identity, WebSockets и отправляемыми сервером событиями](xref:signalr/authn-and-authz#bearer-token-authentication)
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

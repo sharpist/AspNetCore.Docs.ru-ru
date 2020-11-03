@@ -4,8 +4,8 @@ author: guardrex
 description: Узнайте, как вызывать функции JavaScript из методов .NET в приложениях Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc
-ms.date: 10/02/2020
+ms.custom: mvc, devx-track-js
+ms.date: 10/20/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 3bd881b124e00b91ab0aa9d3eb7531f10ef895f2
-ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
+ms.openlocfilehash: ddbffa356a1cb53ee6ba1589f93e815af968bfb7
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92326499"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690279"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor
 
@@ -208,40 +208,46 @@ ms.locfileid: "92326499"
 >
 > Если при взаимодействии с JS содержимое элемента `MyList` изменяется и Blazor пытается применить изменения к элементу, эти изменения не будут соответствовать модели DOM.
 
-В случае с кодом .NET <xref:Microsoft.AspNetCore.Components.ElementReference> является непрозрачным дескриптором. *Единственное* , что можно сделать с <xref:Microsoft.AspNetCore.Components.ElementReference>, — передать в код JavaScript посредством взаимодействия с JS. При этом код на стороне JavaScript получает экземпляр `HTMLElement`, который может использоваться с обычными интерфейсами API DOM.
-
-Например, в приведенном ниже коде определяется метод расширения .NET, который позволяет установить фокус на элемент.
+<xref:Microsoft.AspNetCore.Components.ElementReference> передается в код JavaScript через JS-взаимодействие. Код JavaScript получает экземпляр `HTMLElement`, который может использоваться с обычными интерфейсами API DOM. Например, в приведенном ниже коде определяется метод расширения .NET, который позволяет отправить щелчок мыши в элемент.
 
 `exampleJsInterop.js`:
 
 ```javascript
-window.exampleJsFunctions = {
-  focusElement : function (element) {
-    element.focus();
+window.interopFunctions = {
+  clickElement : function (element) {
+    element.click();
   }
 }
 ```
 
-Для вызова функции JavaScript, которая не возвращает значение, используйте метод <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>. Следующий код устанавливает фокус на элементе для ввода имени пользователя, вызывая предыдущую функцию JavaScript с полученной ссылкой <xref:Microsoft.AspNetCore.Components.ElementReference>:
+::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](call-javascript-from-dotnet/samples_snapshot/component1.razor?highlight=1,3,11-12)]
+> [!NOTE]
+> Чтобы установить фокус на элементе в коде C#, используйте [`FocusAsync`](xref:blazor/components/event-handling#focus-an-element), который встроен в платформу Blazor и работает со ссылками на элементы.
+
+::: moniker-end
+
+Для вызова функции JavaScript, которая не возвращает значение, используйте метод <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>. Следующий код активирует событие `Click` на стороне клиента, вызывая предыдущую функцию JavaScript с захваченным <xref:Microsoft.AspNetCore.Components.ElementReference>:
+
+[!code-razor[](call-javascript-from-dotnet/samples_snapshot/component1.razor?highlight=14-15)]
 
 Чтобы использовать метод расширения, создайте статический метод расширения, который принимает экземпляр <xref:Microsoft.JSInterop.IJSRuntime>:
 
 ```csharp
-public static async Task Focus(this ElementReference elementRef, IJSRuntime jsRuntime)
+public static async Task TriggerClickEvent(this ElementReference elementRef, 
+    IJSRuntime jsRuntime)
 {
     await jsRuntime.InvokeVoidAsync(
-        "exampleJsFunctions.focusElement", elementRef);
+        "interopFunctions.clickElement", elementRef);
 }
 ```
 
-Метод `Focus` вызывается для объекта напрямую. В следующем примере предполагается, что метод `Focus` доступен из пространства имен `JsInteropClasses`:
+Метод `clickElement` вызывается для объекта напрямую. В следующем примере предполагается, что метод `TriggerClickEvent` доступен из пространства имен `JsInteropClasses`:
 
-[!code-razor[](call-javascript-from-dotnet/samples_snapshot/component2.razor?highlight=1-4,12)]
+[!code-razor[](call-javascript-from-dotnet/samples_snapshot/component2.razor?highlight=15)]
 
 > [!IMPORTANT]
-> Переменная `username` заполняется только после отрисовки компонента. Если в код JavaScript передается пустая ссылка <xref:Microsoft.AspNetCore.Components.ElementReference>, он получает значение `null`. Для управления ссылками на элементы после завершения отрисовки компонента (для установки начального фокуса на элемент) используйте [метод жизненного цикла компонента `OnAfterRenderAsync` или `OnAfterRender`](xref:blazor/components/lifecycle#after-component-render).
+> Переменная `exampleButton` заполняется только после отрисовки компонента. Если в код JavaScript передается пустая ссылка <xref:Microsoft.AspNetCore.Components.ElementReference>, он получает значение `null`. Для управления ссылками на элементы после завершения отрисовки компонента используйте [методы жизненного цикла компонента `OnAfterRenderAsync` или `OnAfterRender`](xref:blazor/components/lifecycle#after-component-render).
 
 При работе с универсальными типами и возврате значения используйте <xref:System.Threading.Tasks.ValueTask%601>:
 
@@ -260,7 +266,12 @@ public static ValueTask<T> GenericMethod<T>(this ElementReference elementRef,
 
 ## <a name="reference-elements-across-components"></a>Ссылки на элементы между компонентами
 
-Экземпляр <xref:Microsoft.AspNetCore.Components.ElementReference> является гарантированно допустимым только в методе <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> компонента (причем ссылка на элемент имеет тип `struct`), поэтому ссылка на элемент не может передаваться между компонентами. Чтобы сделать ссылку на элемент доступной для других компонентов, родительский компонент может:
+<xref:Microsoft.AspNetCore.Components.ElementReference> нельзя передать между компонентами, так как:
+
+* Экземпляр гарантированно существует только после визуализации компонента, то есть во время или после выполнения метода компонента <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A>/<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>.
+* <xref:Microsoft.AspNetCore.Components.ElementReference> имеет тип [`struct`](/csharp/language-reference/builtin-types/struct), который нельзя передать в качестве [параметра компонента](xref:blazor/components/index#component-parameters).
+
+Чтобы сделать ссылку на элемент доступной для других компонентов, родительский компонент может:
 
 * разрешить дочерним компонентам регистрировать обратные вызовы;
 * вызывать зарегистрированные обратные вызовы во время события <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> с помощью переданной ссылки на элемент. Такой подход позволяет дочерним компонентам взаимодействовать со ссылкой на элемент родительского компонента косвенным образом.
@@ -659,7 +670,7 @@ export function setMapCenter(map, latitude, longitude) {
 
 Важном понимать следующие основные моменты.
 
- * В случае с Blazor `<div>` с `@ref="mapElement"` остается пустым. Поэтому `mapbox-gl.js` может спокойно заполнять его и затем изменять его содержимое. Этот метод можно использовать с любой библиотекой JavaScript, которая отрисовывает пользовательский интерфейс. В компоненты Blazor можно даже внедрять компоненты из сторонней платформы одностраничных приложений JavaScript, если они не пытаются изменить другие части страницы. Ситуация, когда внешний код JavaScript изменяет элементы, которые Blazor не считает пустыми, *небезопасна* .
+ * В случае с Blazor `<div>` с `@ref="mapElement"` остается пустым. Поэтому `mapbox-gl.js` может спокойно заполнять его и затем изменять его содержимое. Этот метод можно использовать с любой библиотекой JavaScript, которая отрисовывает пользовательский интерфейс. В компоненты Blazor можно даже внедрять компоненты из сторонней платформы одностраничных приложений JavaScript, если они не пытаются изменить другие части страницы. Ситуация, когда внешний код JavaScript изменяет элементы, которые Blazor не считает пустыми, *небезопасна*.
  * При использовании этого подхода необходимо учитывать то, как Blazor удерживает или уничтожает элементы DOM. В предыдущем примере компонент безопасно обрабатывает события нажатия кнопок и обновляет существующий экземпляр карты, так как по умолчанию элементы DOM по возможности сохраняются без изменений. При отрисовке списка элементов карты из цикла `@foreach` необходимо использовать `@key`, чтобы гарантировать сохранность экземпляров компонента. В противном случае изменения в данных списка могут приводить к нежелательному сохранению состояния предыдущих экземпляров компонента. Дополнительные сведения см. в разделе об [использовании @key для сохранения элементов и компонентов](xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components).
 
 Кроме того, в предыдущем примере показано, как можно инкапсулировать логику и зависимости JavaScript в модуле ES6 и динамически загружать его с помощью идентификатора `import`. Дополнительные сведения см.в статье [Изоляция JavaScript и ссылки на объекты](#blazor-javascript-isolation-and-object-references).
