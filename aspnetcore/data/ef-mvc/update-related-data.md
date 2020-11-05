@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: 356536a22f11ca5db6cfa9cda79598ec8aa03e18
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f41d0b1d7ba46ef4867e0d160dc61f21042ce403
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625275"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053947"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF Core. Обновление связанных данных
 
@@ -172,7 +173,7 @@ ms.locfileid: "88625275"
 
 ### <a name="update-the-instructor-edit-view"></a>Обновление представления редактирования преподавателя
 
-В конце *Views/Instructors/Edit.cshtml*, перед кнопкой **Save** (Сохранить), добавьте новое поле для редактирования расположения кабинета:
+В конце *Views/Instructors/Edit.cshtml* , перед кнопкой **Save** (Сохранить), добавьте новое поле для редактирования расположения кабинета:
 
 [!code-cshtml[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=30-34)]
 

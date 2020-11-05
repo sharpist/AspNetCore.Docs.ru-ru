@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc, devx-track-js
 ms.date: 10/09/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: 0e827680e7024eabed09b989466476a3a80eb225
-ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
+ms.openlocfilehash: 423745d734d8da2b8f3f974f9b4dd1a0265d4877
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92690277"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054740"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>Рекомендации по повышению производительности ASP.NET Core Blazor WebAssembly
 
@@ -36,7 +37,7 @@ ms.locfileid: "92690277"
 
 ## <a name="optimize-rendering-speed"></a>Оптимизация скорости отрисовки
 
-В следующих разделах собраны рекомендации по уменьшению рабочей нагрузки для отрисовки и повышению скорости реагирования пользовательского интерфейса. Применение этих советов часто позволяет ускорить отрисовку пользовательского интерфейса *в десять и более раз* .
+В следующих разделах собраны рекомендации по уменьшению рабочей нагрузки для отрисовки и повышению скорости реагирования пользовательского интерфейса. Применение этих советов часто позволяет ускорить отрисовку пользовательского интерфейса *в десять и более раз*.
 
 ### <a name="avoid-unnecessary-rendering-of-component-subtrees"></a>Избегайте ненужной отрисовки поддеревьев компонентов
 

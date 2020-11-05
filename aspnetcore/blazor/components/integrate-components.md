@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/25/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
-ms.openlocfilehash: e2045d7d169e81c85f4c7dbd97357455ecd70ea3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e56a08be082cef4ba3a0a58fdfa9d3800d244f75
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628486"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056261"
 ---
 # <a name="integrate-aspnet-core-no-locrazor-components-into-no-locrazor-pages-and-mvc-apps"></a>Интеграция компонентов Razor ASP.NET Core в приложения MVC и Razor Pages
 
@@ -50,7 +51,7 @@ ms.locfileid: "88628486"
      <base href="~/" />
      ```
 
-     Значение `href` (*базовый путь к приложению* ) в предыдущем примере предполагает, что приложение находится по корневому URL-пути (`/`). Если приложение является подчиненным, следуйте инструкциям в разделе *Базовый путь к приложению* статьи <xref:blazor/host-and-deploy/index#app-base-path>.
+     Значение `href` ( *базовый путь к приложению* ) в предыдущем примере предполагает, что приложение находится по корневому URL-пути (`/`). Если приложение является подчиненным, следуйте инструкциям в разделе *Базовый путь к приложению* статьи <xref:blazor/host-and-deploy/index#app-base-path>.
 
      Файл `_Layout.cshtml` находится в папке *Pages/Shared* приложения Razor Pages или в папке *Views/Shared* приложения MVC.
 

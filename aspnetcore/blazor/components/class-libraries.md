@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/27/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: afd1bfffae11520a5d9abccc1d2ee4cf3a46a4bf
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: f8e36cbe905b5ec2e674123c0f2ab6db99683c7c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722466"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056417"
 ---
 # <a name="aspnet-core-no-locrazor-components-class-libraries"></a>Библиотеки классов компонентов Razor в ASP.NET Core
 
@@ -44,7 +45,7 @@ ms.locfileid: "90722466"
 1. Создайте новый проект.
 1. Выберите **Библиотека классов Razor** . Выберите **Далее**.
 1. В диалоговом окне **Создать библиотеку классов Razor** щелкните **Создать**.
-1. В поле **Имя проекта** укажите имя проекта или оставьте имя по умолчанию. В примерах в этой статье используется имя проекта `ComponentLibrary`. Выберите **Создать**.
+1. В поле **Имя проекта** укажите имя проекта или оставьте имя по умолчанию. В примерах в этой статье используется имя проекта `ComponentLibrary`. Нажмите кнопку **создания**.
 1. Добавьте библиотеку RCL в решение.
    1. Щелкните решение правой кнопкой мыши. Выберите **Добавить** > **Существующий проект**.
    1. Перейдите к файлу проекта RCL.
@@ -54,7 +55,7 @@ ms.locfileid: "90722466"
    1. Выберите проект RCL. Нажмите кнопку **ОК**.
 
 > [!NOTE]
-> Если при создании библиотеки RCL на основе шаблона был установлен флажок **Представления и страницы поддержки**, также добавьте в корневой каталог созданного проекта файл `_Imports.razor` со следующим содержимым, чтобы включить разработку компонента Razor:
+> Если при создании библиотеки RCL на основе шаблона был установлен флажок **Представления и страницы поддержки** , также добавьте в корневой каталог созданного проекта файл `_Imports.razor` со следующим содержимым, чтобы включить разработку компонента Razor:
 >
 > ```razor
 > @using Microsoft.AspNetCore.Components.Web
@@ -120,9 +121,11 @@ Welcome to your new app.
 
 Кроме того, чтобы сделать компоненты библиотеки доступными для всего проекта, включите директиву `@using ComponentLibrary` в файл `_Import.razor` верхнего уровня. Чтобы применить пространство имен к одному компоненту или набору компонентов в папке, добавьте директиву в файл `_Import.razor` на любом уровне.
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker range=">= aspnetcore-5.0"
 
-Чтобы предоставить компоненту класс CSS `my-component` из `Component1`, свяжите его с таблицей стилей библиотеки с помощью компонента [`Link` платформы](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) в `Component1.razor`:
+To provide `Component1`'s `my-component` CSS class to the component, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) in `Component1.razor`:
 
 ```razor
 <div class="my-component">
@@ -134,7 +137,7 @@ Welcome to your new app.
 </div>
 ```
 
-Чтобы предоставить таблицу стилей для приложения, можно также привязать таблицу стилей библиотеки в файле `wwwroot/index.html` приложения (Blazor WebAssembly) или в файле `Pages/_Host.cshtml` (Blazor Server):
+To provide the stylesheet across the app, you can alternatively link to the library's stylesheet in the app's `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
 
 ```html
 <head>
@@ -143,14 +146,16 @@ Welcome to your new app.
 </head>
 ```
 
-Если компонент `Link` используется в дочернем компоненте, связанный ресурс также доступен для любого другого дочернего компонента родительского компонента при преобразовании для просмотра дочернего элемента с компонентом `Link`. Различие между использованием компонента `Link` в дочернем компоненте и помещение HTML-тега `<link>` в `wwwroot/index.html` или `Pages/_Host.cshtml` заключается в том, что отрисованный HTML-компонент платформы выглядит следующим образом:
+When the `Link` component is used in a child component, the linked asset is also available to any other child component of the parent component as long as the child with the `Link` component is rendered. The distinction between using the `Link` component in a child component and placing a `<link>` HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
 
-* Может быть изменен состоянием приложения. Жестко заданный HTML-тег `<link>` не может быть изменен состоянием приложения.
-* Удаляется из HTML `<head>`, когда родительский компонент больше не отрисовывается.
+* Can be modified by application state. A hard-coded `<link>` HTML tag can't be modified by application state.
+* Is removed from the HTML `<head>` when the parent component is no longer rendered.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
+
+-->
 
 Чтобы предоставить класс CSS `Component1` из `my-component`, свяжите его с таблицей стилей в файле `wwwroot/index.html` приложения (Blazor WebAssembly) или в файле `Pages/_Host.cshtml` (Blazor Server):
 
@@ -161,7 +166,11 @@ Welcome to your new app.
 </head>
 ```
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker-end
+
+-->
 
 ## <a name="create-a-no-locrazor-components-class-library-with-static-assets"></a>Создание библиотеки классов компонентов Razor со статическими ресурсами
 

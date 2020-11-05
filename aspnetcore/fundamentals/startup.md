@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/startup
-ms.openlocfilehash: b10ddf52ea7d22ea98c295da61c09da8c87fc7a7
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 747b13abb0ce3fed2d1dc018c6dbf82db1ae7130
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633751"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052244"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Запуск приложения в ASP.NET Core
 
@@ -79,7 +80,7 @@ ms.locfileid: "88633751"
 
 Узел может настраивать некоторые службы перед вызовом методов `Startup`. Дополнительную информацию см. в разделе [Узел](xref:fundamentals/index#host).
 
-Для функций, нуждающихся в значительной настройке, существуют методы расширения `Add{Service}` в <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. Например, **Add**DbContext, **Add**DefaultIdentity, **Add**EntityFrameworkStores и **Add**RazorPages:
+Для функций, нуждающихся в значительной настройке, существуют методы расширения `Add{Service}` в <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. Например, **Add** DbContext, **Add** DefaultIdentity, **Add** EntityFrameworkStores и **Add**RazorPages:
 
 [!code-csharp[](startup/3.0_samples/StartupFilterSample/StartupIdentity.cs?name=snippet)]
 
@@ -211,7 +212,7 @@ ms.locfileid: "88633751"
 
 Узел может настраивать некоторые службы перед вызовом методов `Startup`. Дополнительную информацию см. в разделе [Узел](xref:fundamentals/index#host).
 
-Для функций, нуждающихся в значительной настройке, существуют методы расширения `Add{Service}` в <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. Например, **Add**DbContext, **Add**DefaultIdentity, **Add**EntityFrameworkStores и **Add**RazorPages:
+Для функций, нуждающихся в значительной настройке, существуют методы расширения `Add{Service}` в <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. Например, **Add** DbContext, **Add** DefaultIdentity, **Add** EntityFrameworkStores и **Add**RazorPages:
 
 [!code-csharp[](startup/sample_snapshot/Startup3.cs)]
 

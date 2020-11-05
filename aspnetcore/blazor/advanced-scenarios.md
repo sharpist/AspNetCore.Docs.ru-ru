@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/18/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/advanced-scenarios
-ms.openlocfilehash: 295e5dd025afc486be08ecadbf661bf765c2745f
-ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
+ms.openlocfilehash: 95714b3c0d21d3b348a9a8a984e2a42e7708499e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/16/2020
-ms.locfileid: "92113612"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056560"
 ---
 # <a name="aspnet-core-no-locblazor-advanced-scenarios"></a>Сложные сценарии ASP.NET Core Blazor
 
@@ -31,7 +32,7 @@ ms.locfileid: "92113612"
 
 ## <a name="no-locblazor-server-circuit-handler"></a>Обработчик цепи Blazor Server
 
-Blazor Server позволяет коду определить *обработчик канала*, чтобы выполнять код при изменении состояния канала пользователя. Обработчик канала реализуется путем наследования от `CircuitHandler` и регистрации класса в контейнере службы приложения. В следующем примере обработчик канала отслеживает открытые соединения SignalR:
+Blazor Server позволяет коду определить *обработчик канала* , чтобы выполнять код при изменении состояния канала пользователя. Обработчик канала реализуется путем наследования от `CircuitHandler` и регистрации класса в контейнере службы приложения. В следующем примере обработчик канала отслеживает открытые соединения SignalR:
 
 ```csharp
 using System.Collections.Generic;
@@ -177,7 +178,7 @@ builder.AddContent(1, "Second");
 | :------: | ---------- | :----: |
 | 1        | Текстовый узел  | Second |
 
-Когда среда выполнения выполняет сравнение, она видит, что элемент в последовательности `0` был удален, поэтому создает следующий тривиальный *сценарий изменения*:
+Когда среда выполнения выполняет сравнение, она видит, что элемент в последовательности `0` был удален, поэтому создает следующий тривиальный *сценарий изменения* :
 
 * Удаление первого текстового узла.
 

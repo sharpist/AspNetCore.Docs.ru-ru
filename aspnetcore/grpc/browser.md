@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 06/30/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/browser
-ms.openlocfilehash: 5c9501b3e7cbdcbb02e3d78d67185a0a75ccba7c
-ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
+ms.openlocfilehash: 6456707620ae1c1f4d23f3562c78d1bf05d4844f
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89379411"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058913"
 ---
 # <a name="use-grpc-in-browser-apps"></a>Использование gRPC в приложениях на основе браузера
 
@@ -51,7 +52,7 @@ ms.locfileid: "89379411"
 Чтобы включить gRPC-Web со службой gRPC ASP.NET Core, выполните следующие действия.
 
 * Добавьте ссылку на пакет [Grpc.AspNetCore.Web](https://www.nuget.org/packages/Grpc.AspNetCore.Web).
-* Настройте приложение на использование gRPC-Web, добавив `UseGrpcWeb` и `EnableGrpcWeb` в файл *Startup.cs*:
+* Настройте приложение на использование gRPC-Web, добавив `UseGrpcWeb` и `EnableGrpcWeb` в файл *Startup.cs* :
 
 [!code-csharp[](~/grpc/browser/sample/Startup.cs?name=snippet_1&highlight=10,14)]
 
@@ -123,11 +124,11 @@ ms.locfileid: "89379411"
 
 `GrpcWebHandler` имеет следующие параметры конфигурации.
 
-* **InnerHandler**: базовый <xref:System.Net.Http.HttpMessageHandler>, который выполняет HTTP-запрос gRPC, например `HttpClientHandler`.
-* **GrpcWebMode**: Тип перечисления, указывающий, является ли HTTP-запрос gRPC `Content-Type` `application/grpc-web` или `application/grpc-web-text`.
+* **InnerHandler** : базовый <xref:System.Net.Http.HttpMessageHandler>, который выполняет HTTP-запрос gRPC, например `HttpClientHandler`.
+* **GrpcWebMode** : Тип перечисления, указывающий, является ли HTTP-запрос gRPC `Content-Type` `application/grpc-web` или `application/grpc-web-text`.
     * `GrpcWebMode.GrpcWeb` настраивает содержимое для отправки без кодировки. Значение по умолчанию.
     * `GrpcWebMode.GrpcWebText` настраивает содержимое в кодировке Base64. Требуется для вызовов потоковой передачи сервера в браузерах.
-* **HttpVersion**: `Version` протокола HTTP, используемая для задания [HttpRequestMessage.Version](xref:System.Net.Http.HttpRequestMessage.Version) в базовом HTTP-запросе gRPC. gRPC-Web не требует определенной версии и не переопределяет значение по умолчанию, если не указано иное.
+* **HttpVersion** : `Version` протокола HTTP, используемая для задания [HttpRequestMessage.Version](xref:System.Net.Http.HttpRequestMessage.Version) в базовом HTTP-запросе gRPC. gRPC-Web не требует определенной версии и не переопределяет значение по умолчанию, если не указано иное.
 
 > [!IMPORTANT]
 > Созданные клиенты gRPC имеют синхронные и асинхронные методы для вызова унарных методов. Например, `SayHello` является синхронным, а `SayHelloAsync` — асинхронным. Вызов синхронного метода в приложении Blazor WebAssembly приведет к тому, что приложение перестанет отвечать на запросы. В Blazor WebAssembly всегда следует использовать асинхронные методы.

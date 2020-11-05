@@ -5,6 +5,7 @@ description: Часть 6. Добавление модели в приложе�
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: 745703aaa4ceb39c75789bab0bde4564f3d79a30
-ms.sourcegitcommit: c06a5bf419541d17595af30e4cf6f2787c21855e
+ms.openlocfilehash: b4850821317b6907452793ef09194844c90c0137
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92678554"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93050775"
 ---
 # <a name="part-6-controller-methods-and-views-in-aspnet-core"></a>Часть 6. Методы и представления контроллера в ASP.NET Core
 

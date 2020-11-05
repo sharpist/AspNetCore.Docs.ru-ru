@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/06/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/cascading-values-and-parameters
-ms.openlocfilehash: 8cb2bd5f19a4cc21671a0b077d4ef0fda2e30455
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: dec71f881dc815a26d62da6df92118926b1dcf06
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628590"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056430"
 ---
 # <a name="aspnet-core-no-locblazor-cascading-values-and-parameters"></a>Каскадные значения и параметры ASP.NET Core Blazor
 
@@ -189,7 +190,7 @@ public class ThemeInfo
 }
 ```
 
-Дочерние компоненты `Tab` не передаются в `TabSet` в качестве параметров явным образом. Вместо этого дочерние компоненты `Tab` являются частью дочернего содержимого `TabSet`. Однако `TabSet` по-прежнему необходимо знать о каждом компоненте `Tab`, чтобы визуализировать заголовки и активную вкладку. Чтобы обеспечить такую координацию без дополнительного кода, компонент `TabSet` *может предоставить себя в качестве каскадного значения*, которое затем используется компонентами-потомками `Tab`.
+Дочерние компоненты `Tab` не передаются в `TabSet` в качестве параметров явным образом. Вместо этого дочерние компоненты `Tab` являются частью дочернего содержимого `TabSet`. Однако `TabSet` по-прежнему необходимо знать о каждом компоненте `Tab`, чтобы визуализировать заголовки и активную вкладку. Чтобы обеспечить такую координацию без дополнительного кода, компонент `TabSet` *может предоставить себя в качестве каскадного значения* , которое затем используется компонентами-потомками `Tab`.
 
 Компонент `TabSet`:
 

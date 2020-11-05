@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/17/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: ad244c29c8e8e904793745119366cd677389b12d
-ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
+ms.openlocfilehash: cd613b2b76b8e876786988fdcefc0e7275d3bf53
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92690612"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056066"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>Формы и проверка ASP.NET Core Blazor
 
@@ -224,7 +225,7 @@ public class Starship
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditForm> создает <xref:Microsoft.AspNetCore.Components.Forms.EditContext> в виде [каскадного значения](xref:blazor/components/cascading-values-and-parameters), которое отслеживает метаданные процесса редактирования, включая измененные поля и текущие сообщения проверки.
 
-Назначайте <xref:Microsoft.AspNetCore.Components.Forms.EditForm> **либо** <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, **либо** <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>. Назначение обоих значений не поддерживается, и возникает **ошибка времени выполнения** .
+Назначайте <xref:Microsoft.AspNetCore.Components.Forms.EditForm> **либо** <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, **либо** <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>. Назначение обоих значений не поддерживается, и возникает **ошибка времени выполнения**.
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditForm> предоставляет удобные события для допустимой и недопустимой отправки формы.
 
@@ -802,10 +803,10 @@ public Color? Color { get; set; } = null;
 public Engine? Engine { get; set; } = null;
 ```
 
-Добавьте в приложение указанные ниже перечисления (`enums`). Создайте файл для хранения `enums` или добавьте `enums` в файл `Starship.cs`. Сделайте `enums` доступным для модели `Starship` и формы *Starfleet Starship Database* .
+Добавьте в приложение указанные ниже перечисления (`enums`). Создайте файл для хранения `enums` или добавьте `enums` в файл `Starship.cs`. Сделайте `enums` доступным для модели `Starship` и формы *Starfleet Starship Database*.
 
 ```csharp
-public enum Manufacturer { SpaceX, NASA, ULA, Virgin, Unknown }
+public enum Manufacturer { SpaceX, NASA, ULA, VirginGalactic, Unknown }
 public enum Color { ImperialRed, SpacecruiserGreen, StarshipBlue, VoyagerOrange }
 public enum Engine { Ion, Plasma, Fusion, Warp }
 ```
@@ -1059,7 +1060,7 @@ private class MyFieldClassProvider : FieldCssClassProvider
 
 ### <a name="no-locblazor-data-annotations-validation-package"></a>Пакет проверки заметок к данным в Blazor
 
-[`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) — это пакет, который выполняет проверку пропусков заполнения с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. В настоящее время пакет является *экспериментальным* .
+[`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) — это пакет, который выполняет проверку пропусков заполнения с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. В настоящее время пакет является *экспериментальным*.
 
 > [!NOTE]
 > Пакет [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) имеет последнюю версию *RC* на [Nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). В настоящее время продолжайте использовать *экспериментальный* пакет RC. В будущем выпуске сборка пакета может быть перемещена в платформу или в среду выполнения. Дополнительные обновления смотрите в [репозитории объявлений GitHub](https://github.com/aspnet/Announcements), [репозитории GitHub dotnet/aspnetcore](https://github.com/dotnet/aspnetcore) или в этом разделе.

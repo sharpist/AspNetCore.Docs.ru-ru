@@ -5,6 +5,7 @@ description: Часть 2 серии руководств по Razor Pages и E
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: 083214c01dbec6c6f44d6b82f5b514a029e57cbe
-ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
+ms.openlocfilehash: c5b9be64ea30cce7a3178bfbb244ef893e9639d2
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91606736"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053869"
 ---
 # <a name="part-2-no-locrazor-pages-with-ef-core-in-aspnet-core---crud"></a>Часть 2. Razor Pages с EF Core в ASP.NET Core — CRUD
 
@@ -78,7 +79,7 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 
 ## <a name="update-the-create-page"></a>Обновление страницы Create
 
-Шаблонный код `OnPostAsync` для страницы создания уязвим к [чрезмерной передаче данных](#overposting). Замените метод `OnPostAsync` в файле *Pages/Students/Create.cshtml.cs*, используя следующий код:
+Шаблонный код `OnPostAsync` для страницы создания уязвим к [чрезмерной передаче данных](#overposting). Замените метод `OnPostAsync` в файле *Pages/Students/Create.cshtml.cs* , используя следующий код:
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
@@ -183,7 +184,7 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 * Возникает исключение базы данных.
 * Вызывается метод `OnGetAsync` страницы Delete с параметром `saveChangesError=true`.
 
-Добавьте сообщение об ошибке в файл *Pages/Students/Delete.cshtml*:
+Добавьте сообщение об ошибке в файл *Pages/Students/Delete.cshtml* :
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
 
@@ -246,7 +247,7 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 
 ## <a name="update-the-create-page"></a>Обновление страницы Create
 
-Шаблонный код `OnPostAsync` для страницы создания уязвим к [чрезмерной передаче данных](#overposting). Замените метод `OnPostAsync` в файле *Pages/Students/Create.cshtml.cs*, используя следующий код:
+Шаблонный код `OnPostAsync` для страницы создания уязвим к [чрезмерной передаче данных](#overposting). Замените метод `OnPostAsync` в файле *Pages/Students/Create.cshtml.cs* , используя следующий код:
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
@@ -346,7 +347,7 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 * Возникает исключение базы данных.
 * Вызывается метод `OnGetAsync` страницы Delete с параметром `saveChangesError=true`.
 
-Добавьте сообщение об ошибке на страницу удаления Razor (*Pages/Students/Delete.cshtml*).
+Добавьте сообщение об ошибке на страницу удаления Razor ( *Pages/Students/Delete.cshtml* ).
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
 
@@ -366,7 +367,7 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 
 Чтобы максимально упростить этот код и сконцентрироваться на работе с EF Core, в моделях страниц в этих учебниках используется код EF Core. Некоторые разработчики используют уровень служб или шаблон репозитория, чтобы создать уровень абстракции между пользовательским интерфейсом (Razor Pages) и уровнем доступа к данным.
 
-В рамках этого руководства изучаются страницы RazorPages в папке *Students*, предназначенные для создания, редактирования, удаления и просмотра сведений.
+В рамках этого руководства изучаются страницы RazorPages в папке *Students* , предназначенные для создания, редактирования, удаления и просмотра сведений.
 
 В шаблонном коде используется следующий шаблон для страниц создания, редактирования и удаления:
 
@@ -404,7 +405,7 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 
 ## <a name="customize-the-details-page"></a>Настройка страницы сведений
 
-Перейдите на страницу `Pages/Students`. Ссылки **Edit**, **Details** и **Delete** создаются [вспомогательной функцией тегов привязки](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) в файле *Pages/Students/Index.cshtml*.
+Перейдите на страницу `Pages/Students`. Ссылки **Edit** , **Details** и **Delete** создаются [вспомогательной функцией тегов привязки](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) в файле *Pages/Students/Index.cshtml*.
 
 [!code-cshtml[](intro/samples/cu21/Pages/Students/Index1.cshtml?name=snippet)]
 
@@ -450,7 +451,7 @@ URL-адрес страницы сведений — `https://localhost:<port>/
 
 ## <a name="update-the-create-page"></a>Обновление страницы Create
 
-Измените метод `OnPostAsync` в файле *Pages/Students/Create.cshtml.cs*, используя следующий код:
+Измените метод `OnPostAsync` в файле *Pages/Students/Create.cshtml.cs* , используя следующий код:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Create.cshtml.cs?name=snippet_OnPostAsync)]
 

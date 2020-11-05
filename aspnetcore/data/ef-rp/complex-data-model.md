@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 55269c6985534b49cc2567b2d197e46d9b7b1fd7
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 1ac9d6303daac82f3973c5d027fe1f453dc32e02
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722531"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054103"
 ---
 # <a name="part-5-no-locrazor-pages-with-ef-core-in-aspnet-core---data-model"></a>Часть 5. Razor Pages с EF Core в ASP.NET Core — модель данных
 
@@ -306,7 +307,7 @@ public int InstructorID { get; set; }
 
 ![Сущность Course](complex-data-model/_static/course-entity.png)
 
-Обновите *Models/Course.cs*, используя следующий код:
+Обновите *Models/Course.cs* , используя следующий код:
 
 [!code-csharp[](intro/samples/cu30/Models/Course.cs?highlight=2,10,13,16,19,21,23)]
 
@@ -416,7 +417,7 @@ public ICollection<Course> Courses { get; set; }
 
 ![Сущность Enrollment](complex-data-model/_static/enrollment-entity.png)
 
-Обновите *Models/Enrollment.cs*, используя следующий код:
+Обновите *Models/Enrollment.cs* , используя следующий код:
 
 [!code-csharp[](intro/samples/cu30/Models/Enrollment.cs?highlight=1-2,16)]
 
@@ -487,7 +488,7 @@ public Student Student { get; set; }
 
 ## <a name="update-the-database-context"></a>Обновление контекста базы данных
 
-Обновите файл *Data/SchoolContext.cs*, добавив в него следующий код:
+Обновите файл *Data/SchoolContext.cs* , добавив в него следующий код:
 
 [!code-csharp[](intro/samples/cu30/Data/SchoolContext.cs?highlight=15-18,25-31)]
 
@@ -537,7 +538,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 ## <a name="seed-the-database"></a>Заполнение базы данных
 
-Обновите код в файле *Data/DbInitializer.cs*:
+Обновите код в файле *Data/DbInitializer.cs* :
 
 [!code-csharp[](intro/samples/cu30/Data/DbInitializer.cs)]
 
@@ -610,7 +611,7 @@ For more information, see http://go.microsoft.com/fwlink/?LinkId=723262.
   Drop-Database
   ```
 
-* Удалите папку *Migrations*, а затем выполните следующую команду:
+* Удалите папку *Migrations* , а затем выполните следующую команду:
 
   ```powershell
   Add-Migration InitialCreate
@@ -627,7 +628,7 @@ For more information, see http://go.microsoft.com/fwlink/?LinkId=723262.
   dotnet ef database drop --force
   ```
 
-* Удалите папку *Migrations*, а затем выполните следующую команду:
+* Удалите папку *Migrations* , а затем выполните следующую команду:
 
   ```dotnetcli
   dotnet ef migrations add InitialCreate
@@ -647,7 +648,7 @@ For more information, see http://go.microsoft.com/fwlink/?LinkId=723262.
 
   ![Таблицы в SSOX](complex-data-model/_static/ssox-tables.png)
 
-* Изучите таблицу **CourseAssignment**:
+* Изучите таблицу **CourseAssignment** :
 
   * Щелкните правой кнопкой мыши таблицу **CourseAssignment** и выберите пункт **Просмотреть данные**.
   * Убедитесь, что таблица **CourseAssignment** содержит данные.
@@ -756,7 +757,7 @@ https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intr
 
 Страницы учащихся сейчас отображают время и дату зачисления. Как правило, поля даты отображают только дату без времени.
 
-Обновите *Models/Student.cs*, используя следующий выделенный код:
+Обновите *Models/Student.cs* , используя следующий выделенный код:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
@@ -824,7 +825,7 @@ https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intr
 
 Модель `Student` использует `FirstMidName` для поля имени, так как это поле также может содержать отчество.
 
-Обновите файл *Student.cs*, используя следующий выделенный код:
+Обновите файл *Student.cs* , используя следующий выделенный код:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_Column&highlight=4,14)]
 
@@ -881,7 +882,7 @@ Please review the migration for accuracy.
 
 ![Сущность Student](complex-data-model/_static/student-entity.png)
 
-Обновите *Models/Student.cs*, используя следующий код:
+Обновите *Models/Student.cs* , используя следующий код:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
 
@@ -1001,7 +1002,7 @@ public Instructor Instructor { get; set; }
 
 ![Сущность Course](complex-data-model/_static/course-entity.png)
 
-Обновите *Models/Course.cs*, используя следующий код:
+Обновите *Models/Course.cs* , используя следующий код:
 
 [!code-csharp[](intro/samples/cu21/Models/Course.cs?name=snippet_Final&highlight=2,10,13,16,19,21,23)]
 
@@ -1119,7 +1120,7 @@ public ICollection<Course> Courses { get; set; }
 
 ![Сущность Enrollment](complex-data-model/_static/enrollment-entity.png)
 
-Обновите *Models/Enrollment.cs*, используя следующий код:
+Обновите *Models/Enrollment.cs* , используя следующий код:
 
 [!code-csharp[](intro/samples/cu21/Models/Enrollment.cs?name=snippet_Final&highlight=1-2,16)]
 
@@ -1195,7 +1196,7 @@ public Student Student { get; set; }
 
 ## <a name="update-the-db-context"></a>Изменение контекста базы данных
 
-Добавьте выделенный ниже код в файл *Data/SchoolContext.cs*:
+Добавьте выделенный ниже код в файл *Data/SchoolContext.cs* :
 
 [!code-csharp[](intro/samples/cu21/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
 
@@ -1245,7 +1246,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 ## <a name="seed-the-db-with-test-data"></a>Заполнение базы данных тестовыми данными
 
-Обновите код в файле *Data/DbInitializer.cs*:
+Обновите код в файле *Data/DbInitializer.cs* :
 
 [!code-csharp[](intro/samples/cu21/Data/DbInitializer.cs?name=snippet_Final)]
 
@@ -1330,7 +1331,7 @@ dotnet ef database update
 
 ![Таблицы в SSOX](complex-data-model/_static/ssox-tables.png)
 
-Изучите таблицу **CourseAssignment**:
+Изучите таблицу **CourseAssignment** :
 
 * Щелкните правой кнопкой мыши таблицу **CourseAssignment** и выберите пункт **Просмотреть данные**.
 * Убедитесь, что таблица **CourseAssignment** содержит данные.

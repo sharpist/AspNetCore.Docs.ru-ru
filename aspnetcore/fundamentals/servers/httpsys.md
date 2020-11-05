@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: 8ed9ec3447205107194ffa5c329c0e5ae0fc5553
-ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
+ms.openlocfilehash: ca8aa126a44ea417017f0be0372e818a95ad8413
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/02/2020
-ms.locfileid: "91653975"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053752"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Реализация веб-сервера HTTP.sys в ASP.NET Core
 
@@ -179,7 +180,7 @@ public IActionResult MyActionMethod()
 
 1. Предварительно зарегистрируйте префиксы URL-адресов на сервере.
 
-   Встроенным средством для настройки сервера HTTP.sys является *netsh.exe*. С помощью*netsh.exe* можно зарезервировать префиксы URL-адресов и назначить сертификаты X.509. Для использования этого средства требуются права администратора.
+   Встроенным средством для настройки сервера HTTP.sys является *netsh.exe*. С помощью *netsh.exe* можно зарезервировать префиксы URL-адресов и назначить сертификаты X.509. Для использования этого средства требуются права администратора.
 
    Используйте средство *netsh.exe* для регистрации URL-адреса приложения.
 
@@ -253,7 +254,7 @@ public IActionResult MyActionMethod()
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Дополнительные сведения см. в справочной документации по *netsh.exe*:
+   Дополнительные сведения см. в справочной документации по *netsh.exe* :
 
    * [Команды netsh для протокола HTTP](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [Строки UrlPrefix](/windows/win32/http/urlprefix-strings)
@@ -447,7 +448,7 @@ public IActionResult MyActionMethod()
 
 1. Предварительно зарегистрируйте префиксы URL-адресов на сервере.
 
-   Встроенным средством для настройки сервера HTTP.sys является *netsh.exe*. С помощью*netsh.exe* можно зарезервировать префиксы URL-адресов и назначить сертификаты X.509. Для использования этого средства требуются права администратора.
+   Встроенным средством для настройки сервера HTTP.sys является *netsh.exe*. С помощью *netsh.exe* можно зарезервировать префиксы URL-адресов и назначить сертификаты X.509. Для использования этого средства требуются права администратора.
 
    Используйте средство *netsh.exe* для регистрации URL-адреса приложения.
 
@@ -521,7 +522,7 @@ public IActionResult MyActionMethod()
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Дополнительные сведения см. в справочной документации по *netsh.exe*:
+   Дополнительные сведения см. в справочной документации по *netsh.exe* :
 
    * [Команды netsh для протокола HTTP](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [Строки UrlPrefix](/windows/win32/http/urlprefix-strings)
@@ -700,7 +701,7 @@ public IActionResult MyActionMethod()
 
 1. Предварительно зарегистрируйте префиксы URL-адресов на сервере.
 
-   Встроенным средством для настройки сервера HTTP.sys является *netsh.exe*. С помощью*netsh.exe* можно зарезервировать префиксы URL-адресов и назначить сертификаты X.509. Для использования этого средства требуются права администратора.
+   Встроенным средством для настройки сервера HTTP.sys является *netsh.exe*. С помощью *netsh.exe* можно зарезервировать префиксы URL-адресов и назначить сертификаты X.509. Для использования этого средства требуются права администратора.
 
    Используйте средство *netsh.exe* для регистрации URL-адреса приложения.
 
@@ -774,7 +775,7 @@ public IActionResult MyActionMethod()
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Дополнительные сведения см. в справочной документации по *netsh.exe*:
+   Дополнительные сведения см. в справочной документации по *netsh.exe* :
 
    * [Команды netsh для протокола HTTP](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [Строки UrlPrefix](/windows/win32/http/urlprefix-strings)
@@ -953,7 +954,7 @@ public IActionResult MyActionMethod()
 
 1. Предварительно зарегистрируйте префиксы URL-адресов на сервере.
 
-   Встроенным средством для настройки сервера HTTP.sys является *netsh.exe*. С помощью*netsh.exe* можно зарезервировать префиксы URL-адресов и назначить сертификаты X.509. Для использования этого средства требуются права администратора.
+   Встроенным средством для настройки сервера HTTP.sys является *netsh.exe*. С помощью *netsh.exe* можно зарезервировать префиксы URL-адресов и назначить сертификаты X.509. Для использования этого средства требуются права администратора.
 
    Используйте средство *netsh.exe* для регистрации URL-адреса приложения.
 
@@ -1027,7 +1028,7 @@ public IActionResult MyActionMethod()
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Дополнительные сведения см. в справочной документации по *netsh.exe*:
+   Дополнительные сведения см. в справочной документации по *netsh.exe* :
 
    * [Команды netsh для протокола HTTP](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [Строки UrlPrefix](/windows/win32/http/urlprefix-strings)

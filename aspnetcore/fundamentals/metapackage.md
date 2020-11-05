@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/25/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/metapackage
-ms.openlocfilehash: 133eee71fcd85a95ac53684c3c6e475a54592967
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b739398c2a440f21c8bdfdc1f4d8e25412358a6a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634570"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060694"
 ---
 # <a name="microsoftaspnetcoreall-metapackage-for-aspnet-core-20"></a>Метапакет Microsoft.AspNetCore.All для ASP.NET Core 2.0
 
@@ -38,7 +39,7 @@ ms.locfileid: "88634570"
 
 Для этой функции нужен ASP.NET Core 2.x, нацеленный на .NET Core 2.x.
 
-[Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) является метапакетом, который ссылается на общую платформу. *Общая платформа* — это набор сборок (*DLL*-файлов), которые не находятся в папках приложения. Чтобы запустить приложение, необходимо установить на компьютере общую платформу. Дополнительную информацию см. в этой публикации об [общей платформе](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
+[Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) является метапакетом, который ссылается на общую платформу. *Общая платформа*  — это набор сборок ( *DLL* -файлов), которые не находятся в папках приложения. Чтобы запустить приложение, необходимо установить на компьютере общую платформу. Дополнительную информацию см. в этой публикации об [общей платформе](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
 Общая платформа, на которую ссылается `Microsoft.AspNetCore.All`, включает в себя следующее:
 

@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/libman/libman-cli
-ms.openlocfilehash: 8b883269a82a1a6e55bf04bd40bfcbab28ae1fb3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: dad9136439b61ad98523061d181fe44d3bf1273d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625704"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054753"
 ---
 # <a name="use-the-libman-cli-with-aspnet-core"></a>Использование интерфейса командной строки LibMan с ASP.NET Core
 
@@ -103,7 +104,7 @@ Use "libman [command] --help" for more information about a command.
 
 ## <a name="initialize-libman-in-the-project"></a>Инициализация LibMan в проекте
 
-Команда `libman init` создает файл *libman.json*, если он еще не существует. Файл создается с содержимым шаблона по умолчанию.
+Команда `libman init` создает файл *libman.json* , если он еще не существует. Файл создается с содержимым шаблона по умолчанию.
 
 ### <a name="synopsis"></a>Краткий обзор
 
@@ -196,7 +197,7 @@ libman install [-h|--help]
 
 ### <a name="examples"></a>Примеры
 
-Рассмотрим следующий файл *libman.json*:
+Рассмотрим следующий файл *libman.json* :
 
 ```json
 {
@@ -293,7 +294,7 @@ libman restore [-h|--help]
 
 ### <a name="examples"></a>Примеры
 
-Чтобы восстановить файлы библиотеки, определенные в файле *libman.json*, выполните следующую команду:
+Чтобы восстановить файлы библиотеки, определенные в файле *libman.json* , выполните следующую команду:
 
 ```console
 libman restore
@@ -328,7 +329,7 @@ libman clean
 
 Команда `libman uninstall` делает следующее:
 
-* удаляет все файлы, связанные с указанной библиотекой, из назначения в файле *libman.json*;
+* удаляет все файлы, связанные с указанной библиотекой, из назначения в файле *libman.json* ;
 * удаляет связанную конфигурацию библиотеки из файла *libman.json*.
 
 В следующих случаях возникает ошибка:
@@ -359,7 +360,7 @@ libman uninstall [-h|--help]
 
 ### <a name="examples"></a>Примеры
 
-Рассмотрим следующий файл *libman.json*:
+Рассмотрим следующий файл *libman.json* :
 
 [!code-json[](samples/LibManSample/libman.json)]
 

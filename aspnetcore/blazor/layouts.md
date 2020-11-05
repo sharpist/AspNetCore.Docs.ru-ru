@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/23/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: f41b41194f597505d775c95f1e65960c2f827e3b
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e61c76b5d53ad7646961632d00b047ecd2d9e477
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628018"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055611"
 ---
 # <a name="aspnet-core-no-locblazor-layouts"></a>Макеты Blazor в ASP.NET Core
 
@@ -33,7 +34,7 @@ ms.locfileid: "88628018"
 
 Технически макет представляет собой просто другой компонент. Макет определяется в шаблоне Razor или в коде C# и может использовать [привязки данных](xref:blazor/components/data-binding), [внедрения зависимостей](xref:blazor/fundamentals/dependency-injection) и другие сценарии компонентов.
 
-Чтобы превратить *компонент* в *макет*, компонент:
+Чтобы превратить *компонент* в *макет* , компонент:
 
 * Наследует от <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, который определяет свойство <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> для отображаемого содержимого внутри макета.
 * Использует синтаксис `@Body` Razor для указания расположения в разметке макета, в которой отображается содержимое.
@@ -70,7 +71,7 @@ ms.locfileid: "88628018"
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterList.razor?highlight=1)]
 
-Указание макета непосредственно в компоненте переопределяет *макет по умолчанию*, заданный в маршрутизаторе, или директиву `@layout`, импортированную из файла `_Imports.razor`.
+Указание макета непосредственно в компоненте переопределяет *макет по умолчанию* , заданный в маршрутизаторе, или директиву `@layout`, импортированную из файла `_Imports.razor`.
 
 ## <a name="centralized-layout-selection"></a>Централизованный выбор макетов
 

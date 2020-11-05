@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/transform-webconfig
-ms.openlocfilehash: a2f26f32d2a282189b391aa9bb8c4637723dc60a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 259b5bf9bf2a6de987494b5771897355e3ea67db
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634635"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057318"
 ---
 # <a name="transform-webconfig"></a>Преобразование web.config
 
@@ -36,7 +37,7 @@ ms.locfileid: "88634635"
 * [Среда](#environment)
 * [Пользовательский](#custom)
 
-Такие преобразования выполняются в любом из следующих сценариев создания *web.config*:
+Такие преобразования выполняются в любом из следующих сценариев создания *web.config* :
 
 * Автоматическое создание в пакете SDK `Microsoft.NET.Sdk.Web`.
 * Размещение разработчиком в [корневом каталоге содержимого](xref:fundamentals/index#content-root) приложения.
@@ -109,7 +110,7 @@ dotnet publish --configuration Release /p:PublishProfile=FolderProfile
 
 Свойство MSBuild для имени профиля имеет значение `$(PublishProfile)`.
 
-Если профиль не передан, используется имя профиля по умолчанию **FileSystem**, а следовательно применяется файл *web.FileSystem.config*, если он присутствует в корневом каталоге содержимого приложения.
+Если профиль не передан, используется имя профиля по умолчанию **FileSystem** , а следовательно применяется файл *web.FileSystem.config* , если он присутствует в корневом каталоге содержимого приложения.
 
 ## <a name="environment"></a>Среда
 
@@ -147,7 +148,7 @@ dotnet publish --configuration Release /p:EnvironmentName=Production
 
 Если вы используете профиль публикации для публикации из Visual Studio, ознакомьтесь со статьей <xref:host-and-deploy/visual-studio-publish-profiles#set-the-environment>.
 
-Переменная среды `ASPNETCORE_ENVIRONMENT` автоматически добавляется в файл *web.config*, если указано имя среды.
+Переменная среды `ASPNETCORE_ENVIRONMENT` автоматически добавляется в файл *web.config* , если указано имя среды.
 
 ## <a name="custom"></a>Другой
 
@@ -185,7 +186,7 @@ dotnet publish --configuration Release /p:CustomTransformFileName=custom.transfo
 
 ## <a name="prevent-webconfig-transformation"></a>Предотвращение преобразования web.config
 
-Чтобы избежать преобразования файла *web.config*, настройте свойство MSBuild `$(IsWebConfigTransformDisabled)` следующим образом.
+Чтобы избежать преобразования файла *web.config* , настройте свойство MSBuild `$(IsWebConfigTransformDisabled)` следующим образом.
 
 ```dotnetcli
 dotnet publish /p:IsWebConfigTransformDisabled=true

@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/get-started-with-nswag
-ms.openlocfilehash: 6dc1fe85298cae307f554cfc06c4129fabbe8ab4
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 78d58d4d544c33862cf502ce63e83560e8009c65
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633595"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060577"
 ---
 # <a name="get-started-with-nswag-and-aspnet-core"></a>Начало работы с NSwag и ASP.NET Core
 
@@ -209,7 +210,7 @@ Swagger предоставляет параметры для документи�
 ::: moniker range=">= aspnetcore-2.0"
 
 * В **обозревателе решений** щелкните проект правой кнопкой мыши и выберите команду **Изменить <имя_проекта>.csproj**.
-* Вручную добавьте выделенные строки в файл *.csproj*:
+* Вручную добавьте выделенные строки в файл *.csproj* :
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
 
@@ -227,7 +228,7 @@ Swagger предоставляет параметры для документи�
 ::: moniker range=">= aspnetcore-2.0"
 
 * В *панели решения* нажмите **Управление** и выберите имя проекта. Перейдите в раздел **Сервис** > **Изменить файл**.
-* Вручную добавьте выделенные строки в файл *.csproj*:
+* Вручную добавьте выделенные строки в файл *.csproj* :
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
 
@@ -235,14 +236,14 @@ Swagger предоставляет параметры для документи�
 
 ::: moniker range="<= aspnetcore-1.1"
 
-* Откройте диалоговое окно **Параметры проекта** > **Сборка** > **Компилятор**.
+* Откройте диалоговое окно **Параметры проекта**  > **Сборка**  > **Компилятор**.
 * Установите флажок **Сформировать XML-документацию** в разделе **Общие параметры**
 
 ::: moniker-end
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli)
 
-Вручную добавьте выделенные строки в файл *.csproj*:
+Вручную добавьте выделенные строки в файл *.csproj* :
 
 ::: moniker range=">= aspnetcore-2.0"
 

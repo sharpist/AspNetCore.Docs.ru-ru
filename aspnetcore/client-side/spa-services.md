@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: H1Hack27Feb2017, devx-track-js
 ms.date: 09/06/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/spa-services
-ms.openlocfilehash: 33ae16c033142aa1c0f4cea53ca746e8a6aaf052
-ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
+ms.openlocfilehash: 1b9f5b4b4e066cdd3dd5fbfa666c7a087949979f
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92690662"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054649"
 ---
 # <a name="use-javascript-services-to-create-single-page-applications-in-aspnet-core"></a>Создание одностраничных приложений в ASP.NET Core с помощью служб JavaScript
 
@@ -84,7 +85,7 @@ ms.locfileid: "92690662"
 
 * [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
 
-  * В ОС Windows с Visual Studio 2017 для установки пакета SDK нужно выбрать рабочую нагрузку **Кроссплатформенная разработка .NET Core** .
+  * В ОС Windows с Visual Studio 2017 для установки пакета SDK нужно выбрать рабочую нагрузку **Кроссплатформенная разработка .NET Core**.
 
 * Пакет NuGet [Microsoft.AspNetCore.SpaServices](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/)
 
@@ -132,7 +133,7 @@ npm i -S aspnet-prerendering
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-21,38-52,79-)]
 
-Имена свойств, передаваемые во вспомогательных функциях тегов, представлены в нотации **РегистрПаскаля** . В отличие от этого, в JavaScript те же самые имена свойств представлены в **верблюжьем регистре** . Это различие обуславливается конфигурацией сериализации JSON по умолчанию.
+Имена свойств, передаваемые во вспомогательных функциях тегов, представлены в нотации **РегистрПаскаля**. В отличие от этого, в JavaScript те же самые имена свойств представлены в **верблюжьем регистре**. Это различие обуславливается конфигурацией сериализации JSON по умолчанию.
 
 Если продолжить предыдущий пример кода, данные можно передать с сервера в представление путем расконсервации свойства `globals`, предоставляемого функции `resolve`:
 
@@ -289,13 +290,13 @@ dotnet run
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/app/components/counter/counter.component.spec.ts?range=15-28)]
 
-Откройте командную строку в каталоге *ClientApp* . Выполните следующую команду:
+Откройте командную строку в каталоге *ClientApp*. Выполните следующую команду:
 
 ```console
 npm test
 ```
 
-Скрипт запускает средство Karma, которое считывает параметры, определенные в файле *karma.conf.js* . Помимо прочих параметров, в файле *karma.conf.js* определены тестовые файлы, которые должны выполняться для массива `files`:
+Скрипт запускает средство Karma, которое считывает параметры, определенные в файле *karma.conf.js*. Помимо прочих параметров, в файле *karma.conf.js* определены тестовые файлы, которые должны выполняться для массива `files`:
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/test/karma.conf.js?range=4-5,8-11)]
 

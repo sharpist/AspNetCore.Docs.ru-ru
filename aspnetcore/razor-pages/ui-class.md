@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 01/25/2020
 ms.custom: mvc, seodec18
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/ui-class
-ms.openlocfilehash: 95399246df954549cb76139a66d6998fd05a051a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e87e74533fe6900d8e0a73708ad24b765a968493
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634830"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056807"
 ---
 # <a name="create-reusable-ui-using-the-no-locrazor-class-library-project-in-aspnet-core"></a>Создание многоразового пользовательского интерфейса с помощью проекта библиотеки классов Razor в ASP.NET Core
 
@@ -30,7 +31,7 @@ ms.locfileid: "88634830"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-В библиотеку классов Razor (RCL) можно встроить представления Razor, страницы, контроллеры, модели страниц, [компоненты Razor](xref:blazor/components/class-libraries), [компоненты представления](xref:mvc/views/view-components). RCL можно упаковать и использовать повторно. Приложения могут включать RCL и переопределять содержащиеся в нем представления и страницы. При обнаружении представления, частичного представления или страницы Razor и в веб-приложении, и в RCL приоритет имеет разметка Razor (файл *.cshtml*) в веб-приложении.
+В библиотеку классов Razor (RCL) можно встроить представления Razor, страницы, контроллеры, модели страниц, [компоненты Razor](xref:blazor/components/class-libraries), [компоненты представления](xref:mvc/views/view-components). RCL можно упаковать и использовать повторно. Приложения могут включать RCL и переопределять содержащиеся в нем представления и страницы. При обнаружении представления, частичного представления или страницы Razor и в веб-приложении, и в RCL приоритет имеет разметка Razor (файл *.cshtml* ) в веб-приложении.
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
@@ -72,9 +73,9 @@ dotnet new razorclasslib -o RazorUIClassLib
 
 ## <a name="override-views-partial-views-and-pages"></a>Переопределение представлений, частичных представлений и страниц
 
-При обнаружении представления, частичного представления или страницы Razor и в веб-приложении, и в RCL приоритет имеет разметка Razor (файл *.cshtml*) в веб-приложении. Например, если вы добавите *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* в WebApp1, Page1 в WebApp1 будет иметь приоритет над Page1 в RCL.
+При обнаружении представления, частичного представления или страницы Razor и в веб-приложении, и в RCL приоритет имеет разметка Razor (файл *.cshtml* ) в веб-приложении. Например, если вы добавите *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* в WebApp1, Page1 в WebApp1 будет иметь приоритет над Page1 в RCL.
 
-В примере загрузки переименуйте *WebApp1/Areas/MyFeature2* в *WebApp1/Areas/MyFeature*, чтобы протестировать приоритет.
+В примере загрузки переименуйте *WebApp1/Areas/MyFeature2* в *WebApp1/Areas/MyFeature* , чтобы протестировать приоритет.
 
 Скопируйте частичное представление *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* в *WebApp1/Areas/MyFeature/Pages/Shared/_Message.cshtml*. Обновите разметку, чтобы указать новое расположение. Скомпилируйте и запустите приложение, чтобы убедиться, что используется версия частичного представления из приложения.
 
@@ -121,7 +122,7 @@ dotnet new razorclasslib -o RazorUIClassLib
 
 Чтобы включить файлы TypeScript в библиотеку RCL, выполните указанные ниже действия.
 
-1. Поместите файлы TypeScript (*TS*) в папку, отличную от *wwwroot*. Например, их можно поместить в папку *Client*.
+1. Поместите файлы TypeScript ( *TS* ) в папку, отличную от *wwwroot*. Например, их можно поместить в папку *Client*.
 
 1. Укажите папку *wwwroot* в качестве выходного пути сборки TypeScript. Задайте свойство `TypescriptOutDir` в группе `PropertyGroup` в файле проекта:
 
@@ -155,7 +156,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
-Когда приложение запускается из выходного пути сборки (`dotnet run`), в среде разработки статические веб-ресурсы включены по умолчанию. Для поддержки ресурсов в других средах при запуске из выходного пути сборки вызовите метод `UseStaticWebAssets` построителя узла в файле *Program.cs*:
+Когда приложение запускается из выходного пути сборки (`dotnet run`), в среде разработки статические веб-ресурсы включены по умолчанию. Для поддержки ресурсов в других средах при запуске из выходного пути сборки вызовите метод `UseStaticWebAssets` построителя узла в файле *Program.cs* :
 
 ```csharp
 using Microsoft.AspNetCore.Hosting;
@@ -197,7 +198,7 @@ public class Program
 
 ::: moniker range="< aspnetcore-3.0"
 
-В библиотеку классов Razor (RCL) можно встроить представления Razor, страницы, контроллеры, модели страниц, [компоненты Razor](xref:blazor/components/class-libraries), [компоненты представления](xref:mvc/views/view-components). RCL можно упаковать и использовать повторно. Приложения могут включать RCL и переопределять содержащиеся в нем представления и страницы. При обнаружении представления, частичного представления или страницы Razor и в веб-приложении, и в RCL приоритет имеет разметка Razor (файл *.cshtml*) в веб-приложении.
+В библиотеку классов Razor (RCL) можно встроить представления Razor, страницы, контроллеры, модели страниц, [компоненты Razor](xref:blazor/components/class-libraries), [компоненты представления](xref:mvc/views/view-components). RCL можно упаковать и использовать повторно. Приложения могут включать RCL и переопределять содержащиеся в нем представления и страницы. При обнаружении представления, частичного представления или страницы Razor и в веб-приложении, и в RCL приоритет имеет разметка Razor (файл *.cshtml* ) в веб-приложении.
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([как скачивать](xref:index#how-to-download-a-sample))
 
@@ -248,7 +249,7 @@ dotnet new razorclasslib -o RazorUIClassLib
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Откройте *SLN*-файл в Visual Studio. Запустите приложение.
+Откройте *SLN* -файл в Visual Studio. Запустите приложение.
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli)
 
@@ -335,16 +336,16 @@ dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
 
 Создание веб-приложения Razor Pages:
 
-* В **обозревателе решений** щелкните решение правой кнопкой мыши и выберите **Добавить** > **Новый проект**.
+* В **обозревателе решений** щелкните решение правой кнопкой мыши и выберите **Добавить**  > **Новый проект**.
 * Выберите **Новое веб-приложение ASP.NET Core**.
 * Назовите приложение **WebApp1**.
 * Убедитесь, что выбрано **ASP.NET Core 2.1** или более поздней версии.
-* Выберите **Веб-приложение** > **ОК**.
+* Выберите **Веб-приложение**  > **ОК**.
 
 * В **обозревателе решений** щелкните правой кнопкой мыши **WebApp1** и выберите **Назначить запускаемым проектом**.
-* В **обозревателе решений** щелкните правой кнопкой мыши **WebApp1** и выберите **Зависимости сборки** > **Зависимости проекта**.
+* В **обозревателе решений** щелкните правой кнопкой мыши **WebApp1** и выберите **Зависимости сборки**  > **Зависимости проекта**.
 * Отметьте **RazorUIClassLib** как зависимость от **WebApp1**.
-* В **обозревателе решений** щелкните правой кнопкой мыши **WebApp1** и выберите **Добавить** > **Ссылка**.
+* В **обозревателе решений** щелкните правой кнопкой мыши **WebApp1** и выберите **Добавить**  > **Ссылка**.
 * В диалоговом окне **Диспетчер ссылок** нажмите **RazorUIClassLib** > **ОК**.
 
 Запустите приложение.
@@ -376,9 +377,9 @@ dotnet run
 
 ## <a name="override-views-partial-views-and-pages"></a>Переопределение представлений, частичных представлений и страниц
 
-При обнаружении представления, частичного представления или страницы Razor и в веб-приложении, и в RCL приоритет имеет разметка Razor (файл *.cshtml*) в веб-приложении. Например, если вы добавите *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* в WebApp1, Page1 в WebApp1 будет иметь приоритет над Page1 в RCL.
+При обнаружении представления, частичного представления или страницы Razor и в веб-приложении, и в RCL приоритет имеет разметка Razor (файл *.cshtml* ) в веб-приложении. Например, если вы добавите *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* в WebApp1, Page1 в WebApp1 будет иметь приоритет над Page1 в RCL.
 
-В примере загрузки переименуйте *WebApp1/Areas/MyFeature2* в *WebApp1/Areas/MyFeature*, чтобы протестировать приоритет.
+В примере загрузки переименуйте *WebApp1/Areas/MyFeature2* в *WebApp1/Areas/MyFeature* , чтобы протестировать приоритет.
 
 Скопируйте частичное представление *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* в *WebApp1/Areas/MyFeature/Pages/Shared/_Message.cshtml*. Обновите разметку, чтобы указать новое расположение. Скомпилируйте и запустите приложение, чтобы убедиться, что используется версия частичного представления из приложения.
 

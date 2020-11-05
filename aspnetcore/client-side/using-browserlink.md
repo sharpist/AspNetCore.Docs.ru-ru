@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 01/09/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/using-browserlink
-ms.openlocfilehash: ab4ca78fa50768ff66536608a7cf03e73aecf73a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 80f05acab55af973faf08b5db79ea4cbaf896b14
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628824"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054493"
 ---
 # <a name="browser-link-in-aspnet-core"></a>Привязывание к браузеру в ASP.NET Core
 
@@ -34,7 +35,7 @@ ms.locfileid: "88628824"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Добавьте пакет [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) в проект. Для проектов ASP.NET Core Razor Pages или MVC также включите компиляцию в среде выполнения Razor (*CSHTML*), как описано в <xref:mvc/views/view-compilation>. Изменения синтаксиса Razor применяются только при включенной компиляции среды выполнения.
+Добавьте пакет [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) в проект. Для проектов ASP.NET Core Razor Pages или MVC также включите компиляцию в среде выполнения Razor ( *CSHTML* ), как описано в <xref:mvc/views/view-compilation>. Изменения синтаксиса Razor применяются только при включенной компиляции среды выполнения.
 
 ::: moniker-end
 
@@ -46,7 +47,7 @@ ms.locfileid: "88628824"
 
 ::: moniker range="= aspnetcore-2.0"
 
-Шаблоны ASP.NET Core 2.0 **Веб-приложение**, **Пустой** и **Веб-API** используют [метапакет Microsoft.AspNetCore.All](xref:fundamentals/metapackage), который содержит ссылку на пакет для [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Поэтому использование метапакета `Microsoft.AspNetCore.All` не требует дальнейших действий, чтобы сделать привязывание к браузеру доступным для использования.
+Шаблоны ASP.NET Core 2.0 **Веб-приложение** , **Пустой** и **Веб-API** используют [метапакет Microsoft.AspNetCore.All](xref:fundamentals/metapackage), который содержит ссылку на пакет для [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Поэтому использование метапакета `Microsoft.AspNetCore.All` не требует дальнейших действий, чтобы сделать привязывание к браузеру доступным для использования.
 
 ::: moniker-end
 
@@ -78,7 +79,7 @@ if (env.IsDevelopment())
 
 ## <a name="how-to-use-browser-link"></a>Использование привязывания к браузеру
 
-При открытии проекта ASP.NET Core в Visual Studio элемент управления панели инструментов "Привязывание к браузеру" отображается рядом с элементом управления **Целевой объект отладки**:
+При открытии проекта ASP.NET Core в Visual Studio элемент управления панели инструментов "Привязывание к браузеру" отображается рядом с элементом управления **Целевой объект отладки** :
 
 ![Раскрывающееся меню "Привязывание к браузеру"](using-browserlink/_static/browserLink-dropdown-menu.png)
 
@@ -91,11 +92,11 @@ if (env.IsDevelopment())
 
 ## <a name="refresh-the-web-app-in-several-browsers-at-once"></a>Одновременное обновление веб-приложения в нескольких браузерах
 
-Чтобы выбрать один веб-браузер для запуска при запуске проекта, используйте раскрывающееся меню в элементе управления панели инструментов **Целевой объект отладки**:
+Чтобы выбрать один веб-браузер для запуска при запуске проекта, используйте раскрывающееся меню в элементе управления панели инструментов **Целевой объект отладки** :
 
 ![Раскрывающееся меню F5](using-browserlink/_static/debug-target-dropdown-menu.png)
 
-Чтобы открыть сразу несколько браузеров, выберите **Просмотреть с помощью...** из того же раскрывающегося списка. Удерживайте клавишу <kbd>CTRL</kbd>, чтобы выбрать нужные браузеры, а затем щелкните **Обзор**:
+Чтобы открыть сразу несколько браузеров, выберите **Просмотреть с помощью...** из того же раскрывающегося списка. Удерживайте клавишу <kbd>CTRL</kbd>, чтобы выбрать нужные браузеры, а затем щелкните **Обзор** :
 
 ![Одновременное открытие нескольких браузеров](using-browserlink/_static/open-many-browsers-at-once.png)
 
@@ -119,7 +120,7 @@ if (env.IsDevelopment())
 
 ![open-browserslink-dashboard](using-browserlink/_static/open-browserlink-dashboard.png)
 
-Если ни один браузер не подключен, можно запустить сеанс без отладки, выбрав **Просмотреть в браузере**:
+Если ни один браузер не подключен, можно запустить сеанс без отладки, выбрав **Просмотреть в браузере** :
 
 ![browserlink-dashboard-no-connections](using-browserlink/_static/browserlink-dashboard-no-connections.png)
 

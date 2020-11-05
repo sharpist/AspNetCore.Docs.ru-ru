@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: 86c523c69d3ee85f56bf1a51719a0bd93cbe97fc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 991a0f29c0edc5a220dfde69bd22dc4ed758394d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633556"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060733"
 ---
 # <a name="part-8-add-validation-to-an-aspnet-core-no-locrazor-page"></a>Часть 8. Добавление проверки на страницу Razor ASP.NET Core
 
@@ -32,7 +33,7 @@ ms.locfileid: "88633556"
 
 ## <a name="validation"></a>Проверка
 
-Ключевой принцип разработки программного обеспечения называется [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) (от английского "**D**on't **R**epeat **Y**ourself" — не повторяйся). При разработке Razor Pages рекомендуется задавать любые функциональные возможности лишь один раз и затем при необходимости отражать их в рамках всего приложения. Принцип "Не повторяйся" может помочь:
+Ключевой принцип разработки программного обеспечения называется [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) (от английского " **D** on't **R** epeat **Y** ourself" — не повторяйся). При разработке Razor Pages рекомендуется задавать любые функциональные возможности лишь один раз и затем при необходимости отражать их в рамках всего приложения. Принцип "Не повторяйся" может помочь:
 
 * сократить объем кода в приложении;
 * снизить вероятность возникновения ошибки в коде и упростить его тестирование и поддержку.
@@ -106,7 +107,7 @@ ms.locfileid: "88633556"
   
 Кроме того, можно [отключить проверку на стороне клиента на сервере](xref:mvc/models/validation#disable-client-side-validation).
 
-В следующем коде демонстрируется часть страницы *Create.cshtml*, созданной ранее в рамках этого руководства. Она используется на страницах создания и редактирования для отображения исходной формы и повторного вывода формы в случае ошибки.
+В следующем коде демонстрируется часть страницы *Create.cshtml* , созданной ранее в рамках этого руководства. Она используется на страницах создания и редактирования для отображения исходной формы и повторного вывода формы в случае ошибки.
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?range=14-20)]
 

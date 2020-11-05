@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/10/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/test
-ms.openlocfilehash: 572b9a293e2fd6f51431cd1de6ada737addf5efa
-ms.sourcegitcommit: dd0e87abf2bb50ee992d9185bb256ed79d48f545
+ms.openlocfilehash: cd4aee66fd6df6cc0ce520d8ca66e0a2cf130eff
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88746537"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054870"
 ---
 # <a name="test-components-in-aspnet-core-no-locblazor"></a>Тестирование компонентов в ASP.NET Core Blazor
 

@@ -5,6 +5,7 @@ description: Часть 7 серии руководств по ASP.NET Core MVC
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/search
-ms.openlocfilehash: fcb96300c08d9f985cbfe4d3bf055036be7d2eb0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 657072803f59feb99de8b31ddb3a6433d832aa30
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629578"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059628"
 ---
 # <a name="part-7-add-search-to-an-aspnet-core-mvc-app"></a>Часть 7. Добавление поиска в приложение MVC ASP.NET Core
 
@@ -29,7 +30,7 @@ ms.locfileid: "88629578"
 
 В этом разделе вы добавите в метод действия `Index` возможности поиска, которые позволяют выполнять поиск фильмов по *жанру* или *названию*.
 
-Обновите метод `Index`, находящийся в файле *Controllers/ MoviesController.cs*, добавив следующий код:
+Обновите метод `Index`, находящийся в файле *Controllers/ MoviesController.cs* , добавив следующий код:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
 
@@ -118,7 +119,7 @@ var movies = from m in _context.Movie
 
 ## <a name="add-search-by-genre"></a>Добавление поиска по жанру
 
-Добавьте следующий класс `MovieGenreViewModel` в папку *Models*:
+Добавьте следующий класс `MovieGenreViewModel` в папку *Models* :
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieGenreViewModel.cs)]
 

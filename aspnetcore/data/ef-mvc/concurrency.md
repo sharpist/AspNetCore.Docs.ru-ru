@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/concurrency
-ms.openlocfilehash: 629baeba545142e156e1a51107b470c932dae3cb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d476c836e8d497ca1291992dda38da1fc9f59ed2
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629279"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054376"
 ---
 # <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET Core MVC с EF Core. Обработка параллелизма
 
@@ -116,7 +117,7 @@ ms.locfileid: "88629279"
 
 Атрибут `Timestamp` указывает, что этот столбец будет включен в предложение Where команд Update и Delete, отправляемых в базу данных. Этот атрибут называется `Timestamp`, так как предыдущие версии SQL Server использовали тип данных `timestamp` SQL, пока его не сменил `rowversion`. Тип .NET для `rowversion` — это массив байтов.
 
-Если вы предпочитаете использовать текучий API, можно воспользоваться методом `IsConcurrencyToken` (в *Data/SchoolContext.cs*), чтобы указать свойство отслеживания, как показано в следующем примере:
+Если вы предпочитаете использовать текучий API, можно воспользоваться методом `IsConcurrencyToken` (в *Data/SchoolContext.cs* ), чтобы указать свойство отслеживания, как показано в следующем примере:
 
 ```csharp
 modelBuilder.Entity<Department>()
@@ -195,7 +196,7 @@ _context.Entry(departmentToUpdate).Property("RowVersion").OriginalValue = rowVer
 
 ## <a name="update-edit-view"></a>Обновление представления редактирования
 
-Внесите следующие изменения в файл *Views/Departments/Edit.cshtml*:
+Внесите следующие изменения в файл *Views/Departments/Edit.cshtml* :
 
 * Добавьте скрытое поле для сохранения значения свойства `RowVersion` сразу после скрытого поля для свойства `DepartmentID`.
 
@@ -205,7 +206,7 @@ _context.Entry(departmentToUpdate).Property("RowVersion").OriginalValue = rowVer
 
 ## <a name="test-concurrency-conflicts"></a>Тестирование конфликтов параллелизма
 
-Запустите приложение и перейдите на страницу индекса кафедр. Щелкните правой кнопкой мыши гиперссылку **Edit** (Изменить) для кафедры английского языка и выберите пункт **Открыть на новой вкладке**, а затем щелкните гиперссылку **Edit** (Изменить) для этой кафедры. Теперь на обеих вкладках браузера отображаются одинаковые сведения.
+Запустите приложение и перейдите на страницу индекса кафедр. Щелкните правой кнопкой мыши гиперссылку **Edit** (Изменить) для кафедры английского языка и выберите пункт **Открыть на новой вкладке** , а затем щелкните гиперссылку **Edit** (Изменить) для этой кафедры. Теперь на обеих вкладках браузера отображаются одинаковые сведения.
 
 Измените поле на первой вкладке браузера и нажмите кнопку **Save** (Сохранить).
 
@@ -273,7 +274,7 @@ public async Task<IActionResult> Delete(Department department)
 
 * Добавляет скрытое поле для свойства `RowVersion`.
 
-Запустите приложение и перейдите на страницу индекса кафедр. Щелкните правой кнопкой мыши гиперссылку **Delete** (Удалить) для кафедры английского языка и выберите пункт **Открыть на новой вкладке**, а затем на первой вкладке щелкните гиперссылку **Edit** (Изменить) для этой кафедры.
+Запустите приложение и перейдите на страницу индекса кафедр. Щелкните правой кнопкой мыши гиперссылку **Delete** (Удалить) для кафедры английского языка и выберите пункт **Открыть на новой вкладке** , а затем на первой вкладке щелкните гиперссылку **Edit** (Изменить) для этой кафедры.
 
 В первом окне измените одно из значений и нажмите кнопку **Save** (Сохранить):
 
@@ -289,11 +290,11 @@ public async Task<IActionResult> Delete(Department department)
 
 При необходимости вы можете очистить шаблонный код в представлениях Details и Create.
 
-Замените код в *Views/Departments/Details.cshtml*, чтобы удалить столбец RowVersion и отобразить полное имя администратора.
+Замените код в *Views/Departments/Details.cshtml* , чтобы удалить столбец RowVersion и отобразить полное имя администратора.
 
 [!code-cshtml[](intro/samples/cu/Views/Departments/Details.cshtml?highlight=35)]
 
-Замените код в *Views/Departments/Create.cshtml*, чтобы добавить параметр "Select" (Выбрать) в раскрывающийся список.
+Замените код в *Views/Departments/Create.cshtml* , чтобы добавить параметр "Select" (Выбрать) в раскрывающийся список.
 
 [!code-cshtml[](intro/samples/cu/Views/Departments/Create.cshtml?highlight=32-34)]
 

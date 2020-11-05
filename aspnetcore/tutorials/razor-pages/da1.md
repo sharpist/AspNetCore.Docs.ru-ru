@@ -5,6 +5,7 @@ description: Часть 5 серии руководств по Razor Pages.
 ms.author: riande
 ms.date: 12/20/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/da1
-ms.openlocfilehash: 04479e5c3a0b1e9badbb4e58043cf059beefb4ab
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 7d25dae67c928fa659654ce4ab34cfdad08b5300
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632802"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060070"
 ---
 # <a name="part-5-update-the-generated-pages-in-an-aspnet-core-app"></a>Часть 5. Изменение созданных страниц в приложении ASP.NET Core
 
@@ -43,11 +44,11 @@ ms.locfileid: "88632802"
 
 Пространство имен [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) будет рассмотрено в следующем руководстве. Атрибут [Display](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.metadata.displaymetadata) определяет отображаемое имя поля (в этом случае "Release Date" вместо "ReleaseDate"). Атрибут [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) определяет тип данных (Date), поэтому сведения о времени, хранящиеся в поле, не отображаются.
 
-Перейдите к Pages/Movies и наведите указатель мыши на ссылку **Edit**, чтобы увидеть конечный URL-адрес.
+Перейдите к Pages/Movies и наведите указатель мыши на ссылку **Edit** , чтобы увидеть конечный URL-адрес.
 
 ![Окно браузера с указателем, наведенным на ссылку Edit (Изменить), и URL-адресом ссылки http://localhost:1234/Movies/Edit/5](~/tutorials/razor-pages/da1/edit7.png)
 
-Ссылки **Edit**, **Details** и **Delete** создаются [вспомогательной функцией тегов привязки](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) в файле *Pages/Movies/Index.cshtml*.
+Ссылки **Edit** , **Details** и **Delete** создаются [вспомогательной функцией тегов привязки](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) в файле *Pages/Movies/Index.cshtml*.
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
@@ -86,7 +87,7 @@ ms.locfileid: "88632802"
 Чтобы проверить поведение `@page "{id:int?}"`:
 
 * Задайте директиву страницы *Pages/Movies/Details.cshtml* как `@page "{id:int?}"`.
-* Установите точку останова `public async Task<IActionResult> OnGetAsync(int? id)` (в *Pages/Movies/Details.cshtml.cs*).
+* Установите точку останова `public async Task<IActionResult> OnGetAsync(int? id)` (в *Pages/Movies/Details.cshtml.cs* ).
 * Перейдите к `https://localhost:5001/Movies/Details/`.
 
 Из-за директивы `@page "{id:int}"` точка останова не достигается. Механизм маршрутизации возвращает ошибку HTTP 404. При использовании `@page "{id:int?}"` метод `OnGetAsync` возвращает `NotFound` (HTTP 404).
@@ -110,7 +111,7 @@ ms.locfileid: "88632802"
 
 ### <a name="posting-and-binding-review"></a>Проверка публикации и привязки
 
-Изучите файл *Pages/Movies/Edit.cshtml.cs*:
+Изучите файл *Pages/Movies/Edit.cshtml.cs* :
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/SnapShots/Edit.cshtml.cs?name=snippet2)]
 
@@ -158,11 +159,11 @@ ms.locfileid: "88632802"
 
 Пространство имен [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) будет рассмотрено в следующем руководстве. Атрибут [Display](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.metadata.displaymetadata) определяет отображаемое имя поля (в этом случае "Release Date" вместо "ReleaseDate"). Атрибут [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) определяет тип данных (Date), поэтому сведения о времени, хранящиеся в поле, не отображаются.
 
-Перейдите к Pages/Movies и наведите указатель мыши на ссылку **Edit**, чтобы увидеть конечный URL-адрес.
+Перейдите к Pages/Movies и наведите указатель мыши на ссылку **Edit** , чтобы увидеть конечный URL-адрес.
 
 ![Окно браузера с указателем, наведенным на ссылку Edit (Изменить), и URL-адресом ссылки http://localhost:1234/Movies/Edit/5](~/tutorials/razor-pages/da1/edit7.png)
 
-Ссылки **Edit**, **Details** и **Delete** создаются [вспомогательной функцией тегов привязки](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) в файле *Pages/Movies/Index.cshtml*.
+Ссылки **Edit** , **Details** и **Delete** создаются [вспомогательной функцией тегов привязки](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) в файле *Pages/Movies/Index.cshtml*.
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
@@ -199,7 +200,7 @@ ms.locfileid: "88632802"
 Чтобы проверить поведение `@page "{id:int?}"`:
 
 * Задайте директиву страницы *Pages/Movies/Details.cshtml* как `@page "{id:int?}"`.
-* Установите точку останова `public async Task<IActionResult> OnGetAsync(int? id)` (в *Pages/Movies/Details.cshtml.cs*).
+* Установите точку останова `public async Task<IActionResult> OnGetAsync(int? id)` (в *Pages/Movies/Details.cshtml.cs* ).
 * Перейдите к `https://localhost:5001/Movies/Details/`.
 
 Из-за директивы `@page "{id:int}"` точка останова не достигается. Механизм маршрутизации возвращает ошибку HTTP 404. При использовании `@page "{id:int?}"` метод `OnGetAsync` возвращает `NotFound` (HTTP 404).
@@ -223,7 +224,7 @@ ms.locfileid: "88632802"
 
 ### <a name="posting-and-binding-review"></a>Проверка публикации и привязки
 
-Изучите файл *Pages/Movies/Edit.cshtml.cs*:
+Изучите файл *Pages/Movies/Edit.cshtml.cs* :
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Edit21.cshtml.cs?name=snippet2)]
 

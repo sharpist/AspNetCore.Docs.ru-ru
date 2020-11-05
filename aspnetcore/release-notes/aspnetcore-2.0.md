@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-2.0
-ms.openlocfilehash: 9d8c33ef10825baa212466fe683d4c1dc582f7eb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f9fad5a63c76a3b21341a12fd40baafcdf2c9dac
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632464"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059732"
 ---
 # <a name="whats-new-in-aspnet-core-20"></a>Новые возможности ASP.NET Core 2.0
 
@@ -63,7 +64,7 @@ Razor Pages — это новая функция платформы MVC ASP.NET
 
 ## <a name="logging-update"></a>Изменения в ведении журналов
 
-В ASP.NET 2.0 Core ведение журнала по умолчанию включено в систему внедрения зависимостей. Добавление поставщиков и настройка фильтрации выполняются в файле *Program.cs*, а не в файле *Startup.cs*. А `ILoggerFactory` по умолчанию поддерживает такой способ фильтрации, который позволяет использовать один гибкий подход и для перекрестной фильтрации по поставщикам, и для фильтрации по отдельному поставщику.
+В ASP.NET 2.0 Core ведение журнала по умолчанию включено в систему внедрения зависимостей. Добавление поставщиков и настройка фильтрации выполняются в файле *Program.cs* , а не в файле *Startup.cs*. А `ILoggerFactory` по умолчанию поддерживает такой способ фильтрации, который позволяет использовать один гибкий подход и для перекрестной фильтрации по поставщикам, и для фильтрации по отдельному поставщику.
 
 Дополнительные сведения см. в статье [Введение в ведение журналов](xref:fundamentals/logging/index).
 
@@ -131,7 +132,7 @@ return File(data, "text/plain", "downloadName.txt", lastModified: DateTime.UtcNo
 
 ASP.NET Core всегда помогает в создании HTML-кода для содержимого, но в новой версии сделан еще один шаг к предотвращению атак с подделкой межсайтовых запросов (XSRF). Теперь ASP.NET Core будет выдавать маркеры защиты от подделки по умолчанию и проверять их при отправке форм и выполнении страниц без дополнительной конфигурации.
 
-Дополнительные сведения см. в разделе <xref:security/anti-request-forgery>.
+Для получения дополнительной информации см. <xref:security/anti-request-forgery>.
 
 ## <a name="automatic-precompilation"></a>Автоматическая предварительная компиляция
 

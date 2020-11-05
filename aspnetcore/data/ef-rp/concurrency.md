@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: 0f0f1a9c70a2d6725cbb68ac62850cf6aa332d36
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 573a509041bfb34faf50a227c451824db03f92ee
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90721844"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053999"
 ---
 # <a name="part-8-no-locrazor-pages-with-ef-core-in-aspnet-core---concurrency"></a>Часть 8. Razor Pages с EF Core в ASP.NET Core — параллелизм
 
@@ -245,7 +246,7 @@ modelBuilder.Entity<Department>()
 
 Средство формирования шаблонов создало столбец `RowVersion` для страницы индекса, однако это поле не будет отображаться в рабочем приложении. В этом учебнике отображается последний байт `RowVersion` для демонстрации работы параллелизма. Этот последний байт необязательно является уникальным.
 
-Обновите страницу *Pages\Departments\Index.cshtml*:
+Обновите страницу *Pages\Departments\Index.cshtml* :
 
 * Замените Index на Departments.
 * Измените код, содержащий `RowVersion`, чтобы отображался только последний байт массива байтов.
@@ -257,7 +258,7 @@ modelBuilder.Entity<Department>()
 
 ## <a name="update-the-edit-page-model"></a>Обновление модели страницы "Edit" (Редактирование)
 
-Измените *Pages\Departments\Edit.cshtml.cs*, используя следующий код:
+Измените *Pages\Departments\Edit.cshtml.cs* , используя следующий код:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_All)]
 
@@ -287,7 +288,7 @@ modelBuilder.Entity<Department>()
 
 ### <a name="update-the-edit-page"></a>Обновление страницы редактирования
 
-Измените файл *Pages/Departments/Edit.cshtml*, используя следующий код:
+Измените файл *Pages/Departments/Edit.cshtml* , используя следующий код:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
@@ -328,7 +329,7 @@ modelBuilder.Entity<Department>()
 
 ## <a name="update-the-delete-page-model"></a>Обновление модели страницы "Delete" (Удаление)
 
-Измените файл *Pages/Departments/Delete.cshtml.cs*, используя следующий код:
+Измените файл *Pages/Departments/Delete.cshtml.cs* , используя следующий код:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Delete.cshtml.cs)]
 
@@ -340,7 +341,7 @@ modelBuilder.Entity<Department>()
 
 ### <a name="update-the-delete-page"></a>Обновление страницы удаления
 
-Измените *Pages/Departments/Delete.cshtml*, используя следующий код:
+Измените *Pages/Departments/Delete.cshtml* , используя следующий код:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,42,51)]
 
@@ -557,7 +558,7 @@ dotnet ef database update
 
 ### <a name="update-the-edit-page-model"></a>Обновление модели страницы "Edit" (Редактирование)
 
-Измените *Pages\Departments\Edit.cshtml.cs*, используя следующий код:
+Измените *Pages\Departments\Edit.cshtml.cs* , используя следующий код:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 
@@ -583,7 +584,7 @@ dotnet ef database update
 
 ## <a name="update-the-edit-page"></a>Обновление страницы редактирования
 
-Обновите *Pages/Departments/Edit.cshtml*, используя следующую разметку:
+Обновите *Pages/Departments/Edit.cshtml* , используя следующую разметку:
 
 [!code-cshtml[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
@@ -638,7 +639,7 @@ dotnet ef database update
 
 ### <a name="update-the-delete-page"></a>Обновление страницы удаления
 
-Измените *Pages/Departments/Delete.cshtml*, используя следующий код:
+Измените *Pages/Departments/Delete.cshtml* , используя следующий код:
 
 [!code-cshtml[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 
