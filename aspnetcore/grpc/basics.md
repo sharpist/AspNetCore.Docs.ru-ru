@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 07/09/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/basics
-ms.openlocfilehash: aacaf9cca131d3fba1c3ae96cf42d51d3fdc17b6
-ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
+ms.openlocfilehash: 4968ac889cd3b4e0780ce73dc729d0107a416932
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88945432"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061019"
 ---
 # <a name="grpc-services-with-c"></a>Службы gRPC на языке C\#
 
@@ -39,7 +40,7 @@ ms.locfileid: "88945432"
 
 Дополнительные сведения о синтаксисе файлов protobuf см. в разделе <xref:grpc/protobuf>.
 
-Например, рассмотрим файл *greet.proto*, используемый в разделе о [начале работы со службами gRPC](xref:tutorials/grpc/grpc-start):
+Например, рассмотрим файл *greet.proto* , используемый в разделе о [начале работы со службами gRPC](xref:tutorials/grpc/grpc-start):
 
 * Определяет службу `Greeter`.
 * Служба `Greeter` определяет вызов `SayHello`.
@@ -89,7 +90,7 @@ ms.locfileid: "88945432"
 
 [!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet)]
 
-По умолчанию серверные и клиентские ресурсы создаются для каждого файла *\*.proto*, включаемого в группу элементов `<Protobuf>`. Чтобы гарантировать, что в серверном проекте создаются только серверные ресурсы, атрибуту `GrpcServices` присваивается значение `Server`.
+По умолчанию серверные и клиентские ресурсы создаются для каждого файла *\*.proto* , включаемого в группу элементов `<Protobuf>`. Чтобы гарантировать, что в серверном проекте создаются только серверные ресурсы, атрибуту `GrpcServices` присваивается значение `Server`.
 
 [!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-9)]
 

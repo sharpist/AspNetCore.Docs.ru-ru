@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: dd00b9d7faf467857ec1e47f4cfb0296d84e5d3f
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: e52e4aefc18b84f85bea28a9724894eed50ca54a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847706"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061071"
 ---
 # <a name="part-6-no-locrazor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Часть 6. Razor Pages с EF Core в ASP.NET Core — чтение связанных данных
 
@@ -120,7 +121,7 @@ ms.locfileid: "90847706"
 
 Приведенный выше код изменяет свойство `Course` на `Courses` и добавляет `AsNoTracking`. `AsNoTracking` повышает производительность, так как возвращаемые сущности не отслеживаются. Отслеживать сущности не нужно, так как они не изменяются в текущем контексте.
 
-Измените файл *Pages/Courses/Index.cshtml*, используя приведенный ниже код.
+Измените файл *Pages/Courses/Index.cshtml* , используя приведенный ниже код.
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Index.cshtml?highlight=5,8,16-18,20,23,26,32,35-37,45)]
 
@@ -209,13 +210,13 @@ ms.locfileid: "90847706"
 
 Чтобы увидеть, как выглядит шаблонная страница до ее изменения, запустите приложение и перейдите на страницу преподавателей.
 
-Измените файл *Pages/Instructors/Index.cshtml.cs*, используя следующий код:
+Измените файл *Pages/Instructors/Index.cshtml.cs* , используя следующий код:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-53)]
 
 Метод `OnGetAsync` принимает необязательные данные маршрутизации для идентификатора выбранного преподавателя.
 
-Изучите запрос в файле *Pages/Instructors/Index.cshtml.cs*:
+Изучите запрос в файле *Pages/Instructors/Index.cshtml.cs* :
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_EagerLoading)]
 
@@ -248,7 +249,7 @@ ms.locfileid: "90847706"
 
 ### <a name="update-the-instructors-index-page"></a>Изменение страницы индекса преподавателей
 
-Измените файл *Pages/Instructors/Index.cshtml*, используя следующий код:
+Измените файл *Pages/Instructors/Index.cshtml* , используя следующий код:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?highlight=1,5,8,16-21,25-32,43-57,67-102,104-126)]
 
@@ -262,7 +263,7 @@ ms.locfileid: "90847706"
 
   `https://localhost:5001/Instructors/2`
 
-* Добавляет столбец **Office**, в котором отображается `item.OfficeAssignment.Location` только тогда, когда `item.OfficeAssignment` не равно NULL. Так как это связь один к нулю или одному, то связанная сущность OfficeAssignment может отсутствовать.
+* Добавляет столбец **Office** , в котором отображается `item.OfficeAssignment.Location` только тогда, когда `item.OfficeAssignment` не равно NULL. Так как это связь один к нулю или одному, то связанная сущность OfficeAssignment может отсутствовать.
 
   ```html
   @if (item.OfficeAssignment != null)
@@ -271,7 +272,7 @@ ms.locfileid: "90847706"
   }
   ```
 
-* Добавляет столбец **Courses**, содержащий курсы, которые ведет конкретный преподаватель. Подробные сведения об использовании синтаксиса Razor см. в разделе [Явный перенос строки](xref:mvc/views/razor#explicit-line-transition).
+* Добавляет столбец **Courses** , содержащий курсы, которые ведет конкретный преподаватель. Подробные сведения об использовании синтаксиса Razor см. в разделе [Явный перенос строки](xref:mvc/views/razor#explicit-line-transition).
 
 * Добавляет код, который динамически добавляет `class="success"` к элементу `tr` выбранного преподавателя и курса. Этот параметр задает цвет фона для выделенных строк c помощью класса Bootstrap.
 
@@ -318,7 +319,7 @@ ms.locfileid: "90847706"
 
 Предположим, что пользователям редко требуется просматривать зачисления на курс. В этом случае можно оптимизировать работу, загружая данные о зачислении только при их запросе. В этом разделе изменяется `OnGetAsync` для использования явной загрузки `Enrollments` и `Students`.
 
-Измените файл *Pages/Instructors/Index.cshtml.cs*, используя приведенный ниже код.
+Измените файл *Pages/Instructors/Index.cshtml.cs* , используя приведенный ниже код.
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Index.cshtml.cs?highlight=31-35,52-56)]
 
@@ -421,7 +422,7 @@ ms.locfileid: "90847706"
 
 Предыдущий код добавляет `AsNoTracking`. `AsNoTracking` повышает производительность, так как возвращаемые сущности не отслеживаются. Отслеживание отсутствует, так как сущности не изменяются в текущем контексте.
 
-Измените *Pages/Courses/Index.cshtml*, используя выделенную ниже разметку:
+Измените *Pages/Courses/Index.cshtml* , используя выделенную ниже разметку:
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
@@ -505,7 +506,7 @@ ms.locfileid: "90847706"
 
 Метод `OnGetAsync` принимает необязательные данные маршрутизации для идентификатора выбранного преподавателя.
 
-Изучите запрос в файле *Pages/Instructors/Index.cshtml.cs*:
+Изучите запрос в файле *Pages/Instructors/Index.cshtml.cs* :
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_ThenInclude)]
 
@@ -516,7 +517,7 @@ ms.locfileid: "90847706"
 
 ### <a name="update-the-instructors-index-page"></a>Изменение страницы индекса преподавателей
 
-Измените *Pages/Instructors/Index.cshtml*, используя следующую разметку:
+Измените *Pages/Instructors/Index.cshtml* , используя следующую разметку:
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=1-65&highlight=1,5,8,16-21,25-32,43-57)]
 
@@ -531,7 +532,7 @@ ms.locfileid: "90847706"
   `http://localhost:1234/Instructors/2`
 
 * Заголовком страницы является **Instructors**.
-* Добавили столбец **Office**, отображающий `item.OfficeAssignment.Location` только тогда, когда `item.OfficeAssignment` не равно null. Так как это связь один к нулю или одному, то связанная сущность OfficeAssignment может отсутствовать.
+* Добавили столбец **Office** , отображающий `item.OfficeAssignment.Location` только тогда, когда `item.OfficeAssignment` не равно null. Так как это связь один к нулю или одному, то связанная сущность OfficeAssignment может отсутствовать.
 
   ```html
   @if (item.OfficeAssignment != null)
@@ -540,7 +541,7 @@ ms.locfileid: "90847706"
   }
   ```
 
-* Добавили столбец **Courses**, отображающий курсы, которые ведет конкретный преподаватель. Подробные сведения об использовании синтаксиса Razor см. в разделе [Явный перенос строки](xref:mvc/views/razor#explicit-line-transition).
+* Добавили столбец **Courses** , отображающий курсы, которые ведет конкретный преподаватель. Подробные сведения об использовании синтаксиса Razor см. в разделе [Явный перенос строки](xref:mvc/views/razor#explicit-line-transition).
 
 * Добавили код, который динамически добавляет `class="success"` к элементу `tr` выбранного преподавателя. Этот параметр задает цвет фона для выделенных строк c помощью класса Bootstrap.
 
@@ -565,7 +566,7 @@ ms.locfileid: "90847706"
 
 ### <a name="add-courses-taught-by-selected-instructor"></a>Добавление курсов, проводимых выбранным преподавателем
 
-Измените метод `OnGetAsync` в *Pages/Instructors/Index.cshtml.cs*, используя следующий код:
+Измените метод `OnGetAsync` в *Pages/Instructors/Index.cshtml.cs* , используя следующий код:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_OnGetAsync&highlight=1,8,16-999)]
 
@@ -608,7 +609,7 @@ ms.locfileid: "90847706"
 
 В этом разделе приложение изменяется, чтобы отобразить данные об учащихся для выбранного курса.
 
-Измените запрос в методе `OnGetAsync` в *Pages/Instructors/Index.cshtml.cs*, используя следующий код:
+Измените запрос в методе `OnGetAsync` в *Pages/Instructors/Index.cshtml.cs* , используя следующий код:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index.cshtml.cs?name=snippet_ThenInclude&highlight=6-9)]
 

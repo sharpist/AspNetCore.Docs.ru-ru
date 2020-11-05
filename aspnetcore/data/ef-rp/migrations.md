@@ -5,6 +5,7 @@ description: Часть 4 серии руководств по Razor Pages и E
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/migrations
-ms.openlocfilehash: 78eb466fcfeb130e411df490f033114b3fdebeef
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: e6d1b9f041e892aaa37840c28fdb3153bf098b0d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722635"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061110"
 ---
 # <a name="part-4-no-locrazor-pages-with-ef-core-migrations-in-aspnet-core"></a>Часть 4. Миграции Razor Pages с EF Core в ASP.NET Core
 
@@ -45,7 +46,7 @@ ms.locfileid: "90722635"
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Используйте **обозреватель объектов SQL Server**, чтобы удалить базу данных, или выполните следующую команду в **консоли диспетчера пакетов** (PMC):
+Используйте **обозреватель объектов SQL Server** , чтобы удалить базу данных, или выполните следующую команду в **консоли диспетчера пакетов** (PMC):
 
 ```powershell
 Drop-Database

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/16/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/url-rewriting
-ms.openlocfilehash: a1d31428945adade6748185c17d42ef60a61b5dc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e7bd5f4d61661dd23eb0907f896d0d32b7799aac
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631710"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061305"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>ПО промежуточного слоя для переопределения URL-адресов в ASP.NET Core
 
@@ -225,7 +226,7 @@ public void Configure(IApplicationBuilder app)
 
 Для применения правил mod_rewrite Apache можно использовать <xref:Microsoft.AspNetCore.Rewrite.ApacheModRewriteOptionsExtensions.AddApacheModRewrite*>. Убедитесь, что файл правил развертывается вместе с приложением. Дополнительные сведения и примеры правил mod_rewrite см. в статье о [правилах mod_rewrite Apache](https://httpd.apache.org/docs/2.4/rewrite/).
 
-<xref:System.IO.StreamReader> используется для чтения правил из файла *ApacheModRewrite.txt*:
+<xref:System.IO.StreamReader> используется для чтения правил из файла *ApacheModRewrite.txt* :
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=3-4,12)]
 
@@ -271,9 +272,9 @@ public void Configure(IApplicationBuilder app)
 
 ### <a name="iis-url-rewrite-module-rules"></a>Правила модуля переопределения URL-адресов для IIS
 
-Чтобы использовать тот же набор правил, который применяется к модулю переопределения URL-адресов для IIS, используйте <xref:Microsoft.AspNetCore.Rewrite.IISUrlRewriteOptionsExtensions.AddIISUrlRewrite*>. Убедитесь, что файл правил развертывается вместе с приложением. Не указывайте ПО промежуточного слоя использовать файл приложения *web.config* при работе в службах IIS Windows Server. В IIS эти правила нужно хранить за пределами файла приложения *web.config*, чтобы предотвратить конфликты с модулем переопределения для IIS. Дополнительные сведения и примеры правил модуля переопределения URL-адресов для IIS см. в разделах [Использование модуля переопределения URL-адресов 2.0](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20) и [Справочник по конфигурации модуля переопределения URL-адресов](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
+Чтобы использовать тот же набор правил, который применяется к модулю переопределения URL-адресов для IIS, используйте <xref:Microsoft.AspNetCore.Rewrite.IISUrlRewriteOptionsExtensions.AddIISUrlRewrite*>. Убедитесь, что файл правил развертывается вместе с приложением. Не указывайте ПО промежуточного слоя использовать файл приложения *web.config* при работе в службах IIS Windows Server. В IIS эти правила нужно хранить за пределами файла приложения *web.config* , чтобы предотвратить конфликты с модулем переопределения для IIS. Дополнительные сведения и примеры правил модуля переопределения URL-адресов для IIS см. в разделах [Использование модуля переопределения URL-адресов 2.0](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20) и [Справочник по конфигурации модуля переопределения URL-адресов](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
 
-<xref:System.IO.StreamReader> используется для чтения правил из файла *IISUrlRewrite.xml*:
+<xref:System.IO.StreamReader> используется для чтения правил из файла *IISUrlRewrite.xml* :
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=5-6,13)]
 
@@ -336,9 +337,9 @@ public void Configure(IApplicationBuilder app)
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=14)]
 
-Пример приложения демонстрирует метод, который перенаправляет запросы для путей, заканчивающихся на *.xml*. Если запрос выполняется для `/file.xml`, запрос перенаправляется к `/xmlfiles/file.xml`. Для кода состояния задается значение *301 (перемещен окончательно)* . Когда браузер отправляет новый запрос на */xmlfiles/file.xml*, ПО промежуточного слоя статических файлов предоставляет файл клиенту из папки *wwwroot/xmlfiles*. Для перенаправления необходимо явно указать код состояния ответа. В противном случае возвращается код состояния *200 (ОК)* и перенаправление на стороне клиента не происходит.
+Пример приложения демонстрирует метод, который перенаправляет запросы для путей, заканчивающихся на *.xml*. Если запрос выполняется для `/file.xml`, запрос перенаправляется к `/xmlfiles/file.xml`. Для кода состояния задается значение *301 (перемещен окончательно)* . Когда браузер отправляет новый запрос на */xmlfiles/file.xml* , ПО промежуточного слоя статических файлов предоставляет файл клиенту из папки *wwwroot/xmlfiles*. Для перенаправления необходимо явно указать код состояния ответа. В противном случае возвращается код состояния *200 (ОК)* и перенаправление на стороне клиента не происходит.
 
-*RewriteRules.cs*:
+*RewriteRules.cs* :
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/RewriteRules.cs?name=snippet_RedirectXmlFileRequests&highlight=14-18)]
 
@@ -346,7 +347,7 @@ public void Configure(IApplicationBuilder app)
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=15,22)]
 
-*RewriteRules.cs*:
+*RewriteRules.cs* :
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/RewriteRules.cs?name=snippet_RewriteTextFileRequests&highlight=7-8)]
 
@@ -356,7 +357,7 @@ public void Configure(IApplicationBuilder app)
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=16-17)]
 
-Значения параметров в примере приложения для `extension` и `newPath` проверяются на соответствие нескольким условиям. `extension` должен содержать одно из значений: *.png*, *.jpg* или *.gif*. Если `newPath` не является допустимым, возникает исключение <xref:System.ArgumentException>. Если запрос выполняется для *image.png*, запрос перенаправляется к `/png-images/image.png`. Если запрос выполняется для *image.jpg*, запрос перенаправляется к `/jpg-images/image.jpg`. Для кода состояния устанавливается значение *301 (перемещен окончательно)* , а также задается `context.Result`, чтобы остановить обработку правил и отправить отклик.
+Значения параметров в примере приложения для `extension` и `newPath` проверяются на соответствие нескольким условиям. `extension` должен содержать одно из значений: *.png* , *.jpg* или *.gif*. Если `newPath` не является допустимым, возникает исключение <xref:System.ArgumentException>. Если запрос выполняется для *image.png* , запрос перенаправляется к `/png-images/image.png`. Если запрос выполняется для *image.jpg* , запрос перенаправляется к `/jpg-images/image.jpg`. Для кода состояния устанавливается значение *301 (перемещен окончательно)* , а также задается `context.Result`, чтобы остановить обработку правил и отправить отклик.
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/RewriteRules.cs?name=snippet_RedirectImageRequests)]
 
@@ -579,7 +580,7 @@ public void Configure(IApplicationBuilder app)
 
 Для применения правил mod_rewrite Apache можно использовать <xref:Microsoft.AspNetCore.Rewrite.ApacheModRewriteOptionsExtensions.AddApacheModRewrite*>. Убедитесь, что файл правил развертывается вместе с приложением. Дополнительные сведения и примеры правил mod_rewrite см. в статье о [правилах mod_rewrite Apache](https://httpd.apache.org/docs/2.4/rewrite/).
 
-<xref:System.IO.StreamReader> используется для чтения правил из файла *ApacheModRewrite.txt*:
+<xref:System.IO.StreamReader> используется для чтения правил из файла *ApacheModRewrite.txt* :
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=3-4,12)]
 
@@ -625,9 +626,9 @@ public void Configure(IApplicationBuilder app)
 
 ### <a name="iis-url-rewrite-module-rules"></a>Правила модуля переопределения URL-адресов для IIS
 
-Чтобы использовать тот же набор правил, который применяется к модулю переопределения URL-адресов для IIS, используйте <xref:Microsoft.AspNetCore.Rewrite.IISUrlRewriteOptionsExtensions.AddIISUrlRewrite*>. Убедитесь, что файл правил развертывается вместе с приложением. Не указывайте ПО промежуточного слоя использовать файл приложения *web.config* при работе в службах IIS Windows Server. В IIS эти правила нужно хранить за пределами файла приложения *web.config*, чтобы предотвратить конфликты с модулем переопределения для IIS. Дополнительные сведения и примеры правил модуля переопределения URL-адресов для IIS см. в разделах [Использование модуля переопределения URL-адресов 2.0](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20) и [Справочник по конфигурации модуля переопределения URL-адресов](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
+Чтобы использовать тот же набор правил, который применяется к модулю переопределения URL-адресов для IIS, используйте <xref:Microsoft.AspNetCore.Rewrite.IISUrlRewriteOptionsExtensions.AddIISUrlRewrite*>. Убедитесь, что файл правил развертывается вместе с приложением. Не указывайте ПО промежуточного слоя использовать файл приложения *web.config* при работе в службах IIS Windows Server. В IIS эти правила нужно хранить за пределами файла приложения *web.config* , чтобы предотвратить конфликты с модулем переопределения для IIS. Дополнительные сведения и примеры правил модуля переопределения URL-адресов для IIS см. в разделах [Использование модуля переопределения URL-адресов 2.0](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20) и [Справочник по конфигурации модуля переопределения URL-адресов](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
 
-<xref:System.IO.StreamReader> используется для чтения правил из файла *IISUrlRewrite.xml*:
+<xref:System.IO.StreamReader> используется для чтения правил из файла *IISUrlRewrite.xml* :
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=5-6,13)]
 
@@ -690,9 +691,9 @@ public void Configure(IApplicationBuilder app)
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=14)]
 
-Пример приложения демонстрирует метод, который перенаправляет запросы для путей, заканчивающихся на *.xml*. Если запрос выполняется для `/file.xml`, запрос перенаправляется к `/xmlfiles/file.xml`. Для кода состояния задается значение *301 (перемещен окончательно)* . Когда браузер отправляет новый запрос на */xmlfiles/file.xml*, ПО промежуточного слоя статических файлов предоставляет файл клиенту из папки *wwwroot/xmlfiles*. Для перенаправления необходимо явно указать код состояния ответа. В противном случае возвращается код состояния *200 (ОК)* и перенаправление на стороне клиента не происходит.
+Пример приложения демонстрирует метод, который перенаправляет запросы для путей, заканчивающихся на *.xml*. Если запрос выполняется для `/file.xml`, запрос перенаправляется к `/xmlfiles/file.xml`. Для кода состояния задается значение *301 (перемещен окончательно)* . Когда браузер отправляет новый запрос на */xmlfiles/file.xml* , ПО промежуточного слоя статических файлов предоставляет файл клиенту из папки *wwwroot/xmlfiles*. Для перенаправления необходимо явно указать код состояния ответа. В противном случае возвращается код состояния *200 (ОК)* и перенаправление на стороне клиента не происходит.
 
-*RewriteRules.cs*:
+*RewriteRules.cs* :
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/RewriteRules.cs?name=snippet_RedirectXmlFileRequests&highlight=14-18)]
 
@@ -700,7 +701,7 @@ public void Configure(IApplicationBuilder app)
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=15,22)]
 
-*RewriteRules.cs*:
+*RewriteRules.cs* :
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/RewriteRules.cs?name=snippet_RewriteTextFileRequests&highlight=7-8)]
 
@@ -710,7 +711,7 @@ public void Configure(IApplicationBuilder app)
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=16-17)]
 
-Значения параметров в примере приложения для `extension` и `newPath` проверяются на соответствие нескольким условиям. `extension` должен содержать одно из значений: *.png*, *.jpg* или *.gif*. Если `newPath` не является допустимым, возникает исключение <xref:System.ArgumentException>. Если запрос выполняется для *image.png*, запрос перенаправляется к `/png-images/image.png`. Если запрос выполняется для *image.jpg*, запрос перенаправляется к `/jpg-images/image.jpg`. Для кода состояния устанавливается значение *301 (перемещен окончательно)* , а также задается `context.Result`, чтобы остановить обработку правил и отправить отклик.
+Значения параметров в примере приложения для `extension` и `newPath` проверяются на соответствие нескольким условиям. `extension` должен содержать одно из значений: *.png* , *.jpg* или *.gif*. Если `newPath` не является допустимым, возникает исключение <xref:System.ArgumentException>. Если запрос выполняется для *image.png* , запрос перенаправляется к `/png-images/image.png`. Если запрос выполняется для *image.jpg* , запрос перенаправляется к `/jpg-images/image.jpg`. Для кода состояния устанавливается значение *301 (перемещен окончательно)* , а также задается `context.Result`, чтобы остановить обработку правил и отправить отклик.
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/RewriteRules.cs?name=snippet_RedirectImageRequests)]
 

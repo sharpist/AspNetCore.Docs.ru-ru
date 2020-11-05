@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, devx-track-js
 ms.date: 11/26/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/web-api-javascript
-ms.openlocfilehash: b41288bd63267a9aa7035e25ebc8d838eed5d93b
-ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
+ms.openlocfilehash: 4a80e3e82a18e0066c7628c8f40401155538e32b
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92690684"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061201"
 ---
 # <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Учебник. Вызов веб-API ASP.NET Core с помощью JavaScript
 
@@ -57,19 +58,19 @@ ms.locfileid: "92690684"
 
 1. Создайте папку *wwwroot* в корневом каталоге проекта.
 
-1. Создайте папку *js* в папке *wwwroot* .
+1. Создайте папку *js* в папке *wwwroot*.
 
-1. Добавьте HTML-файл *index.html* в папку *wwwroot* . Замените содержимое файла *index.html* следующей разметкой:
+1. Добавьте HTML-файл *index.html* в папку *wwwroot*. Замените содержимое файла *index.html* следующей разметкой:
 
     [!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
 
-1. Добавьте файл JavaScript с именем *site.js* в папку *wwwroot/js* . Замените содержимое файла *site.js* следующим кодом:
+1. Добавьте файл JavaScript с именем *site.js* в папку *wwwroot/js*. Замените содержимое файла *site.js* следующим кодом:
 
     [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_SiteJs)]
 
 Может потребоваться изменение параметров запуска проекта ASP.NET Core для локального тестирования HTML-страницы:
 
-1. Откройте файл *Properties\launchSettings.json* .
+1. Откройте файл *Properties\launchSettings.json*.
 1. Удалите свойство `launchUrl`, чтобы приложение открылось через *index.html*  &mdash; файл проекта по умолчанию.
 
 В этом примере вызываются все методы CRUD в веб-API. Ниже приводится пояснение запросов веб-API.
@@ -80,7 +81,7 @@ ms.locfileid: "92690684"
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_GetItems)]
 
-Когда веб-API возвращает код состояния, указывающий на успешное выполнение, вызывается функция `_displayItems`. Каждый элемент списка задач в параметре массива, который принимается `_displayItems`, добавляется в таблицу с помощью кнопок **Изменить** и **Удалить** . Если запрос веб-API завершается сбоем, в консоли браузера регистрируется сообщение об ошибке.
+Когда веб-API возвращает код состояния, указывающий на успешное выполнение, вызывается функция `_displayItems`. Каждый элемент списка задач в параметре массива, который принимается `_displayItems`, добавляется в таблицу с помощью кнопок **Изменить** и **Удалить**. Если запрос веб-API завершается сбоем, в консоли браузера регистрируется сообщение об ошибке.
 
 ### <a name="add-a-to-do-item"></a>Добавление элемента задачи
 
@@ -91,7 +92,7 @@ ms.locfileid: "92690684"
   * `method` определяет команду действия HTTP POST.
   * `body` определяет представление JSON текста запроса. JSON создается путем передачи литерала объекта, хранящегося в `item`, в функцию [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
   * `headers` определяет заголовки `Accept` и `Content-Type` запросов HTTP. Для обеих параметров устанавливается значение `application/json`, чтобы классифицировать тип носителя при получении и отправке соответственно.
-* HTTP-запрос POST направляется по пути *api/TodoItems* .
+* HTTP-запрос POST направляется по пути *api/TodoItems*.
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_AddItem)]
 
@@ -101,7 +102,7 @@ ms.locfileid: "92690684"
 
 Обновление элемента списка задач аналогично его добавлению. Но есть два существенных отличия:
 
-* Путь имеет суффикс с уникальным идентификатором обновляемого элемента. Например, *api/TodoItems/1* .
+* Путь имеет суффикс с уникальным идентификатором обновляемого элемента. Например, *api/TodoItems/1*.
 * Команда действия HTTP — это PUT, как указано в параметре `method`.
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_UpdateItem)]
