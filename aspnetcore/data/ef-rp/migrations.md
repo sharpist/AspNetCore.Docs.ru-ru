@@ -1,21 +1,21 @@
 ---
-title: 'Часть 4. :::no-loc(Razor)::: Pages с EF Core в ASP.NET Core — миграции'
+title: 'Часть 4. Razor Pages с EF Core в ASP.NET Core — миграции'
 author: rick-anderson
-description: 'Часть 4 серии руководств по :::no-loc(Razor)::: Pages и Entity Framework.'
+description: 'Часть 4 серии руководств по Razor Pages и Entity Framework.'
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: data/ef-rp/migrations
 ms.openlocfilehash: e6d1b9f041e892aaa37840c28fdb3153bf098b0d
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -24,7 +24,7 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93061110"
 ---
-# <a name="part-4-no-locrazor-pages-with-ef-core-migrations-in-aspnet-core"></a><span data-ttu-id="8a516-103">Часть 4. Миграции :::no-loc(Razor)::: Pages с EF Core в ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="8a516-103">Part 4, :::no-loc(Razor)::: Pages with EF Core migrations in ASP.NET Core</span></span>
+# <a name="part-4-no-locrazor-pages-with-ef-core-migrations-in-aspnet-core"></a><span data-ttu-id="8a516-103">Часть 4. Миграции Razor Pages с EF Core в ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="8a516-103">Part 4, Razor Pages with EF Core migrations in ASP.NET Core</span></span>
 
 <span data-ttu-id="8a516-104">Авторы: [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra), [Йон П. Смит](https://twitter.com/thereformedprog) (Jon P Smith) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)</span><span class="sxs-lookup"><span data-stu-id="8a516-104">By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
 

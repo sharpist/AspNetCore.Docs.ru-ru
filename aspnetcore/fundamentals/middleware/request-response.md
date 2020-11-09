@@ -7,17 +7,17 @@ ms.author: jukotali
 ms.custom: mvc
 ms.date: 5/29/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: fundamentals/middleware/request-response
 ms.openlocfilehash: cc701343cb3859f0f76ebc62bd54aa2e4431d522
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -30,7 +30,7 @@ ms.locfileid: "93061032"
 
 <span data-ttu-id="b7691-104">Автор [Джастин Коталик (Justin Kotalik)](https://github.com/jkotalik)</span><span class="sxs-lookup"><span data-stu-id="b7691-104">By [Justin Kotalik](https://github.com/jkotalik)</span></span>
 
-<span data-ttu-id="b7691-105">В этой статье объясняется, как читать текст запроса и писать текст ответа.</span><span class="sxs-lookup"><span data-stu-id="b7691-105">This article explains how to read from the request body and write to the response body.</span></span> <span data-ttu-id="b7691-106">Возможно, вам потребуется написать код для этих операций при создании ПО промежуточного слоя.</span><span class="sxs-lookup"><span data-stu-id="b7691-106">Code for these operations might be required when writing middleware.</span></span> <span data-ttu-id="b7691-107">В других случаях писать такой код обычно не нужно, так как эти операции обрабатываются MVC и :::no-loc(Razor)::: Pages.</span><span class="sxs-lookup"><span data-stu-id="b7691-107">Outside of writing middleware, custom code isn't generally required because the operations are handled by MVC and :::no-loc(Razor)::: Pages.</span></span>
+<span data-ttu-id="b7691-105">В этой статье объясняется, как читать текст запроса и писать текст ответа.</span><span class="sxs-lookup"><span data-stu-id="b7691-105">This article explains how to read from the request body and write to the response body.</span></span> <span data-ttu-id="b7691-106">Возможно, вам потребуется написать код для этих операций при создании ПО промежуточного слоя.</span><span class="sxs-lookup"><span data-stu-id="b7691-106">Code for these operations might be required when writing middleware.</span></span> <span data-ttu-id="b7691-107">В других случаях писать такой код обычно не нужно, так как эти операции обрабатываются MVC и Razor Pages.</span><span class="sxs-lookup"><span data-stu-id="b7691-107">Outside of writing middleware, custom code isn't generally required because the operations are handled by MVC and Razor Pages.</span></span>
 
 <span data-ttu-id="b7691-108">Существует две абстракции для текста запросов и ответов: <xref:System.IO.Stream> и <xref:System.IO.Pipelines.Pipe>.</span><span class="sxs-lookup"><span data-stu-id="b7691-108">There are two abstractions for the request and response bodies: <xref:System.IO.Stream> and <xref:System.IO.Pipelines.Pipe>.</span></span> <span data-ttu-id="b7691-109">При чтении запроса <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> — это <xref:System.IO.Stream>, а `HttpRequest.BodyReader` — это <xref:System.IO.Pipelines.PipeReader>.</span><span class="sxs-lookup"><span data-stu-id="b7691-109">For request reading, <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> is a <xref:System.IO.Stream>, and `HttpRequest.BodyReader` is a <xref:System.IO.Pipelines.PipeReader>.</span></span> <span data-ttu-id="b7691-110">При записи ответа <xref:Microsoft.AspNetCore.Http.HttpResponse.Body?displayProperty=nameWithType> — это <xref:System.IO.Stream>, а `HttpResponse.BodyWriter` — это <xref:System.IO.Pipelines.PipeWriter>.</span><span class="sxs-lookup"><span data-stu-id="b7691-110">For response writing, <xref:Microsoft.AspNetCore.Http.HttpResponse.Body?displayProperty=nameWithType> is a <xref:System.IO.Stream>, and `HttpResponse.BodyWriter` is a <xref:System.IO.Pipelines.PipeWriter>.</span></span>
 

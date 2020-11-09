@@ -1,22 +1,22 @@
 ---
-title: 'Защита изолированного приложения ASP.NET Core :::no-loc(Blazor WebAssembly)::: с помощью Azure Active Directory B2C'
+title: 'Защита изолированного приложения ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory B2C'
 author: guardrex
-description: 'Узнайте, как защитить изолированное приложение ASP.NET Core :::no-loc(Blazor WebAssembly)::: с помощью Azure Active Directory B2C.'
+description: 'Узнайте, как защитить изолированное приложение ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory B2C.'
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/27/2020
 no-loc:
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
 ms.openlocfilehash: 134ec3a913d19c5aba38e7419f25352e93c04e31
 ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
@@ -25,11 +25,11 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 10/27/2020
 ms.locfileid: "92690419"
 ---
-# <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a><span data-ttu-id="7a286-103">Защита изолированного приложения ASP.NET Core :::no-loc(Blazor WebAssembly)::: с помощью Azure Active Directory B2C</span><span class="sxs-lookup"><span data-stu-id="7a286-103">Secure an ASP.NET Core :::no-loc(Blazor WebAssembly)::: standalone app with Azure Active Directory B2C</span></span>
+# <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a><span data-ttu-id="7a286-103">Защита изолированного приложения ASP.NET Core Blazor WebAssembly с помощью Azure Active Directory B2C</span><span class="sxs-lookup"><span data-stu-id="7a286-103">Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory B2C</span></span>
 
 <span data-ttu-id="7a286-104">Авторы: [Хавьер Кальварро Нельсон](https://github.com/javiercn) (Javier Calvarro Nelson) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)</span><span class="sxs-lookup"><span data-stu-id="7a286-104">By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="7a286-105">Чтобы создать [изолированное приложение :::no-loc(Blazor WebAssembly):::](xref:blazor/hosting-models#blazor-webassembly), использующее [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) для проверки подлинности, выполните приведенные ниже действия.</span><span class="sxs-lookup"><span data-stu-id="7a286-105">To create a [standalone :::no-loc(Blazor WebAssembly)::: app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication:</span></span>
+<span data-ttu-id="7a286-105">Чтобы создать [изолированное приложение Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly), использующее [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) для проверки подлинности, выполните приведенные ниже действия.</span><span class="sxs-lookup"><span data-stu-id="7a286-105">To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication:</span></span>
 
 <span data-ttu-id="7a286-106">Следуйте указаниям в следующих разделах, чтобы создать клиент и зарегистрировать веб-приложение на портале Azure.</span><span class="sxs-lookup"><span data-stu-id="7a286-106">Follow the guidance in the following topics to create a tenant and register a web app in the Azure Portal:</span></span>
 
@@ -45,7 +45,7 @@ ms.locfileid: "92690419"
 ::: moniker range=">= aspnetcore-5.0"
 
 1. <span data-ttu-id="7a286-112">В разделе **Azure Active Directory**  > **Регистрация приложений** выберите **Новая регистрация** .</span><span class="sxs-lookup"><span data-stu-id="7a286-112">In **Azure Active Directory** > **App registrations** , select **New registration** .</span></span>
-1. <span data-ttu-id="7a286-113">Укажите **имя** приложения (например, **:::no-loc(Blazor):::Изолированный AAD B2C** ).</span><span class="sxs-lookup"><span data-stu-id="7a286-113">Provide a **Name** for the app (for example, **:::no-loc(Blazor)::: Standalone AAD B2C** ).</span></span>
+1. <span data-ttu-id="7a286-113">Укажите **имя** приложения (например, **BlazorИзолированный AAD B2C** ).</span><span class="sxs-lookup"><span data-stu-id="7a286-113">Provide a **Name** for the app (for example, **Blazor Standalone AAD B2C** ).</span></span>
 1. <span data-ttu-id="7a286-114">Для параметра **Поддерживаемые типы учетных записей** выберите вариант с использованием нескольких клиентов: **Учетные записи в любом каталоге организации или поставщике удостоверений. Выберите этот вариант для проверки подлинности в Azure AD B2C.**</span><span class="sxs-lookup"><span data-stu-id="7a286-114">For **Supported account types** , select the multi-tenant option: **Accounts in any organizational directory or any identity provider. For authenticating users with Azure AD B2C.**</span></span>
 1. <span data-ttu-id="7a286-115">Выберите в раскрывающемся списке **URI перенаправления** значение **Одностраничное приложение (SPA)** и укажите следующий URI перенаправления: `https://localhost:{PORT}/authentication/login-callback`.</span><span class="sxs-lookup"><span data-stu-id="7a286-115">Set the **Redirect URI** drop down to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`.</span></span> <span data-ttu-id="7a286-116">Порт по умолчанию для приложения, работающего на Kestrel, — 5001.</span><span class="sxs-lookup"><span data-stu-id="7a286-116">The default port for an app running on Kestrel is 5001.</span></span> <span data-ttu-id="7a286-117">Если приложение выполняется на другом порте Kestrel, используйте порт приложения.</span><span class="sxs-lookup"><span data-stu-id="7a286-117">If the app is run on a different Kestrel port, use the app's port.</span></span> <span data-ttu-id="7a286-118">Для IIS Express созданный случайным образом порт для приложения указан в свойствах приложения на панели **Отладка** .</span><span class="sxs-lookup"><span data-stu-id="7a286-118">For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel.</span></span> <span data-ttu-id="7a286-119">Поскольку на этом этапе приложение не существует и порт IIS Express неизвестен, вернитесь к этому шагу после создания приложения и обновите URI перенаправления.</span><span class="sxs-lookup"><span data-stu-id="7a286-119">Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI.</span></span> <span data-ttu-id="7a286-120">В этом разделе появится замечание с напоминанием для пользователей IIS Express о необходимости обновить URI перенаправления.</span><span class="sxs-lookup"><span data-stu-id="7a286-120">A remark appears later in this topic to remind IIS Express users to update the redirect URI.</span></span>
 1. <span data-ttu-id="7a286-121">Убедитесь, что в разделе **Разрешения** установлен флажок **Предоставьте согласие администратора для разрешений openid и offline_access** .</span><span class="sxs-lookup"><span data-stu-id="7a286-121">Confirm that **Permissions** > **Grant admin consent to openid and offline_access permissions** is selected.</span></span>
@@ -65,7 +65,7 @@ ms.locfileid: "92690419"
 ::: moniker range="< aspnetcore-5.0"
 
 1. <span data-ttu-id="7a286-129">В разделе **Azure Active Directory**  > **Регистрация приложений** выберите **Новая регистрация** .</span><span class="sxs-lookup"><span data-stu-id="7a286-129">In **Azure Active Directory** > **App registrations** , select **New registration** .</span></span>
-1. <span data-ttu-id="7a286-130">Укажите **имя** приложения (например, **:::no-loc(Blazor):::Изолированный AAD B2C** ).</span><span class="sxs-lookup"><span data-stu-id="7a286-130">Provide a **Name** for the app (for example, **:::no-loc(Blazor)::: Standalone AAD B2C** ).</span></span>
+1. <span data-ttu-id="7a286-130">Укажите **имя** приложения (например, **BlazorИзолированный AAD B2C** ).</span><span class="sxs-lookup"><span data-stu-id="7a286-130">Provide a **Name** for the app (for example, **Blazor Standalone AAD B2C** ).</span></span>
 1. <span data-ttu-id="7a286-131">Для параметра **Поддерживаемые типы учетных записей** выберите вариант с использованием нескольких клиентов: **Учетные записи в любом каталоге организации или поставщике удостоверений. Выберите этот вариант для проверки подлинности в Azure AD B2C.**</span><span class="sxs-lookup"><span data-stu-id="7a286-131">For **Supported account types** , select the multi-tenant option: **Accounts in any organizational directory or any identity provider. For authenticating users with Azure AD B2C.**</span></span>
 1. <span data-ttu-id="7a286-132">В раскрывающемся списке **URI перенаправления** оставьте значение **Интернет** и укажите следующий URI перенаправления: `https://localhost:{PORT}/authentication/login-callback`.</span><span class="sxs-lookup"><span data-stu-id="7a286-132">Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`.</span></span> <span data-ttu-id="7a286-133">Порт по умолчанию для приложения, работающего на Kestrel, — 5001.</span><span class="sxs-lookup"><span data-stu-id="7a286-133">The default port for an app running on Kestrel is 5001.</span></span> <span data-ttu-id="7a286-134">Если приложение выполняется на другом порте Kestrel, используйте порт приложения.</span><span class="sxs-lookup"><span data-stu-id="7a286-134">If the app is run on a different Kestrel port, use the app's port.</span></span> <span data-ttu-id="7a286-135">Для IIS Express созданный случайным образом порт для приложения указан в свойствах приложения на панели **Отладка** .</span><span class="sxs-lookup"><span data-stu-id="7a286-135">For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel.</span></span> <span data-ttu-id="7a286-136">Поскольку на этом этапе приложение не существует и порт IIS Express неизвестен, вернитесь к этому шагу после создания приложения и обновите URI перенаправления.</span><span class="sxs-lookup"><span data-stu-id="7a286-136">Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI.</span></span> <span data-ttu-id="7a286-137">В этом разделе появится замечание с напоминанием для пользователей IIS Express о необходимости обновить URI перенаправления.</span><span class="sxs-lookup"><span data-stu-id="7a286-137">A remark appears later in this topic to remind IIS Express users to update the redirect URI.</span></span>
 1. <span data-ttu-id="7a286-138">Убедитесь, что в разделе **Разрешения** установлен флажок **Предоставьте согласие администратора для разрешений openid и offline_access** .</span><span class="sxs-lookup"><span data-stu-id="7a286-138">Confirm that **Permissions** > **Grant admin consent to openid and offline_access permissions** is selected.</span></span>
@@ -86,7 +86,7 @@ ms.locfileid: "92690419"
 
 [<span data-ttu-id="7a286-147">Создайте поток пользователя для регистрации и входа в систему</span><span class="sxs-lookup"><span data-stu-id="7a286-147">Create a sign-up and sign-in user flow</span></span>](/azure/active-directory-b2c/tutorial-create-user-flows)
 
-<span data-ttu-id="7a286-148">Чтобы заполнить `context.User.:::no-loc(Identity):::.Name` в компоненте `LoginDisplay` (`Shared/LoginDisplay.razor`), выберите хотя бы атрибут пользователя **Утверждения приложения** > **Отображаемое имя** .</span><span class="sxs-lookup"><span data-stu-id="7a286-148">At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.:::no-loc(Identity):::.Name` in the `LoginDisplay` component (`Shared/LoginDisplay.razor`).</span></span>
+<span data-ttu-id="7a286-148">Чтобы заполнить `context.User.Identity.Name` в компоненте `LoginDisplay` (`Shared/LoginDisplay.razor`), выберите хотя бы атрибут пользователя **Утверждения приложения** > **Отображаемое имя** .</span><span class="sxs-lookup"><span data-stu-id="7a286-148">At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.Identity.Name` in the `LoginDisplay` component (`Shared/LoginDisplay.razor`).</span></span>
 
 <span data-ttu-id="7a286-149">Запишите имя потока пользователя для регистрации и входа, созданное для приложения (например, `B2C_1_signupsignin`).</span><span class="sxs-lookup"><span data-stu-id="7a286-149">Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin`).</span></span>
 
@@ -99,7 +99,7 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 | <span data-ttu-id="7a286-151">Заполнитель</span><span class="sxs-lookup"><span data-stu-id="7a286-151">Placeholder</span></span>                   | <span data-ttu-id="7a286-152">Название на портале Azure</span><span class="sxs-lookup"><span data-stu-id="7a286-152">Azure portal name</span></span>               | <span data-ttu-id="7a286-153">Пример</span><span class="sxs-lookup"><span data-stu-id="7a286-153">Example</span></span>                                |
 | ----------------------------- | ------------------------------- | -------------------------------------- |
 | `{AAD B2C INSTANCE}`          | <span data-ttu-id="7a286-154">Экземпляр</span><span class="sxs-lookup"><span data-stu-id="7a286-154">Instance</span></span>                        | `https://contoso.b2clogin.com/`        |
-| `{APP NAME}`                  | &mdash;                         | `:::no-loc(Blazor):::Sample`                         |
+| `{APP NAME}`                  | &mdash;                         | `BlazorSample`                         |
 | `{CLIENT ID}`                 | <span data-ttu-id="7a286-155">Идентификатор приложения (клиента)</span><span class="sxs-lookup"><span data-stu-id="7a286-155">Application (client) ID</span></span>         | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
 | `{SIGN UP OR SIGN IN POLICY}` | <span data-ttu-id="7a286-156">Поток регистрации/входа пользователей</span><span class="sxs-lookup"><span data-stu-id="7a286-156">Sign-up/sign-in user flow</span></span>       | `B2C_1_signupsignin1`                  |
 | `{TENANT DOMAIN}`             | <span data-ttu-id="7a286-157">Основной домен/домен издателя/домен клиента</span><span class="sxs-lookup"><span data-stu-id="7a286-157">Primary/Publisher/Tenant domain</span></span> | `contoso.onmicrosoft.com`              |
@@ -143,7 +143,7 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 
 ## <a name="authentication-service-support"></a><span data-ttu-id="7a286-174">Поддержка службы проверки подлинности</span><span class="sxs-lookup"><span data-stu-id="7a286-174">Authentication service support</span></span>
 
-<span data-ttu-id="7a286-175">Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью метода расширения <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A>, предоставляемого в пакете [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal).</span><span class="sxs-lookup"><span data-stu-id="7a286-175">Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package.</span></span> <span data-ttu-id="7a286-176">Этот метод настраивает все службы, необходимые для взаимодействия приложения с поставщиком :::no-loc(Identity)::: (IP).</span><span class="sxs-lookup"><span data-stu-id="7a286-176">This method sets up all of the services required for the app to interact with the :::no-loc(Identity)::: Provider (IP).</span></span>
+<span data-ttu-id="7a286-175">Поддержка проверки подлинности пользователей регистрируется в контейнере службы с помощью метода расширения <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A>, предоставляемого в пакете [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal).</span><span class="sxs-lookup"><span data-stu-id="7a286-175">Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package.</span></span> <span data-ttu-id="7a286-176">Этот метод настраивает все службы, необходимые для взаимодействия приложения с поставщиком Identity (IP).</span><span class="sxs-lookup"><span data-stu-id="7a286-176">This method sets up all of the services required for the app to interact with the Identity Provider (IP).</span></span>
 
 <span data-ttu-id="7a286-177">`Program.cs`:</span><span class="sxs-lookup"><span data-stu-id="7a286-177">`Program.cs`:</span></span>
 
@@ -182,7 +182,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 ## <a name="access-token-scopes"></a><span data-ttu-id="7a286-182">Области маркеров доступа</span><span class="sxs-lookup"><span data-stu-id="7a286-182">Access token scopes</span></span>
 
-<span data-ttu-id="7a286-183">Шаблон :::no-loc(Blazor WebAssembly)::: не обеспечивает автоматическую настройку приложения для запроса маркера доступа для защищенного API.</span><span class="sxs-lookup"><span data-stu-id="7a286-183">The :::no-loc(Blazor WebAssembly)::: template doesn't automatically configure the app to request an access token for a secure API.</span></span> <span data-ttu-id="7a286-184">Чтобы настроить маркер доступа как часть потока входа, добавьте область в области маркера доступа по умолчанию <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions>:</span><span class="sxs-lookup"><span data-stu-id="7a286-184">To provision an access token as part of the sign-in flow, add the scope to the default access token scopes of the <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions>:</span></span>
+<span data-ttu-id="7a286-183">Шаблон Blazor WebAssembly не обеспечивает автоматическую настройку приложения для запроса маркера доступа для защищенного API.</span><span class="sxs-lookup"><span data-stu-id="7a286-183">The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API.</span></span> <span data-ttu-id="7a286-184">Чтобы настроить маркер доступа как часть потока входа, добавьте область в области маркера доступа по умолчанию <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions>:</span><span class="sxs-lookup"><span data-stu-id="7a286-184">To provision an access token as part of the sign-in flow, add the scope to the default access token scopes of the <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions>:</span></span>
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>

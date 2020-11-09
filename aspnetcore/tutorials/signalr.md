@@ -1,22 +1,22 @@
 ---
-title: 'Начало работы с :::no-loc(SignalR)::: ASP.NET Core'
+title: 'Начало работы с SignalR ASP.NET Core'
 author: bradygaster
-description: 'В этом учебнике рассказывается как создать приложение чата, которое использует :::no-loc(SignalR)::: для ASP.NET Core.'
+description: 'В этом учебнике рассказывается как создать приложение чата, которое использует SignalR для ASP.NET Core.'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/21/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: tutorials/signalr
 ms.openlocfilehash: 59c296f3388e71254badb02fa3ae4279005c359c
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -25,22 +25,22 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93056885"
 ---
-# <a name="tutorial-get-started-with-aspnet-core-no-locsignalr"></a><span data-ttu-id="75065-103">Учебник. Начало работы с :::no-loc(SignalR)::: ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="75065-103">Tutorial: Get started with ASP.NET Core :::no-loc(SignalR):::</span></span>
+# <a name="tutorial-get-started-with-aspnet-core-no-locsignalr"></a><span data-ttu-id="75065-103">Учебник. Начало работы с SignalR ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="75065-103">Tutorial: Get started with ASP.NET Core SignalR</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<span data-ttu-id="75065-104">В этом учебнике описаны основы создания приложения, работающего в режиме реального времени, с помощью :::no-loc(SignalR):::.</span><span class="sxs-lookup"><span data-stu-id="75065-104">This tutorial teaches the basics of building a real-time app using :::no-loc(SignalR):::.</span></span> <span data-ttu-id="75065-105">Вы научитесь:</span><span class="sxs-lookup"><span data-stu-id="75065-105">You learn how to:</span></span>
+<span data-ttu-id="75065-104">В этом учебнике описаны основы создания приложения, работающего в режиме реального времени, с помощью SignalR.</span><span class="sxs-lookup"><span data-stu-id="75065-104">This tutorial teaches the basics of building a real-time app using SignalR.</span></span> <span data-ttu-id="75065-105">Вы научитесь:</span><span class="sxs-lookup"><span data-stu-id="75065-105">You learn how to:</span></span>
 
 > [!div class="checklist"]
 > * <span data-ttu-id="75065-106">Создайте веб-проект.</span><span class="sxs-lookup"><span data-stu-id="75065-106">Create a web project.</span></span>
-> * <span data-ttu-id="75065-107">добавлять клиентскую библиотеку :::no-loc(SignalR):::.</span><span class="sxs-lookup"><span data-stu-id="75065-107">Add the :::no-loc(SignalR)::: client library.</span></span>
-> * <span data-ttu-id="75065-108">создавать концентратор :::no-loc(SignalR):::.</span><span class="sxs-lookup"><span data-stu-id="75065-108">Create a :::no-loc(SignalR)::: hub.</span></span>
-> * <span data-ttu-id="75065-109">настраивать проект для использования :::no-loc(SignalR):::;</span><span class="sxs-lookup"><span data-stu-id="75065-109">Configure the project to use :::no-loc(SignalR):::.</span></span>
+> * <span data-ttu-id="75065-107">добавлять клиентскую библиотеку SignalR.</span><span class="sxs-lookup"><span data-stu-id="75065-107">Add the SignalR client library.</span></span>
+> * <span data-ttu-id="75065-108">создавать концентратор SignalR.</span><span class="sxs-lookup"><span data-stu-id="75065-108">Create a SignalR hub.</span></span>
+> * <span data-ttu-id="75065-109">настраивать проект для использования SignalR;</span><span class="sxs-lookup"><span data-stu-id="75065-109">Configure the project to use SignalR.</span></span>
 > * <span data-ttu-id="75065-110">Добавлять код для отправки сообщений из любого клиента всем подключенным клиентам.</span><span class="sxs-lookup"><span data-stu-id="75065-110">Add code that sends messages from any client to all connected clients.</span></span>
 
 <span data-ttu-id="75065-111">В итоге вы получите работающее приложение чата:</span><span class="sxs-lookup"><span data-stu-id="75065-111">At the end, you'll have a working chat app:</span></span>
 
-![:::no-loc(SignalR)::: Пример приложения](signalr/_static/3.x/signalr-get-started-finished.png)
+![SignalR Пример приложения](signalr/_static/3.x/signalr-get-started-finished.png)
 
 ## <a name="prerequisites"></a><span data-ttu-id="75065-113">Предварительные требования</span><span class="sxs-lookup"><span data-stu-id="75065-113">Prerequisites</span></span>
 
@@ -66,11 +66,11 @@ ms.locfileid: "93056885"
 
 * <span data-ttu-id="75065-120">В диалоговом окне **Создать проект** выберите **Веб-приложение ASP.NET Core** и нажмите **Далее**.</span><span class="sxs-lookup"><span data-stu-id="75065-120">In the **Create a new project** dialog, select **ASP.NET Core Web Application** , and then select **Next**.</span></span>
 
-* <span data-ttu-id="75065-121">В диалоговом окне **Настроить новый проект** укажите имя проекта *:::no-loc(SignalR):::Chat* , а затем выберите **Создать**.</span><span class="sxs-lookup"><span data-stu-id="75065-121">In the **Configure your new project** dialog, name the project *:::no-loc(SignalR):::Chat* , and then select **Create**.</span></span>
+* <span data-ttu-id="75065-121">В диалоговом окне **Настроить новый проект** укажите имя проекта *SignalRChat* , а затем выберите **Создать**.</span><span class="sxs-lookup"><span data-stu-id="75065-121">In the **Configure your new project** dialog, name the project *SignalRChat* , and then select **Create**.</span></span>
 
 * <span data-ttu-id="75065-122">В диалоговом окне **Создание веб-приложения ASP.NET Core** выберите платформы **.NET Core** и **ASP.NET Core 3.1**.</span><span class="sxs-lookup"><span data-stu-id="75065-122">In the **Create a new ASP.NET Core web Application** dialog, select **.NET Core** and **ASP.NET Core 3.1**.</span></span> 
 
-* <span data-ttu-id="75065-123">Выберите **Веб-приложение** , чтобы создать проект, который использует :::no-loc(Razor)::: Pages, и нажмите **Создать**.</span><span class="sxs-lookup"><span data-stu-id="75065-123">Select **Web Application** to create a project that uses :::no-loc(Razor)::: Pages, and then select **Create**.</span></span>
+* <span data-ttu-id="75065-123">Выберите **Веб-приложение** , чтобы создать проект, который использует Razor Pages, и нажмите **Создать**.</span><span class="sxs-lookup"><span data-stu-id="75065-123">Select **Web Application** to create a project that uses Razor Pages, and then select **Create**.</span></span>
 
   ![Диалоговое окно создания проекта в Visual Studio](signalr/_static/3.x/signalr-new-project-dialog.png)
 
@@ -81,8 +81,8 @@ ms.locfileid: "93056885"
 * <span data-ttu-id="75065-127">Выполните следующие команды:</span><span class="sxs-lookup"><span data-stu-id="75065-127">Run the following commands:</span></span>
 
    ```dotnetcli
-   dotnet new webapp -o :::no-loc(SignalR):::Chat
-   code -r :::no-loc(SignalR):::Chat
+   dotnet new webapp -o SignalRChat
+   code -r SignalRChat
    ```
 
 # <a name="visual-studio-for-mac"></a>[<span data-ttu-id="75065-128">Visual Studio для Mac</span><span class="sxs-lookup"><span data-stu-id="75065-128">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
@@ -93,13 +93,13 @@ ms.locfileid: "93056885"
 
 * <span data-ttu-id="75065-131">Убедитесь, что для параметра **Требуемая версия .NET Framework** указано **.NET Core 3.1** , а затем нажмите кнопку **Далее**.</span><span class="sxs-lookup"><span data-stu-id="75065-131">Make sure the **Target Framework** is set to **.NET Core 3.1** , and then select **Next**.</span></span>
 
-* <span data-ttu-id="75065-132">Присвойте проекту имя *:::no-loc(SignalR):::Chat* и нажмите кнопку **Создать**.</span><span class="sxs-lookup"><span data-stu-id="75065-132">Name the project *:::no-loc(SignalR):::Chat* , and then select **Create**.</span></span>
+* <span data-ttu-id="75065-132">Присвойте проекту имя *SignalRChat* и нажмите кнопку **Создать**.</span><span class="sxs-lookup"><span data-stu-id="75065-132">Name the project *SignalRChat* , and then select **Create**.</span></span>
 
 ---
 
-## <a name="add-the-no-locsignalr-client-library"></a><span data-ttu-id="75065-133">Добавление клиентской библиотеки :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="75065-133">Add the :::no-loc(SignalR)::: client library</span></span>
+## <a name="add-the-no-locsignalr-client-library"></a><span data-ttu-id="75065-133">Добавление клиентской библиотеки SignalR</span><span class="sxs-lookup"><span data-stu-id="75065-133">Add the SignalR client library</span></span>
 
-<span data-ttu-id="75065-134">Серверная библиотека :::no-loc(SignalR)::: входит в состав общей платформы ASP.NET Core 3.1.</span><span class="sxs-lookup"><span data-stu-id="75065-134">The :::no-loc(SignalR)::: server library is included in the ASP.NET Core 3.1 shared framework.</span></span> <span data-ttu-id="75065-135">Клиентская библиотека JavaScript не добавляется в проект автоматически.</span><span class="sxs-lookup"><span data-stu-id="75065-135">The JavaScript client library isn't automatically included in the project.</span></span> <span data-ttu-id="75065-136">В рамках этого руководства вы будете использовать диспетчер библиотек (LibMan), чтобы получить клиентскую библиотеку из *unpkg*.</span><span class="sxs-lookup"><span data-stu-id="75065-136">For this tutorial, you use Library Manager (LibMan) to get the client library from *unpkg*.</span></span> <span data-ttu-id="75065-137">unpkg — это сеть доставки содержимого, которая позволяет доставить любое содержимое из npm (диспетчера пакетов Node.js).</span><span class="sxs-lookup"><span data-stu-id="75065-137">unpkg is a content delivery network (CDN) that can deliver anything found in npm, the Node.js package manager.</span></span>
+<span data-ttu-id="75065-134">Серверная библиотека SignalR входит в состав общей платформы ASP.NET Core 3.1.</span><span class="sxs-lookup"><span data-stu-id="75065-134">The SignalR server library is included in the ASP.NET Core 3.1 shared framework.</span></span> <span data-ttu-id="75065-135">Клиентская библиотека JavaScript не добавляется в проект автоматически.</span><span class="sxs-lookup"><span data-stu-id="75065-135">The JavaScript client library isn't automatically included in the project.</span></span> <span data-ttu-id="75065-136">В рамках этого руководства вы будете использовать диспетчер библиотек (LibMan), чтобы получить клиентскую библиотеку из *unpkg*.</span><span class="sxs-lookup"><span data-stu-id="75065-136">For this tutorial, you use Library Manager (LibMan) to get the client library from *unpkg*.</span></span> <span data-ttu-id="75065-137">unpkg — это сеть доставки содержимого, которая позволяет доставить любое содержимое из npm (диспетчера пакетов Node.js).</span><span class="sxs-lookup"><span data-stu-id="75065-137">unpkg is a content delivery network (CDN) that can deliver anything found in npm, the Node.js package manager.</span></span>
 
 # <a name="visual-studio"></a>[<span data-ttu-id="75065-138">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="75065-138">Visual Studio</span></span>](#tab/visual-studio/)
 
@@ -125,7 +125,7 @@ ms.locfileid: "93056885"
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
-* <span data-ttu-id="75065-148">Выполните команду ниже, чтобы получить клиентскую библиотеку :::no-loc(SignalR):::, используя LibMan.</span><span class="sxs-lookup"><span data-stu-id="75065-148">Run the following command to get the :::no-loc(SignalR)::: client library by using LibMan.</span></span> <span data-ttu-id="75065-149">Возможно, придется подождать несколько секунд, прежде чем появятся выходные данные.</span><span class="sxs-lookup"><span data-stu-id="75065-149">You might have to wait a few seconds before seeing output.</span></span>
+* <span data-ttu-id="75065-148">Выполните команду ниже, чтобы получить клиентскую библиотеку SignalR, используя LibMan.</span><span class="sxs-lookup"><span data-stu-id="75065-148">Run the following command to get the SignalR client library by using LibMan.</span></span> <span data-ttu-id="75065-149">Возможно, придется подождать несколько секунд, прежде чем появятся выходные данные.</span><span class="sxs-lookup"><span data-stu-id="75065-149">You might have to wait a few seconds before seeing output.</span></span>
 
   ```console
   libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
@@ -152,9 +152,9 @@ ms.locfileid: "93056885"
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
-* <span data-ttu-id="75065-157">Перейдите в папку проекта (где расположен файл *:::no-loc(SignalR):::Chat.csproj* ).</span><span class="sxs-lookup"><span data-stu-id="75065-157">Navigate to the project folder (the one that contains the *:::no-loc(SignalR):::Chat.csproj* file).</span></span>
+* <span data-ttu-id="75065-157">Перейдите в папку проекта (где расположен файл *SignalRChat.csproj* ).</span><span class="sxs-lookup"><span data-stu-id="75065-157">Navigate to the project folder (the one that contains the *SignalRChat.csproj* file).</span></span>
 
-* <span data-ttu-id="75065-158">Выполните команду ниже, чтобы получить клиентскую библиотеку :::no-loc(SignalR):::, используя LibMan.</span><span class="sxs-lookup"><span data-stu-id="75065-158">Run the following command to get the :::no-loc(SignalR)::: client library by using LibMan.</span></span>
+* <span data-ttu-id="75065-158">Выполните команду ниже, чтобы получить клиентскую библиотеку SignalR, используя LibMan.</span><span class="sxs-lookup"><span data-stu-id="75065-158">Run the following command to get the SignalR client library by using LibMan.</span></span>
 
   ```console
   libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
@@ -175,31 +175,31 @@ ms.locfileid: "93056885"
 
 ---
 
-## <a name="create-a-no-locsignalr-hub"></a><span data-ttu-id="75065-164">Создание концентратора :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="75065-164">Create a :::no-loc(SignalR)::: hub</span></span>
+## <a name="create-a-no-locsignalr-hub"></a><span data-ttu-id="75065-164">Создание концентратора SignalR</span><span class="sxs-lookup"><span data-stu-id="75065-164">Create a SignalR hub</span></span>
 
 <span data-ttu-id="75065-165">*hub*  — это класс, который служит в качестве конвейера высокого уровня для обработки взаимодействия между клиентом и сервером.</span><span class="sxs-lookup"><span data-stu-id="75065-165">A *hub* is a class that serves as a high-level pipeline that handles client-server communication.</span></span>
 
-* <span data-ttu-id="75065-166">В папке проекта :::no-loc(SignalR):::Chat создайте папку *Hubs*.</span><span class="sxs-lookup"><span data-stu-id="75065-166">In the :::no-loc(SignalR):::Chat project folder, create a *Hubs* folder.</span></span>
+* <span data-ttu-id="75065-166">В папке проекта SignalRChat создайте папку *Hubs*.</span><span class="sxs-lookup"><span data-stu-id="75065-166">In the SignalRChat project folder, create a *Hubs* folder.</span></span>
 
 * <span data-ttu-id="75065-167">В папке *Hubs* создайте файл *ChatHub.cs* со следующим кодом:</span><span class="sxs-lookup"><span data-stu-id="75065-167">In the *Hubs* folder, create a *ChatHub.cs* file with the following code:</span></span>
 
   [!code-csharp[ChatHub](signalr/sample-snapshot/3.x/ChatHub.cs)]
 
-  <span data-ttu-id="75065-168">Класс `ChatHub` наследуется от класса :::no-loc(SignalR)::: `Hub`.</span><span class="sxs-lookup"><span data-stu-id="75065-168">The `ChatHub` class inherits from the :::no-loc(SignalR)::: `Hub` class.</span></span> <span data-ttu-id="75065-169">Класс `Hub` управляет подключениями, группами и обменом сообщениями.</span><span class="sxs-lookup"><span data-stu-id="75065-169">The `Hub` class manages connections, groups, and messaging.</span></span>
+  <span data-ttu-id="75065-168">Класс `ChatHub` наследуется от класса SignalR `Hub`.</span><span class="sxs-lookup"><span data-stu-id="75065-168">The `ChatHub` class inherits from the SignalR `Hub` class.</span></span> <span data-ttu-id="75065-169">Класс `Hub` управляет подключениями, группами и обменом сообщениями.</span><span class="sxs-lookup"><span data-stu-id="75065-169">The `Hub` class manages connections, groups, and messaging.</span></span>
 
-  <span data-ttu-id="75065-170">Метод `SendMessage` может вызываться подключенным клиентом, чтобы отправить сообщение всем клиентам.</span><span class="sxs-lookup"><span data-stu-id="75065-170">The `SendMessage` method can be called by a connected client to send a message to all clients.</span></span> <span data-ttu-id="75065-171">Далее в этом учебника показан клиентский код JavaScript, который вызывает метод.</span><span class="sxs-lookup"><span data-stu-id="75065-171">JavaScript client code that calls the method is shown later in the tutorial.</span></span> <span data-ttu-id="75065-172">Код :::no-loc(SignalR)::: является асинхронным, поэтому обеспечивает максимальную масштабируемость.</span><span class="sxs-lookup"><span data-stu-id="75065-172">:::no-loc(SignalR)::: code is asynchronous to provide maximum scalability.</span></span>
+  <span data-ttu-id="75065-170">Метод `SendMessage` может вызываться подключенным клиентом, чтобы отправить сообщение всем клиентам.</span><span class="sxs-lookup"><span data-stu-id="75065-170">The `SendMessage` method can be called by a connected client to send a message to all clients.</span></span> <span data-ttu-id="75065-171">Далее в этом учебника показан клиентский код JavaScript, который вызывает метод.</span><span class="sxs-lookup"><span data-stu-id="75065-171">JavaScript client code that calls the method is shown later in the tutorial.</span></span> <span data-ttu-id="75065-172">Код SignalR является асинхронным, поэтому обеспечивает максимальную масштабируемость.</span><span class="sxs-lookup"><span data-stu-id="75065-172">SignalR code is asynchronous to provide maximum scalability.</span></span>
 
-## <a name="configure-no-locsignalr"></a><span data-ttu-id="75065-173">Настройка :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="75065-173">Configure :::no-loc(SignalR):::</span></span>
+## <a name="configure-no-locsignalr"></a><span data-ttu-id="75065-173">Настройка SignalR</span><span class="sxs-lookup"><span data-stu-id="75065-173">Configure SignalR</span></span>
 
-<span data-ttu-id="75065-174">Сервер :::no-loc(SignalR)::: должен быть настроен для передачи запросов :::no-loc(SignalR)::: к :::no-loc(SignalR):::.</span><span class="sxs-lookup"><span data-stu-id="75065-174">The :::no-loc(SignalR)::: server must be configured to pass :::no-loc(SignalR)::: requests to :::no-loc(SignalR):::.</span></span>
+<span data-ttu-id="75065-174">Сервер SignalR должен быть настроен для передачи запросов SignalR к SignalR.</span><span class="sxs-lookup"><span data-stu-id="75065-174">The SignalR server must be configured to pass SignalR requests to SignalR.</span></span>
 
 * <span data-ttu-id="75065-175">Добавьте следующий выделенный код в файл *Startup.cs*.</span><span class="sxs-lookup"><span data-stu-id="75065-175">Add the following highlighted code to the *Startup.cs* file.</span></span>
 
   [!code-csharp[Startup](signalr/sample-snapshot/3.x/Startup.cs?highlight=11,28,55)]
 
-  <span data-ttu-id="75065-176">В результате :::no-loc(SignalR)::: будет добавлен в системы внедрения зависимостей и маршрутизации ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="75065-176">These changes add :::no-loc(SignalR)::: to the ASP.NET Core dependency injection and routing systems.</span></span>
+  <span data-ttu-id="75065-176">В результате SignalR будет добавлен в системы внедрения зависимостей и маршрутизации ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="75065-176">These changes add SignalR to the ASP.NET Core dependency injection and routing systems.</span></span>
 
-## <a name="add-no-locsignalr-client-code"></a><span data-ttu-id="75065-177">Добавление клиентского кода :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="75065-177">Add :::no-loc(SignalR)::: client code</span></span>
+## <a name="add-no-locsignalr-client-code"></a><span data-ttu-id="75065-177">Добавление клиентского кода SignalR</span><span class="sxs-lookup"><span data-stu-id="75065-177">Add SignalR client code</span></span>
 
 * <span data-ttu-id="75065-178">Замените содержимое в файле *Pages\Index.cshtml* следующим кодом:</span><span class="sxs-lookup"><span data-stu-id="75065-178">Replace the content in *Pages\Index.cshtml* with the following code:</span></span>
 
@@ -208,8 +208,8 @@ ms.locfileid: "93056885"
   <span data-ttu-id="75065-179">Предыдущий код:</span><span class="sxs-lookup"><span data-stu-id="75065-179">The preceding code:</span></span>
 
   * <span data-ttu-id="75065-180">Создает текстовые поля для имени и текста сообщения и кнопку отправки.</span><span class="sxs-lookup"><span data-stu-id="75065-180">Creates text boxes for name and message text, and a submit button.</span></span>
-  * <span data-ttu-id="75065-181">Создает список с `id="messagesList"` для отображения сообщений, полученных от концентратора :::no-loc(SignalR):::.</span><span class="sxs-lookup"><span data-stu-id="75065-181">Creates a list with `id="messagesList"` for displaying messages that are received from the :::no-loc(SignalR)::: hub.</span></span>
-  * <span data-ttu-id="75065-182">Содержит ссылки на скрипты для :::no-loc(SignalR)::: и код приложения *chat.js* , который создается в следующем шаге.</span><span class="sxs-lookup"><span data-stu-id="75065-182">Includes script references to :::no-loc(SignalR)::: and the *chat.js* application code that you create in the next step.</span></span>
+  * <span data-ttu-id="75065-181">Создает список с `id="messagesList"` для отображения сообщений, полученных от концентратора SignalR.</span><span class="sxs-lookup"><span data-stu-id="75065-181">Creates a list with `id="messagesList"` for displaying messages that are received from the SignalR hub.</span></span>
+  * <span data-ttu-id="75065-182">Содержит ссылки на скрипты для SignalR и код приложения *chat.js* , который создается в следующем шаге.</span><span class="sxs-lookup"><span data-stu-id="75065-182">Includes script references to SignalR and the *chat.js* application code that you create in the next step.</span></span>
 
 * <span data-ttu-id="75065-183">В папке *wwwroot/js* создайте файл *chat.js* со следующим кодом:</span><span class="sxs-lookup"><span data-stu-id="75065-183">In the *wwwroot/js* folder, create a *chat.js* file with the following code:</span></span>
 
@@ -232,7 +232,7 @@ ms.locfileid: "93056885"
 * <span data-ttu-id="75065-192">В интегрированном терминале выполните следующую команду:</span><span class="sxs-lookup"><span data-stu-id="75065-192">In the integrated terminal, run the following command:</span></span>
 
   ```dotnetcli
-  dotnet watch run -p :::no-loc(SignalR):::Chat.csproj
+  dotnet watch run -p SignalRChat.csproj
   ```
 
 # <a name="visual-studio-for-mac"></a>[<span data-ttu-id="75065-193">Visual Studio для Mac</span><span class="sxs-lookup"><span data-stu-id="75065-193">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
@@ -247,7 +247,7 @@ ms.locfileid: "93056885"
 
   <span data-ttu-id="75065-197">Имя и сообщение отображаются на обеих страницах мгновенно.</span><span class="sxs-lookup"><span data-stu-id="75065-197">The name and message are displayed on both pages instantly.</span></span>
 
-  ![:::no-loc(SignalR)::: Пример приложения](signalr/_static/3.x/signalr-get-started-finished.png)
+  ![SignalR Пример приложения](signalr/_static/3.x/signalr-get-started-finished.png)
 
 > [!TIP]
 > * <span data-ttu-id="75065-199">Если приложение не работает, откройте средства разработчика для браузера (F12) и перейдите в консоль.</span><span class="sxs-lookup"><span data-stu-id="75065-199">If the app doesn't work, open your browser developer tools (F12) and go to the console.</span></span> <span data-ttu-id="75065-200">Вы можете увидеть ошибки, связанные с вашим кодом HTML и JavaScript.</span><span class="sxs-lookup"><span data-stu-id="75065-200">You might see errors related to your HTML and JavaScript code.</span></span> <span data-ttu-id="75065-201">Предположим, вы поместили *signalr.js* не в ту папку, которую указали.</span><span class="sxs-lookup"><span data-stu-id="75065-201">For example, suppose you put *signalr.js* in a different folder than directed.</span></span> <span data-ttu-id="75065-202">В этом случае ссылка на этот файл не будет работать, и вы увидите сообщение об ошибке 404 в консоли.</span><span class="sxs-lookup"><span data-stu-id="75065-202">In that case the reference to that file won't work and you'll see a 404 error in the console.</span></span>
@@ -263,15 +263,15 @@ ms.locfileid: "93056885"
 
 ::: moniker range="< aspnetcore-3.0"
 
-<span data-ttu-id="75065-205">В этом учебнике описаны основы создания приложения, работающего в режиме реального времени, с помощью :::no-loc(SignalR):::.</span><span class="sxs-lookup"><span data-stu-id="75065-205">This tutorial teaches the basics of building a real-time app using :::no-loc(SignalR):::.</span></span> <span data-ttu-id="75065-206">Вы научитесь:</span><span class="sxs-lookup"><span data-stu-id="75065-206">You learn how to:</span></span> 
+<span data-ttu-id="75065-205">В этом учебнике описаны основы создания приложения, работающего в режиме реального времени, с помощью SignalR.</span><span class="sxs-lookup"><span data-stu-id="75065-205">This tutorial teaches the basics of building a real-time app using SignalR.</span></span> <span data-ttu-id="75065-206">Вы научитесь:</span><span class="sxs-lookup"><span data-stu-id="75065-206">You learn how to:</span></span> 
 
 > [!div class="checklist"]  
 > * <span data-ttu-id="75065-207">Создайте веб-проект.</span><span class="sxs-lookup"><span data-stu-id="75065-207">Create a web project.</span></span>   
-> * <span data-ttu-id="75065-208">добавлять клиентскую библиотеку :::no-loc(SignalR):::.</span><span class="sxs-lookup"><span data-stu-id="75065-208">Add the :::no-loc(SignalR)::: client library.</span></span>   
-> * <span data-ttu-id="75065-209">создавать концентратор :::no-loc(SignalR):::.</span><span class="sxs-lookup"><span data-stu-id="75065-209">Create a :::no-loc(SignalR)::: hub.</span></span> 
-> * <span data-ttu-id="75065-210">настраивать проект для использования :::no-loc(SignalR):::;</span><span class="sxs-lookup"><span data-stu-id="75065-210">Configure the project to use :::no-loc(SignalR):::.</span></span> 
+> * <span data-ttu-id="75065-208">добавлять клиентскую библиотеку SignalR.</span><span class="sxs-lookup"><span data-stu-id="75065-208">Add the SignalR client library.</span></span>   
+> * <span data-ttu-id="75065-209">создавать концентратор SignalR.</span><span class="sxs-lookup"><span data-stu-id="75065-209">Create a SignalR hub.</span></span> 
+> * <span data-ttu-id="75065-210">настраивать проект для использования SignalR;</span><span class="sxs-lookup"><span data-stu-id="75065-210">Configure the project to use SignalR.</span></span> 
 > * <span data-ttu-id="75065-211">Добавлять код для отправки сообщений из любого клиента всем подключенным клиентам.</span><span class="sxs-lookup"><span data-stu-id="75065-211">Add code that sends messages from any client to all connected clients.</span></span>  
-<span data-ttu-id="75065-212">В итоге вы получите приложение для работы с чатом: ![:::no-loc(SignalR)::: Пример приложения](signalr/_static/2.x/signalr-get-started-finished.png)</span><span class="sxs-lookup"><span data-stu-id="75065-212">At the end, you'll have a working chat app: ![:::no-loc(SignalR)::: sample app](signalr/_static/2.x/signalr-get-started-finished.png)</span></span>   
+<span data-ttu-id="75065-212">В итоге вы получите приложение для работы с чатом: ![SignalR Пример приложения](signalr/_static/2.x/signalr-get-started-finished.png)</span><span class="sxs-lookup"><span data-stu-id="75065-212">At the end, you'll have a working chat app: ![SignalR sample app](signalr/_static/2.x/signalr-get-started-finished.png)</span></span>   
 
 ## <a name="prerequisites"></a><span data-ttu-id="75065-213">Предварительные требования</span><span class="sxs-lookup"><span data-stu-id="75065-213">Prerequisites</span></span>    
 
@@ -295,11 +295,11 @@ ms.locfileid: "93056885"
 
 * <span data-ttu-id="75065-219">В меню выберите **Файл > Создать проект**.</span><span class="sxs-lookup"><span data-stu-id="75065-219">From the menu, select **File > New Project**.</span></span> 
 
-* <span data-ttu-id="75065-220">В диалоговом окне **Новый проект** выберите **Установленные > Visual C# > Веб > Веб-приложение ASP.NET Core**.</span><span class="sxs-lookup"><span data-stu-id="75065-220">In the **New Project** dialog, select **Installed > Visual C# > Web > ASP.NET Core Web Application**.</span></span> <span data-ttu-id="75065-221">Присвойте проекту имя *:::no-loc(SignalR):::Chat*.</span><span class="sxs-lookup"><span data-stu-id="75065-221">Name the project *:::no-loc(SignalR):::Chat*.</span></span>   
+* <span data-ttu-id="75065-220">В диалоговом окне **Новый проект** выберите **Установленные > Visual C# > Веб > Веб-приложение ASP.NET Core**.</span><span class="sxs-lookup"><span data-stu-id="75065-220">In the **New Project** dialog, select **Installed > Visual C# > Web > ASP.NET Core Web Application**.</span></span> <span data-ttu-id="75065-221">Присвойте проекту имя *SignalRChat*.</span><span class="sxs-lookup"><span data-stu-id="75065-221">Name the project *SignalRChat*.</span></span>   
 
   ![Диалоговое окно создания проекта в Visual Studio](signalr/_static/2.x/signalr-new-project-dialog.png)    
 
-* <span data-ttu-id="75065-223">Выберите **Веб-приложение** , чтобы создать проект, который использует :::no-loc(Razor)::: Pages.</span><span class="sxs-lookup"><span data-stu-id="75065-223">Select **Web Application** to create a project that uses :::no-loc(Razor)::: Pages.</span></span>   
+* <span data-ttu-id="75065-223">Выберите **Веб-приложение** , чтобы создать проект, который использует Razor Pages.</span><span class="sxs-lookup"><span data-stu-id="75065-223">Select **Web Application** to create a project that uses Razor Pages.</span></span>   
 
 * <span data-ttu-id="75065-224">Выберите целевую платформу **.NET Core** , **ASP.NET Core 2.2** и нажмите кнопку **ОК**.</span><span class="sxs-lookup"><span data-stu-id="75065-224">Select a target framework of **.NET Core** , select **ASP.NET Core 2.2** , and click **OK**.</span></span>    
 
@@ -312,8 +312,8 @@ ms.locfileid: "93056885"
 * <span data-ttu-id="75065-228">Выполните следующие команды:</span><span class="sxs-lookup"><span data-stu-id="75065-228">Run the following commands:</span></span>   
 
    ```dotnetcli 
-   dotnet new webapp -o :::no-loc(SignalR):::Chat   
-   code -r :::no-loc(SignalR):::Chat    
+   dotnet new webapp -o SignalRChat   
+   code -r SignalRChat    
    ```  
 
 # <a name="visual-studio-for-mac"></a>[<span data-ttu-id="75065-229">Visual Studio для Mac</span><span class="sxs-lookup"><span data-stu-id="75065-229">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)   
@@ -324,13 +324,13 @@ ms.locfileid: "93056885"
 
 * <span data-ttu-id="75065-232">Выберите **Далее**.</span><span class="sxs-lookup"><span data-stu-id="75065-232">Select **Next**.</span></span>  
 
-* <span data-ttu-id="75065-233">Присвойте проекту имя *:::no-loc(SignalR):::Chat* и нажмите кнопку **Создать**.</span><span class="sxs-lookup"><span data-stu-id="75065-233">Name the project *:::no-loc(SignalR):::Chat* , and then select **Create**.</span></span> 
+* <span data-ttu-id="75065-233">Присвойте проекту имя *SignalRChat* и нажмите кнопку **Создать**.</span><span class="sxs-lookup"><span data-stu-id="75065-233">Name the project *SignalRChat* , and then select **Create**.</span></span> 
 
 --- 
 
-## <a name="add-the-no-locsignalr-client-library"></a><span data-ttu-id="75065-234">Добавление клиентской библиотеки :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="75065-234">Add the :::no-loc(SignalR)::: client library</span></span> 
+## <a name="add-the-no-locsignalr-client-library"></a><span data-ttu-id="75065-234">Добавление клиентской библиотеки SignalR</span><span class="sxs-lookup"><span data-stu-id="75065-234">Add the SignalR client library</span></span> 
 
-<span data-ttu-id="75065-235">Библиотека сервера :::no-loc(SignalR)::: входит в состав метапакета `Microsoft.AspNetCore.App`.</span><span class="sxs-lookup"><span data-stu-id="75065-235">The :::no-loc(SignalR)::: server library is included in the `Microsoft.AspNetCore.App` metapackage.</span></span> <span data-ttu-id="75065-236">Клиентская библиотека JavaScript не добавляется в проект автоматически.</span><span class="sxs-lookup"><span data-stu-id="75065-236">The JavaScript client library isn't automatically included in the project.</span></span> <span data-ttu-id="75065-237">В рамках этого руководства вы будете использовать диспетчер библиотек (LibMan), чтобы получить клиентскую библиотеку из *unpkg*.</span><span class="sxs-lookup"><span data-stu-id="75065-237">For this tutorial, you use Library Manager (LibMan) to get the client library from *unpkg*.</span></span> <span data-ttu-id="75065-238">unpkg — это сеть доставки содержимого, которая позволяет доставить любое содержимое из npm (диспетчера пакетов Node.js).</span><span class="sxs-lookup"><span data-stu-id="75065-238">unpkg is a content delivery network (CDN) that can deliver anything found in npm, the Node.js package manager.</span></span>   
+<span data-ttu-id="75065-235">Библиотека сервера SignalR входит в состав метапакета `Microsoft.AspNetCore.App`.</span><span class="sxs-lookup"><span data-stu-id="75065-235">The SignalR server library is included in the `Microsoft.AspNetCore.App` metapackage.</span></span> <span data-ttu-id="75065-236">Клиентская библиотека JavaScript не добавляется в проект автоматически.</span><span class="sxs-lookup"><span data-stu-id="75065-236">The JavaScript client library isn't automatically included in the project.</span></span> <span data-ttu-id="75065-237">В рамках этого руководства вы будете использовать диспетчер библиотек (LibMan), чтобы получить клиентскую библиотеку из *unpkg*.</span><span class="sxs-lookup"><span data-stu-id="75065-237">For this tutorial, you use Library Manager (LibMan) to get the client library from *unpkg*.</span></span> <span data-ttu-id="75065-238">unpkg — это сеть доставки содержимого, которая позволяет доставить любое содержимое из npm (диспетчера пакетов Node.js).</span><span class="sxs-lookup"><span data-stu-id="75065-238">unpkg is a content delivery network (CDN) that can deliver anything found in npm, the Node.js package manager.</span></span>   
 
 # <a name="visual-studio"></a>[<span data-ttu-id="75065-239">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="75065-239">Visual Studio</span></span>](#tab/visual-studio/)  
 
@@ -358,7 +358,7 @@ ms.locfileid: "93056885"
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli   
   ```   
 
-* <span data-ttu-id="75065-250">Выполните команду ниже, чтобы получить клиентскую библиотеку :::no-loc(SignalR):::, используя LibMan.</span><span class="sxs-lookup"><span data-stu-id="75065-250">Run the following command to get the :::no-loc(SignalR)::: client library by using LibMan.</span></span> <span data-ttu-id="75065-251">Возможно, придется подождать несколько секунд, прежде чем появятся выходные данные.</span><span class="sxs-lookup"><span data-stu-id="75065-251">You might have to wait a few seconds before seeing output.</span></span> 
+* <span data-ttu-id="75065-250">Выполните команду ниже, чтобы получить клиентскую библиотеку SignalR, используя LibMan.</span><span class="sxs-lookup"><span data-stu-id="75065-250">Run the following command to get the SignalR client library by using LibMan.</span></span> <span data-ttu-id="75065-251">Возможно, придется подождать несколько секунд, прежде чем появятся выходные данные.</span><span class="sxs-lookup"><span data-stu-id="75065-251">You might have to wait a few seconds before seeing output.</span></span> 
 
   ```console    
   libman install @microsoft/signalr -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js 
@@ -385,9 +385,9 @@ ms.locfileid: "93056885"
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli   
   ```   
 
-* <span data-ttu-id="75065-259">Перейдите в папку проекта (где расположен файл *:::no-loc(SignalR):::Chat.csproj* ).</span><span class="sxs-lookup"><span data-stu-id="75065-259">Navigate to the project folder (the one that contains the *:::no-loc(SignalR):::Chat.csproj* file).</span></span>   
+* <span data-ttu-id="75065-259">Перейдите в папку проекта (где расположен файл *SignalRChat.csproj* ).</span><span class="sxs-lookup"><span data-stu-id="75065-259">Navigate to the project folder (the one that contains the *SignalRChat.csproj* file).</span></span>   
 
-* <span data-ttu-id="75065-260">Выполните команду ниже, чтобы получить клиентскую библиотеку :::no-loc(SignalR):::, используя LibMan.</span><span class="sxs-lookup"><span data-stu-id="75065-260">Run the following command to get the :::no-loc(SignalR)::: client library by using LibMan.</span></span>    
+* <span data-ttu-id="75065-260">Выполните команду ниже, чтобы получить клиентскую библиотеку SignalR, используя LibMan.</span><span class="sxs-lookup"><span data-stu-id="75065-260">Run the following command to get the SignalR client library by using LibMan.</span></span>    
 
   ```console    
   libman install @microsoft/signalr -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js 
@@ -408,31 +408,31 @@ ms.locfileid: "93056885"
 
 --- 
 
-## <a name="create-a-no-locsignalr-hub"></a><span data-ttu-id="75065-266">Создание концентратора :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="75065-266">Create a :::no-loc(SignalR)::: hub</span></span>   
+## <a name="create-a-no-locsignalr-hub"></a><span data-ttu-id="75065-266">Создание концентратора SignalR</span><span class="sxs-lookup"><span data-stu-id="75065-266">Create a SignalR hub</span></span>   
 
 <span data-ttu-id="75065-267">*hub*  — это класс, который служит в качестве конвейера высокого уровня для обработки взаимодействия между клиентом и сервером.</span><span class="sxs-lookup"><span data-stu-id="75065-267">A *hub* is a class that serves as a high-level pipeline that handles client-server communication.</span></span>   
 
-* <span data-ttu-id="75065-268">В папке проекта :::no-loc(SignalR):::Chat создайте папку *Hubs*.</span><span class="sxs-lookup"><span data-stu-id="75065-268">In the :::no-loc(SignalR):::Chat project folder, create a *Hubs* folder.</span></span>  
+* <span data-ttu-id="75065-268">В папке проекта SignalRChat создайте папку *Hubs*.</span><span class="sxs-lookup"><span data-stu-id="75065-268">In the SignalRChat project folder, create a *Hubs* folder.</span></span>  
 
 * <span data-ttu-id="75065-269">В папке *Hubs* создайте файл *ChatHub.cs* со следующим кодом:</span><span class="sxs-lookup"><span data-stu-id="75065-269">In the *Hubs* folder, create a *ChatHub.cs* file with the following code:</span></span> 
 
   [!code-csharp[Startup](signalr/sample-snapshot/2.x/ChatHub.cs)]   
 
-  <span data-ttu-id="75065-270">Класс `ChatHub` наследуется от класса :::no-loc(SignalR)::: `Hub`.</span><span class="sxs-lookup"><span data-stu-id="75065-270">The `ChatHub` class inherits from the :::no-loc(SignalR)::: `Hub` class.</span></span> <span data-ttu-id="75065-271">Класс `Hub` управляет подключениями, группами и обменом сообщениями.</span><span class="sxs-lookup"><span data-stu-id="75065-271">The `Hub` class manages connections, groups, and messaging.</span></span>  
+  <span data-ttu-id="75065-270">Класс `ChatHub` наследуется от класса SignalR `Hub`.</span><span class="sxs-lookup"><span data-stu-id="75065-270">The `ChatHub` class inherits from the SignalR `Hub` class.</span></span> <span data-ttu-id="75065-271">Класс `Hub` управляет подключениями, группами и обменом сообщениями.</span><span class="sxs-lookup"><span data-stu-id="75065-271">The `Hub` class manages connections, groups, and messaging.</span></span>  
 
-  <span data-ttu-id="75065-272">Метод `SendMessage` может вызываться подключенным клиентом, чтобы отправить сообщение всем клиентам.</span><span class="sxs-lookup"><span data-stu-id="75065-272">The `SendMessage` method can be called by a connected client to send a message to all clients.</span></span> <span data-ttu-id="75065-273">Далее в этом учебника показан клиентский код JavaScript, который вызывает метод.</span><span class="sxs-lookup"><span data-stu-id="75065-273">JavaScript client code that calls the method is shown later in the tutorial.</span></span> <span data-ttu-id="75065-274">Код :::no-loc(SignalR)::: является асинхронным, поэтому обеспечивает максимальную масштабируемость.</span><span class="sxs-lookup"><span data-stu-id="75065-274">:::no-loc(SignalR)::: code is asynchronous to provide maximum scalability.</span></span>    
+  <span data-ttu-id="75065-272">Метод `SendMessage` может вызываться подключенным клиентом, чтобы отправить сообщение всем клиентам.</span><span class="sxs-lookup"><span data-stu-id="75065-272">The `SendMessage` method can be called by a connected client to send a message to all clients.</span></span> <span data-ttu-id="75065-273">Далее в этом учебника показан клиентский код JavaScript, который вызывает метод.</span><span class="sxs-lookup"><span data-stu-id="75065-273">JavaScript client code that calls the method is shown later in the tutorial.</span></span> <span data-ttu-id="75065-274">Код SignalR является асинхронным, поэтому обеспечивает максимальную масштабируемость.</span><span class="sxs-lookup"><span data-stu-id="75065-274">SignalR code is asynchronous to provide maximum scalability.</span></span>    
 
-## <a name="configure-no-locsignalr"></a><span data-ttu-id="75065-275">Настройка :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="75065-275">Configure :::no-loc(SignalR):::</span></span>  
+## <a name="configure-no-locsignalr"></a><span data-ttu-id="75065-275">Настройка SignalR</span><span class="sxs-lookup"><span data-stu-id="75065-275">Configure SignalR</span></span>  
 
-<span data-ttu-id="75065-276">Сервер :::no-loc(SignalR)::: должен быть настроен для передачи запросов :::no-loc(SignalR)::: к :::no-loc(SignalR):::.</span><span class="sxs-lookup"><span data-stu-id="75065-276">The :::no-loc(SignalR)::: server must be configured to pass :::no-loc(SignalR)::: requests to :::no-loc(SignalR):::.</span></span>    
+<span data-ttu-id="75065-276">Сервер SignalR должен быть настроен для передачи запросов SignalR к SignalR.</span><span class="sxs-lookup"><span data-stu-id="75065-276">The SignalR server must be configured to pass SignalR requests to SignalR.</span></span>    
 
 * <span data-ttu-id="75065-277">Добавьте следующий выделенный код в файл *Startup.cs*.</span><span class="sxs-lookup"><span data-stu-id="75065-277">Add the following highlighted code to the *Startup.cs* file.</span></span>  
 
   [!code-csharp[Startup](signalr/sample-snapshot/2.x/Startup.cs?highlight=7,33,52-55)]  
 
-  <span data-ttu-id="75065-278">В результате :::no-loc(SignalR)::: будет добавлен в систему внедрения зависимостей ASP.NET Core и конвейер ПО промежуточного слоя.</span><span class="sxs-lookup"><span data-stu-id="75065-278">These changes add :::no-loc(SignalR)::: to the ASP.NET Core dependency injection system and the middleware pipeline.</span></span>  
+  <span data-ttu-id="75065-278">В результате SignalR будет добавлен в систему внедрения зависимостей ASP.NET Core и конвейер ПО промежуточного слоя.</span><span class="sxs-lookup"><span data-stu-id="75065-278">These changes add SignalR to the ASP.NET Core dependency injection system and the middleware pipeline.</span></span>  
 
-## <a name="add-no-locsignalr-client-code"></a><span data-ttu-id="75065-279">Добавление клиентского кода :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="75065-279">Add :::no-loc(SignalR)::: client code</span></span>    
+## <a name="add-no-locsignalr-client-code"></a><span data-ttu-id="75065-279">Добавление клиентского кода SignalR</span><span class="sxs-lookup"><span data-stu-id="75065-279">Add SignalR client code</span></span>    
 
 * <span data-ttu-id="75065-280">Замените содержимое в файле *Pages\Index.cshtml* следующим кодом:</span><span class="sxs-lookup"><span data-stu-id="75065-280">Replace the content in *Pages\Index.cshtml* with the following code:</span></span>  
 
@@ -441,8 +441,8 @@ ms.locfileid: "93056885"
   <span data-ttu-id="75065-281">Предыдущий код:</span><span class="sxs-lookup"><span data-stu-id="75065-281">The preceding code:</span></span>   
 
   * <span data-ttu-id="75065-282">Создает текстовые поля для имени и текста сообщения и кнопку отправки.</span><span class="sxs-lookup"><span data-stu-id="75065-282">Creates text boxes for name and message text, and a submit button.</span></span>  
-  * <span data-ttu-id="75065-283">Создает список с `id="messagesList"` для отображения сообщений, полученных от концентратора :::no-loc(SignalR):::.</span><span class="sxs-lookup"><span data-stu-id="75065-283">Creates a list with `id="messagesList"` for displaying messages that are received from the :::no-loc(SignalR)::: hub.</span></span>   
-  * <span data-ttu-id="75065-284">Содержит ссылки на скрипты для :::no-loc(SignalR)::: и код приложения *chat.js* , который создается в следующем шаге.</span><span class="sxs-lookup"><span data-stu-id="75065-284">Includes script references to :::no-loc(SignalR)::: and the *chat.js* application code that you create in the next step.</span></span>    
+  * <span data-ttu-id="75065-283">Создает список с `id="messagesList"` для отображения сообщений, полученных от концентратора SignalR.</span><span class="sxs-lookup"><span data-stu-id="75065-283">Creates a list with `id="messagesList"` for displaying messages that are received from the SignalR hub.</span></span>   
+  * <span data-ttu-id="75065-284">Содержит ссылки на скрипты для SignalR и код приложения *chat.js* , который создается в следующем шаге.</span><span class="sxs-lookup"><span data-stu-id="75065-284">Includes script references to SignalR and the *chat.js* application code that you create in the next step.</span></span>    
 
 * <span data-ttu-id="75065-285">В папке *wwwroot/js* создайте файл *chat.js* со следующим кодом:</span><span class="sxs-lookup"><span data-stu-id="75065-285">In the *wwwroot/js* folder, create a *chat.js* file with the following code:</span></span>  
 
@@ -465,7 +465,7 @@ ms.locfileid: "93056885"
 * <span data-ttu-id="75065-294">В интегрированном терминале выполните следующую команду:</span><span class="sxs-lookup"><span data-stu-id="75065-294">In the integrated terminal, run the following command:</span></span>    
 
   ```dotnetcli
-  dotnet run -p :::no-loc(SignalR):::Chat.csproj
+  dotnet run -p SignalRChat.csproj
   ```
 
 # <a name="visual-studio-for-mac"></a>[<span data-ttu-id="75065-295">Visual Studio для Mac</span><span class="sxs-lookup"><span data-stu-id="75065-295">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
@@ -480,7 +480,7 @@ ms.locfileid: "93056885"
 
   <span data-ttu-id="75065-299">Имя и сообщение отображаются на обеих страницах мгновенно.</span><span class="sxs-lookup"><span data-stu-id="75065-299">The name and message are displayed on both pages instantly.</span></span>   
 
-  ![:::no-loc(SignalR)::: Пример приложения](signalr/_static/2.x/signalr-get-started-finished.png) 
+  ![SignalR Пример приложения](signalr/_static/2.x/signalr-get-started-finished.png) 
 
 > [!TIP]    
 > <span data-ttu-id="75065-301">Если приложение не работает, откройте средства разработчика для браузера (F12) и перейдите в консоль.</span><span class="sxs-lookup"><span data-stu-id="75065-301">If the app doesn't work, open your browser developer tools (F12) and go to the console.</span></span> <span data-ttu-id="75065-302">Вы можете увидеть ошибки, связанные с вашим кодом HTML и JavaScript.</span><span class="sxs-lookup"><span data-stu-id="75065-302">You might see errors related to your HTML and JavaScript code.</span></span> <span data-ttu-id="75065-303">Предположим, вы поместили *signalr.js* не в ту папку, которую указали.</span><span class="sxs-lookup"><span data-stu-id="75065-303">For example, suppose you put *signalr.js* in a different folder than directed.</span></span> <span data-ttu-id="75065-304">В этом случае ссылка на этот файл не будет работать, и вы увидите сообщение об ошибке 404 в консоли.</span><span class="sxs-lookup"><span data-stu-id="75065-304">In that case the reference to that file won't work and you'll see a 404 error in the console.</span></span>   

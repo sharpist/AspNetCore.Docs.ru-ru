@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: mvc/views/view-components
 ms.openlocfilehash: e0ff97b53d12fbf6c6a89e94704de1aee9d7f9e6
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -33,7 +33,7 @@ ms.locfileid: "93060590"
 
 ## <a name="view-components"></a><span data-ttu-id="6847d-106">Компоненты представлений</span><span class="sxs-lookup"><span data-stu-id="6847d-106">View components</span></span>
 
-<span data-ttu-id="6847d-107">Компоненты представлений похожи на частичные представления, но при этом гораздо функциональнее.</span><span class="sxs-lookup"><span data-stu-id="6847d-107">View components are similar to partial views, but they're much more powerful.</span></span> <span data-ttu-id="6847d-108">Компоненты представлений не используют привязку модели и зависят только от данных, предоставляемых при их вызове.</span><span class="sxs-lookup"><span data-stu-id="6847d-108">View components don't use model binding, and only depend on the data provided when calling into it.</span></span> <span data-ttu-id="6847d-109">Эта статья написана с использованием контроллеров и представлений, но компоненты представлений также работают со :::no-loc(Razor)::: страницами.</span><span class="sxs-lookup"><span data-stu-id="6847d-109">This article was written using controllers and views, but view components also work with :::no-loc(Razor)::: Pages.</span></span>
+<span data-ttu-id="6847d-107">Компоненты представлений похожи на частичные представления, но при этом гораздо функциональнее.</span><span class="sxs-lookup"><span data-stu-id="6847d-107">View components are similar to partial views, but they're much more powerful.</span></span> <span data-ttu-id="6847d-108">Компоненты представлений не используют привязку модели и зависят только от данных, предоставляемых при их вызове.</span><span class="sxs-lookup"><span data-stu-id="6847d-108">View components don't use model binding, and only depend on the data provided when calling into it.</span></span> <span data-ttu-id="6847d-109">Эта статья написана с использованием контроллеров и представлений, но компоненты представлений также работают со Razor страницами.</span><span class="sxs-lookup"><span data-stu-id="6847d-109">This article was written using controllers and views, but view components also work with Razor Pages.</span></span>
 
 <span data-ttu-id="6847d-110">Компонент представлений:</span><span class="sxs-lookup"><span data-stu-id="6847d-110">A view component:</span></span>
 
@@ -54,7 +54,7 @@ ms.locfileid: "93060590"
 
 <span data-ttu-id="6847d-123">Компонент представления состоит из двух частей: класса (обычно производного от [ViewComponent](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponent)) и возвращаемого результата (обычно это представление).</span><span class="sxs-lookup"><span data-stu-id="6847d-123">A view component consists of two parts: the class (typically derived from [ViewComponent](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponent)) and the result it returns (typically a view).</span></span> <span data-ttu-id="6847d-124">Как и контроллеры, компонент представления может быть объектом POCO, но большинству разработчиков потребуются преимущества методов и свойств, доступные при наследовании от `ViewComponent`.</span><span class="sxs-lookup"><span data-stu-id="6847d-124">Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.</span></span>
 
-<span data-ttu-id="6847d-125">При рассмотрении того, соответствуют ли компоненты представления спецификациям приложения, рекомендуется использовать :::no-loc(Razor)::: компоненты.</span><span class="sxs-lookup"><span data-stu-id="6847d-125">When considering if view components meet an app's specifications, consider using :::no-loc(Razor)::: Components instead.</span></span> <span data-ttu-id="6847d-126">:::no-loc(Razor)::: Компоненты также сочетают разметку с кодом C# для создания повторно используемых единиц пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="6847d-126">:::no-loc(Razor)::: Components also combine markup with C# code to produce reusable UI units.</span></span> <span data-ttu-id="6847d-127">:::no-loc(Razor)::: Компоненты предназначены для повышения производительности разработки при предоставлении логики пользовательского интерфейса и компоновки на стороне клиента.</span><span class="sxs-lookup"><span data-stu-id="6847d-127">:::no-loc(Razor)::: Components are designed for developer productivity when providing client-side UI logic and composition.</span></span> <span data-ttu-id="6847d-128">Для получения дополнительной информации см. <xref:blazor/components/index>.</span><span class="sxs-lookup"><span data-stu-id="6847d-128">For more information, see <xref:blazor/components/index>.</span></span>
+<span data-ttu-id="6847d-125">При рассмотрении того, соответствуют ли компоненты представления спецификациям приложения, рекомендуется использовать Razor компоненты.</span><span class="sxs-lookup"><span data-stu-id="6847d-125">When considering if view components meet an app's specifications, consider using Razor Components instead.</span></span> <span data-ttu-id="6847d-126">Razor Компоненты также сочетают разметку с кодом C# для создания повторно используемых единиц пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="6847d-126">Razor Components also combine markup with C# code to produce reusable UI units.</span></span> <span data-ttu-id="6847d-127">Razor Компоненты предназначены для повышения производительности разработки при предоставлении логики пользовательского интерфейса и компоновки на стороне клиента.</span><span class="sxs-lookup"><span data-stu-id="6847d-127">Razor Components are designed for developer productivity when providing client-side UI logic and composition.</span></span> <span data-ttu-id="6847d-128">Для получения дополнительной информации см. <xref:blazor/components/index>.</span><span class="sxs-lookup"><span data-stu-id="6847d-128">For more information, see <xref:blazor/components/index>.</span></span>
 
 ## <a name="creating-a-view-component"></a><span data-ttu-id="6847d-129">Создание компонента представления</span><span class="sxs-lookup"><span data-stu-id="6847d-129">Creating a view component</span></span>
 
@@ -94,7 +94,7 @@ ms.locfileid: "93060590"
 * <span data-ttu-id="6847d-160">/Views/Shared/Components/{Имя компонента представления}/{Имя представления}</span><span class="sxs-lookup"><span data-stu-id="6847d-160">/Views/Shared/Components/{View Component Name}/{View Name}</span></span>
 * <span data-ttu-id="6847d-161">/Pages/Shared/Components/{Имя компонента представления}/{Имя представления}</span><span class="sxs-lookup"><span data-stu-id="6847d-161">/Pages/Shared/Components/{View Component Name}/{View Name}</span></span>
 
-<span data-ttu-id="6847d-162">Путь поиска применяется к проектам с использованием контроллеров и представлений и :::no-loc(Razor)::: страниц.</span><span class="sxs-lookup"><span data-stu-id="6847d-162">The search path applies to projects using controllers + views and :::no-loc(Razor)::: Pages.</span></span>
+<span data-ttu-id="6847d-162">Путь поиска применяется к проектам с использованием контроллеров и представлений и Razor страниц.</span><span class="sxs-lookup"><span data-stu-id="6847d-162">The search path applies to projects using controllers + views and Razor Pages.</span></span>
 
 <span data-ttu-id="6847d-163">По умолчанию для компонента представления используется имя *Default* , то есть файл представления обычно называется *Default.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="6847d-163">The default view name for a view component is *Default* , which means your view file will typically be named *Default.cshtml* .</span></span> <span data-ttu-id="6847d-164">При создании результата компонента представления или при вызове метода `View` можно указать другое имя представления.</span><span class="sxs-lookup"><span data-stu-id="6847d-164">You can specify a different view name when creating the view component result or when calling the `View` method.</span></span>
 
@@ -102,7 +102,7 @@ ms.locfileid: "93060590"
 
 ### <a name="customize-the-view-search-path"></a><span data-ttu-id="6847d-167">Настройка пути поиска представления</span><span class="sxs-lookup"><span data-stu-id="6847d-167">Customize the view search path</span></span>
 
-<span data-ttu-id="6847d-168">Чтобы настроить путь поиска представления, измените :::no-loc(Razor)::: <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::.:::no-loc(Razor):::ViewEngineOptions.ViewLocationFormats> коллекцию.</span><span class="sxs-lookup"><span data-stu-id="6847d-168">To customize the view search path, modify :::no-loc(Razor):::'s <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::.:::no-loc(Razor):::ViewEngineOptions.ViewLocationFormats> collection.</span></span> <span data-ttu-id="6847d-169">Например, чтобы найти представления в пути "/Components/{имя компонента представления}/{имя представления}", добавьте в коллекцию новый элемент:</span><span class="sxs-lookup"><span data-stu-id="6847d-169">For example, to search for views within the path "/Components/{View Component Name}/{View Name}", add a new item to the collection:</span></span>
+<span data-ttu-id="6847d-168">Чтобы настроить путь поиска представления, измените Razor <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats> коллекцию.</span><span class="sxs-lookup"><span data-stu-id="6847d-168">To customize the view search path, modify Razor's <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats> collection.</span></span> <span data-ttu-id="6847d-169">Например, чтобы найти представления в пути "/Components/{имя компонента представления}/{имя представления}", добавьте в коллекцию новый элемент:</span><span class="sxs-lookup"><span data-stu-id="6847d-169">For example, to search for views within the path "/Components/{View Component Name}/{View Name}", add a new item to the collection:</span></span>
 
 [!code-csharp[](view-components/samples_snapshot/2.x/Startup.cs?name=snippet_ViewLocationFormats&highlight=4)]
 
@@ -193,18 +193,18 @@ ms.locfileid: "93060590"
 * <span data-ttu-id="6847d-208">`InvokeAsync` предоставляет метод, который возможно вызывать из представления и который может принять произвольное число аргументов.</span><span class="sxs-lookup"><span data-stu-id="6847d-208">`InvokeAsync` exposes a method which can be called from a view, and it can take an arbitrary number of arguments.</span></span>
 * <span data-ttu-id="6847d-209">Метод `InvokeAsync` возвращает набор элементов `ToDo`, удовлетворяющих параметрам `isDone` и `maxPriority`.</span><span class="sxs-lookup"><span data-stu-id="6847d-209">The `InvokeAsync` method returns the set of `ToDo` items that satisfy the `isDone` and `maxPriority` parameters.</span></span>
 
-### <a name="create-the-view-component-no-locrazor-view"></a><span data-ttu-id="6847d-210">Создание представления компонента представления :::no-loc(Razor):::</span><span class="sxs-lookup"><span data-stu-id="6847d-210">Create the view component :::no-loc(Razor)::: view</span></span>
+### <a name="create-the-view-component-no-locrazor-view"></a><span data-ttu-id="6847d-210">Создание представления компонента представления Razor</span><span class="sxs-lookup"><span data-stu-id="6847d-210">Create the view component Razor view</span></span>
 
 * <span data-ttu-id="6847d-211">Создайте папку *Views/Shared/Components* .</span><span class="sxs-lookup"><span data-stu-id="6847d-211">Create the *Views/Shared/Components* folder.</span></span> <span data-ttu-id="6847d-212">Она **должна** называться *Components* .</span><span class="sxs-lookup"><span data-stu-id="6847d-212">This folder **must** be named *Components* .</span></span>
 
 * <span data-ttu-id="6847d-213">Создайте папку *Views/Shared/Components/PriorityList* .</span><span class="sxs-lookup"><span data-stu-id="6847d-213">Create the *Views/Shared/Components/PriorityList* folder.</span></span> <span data-ttu-id="6847d-214">Ее имя должно соответствовать имени класса представлений компонентов или имени класса без суффикса (если мы следовали соглашению и использовали суффикс *ViewComponent* в имени класса).</span><span class="sxs-lookup"><span data-stu-id="6847d-214">This folder name must match the name of the view component class, or the name of the class minus the suffix (if we followed convention and used the *ViewComponent* suffix in the class name).</span></span> <span data-ttu-id="6847d-215">Если вы использовали атрибут `ViewComponent`, имя класса должно соответствовать его обозначению.</span><span class="sxs-lookup"><span data-stu-id="6847d-215">If you used the `ViewComponent` attribute, the class name would need to match the attribute designation.</span></span>
 
-* <span data-ttu-id="6847d-216">Создайте представление views */Shared/Components/PriorityList/Default. cshtml* :::no-loc(Razor)::: :</span><span class="sxs-lookup"><span data-stu-id="6847d-216">Create a *Views/Shared/Components/PriorityList/Default.cshtml* :::no-loc(Razor)::: view:</span></span>
+* <span data-ttu-id="6847d-216">Создайте представление views */Shared/Components/PriorityList/Default. cshtml* Razor :</span><span class="sxs-lookup"><span data-stu-id="6847d-216">Create a *Views/Shared/Components/PriorityList/Default.cshtml* Razor view:</span></span>
 
 
   [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
 
-   <span data-ttu-id="6847d-217">:::no-loc(Razor):::Представление принимает список `TodoItem` и отображает их.</span><span class="sxs-lookup"><span data-stu-id="6847d-217">The :::no-loc(Razor)::: view takes a list of `TodoItem` and displays them.</span></span> <span data-ttu-id="6847d-218">Если метод `InvokeAsync` компонента представления не передает имя представления (как в нашем примере), по соглашению используется имя *Default* .</span><span class="sxs-lookup"><span data-stu-id="6847d-218">If the view component `InvokeAsync` method doesn't pass the name of the view (as in our sample), *Default* is used for the view name by convention.</span></span> <span data-ttu-id="6847d-219">Далее в этом учебнике я покажу, как передать имя представления.</span><span class="sxs-lookup"><span data-stu-id="6847d-219">Later in the tutorial, I'll show you how to pass the name of the view.</span></span> <span data-ttu-id="6847d-220">Чтобы переопределить стиль по умолчанию для конкретного контроллера, добавьте представление в папку представления для конкретного контроллера (например, views */TODO/Components/PriorityList/Default. cshtml)* .</span><span class="sxs-lookup"><span data-stu-id="6847d-220">To override the default styling for a specific controller, add a view to the controller-specific view folder (for example *Views/ToDo/Components/PriorityList/Default.cshtml)* .</span></span>
+   <span data-ttu-id="6847d-217">RazorПредставление принимает список `TodoItem` и отображает их.</span><span class="sxs-lookup"><span data-stu-id="6847d-217">The Razor view takes a list of `TodoItem` and displays them.</span></span> <span data-ttu-id="6847d-218">Если метод `InvokeAsync` компонента представления не передает имя представления (как в нашем примере), по соглашению используется имя *Default* .</span><span class="sxs-lookup"><span data-stu-id="6847d-218">If the view component `InvokeAsync` method doesn't pass the name of the view (as in our sample), *Default* is used for the view name by convention.</span></span> <span data-ttu-id="6847d-219">Далее в этом учебнике я покажу, как передать имя представления.</span><span class="sxs-lookup"><span data-stu-id="6847d-219">Later in the tutorial, I'll show you how to pass the name of the view.</span></span> <span data-ttu-id="6847d-220">Чтобы переопределить стиль по умолчанию для конкретного контроллера, добавьте представление в папку представления для конкретного контроллера (например, views */TODO/Components/PriorityList/Default. cshtml)* .</span><span class="sxs-lookup"><span data-stu-id="6847d-220">To override the default styling for a specific controller, add a view to the controller-specific view folder (for example *Views/ToDo/Components/PriorityList/Default.cshtml)* .</span></span>
 
     <span data-ttu-id="6847d-221">Если компонент представления связан с конкретным контроллером, его можно добавить в папку этого контроллера ( *Views/ToDo/Components/PriorityList/Default.cshtml* ).</span><span class="sxs-lookup"><span data-stu-id="6847d-221">If the view component is controller-specific, you can add it to the controller-specific folder ( *Views/ToDo/Components/PriorityList/Default.cshtml* ).</span></span>
 
@@ -272,7 +272,7 @@ ms.locfileid: "93060590"
 
 [!code-csharp[](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityList.cs?highlight=10&range=5-35)]
 
-<span data-ttu-id="6847d-253">Добавьте `using` оператор в :::no-loc(Razor)::: файл представления и используйте `nameof` оператор:</span><span class="sxs-lookup"><span data-stu-id="6847d-253">Add a `using` statement to your :::no-loc(Razor)::: view file, and use the `nameof` operator:</span></span>
+<span data-ttu-id="6847d-253">Добавьте `using` оператор в Razor файл представления и используйте `nameof` оператор:</span><span class="sxs-lookup"><span data-stu-id="6847d-253">Add a `using` statement to your Razor view file, and use the `nameof` operator:</span></span>
 
 [!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexNameof.cshtml?range=1-6,35-)]
 
@@ -291,7 +291,7 @@ public class PriorityList : ViewComponent
 }
 ```
 
-<span data-ttu-id="6847d-257">В файле компонента представления :::no-loc(Razor)::: перечислены строки, передаваемые `Invoke` методу ( *Views/Home/Components/PriorityList/Default. cshtml* ):</span><span class="sxs-lookup"><span data-stu-id="6847d-257">The view component's :::no-loc(Razor)::: file lists the strings passed to the `Invoke` method ( *Views/Home/Components/PriorityList/Default.cshtml* ):</span></span>
+<span data-ttu-id="6847d-257">В файле компонента представления Razor перечислены строки, передаваемые `Invoke` методу ( *Views/Home/Components/PriorityList/Default. cshtml* ):</span><span class="sxs-lookup"><span data-stu-id="6847d-257">The view component's Razor file lists the strings passed to the `Invoke` method ( *Views/Home/Components/PriorityList/Default.cshtml* ):</span></span>
 
 ```cshtml
 @model List<string>
@@ -307,7 +307,7 @@ public class PriorityList : ViewComponent
 
 ::: moniker range=">= aspnetcore-1.1"
 
-<span data-ttu-id="6847d-258">Компонент представления вызывается в :::no-loc(Razor)::: файле (например, *Views/Home/Index. cshtml* ) с помощью одного из следующих подходов:</span><span class="sxs-lookup"><span data-stu-id="6847d-258">The view component is invoked in a :::no-loc(Razor)::: file (for example, *Views/Home/Index.cshtml* ) using one of the following approaches:</span></span>
+<span data-ttu-id="6847d-258">Компонент представления вызывается в Razor файле (например, *Views/Home/Index. cshtml* ) с помощью одного из следующих подходов:</span><span class="sxs-lookup"><span data-stu-id="6847d-258">The view component is invoked in a Razor file (for example, *Views/Home/Index.cshtml* ) using one of the following approaches:</span></span>
 
 * <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>
 * [<span data-ttu-id="6847d-259">Вспомогательное приложение тегов</span><span class="sxs-lookup"><span data-stu-id="6847d-259">Tag Helper</span></span>](xref:mvc/views/tag-helpers/intro)
@@ -318,7 +318,7 @@ public class PriorityList : ViewComponent
 
 ::: moniker range="< aspnetcore-1.1"
 
-<span data-ttu-id="6847d-261">Компонент представления вызывается в :::no-loc(Razor)::: файле (например, *Views/Home/Index. cshtml* ) с <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> .</span><span class="sxs-lookup"><span data-stu-id="6847d-261">The view component is invoked in a :::no-loc(Razor)::: file (for example, *Views/Home/Index.cshtml* ) with <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>.</span></span>
+<span data-ttu-id="6847d-261">Компонент представления вызывается в Razor файле (например, *Views/Home/Index. cshtml* ) с <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> .</span><span class="sxs-lookup"><span data-stu-id="6847d-261">The view component is invoked in a Razor file (for example, *Views/Home/Index.cshtml* ) with <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>.</span></span>
 
 <span data-ttu-id="6847d-262">Вызов `Component.InvokeAsync`:</span><span class="sxs-lookup"><span data-stu-id="6847d-262">Call `Component.InvokeAsync`:</span></span>
 
@@ -336,7 +336,7 @@ public class PriorityList : ViewComponent
 @addTagHelper *, MyWebApp
 ```
 
-<span data-ttu-id="6847d-264">Используйте вспомогательную функцию тега компонента View в :::no-loc(Razor)::: файле разметки:</span><span class="sxs-lookup"><span data-stu-id="6847d-264">Use the view component Tag Helper in the :::no-loc(Razor)::: markup file:</span></span>
+<span data-ttu-id="6847d-264">Используйте вспомогательную функцию тега компонента View в Razor файле разметки:</span><span class="sxs-lookup"><span data-stu-id="6847d-264">Use the view component Tag Helper in the Razor markup file:</span></span>
 
 ```cshtml
 <vc:priority-list max-priority="999" is-done="false">
@@ -345,7 +345,7 @@ public class PriorityList : ViewComponent
 
 ::: moniker-end
 
-<span data-ttu-id="6847d-265">Сигнатура метода `PriorityList.Invoke` синхронна, но :::no-loc(Razor)::: находит и вызывает метод `Component.InvokeAsync` в файле разметки.</span><span class="sxs-lookup"><span data-stu-id="6847d-265">The method signature of `PriorityList.Invoke` is synchronous, but :::no-loc(Razor)::: finds and calls the method with `Component.InvokeAsync` in the markup file.</span></span>
+<span data-ttu-id="6847d-265">Сигнатура метода `PriorityList.Invoke` синхронна, но Razor находит и вызывает метод `Component.InvokeAsync` в файле разметки.</span><span class="sxs-lookup"><span data-stu-id="6847d-265">The method signature of `PriorityList.Invoke` is synchronous, but Razor finds and calls the method with `Component.InvokeAsync` in the markup file.</span></span>
 
 ## <a name="all-view-component-parameters-are-required"></a><span data-ttu-id="6847d-266">Все параметры компонентов представления обязательны</span><span class="sxs-lookup"><span data-stu-id="6847d-266">All view component parameters are required</span></span>
 

@@ -5,17 +5,17 @@ description: Часть 6. Добавление модели в приложе�
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: tutorials/first-mvc-app/controller-methods-views
 ms.openlocfilehash: b4850821317b6907452793ef09194844c90c0137
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -48,7 +48,7 @@ ms.locfileid: "93050775"
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexOriginal.cshtml?highlight=1-3&range=46-50)]
 
-<span data-ttu-id="f2f66-116">[Вспомогательные функции тегов](xref:mvc/views/tag-helpers/intro) позволяют серверному коду участвовать в создании и отображении HTML-элементов в файлах :::no-loc(Razor):::.</span><span class="sxs-lookup"><span data-stu-id="f2f66-116">[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in :::no-loc(Razor)::: files.</span></span> <span data-ttu-id="f2f66-117">В представленном выше коде `AnchorTagHelper` динамически создает значение атрибута HTML `href` на основании метода действия контроллера и идентификатора маршрута. Для изучения созданной разметки используйте функцию **просмотра исходного кода** в вашем любимом браузере или средства для разработчика.</span><span class="sxs-lookup"><span data-stu-id="f2f66-117">In the code above, the `AnchorTagHelper` dynamically generates the HTML `href` attribute value from the controller action method and route id. You use **View Source** from your favorite browser or use the developer tools to examine the generated markup.</span></span> <span data-ttu-id="f2f66-118">Ниже показана часть созданного кода HTML:</span><span class="sxs-lookup"><span data-stu-id="f2f66-118">A portion of the generated HTML is shown below:</span></span>
+<span data-ttu-id="f2f66-116">[Вспомогательные функции тегов](xref:mvc/views/tag-helpers/intro) позволяют серверному коду участвовать в создании и отображении HTML-элементов в файлах Razor.</span><span class="sxs-lookup"><span data-stu-id="f2f66-116">[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.</span></span> <span data-ttu-id="f2f66-117">В представленном выше коде `AnchorTagHelper` динамически создает значение атрибута HTML `href` на основании метода действия контроллера и идентификатора маршрута. Для изучения созданной разметки используйте функцию **просмотра исходного кода** в вашем любимом браузере или средства для разработчика.</span><span class="sxs-lookup"><span data-stu-id="f2f66-117">In the code above, the `AnchorTagHelper` dynamically generates the HTML `href` attribute value from the controller action method and route id. You use **View Source** from your favorite browser or use the developer tools to examine the generated markup.</span></span> <span data-ttu-id="f2f66-118">Ниже показана часть созданного кода HTML:</span><span class="sxs-lookup"><span data-stu-id="f2f66-118">A portion of the generated HTML is shown below:</span></span>
 
 ```html
  <td>
@@ -68,7 +68,7 @@ ms.locfileid: "93050775"
 
 <a name="get-post"></a>
 
-<span data-ttu-id="f2f66-124">Откройте контроллер `Movies` и изучите два метода действия `Edit`.</span><span class="sxs-lookup"><span data-stu-id="f2f66-124">Open the `Movies` controller and examine the two `Edit` action methods.</span></span> <span data-ttu-id="f2f66-125">В следующем коде демонстрируется метод `HTTP GET Edit`, который выполняет выборку фильмов и заполняет форму редактирования, созданную файлом :::no-loc(Razor)::: *Edit.cshtml*.</span><span class="sxs-lookup"><span data-stu-id="f2f66-125">The following code shows the `HTTP GET Edit` method, which fetches the movie and populates the edit form generated by the *Edit.cshtml* :::no-loc(Razor)::: file.</span></span>
+<span data-ttu-id="f2f66-124">Откройте контроллер `Movies` и изучите два метода действия `Edit`.</span><span class="sxs-lookup"><span data-stu-id="f2f66-124">Open the `Movies` controller and examine the two `Edit` action methods.</span></span> <span data-ttu-id="f2f66-125">В следующем коде демонстрируется метод `HTTP GET Edit`, который выполняет выборку фильмов и заполняет форму редактирования, созданную файлом Razor *Edit.cshtml*.</span><span class="sxs-lookup"><span data-stu-id="f2f66-125">The following code shows the `HTTP GET Edit` method, which fetches the movie and populates the edit form generated by the *Edit.cshtml* Razor file.</span></span>
 
 ::: moniker range=">= aspnetcore-2.1"
 

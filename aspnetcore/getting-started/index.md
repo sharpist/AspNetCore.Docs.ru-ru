@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/07/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: getting-started
 ms.openlocfilehash: fef5ae525a7c01d0ea7733e990233f413aac61a7
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -35,7 +35,7 @@ ms.locfileid: "93057795"
 > * <span data-ttu-id="bc6b0-106">создавать проект веб-приложения;</span><span class="sxs-lookup"><span data-stu-id="bc6b0-106">Create a web app project.</span></span>
 > * <span data-ttu-id="bc6b0-107">устанавливать доверие к сертификату разработки;</span><span class="sxs-lookup"><span data-stu-id="bc6b0-107">Trust the development certificate.</span></span>
 > * <span data-ttu-id="bc6b0-108">Запустите приложение.</span><span class="sxs-lookup"><span data-stu-id="bc6b0-108">Run the app.</span></span>
-> * <span data-ttu-id="bc6b0-109">Измените страницу :::no-loc(Razor):::.</span><span class="sxs-lookup"><span data-stu-id="bc6b0-109">Edit a :::no-loc(Razor)::: page.</span></span>
+> * <span data-ttu-id="bc6b0-109">Измените страницу Razor.</span><span class="sxs-lookup"><span data-stu-id="bc6b0-109">Edit a Razor page.</span></span>
 
 <span data-ttu-id="bc6b0-110">В итоге вы получите рабочее веб-приложение на локальном компьютере.</span><span class="sxs-lookup"><span data-stu-id="bc6b0-110">At the end, you'll have a working web app running on your local machine.</span></span>
 
@@ -105,7 +105,7 @@ dotnet watch run
 
 <span data-ttu-id="bc6b0-134">Когда в командной оболочке будет показано, что приложение запущено, откройте страницу `https://localhost:5001`.</span><span class="sxs-lookup"><span data-stu-id="bc6b0-134">After the command shell indicates that the app has started, browse to `https://localhost:5001`.</span></span>
 
-## <a name="edit-a-no-locrazor-page"></a><span data-ttu-id="bc6b0-135">Изменение страницы :::no-loc(Razor):::</span><span class="sxs-lookup"><span data-stu-id="bc6b0-135">Edit a :::no-loc(Razor)::: page</span></span>
+## <a name="edit-a-no-locrazor-page"></a><span data-ttu-id="bc6b0-135">Изменение страницы Razor</span><span class="sxs-lookup"><span data-stu-id="bc6b0-135">Edit a Razor page</span></span>
 
 <span data-ttu-id="bc6b0-136">Откройте *Pages/Index.cshtml* , а затем измените и сохраните страницу, добавив выделенное исправление:</span><span class="sxs-lookup"><span data-stu-id="bc6b0-136">Open *Pages/Index.cshtml* and modify and save the page with the following highlighted markup:</span></span>
 

@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 01/09/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: client-side/using-browserlink
 ms.openlocfilehash: 80f05acab55af973faf08b5db79ea4cbaf896b14
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -35,7 +35,7 @@ ms.locfileid: "93054493"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<span data-ttu-id="7f677-109">Добавьте пакет [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) в проект.</span><span class="sxs-lookup"><span data-stu-id="7f677-109">Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project.</span></span> <span data-ttu-id="7f677-110">Для проектов ASP.NET Core :::no-loc(Razor)::: Pages или MVC также включите компиляцию в среде выполнения :::no-loc(Razor)::: ( *CSHTML* ), как описано в <xref:mvc/views/view-compilation>.</span><span class="sxs-lookup"><span data-stu-id="7f677-110">For ASP.NET Core :::no-loc(Razor)::: Pages or MVC projects, also enable runtime compilation of :::no-loc(Razor)::: ( *.cshtml* ) files as described in <xref:mvc/views/view-compilation>.</span></span> <span data-ttu-id="7f677-111">Изменения синтаксиса :::no-loc(Razor)::: применяются только при включенной компиляции среды выполнения.</span><span class="sxs-lookup"><span data-stu-id="7f677-111">:::no-loc(Razor)::: syntax changes are applied only when runtime compilation has been enabled.</span></span>
+<span data-ttu-id="7f677-109">Добавьте пакет [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) в проект.</span><span class="sxs-lookup"><span data-stu-id="7f677-109">Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project.</span></span> <span data-ttu-id="7f677-110">Для проектов ASP.NET Core Razor Pages или MVC также включите компиляцию в среде выполнения Razor ( *CSHTML* ), как описано в <xref:mvc/views/view-compilation>.</span><span class="sxs-lookup"><span data-stu-id="7f677-110">For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor ( *.cshtml* ) files as described in <xref:mvc/views/view-compilation>.</span></span> <span data-ttu-id="7f677-111">Изменения синтаксиса Razor применяются только при включенной компиляции среды выполнения.</span><span class="sxs-lookup"><span data-stu-id="7f677-111">Razor syntax changes are applied only when runtime compilation has been enabled.</span></span>
 
 ::: moniker-end
 
@@ -140,7 +140,7 @@ if (env.IsDevelopment())
 
 ## <a name="how-it-works"></a><span data-ttu-id="7f677-157">Принцип работы</span><span class="sxs-lookup"><span data-stu-id="7f677-157">How it works</span></span>
 
-<span data-ttu-id="7f677-158">Для создания канала связи между Visual Studio и браузером привязывание к браузеру использует [:::no-loc(SignalR):::](xref:signalr/introduction).</span><span class="sxs-lookup"><span data-stu-id="7f677-158">Browser Link uses [:::no-loc(SignalR):::](xref:signalr/introduction) to create a communication channel between Visual Studio and the browser.</span></span> <span data-ttu-id="7f677-159">Если привязывание к браузеру включено, Visual Studio выступает в качестве сервера :::no-loc(SignalR):::, к которому могут подключаться несколько клиентов (браузеров).</span><span class="sxs-lookup"><span data-stu-id="7f677-159">When Browser Link is enabled, Visual Studio acts as a :::no-loc(SignalR)::: server that multiple clients (browsers) can connect to.</span></span> <span data-ttu-id="7f677-160">Привязывание к браузеру также регистрирует компонент ПО промежуточного слоя в конвейере запросов ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="7f677-160">Browser Link also registers a middleware component in the ASP.NET Core request pipeline.</span></span> <span data-ttu-id="7f677-161">Этот компонент внедряет специальные ссылки `<script>` в каждый запрос страницы с сервера.</span><span class="sxs-lookup"><span data-stu-id="7f677-161">This component injects special `<script>` references into every page request from the server.</span></span> <span data-ttu-id="7f677-162">Чтобы просмотреть ссылки на скрипты, выберите **Просмотреть источник** в браузере и прокрутите до конца содержимого тега `<body>`:</span><span class="sxs-lookup"><span data-stu-id="7f677-162">You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:</span></span>
+<span data-ttu-id="7f677-158">Для создания канала связи между Visual Studio и браузером привязывание к браузеру использует [SignalR](xref:signalr/introduction).</span><span class="sxs-lookup"><span data-stu-id="7f677-158">Browser Link uses [SignalR](xref:signalr/introduction) to create a communication channel between Visual Studio and the browser.</span></span> <span data-ttu-id="7f677-159">Если привязывание к браузеру включено, Visual Studio выступает в качестве сервера SignalR, к которому могут подключаться несколько клиентов (браузеров).</span><span class="sxs-lookup"><span data-stu-id="7f677-159">When Browser Link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to.</span></span> <span data-ttu-id="7f677-160">Привязывание к браузеру также регистрирует компонент ПО промежуточного слоя в конвейере запросов ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="7f677-160">Browser Link also registers a middleware component in the ASP.NET Core request pipeline.</span></span> <span data-ttu-id="7f677-161">Этот компонент внедряет специальные ссылки `<script>` в каждый запрос страницы с сервера.</span><span class="sxs-lookup"><span data-stu-id="7f677-161">This component injects special `<script>` references into every page request from the server.</span></span> <span data-ttu-id="7f677-162">Чтобы просмотреть ссылки на скрипты, выберите **Просмотреть источник** в браузере и прокрутите до конца содержимого тега `<body>`:</span><span class="sxs-lookup"><span data-stu-id="7f677-162">You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:</span></span>
 
 ```html
     <!-- Visual Studio Browser Link -->
@@ -154,4 +154,4 @@ if (env.IsDevelopment())
 
 <span data-ttu-id="7f677-163">Исходные файлы не изменяются.</span><span class="sxs-lookup"><span data-stu-id="7f677-163">Your source files aren't modified.</span></span> <span data-ttu-id="7f677-164">Компонент ПО промежуточного слоя динамически вставляет ссылки на скрипты.</span><span class="sxs-lookup"><span data-stu-id="7f677-164">The middleware component injects the script references dynamically.</span></span>
 
-<span data-ttu-id="7f677-165">Так как на стороне браузера используется только код JavaScript, он работает во всех браузерах, которые поддерживаются :::no-loc(SignalR):::, без использования подключаемого модуля браузера.</span><span class="sxs-lookup"><span data-stu-id="7f677-165">Because the browser-side code is all JavaScript, it works on all browsers that :::no-loc(SignalR)::: supports without requiring a browser plug-in.</span></span>
+<span data-ttu-id="7f677-165">Так как на стороне браузера используется только код JavaScript, он работает во всех браузерах, которые поддерживаются SignalR, без использования подключаемого модуля браузера.</span><span class="sxs-lookup"><span data-stu-id="7f677-165">Because the browser-side code is all JavaScript, it works on all browsers that SignalR supports without requiring a browser plug-in.</span></span>

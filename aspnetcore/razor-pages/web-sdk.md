@@ -5,17 +5,17 @@ description: Общие сведения о пакете Microsoft.NET.Sdk.Web.
 ms.author: riande
 ms.date: 01/25/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: razor-pages/web-sdk
 ms.openlocfilehash: 8cc0a51d3d917300f3add31f5884b4784dd573dd
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -55,4 +55,4 @@ ms.locfileid: "93059758"
 | -------- | ----------- |
 | `DisableImplicitFrameworkReferences` | <span data-ttu-id="87eb4-118">Отключает неявную ссылку на общую платформу `Microsoft.AspNetCore.App`.</span><span class="sxs-lookup"><span data-stu-id="87eb4-118">Disables implicit reference to the `Microsoft.AspNetCore.App` shared framework.</span></span> |
 | `DisableImplicitAspNetCoreAnalyzers` | <span data-ttu-id="87eb4-119">Отключает неявную ссылку на анализаторы ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="87eb4-119">Disables implicit reference to ASP.NET Core analyzers.</span></span> |
-| `DisableImplicitComponentsAnalyzers` | <span data-ttu-id="87eb4-120">Отключает неявную ссылку на анализаторы компонентов :::no-loc(Razor)::: при сборке приложений :::no-loc(Blazor)::: (серверных).</span><span class="sxs-lookup"><span data-stu-id="87eb4-120">Disables implicit reference to :::no-loc(Razor)::: Components analyzers when building :::no-loc(Blazor)::: (server) applications.</span></span> |
+| `DisableImplicitComponentsAnalyzers` | <span data-ttu-id="87eb4-120">Отключает неявную ссылку на анализаторы компонентов Razor при сборке приложений Blazor (серверных).</span><span class="sxs-lookup"><span data-stu-id="87eb4-120">Disables implicit reference to Razor Components analyzers when building Blazor (server) applications.</span></span> |

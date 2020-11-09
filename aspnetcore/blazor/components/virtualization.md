@@ -1,23 +1,23 @@
 ---
-title: 'Виртуализация компонентов ASP.NET Core :::no-loc(Blazor):::'
+title: 'Виртуализация компонентов ASP.NET Core Blazor'
 author: guardrex
-description: Узнайте, как использовать виртуализацию компонентов в приложениях ASP.NET Core :::no-loc(Blazor):::.
+description: Узнайте, как использовать виртуализацию компонентов в приложениях ASP.NET Core Blazor.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/02/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/components/virtualization
 ms.openlocfilehash: b23e4814daaabbe2c8660d49cc5b6940a9cc3b4f
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -26,11 +26,11 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93056170"
 ---
-# <a name="aspnet-core-no-locblazor-component-virtualization"></a><span data-ttu-id="8d2eb-103">Виртуализация компонентов ASP.NET Core :::no-loc(Blazor):::</span><span class="sxs-lookup"><span data-stu-id="8d2eb-103">ASP.NET Core :::no-loc(Blazor)::: component virtualization</span></span>
+# <a name="aspnet-core-no-locblazor-component-virtualization"></a><span data-ttu-id="8d2eb-103">Виртуализация компонентов ASP.NET Core Blazor</span><span class="sxs-lookup"><span data-stu-id="8d2eb-103">ASP.NET Core Blazor component virtualization</span></span>
 
 <span data-ttu-id="8d2eb-104">Автор: [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth)</span><span class="sxs-lookup"><span data-stu-id="8d2eb-104">By [Daniel Roth](https://github.com/danroth27)</span></span>
 
-<span data-ttu-id="8d2eb-105">Повысьте воспринимаемую производительность отрисовки компонентов с помощью встроенной поддержки виртуализации платформы :::no-loc(Blazor):::.</span><span class="sxs-lookup"><span data-stu-id="8d2eb-105">Improve the perceived performance of component rendering using the :::no-loc(Blazor)::: framework's built-in virtualization support.</span></span> <span data-ttu-id="8d2eb-106">Виртуализация — это метод отображения только видимых в данный момент частей пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="8d2eb-106">Virtualization is a technique for limiting UI rendering to just the parts that are currently visible.</span></span> <span data-ttu-id="8d2eb-107">Например, виртуализация удобна в случае, когда в приложении должен быть отрисован длинный список элементов и в любой конкретный момент времени должно быть видимым только подмножество элементов.</span><span class="sxs-lookup"><span data-stu-id="8d2eb-107">For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time.</span></span> <span data-ttu-id="8d2eb-108">:::no-loc(Blazor)::: предоставляет `Virtualize` компонент, который можно использовать для добавления виртуализации в компоненты приложения.</span><span class="sxs-lookup"><span data-stu-id="8d2eb-108">:::no-loc(Blazor)::: provides the `Virtualize` component that can be used to add virtualization to an app's components.</span></span>
+<span data-ttu-id="8d2eb-105">Повысьте воспринимаемую производительность отрисовки компонентов с помощью встроенной поддержки виртуализации платформы Blazor.</span><span class="sxs-lookup"><span data-stu-id="8d2eb-105">Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support.</span></span> <span data-ttu-id="8d2eb-106">Виртуализация — это метод отображения только видимых в данный момент частей пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="8d2eb-106">Virtualization is a technique for limiting UI rendering to just the parts that are currently visible.</span></span> <span data-ttu-id="8d2eb-107">Например, виртуализация удобна в случае, когда в приложении должен быть отрисован длинный список элементов и в любой конкретный момент времени должно быть видимым только подмножество элементов.</span><span class="sxs-lookup"><span data-stu-id="8d2eb-107">For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time.</span></span> <span data-ttu-id="8d2eb-108">Blazor предоставляет `Virtualize` компонент, который можно использовать для добавления виртуализации в компоненты приложения.</span><span class="sxs-lookup"><span data-stu-id="8d2eb-108">Blazor provides the `Virtualize` component that can be used to add virtualization to an app's components.</span></span>
 
 <span data-ttu-id="8d2eb-109">Без виртуализации обычный список может использовать цикл C# [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) для отрисовки каждого элемента в списке:</span><span class="sxs-lookup"><span data-stu-id="8d2eb-109">Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop to render each item in the list:</span></span>
 
@@ -72,9 +72,9 @@ ms.locfileid: "93056170"
 
 <span data-ttu-id="8d2eb-116">Содержимое элемента для компонента `Virtualize` может включать в себя следующее:</span><span class="sxs-lookup"><span data-stu-id="8d2eb-116">The item content for the `Virtualize` component can include:</span></span>
 
-* <span data-ttu-id="8d2eb-117">обычный код HTML и код :::no-loc(Razor):::, как показано в предыдущем примере;</span><span class="sxs-lookup"><span data-stu-id="8d2eb-117">Plain HTML and :::no-loc(Razor)::: code, as the preceding example shows.</span></span>
-* <span data-ttu-id="8d2eb-118">один или несколько компонентов :::no-loc(Razor):::;</span><span class="sxs-lookup"><span data-stu-id="8d2eb-118">One or more :::no-loc(Razor)::: components.</span></span>
-* <span data-ttu-id="8d2eb-119">сочетание компонентов HTML/:::no-loc(Razor)::: и :::no-loc(Razor):::.</span><span class="sxs-lookup"><span data-stu-id="8d2eb-119">A mix of HTML/:::no-loc(Razor)::: and :::no-loc(Razor)::: components.</span></span>
+* <span data-ttu-id="8d2eb-117">обычный код HTML и код Razor, как показано в предыдущем примере;</span><span class="sxs-lookup"><span data-stu-id="8d2eb-117">Plain HTML and Razor code, as the preceding example shows.</span></span>
+* <span data-ttu-id="8d2eb-118">один или несколько компонентов Razor;</span><span class="sxs-lookup"><span data-stu-id="8d2eb-118">One or more Razor components.</span></span>
+* <span data-ttu-id="8d2eb-119">сочетание компонентов HTML/Razor и Razor.</span><span class="sxs-lookup"><span data-stu-id="8d2eb-119">A mix of HTML/Razor and Razor components.</span></span>
 
 ## <a name="item-provider-delegate"></a><span data-ttu-id="8d2eb-120">Делегат поставщика элементов</span><span class="sxs-lookup"><span data-stu-id="8d2eb-120">Item provider delegate</span></span>
 

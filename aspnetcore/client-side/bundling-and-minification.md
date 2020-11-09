@@ -6,17 +6,17 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 09/02/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: client-side/bundling-and-minification
 ms.openlocfilehash: 7dd11ceb7a7c01ce1042f50595013b7fe7f1cd5c
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -75,7 +75,7 @@ ms.locfileid: "93054844"
 
 ## <a name="choose-a-bundling-and-minification-strategy"></a><span data-ttu-id="282b4-151">Выбор стратегии объединения и минификации</span><span class="sxs-lookup"><span data-stu-id="282b4-151">Choose a bundling and minification strategy</span></span>
 
-<span data-ttu-id="282b4-152">Шаблоны проектов MVC и :::no-loc(Razor)::: Pages предоставляют решения для объединения и минификации, состоящие из файла конфигурации JSON.</span><span class="sxs-lookup"><span data-stu-id="282b4-152">The MVC and :::no-loc(Razor)::: Pages project templates provide a solution for bundling and minification consisting of a JSON configuration file.</span></span> <span data-ttu-id="282b4-153">Сторонние средства, такие как запускатель задач [Grunt](xref:client-side/using-grunt), выполняют те же задачи, но с несколько более сложной реализацией.</span><span class="sxs-lookup"><span data-stu-id="282b4-153">Third-party tools, such as the [Grunt](xref:client-side/using-grunt) task runner, accomplish the same tasks with a bit more complexity.</span></span> <span data-ttu-id="282b4-154">Сторонние средства отлично подходят в случаях, когда в рамках рабочего процесса разработки, помимо объединения и минификации, требуется другая обработка, &mdash; такая как контроль качества кода и оптимизация изображений.</span><span class="sxs-lookup"><span data-stu-id="282b4-154">A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization.</span></span> <span data-ttu-id="282b4-155">С помощью объединения и минификации во время разработки уменьшенные файлы создаются до развертывания приложения.</span><span class="sxs-lookup"><span data-stu-id="282b4-155">By using design-time bundling and minification, the minified files are created prior to the app's deployment.</span></span> <span data-ttu-id="282b4-156">Объединение и минификация до развертывания обеспечивают преимущества снижения нагрузки на сервер.</span><span class="sxs-lookup"><span data-stu-id="282b4-156">Bundling and minifying before deployment provides the advantage of reduced server load.</span></span> <span data-ttu-id="282b4-157">Однако важно понимать, что объединение и минификация во время разработки повышает сложность сборки и применяется только со статическими файлами.</span><span class="sxs-lookup"><span data-stu-id="282b4-157">However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.</span></span>
+<span data-ttu-id="282b4-152">Шаблоны проектов MVC и Razor Pages предоставляют решения для объединения и минификации, состоящие из файла конфигурации JSON.</span><span class="sxs-lookup"><span data-stu-id="282b4-152">The MVC and Razor Pages project templates provide a solution for bundling and minification consisting of a JSON configuration file.</span></span> <span data-ttu-id="282b4-153">Сторонние средства, такие как запускатель задач [Grunt](xref:client-side/using-grunt), выполняют те же задачи, но с несколько более сложной реализацией.</span><span class="sxs-lookup"><span data-stu-id="282b4-153">Third-party tools, such as the [Grunt](xref:client-side/using-grunt) task runner, accomplish the same tasks with a bit more complexity.</span></span> <span data-ttu-id="282b4-154">Сторонние средства отлично подходят в случаях, когда в рамках рабочего процесса разработки, помимо объединения и минификации, требуется другая обработка, &mdash; такая как контроль качества кода и оптимизация изображений.</span><span class="sxs-lookup"><span data-stu-id="282b4-154">A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization.</span></span> <span data-ttu-id="282b4-155">С помощью объединения и минификации во время разработки уменьшенные файлы создаются до развертывания приложения.</span><span class="sxs-lookup"><span data-stu-id="282b4-155">By using design-time bundling and minification, the minified files are created prior to the app's deployment.</span></span> <span data-ttu-id="282b4-156">Объединение и минификация до развертывания обеспечивают преимущества снижения нагрузки на сервер.</span><span class="sxs-lookup"><span data-stu-id="282b4-156">Bundling and minifying before deployment provides the advantage of reduced server load.</span></span> <span data-ttu-id="282b4-157">Однако важно понимать, что объединение и минификация во время разработки повышает сложность сборки и применяется только со статическими файлами.</span><span class="sxs-lookup"><span data-stu-id="282b4-157">However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.</span></span>
 
 ## <a name="configure-bundling-and-minification"></a><span data-ttu-id="282b4-158">Настройка объединения и минификации</span><span class="sxs-lookup"><span data-stu-id="282b4-158">Configure bundling and minification</span></span>
 
@@ -84,13 +84,13 @@ ms.locfileid: "93054844"
 
 ::: moniker range="<= aspnetcore-2.0"
 
-<span data-ttu-id="282b4-160">В ASP.NET Core 2.0 и более ранних версиях шаблоны проектов MVC и :::no-loc(Razor)::: Pages предоставляют файл конфигурации *bundleconfig.json* , который определяет параметры для каждого пакета:</span><span class="sxs-lookup"><span data-stu-id="282b4-160">In ASP.NET Core 2.0 or earlier, the MVC and :::no-loc(Razor)::: Pages project templates provide a *bundleconfig.json* configuration file that defines the options for each bundle:</span></span>
+<span data-ttu-id="282b4-160">В ASP.NET Core 2.0 и более ранних версиях шаблоны проектов MVC и Razor Pages предоставляют файл конфигурации *bundleconfig.json* , который определяет параметры для каждого пакета:</span><span class="sxs-lookup"><span data-stu-id="282b4-160">In ASP.NET Core 2.0 or earlier, the MVC and Razor Pages project templates provide a *bundleconfig.json* configuration file that defines the options for each bundle:</span></span>
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
 
-<span data-ttu-id="282b4-161">В ASP.NET Core 2.1 и более поздних версиях в корневой каталог проекта MVC или *Pages следует добавить файл* bundleconfig.json:::no-loc(Razor):::.</span><span class="sxs-lookup"><span data-stu-id="282b4-161">In ASP.NET Core 2.1 or later, add a new JSON file, named *bundleconfig.json* , to the MVC or :::no-loc(Razor)::: Pages project root.</span></span> <span data-ttu-id="282b4-162">Для начала включите в этот файл следующий код JSON:</span><span class="sxs-lookup"><span data-stu-id="282b4-162">Include the following JSON in that file as a starting point:</span></span>
+<span data-ttu-id="282b4-161">В ASP.NET Core 2.1 и более поздних версиях в корневой каталог проекта MVC или *Pages следует добавить файл* bundleconfig.jsonRazor.</span><span class="sxs-lookup"><span data-stu-id="282b4-161">In ASP.NET Core 2.1 or later, add a new JSON file, named *bundleconfig.json* , to the MVC or Razor Pages project root.</span></span> <span data-ttu-id="282b4-162">Для начала включите в этот файл следующий код JSON:</span><span class="sxs-lookup"><span data-stu-id="282b4-162">Include the following JSON in that file as a starting point:</span></span>
 
 ::: moniker-end
 

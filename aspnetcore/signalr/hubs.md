@@ -1,23 +1,23 @@
 ---
-title: 'Использование концентраторов в ASP.NET Core :::no-loc(SignalR):::'
+title: 'Использование концентраторов в ASP.NET Core SignalR'
 author: bradygaster
-description: 'Узнайте, как использовать концентраторы в ASP.NET Core :::no-loc(SignalR)::: .'
+description: 'Узнайте, как использовать концентраторы в ASP.NET Core SignalR .'
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: signalr/hubs
 ms.openlocfilehash: 4a31c16eb44e2244574d0df49c30e7a44b2bba6e
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -26,25 +26,25 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93050944"
 ---
-# <a name="use-hubs-in-no-locsignalr-for-aspnet-core"></a><span data-ttu-id="4399c-103">Использование концентраторов в :::no-loc(SignalR)::: для ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="4399c-103">Use hubs in :::no-loc(SignalR)::: for ASP.NET Core</span></span>
+# <a name="use-hubs-in-no-locsignalr-for-aspnet-core"></a><span data-ttu-id="4399c-103">Использование концентраторов в SignalR для ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="4399c-103">Use hubs in SignalR for ASP.NET Core</span></span>
 
 <span data-ttu-id="4399c-104">[Рейчел Аппель (](https://twitter.com/rachelappel) и [Кевин Гриффин](https://twitter.com/1kevgriff)</span><span class="sxs-lookup"><span data-stu-id="4399c-104">By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://twitter.com/1kevgriff)</span></span>
 
 <span data-ttu-id="4399c-105">[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubs/sample/ ) [(описание загрузки)](xref:index#how-to-download-a-sample)</span><span class="sxs-lookup"><span data-stu-id="4399c-105">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubs/sample/ ) [(how to download)](xref:index#how-to-download-a-sample)</span></span>
 
-## <a name="what-is-a-no-locsignalr-hub"></a><span data-ttu-id="4399c-106">Что такое :::no-loc(SignalR)::: центр</span><span class="sxs-lookup"><span data-stu-id="4399c-106">What is a :::no-loc(SignalR)::: hub</span></span>
+## <a name="what-is-a-no-locsignalr-hub"></a><span data-ttu-id="4399c-106">Что такое SignalR центр</span><span class="sxs-lookup"><span data-stu-id="4399c-106">What is a SignalR hub</span></span>
 
-<span data-ttu-id="4399c-107">:::no-loc(SignalR):::API концентраторов позволяет вызывать методы на подключенных клиентах с сервера.</span><span class="sxs-lookup"><span data-stu-id="4399c-107">The :::no-loc(SignalR)::: Hubs API enables you to call methods on connected clients from the server.</span></span> <span data-ttu-id="4399c-108">В серверном коде определяются методы, вызываемые клиентом.</span><span class="sxs-lookup"><span data-stu-id="4399c-108">In the server code, you define methods that are called by client.</span></span> <span data-ttu-id="4399c-109">В клиентском коде определяются методы, которые вызываются с сервера.</span><span class="sxs-lookup"><span data-stu-id="4399c-109">In the client code, you define methods that are called from the server.</span></span> <span data-ttu-id="4399c-110">:::no-loc(SignalR)::: позаботится обо всем, за сценой, которая делает возможными обмен данными между клиентом и сервером в реальном времени.</span><span class="sxs-lookup"><span data-stu-id="4399c-110">:::no-loc(SignalR)::: takes care of everything behind the scenes that makes real-time client-to-server and server-to-client communications possible.</span></span>
+<span data-ttu-id="4399c-107">SignalRAPI концентраторов позволяет вызывать методы на подключенных клиентах с сервера.</span><span class="sxs-lookup"><span data-stu-id="4399c-107">The SignalR Hubs API enables you to call methods on connected clients from the server.</span></span> <span data-ttu-id="4399c-108">В серверном коде определяются методы, вызываемые клиентом.</span><span class="sxs-lookup"><span data-stu-id="4399c-108">In the server code, you define methods that are called by client.</span></span> <span data-ttu-id="4399c-109">В клиентском коде определяются методы, которые вызываются с сервера.</span><span class="sxs-lookup"><span data-stu-id="4399c-109">In the client code, you define methods that are called from the server.</span></span> <span data-ttu-id="4399c-110">SignalR позаботится обо всем, за сценой, которая делает возможными обмен данными между клиентом и сервером в реальном времени.</span><span class="sxs-lookup"><span data-stu-id="4399c-110">SignalR takes care of everything behind the scenes that makes real-time client-to-server and server-to-client communications possible.</span></span>
 
-## <a name="configure-no-locsignalr-hubs"></a><span data-ttu-id="4399c-111">Настройка :::no-loc(SignalR)::: концентраторов</span><span class="sxs-lookup"><span data-stu-id="4399c-111">Configure :::no-loc(SignalR)::: hubs</span></span>
+## <a name="configure-no-locsignalr-hubs"></a><span data-ttu-id="4399c-111">Настройка SignalR концентраторов</span><span class="sxs-lookup"><span data-stu-id="4399c-111">Configure SignalR hubs</span></span>
 
-<span data-ttu-id="4399c-112">По :::no-loc(SignalR)::: промежуточного слоя требуются некоторые службы, которые настраиваются путем вызова `services.Add:::no-loc(SignalR):::` .</span><span class="sxs-lookup"><span data-stu-id="4399c-112">The :::no-loc(SignalR)::: middleware requires some services, which are configured by calling `services.Add:::no-loc(SignalR):::`.</span></span>
+<span data-ttu-id="4399c-112">По SignalR промежуточного слоя требуются некоторые службы, которые настраиваются путем вызова `services.AddSignalR` .</span><span class="sxs-lookup"><span data-stu-id="4399c-112">The SignalR middleware requires some services, which are configured by calling `services.AddSignalR`.</span></span>
 
 [!code-csharp[Configure service](hubs/sample/startup.cs?range=38)]
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<span data-ttu-id="4399c-113">При добавлении :::no-loc(SignalR)::: функциональных возможностей в ASP.NET Core приложение настройте :::no-loc(SignalR)::: маршруты путем вызова `endpoint.MapHub` в `Startup.Configure` `app.UseEndpoints` обратном вызове метода.</span><span class="sxs-lookup"><span data-stu-id="4399c-113">When adding :::no-loc(SignalR)::: functionality to an ASP.NET Core app, setup :::no-loc(SignalR)::: routes by calling `endpoint.MapHub` in the `Startup.Configure` method's `app.UseEndpoints` callback.</span></span>
+<span data-ttu-id="4399c-113">При добавлении SignalR функциональных возможностей в ASP.NET Core приложение настройте SignalR маршруты путем вызова `endpoint.MapHub` в `Startup.Configure` `app.UseEndpoints` обратном вызове метода.</span><span class="sxs-lookup"><span data-stu-id="4399c-113">When adding SignalR functionality to an ASP.NET Core app, setup SignalR routes by calling `endpoint.MapHub` in the `Startup.Configure` method's `app.UseEndpoints` callback.</span></span>
 
 ```csharp
 app.UseRouting();
@@ -58,7 +58,7 @@ app.UseEndpoints(endpoints =>
 
 ::: moniker range="<= aspnetcore-2.2"
 
-<span data-ttu-id="4399c-114">При добавлении :::no-loc(SignalR)::: функциональных возможностей в ASP.NET Core приложение настройте :::no-loc(SignalR)::: маршруты путем вызова `app.Use:::no-loc(SignalR):::` `Startup.Configure` метода в методе.</span><span class="sxs-lookup"><span data-stu-id="4399c-114">When adding :::no-loc(SignalR)::: functionality to an ASP.NET Core app, setup :::no-loc(SignalR)::: routes by calling `app.Use:::no-loc(SignalR):::` in the `Startup.Configure` method.</span></span>
+<span data-ttu-id="4399c-114">При добавлении SignalR функциональных возможностей в ASP.NET Core приложение настройте SignalR маршруты путем вызова `app.UseSignalR` `Startup.Configure` метода в методе.</span><span class="sxs-lookup"><span data-stu-id="4399c-114">When adding SignalR functionality to an ASP.NET Core app, setup SignalR routes by calling `app.UseSignalR` in the `Startup.Configure` method.</span></span>
 
 [!code-csharp[Configure routes to hubs](hubs/sample/startup.cs?range=57-60)]
 
@@ -78,7 +78,7 @@ public class ChatHub : Hub
 }
 ```
 
-<span data-ttu-id="4399c-118">Можно указать тип возвращаемого значения и параметры, включая сложные типы и массивы, как в любом методе C#.</span><span class="sxs-lookup"><span data-stu-id="4399c-118">You can specify a return type and parameters, including complex types and arrays, as you would in any C# method.</span></span> <span data-ttu-id="4399c-119">:::no-loc(SignalR)::: обрабатывает сериализацию и десериализацию сложных объектов и массивов в параметрах и возвращаемых значениях.</span><span class="sxs-lookup"><span data-stu-id="4399c-119">:::no-loc(SignalR)::: handles the serialization and deserialization of complex objects and arrays in your parameters and return values.</span></span>
+<span data-ttu-id="4399c-118">Можно указать тип возвращаемого значения и параметры, включая сложные типы и массивы, как в любом методе C#.</span><span class="sxs-lookup"><span data-stu-id="4399c-118">You can specify a return type and parameters, including complex types and arrays, as you would in any C# method.</span></span> <span data-ttu-id="4399c-119">SignalR обрабатывает сериализацию и десериализацию сложных объектов и массивов в параметрах и возвращаемых значениях.</span><span class="sxs-lookup"><span data-stu-id="4399c-119">SignalR handles the serialization and deserialization of complex objects and arrays in your parameters and return values.</span></span>
 
 > [!NOTE]
 > <span data-ttu-id="4399c-120">Концентраторы являются временными:</span><span class="sxs-lookup"><span data-stu-id="4399c-120">Hubs are transient:</span></span>
@@ -92,8 +92,8 @@ public class ChatHub : Hub
 
 | <span data-ttu-id="4399c-127">Свойство.</span><span class="sxs-lookup"><span data-stu-id="4399c-127">Property</span></span> | <span data-ttu-id="4399c-128">Описание</span><span class="sxs-lookup"><span data-stu-id="4399c-128">Description</span></span> |
 | ------ | ----------- |
-| `ConnectionId` | <span data-ttu-id="4399c-129">Возвращает уникальный идентификатор соединения, присвоенный :::no-loc(SignalR)::: .</span><span class="sxs-lookup"><span data-stu-id="4399c-129">Gets the unique ID for the connection, assigned by :::no-loc(SignalR):::.</span></span> <span data-ttu-id="4399c-130">Для каждого соединения существует один идентификатор подключения.</span><span class="sxs-lookup"><span data-stu-id="4399c-130">There is one connection ID for each connection.</span></span>|
-| `UserIdentifier` | <span data-ttu-id="4399c-131">Возвращает [идентификатор пользователя](xref:signalr/groups).</span><span class="sxs-lookup"><span data-stu-id="4399c-131">Gets the [user identifier](xref:signalr/groups).</span></span> <span data-ttu-id="4399c-132">По умолчанию :::no-loc(SignalR)::: использует `ClaimTypes.NameIdentifier` из из, `ClaimsPrincipal` связанного с соединением, в качестве идентификатора пользователя.</span><span class="sxs-lookup"><span data-stu-id="4399c-132">By default, :::no-loc(SignalR)::: uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier.</span></span> |
+| `ConnectionId` | <span data-ttu-id="4399c-129">Возвращает уникальный идентификатор соединения, присвоенный SignalR .</span><span class="sxs-lookup"><span data-stu-id="4399c-129">Gets the unique ID for the connection, assigned by SignalR.</span></span> <span data-ttu-id="4399c-130">Для каждого соединения существует один идентификатор подключения.</span><span class="sxs-lookup"><span data-stu-id="4399c-130">There is one connection ID for each connection.</span></span>|
+| `UserIdentifier` | <span data-ttu-id="4399c-131">Возвращает [идентификатор пользователя](xref:signalr/groups).</span><span class="sxs-lookup"><span data-stu-id="4399c-131">Gets the [user identifier](xref:signalr/groups).</span></span> <span data-ttu-id="4399c-132">По умолчанию SignalR использует `ClaimTypes.NameIdentifier` из из, `ClaimsPrincipal` связанного с соединением, в качестве идентификатора пользователя.</span><span class="sxs-lookup"><span data-stu-id="4399c-132">By default, SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier.</span></span> |
 | `User` | <span data-ttu-id="4399c-133">Возвращает объект, `ClaimsPrincipal` связанный с текущим пользователем.</span><span class="sxs-lookup"><span data-stu-id="4399c-133">Gets the `ClaimsPrincipal` associated with the current user.</span></span> |
 | `Items` | <span data-ttu-id="4399c-134">Возвращает коллекцию "ключ-значение", которую можно использовать для совместного использования данных в области этого соединения.</span><span class="sxs-lookup"><span data-stu-id="4399c-134">Gets a key/value collection that can be used to share data within the scope of this connection.</span></span> <span data-ttu-id="4399c-135">Данные могут храниться в этой коллекции, и они будут сохранены для подключения через разные вызовы метода концентратора.</span><span class="sxs-lookup"><span data-stu-id="4399c-135">Data can be stored in this collection and it will persist for the connection across different hub method invocations.</span></span> |
 | `Features` | <span data-ttu-id="4399c-136">Возвращает коллекцию функций, доступных в соединении.</span><span class="sxs-lookup"><span data-stu-id="4399c-136">Gets the collection of features available on the connection.</span></span> <span data-ttu-id="4399c-137">Сейчас эта коллекция не требуется в большинстве сценариев, поэтому она еще не документирована.</span><span class="sxs-lookup"><span data-stu-id="4399c-137">For now, this collection isn't needed in most scenarios, so it isn't documented in detail yet.</span></span> |
@@ -138,7 +138,7 @@ public class ChatHub : Hub
 
 * <span data-ttu-id="4399c-169">`SendMessage` отправляет сообщение всем подключенным клиентам с помощью `Clients.All` .</span><span class="sxs-lookup"><span data-stu-id="4399c-169">`SendMessage` sends a message to all connected clients, using `Clients.All`.</span></span>
 * <span data-ttu-id="4399c-170">`SendMessageToCaller` отправляет сообщение обратно вызывающему объекту с помощью `Clients.Caller` .</span><span class="sxs-lookup"><span data-stu-id="4399c-170">`SendMessageToCaller` sends a message back to the caller, using `Clients.Caller`.</span></span>
-* <span data-ttu-id="4399c-171">`SendMessageToGroups` отправляет сообщение всем клиентам в `:::no-loc(SignalR)::: Users` группе.</span><span class="sxs-lookup"><span data-stu-id="4399c-171">`SendMessageToGroups` sends a message to all clients in the `:::no-loc(SignalR)::: Users` group.</span></span>
+* <span data-ttu-id="4399c-171">`SendMessageToGroups` отправляет сообщение всем клиентам в `SignalR Users` группе.</span><span class="sxs-lookup"><span data-stu-id="4399c-171">`SendMessageToGroups` sends a message to all clients in the `SignalR Users` group.</span></span>
 
 [!code-csharp[Send messages](hubs/sample/hubs/chathub.cs?name=HubMethods)]
 
@@ -146,7 +146,7 @@ public class ChatHub : Hub
 
 <span data-ttu-id="4399c-173">Недостаток использования заключается в `SendAsync` том, что он использует волшебную строку для указания вызываемого клиентского метода.</span><span class="sxs-lookup"><span data-stu-id="4399c-173">A drawback of using `SendAsync` is that it relies on a magic string to specify the client method to be called.</span></span> <span data-ttu-id="4399c-174">Это оставляет код открытым для ошибок времени выполнения, если имя метода написано неправильно или отсутствует в клиенте.</span><span class="sxs-lookup"><span data-stu-id="4399c-174">This leaves code open to runtime errors if the method name is misspelled or missing from the client.</span></span>
 
-<span data-ttu-id="4399c-175">Альтернативой использованию `SendAsync` является строгое типизирование `Hub` <xref:Microsoft.AspNetCore.:::no-loc(SignalR):::.Hub%601> .</span><span class="sxs-lookup"><span data-stu-id="4399c-175">An alternative to using `SendAsync` is to strongly type the `Hub` with <xref:Microsoft.AspNetCore.:::no-loc(SignalR):::.Hub%601>.</span></span> <span data-ttu-id="4399c-176">В следующем примере `ChatHub` клиентские методы были извлечены в интерфейс с именем `IChatClient` .</span><span class="sxs-lookup"><span data-stu-id="4399c-176">In the following example, the `ChatHub` client methods have been extracted out into an interface called `IChatClient`.</span></span>
+<span data-ttu-id="4399c-175">Альтернативой использованию `SendAsync` является строгое типизирование `Hub` <xref:Microsoft.AspNetCore.SignalR.Hub%601> .</span><span class="sxs-lookup"><span data-stu-id="4399c-175">An alternative to using `SendAsync` is to strongly type the `Hub` with <xref:Microsoft.AspNetCore.SignalR.Hub%601>.</span></span> <span data-ttu-id="4399c-176">В следующем примере `ChatHub` клиентские методы были извлечены в интерфейс с именем `IChatClient` .</span><span class="sxs-lookup"><span data-stu-id="4399c-176">In the following example, the `ChatHub` client methods have been extracted out into an interface called `IChatClient`.</span></span>
 
 [!code-csharp[Interface for IChatClient](hubs/sample/hubs/ichatclient.cs?name=snippet_IChatClient)]
 
@@ -170,13 +170,13 @@ public interface IClient
 
 ## <a name="change-the-name-of-a-hub-method"></a><span data-ttu-id="4399c-187">Изменение имени метода концентратора</span><span class="sxs-lookup"><span data-stu-id="4399c-187">Change the name of a hub method</span></span>
 
-<span data-ttu-id="4399c-188">По умолчанию имя метода концентратора сервера — это имя метода .NET.</span><span class="sxs-lookup"><span data-stu-id="4399c-188">By default, a server hub method name is the name of the .NET method.</span></span> <span data-ttu-id="4399c-189">Однако можно использовать атрибут [хубмесоднаме](xref:Microsoft.AspNetCore.:::no-loc(SignalR):::.HubMethodNameAttribute) , чтобы изменить это значение по умолчанию и вручную указать имя метода.</span><span class="sxs-lookup"><span data-stu-id="4399c-189">However, you can use the [HubMethodName](xref:Microsoft.AspNetCore.:::no-loc(SignalR):::.HubMethodNameAttribute) attribute to change this default and manually specify a name for the method.</span></span> <span data-ttu-id="4399c-190">Клиент должен использовать это имя вместо имени метода .NET при вызове метода.</span><span class="sxs-lookup"><span data-stu-id="4399c-190">The client should use this name, instead of the .NET method name, when invoking the method.</span></span>
+<span data-ttu-id="4399c-188">По умолчанию имя метода концентратора сервера — это имя метода .NET.</span><span class="sxs-lookup"><span data-stu-id="4399c-188">By default, a server hub method name is the name of the .NET method.</span></span> <span data-ttu-id="4399c-189">Однако можно использовать атрибут [хубмесоднаме](xref:Microsoft.AspNetCore.SignalR.HubMethodNameAttribute) , чтобы изменить это значение по умолчанию и вручную указать имя метода.</span><span class="sxs-lookup"><span data-stu-id="4399c-189">However, you can use the [HubMethodName](xref:Microsoft.AspNetCore.SignalR.HubMethodNameAttribute) attribute to change this default and manually specify a name for the method.</span></span> <span data-ttu-id="4399c-190">Клиент должен использовать это имя вместо имени метода .NET при вызове метода.</span><span class="sxs-lookup"><span data-stu-id="4399c-190">The client should use this name, instead of the .NET method name, when invoking the method.</span></span>
 
 [!code-csharp[HubMethodName attribute](hubs/sample/hubs/chathub.cs?name=HubMethodName&highlight=1)]
 
 ## <a name="handle-events-for-a-connection"></a><span data-ttu-id="4399c-191">Обработку событий для подключения</span><span class="sxs-lookup"><span data-stu-id="4399c-191">Handle events for a connection</span></span>
 
-<span data-ttu-id="4399c-192">:::no-loc(SignalR):::API концентраторов предоставляет `OnConnectedAsync` `OnDisconnectedAsync` виртуальные методы и для управления подключениями и их мониторинга.</span><span class="sxs-lookup"><span data-stu-id="4399c-192">The :::no-loc(SignalR)::: Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` virtual methods to manage and track connections.</span></span> <span data-ttu-id="4399c-193">Переопределите `OnConnectedAsync` виртуальный метод, чтобы выполнять действия при подключении клиента к концентратору, например при его добавлении в группу.</span><span class="sxs-lookup"><span data-stu-id="4399c-193">Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the Hub, such as adding it to a group.</span></span>
+<span data-ttu-id="4399c-192">SignalRAPI концентраторов предоставляет `OnConnectedAsync` `OnDisconnectedAsync` виртуальные методы и для управления подключениями и их мониторинга.</span><span class="sxs-lookup"><span data-stu-id="4399c-192">The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` virtual methods to manage and track connections.</span></span> <span data-ttu-id="4399c-193">Переопределите `OnConnectedAsync` виртуальный метод, чтобы выполнять действия при подключении клиента к концентратору, например при его добавлении в группу.</span><span class="sxs-lookup"><span data-stu-id="4399c-193">Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the Hub, such as adding it to a group.</span></span>
 
 [!code-csharp[Handle connection](hubs/sample/hubs/chathub.cs?name=OnConnectedAsync)]
 
@@ -192,23 +192,23 @@ public interface IClient
 
 [!code-javascript[Error](hubs/sample/wwwroot/js/chat.js?range=23)]
 
-<span data-ttu-id="4399c-201">Если концентратор создает исключение, соединения не закрываются.</span><span class="sxs-lookup"><span data-stu-id="4399c-201">If your Hub throws an exception, connections aren't closed.</span></span> <span data-ttu-id="4399c-202">По умолчанию :::no-loc(SignalR)::: возвращает клиенту общее сообщение об ошибке.</span><span class="sxs-lookup"><span data-stu-id="4399c-202">By default, :::no-loc(SignalR)::: returns a generic error message to the client.</span></span> <span data-ttu-id="4399c-203">Пример:</span><span class="sxs-lookup"><span data-stu-id="4399c-203">For example:</span></span>
+<span data-ttu-id="4399c-201">Если концентратор создает исключение, соединения не закрываются.</span><span class="sxs-lookup"><span data-stu-id="4399c-201">If your Hub throws an exception, connections aren't closed.</span></span> <span data-ttu-id="4399c-202">По умолчанию SignalR возвращает клиенту общее сообщение об ошибке.</span><span class="sxs-lookup"><span data-stu-id="4399c-202">By default, SignalR returns a generic error message to the client.</span></span> <span data-ttu-id="4399c-203">Пример:</span><span class="sxs-lookup"><span data-stu-id="4399c-203">For example:</span></span>
 
 ```
-Microsoft.AspNetCore.:::no-loc(SignalR):::.HubException: An unexpected error occurred invoking 'MethodName' on the server.
+Microsoft.AspNetCore.SignalR.HubException: An unexpected error occurred invoking 'MethodName' on the server.
 ```
 
-<span data-ttu-id="4399c-204">Непредвиденные исключения часто содержат конфиденциальные сведения, такие как имя сервера базы данных в исключении, которое запускается при сбое подключения к базе данных.</span><span class="sxs-lookup"><span data-stu-id="4399c-204">Unexpected exceptions often contain sensitive information, such as the name of a database server in an exception triggered when the database connection fails.</span></span> <span data-ttu-id="4399c-205">:::no-loc(SignalR)::: не предоставляет эти подробные сообщения об ошибках по умолчанию в качестве меры безопасности.</span><span class="sxs-lookup"><span data-stu-id="4399c-205">:::no-loc(SignalR)::: doesn't expose these detailed error messages by default as a security measure.</span></span> <span data-ttu-id="4399c-206">Дополнительные сведения о том, почему сведения об исключении подавляются, см. в [статье вопросы безопасности](xref:signalr/security#exceptions) .</span><span class="sxs-lookup"><span data-stu-id="4399c-206">See the [Security considerations article](xref:signalr/security#exceptions) for more information on why exception details are suppressed.</span></span>
+<span data-ttu-id="4399c-204">Непредвиденные исключения часто содержат конфиденциальные сведения, такие как имя сервера базы данных в исключении, которое запускается при сбое подключения к базе данных.</span><span class="sxs-lookup"><span data-stu-id="4399c-204">Unexpected exceptions often contain sensitive information, such as the name of a database server in an exception triggered when the database connection fails.</span></span> <span data-ttu-id="4399c-205">SignalR не предоставляет эти подробные сообщения об ошибках по умолчанию в качестве меры безопасности.</span><span class="sxs-lookup"><span data-stu-id="4399c-205">SignalR doesn't expose these detailed error messages by default as a security measure.</span></span> <span data-ttu-id="4399c-206">Дополнительные сведения о том, почему сведения об исключении подавляются, см. в [статье вопросы безопасности](xref:signalr/security#exceptions) .</span><span class="sxs-lookup"><span data-stu-id="4399c-206">See the [Security considerations article](xref:signalr/security#exceptions) for more information on why exception details are suppressed.</span></span>
 
-<span data-ttu-id="4399c-207">При наличии исключительных условий *, которые нужно* распространить на клиент, можно использовать `HubException` класс.</span><span class="sxs-lookup"><span data-stu-id="4399c-207">If you have an exceptional condition you *do* want to propagate to the client, you can use the `HubException` class.</span></span> <span data-ttu-id="4399c-208">Если вы выдаете `HubException` из метода концентратора, :::no-loc(SignalR)::: **will** отправляет клиенту все сообщение без изменений.</span><span class="sxs-lookup"><span data-stu-id="4399c-208">If you throw a `HubException` from your hub method, :::no-loc(SignalR)::: **will** send the entire message to the client, unmodified.</span></span>
+<span data-ttu-id="4399c-207">При наличии исключительных условий *, которые нужно* распространить на клиент, можно использовать `HubException` класс.</span><span class="sxs-lookup"><span data-stu-id="4399c-207">If you have an exceptional condition you *do* want to propagate to the client, you can use the `HubException` class.</span></span> <span data-ttu-id="4399c-208">Если вы выдаете `HubException` из метода концентратора, SignalR **will** отправляет клиенту все сообщение без изменений.</span><span class="sxs-lookup"><span data-stu-id="4399c-208">If you throw a `HubException` from your hub method, SignalR **will** send the entire message to the client, unmodified.</span></span>
 
 [!code-csharp[ThrowHubException](hubs/sample/hubs/chathub.cs?name=ThrowHubException&highlight=3)]
 
 > [!NOTE]
-> <span data-ttu-id="4399c-209">:::no-loc(SignalR)::: отправляет клиенту только `Message` свойство исключения.</span><span class="sxs-lookup"><span data-stu-id="4399c-209">:::no-loc(SignalR)::: only sends the `Message` property of the exception to the client.</span></span> <span data-ttu-id="4399c-210">Трассировка стека и другие свойства исключения недоступны клиенту.</span><span class="sxs-lookup"><span data-stu-id="4399c-210">The stack trace and other properties on the exception aren't available to the client.</span></span>
+> <span data-ttu-id="4399c-209">SignalR отправляет клиенту только `Message` свойство исключения.</span><span class="sxs-lookup"><span data-stu-id="4399c-209">SignalR only sends the `Message` property of the exception to the client.</span></span> <span data-ttu-id="4399c-210">Трассировка стека и другие свойства исключения недоступны клиенту.</span><span class="sxs-lookup"><span data-stu-id="4399c-210">The stack trace and other properties on the exception aren't available to the client.</span></span>
 
 ## <a name="related-resources"></a><span data-ttu-id="4399c-211">Связанные ресурсы</span><span class="sxs-lookup"><span data-stu-id="4399c-211">Related resources</span></span>
 
-* [<span data-ttu-id="4399c-212">Введение в ASP.NET Core :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="4399c-212">Intro to ASP.NET Core :::no-loc(SignalR):::</span></span>](xref:signalr/introduction)
+* [<span data-ttu-id="4399c-212">Введение в ASP.NET Core SignalR</span><span class="sxs-lookup"><span data-stu-id="4399c-212">Intro to ASP.NET Core SignalR</span></span>](xref:signalr/introduction)
 * [<span data-ttu-id="4399c-213">Клиент JavaScript</span><span class="sxs-lookup"><span data-stu-id="4399c-213">JavaScript client</span></span>](xref:signalr/javascript-client)
 * [<span data-ttu-id="4399c-214">Публикация в Azure</span><span class="sxs-lookup"><span data-stu-id="4399c-214">Publish to Azure</span></span>](xref:signalr/publish-to-azure-web-app)

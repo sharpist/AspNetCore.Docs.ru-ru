@@ -7,17 +7,17 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 04/06/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
 ms.openlocfilehash: 124f23caa4a757f63a80dfea627304204ba2cdca
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -36,7 +36,7 @@ ms.locfileid: "93061435"
 
 ## <a name="overview"></a><span data-ttu-id="f6236-107">Обзор</span><span class="sxs-lookup"><span data-stu-id="f6236-107">Overview</span></span>
 
-<span data-ttu-id="f6236-108">Вспомогательная функция тега partial используется для отрисовки [частичного представления](xref:mvc/views/partial) на :::no-loc(Razor)::: страницах и приложениях MVC.</span><span class="sxs-lookup"><span data-stu-id="f6236-108">The Partial Tag Helper is used for rendering a [partial view](xref:mvc/views/partial) in :::no-loc(Razor)::: Pages and MVC apps.</span></span> <span data-ttu-id="f6236-109">Примечания.</span><span class="sxs-lookup"><span data-stu-id="f6236-109">Consider that it:</span></span>
+<span data-ttu-id="f6236-108">Вспомогательная функция тега partial используется для отрисовки [частичного представления](xref:mvc/views/partial) на Razor страницах и приложениях MVC.</span><span class="sxs-lookup"><span data-stu-id="f6236-108">The Partial Tag Helper is used for rendering a [partial view](xref:mvc/views/partial) in Razor Pages and MVC apps.</span></span> <span data-ttu-id="f6236-109">Примечания.</span><span class="sxs-lookup"><span data-stu-id="f6236-109">Consider that it:</span></span>
 
 * <span data-ttu-id="f6236-110">Требуется ASP.NET Core 2.1 или более поздней версии.</span><span class="sxs-lookup"><span data-stu-id="f6236-110">Requires ASP.NET Core 2.1 or later.</span></span>
 * <span data-ttu-id="f6236-111">Это альтернатива [синтаксиса вспомогательной функции HTML](xref:mvc/views/partial#reference-a-partial-view).</span><span class="sxs-lookup"><span data-stu-id="f6236-111">Is an alternative to [HTML Helper syntax](xref:mvc/views/partial#reference-a-partial-view).</span></span>

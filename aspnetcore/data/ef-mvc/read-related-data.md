@@ -6,17 +6,17 @@ ms.author: riande
 ms.date: 09/28/2019
 ms.topic: tutorial
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: data/ef-mvc/read-related-data
 ms.openlocfilehash: 610a9e9b0007fb468ea9cdae6fadd2e756de4290
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -200,7 +200,7 @@ ms.locfileid: "93054064"
   }
   ```
 
-* <span data-ttu-id="e012e-228">Добавили столбец **Courses** , отображающий курсы, которые ведет конкретный преподаватель.</span><span class="sxs-lookup"><span data-stu-id="e012e-228">Added a **Courses** column that displays courses taught by each instructor.</span></span> <span data-ttu-id="e012e-229">Дополнительные сведения см. в разделе [Явный перенос строки](xref:mvc/views/razor#explicit-line-transition) статьи по синтаксису :::no-loc(Razor):::.</span><span class="sxs-lookup"><span data-stu-id="e012e-229">For more information, see the [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) section of the :::no-loc(Razor)::: syntax article.</span></span>
+* <span data-ttu-id="e012e-228">Добавили столбец **Courses** , отображающий курсы, которые ведет конкретный преподаватель.</span><span class="sxs-lookup"><span data-stu-id="e012e-228">Added a **Courses** column that displays courses taught by each instructor.</span></span> <span data-ttu-id="e012e-229">Дополнительные сведения см. в разделе [Явный перенос строки](xref:mvc/views/razor#explicit-line-transition) статьи по синтаксису Razor.</span><span class="sxs-lookup"><span data-stu-id="e012e-229">For more information, see the [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) section of the Razor syntax article.</span></span>
 
 * <span data-ttu-id="e012e-230">Добавили код, который динамически добавляет `class="success"` к элементу `tr` выбранного преподавателя.</span><span class="sxs-lookup"><span data-stu-id="e012e-230">Added code that dynamically adds `class="success"` to the `tr` element of the selected instructor.</span></span> <span data-ttu-id="e012e-231">Этот параметр задает цвет фона для выделенных строк c помощью класса Bootstrap.</span><span class="sxs-lookup"><span data-stu-id="e012e-231">This sets a background color for the selected row using a Bootstrap class.</span></span>
 

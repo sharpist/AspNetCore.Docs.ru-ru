@@ -1,23 +1,23 @@
 ---
-title: ':::no-loc(SignalR)::: Рекомендации по проектированию API'
+title: 'SignalR Рекомендации по проектированию API'
 author: anurse
-description: 'Узнайте, как проектировать :::no-loc(SignalR)::: интерфейсы API для совместимости с различными версиями приложения.'
+description: 'Узнайте, как проектировать SignalR интерфейсы API для совместимости с различными версиями приложения.'
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: signalr/api-design
 ms.openlocfilehash: 87665a7950edbc70b664230d2f078598e9dbc0aa
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -26,15 +26,15 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93059654"
 ---
-# <a name="no-locsignalr-api-design-considerations"></a><span data-ttu-id="cb056-103">:::no-loc(SignalR)::: Рекомендации по проектированию API</span><span class="sxs-lookup"><span data-stu-id="cb056-103">:::no-loc(SignalR)::: API design considerations</span></span>
+# <a name="no-locsignalr-api-design-considerations"></a><span data-ttu-id="cb056-103">SignalR Рекомендации по проектированию API</span><span class="sxs-lookup"><span data-stu-id="cb056-103">SignalR API design considerations</span></span>
 
 <span data-ttu-id="cb056-104">[Эндрю Стантон-медперсонала](https://twitter.com/anurse)</span><span class="sxs-lookup"><span data-stu-id="cb056-104">By [Andrew Stanton-Nurse](https://twitter.com/anurse)</span></span>
 
-<span data-ttu-id="cb056-105">В этой статье приводятся рекомендации по созданию :::no-loc(SignalR)::: API-интерфейсов на основе.</span><span class="sxs-lookup"><span data-stu-id="cb056-105">This article provides guidance for building :::no-loc(SignalR):::-based APIs.</span></span>
+<span data-ttu-id="cb056-105">В этой статье приводятся рекомендации по созданию SignalR API-интерфейсов на основе.</span><span class="sxs-lookup"><span data-stu-id="cb056-105">This article provides guidance for building SignalR-based APIs.</span></span>
 
 ## <a name="use-custom-object-parameters-to-ensure-backwards-compatibility"></a><span data-ttu-id="cb056-106">Использование пользовательских параметров объекта для обеспечения обратной совместимости</span><span class="sxs-lookup"><span data-stu-id="cb056-106">Use custom object parameters to ensure backwards-compatibility</span></span>
 
-<span data-ttu-id="cb056-107">Добавление параметров в :::no-loc(SignalR)::: метод концентратора (как на клиенте, так и на сервере) является *критическим изменением* .</span><span class="sxs-lookup"><span data-stu-id="cb056-107">Adding parameters to a :::no-loc(SignalR)::: hub method (on either the client or the server) is a *breaking change* .</span></span> <span data-ttu-id="cb056-108">Это означает, что старые клиенты и серверы будут получать ошибки при попытке вызвать метод без соответствующего количества параметров.</span><span class="sxs-lookup"><span data-stu-id="cb056-108">This means older clients/servers will get errors when they try to invoke the method without the appropriate number of parameters.</span></span> <span data-ttu-id="cb056-109">Однако добавление свойств в параметр пользовательского объекта **не** является критическим изменением.</span><span class="sxs-lookup"><span data-stu-id="cb056-109">However, adding properties to a custom object parameter is **not** a breaking change.</span></span> <span data-ttu-id="cb056-110">Это можно использовать для проектирования совместимых интерфейсов API, устойчивых к изменениям на клиенте или сервере.</span><span class="sxs-lookup"><span data-stu-id="cb056-110">This can be used to design compatible APIs that are resilient to changes on the client or the server.</span></span>
+<span data-ttu-id="cb056-107">Добавление параметров в SignalR метод концентратора (как на клиенте, так и на сервере) является *критическим изменением* .</span><span class="sxs-lookup"><span data-stu-id="cb056-107">Adding parameters to a SignalR hub method (on either the client or the server) is a *breaking change* .</span></span> <span data-ttu-id="cb056-108">Это означает, что старые клиенты и серверы будут получать ошибки при попытке вызвать метод без соответствующего количества параметров.</span><span class="sxs-lookup"><span data-stu-id="cb056-108">This means older clients/servers will get errors when they try to invoke the method without the appropriate number of parameters.</span></span> <span data-ttu-id="cb056-109">Однако добавление свойств в параметр пользовательского объекта **не** является критическим изменением.</span><span class="sxs-lookup"><span data-stu-id="cb056-109">However, adding properties to a custom object parameter is **not** a breaking change.</span></span> <span data-ttu-id="cb056-110">Это можно использовать для проектирования совместимых интерфейсов API, устойчивых к изменениям на клиенте или сервере.</span><span class="sxs-lookup"><span data-stu-id="cb056-110">This can be used to design compatible APIs that are resilient to changes on the client or the server.</span></span>
 
 <span data-ttu-id="cb056-111">Например, рассмотрим API на стороне сервера, как показано ниже:</span><span class="sxs-lookup"><span data-stu-id="cb056-111">For example, consider a server-side API like the following:</span></span>
 
@@ -51,7 +51,7 @@ ms.locfileid: "93059654"
 <span data-ttu-id="cb056-115">Когда старый клиент пытается вызвать этот метод, он получит ошибку следующего вида:</span><span class="sxs-lookup"><span data-stu-id="cb056-115">When the old client tries to invoke this method, it will get an error like this:</span></span>
 
 ```
-Microsoft.AspNetCore.:::no-loc(SignalR):::.HubException: Failed to invoke 'GetTotalLength' due to an error on the server.
+Microsoft.AspNetCore.SignalR.HubException: Failed to invoke 'GetTotalLength' due to an error on the server.
 ```
 
 <span data-ttu-id="cb056-116">На сервере появится сообщение журнала следующего вида:</span><span class="sxs-lookup"><span data-stu-id="cb056-116">On the server, you'll see a log message like this:</span></span>

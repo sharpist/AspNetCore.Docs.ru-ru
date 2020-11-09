@@ -5,17 +5,17 @@ description: Узнайте, как начать миграцию проекта
 ms.author: wpickett
 ms.date: 06/18/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: migration/mvc
 ms.openlocfilehash: 226ac6da508378c7b3c81779d38dd2e0840f1fed
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -37,7 +37,7 @@ ms.locfileid: "93051517"
 * <span data-ttu-id="88543-110">Статическое содержимое.</span><span class="sxs-lookup"><span data-stu-id="88543-110">Static content.</span></span>
 * <span data-ttu-id="88543-111">Зависимости на стороне клиента.</span><span class="sxs-lookup"><span data-stu-id="88543-111">Client-side dependencies.</span></span>
 
-<span data-ttu-id="88543-112">Сведения о переносе конфигурации и :::no-loc(Identity)::: кода см. в разделе [Миграция конфигурации в ASP.NET Core](xref:migration/configuration) и [Миграция проверки подлинности и :::no-loc(Identity)::: ASP.NET Core](xref:migration/identity).</span><span class="sxs-lookup"><span data-stu-id="88543-112">For migrating configuration and :::no-loc(Identity)::: code, see [Migrate configuration to ASP.NET Core](xref:migration/configuration) and [Migrate Authentication and :::no-loc(Identity)::: to ASP.NET Core](xref:migration/identity).</span></span>
+<span data-ttu-id="88543-112">Сведения о переносе конфигурации и Identity кода см. в разделе [Миграция конфигурации в ASP.NET Core](xref:migration/configuration) и [Миграция проверки подлинности и Identity ASP.NET Core](xref:migration/identity).</span><span class="sxs-lookup"><span data-stu-id="88543-112">For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](xref:migration/configuration) and [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity).</span></span>
 
 ## <a name="prerequisites"></a><span data-ttu-id="88543-113">Предварительные требования</span><span class="sxs-lookup"><span data-stu-id="88543-113">Prerequisites</span></span>
 
@@ -101,7 +101,7 @@ ms.locfileid: "93051517"
 1. <span data-ttu-id="88543-158">Скопируйте методы из ASP.NET MVC, `HomeController` чтобы заменить новые `HomeController` методы ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="88543-158">Copy the methods from the ASP.NET MVC `HomeController` to replace the new ASP.NET Core `HomeController` methods.</span></span> <span data-ttu-id="88543-159">Нет необходимости изменять тип возвращаемого значения методов действия.</span><span class="sxs-lookup"><span data-stu-id="88543-159">There's no need to change the return type of the action methods.</span></span> <span data-ttu-id="88543-160">Тип возвращаемого значения метода действия контроллера встроенного шаблона ASP.NET MVC — <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> ; в ASP.NET Core MVC вместо этого методы действия возвращают `IActionResult` .</span><span class="sxs-lookup"><span data-stu-id="88543-160">The ASP.NET MVC built-in template's controller action method return type is <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2>; in ASP.NET Core MVC, the action methods return `IActionResult` instead.</span></span> <span data-ttu-id="88543-161">Объект `ActionResult` реализует интерфейс `IActionResult`.</span><span class="sxs-lookup"><span data-stu-id="88543-161">`ActionResult` implements `IActionResult`.</span></span>
 1. <span data-ttu-id="88543-162">В проекте ASP.NET Core щелкните правой кнопкой мыши папку *Views/Home* и выберите **Добавить** > **существующий элемент** .</span><span class="sxs-lookup"><span data-stu-id="88543-162">In the ASP.NET Core project, right-click the *Views/Home* directory, select **Add** > **Existing Item** .</span></span>
 1. <span data-ttu-id="88543-163">В диалоговом окне **Добавление существующего элемента** перейдите к *представлениям/домашнему* каталогу проекта ASP.NET MVC *APP1* .</span><span class="sxs-lookup"><span data-stu-id="88543-163">In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views/Home* directory.</span></span>
-1. <span data-ttu-id="88543-164">Выберите файлы представлений *About. cshtml* , *Contact. cshtml* и *index. cshtml* :::no-loc(Razor)::: , а затем щелкните **Добавить** , заменив существующие файлы.</span><span class="sxs-lookup"><span data-stu-id="88543-164">Select the *About.cshtml* , *Contact.cshtml* , and *Index.cshtml* :::no-loc(Razor)::: view files, then select **Add** , replacing the existing files.</span></span>
+1. <span data-ttu-id="88543-164">Выберите файлы представлений *About. cshtml* , *Contact. cshtml* и *index. cshtml* Razor , а затем щелкните **Добавить** , заменив существующие файлы.</span><span class="sxs-lookup"><span data-stu-id="88543-164">Select the *About.cshtml* , *Contact.cshtml* , and *Index.cshtml* Razor view files, then select **Add** , replacing the existing files.</span></span>
 
 <span data-ttu-id="88543-165">Дополнительные сведения см. в разделах <xref:mvc/controllers/actions> и <xref:mvc/views/overview>.</span><span class="sxs-lookup"><span data-stu-id="88543-165">For more information, see <xref:mvc/controllers/actions> and <xref:mvc/views/overview>.</span></span>
 
@@ -203,7 +203,7 @@ ms.locfileid: "93051517"
 * <span data-ttu-id="88543-222">Статическое содержимое</span><span class="sxs-lookup"><span data-stu-id="88543-222">Static content</span></span>
 * <span data-ttu-id="88543-223">Зависимости на стороне клиента.</span><span class="sxs-lookup"><span data-stu-id="88543-223">Client-side dependencies.</span></span>
 
-<span data-ttu-id="88543-224">Сведения о переносе конфигурации и :::no-loc(Identity)::: кода см. в разделе <xref:migration/configuration> и <xref:migration/identity> .</span><span class="sxs-lookup"><span data-stu-id="88543-224">For migrating configuration and :::no-loc(Identity)::: code, see <xref:migration/configuration> and <xref:migration/identity>.</span></span>
+<span data-ttu-id="88543-224">Сведения о переносе конфигурации и Identity кода см. в разделе <xref:migration/configuration> и <xref:migration/identity> .</span><span class="sxs-lookup"><span data-stu-id="88543-224">For migrating configuration and Identity code, see <xref:migration/configuration> and <xref:migration/identity>.</span></span>
 
 > [!NOTE]
 > <span data-ttu-id="88543-225">Номера версий в примерах могут быть неактуальными. Обновите проекты соответствующим образом.</span><span class="sxs-lookup"><span data-stu-id="88543-225">The version numbers in the samples might not be current, update the projects accordingly.</span></span>
@@ -254,7 +254,7 @@ ms.locfileid: "93051517"
 
 * <span data-ttu-id="88543-261">Добавление *представлений и домашнего* каталога.</span><span class="sxs-lookup"><span data-stu-id="88543-261">Add a *Views/Home* directory.</span></span>
 
-* <span data-ttu-id="88543-262">Добавьте **:::no-loc(Razor)::: представление** с именем *index. cshtml* в каталог *Views/Home* .</span><span class="sxs-lookup"><span data-stu-id="88543-262">Add a **:::no-loc(Razor)::: View** named *Index.cshtml* to the *Views/Home* directory.</span></span>
+* <span data-ttu-id="88543-262">Добавьте **Razor представление** с именем *index. cshtml* в каталог *Views/Home* .</span><span class="sxs-lookup"><span data-stu-id="88543-262">Add a **Razor View** named *Index.cshtml* to the *Views/Home* directory.</span></span>
 
 ![Диалоговое окно ''Добавление нового элемента''](mvc/_static/view.png)
 
@@ -288,13 +288,13 @@ ms.locfileid: "93051517"
 
 * <span data-ttu-id="88543-276">filters</span><span class="sxs-lookup"><span data-stu-id="88543-276">filters</span></span>
 
-* <span data-ttu-id="88543-277">Вход в систему :::no-loc(Identity)::: (это делается в следующем руководстве).</span><span class="sxs-lookup"><span data-stu-id="88543-277">Log in/out, :::no-loc(Identity)::: (This is done in the next tutorial.)</span></span>
+* <span data-ttu-id="88543-277">Вход в систему Identity (это делается в следующем руководстве).</span><span class="sxs-lookup"><span data-stu-id="88543-277">Log in/out, Identity (This is done in the next tutorial.)</span></span>
 
 ## <a name="controllers-and-views"></a><span data-ttu-id="88543-278">Контроллеры и представления</span><span class="sxs-lookup"><span data-stu-id="88543-278">Controllers and views</span></span>
 
 * <span data-ttu-id="88543-279">Скопируйте каждый из методов из MVC ASP.NET `HomeController` в новый `HomeController` .</span><span class="sxs-lookup"><span data-stu-id="88543-279">Copy each of the methods from the ASP.NET MVC `HomeController` to the new `HomeController`.</span></span> <span data-ttu-id="88543-280">В ASP.NET MVC тип возвращаемого значения метода действия контроллера встроенного шаблона — <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> ; в ASP.NET Core MVC вместо этого методы действия возвращают `IActionResult` .</span><span class="sxs-lookup"><span data-stu-id="88543-280">In ASP.NET MVC, the built-in template's controller action method return type is <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2>; in ASP.NET Core MVC, the action methods return `IActionResult` instead.</span></span> <span data-ttu-id="88543-281">`ActionResult` реализует `IActionResult` , поэтому нет необходимости изменять тип возвращаемого значения методов действия.</span><span class="sxs-lookup"><span data-stu-id="88543-281">`ActionResult` implements `IActionResult`, so there's no need to change the return type of the action methods.</span></span>
 
-* <span data-ttu-id="88543-282">Скопируйте файлы представления *About. cshtml* , *Contact. cshtml* и *index. cshtml* :::no-loc(Razor)::: из проекта MVC ASP.NET в проект ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="88543-282">Copy the *About.cshtml* , *Contact.cshtml* , and *Index.cshtml* :::no-loc(Razor)::: view files from the ASP.NET MVC project to the ASP.NET Core project.</span></span>
+* <span data-ttu-id="88543-282">Скопируйте файлы представления *About. cshtml* , *Contact. cshtml* и *index. cshtml* Razor из проекта MVC ASP.NET в проект ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="88543-282">Copy the *About.cshtml* , *Contact.cshtml* , and *Index.cshtml* Razor view files from the ASP.NET MVC project to the ASP.NET Core project.</span></span>
 
 ## <a name="test-each-method"></a><span data-ttu-id="88543-283">Тестирование каждого метода</span><span class="sxs-lookup"><span data-stu-id="88543-283">Test each method</span></span>
 
@@ -330,7 +330,7 @@ ms.locfileid: "93051517"
 
 * <span data-ttu-id="88543-313">Удалите `@Scripts.Render("~/bundles/modernizr")`.</span><span class="sxs-lookup"><span data-stu-id="88543-313">Remove `@Scripts.Render("~/bundles/modernizr")`.</span></span>
 
-* <span data-ttu-id="88543-314">Закомментируйте `@Html.Partial("_LoginPartial")` строку (заключите строку в `@*...*@` ).</span><span class="sxs-lookup"><span data-stu-id="88543-314">Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`).</span></span> <span data-ttu-id="88543-315">Дополнительные сведения см. [в разделе Миграция проверки подлинности и :::no-loc(Identity)::: в ASP.NET Core](xref:migration/identity)</span><span class="sxs-lookup"><span data-stu-id="88543-315">For more information, see [Migrate Authentication and :::no-loc(Identity)::: to ASP.NET Core](xref:migration/identity)</span></span>
+* <span data-ttu-id="88543-314">Закомментируйте `@Html.Partial("_LoginPartial")` строку (заключите строку в `@*...*@` ).</span><span class="sxs-lookup"><span data-stu-id="88543-314">Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`).</span></span> <span data-ttu-id="88543-315">Дополнительные сведения см. [в разделе Миграция проверки подлинности и Identity в ASP.NET Core](xref:migration/identity)</span><span class="sxs-lookup"><span data-stu-id="88543-315">For more information, see [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity)</span></span>
 
 * <span data-ttu-id="88543-316">Замените на `@Scripts.Render("~/bundles/jquery")` `<script>` элемент (см. ниже).</span><span class="sxs-lookup"><span data-stu-id="88543-316">Replace `@Scripts.Render("~/bundles/jquery")` with a `<script>` element (see below).</span></span>
 
@@ -389,7 +389,7 @@ ms.locfileid: "93051517"
 * <span data-ttu-id="88543-343">Статическое содержимое</span><span class="sxs-lookup"><span data-stu-id="88543-343">Static content</span></span>
 * <span data-ttu-id="88543-344">Зависимости на стороне клиента.</span><span class="sxs-lookup"><span data-stu-id="88543-344">Client-side dependencies.</span></span>
 
-<span data-ttu-id="88543-345">Сведения о переносе конфигурации и :::no-loc(Identity)::: кода см. в разделе [Миграция конфигурации в ASP.NET Core](xref:migration/configuration) и [Миграция проверки подлинности и :::no-loc(Identity)::: ASP.NET Core](xref:migration/identity).</span><span class="sxs-lookup"><span data-stu-id="88543-345">For migrating configuration and :::no-loc(Identity)::: code, see [Migrate configuration to ASP.NET Core](xref:migration/configuration) and [Migrate Authentication and :::no-loc(Identity)::: to ASP.NET Core](xref:migration/identity).</span></span>
+<span data-ttu-id="88543-345">Сведения о переносе конфигурации и Identity кода см. в разделе [Миграция конфигурации в ASP.NET Core](xref:migration/configuration) и [Миграция проверки подлинности и Identity ASP.NET Core](xref:migration/identity).</span><span class="sxs-lookup"><span data-stu-id="88543-345">For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](xref:migration/configuration) and [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity).</span></span>
 
 > [!NOTE]
 > <span data-ttu-id="88543-346">Номера версий в примерах могут быть неактуальными. Обновите проекты соответствующим образом.</span><span class="sxs-lookup"><span data-stu-id="88543-346">The version numbers in the samples might not be current, update the projects accordingly.</span></span>
@@ -440,7 +440,7 @@ ms.locfileid: "93051517"
 
 * <span data-ttu-id="88543-383">Добавление *представлений и домашнего* каталога.</span><span class="sxs-lookup"><span data-stu-id="88543-383">Add a *Views/Home* directory.</span></span>
 
-* <span data-ttu-id="88543-384">Добавьте **:::no-loc(Razor)::: представление** с именем *index. cshtml* в каталог *Views/Home* .</span><span class="sxs-lookup"><span data-stu-id="88543-384">Add a **:::no-loc(Razor)::: View** named *Index.cshtml* to the *Views/Home* directory.</span></span>
+* <span data-ttu-id="88543-384">Добавьте **Razor представление** с именем *index. cshtml* в каталог *Views/Home* .</span><span class="sxs-lookup"><span data-stu-id="88543-384">Add a **Razor View** named *Index.cshtml* to the *Views/Home* directory.</span></span>
 
 ![Диалоговое окно ''Добавление нового элемента''](mvc/_static/view.png)
 
@@ -474,13 +474,13 @@ ms.locfileid: "93051517"
 
 * <span data-ttu-id="88543-398">filters</span><span class="sxs-lookup"><span data-stu-id="88543-398">filters</span></span>
 
-* <span data-ttu-id="88543-399">Вход в систему :::no-loc(Identity)::: (это делается в следующем руководстве).</span><span class="sxs-lookup"><span data-stu-id="88543-399">Log in/out, :::no-loc(Identity)::: (This is done in the next tutorial.)</span></span>
+* <span data-ttu-id="88543-399">Вход в систему Identity (это делается в следующем руководстве).</span><span class="sxs-lookup"><span data-stu-id="88543-399">Log in/out, Identity (This is done in the next tutorial.)</span></span>
 
 ## <a name="controllers-and-views"></a><span data-ttu-id="88543-400">Контроллеры и представления</span><span class="sxs-lookup"><span data-stu-id="88543-400">Controllers and views</span></span>
 
 * <span data-ttu-id="88543-401">Скопируйте каждый из методов из MVC ASP.NET `HomeController` в новый `HomeController` .</span><span class="sxs-lookup"><span data-stu-id="88543-401">Copy each of the methods from the ASP.NET MVC `HomeController` to the new `HomeController`.</span></span> <span data-ttu-id="88543-402">В ASP.NET MVC тип возвращаемого значения метода действия контроллера встроенного шаблона — <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> ; в ASP.NET Core MVC вместо этого методы действия возвращают `IActionResult` .</span><span class="sxs-lookup"><span data-stu-id="88543-402">In ASP.NET MVC, the built-in template's controller action method return type is <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2>; in ASP.NET Core MVC, the action methods return `IActionResult` instead.</span></span> <span data-ttu-id="88543-403">`ActionResult` реализует `IActionResult` , поэтому нет необходимости изменять тип возвращаемого значения методов действия.</span><span class="sxs-lookup"><span data-stu-id="88543-403">`ActionResult` implements `IActionResult`, so there's no need to change the return type of the action methods.</span></span>
 
-* <span data-ttu-id="88543-404">Скопируйте файлы представления *About. cshtml* , *Contact. cshtml* и *index. cshtml* :::no-loc(Razor)::: из проекта MVC ASP.NET в проект ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="88543-404">Copy the *About.cshtml* , *Contact.cshtml* , and *Index.cshtml* :::no-loc(Razor)::: view files from the ASP.NET MVC project to the ASP.NET Core project.</span></span>
+* <span data-ttu-id="88543-404">Скопируйте файлы представления *About. cshtml* , *Contact. cshtml* и *index. cshtml* Razor из проекта MVC ASP.NET в проект ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="88543-404">Copy the *About.cshtml* , *Contact.cshtml* , and *Index.cshtml* Razor view files from the ASP.NET MVC project to the ASP.NET Core project.</span></span>
 
 ## <a name="test-each-method"></a><span data-ttu-id="88543-405">Тестирование каждого метода</span><span class="sxs-lookup"><span data-stu-id="88543-405">Test each method</span></span>
 
@@ -516,7 +516,7 @@ ms.locfileid: "93051517"
 
 * <span data-ttu-id="88543-435">Удалите `@Scripts.Render("~/bundles/modernizr")`.</span><span class="sxs-lookup"><span data-stu-id="88543-435">Remove `@Scripts.Render("~/bundles/modernizr")`.</span></span>
 
-* <span data-ttu-id="88543-436">Закомментируйте `@Html.Partial("_LoginPartial")` строку (заключите строку в `@*...*@` ).</span><span class="sxs-lookup"><span data-stu-id="88543-436">Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`).</span></span> <span data-ttu-id="88543-437">Дополнительные сведения см. [в разделе Миграция проверки подлинности и :::no-loc(Identity)::: в ASP.NET Core](xref:migration/identity)</span><span class="sxs-lookup"><span data-stu-id="88543-437">For more information, see [Migrate Authentication and :::no-loc(Identity)::: to ASP.NET Core](xref:migration/identity)</span></span>
+* <span data-ttu-id="88543-436">Закомментируйте `@Html.Partial("_LoginPartial")` строку (заключите строку в `@*...*@` ).</span><span class="sxs-lookup"><span data-stu-id="88543-436">Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`).</span></span> <span data-ttu-id="88543-437">Дополнительные сведения см. [в разделе Миграция проверки подлинности и Identity в ASP.NET Core](xref:migration/identity)</span><span class="sxs-lookup"><span data-stu-id="88543-437">For more information, see [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity)</span></span>
 
 * <span data-ttu-id="88543-438">Замените на `@Scripts.Render("~/bundles/jquery")` `<script>` элемент (см. ниже).</span><span class="sxs-lookup"><span data-stu-id="88543-438">Replace `@Scripts.Render("~/bundles/jquery")` with a `<script>` element (see below).</span></span>
 

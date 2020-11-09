@@ -1,21 +1,21 @@
 ---
-title: 'Часть 7. :::no-loc(Razor)::: Pages с EF Core в ASP.NET Core — обновление связанных данных'
+title: 'Часть 7. Razor Pages с EF Core в ASP.NET Core — обновление связанных данных'
 author: rick-anderson
-description: 'Часть 7 серии руководств по :::no-loc(Razor)::: Pages и Entity Framework.'
+description: 'Часть 7 серии руководств по Razor Pages и Entity Framework.'
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: data/ef-rp/update-related-data
 ms.openlocfilehash: 3ec88a862697c540a1a98e733c31d76922f81f7c
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -24,7 +24,7 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93060538"
 ---
-# <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a><span data-ttu-id="fda3c-103">Часть 7. :::no-loc(Razor)::: Pages с EF Core в ASP.NET Core — обновление связанных данных</span><span class="sxs-lookup"><span data-stu-id="fda3c-103">Part 7, :::no-loc(Razor)::: Pages with EF Core in ASP.NET Core - Update Related Data</span></span>
+# <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a><span data-ttu-id="fda3c-103">Часть 7. Razor Pages с EF Core в ASP.NET Core — обновление связанных данных</span><span class="sxs-lookup"><span data-stu-id="fda3c-103">Part 7, Razor Pages with EF Core in ASP.NET Core - Update Related Data</span></span>
 
 <span data-ttu-id="fda3c-104">Авторы: [Том Дайкстра](https://github.com/tdykstra) (Tom Dykstra) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)</span><span class="sxs-lookup"><span data-stu-id="fda3c-104">By [Tom Dykstra](https://github.com/tdykstra), and [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
 
@@ -68,9 +68,9 @@ ms.locfileid: "93060538"
 
 * <span data-ttu-id="fda3c-125">Происходит от `DepartmentNamePageModel`.</span><span class="sxs-lookup"><span data-stu-id="fda3c-125">Derives from `DepartmentNamePageModel`.</span></span>
 * <span data-ttu-id="fda3c-126">Использует `TryUpdateModelAsync`, чтобы предотвратить [чрезмерную передачу данных](xref:data/ef-rp/crud#overposting).</span><span class="sxs-lookup"><span data-stu-id="fda3c-126">Uses `TryUpdateModelAsync` to prevent [overposting](xref:data/ef-rp/crud#overposting).</span></span>
-* <span data-ttu-id="fda3c-127">Удаляет `ViewData["DepartmentID"]`.</span><span class="sxs-lookup"><span data-stu-id="fda3c-127">Removes `ViewData["DepartmentID"]`.</span></span> <span data-ttu-id="fda3c-128">`DepartmentNameSL` из базового класса — это строго типизированная модель, которая будет использоваться страницей :::no-loc(Razor):::.</span><span class="sxs-lookup"><span data-stu-id="fda3c-128">`DepartmentNameSL` from the base class is a strongly typed model and will be used by the :::no-loc(Razor)::: page.</span></span> <span data-ttu-id="fda3c-129">Вместо слабо типизированных моделей рекомендуется использовать строго типизированные.</span><span class="sxs-lookup"><span data-stu-id="fda3c-129">Strongly typed models are preferred over weakly typed.</span></span> <span data-ttu-id="fda3c-130">Дополнительные сведения см. в разделе [Слабо типизированные данные (ViewData и ViewBag)](xref:mvc/views/overview#VD_VB).</span><span class="sxs-lookup"><span data-stu-id="fda3c-130">For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).</span></span>
+* <span data-ttu-id="fda3c-127">Удаляет `ViewData["DepartmentID"]`.</span><span class="sxs-lookup"><span data-stu-id="fda3c-127">Removes `ViewData["DepartmentID"]`.</span></span> <span data-ttu-id="fda3c-128">`DepartmentNameSL` из базового класса — это строго типизированная модель, которая будет использоваться страницей Razor.</span><span class="sxs-lookup"><span data-stu-id="fda3c-128">`DepartmentNameSL` from the base class is a strongly typed model and will be used by the Razor page.</span></span> <span data-ttu-id="fda3c-129">Вместо слабо типизированных моделей рекомендуется использовать строго типизированные.</span><span class="sxs-lookup"><span data-stu-id="fda3c-129">Strongly typed models are preferred over weakly typed.</span></span> <span data-ttu-id="fda3c-130">Дополнительные сведения см. в разделе [Слабо типизированные данные (ViewData и ViewBag)](xref:mvc/views/overview#VD_VB).</span><span class="sxs-lookup"><span data-stu-id="fda3c-130">For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).</span></span>
 
-### <a name="update-the-course-create-no-locrazor-page"></a><span data-ttu-id="fda3c-131">Обновление страницы :::no-loc(Razor)::: создания курсов</span><span class="sxs-lookup"><span data-stu-id="fda3c-131">Update the Course Create :::no-loc(Razor)::: page</span></span>
+### <a name="update-the-course-create-no-locrazor-page"></a><span data-ttu-id="fda3c-131">Обновление страницы Razor создания курсов</span><span class="sxs-lookup"><span data-stu-id="fda3c-131">Update the Course Create Razor page</span></span>
 
 <span data-ttu-id="fda3c-132">Измените файл *Pages/Courses/Create.cshtml* , используя следующий код:</span><span class="sxs-lookup"><span data-stu-id="fda3c-132">Update *Pages/Courses/Create.cshtml* with the following code:</span></span>
 
@@ -83,7 +83,7 @@ ms.locfileid: "93060538"
 * <span data-ttu-id="fda3c-136">Добавляет параметр "Select Department" (Выбор кафедры).</span><span class="sxs-lookup"><span data-stu-id="fda3c-136">Adds the "Select Department" option.</span></span> <span data-ttu-id="fda3c-137">В результате этого изменения вместо первой кафедры в раскрывающемся списке отображается пункт "Select Department" (Выберите кафедру), если кафедра еще не выбрана.</span><span class="sxs-lookup"><span data-stu-id="fda3c-137">This change renders "Select Department" in the drop-down when no department has been selected yet, rather than the first department.</span></span>
 * <span data-ttu-id="fda3c-138">Добавляет сообщение о проверке в том случае, если не выбрана кафедра.</span><span class="sxs-lookup"><span data-stu-id="fda3c-138">Adds a validation message when the department isn't selected.</span></span>
 
-<span data-ttu-id="fda3c-139">На странице :::no-loc(Razor)::: Pages используется [вспомогательная функция тега Select](xref:mvc/views/working-with-forms#the-select-tag-helper).</span><span class="sxs-lookup"><span data-stu-id="fda3c-139">The :::no-loc(Razor)::: Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):</span></span>
+<span data-ttu-id="fda3c-139">На странице Razor Pages используется [вспомогательная функция тега Select](xref:mvc/views/working-with-forms#the-select-tag-helper).</span><span class="sxs-lookup"><span data-stu-id="fda3c-139">The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):</span></span>
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -97,7 +97,7 @@ ms.locfileid: "93060538"
 
 <span data-ttu-id="fda3c-144">Изменения аналогичны внесенным в модель страницы Create.</span><span class="sxs-lookup"><span data-stu-id="fda3c-144">The changes are similar to those made in the Create page model.</span></span> <span data-ttu-id="fda3c-145">В приведенном выше коде `PopulateDepartmentsDropDownList` передает идентификатор кафедры, по которому выбирается кафедра в раскрывающемся списке.</span><span class="sxs-lookup"><span data-stu-id="fda3c-145">In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which selects that department in the drop-down list.</span></span>
 
-### <a name="update-the-course-edit-no-locrazor-page"></a><span data-ttu-id="fda3c-146">Обновление страницы :::no-loc(Razor)::: редактирования курсов</span><span class="sxs-lookup"><span data-stu-id="fda3c-146">Update the Course Edit :::no-loc(Razor)::: page</span></span>
+### <a name="update-the-course-edit-no-locrazor-page"></a><span data-ttu-id="fda3c-146">Обновление страницы Razor редактирования курсов</span><span class="sxs-lookup"><span data-stu-id="fda3c-146">Update the Course Edit Razor page</span></span>
 
 <span data-ttu-id="fda3c-147">Измените файл *Pages/Courses/Edit.cshtml* , используя следующий код:</span><span class="sxs-lookup"><span data-stu-id="fda3c-147">Update *Pages/Courses/Edit.cshtml* with the following code:</span></span>
 
@@ -125,7 +125,7 @@ ms.locfileid: "93060538"
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=28)]
 
-### <a name="update-the-course-no-locrazor-pages"></a><span data-ttu-id="fda3c-163">Обновление страницы :::no-loc(Razor)::: курсов</span><span class="sxs-lookup"><span data-stu-id="fda3c-163">Update the Course :::no-loc(Razor)::: pages</span></span>
+### <a name="update-the-course-no-locrazor-pages"></a><span data-ttu-id="fda3c-163">Обновление страницы Razor курсов</span><span class="sxs-lookup"><span data-stu-id="fda3c-163">Update the Course Razor pages</span></span>
 
 <span data-ttu-id="fda3c-164">Измените файл *Pages/Courses/Delete.cshtml* , используя следующий код:</span><span class="sxs-lookup"><span data-stu-id="fda3c-164">Update *Pages/Courses/Delete.cshtml* with the following code:</span></span>
 
@@ -163,7 +163,7 @@ ms.locfileid: "93060538"
 
 <span data-ttu-id="fda3c-184">Базовый класс `InstructorCoursesPageModel` будет использоваться для моделей страниц редактирования и создания.</span><span class="sxs-lookup"><span data-stu-id="fda3c-184">The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models.</span></span> <span data-ttu-id="fda3c-185">`PopulateAssignedCourseData` считывает все сущности `Course` для заполнения списка `AssignedCourseDataList`.</span><span class="sxs-lookup"><span data-stu-id="fda3c-185">`PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`.</span></span> <span data-ttu-id="fda3c-186">Для каждого курса код задает `CourseID`, название, а также сведения о назначении курсу преподавателя.</span><span class="sxs-lookup"><span data-stu-id="fda3c-186">For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course.</span></span> <span data-ttu-id="fda3c-187">Для эффективного поиска используется класс [HashSet](/dotnet/api/system.collections.generic.hashset-1).</span><span class="sxs-lookup"><span data-stu-id="fda3c-187">A [HashSet](/dotnet/api/system.collections.generic.hashset-1) is used for efficient lookups.</span></span>
 
-<span data-ttu-id="fda3c-188">Так как страница :::no-loc(Razor)::: не содержит коллекцию сущностей Course, связыватель модели не может автоматически обновить свойство навигации `CourseAssignments`.</span><span class="sxs-lookup"><span data-stu-id="fda3c-188">Since the :::no-loc(Razor)::: page doesn't have a collection of Course entities, the model binder can't automatically update the `CourseAssignments` navigation property.</span></span> <span data-ttu-id="fda3c-189">Вместо использования связывателя модели для обновления свойства навигации `CourseAssignments` вы делаете это в новом методе `UpdateInstructorCourses`.</span><span class="sxs-lookup"><span data-stu-id="fda3c-189">Instead of using the model binder to update the `CourseAssignments` navigation property, you do that in the new `UpdateInstructorCourses` method.</span></span> <span data-ttu-id="fda3c-190">Поэтому нужно исключить свойство `CourseAssignments` из привязки модели.</span><span class="sxs-lookup"><span data-stu-id="fda3c-190">Therefore you need to exclude the `CourseAssignments` property from model binding.</span></span> <span data-ttu-id="fda3c-191">Это не требует внесения никаких изменений в код, вызывающий `TryUpdateModel`, так как вы используете перегрузку с объявленными свойствами, а `CourseAssignments` отсутствует в списке включений.</span><span class="sxs-lookup"><span data-stu-id="fda3c-191">This doesn't require any change to the code that calls `TryUpdateModel` because you're using the overload with declared properties and `CourseAssignments` isn't in the include list.</span></span>
+<span data-ttu-id="fda3c-188">Так как страница Razor не содержит коллекцию сущностей Course, связыватель модели не может автоматически обновить свойство навигации `CourseAssignments`.</span><span class="sxs-lookup"><span data-stu-id="fda3c-188">Since the Razor page doesn't have a collection of Course entities, the model binder can't automatically update the `CourseAssignments` navigation property.</span></span> <span data-ttu-id="fda3c-189">Вместо использования связывателя модели для обновления свойства навигации `CourseAssignments` вы делаете это в новом методе `UpdateInstructorCourses`.</span><span class="sxs-lookup"><span data-stu-id="fda3c-189">Instead of using the model binder to update the `CourseAssignments` navigation property, you do that in the new `UpdateInstructorCourses` method.</span></span> <span data-ttu-id="fda3c-190">Поэтому нужно исключить свойство `CourseAssignments` из привязки модели.</span><span class="sxs-lookup"><span data-stu-id="fda3c-190">Therefore you need to exclude the `CourseAssignments` property from model binding.</span></span> <span data-ttu-id="fda3c-191">Это не требует внесения никаких изменений в код, вызывающий `TryUpdateModel`, так как вы используете перегрузку с объявленными свойствами, а `CourseAssignments` отсутствует в списке включений.</span><span class="sxs-lookup"><span data-stu-id="fda3c-191">This doesn't require any change to the code that calls `TryUpdateModel` because you're using the overload with declared properties and `CourseAssignments` isn't in the include list.</span></span>
 
 <span data-ttu-id="fda3c-192">Если никакие флажки не выбраны, код в `UpdateInstructorCourses` инициализирует свойство навигации `CourseAssignments` с использованием пустой коллекции и возвращает следующее:</span><span class="sxs-lookup"><span data-stu-id="fda3c-192">If no check boxes were selected, the code in `UpdateInstructorCourses` initializes the `CourseAssignments` navigation property with an empty collection and returns:</span></span>
 
@@ -202,7 +202,7 @@ ms.locfileid: "93060538"
 * <span data-ttu-id="fda3c-212">Вызывает `UpdateInstructorCourses` в `OnPostAsync`, чтобы применить сведения флажков к редактируемой сущности Instructor.</span><span class="sxs-lookup"><span data-stu-id="fda3c-212">Calls `UpdateInstructorCourses` in `OnPostAsync` to apply information from the checkboxes to the Instructor entity being edited.</span></span>
 * <span data-ttu-id="fda3c-213">Вызывает `PopulateAssignedCourseData` и `UpdateInstructorCourses` в `OnPostAsync` в случае сбоя `TryUpdateModel`.</span><span class="sxs-lookup"><span data-stu-id="fda3c-213">Calls `PopulateAssignedCourseData` and `UpdateInstructorCourses` in `OnPostAsync` if `TryUpdateModel` fails.</span></span> <span data-ttu-id="fda3c-214">Эти вызовы методов восстанавливают данные по назначенным курсам, введенные на странице, при ее повторном отображении с сообщением об ошибке.</span><span class="sxs-lookup"><span data-stu-id="fda3c-214">These method calls restore the assigned course data entered on the page when it is redisplayed with an error message.</span></span>
 
-### <a name="update-the-instructor-edit-no-locrazor-page"></a><span data-ttu-id="fda3c-215">Обновление страницы :::no-loc(Razor)::: редактирования преподавателя</span><span class="sxs-lookup"><span data-stu-id="fda3c-215">Update the Instructor Edit :::no-loc(Razor)::: page</span></span>
+### <a name="update-the-instructor-edit-no-locrazor-page"></a><span data-ttu-id="fda3c-215">Обновление страницы Razor редактирования преподавателя</span><span class="sxs-lookup"><span data-stu-id="fda3c-215">Update the Instructor Edit Razor page</span></span>
 
 <span data-ttu-id="fda3c-216">Измените файл *Pages/Instructors/Edit.cshtml* , используя следующий код:</span><span class="sxs-lookup"><span data-stu-id="fda3c-216">Update *Pages/Instructors/Edit.cshtml* with the following code:</span></span>
 
@@ -218,7 +218,7 @@ ms.locfileid: "93060538"
 
 ### <a name="update-the-instructor-create-page"></a><span data-ttu-id="fda3c-229">Обновление страницы создания преподавателя</span><span class="sxs-lookup"><span data-stu-id="fda3c-229">Update the Instructor Create page</span></span>
 
-<span data-ttu-id="fda3c-230">Обновите модель для страницы создания преподавателя и соответствующую страницу :::no-loc(Razor):::, используя код, аналогичный коду страницы редактирования.</span><span class="sxs-lookup"><span data-stu-id="fda3c-230">Update the Instructor Create page model and :::no-loc(Razor)::: page with code similar to the Edit page:</span></span>
+<span data-ttu-id="fda3c-230">Обновите модель для страницы создания преподавателя и соответствующую страницу Razor, используя код, аналогичный коду страницы редактирования.</span><span class="sxs-lookup"><span data-stu-id="fda3c-230">Update the Instructor Create page model and Razor page with code similar to the Edit page:</span></span>
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Create.cshtml.cs)]
 
@@ -302,7 +302,7 @@ ms.locfileid: "93060538"
 * <span data-ttu-id="fda3c-277">Добавляет параметр "Select Department" (Выбор кафедры).</span><span class="sxs-lookup"><span data-stu-id="fda3c-277">Adds the "Select Department" option.</span></span> <span data-ttu-id="fda3c-278">В результате этого изменения вместо первой кафедры отображается параметр "Select Department" (Выбор кафедры).</span><span class="sxs-lookup"><span data-stu-id="fda3c-278">This change renders "Select Department" rather than the first department.</span></span>
 * <span data-ttu-id="fda3c-279">Добавляет сообщение о проверке в том случае, если не выбрана кафедра.</span><span class="sxs-lookup"><span data-stu-id="fda3c-279">Adds a validation message when the department isn't selected.</span></span>
 
-<span data-ttu-id="fda3c-280">На странице :::no-loc(Razor)::: Pages используется [вспомогательная функция тега Select](xref:mvc/views/working-with-forms#the-select-tag-helper).</span><span class="sxs-lookup"><span data-stu-id="fda3c-280">The :::no-loc(Razor)::: Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):</span></span>
+<span data-ttu-id="fda3c-280">На странице Razor Pages используется [вспомогательная функция тега Select](xref:mvc/views/working-with-forms#the-select-tag-helper).</span><span class="sxs-lookup"><span data-stu-id="fda3c-280">The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):</span></span>
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -342,7 +342,7 @@ ms.locfileid: "93060538"
 
 ### <a name="modify-the-delete-and-details-pages"></a><span data-ttu-id="fda3c-305">Изменение страниц Delete и Details</span><span class="sxs-lookup"><span data-stu-id="fda3c-305">Modify the Delete and Details pages</span></span>
 
-<span data-ttu-id="fda3c-306">Обновите страницу :::no-loc(Razor)::: Delete, используя следующую разметку.</span><span class="sxs-lookup"><span data-stu-id="fda3c-306">Update the Delete :::no-loc(Razor)::: page with the following markup:</span></span>
+<span data-ttu-id="fda3c-306">Обновите страницу Razor Delete, используя следующую разметку.</span><span class="sxs-lookup"><span data-stu-id="fda3c-306">Update the Delete Razor page with the following markup:</span></span>
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Delete.cshtml?highlight=15-20)]
 
@@ -417,7 +417,7 @@ ms.locfileid: "93060538"
 
 <span data-ttu-id="fda3c-353">Приведенный выше код обрабатывает изменения в назначении кабинета.</span><span class="sxs-lookup"><span data-stu-id="fda3c-353">The preceding code handles office assignment changes.</span></span>
 
-<span data-ttu-id="fda3c-354">Обновление представлений :::no-loc(Razor)::: преподавателя</span><span class="sxs-lookup"><span data-stu-id="fda3c-354">Update the instructor :::no-loc(Razor)::: View:</span></span>
+<span data-ttu-id="fda3c-354">Обновление представлений Razor преподавателя</span><span class="sxs-lookup"><span data-stu-id="fda3c-354">Update the instructor Razor View:</span></span>
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Edit.cshtml?highlight=34-59)]
 
@@ -441,7 +441,7 @@ ms.locfileid: "93060538"
 
 <span data-ttu-id="fda3c-375">Приведенный выше код аналогичен коду в файле *Pages/Instructors/Edit.cshtml.cs*.</span><span class="sxs-lookup"><span data-stu-id="fda3c-375">The preceding code is similar to the *Pages/Instructors/Edit.cshtml.cs* code.</span></span>
 
-<span data-ttu-id="fda3c-376">Обновите страницу создания преподавателя :::no-loc(Razor):::, используя следующую разметку.</span><span class="sxs-lookup"><span data-stu-id="fda3c-376">Update the instructor Create :::no-loc(Razor)::: page with the following markup:</span></span>
+<span data-ttu-id="fda3c-376">Обновите страницу создания преподавателя Razor, используя следующую разметку.</span><span class="sxs-lookup"><span data-stu-id="fda3c-376">Update the instructor Create Razor page with the following markup:</span></span>
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Create.cshtml?highlight=32-62)]
 

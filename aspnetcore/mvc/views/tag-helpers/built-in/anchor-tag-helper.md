@@ -6,17 +6,17 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/13/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 ms.openlocfilehash: d39db59b0fc273fe4193a4864f302ecd3f4ad348
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -151,7 +151,7 @@ ms.locfileid: "93060915"
 
 <span data-ttu-id="7d35e-147">Атрибут [asp-all-route-data](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.RouteValues*) поддерживает создание словаря пар "ключ-значение".</span><span class="sxs-lookup"><span data-stu-id="7d35e-147">The [asp-all-route-data](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.RouteValues*) attribute supports the creation of a dictionary of key-value pairs.</span></span> <span data-ttu-id="7d35e-148">Ключ является именем параметра, а значение — значением параметра.</span><span class="sxs-lookup"><span data-stu-id="7d35e-148">The key is the parameter name, and the value is the parameter value.</span></span>
 
-<span data-ttu-id="7d35e-149">В следующем примере словарь инициализируется и передается в :::no-loc(Razor)::: представление.</span><span class="sxs-lookup"><span data-stu-id="7d35e-149">In the following example, a dictionary is initialized and passed to a :::no-loc(Razor)::: view.</span></span> <span data-ttu-id="7d35e-150">Кроме того, данные могут быть переданы с помощью модели.</span><span class="sxs-lookup"><span data-stu-id="7d35e-150">Alternatively, the data could be passed in with your model.</span></span>
+<span data-ttu-id="7d35e-149">В следующем примере словарь инициализируется и передается в Razor представление.</span><span class="sxs-lookup"><span data-stu-id="7d35e-149">In the following example, a dictionary is initialized and passed to a Razor view.</span></span> <span data-ttu-id="7d35e-150">Кроме того, данные могут быть переданы с помощью модели.</span><span class="sxs-lookup"><span data-stu-id="7d35e-150">Alternatively, the data could be passed in with your model.</span></span>
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAllRouteData)]
 
@@ -185,9 +185,9 @@ ms.locfileid: "93060915"
 
 <span data-ttu-id="7d35e-163">Атрибут [asp-area](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area*) указывает имя области, используемое платформой для определения соответствующего маршрута.</span><span class="sxs-lookup"><span data-stu-id="7d35e-163">The [asp-area](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area*) attribute sets the area name used to set the appropriate route.</span></span> <span data-ttu-id="7d35e-164">Ниже приведен пример того, как атрибут `asp-area` приводит к повторному сопоставлению маршрутов.</span><span class="sxs-lookup"><span data-stu-id="7d35e-164">The following examples depict how the `asp-area` attribute causes a remapping of routes.</span></span>
 
-#### <a name="usage-in-no-locrazor-pages"></a><span data-ttu-id="7d35e-165">Использование на :::no-loc(Razor)::: страницах</span><span class="sxs-lookup"><span data-stu-id="7d35e-165">Usage in :::no-loc(Razor)::: Pages</span></span>
+#### <a name="usage-in-no-locrazor-pages"></a><span data-ttu-id="7d35e-165">Использование на Razor страницах</span><span class="sxs-lookup"><span data-stu-id="7d35e-165">Usage in Razor Pages</span></span>
 
-<span data-ttu-id="7d35e-166">:::no-loc(Razor)::: Области страниц поддерживаются в ASP.NET Core 2,1 или более поздней версии.</span><span class="sxs-lookup"><span data-stu-id="7d35e-166">:::no-loc(Razor)::: Pages areas are supported in ASP.NET Core 2.1 or later.</span></span>
+<span data-ttu-id="7d35e-166">Razor Области страниц поддерживаются в ASP.NET Core 2,1 или более поздней версии.</span><span class="sxs-lookup"><span data-stu-id="7d35e-166">Razor Pages areas are supported in ASP.NET Core 2.1 or later.</span></span>
 
 <span data-ttu-id="7d35e-167">Пусть имеется следующая иерархия каталогов:</span><span class="sxs-lookup"><span data-stu-id="7d35e-167">Consider the following directory hierarchy:</span></span>
 
@@ -201,9 +201,9 @@ ms.locfileid: "93060915"
         * <span data-ttu-id="7d35e-175">*Index.cshtml.cs*</span><span class="sxs-lookup"><span data-stu-id="7d35e-175">*Index.cshtml.cs*</span></span>
   * <span data-ttu-id="7d35e-176">**Страницы**</span><span class="sxs-lookup"><span data-stu-id="7d35e-176">**Pages**</span></span>
 
-<span data-ttu-id="7d35e-177">Разметка для ссылки на страницу *индекса* области *сеансов* :::no-loc(Razor)::: :</span><span class="sxs-lookup"><span data-stu-id="7d35e-177">The markup to reference the *Sessions* area *Index* :::no-loc(Razor)::: Page is:</span></span>
+<span data-ttu-id="7d35e-177">Разметка для ссылки на страницу *индекса* области *сеансов* Razor :</span><span class="sxs-lookup"><span data-stu-id="7d35e-177">The markup to reference the *Sessions* area *Index* Razor Page is:</span></span>
 
-[!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspArea:::no-loc(Razor):::Pages)]
+[!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAreaRazorPages)]
 
 <span data-ttu-id="7d35e-178">Созданный HTML:</span><span class="sxs-lookup"><span data-stu-id="7d35e-178">The generated HTML:</span></span>
 
@@ -212,10 +212,10 @@ ms.locfileid: "93060915"
 ```
 
 > [!TIP]
-> <span data-ttu-id="7d35e-179">Для поддержки областей в :::no-loc(Razor)::: приложении для страниц выполните одно из следующих `Startup.ConfigureServices` действий в.</span><span class="sxs-lookup"><span data-stu-id="7d35e-179">To support areas in a :::no-loc(Razor)::: Pages app, do one of the following in `Startup.ConfigureServices`:</span></span>
+> <span data-ttu-id="7d35e-179">Для поддержки областей в Razor приложении для страниц выполните одно из следующих `Startup.ConfigureServices` действий в.</span><span class="sxs-lookup"><span data-stu-id="7d35e-179">To support areas in a Razor Pages app, do one of the following in `Startup.ConfigureServices`:</span></span>
 >
 > * <span data-ttu-id="7d35e-180">Задайте [версию совместимости](xref:mvc/compatibility-version) 2.1 или более позднюю.</span><span class="sxs-lookup"><span data-stu-id="7d35e-180">Set the [compatibility version](xref:mvc/compatibility-version) to 2.1 or later.</span></span>
-> * <span data-ttu-id="7d35e-181">Задайте для свойства [ :::no-loc(Razor)::: Пажесоптионс. алловареас](xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.:::no-loc(Razor):::PagesOptions.AllowAreas*) значение `true` :</span><span class="sxs-lookup"><span data-stu-id="7d35e-181">Set the [:::no-loc(Razor):::PagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.:::no-loc(Razor):::PagesOptions.AllowAreas*) property to `true`:</span></span>
+> * <span data-ttu-id="7d35e-181">Задайте для свойства [ Razor Пажесоптионс. алловареас](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) значение `true` :</span><span class="sxs-lookup"><span data-stu-id="7d35e-181">Set the [RazorPagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) property to `true`:</span></span>
 >
 >   [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_AllowAreas)]
 
@@ -279,9 +279,9 @@ ms.locfileid: "93060915"
 
 ### <a name="asp-page"></a><span data-ttu-id="7d35e-211">asp-page</span><span class="sxs-lookup"><span data-stu-id="7d35e-211">asp-page</span></span>
 
-<span data-ttu-id="7d35e-212">Атрибут [ASP-Page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) используется со :::no-loc(Razor)::: страницами.</span><span class="sxs-lookup"><span data-stu-id="7d35e-212">The [asp-page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) attribute is used with :::no-loc(Razor)::: Pages.</span></span> <span data-ttu-id="7d35e-213">Используйте его для определения значения атрибута `href` тега привязки для определенной страницы.</span><span class="sxs-lookup"><span data-stu-id="7d35e-213">Use it to set an anchor tag's `href` attribute value to a specific page.</span></span> <span data-ttu-id="7d35e-214">Чтобы создать URL-адрес, перед именем страницы следует ввести символ косой черты (/).</span><span class="sxs-lookup"><span data-stu-id="7d35e-214">Prefixing the page name with a forward slash ("/") creates the URL.</span></span>
+<span data-ttu-id="7d35e-212">Атрибут [ASP-Page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) используется со Razor страницами.</span><span class="sxs-lookup"><span data-stu-id="7d35e-212">The [asp-page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) attribute is used with Razor Pages.</span></span> <span data-ttu-id="7d35e-213">Используйте его для определения значения атрибута `href` тега привязки для определенной страницы.</span><span class="sxs-lookup"><span data-stu-id="7d35e-213">Use it to set an anchor tag's `href` attribute value to a specific page.</span></span> <span data-ttu-id="7d35e-214">Чтобы создать URL-адрес, перед именем страницы следует ввести символ косой черты (/).</span><span class="sxs-lookup"><span data-stu-id="7d35e-214">Prefixing the page name with a forward slash ("/") creates the URL.</span></span>
 
-<span data-ttu-id="7d35e-215">Следующий пример указывает на страницу «участник» :::no-loc(Razor)::: :</span><span class="sxs-lookup"><span data-stu-id="7d35e-215">The following sample points to the attendee :::no-loc(Razor)::: Page:</span></span>
+<span data-ttu-id="7d35e-215">Следующий пример указывает на страницу «участник» Razor :</span><span class="sxs-lookup"><span data-stu-id="7d35e-215">The following sample points to the attendee Razor Page:</span></span>
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspPage)]
 
@@ -303,7 +303,7 @@ ms.locfileid: "93060915"
 
 ### <a name="asp-page-handler"></a><span data-ttu-id="7d35e-220">asp-page-handler</span><span class="sxs-lookup"><span data-stu-id="7d35e-220">asp-page-handler</span></span>
 
-<span data-ttu-id="7d35e-221">Атрибут [ASP-Page-Handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) используется со :::no-loc(Razor)::: страницами.</span><span class="sxs-lookup"><span data-stu-id="7d35e-221">The [asp-page-handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) attribute is used with :::no-loc(Razor)::: Pages.</span></span> <span data-ttu-id="7d35e-222">Он предназначен для связывания с обработчиками определенных страниц.</span><span class="sxs-lookup"><span data-stu-id="7d35e-222">It's intended for linking to specific page handlers.</span></span>
+<span data-ttu-id="7d35e-221">Атрибут [ASP-Page-Handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) используется со Razor страницами.</span><span class="sxs-lookup"><span data-stu-id="7d35e-221">The [asp-page-handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) attribute is used with Razor Pages.</span></span> <span data-ttu-id="7d35e-222">Он предназначен для связывания с обработчиками определенных страниц.</span><span class="sxs-lookup"><span data-stu-id="7d35e-222">It's intended for linking to specific page handlers.</span></span>
 
 <span data-ttu-id="7d35e-223">Рассмотрим следующий обработчик страниц:</span><span class="sxs-lookup"><span data-stu-id="7d35e-223">Consider the following page handler:</span></span>
 

@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: host-and-deploy/azure-iis-errors-reference
 ms.openlocfilehash: b009cc61a94e618a48d96ecbd770ef6371308f6a
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -177,7 +177,7 @@ ms.locfileid: "93059849"
 
   <span data-ttu-id="e1cb8-216">См. дополнительные сведения об [установке пакета размещения .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).</span><span class="sxs-lookup"><span data-stu-id="e1cb8-216">For more information, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).</span></span>
 
-* <span data-ttu-id="e1cb8-217">Убедитесь, что параметр **Пул приложений** > **Модель процесса** > **:::no-loc(Identity):::** имеет значение **ApplicationPool:::no-loc(Identity):::** или что у пользовательского удостоверения есть нужные разрешения на доступ к папке развертывания приложения.</span><span class="sxs-lookup"><span data-stu-id="e1cb8-217">Make sure that the **Application Pool** > **Process Model** > **:::no-loc(Identity):::** is set to **ApplicationPool:::no-loc(Identity):::** or the custom identity has the correct permissions to access the app's deployment folder.</span></span>
+* <span data-ttu-id="e1cb8-217">Убедитесь, что параметр **Пул приложений** > **Модель процесса** > **Identity** имеет значение **ApplicationPoolIdentity** или что у пользовательского удостоверения есть нужные разрешения на доступ к папке развертывания приложения.</span><span class="sxs-lookup"><span data-stu-id="e1cb8-217">Make sure that the **Application Pool** > **Process Model** > **Identity** is set to **ApplicationPoolIdentity** or the custom identity has the correct permissions to access the app's deployment folder.</span></span>
 
 * <span data-ttu-id="e1cb8-218">Если вы удалили пакет размещения ASP.NET Core и установили его более раннюю версию, файл *applicationHost.config* не будет включать раздел модуля ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="e1cb8-218">If you uninstalled the ASP.NET Core Hosting Bundle and installed an earlier version of the hosting bundle, the *applicationHost.config* file doesn't include a section for the ASP.NET Core Module.</span></span> <span data-ttu-id="e1cb8-219">Откройте файл *applicationHost.config* в папке *%windir%/System32/inetsrv/config* и найдите группу раздела `<configuration><configSections><sectionGroup name="system.webServer">`.</span><span class="sxs-lookup"><span data-stu-id="e1cb8-219">Open *applicationHost.config* at *%windir%/System32/inetsrv/config* and find the `<configuration><configSections><sectionGroup name="system.webServer">` section group.</span></span> <span data-ttu-id="e1cb8-220">Если раздел модуля ASP.NET Core отсутствует в группе раздела, добавьте его:</span><span class="sxs-lookup"><span data-stu-id="e1cb8-220">If the section for the ASP.NET Core Module is missing from the section group, add the section element:</span></span>
 
@@ -455,7 +455,7 @@ ms.locfileid: "93059849"
 
   <span data-ttu-id="e1cb8-430">См. дополнительные сведения об [установке пакета размещения .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).</span><span class="sxs-lookup"><span data-stu-id="e1cb8-430">For more information, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).</span></span>
 
-* <span data-ttu-id="e1cb8-431">Убедитесь, что параметр **Пул приложений** > **Модель процесса** > **:::no-loc(Identity):::** имеет значение **ApplicationPool:::no-loc(Identity):::** или что у пользовательского удостоверения есть нужные разрешения на доступ к папке развертывания приложения.</span><span class="sxs-lookup"><span data-stu-id="e1cb8-431">Make sure that the **Application Pool** > **Process Model** > **:::no-loc(Identity):::** is set to **ApplicationPool:::no-loc(Identity):::** or the custom identity has the correct permissions to access the app's deployment folder.</span></span>
+* <span data-ttu-id="e1cb8-431">Убедитесь, что параметр **Пул приложений** > **Модель процесса** > **Identity** имеет значение **ApplicationPoolIdentity** или что у пользовательского удостоверения есть нужные разрешения на доступ к папке развертывания приложения.</span><span class="sxs-lookup"><span data-stu-id="e1cb8-431">Make sure that the **Application Pool** > **Process Model** > **Identity** is set to **ApplicationPoolIdentity** or the custom identity has the correct permissions to access the app's deployment folder.</span></span>
 
 * <span data-ttu-id="e1cb8-432">Если вы удалили пакет размещения ASP.NET Core и установили его более раннюю версию, файл *applicationHost.config* не будет включать раздел модуля ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="e1cb8-432">If you uninstalled the ASP.NET Core Hosting Bundle and installed an earlier version of the hosting bundle, the *applicationHost.config* file doesn't include a section for the ASP.NET Core Module.</span></span> <span data-ttu-id="e1cb8-433">Откройте файл *applicationHost.config* в папке *%windir%/System32/inetsrv/config* и найдите группу раздела `<configuration><configSections><sectionGroup name="system.webServer">`.</span><span class="sxs-lookup"><span data-stu-id="e1cb8-433">Open *applicationHost.config* at *%windir%/System32/inetsrv/config* and find the `<configuration><configSections><sectionGroup name="system.webServer">` section group.</span></span> <span data-ttu-id="e1cb8-434">Если раздел модуля ASP.NET Core отсутствует в группе раздела, добавьте его:</span><span class="sxs-lookup"><span data-stu-id="e1cb8-434">If the section for the ASP.NET Core Module is missing from the section group, add the section element:</span></span>
 

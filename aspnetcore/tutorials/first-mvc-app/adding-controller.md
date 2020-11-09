@@ -5,17 +5,17 @@ description: Часть 2 серии руководств по ASP.NET Core MVC
 ms.author: riande
 ms.date: 08/05/2017
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: tutorials/first-mvc-app/adding-controller
 ms.openlocfilehash: 11832efa6715f96856665f174d65b094806d2810
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -135,7 +135,7 @@ ms.locfileid: "93061292"
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
-<span data-ttu-id="dc6ae-195">В этих примерах контроллер по сути реализует части "V" ( **V** iew, то есть представление) и "C" ( **C** ontroller — контроллер) из модели MVC.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-195">In these examples the controller has been doing the "VC" portion of MVC - that is, the **V** iew and the **C** ontroller work.</span></span> <span data-ttu-id="dc6ae-196">Контроллер возвращает HTML напрямую.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-196">The controller is returning HTML directly.</span></span> <span data-ttu-id="dc6ae-197">Как правило, это не требуется, поскольку в этом случае заметно усложняется написание и поддержка кода.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-197">Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain.</span></span> <span data-ttu-id="dc6ae-198">Вместо этого обычно используется отдельный файл шаблона представления :::no-loc(Razor)::: для создания HTML-ответа.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-198">Instead you typically use a separate :::no-loc(Razor)::: view template file to generate the HTML response.</span></span> <span data-ttu-id="dc6ae-199">Это будет показано в следующем руководстве.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-199">You do that in the next tutorial.</span></span>
+<span data-ttu-id="dc6ae-195">В этих примерах контроллер по сути реализует части "V" ( **V** iew, то есть представление) и "C" ( **C** ontroller — контроллер) из модели MVC.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-195">In these examples the controller has been doing the "VC" portion of MVC - that is, the **V** iew and the **C** ontroller work.</span></span> <span data-ttu-id="dc6ae-196">Контроллер возвращает HTML напрямую.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-196">The controller is returning HTML directly.</span></span> <span data-ttu-id="dc6ae-197">Как правило, это не требуется, поскольку в этом случае заметно усложняется написание и поддержка кода.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-197">Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain.</span></span> <span data-ttu-id="dc6ae-198">Вместо этого обычно используется отдельный файл шаблона представления Razor для создания HTML-ответа.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-198">Instead you typically use a separate Razor view template file to generate the HTML response.</span></span> <span data-ttu-id="dc6ae-199">Это будет показано в следующем руководстве.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-199">You do that in the next tutorial.</span></span>
 
 > [!div class="step-by-step"]
 > <span data-ttu-id="dc6ae-200">[Назад](start-mvc.md)
@@ -256,7 +256,7 @@ Remove link for simplified tutorial.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
 
-<span data-ttu-id="dc6ae-291">В этих примерах контроллер реализует работу представления и контроллера в модели MVC.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-291">In these examples the controller has been doing the "VC" portion of MVC - that is, the view and controller work.</span></span> <span data-ttu-id="dc6ae-292">Контроллер возвращает HTML напрямую.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-292">The controller is returning HTML directly.</span></span> <span data-ttu-id="dc6ae-293">Как правило, это не требуется, поскольку в этом случае заметно усложняется написание и поддержка кода.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-293">Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain.</span></span> <span data-ttu-id="dc6ae-294">Вместо этого обычно используется отдельный файл шаблона представления :::no-loc(Razor)::: для создания HTML-ответа.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-294">Instead you typically use a separate :::no-loc(Razor)::: view template file to help generate the HTML response.</span></span> <span data-ttu-id="dc6ae-295">Это будет показано в следующем руководстве.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-295">You do that in the next tutorial.</span></span>
+<span data-ttu-id="dc6ae-291">В этих примерах контроллер реализует работу представления и контроллера в модели MVC.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-291">In these examples the controller has been doing the "VC" portion of MVC - that is, the view and controller work.</span></span> <span data-ttu-id="dc6ae-292">Контроллер возвращает HTML напрямую.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-292">The controller is returning HTML directly.</span></span> <span data-ttu-id="dc6ae-293">Как правило, это не требуется, поскольку в этом случае заметно усложняется написание и поддержка кода.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-293">Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain.</span></span> <span data-ttu-id="dc6ae-294">Вместо этого обычно используется отдельный файл шаблона представления Razor для создания HTML-ответа.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-294">Instead you typically use a separate Razor view template file to help generate the HTML response.</span></span> <span data-ttu-id="dc6ae-295">Это будет показано в следующем руководстве.</span><span class="sxs-lookup"><span data-stu-id="dc6ae-295">You do that in the next tutorial.</span></span>
 
 > [!div class="step-by-step"]
 > <span data-ttu-id="dc6ae-296">[Назад](start-mvc.md)

@@ -1,23 +1,23 @@
 ---
-title: 'Поддерживаемые платформы ASP.NET Core :::no-loc(Blazor):::'
+title: 'Поддерживаемые платформы ASP.NET Core Blazor'
 author: guardrex
-description: Сведения о поддерживаемых платформах для ASP.NET Core :::no-loc(Blazor):::.
+description: Сведения о поддерживаемых платформах для ASP.NET Core Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/01/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/supported-platforms
 ms.openlocfilehash: fe0734dbf6eb2647fa6c9b6f336063b9ec091139
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -26,13 +26,13 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93054961"
 ---
-# <a name="aspnet-core-no-locblazor-supported-platforms"></a><span data-ttu-id="f23d0-103">Поддерживаемые платформы ASP.NET Core :::no-loc(Blazor):::</span><span class="sxs-lookup"><span data-stu-id="f23d0-103">ASP.NET Core :::no-loc(Blazor)::: supported platforms</span></span>
+# <a name="aspnet-core-no-locblazor-supported-platforms"></a><span data-ttu-id="f23d0-103">Поддерживаемые платформы ASP.NET Core Blazor</span><span class="sxs-lookup"><span data-stu-id="f23d0-103">ASP.NET Core Blazor supported platforms</span></span>
 
 <span data-ttu-id="f23d0-104">Автор [Люк Латэм](https://github.com/guardrex) (Luke Latham)</span><span class="sxs-lookup"><span data-stu-id="f23d0-104">By [Luke Latham](https://github.com/guardrex)</span></span>
 
 ::: moniker range=">= aspnetcore-5.0"
 
-<span data-ttu-id="f23d0-105">:::no-loc(Blazor WebAssembly)::: и :::no-loc(Blazor Server)::: поддерживаются в браузерах, приведенных в таблице ниже.</span><span class="sxs-lookup"><span data-stu-id="f23d0-105">:::no-loc(Blazor WebAssembly)::: and :::no-loc(Blazor Server)::: are supported in the browsers shown in the following table.</span></span>
+<span data-ttu-id="f23d0-105">Blazor WebAssembly и Blazor Server поддерживаются в браузерах, приведенных в таблице ниже.</span><span class="sxs-lookup"><span data-stu-id="f23d0-105">Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table.</span></span>
 
 | <span data-ttu-id="f23d0-106">Браузер</span><span class="sxs-lookup"><span data-stu-id="f23d0-106">Browser</span></span>                          | <span data-ttu-id="f23d0-107">Version</span><span class="sxs-lookup"><span data-stu-id="f23d0-107">Version</span></span>         |
 | -------------------------------- | --------------- |
@@ -47,7 +47,7 @@ ms.locfileid: "93054961"
 
 ::: moniker range="< aspnetcore-5.0"
 
-## :::no-loc(Blazor WebAssembly):::
+## Blazor WebAssembly
 
 | <span data-ttu-id="f23d0-117">Браузер</span><span class="sxs-lookup"><span data-stu-id="f23d0-117">Browser</span></span>                          | <span data-ttu-id="f23d0-118">Версия</span><span class="sxs-lookup"><span data-stu-id="f23d0-118">Version</span></span>               |
 | -------------------------------- | --------------------- |
@@ -60,7 +60,7 @@ ms.locfileid: "93054961"
 <span data-ttu-id="f23d0-129">&dagger;*Текущий* означает последнюю версию браузера.</span><span class="sxs-lookup"><span data-stu-id="f23d0-129">&dagger;*Current* refers to the latest version of the browser.</span></span>  
 <span data-ttu-id="f23d0-130">&Dagger;Microsoft Internet Explorer не поддерживает [WebAssembly](https://webassembly.org).</span><span class="sxs-lookup"><span data-stu-id="f23d0-130">&Dagger;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).</span></span>
 
-## :::no-loc(Blazor Server):::
+## Blazor Server
 
 | <span data-ttu-id="f23d0-131">Браузер</span><span class="sxs-lookup"><span data-stu-id="f23d0-131">Browser</span></span>                          | <span data-ttu-id="f23d0-132">Версия</span><span class="sxs-lookup"><span data-stu-id="f23d0-132">Version</span></span>         |
 | -------------------------------- | --------------- |

@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/12/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: aspnetcore-3.1
 ms.openlocfilehash: 15240df978d9389af08030521adaf491f81d3a77
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -29,13 +29,13 @@ ms.locfileid: "93051178"
 
 <span data-ttu-id="1065d-104">В этой статье описываются наиболее важные изменения в ASP.NET Core 3.1 со ссылками на соответствующую документацию.</span><span class="sxs-lookup"><span data-stu-id="1065d-104">This article highlights the most significant changes in ASP.NET Core 3.1 with links to relevant documentation.</span></span>
 
-## <a name="partial-class-support-for-no-locrazor-components"></a><span data-ttu-id="1065d-105">Поддержка разделяемых классов для компонентов :::no-loc(Razor):::</span><span class="sxs-lookup"><span data-stu-id="1065d-105">Partial class support for :::no-loc(Razor)::: components</span></span>
+## <a name="partial-class-support-for-no-locrazor-components"></a><span data-ttu-id="1065d-105">Поддержка разделяемых классов для компонентов Razor</span><span class="sxs-lookup"><span data-stu-id="1065d-105">Partial class support for Razor components</span></span>
 
-<span data-ttu-id="1065d-106">Компоненты :::no-loc(Razor)::: теперь создаются как разделяемые классы.</span><span class="sxs-lookup"><span data-stu-id="1065d-106">:::no-loc(Razor)::: components are now generated as partial classes.</span></span> <span data-ttu-id="1065d-107">Код компонента :::no-loc(Razor)::: можно написать как файл кода программной части, определенный как разделяемый класс, вместо того чтобы определять весь код компонента в одном файле.</span><span class="sxs-lookup"><span data-stu-id="1065d-107">Code for a :::no-loc(Razor)::: component can be written using a code-behind file defined as a partial class rather than defining all the code for the component in a single file.</span></span> <span data-ttu-id="1065d-108">Дополнительные сведения см. в разделе [Поддержка разделяемых классов](xref:blazor/components/index#partial-class-support).</span><span class="sxs-lookup"><span data-stu-id="1065d-108">For more information, see [Partial class support](xref:blazor/components/index#partial-class-support).</span></span>
+<span data-ttu-id="1065d-106">Компоненты Razor теперь создаются как разделяемые классы.</span><span class="sxs-lookup"><span data-stu-id="1065d-106">Razor components are now generated as partial classes.</span></span> <span data-ttu-id="1065d-107">Код компонента Razor можно написать как файл кода программной части, определенный как разделяемый класс, вместо того чтобы определять весь код компонента в одном файле.</span><span class="sxs-lookup"><span data-stu-id="1065d-107">Code for a Razor component can be written using a code-behind file defined as a partial class rather than defining all the code for the component in a single file.</span></span> <span data-ttu-id="1065d-108">Дополнительные сведения см. в разделе [Поддержка разделяемых классов](xref:blazor/components/index#partial-class-support).</span><span class="sxs-lookup"><span data-stu-id="1065d-108">For more information, see [Partial class support](xref:blazor/components/index#partial-class-support).</span></span>
 
-## <a name="no-locblazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a><span data-ttu-id="1065d-109">Вспомогательная функция тега компонента :::no-loc(Blazor)::: и передача параметров в компоненты верхнего уровня</span><span class="sxs-lookup"><span data-stu-id="1065d-109">:::no-loc(Blazor)::: Component Tag Helper and pass parameters to top-level components</span></span>
+## <a name="no-locblazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a><span data-ttu-id="1065d-109">Вспомогательная функция тега компонента Blazor и передача параметров в компоненты верхнего уровня</span><span class="sxs-lookup"><span data-stu-id="1065d-109">Blazor Component Tag Helper and pass parameters to top-level components</span></span>
 
-<span data-ttu-id="1065d-110">В :::no-loc(Blazor)::: с ASP.NET Core 3.0 компоненты отрисовывались как страницы и представления с помощью вспомогательной функции HTML (`Html.RenderComponentAsync`).</span><span class="sxs-lookup"><span data-stu-id="1065d-110">In :::no-loc(Blazor)::: with ASP.NET Core 3.0, components were rendered into pages and views using an HTML Helper (`Html.RenderComponentAsync`).</span></span> <span data-ttu-id="1065d-111">В ASP.NET Core 3.1 компонент отрисовывается из страницы или представления с помощью новой вспомогательной функции тега компонента:</span><span class="sxs-lookup"><span data-stu-id="1065d-111">In ASP.NET Core 3.1, render a component from a page or view with the new Component Tag Helper:</span></span>
+<span data-ttu-id="1065d-110">В Blazor с ASP.NET Core 3.0 компоненты отрисовывались как страницы и представления с помощью вспомогательной функции HTML (`Html.RenderComponentAsync`).</span><span class="sxs-lookup"><span data-stu-id="1065d-110">In Blazor with ASP.NET Core 3.0, components were rendered into pages and views using an HTML Helper (`Html.RenderComponentAsync`).</span></span> <span data-ttu-id="1065d-111">В ASP.NET Core 3.1 компонент отрисовывается из страницы или представления с помощью новой вспомогательной функции тега компонента:</span><span class="sxs-lookup"><span data-stu-id="1065d-111">In ASP.NET Core 3.1, render a component from a page or view with the new Component Tag Helper:</span></span>
 
 ```cshtml
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
@@ -43,7 +43,7 @@ ms.locfileid: "93051178"
 
 <span data-ttu-id="1065d-112">Вспомогательная функция HTML по-прежнему поддерживается в ASP.NET Core 3.1, но рекомендуется использовать вспомогательную функцию тега компонента.</span><span class="sxs-lookup"><span data-stu-id="1065d-112">The HTML Helper remains supported in ASP.NET Core 3.1, but the Component Tag Helper is recommended.</span></span>
 
-<span data-ttu-id="1065d-113">Приложения :::no-loc(Blazor Server)::: теперь могут передавать параметры в компоненты верхнего уровня во время первоначальной отрисовки.</span><span class="sxs-lookup"><span data-stu-id="1065d-113">:::no-loc(Blazor Server)::: apps can now pass parameters to top-level components during the initial render.</span></span> <span data-ttu-id="1065d-114">Ранее параметры можно было передавать в компонент верхнего уровня только с помощью [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static).</span><span class="sxs-lookup"><span data-stu-id="1065d-114">Previously you could only pass parameters to a top-level component with [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static).</span></span> <span data-ttu-id="1065d-115">В этом выпуске поддерживается как [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server), так и [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered).</span><span class="sxs-lookup"><span data-stu-id="1065d-115">With this release, both [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) and [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered) are supported.</span></span> <span data-ttu-id="1065d-116">Все указанные значения параметров сериализуются как JSON и включаются в исходный ответ.</span><span class="sxs-lookup"><span data-stu-id="1065d-116">Any specified parameter values are serialized as JSON and included in the initial response.</span></span>
+<span data-ttu-id="1065d-113">Приложения Blazor Server теперь могут передавать параметры в компоненты верхнего уровня во время первоначальной отрисовки.</span><span class="sxs-lookup"><span data-stu-id="1065d-113">Blazor Server apps can now pass parameters to top-level components during the initial render.</span></span> <span data-ttu-id="1065d-114">Ранее параметры можно было передавать в компонент верхнего уровня только с помощью [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static).</span><span class="sxs-lookup"><span data-stu-id="1065d-114">Previously you could only pass parameters to a top-level component with [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static).</span></span> <span data-ttu-id="1065d-115">В этом выпуске поддерживается как [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server), так и [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered).</span><span class="sxs-lookup"><span data-stu-id="1065d-115">With this release, both [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) and [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered) are supported.</span></span> <span data-ttu-id="1065d-116">Все указанные значения параметров сериализуются как JSON и включаются в исходный ответ.</span><span class="sxs-lookup"><span data-stu-id="1065d-116">Any specified parameter values are serialized as JSON and included in the initial response.</span></span>
 
 <span data-ttu-id="1065d-117">Например, компонент `Counter` может предварительно отрисовываться со значением приращения (`IncrementAmount`):</span><span class="sxs-lookup"><span data-stu-id="1065d-117">For example, prerender a `Counter` component with an increment amount (`IncrementAmount`):</span></span>
 
@@ -52,7 +52,7 @@ ms.locfileid: "93051178"
     param-IncrementAmount="10" />
 ```
 
-<span data-ttu-id="1065d-118">Дополнительные сведения см. в разделе [Интеграция компонентов в :::no-loc(Razor)::: Pages и приложения MVC](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps).</span><span class="sxs-lookup"><span data-stu-id="1065d-118">For more information, see [Integrate components into :::no-loc(Razor)::: Pages and MVC apps](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps).</span></span>
+<span data-ttu-id="1065d-118">Дополнительные сведения см. в разделе [Интеграция компонентов в Razor Pages и приложения MVC](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps).</span><span class="sxs-lookup"><span data-stu-id="1065d-118">For more information, see [Integrate components into Razor Pages and MVC apps](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps).</span></span>
 
 ## <a name="support-for-shared-queues-in-httpsys"></a><span data-ttu-id="1065d-119">Поддержка общих очередей в HTTP.sys</span><span class="sxs-lookup"><span data-stu-id="1065d-119">Support for shared queues in HTTP.sys</span></span>
 
@@ -60,11 +60,11 @@ ms.locfileid: "93051178"
 
 [!code-csharp[](sample/Program.cs?name=snippet)]
 
-## <a name="breaking-changes-for-samesite-no-loccookies"></a><span data-ttu-id="1065d-124">Критические изменения для файлов :::no-loc(cookie)::: SameSite</span><span class="sxs-lookup"><span data-stu-id="1065d-124">Breaking changes for SameSite :::no-loc(cookie):::s</span></span>
+## <a name="breaking-changes-for-samesite-no-loccookies"></a><span data-ttu-id="1065d-124">Критические изменения для файлов cookie SameSite</span><span class="sxs-lookup"><span data-stu-id="1065d-124">Breaking changes for SameSite cookies</span></span>
 
-<span data-ttu-id="1065d-125">Поведение файлов :::no-loc(cookie)::: SameSite изменилось в соответствии с предстоящими изменениями в браузерах.</span><span class="sxs-lookup"><span data-stu-id="1065d-125">The behavior of SameSite :::no-loc(cookie):::s has changed to reflect upcoming browser changes.</span></span> <span data-ttu-id="1065d-126">Это может повлиять на сценарии проверки подлинности, такие как AzureAd, OpenIdConnect или WsFederation.</span><span class="sxs-lookup"><span data-stu-id="1065d-126">This may affect authentication scenarios like AzureAd, OpenIdConnect, or WsFederation.</span></span> <span data-ttu-id="1065d-127">Для получения дополнительной информации см. <xref:security/samesite>.</span><span class="sxs-lookup"><span data-stu-id="1065d-127">For more information, see <xref:security/samesite>.</span></span>
+<span data-ttu-id="1065d-125">Поведение файлов cookie SameSite изменилось в соответствии с предстоящими изменениями в браузерах.</span><span class="sxs-lookup"><span data-stu-id="1065d-125">The behavior of SameSite cookies has changed to reflect upcoming browser changes.</span></span> <span data-ttu-id="1065d-126">Это может повлиять на сценарии проверки подлинности, такие как AzureAd, OpenIdConnect или WsFederation.</span><span class="sxs-lookup"><span data-stu-id="1065d-126">This may affect authentication scenarios like AzureAd, OpenIdConnect, or WsFederation.</span></span> <span data-ttu-id="1065d-127">Для получения дополнительной информации см. <xref:security/samesite>.</span><span class="sxs-lookup"><span data-stu-id="1065d-127">For more information, see <xref:security/samesite>.</span></span>
 
-## <a name="prevent-default-actions-for-events-in-no-locblazor-apps"></a><span data-ttu-id="1065d-128">Запрет выполнения действий по умолчанию для событий в приложениях :::no-loc(Blazor):::</span><span class="sxs-lookup"><span data-stu-id="1065d-128">Prevent default actions for events in :::no-loc(Blazor)::: apps</span></span>
+## <a name="prevent-default-actions-for-events-in-no-locblazor-apps"></a><span data-ttu-id="1065d-128">Запрет выполнения действий по умолчанию для событий в приложениях Blazor</span><span class="sxs-lookup"><span data-stu-id="1065d-128">Prevent default actions for events in Blazor apps</span></span>
 
 <span data-ttu-id="1065d-129">Используйте атрибут директивы `@on{EVENT}:preventDefault`, чтобы предотвратить выполнение действия по умолчанию для события.</span><span class="sxs-lookup"><span data-stu-id="1065d-129">Use the `@on{EVENT}:preventDefault` directive attribute to prevent the default action for an event.</span></span> <span data-ttu-id="1065d-130">В следующем примере запрещается действие по умолчанию, отображающее символ клавиши в текстовом поле:</span><span class="sxs-lookup"><span data-stu-id="1065d-130">In the following example, the default action of displaying the key's character in the text box is prevented:</span></span>
 
@@ -74,7 +74,7 @@ ms.locfileid: "93051178"
 
 <span data-ttu-id="1065d-131">Дополнительные сведения см. в разделе [Запрет действий по умолчанию](xref:blazor/components/event-handling#prevent-default-actions).</span><span class="sxs-lookup"><span data-stu-id="1065d-131">For more information, see [Prevent default actions](xref:blazor/components/event-handling#prevent-default-actions).</span></span>
 
-## <a name="stop-event-propagation-in-no-locblazor-apps"></a><span data-ttu-id="1065d-132">Остановка распространения событий в приложениях :::no-loc(Blazor):::</span><span class="sxs-lookup"><span data-stu-id="1065d-132">Stop event propagation in :::no-loc(Blazor)::: apps</span></span>
+## <a name="stop-event-propagation-in-no-locblazor-apps"></a><span data-ttu-id="1065d-132">Остановка распространения событий в приложениях Blazor</span><span class="sxs-lookup"><span data-stu-id="1065d-132">Stop event propagation in Blazor apps</span></span>
 
 <span data-ttu-id="1065d-133">Используйте атрибут директивы `@on{EVENT}:stopPropagation`, чтобы остановить распространение событий.</span><span class="sxs-lookup"><span data-stu-id="1065d-133">Use the `@on{EVENT}:stopPropagation` directive attribute to stop event propagation.</span></span> <span data-ttu-id="1065d-134">В следующем примере при установке флажка события щелчка мышью из дочернего элемента `<div>` перестают распространяться в родительский элемент `<div>`:</span><span class="sxs-lookup"><span data-stu-id="1065d-134">In the following example, selecting the check box prevents click events from the child `<div>` from propagating to the parent `<div>`:</span></span>
 
@@ -94,9 +94,9 @@ ms.locfileid: "93051178"
 
 <span data-ttu-id="1065d-135">Дополнительные сведения см. в разделе [Отключение распространения событий](xref:blazor/components/event-handling#stop-event-propagation).</span><span class="sxs-lookup"><span data-stu-id="1065d-135">For more information, see [Stop event propagation](xref:blazor/components/event-handling#stop-event-propagation).</span></span>
 
-## <a name="detailed-errors-during-no-locblazor-app-development"></a><span data-ttu-id="1065d-136">Подробные сведения об ошибках во время разработки приложений :::no-loc(Blazor):::</span><span class="sxs-lookup"><span data-stu-id="1065d-136">Detailed errors during :::no-loc(Blazor)::: app development</span></span>
+## <a name="detailed-errors-during-no-locblazor-app-development"></a><span data-ttu-id="1065d-136">Подробные сведения об ошибках во время разработки приложений Blazor</span><span class="sxs-lookup"><span data-stu-id="1065d-136">Detailed errors during Blazor app development</span></span>
 
-<span data-ttu-id="1065d-137">Если во время разработки приложение :::no-loc(Blazor)::: работает неправильно, подробные сведения об ошибках в приложении могут помочь в устранении неполадок.</span><span class="sxs-lookup"><span data-stu-id="1065d-137">When a :::no-loc(Blazor)::: app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue.</span></span> <span data-ttu-id="1065d-138">При возникновении ошибки в приложении :::no-loc(Blazor)::: в нижней части экрана отображается золотистая полоска.</span><span class="sxs-lookup"><span data-stu-id="1065d-138">When an error occurs, :::no-loc(Blazor)::: apps display a gold bar at the bottom of the screen:</span></span>
+<span data-ttu-id="1065d-137">Если во время разработки приложение Blazor работает неправильно, подробные сведения об ошибках в приложении могут помочь в устранении неполадок.</span><span class="sxs-lookup"><span data-stu-id="1065d-137">When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue.</span></span> <span data-ttu-id="1065d-138">При возникновении ошибки в приложении Blazor в нижней части экрана отображается золотистая полоска.</span><span class="sxs-lookup"><span data-stu-id="1065d-138">When an error occurs, Blazor apps display a gold bar at the bottom of the screen:</span></span>
 
 * <span data-ttu-id="1065d-139">Во время разработки из этой полоски можно перейти в консоль браузера, где можно просмотреть исключение.</span><span class="sxs-lookup"><span data-stu-id="1065d-139">During development, the gold bar directs you to the browser console, where you can see the exception.</span></span>
 * <span data-ttu-id="1065d-140">В рабочей среде эта полоска уведомляет пользователя о том, что произошла ошибка, и рекомендует обновить содержимое окна браузера.</span><span class="sxs-lookup"><span data-stu-id="1065d-140">In production, the gold bar notifies the user that an error has occurred and recommends refreshing the browser.</span></span>

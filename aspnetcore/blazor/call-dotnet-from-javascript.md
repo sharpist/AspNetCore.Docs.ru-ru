@@ -1,23 +1,23 @@
 ---
-title: 'Вызов методов .NET из функций JavaScript в ASP.NET Core :::no-loc(Blazor):::'
+title: 'Вызов методов .NET из функций JavaScript в ASP.NET Core Blazor'
 author: guardrex
-description: Узнайте, как вызывать методы .NET из функций JavaScript в приложениях :::no-loc(Blazor):::.
+description: Узнайте, как вызывать методы .NET из функций JavaScript в приложениях Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, devx-track-js
 ms.date: 08/12/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/call-dotnet-from-javascript
 ms.openlocfilehash: 456339d46cf2991baaa27ae2a3a97a5c221fd3b0
 ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
@@ -26,11 +26,11 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 11/03/2020
 ms.locfileid: "93234404"
 ---
-# <a name="call-net-methods-from-javascript-functions-in-aspnet-core-no-locblazor"></a><span data-ttu-id="ae908-103">Вызов методов .NET из функций JavaScript в ASP.NET Core :::no-loc(Blazor):::</span><span class="sxs-lookup"><span data-stu-id="ae908-103">Call .NET methods from JavaScript functions in ASP.NET Core :::no-loc(Blazor):::</span></span>
+# <a name="call-net-methods-from-javascript-functions-in-aspnet-core-no-locblazor"></a><span data-ttu-id="ae908-103">Вызов методов .NET из функций JavaScript в ASP.NET Core Blazor</span><span class="sxs-lookup"><span data-stu-id="ae908-103">Call .NET methods from JavaScript functions in ASP.NET Core Blazor</span></span>
 
 <span data-ttu-id="ae908-104">Авторы: [Хавьер Кальварро Нельсон](https://github.com/javiercn) (Javier Calvarro Nelson), [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth) и [Шашикант Рудравади](http://wisne.co) (Shashikant Rudrawadi) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)</span><span class="sxs-lookup"><span data-stu-id="ae908-104">By [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), [Shashikant Rudrawadi](http://wisne.co), and [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="ae908-105">Приложение :::no-loc(Blazor)::: может вызывать функции JavaScript из методов .NET и методы .NET из функций JavaScript.</span><span class="sxs-lookup"><span data-stu-id="ae908-105">A :::no-loc(Blazor)::: app can invoke JavaScript functions from .NET methods and .NET methods from JavaScript functions.</span></span> <span data-ttu-id="ae908-106">Такой подход называется *взаимодействием с JavaScript* ( *JS* ).</span><span class="sxs-lookup"><span data-stu-id="ae908-106">These scenarios are called *JavaScript interoperability* ( *JS interop* ).</span></span>
+<span data-ttu-id="ae908-105">Приложение Blazor может вызывать функции JavaScript из методов .NET и методы .NET из функций JavaScript.</span><span class="sxs-lookup"><span data-stu-id="ae908-105">A Blazor app can invoke JavaScript functions from .NET methods and .NET methods from JavaScript functions.</span></span> <span data-ttu-id="ae908-106">Такой подход называется *взаимодействием с JavaScript* ( *JS* ).</span><span class="sxs-lookup"><span data-stu-id="ae908-106">These scenarios are called *JavaScript interoperability* ( *JS interop* ).</span></span>
 
 <span data-ttu-id="ae908-107">В этой статье рассматривается вызов методов .NET из JavaScript.</span><span class="sxs-lookup"><span data-stu-id="ae908-107">This article covers invoking .NET methods from JavaScript.</span></span> <span data-ttu-id="ae908-108">Сведения о том, как вызывать функции JavaScript из .NET, см. в разделе <xref:blazor/call-javascript-from-dotnet>.</span><span class="sxs-lookup"><span data-stu-id="ae908-108">For information on how to call JavaScript functions from .NET, see <xref:blazor/call-javascript-from-dotnet>.</span></span>
 
@@ -38,7 +38,7 @@ ms.locfileid: "93234404"
 
 ## <a name="static-net-method-call"></a><span data-ttu-id="ae908-110">Вызов статического метода .NET</span><span class="sxs-lookup"><span data-stu-id="ae908-110">Static .NET method call</span></span>
 
-<span data-ttu-id="ae908-111">Чтобы вызвать статический метод .NET из JavaScript, используйте функции `DotNet.invokeMethod` или `DotNet.invokeMethodAsync`.</span><span class="sxs-lookup"><span data-stu-id="ae908-111">To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions.</span></span> <span data-ttu-id="ae908-112">Передайте идентификатор статического метода, который необходимо вызвать, имя сборки, содержащей функцию, и любые аргументы.</span><span class="sxs-lookup"><span data-stu-id="ae908-112">Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments.</span></span> <span data-ttu-id="ae908-113">Асинхронная версия является предпочтительной для поддержки сценариев :::no-loc(Blazor Server):::.</span><span class="sxs-lookup"><span data-stu-id="ae908-113">The asynchronous version is preferred to support :::no-loc(Blazor Server)::: scenarios.</span></span> <span data-ttu-id="ae908-114">Метод .NET должен быть открытым, статическим и иметь атрибут [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute).</span><span class="sxs-lookup"><span data-stu-id="ae908-114">The .NET method must be public, static, and have the [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) attribute.</span></span> <span data-ttu-id="ae908-115">Вызов открытых универсальных методов в настоящее время не поддерживается.</span><span class="sxs-lookup"><span data-stu-id="ae908-115">Calling open generic methods isn't currently supported.</span></span>
+<span data-ttu-id="ae908-111">Чтобы вызвать статический метод .NET из JavaScript, используйте функции `DotNet.invokeMethod` или `DotNet.invokeMethodAsync`.</span><span class="sxs-lookup"><span data-stu-id="ae908-111">To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions.</span></span> <span data-ttu-id="ae908-112">Передайте идентификатор статического метода, который необходимо вызвать, имя сборки, содержащей функцию, и любые аргументы.</span><span class="sxs-lookup"><span data-stu-id="ae908-112">Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments.</span></span> <span data-ttu-id="ae908-113">Асинхронная версия является предпочтительной для поддержки сценариев Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="ae908-113">The asynchronous version is preferred to support Blazor Server scenarios.</span></span> <span data-ttu-id="ae908-114">Метод .NET должен быть открытым, статическим и иметь атрибут [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute).</span><span class="sxs-lookup"><span data-stu-id="ae908-114">The .NET method must be public, static, and have the [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) attribute.</span></span> <span data-ttu-id="ae908-115">Вызов открытых универсальных методов в настоящее время не поддерживается.</span><span class="sxs-lookup"><span data-stu-id="ae908-115">Calling open generic methods isn't currently supported.</span></span>
 
 <span data-ttu-id="ae908-116">Пример приложения включает метод C#, возвращающий массив `int`.</span><span class="sxs-lookup"><span data-stu-id="ae908-116">The sample app includes a C# method to return an `int` array.</span></span> <span data-ttu-id="ae908-117">К методу применяется атрибут [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute).</span><span class="sxs-lookup"><span data-stu-id="ae908-117">The [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) attribute is applied to the method.</span></span>
 
@@ -63,7 +63,7 @@ ms.locfileid: "93234404"
 
 <span data-ttu-id="ae908-120">`wwwroot/exampleJsInterop.js`.</span><span class="sxs-lookup"><span data-stu-id="ae908-120">`wwwroot/exampleJsInterop.js`:</span></span>
 
-[!code-javascript[](./common/samples/3.x/:::no-loc(Blazor):::WebAssemblySample/wwwroot/exampleJsInterop.js?highlight=8-14)]
+[!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=8-14)]
 
 <span data-ttu-id="ae908-121">Если нажата кнопка **`Trigger .NET static method ReturnArrayAsync`** , проверьте выходные данные консоли в средствах веб-разработчика браузера.</span><span class="sxs-lookup"><span data-stu-id="ae908-121">When the **`Trigger .NET static method ReturnArrayAsync`** button is selected, examine the console output in the browser's web developer tools.</span></span>
 
@@ -99,7 +99,7 @@ returnArrayAsyncJs: function () {
 }
 ```
 
-<span data-ttu-id="ae908-126">Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `:::no-loc(Blazor):::Sample`).</span><span class="sxs-lookup"><span data-stu-id="ae908-126">The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `:::no-loc(Blazor):::Sample`).</span></span>
+<span data-ttu-id="ae908-126">Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `BlazorSample`).</span><span class="sxs-lookup"><span data-stu-id="ae908-126">The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).</span></span>
 
 ## <a name="instance-method-call"></a><span data-ttu-id="ae908-127">Вызов метода экземпляра</span><span class="sxs-lookup"><span data-stu-id="ae908-127">Instance method call</span></span>
 
@@ -113,7 +113,7 @@ returnArrayAsyncJs: function () {
 > [!NOTE]
 > <span data-ttu-id="ae908-136">Пример приложения записывает сообщения в консоль на стороне клиента.</span><span class="sxs-lookup"><span data-stu-id="ae908-136">The sample app logs messages to the client-side console.</span></span> <span data-ttu-id="ae908-137">В следующих примерах, продемонстрированных в учебном приложении, изучите выходные данные консоли браузера в средствах разработчика браузера.</span><span class="sxs-lookup"><span data-stu-id="ae908-137">For the following examples demonstrated by the sample app, examine the browser's console output in the browser's developer tools.</span></span>
 
-<span data-ttu-id="ae908-138">Если нажата кнопка **`Trigger .NET instance method HelloHelper.SayHello`** , вызывается `ExampleJsInterop.CallHelloHelperSayHello` и в метод передается имя `:::no-loc(Blazor):::`.</span><span class="sxs-lookup"><span data-stu-id="ae908-138">When the **`Trigger .NET instance method HelloHelper.SayHello`** button is selected, `ExampleJsInterop.CallHelloHelperSayHello` is called and passes a name, `:::no-loc(Blazor):::`, to the method.</span></span>
+<span data-ttu-id="ae908-138">Если нажата кнопка **`Trigger .NET instance method HelloHelper.SayHello`** , вызывается `ExampleJsInterop.CallHelloHelperSayHello` и в метод передается имя `Blazor`.</span><span class="sxs-lookup"><span data-stu-id="ae908-138">When the **`Trigger .NET instance method HelloHelper.SayHello`** button is selected, `ExampleJsInterop.CallHelloHelperSayHello` is called and passes a name, `Blazor`, to the method.</span></span>
 
 <span data-ttu-id="ae908-139">`Pages/JsInterop.razor`.</span><span class="sxs-lookup"><span data-stu-id="ae908-139">`Pages/JsInterop.razor`:</span></span>
 
@@ -126,7 +126,7 @@ returnArrayAsyncJs: function () {
     public async Task TriggerNetInstanceMethod()
     {
         var exampleJsInterop = new ExampleJsInterop(JS);
-        await exampleJsInterop.CallHelloHelperSayHello(":::no-loc(Blazor):::");
+        await exampleJsInterop.CallHelloHelperSayHello("Blazor");
     }
 }
 ```
@@ -135,22 +135,22 @@ returnArrayAsyncJs: function () {
 
 <span data-ttu-id="ae908-141">`JsInteropClasses/ExampleJsInterop.cs`.</span><span class="sxs-lookup"><span data-stu-id="ae908-141">`JsInteropClasses/ExampleJsInterop.cs`:</span></span>
 
-[!code-csharp[](./common/samples/3.x/:::no-loc(Blazor):::WebAssemblySample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=11-18)]
+[!code-csharp[](./common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=11-18)]
 
 <span data-ttu-id="ae908-142">`wwwroot/exampleJsInterop.js`.</span><span class="sxs-lookup"><span data-stu-id="ae908-142">`wwwroot/exampleJsInterop.js`:</span></span>
 
-[!code-javascript[](./common/samples/3.x/:::no-loc(Blazor):::WebAssemblySample/wwwroot/exampleJsInterop.js?highlight=15-18)]
+[!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=15-18)]
 
 <span data-ttu-id="ae908-143">Имя передается в конструктор `HelloHelper`, который задает свойство `HelloHelper.Name`.</span><span class="sxs-lookup"><span data-stu-id="ae908-143">The name is passed to `HelloHelper`'s constructor, which sets the `HelloHelper.Name` property.</span></span> <span data-ttu-id="ae908-144">При выполнении функции JavaScript `sayHello` метод `HelloHelper.SayHello` возвращает сообщение `Hello, {Name}!`, которое записывается в консоль функцией JavaScript.</span><span class="sxs-lookup"><span data-stu-id="ae908-144">When the JavaScript function `sayHello` is executed, `HelloHelper.SayHello` returns the `Hello, {Name}!` message, which is written to the console by the JavaScript function.</span></span>
 
 <span data-ttu-id="ae908-145">`JsInteropClasses/HelloHelper.cs`.</span><span class="sxs-lookup"><span data-stu-id="ae908-145">`JsInteropClasses/HelloHelper.cs`:</span></span>
 
-[!code-csharp[](./common/samples/3.x/:::no-loc(Blazor):::WebAssemblySample/JsInteropClasses/HelloHelper.cs?name=snippet1&highlight=5,10-11)]
+[!code-csharp[](./common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/HelloHelper.cs?name=snippet1&highlight=5,10-11)]
 
 <span data-ttu-id="ae908-146">Выходные данные консоли в средствах веб-разработчика браузера:</span><span class="sxs-lookup"><span data-stu-id="ae908-146">Console output in the browser's web developer tools:</span></span>
 
 ```console
-Hello, :::no-loc(Blazor):::!
+Hello, Blazor!
 ```
 
 <span data-ttu-id="ae908-147">Чтобы избежать утечки памяти и разрешить сборку мусора для компонента, который создает метод <xref:Microsoft.JSInterop.DotNetObjectReference>, используйте один из следующих подходов.</span><span class="sxs-lookup"><span data-stu-id="ae908-147">To avoid a memory leak and allow garbage collection on a component that creates a <xref:Microsoft.JSInterop.DotNetObjectReference>, adopt one of the following approaches:</span></span>
@@ -203,7 +203,7 @@ Hello, :::no-loc(Blazor):::!
 
       public async Task TriggerNetInstanceMethod()
       {
-          objRef = DotNetObjectReference.Create(new HelloHelper(":::no-loc(Blazor):::"));
+          objRef = DotNetObjectReference.Create(new HelloHelper("Blazor"));
 
           await JS.InvokeAsync<string>(
               "exampleJsFunctions.sayHello",
@@ -217,7 +217,7 @@ Hello, :::no-loc(Blazor):::!
   }
   ```
   
-  <span data-ttu-id="ae908-150">Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `:::no-loc(Blazor):::Sample`).</span><span class="sxs-lookup"><span data-stu-id="ae908-150">The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `:::no-loc(Blazor):::Sample`).</span></span>
+  <span data-ttu-id="ae908-150">Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `BlazorSample`).</span><span class="sxs-lookup"><span data-stu-id="ae908-150">The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).</span></span>
 
 * <span data-ttu-id="ae908-151">Если компонент или класс не удаляет <xref:Microsoft.JSInterop.DotNetObjectReference>, удалите объект в клиенте, вызвав `.dispose()`.</span><span class="sxs-lookup"><span data-stu-id="ae908-151">When the component or class doesn't dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>, dispose of the object on the client by calling `.dispose()`:</span></span>
 
@@ -236,7 +236,7 @@ Hello, :::no-loc(Blazor):::!
 * <span data-ttu-id="ae908-155">Статический метод компонента создает программу-оболочку вызова метода экземпляра в виде вызванного <xref:System.Action>.</span><span class="sxs-lookup"><span data-stu-id="ae908-155">The component's static method wraps the call to its instance method as an invoked <xref:System.Action>.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ae908-156">Для приложений :::no-loc(Blazor Server):::, в которых несколько пользователей могут одновременно использовать один и тот же компонент, используйте вспомогательный класс для вызова методов экземпляра.</span><span class="sxs-lookup"><span data-stu-id="ae908-156">For :::no-loc(Blazor Server)::: apps, where several users might be concurrently using the same component, use a helper class to invoke instance methods.</span></span>
+> <span data-ttu-id="ae908-156">Для приложений Blazor Server, в которых несколько пользователей могут одновременно использовать один и тот же компонент, используйте вспомогательный класс для вызова методов экземпляра.</span><span class="sxs-lookup"><span data-stu-id="ae908-156">For Blazor Server apps, where several users might be concurrently using the same component, use a helper class to invoke instance methods.</span></span>
 >
 > <span data-ttu-id="ae908-157">Дополнительные сведения см. в разделе [Вспомогательный класс для метода экземпляра компонента](#component-instance-method-helper-class).</span><span class="sxs-lookup"><span data-stu-id="ae908-157">For more information, see the [Component instance method helper class](#component-instance-method-helper-class) section.</span></span>
 
@@ -248,7 +248,7 @@ function updateMessageCallerJS() {
 }
 ```
 
-<span data-ttu-id="ae908-159">Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `:::no-loc(Blazor):::Sample`).</span><span class="sxs-lookup"><span data-stu-id="ae908-159">The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `:::no-loc(Blazor):::Sample`).</span></span>
+<span data-ttu-id="ae908-159">Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `BlazorSample`).</span><span class="sxs-lookup"><span data-stu-id="ae908-159">The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).</span></span>
 
 <span data-ttu-id="ae908-160">`Pages/JSInteropComponent.razor`:</span><span class="sxs-lookup"><span data-stu-id="ae908-160">`Pages/JSInteropComponent.razor`:</span></span>
 
@@ -296,7 +296,7 @@ function updateMessageCallerJS() {
   }
   ```
   
-  <span data-ttu-id="ae908-165">Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `:::no-loc(Blazor):::Sample`).</span><span class="sxs-lookup"><span data-stu-id="ae908-165">The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `:::no-loc(Blazor):::Sample`).</span></span>
+  <span data-ttu-id="ae908-165">Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `BlazorSample`).</span><span class="sxs-lookup"><span data-stu-id="ae908-165">The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).</span></span>
 
 * <span data-ttu-id="ae908-166">Укажите правильные типы для параметров <xref:System.Action>.</span><span class="sxs-lookup"><span data-stu-id="ae908-166">Provide the correct types to the <xref:System.Action> for the parameters.</span></span> <span data-ttu-id="ae908-167">Укажите список параметров для методов C#.</span><span class="sxs-lookup"><span data-stu-id="ae908-167">Provide the parameter list to the C# methods.</span></span> <span data-ttu-id="ae908-168">Вызовите <xref:System.Action> (`UpdateMessage`) с параметрами (`action.Invoke(name)`).</span><span class="sxs-lookup"><span data-stu-id="ae908-168">Invoke the <xref:System.Action> (`UpdateMessage`) with the parameters (`action.Invoke(name)`).</span></span>
 
@@ -349,7 +349,7 @@ function updateMessageCallerJS() {
 <span data-ttu-id="ae908-172">Вспомогательный класс используется для вызова метода экземпляра в качестве <xref:System.Action>.</span><span class="sxs-lookup"><span data-stu-id="ae908-172">The helper class is used to invoke an instance method as an <xref:System.Action>.</span></span> <span data-ttu-id="ae908-173">Вспомогательные классы полезны в следующих случаях.</span><span class="sxs-lookup"><span data-stu-id="ae908-173">Helper classes are useful when:</span></span>
 
 * <span data-ttu-id="ae908-174">На одной странице отображается несколько компонентов одного типа.</span><span class="sxs-lookup"><span data-stu-id="ae908-174">Several components of the same type are rendered on the same page.</span></span>
-* <span data-ttu-id="ae908-175">Используется приложение :::no-loc(Blazor Server):::, в котором несколько пользователей могут одновременно использовать один компонент.</span><span class="sxs-lookup"><span data-stu-id="ae908-175">A :::no-loc(Blazor Server)::: app is used, where multiple users might be using a component concurrently.</span></span>
+* <span data-ttu-id="ae908-175">Используется приложение Blazor Server, в котором несколько пользователей могут одновременно использовать один компонент.</span><span class="sxs-lookup"><span data-stu-id="ae908-175">A Blazor Server app is used, where multiple users might be using a component concurrently.</span></span>
 
 <span data-ttu-id="ae908-176">В следующем примере:</span><span class="sxs-lookup"><span data-stu-id="ae908-176">In the following example:</span></span>
 
@@ -380,7 +380,7 @@ public class MessageUpdateInvokeHelper
 }
 ```
 
-<span data-ttu-id="ae908-181">Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `:::no-loc(Blazor):::Sample`).</span><span class="sxs-lookup"><span data-stu-id="ae908-181">The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `:::no-loc(Blazor):::Sample`).</span></span>
+<span data-ttu-id="ae908-181">Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `BlazorSample`).</span><span class="sxs-lookup"><span data-stu-id="ae908-181">The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).</span></span>
 
 <span data-ttu-id="ae908-182">В JavaScript на стороне клиента:</span><span class="sxs-lookup"><span data-stu-id="ae908-182">In the client-side JavaScript:</span></span>
 
@@ -391,7 +391,7 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 }
 ```
 
-<span data-ttu-id="ae908-183">Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `:::no-loc(Blazor):::Sample`).</span><span class="sxs-lookup"><span data-stu-id="ae908-183">The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `:::no-loc(Blazor):::Sample`).</span></span>
+<span data-ttu-id="ae908-183">Заполнитель `{APP ASSEMBLY}` — это имя сборки приложения (например, `BlazorSample`).</span><span class="sxs-lookup"><span data-stu-id="ae908-183">The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).</span></span>
 
 <span data-ttu-id="ae908-184">`Shared/ListItem.razor`:</span><span class="sxs-lookup"><span data-stu-id="ae908-184">`Shared/ListItem.razor`:</span></span>
 
@@ -461,4 +461,4 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 
 * <xref:blazor/call-javascript-from-dotnet>
 * [<span data-ttu-id="ae908-194">Пример `InteropComponent.razor` (репозиторий GitHub dotnet/AspNetCore, ветвь выпуска 3.1)</span><span class="sxs-lookup"><span data-stu-id="ae908-194">`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository, 3.1 release branch)</span></span>](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
-* [<span data-ttu-id="ae908-195">Выполнение передачи больших объемов данных в приложениях :::no-loc(Blazor Server):::</span><span class="sxs-lookup"><span data-stu-id="ae908-195">Perform large data transfers in :::no-loc(Blazor Server)::: apps</span></span>](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)
+* [<span data-ttu-id="ae908-195">Выполнение передачи больших объемов данных в приложениях Blazor Server</span><span class="sxs-lookup"><span data-stu-id="ae908-195">Perform large data transfers in Blazor Server apps</span></span>](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)

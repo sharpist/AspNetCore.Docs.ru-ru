@@ -1,5 +1,5 @@
 ---
-title: 'Использование потоковой передачи в ASP.NET Core :::no-loc(SignalR):::'
+title: 'Использование потоковой передачи в ASP.NET Core SignalR'
 author: bradygaster
 description: Узнайте, как выполнять потоковую передачу данных между клиентом и сервером.
 monikerRange: '>= aspnetcore-2.1'
@@ -7,17 +7,17 @@ ms.author: bradyg
 ms.custom: mvc, devx-track-js
 ms.date: 10/29/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: signalr/streaming
 ms.openlocfilehash: b07c280f271ccdd525128b973da065001a5cf0ed
 ms.sourcegitcommit: 0d40fc4932531ce13fc4ee9432144584e03c2f1c
@@ -26,19 +26,19 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93062445"
 ---
-# <a name="use-streaming-in-aspnet-core-no-locsignalr"></a><span data-ttu-id="2de88-103">Использование потоковой передачи в ASP.NET Core :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="2de88-103">Use streaming in ASP.NET Core :::no-loc(SignalR):::</span></span>
+# <a name="use-streaming-in-aspnet-core-no-locsignalr"></a><span data-ttu-id="2de88-103">Использование потоковой передачи в ASP.NET Core SignalR</span><span class="sxs-lookup"><span data-stu-id="2de88-103">Use streaming in ASP.NET Core SignalR</span></span>
 
 <span data-ttu-id="2de88-104">По [Бреннан Конрой](https://github.com/BrennanConroy)</span><span class="sxs-lookup"><span data-stu-id="2de88-104">By [Brennan Conroy](https://github.com/BrennanConroy)</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<span data-ttu-id="2de88-105">ASP.NET Core :::no-loc(SignalR)::: поддерживает потоковую передачу от клиента серверу и от сервера к клиенту.</span><span class="sxs-lookup"><span data-stu-id="2de88-105">ASP.NET Core :::no-loc(SignalR)::: supports streaming from client to server and from server to client.</span></span> <span data-ttu-id="2de88-106">Это полезно для сценариев, в которых фрагменты данных поступают с течением времени.</span><span class="sxs-lookup"><span data-stu-id="2de88-106">This is useful for scenarios where fragments of data arrive over time.</span></span> <span data-ttu-id="2de88-107">При потоковой передаче каждый фрагмент отправляется клиенту или серверу сразу после того, как он становится доступным, а не ожидает, пока все данные станут доступны.</span><span class="sxs-lookup"><span data-stu-id="2de88-107">When streaming, each fragment is sent to the client or server as soon as it becomes available, rather than waiting for all of the data to become available.</span></span>
+<span data-ttu-id="2de88-105">ASP.NET Core SignalR поддерживает потоковую передачу от клиента серверу и от сервера к клиенту.</span><span class="sxs-lookup"><span data-stu-id="2de88-105">ASP.NET Core SignalR supports streaming from client to server and from server to client.</span></span> <span data-ttu-id="2de88-106">Это полезно для сценариев, в которых фрагменты данных поступают с течением времени.</span><span class="sxs-lookup"><span data-stu-id="2de88-106">This is useful for scenarios where fragments of data arrive over time.</span></span> <span data-ttu-id="2de88-107">При потоковой передаче каждый фрагмент отправляется клиенту или серверу сразу после того, как он становится доступным, а не ожидает, пока все данные станут доступны.</span><span class="sxs-lookup"><span data-stu-id="2de88-107">When streaming, each fragment is sent to the client or server as soon as it becomes available, rather than waiting for all of the data to become available.</span></span>
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-<span data-ttu-id="2de88-108">ASP.NET Core :::no-loc(SignalR)::: поддерживает потоковые возвращаемые значения методов сервера.</span><span class="sxs-lookup"><span data-stu-id="2de88-108">ASP.NET Core :::no-loc(SignalR)::: supports streaming return values of server methods.</span></span> <span data-ttu-id="2de88-109">Это полезно для сценариев, в которых фрагменты данных поступают с течением времени.</span><span class="sxs-lookup"><span data-stu-id="2de88-109">This is useful for scenarios where fragments of data arrive over time.</span></span> <span data-ttu-id="2de88-110">Когда возвращаемое значение передается клиенту в потоке, каждый фрагмент отправляется клиенту, как только он становится доступным, а не ожидает, пока все данные станут доступны.</span><span class="sxs-lookup"><span data-stu-id="2de88-110">When a return value is streamed to the client, each fragment is sent to the client as soon as it becomes available, rather than waiting for all the data to become available.</span></span>
+<span data-ttu-id="2de88-108">ASP.NET Core SignalR поддерживает потоковые возвращаемые значения методов сервера.</span><span class="sxs-lookup"><span data-stu-id="2de88-108">ASP.NET Core SignalR supports streaming return values of server methods.</span></span> <span data-ttu-id="2de88-109">Это полезно для сценариев, в которых фрагменты данных поступают с течением времени.</span><span class="sxs-lookup"><span data-stu-id="2de88-109">This is useful for scenarios where fragments of data arrive over time.</span></span> <span data-ttu-id="2de88-110">Когда возвращаемое значение передается клиенту в потоке, каждый фрагмент отправляется клиенту, как только он становится доступным, а не ожидает, пока все данные станут доступны.</span><span class="sxs-lookup"><span data-stu-id="2de88-110">When a return value is streamed to the client, each fragment is sent to the client as soon as it becomes available, rather than waiting for all the data to become available.</span></span>
 
 ::: moniker-end
 
@@ -305,7 +305,7 @@ channel.Writer.Complete();
 
 ### <a name="server-to-client-streaming"></a><span data-ttu-id="2de88-177">Потоковая передача из сервера в клиент</span><span class="sxs-lookup"><span data-stu-id="2de88-177">Server-to-client streaming</span></span>
 
-<span data-ttu-id="2de88-178">:::no-loc(SignalR):::Клиент Java использует `stream` метод для вызова методов потоковой передачи.</span><span class="sxs-lookup"><span data-stu-id="2de88-178">The :::no-loc(SignalR)::: Java client uses the `stream` method to invoke streaming methods.</span></span> <span data-ttu-id="2de88-179">`stream` принимает три или более аргументов:</span><span class="sxs-lookup"><span data-stu-id="2de88-179">`stream` accepts three or more arguments:</span></span>
+<span data-ttu-id="2de88-178">SignalRКлиент Java использует `stream` метод для вызова методов потоковой передачи.</span><span class="sxs-lookup"><span data-stu-id="2de88-178">The SignalR Java client uses the `stream` method to invoke streaming methods.</span></span> <span data-ttu-id="2de88-179">`stream` принимает три или более аргументов:</span><span class="sxs-lookup"><span data-stu-id="2de88-179">`stream` accepts three or more arguments:</span></span>
 
 * <span data-ttu-id="2de88-180">Ожидаемый тип элементов потока.</span><span class="sxs-lookup"><span data-stu-id="2de88-180">The expected type of the stream items.</span></span>
 * <span data-ttu-id="2de88-181">Имя метода концентратора.</span><span class="sxs-lookup"><span data-stu-id="2de88-181">The name of the hub method.</span></span>
@@ -323,7 +323,7 @@ hubConnection.stream(String.class, "ExampleStreamingHubMethod", "Arg1")
 
 ### <a name="client-to-server-streaming"></a><span data-ttu-id="2de88-185">Потоковая передача клиента в сервер</span><span class="sxs-lookup"><span data-stu-id="2de88-185">Client-to-server streaming</span></span>
 
-<span data-ttu-id="2de88-186">:::no-loc(SignalR):::Клиент Java может вызывать методы потоковой передачи клиента на сервер на концентраторах, передавая [наблюдаемый](https://rxjs-dev.firebaseapp.com/api/index/class/Observable) объект в качестве аргумента в `send` , `invoke` или `stream` , в зависимости от вызванного метода концентратора.</span><span class="sxs-lookup"><span data-stu-id="2de88-186">The :::no-loc(SignalR)::: Java client can call client-to-server streaming methods on hubs by passing in an [Observable](https://rxjs-dev.firebaseapp.com/api/index/class/Observable) as an argument to `send`, `invoke`, or `stream`, depending on the hub method invoked.</span></span>
+<span data-ttu-id="2de88-186">SignalRКлиент Java может вызывать методы потоковой передачи клиента на сервер на концентраторах, передавая [наблюдаемый](https://rxjs-dev.firebaseapp.com/api/index/class/Observable) объект в качестве аргумента в `send` , `invoke` или `stream` , в зависимости от вызванного метода концентратора.</span><span class="sxs-lookup"><span data-stu-id="2de88-186">The SignalR Java client can call client-to-server streaming methods on hubs by passing in an [Observable](https://rxjs-dev.firebaseapp.com/api/index/class/Observable) as an argument to `send`, `invoke`, or `stream`, depending on the hub method invoked.</span></span>
 
 ```java
 ReplaySubject<String> stream = ReplaySubject.create();

@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: host-and-deploy/iis/modules
 ms.openlocfilehash: 47ba04f199f9b77cf6032de9f80f2410f5c69424
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -66,7 +66,7 @@ ms.locfileid: "93057405"
 | <span data-ttu-id="17a2c-179">**Статическое содержимое**</span><span class="sxs-lookup"><span data-stu-id="17a2c-179">**Static Content**</span></span><br>`StaticFileModule`                                                         | <span data-ttu-id="17a2c-180">Нет</span><span class="sxs-lookup"><span data-stu-id="17a2c-180">No</span></span>  | [<span data-ttu-id="17a2c-181">ПО промежуточного слоя для статических файлов</span><span class="sxs-lookup"><span data-stu-id="17a2c-181">Static File Middleware</span></span>](xref:fundamentals/static-files) |
 | <span data-ttu-id="17a2c-182">**Кэшировании маркеров**</span><span class="sxs-lookup"><span data-stu-id="17a2c-182">**Token Caching**</span></span><br>`TokenCacheModule`                                                          | <span data-ttu-id="17a2c-183">Да</span><span class="sxs-lookup"><span data-stu-id="17a2c-183">Yes</span></span> | |
 | <span data-ttu-id="17a2c-184">**Кэширование URI**</span><span class="sxs-lookup"><span data-stu-id="17a2c-184">**URI Caching**</span></span><br>`UriCacheModule`                                                              | <span data-ttu-id="17a2c-185">Да</span><span class="sxs-lookup"><span data-stu-id="17a2c-185">Yes</span></span> | |
-| <span data-ttu-id="17a2c-186">**Авторизация URL-адреса**</span><span class="sxs-lookup"><span data-stu-id="17a2c-186">**URL Authorization**</span></span><br>`UrlAuthorizationModule`                                                | <span data-ttu-id="17a2c-187">Да</span><span class="sxs-lookup"><span data-stu-id="17a2c-187">Yes</span></span> | [:::no-loc(ASP.NET Core Identity):::](xref:security/authentication/identity) |
+| <span data-ttu-id="17a2c-186">**Авторизация URL-адреса**</span><span class="sxs-lookup"><span data-stu-id="17a2c-186">**URL Authorization**</span></span><br>`UrlAuthorizationModule`                                                | <span data-ttu-id="17a2c-187">Да</span><span class="sxs-lookup"><span data-stu-id="17a2c-187">Yes</span></span> | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | <span data-ttu-id="17a2c-188">**Проверка подлинности Windows**</span><span class="sxs-lookup"><span data-stu-id="17a2c-188">**Windows Authentication**</span></span><br>`WindowsAuthenticationModule`                                      | <span data-ttu-id="17a2c-189">Да</span><span class="sxs-lookup"><span data-stu-id="17a2c-189">Yes</span></span> | |
 
 <span data-ttu-id="17a2c-190">&#8224;В модуле переопределения URL-адресов типы сопоставления `isFile` и `isDirectory` не работают с приложениями ASP.NET Core из-за изменений в [структуре каталогов](xref:host-and-deploy/directory-structure).</span><span class="sxs-lookup"><span data-stu-id="17a2c-190">&#8224;The URL Rewrite Module's `isFile` and `isDirectory` match types don't work with ASP.NET Core apps due to the changes in [directory structure](xref:host-and-deploy/directory-structure).</span></span>
@@ -80,7 +80,7 @@ ms.locfileid: "93057405"
 | <span data-ttu-id="17a2c-196">AnonymousIdentification</span><span class="sxs-lookup"><span data-stu-id="17a2c-196">AnonymousIdentification</span></span> | |
 | <span data-ttu-id="17a2c-197">DefaultAuthentication</span><span class="sxs-lookup"><span data-stu-id="17a2c-197">DefaultAuthentication</span></span>   | |
 | <span data-ttu-id="17a2c-198">FileAuthorization</span><span class="sxs-lookup"><span data-stu-id="17a2c-198">FileAuthorization</span></span>       | |
-| <span data-ttu-id="17a2c-199">FormsAuthentication</span><span class="sxs-lookup"><span data-stu-id="17a2c-199">FormsAuthentication</span></span>     | <span data-ttu-id="17a2c-200">[ПО промежуточного слоя для аутентификации на основе файлов :::no-loc(Cookie):::](xref:security/authentication/:::no-loc(cookie):::)</span><span class="sxs-lookup"><span data-stu-id="17a2c-200">[:::no-loc(Cookie)::: Authentication Middleware](xref:security/authentication/:::no-loc(cookie):::)</span></span> |
+| <span data-ttu-id="17a2c-199">FormsAuthentication</span><span class="sxs-lookup"><span data-stu-id="17a2c-199">FormsAuthentication</span></span>     | <span data-ttu-id="17a2c-200">[ПО промежуточного слоя для аутентификации на основе файлов Cookie](xref:security/authentication/cookie)</span><span class="sxs-lookup"><span data-stu-id="17a2c-200">[Cookie Authentication Middleware](xref:security/authentication/cookie)</span></span> |
 | <span data-ttu-id="17a2c-201">OutputCache</span><span class="sxs-lookup"><span data-stu-id="17a2c-201">OutputCache</span></span>             | [<span data-ttu-id="17a2c-202">ПО промежуточного слоя для кэширования ответов</span><span class="sxs-lookup"><span data-stu-id="17a2c-202">Response Caching Middleware</span></span>](xref:performance/caching/middleware) |
 | <span data-ttu-id="17a2c-203">Профиль</span><span class="sxs-lookup"><span data-stu-id="17a2c-203">Profile</span></span>                 | |
 | <span data-ttu-id="17a2c-204">RoleManager</span><span class="sxs-lookup"><span data-stu-id="17a2c-204">RoleManager</span></span>             | |
@@ -88,7 +88,7 @@ ms.locfileid: "93057405"
 | <span data-ttu-id="17a2c-206">Сеанс</span><span class="sxs-lookup"><span data-stu-id="17a2c-206">Session</span></span>                 | [<span data-ttu-id="17a2c-207">ПО промежуточного слоя для сеансов</span><span class="sxs-lookup"><span data-stu-id="17a2c-207">Session Middleware</span></span>](xref:fundamentals/app-state) |
 | <span data-ttu-id="17a2c-208">UrlAuthorization</span><span class="sxs-lookup"><span data-stu-id="17a2c-208">UrlAuthorization</span></span>        | |
 | <span data-ttu-id="17a2c-209">UrlMappingsModule</span><span class="sxs-lookup"><span data-stu-id="17a2c-209">UrlMappingsModule</span></span>       | [<span data-ttu-id="17a2c-210">ПО промежуточного слоя для переопределения URL-адресов</span><span class="sxs-lookup"><span data-stu-id="17a2c-210">URL Rewriting Middleware</span></span>](xref:fundamentals/url-rewriting) |
-| <span data-ttu-id="17a2c-211">UrlRoutingModule-4.0</span><span class="sxs-lookup"><span data-stu-id="17a2c-211">UrlRoutingModule-4.0</span></span>    | [:::no-loc(ASP.NET Core Identity):::](xref:security/authentication/identity) |
+| <span data-ttu-id="17a2c-211">UrlRoutingModule-4.0</span><span class="sxs-lookup"><span data-stu-id="17a2c-211">UrlRoutingModule-4.0</span></span>    | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | <span data-ttu-id="17a2c-212">WindowsAuthentication</span><span class="sxs-lookup"><span data-stu-id="17a2c-212">WindowsAuthentication</span></span>   | |
 
 ## <a name="iis-manager-application-changes"></a><span data-ttu-id="17a2c-213">Изменения в приложении диспетчера IIS</span><span class="sxs-lookup"><span data-stu-id="17a2c-213">IIS Manager application changes</span></span>

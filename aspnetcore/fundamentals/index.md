@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/30/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: fundamentals/index
 ms.openlocfilehash: 25348f8486ec6ccb53ebf527ad4519638dd5f73e
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -55,7 +55,7 @@ ms.locfileid: "93059381"
 
 <span data-ttu-id="c00d7-116">Как правило, службы разрешаются из системы внедрения зависимостей с помощью внедрения конструктора.</span><span class="sxs-lookup"><span data-stu-id="c00d7-116">Services are typically resolved from DI using constructor injection.</span></span> <span data-ttu-id="c00d7-117">При внедрении конструктора класс объявляет параметр конструктора, который может быть требуемым типом или интерфейсом.</span><span class="sxs-lookup"><span data-stu-id="c00d7-117">With constructor injection, a class declares a constructor parameter of either the required type or an interface.</span></span> <span data-ttu-id="c00d7-118">Платформа внедрения зависимостей предоставляет экземпляр этой службы во время выполнения.</span><span class="sxs-lookup"><span data-stu-id="c00d7-118">The DI framework provides an instance of this service at runtime.</span></span>
 
-<span data-ttu-id="c00d7-119">В следующем примере показано использование внедрения конструктора для разрешения `:::no-loc(Razor):::PagesMovieContext` из системы внедрения зависимостей.</span><span class="sxs-lookup"><span data-stu-id="c00d7-119">The following example uses constructor injection to resolve a `:::no-loc(Razor):::PagesMovieContext` from DI:</span></span>
+<span data-ttu-id="c00d7-119">В следующем примере показано использование внедрения конструктора для разрешения `RazorPagesMovieContext` из системы внедрения зависимостей.</span><span class="sxs-lookup"><span data-stu-id="c00d7-119">The following example uses constructor injection to resolve a `RazorPagesMovieContext` from DI:</span></span>
 
 [!code-csharp[](index/samples_snapshot/3.x/Index.cshtml.cs?highlight=5)]
 
@@ -101,7 +101,7 @@ ms.locfileid: "93059381"
 <span data-ttu-id="c00d7-145">Методы `CreateDefaultBuilder` и `ConfigureWebHostDefaults` применяются для настройки узла с набором параметров по умолчанию, например:</span><span class="sxs-lookup"><span data-stu-id="c00d7-145">The `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods configure a host with a set of default options, such as:</span></span>
 
 * <span data-ttu-id="c00d7-146">Использование [Kestrel](#servers) в качестве веб-сервера и поддержка интеграции с IIS.</span><span class="sxs-lookup"><span data-stu-id="c00d7-146">Use [Kestrel](#servers) as the web server and enable IIS integration.</span></span>
-* <span data-ttu-id="c00d7-147">Загрузка конфигурации из файлов *:::no-loc(appsettings.json):::* и *appsettings.{Environment Name}.json* , переменных среды, аргументов командной строки и других источников конфигурации.</span><span class="sxs-lookup"><span data-stu-id="c00d7-147">Load configuration from *:::no-loc(appsettings.json):::* , *appsettings.{Environment Name}.json* , environment variables, command line arguments, and other configuration sources.</span></span>
+* <span data-ttu-id="c00d7-147">Загрузка конфигурации из файлов *appsettings.json* и *appsettings.{Environment Name}.json* , переменных среды, аргументов командной строки и других источников конфигурации.</span><span class="sxs-lookup"><span data-stu-id="c00d7-147">Load configuration from *appsettings.json* , *appsettings.{Environment Name}.json* , environment variables, command line arguments, and other configuration sources.</span></span>
 * <span data-ttu-id="c00d7-148">Отправка выходных данных журнала в поставщики служб консоли и отладки.</span><span class="sxs-lookup"><span data-stu-id="c00d7-148">Send logging output to the console and debug providers.</span></span>
 
 <span data-ttu-id="c00d7-149">Для получения дополнительной информации см. <xref:fundamentals/host/generic-host>.</span><span class="sxs-lookup"><span data-stu-id="c00d7-149">For more information, see <xref:fundamentals/host/generic-host>.</span></span>
@@ -138,7 +138,7 @@ ms.locfileid: "93059381"
 
 <span data-ttu-id="c00d7-174">ASP.NET Core предоставляет платформу конфигурации, которая получает параметры в виде пар "имя-значение" от упорядоченного набора поставщиков конфигурации.</span><span class="sxs-lookup"><span data-stu-id="c00d7-174">ASP.NET Core provides a configuration framework that gets settings as name-value pairs from an ordered set of configuration providers.</span></span> <span data-ttu-id="c00d7-175">Доступны встроенные поставщики конфигурации для различных источников, таких как файлы *JSON* , *XML* , переменные среды и аргументы командной строки.</span><span class="sxs-lookup"><span data-stu-id="c00d7-175">Built-in configuration providers are available for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments.</span></span> <span data-ttu-id="c00d7-176">Для поддержки других источников можно создать настраиваемые поставщики конфигурации.</span><span class="sxs-lookup"><span data-stu-id="c00d7-176">Write custom configuration providers to support other sources.</span></span>
 
-<span data-ttu-id="c00d7-177">[По умолчанию](xref:fundamentals/configuration/index#default) приложения ASP.NET Core настроены для чтения из файла *:::no-loc(appsettings.json):::* , переменных среды, командной строки и т. д.</span><span class="sxs-lookup"><span data-stu-id="c00d7-177">By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from *:::no-loc(appsettings.json):::* , environment variables, the command line, and more.</span></span> <span data-ttu-id="c00d7-178">При загрузке конфигурации приложения значения из переменных среды переопределяют значения из файла *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="c00d7-178">When the app's configuration is loaded, values from environment variables override values from *:::no-loc(appsettings.json):::*.</span></span>
+<span data-ttu-id="c00d7-177">[По умолчанию](xref:fundamentals/configuration/index#default) приложения ASP.NET Core настроены для чтения из файла *appsettings.json* , переменных среды, командной строки и т. д.</span><span class="sxs-lookup"><span data-stu-id="c00d7-177">By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from *appsettings.json* , environment variables, the command line, and more.</span></span> <span data-ttu-id="c00d7-178">При загрузке конфигурации приложения значения из переменных среды переопределяют значения из файла *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="c00d7-178">When the app's configuration is loaded, values from environment variables override values from *appsettings.json*.</span></span>
 
 <span data-ttu-id="c00d7-179">Предпочтительный способ чтения связанных значений конфигурации — использование [шаблона параметров](xref:fundamentals/configuration/options).</span><span class="sxs-lookup"><span data-stu-id="c00d7-179">The preferred way to read related configuration values is using the [options pattern](xref:fundamentals/configuration/options).</span></span> <span data-ttu-id="c00d7-180">Дополнительные сведения см. в статье [Привязка иерархических данных конфигурации с помощью шаблона параметров](xref:fundamentals/configuration/index#optpat).</span><span class="sxs-lookup"><span data-stu-id="c00d7-180">For more information, see [Bind hierarchical configuration data using the options pattern](xref:fundamentals/configuration/index#optpat).</span></span>
 
@@ -178,7 +178,7 @@ ms.locfileid: "93059381"
 
 ## <a name="routing"></a><span data-ttu-id="c00d7-207">Маршрутизация</span><span class="sxs-lookup"><span data-stu-id="c00d7-207">Routing</span></span>
 
-<span data-ttu-id="c00d7-208">*Маршрут*  — это шаблон URL-адреса, сопоставляемый с обработчиком.</span><span class="sxs-lookup"><span data-stu-id="c00d7-208">A *route* is a URL pattern that is mapped to a handler.</span></span> <span data-ttu-id="c00d7-209">Обычно обработчик представляет собой страницу :::no-loc(Razor):::, метод действия в контроллере MVC или ПО промежуточного слоя.</span><span class="sxs-lookup"><span data-stu-id="c00d7-209">The handler is typically a :::no-loc(Razor)::: page, an action method in an MVC controller, or a middleware.</span></span> <span data-ttu-id="c00d7-210">Маршрутизация ASP.NET Core позволяет контролировать URL-адреса, используемые приложением.</span><span class="sxs-lookup"><span data-stu-id="c00d7-210">ASP.NET Core routing gives you control over the URLs used by your app.</span></span>
+<span data-ttu-id="c00d7-208">*Маршрут*  — это шаблон URL-адреса, сопоставляемый с обработчиком.</span><span class="sxs-lookup"><span data-stu-id="c00d7-208">A *route* is a URL pattern that is mapped to a handler.</span></span> <span data-ttu-id="c00d7-209">Обычно обработчик представляет собой страницу Razor, метод действия в контроллере MVC или ПО промежуточного слоя.</span><span class="sxs-lookup"><span data-stu-id="c00d7-209">The handler is typically a Razor page, an action method in an MVC controller, or a middleware.</span></span> <span data-ttu-id="c00d7-210">Маршрутизация ASP.NET Core позволяет контролировать URL-адреса, используемые приложением.</span><span class="sxs-lookup"><span data-stu-id="c00d7-210">ASP.NET Core routing gives you control over the URLs used by your app.</span></span>
 
 <span data-ttu-id="c00d7-211">Для получения дополнительной информации см. <xref:fundamentals/routing>.</span><span class="sxs-lookup"><span data-stu-id="c00d7-211">For more information, see <xref:fundamentals/routing>.</span></span>
 
@@ -212,7 +212,7 @@ ms.locfileid: "93059381"
 * <span data-ttu-id="c00d7-234">Исполняемый файл, в котором размещено приложение ( *EXE* ).</span><span class="sxs-lookup"><span data-stu-id="c00d7-234">The executable hosting the app ( *.exe* ).</span></span>
 * <span data-ttu-id="c00d7-235">Скомпилированные сборки, составляющие приложение ( *DLL* ).</span><span class="sxs-lookup"><span data-stu-id="c00d7-235">Compiled assemblies that make up the app ( *.dll* ).</span></span>
 * <span data-ttu-id="c00d7-236">Файлы содержимого, используемые приложением, например:</span><span class="sxs-lookup"><span data-stu-id="c00d7-236">Content files used by the app, such as:</span></span>
-  * <span data-ttu-id="c00d7-237">Файлы :::no-loc(Razor)::: ( *CSHTML* , *RAZOR* ).</span><span class="sxs-lookup"><span data-stu-id="c00d7-237">:::no-loc(Razor)::: files ( *.cshtml* , *.razor* )</span></span>
+  * <span data-ttu-id="c00d7-237">Файлы Razor ( *CSHTML* , *RAZOR* ).</span><span class="sxs-lookup"><span data-stu-id="c00d7-237">Razor files ( *.cshtml* , *.razor* )</span></span>
   * <span data-ttu-id="c00d7-238">Файлы конфигурации ( *JSON* , *XML* ).</span><span class="sxs-lookup"><span data-stu-id="c00d7-238">Configuration files ( *.json* , *.xml* )</span></span>
   * <span data-ttu-id="c00d7-239">Файлы данных ( *DB* ).</span><span class="sxs-lookup"><span data-stu-id="c00d7-239">Data files ( *.db* )</span></span>
 * <span data-ttu-id="c00d7-240">[Корневой веб-каталог](#web-root), обычно это папка *wwwroot*.</span><span class="sxs-lookup"><span data-stu-id="c00d7-240">The [Web root](#web-root), typically the *wwwroot* folder.</span></span>
@@ -237,7 +237,7 @@ ms.locfileid: "93059381"
 </ItemGroup>
 ```
 
-<span data-ttu-id="c00d7-256">Для указания на корневой каталог файлов :::no-loc(Razor)::: ( *CSHTML* ) используется символ тильды и косой черты `~/`.</span><span class="sxs-lookup"><span data-stu-id="c00d7-256">In :::no-loc(Razor)::: *.cshtml* files, tilde-slash (`~/`) points to the web root.</span></span> <span data-ttu-id="c00d7-257">Путь, начинающийся с `~/`, называется *виртуальным путем*.</span><span class="sxs-lookup"><span data-stu-id="c00d7-257">A path beginning with `~/` is referred to as a *virtual path*.</span></span>
+<span data-ttu-id="c00d7-256">Для указания на корневой каталог файлов Razor ( *CSHTML* ) используется символ тильды и косой черты `~/`.</span><span class="sxs-lookup"><span data-stu-id="c00d7-256">In Razor *.cshtml* files, tilde-slash (`~/`) points to the web root.</span></span> <span data-ttu-id="c00d7-257">Путь, начинающийся с `~/`, называется *виртуальным путем*.</span><span class="sxs-lookup"><span data-stu-id="c00d7-257">A path beginning with `~/` is referred to as a *virtual path*.</span></span>
 
 <span data-ttu-id="c00d7-258">Для получения дополнительной информации см. <xref:fundamentals/static-files>.</span><span class="sxs-lookup"><span data-stu-id="c00d7-258">For more information, see <xref:fundamentals/static-files>.</span></span>
 
@@ -311,7 +311,7 @@ ms.locfileid: "93059381"
 <span data-ttu-id="c00d7-302">Метод `CreateDefaultBuilder` применяется для настройки узла с часто используемыми параметрами, например:</span><span class="sxs-lookup"><span data-stu-id="c00d7-302">The `CreateDefaultBuilder` method configures a host with commonly used options, such as the following:</span></span>
 
 * <span data-ttu-id="c00d7-303">Использование [Kestrel](#servers) в качестве веб-сервера и поддержка интеграции с IIS.</span><span class="sxs-lookup"><span data-stu-id="c00d7-303">Use [Kestrel](#servers) as the web server and enable IIS integration.</span></span>
-* <span data-ttu-id="c00d7-304">Загрузка конфигурации из файлов *:::no-loc(appsettings.json):::* и *appsettings.{Environment Name}.json* , переменных среды, аргументов командной строки и других источников конфигурации.</span><span class="sxs-lookup"><span data-stu-id="c00d7-304">Load configuration from *:::no-loc(appsettings.json):::* , *appsettings.{Environment Name}.json* , environment variables, command line arguments, and other configuration sources.</span></span>
+* <span data-ttu-id="c00d7-304">Загрузка конфигурации из файлов *appsettings.json* и *appsettings.{Environment Name}.json* , переменных среды, аргументов командной строки и других источников конфигурации.</span><span class="sxs-lookup"><span data-stu-id="c00d7-304">Load configuration from *appsettings.json* , *appsettings.{Environment Name}.json* , environment variables, command line arguments, and other configuration sources.</span></span>
 * <span data-ttu-id="c00d7-305">Отправка выходных данных журнала в поставщики служб консоли и отладки.</span><span class="sxs-lookup"><span data-stu-id="c00d7-305">Send logging output to the console and debug providers.</span></span>
 
 <span data-ttu-id="c00d7-306">Для получения дополнительной информации см. <xref:fundamentals/host/web-host>.</span><span class="sxs-lookup"><span data-stu-id="c00d7-306">For more information, see <xref:fundamentals/host/web-host>.</span></span>
@@ -377,7 +377,7 @@ ms.locfileid: "93059381"
 
 <span data-ttu-id="c00d7-345">ASP.NET Core предоставляет платформу конфигурации, которая получает параметры в виде пар "имя-значение" от упорядоченного набора поставщиков конфигурации.</span><span class="sxs-lookup"><span data-stu-id="c00d7-345">ASP.NET Core provides a configuration framework that gets settings as name-value pairs from an ordered set of configuration providers.</span></span> <span data-ttu-id="c00d7-346">Доступны встроенные поставщики конфигурации для различных источников, таких как файлы *JSON* , *XML* , переменные среды и аргументы командной строки.</span><span class="sxs-lookup"><span data-stu-id="c00d7-346">There are built-in configuration providers for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments.</span></span> <span data-ttu-id="c00d7-347">Кроме того, вы можете писать поставщики конфигурации сами.</span><span class="sxs-lookup"><span data-stu-id="c00d7-347">You can also write custom configuration providers.</span></span>
 
-<span data-ttu-id="c00d7-348">Например, можно указать, что источником конфигурации являются файл *:::no-loc(appsettings.json):::* и переменные среды.</span><span class="sxs-lookup"><span data-stu-id="c00d7-348">For example, you could specify that configuration comes from *:::no-loc(appsettings.json):::* and environment variables.</span></span> <span data-ttu-id="c00d7-349">В этом случае при запросе значения *ConnectionString* платформа сначала выполнит поиск в файле *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="c00d7-349">Then when the value of *ConnectionString* is requested, the framework looks first in the *:::no-loc(appsettings.json):::* file.</span></span> <span data-ttu-id="c00d7-350">Если значение будет найдено не только в нем, но и в переменной среды, приоритет получит значение из переменной среды.</span><span class="sxs-lookup"><span data-stu-id="c00d7-350">If the value is found there but also in an environment variable, the value from the environment variable would take precedence.</span></span>
+<span data-ttu-id="c00d7-348">Например, можно указать, что источником конфигурации являются файл *appsettings.json* и переменные среды.</span><span class="sxs-lookup"><span data-stu-id="c00d7-348">For example, you could specify that configuration comes from *appsettings.json* and environment variables.</span></span> <span data-ttu-id="c00d7-349">В этом случае при запросе значения *ConnectionString* платформа сначала выполнит поиск в файле *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="c00d7-349">Then when the value of *ConnectionString* is requested, the framework looks first in the *appsettings.json* file.</span></span> <span data-ttu-id="c00d7-350">Если значение будет найдено не только в нем, но и в переменной среды, приоритет получит значение из переменной среды.</span><span class="sxs-lookup"><span data-stu-id="c00d7-350">If the value is found there but also in an environment variable, the value from the environment variable would take precedence.</span></span>
 
 <span data-ttu-id="c00d7-351">Для управления конфиденциальными данными конфигурации, например паролями, ASP.NET Core предоставляет специальный инструмент [Менеджер секретов](xref:security/app-secrets).</span><span class="sxs-lookup"><span data-stu-id="c00d7-351">For managing confidential configuration data such as passwords, ASP.NET Core provides a [Secret Manager tool](xref:security/app-secrets).</span></span> <span data-ttu-id="c00d7-352">Для секретов в рабочей среде рекомендуется использовать [Azure Key Vault](xref:security/key-vault-configuration).</span><span class="sxs-lookup"><span data-stu-id="c00d7-352">For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).</span></span>
 
@@ -427,7 +427,7 @@ ms.locfileid: "93059381"
 
 ## <a name="routing"></a><span data-ttu-id="c00d7-382">Маршрутизация</span><span class="sxs-lookup"><span data-stu-id="c00d7-382">Routing</span></span>
 
-<span data-ttu-id="c00d7-383">*Маршрут*  — это шаблон URL-адреса, сопоставляемый с обработчиком.</span><span class="sxs-lookup"><span data-stu-id="c00d7-383">A *route* is a URL pattern that is mapped to a handler.</span></span> <span data-ttu-id="c00d7-384">Обычно обработчик представляет собой страницу :::no-loc(Razor):::, метод действия в контроллере MVC или ПО промежуточного слоя.</span><span class="sxs-lookup"><span data-stu-id="c00d7-384">The handler is typically a :::no-loc(Razor)::: page, an action method in an MVC controller, or a middleware.</span></span> <span data-ttu-id="c00d7-385">Маршрутизация ASP.NET Core позволяет контролировать URL-адреса, используемые приложением.</span><span class="sxs-lookup"><span data-stu-id="c00d7-385">ASP.NET Core routing gives you control over the URLs used by your app.</span></span>
+<span data-ttu-id="c00d7-383">*Маршрут*  — это шаблон URL-адреса, сопоставляемый с обработчиком.</span><span class="sxs-lookup"><span data-stu-id="c00d7-383">A *route* is a URL pattern that is mapped to a handler.</span></span> <span data-ttu-id="c00d7-384">Обычно обработчик представляет собой страницу Razor, метод действия в контроллере MVC или ПО промежуточного слоя.</span><span class="sxs-lookup"><span data-stu-id="c00d7-384">The handler is typically a Razor page, an action method in an MVC controller, or a middleware.</span></span> <span data-ttu-id="c00d7-385">Маршрутизация ASP.NET Core позволяет контролировать URL-адреса, используемые приложением.</span><span class="sxs-lookup"><span data-stu-id="c00d7-385">ASP.NET Core routing gives you control over the URLs used by your app.</span></span>
 
 <span data-ttu-id="c00d7-386">Для получения дополнительной информации см. <xref:fundamentals/routing>.</span><span class="sxs-lookup"><span data-stu-id="c00d7-386">For more information, see <xref:fundamentals/routing>.</span></span>
 
@@ -461,7 +461,7 @@ ms.locfileid: "93059381"
 * <span data-ttu-id="c00d7-409">Исполняемый файл, в котором размещено приложение ( *EXE* ).</span><span class="sxs-lookup"><span data-stu-id="c00d7-409">Executable hosting the app ( *.exe* ).</span></span>
 * <span data-ttu-id="c00d7-410">Скомпилированные сборки, составляющие приложение ( *DLL* ).</span><span class="sxs-lookup"><span data-stu-id="c00d7-410">Compiled assemblies that make up the app ( *.dll* ).</span></span>
 * <span data-ttu-id="c00d7-411">Файлы содержимого, не относящиеся к коду, используемые приложением, например:</span><span class="sxs-lookup"><span data-stu-id="c00d7-411">Non-code content files used by the app, such as:</span></span>
-  * <span data-ttu-id="c00d7-412">Файлы :::no-loc(Razor)::: ( *CSHTML* , *RAZOR* ).</span><span class="sxs-lookup"><span data-stu-id="c00d7-412">:::no-loc(Razor)::: files ( *.cshtml* , *.razor* )</span></span>
+  * <span data-ttu-id="c00d7-412">Файлы Razor ( *CSHTML* , *RAZOR* ).</span><span class="sxs-lookup"><span data-stu-id="c00d7-412">Razor files ( *.cshtml* , *.razor* )</span></span>
   * <span data-ttu-id="c00d7-413">Файлы конфигурации ( *JSON* , *XML* ).</span><span class="sxs-lookup"><span data-stu-id="c00d7-413">Configuration files ( *.json* , *.xml* )</span></span>
   * <span data-ttu-id="c00d7-414">Файлы данных ( *DB* ).</span><span class="sxs-lookup"><span data-stu-id="c00d7-414">Data files ( *.db* )</span></span>
 * <span data-ttu-id="c00d7-415">[Корневой веб-каталог](#web-root), обычно опубликованная папка *wwwroot*.</span><span class="sxs-lookup"><span data-stu-id="c00d7-415">[Web root](#web-root), typically the published *wwwroot* folder.</span></span>
@@ -495,7 +495,7 @@ ms.locfileid: "93059381"
 </ItemGroup>
 ```
 
-<span data-ttu-id="c00d7-433">Для указания на корневой каталог файлов :::no-loc(Razor)::: ( *CSHTML* ) используется символ тильды и косой черты `~/`.</span><span class="sxs-lookup"><span data-stu-id="c00d7-433">In :::no-loc(Razor)::: ( *.cshtml* ) files, the tilde-slash (`~/`) points to the web root.</span></span> <span data-ttu-id="c00d7-434">Путь, начинающийся с `~/`, называется *виртуальным путем*.</span><span class="sxs-lookup"><span data-stu-id="c00d7-434">A path beginning with `~/` is referred to as a *virtual path*.</span></span>
+<span data-ttu-id="c00d7-433">Для указания на корневой каталог файлов Razor ( *CSHTML* ) используется символ тильды и косой черты `~/`.</span><span class="sxs-lookup"><span data-stu-id="c00d7-433">In Razor ( *.cshtml* ) files, the tilde-slash (`~/`) points to the web root.</span></span> <span data-ttu-id="c00d7-434">Путь, начинающийся с `~/`, называется *виртуальным путем*.</span><span class="sxs-lookup"><span data-stu-id="c00d7-434">A path beginning with `~/` is referred to as a *virtual path*.</span></span>
 
 <span data-ttu-id="c00d7-435">Для получения дополнительной информации см. <xref:fundamentals/static-files>.</span><span class="sxs-lookup"><span data-stu-id="c00d7-435">For more information, see <xref:fundamentals/static-files>.</span></span>
 

@@ -6,17 +6,17 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/20/2018
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: client-side/libman/libman-vs
 ms.openlocfilehash: 1c97f5d7fbf64c5043e6d2277091b9a477833bf1
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -72,7 +72,7 @@ ms.locfileid: "93054714"
     * <span data-ttu-id="3d1d5-139">используется папка *lib* , если *wwwroot* не существует.</span><span class="sxs-lookup"><span data-stu-id="3d1d5-139">*lib* is used if *wwwroot* doesn't exist.</span></span>
   * <span data-ttu-id="3d1d5-140">При запуске из папки проекта используется соответствующее имя папки.</span><span class="sxs-lookup"><span data-stu-id="3d1d5-140">If launched from a project folder, the corresponding folder name is used.</span></span>
 
-  <span data-ttu-id="3d1d5-141">После папки указывается имя библиотеки.</span><span class="sxs-lookup"><span data-stu-id="3d1d5-141">The folder suggestion is suffixed with the library name.</span></span> <span data-ttu-id="3d1d5-142">В приведенной ниже таблице показаны папки, предлагаемые при установке jQuery в проекте :::no-loc(Razor)::: Pages.</span><span class="sxs-lookup"><span data-stu-id="3d1d5-142">The following table illustrates folder suggestions when installing jQuery in a :::no-loc(Razor)::: Pages project.</span></span>
+  <span data-ttu-id="3d1d5-141">После папки указывается имя библиотеки.</span><span class="sxs-lookup"><span data-stu-id="3d1d5-141">The folder suggestion is suffixed with the library name.</span></span> <span data-ttu-id="3d1d5-142">В приведенной ниже таблице показаны папки, предлагаемые при установке jQuery в проекте Razor Pages.</span><span class="sxs-lookup"><span data-stu-id="3d1d5-142">The following table illustrates folder suggestions when installing jQuery in a Razor Pages project.</span></span>
   
   |<span data-ttu-id="3d1d5-143">Место запуска</span><span class="sxs-lookup"><span data-stu-id="3d1d5-143">Launch location</span></span>                           |<span data-ttu-id="3d1d5-144">Предлагаемая папка</span><span class="sxs-lookup"><span data-stu-id="3d1d5-144">Suggested folder</span></span>      |
   |------------------------------------------|----------------------|

@@ -7,17 +7,17 @@ ms.author: scaddie
 ms.custom: H1Hack27Feb2017, devx-track-js
 ms.date: 09/06/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: client-side/spa-services
 ms.openlocfilehash: 1b9f5b4b4e066cdd3dd5fbfa666c7a087949979f
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -109,7 +109,7 @@ npm i -S aspnet-prerendering
 
 [!code-cshtml[](../client-side/spa-services/sample/SpaServicesSampleApp/Views/_ViewImports.cshtml?highlight=3)]
 
-<span data-ttu-id="6d0e2-149">Эти функции позволяют абстрагироваться от сложностей, связанных с взаимодействием с низкоуровневыми интерфейсами API напрямую, благодаря использованию синтаксиса в стиле HTML в представлении :::no-loc(Razor)::::</span><span class="sxs-lookup"><span data-stu-id="6d0e2-149">These Tag Helpers abstract away the intricacies of communicating directly with low-level APIs by leveraging an HTML-like syntax inside the :::no-loc(Razor)::: view:</span></span>
+<span data-ttu-id="6d0e2-149">Эти функции позволяют абстрагироваться от сложностей, связанных с взаимодействием с низкоуровневыми интерфейсами API напрямую, благодаря использованию синтаксиса в стиле HTML в представлении Razor:</span><span class="sxs-lookup"><span data-stu-id="6d0e2-149">These Tag Helpers abstract away the intricacies of communicating directly with low-level APIs by leveraging an HTML-like syntax inside the Razor view:</span></span>
 
 [!code-cshtml[](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=5)]
 
@@ -125,7 +125,7 @@ npm i -S aspnet-prerendering
 
 ### <a name="asp-prerender-data-tag-helper"></a><span data-ttu-id="6d0e2-157">Вспомогательная функция тегов asp-prerender-data</span><span class="sxs-lookup"><span data-stu-id="6d0e2-157">asp-prerender-data Tag Helper</span></span>
 
-<span data-ttu-id="6d0e2-158">При использовании в сочетании с функцией `asp-prerender-module` вспомогательную функцию тегов `asp-prerender-data` можно использовать для передачи контекстных сведений из представления :::no-loc(Razor)::: в код JavaScript на стороне сервера.</span><span class="sxs-lookup"><span data-stu-id="6d0e2-158">When coupled with the `asp-prerender-module` Tag Helper, the `asp-prerender-data` Tag Helper can be used to pass contextual information from the :::no-loc(Razor)::: view to the server-side JavaScript.</span></span> <span data-ttu-id="6d0e2-159">Например, следующая разметка передает пользовательские данные в модуль `main-server`:</span><span class="sxs-lookup"><span data-stu-id="6d0e2-159">For example, the following markup passes user data to the `main-server` module:</span></span>
+<span data-ttu-id="6d0e2-158">При использовании в сочетании с функцией `asp-prerender-module` вспомогательную функцию тегов `asp-prerender-data` можно использовать для передачи контекстных сведений из представления Razor в код JavaScript на стороне сервера.</span><span class="sxs-lookup"><span data-stu-id="6d0e2-158">When coupled with the `asp-prerender-module` Tag Helper, the `asp-prerender-data` Tag Helper can be used to pass contextual information from the Razor view to the server-side JavaScript.</span></span> <span data-ttu-id="6d0e2-159">Например, следующая разметка передает пользовательские данные в модуль `main-server`:</span><span class="sxs-lookup"><span data-stu-id="6d0e2-159">For example, the following markup passes user data to the `main-server` module:</span></span>
 
 [!code-cshtml[](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=9-12)]
 

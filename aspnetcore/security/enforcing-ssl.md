@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/enforcing-ssl
 ms.openlocfilehash: e473da9a7cbd91a601ad4af0c7c02c7f576f348c
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -114,9 +114,9 @@ ms.locfileid: "93051126"
 
   * <span data-ttu-id="fe161-155">В конфигурации узла.</span><span class="sxs-lookup"><span data-stu-id="fe161-155">In host configuration.</span></span>
   * <span data-ttu-id="fe161-156">Путем задания `ASPNETCORE_HTTPS_PORT` переменной среды.</span><span class="sxs-lookup"><span data-stu-id="fe161-156">By setting the `ASPNETCORE_HTTPS_PORT` environment variable.</span></span>
-  * <span data-ttu-id="fe161-157">Путем добавления записи верхнего уровня в *:::no-loc(appsettings.json):::* :</span><span class="sxs-lookup"><span data-stu-id="fe161-157">By adding a top-level entry in *:::no-loc(appsettings.json):::* :</span></span>
+  * <span data-ttu-id="fe161-157">Путем добавления записи верхнего уровня в *appsettings.json* :</span><span class="sxs-lookup"><span data-stu-id="fe161-157">By adding a top-level entry in *appsettings.json* :</span></span>
 
-    [!code-json[](enforcing-ssl/sample-snapshot/3.x/:::no-loc(appsettings.json):::?highlight=2)]
+    [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
 * <span data-ttu-id="fe161-158">Укажите порт с защитой схемы, используя [переменную среды ASPNETCORE_URLS](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#urls).</span><span class="sxs-lookup"><span data-stu-id="fe161-158">Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#urls).</span></span> <span data-ttu-id="fe161-159">Переменная среды настраивает сервер.</span><span class="sxs-lookup"><span data-stu-id="fe161-159">The environment variable configures the server.</span></span> <span data-ttu-id="fe161-160">По промежуточного слоя косвенно обнаруживает HTTPS порт с помощью <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .</span><span class="sxs-lookup"><span data-stu-id="fe161-160">The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.</span></span> <span data-ttu-id="fe161-161">Этот подход не работает в обратных развертываниях прокси-сервера.</span><span class="sxs-lookup"><span data-stu-id="fe161-161">This approach doesn't work in reverse proxy deployments.</span></span>
 
@@ -128,9 +128,9 @@ ms.locfileid: "93051126"
 
   * <span data-ttu-id="fe161-163">В конфигурации узла.</span><span class="sxs-lookup"><span data-stu-id="fe161-163">In host configuration.</span></span>
   * <span data-ttu-id="fe161-164">Путем задания `ASPNETCORE_HTTPS_PORT` переменной среды.</span><span class="sxs-lookup"><span data-stu-id="fe161-164">By setting the `ASPNETCORE_HTTPS_PORT` environment variable.</span></span>
-  * <span data-ttu-id="fe161-165">Путем добавления записи верхнего уровня в *:::no-loc(appsettings.json):::* :</span><span class="sxs-lookup"><span data-stu-id="fe161-165">By adding a top-level entry in *:::no-loc(appsettings.json):::* :</span></span>
+  * <span data-ttu-id="fe161-165">Путем добавления записи верхнего уровня в *appsettings.json* :</span><span class="sxs-lookup"><span data-stu-id="fe161-165">By adding a top-level entry in *appsettings.json* :</span></span>
 
-    [!code-json[](enforcing-ssl/sample-snapshot/2.x/:::no-loc(appsettings.json):::?highlight=2)]
+    [!code-json[](enforcing-ssl/sample-snapshot/2.x/appsettings.json?highlight=2)]
 
 * <span data-ttu-id="fe161-166">Укажите порт с защитой схемы, используя [переменную среды ASPNETCORE_URLS](xref:fundamentals/host/web-host#server-urls).</span><span class="sxs-lookup"><span data-stu-id="fe161-166">Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](xref:fundamentals/host/web-host#server-urls).</span></span> <span data-ttu-id="fe161-167">Переменная среды настраивает сервер.</span><span class="sxs-lookup"><span data-stu-id="fe161-167">The environment variable configures the server.</span></span> <span data-ttu-id="fe161-168">По промежуточного слоя косвенно обнаруживает HTTPS порт с помощью <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .</span><span class="sxs-lookup"><span data-stu-id="fe161-168">The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.</span></span> <span data-ttu-id="fe161-169">Этот подход не работает в обратных развертываниях прокси-сервера.</span><span class="sxs-lookup"><span data-stu-id="fe161-169">This approach doesn't work in reverse proxy deployments.</span></span>
 

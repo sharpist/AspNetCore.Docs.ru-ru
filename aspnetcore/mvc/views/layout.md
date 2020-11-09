@@ -5,17 +5,17 @@ description: Узнайте, как использовать общие маке
 ms.author: riande
 ms.date: 07/30/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: mvc/views/layout
 ms.openlocfilehash: 502df268e7f5f33acfffccd5ec0bd65267fa12da
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -34,9 +34,9 @@ ms.locfileid: "93060980"
 * <span data-ttu-id="58836-108">Совместное использование директив.</span><span class="sxs-lookup"><span data-stu-id="58836-108">Share directives.</span></span>
 * <span data-ttu-id="58836-109">Запуск общего кода до отрисовки страниц или представлений.</span><span class="sxs-lookup"><span data-stu-id="58836-109">Run common code before rendering pages or views.</span></span>
 
-<span data-ttu-id="58836-110">В этом документе рассматриваются два разных подхода к ASP.NET Core MVC: :::no-loc(Razor)::: страницы и контроллеры с представлениями.</span><span class="sxs-lookup"><span data-stu-id="58836-110">This document discusses layouts for the two different approaches to ASP.NET Core MVC: :::no-loc(Razor)::: Pages and controllers with views.</span></span> <span data-ttu-id="58836-111">С этой точки зрения различия минимальны:</span><span class="sxs-lookup"><span data-stu-id="58836-111">For this topic, the differences are minimal:</span></span>
+<span data-ttu-id="58836-110">В этом документе рассматриваются два разных подхода к ASP.NET Core MVC: Razor страницы и контроллеры с представлениями.</span><span class="sxs-lookup"><span data-stu-id="58836-110">This document discusses layouts for the two different approaches to ASP.NET Core MVC: Razor Pages and controllers with views.</span></span> <span data-ttu-id="58836-111">С этой точки зрения различия минимальны:</span><span class="sxs-lookup"><span data-stu-id="58836-111">For this topic, the differences are minimal:</span></span>
 
-* <span data-ttu-id="58836-112">:::no-loc(Razor)::: Страницы находятся в папке *pages* .</span><span class="sxs-lookup"><span data-stu-id="58836-112">:::no-loc(Razor)::: Pages are in the *Pages* folder.</span></span>
+* <span data-ttu-id="58836-112">Razor Страницы находятся в папке *pages* .</span><span class="sxs-lookup"><span data-stu-id="58836-112">Razor Pages are in the *Pages* folder.</span></span>
 * <span data-ttu-id="58836-113">Контроллеры с представлениями используют папку *Views* для представлений.</span><span class="sxs-lookup"><span data-stu-id="58836-113">Controllers with views uses a *Views* folder for views.</span></span>
 
 ## <a name="what-is-a-layout"></a><span data-ttu-id="58836-114">Что такое макет</span><span class="sxs-lookup"><span data-stu-id="58836-114">What is a Layout</span></span>
@@ -49,7 +49,7 @@ ms.locfileid: "93060980"
 
 <span data-ttu-id="58836-121">В соответствии с соглашением макет по умолчанию для приложения ASP.NET Core имеет имя *_Layout.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="58836-121">By convention, the default layout for an ASP.NET Core app is named *_Layout.cshtml* .</span></span> <span data-ttu-id="58836-122">В новых проектах ASP.NET Core, созданных с применением шаблонов, используются следующие файлы макета.</span><span class="sxs-lookup"><span data-stu-id="58836-122">The layout files for new ASP.NET Core projects created with the templates are:</span></span>
 
-* <span data-ttu-id="58836-123">:::no-loc(Razor)::: Страницы: *pages/Shared/_layout. cshtml*</span><span class="sxs-lookup"><span data-stu-id="58836-123">:::no-loc(Razor)::: Pages: *Pages/Shared/_Layout.cshtml*</span></span>
+* <span data-ttu-id="58836-123">Razor Страницы: *pages/Shared/_layout. cshtml*</span><span class="sxs-lookup"><span data-stu-id="58836-123">Razor Pages: *Pages/Shared/_Layout.cshtml*</span></span>
 
   ![Папка Pages в обозревателе решений](layout/_static/rp-web-project-views.png)
 
@@ -65,11 +65,11 @@ ms.locfileid: "93060980"
 
 ## <a name="specifying-a-layout"></a><span data-ttu-id="58836-131">Указание макета</span><span class="sxs-lookup"><span data-stu-id="58836-131">Specifying a Layout</span></span>
 
-<span data-ttu-id="58836-132">:::no-loc(Razor)::: представления имеют `Layout` свойство.</span><span class="sxs-lookup"><span data-stu-id="58836-132">:::no-loc(Razor)::: views have a `Layout` property.</span></span> <span data-ttu-id="58836-133">С его помощью указывается макет в отдельных представлениях:</span><span class="sxs-lookup"><span data-stu-id="58836-133">Individual views specify a layout by setting this property:</span></span>
+<span data-ttu-id="58836-132">Razor представления имеют `Layout` свойство.</span><span class="sxs-lookup"><span data-stu-id="58836-132">Razor views have a `Layout` property.</span></span> <span data-ttu-id="58836-133">С его помощью указывается макет в отдельных представлениях:</span><span class="sxs-lookup"><span data-stu-id="58836-133">Individual views specify a layout by setting this property:</span></span>
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/_ViewStart.cshtml?highlight=2)]
 
-<span data-ttu-id="58836-134">Указанный макет может использовать полный путь (например, */Pages/Shared/_Layout.cshtml* или */Views/Shared/_Layout.cshtml* ) или частичное имя (например, `_Layout`).</span><span class="sxs-lookup"><span data-stu-id="58836-134">The layout specified can use a full path (for example, */Pages/Shared/_Layout.cshtml* or */Views/Shared/_Layout.cshtml* ) or a partial name (example: `_Layout`).</span></span> <span data-ttu-id="58836-135">Если указано частичное имя, :::no-loc(Razor)::: обработчик представлений выполняет поиск файла макета с помощью стандартного процесса обнаружения.</span><span class="sxs-lookup"><span data-stu-id="58836-135">When a partial name is provided, the :::no-loc(Razor)::: view engine searches for the layout file using its standard discovery process.</span></span> <span data-ttu-id="58836-136">Сначала поиск выполняется в папке, где существует метод обработчика (или контроллер), а затем в папке *Shared* .</span><span class="sxs-lookup"><span data-stu-id="58836-136">The folder where the handler method (or controller) exists is searched first, followed by the *Shared* folder.</span></span> <span data-ttu-id="58836-137">Процесс обнаружения аналогичен тому, который применяется для поиска [частичных представлений](xref:mvc/views/partial#partial-view-discovery).</span><span class="sxs-lookup"><span data-stu-id="58836-137">This discovery process is identical to the process used to discover [partial views](xref:mvc/views/partial#partial-view-discovery).</span></span>
+<span data-ttu-id="58836-134">Указанный макет может использовать полный путь (например, */Pages/Shared/_Layout.cshtml* или */Views/Shared/_Layout.cshtml* ) или частичное имя (например, `_Layout`).</span><span class="sxs-lookup"><span data-stu-id="58836-134">The layout specified can use a full path (for example, */Pages/Shared/_Layout.cshtml* or */Views/Shared/_Layout.cshtml* ) or a partial name (example: `_Layout`).</span></span> <span data-ttu-id="58836-135">Если указано частичное имя, Razor обработчик представлений выполняет поиск файла макета с помощью стандартного процесса обнаружения.</span><span class="sxs-lookup"><span data-stu-id="58836-135">When a partial name is provided, the Razor view engine searches for the layout file using its standard discovery process.</span></span> <span data-ttu-id="58836-136">Сначала поиск выполняется в папке, где существует метод обработчика (или контроллер), а затем в папке *Shared* .</span><span class="sxs-lookup"><span data-stu-id="58836-136">The folder where the handler method (or controller) exists is searched first, followed by the *Shared* folder.</span></span> <span data-ttu-id="58836-137">Процесс обнаружения аналогичен тому, который применяется для поиска [частичных представлений](xref:mvc/views/partial#partial-view-discovery).</span><span class="sxs-lookup"><span data-stu-id="58836-137">This discovery process is identical to the process used to discover [partial views](xref:mvc/views/partial#partial-view-discovery).</span></span>
 
 <span data-ttu-id="58836-138">По умолчанию каждый макет должен вызывать метод `RenderBody`.</span><span class="sxs-lookup"><span data-stu-id="58836-138">By default, every layout must call `RenderBody`.</span></span> <span data-ttu-id="58836-139">При каждом вызове `RenderBody` содержимое представления будет преобразовываться для просмотра.</span><span class="sxs-lookup"><span data-stu-id="58836-139">Wherever the call to `RenderBody` is placed, the contents of the view will be rendered.</span></span>
 
@@ -85,9 +85,9 @@ ms.locfileid: "93060980"
 @RenderSection("Scripts", required: false)
 ```
 
-<span data-ttu-id="58836-144">Если обязательный раздел не найден, создается исключение.</span><span class="sxs-lookup"><span data-stu-id="58836-144">If a required section isn't found, an exception is thrown.</span></span> <span data-ttu-id="58836-145">Отдельные представления задают содержимое, которое должно быть отображено в разделе с использованием `@section` :::no-loc(Razor)::: синтаксиса.</span><span class="sxs-lookup"><span data-stu-id="58836-145">Individual views specify the content to be rendered within a section using the `@section` :::no-loc(Razor)::: syntax.</span></span> <span data-ttu-id="58836-146">Если на странице или в представлении определяется раздел, он должен быть преобразован для просмотра (в противном случае произойдет ошибка).</span><span class="sxs-lookup"><span data-stu-id="58836-146">If a page or view defines a section, it must be rendered (or an error will occur).</span></span>
+<span data-ttu-id="58836-144">Если обязательный раздел не найден, создается исключение.</span><span class="sxs-lookup"><span data-stu-id="58836-144">If a required section isn't found, an exception is thrown.</span></span> <span data-ttu-id="58836-145">Отдельные представления задают содержимое, которое должно быть отображено в разделе с использованием `@section` Razor синтаксиса.</span><span class="sxs-lookup"><span data-stu-id="58836-145">Individual views specify the content to be rendered within a section using the `@section` Razor syntax.</span></span> <span data-ttu-id="58836-146">Если на странице или в представлении определяется раздел, он должен быть преобразован для просмотра (в противном случае произойдет ошибка).</span><span class="sxs-lookup"><span data-stu-id="58836-146">If a page or view defines a section, it must be rendered (or an error will occur).</span></span>
 
-<span data-ttu-id="58836-147">Пример `@section` определения в :::no-loc(Razor)::: представлении страниц:</span><span class="sxs-lookup"><span data-stu-id="58836-147">An example `@section` definition in :::no-loc(Razor)::: Pages view:</span></span>
+<span data-ttu-id="58836-147">Пример `@section` определения в Razor представлении страниц:</span><span class="sxs-lookup"><span data-stu-id="58836-147">An example `@section` definition in Razor Pages view:</span></span>
 
 ```html
 @section Scripts {
@@ -105,23 +105,23 @@ ms.locfileid: "93060980"
 }
 ```
 
-<span data-ttu-id="58836-151">Предыдущая разметка была сформирована [формированием шаблонов :::no-loc(Identity)::: ](xref:security/authentication/scaffold-identity).</span><span class="sxs-lookup"><span data-stu-id="58836-151">The preceding markup was generated by [scaffolding :::no-loc(Identity):::](xref:security/authentication/scaffold-identity).</span></span>
+<span data-ttu-id="58836-151">Предыдущая разметка была сформирована [формированием шаблонов Identity ](xref:security/authentication/scaffold-identity).</span><span class="sxs-lookup"><span data-stu-id="58836-151">The preceding markup was generated by [scaffolding Identity](xref:security/authentication/scaffold-identity).</span></span>
 
 <span data-ttu-id="58836-152">Разделы, определенные на странице или в представлении, доступны только непосредственно на странице макета.</span><span class="sxs-lookup"><span data-stu-id="58836-152">Sections defined in a page or view are available only in its immediate layout page.</span></span> <span data-ttu-id="58836-153">На них нельзя ссылаться из частичных представлений, компонентов представлений или других частей системы представлений.</span><span class="sxs-lookup"><span data-stu-id="58836-153">They cannot be referenced from partials, view components, or other parts of the view system.</span></span>
 
 ### <a name="ignoring-sections"></a><span data-ttu-id="58836-154">Пропуск разделов</span><span class="sxs-lookup"><span data-stu-id="58836-154">Ignoring sections</span></span>
 
-<span data-ttu-id="58836-155">По умолчанию тело и все разделы страницы содержимого должны преобразовываться для просмотра страницей макета.</span><span class="sxs-lookup"><span data-stu-id="58836-155">By default, the body and all sections in a content page must all be rendered by the layout page.</span></span> <span data-ttu-id="58836-156">:::no-loc(Razor):::Обработчик представлений применяет это, отслеживая отображение текста и каждого раздела.</span><span class="sxs-lookup"><span data-stu-id="58836-156">The :::no-loc(Razor)::: view engine enforces this by tracking whether the body and each section have been rendered.</span></span>
+<span data-ttu-id="58836-155">По умолчанию тело и все разделы страницы содержимого должны преобразовываться для просмотра страницей макета.</span><span class="sxs-lookup"><span data-stu-id="58836-155">By default, the body and all sections in a content page must all be rendered by the layout page.</span></span> <span data-ttu-id="58836-156">RazorОбработчик представлений применяет это, отслеживая отображение текста и каждого раздела.</span><span class="sxs-lookup"><span data-stu-id="58836-156">The Razor view engine enforces this by tracking whether the body and each section have been rendered.</span></span>
 
 <span data-ttu-id="58836-157">Чтобы подсистема представлений пропустила тело или разделы, вызовите методы `IgnoreBody` и `IgnoreSection`.</span><span class="sxs-lookup"><span data-stu-id="58836-157">To instruct the view engine to ignore the body or sections, call the `IgnoreBody` and `IgnoreSection` methods.</span></span>
 
-<span data-ttu-id="58836-158">Текст и все разделы :::no-loc(Razor)::: страницы должны быть либо визуализированы, либо игнорироваться.</span><span class="sxs-lookup"><span data-stu-id="58836-158">The body and every section in a :::no-loc(Razor)::: page must be either rendered or ignored.</span></span>
+<span data-ttu-id="58836-158">Текст и все разделы Razor страницы должны быть либо визуализированы, либо игнорироваться.</span><span class="sxs-lookup"><span data-stu-id="58836-158">The body and every section in a Razor page must be either rendered or ignored.</span></span>
 
 <a name="viewimports"></a>
 
 ## <a name="importing-shared-directives"></a><span data-ttu-id="58836-159">Импорт общих директив</span><span class="sxs-lookup"><span data-stu-id="58836-159">Importing Shared Directives</span></span>
 
-<span data-ttu-id="58836-160">Представления и страницы могут использовать :::no-loc(Razor)::: директивы для импорта пространств имен и использования [внедрения зависимостей](dependency-injection.md).</span><span class="sxs-lookup"><span data-stu-id="58836-160">Views and pages can use :::no-loc(Razor)::: directives to import namespaces and use [dependency injection](dependency-injection.md).</span></span> <span data-ttu-id="58836-161">Директивы, используемые несколькими представлениями, можно указать в общем файле *_ViewImports.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="58836-161">Directives shared by many views may be specified in a common *_ViewImports.cshtml* file.</span></span> <span data-ttu-id="58836-162">Файл `_ViewImports` поддерживает следующие директивы:</span><span class="sxs-lookup"><span data-stu-id="58836-162">The `_ViewImports` file supports the following directives:</span></span>
+<span data-ttu-id="58836-160">Представления и страницы могут использовать Razor директивы для импорта пространств имен и использования [внедрения зависимостей](dependency-injection.md).</span><span class="sxs-lookup"><span data-stu-id="58836-160">Views and pages can use Razor directives to import namespaces and use [dependency injection](dependency-injection.md).</span></span> <span data-ttu-id="58836-161">Директивы, используемые несколькими представлениями, можно указать в общем файле *_ViewImports.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="58836-161">Directives shared by many views may be specified in a common *_ViewImports.cshtml* file.</span></span> <span data-ttu-id="58836-162">Файл `_ViewImports` поддерживает следующие директивы:</span><span class="sxs-lookup"><span data-stu-id="58836-162">The `_ViewImports` file supports the following directives:</span></span>
 
 * `@addTagHelper`
 * `@removeTagHelper`
@@ -131,7 +131,7 @@ ms.locfileid: "93060980"
 * `@inherits`
 * `@inject`
 
-<span data-ttu-id="58836-163">Файл не поддерживает другие :::no-loc(Razor)::: функции, такие как функции и определения разделов.</span><span class="sxs-lookup"><span data-stu-id="58836-163">The file doesn't support other :::no-loc(Razor)::: features, such as functions and section definitions.</span></span>
+<span data-ttu-id="58836-163">Файл не поддерживает другие Razor функции, такие как функции и определения разделов.</span><span class="sxs-lookup"><span data-stu-id="58836-163">The file doesn't support other Razor features, such as functions and section definitions.</span></span>
 
 <span data-ttu-id="58836-164">Пример файла `_ViewImports.cshtml`:</span><span class="sxs-lookup"><span data-stu-id="58836-164">A sample `_ViewImports.cshtml` file:</span></span>
 
