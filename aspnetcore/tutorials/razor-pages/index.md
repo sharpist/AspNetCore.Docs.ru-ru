@@ -1,9 +1,9 @@
 ---
 title: Учебник. Создание веб-приложения Razor Pages с помощью ASP.NET Core
 author: rick-anderson
-description: Создание веб-приложения Razor Pages в Windows с помощью Visual Studio, ASP.NET Core и EF Core.
+description: В этой серии руководств приводятся основные сведения о создании веб-приложения Razor Pages.
 ms.author: riande
-ms.date: 08/09/2019
+ms.date: 09/14/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/index
-ms.openlocfilehash: 0feb60c7e0189bf12d584c3916e0254b3be729c0
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: cad4cf12e475c2f7db3e62a6ae78d53777710b6f
+ms.sourcegitcommit: 342588e10ae0054a6d6dc0fd11dae481006be099
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93058068"
+ms.lasthandoff: 11/07/2020
+ms.locfileid: "94360571"
 ---
 # <a name="tutorial-create-a-no-locrazor-pages-web-app-with-aspnet-core"></a>Учебник. Создание веб-приложения Razor Pages с помощью ASP.NET Core
 
 В этой серии руководств приводятся основные сведения о создании веб-приложения Razor Pages. 
 
-[!INCLUDE[](~/includes/advancedRP.md)]
+Более подробное введение для разработчиков, уже знакомых с контроллерами и представлениями, см. в разделе <xref:razor-pages/index>.
 
 В серию входят следующие руководства:
 
