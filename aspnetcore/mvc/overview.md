@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/overview
-ms.openlocfilehash: c55421efa1fd559f462549bfaceb794d4a9c35b8
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 4f0e98057c03769a672ef350cc3ec724a4f7e721
+ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059316"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94431068"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Общие сведения ASP.NET Core MVC
 
@@ -270,4 +270,4 @@ Razor представления в MVC могут быть строго тип�
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * [Библиотека тестирования митестед. AspNetCore. MVC-Fluent для ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): строго типизированная Библиотека модульного тестирования, предоставляющая интерфейс Fluent для тестирования приложений MVC и веб-API. ( *Не поддерживается и не обслуживается Майкрософт.* )
-* <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>
+* <xref:blazor/components/prerendering-and-integration>
