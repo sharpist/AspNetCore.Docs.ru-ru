@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/complex-data-model
-ms.openlocfilehash: 07f5e910236f78105c039e462ab51d6e62b09439
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: cee9e9eb4c5435f3f63f7d1d04f131d88effe9f6
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626939"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054480"
 ---
 # <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF  Core. Создание сложной модели данных
 
@@ -187,7 +188,7 @@ public string LastName { get; set; }
 
 ![Сущность Instructor](complex-data-model/_static/instructor-entity.png)
 
-Создайте файл *Models/Instructor.cs*, заменив код шаблона следующим:
+Создайте файл *Models/Instructor.cs* , заменив код шаблона следующим:
 
 [!code-csharp[](intro/samples/cu/Models/Instructor.cs?name=snippet_BeforeInheritance)]
 
@@ -401,7 +402,7 @@ public Student Student { get; set; }
 
 ## <a name="update-the-database-context"></a>Обновление контекста базы данных
 
-Добавьте выделенный ниже код в файл *Data/SchoolContext.cs*:
+Добавьте выделенный ниже код в файл *Data/SchoolContext.cs* :
 
 [!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
 
@@ -481,7 +482,7 @@ Done. To undo this action, use 'ef migrations remove'
 
 ## <a name="change-the-connection-string"></a>Изменение строки подключения
 
-Теперь у вас есть новый код в классе `DbInitializer`, который добавляет начальные данные для новых сущностей в пустую базу данных. Чтобы велеть EF создать пустую базу данных, в файле *appsettings.json* измените имя базы данных в строке подключения на ContosoUniversity3 или другое имя, которое вы еще не использовали на компьютере, с которым работаете.
+Теперь у вас есть новый код в классе `DbInitializer`, который добавляет начальные данные для новых сущностей в пустую базу данных. Чтобы указать EF создать пустую базу данных, в файле *appsettings.json* измените имя базы данных в строке подключения на ContosoUniversity3 или другое имя, которое вы еще не использовали на компьютере, с которым работаете.
 
 ```json
 {
@@ -490,7 +491,7 @@ Done. To undo this action, use 'ef migrations remove'
   },
 ```
 
-Сохраните изменения в *appsettings.json*.
+Сохраните изменения в файл *appsettings.json* .
 
 > [!NOTE]
 > Вместо изменения имени базы данных можно удалить ее. Воспользуйтесь **обозревателем объектов SQL Server** (SSOX) или командой интерфейса командной строки `database drop`:
@@ -509,13 +510,13 @@ dotnet ef database update
 
 Запустите приложение, чтобы метод `DbInitializer.Initialize` запустился и заполнил новую базу данных.
 
-Откройте базу данных в SSOX, как уже делали это раньше, а затем разверните узел **Таблицы**, чтобы увидеть все созданные таблицы. (Если SSOX уже был открыт, нажмите кнопку **Обновить**.)
+Откройте базу данных в SSOX, как уже делали это раньше, а затем разверните узел **Таблицы** , чтобы увидеть все созданные таблицы. (Если SSOX уже был открыт, нажмите кнопку **Обновить**.)
 
 ![Таблицы в SSOX](complex-data-model/_static/ssox-tables.png)
 
 Запустите приложение, чтобы активировать код инициализатора, заполняющий базу данных.
 
-Щелкните правой кнопкой мыши таблицу **CourseAssignment** и выберите пункт **Просмотреть данные**, чтобы убедиться в наличии данных.
+Щелкните правой кнопкой мыши таблицу **CourseAssignment** и выберите пункт **Просмотреть данные** , чтобы убедиться в наличии данных.
 
 ![Данные CourseAssignment в SSOX](complex-data-model/_static/ssox-ci-data.png)
 

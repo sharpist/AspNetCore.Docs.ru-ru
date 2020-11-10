@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/03/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/aspnetcore
-ms.openlocfilehash: 11237c93832e095abb03d761773d213dfa336052
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b120aa4ab6922445f2c53f3b1cb3bd5c159d8a84
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633894"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057834"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>Службы gRPC в ASP.NET Core
 
@@ -66,7 +67,7 @@ ms.locfileid: "88633894"
 
 ### <a name="configure-grpc"></a>Настройка gRPC
 
-В файле *Startup.cs*:
+В файле *Startup.cs* :
 
 * gRPC включается с помощью метода `AddGrpc`.
 * Каждая служба gRPC добавляется в конвейер маршрутизации с помощью метода `MapGrpcService`.
@@ -97,7 +98,7 @@ Kestrel [поддерживает HTTP/2](xref:fundamentals/servers/kestrel#http
 
 [!code-json[](~/grpc/aspnetcore/sample/appsettings.json?highlight=4)]
 
-Кроме того, конечные точки Kestrel можно настроить в *Program.cs*:
+Кроме того, конечные точки Kestrel можно настроить в *Program.cs* :
 
 [!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
 

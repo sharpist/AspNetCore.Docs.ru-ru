@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: mvc, seodec18
 ms.date: 08/17/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mongo-app
-ms.openlocfilehash: 61f72c4d281e7957b520e1660440e536ebd4c78a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 350df417886fe1ea5fef89dc221c217d596768b3
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631775"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060746"
 ---
 # <a name="create-a-web-api-with-aspnet-core-and-mongodb"></a>Создание веб-API с помощью ASP.NET Core и MongoDB
 
@@ -92,7 +93,7 @@ ms.locfileid: "88631775"
    use BookstoreDb
    ```
 
-   Будет создана база данных с именем *BookstoreDb*, если она не существует. Если такая база данных существует, для нее уже установлено подключение для транзакций.
+   Будет создана база данных с именем *BookstoreDb* , если она не существует. Если такая база данных существует, для нее уже установлено подключение для транзакций.
 
 1. Создайте коллекцию `Books` с помощью такой команды:
 
@@ -195,7 +196,7 @@ ms.locfileid: "88631775"
 1. В раскрывающемся списке **Требуемая версия .NET Framework** выберите **.NET Core 3.1** и нажмите кнопку **Далее**.
 1. Введите *BooksApi* в поле **Имя проекта** и нажмите **Создать**.
 1. На панели **Решение** щелкните правой кнопкой мыши узел проекта **Зависимости** и выберите **Добавить пакеты**.
-1. В поле поиска введите *MongoDB.Driver*, выберите пакет *MongoDB.Driver* и нажмите **Добавить пакет**.
+1. В поле поиска введите *MongoDB.Driver* , выберите пакет *MongoDB.Driver* и нажмите **Добавить пакет**.
 1. Нажмите кнопку **Принимаю** в диалоговом окне **Принятие условий лицензионного соглашения**.
 
 ---
@@ -239,7 +240,7 @@ ms.locfileid: "88631775"
 
 ## <a name="add-a-configuration-model"></a>Добавление модели конфигурации
 
-1. Добавьте в файл *appsettings.json* перечисленные ниже значения конфигурации базы данных.
+1. Добавьте в файл *appsettings.json* следующие значения конфигурации базы данных:
 
    [!code-json[](first-mongo-app/samples/3.x/SampleApp/appsettings.json?highlight=2-6)]
 
@@ -247,7 +248,7 @@ ms.locfileid: "88631775"
 
    [!code-csharp[](first-mongo-app/samples/3.x/SampleApp/Models/BookstoreDatabaseSettings.cs)]
 
-   Предыдущий класс `BookstoreDatabaseSettings` используется для хранения значений свойств `BookstoreDatabaseSettings` файла *appsettings.json*. Свойства JSON и C# имеют одинаковые имена, что упрощает сопоставление.
+   Предыдущий класс `BookstoreDatabaseSettings` используется для хранения значений свойств `BookstoreDatabaseSettings` файла *appsettings.json* . Свойства JSON и C# имеют одинаковые имена, что упрощает сопоставление.
 
 1. Добавьте выделенный ниже код в `Startup.ConfigureServices`:
 
@@ -255,10 +256,10 @@ ms.locfileid: "88631775"
 
    В приведенном выше коде:
 
-   * Экземпляр конфигурации, к которому привязан раздел `BookstoreDatabaseSettings` файла *appsettings.json*, зарегистрирован в контейнере внедрения зависимостей (DI). Например, свойство `ConnectionString` объекта `BookstoreDatabaseSettings` заполняется свойством `BookstoreDatabaseSettings:ConnectionString` в файле *appsettings.json*.
+   * Экземпляр конфигурации, к которому привязан раздел `BookstoreDatabaseSettings` файла *appsettings.json* , зарегистрирован в контейнере внедрения зависимостей (DI). Например, свойство `ConnectionString` объекта `BookstoreDatabaseSettings` заполняется свойством `BookstoreDatabaseSettings:ConnectionString` в файле *appsettings.json* .
    * Интерфейс `IBookstoreDatabaseSettings` регистрируется в DI с использованием [времени существования отдельной службы](xref:fundamentals/dependency-injection#service-lifetimes). При внедрении экземпляр интерфейса разрешается в объект `BookstoreDatabaseSettings`.
 
-1. Добавьте следующий код в самое начало файла *Startup.cs*, чтобы разрешить ссылки `BookstoreDatabaseSettings` и `IBookstoreDatabaseSettings`:
+1. Добавьте следующий код в самое начало файла *Startup.cs* , чтобы разрешить ссылки `BookstoreDatabaseSettings` и `IBookstoreDatabaseSettings`:
 
    [!code-csharp[](first-mongo-app/samples/3.x/SampleApp/Startup.cs?name=snippet_UsingBooksApiModels)]
 
@@ -269,7 +270,7 @@ ms.locfileid: "88631775"
 
    [!code-csharp[](first-mongo-app/samples/3.x/SampleApp/Services/BookService.cs?name=snippet_BookServiceClass)]
 
-   В предыдущем коде экземпляр `IBookstoreDatabaseSettings` извлекается из DI посредством внедрения конструктора. Таким образом обеспечивается доступ к значениям конфигурации в файле *appsettings.json*, которые были добавлены в разделе [Добавление модели конфигурации](#add-a-configuration-model).
+   В предыдущем коде экземпляр `IBookstoreDatabaseSettings` извлекается из DI посредством внедрения конструктора. Таким образом обеспечивается доступ к значениям конфигурации в файле *appsettings.json* , которые были добавлены в разделе [Добавление модели конфигурации](#add-a-configuration-model).
 
 1. Добавьте выделенный ниже код в `Startup.ConfigureServices`:
 
@@ -277,7 +278,7 @@ ms.locfileid: "88631775"
 
    В предыдущем коде класс `BookService` регистрируется в DI, чтобы обеспечить поддержку внедрения через конструктор в используемые классы. Время существования отдельной службы — наиболее подходящий вариант, так как `BookService` имеет прямую зависимость от `MongoClient`. В соответствии с официальными [правилами повторного использования клиента Mongo](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use)`MongoClient` следует регистрировать в DI с использованием времени существования отдельной службы.
 
-1. Добавьте следующий код в самое начало файла *Startup.cs*, чтобы разрешить ссылку `BookService`:
+1. Добавьте следующий код в самое начало файла *Startup.cs* , чтобы разрешить ссылку `BookService`:
 
    [!code-csharp[](first-mongo-app/samples/3.x/SampleApp/Startup.cs?name=snippet_UsingBooksApiServices)]
 
@@ -371,7 +372,7 @@ ms.locfileid: "88631775"
 
    Значение атрибута `[JsonProperty]`, равное `Name`, представляет имя свойства в ответе сериализованного JSON веб-API.
 
-1. Добавьте следующий код в самое начало файла *Models/Book.cs*, чтобы разрешить ссылку на атрибут `[JsonProperty]`:
+1. Добавьте следующий код в самое начало файла *Models/Book.cs* , чтобы разрешить ссылку на атрибут `[JsonProperty]`:
 
    [!code-csharp[](first-mongo-app/samples/3.x/SampleApp/Models/Book.cs?name=snippet_NewtonsoftJsonImport)]
 
@@ -442,7 +443,7 @@ ms.locfileid: "88631775"
    use BookstoreDb
    ```
 
-   Будет создана база данных с именем *BookstoreDb*, если она не существует. Если такая база данных существует, для нее уже установлено подключение для транзакций.
+   Будет создана база данных с именем *BookstoreDb* , если она не существует. Если такая база данных существует, для нее уже установлено подключение для транзакций.
 
 1. Создайте коллекцию `Books` с помощью такой команды:
 
@@ -545,7 +546,7 @@ ms.locfileid: "88631775"
 1. В раскрывающемся списке **Требуемая версия .NET Framework** выберите **.NET Core 2.2** и нажмите кнопку **Далее**.
 1. Введите *BooksApi* в поле **Имя проекта** и нажмите **Создать**.
 1. На панели **Решение** щелкните правой кнопкой мыши узел проекта **Зависимости** и выберите **Добавить пакеты**.
-1. В поле поиска введите *MongoDB.Driver*, выберите пакет *MongoDB.Driver* и нажмите **Добавить пакет**.
+1. В поле поиска введите *MongoDB.Driver* , выберите пакет *MongoDB.Driver* и нажмите **Добавить пакет**.
 1. Нажмите кнопку **Принимаю** в диалоговом окне **Принятие условий лицензионного соглашения**.
 
 ---
@@ -589,7 +590,7 @@ ms.locfileid: "88631775"
 
 ## <a name="add-a-configuration-model"></a>Добавление модели конфигурации
 
-1. Добавьте в файл *appsettings.json* перечисленные ниже значения конфигурации базы данных.
+1. Добавьте в файл *appsettings.json* следующие значения конфигурации базы данных:
 
    [!code-json[](first-mongo-app/samples/2.x/SampleApp/appsettings.json?highlight=2-6)]
 
@@ -597,7 +598,7 @@ ms.locfileid: "88631775"
 
    [!code-csharp[](first-mongo-app/samples/2.x/SampleApp/Models/BookstoreDatabaseSettings.cs)]
 
-   Предыдущий класс `BookstoreDatabaseSettings` используется для хранения значений свойств `BookstoreDatabaseSettings` файла *appsettings.json*. Свойства JSON и C# имеют одинаковые имена, что упрощает сопоставление.
+   Предыдущий класс `BookstoreDatabaseSettings` используется для хранения значений свойств `BookstoreDatabaseSettings` файла *appsettings.json* . Свойства JSON и C# имеют одинаковые имена, что упрощает сопоставление.
 
 1. Добавьте выделенный ниже код в `Startup.ConfigureServices`:
 
@@ -605,10 +606,10 @@ ms.locfileid: "88631775"
 
    В приведенном выше коде:
 
-   * Экземпляр конфигурации, к которому привязан раздел `BookstoreDatabaseSettings` файла *appsettings.json*, зарегистрирован в контейнере внедрения зависимостей (DI). Например, свойство `ConnectionString` объекта `BookstoreDatabaseSettings` заполняется свойством `BookstoreDatabaseSettings:ConnectionString` в файле *appsettings.json*.
+   * Экземпляр конфигурации, к которому привязан раздел `BookstoreDatabaseSettings` файла *appsettings.json* , зарегистрирован в контейнере внедрения зависимостей (DI). Например, свойство `ConnectionString` объекта `BookstoreDatabaseSettings` заполняется свойством `BookstoreDatabaseSettings:ConnectionString` в файле *appsettings.json* .
    * Интерфейс `IBookstoreDatabaseSettings` регистрируется в DI с использованием [времени существования отдельной службы](xref:fundamentals/dependency-injection#service-lifetimes). При внедрении экземпляр интерфейса разрешается в объект `BookstoreDatabaseSettings`.
 
-1. Добавьте следующий код в самое начало файла *Startup.cs*, чтобы разрешить ссылки `BookstoreDatabaseSettings` и `IBookstoreDatabaseSettings`:
+1. Добавьте следующий код в самое начало файла *Startup.cs* , чтобы разрешить ссылки `BookstoreDatabaseSettings` и `IBookstoreDatabaseSettings`:
 
    [!code-csharp[](first-mongo-app/samples/2.x/SampleApp/Startup.cs?name=snippet_UsingBooksApiModels)]
 
@@ -619,7 +620,7 @@ ms.locfileid: "88631775"
 
    [!code-csharp[](first-mongo-app/samples/2.x/SampleApp/Services/BookService.cs?name=snippet_BookServiceClass)]
 
-   В предыдущем коде экземпляр `IBookstoreDatabaseSettings` извлекается из DI посредством внедрения конструктора. Таким образом обеспечивается доступ к значениям конфигурации в файле *appsettings.json*, которые были добавлены в разделе [Добавление модели конфигурации](#add-a-configuration-model).
+   В предыдущем коде экземпляр `IBookstoreDatabaseSettings` извлекается из DI посредством внедрения конструктора. Таким образом обеспечивается доступ к значениям конфигурации в файле *appsettings.json* , которые были добавлены в разделе [Добавление модели конфигурации](#add-a-configuration-model).
 
 1. Добавьте выделенный ниже код в `Startup.ConfigureServices`:
 
@@ -627,7 +628,7 @@ ms.locfileid: "88631775"
 
    В предыдущем коде класс `BookService` регистрируется в DI, чтобы обеспечить поддержку внедрения через конструктор в используемые классы. Время существования отдельной службы — наиболее подходящий вариант, так как `BookService` имеет прямую зависимость от `MongoClient`. В соответствии с официальными [правилами повторного использования клиента Mongo](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use)`MongoClient` следует регистрировать в DI с использованием времени существования отдельной службы.
 
-1. Добавьте следующий код в самое начало файла *Startup.cs*, чтобы разрешить ссылку `BookService`:
+1. Добавьте следующий код в самое начало файла *Startup.cs* , чтобы разрешить ссылку `BookService`:
 
    [!code-csharp[](first-mongo-app/samples/2.x/SampleApp/Startup.cs?name=snippet_UsingBooksApiServices)]
 
@@ -719,7 +720,7 @@ ms.locfileid: "88631775"
 
    Значение атрибута `[JsonProperty]`, равное `Name`, представляет имя свойства в ответе сериализованного JSON веб-API.
 
-1. Добавьте следующий код в самое начало файла *Models/Book.cs*, чтобы разрешить ссылку на атрибут `[JsonProperty]`:
+1. Добавьте следующий код в самое начало файла *Models/Book.cs* , чтобы разрешить ссылку на атрибут `[JsonProperty]`:
 
    [!code-csharp[](first-mongo-app/samples/2.x/SampleApp/Models/Book.cs?name=snippet_NewtonsoftJsonImport)]
 

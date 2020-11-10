@@ -1,11 +1,12 @@
 ---
-title: Страницы справки по веб-API ASP.NET Core с использованием Swagger (OpenAPI)
+title: Документация по веб-API ASP.NET Core с использованием Swagger (OpenAPI)
 author: RicoSuter
 description: В этом учебнике приводится пошаговое руководство по добавлению Swagger для составления документации и страниц справки к приложению веб-API.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 10/29/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,32 +18,39 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/web-api-help-pages-using-swagger
-ms.openlocfilehash: c40aede044c78122a9057613f0eece9acf84df7b
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e5442c88048cf41e289fb476b4082cb6029b1b75
+ms.sourcegitcommit: 0d40fc4932531ce13fc4ee9432144584e03c2f1c
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633998"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93062458"
 ---
-# <a name="aspnet-core-web-api-help-pages-with-swagger--openapi"></a>Страницы справки по веб-API ASP.NET Core с использованием Swagger (OpenAPI)
+# <a name="aspnet-core-web-api-documentation-with-swagger--openapi"></a>Документация по веб-API ASP.NET Core с использованием Swagger (OpenAPI)
 
 Авторы: [Кристоф Ниенабер (Christoph Nienaber)](https://twitter.com/zuckerthoben) и [Рико Сутер (Rico Suter)](https://blog.rsuter.com/)
 
-При использовании веб-API разработчику бывает сложно разобраться в различных методах. [Swagger](https://swagger.io/) (также называется [OpenAPI](https://www.openapis.org/)) позволяет решить проблему создания полезной документации и страниц справки для веб-интерфейсов API. Он имеет такие преимущества, как интерактивная документация, создание пакета SDK для клиента и возможность обнаружения API.
+Swagger (OpenAPI) — это не зависящая от языка спецификация для описания REST API. Она позволяет компьютерам и пользователям лучше понять возможности REST API без прямого доступа к исходному коду. Ее основные цели:
 
-В этой статье демонстрируется реализация [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) и [NSwag](https://github.com/RicoSuter/NSwag) в .NET Swagger:
+* свести к минимуму объем работ, необходимых для соединения отдельных служб;
+* сократить время, необходимое для точного документирования службы.
 
-* **Swashbuckle.AspNetCore** — это проект с открытым исходным кодом, предназначенный для создания документов Swagger по веб-API ASP.NET Core.
+Две основные реализации OpenAPI для .NET — это [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) и [NSwag](https://github.com/RicoSuter/NSwag). См. следующие статьи:
 
-* **NSwag** — это еще один проект с открытым кодом для создания документации Swagger и интеграции [пользовательского интерфейса Swagger](https://swagger.io/swagger-ui/) или [ReDoc](https://github.com/Rebilly/ReDoc) в веб-API ASP.NET Core. NSwag также предлагает подходы для создания C# и клиентского кода TypeScript для API.
+* [Начало работы с Swashbuckle и ASP.NET Core](xref:tutorials/get-started-with-swashbuckle)
+* [Начало работы с NSwag и ASP.NET Core](xref:tutorials/get-started-with-nswag)
 
-## <a name="what-is-swagger--openapi"></a>Что такое Swagger (OpenAPI)?
+## <a name="openapi-vs-swagger"></a>OpenAPI и Swagger
 
-Swagger — это не зависящая от языка спецификация для описания [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API. Проект Swagger был передан [OpenAPI Initiative](https://www.openapis.org/), где он теперь называется OpenAPI. Оба названия равнозначны, но рекомендуется использовать OpenAPI. Он позволяет компьютерам и пользователям лучше понять возможности службы без прямого доступа к реализации (исходный код, доступ к сети, документация). Одна из его задач — свести к минимуму объем работ, необходимых для соединения отдельных служб. Кроме того, он позволяет сократить время, необходимое для точного документирования службы.
+Проект Swagger был передан OpenAPI Initiative в 2015 году и с тех пор называется OpenAPI. Оба имени взаимозаменяемы. Но "OpenAPI" относится к спецификации. "Swagger" относится к семейству с открытым исходным кодом и коммерческим продуктам от SmartBear, которые работают со спецификацией OpenAPI. Последующие продукты с открытым кодом, такие как [OpenAPIGenerator](https://github.com/OpenAPITools/openapi-generator), также относятся к семейству Swagger несмотря на то, что они не выпускаются SmartBear.
+
+Иными словами:
+
+* OpenAPI — это спецификация.
+* Swagger — это инструментарий, использующий спецификацию OpenAPI. Например, OpenAPIGenerator и SwaggerUI.
 
 ## <a name="openapi-specification-openapijson"></a>Спецификация OpenAPI (openapi.json)
 
-В основе потока OpenAPI лежит спецификация: по умолчанию это документ с именем *openapi.json*. Она создается цепочкой инструментов OpenAPI (или их сторонней реализацией) на основе вашей службы. Он описывает возможности API и способы доступа к нему через HTTP. Он управляет пользовательским интерфейсом Swagger и используется цепочкой инструментов, чтобы включить обнаружение и создание клиентского кода. Ниже приведен сокращенный пример спецификации OpenAPI:
+Спецификация OpenAPI — это документ, описывающий возможности API. Документ основан на XML и заметках атрибутов в контроллерах и моделях. Это основная часть потока OpenAPI, которая используется для управления такими инструментами, как SwaggerUI. По умолчанию он называется *openapi.json*. Ниже приведен сокращенный пример спецификации OpenAPI:
 
 ```json
 {
@@ -136,7 +144,7 @@ Swagger — это не зависящая от языка спецификац
 
 ![Пользовательский интерфейс Swagger](web-api-help-pages-using-swagger/_static/swagger-ui.png)
 
-Каждый метод открытого действия в ваших контроллерах можно протестировать в пользовательском интерфейсе. Щелкните имя метода, чтобы развернуть соответствующий раздел. Добавьте все необходимые параметры и нажмите кнопку **Попробуйте!** .
+Каждый метод открытого действия в ваших контроллерах можно протестировать в пользовательском интерфейсе. Выберите имя метода, чтобы развернуть соответствующий раздел. Добавьте все необходимые параметры и выберите **Попробуйте!** .
 
 ![Пример тестирования в Swagger метода GET](web-api-help-pages-using-swagger/_static/get-try-it-out.png)
 

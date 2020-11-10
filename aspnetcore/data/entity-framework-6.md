@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/14/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/entity-framework-6
-ms.openlocfilehash: 64d420d7076f1da453ee423cc4a3732eeb47b221
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: 086418c161677f585b08ed360555c93d8575e701
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876702"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059459"
 ---
 # <a name="aspnet-core-and-entity-framework-6"></a>ASP.NET Core и Entity Framework 6
 ::: moniker range=">= aspnetcore-3.0"
@@ -106,7 +107,7 @@ ms.locfileid: "88876702"
 
 * В проекте Core в файле *Startup.cs* зарегистрируйте контекст для внедрения зависимостей.    
 
-* В проекте Core в файле *appsettings.json* добавьте строку подключения.    
+* В проекте Core в файле *appsettings.json* добавьте строку подключения.  
 
 * В проекте Core добавьте контроллер и представление (или представления), чтобы проверить возможность чтения и записи данных. (Обратите внимание, что функция формирования шаблонов ASP.NET Core MVC не будет работать с контекстом EF6, на который указывает ссылка из библиотеки классов.)
 

@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 09/23/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/diagnostics
-ms.openlocfilehash: 7d2da20d04b93ebcd16fb58a4b74b5b67d37bd72
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 1f25ae76e5a480e5e6f247e4ac78d06dd4e778e9
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722927"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060447"
 ---
 # <a name="logging-and-diagnostics-in-grpc-on-net"></a>Ведение журнала и диагностика в gRPC на платформе .NET
 
@@ -30,9 +31,9 @@ ms.locfileid: "90722927"
 
 В этой статье приводятся рекомендации по сбору диагностических данных из приложения gRPC с целью устранения неполадок. Здесь рассматриваются такие темы:
 
-* **Ведение журналов** — структурированные журналы, записываемые в [систему ведения журналов .NET Core](xref:fundamentals/logging/index). Интерфейс <xref:Microsoft.Extensions.Logging.ILogger> используется платформами приложений для записи журналов, а пользователями — для ведения собственных журналов в приложении.
-* **Трассировка** — события, которые связаны с операцией, записанной с помощью `DiaganosticSource` и `Activity`. Трассировки из источника диагностических данных обычно используются для сбора данных телеметрии приложений такими библиотеками, как [Application Insights](/azure/azure-monitor/app/asp-net-core) и [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
-* **Метрики** — представление мер данных за интервалы времени, например количество запросов в секунду. Метрики создаются с помощью `EventCounter` и могут отслеживаться с помощью программы командной строки [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) или [Application Insights](/azure/azure-monitor/app/eventcounters).
+* **Ведение журналов**  — структурированные журналы, записываемые в [систему ведения журналов .NET Core](xref:fundamentals/logging/index). Интерфейс <xref:Microsoft.Extensions.Logging.ILogger> используется платформами приложений для записи журналов, а пользователями — для ведения собственных журналов в приложении.
+* **Трассировка**  — события, которые связаны с операцией, записанной с помощью `DiaganosticSource` и `Activity`. Трассировки из источника диагностических данных обычно используются для сбора данных телеметрии приложений такими библиотеками, как [Application Insights](/azure/azure-monitor/app/asp-net-core) и [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
+* **Метрики**  — представление мер данных за интервалы времени, например количество запросов в секунду. Метрики создаются с помощью `EventCounter` и могут отслеживаться с помощью программы командной строки [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) или [Application Insights](/azure/azure-monitor/app/eventcounters).
 
 ## <a name="logging"></a>Logging
 
@@ -45,7 +46,7 @@ ms.locfileid: "90722927"
 
 Так как службы gRPC размещаются на платформе ASP.NET Core, они используют систему ведения журналов ASP.NET Core. В конфигурации по умолчанию gRPC записывает весьма ограниченное количество сведений, но это можно настроить. Подробные сведения о настройке ведения журналов в ASP.NET Core см. в документации по [ведению журналов в ASP.NET Core](xref:fundamentals/logging/index#configuration).
 
-gRPC добавляет журналы в категорию `Grpc`. Чтобы включить подробные журналы от gRPC, настройте префиксы `Grpc` с уровнем `Debug` в файле *appsettings.json*, добавив следующие элементы в подраздел `LogLevel` раздела `Logging`:
+gRPC добавляет журналы в категорию `Grpc`. Чтобы включить подробные журналы от gRPC, настройте префиксы `Grpc` с уровнем `Debug` в файле *appsettings.json* , добавив следующие элементы в подраздел `LogLevel` раздела `Logging`:
 
 [!code-json[](diagnostics/sample/logging-config.json?highlight=7)]
 
@@ -113,8 +114,8 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 Клиент gRPC добавляет [область ведения журналов](../fundamentals/logging/index.md#log-scopes) для журналов, создаваемых во время вызова gRPC. Область включает в себя метаданные, связанные с вызовом gRPC.
 
-* **GrpcMethodType** — тип метода gRPC. Возможными значениями являются имена из перечисления `Grpc.Core.MethodType`, например Unary.
-* **GrpcUri** — относительный универсальный код ресурса (URI) метода gRPC, например /greet.Greeter/SayHellos.
+* **GrpcMethodType**  — тип метода gRPC. Возможными значениями являются имена из перечисления `Grpc.Core.MethodType`, например Unary.
+* **GrpcUri**  — относительный универсальный код ресурса (URI) метода gRPC, например /greet.Greeter/SayHellos.
 
 #### <a name="sample-logging-output"></a>Пример выходных данных ведения журнала
 
@@ -222,7 +223,7 @@ Press p to pause, r to resume, q to quit.
 
 Еще один способ отслеживания метрик gRPC заключается в сборе данных счетчиков с помощью [пакета Microsoft.ApplicationInsights.EventCounterCollector](/azure/azure-monitor/app/eventcounters) Application Insights. После настройки Application Insights собирает показания стандартных счетчиков .NET во время выполнения. Показания счетчиков gRPC по умолчанию не собираются, но в Application Insights можно [включить дополнительные счетчики](/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected).
 
-Счетчики gRPC, показания которых собираются Application Insights, указываются в файле *Startup.cs*:
+Счетчики gRPC, показания которых собираются Application Insights, указываются в файле *Startup.cs* :
 
 ```csharp
     using Microsoft.ApplicationInsights.Extensibility.EventCounterCollector;

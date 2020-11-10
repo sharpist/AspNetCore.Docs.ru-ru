@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: e01704cb10c88f3e9442e74034f5e5d39787f300
-ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
+ms.openlocfilehash: 51a1e2a90259898262ac655b7a0e8a55d766f0c7
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/02/2020
-ms.locfileid: "91653897"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061045"
 ---
 # <a name="part-3-no-locrazor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Часть 3. Razor Pages с EF Core в ASP.NET Core — сортировка, фильтрация, разбиение на страницы
 
@@ -61,7 +62,7 @@ ms.locfileid: "91653897"
 
 [!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_Ternary)]
 
-В коде используется [условный оператор C# ?:](/dotnet/csharp/language-reference/operators/conditional-operator). Оператор `?:` является тернарным (принимает три операнда). Первая строка указывает, что, когда `sortOrder` равен null или пуст, `NameSort` имеет значение `name_desc`. Если `sortOrder`***не является*** равным null или пустым, для `NameSort` задается пустая строка.
+В коде используется [условный оператор C# ?:](/dotnet/csharp/language-reference/operators/conditional-operator). Оператор `?:` является тернарным (принимает три операнда). Первая строка указывает, что, когда `sortOrder` равен null или пуст, `NameSort` имеет значение `name_desc`. Если `sortOrder` * *_не является_* _ равным null или пустым, для `NameSort` задается пустая строка.
 
 Следующие два оператора устанавливают гиперссылки в заголовках столбцов на странице следующим образом:
 
@@ -84,7 +85,7 @@ ms.locfileid: "91653897"
 
 ### <a name="add-column-heading-hyperlinks-to-the-student-index-page"></a>Добавление гиперссылок для заголовков столбцов на странице индексов учащихся
 
-Замените код в файле *Students/Index.cshtml* на приведенный ниже код. Изменения выделены.
+Замените код в файле _Students/Index.cshtml* на приведенный ниже код. Изменения выделены.
 
 [!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml?highlight=5,8,17-19,22,25-27,33)]
 
@@ -140,7 +141,7 @@ Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
 ### <a name="update-the-no-locrazor-page"></a>Обновление страницы Razor
 
-Замените код в файле *Pages/Students/Index.cshtml*, чтобы создать кнопку **Search** (Поиск).
+Замените код в файле *Pages/Students/Index.cshtml* , чтобы создать кнопку **Search** (Поиск).
 
 [!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml?highlight=14-23)]
 
@@ -260,7 +261,7 @@ https://localhost:5001/Students?SearchString=an
 
 ### <a name="create-the-page-model"></a>Создание модели страницы
 
-Измените файл *Pages/About.cshtml.cs*, используя следующий код:
+Измените файл *Pages/About.cshtml.cs* , используя следующий код:
 
 [!code-csharp[Main](intro/samples/cu30/Pages/About.cshtml.cs)]
 
@@ -503,7 +504,7 @@ http://localhost:5000/Students?SearchString=an
 
 ## <a name="update-the-about-page-to-show-student-statistics"></a>Изменение страницы "About" (О программе) для отображения статистики учащихся
 
-В этом шаге изменяется страница *Pages/About.cshtml*, чтобы отобразить количество зачисленных учащихся по дням. Это изменение использует группирование и включает следующие шаги:
+В этом шаге изменяется страница *Pages/About.cshtml* , чтобы отобразить количество зачисленных учащихся по дням. Это изменение использует группирование и включает следующие шаги:
 
 * Создание модели представления для данных, используемых страницей **About** (О программе).
 * Обновление страницы "About" (О программе) для использования модели представления.
@@ -520,7 +521,7 @@ http://localhost:5000/Students?SearchString=an
 
 Веб-шаблоны в ASP.NET Core 2.2 не включают страницу About. Если вы используете ASP.NET Core 2.2, создайте страницу About Razor Page.
 
-Измените файл *Pages/About.cshtml.cs*, используя следующий код:
+Измените файл *Pages/About.cshtml.cs* , используя следующий код:
 
 [!code-csharp[](intro/samples/cu21/Pages/About.cshtml.cs)]
 

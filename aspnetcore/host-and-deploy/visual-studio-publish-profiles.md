@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/28/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/visual-studio-publish-profiles
-ms.openlocfilehash: e86a648e2707e808452e3bc92d991058c8fde480
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: 98dfd539171807cbf94d4ac8746458152c809495
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91754649"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057574"
 ---
 # <a name="visual-studio-publish-profiles-pubxml-for-aspnet-core-app-deployment"></a>Профили публикации Visual Studio (.pubxml) для развертывания приложений ASP.NET Core
 
@@ -39,7 +40,7 @@ ms.locfileid: "91754649"
 </Project>
 ```
 
-В описанном выше элементе `<Project>` атрибут `Sdk` импортирует [свойства](/visualstudio/msbuild/msbuild-properties) и [целевые объекты](/visualstudio/msbuild/msbuild-targets) для MSBuild из файлов *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\ SDK.props* и *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets*, соответственно. По умолчанию `$(MSBuildSDKsPath)` (в Visual Studio 2019 Enterprise) находится в папке *%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Sdks*.
+В описанном выше элементе `<Project>` атрибут `Sdk` импортирует [свойства](/visualstudio/msbuild/msbuild-properties) и [целевые объекты](/visualstudio/msbuild/msbuild-targets) для MSBuild из файлов *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\ SDK.props* и *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets* , соответственно. По умолчанию `$(MSBuildSDKsPath)` (в Visual Studio 2019 Enterprise) находится в папке *%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Sdks*.
 
 `Microsoft.NET.Sdk.Web` ([Веб-пакет SDK](xref:razor-pages/web-sdk)) зависит от других пакетов SDK, включая `Microsoft.NET.Sdk` ([пакет SDK для .NET Core](/dotnet/core/project-sdk/msbuild-props)) и `Microsoft.NET.Sdk.Razor` ([пакет SDK для Razor](xref:razor-pages/sdk)). Импортируются свойства и целевые объекты MSBuild, связанные с каждым из зависимых пакетов SDK. Целевые объекты публикации импортируют подходящий набор целевых объектов в зависимости от используемых методов публикации.
 
@@ -67,12 +68,12 @@ ms.locfileid: "91754649"
 
 ::: moniker-end
 
-Чтобы явным образом добавить файл в список публикации, поместите его в *CSPROJ*-файл, как показано в разделе [включения файлов](#include-files).
+Чтобы явным образом добавить файл в список публикации, поместите его в *CSPROJ* -файл, как показано в разделе [включения файлов](#include-files).
 
 При нажатии кнопки **Публикация** в Visual Studio или при публикации из командной строки происходит следующее:
 
 * Вычисляются свойства и (или) элементы (файлы, требующие сборки).
-* **Только Visual Studio**: пакеты NuGet восстанавливаются. (Восстановление выполняется пользователем в интерфейсе командной строки.)
+* **Только Visual Studio** : пакеты NuGet восстанавливаются. (Восстановление выполняется пользователем в интерфейсе командной строки.)
 * Выполняется сборка проекта.
 * Вычисляются публикуемые элементы (файлы, требующие публикации).
 * Публикуется проект (вычисляемые файлы копируются в место назначения публикации.)
@@ -81,7 +82,7 @@ ms.locfileid: "91754649"
 
 ## <a name="basic-command-line-publishing"></a>Простая публикация из командной строки
 
-Публикация из командной строки работает на всех платформах, поддерживаемых .NET Core, и не требует наличия Visual Studio. В приведенных ниже примерах команда .NET Core CLI [dotnet publish](/dotnet/core/tools/dotnet-publish) выполняется из папки проекта (где хранится *CSPROJ*-файл). Если папка проекта не является текущим рабочим каталогом, явным образом передайте путь к файлу проекта. Пример:
+Публикация из командной строки работает на всех платформах, поддерживаемых .NET Core, и не требует наличия Visual Studio. В приведенных ниже примерах команда .NET Core CLI [dotnet publish](/dotnet/core/tools/dotnet-publish) выполняется из папки проекта (где хранится *CSPROJ* -файл). Если папка проекта не является текущим рабочим каталогом, явным образом передайте путь к файлу проекта. Пример:
 
 ```dotnetcli
 dotnet publish C:\Webs\Web1
@@ -150,11 +151,11 @@ dotnet publish -c Release /p:PublishDir=//r8/release/AdminWeb
 
 Чтобы определить наиболее подходящий целевой объект публикации, см. раздел [Какие варианты публикации мне подойдут](/visualstudio/ide/not-in-toc/web-publish-options).
 
-Если вы выбрали **Папка** в качестве целевого объекта, укажите путь к папке, в которой будут храниться опубликованные ресурсы. Путь к папке по умолчанию: *bin\\{КОНФИГУРАЦИЯ ПРОЕКТА}\\{МОНИКЕР ЦЕЛЕВОЙ ПЛАТФОРМЫ}\publish\\* . Например, *bin\Release\netcoreapp2.2\publish\\* . Нажмите кнопку **Создать профиль**, чтобы завершить процесс.
+Если вы выбрали **Папка** в качестве целевого объекта, укажите путь к папке, в которой будут храниться опубликованные ресурсы. Путь к папке по умолчанию: *bin\\{КОНФИГУРАЦИЯ ПРОЕКТА}\\{МОНИКЕР ЦЕЛЕВОЙ ПЛАТФОРМЫ}\publish\\* . Например, *bin\Release\netcoreapp2.2\publish\\* . Нажмите кнопку **Создать профиль** , чтобы завершить процесс.
 
-Когда профиль публикации будет создан, изменения отразятся на вкладке **Публикация**. Новый профиль появится в раскрывающемся списке. Под раскрывающимся списком щелкните **Создать новый профиль**, чтобы создать еще один профиль.
+Когда профиль публикации будет создан, изменения отразятся на вкладке **Публикация**. Новый профиль появится в раскрывающемся списке. Под раскрывающимся списком щелкните **Создать новый профиль** , чтобы создать еще один профиль.
 
-Инструмент публикации Visual Studio создает файл MSBuild *Properties/PublishProfiles/{имя_профиля}.pubxml* с описанием профиля публикации. *PUBXML*-файл:
+Инструмент публикации Visual Studio создает файл MSBuild *Properties/PublishProfiles/{имя_профиля}.pubxml* с описанием профиля публикации. *PUBXML* -файл:
 
 * Содержит настройки конфигурации публикации и используется в процессе публикации.
 * Может меняться для настройки процесса сборки и публикации.
@@ -306,10 +307,10 @@ msbuild {PATH}
 * `{PROFILE}`. имя профиля публикации.
 * `{USERNAME}`. имя пользователя MSDeploy. `{USERNAME}` можно найти в профиле публикации.
 * `{PASSWORD}`. пароль MSDeploy. Получите `{PASSWORD}` из файла *{PROFILE}.PublishSettings*. Файл с расширением *.PublishSettings* можно скачать одним из следующих способов:
-  * **Обозреватель решений**: Выберите **Представление** > **Cloud Explorer**. Подключитесь к подписке Azure. Откройте **Службы приложений**. Щелкните правой кнопкой приложение. Выберите **Загрузить профиль публикации**.
+  * **Обозреватель решений** : Выберите **Представление** > **Cloud Explorer**. Подключитесь к подписке Azure. Откройте **Службы приложений**. Щелкните правой кнопкой приложение. Выберите **Загрузить профиль публикации**.
   * Портал Azure: щелкните **Скачать профиль публикации** на панели **Обзор** веб-приложения.
 
-В следующем примере используется профиль публикации с именем *AzureWebApp — веб-развертывание*:
+В следующем примере используется профиль публикации с именем *AzureWebApp — веб-развертывание* :
 
 ```bash
 msbuild "AzureWebApp.csproj" 
@@ -334,7 +335,7 @@ dotnet msbuild "AzureWebApp.csproj"
 
 ## <a name="set-the-environment"></a>Указание среды
 
-Включите свойство `<EnvironmentName>` в профиле публикации (*PUBXML*) или файле проекта, чтобы задать [среду](xref:fundamentals/environments) приложения:
+Включите свойство `<EnvironmentName>` в профиле публикации ( *PUBXML* ) или файле проекта, чтобы задать [среду](xref:fundamentals/environments) приложения:
 
 ```xml
 <PropertyGroup>
@@ -350,11 +351,11 @@ dotnet msbuild "AzureWebApp.csproj"
 
 * Артефакты сборки
 * Файлы и папки, соответствующие следующим стандартным маскам:
-  * `**\*.config` (например, *web.config*);
-  * `**\*.json` (например, *appsettings.json*).
+  * `**\*.config` (например, *web.config* );
+  * `**\*.json` (например, *appsettings.json* ).
   * `wwwroot\**`
 
-MSBuild поддерживает [стандартные маски](https://gruntjs.com/configuring-tasks#globbing-patterns). Например, представленный ниже элемент `<Content>` запретит копирование текстовых файлов ( *.txt*) из папки *wwwroot\content* и всех ее подпапок.
+MSBuild поддерживает [стандартные маски](https://gruntjs.com/configuring-tasks#globbing-patterns). Например, представленный ниже элемент `<Content>` запретит копирование текстовых файлов ( *.txt* ) из папки *wwwroot\content* и всех ее подпапок.
 
 ```xml
 <ItemGroup>
@@ -450,8 +451,8 @@ Done Building Project "C:\Webs\Web1\Web1.csproj" (default targets).
 
 Предыдущая разметка:
 
-* может размещаться в файле *.csproj* или в профиле публикации. Если добавить ее в файл *CSPROJ*, она будет включаться в каждый профиль публикации этого проекта.
-* Объявляет элемент `_CustomFiles` для хранения файлов, соответствующих стандартной маске атрибута `Include`. Папка *образов*, указанная в шаблоне, находится вне каталога проекта. [Зарезервированное свойство](/visualstudio/msbuild/msbuild-reserved-and-well-known-properties) с именем `$(MSBuildProjectDirectory)` разрешается в абсолютный путь файла проекта.
+* может размещаться в файле *.csproj* или в профиле публикации. Если добавить ее в файл *CSPROJ* , она будет включаться в каждый профиль публикации этого проекта.
+* Объявляет элемент `_CustomFiles` для хранения файлов, соответствующих стандартной маске атрибута `Include`. Папка *образов* , указанная в шаблоне, находится вне каталога проекта. [Зарезервированное свойство](/visualstudio/msbuild/msbuild-reserved-and-well-known-properties) с именем `$(MSBuildProjectDirectory)` разрешается в абсолютный путь файла проекта.
 * Предоставляет список файлов элементу `DotNetPublishFiles`. По умолчанию элемент `<DestinationRelativePath>` в элементе пуст. Значение по умолчанию переопределяется в разметке и использует [стандартные метаданные элементов](/visualstudio/msbuild/msbuild-well-known-item-metadata), например `%(RecursiveDir)`. Внутренний текст представляет папку *wwwroot/images* опубликованного сайта.
 
 ### <a name="selective-file-inclusion"></a>Включение выборочных файлов

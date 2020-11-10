@@ -5,6 +5,7 @@ description: Часть 2 серии руководств по Razor Pages.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 4099873142b99afb7f0659dfd9a4fde8bec3081d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 84198760cf8302d379c7630b65641e65b66d72a2
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633777"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93050931"
 ---
 # <a name="part-2-add-a-model-to-a-no-locrazor-pages-app-in-aspnet-core"></a>Часть 2. Добавление модели в приложение Razor Pages в ASP.NET Core
 
@@ -78,9 +79,9 @@ ms.locfileid: "88633777"
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Создайте папку *Pages/Movies*:
+Создайте папку *Pages/Movies* :
 
-* Щелкните правой кнопкой мыши папку *Pages* и выберите **Добавить** > **Новая папка**.
+* Щелкните правой кнопкой мыши папку *Pages* и выберите **Добавить**  > **Новая папка**.
 * Назовите папку *Movies*
 
 Щелкните правой кнопкой мыши папку *Pages/Movies* и выберите **Добавить**>**New Scaffolded Item** (Создать шаблонный элемент).
@@ -94,7 +95,7 @@ ms.locfileid: "88633777"
 Заполните поля в диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** :
 
 * В раскрывающемся списке **Класс модели** выберите **Фильм (RazorPagesMovie.Models)** .
-* В строке **Класс контекста данных** щелкните значок плюса **+** и измените сгенерированное имя RazorPagesMovie.**Models**.RazorPagesMovieContext на RazorPagesMovie.**Data**.RazorPagesMovieContext. [Это изменение](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) не требуется. Оно создает класс контекста базы данных с правильным пространством имен.
+* В строке **Класс контекста данных** щелкните значок плюса **+** и измените сгенерированное имя RazorPagesMovie. **Models**.RazorPagesMovieContext на RazorPagesMovie. **Data**.RazorPagesMovieContext. [Это изменение](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) не требуется. Оно создает класс контекста базы данных с правильным пространством имен.
 * Нажмите **Добавить**.
 
 ![Изображение из предыдущих инструкций.](model/_static/3/arp.png)
@@ -106,20 +107,20 @@ ms.locfileid: "88633777"
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
-* Откройте окно командной строки в папке проекта (папке, где находятся файлы *Program.cs*, *Startup.cs* и *.csproj* файлов).
+* Откройте окно командной строки в папке проекта (папке, где находятся файлы *Program.cs* , *Startup.cs* и *.csproj* файлов).
 * Установка средства формирования шаблонов:
 
   ```dotnetcli
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* **Для Windows**: Выполните следующую команду:
+* **Для Windows** : Выполните следующую команду:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
-* **Для macOS и Linux**: Выполните следующую команду:
+* **Для macOS и Linux** : Выполните следующую команду:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
@@ -132,9 +133,9 @@ ms.locfileid: "88633777"
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-Создайте папку *Pages/Movies*:
+Создайте папку *Pages/Movies* :
 
-* Щелкните правой кнопкой мыши папку *Pages* и выберите **Добавить** > **Новая папка**.
+* Щелкните правой кнопкой мыши папку *Pages* и выберите **Добавить**  > **Новая папка**.
 * Назовите папку *Movies*
 
 Щелкните правой кнопкой мыши папку *Pages/Movies* и выберите **Добавить** > **New Scaffolding...** (Создать шаблон...).
@@ -148,7 +149,7 @@ ms.locfileid: "88633777"
 Заполните поля в диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** :
 
 * В раскрывающемся списке **Класс модели** выберите или введите **Фильм (RazorPagesMovie.Models)** .
-* В строке **Класс контекста данных** введите имя нового класса RazorPagesMovie.**Data**.RazorPagesMovieContext. [Это изменение](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) не требуется. Оно создает класс контекста базы данных с правильным пространством имен.
+* В строке **Класс контекста данных** введите имя нового класса RazorPagesMovie. **Data**.RazorPagesMovieContext. [Это изменение](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) не требуется. Оно создает класс контекста базы данных с правильным пространством имен.
 * Нажмите **Добавить**.
 
 ![Изображение из предыдущих инструкций.](model/_static/arpMac.png)
@@ -173,7 +174,7 @@ dotnet tool install --global dotnet-ef
 
 В процессе формирования шаблонов создаются и обновляются указанные ниже файлы.
 
-* *Pages/Movies*: Create, Delete, Details, Edit и Index.
+* *Pages/Movies* : Create, Delete, Details, Edit и Index.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Обновленные возможности
@@ -186,7 +187,7 @@ dotnet tool install --global dotnet-ef
 
 В процессе формирования шаблонов создаются и обновляются указанные ниже файлы.
 
-* *Pages/Movies*: Create, Delete, Details, Edit и Index.
+* *Pages/Movies* : Create, Delete, Details, Edit и Index.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Обновленные возможности
@@ -199,7 +200,7 @@ dotnet tool install --global dotnet-ef
 
 В процессе формирования шаблонов создаются указанные ниже файлы.
 
-* *Pages/Movies*: Create, Delete, Details, Edit и Index.
+* *Pages/Movies* : Create, Delete, Details, Edit и Index.
 
 В следующем разделе приводится описание созданных файлов.
 
@@ -243,7 +244,7 @@ Update-Database
 
 Команда миграции формирует код для создания схемы исходной базы данных. Схема создается на основе модели, указанной в `DbContext`. Аргумент `InitialCreate` используется для присвоения имен миграциям. Можно использовать любое имя, однако по соглашению выбирается имя, которое описывает миграцию.
 
-Команда `update` выполняет метод `Up` в миграциях, которые не были применены. В этом случае `update` запускает метод `Up` в файле *Migrations/\<time-stamp>_InitialCreate.cs*, который создает базу данных.
+Команда `update` выполняет метод `Up` в миграциях, которые не были применены. В этом случае `update` запускает метод `Up` в файле *Migrations/\<time-stamp>_InitialCreate.cs* , который создает базу данных.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -263,7 +264,7 @@ ASP.NET Core поддерживает [внедрение зависимосте
 
 Представленный выше код создает свойство [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) для набора сущностей. В терминологии Entity Framework набор сущностей обычно соответствует таблице базы данных. Сущность соответствует строке в таблице.
 
-Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json*.
+Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json* .
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -297,7 +298,7 @@ Login failed for user 'User-name'.
   > [!NOTE]
   > В поле `Price` нельзя вводить десятичные запятые. Чтобы обеспечить поддержку [проверки jQuery](https://jqueryvalidation.org/) для других языков, кроме английского, используйте вместо десятичной точки запятую (,), а для отображения данных в форматах для других языков, кроме английского, выполните глобализацию приложения. Инструкции по глобализации см. на [сайте GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
-* Протестируйте ссылки **Изменить**, **Сведения** и **Удалить**.
+* Протестируйте ссылки **Изменить** , **Сведения** и **Удалить**.
 
 В следующем учебнике рассматриваются файлы, созданные с помощью формирования шаблонов.
 
@@ -359,9 +360,9 @@ Login failed for user 'User-name'.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Создайте папку *Pages/Movies*:
+Создайте папку *Pages/Movies* :
 
-* Щелкните правой кнопкой мыши папку *Pages* и выберите **Добавить** > **Новая папка**.
+* Щелкните правой кнопкой мыши папку *Pages* и выберите **Добавить**  > **Новая папка**.
 * Назовите папку *Movies*
 
 Щелкните правой кнопкой мыши папку *Pages/Movies* и выберите **Добавить**>**New Scaffolded Item** (Создать шаблонный элемент).
@@ -391,15 +392,15 @@ to use Data, it should not use models. That will make the namespace the same for
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
-* Откройте окно командной строки в папке проекта (папке, где находятся файлы *Program.cs*, *Startup.cs* и *.csproj* файлов).
+* Откройте окно командной строки в папке проекта (папке, где находятся файлы *Program.cs* , *Startup.cs* и *.csproj* файлов).
 
-* **Для Windows**: Выполните следующую команду:
+* **Для Windows** : Выполните следующую команду:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
-* **Для macOS и Linux**: Выполните следующую команду:
+* **Для macOS и Linux** : Выполните следующую команду:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
@@ -409,9 +410,9 @@ to use Data, it should not use models. That will make the namespace the same for
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-Создайте папку *Pages/Movies*:
+Создайте папку *Pages/Movies* :
 
-* Щелкните правой кнопкой мыши папку *Pages* и выберите **Добавить** > **Новая папка**.
+* Щелкните правой кнопкой мыши папку *Pages* и выберите **Добавить**  > **Новая папка**.
 * Назовите папку *Movies*
 
 Щелкните правой кнопкой мыши папку *Pages/Movies* и выберите **Добавить**>**New Scaffolded Item** (Создать шаблонный элемент).
@@ -438,7 +439,7 @@ to use Data, it should not use models. That will make the namespace the same for
 
 ### <a name="files-created"></a>Создаваемые файлы
 
-* *Pages/Movies*: Create, Delete, Details, Edit и Index.
+* *Pages/Movies* : Create, Delete, Details, Edit и Index.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="file-updated"></a>Обновляемые файлы
@@ -469,7 +470,7 @@ Add-Migration Initial
 Update-Database
 ```
 
-Команда `Add-Migration` формирует код для создания схемы исходной базы данных. Схема создается на основе модели, указанной в `DbContext` (в файле *RazorPagesMovieContext.cs*). Аргумент `InitialCreate` используется для присвоения имен миграции. Можно использовать любое имя, однако по соглашению используется имя, которое описывает миграцию. Для получения дополнительной информации см. <xref:data/ef-mvc/migrations>.
+Команда `Add-Migration` формирует код для создания схемы исходной базы данных. Схема создается на основе модели, указанной в `DbContext` (в файле *RazorPagesMovieContext.cs* ). Аргумент `InitialCreate` используется для присвоения имен миграции. Можно использовать любое имя, однако по соглашению используется имя, которое описывает миграцию. Для получения дополнительной информации см. <xref:data/ef-mvc/migrations>.
 
 Команда `Update-Database` выполняет метод `Up` в файле *Migrations/\<time-stamp>_InitialCreate.cs*. Метод `Up` создает базу данных.
 
@@ -483,7 +484,7 @@ Update-Database
 
 ---
 > [!NOTE]
-> В результате выполнения предыдущих команд выводится следующее предупреждение: "*Для десятичного столбца "Price" в типе сущности "Movie" не указан тип. Это приведет к тому, что значения будут усекаться без вмешательства пользователя, если они не помещаются в значения точности и масштаба по умолчанию. С помощью метода "HasColumnType()" явно укажите тип столбца SQL Server, который может вместить все значения.* " Вы можете игнорировать это предупреждение, оно будет исправлено в следующем учебнике.
+> В результате выполнения предыдущих команд выводится следующее предупреждение: " *Для десятичного столбца "Price" в типе сущности "Movie" не указан тип. Это приведет к тому, что значения будут усекаться без вмешательства пользователя, если они не помещаются в значения точности и масштаба по умолчанию. С помощью метода "HasColumnType()" явно укажите тип столбца SQL Server, который может вместить все значения.* " Вы можете игнорировать это предупреждение, оно будет исправлено в следующем учебнике.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -503,7 +504,7 @@ ASP.NET Core поддерживает [внедрение зависимосте
 
 Представленный выше код создает свойство [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) для набора сущностей. В терминологии Entity Framework набор сущностей обычно соответствует таблице базы данных. Сущность соответствует строке в таблице.
 
-Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json*.
+Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json* .
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -537,7 +538,7 @@ Login failed for user 'User-name'.
   > [!NOTE]
   > В поле `Price` нельзя вводить десятичные запятые. Чтобы обеспечить поддержку [проверки jQuery](https://jqueryvalidation.org/) для других языков, кроме английского, используйте вместо десятичной точки запятую (,), а для отображения данных в форматах для других языков, кроме английского, выполните глобализацию приложения. Инструкции по глобализации см. на [сайте GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
-* Протестируйте ссылки **Изменить**, **Сведения** и **Удалить**.
+* Протестируйте ссылки **Изменить** , **Сведения** и **Удалить**.
 
 В следующем учебнике рассматриваются файлы, созданные с помощью формирования шаблонов.
 

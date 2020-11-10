@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/file-providers
-ms.openlocfilehash: 30c28e7bd4cd9c926b157f5a7b9e6688bd5b9b9a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 16e5ead9898125c804da4d60322510474201d897
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634609"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059446"
 ---
 # <a name="file-providers-in-aspnet-core"></a>Поставщики файлов в ASP.NET Core
 
@@ -114,7 +115,7 @@ var physicalProvider = _env.ContentRootFileProvider;
 
 Пример приложения *FileProviderSample* создает `ManifestEmbeddedFileProvider` и передает в соответствующий конструктор текущую выполняемую сборку.
 
-*Startup.cs*:
+*Startup.cs* :
 
 ```csharp
 var manifestEmbeddedProvider = 
@@ -153,7 +154,7 @@ var manifestEmbeddedProvider =
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>. свойство, которое можно проверить, чтобы определить, произошло ли изменение.
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>. вызывается при обнаружении изменений по указанной строке пути. Каждый токен изменения выполняет соответствующий обратный вызов только в ответ на отдельное изменение. Чтобы реализовать непрерывный мониторинг, используйте <xref:System.Threading.Tasks.TaskCompletionSource`1>, как показано ниже, или повторно создавайте экземпляры `IChangeToken` в ответ на изменения.
 
-Пример приложения *WatchConsole* записывает сообщение при каждом изменении файла *TXT* в каталоге *TextFiles*:
+Пример приложения *WatchConsole* записывает сообщение при каждом изменении файла *TXT* в каталоге *TextFiles* :
 
 [!code-csharp[](file-providers/samples/3.x/WatchConsole/Program.cs?name=snippet1)]
 
@@ -175,8 +176,8 @@ var manifestEmbeddedProvider =
 |---------|---------|
 |`directory/file.txt`|Соответствует конкретному файлу в заданном каталоге.|
 |`directory/*.txt`|Соответствует всем файлам с расширением *.txt* в заданном каталоге.|
-|`directory/*/appsettings.json`|Соответствует всем файлам *appsettings.json* в любом каталоге, расположенном ровно на один уровень ниже каталога *directory*.|
-|`directory/**/*.txt`|Соответствует всем файлам с расширением *TXT*, находящимся на любом уровне ниже каталога *directory*.|
+|`directory/*/appsettings.json`|Соответствует всем файлам *appsettings.json* в любом каталоге, расположенном ровно на один уровень ниже папки *directory*.|
+|`directory/**/*.txt`|Соответствует всем файлам с расширением *TXT* , находящимся на любом уровне ниже каталога *directory*.|
 
 ::: moniker-end
 
@@ -261,7 +262,7 @@ var physicalProvider = _env.ContentRootFileProvider;
 
 Наш пример приложения создает `ManifestEmbeddedFileProvider` и передает в соответствующий конструктор текущую выполняемую сборку.
 
-*Startup.cs*:
+*Startup.cs* :
 
 ```csharp
 var manifestEmbeddedProvider = 
@@ -323,6 +324,6 @@ var manifestEmbeddedProvider =
 Соответствует всем файлам `appsettings.json` в любом каталоге, расположенном ровно на один уровень ниже каталога *directory*.
 
 **`directory/**/*.txt`**  
-Соответствует всем файлам с расширением *.txt*, находящимся на любом уровне ниже каталога *directory*.
+Соответствует всем файлам с расширением *.txt* , находящимся на любом уровне ниже каталога *directory*.
 
 ::: moniker-end

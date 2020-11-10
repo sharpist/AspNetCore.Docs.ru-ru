@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 08/28/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/httpapi
-ms.openlocfilehash: fa4e7489920338344b78874690e64d4080b5a719
-ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
+ms.openlocfilehash: 45e2a1a5e6a9f00294147db769454b78c5b866e5
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91805587"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059940"
 ---
 # <a name="create-json-web-apis-from-grpc"></a>Создание веб-интерфейсов API JSON из gRPC
 
@@ -38,7 +39,7 @@ ms.locfileid: "91805587"
 
 gRPC — это современный способ обмена данными между приложениями. gRPC использует HTTP/2, потоковую передачу, Protobuf и контракты сообщений для создания высокопроизводительных служб в реальном времени.
 
-gRPC имеет единственное ограничение — его можно использовать не на каждой платформе. Браузеры не полностью поддерживают HTTP/2, поэтому REST и JSON являются основными способами передачи данных в браузерные приложения. Даже при всех преимуществах gRPC REST и JSON играют важную роль в современных приложениях. Создание веб-API gRPC ***и*** JSON добавляет нежелательные затраты на разработку приложений.
+gRPC имеет единственное ограничение — его можно использовать не на каждой платформе. Браузеры не полностью поддерживают HTTP/2, поэтому REST и JSON являются основными способами передачи данных в браузерные приложения. Даже при всех преимуществах gRPC REST и JSON играют важную роль в современных приложениях. Создание веб-API gRPC * **и** _ JSON добавляет нежелательные затраты на разработку приложений.
 
 В этом документе рассматривается создание веб-API JSON с помощью служб gRPC.
 
@@ -46,7 +47,7 @@ gRPC имеет единственное ограничение — его мо
 
 API gRPC HTTP — это экспериментальная сборка для ASP.NET Core, которая создает API-интерфейсы RESTful JSON для служб gRPC. После настройки API gRPC HTTP позволяет приложениям вызывать службы gRPC, используя следующие привычные понятия HTTP:
 
-* Команды HTTP
+_ HTTP-команды
 * привязку параметра URL-адреса;
 * запросы и ответы JSON.
 
@@ -132,7 +133,7 @@ API gRPC HTTP является экспериментом. Это решение
 
 ## <a name="grpc-gateway"></a>grpc-gateway
 
-[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) — еще одна технология создания API RESTful JSON из служб gRPC. Она использует такие же заметки в файлах *PROTO*, чтобы сопоставлять понятия HTTP со службами gRPC.
+[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) — еще одна технология создания API RESTful JSON из служб gRPC. Она использует такие же заметки в файлах *PROTO* , чтобы сопоставлять понятия HTTP со службами gRPC.
 
 Главное различие между grpc-gateway и API gRPC HTTP состоит в том, что grpc-gateway использует формирование кода для создания обратного прокси-сервера. Обратный прокси-сервер преобразует вызовы RESTful в gRPC, а затем отправляет их в службу gRPC.
 

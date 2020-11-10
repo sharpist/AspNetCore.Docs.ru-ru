@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 9/26/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 35a5758500ae2bc691c8d08eccb22340f9998c39
-ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
+ms.openlocfilehash: 74f65b916c2d5b7de61ec29f4259a51584ee5989
+ms.sourcegitcommit: 33f631a4427b9a422755601ac9119953db0b4a3e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91424295"
+ms.lasthandoff: 11/05/2020
+ms.locfileid: "93365422"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Использование Razor Pages с Entity Framework Core в ASP.NET Core: руководство 1 из 8
 
@@ -118,10 +119,11 @@ To run the app after downloading the completed project:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* В Visual Studio в меню **Файл** щелкните **Создать** > **Проект**.
-* Выберите **Новое веб-приложение ASP.NET Core**.
+* Запустите Visual Studio и щелкните **Создать проект**
+* Выберите **Веб-приложение ASP.NET Core**  > **Далее**.
 * Назовите проект *ContosoUniversity*. Очень важно использовать именно такое имя с учетом регистра символов, чтобы пространства имен совпадали при копировании и вставке кода.
-* Выберите в раскрывающихся списках пункты **.NET Core** и **ASP.NET Core 5.0**, а затем выберите **Веб-приложение**.
+* Щелкните **Создать**.
+* Выберите в раскрывающихся списках пункты **.NET Core** и **ASP.NET Core 5.0** , а затем выберите **Веб-приложение**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -137,7 +139,7 @@ To run the app after downloading the completed project:
 
 ## <a name="set-up-the-site-style"></a>Настройка стиля сайта
 
-Скопируйте следующий код и вставьте его в файл *Pages/Shared/_Layout.cshtml*: [!code-cshtml[Main](intro/samples/cu50/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
+Скопируйте следующий код и вставьте его в файл *Pages/Shared/_Layout.cshtml* : [!code-cshtml[Main](intro/samples/cu50/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
 
 Файл макета задает заголовок, нижний колонтитул и меню для сайта. Приведенный выше код вносит следующие изменения:
 
@@ -281,19 +283,19 @@ EF Core воспринимает свойство как внешний ключ
 
 В процессе формирования шаблона выполняются следующие действия:
 
-* создаются страницы Razor в папке *Pages/Students*:
-  * *Create.cshtml* и *Create.cshtml.cs*;
-  * *Delete.cshtml* и *Delete.cshtml.cs*;
-  * *Details.cshtml* и *Details.cshtml.cs*;
-  * *Edit.cshtml* и *Edit.cshtml.cs*;
-  * *Index.cshtml* и *Index.cshtml.cs*;
-* создается файл *Data/SchoolContext.cs*;
-* добавляется контекст для внедрения зависимостей в файле *Startup.cs*;
-* добавляется строка подключения к базе данных в файл *appsettings.json*.
+* создаются страницы Razor в папке *Pages/Students* :
+  * *Create.cshtml* и *Create.cshtml.cs* ;
+  * *Delete.cshtml* и *Delete.cshtml.cs* ;
+  * *Details.cshtml* и *Details.cshtml.cs* ;
+  * *Edit.cshtml* и *Edit.cshtml.cs* ;
+  * *Index.cshtml* и *Index.cshtml.cs* ;
+* создается файл *Data/SchoolContext.cs* ;
+* добавляется контекст для внедрения зависимостей в файле *Startup.cs* ;
+* добавляет строку подключения к базе данных в файл *appsettings.json* .
 
 ## <a name="database-connection-string"></a>Строка подключения к базе данных
 
-Средство формирования шаблонов создает строку подключения в файле *appsettings.json*.
+Средство формирования шаблонов создает строку подключения в файле *appsettings.json* .
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -305,7 +307,7 @@ LocalDB — это упрощенная версия ядра СУБД SQL Serve
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Сократите строку подключения SQLite до *CU.db*:
+Сократите строку подключения SQLite до *CU.db* :
 
 [!code-json[Main](intro/samples/cu50/appsettingsSQLite.json?highlight=11)]
 
@@ -315,7 +317,7 @@ LocalDB — это упрощенная версия ядра СУБД SQL Serve
 
 Контекст базы данных — это основной класс, который координирует функциональные возможности EF Core для определенной модели данных. Контекст наследуется от [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). Контекст указывает сущности, которые включаются в модель данных. В этом проекте соответствующий класс называется `SchoolContext`.
 
-Обновите файл *Data/SchoolContext.cs*, добавив в него следующий код:
+Обновите файл *Data/SchoolContext.cs* , добавив в него следующий код:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 
@@ -360,11 +362,11 @@ ASP.NET Core поддерживает [внедрение зависимосте
 
 ---
 
-Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json*.
+Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json* .
 
 ### <a name="add-the-database-exception-filter"></a>Добавление фильтра исключений базы данных
 
-Добавьте `AddDatabaseDeveloperPageExceptionFilter` в `ConfigureServices`, как показано в следующем коде:
+Добавьте <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> в `ConfigureServices`, как показано в следующем коде:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -375,7 +377,7 @@ ASP.NET Core поддерживает [внедрение зависимосте
 Чтобы добавить пакет NuGet, в PMC введите следующую команду:
 
 ```powershell
-Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.0.0-rc.1.20451.17
+Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.0.0-rc.2.20475.17
 ```
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
@@ -386,9 +388,11 @@ Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.
 
 Пакет NuGet `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` предоставляет ПО промежуточного слоя ASP.NET Core для страниц ошибок Entity Framework Core. Это ПО промежуточного слоя помогает обнаруживать и диагностировать ошибки с помощью миграций Entity Framework Core.
 
+`AddDatabaseDeveloperPageExceptionFilter` предоставляет полезные сведения об ошибках в [среде разработки](xref:fundamentals/environments).
+
 ## <a name="create-the-database"></a>Создание базы данных
 
-Обновите файл *Program.cs*, чтобы создать базу данных, если она не существует.
+Обновите файл *Program.cs* , чтобы создать базу данных, если она не существует.
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
 
@@ -452,8 +456,8 @@ Drop-Database -Confirm
 * Откройте **обозреватель объектов SQL Server** (SSOX) из меню **Вид** в Visual Studio.
 * В SSOX щелкните **(localdb)\MSSQLLocalDB > Базы данных > SchoolContext-{GUID}** . Имя базы данных создается на основе имени контекста, которое вы указали ранее, а также включает дефис и GUID.
 * Разверните узел **Таблицы**.
-* Щелкните правой кнопкой мыши таблицу **Student** (Учащийся) и выберите пункт **Просмотр данных**, чтобы просмотреть созданные столбцы и строки, вставленные в таблицу.
-* Щелкните правой кнопкой мыши таблицу **Student** (Учащийся) и выберите пункт **Просмотреть код**, чтобы увидеть, как модель `Student` соотносится со схемой таблицы `Student`.
+* Щелкните правой кнопкой мыши таблицу **Student** (Учащийся) и выберите пункт **Просмотр данных** , чтобы просмотреть созданные столбцы и строки, вставленные в таблицу.
+* Щелкните правой кнопкой мыши таблицу **Student** (Учащийся) и выберите пункт **Просмотреть код** , чтобы увидеть, как модель `Student` соотносится со схемой таблицы `Student`.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -576,10 +580,10 @@ public async Task OnGetAsync()
 
 Чтобы запустить приложение после скачивания готового проекта, выполните указанные ниже действия.
 
-* Удалите файл *ContosoUniversity.csproj*, а файл *ContosoUniversitySQLite.csproj* переименуйте в *ContosoUniversity.csproj*.
+* Удалите файл *ContosoUniversity.csproj* , а файл *ContosoUniversitySQLite.csproj* переименуйте в *ContosoUniversity.csproj*.
 * В файле *Program.cs* закомментируйте `#define Startup`, чтобы использовать `StartupSQLite`.
-* Удалите файл *appSettings.json*, а файл *appSettingsSQLite.json* переименуйте в *appSettings.json*.
-* Удалите папку *Migrations*, а папку *MigrationsSQL* переименуйте в *Migrations*.
+* Удалите файл *appSettings.json* , а файл *appSettingsSQLite.json* переименуйте в *appSettings.json*.
+* Удалите папку *Migrations* , а папку *MigrationsSQL* переименуйте в *Migrations*.
 * Выполните глобальный поиск `#if SQLiteVersion` и удалите `#if SQLiteVersion` и связанную инструкцию `#endif`.
 * Выполните построение проекта.
 * В командной строке в папке проекта выполните следующие команды:
@@ -607,7 +611,7 @@ public async Task OnGetAsync()
 * В Visual Studio в меню **Файл** щелкните **Создать** > **Проект**.
 * Выберите **Новое веб-приложение ASP.NET Core**.
 * Назовите проект *ContosoUniversity*. Очень важно использовать именно такое имя с учетом регистра символов, чтобы пространства имен совпадали при копировании и вставке кода.
-* Выберите в раскрывающихся списках пункты **.NET Core** и **ASP.NET Core 3.0**, а затем выберите **Веб-приложение**.
+* Выберите в раскрывающихся списках пункты **.NET Core** и **ASP.NET Core 3.0** , а затем выберите **Веб-приложение**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -768,15 +772,15 @@ remove dotnet tool install --global  below
 
 В процессе формирования шаблона выполняются следующие действия:
 
-* создаются страницы Razor в папке *Pages/Students*:
-  * *Create.cshtml* и *Create.cshtml.cs*;
-  * *Delete.cshtml* и *Delete.cshtml.cs*;
-  * *Details.cshtml* и *Details.cshtml.cs*;
-  * *Edit.cshtml* и *Edit.cshtml.cs*;
-  * *Index.cshtml* и *Index.cshtml.cs*;
-* создается файл *Data/SchoolContext.cs*;
-* добавляется контекст для внедрения зависимостей в файле *Startup.cs*;
-* добавляется строка подключения к базе данных в файл *appsettings.json*.
+* создаются страницы Razor в папке *Pages/Students* :
+  * *Create.cshtml* и *Create.cshtml.cs* ;
+  * *Delete.cshtml* и *Delete.cshtml.cs* ;
+  * *Details.cshtml* и *Details.cshtml.cs* ;
+  * *Edit.cshtml* и *Edit.cshtml.cs* ;
+  * *Index.cshtml* и *Index.cshtml.cs* ;
+* создается файл *Data/SchoolContext.cs* ;
+* добавляется контекст для внедрения зависимостей в файле *Startup.cs* ;
+* добавляет строку подключения к базе данных в файл *appsettings.json* .
 
 ## <a name="database-connection-string"></a>Строка подключения к базе данных
 
@@ -800,7 +804,7 @@ LocalDB — это упрощенная версия ядра СУБД SQL Serve
 
 Контекст базы данных — это основной класс, который координирует функциональные возможности EF Core для определенной модели данных. Контекст наследуется от [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). Контекст указывает сущности, которые включаются в модель данных. В этом проекте соответствующий класс называется `SchoolContext`.
 
-Обновите файл *Data/SchoolContext.cs*, добавив в него следующий код:
+Обновите файл *Data/SchoolContext.cs* , добавив в него следующий код:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 
@@ -835,11 +839,11 @@ ASP.NET Core поддерживает [внедрение зависимосте
 
 ---
 
-Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json*.
+Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json* .
 
 ## <a name="create-the-database"></a>Создание базы данных
 
-Обновите файл *Program.cs*, чтобы создать базу данных, если она не существует.
+Обновите файл *Program.cs* , чтобы создать базу данных, если она не существует.
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
 
@@ -902,8 +906,8 @@ Drop-Database
 * Откройте **обозреватель объектов SQL Server** (SSOX) из меню **Вид** в Visual Studio.
 * В SSOX щелкните **(localdb)\MSSQLLocalDB > Базы данных > SchoolContext-{GUID}** . Имя базы данных создается на основе имени контекста, которое вы указали ранее, а также включает дефис и GUID.
 * Разверните узел **Таблицы**.
-* Щелкните правой кнопкой мыши таблицу **Student** (Учащийся) и выберите пункт **Просмотр данных**, чтобы просмотреть созданные столбцы и строки, вставленные в таблицу.
-* Щелкните правой кнопкой мыши таблицу **Student** (Учащийся) и выберите пункт **Просмотреть код**, чтобы увидеть, как модель `Student` соотносится со схемой таблицы `Student`.
+* Щелкните правой кнопкой мыши таблицу **Student** (Учащийся) и выберите пункт **Просмотр данных** , чтобы просмотреть созданные столбцы и строки, вставленные в таблицу.
+* Щелкните правой кнопкой мыши таблицу **Student** (Учащийся) и выберите пункт **Просмотреть код** , чтобы увидеть, как модель `Student` соотносится со схемой таблицы `Student`.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -993,8 +997,8 @@ public async Task OnGetAsync()
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * В Visual Studio в меню **Файл** щелкните **Создать** > **Проект**.
-* Создайте новое веб-приложение ASP.NET Core. Назовите проект **ContosoUniversity**. Очень важно, чтобы проект имел имя *ContosoUniversity*, чтобы совпадали пространства имен при копировании и вставке кода.
-* Выберите в раскрывающемся списке **ASP.NET Core 2.1**, а затем **Веб-приложение**.
+* Создайте новое веб-приложение ASP.NET Core. Назовите проект **ContosoUniversity**. Очень важно, чтобы проект имел имя *ContosoUniversity* , чтобы совпадали пространства имен при копировании и вставке кода.
+* Выберите в раскрывающемся списке **ASP.NET Core 2.1** , а затем **Веб-приложение**.
 
 Изображения для приведенных выше шагов см. в разделе [Создание веб-приложения Razor](xref:tutorials/razor-pages/razor-pages-start#create-a-razor-pages-web-app).
 Запустите приложение.
@@ -1011,7 +1015,7 @@ dotnet run
 
 ## <a name="set-up-the-site-style"></a>Настройка стиля сайта
 
-Выполните небольшую настройку меню, макета и домашней страницы сайта. Внесите следующие изменения в файл *Pages/Shared/_Layout.cshtml*:
+Выполните небольшую настройку меню, макета и домашней страницы сайта. Внесите следующие изменения в файл *Pages/Shared/_Layout.cshtml* :
 
 * Замените все вхождения "ContosoUniversity" на "Contoso University". Таких элементов будет три.
 
@@ -1039,7 +1043,7 @@ dotnet run
 
 ![Схема сущности Student](intro/_static/student-entity.png)
 
-Создайте папку *Models*. В папке *Models* создайте файл класса с именем *Student.cs*, содержащий следующий код:
+Создайте папку *Models*. В папке *Models* создайте файл класса с именем *Student.cs* , содержащий следующий код:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_Intro)]
 
@@ -1053,7 +1057,7 @@ dotnet run
 
 ![Схема сущности Enrollment](intro/_static/enrollment-entity.png)
 
-В папке *Models* создайте файл *Enrollment.cs*, содержащий следующий код:
+В папке *Models* создайте файл *Enrollment.cs* , содержащий следующий код:
 
 [!code-csharp[](intro/samples/cu21/Models/Enrollment.cs?name=snippet_Intro)]
 
@@ -1071,7 +1075,7 @@ EF Core воспринимает свойство как внешний ключ
 
 ![Схема сущности Course](intro/_static/course-entity.png)
 
-В папке *Models* создайте файл *Course.cs*, содержащий следующий код:
+В папке *Models* создайте файл *Course.cs* , содержащий следующий код:
 
 [!code-csharp[](intro/samples/cu21/Models/Course.cs?name=snippet_Intro)]
 
@@ -1123,8 +1127,8 @@ dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.Sc
 
 ### <a name="file-updates"></a>Обновления файла
 
-* *Startup.cs*: изменения в этом файле подробно описываются в следующем разделе.
-* *appsettings.json*: добавляется строка подключения, используемая для подключения к локальной базе данных.
+* *Startup.cs* : изменения в этом файле подробно описываются в следующем разделе.
+* *appsettings.json* : добавляется строка подключения, используемая для подключения к локальной базе данных.
 
 ## <a name="examine-the-context-registered-with-dependency-injection"></a>Проверка контекста, зарегистрированного с помощью внедрения зависимостей
 
@@ -1136,7 +1140,7 @@ ASP.NET Core поддерживает [внедрение зависимосте
 
 [!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=13-14)]
 
-Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json*.
+Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json* .
 
 ## <a name="update-main"></a>Обновление метода Main
 
@@ -1172,7 +1176,7 @@ ASP.NET Core поддерживает [внедрение зависимосте
 
 Контекст базы данных — это класс main, который координирует функциональные возможности EF Core для заданной модели данных. Контекст данных получен из [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). Контекст данных указывает сущности, которые включаются в модель данных. В этом проекте соответствующий класс называется `SchoolContext`.
 
-Обновите файл *SchoolContext.cs*, добавив в него следующий код:
+Обновите файл *SchoolContext.cs* , добавив в него следующий код:
 
 [!code-csharp[](intro/samples/cu21/Data/SchoolContext.cs?name=snippet_Intro&highlight=12-14)]
 
@@ -1227,7 +1231,7 @@ Drop-Database
 
 Разверните узел **Таблицы**.
 
-Щелкните правой кнопкой мыши таблицу **Student** (Учащийся) и выберите пункт **Просмотр данных**, чтобы просмотреть созданные столбцы и строки, вставленные в таблицу.
+Щелкните правой кнопкой мыши таблицу **Student** (Учащийся) и выберите пункт **Просмотр данных** , чтобы просмотреть созданные столбцы и строки, вставленные в таблицу.
 
 ## <a name="asynchronous-code"></a>Асинхронный код
 

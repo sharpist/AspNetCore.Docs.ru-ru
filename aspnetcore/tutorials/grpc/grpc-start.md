@@ -3,8 +3,9 @@ title: Создание клиента и сервера gRPC .NET Core в ASP.N
 author: juntaoluo
 description: В этом учебнике объясняется, как создать службу и клиента gRPC в ASP.NET Core. Узнайте, как создать проект службы gRPC, изменить файл proto и добавить дуплексный режим потоковой передачи вызовов.
 ms.author: johluo
-ms.date: 04/08/2020
+ms.date: 10/23/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/grpc/grpc-start
-ms.openlocfilehash: fbfd37b8f796990ff035f7fffeb906e23a8739d4
-ms.sourcegitcommit: c06a5bf419541d17595af30e4cf6f2787c21855e
+ms.openlocfilehash: 9388a2f814008ebb50171f85b8baccf6dadfac27
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92678573"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057028"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>Учебник. Создание клиента и сервера gRPC в ASP.NET Core
 
@@ -63,7 +64,7 @@ ms.locfileid: "92678573"
 * Запустите Visual Studio и щелкните **Создать проект** или в меню **Файл** в Visual Studio выберите **Создать** > **Проект**.
 * В диалоговом окне **Создание проекта** выберите **Служба gRPC** и нажмите кнопку **Далее** :
 
-  ![Диалоговое окно создания проекта](~/tutorials/grpc/grpc-start/static/cnp.png)
+  ![Диалоговое окно создания нового проекта в Visual Studio](~/tutorials/grpc/grpc-start/static/cnp.png)
 
 * Присвойте проекту имя **GrpcGreeter**. Для проекта необходимо установить имя *GrpcGreeter* , чтобы при копировании и вставке кода совпадали пространства имен.
 * Выберите **Создать**.
@@ -74,7 +75,7 @@ ms.locfileid: "92678573"
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 * Откройте [Интегрированный терминал](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Смените каталог (`cd`) на папку, в которой будет содержаться проект.
+* Смените каталог (`cd`) на папку проекта.
 * Выполните следующие команды:
 
   ```dotnetcli
@@ -93,9 +94,9 @@ ms.locfileid: "92678573"
 * Запустите Visual Studio для Mac и щелкните **Создать проект**. или в меню **Файл** в Visual Studio выберите **Создать** > **Проект**.
 * В диалоговом окне **Создание проекта** выберите **Интернет и консоль** > **Приложение** > **Служба gRPC** и нажмите **Далее**.
 
-  ![Диалоговое окно создания проекта](~/tutorials/grpc/grpc-start/static/cnp-mac.png)
+  ![Диалоговое окно создания нового проекта в macOS](~/tutorials/grpc/grpc-start/static/cnp-mac.png)
 
-* В качестве требуемой версии .NET Framework выберите **.NET Core 3.1** и нажмите **Далее**.
+* Выберите **.NET Core 3.1** в качестве целевой платформы и нажмите кнопку **Далее**.
 * Присвойте проекту имя **GrpcGreeter**. Для проекта необходимо установить имя *GrpcGreeter* , чтобы при копировании и вставке кода совпадали пространства имен.
 * Выберите **Создать**.
 ---
@@ -141,7 +142,7 @@ info: Microsoft.Hosting.Lifetime[0]
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 * Откройте [Интегрированный терминал](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Смените каталог (`cd`) на папку, в которой будет содержаться проект.
+* Смените каталог (`cd`) на папку проекта.
 * Выполните следующие команды:
 
   ```dotnetcli
@@ -181,7 +182,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 #### <a name="manage-nuget-packages-option-to-install-packages"></a>Установка пакетов с помощью раздела управления пакетами NuGet
 
-* Щелкните правой кнопкой мыши проект в **обозревателе решений** > **Управление пакетами NuGet**
+* Щелкните правой кнопкой мыши проект в **обозревателе решений** > **Управление пакетами NuGet**.
 * Выберите вкладку **Обзор**.
 * В поле поиска введите **Grpc.Net.Client**.
 * Выберите пакет **Grpc.Net.Client** на вкладке **Обзор** и нажмите кнопку **Установить**.
@@ -199,10 +200,10 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-* Щелкните правой кнопкой на проекте **GrpcGreeterClient** на **панели решений** и выберите **Управление пакетами NuGet**.
+* Щелкните правой кнопкой на проекте **GrpcGreeterClient** в **Панели решений** и выберите **Управление пакетами NuGet**.
 * В поле поиска введите **Grpc.Net.Client**.
-* В области результатов выберите пакет **Grpc.Net.Client** и нажмите кнопку **Добавить пакет**
-* Нажмите кнопку **Принимаю** в диалоговом окне **Принятие условий лицензионного соглашения**.
+* В области результатов выберите пакет **Grpc.Net.Client** и нажмите кнопку **Добавить пакет**.
+* Нажмите кнопку **Принять** в диалоговом окне **Принятие условий лицензионного соглашения**.
 * Повторите все шаги для `Google.Protobuf` и `Grpc.Tools`.
 
 ---

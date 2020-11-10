@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/09/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 63227f068926c4158ac8162fdc1ac11399fd65cb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 916bb1f761ce99b2296c84e1653e55fffa04f83c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633790"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057691"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Среда размещения ASP.NET Core в операционной системе Linux с Nginx
 
@@ -64,7 +65,7 @@ ms.locfileid: "88633790"
 * Настройка приложения для обработки безопасных локальных подключений. Дополнительные сведения см. в разделе [Конфигурация HTTPS](#https-configuration).
 * Удалите `https://localhost:5001` (при его наличии) из свойства `applicationUrl` в файле *Properties/launchSettings.json*.
 
-Запустите [dotnet publish](/dotnet/core/tools/dotnet-publish) в среде разработки, чтобы упаковать приложение в каталог (например, *bin/Release/&lt;target_framework_moniker&gt;/publish*), который может выполняться на сервере:
+Запустите [dotnet publish](/dotnet/core/tools/dotnet-publish) в среде разработки, чтобы упаковать приложение в каталог (например, *bin/Release/&lt;target_framework_moniker&gt;/publish* ), который может выполняться на сервере:
 
 ```dotnetcli
 dotnet publish --configuration Release
@@ -72,7 +73,7 @@ dotnet publish --configuration Release
 
 Приложение может быть опубликовано как [автономное развертывание](/dotnet/core/deploying/#self-contained-deployments-scd), если вы предпочитаете не сохранять среду выполнения .NET Core на сервере.
 
-Скопируйте приложение ASP.NET Core на сервер с помощью инструмента, интегрированного в ваш рабочий процесс (например, SCP или SFTP). Обычно веб-приложения находятся в каталоге *var* (например, *var/www/helloapp*).
+Скопируйте приложение ASP.NET Core на сервер с помощью инструмента, интегрированного в ваш рабочий процесс (например, SCP или SFTP). Обычно веб-приложения находятся в каталоге *var* (например, *var/www/helloapp* ).
 
 > [!NOTE]
 > Если развертывание выполняется в рабочей среде, рабочий процесс непрерывной интеграции автоматически опубликует приложение и скопирует его ресурсы на сервер.
@@ -127,7 +128,7 @@ services.Configure<ForwardedHeadersOptions>(options =>
 
 ### <a name="install-nginx"></a>Установка Nginx
 
-Установите Nginx с помощью команды `apt-get`. Программа установки создает сценарий инициализации *systemd*, который запускает Nginx как управляющую программу при запуске системы. Следуйте инструкциям по установке для Ubuntu в разделе [Nginx: официальные пакеты Debian и Ubuntu](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
+Установите Nginx с помощью команды `apt-get`. Программа установки создает сценарий инициализации *systemd* , который запускает Nginx как управляющую программу при запуске системы. Следуйте инструкциям по установке для Ubuntu в разделе [Nginx: официальные пакеты Debian и Ubuntu](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
 
 > [!NOTE]
 > Если необходимы дополнительные модули Nginx, может потребоваться создание Nginx из источника.
@@ -161,7 +162,7 @@ server {
 }
 ```
 
-Если это приложение Blazor Server, которое использует соединения WebSocket SignalR, см. сведения о том, как задать заголовок `Connection`, в разделе <xref:blazor/host-and-deploy/server#linux-with-nginx>.
+Если вы работаете с приложением SignalR или Blazor Server, дополнительные сведения см. в разделах о <xref:signalr/scale#linux-with-nginx> и <xref:blazor/host-and-deploy/server#linux-with-nginx> соответственно.
 
 Если отсутствуют совпадения для `server_name`, Nginx использует сервер по умолчанию. Если сервер по умолчанию не определен, первый сервер в файле конфигурации является сервером по умолчанию. Рекомендуется добавить в качестве сервера по умолчанию определенный сервер, который возвращает код состояния 444 в файле конфигурации. Ниже приведен пример конфигурации сервера по умолчанию:
 
@@ -191,7 +192,7 @@ server {
 
 ## <a name="monitor-the-app"></a>Мониторинг приложения
 
-Сервер настроен на перенаправление запросов к `http://<serveraddress>:80` в приложение ASP.NET Core, выполняемое в Kestrel по адресу `http://127.0.0.1:5000`. При этом Nginx не настроен для управления процессом Kestrel. Для запуска и мониторинга соответствующего веб-приложения можно использовать *systemd* и создать файл службы. *systemd* — это система инициализации, предоставляющая различные функции для запуска и остановки процессов, а также управления ими. 
+Сервер настроен на перенаправление запросов к `http://<serveraddress>:80` в приложение ASP.NET Core, выполняемое в Kestrel по адресу `http://127.0.0.1:5000`. При этом Nginx не настроен для управления процессом Kestrel. Для запуска и мониторинга соответствующего веб-приложения можно использовать *systemd* и создать файл службы. *systemd*  — это система инициализации, предоставляющая различные функции для запуска и остановки процессов, а также управления ими. 
 
 ### <a name="create-the-service-file"></a>Создание файла службы
 
@@ -225,14 +226,14 @@ WantedBy=multi-user.target
 
 В предыдущем примере управляющий службой пользователь задается с помощью параметра `User`. Этот пользователь (`www-data`) должен существовать и иметь права владельца в отношении файлов приложения.
 
-Используйте `TimeoutStopSec`, чтобы настроить время ожидания до завершения работы приложения после начального сигнала прерывания. Если приложение не завершит работу в течение этого периода, оно прерывается сигналом SIGKILL. Укажите значение в секундах без единиц измерения (например, `150`), значение интервала (например, `2min 30s`) или значение `infinity`, которое отключает время ожидания. По умолчанию `TimeoutStopSec` принимает значение `DefaultTimeoutStopSec` в файле конфигурации диспетчера (*systemd-system.conf*, *system.conf.d*, *systemd-user.conf*, *user.conf.d*). В большинстве дистрибутивов по умолчанию устанавливается время ожидания 90 секунд.
+Используйте `TimeoutStopSec`, чтобы настроить время ожидания до завершения работы приложения после начального сигнала прерывания. Если приложение не завершит работу в течение этого периода, оно прерывается сигналом SIGKILL. Укажите значение в секундах без единиц измерения (например, `150`), значение интервала (например, `2min 30s`) или значение `infinity`, которое отключает время ожидания. По умолчанию `TimeoutStopSec` принимает значение `DefaultTimeoutStopSec` в файле конфигурации диспетчера ( *systemd-system.conf* , *system.conf.d* , *systemd-user.conf* , *user.conf.d* ). В большинстве дистрибутивов по умолчанию устанавливается время ожидания 90 секунд.
 
 ```
 # The default value is 90 seconds for most distributions.
 TimeoutStopSec=90
 ```
 
-Linux имеет файловую систему, в которой учитывается регистр символов. Если для параметра ASPNETCORE_ENVIRONMENT установить значение Production, будет выполнен поиск файла конфигурации *appsettings.Production.json*, а не файла *appsettings.production.json*.
+Linux имеет файловую систему, в которой учитывается регистр символов. Если для параметра ASPNETCORE_ENVIRONMENT установить значение Production, будет выполнен поиск файла конфигурации *appsettings.Production.json* , а не файла *appsettings.production.json*.
 
 Некоторые значения (например, строки подключения SQL) необходимо экранировать, чтобы поставщики конфигурации могли читать переменные среды. Используйте следующую команду, чтобы создать правильно экранированное значение для файла конфигурации:
 
@@ -356,7 +357,7 @@ sudo ufw enable
 
 #### <a name="change-the-nginx-response-name"></a>Изменение имени ответа Nginx
 
-Внесите изменения в файл *src/http/ngx_http_header_filter_module.c*:
+Внесите изменения в файл *src/http/ngx_http_header_filter_module.c* :
 
 ```
 static char ngx_http_server_string[] = "Server: Web Server" CRLF;
@@ -371,11 +372,11 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 
 **Настройка приложения для безопасных (HTTPS) локальных подключений**
 
-Команда [dotnet run](/dotnet/core/tools/dotnet-run) использует файл приложения *Properties/launchSettings.json*, который настраивает приложение для прослушивания URL-адресов, заданных свойством `applicationUrl` (например, `https://localhost:5001;http://localhost:5000`).
+Команда [dotnet run](/dotnet/core/tools/dotnet-run) использует файл приложения *Properties/launchSettings.json* , который настраивает приложение для прослушивания URL-адресов, заданных свойством `applicationUrl` (например, `https://localhost:5001;http://localhost:5000`).
 
 Настройте приложение для использования при разработке сертификата для команды `dotnet run` или среды разработки (F5 или CTRL + F5 в Visual Studio Code), используя один из следующих подходов.
 
-* [Замена сертификата по умолчанию из конфигурации](xref:fundamentals/servers/kestrel#configuration) (*рекомендуется*)
+* [Замена сертификата по умолчанию из конфигурации](xref:fundamentals/servers/kestrel#configuration) ( *рекомендуется* )
 * [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
 
 **Настройка обратного прокси-сервера для безопасного подключения клиентов (HTTPS)**
@@ -391,7 +392,7 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
   * Не добавляйте заголовок HSTS.
   * Выберите короткое значение `max-age`.
 
-Добавьте файл конфигурации */etc/nginx/proxy.conf*:
+Добавьте файл конфигурации */etc/nginx/proxy.conf* :
 
 [!code-nginx[](linux-nginx/proxy.conf)]
 
@@ -404,7 +405,7 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 
 #### <a name="secure-nginx-from-clickjacking"></a>Защита Nginx от кликджекинга
 
-[Кликджекинг](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a-common-implementation-mistake-that-can-put-your-websites-in-danger) (или *атака с подменой пользовательского интерфейса*) является вредоносной атакой, при которой посетителя сайта обманным путем вынуждают щелкнуть ссылку или нажать кнопку не той страницы, на которой он находится. Используйте `X-FRAME-OPTIONS` для защиты сайта.
+[Кликджекинг](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a-common-implementation-mistake-that-can-put-your-websites-in-danger) (или *атака с подменой пользовательского интерфейса* ) является вредоносной атакой, при которой посетителя сайта обманным путем вынуждают щелкнуть ссылку или нажать кнопку не той страницы, на которой он находится. Используйте `X-FRAME-OPTIONS` для защиты сайта.
 
 Чтобы уменьшить риск атак кликджекинга, выполните указанные ниже действия.
 
