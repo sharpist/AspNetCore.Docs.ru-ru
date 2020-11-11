@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: 6110f51eb5d5ee40d6ce5a5d49ddda3329d1f033
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: a333c189e81a9f44e94deb6b37097f1a8b19a0f9
+ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055546"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430930"
 ---
 # <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>Проверка подлинности и авторизация в ASP.NET Core Blazor
 
@@ -39,7 +39,7 @@ ASP.NET Core поддерживает настройку и администри
 
 Приложения Blazor WebAssembly выполняются на стороне клиента. В этом случае авторизация используется *только* для определения отображаемых вариантов пользовательского интерфейса. Так как пользователь может изменить или обойти проверки на стороне клиента, приложение Blazor WebAssembly не может применять правила авторизации доступа.
 
-[Соглашения об авторизации Razor Pages](xref:security/authorization/razor-pages-authorization) не применяются к маршрутизируемым компонентам Razor. Если компонент Razor, не поддерживающий маршрутизацию, [встроен в страницу](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps#render-components-from-a-page-or-view), соглашения об авторизации страницы оказывают косвенное влияние на компонент Razor, а также на остальную часть содержимого страницы.
+[Соглашения об авторизации Razor Pages](xref:security/authorization/razor-pages-authorization) не применяются к маршрутизируемым компонентам Razor. Если компонент Razor, не поддерживающий маршрутизацию, [встроен в страницу](xref:blazor/components/prerendering-and-integration), соглашения об авторизации страницы оказывают косвенное влияние на компонент Razor, а также на остальную часть содержимого страницы.
 
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Identity.SignInManager%601> и <xref:Microsoft.AspNetCore.Identity.UserManager%601> не поддерживаются в компонентах Razor.
@@ -249,7 +249,7 @@ builder.Services.AddAuthorizationCore();
 * выполнена ли аутентификация (выполнен ли вход);
 * есть ли у пользователя определенная *роль* ;
 * есть ли у пользователя определенное *утверждение* ;
-* выполняются ли требования *политики* .
+* выполняются ли требования *политики*.
 
 Каждый из этих аспектов применяется здесь так же, как в приложениях ASP.NET Core MVC или Razor Pages. Дополнительные сведения о безопасности в ASP.NET Core вы найдете в статьях [о безопасности и Identity в ASP.NET Core](xref:security/index).
 
@@ -294,7 +294,7 @@ builder.Services.AddAuthorizationCore();
 
 ### <a name="role-based-and-policy-based-authorization"></a>Авторизация на основе ролей и политик
 
-Компонент <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> поддерживает авторизацию на основе *ролей* или *политик* .
+Компонент <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> поддерживает авторизацию на основе *ролей* или *политик*.
 
 Для авторизации на основе ролей примените параметр <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles>:
 
