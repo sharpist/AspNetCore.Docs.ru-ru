@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 9664f49bd709d2c9e46130773211c339e391d1f6
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 4abba1d4304bf537bd96623527c851d9d15774a4
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060707"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94508166"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Миграция обработчиков и модулей HTTP в ASP.NET Core по промежуточного слоя
 
@@ -58,7 +58,7 @@ ms.locfileid: "93060707"
 
 1. <https://docs.microsoft.com/previous-versions/ms227673(v=vs.140)>, Представляющий собой события серии, запускаемые ASP.NET: [beginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest)и т. д. Каждый модуль может создать обработчик для одного или нескольких событий.
 
-2. Для того же события порядок, в котором они настроены в *Web.config* .
+2. Для того же события порядок, в котором они настроены в *Web.config*.
 
 В дополнение к модулям можно добавлять обработчики для событий жизненного цикла в файл *Global.asax.CS* . Эти обработчики запускаются после обработчиков в настроенных модулях.
 
@@ -141,7 +141,7 @@ ms.locfileid: "93060707"
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=16)]
 
-Точное место в конвейере, где вы вставляете новое по промежуточного слоя, зависит от события, которое оно обрабатывает как модуль ( `BeginRequest` , и `EndRequest` т. д.) и его порядок в списке модулей в *Web.config* .
+Точное место в конвейере, где вы вставляете новое по промежуточного слоя, зависит от события, которое оно обрабатывает как модуль ( `BeginRequest` , и `EndRequest` т. д.) и его порядок в списке модулей в *Web.config*.
 
 Как было сказано выше, в ASP.NET Core нет жизненного цикла приложения, и порядок обработки ответов по промежуточного слоя отличается от порядка, используемого модулями. Это может сделать решение по упорядочиванию более сложным.
 
@@ -181,7 +181,7 @@ ms.locfileid: "93060707"
 
 ## <a name="loading-middleware-options-using-the-options-pattern"></a>Загрузка параметров по промежуточного слоя с помощью шаблона параметров
 
-Некоторые модули и обработчики имеют параметры конфигурации, которые хранятся в *Web.config* . Однако в ASP.NET Core вместо *Web.config* используется новая модель конфигурации.
+Некоторые модули и обработчики имеют параметры конфигурации, которые хранятся в *Web.config*. Однако в ASP.NET Core вместо *Web.config* используется новая модель конфигурации.
 
 Новая [система конфигурации](xref:fundamentals/configuration/index) предоставляет следующие возможности для решения этой задачи:
 
@@ -324,7 +324,7 @@ public async Task Invoke(HttpContext context)
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Form)]
 
 > [!WARNING]
-> Чтение значений формы происходит только в том случае, если подтип содержимого имеет вид *x-www-Form-UrlEncoded* или *form-data* .
+> Чтение значений формы происходит только в том случае, если подтип содержимого имеет вид *x-www-Form-UrlEncoded* или *form-data*.
 
 **HttpContext. Request. InputStream** преобразуется в:
 
@@ -357,7 +357,7 @@ public async Task Invoke(HttpContext context)
 
 **HttpContext. Response. TransmitFile**
 
-Обслуживание файла обсуждается в по [промежуточного слоя и в запросах функций](xref:fundamentals/request-features#middleware-and-request-features).
+Обслуживание файла рассматривается в разделе <xref:fundamentals/request-features> .
 
 **HttpContext. Response. Headers**
 
