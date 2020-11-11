@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: 36e8bc494125d0770347ddf32390365d83a91d27
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 6a70183ce4b1a129ef213300473b233a5ef822f9
+ms.sourcegitcommit: fbd5427293d9ecccc388bd5fd305c2eb8ada7281
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051750"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94463890"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Поставщики хранилища ключей в ASP.NET Core
 
@@ -45,9 +45,9 @@ public void ConfigureServices(IServiceCollection services)
 
 `DirectoryInfo`Может указывать на каталог на локальном компьютере или на папку в общей сетевой папке. Если указывает на каталог на локальном компьютере (и сценарий заключается в том, что доступ к этому репозиторию требуется получить только для приложений на локальном компьютере), рассмотрите возможность использования [Windows DPAPI](xref:security/data-protection/implementation/key-encryption-at-rest) (в Windows) для шифрования неактивных ключей. В противном случае рассмотрите возможность использования [сертификата X. 509](xref:security/data-protection/implementation/key-encryption-at-rest) для шифрования неактивных ключей.
 
-## <a name="azure-storage"></a>Хранилище Azure
+## <a name="azure-storage"></a>Служба хранилища Azure
 
-Пакет [Microsoft. AspNetCore. Data Protection. AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) позволяет хранить ключи защиты данных в хранилище BLOB-объектов Azure. Ключи можно совместно использовать в нескольких экземплярах веб-приложения. Приложения могут совместно использовать проверку подлинности cookie или защиту CSRF на нескольких серверах.
+Пакет [Azure. Extensions. AspNetCore. Data Protection. blobs](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs) позволяет хранить ключи защиты данных в хранилище BLOB-объектов Azure. Ключи можно совместно использовать в нескольких экземплярах веб-приложения. Приложения могут совместно использовать проверку подлинности cookie или защиту CSRF на нескольких серверах.
 
 Чтобы настроить поставщик хранилища BLOB-объектов Azure, вызовите одну из перегрузок [персисткэйстоазуреблобстораже](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage) .
 
@@ -59,15 +59,12 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Если веб-приложение работает как служба Azure, токены проверки подлинности можно создать автоматически с помощью [Microsoft. Azure. Services. AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication/).
+Если веб-приложение работает как служба Azure, строку подключения можно использовать для проверки подлинности в службе хранилища Azure с помощью [Azure. Storage. blobs](https://docs.microsoft.com/dotnet/api/azure.storage.blobs.blobcontainerclient).
 
 ```csharp
-var tokenProvider = new AzureServiceTokenProvider();
-var token = await tokenProvider.GetAccessTokenAsync("https://storage.azure.com/");
-var credentials = new StorageCredentials(new TokenCredential(token));
-var storageAccount = new CloudStorageAccount(credentials, "mystorageaccount", "core.windows.net", useHttps: true);
-var client = storageAccount.CreateCloudBlobClient();
-var container = client.GetContainerReference("my-key-container");
+string connectionString = "<connection_string>";
+string containerName = "my-key-container";
+BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
 
 // optional - provision the container automatically
 await container.CreateIfNotExistsAsync();
@@ -76,7 +73,11 @@ services.AddDataProtection()
     .PersistKeysToAzureBlobStorage(container, "keys.xml");
 ```
 
-См [. Дополнительные сведения о настройке проверки подлинности между службами.](/azure/key-vault/service-to-service-authentication)
+> [!NOTE]
+> Строку подключения к учетной записи хранения можно найти на портале Azure в разделе "ключи доступа" или с помощью следующей команды CLI: 
+> ```bash
+> az storage account show-connection-string --name <account_name> --resource-group <resource_group>
+> ```
 
 ## <a name="redis"></a>Redis
 
