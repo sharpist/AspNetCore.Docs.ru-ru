@@ -1,10 +1,10 @@
 ---
-title: Данные телеметрии HTTP REPL
+title: Хттпрепл телеметрии
 author: scottaddie
-description: Сведения о телеметрии, собранных HTTP REPL.
+description: Сведения о телеметрии, собираемых Хттпрепл.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
-ms.date: 11/10/2020
+ms.date: 11/11/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,20 +18,20 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl/telemetry
-ms.openlocfilehash: 8590959e43c2dda69090acb358e740b271426a44
-ms.sourcegitcommit: fb72e9c1ae5b279817f1fb4b46a52170449b6f30
+ms.openlocfilehash: 5ff22753f566c494e51dae67c8c4f6371211be78
+ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94502008"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94550612"
 ---
-# <a name="http-repl-telemetry"></a>Данные телеметрии HTTP REPL
+# <a name="httprepl-telemetry"></a>Хттпрепл телеметрии
 
-[Цикл чтения и оценки-вывода (REPL) в HTTP](xref:web-api/http-repl) включает функцию телеметрии, собирающую данные об использовании. Важно, чтобы команда HTTP REPL понимает, как используется средство, чтобы его можно было улучшить.
+[Хттпрепл](xref:web-api/http-repl) включает функцию телеметрии, которая собирает данные об использовании. Важно, чтобы команда Хттпрепл могла улучшить работу средства.
 
 ## <a name="how-to-opt-out"></a>Как отключить функцию
 
-Функция телеметрии HTTP REPL включена по умолчанию. Чтобы отключить ее, присвойте переменной среды `DOTNET_HTTPREPL_TELEMETRY_OPTOUT` значение `1` или `true`.
+Функция телеметрии Хттпрепл включена по умолчанию. Чтобы отключить ее, присвойте переменной среды `DOTNET_HTTPREPL_TELEMETRY_OPTOUT` значение `1` или `true`.
 
 ## <a name="disclosure"></a>Раскрытие информации
 
@@ -40,8 +40,10 @@ ms.locfileid: "94502008"
 ```console
 Telemetry
 ---------
-The .NET Core tools collect usage data in order to help us improve your experience. It is collected by Microsoft and shared with the community. You can opt-out of telemetry by setting the DOTNET_HTTPREPL_TELEMETRY_OPTOUT environment variable to '1' or 'true' using your favorite shell.
+The .NET tools collect usage data in order to help us improve your experience. It is collected by Microsoft and shared with the community. You can opt-out of telemetry by setting the DOTNET_HTTPREPL_TELEMETRY_OPTOUT environment variable to '1' or 'true' using your favorite shell.
 ```
+
+Чтобы отключить текст "первый запуск", задайте `DOTNET_HTTPREPL_SKIP_FIRST_TIME_EXPERIENCE` для переменной среды значение `1` или `true` .
 
 ## <a name="data-points"></a>Точки данных
 
@@ -68,7 +70,7 @@ The .NET Core tools collect usage data in order to help us improve your experien
 | >= 5,0        | Выполняется ли средство в контейнере. |
 | >= 5,0        | Хэшированный контроль доступа к носителю (MAC): криптографический (SHA256) хэшированный и уникальный идентификатор для компьютера. |
 | >= 5,0        | Версия ядра. |
-| >= 5,0        | Версия HTTP REPL. |
+| >= 5,0        | Версия Хттпрепл. |
 | >= 5,0        | Было ли средство запущено с `help` `run` `connect` аргументами, или. Фактические значения аргументов не собираются. |
 | >= 5,0        | Вызванная команда (например, `get` ) и ее успешность. |
 | >= 5,0        | Для `connect` команды, указывает, `root` были ли `base` `openapi` предоставлены аргументы, или. Фактические значения аргументов не собираются. |
