@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/cascading-values-and-parameters
-ms.openlocfilehash: dec71f881dc815a26d62da6df92118926b1dcf06
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 56d70cea50a3a913b4483f6ea488438269aa58fe
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056430"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94507984"
 ---
 # <a name="aspnet-core-no-locblazor-cascading-values-and-parameters"></a>Каскадные значения и параметры ASP.NET Core Blazor
 
@@ -156,7 +156,7 @@ public class ThemeInfo
 
 Пример приложения содержит интерфейс `ITab`, реализуемый вкладками:
 
-[!code-csharp[](../common/samples/3.x/BlazorWebAssemblySample/UIInterfaces/ITab.cs)]
+[!code-csharp[](../common/samples/5.x/BlazorWebAssemblySample/UIInterfaces/ITab.cs)]
 
 Компонент `CascadingValuesParametersTabSet` использует компонент `TabSet`, содержащий несколько компонентов `Tab`:
 
@@ -194,10 +194,10 @@ public class ThemeInfo
 
 Компонент `TabSet`:
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/TabSet.razor)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/TabSet.razor)]
 
 Компоненты-потомки `Tab` захватывают содержащий `TabSet` в качестве каскадного параметра, поэтому компоненты `Tab` добавляются в `TabSet` и координируют, какая вкладка активна.
 
 Компонент `Tab`:
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/Tab.razor)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/Tab.razor)]

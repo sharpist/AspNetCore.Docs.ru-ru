@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: cd613b2b76b8e876786988fdcefc0e7275d3bf53
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: fe232b40a2255732dd375cc266937576d5b2d5d9
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056066"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94507828"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>Формы и проверка ASP.NET Core Blazor
 
@@ -71,7 +71,7 @@ public class ExampleModel
 
 * Форма проверяет введенные пользователем данные в поле `name`, используя проверку, определенную в типе `ExampleModel`. Модель создается в блоке `@code` компонента и хранится в частном поле (`exampleModel`). Поле назначается атрибуту `Model` элемента `<EditForm>`.
 * Элемент `@bind-Value` компонента <xref:Microsoft.AspNetCore.Components.Forms.InputText> привязывает:
-  * Свойство модели (`exampleModel.Name`) к свойству `Value` компонента <xref:Microsoft.AspNetCore.Components.Forms.InputText>. См. сведения о привязке свойств здесь: <xref:blazor/components/data-binding#parent-to-child-binding-with-component-parameters>.
+  * Свойство модели (`exampleModel.Name`) к свойству `Value` компонента <xref:Microsoft.AspNetCore.Components.Forms.InputText>. См. сведения о привязке свойств здесь: <xref:blazor/components/data-binding#binding-with-component-parameters>.
   * Делегат события изменения к свойству `ValueChanged` компонента <xref:Microsoft.AspNetCore.Components.Forms.InputText>.
 * [Компонент проверяющего элемента управления](#validator-components) <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> привязывает поддержку проверки с помощью заметок к данным.
 * Компонент <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> обобщает сообщения проверки.

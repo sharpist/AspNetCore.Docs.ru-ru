@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/templated-components
-ms.openlocfilehash: ee38040a1edc8db43b8d5bf0202fd519b153ea04
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: f818a0b7f1ba6d4dd6affeeba785c5e288568dd8
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056248"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94507958"
 ---
 # <a name="aspnet-core-no-locblazor-templated-components"></a>Шаблонные компоненты Blazor в ASP.NET Core
 
@@ -43,7 +43,7 @@ ms.locfileid: "93056248"
 
 Компонент `TableTemplate` (`TableTemplate.razor`):
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
 
 При использовании шаблонного компонента параметры шаблона можно задать с помощью дочерних элементов, имена которых совпадают с именами параметров (`TableHeader` и `RowTemplate` в следующем примере):
 
@@ -122,7 +122,7 @@ ms.locfileid: "93056248"
 
 Шаблонные компоненты часто имеют универсальный тип. Например, универсальный компонент `ListViewTemplate` (`ListViewTemplate.razor`) можно использовать для отрисовки значений `IEnumerable<T>`. Чтобы определить универсальный компонент, используйте директиву [`@typeparam`](xref:mvc/views/razor#typeparam) и укажите параметры типа:
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
 
 При использовании компонентов универсального типа параметр типа выводится, если это возможно:
 

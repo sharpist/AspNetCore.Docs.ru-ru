@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: e61c76b5d53ad7646961632d00b047ecd2d9e477
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 9462b73ad67394e79de08e7d2b13bf6a3145a04e
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055611"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94507971"
 ---
 # <a name="aspnet-core-no-locblazor-layouts"></a>Макеты Blazor в ASP.NET Core
 
@@ -41,13 +41,23 @@ ms.locfileid: "93055611"
 
 В следующем примере кода показан шаблон Razor компонента макета `MainLayout.razor`. Макет наследует <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> и задает `@Body` между панелью навигации и нижним колонтитулом:
 
-[!code-razor[](layouts/sample_snapshot/3.x/MainLayout.razor?highlight=1,13)]
+[!code-razor[](layouts/sample_snapshot/3.x/MainLayout.razor)]
 
 ## <a name="mainlayout-component"></a>`MainLayout`
 
 В приложении на основе одного из шаблонов проектов Blazor компонент `MainLayout` (`MainLayout.razor`) находится в папке `Shared` приложения:
 
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](./common/samples/5.x/BlazorWebAssemblySample/Shared/MainLayout.razor)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 [!code-razor[](./common/samples/3.x/BlazorWebAssemblySample/Shared/MainLayout.razor)]
+
+::: moniker-end
 
 ## <a name="default-layout"></a>Макет по умолчанию
 
@@ -110,7 +120,7 @@ ms.locfileid: "93055611"
 
 ## <a name="share-a-no-locrazor-pages-layout-with-integrated-components"></a>Совместное использование макета Razor Pages с интегрированными компонентами
 
-Если маршрутизируемые компоненты интегрированы в приложение Razor Pages, общий макет приложения можно использовать с компонентами. Для получения дополнительной информации см. <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>.
+Если маршрутизируемые компоненты интегрированы в приложение Razor Pages, общий макет приложения можно использовать с компонентами. Для получения дополнительной информации см. <xref:blazor/components/prerendering-and-integration>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
