@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/03/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: fundamentals/localization-extensibility
 ms.openlocfilehash: a6ef5a547e6ccba6771cdf892a9636f83d6796b1
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -49,7 +49,7 @@ ms.locfileid: "93053739"
 <span data-ttu-id="d6d52-115">API локализации ASP.NET Core имеют четыре поставщика по умолчанию, которые могут определить текущий язык и региональные параметры выполняемого запроса:</span><span class="sxs-lookup"><span data-stu-id="d6d52-115">ASP.NET Core localization APIs have four default providers that can determine the current culture of an executing request:</span></span>
 
 * <xref:Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider>
-* <xref:Microsoft.AspNetCore.Localization.:::no-loc(Cookie):::RequestCultureProvider>
+* <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider>
 * <xref:Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider>
 * <xref:Microsoft.AspNetCore.Localization.CustomRequestCultureProvider>
 
@@ -105,7 +105,7 @@ options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async 
 
 <span data-ttu-id="d6d52-121">Можно создать новую реализацию <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider>, которая определяет сведения о языке и региональных параметрах запроса из пользовательского источника.</span><span class="sxs-lookup"><span data-stu-id="d6d52-121">A new implementation of <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> can be created that determines the request culture information from a custom source.</span></span> <span data-ttu-id="d6d52-122">Например, пользовательский источник может быть файлом конфигурации или базой данных.</span><span class="sxs-lookup"><span data-stu-id="d6d52-122">For example, the custom source can be a configuration file or database.</span></span>
 
-<span data-ttu-id="d6d52-123">В следующем примере показан класс `AppSettingsRequestCultureProvider`, который расширяет класс <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> для определения сведений о языке и региональных параметрах запроса из *:::no-loc(appsettings.json):::* :</span><span class="sxs-lookup"><span data-stu-id="d6d52-123">The following example shows `AppSettingsRequestCultureProvider`, which extends the <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> to determine the request culture information from *:::no-loc(appsettings.json):::* :</span></span>
+<span data-ttu-id="d6d52-123">В следующем примере показан класс `AppSettingsRequestCultureProvider`, который расширяет класс <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> для определения сведений о языке и региональных параметрах запроса из *appsettings.json* :</span><span class="sxs-lookup"><span data-stu-id="d6d52-123">The following example shows `AppSettingsRequestCultureProvider`, which extends the <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> to determine the request culture information from *appsettings.json* :</span></span>
 
 ```csharp
 public class AppSettingsRequestCultureProvider : RequestCultureProvider

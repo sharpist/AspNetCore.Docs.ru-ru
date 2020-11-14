@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: fundamentals/file-providers
 ms.openlocfilehash: 16e5ead9898125c804da4d60322510474201d897
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -36,7 +36,7 @@ ms.locfileid: "93059446"
 
 * <span data-ttu-id="f305e-108"><xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> предоставляет [корневой каталог содержимого](xref:fundamentals/index#content-root) и [корневой каталог документов](xref:fundamentals/index#web-root) приложения в виде типов `IFileProvider`.</span><span class="sxs-lookup"><span data-stu-id="f305e-108"><xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> exposes the app's [content root](xref:fundamentals/index#content-root) and [web root](xref:fundamentals/index#web-root) as `IFileProvider` types.</span></span>
 * <span data-ttu-id="f305e-109">[ПО промежуточного слоя для статических файлов](xref:fundamentals/static-files) использует поставщики файлов для поиска статических файлов.</span><span class="sxs-lookup"><span data-stu-id="f305e-109">[Static File Middleware](xref:fundamentals/static-files) uses File Providers to locate static files.</span></span>
-* <span data-ttu-id="f305e-110">[:::no-loc(Razor):::](xref:mvc/views/razor) использует поставщики файлов для поиска страниц и представлений.</span><span class="sxs-lookup"><span data-stu-id="f305e-110">[:::no-loc(Razor):::](xref:mvc/views/razor) uses File Providers to locate pages and views.</span></span>
+* <span data-ttu-id="f305e-110">[Razor](xref:mvc/views/razor) использует поставщики файлов для поиска страниц и представлений.</span><span class="sxs-lookup"><span data-stu-id="f305e-110">[Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.</span></span>
 * <span data-ttu-id="f305e-111">Инструменты .NET Core используют поставщики файлов и стандартные маски, чтобы указать файлы для публикации.</span><span class="sxs-lookup"><span data-stu-id="f305e-111">.NET Core tooling uses File Providers and glob patterns to specify which files should be published.</span></span>
 
 <span data-ttu-id="f305e-112">[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([как скачивать](xref:index#how-to-download-a-sample))</span><span class="sxs-lookup"><span data-stu-id="f305e-112">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:index#how-to-download-a-sample))</span></span>
@@ -176,7 +176,7 @@ var manifestEmbeddedProvider =
 |---------|---------|
 |`directory/file.txt`|<span data-ttu-id="f305e-201">Соответствует конкретному файлу в заданном каталоге.</span><span class="sxs-lookup"><span data-stu-id="f305e-201">Matches a specific file in a specific directory.</span></span>|
 |`directory/*.txt`|<span data-ttu-id="f305e-202">Соответствует всем файлам с расширением *.txt* в заданном каталоге.</span><span class="sxs-lookup"><span data-stu-id="f305e-202">Matches all files with *.txt* extension in a specific directory.</span></span>|
-|`directory/*/:::no-loc(appsettings.json):::`|<span data-ttu-id="f305e-203">Соответствует всем файлам *:::no-loc(appsettings.json):::* в любом каталоге, расположенном ровно на один уровень ниже папки *directory*.</span><span class="sxs-lookup"><span data-stu-id="f305e-203">Matches all *:::no-loc(appsettings.json):::* files in directories exactly one level below the *directory* folder.</span></span>|
+|`directory/*/appsettings.json`|<span data-ttu-id="f305e-203">Соответствует всем файлам *appsettings.json* в любом каталоге, расположенном ровно на один уровень ниже папки *directory*.</span><span class="sxs-lookup"><span data-stu-id="f305e-203">Matches all *appsettings.json* files in directories exactly one level below the *directory* folder.</span></span>|
 |`directory/**/*.txt`|<span data-ttu-id="f305e-204">Соответствует всем файлам с расширением *TXT* , находящимся на любом уровне ниже каталога *directory*.</span><span class="sxs-lookup"><span data-stu-id="f305e-204">Matches all files with a *.txt* extension found anywhere under the *directory* folder.</span></span>|
 
 ::: moniker-end
@@ -187,7 +187,7 @@ var manifestEmbeddedProvider =
 
 * <span data-ttu-id="f305e-207"><xref:Microsoft.Extensions.Hosting.IHostingEnvironment> предоставляет [корневой каталог содержимого](xref:fundamentals/index#content-root) и [корневой каталог документов](xref:fundamentals/index#web-root) приложения в виде типов `IFileProvider`.</span><span class="sxs-lookup"><span data-stu-id="f305e-207"><xref:Microsoft.Extensions.Hosting.IHostingEnvironment> exposes the app's [content root](xref:fundamentals/index#content-root) and [web root](xref:fundamentals/index#web-root) as `IFileProvider` types.</span></span>
 * <span data-ttu-id="f305e-208">[ПО промежуточного слоя для статических файлов](xref:fundamentals/static-files) использует поставщики файлов для поиска статических файлов.</span><span class="sxs-lookup"><span data-stu-id="f305e-208">[Static File Middleware](xref:fundamentals/static-files) uses File Providers to locate static files.</span></span>
-* <span data-ttu-id="f305e-209">[:::no-loc(Razor):::](xref:mvc/views/razor) использует поставщики файлов для поиска страниц и представлений.</span><span class="sxs-lookup"><span data-stu-id="f305e-209">[:::no-loc(Razor):::](xref:mvc/views/razor) uses File Providers to locate pages and views.</span></span>
+* <span data-ttu-id="f305e-209">[Razor](xref:mvc/views/razor) использует поставщики файлов для поиска страниц и представлений.</span><span class="sxs-lookup"><span data-stu-id="f305e-209">[Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.</span></span>
 * <span data-ttu-id="f305e-210">Инструменты .NET Core используют поставщики файлов и стандартные маски, чтобы указать файлы для публикации.</span><span class="sxs-lookup"><span data-stu-id="f305e-210">.NET Core tooling uses File Providers and glob patterns to specify which files should be published.</span></span>
 
 <span data-ttu-id="f305e-211">[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([как скачивать](xref:index#how-to-download-a-sample))</span><span class="sxs-lookup"><span data-stu-id="f305e-211">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:index#how-to-download-a-sample))</span></span>
@@ -320,8 +320,8 @@ var manifestEmbeddedProvider =
 **`directory/*.txt`**  
 <span data-ttu-id="f305e-293">Соответствует всем файлам с расширением *.txt* в заданном каталоге.</span><span class="sxs-lookup"><span data-stu-id="f305e-293">Matches all files with *.txt* extension in a specific directory.</span></span>
 
-**`directory/*/:::no-loc(appsettings.json):::`**  
-<span data-ttu-id="f305e-294">Соответствует всем файлам `:::no-loc(appsettings.json):::` в любом каталоге, расположенном ровно на один уровень ниже каталога *directory*.</span><span class="sxs-lookup"><span data-stu-id="f305e-294">Matches all `:::no-loc(appsettings.json):::` files in directories exactly one level below the *directory* folder.</span></span>
+**`directory/*/appsettings.json`**  
+<span data-ttu-id="f305e-294">Соответствует всем файлам `appsettings.json` в любом каталоге, расположенном ровно на один уровень ниже каталога *directory*.</span><span class="sxs-lookup"><span data-stu-id="f305e-294">Matches all `appsettings.json` files in directories exactly one level below the *directory* folder.</span></span>
 
 **`directory/**/*.txt`**  
 <span data-ttu-id="f305e-295">Соответствует всем файлам с расширением *.txt* , находящимся на любом уровне ниже каталога *directory*.</span><span class="sxs-lookup"><span data-stu-id="f305e-295">Matches all files with *.txt* extension found anywhere under the *directory* folder.</span></span>

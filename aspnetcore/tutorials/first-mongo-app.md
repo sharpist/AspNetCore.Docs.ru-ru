@@ -7,17 +7,17 @@ ms.author: scaddie
 ms.custom: mvc, seodec18
 ms.date: 08/17/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: tutorials/first-mongo-app
 ms.openlocfilehash: 350df417886fe1ea5fef89dc221c217d596768b3
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -240,15 +240,15 @@ ms.locfileid: "93060746"
 
 ## <a name="add-a-configuration-model"></a><span data-ttu-id="406aa-192">Добавление модели конфигурации</span><span class="sxs-lookup"><span data-stu-id="406aa-192">Add a configuration model</span></span>
 
-1. <span data-ttu-id="406aa-193">Добавьте в файл *:::no-loc(appsettings.json):::* следующие значения конфигурации базы данных:</span><span class="sxs-lookup"><span data-stu-id="406aa-193">Add the following database configuration values to *:::no-loc(appsettings.json):::* :</span></span>
+1. <span data-ttu-id="406aa-193">Добавьте в файл *appsettings.json* следующие значения конфигурации базы данных:</span><span class="sxs-lookup"><span data-stu-id="406aa-193">Add the following database configuration values to *appsettings.json* :</span></span>
 
-   [!code-json[](first-mongo-app/samples/3.x/SampleApp/:::no-loc(appsettings.json):::?highlight=2-6)]
+   [!code-json[](first-mongo-app/samples/3.x/SampleApp/appsettings.json?highlight=2-6)]
 
 1. <span data-ttu-id="406aa-194">Добавьте в каталог *Models* файл *BookstoreDatabaseSettings.cs* со следующим кодом:</span><span class="sxs-lookup"><span data-stu-id="406aa-194">Add a *BookstoreDatabaseSettings.cs* file to the *Models* directory with the following code:</span></span>
 
    [!code-csharp[](first-mongo-app/samples/3.x/SampleApp/Models/BookstoreDatabaseSettings.cs)]
 
-   <span data-ttu-id="406aa-195">Предыдущий класс `BookstoreDatabaseSettings` используется для хранения значений свойств `BookstoreDatabaseSettings` файла *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="406aa-195">The preceding `BookstoreDatabaseSettings` class is used to store the *:::no-loc(appsettings.json):::* file's `BookstoreDatabaseSettings` property values.</span></span> <span data-ttu-id="406aa-196">Свойства JSON и C# имеют одинаковые имена, что упрощает сопоставление.</span><span class="sxs-lookup"><span data-stu-id="406aa-196">The JSON and C# property names are named identically to ease the mapping process.</span></span>
+   <span data-ttu-id="406aa-195">Предыдущий класс `BookstoreDatabaseSettings` используется для хранения значений свойств `BookstoreDatabaseSettings` файла *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="406aa-195">The preceding `BookstoreDatabaseSettings` class is used to store the *appsettings.json* file's `BookstoreDatabaseSettings` property values.</span></span> <span data-ttu-id="406aa-196">Свойства JSON и C# имеют одинаковые имена, что упрощает сопоставление.</span><span class="sxs-lookup"><span data-stu-id="406aa-196">The JSON and C# property names are named identically to ease the mapping process.</span></span>
 
 1. <span data-ttu-id="406aa-197">Добавьте выделенный ниже код в `Startup.ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="406aa-197">Add the following highlighted code to `Startup.ConfigureServices`:</span></span>
 
@@ -256,7 +256,7 @@ ms.locfileid: "93060746"
 
    <span data-ttu-id="406aa-198">В приведенном выше коде:</span><span class="sxs-lookup"><span data-stu-id="406aa-198">In the preceding code:</span></span>
 
-   * <span data-ttu-id="406aa-199">Экземпляр конфигурации, к которому привязан раздел `BookstoreDatabaseSettings` файла *:::no-loc(appsettings.json):::* , зарегистрирован в контейнере внедрения зависимостей (DI).</span><span class="sxs-lookup"><span data-stu-id="406aa-199">The configuration instance to which the *:::no-loc(appsettings.json):::* file's `BookstoreDatabaseSettings` section binds is registered in the Dependency Injection (DI) container.</span></span> <span data-ttu-id="406aa-200">Например, свойство `ConnectionString` объекта `BookstoreDatabaseSettings` заполняется свойством `BookstoreDatabaseSettings:ConnectionString` в файле *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="406aa-200">For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in *:::no-loc(appsettings.json):::*.</span></span>
+   * <span data-ttu-id="406aa-199">Экземпляр конфигурации, к которому привязан раздел `BookstoreDatabaseSettings` файла *appsettings.json* , зарегистрирован в контейнере внедрения зависимостей (DI).</span><span class="sxs-lookup"><span data-stu-id="406aa-199">The configuration instance to which the *appsettings.json* file's `BookstoreDatabaseSettings` section binds is registered in the Dependency Injection (DI) container.</span></span> <span data-ttu-id="406aa-200">Например, свойство `ConnectionString` объекта `BookstoreDatabaseSettings` заполняется свойством `BookstoreDatabaseSettings:ConnectionString` в файле *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="406aa-200">For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in *appsettings.json*.</span></span>
    * <span data-ttu-id="406aa-201">Интерфейс `IBookstoreDatabaseSettings` регистрируется в DI с использованием [времени существования отдельной службы](xref:fundamentals/dependency-injection#service-lifetimes).</span><span class="sxs-lookup"><span data-stu-id="406aa-201">The `IBookstoreDatabaseSettings` interface is registered in DI with a singleton [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes).</span></span> <span data-ttu-id="406aa-202">При внедрении экземпляр интерфейса разрешается в объект `BookstoreDatabaseSettings`.</span><span class="sxs-lookup"><span data-stu-id="406aa-202">When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.</span></span>
 
 1. <span data-ttu-id="406aa-203">Добавьте следующий код в самое начало файла *Startup.cs* , чтобы разрешить ссылки `BookstoreDatabaseSettings` и `IBookstoreDatabaseSettings`:</span><span class="sxs-lookup"><span data-stu-id="406aa-203">Add the following code to the top of *Startup.cs* to resolve the `BookstoreDatabaseSettings` and `IBookstoreDatabaseSettings` references:</span></span>
@@ -270,7 +270,7 @@ ms.locfileid: "93060746"
 
    [!code-csharp[](first-mongo-app/samples/3.x/SampleApp/Services/BookService.cs?name=snippet_BookServiceClass)]
 
-   <span data-ttu-id="406aa-207">В предыдущем коде экземпляр `IBookstoreDatabaseSettings` извлекается из DI посредством внедрения конструктора.</span><span class="sxs-lookup"><span data-stu-id="406aa-207">In the preceding code, an `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection.</span></span> <span data-ttu-id="406aa-208">Таким образом обеспечивается доступ к значениям конфигурации в файле *:::no-loc(appsettings.json):::* , которые были добавлены в разделе [Добавление модели конфигурации](#add-a-configuration-model).</span><span class="sxs-lookup"><span data-stu-id="406aa-208">This technique provides access to the *:::no-loc(appsettings.json):::* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.</span></span>
+   <span data-ttu-id="406aa-207">В предыдущем коде экземпляр `IBookstoreDatabaseSettings` извлекается из DI посредством внедрения конструктора.</span><span class="sxs-lookup"><span data-stu-id="406aa-207">In the preceding code, an `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection.</span></span> <span data-ttu-id="406aa-208">Таким образом обеспечивается доступ к значениям конфигурации в файле *appsettings.json* , которые были добавлены в разделе [Добавление модели конфигурации](#add-a-configuration-model).</span><span class="sxs-lookup"><span data-stu-id="406aa-208">This technique provides access to the *appsettings.json* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.</span></span>
 
 1. <span data-ttu-id="406aa-209">Добавьте выделенный ниже код в `Startup.ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="406aa-209">Add the following highlighted code to `Startup.ConfigureServices`:</span></span>
 
@@ -590,15 +590,15 @@ ms.locfileid: "93060746"
 
 ## <a name="add-a-configuration-model"></a><span data-ttu-id="406aa-346">Добавление модели конфигурации</span><span class="sxs-lookup"><span data-stu-id="406aa-346">Add a configuration model</span></span>
 
-1. <span data-ttu-id="406aa-347">Добавьте в файл *:::no-loc(appsettings.json):::* следующие значения конфигурации базы данных:</span><span class="sxs-lookup"><span data-stu-id="406aa-347">Add the following database configuration values to *:::no-loc(appsettings.json):::* :</span></span>
+1. <span data-ttu-id="406aa-347">Добавьте в файл *appsettings.json* следующие значения конфигурации базы данных:</span><span class="sxs-lookup"><span data-stu-id="406aa-347">Add the following database configuration values to *appsettings.json* :</span></span>
 
-   [!code-json[](first-mongo-app/samples/2.x/SampleApp/:::no-loc(appsettings.json):::?highlight=2-6)]
+   [!code-json[](first-mongo-app/samples/2.x/SampleApp/appsettings.json?highlight=2-6)]
 
 1. <span data-ttu-id="406aa-348">Добавьте в каталог *Models* файл *BookstoreDatabaseSettings.cs* со следующим кодом:</span><span class="sxs-lookup"><span data-stu-id="406aa-348">Add a *BookstoreDatabaseSettings.cs* file to the *Models* directory with the following code:</span></span>
 
    [!code-csharp[](first-mongo-app/samples/2.x/SampleApp/Models/BookstoreDatabaseSettings.cs)]
 
-   <span data-ttu-id="406aa-349">Предыдущий класс `BookstoreDatabaseSettings` используется для хранения значений свойств `BookstoreDatabaseSettings` файла *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="406aa-349">The preceding `BookstoreDatabaseSettings` class is used to store the *:::no-loc(appsettings.json):::* file's `BookstoreDatabaseSettings` property values.</span></span> <span data-ttu-id="406aa-350">Свойства JSON и C# имеют одинаковые имена, что упрощает сопоставление.</span><span class="sxs-lookup"><span data-stu-id="406aa-350">The JSON and C# property names are named identically to ease the mapping process.</span></span>
+   <span data-ttu-id="406aa-349">Предыдущий класс `BookstoreDatabaseSettings` используется для хранения значений свойств `BookstoreDatabaseSettings` файла *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="406aa-349">The preceding `BookstoreDatabaseSettings` class is used to store the *appsettings.json* file's `BookstoreDatabaseSettings` property values.</span></span> <span data-ttu-id="406aa-350">Свойства JSON и C# имеют одинаковые имена, что упрощает сопоставление.</span><span class="sxs-lookup"><span data-stu-id="406aa-350">The JSON and C# property names are named identically to ease the mapping process.</span></span>
 
 1. <span data-ttu-id="406aa-351">Добавьте выделенный ниже код в `Startup.ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="406aa-351">Add the following highlighted code to `Startup.ConfigureServices`:</span></span>
 
@@ -606,7 +606,7 @@ ms.locfileid: "93060746"
 
    <span data-ttu-id="406aa-352">В приведенном выше коде:</span><span class="sxs-lookup"><span data-stu-id="406aa-352">In the preceding code:</span></span>
 
-   * <span data-ttu-id="406aa-353">Экземпляр конфигурации, к которому привязан раздел `BookstoreDatabaseSettings` файла *:::no-loc(appsettings.json):::* , зарегистрирован в контейнере внедрения зависимостей (DI).</span><span class="sxs-lookup"><span data-stu-id="406aa-353">The configuration instance to which the *:::no-loc(appsettings.json):::* file's `BookstoreDatabaseSettings` section binds is registered in the Dependency Injection (DI) container.</span></span> <span data-ttu-id="406aa-354">Например, свойство `ConnectionString` объекта `BookstoreDatabaseSettings` заполняется свойством `BookstoreDatabaseSettings:ConnectionString` в файле *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="406aa-354">For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in *:::no-loc(appsettings.json):::*.</span></span>
+   * <span data-ttu-id="406aa-353">Экземпляр конфигурации, к которому привязан раздел `BookstoreDatabaseSettings` файла *appsettings.json* , зарегистрирован в контейнере внедрения зависимостей (DI).</span><span class="sxs-lookup"><span data-stu-id="406aa-353">The configuration instance to which the *appsettings.json* file's `BookstoreDatabaseSettings` section binds is registered in the Dependency Injection (DI) container.</span></span> <span data-ttu-id="406aa-354">Например, свойство `ConnectionString` объекта `BookstoreDatabaseSettings` заполняется свойством `BookstoreDatabaseSettings:ConnectionString` в файле *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="406aa-354">For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in *appsettings.json*.</span></span>
    * <span data-ttu-id="406aa-355">Интерфейс `IBookstoreDatabaseSettings` регистрируется в DI с использованием [времени существования отдельной службы](xref:fundamentals/dependency-injection#service-lifetimes).</span><span class="sxs-lookup"><span data-stu-id="406aa-355">The `IBookstoreDatabaseSettings` interface is registered in DI with a singleton [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes).</span></span> <span data-ttu-id="406aa-356">При внедрении экземпляр интерфейса разрешается в объект `BookstoreDatabaseSettings`.</span><span class="sxs-lookup"><span data-stu-id="406aa-356">When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.</span></span>
 
 1. <span data-ttu-id="406aa-357">Добавьте следующий код в самое начало файла *Startup.cs* , чтобы разрешить ссылки `BookstoreDatabaseSettings` и `IBookstoreDatabaseSettings`:</span><span class="sxs-lookup"><span data-stu-id="406aa-357">Add the following code to the top of *Startup.cs* to resolve the `BookstoreDatabaseSettings` and `IBookstoreDatabaseSettings` references:</span></span>
@@ -620,7 +620,7 @@ ms.locfileid: "93060746"
 
    [!code-csharp[](first-mongo-app/samples/2.x/SampleApp/Services/BookService.cs?name=snippet_BookServiceClass)]
 
-   <span data-ttu-id="406aa-361">В предыдущем коде экземпляр `IBookstoreDatabaseSettings` извлекается из DI посредством внедрения конструктора.</span><span class="sxs-lookup"><span data-stu-id="406aa-361">In the preceding code, an `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection.</span></span> <span data-ttu-id="406aa-362">Таким образом обеспечивается доступ к значениям конфигурации в файле *:::no-loc(appsettings.json):::* , которые были добавлены в разделе [Добавление модели конфигурации](#add-a-configuration-model).</span><span class="sxs-lookup"><span data-stu-id="406aa-362">This technique provides access to the *:::no-loc(appsettings.json):::* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.</span></span>
+   <span data-ttu-id="406aa-361">В предыдущем коде экземпляр `IBookstoreDatabaseSettings` извлекается из DI посредством внедрения конструктора.</span><span class="sxs-lookup"><span data-stu-id="406aa-361">In the preceding code, an `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection.</span></span> <span data-ttu-id="406aa-362">Таким образом обеспечивается доступ к значениям конфигурации в файле *appsettings.json* , которые были добавлены в разделе [Добавление модели конфигурации](#add-a-configuration-model).</span><span class="sxs-lookup"><span data-stu-id="406aa-362">This technique provides access to the *appsettings.json* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.</span></span>
 
 1. <span data-ttu-id="406aa-363">Добавьте выделенный ниже код в `Startup.ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="406aa-363">Add the following highlighted code to `Startup.ConfigureServices`:</span></span>
 
@@ -730,7 +730,7 @@ ms.locfileid: "93060746"
 
 ## <a name="add-authentication-support-to-a-web-api"></a><span data-ttu-id="406aa-411">Добавление поддержки аутентификации в веб-API</span><span class="sxs-lookup"><span data-stu-id="406aa-411">Add authentication support to a web API</span></span>
 
-[!INCLUDE[](~/includes/:::no-loc(Identity):::Server4.md)]
+[!INCLUDE[](~/includes/IdentityServer4.md)]
 
 ## <a name="next-steps"></a><span data-ttu-id="406aa-412">Следующие шаги</span><span class="sxs-lookup"><span data-stu-id="406aa-412">Next steps</span></span>
 

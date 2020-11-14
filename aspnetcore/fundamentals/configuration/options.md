@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/20/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: fundamentals/configuration/options
 ms.openlocfilehash: dedc17d7d793a6fd2eac1c8017b704d98a86f1cb
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -123,7 +123,7 @@ ms.locfileid: "93061097"
 * <span data-ttu-id="7ee21-158">полезны, если несколько разделов конфигурации привязываются к одним и тем же свойствам;</span><span class="sxs-lookup"><span data-stu-id="7ee21-158">Are useful when multiple configuration sections bind to the same properties.</span></span>
 * <span data-ttu-id="7ee21-159">используются с учетом регистра.</span><span class="sxs-lookup"><span data-stu-id="7ee21-159">Are case sensitive.</span></span>
 
-<span data-ttu-id="7ee21-160">Рассмотрим следующий файл *:::no-loc(appsettings.json):::* :</span><span class="sxs-lookup"><span data-stu-id="7ee21-160">Consider the following *:::no-loc(appsettings.json):::* file:</span></span>
+<span data-ttu-id="7ee21-160">Рассмотрим следующий файл *appsettings.json* :</span><span class="sxs-lookup"><span data-stu-id="7ee21-160">Consider the following *appsettings.json* file:</span></span>
 
 [!code-json[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/appsettings.NO.json)]
 
@@ -170,7 +170,7 @@ ms.locfileid: "93061097"
 
 <span data-ttu-id="7ee21-184">Проверка параметров позволяет проверять значения параметров.</span><span class="sxs-lookup"><span data-stu-id="7ee21-184">Options validation enables option values to be validated.</span></span>
 
-<span data-ttu-id="7ee21-185">Рассмотрим следующий файл *:::no-loc(appsettings.json):::* :</span><span class="sxs-lookup"><span data-stu-id="7ee21-185">Consider the following *:::no-loc(appsettings.json):::* file:</span></span>
+<span data-ttu-id="7ee21-185">Рассмотрим следующий файл *appsettings.json* :</span><span class="sxs-lookup"><span data-stu-id="7ee21-185">Consider the following *appsettings.json* file:</span></span>
 
 [!code-json[](~/fundamentals/configuration/options/samples/3.x/OptionsValidationSample/appsettings.Dev2.json)]
 
@@ -336,9 +336,9 @@ public void Configure(IApplicationBuilder app,
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example1)]
 
-<span data-ttu-id="7ee21-247">В файле *:::no-loc(appsettings.json):::* примера задаются значения `option1` и `option2`:</span><span class="sxs-lookup"><span data-stu-id="7ee21-247">The sample's *:::no-loc(appsettings.json):::* file specifies values for `option1` and `option2`:</span></span>
+<span data-ttu-id="7ee21-247">В файле *appsettings.json* примера задаются значения `option1` и `option2`:</span><span class="sxs-lookup"><span data-stu-id="7ee21-247">The sample's *appsettings.json* file specifies values for `option1` and `option2`:</span></span>
 
-[!code-json[](options/samples/2.x/OptionsSample/:::no-loc(appsettings.json):::?highlight=2-3)]
+[!code-json[](options/samples/2.x/OptionsSample/appsettings.json?highlight=2-3)]
 
 <span data-ttu-id="7ee21-248">Когда приложение выполняется, метод `OnGet` страничной модели возвращает строку со значениями класса параметров:</span><span class="sxs-lookup"><span data-stu-id="7ee21-248">When the app is run, the page model's `OnGet` method returns a string showing the option class values:</span></span>
 
@@ -352,7 +352,7 @@ option1 = value1_from_json, option2 = -1
 > ```csharp
 > var configBuilder = new ConfigurationBuilder()
 >    .SetBasePath(Directory.GetCurrentDirectory())
->    .AddJsonFile(":::no-loc(appsettings.json):::", optional: true);
+>    .AddJsonFile("appsettings.json", optional: true);
 > var config = configBuilder.Build();
 >
 > services.Configure<MyOptions>(config);
@@ -382,7 +382,7 @@ option1 = value1_from_json, option2 = -1
 
 <span data-ttu-id="7ee21-258">Можно добавить несколько поставщиков конфигурации.</span><span class="sxs-lookup"><span data-stu-id="7ee21-258">You can add multiple configuration providers.</span></span> <span data-ttu-id="7ee21-259">Поставщики конфигурации доступны в пакетах NuGet и применяются в порядке регистрации.</span><span class="sxs-lookup"><span data-stu-id="7ee21-259">Configuration providers are available from NuGet packages and are applied in the order that they're registered.</span></span> <span data-ttu-id="7ee21-260">Для получения дополнительной информации см. <xref:fundamentals/configuration/index>.</span><span class="sxs-lookup"><span data-stu-id="7ee21-260">For more information, see <xref:fundamentals/configuration/index>.</span></span>
 
-<span data-ttu-id="7ee21-261">При каждом вызове <xref:Microsoft.Extensions.Options.IConfigureOptions%601.Configure*> служба <xref:Microsoft.Extensions.Options.IConfigureOptions%601> добавляется в контейнер службы.</span><span class="sxs-lookup"><span data-stu-id="7ee21-261">Each call to <xref:Microsoft.Extensions.Options.IConfigureOptions%601.Configure*> adds an <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service to the service container.</span></span> <span data-ttu-id="7ee21-262">В предыдущем примере значения `Option1` и `Option2` задаются в файле *:::no-loc(appsettings.json):::* , однако значения `Option1` и `Option2` переопределяются настроенным делегатом.</span><span class="sxs-lookup"><span data-stu-id="7ee21-262">In the preceding example, the values of `Option1` and `Option2` are both specified in *:::no-loc(appsettings.json):::* , but the values of `Option1` and `Option2` are overridden by the configured delegate.</span></span>
+<span data-ttu-id="7ee21-261">При каждом вызове <xref:Microsoft.Extensions.Options.IConfigureOptions%601.Configure*> служба <xref:Microsoft.Extensions.Options.IConfigureOptions%601> добавляется в контейнер службы.</span><span class="sxs-lookup"><span data-stu-id="7ee21-261">Each call to <xref:Microsoft.Extensions.Options.IConfigureOptions%601.Configure*> adds an <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service to the service container.</span></span> <span data-ttu-id="7ee21-262">В предыдущем примере значения `Option1` и `Option2` задаются в файле *appsettings.json* , однако значения `Option1` и `Option2` переопределяются настроенным делегатом.</span><span class="sxs-lookup"><span data-stu-id="7ee21-262">In the preceding example, the values of `Option1` and `Option2` are both specified in *appsettings.json* , but the values of `Option1` and `Option2` are overridden by the configured delegate.</span></span>
 
 <span data-ttu-id="7ee21-263">Если включено более одной службы конфигурации, последний источник конфигурации *имеет приоритет* и определяет значение конфигурации.</span><span class="sxs-lookup"><span data-stu-id="7ee21-263">When more than one configuration service is enabled, the last configuration source specified *wins* and sets the configuration value.</span></span> <span data-ttu-id="7ee21-264">Когда приложение выполняется, метод `OnGet` страничной модели возвращает строку со значениями класса параметров:</span><span class="sxs-lookup"><span data-stu-id="7ee21-264">When the app is run, the page model's `OnGet` method returns a string showing the option class values:</span></span>
 
@@ -396,17 +396,17 @@ delegate_option1 = value1_configured_by_delegate, delegate_option2 = 500
 
 <span data-ttu-id="7ee21-267">В приложениях должны создаваться классы приложений, относящиеся к определенным группам сценариев (классам).</span><span class="sxs-lookup"><span data-stu-id="7ee21-267">Apps should create options classes that pertain to specific scenario groups (classes) in the app.</span></span> <span data-ttu-id="7ee21-268">Части приложения, которым требуются значения конфигурации, должны иметь доступ только к используемым ими значениям конфигурации.</span><span class="sxs-lookup"><span data-stu-id="7ee21-268">Parts of the app that require configuration values should only have access to the configuration values that they use.</span></span>
 
-<span data-ttu-id="7ee21-269">При привязке параметров к конфигурации каждое свойство, относящееся к типу параметров, привязывается к ключу конфигурации в формате `property[:sub-property:]`.</span><span class="sxs-lookup"><span data-stu-id="7ee21-269">When binding options to configuration, each property in the options type is bound to a configuration key of the form `property[:sub-property:]`.</span></span> <span data-ttu-id="7ee21-270">Например, свойство `MyOptions.Option1` привязывается к ключу `Option1`, который считывается из свойства `option1` в файле *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="7ee21-270">For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *:::no-loc(appsettings.json):::*.</span></span>
+<span data-ttu-id="7ee21-269">При привязке параметров к конфигурации каждое свойство, относящееся к типу параметров, привязывается к ключу конфигурации в формате `property[:sub-property:]`.</span><span class="sxs-lookup"><span data-stu-id="7ee21-269">When binding options to configuration, each property in the options type is bound to a configuration key of the form `property[:sub-property:]`.</span></span> <span data-ttu-id="7ee21-270">Например, свойство `MyOptions.Option1` привязывается к ключу `Option1`, который считывается из свойства `option1` в файле *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="7ee21-270">For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*.</span></span>
 
-<span data-ttu-id="7ee21-271">В приведенном ниже коде в контейнер службы добавляется третья служба <xref:Microsoft.Extensions.Options.IConfigureOptions%601>.</span><span class="sxs-lookup"><span data-stu-id="7ee21-271">In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service is added to the service container.</span></span> <span data-ttu-id="7ee21-272">Он привязывает `MySubOptions` к разделу `subsection` файла *:::no-loc(appsettings.json):::* :</span><span class="sxs-lookup"><span data-stu-id="7ee21-272">It binds `MySubOptions` to the section `subsection` of the *:::no-loc(appsettings.json):::* file:</span></span>
+<span data-ttu-id="7ee21-271">В приведенном ниже коде в контейнер службы добавляется третья служба <xref:Microsoft.Extensions.Options.IConfigureOptions%601>.</span><span class="sxs-lookup"><span data-stu-id="7ee21-271">In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service is added to the service container.</span></span> <span data-ttu-id="7ee21-272">Он привязывает `MySubOptions` к разделу `subsection` файла *appsettings.json* :</span><span class="sxs-lookup"><span data-stu-id="7ee21-272">It binds `MySubOptions` to the section `subsection` of the *appsettings.json* file:</span></span>
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
 <span data-ttu-id="7ee21-273">Методу `GetSection` нужно пространство имен <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>.</span><span class="sxs-lookup"><span data-stu-id="7ee21-273">The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.</span></span>
 
-<span data-ttu-id="7ee21-274">В файле *:::no-loc(appsettings.json):::* примера определяется член `subsection` с ключами для `suboption1` и `suboption2`:</span><span class="sxs-lookup"><span data-stu-id="7ee21-274">The sample's *:::no-loc(appsettings.json):::* file defines a `subsection` member with keys for `suboption1` and `suboption2`:</span></span>
+<span data-ttu-id="7ee21-274">В файле *appsettings.json* примера определяется член `subsection` с ключами для `suboption1` и `suboption2`:</span><span class="sxs-lookup"><span data-stu-id="7ee21-274">The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:</span></span>
 
-[!code-json[](options/samples/2.x/OptionsSample/:::no-loc(appsettings.json):::?highlight=4-7)]
+[!code-json[](options/samples/2.x/OptionsSample/appsettings.json?highlight=4-7)]
 
 <span data-ttu-id="7ee21-275">Класс `MySubOptions` определяет свойства `SubOption1` и `SubOption2` для хранения значений параметров ( *Models/MySubOptions.cs* ):</span><span class="sxs-lookup"><span data-stu-id="7ee21-275">The `MySubOptions` class defines properties, `SubOption1` and `SubOption2`, to hold the options values ( *Models/MySubOptions.cs* ):</span></span>
 
@@ -432,7 +432,7 @@ subOption1 = subvalue1_from_json, subOption2 = 200
 
 <span data-ttu-id="7ee21-280">Внедрите <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> в:</span><span class="sxs-lookup"><span data-stu-id="7ee21-280">Inject <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into:</span></span>
 
-* <span data-ttu-id="7ee21-281">Страница :::no-loc(Razor)::: или представление MVC с директивой [`@inject`](xref:mvc/views/razor#inject) :::no-loc(Razor):::.</span><span class="sxs-lookup"><span data-stu-id="7ee21-281">A :::no-loc(Razor)::: page or MVC view with the [`@inject`](xref:mvc/views/razor#inject) :::no-loc(Razor)::: directive.</span></span>
+* <span data-ttu-id="7ee21-281">Страница Razor или представление MVC с директивой [`@inject`](xref:mvc/views/razor#inject) Razor.</span><span class="sxs-lookup"><span data-stu-id="7ee21-281">A Razor page or MVC view with the [`@inject`](xref:mvc/views/razor#inject) Razor directive.</span></span>
 * <span data-ttu-id="7ee21-282">Модель страницы или представления.</span><span class="sxs-lookup"><span data-stu-id="7ee21-282">A page or view model.</span></span>
 
 <span data-ttu-id="7ee21-283">Следующий пример из примера приложения внедряет <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> в модель страницы ( *Pages/index.cshtml.cs* ):</span><span class="sxs-lookup"><span data-stu-id="7ee21-283">The following example from the sample app injects <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into a page model ( *Pages/Index.cshtml.cs* ):</span></span>
@@ -462,7 +462,7 @@ subOption1 = subvalue1_from_json, subOption2 = 200
 * <span data-ttu-id="7ee21-291">`IOptionsMonitor` — это [одноэлементная служба](xref:fundamentals/dependency-injection#singleton), которая получает текущие значения параметров в любое время, что особенно полезно в одноэлементных зависимостях.</span><span class="sxs-lookup"><span data-stu-id="7ee21-291">`IOptionsMonitor` is a [singleton service](xref:fundamentals/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.</span></span>
 * <span data-ttu-id="7ee21-292">`IOptionsSnapshot` — это [служба с заданной областью действия](xref:fundamentals/dependency-injection#scoped), предоставляющая моментальный снимок параметров на момент создания объекта `IOptionsSnapshot<T>`.</span><span class="sxs-lookup"><span data-stu-id="7ee21-292">`IOptionsSnapshot` is a [scoped service](xref:fundamentals/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed.</span></span> <span data-ttu-id="7ee21-293">Моментальные снимки параметров предназначены для использования с временными зависимостями и зависимостями с заданной областью действия.</span><span class="sxs-lookup"><span data-stu-id="7ee21-293">Options snapshots are designed for use with transient and scoped dependencies.</span></span>
 
-<span data-ttu-id="7ee21-294">В приведенном ниже примере демонстрируется создание экземпляра <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> после изменения файла *:::no-loc(appsettings.json):::* ( *Pages/Index.cshtml.cs* ).</span><span class="sxs-lookup"><span data-stu-id="7ee21-294">The following example demonstrates how a new <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is created after *:::no-loc(appsettings.json):::* changes ( *Pages/Index.cshtml.cs* ).</span></span> <span data-ttu-id="7ee21-295">Несколько запросов к серверу возвращают константные значения, предоставляемые файлом *:::no-loc(appsettings.json):::* , пока файл не изменится и конфигурация не загрузится повторно.</span><span class="sxs-lookup"><span data-stu-id="7ee21-295">Multiple requests to the server return constant values provided by the *:::no-loc(appsettings.json):::* file until the file is changed and configuration reloads.</span></span>
+<span data-ttu-id="7ee21-294">В приведенном ниже примере демонстрируется создание экземпляра <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> после изменения файла *appsettings.json* ( *Pages/Index.cshtml.cs* ).</span><span class="sxs-lookup"><span data-stu-id="7ee21-294">The following example demonstrates how a new <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is created after *appsettings.json* changes ( *Pages/Index.cshtml.cs* ).</span></span> <span data-ttu-id="7ee21-295">Несколько запросов к серверу возвращают константные значения, предоставляемые файлом *appsettings.json* , пока файл не изменится и конфигурация не загрузится повторно.</span><span class="sxs-lookup"><span data-stu-id="7ee21-295">Multiple requests to the server return constant values provided by the *appsettings.json* file until the file is changed and configuration reloads.</span></span>
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=12)]
 
@@ -470,13 +470,13 @@ subOption1 = subvalue1_from_json, subOption2 = 200
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example5)]
 
-<span data-ttu-id="7ee21-296">Ниже показаны начальные значения `option1` и `option2`, загруженные из файла *:::no-loc(appsettings.json):::* :</span><span class="sxs-lookup"><span data-stu-id="7ee21-296">The following image shows the initial `option1` and `option2` values loaded from the *:::no-loc(appsettings.json):::* file:</span></span>
+<span data-ttu-id="7ee21-296">Ниже показаны начальные значения `option1` и `option2`, загруженные из файла *appsettings.json* :</span><span class="sxs-lookup"><span data-stu-id="7ee21-296">The following image shows the initial `option1` and `option2` values loaded from the *appsettings.json* file:</span></span>
 
 ```html
 snapshot option1 = value1_from_json, snapshot option2 = -1
 ```
 
-<span data-ttu-id="7ee21-297">Измените значения в файле *:::no-loc(appsettings.json):::* на `value1_from_json UPDATED` и `200`.</span><span class="sxs-lookup"><span data-stu-id="7ee21-297">Change the values in the *:::no-loc(appsettings.json):::* file to `value1_from_json UPDATED` and `200`.</span></span> <span data-ttu-id="7ee21-298">Сохраните файл *:::no-loc(appsettings.json):::*.</span><span class="sxs-lookup"><span data-stu-id="7ee21-298">Save the *:::no-loc(appsettings.json):::* file.</span></span> <span data-ttu-id="7ee21-299">Обновите окно браузера, чтобы увидеть обновленные значения параметров:</span><span class="sxs-lookup"><span data-stu-id="7ee21-299">Refresh the browser to see that the options values are updated:</span></span>
+<span data-ttu-id="7ee21-297">Измените значения в файле *appsettings.json* на `value1_from_json UPDATED` и `200`.</span><span class="sxs-lookup"><span data-stu-id="7ee21-297">Change the values in the *appsettings.json* file to `value1_from_json UPDATED` and `200`.</span></span> <span data-ttu-id="7ee21-298">Сохраните файл *appsettings.json*.</span><span class="sxs-lookup"><span data-stu-id="7ee21-298">Save the *appsettings.json* file.</span></span> <span data-ttu-id="7ee21-299">Обновите окно браузера, чтобы увидеть обновленные значения параметров:</span><span class="sxs-lookup"><span data-stu-id="7ee21-299">Refresh the browser to see that the options values are updated:</span></span>
 
 ```html
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
@@ -505,7 +505,7 @@ named_options_1: option1 = value1_from_json, option2 = -1
 named_options_2: option1 = named_options_2_value1_from_action, option2 = 5
 ```
 
-<span data-ttu-id="7ee21-307">Значения `named_options_1` предоставляются из конфигурации, которая загружается из файла *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="7ee21-307">`named_options_1` values are provided from configuration, which are loaded from the *:::no-loc(appsettings.json):::* file.</span></span> <span data-ttu-id="7ee21-308">Значения `named_options_2` предоставляются следующим образом:</span><span class="sxs-lookup"><span data-stu-id="7ee21-308">`named_options_2` values are provided by:</span></span>
+<span data-ttu-id="7ee21-307">Значения `named_options_1` предоставляются из конфигурации, которая загружается из файла *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="7ee21-307">`named_options_1` values are provided from configuration, which are loaded from the *appsettings.json* file.</span></span> <span data-ttu-id="7ee21-308">Значения `named_options_2` предоставляются следующим образом:</span><span class="sxs-lookup"><span data-stu-id="7ee21-308">`named_options_2` values are provided by:</span></span>
 
 * <span data-ttu-id="7ee21-309">Делегатом `named_options_2` в `ConfigureServices` для `Option1`.</span><span class="sxs-lookup"><span data-stu-id="7ee21-309">The `named_options_2` delegate in `ConfigureServices` for `Option1`.</span></span>
 * <span data-ttu-id="7ee21-310">Значение по умолчанию для `Option2` предоставляется классом `MyOptions`.</span><span class="sxs-lookup"><span data-stu-id="7ee21-310">The default value for `Option2` provided by the `MyOptions` class.</span></span>
@@ -758,9 +758,9 @@ public void Configure(IApplicationBuilder app, IOptionsMonitor<MyOptions> option
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example1)]
 
-<span data-ttu-id="7ee21-401">В файле *:::no-loc(appsettings.json):::* примера задаются значения `option1` и `option2`:</span><span class="sxs-lookup"><span data-stu-id="7ee21-401">The sample's *:::no-loc(appsettings.json):::* file specifies values for `option1` and `option2`:</span></span>
+<span data-ttu-id="7ee21-401">В файле *appsettings.json* примера задаются значения `option1` и `option2`:</span><span class="sxs-lookup"><span data-stu-id="7ee21-401">The sample's *appsettings.json* file specifies values for `option1` and `option2`:</span></span>
 
-[!code-json[](options/samples/2.x/OptionsSample/:::no-loc(appsettings.json):::?highlight=2-3)]
+[!code-json[](options/samples/2.x/OptionsSample/appsettings.json?highlight=2-3)]
 
 <span data-ttu-id="7ee21-402">Когда приложение выполняется, метод `OnGet` страничной модели возвращает строку со значениями класса параметров:</span><span class="sxs-lookup"><span data-stu-id="7ee21-402">When the app is run, the page model's `OnGet` method returns a string showing the option class values:</span></span>
 
@@ -774,7 +774,7 @@ option1 = value1_from_json, option2 = -1
 > ```csharp
 > var configBuilder = new ConfigurationBuilder()
 >    .SetBasePath(Directory.GetCurrentDirectory())
->    .AddJsonFile(":::no-loc(appsettings.json):::", optional: true);
+>    .AddJsonFile("appsettings.json", optional: true);
 > var config = configBuilder.Build();
 >
 > services.Configure<MyOptions>(config);
@@ -804,7 +804,7 @@ option1 = value1_from_json, option2 = -1
 
 <span data-ttu-id="7ee21-412">Можно добавить несколько поставщиков конфигурации.</span><span class="sxs-lookup"><span data-stu-id="7ee21-412">You can add multiple configuration providers.</span></span> <span data-ttu-id="7ee21-413">Поставщики конфигурации доступны в пакетах NuGet и применяются в порядке регистрации.</span><span class="sxs-lookup"><span data-stu-id="7ee21-413">Configuration providers are available from NuGet packages and are applied in the order that they're registered.</span></span> <span data-ttu-id="7ee21-414">Для получения дополнительной информации см. <xref:fundamentals/configuration/index>.</span><span class="sxs-lookup"><span data-stu-id="7ee21-414">For more information, see <xref:fundamentals/configuration/index>.</span></span>
 
-<span data-ttu-id="7ee21-415">При каждом вызове <xref:Microsoft.Extensions.Options.IConfigureOptions%601.Configure*> служба <xref:Microsoft.Extensions.Options.IConfigureOptions%601> добавляется в контейнер службы.</span><span class="sxs-lookup"><span data-stu-id="7ee21-415">Each call to <xref:Microsoft.Extensions.Options.IConfigureOptions%601.Configure*> adds an <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service to the service container.</span></span> <span data-ttu-id="7ee21-416">В предыдущем примере значения `Option1` и `Option2` задаются в файле *:::no-loc(appsettings.json):::* , однако значения `Option1` и `Option2` переопределяются настроенным делегатом.</span><span class="sxs-lookup"><span data-stu-id="7ee21-416">In the preceding example, the values of `Option1` and `Option2` are both specified in *:::no-loc(appsettings.json):::* , but the values of `Option1` and `Option2` are overridden by the configured delegate.</span></span>
+<span data-ttu-id="7ee21-415">При каждом вызове <xref:Microsoft.Extensions.Options.IConfigureOptions%601.Configure*> служба <xref:Microsoft.Extensions.Options.IConfigureOptions%601> добавляется в контейнер службы.</span><span class="sxs-lookup"><span data-stu-id="7ee21-415">Each call to <xref:Microsoft.Extensions.Options.IConfigureOptions%601.Configure*> adds an <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service to the service container.</span></span> <span data-ttu-id="7ee21-416">В предыдущем примере значения `Option1` и `Option2` задаются в файле *appsettings.json* , однако значения `Option1` и `Option2` переопределяются настроенным делегатом.</span><span class="sxs-lookup"><span data-stu-id="7ee21-416">In the preceding example, the values of `Option1` and `Option2` are both specified in *appsettings.json* , but the values of `Option1` and `Option2` are overridden by the configured delegate.</span></span>
 
 <span data-ttu-id="7ee21-417">Если включено более одной службы конфигурации, последний источник конфигурации *имеет приоритет* и определяет значение конфигурации.</span><span class="sxs-lookup"><span data-stu-id="7ee21-417">When more than one configuration service is enabled, the last configuration source specified *wins* and sets the configuration value.</span></span> <span data-ttu-id="7ee21-418">Когда приложение выполняется, метод `OnGet` страничной модели возвращает строку со значениями класса параметров:</span><span class="sxs-lookup"><span data-stu-id="7ee21-418">When the app is run, the page model's `OnGet` method returns a string showing the option class values:</span></span>
 
@@ -818,17 +818,17 @@ delegate_option1 = value1_configured_by_delegate, delegate_option2 = 500
 
 <span data-ttu-id="7ee21-421">В приложениях должны создаваться классы приложений, относящиеся к определенным группам сценариев (классам).</span><span class="sxs-lookup"><span data-stu-id="7ee21-421">Apps should create options classes that pertain to specific scenario groups (classes) in the app.</span></span> <span data-ttu-id="7ee21-422">Части приложения, которым требуются значения конфигурации, должны иметь доступ только к используемым ими значениям конфигурации.</span><span class="sxs-lookup"><span data-stu-id="7ee21-422">Parts of the app that require configuration values should only have access to the configuration values that they use.</span></span>
 
-<span data-ttu-id="7ee21-423">При привязке параметров к конфигурации каждое свойство, относящееся к типу параметров, привязывается к ключу конфигурации в формате `property[:sub-property:]`.</span><span class="sxs-lookup"><span data-stu-id="7ee21-423">When binding options to configuration, each property in the options type is bound to a configuration key of the form `property[:sub-property:]`.</span></span> <span data-ttu-id="7ee21-424">Например, свойство `MyOptions.Option1` привязывается к ключу `Option1`, который считывается из свойства `option1` в файле *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="7ee21-424">For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *:::no-loc(appsettings.json):::*.</span></span>
+<span data-ttu-id="7ee21-423">При привязке параметров к конфигурации каждое свойство, относящееся к типу параметров, привязывается к ключу конфигурации в формате `property[:sub-property:]`.</span><span class="sxs-lookup"><span data-stu-id="7ee21-423">When binding options to configuration, each property in the options type is bound to a configuration key of the form `property[:sub-property:]`.</span></span> <span data-ttu-id="7ee21-424">Например, свойство `MyOptions.Option1` привязывается к ключу `Option1`, который считывается из свойства `option1` в файле *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="7ee21-424">For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*.</span></span>
 
-<span data-ttu-id="7ee21-425">В приведенном ниже коде в контейнер службы добавляется третья служба <xref:Microsoft.Extensions.Options.IConfigureOptions%601>.</span><span class="sxs-lookup"><span data-stu-id="7ee21-425">In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service is added to the service container.</span></span> <span data-ttu-id="7ee21-426">Он привязывает `MySubOptions` к разделу `subsection` файла *:::no-loc(appsettings.json):::* :</span><span class="sxs-lookup"><span data-stu-id="7ee21-426">It binds `MySubOptions` to the section `subsection` of the *:::no-loc(appsettings.json):::* file:</span></span>
+<span data-ttu-id="7ee21-425">В приведенном ниже коде в контейнер службы добавляется третья служба <xref:Microsoft.Extensions.Options.IConfigureOptions%601>.</span><span class="sxs-lookup"><span data-stu-id="7ee21-425">In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service is added to the service container.</span></span> <span data-ttu-id="7ee21-426">Он привязывает `MySubOptions` к разделу `subsection` файла *appsettings.json* :</span><span class="sxs-lookup"><span data-stu-id="7ee21-426">It binds `MySubOptions` to the section `subsection` of the *appsettings.json* file:</span></span>
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
 <span data-ttu-id="7ee21-427">Методу `GetSection` нужно пространство имен <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>.</span><span class="sxs-lookup"><span data-stu-id="7ee21-427">The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.</span></span>
 
-<span data-ttu-id="7ee21-428">В файле *:::no-loc(appsettings.json):::* примера определяется член `subsection` с ключами для `suboption1` и `suboption2`:</span><span class="sxs-lookup"><span data-stu-id="7ee21-428">The sample's *:::no-loc(appsettings.json):::* file defines a `subsection` member with keys for `suboption1` and `suboption2`:</span></span>
+<span data-ttu-id="7ee21-428">В файле *appsettings.json* примера определяется член `subsection` с ключами для `suboption1` и `suboption2`:</span><span class="sxs-lookup"><span data-stu-id="7ee21-428">The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:</span></span>
 
-[!code-json[](options/samples/2.x/OptionsSample/:::no-loc(appsettings.json):::?highlight=4-7)]
+[!code-json[](options/samples/2.x/OptionsSample/appsettings.json?highlight=4-7)]
 
 <span data-ttu-id="7ee21-429">Класс `MySubOptions` определяет свойства `SubOption1` и `SubOption2` для хранения значений параметров ( *Models/MySubOptions.cs* ):</span><span class="sxs-lookup"><span data-stu-id="7ee21-429">The `MySubOptions` class defines properties, `SubOption1` and `SubOption2`, to hold the options values ( *Models/MySubOptions.cs* ):</span></span>
 
@@ -876,7 +876,7 @@ subOption1 = subvalue1_from_json, subOption2 = 200
 
 <span data-ttu-id="7ee21-441">Параметры вычисляются один раз на каждый запрос при обращении к ним и кэшируются на все время существования запроса.</span><span class="sxs-lookup"><span data-stu-id="7ee21-441">Options are computed once per request when accessed and cached for the lifetime of the request.</span></span>
 
-<span data-ttu-id="7ee21-442">В приведенном ниже примере демонстрируется создание экземпляра <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> после изменения файла *:::no-loc(appsettings.json):::* ( *Pages/Index.cshtml.cs* ).</span><span class="sxs-lookup"><span data-stu-id="7ee21-442">The following example demonstrates how a new <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is created after *:::no-loc(appsettings.json):::* changes ( *Pages/Index.cshtml.cs* ).</span></span> <span data-ttu-id="7ee21-443">Несколько запросов к серверу возвращают константные значения, предоставляемые файлом *:::no-loc(appsettings.json):::* , пока файл не изменится и конфигурация не загрузится повторно.</span><span class="sxs-lookup"><span data-stu-id="7ee21-443">Multiple requests to the server return constant values provided by the *:::no-loc(appsettings.json):::* file until the file is changed and configuration reloads.</span></span>
+<span data-ttu-id="7ee21-442">В приведенном ниже примере демонстрируется создание экземпляра <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> после изменения файла *appsettings.json* ( *Pages/Index.cshtml.cs* ).</span><span class="sxs-lookup"><span data-stu-id="7ee21-442">The following example demonstrates how a new <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is created after *appsettings.json* changes ( *Pages/Index.cshtml.cs* ).</span></span> <span data-ttu-id="7ee21-443">Несколько запросов к серверу возвращают константные значения, предоставляемые файлом *appsettings.json* , пока файл не изменится и конфигурация не загрузится повторно.</span><span class="sxs-lookup"><span data-stu-id="7ee21-443">Multiple requests to the server return constant values provided by the *appsettings.json* file until the file is changed and configuration reloads.</span></span>
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=12)]
 
@@ -884,13 +884,13 @@ subOption1 = subvalue1_from_json, subOption2 = 200
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example5)]
 
-<span data-ttu-id="7ee21-444">Ниже показаны начальные значения `option1` и `option2`, загруженные из файла *:::no-loc(appsettings.json):::* :</span><span class="sxs-lookup"><span data-stu-id="7ee21-444">The following image shows the initial `option1` and `option2` values loaded from the *:::no-loc(appsettings.json):::* file:</span></span>
+<span data-ttu-id="7ee21-444">Ниже показаны начальные значения `option1` и `option2`, загруженные из файла *appsettings.json* :</span><span class="sxs-lookup"><span data-stu-id="7ee21-444">The following image shows the initial `option1` and `option2` values loaded from the *appsettings.json* file:</span></span>
 
 ```html
 snapshot option1 = value1_from_json, snapshot option2 = -1
 ```
 
-<span data-ttu-id="7ee21-445">Измените значения в файле *:::no-loc(appsettings.json):::* на `value1_from_json UPDATED` и `200`.</span><span class="sxs-lookup"><span data-stu-id="7ee21-445">Change the values in the *:::no-loc(appsettings.json):::* file to `value1_from_json UPDATED` and `200`.</span></span> <span data-ttu-id="7ee21-446">Сохраните файл *:::no-loc(appsettings.json):::*.</span><span class="sxs-lookup"><span data-stu-id="7ee21-446">Save the *:::no-loc(appsettings.json):::* file.</span></span> <span data-ttu-id="7ee21-447">Обновите окно браузера, чтобы увидеть обновленные значения параметров:</span><span class="sxs-lookup"><span data-stu-id="7ee21-447">Refresh the browser to see that the options values are updated:</span></span>
+<span data-ttu-id="7ee21-445">Измените значения в файле *appsettings.json* на `value1_from_json UPDATED` и `200`.</span><span class="sxs-lookup"><span data-stu-id="7ee21-445">Change the values in the *appsettings.json* file to `value1_from_json UPDATED` and `200`.</span></span> <span data-ttu-id="7ee21-446">Сохраните файл *appsettings.json*.</span><span class="sxs-lookup"><span data-stu-id="7ee21-446">Save the *appsettings.json* file.</span></span> <span data-ttu-id="7ee21-447">Обновите окно браузера, чтобы увидеть обновленные значения параметров:</span><span class="sxs-lookup"><span data-stu-id="7ee21-447">Refresh the browser to see that the options values are updated:</span></span>
 
 ```html
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
@@ -919,7 +919,7 @@ named_options_1: option1 = value1_from_json, option2 = -1
 named_options_2: option1 = named_options_2_value1_from_action, option2 = 5
 ```
 
-<span data-ttu-id="7ee21-455">Значения `named_options_1` предоставляются из конфигурации, которая загружается из файла *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="7ee21-455">`named_options_1` values are provided from configuration, which are loaded from the *:::no-loc(appsettings.json):::* file.</span></span> <span data-ttu-id="7ee21-456">Значения `named_options_2` предоставляются следующим образом:</span><span class="sxs-lookup"><span data-stu-id="7ee21-456">`named_options_2` values are provided by:</span></span>
+<span data-ttu-id="7ee21-455">Значения `named_options_1` предоставляются из конфигурации, которая загружается из файла *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="7ee21-455">`named_options_1` values are provided from configuration, which are loaded from the *appsettings.json* file.</span></span> <span data-ttu-id="7ee21-456">Значения `named_options_2` предоставляются следующим образом:</span><span class="sxs-lookup"><span data-stu-id="7ee21-456">`named_options_2` values are provided by:</span></span>
 
 * <span data-ttu-id="7ee21-457">Делегатом `named_options_2` в `ConfigureServices` для `Option1`.</span><span class="sxs-lookup"><span data-stu-id="7ee21-457">The `named_options_2` delegate in `ConfigureServices` for `Option1`.</span></span>
 * <span data-ttu-id="7ee21-458">Значение по умолчанию для `Option2` предоставляется классом `MyOptions`.</span><span class="sxs-lookup"><span data-stu-id="7ee21-458">The default value for `Option2` provided by the `MyOptions` class.</span></span>

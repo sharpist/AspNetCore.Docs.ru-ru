@@ -1,21 +1,21 @@
 ---
-title: 'Часть 2. Добавление модели в приложение :::no-loc(Razor)::: Pages в ASP.NET Core'
+title: 'Часть 2. Добавление модели в приложение Razor Pages в ASP.NET Core'
 author: rick-anderson
-description: 'Часть 2 серии руководств по :::no-loc(Razor)::: Pages.'
+description: 'Часть 2 серии руководств по Razor Pages.'
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: tutorials/razor-pages/model
 ms.openlocfilehash: 84198760cf8302d379c7630b65641e65b66d72a2
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -24,7 +24,7 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93050931"
 ---
-# <a name="part-2-add-a-model-to-a-no-locrazor-pages-app-in-aspnet-core"></a><span data-ttu-id="cf7a1-103">Часть 2. Добавление модели в приложение :::no-loc(Razor)::: Pages в ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="cf7a1-103">Part 2, add a model to a :::no-loc(Razor)::: Pages app in ASP.NET Core</span></span>
+# <a name="part-2-add-a-model-to-a-no-locrazor-pages-app-in-aspnet-core"></a><span data-ttu-id="cf7a1-103">Часть 2. Добавление модели в приложение Razor Pages в ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="cf7a1-103">Part 2, add a model to a Razor Pages app in ASP.NET Core</span></span>
 
 <span data-ttu-id="cf7a1-104">Автор: [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)</span><span class="sxs-lookup"><span data-stu-id="cf7a1-104">By [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
 
@@ -42,7 +42,7 @@ ms.locfileid: "93050931"
 
 # <a name="visual-studio"></a>[<span data-ttu-id="cf7a1-111">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="cf7a1-111">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="cf7a1-112">Щелкните проект **:::no-loc(Razor):::PagesMovie** правой кнопкой мыши и выберите пункт **Добавить** > **Новая папка**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-112">Right-click the **:::no-loc(Razor):::PagesMovie** project > **Add** > **New Folder**.</span></span> <span data-ttu-id="cf7a1-113">Присвойте папке имя *Models*.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-113">Name the folder *Models*.</span></span>
+<span data-ttu-id="cf7a1-112">Щелкните проект **RazorPagesMovie** правой кнопкой мыши и выберите пункт **Добавить** > **Новая папка**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-112">Right-click the **RazorPagesMovie** project > **Add** > **New Folder**.</span></span> <span data-ttu-id="cf7a1-113">Присвойте папке имя *Models*.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-113">Name the folder *Models*.</span></span>
 
 <span data-ttu-id="cf7a1-114">Щелкните правой кнопкой мыши папку *Models*.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-114">Right click the *Models* folder.</span></span> <span data-ttu-id="cf7a1-115">Выберите **Добавить** > **Класс**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-115">Select **Add** > **Class**.</span></span> <span data-ttu-id="cf7a1-116">Присвойте классу имя **Movie**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-116">Name the class **Movie**.</span></span>
 
@@ -59,7 +59,7 @@ ms.locfileid: "93050931"
 
 # <a name="visual-studio-for-mac"></a>[<span data-ttu-id="cf7a1-120">Visual Studio для Mac</span><span class="sxs-lookup"><span data-stu-id="cf7a1-120">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
-* <span data-ttu-id="cf7a1-121">На панели решений щелкните проект **:::no-loc(Razor):::PagesMovie** правой кнопкой мыши, выберите пункт **Добавить**>**Новая папка**. Присвойте папке имя *Models*.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-121">In Solution Pad, right-click the **:::no-loc(Razor):::PagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.</span></span>
+* <span data-ttu-id="cf7a1-121">На панели решений щелкните проект **RazorPagesMovie** правой кнопкой мыши, выберите пункт **Добавить**>**Новая папка**. Присвойте папке имя *Models*.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-121">In Solution Pad, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.</span></span>
 * <span data-ttu-id="cf7a1-122">Щелкните папку *Models* правой кнопкой мыши и выберите пункт **Добавить**>**Новый файл...**</span><span class="sxs-lookup"><span data-stu-id="cf7a1-122">Right-click the *Models* folder, and then select **Add** > **New File...**.</span></span>
 * <span data-ttu-id="cf7a1-123">В диалоговом окне **Новый файл** выполните следующие действия.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-123">In the **New File** dialog:</span></span>
 
@@ -88,23 +88,23 @@ ms.locfileid: "93050931"
 
 ![Изображение из предыдущих инструкций.](model/_static/sca.png)
 
-<span data-ttu-id="cf7a1-137">В диалоговом окне **Добавление шаблона** щелкните **:::no-loc(Razor)::: Pages на основе Entity Framework (CRUD)** > **Добавить**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-137">In the **Add Scaffold** dialog, select **:::no-loc(Razor)::: Pages using Entity Framework (CRUD)** > **Add**.</span></span>
+<span data-ttu-id="cf7a1-137">В диалоговом окне **Добавление шаблона** щелкните **Razor Pages на основе Entity Framework (CRUD)** > **Добавить**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-137">In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.</span></span>
 
 ![Изображение из предыдущих инструкций.](model/_static/add_scaffold.png)
 
-<span data-ttu-id="cf7a1-139">Заполните поля в диалоговом окне **Добавление :::no-loc(Razor)::: Pages на основе Entity Framework (CRUD)** :</span><span class="sxs-lookup"><span data-stu-id="cf7a1-139">Complete the **Add :::no-loc(Razor)::: Pages using Entity Framework (CRUD)** dialog:</span></span>
+<span data-ttu-id="cf7a1-139">Заполните поля в диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** :</span><span class="sxs-lookup"><span data-stu-id="cf7a1-139">Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:</span></span>
 
-* <span data-ttu-id="cf7a1-140">В раскрывающемся списке **Класс модели** выберите **Фильм (:::no-loc(Razor):::PagesMovie.Models)** .</span><span class="sxs-lookup"><span data-stu-id="cf7a1-140">In the **Model class** drop down, select **Movie (:::no-loc(Razor):::PagesMovie.Models)**.</span></span>
-* <span data-ttu-id="cf7a1-141">В строке **Класс контекста данных** щелкните значок плюса **+** и измените сгенерированное имя :::no-loc(Razor):::PagesMovie. **Models**.:::no-loc(Razor):::PagesMovieContext на :::no-loc(Razor):::PagesMovie. **Data**.:::no-loc(Razor):::PagesMovieContext.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-141">In the **Data context class** row, select the **+** (plus) sign and change the generated name from :::no-loc(Razor):::PagesMovie. **Models**.:::no-loc(Razor):::PagesMovieContext to :::no-loc(Razor):::PagesMovie. **Data**.:::no-loc(Razor):::PagesMovieContext.</span></span> <span data-ttu-id="cf7a1-142">[Это изменение](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) не требуется.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-142">[This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required.</span></span> <span data-ttu-id="cf7a1-143">Оно создает класс контекста базы данных с правильным пространством имен.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-143">It creates the database context class with the correct namespace.</span></span>
+* <span data-ttu-id="cf7a1-140">В раскрывающемся списке **Класс модели** выберите **Фильм (RazorPagesMovie.Models)** .</span><span class="sxs-lookup"><span data-stu-id="cf7a1-140">In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.</span></span>
+* <span data-ttu-id="cf7a1-141">В строке **Класс контекста данных** щелкните значок плюса **+** и измените сгенерированное имя RazorPagesMovie. **Models**.RazorPagesMovieContext на RazorPagesMovie. **Data**.RazorPagesMovieContext.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-141">In the **Data context class** row, select the **+** (plus) sign and change the generated name from RazorPagesMovie. **Models**.RazorPagesMovieContext to RazorPagesMovie. **Data**.RazorPagesMovieContext.</span></span> <span data-ttu-id="cf7a1-142">[Это изменение](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) не требуется.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-142">[This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required.</span></span> <span data-ttu-id="cf7a1-143">Оно создает класс контекста базы данных с правильным пространством имен.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-143">It creates the database context class with the correct namespace.</span></span>
 * <span data-ttu-id="cf7a1-144">Нажмите **Добавить**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-144">Select **Add**.</span></span>
 
 ![Изображение из предыдущих инструкций.](model/_static/3/arp.png)
 
-<span data-ttu-id="cf7a1-146">Файл *:::no-loc(appsettings.json):::* обновляется с указанием строки подключения, используемой для подключения к локальной базе данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-146">The *:::no-loc(appsettings.json):::* file is updated with the connection string used to connect to a local database.</span></span>
+<span data-ttu-id="cf7a1-146">Файл *appsettings.json* обновляется с указанием строки подключения, используемой для подключения к локальной базе данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-146">The *appsettings.json* file is updated with the connection string used to connect to a local database.</span></span>
 
 # <a name="visual-studio-code"></a>[<span data-ttu-id="cf7a1-147">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="cf7a1-147">Visual Studio Code</span></span>](#tab/visual-studio-code)
 
-<!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace :::no-loc(Razor):::PagesMovie.Pages_Movies rather than namespace :::no-loc(Razor):::PagesMovie.Pages.Movies
+<!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
 * <span data-ttu-id="cf7a1-148">Откройте окно командной строки в папке проекта (папке, где находятся файлы *Program.cs* , *Startup.cs* и *.csproj* файлов).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-148">Open a command window in the project directory (The directory that contains the *Program.cs* , *Startup.cs* , and *.csproj* files).</span></span>
@@ -117,13 +117,13 @@ ms.locfileid: "93050931"
 * <span data-ttu-id="cf7a1-150">**Для Windows** : Выполните следующую команду:</span><span class="sxs-lookup"><span data-stu-id="cf7a1-150">**For Windows** : Run the following command:</span></span>
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc :::no-loc(Razor):::PagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
 * <span data-ttu-id="cf7a1-151">**Для macOS и Linux** : Выполните следующую команду:</span><span class="sxs-lookup"><span data-stu-id="cf7a1-151">**For macOS and Linux** : Run the following command:</span></span>
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc :::no-loc(Razor):::PagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   dotnet tool install --global dotnet-aspnet-codegenerator
   ```
 
@@ -142,19 +142,19 @@ ms.locfileid: "93050931"
 
 ![Изображение из предыдущих инструкций.](model/_static/scaMac.png)
 
-<span data-ttu-id="cf7a1-158">В диалоговом окне **New Scaffolding** (Новый шаблон) выберите **:::no-loc(Razor)::: Pages на основе Entity Framework (CRUD)** > **Далее**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-158">In the **New Scaffolding** dialog, select **:::no-loc(Razor)::: Pages using Entity Framework (CRUD)** > **Next**.</span></span>
+<span data-ttu-id="cf7a1-158">В диалоговом окне **New Scaffolding** (Новый шаблон) выберите **Razor Pages на основе Entity Framework (CRUD)** > **Далее**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-158">In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Next**.</span></span>
 
 ![Изображение из предыдущих инструкций.](model/_static/add_scaffoldMac.png)
 
-<span data-ttu-id="cf7a1-160">Заполните поля в диалоговом окне **Добавление :::no-loc(Razor)::: Pages на основе Entity Framework (CRUD)** :</span><span class="sxs-lookup"><span data-stu-id="cf7a1-160">Complete the **Add :::no-loc(Razor)::: Pages using Entity Framework (CRUD)** dialog:</span></span>
+<span data-ttu-id="cf7a1-160">Заполните поля в диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** :</span><span class="sxs-lookup"><span data-stu-id="cf7a1-160">Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:</span></span>
 
-* <span data-ttu-id="cf7a1-161">В раскрывающемся списке **Класс модели** выберите или введите **Фильм (:::no-loc(Razor):::PagesMovie.Models)** .</span><span class="sxs-lookup"><span data-stu-id="cf7a1-161">In the **Model class** drop down, select, or type, **Movie (:::no-loc(Razor):::PagesMovie.Models)**.</span></span>
-* <span data-ttu-id="cf7a1-162">В строке **Класс контекста данных** введите имя нового класса :::no-loc(Razor):::PagesMovie. **Data**.:::no-loc(Razor):::PagesMovieContext.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-162">In the **Data context class** row, type the name for the new class, :::no-loc(Razor):::PagesMovie. **Data**.:::no-loc(Razor):::PagesMovieContext.</span></span> <span data-ttu-id="cf7a1-163">[Это изменение](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) не требуется.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-163">[This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required.</span></span> <span data-ttu-id="cf7a1-164">Оно создает класс контекста базы данных с правильным пространством имен.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-164">It creates the database context class with the correct namespace.</span></span>
+* <span data-ttu-id="cf7a1-161">В раскрывающемся списке **Класс модели** выберите или введите **Фильм (RazorPagesMovie.Models)** .</span><span class="sxs-lookup"><span data-stu-id="cf7a1-161">In the **Model class** drop down, select, or type, **Movie (RazorPagesMovie.Models)**.</span></span>
+* <span data-ttu-id="cf7a1-162">В строке **Класс контекста данных** введите имя нового класса RazorPagesMovie. **Data**.RazorPagesMovieContext.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-162">In the **Data context class** row, type the name for the new class, RazorPagesMovie. **Data**.RazorPagesMovieContext.</span></span> <span data-ttu-id="cf7a1-163">[Это изменение](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) не требуется.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-163">[This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required.</span></span> <span data-ttu-id="cf7a1-164">Оно создает класс контекста базы данных с правильным пространством имен.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-164">It creates the database context class with the correct namespace.</span></span>
 * <span data-ttu-id="cf7a1-165">Нажмите **Добавить**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-165">Select **Add**.</span></span>
 
 ![Изображение из предыдущих инструкций.](model/_static/arpMac.png)
 
-<span data-ttu-id="cf7a1-167">Файл *:::no-loc(appsettings.json):::* обновляется с указанием строки подключения, используемой для подключения к локальной базе данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-167">The *:::no-loc(appsettings.json):::* file is updated with the connection string used to connect to a local database.</span></span>
+<span data-ttu-id="cf7a1-167">Файл *appsettings.json* обновляется с указанием строки подключения, используемой для подключения к локальной базе данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-167">The *appsettings.json* file is updated with the connection string used to connect to a local database.</span></span>
 
 ### <a name="add-ef-tools"></a><span data-ttu-id="cf7a1-168">Добавление средств EF</span><span class="sxs-lookup"><span data-stu-id="cf7a1-168">Add EF tools</span></span>
 
@@ -175,7 +175,7 @@ dotnet tool install --global dotnet-ef
 <span data-ttu-id="cf7a1-173">В процессе формирования шаблонов создаются и обновляются указанные ниже файлы.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-173">The scaffold process creates and updates the following files:</span></span>
 
 * <span data-ttu-id="cf7a1-174">*Pages/Movies* : Create, Delete, Details, Edit и Index.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-174">*Pages/Movies* : Create, Delete, Details, Edit, and Index.</span></span>
-* <span data-ttu-id="cf7a1-175">*Data/:::no-loc(Razor):::PagesMovieContext.cs*</span><span class="sxs-lookup"><span data-stu-id="cf7a1-175">*Data/:::no-loc(Razor):::PagesMovieContext.cs*</span></span>
+* <span data-ttu-id="cf7a1-175">*Data/RazorPagesMovieContext.cs*</span><span class="sxs-lookup"><span data-stu-id="cf7a1-175">*Data/RazorPagesMovieContext.cs*</span></span>
 
 ### <a name="updated"></a><span data-ttu-id="cf7a1-176">Обновленные возможности</span><span class="sxs-lookup"><span data-stu-id="cf7a1-176">Updated</span></span>
 
@@ -188,7 +188,7 @@ dotnet tool install --global dotnet-ef
 <span data-ttu-id="cf7a1-180">В процессе формирования шаблонов создаются и обновляются указанные ниже файлы.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-180">The scaffold process creates and updates the following files:</span></span>
 
 * <span data-ttu-id="cf7a1-181">*Pages/Movies* : Create, Delete, Details, Edit и Index.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-181">*Pages/Movies* : Create, Delete, Details, Edit, and Index.</span></span>
-* <span data-ttu-id="cf7a1-182">*Data/:::no-loc(Razor):::PagesMovieContext.cs*</span><span class="sxs-lookup"><span data-stu-id="cf7a1-182">*Data/:::no-loc(Razor):::PagesMovieContext.cs*</span></span>
+* <span data-ttu-id="cf7a1-182">*Data/RazorPagesMovieContext.cs*</span><span class="sxs-lookup"><span data-stu-id="cf7a1-182">*Data/RazorPagesMovieContext.cs*</span></span>
 
 ### <a name="updated"></a><span data-ttu-id="cf7a1-183">Обновленные возможности</span><span class="sxs-lookup"><span data-stu-id="cf7a1-183">Updated</span></span>
 
@@ -250,21 +250,21 @@ Update-Database
 
 ### <a name="examine-the-context-registered-with-dependency-injection"></a><span data-ttu-id="cf7a1-211">Проверка контекста, зарегистрированного с помощью внедрения зависимостей</span><span class="sxs-lookup"><span data-stu-id="cf7a1-211">Examine the context registered with dependency injection</span></span>
 
-<span data-ttu-id="cf7a1-212">ASP.NET Core поддерживает [внедрение зависимостей](xref:fundamentals/dependency-injection).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-212">ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection).</span></span> <span data-ttu-id="cf7a1-213">С помощью внедрения зависимостей службы (например, контекст базы данных EF Core) регистрируются во время запуска приложения.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-213">Services (such as the EF Core DB context) are registered with dependency injection during application startup.</span></span> <span data-ttu-id="cf7a1-214">Затем компоненты, которые используют эти службы (например, :::no-loc(Razor)::: Pages), обращаются к ним через параметры конструктора.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-214">Components that require these services (such as :::no-loc(Razor)::: Pages) are provided these services via constructor parameters.</span></span> <span data-ttu-id="cf7a1-215">Код конструктора, который получает экземпляр контекста базы данных, приведен далее в этом руководстве.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-215">The constructor code that gets a DB context instance is shown later in the tutorial.</span></span>
+<span data-ttu-id="cf7a1-212">ASP.NET Core поддерживает [внедрение зависимостей](xref:fundamentals/dependency-injection).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-212">ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection).</span></span> <span data-ttu-id="cf7a1-213">С помощью внедрения зависимостей службы (например, контекст базы данных EF Core) регистрируются во время запуска приложения.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-213">Services (such as the EF Core DB context) are registered with dependency injection during application startup.</span></span> <span data-ttu-id="cf7a1-214">Затем компоненты, которые используют эти службы (например, Razor Pages), обращаются к ним через параметры конструктора.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-214">Components that require these services (such as Razor Pages) are provided these services via constructor parameters.</span></span> <span data-ttu-id="cf7a1-215">Код конструктора, который получает экземпляр контекста базы данных, приведен далее в этом руководстве.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-215">The constructor code that gets a DB context instance is shown later in the tutorial.</span></span>
 
 <span data-ttu-id="cf7a1-216">Средство формирования шаблонов автоматически создает контекст базы данных и регистрирует его с использованием контейнера внедрения зависимостей.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-216">The scaffolding tool automatically created a DB context and registered it with the dependency injection container.</span></span>
 
 <span data-ttu-id="cf7a1-217">Проверьте метод `Startup.ConfigureServices`.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-217">Examine the `Startup.ConfigureServices` method.</span></span> <span data-ttu-id="cf7a1-218">Средством формирования шаблонов была добавлена выделенная строка:</span><span class="sxs-lookup"><span data-stu-id="cf7a1-218">The highlighted line was added by the scaffolder:</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-<span data-ttu-id="cf7a1-219">`:::no-loc(Razor):::PagesMovieContext` координирует функции EF Core (Create, Read, Update, Delete и т. д.) для модели `Movie`.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-219">The `:::no-loc(Razor):::PagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model.</span></span> <span data-ttu-id="cf7a1-220">Контекст данных (`:::no-loc(Razor):::PagesMovieContext`) получен из [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-220">The data context (`:::no-loc(Razor):::PagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext).</span></span> <span data-ttu-id="cf7a1-221">Контекст данных указывает сущности, которые включаются в модель данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-221">The data context specifies which entities are included in the data model.</span></span>
+<span data-ttu-id="cf7a1-219">`RazorPagesMovieContext` координирует функции EF Core (Create, Read, Update, Delete и т. д.) для модели `Movie`.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-219">The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model.</span></span> <span data-ttu-id="cf7a1-220">Контекст данных (`RazorPagesMovieContext`) получен из [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-220">The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext).</span></span> <span data-ttu-id="cf7a1-221">Контекст данных указывает сущности, которые включаются в модель данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-221">The data context specifies which entities are included in the data model.</span></span>
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Data/:::no-loc(Razor):::PagesMovieContext.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
 <span data-ttu-id="cf7a1-222">Представленный выше код создает свойство [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) для набора сущностей.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-222">The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set.</span></span> <span data-ttu-id="cf7a1-223">В терминологии Entity Framework набор сущностей обычно соответствует таблице базы данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-223">In Entity Framework terminology, an entity set typically corresponds to a database table.</span></span> <span data-ttu-id="cf7a1-224">Сущность соответствует строке в таблице.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-224">An entity corresponds to a row in the table.</span></span>
 
-<span data-ttu-id="cf7a1-225">Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-225">The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object.</span></span> <span data-ttu-id="cf7a1-226">При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="cf7a1-226">For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *:::no-loc(appsettings.json):::* file.</span></span>
+<span data-ttu-id="cf7a1-225">Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-225">The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object.</span></span> <span data-ttu-id="cf7a1-226">При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="cf7a1-226">For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.</span></span>
 
 # <a name="visual-studio-code"></a>[<span data-ttu-id="cf7a1-227">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="cf7a1-227">Visual Studio Code</span></span>](#tab/visual-studio-code)
 
@@ -285,7 +285,7 @@ Update-Database
 <span data-ttu-id="cf7a1-233">Если возникает ошибка.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-233">If you get the error:</span></span>
 
 ```console
-SqlException: Cannot open database ":::no-loc(Razor):::PagesMovieContext-GUID" requested by the login. The login failed.
+SqlException: Cannot open database "RazorPagesMovieContext-GUID" requested by the login. The login failed.
 Login failed for user 'User-name'.
 ```
 
@@ -306,8 +306,8 @@ Login failed for user 'User-name'.
 
 > [!div class="step-by-step"]
 > <span data-ttu-id="cf7a1-243">[Предыдущая статья. Начало работы](xref:tutorials/razor-pages/razor-pages-start)
-> [Следующая статья. Сформированные страницы :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/page)</span><span class="sxs-lookup"><span data-stu-id="cf7a1-243">[Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
-[Next: Scaffolded :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/page)</span></span>
+> [Следующая статья. Сформированные страницы Razor Pages](xref:tutorials/razor-pages/page)</span><span class="sxs-lookup"><span data-stu-id="cf7a1-243">[Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
+[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)</span></span>
 
 ::: moniker-end
 
@@ -324,7 +324,7 @@ Login failed for user 'User-name'.
 
 # <a name="visual-studio"></a>[<span data-ttu-id="cf7a1-251">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="cf7a1-251">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="cf7a1-252">Щелкните проект **:::no-loc(Razor):::PagesMovie** правой кнопкой мыши и выберите пункт **Добавить** > **Новая папка**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-252">Right-click the **:::no-loc(Razor):::PagesMovie** project > **Add** > **New Folder**.</span></span> <span data-ttu-id="cf7a1-253">Присвойте папке имя *Models*.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-253">Name the folder *Models*.</span></span>
+<span data-ttu-id="cf7a1-252">Щелкните проект **RazorPagesMovie** правой кнопкой мыши и выберите пункт **Добавить** > **Новая папка**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-252">Right-click the **RazorPagesMovie** project > **Add** > **New Folder**.</span></span> <span data-ttu-id="cf7a1-253">Присвойте папке имя *Models*.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-253">Name the folder *Models*.</span></span>
 
 <span data-ttu-id="cf7a1-254">Щелкните правой кнопкой мыши папку *Models*.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-254">Right click the *Models* folder.</span></span> <span data-ttu-id="cf7a1-255">Выберите **Добавить** > **Класс**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-255">Select **Add** > **Class**.</span></span> <span data-ttu-id="cf7a1-256">Присвойте классу имя **Movie**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-256">Name the class **Movie**.</span></span>
 
@@ -341,7 +341,7 @@ Login failed for user 'User-name'.
 
 # <a name="visual-studio-for-mac"></a>[<span data-ttu-id="cf7a1-260">Visual Studio для Mac</span><span class="sxs-lookup"><span data-stu-id="cf7a1-260">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
-* <span data-ttu-id="cf7a1-261">В обозревателе решений щелкните проект **:::no-loc(Razor):::PagesMovie** правой кнопкой мыши, выберите пункт **Добавить** > **Новая папка**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-261">In Solution Explorer, right-click the **:::no-loc(Razor):::PagesMovie** project, and then select **Add** > **New Folder**.</span></span> <span data-ttu-id="cf7a1-262">Присвойте папке имя *Models*.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-262">Name the folder *Models*.</span></span>
+* <span data-ttu-id="cf7a1-261">В обозревателе решений щелкните проект **RazorPagesMovie** правой кнопкой мыши, выберите пункт **Добавить** > **Новая папка**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-261">In Solution Explorer, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder**.</span></span> <span data-ttu-id="cf7a1-262">Присвойте папке имя *Models*.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-262">Name the folder *Models*.</span></span>
 * <span data-ttu-id="cf7a1-263">Щелкните папку *Models* правой кнопкой мыши и выберите пункт **Добавить**>**Новый файл**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-263">Right-click the *Models* folder, and then select **Add** > **New File**.</span></span>
 * <span data-ttu-id="cf7a1-264">В диалоговом окне **Новый файл** выполните следующие действия.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-264">In the **New File** dialog:</span></span>
 
@@ -370,27 +370,27 @@ Login failed for user 'User-name'.
 
 ![Изображение из предыдущих инструкций.](model/_static/sca.png)
 
-<span data-ttu-id="cf7a1-278">В диалоговом окне **Добавление шаблона** щелкните **:::no-loc(Razor)::: Pages на основе Entity Framework (CRUD)** > **Добавить**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-278">In the **Add Scaffold** dialog, select **:::no-loc(Razor)::: Pages using Entity Framework (CRUD)** > **Add**.</span></span>
+<span data-ttu-id="cf7a1-278">В диалоговом окне **Добавление шаблона** щелкните **Razor Pages на основе Entity Framework (CRUD)** > **Добавить**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-278">In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.</span></span>
 
 ![Изображение из предыдущих инструкций.](model/_static/add_scaffold.png)
 
-<span data-ttu-id="cf7a1-280">Заполните поля в диалоговом окне **Добавление :::no-loc(Razor)::: Pages на основе Entity Framework (CRUD)** :</span><span class="sxs-lookup"><span data-stu-id="cf7a1-280">Complete the **Add :::no-loc(Razor)::: Pages using Entity Framework (CRUD)** dialog:</span></span>
+<span data-ttu-id="cf7a1-280">Заполните поля в диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** :</span><span class="sxs-lookup"><span data-stu-id="cf7a1-280">Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:</span></span>
 <!-- In the next section, change 
 (plus) sign and accept the generated name 
 to use Data, it should not use models. That will make the namespace the same for the VS version and the CLI version
 -->
 
-* <span data-ttu-id="cf7a1-281">В раскрывающемся списке **Класс модели** выберите **Фильм (:::no-loc(Razor):::PagesMovie.Models)** .</span><span class="sxs-lookup"><span data-stu-id="cf7a1-281">In the **Model class** drop down, select **Movie (:::no-loc(Razor):::PagesMovie.Models)**.</span></span>
-* <span data-ttu-id="cf7a1-282">В строке **Класс контекста данных** нажмите на значок плюса **+** и примите сгенерированное имя **:::no-loc(Razor):::PagesMovie.Models.:::no-loc(Razor):::PagesMovieContext**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-282">In the **Data context class** row, select the **+** (plus) sign and accept the generated name **:::no-loc(Razor):::PagesMovie.Models.:::no-loc(Razor):::PagesMovieContext**.</span></span>
+* <span data-ttu-id="cf7a1-281">В раскрывающемся списке **Класс модели** выберите **Фильм (RazorPagesMovie.Models)** .</span><span class="sxs-lookup"><span data-stu-id="cf7a1-281">In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.</span></span>
+* <span data-ttu-id="cf7a1-282">В строке **Класс контекста данных** нажмите на значок плюса **+** и примите сгенерированное имя **RazorPagesMovie.Models.RazorPagesMovieContext**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-282">In the **Data context class** row, select the **+** (plus) sign and accept the generated name **RazorPagesMovie.Models.RazorPagesMovieContext**.</span></span>
 * <span data-ttu-id="cf7a1-283">Нажмите **Добавить**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-283">Select **Add**.</span></span>
 
 ![Изображение из предыдущих инструкций.](model/_static/arp.png)
 
-<span data-ttu-id="cf7a1-285">Файл *:::no-loc(appsettings.json):::* обновляется с указанием строки подключения, используемой для подключения к локальной базе данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-285">The *:::no-loc(appsettings.json):::* file is updated with the connection string used to connect to a local database.</span></span>
+<span data-ttu-id="cf7a1-285">Файл *appsettings.json* обновляется с указанием строки подключения, используемой для подключения к локальной базе данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-285">The *appsettings.json* file is updated with the connection string used to connect to a local database.</span></span>
 
 # <a name="visual-studio-code"></a>[<span data-ttu-id="cf7a1-286">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="cf7a1-286">Visual Studio Code</span></span>](#tab/visual-studio-code)
 
-<!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace :::no-loc(Razor):::PagesMovie.Pages_Movies rather than namespace :::no-loc(Razor):::PagesMovie.Pages.Movies
+<!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
 * <span data-ttu-id="cf7a1-287">Откройте окно командной строки в папке проекта (папке, где находятся файлы *Program.cs* , *Startup.cs* и *.csproj* файлов).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-287">Open a command window in the project directory (The directory that contains the *Program.cs* , *Startup.cs* , and *.csproj* files).</span></span>
@@ -398,13 +398,13 @@ to use Data, it should not use models. That will make the namespace the same for
 * <span data-ttu-id="cf7a1-288">**Для Windows** : Выполните следующую команду:</span><span class="sxs-lookup"><span data-stu-id="cf7a1-288">**For Windows** : Run the following command:</span></span>
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc :::no-loc(Razor):::PagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
 * <span data-ttu-id="cf7a1-289">**Для macOS и Linux** : Выполните следующую команду:</span><span class="sxs-lookup"><span data-stu-id="cf7a1-289">**For macOS and Linux** : Run the following command:</span></span>
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc :::no-loc(Razor):::PagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
@@ -420,19 +420,19 @@ to use Data, it should not use models. That will make the namespace the same for
 
 ![Изображение из предыдущих инструкций.](model/_static/scaMac.png)
 
-<span data-ttu-id="cf7a1-296">В диалоговом окне **Add New Scaffolding** (Добавление нового шаблона) выберите **:::no-loc(Razor)::: Pages на основе Entity Framework (CRUD)** > **Добавить**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-296">In the **Add New Scaffolding** dialog, select **:::no-loc(Razor)::: Pages using Entity Framework (CRUD)** > **Add**.</span></span>
+<span data-ttu-id="cf7a1-296">В диалоговом окне **Add New Scaffolding** (Добавление нового шаблона) выберите **Razor Pages на основе Entity Framework (CRUD)** > **Добавить**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-296">In the **Add New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.</span></span>
 
 ![Изображение из предыдущих инструкций.](model/_static/add_scaffoldMac.png)
 
-<span data-ttu-id="cf7a1-298">Заполните поля в диалоговом окне **Добавление :::no-loc(Razor)::: Pages на основе Entity Framework (CRUD)** :</span><span class="sxs-lookup"><span data-stu-id="cf7a1-298">Complete the **Add :::no-loc(Razor)::: Pages using Entity Framework (CRUD)** dialog:</span></span>
+<span data-ttu-id="cf7a1-298">Заполните поля в диалоговом окне **Добавление Razor Pages на основе Entity Framework (CRUD)** :</span><span class="sxs-lookup"><span data-stu-id="cf7a1-298">Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:</span></span>
 
 * <span data-ttu-id="cf7a1-299">В раскрывающемся списке **Класс модели** выберите или введите **Фильм**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-299">In the **Model class** drop down, select or type **Movie**.</span></span>
-* <span data-ttu-id="cf7a1-300">В строке **Класс контекста данных** введите или выберите **:::no-loc(Razor):::PagesMovieContext**. Это приведет к созданию класса контекста базы данных с правильным пространством имен.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-300">In the **Data context class** row, type select the **:::no-loc(Razor):::PagesMovieContext** this will create a new db context class with the correct namespace.</span></span> <span data-ttu-id="cf7a1-301">В этом случае он будет **:::no-loc(Razor):::PagesMovie.Models.:::no-loc(Razor):::PagesMovieContext**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-301">In this case it will be  **:::no-loc(Razor):::PagesMovie.Models.:::no-loc(Razor):::PagesMovieContext**.</span></span>
+* <span data-ttu-id="cf7a1-300">В строке **Класс контекста данных** введите или выберите **RazorPagesMovieContext**. Это приведет к созданию класса контекста базы данных с правильным пространством имен.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-300">In the **Data context class** row, type select the **RazorPagesMovieContext** this will create a new db context class with the correct namespace.</span></span> <span data-ttu-id="cf7a1-301">В этом случае он будет **RazorPagesMovie.Models.RazorPagesMovieContext**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-301">In this case it will be  **RazorPagesMovie.Models.RazorPagesMovieContext**.</span></span>
 * <span data-ttu-id="cf7a1-302">Нажмите **Добавить**.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-302">Select **Add**.</span></span>
 
 ![Изображение из предыдущих инструкций.](model/_static/arpMac.png)
 
-<span data-ttu-id="cf7a1-304">Файл *:::no-loc(appsettings.json):::* обновляется с указанием строки подключения, используемой для подключения к локальной базе данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-304">The *:::no-loc(appsettings.json):::* file is updated with the connection string used to connect to a local database.</span></span>
+<span data-ttu-id="cf7a1-304">Файл *appsettings.json* обновляется с указанием строки подключения, используемой для подключения к локальной базе данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-304">The *appsettings.json* file is updated with the connection string used to connect to a local database.</span></span>
 
 ---
 
@@ -441,7 +441,7 @@ to use Data, it should not use models. That will make the namespace the same for
 ### <a name="files-created"></a><span data-ttu-id="cf7a1-306">Создаваемые файлы</span><span class="sxs-lookup"><span data-stu-id="cf7a1-306">Files created</span></span>
 
 * <span data-ttu-id="cf7a1-307">*Pages/Movies* : Create, Delete, Details, Edit и Index.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-307">*Pages/Movies* : Create, Delete, Details, Edit, and Index.</span></span>
-* <span data-ttu-id="cf7a1-308">*Data/:::no-loc(Razor):::PagesMovieContext.cs*</span><span class="sxs-lookup"><span data-stu-id="cf7a1-308">*Data/:::no-loc(Razor):::PagesMovieContext.cs*</span></span>
+* <span data-ttu-id="cf7a1-308">*Data/RazorPagesMovieContext.cs*</span><span class="sxs-lookup"><span data-stu-id="cf7a1-308">*Data/RazorPagesMovieContext.cs*</span></span>
 
 ### <a name="file-updated"></a><span data-ttu-id="cf7a1-309">Обновляемые файлы</span><span class="sxs-lookup"><span data-stu-id="cf7a1-309">File updated</span></span>
 
@@ -471,7 +471,7 @@ Add-Migration Initial
 Update-Database
 ```
 
-<span data-ttu-id="cf7a1-320">Команда `Add-Migration` формирует код для создания схемы исходной базы данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-320">The `Add-Migration` command generates code to create the initial database schema.</span></span> <span data-ttu-id="cf7a1-321">Схема создается на основе модели, указанной в `DbContext` (в файле *:::no-loc(Razor):::PagesMovieContext.cs* ).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-321">The schema is based on the model specified in the `DbContext` (In the *:::no-loc(Razor):::PagesMovieContext.cs* file).</span></span> <span data-ttu-id="cf7a1-322">Аргумент `InitialCreate` используется для присвоения имен миграции.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-322">The `InitialCreate` argument is used to name the migration.</span></span> <span data-ttu-id="cf7a1-323">Можно использовать любое имя, однако по соглашению используется имя, которое описывает миграцию.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-323">Any name can be used, but by convention a name that describes the migration is used.</span></span> <span data-ttu-id="cf7a1-324">Для получения дополнительной информации см. <xref:data/ef-mvc/migrations>.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-324">For more information, see <xref:data/ef-mvc/migrations>.</span></span>
+<span data-ttu-id="cf7a1-320">Команда `Add-Migration` формирует код для создания схемы исходной базы данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-320">The `Add-Migration` command generates code to create the initial database schema.</span></span> <span data-ttu-id="cf7a1-321">Схема создается на основе модели, указанной в `DbContext` (в файле *RazorPagesMovieContext.cs* ).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-321">The schema is based on the model specified in the `DbContext` (In the *RazorPagesMovieContext.cs* file).</span></span> <span data-ttu-id="cf7a1-322">Аргумент `InitialCreate` используется для присвоения имен миграции.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-322">The `InitialCreate` argument is used to name the migration.</span></span> <span data-ttu-id="cf7a1-323">Можно использовать любое имя, однако по соглашению используется имя, которое описывает миграцию.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-323">Any name can be used, but by convention a name that describes the migration is used.</span></span> <span data-ttu-id="cf7a1-324">Для получения дополнительной информации см. <xref:data/ef-mvc/migrations>.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-324">For more information, see <xref:data/ef-mvc/migrations>.</span></span>
 
 <span data-ttu-id="cf7a1-325">Команда `Update-Database` выполняет метод `Up` в файле *Migrations/\<time-stamp>_InitialCreate.cs*.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-325">The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file.</span></span> <span data-ttu-id="cf7a1-326">Метод `Up` создает базу данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-326">The `Up` method creates the database.</span></span>
 
@@ -491,21 +491,21 @@ Update-Database
 
 ### <a name="examine-the-context-registered-with-dependency-injection"></a><span data-ttu-id="cf7a1-331">Проверка контекста, зарегистрированного с помощью внедрения зависимостей</span><span class="sxs-lookup"><span data-stu-id="cf7a1-331">Examine the context registered with dependency injection</span></span>
 
-<span data-ttu-id="cf7a1-332">ASP.NET Core поддерживает [внедрение зависимостей](xref:fundamentals/dependency-injection).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-332">ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection).</span></span> <span data-ttu-id="cf7a1-333">С помощью внедрения зависимостей службы (например, контекст базы данных EF Core) регистрируются во время запуска приложения.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-333">Services (such as the EF Core DB context) are registered with dependency injection during application startup.</span></span> <span data-ttu-id="cf7a1-334">Затем компоненты, которые используют эти службы (например, :::no-loc(Razor)::: Pages), обращаются к ним через параметры конструктора.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-334">Components that require these services (such as :::no-loc(Razor)::: Pages) are provided these services via constructor parameters.</span></span> <span data-ttu-id="cf7a1-335">Код конструктора, который получает экземпляр контекста базы данных, приведен далее в этом руководстве.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-335">The constructor code that gets a DB context instance is shown later in the tutorial.</span></span>
+<span data-ttu-id="cf7a1-332">ASP.NET Core поддерживает [внедрение зависимостей](xref:fundamentals/dependency-injection).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-332">ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection).</span></span> <span data-ttu-id="cf7a1-333">С помощью внедрения зависимостей службы (например, контекст базы данных EF Core) регистрируются во время запуска приложения.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-333">Services (such as the EF Core DB context) are registered with dependency injection during application startup.</span></span> <span data-ttu-id="cf7a1-334">Затем компоненты, которые используют эти службы (например, Razor Pages), обращаются к ним через параметры конструктора.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-334">Components that require these services (such as Razor Pages) are provided these services via constructor parameters.</span></span> <span data-ttu-id="cf7a1-335">Код конструктора, который получает экземпляр контекста базы данных, приведен далее в этом руководстве.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-335">The constructor code that gets a DB context instance is shown later in the tutorial.</span></span>
 
 <span data-ttu-id="cf7a1-336">Средство формирования шаблонов автоматически создает контекст базы данных и регистрирует его с использованием контейнера внедрения зависимостей.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-336">The scaffolding tool automatically created a DB context and registered it with the dependency injection container.</span></span>
 
 <span data-ttu-id="cf7a1-337">Проверьте метод `Startup.ConfigureServices`.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-337">Examine the `Startup.ConfigureServices` method.</span></span> <span data-ttu-id="cf7a1-338">Средством формирования шаблонов была добавлена выделенная строка:</span><span class="sxs-lookup"><span data-stu-id="cf7a1-338">The highlighted line was added by the scaffolder:</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
-<span data-ttu-id="cf7a1-339">`:::no-loc(Razor):::PagesMovieContext` координирует функции EF Core (Create, Read, Update, Delete и т. д.) для модели `Movie`.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-339">The `:::no-loc(Razor):::PagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model.</span></span> <span data-ttu-id="cf7a1-340">Контекст данных (`:::no-loc(Razor):::PagesMovieContext`) получен из [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-340">The data context (`:::no-loc(Razor):::PagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext).</span></span> <span data-ttu-id="cf7a1-341">Контекст данных указывает сущности, которые включаются в модель данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-341">The data context specifies which entities are included in the data model.</span></span>
+<span data-ttu-id="cf7a1-339">`RazorPagesMovieContext` координирует функции EF Core (Create, Read, Update, Delete и т. д.) для модели `Movie`.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-339">The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model.</span></span> <span data-ttu-id="cf7a1-340">Контекст данных (`RazorPagesMovieContext`) получен из [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-340">The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext).</span></span> <span data-ttu-id="cf7a1-341">Контекст данных указывает сущности, которые включаются в модель данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-341">The data context specifies which entities are included in the data model.</span></span>
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Data/:::no-loc(Razor):::PagesMovieContext.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
 <span data-ttu-id="cf7a1-342">Представленный выше код создает свойство [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) для набора сущностей.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-342">The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set.</span></span> <span data-ttu-id="cf7a1-343">В терминологии Entity Framework набор сущностей обычно соответствует таблице базы данных.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-343">In Entity Framework terminology, an entity set typically corresponds to a database table.</span></span> <span data-ttu-id="cf7a1-344">Сущность соответствует строке в таблице.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-344">An entity corresponds to a row in the table.</span></span>
 
-<span data-ttu-id="cf7a1-345">Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-345">The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object.</span></span> <span data-ttu-id="cf7a1-346">При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="cf7a1-346">For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *:::no-loc(appsettings.json):::* file.</span></span>
+<span data-ttu-id="cf7a1-345">Имя строки подключения передается в контекст путем вызова метода для объекта [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions).</span><span class="sxs-lookup"><span data-stu-id="cf7a1-345">The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object.</span></span> <span data-ttu-id="cf7a1-346">При локальной разработке [система конфигурации ASP.NET Core](xref:fundamentals/configuration/index) считывает строку подключения из файла *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="cf7a1-346">For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.</span></span>
 
 # <a name="visual-studio-code"></a>[<span data-ttu-id="cf7a1-347">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="cf7a1-347">Visual Studio Code</span></span>](#tab/visual-studio-code)
 
@@ -526,7 +526,7 @@ Update-Database
 <span data-ttu-id="cf7a1-353">Если возникает ошибка.</span><span class="sxs-lookup"><span data-stu-id="cf7a1-353">If you get the error:</span></span>
 
 ```console
-SqlException: Cannot open database ":::no-loc(Razor):::PagesMovieContext-GUID" requested by the login. The login failed.
+SqlException: Cannot open database "RazorPagesMovieContext-GUID" requested by the login. The login failed.
 Login failed for user 'User-name'.
 ```
 
@@ -547,7 +547,7 @@ Login failed for user 'User-name'.
 
 > [!div class="step-by-step"]
 > <span data-ttu-id="cf7a1-363">[Предыдущая статья. Начало работы](xref:tutorials/razor-pages/razor-pages-start)
-> [Следующая статья. Сформированные страницы :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/page)</span><span class="sxs-lookup"><span data-stu-id="cf7a1-363">[Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
-[Next: Scaffolded :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/page)</span></span>
+> [Следующая статья. Сформированные страницы Razor Pages](xref:tutorials/razor-pages/page)</span><span class="sxs-lookup"><span data-stu-id="cf7a1-363">[Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
+[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)</span></span>
 
 ::: moniker-end

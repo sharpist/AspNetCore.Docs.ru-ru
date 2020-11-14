@@ -1,23 +1,23 @@
 ---
-title: 'Создание и использование компонентов :::no-loc(Razor)::: ASP.NET Core'
+title: 'Создание и использование компонентов Razor ASP.NET Core'
 author: guardrex
-description: Сведения о том, как создавать и использовать компоненты :::no-loc(Razor):::, включая способы привязки к данным, обработки событий и управления жизненным циклом компонентов.
+description: Сведения о том, как создавать и использовать компоненты Razor, включая способы привязки к данным, обработки событий и управления жизненным циклом компонентов.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/components/index
 ms.openlocfilehash: 0f02bc3a92b9f62eb0e3efea0cd780ad6d09bef5
 ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
@@ -26,23 +26,23 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 11/10/2020
 ms.locfileid: "94431008"
 ---
-# <a name="create-and-use-aspnet-core-no-locrazor-components"></a><span data-ttu-id="6f7e1-103">Создание и использование компонентов :::no-loc(Razor)::: ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="6f7e1-103">Create and use ASP.NET Core :::no-loc(Razor)::: components</span></span>
+# <a name="create-and-use-aspnet-core-no-locrazor-components"></a><span data-ttu-id="6f7e1-103">Создание и использование компонентов Razor ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="6f7e1-103">Create and use ASP.NET Core Razor components</span></span>
 
 <span data-ttu-id="6f7e1-104">Авторы: [Люк Латэм (Luke Latham)](https://github.com/guardrex), [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и Тобиас Бартщ [(Tobias Bartsch)](https://www.aveo-solutions.com/)</span><span class="sxs-lookup"><span data-stu-id="6f7e1-104">By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), and [Tobias Bartsch](https://www.aveo-solutions.com/)</span></span>
 
 <span data-ttu-id="6f7e1-105">[Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([как скачивать](xref:index#how-to-download-a-sample))</span><span class="sxs-lookup"><span data-stu-id="6f7e1-105">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))</span></span>
 
-<span data-ttu-id="6f7e1-106">Приложения :::no-loc(Blazor)::: создаются с использованием *компонентов*.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-106">:::no-loc(Blazor)::: apps are built using *components*.</span></span> <span data-ttu-id="6f7e1-107">Компонент — это автономный блок пользовательского интерфейса, такой как страница, диалоговое окно или форма.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-107">A component is a self-contained chunk of user interface (UI), such as a page, dialog, or form.</span></span> <span data-ttu-id="6f7e1-108">Компонент включает разметку HTML и логику обработки, необходимую для внедрения данных или реагирования на события пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-108">A component includes HTML markup and the processing logic required to inject data or respond to UI events.</span></span> <span data-ttu-id="6f7e1-109">Компоненты являются гибкими и облегченными.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-109">Components are flexible and lightweight.</span></span> <span data-ttu-id="6f7e1-110">Их можно вкладывать, использовать повторно и сразу в нескольких проектах.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-110">They can be nested, reused, and shared among projects.</span></span>
+<span data-ttu-id="6f7e1-106">Приложения Blazor создаются с использованием *компонентов*.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-106">Blazor apps are built using *components*.</span></span> <span data-ttu-id="6f7e1-107">Компонент — это автономный блок пользовательского интерфейса, такой как страница, диалоговое окно или форма.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-107">A component is a self-contained chunk of user interface (UI), such as a page, dialog, or form.</span></span> <span data-ttu-id="6f7e1-108">Компонент включает разметку HTML и логику обработки, необходимую для внедрения данных или реагирования на события пользовательского интерфейса.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-108">A component includes HTML markup and the processing logic required to inject data or respond to UI events.</span></span> <span data-ttu-id="6f7e1-109">Компоненты являются гибкими и облегченными.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-109">Components are flexible and lightweight.</span></span> <span data-ttu-id="6f7e1-110">Их можно вкладывать, использовать повторно и сразу в нескольких проектах.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-110">They can be nested, reused, and shared among projects.</span></span>
 
 ## <a name="component-classes"></a><span data-ttu-id="6f7e1-111">Классы компонентов</span><span class="sxs-lookup"><span data-stu-id="6f7e1-111">Component classes</span></span>
 
-<span data-ttu-id="6f7e1-112">Компоненты реализуются в файлах компонентов [:::no-loc(Razor):::](xref:mvc/views/razor) (`.razor`) с помощью комбинации разметки HTML и C#.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-112">Components are implemented in [:::no-loc(Razor):::](xref:mvc/views/razor) component files (`.razor`) using a combination of C# and HTML markup.</span></span> <span data-ttu-id="6f7e1-113">Компонент в :::no-loc(Blazor)::: формально называется *компонентом :::no-loc(Razor):::* .</span><span class="sxs-lookup"><span data-stu-id="6f7e1-113">A component in :::no-loc(Blazor)::: is formally referred to as a *:::no-loc(Razor)::: component*.</span></span>
+<span data-ttu-id="6f7e1-112">Компоненты реализуются в файлах компонентов [Razor](xref:mvc/views/razor) (`.razor`) с помощью комбинации разметки HTML и C#.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-112">Components are implemented in [Razor](xref:mvc/views/razor) component files (`.razor`) using a combination of C# and HTML markup.</span></span> <span data-ttu-id="6f7e1-113">Компонент в Blazor формально называется *компонентом Razor* .</span><span class="sxs-lookup"><span data-stu-id="6f7e1-113">A component in Blazor is formally referred to as a *Razor component*.</span></span>
 
-### <a name="no-locrazor-syntax"></a><span data-ttu-id="6f7e1-114">Синтаксис :::no-loc(Razor):::</span><span class="sxs-lookup"><span data-stu-id="6f7e1-114">:::no-loc(Razor)::: syntax</span></span>
+### <a name="no-locrazor-syntax"></a><span data-ttu-id="6f7e1-114">Синтаксис Razor</span><span class="sxs-lookup"><span data-stu-id="6f7e1-114">Razor syntax</span></span>
 
-<span data-ttu-id="6f7e1-115">В компонентах :::no-loc(Razor)::: приложений :::no-loc(Blazor)::: часто используется синтаксис :::no-loc(Razor):::.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-115">:::no-loc(Razor)::: components in :::no-loc(Blazor)::: apps extensively use :::no-loc(Razor)::: syntax.</span></span> <span data-ttu-id="6f7e1-116">Если вы не знакомы с языком разметки :::no-loc(Razor):::, сначала прочтите статью <xref:mvc/views/razor>.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-116">If you aren't familiar with the :::no-loc(Razor)::: markup language, we recommend reading <xref:mvc/views/razor> before proceeding.</span></span>
+<span data-ttu-id="6f7e1-115">В компонентах Razor приложений Blazor часто используется синтаксис Razor.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-115">Razor components in Blazor apps extensively use Razor syntax.</span></span> <span data-ttu-id="6f7e1-116">Если вы не знакомы с языком разметки Razor, сначала прочтите статью <xref:mvc/views/razor>.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-116">If you aren't familiar with the Razor markup language, we recommend reading <xref:mvc/views/razor> before proceeding.</span></span>
 
-<span data-ttu-id="6f7e1-117">При доступе к содержимому с синтаксисом :::no-loc(Razor)::: обратите особое внимание на следующее:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-117">When accessing the content on :::no-loc(Razor)::: syntax, pay special attention to the following sections:</span></span>
+<span data-ttu-id="6f7e1-117">При доступе к содержимому с синтаксисом Razor обратите особое внимание на следующее:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-117">When accessing the content on Razor syntax, pay special attention to the following sections:</span></span>
 
 * <span data-ttu-id="6f7e1-118">[Директивы](xref:mvc/views/razor#directives) — это зарезервированные ключевые слова с префиксом `@`, которые обычно меняют то, как разметка компонента анализируется и функционирует.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-118">[Directives](xref:mvc/views/razor#directives): `@`-prefixed reserved keywords that typically change the way component markup is parsed or function.</span></span>
 * <span data-ttu-id="6f7e1-119">[Атрибуты директивы](xref:mvc/views/razor#directive-attributes) — зарезервированные ключевые слова с префиксом `@`, которые обычно меняют то, как разметка компонента анализируется и функционирует.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-119">[Directive attributes](xref:mvc/views/razor#directive-attributes): `@`-prefixed reserved keywords that typically change the way component elements are parsed or function.</span></span>
@@ -53,7 +53,7 @@ ms.locfileid: "94431008"
 
 ### <a name="routing"></a><span data-ttu-id="6f7e1-123">Маршрутизация</span><span class="sxs-lookup"><span data-stu-id="6f7e1-123">Routing</span></span>
 
-<span data-ttu-id="6f7e1-124">Маршрутизация в :::no-loc(Blazor)::: достигается путем предоставления шаблона маршрута каждому доступному компоненту в приложении.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-124">Routing in :::no-loc(Blazor)::: is achieved by providing a route template to each accessible component in the app.</span></span> <span data-ttu-id="6f7e1-125">При компиляции файла :::no-loc(Razor)::: с директивой [`@page`][9] созданному классу предоставляется атрибут <xref:Microsoft.AspNetCore.Mvc.RouteAttribute>, указывающий шаблон маршрута.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-125">When a :::no-loc(Razor)::: file with an [`@page`][9] directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template.</span></span> <span data-ttu-id="6f7e1-126">Во время выполнения маршрутизатор ищет классы компонентов с <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> и отображает любой компонент, шаблон маршрута которого соответствует запрошенному URL-адресу.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-126">At runtime, the router looks for component classes with a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> and renders whichever component has a route template that matches the requested URL.</span></span> <span data-ttu-id="6f7e1-127">Для получения дополнительной информации см. <xref:blazor/fundamentals/routing>.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-127">For more information, see <xref:blazor/fundamentals/routing>.</span></span>
+<span data-ttu-id="6f7e1-124">Маршрутизация в Blazor достигается путем предоставления шаблона маршрута каждому доступному компоненту в приложении.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-124">Routing in Blazor is achieved by providing a route template to each accessible component in the app.</span></span> <span data-ttu-id="6f7e1-125">При компиляции файла Razor с директивой [`@page`][9] созданному классу предоставляется атрибут <xref:Microsoft.AspNetCore.Mvc.RouteAttribute>, указывающий шаблон маршрута.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-125">When a Razor file with an [`@page`][9] directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template.</span></span> <span data-ttu-id="6f7e1-126">Во время выполнения маршрутизатор ищет классы компонентов с <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> и отображает любой компонент, шаблон маршрута которого соответствует запрошенному URL-адресу.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-126">At runtime, the router looks for component classes with a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> and renders whichever component has a route template that matches the requested URL.</span></span> <span data-ttu-id="6f7e1-127">Для получения дополнительной информации см. <xref:blazor/fundamentals/routing>.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-127">For more information, see <xref:blazor/fundamentals/routing>.</span></span>
 
 ```razor
 @page "/ParentComponent"
@@ -63,7 +63,7 @@ ms.locfileid: "94431008"
 
 ### <a name="markup"></a><span data-ttu-id="6f7e1-128">разметку</span><span class="sxs-lookup"><span data-stu-id="6f7e1-128">Markup</span></span>
 
-<span data-ttu-id="6f7e1-129">Пользовательский интерфейс для компонента определяется с помощью HTML.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-129">The UI for a component is defined using HTML.</span></span> <span data-ttu-id="6f7e1-130">Логика динамического отображения (например, выражения, циклы и условные выражения) добавляется с помощью встроенного синтаксиса C# под названием *:::no-loc(Razor):::* .</span><span class="sxs-lookup"><span data-stu-id="6f7e1-130">Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called *:::no-loc(Razor):::*.</span></span> <span data-ttu-id="6f7e1-131">Во время компиляции приложения разметка HTML и логика отрисовки C# преобразуются в класс компонента.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-131">When an app is compiled, the HTML markup and C# rendering logic are converted into a component class.</span></span> <span data-ttu-id="6f7e1-132">Имя создаваемого класса соответствует имени файла.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-132">The name of the generated class matches the name of the file.</span></span>
+<span data-ttu-id="6f7e1-129">Пользовательский интерфейс для компонента определяется с помощью HTML.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-129">The UI for a component is defined using HTML.</span></span> <span data-ttu-id="6f7e1-130">Логика динамического отображения (например, выражения, циклы и условные выражения) добавляется с помощью встроенного синтаксиса C# под названием *Razor* .</span><span class="sxs-lookup"><span data-stu-id="6f7e1-130">Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called *Razor*.</span></span> <span data-ttu-id="6f7e1-131">Во время компиляции приложения разметка HTML и логика отрисовки C# преобразуются в класс компонента.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-131">When an app is compiled, the HTML markup and C# rendering logic are converted into a component class.</span></span> <span data-ttu-id="6f7e1-132">Имя создаваемого класса соответствует имени файла.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-132">The name of the generated class matches the name of the file.</span></span>
 
 <span data-ttu-id="6f7e1-133">Элементы класса компонента определяются в блоке [`@code`][1].</span><span class="sxs-lookup"><span data-stu-id="6f7e1-133">Members of the component class are defined in an [`@code`][1] block.</span></span> <span data-ttu-id="6f7e1-134">В блоке [`@code`][1] указываются состояние (свойства, поля) компонента и методы для обработки событий или определения другой логики компонента.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-134">In the [`@code`][1] block, component state (properties, fields) is specified with methods for event handling or for defining other component logic.</span></span> <span data-ttu-id="6f7e1-135">Допускается использование нескольких блоков [`@code`][1].</span><span class="sxs-lookup"><span data-stu-id="6f7e1-135">More than one [`@code`][1] block is permissible.</span></span>
 
@@ -77,38 +77,38 @@ ms.locfileid: "94431008"
 
 @code {
     private string headingFontStyle = "italic";
-    private string headingText = "Put on your new :::no-loc(Blazor):::!";
+    private string headingText = "Put on your new Blazor!";
 }
 ```
 
-<span data-ttu-id="6f7e1-141">После первоначальной отрисовки компонента он повторно создает дерево отрисовки в ответ на события.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-141">After the component is initially rendered, the component regenerates its render tree in response to events.</span></span> <span data-ttu-id="6f7e1-142">Затем :::no-loc(Blazor)::: сравнивает новое и прежнее дерево отрисовки и применяет все изменения в модели DOM браузера.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-142">:::no-loc(Blazor)::: then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM).</span></span>
+<span data-ttu-id="6f7e1-141">После первоначальной отрисовки компонента он повторно создает дерево отрисовки в ответ на события.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-141">After the component is initially rendered, the component regenerates its render tree in response to events.</span></span> <span data-ttu-id="6f7e1-142">Затем Blazor сравнивает новое и прежнее дерево отрисовки и применяет все изменения в модели DOM браузера.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-142">Blazor then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM).</span></span>
 
 <span data-ttu-id="6f7e1-143">Компоненты являются обычными классами C# и могут размещаться в любом месте внутри проекта.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-143">Components are ordinary C# classes and can be placed anywhere within a project.</span></span> <span data-ttu-id="6f7e1-144">Компоненты, создающие веб-страницы, обычно находятся в папке `Pages`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-144">Components that produce webpages usually reside in the `Pages` folder.</span></span> <span data-ttu-id="6f7e1-145">Компоненты, не являющиеся страницами, часто находятся в папке `Shared` или пользовательской папке, добавленной в проект.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-145">Non-page components are frequently placed in the `Shared` folder or a custom folder added to the project.</span></span>
 
 ### <a name="namespaces"></a><span data-ttu-id="6f7e1-146">Пространства имен</span><span class="sxs-lookup"><span data-stu-id="6f7e1-146">Namespaces</span></span>
 
-<span data-ttu-id="6f7e1-147">Как правило, пространство имен компонента является производным от корневого пространства имен приложения и расположения компонента (папки) в приложении.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-147">Typically, a component's namespace is derived from the app's root namespace and the component's location (folder) within the app.</span></span> <span data-ttu-id="6f7e1-148">Если пространством имен корня приложения является `:::no-loc(Blazor):::Sample`, а компонент `Counter` находится в папке `Pages`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-148">If the app's root namespace is `:::no-loc(Blazor):::Sample` and the `Counter` component resides in the `Pages` folder:</span></span>
+<span data-ttu-id="6f7e1-147">Как правило, пространство имен компонента является производным от корневого пространства имен приложения и расположения компонента (папки) в приложении.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-147">Typically, a component's namespace is derived from the app's root namespace and the component's location (folder) within the app.</span></span> <span data-ttu-id="6f7e1-148">Если пространством имен корня приложения является `BlazorSample`, а компонент `Counter` находится в папке `Pages`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-148">If the app's root namespace is `BlazorSample` and the `Counter` component resides in the `Pages` folder:</span></span>
 
-* <span data-ttu-id="6f7e1-149">Пространством имен компонента `Counter` является `:::no-loc(Blazor):::Sample.Pages`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-149">The `Counter` component's namespace is `:::no-loc(Blazor):::Sample.Pages`.</span></span>
-* <span data-ttu-id="6f7e1-150">Полным именем компонента является `:::no-loc(Blazor):::Sample.Pages.Counter`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-150">The fully qualified type name of the component is `:::no-loc(Blazor):::Sample.Pages.Counter`.</span></span>
+* <span data-ttu-id="6f7e1-149">Пространством имен компонента `Counter` является `BlazorSample.Pages`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-149">The `Counter` component's namespace is `BlazorSample.Pages`.</span></span>
+* <span data-ttu-id="6f7e1-150">Полным именем компонента является `BlazorSample.Pages.Counter`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-150">The fully qualified type name of the component is `BlazorSample.Pages.Counter`.</span></span>
 
 <span data-ttu-id="6f7e1-151">При использовании пользовательских папок, содержащих компоненты, добавьте директиву [`@using`][2] в родительский компонент или в файл `_Imports.razor` приложения.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-151">For custom folders that hold components, add a [`@using`][2] directive to the parent component or to the app's `_Imports.razor` file.</span></span> <span data-ttu-id="6f7e1-152">В следующем примере становятся доступными компоненты в папке `Components`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-152">The following example makes components in the `Components` folder available:</span></span>
 
 ```razor
-@using :::no-loc(Blazor):::Sample.Components
+@using BlazorSample.Components
 ```
 
 <span data-ttu-id="6f7e1-153">На компоненты также можно ссылаться с помощью полных имен, для чего не требуется директива [`@using`][2]:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-153">Components can also be referenced using their fully qualified names, which doesn't require the [`@using`][2] directive:</span></span>
 
 ```razor
-<:::no-loc(Blazor):::Sample.Components.MyComponent />
+<BlazorSample.Components.MyComponent />
 ```
 
-<span data-ttu-id="6f7e1-154">Пространство имен компонента, созданного с помощью :::no-loc(Razor):::, основано на следующем (в порядке приоритета).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-154">The namespace of a component authored with :::no-loc(Razor)::: is based on (in priority order):</span></span>
+<span data-ttu-id="6f7e1-154">Пространство имен компонента, созданного с помощью Razor, основано на следующем (в порядке приоритета).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-154">The namespace of a component authored with Razor is based on (in priority order):</span></span>
 
-* <span data-ttu-id="6f7e1-155">Назначение [`@namespace`][8] в разметке (`@namespace :::no-loc(Blazor):::Sample.MyNamespace`) файла :::no-loc(Razor)::: (`.razor`).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-155">[`@namespace`][8] designation in :::no-loc(Razor)::: file (`.razor`) markup (`@namespace :::no-loc(Blazor):::Sample.MyNamespace`).</span></span>
-* <span data-ttu-id="6f7e1-156">`RootNamespace` проекта в файле проекта (`<RootNamespace>:::no-loc(Blazor):::Sample</RootNamespace>`).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-156">The project's `RootNamespace` in the project file (`<RootNamespace>:::no-loc(Blazor):::Sample</RootNamespace>`).</span></span>
-* <span data-ttu-id="6f7e1-157">Имя проекта, полученное из имени файла проекта (`.csproj`), и путь из корневого каталога проекта к компоненту.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-157">The project name, taken from the project file's file name (`.csproj`), and the path from the project root to the component.</span></span> <span data-ttu-id="6f7e1-158">Например, платформа разрешает `{PROJECT ROOT}/Pages/Index.razor` (`:::no-loc(Blazor):::Sample.csproj`) в пространство имен `:::no-loc(Blazor):::Sample.Pages`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-158">For example, the framework resolves `{PROJECT ROOT}/Pages/Index.razor` (`:::no-loc(Blazor):::Sample.csproj`) to the namespace `:::no-loc(Blazor):::Sample.Pages`.</span></span> <span data-ttu-id="6f7e1-159">Компоненты соответствуют правилам привязки имен C#.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-159">Components follow C# name binding rules.</span></span> <span data-ttu-id="6f7e1-160">Для компонента `Index` в этом примере компонентами в области действия являются все компоненты:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-160">For the `Index` component in this example, the components in scope are all of the components:</span></span>
+* <span data-ttu-id="6f7e1-155">Назначение [`@namespace`][8] в разметке (`@namespace BlazorSample.MyNamespace`) файла Razor (`.razor`).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-155">[`@namespace`][8] designation in Razor file (`.razor`) markup (`@namespace BlazorSample.MyNamespace`).</span></span>
+* <span data-ttu-id="6f7e1-156">`RootNamespace` проекта в файле проекта (`<RootNamespace>BlazorSample</RootNamespace>`).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-156">The project's `RootNamespace` in the project file (`<RootNamespace>BlazorSample</RootNamespace>`).</span></span>
+* <span data-ttu-id="6f7e1-157">Имя проекта, полученное из имени файла проекта (`.csproj`), и путь из корневого каталога проекта к компоненту.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-157">The project name, taken from the project file's file name (`.csproj`), and the path from the project root to the component.</span></span> <span data-ttu-id="6f7e1-158">Например, платформа разрешает `{PROJECT ROOT}/Pages/Index.razor` (`BlazorSample.csproj`) в пространство имен `BlazorSample.Pages`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-158">For example, the framework resolves `{PROJECT ROOT}/Pages/Index.razor` (`BlazorSample.csproj`) to the namespace `BlazorSample.Pages`.</span></span> <span data-ttu-id="6f7e1-159">Компоненты соответствуют правилам привязки имен C#.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-159">Components follow C# name binding rules.</span></span> <span data-ttu-id="6f7e1-160">Для компонента `Index` в этом примере компонентами в области действия являются все компоненты:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-160">For the `Index` component in this example, the components in scope are all of the components:</span></span>
   * <span data-ttu-id="6f7e1-161">в этой же папке `Pages`;</span><span class="sxs-lookup"><span data-stu-id="6f7e1-161">In the same folder, `Pages`.</span></span>
   * <span data-ttu-id="6f7e1-162">в корневой папке проекта, которая не задает другое пространство имен явным образом.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-162">The components in the project's root that don't explicitly specify a different namespace.</span></span>
 
@@ -117,16 +117,16 @@ ms.locfileid: "94431008"
 >
 > <span data-ttu-id="6f7e1-164">Импорт компонентов с инструкциями [`using`](/dotnet/csharp/language-reference/keywords/using-statement), содержащими псевдонимы, (например, `@using Foo = Bar`) не поддерживается.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-164">Importing components with aliased [`using`](/dotnet/csharp/language-reference/keywords/using-statement) statements (for example, `@using Foo = Bar`) isn't supported.</span></span>
 >
-> <span data-ttu-id="6f7e1-165">Частично определенные имена не поддерживаются.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-165">Partially qualified names aren't supported.</span></span> <span data-ttu-id="6f7e1-166">Например, добавление `@using :::no-loc(Blazor):::Sample` и ссылка на компонент `NavMenu` (`NavMenu.razor`) с помощью `<Shared.NavMenu></Shared.NavMenu>` не поддерживаются.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-166">For example, adding `@using :::no-loc(Blazor):::Sample` and referencing the `NavMenu` component (`NavMenu.razor`) with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.</span></span>
+> <span data-ttu-id="6f7e1-165">Частично определенные имена не поддерживаются.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-165">Partially qualified names aren't supported.</span></span> <span data-ttu-id="6f7e1-166">Например, добавление `@using BlazorSample` и ссылка на компонент `NavMenu` (`NavMenu.razor`) с помощью `<Shared.NavMenu></Shared.NavMenu>` не поддерживаются.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-166">For example, adding `@using BlazorSample` and referencing the `NavMenu` component (`NavMenu.razor`) with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.</span></span>
 
 ### <a name="partial-class-support"></a><span data-ttu-id="6f7e1-167">Поддержка разделяемых классов</span><span class="sxs-lookup"><span data-stu-id="6f7e1-167">Partial class support</span></span>
 
-<span data-ttu-id="6f7e1-168">Компоненты :::no-loc(Razor)::: создаются как разделяемые классы.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-168">:::no-loc(Razor)::: components are generated as partial classes.</span></span> <span data-ttu-id="6f7e1-169">Создавать компоненты :::no-loc(Razor)::: можно одним из следующих способов.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-169">:::no-loc(Razor)::: components are authored using either of the following approaches:</span></span>
+<span data-ttu-id="6f7e1-168">Компоненты Razor создаются как разделяемые классы.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-168">Razor components are generated as partial classes.</span></span> <span data-ttu-id="6f7e1-169">Создавать компоненты Razor можно одним из следующих способов.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-169">Razor components are authored using either of the following approaches:</span></span>
 
-* <span data-ttu-id="6f7e1-170">Код C# определяется в блоке [`@code`][1] с разметкой HTML и кодом :::no-loc(Razor)::: в одном файле.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-170">C# code is defined in an [`@code`][1] block with HTML markup and :::no-loc(Razor)::: code in a single file.</span></span> <span data-ttu-id="6f7e1-171">Шаблоны :::no-loc(Blazor)::: определяют свои компоненты :::no-loc(Razor)::: с помощью этого подхода.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-171">:::no-loc(Blazor)::: templates define their :::no-loc(Razor)::: components using this approach.</span></span>
+* <span data-ttu-id="6f7e1-170">Код C# определяется в блоке [`@code`][1] с разметкой HTML и кодом Razor в одном файле.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-170">C# code is defined in an [`@code`][1] block with HTML markup and Razor code in a single file.</span></span> <span data-ttu-id="6f7e1-171">Шаблоны Blazor определяют свои компоненты Razor с помощью этого подхода.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-171">Blazor templates define their Razor components using this approach.</span></span>
 * <span data-ttu-id="6f7e1-172">Код C# помещается в файл кода программной части, определенный как разделяемый класс.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-172">C# code is placed in a code-behind file defined as a partial class.</span></span>
 
-<span data-ttu-id="6f7e1-173">В следующем примере показан компонент `Counter` по умолчанию с блоком [`@code`][1] в приложении, созданном из шаблона :::no-loc(Blazor):::.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-173">The following example shows the default `Counter` component with an [`@code`][1] block in an app generated from a :::no-loc(Blazor)::: template.</span></span> <span data-ttu-id="6f7e1-174">Разметка HTML, код :::no-loc(Razor)::: и код C# находятся в одном файле.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-174">HTML markup, :::no-loc(Razor)::: code, and C# code are in the same file:</span></span>
+<span data-ttu-id="6f7e1-173">В следующем примере показан компонент `Counter` по умолчанию с блоком [`@code`][1] в приложении, созданном из шаблона Blazor.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-173">The following example shows the default `Counter` component with an [`@code`][1] block in an app generated from a Blazor template.</span></span> <span data-ttu-id="6f7e1-174">Разметка HTML, код Razor и код C# находятся в одном файле.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-174">HTML markup, Razor code, and C# code are in the same file:</span></span>
 
 <span data-ttu-id="6f7e1-175">`Pages/Counter.razor`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-175">`Pages/Counter.razor`:</span></span>
 
@@ -166,7 +166,7 @@ ms.locfileid: "94431008"
 <span data-ttu-id="6f7e1-178">`Counter.razor.cs`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-178">`Counter.razor.cs`:</span></span>
 
 ```csharp
-namespace :::no-loc(Blazor):::Sample.Pages
+namespace BlazorSample.Pages
 {
     public partial class Counter
     {
@@ -180,7 +180,7 @@ namespace :::no-loc(Blazor):::Sample.Pages
 }
 ```
 
-<span data-ttu-id="6f7e1-179">При необходимости добавьте в файл разделяемого класса нужные пространства имен.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-179">Add any required namespaces to the partial class file as needed.</span></span> <span data-ttu-id="6f7e1-180">К типичным пространствам имен, используемым компонентами :::no-loc(Razor):::, относятся следующие.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-180">Typical namespaces used by :::no-loc(Razor)::: components include:</span></span>
+<span data-ttu-id="6f7e1-179">При необходимости добавьте в файл разделяемого класса нужные пространства имен.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-179">Add any required namespaces to the partial class file as needed.</span></span> <span data-ttu-id="6f7e1-180">К типичным пространствам имен, используемым компонентами Razor, относятся следующие.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-180">Typical namespaces used by Razor components include:</span></span>
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -192,32 +192,32 @@ using Microsoft.AspNetCore.Components.Web;
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="6f7e1-181">Директивы [`@using`][2] в файле `_Imports.razor` применяются только к файлам :::no-loc(Razor)::: (`.razor`), но не к файлам C# (`.cs`).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-181">[`@using`][2] directives in the `_Imports.razor` file are only applied to :::no-loc(Razor)::: files (`.razor`), not C# files (`.cs`).</span></span>
+> <span data-ttu-id="6f7e1-181">Директивы [`@using`][2] в файле `_Imports.razor` применяются только к файлам Razor (`.razor`), но не к файлам C# (`.cs`).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-181">[`@using`][2] directives in the `_Imports.razor` file are only applied to Razor files (`.razor`), not C# files (`.cs`).</span></span>
 
 ### <a name="specify-a-base-class"></a><span data-ttu-id="6f7e1-182">Указание базового класса</span><span class="sxs-lookup"><span data-stu-id="6f7e1-182">Specify a base class</span></span>
 
-<span data-ttu-id="6f7e1-183">Директиву [`@inherits`][6] можно использовать для указания базового класса для компонента.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-183">The [`@inherits`][6] directive can be used to specify a base class for a component.</span></span> <span data-ttu-id="6f7e1-184">В следующем примере показано, как компонент может наследовать базовый класс `:::no-loc(Blazor):::RocksBase`, чтобы предоставить свойства и методы компонента.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-184">The following example shows how a component can inherit a base class, `:::no-loc(Blazor):::RocksBase`, to provide the component's properties and methods.</span></span> <span data-ttu-id="6f7e1-185">Базовый класс должен быть производным от <xref:Microsoft.AspNetCore.Components.ComponentBase>.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-185">The base class should derive from <xref:Microsoft.AspNetCore.Components.ComponentBase>.</span></span>
+<span data-ttu-id="6f7e1-183">Директиву [`@inherits`][6] можно использовать для указания базового класса для компонента.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-183">The [`@inherits`][6] directive can be used to specify a base class for a component.</span></span> <span data-ttu-id="6f7e1-184">В следующем примере показано, как компонент может наследовать базовый класс `BlazorRocksBase`, чтобы предоставить свойства и методы компонента.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-184">The following example shows how a component can inherit a base class, `BlazorRocksBase`, to provide the component's properties and methods.</span></span> <span data-ttu-id="6f7e1-185">Базовый класс должен быть производным от <xref:Microsoft.AspNetCore.Components.ComponentBase>.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-185">The base class should derive from <xref:Microsoft.AspNetCore.Components.ComponentBase>.</span></span>
 
-<span data-ttu-id="6f7e1-186">`Pages/:::no-loc(Blazor):::Rocks.razor`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-186">`Pages/:::no-loc(Blazor):::Rocks.razor`:</span></span>
+<span data-ttu-id="6f7e1-186">`Pages/BlazorRocks.razor`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-186">`Pages/BlazorRocks.razor`:</span></span>
 
 ```razor
-@page "/:::no-loc(Blazor):::Rocks"
-@inherits :::no-loc(Blazor):::RocksBase
+@page "/BlazorRocks"
+@inherits BlazorRocksBase
 
-<h1>@:::no-loc(Blazor):::RocksText</h1>
+<h1>@BlazorRocksText</h1>
 ```
 
-<span data-ttu-id="6f7e1-187">`:::no-loc(Blazor):::RocksBase.cs`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-187">`:::no-loc(Blazor):::RocksBase.cs`:</span></span>
+<span data-ttu-id="6f7e1-187">`BlazorRocksBase.cs`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-187">`BlazorRocksBase.cs`:</span></span>
 
 ```csharp
 using Microsoft.AspNetCore.Components;
 
-namespace :::no-loc(Blazor):::Sample
+namespace BlazorSample
 {
-    public class :::no-loc(Blazor):::RocksBase : ComponentBase
+    public class BlazorRocksBase : ComponentBase
     {
-        public string :::no-loc(Blazor):::RocksText { get; set; } = 
-            ":::no-loc(Blazor)::: rocks the browser!";
+        public string BlazorRocksText { get; set; } = 
+            "Blazor rocks the browser!";
     }
 }
 ```
@@ -258,7 +258,7 @@ namespace :::no-loc(Blazor):::Sample
 
 <span data-ttu-id="6f7e1-207">`Components/ChildComponent.razor`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-207">`Components/ChildComponent.razor`:</span></span>
 
-[!code-razor[](../common/samples/3.x/:::no-loc(Blazor):::WebAssemblySample/Components/ChildComponent.razor?highlight=2,11-12)]
+[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=2,11-12)]
 
 <span data-ttu-id="6f7e1-208">В следующем примере из примера приложения `ParentComponent` задает значение свойства `Title` для `ChildComponent`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-208">In the following example from the sample app, the `ParentComponent` sets the value of the `Title` property of the `ChildComponent`.</span></span>
 
@@ -277,7 +277,7 @@ namespace :::no-loc(Blazor):::Sample
 
 <span data-ttu-id="6f7e1-218">`Components/ChildComponent.razor`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-218">`Components/ChildComponent.razor`:</span></span>
 
-[!code-razor[](../common/samples/3.x/:::no-loc(Blazor):::WebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
+[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
 
 > [!NOTE]
 > <span data-ttu-id="6f7e1-219">Свойству, принимающему содержимое <xref:Microsoft.AspNetCore.Components.RenderFragment>, по соглашению необходимо присвоить имя `ChildContent`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-219">The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.</span></span>
@@ -288,7 +288,7 @@ namespace :::no-loc(Blazor):::Sample
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=7-8)]
 
-<span data-ttu-id="6f7e1-222">В связи с тем, как :::no-loc(Blazor)::: выполняет рендеринг дочернего содержимого, для компонентов рендеринга в цикле `for` требуется задать локальную переменную индекса, если в содержимом дочернего компонента используется переменная цикла приращения:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-222">Due to the way that :::no-loc(Blazor)::: renders child content, rendering components inside a `for` loop requires a local index variable if the incrementing loop variable is used in the child component's content:</span></span>
+<span data-ttu-id="6f7e1-222">В связи с тем, как Blazor выполняет рендеринг дочернего содержимого, для компонентов рендеринга в цикле `for` требуется задать локальную переменную индекса, если в содержимом дочернего компонента используется переменная цикла приращения:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-222">Due to the way that Blazor renders child content, rendering components inside a `for` loop requires a local index variable if the incrementing loop variable is used in the child component's content:</span></span>
 >
 > ```razor
 > @for (int c = 0; c < 10; c++)
@@ -313,7 +313,7 @@ namespace :::no-loc(Blazor):::Sample
 
 ## <a name="attribute-splatting-and-arbitrary-parameters"></a><span data-ttu-id="6f7e1-224">Сплаттинг атрибутов и произвольные параметры</span><span class="sxs-lookup"><span data-stu-id="6f7e1-224">Attribute splatting and arbitrary parameters</span></span>
 
-<span data-ttu-id="6f7e1-225">Компоненты могут записывать и визуализировать дополнительные атрибуты в дополнение к объявленным параметрам компонента.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-225">Components can capture and render additional attributes in addition to the component's declared parameters.</span></span> <span data-ttu-id="6f7e1-226">Можно записать дополнительные атрибуты в словарь, а затем выполнить *сплаттинг* для элемента при подготовке отрисовки компонента с помощью директивы [`@attributes`][3] :::no-loc(Razor):::.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-226">Additional attributes can be captured in a dictionary and then *splatted* onto an element when the component is rendered using the [`@attributes`][3] :::no-loc(Razor)::: directive.</span></span> <span data-ttu-id="6f7e1-227">Этот сценарий полезен при определении компонента, который создает элемент разметки, поддерживающий разнообразные настройки.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-227">This scenario is useful when defining a component that produces a markup element that supports a variety of customizations.</span></span> <span data-ttu-id="6f7e1-228">Например, может оказаться утомительным по отдельности определять атрибуты для `<input>`, поддерживающего много параметров.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-228">For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.</span></span>
+<span data-ttu-id="6f7e1-225">Компоненты могут записывать и визуализировать дополнительные атрибуты в дополнение к объявленным параметрам компонента.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-225">Components can capture and render additional attributes in addition to the component's declared parameters.</span></span> <span data-ttu-id="6f7e1-226">Можно записать дополнительные атрибуты в словарь, а затем выполнить *сплаттинг* для элемента при подготовке отрисовки компонента с помощью директивы [`@attributes`][3] Razor.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-226">Additional attributes can be captured in a dictionary and then *splatted* onto an element when the component is rendered using the [`@attributes`][3] Razor directive.</span></span> <span data-ttu-id="6f7e1-227">Этот сценарий полезен при определении компонента, который создает элемент разметки, поддерживающий разнообразные настройки.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-227">This scenario is useful when defining a component that produces a markup element that supports a variety of customizations.</span></span> <span data-ttu-id="6f7e1-228">Например, может оказаться утомительным по отдельности определять атрибуты для `<input>`, поддерживающего много параметров.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-228">For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.</span></span>
 
 <span data-ttu-id="6f7e1-229">В следующем примере первый элемент `<input>` (`id="useIndividualParams"`) использует отдельные параметры компонента, а второй элемент `<input>` (`id="useAttributesDict"`) использует сплаттинг атрибутов:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-229">In the following example, the first `<input>` element (`id="useIndividualParams"`) uses individual component parameters, while the second `<input>` element (`id="useAttributesDict"`) uses attribute splatting:</span></span>
 
@@ -468,9 +468,9 @@ public IDictionary<string, object> AdditionalAttributes { get; set; }
 
 ## <a name="synchronization-context"></a><span data-ttu-id="6f7e1-267">Контекст синхронизации</span><span class="sxs-lookup"><span data-stu-id="6f7e1-267">Synchronization context</span></span>
 
-<span data-ttu-id="6f7e1-268">:::no-loc(Blazor)::: использует контекст синхронизации (<xref:System.Threading.SynchronizationContext>) для принудительного использования одного логического потока выполнения.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-268">:::no-loc(Blazor)::: uses a synchronization context (<xref:System.Threading.SynchronizationContext>) to enforce a single logical thread of execution.</span></span> <span data-ttu-id="6f7e1-269">[Методы жизненного цикла ](xref:blazor/components/lifecycle) компонента и все обратные вызовы событий, сделанные :::no-loc(Blazor):::, выполняются в этом контексте синхронизации.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-269">A component's [lifecycle methods](xref:blazor/components/lifecycle) and any event callbacks that are raised by :::no-loc(Blazor)::: are executed on the synchronization context.</span></span>
+<span data-ttu-id="6f7e1-268">Blazor использует контекст синхронизации (<xref:System.Threading.SynchronizationContext>) для принудительного использования одного логического потока выполнения.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-268">Blazor uses a synchronization context (<xref:System.Threading.SynchronizationContext>) to enforce a single logical thread of execution.</span></span> <span data-ttu-id="6f7e1-269">[Методы жизненного цикла ](xref:blazor/components/lifecycle) компонента и все обратные вызовы событий, сделанные Blazor, выполняются в этом контексте синхронизации.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-269">A component's [lifecycle methods](xref:blazor/components/lifecycle) and any event callbacks that are raised by Blazor are executed on the synchronization context.</span></span>
 
-<span data-ttu-id="6f7e1-270">Контекст синхронизации :::no-loc(Blazor Server)::: пытается эмулировать однопоточную среду таким образом, чтобы она точно соответствовала модели WebAssembly в браузере, которая является однопоточной.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-270">:::no-loc(Blazor Server):::'s synchronization context attempts to emulate a single-threaded environment so that it closely matches the WebAssembly model in the browser, which is single threaded.</span></span> <span data-ttu-id="6f7e1-271">В любой момент времени работа выполняется только в одном потоке, что создает впечатление единого логического потока.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-271">At any given point in time, work is performed on exactly one thread, giving the impression of a single logical thread.</span></span> <span data-ttu-id="6f7e1-272">Две операции не могут выполняться одновременно.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-272">No two operations execute concurrently.</span></span>
+<span data-ttu-id="6f7e1-270">Контекст синхронизации Blazor Server пытается эмулировать однопоточную среду таким образом, чтобы она точно соответствовала модели WebAssembly в браузере, которая является однопоточной.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-270">Blazor Server's synchronization context attempts to emulate a single-threaded environment so that it closely matches the WebAssembly model in the browser, which is single threaded.</span></span> <span data-ttu-id="6f7e1-271">В любой момент времени работа выполняется только в одном потоке, что создает впечатление единого логического потока.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-271">At any given point in time, work is performed on exactly one thread, giving the impression of a single logical thread.</span></span> <span data-ttu-id="6f7e1-272">Две операции не могут выполняться одновременно.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-272">No two operations execute concurrently.</span></span>
 
 ### <a name="avoid-thread-blocking-calls"></a><span data-ttu-id="6f7e1-273">Избегайте блокирующих вызовов</span><span class="sxs-lookup"><span data-stu-id="6f7e1-273">Avoid thread-blocking calls</span></span>
 
@@ -485,7 +485,7 @@ public IDictionary<string, object> AdditionalAttributes { get; set; }
 
 ### <a name="invoke-component-methods-externally-to-update-state"></a><span data-ttu-id="6f7e1-276">Внешний вызов методов компонента для изменения состояния</span><span class="sxs-lookup"><span data-stu-id="6f7e1-276">Invoke component methods externally to update state</span></span>
 
-<span data-ttu-id="6f7e1-277">Если компонент нужно изменить на основе внешнего события, такого как таймер или другие уведомления, используйте метод `InvokeAsync`, который выполняет отправку в контекст синхронизации :::no-loc(Blazor):::.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-277">In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which dispatches to :::no-loc(Blazor):::'s synchronization context.</span></span> <span data-ttu-id="6f7e1-278">Например, рассмотрим *службу уведомителя* , которая может уведомлять любой компонент, ожидающий передачи данных, об измененном состоянии:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-278">For example, consider a *notifier service* that can notify any listening component of the updated state:</span></span>
+<span data-ttu-id="6f7e1-277">Если компонент нужно изменить на основе внешнего события, такого как таймер или другие уведомления, используйте метод `InvokeAsync`, который выполняет отправку в контекст синхронизации Blazor.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-277">In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which dispatches to Blazor's synchronization context.</span></span> <span data-ttu-id="6f7e1-278">Например, рассмотрим *службу уведомителя* , которая может уведомлять любой компонент, ожидающий передачи данных, об измененном состоянии:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-278">For example, consider a *notifier service* that can notify any listening component of the updated state:</span></span>
 
 ```csharp
 public class NotifierService
@@ -505,13 +505,13 @@ public class NotifierService
 
 <span data-ttu-id="6f7e1-279">Зарегистрируйте `NotifierService`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-279">Register the `NotifierService`:</span></span>
 
-* <span data-ttu-id="6f7e1-280">В :::no-loc(Blazor WebAssembly)::: зарегистрируйте службу как отдельную (singleton) в `Program.Main`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-280">In :::no-loc(Blazor WebAssembly):::, register the service as singleton in `Program.Main`:</span></span>
+* <span data-ttu-id="6f7e1-280">В Blazor WebAssembly зарегистрируйте службу как отдельную (singleton) в `Program.Main`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-280">In Blazor WebAssembly, register the service as singleton in `Program.Main`:</span></span>
 
   ```csharp
   builder.Services.AddSingleton<NotifierService>();
   ```
 
-* <span data-ttu-id="6f7e1-281">В :::no-loc(Blazor Server)::: зарегистрируйте службу с заданной областью (scoped) в `Startup.ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-281">In :::no-loc(Blazor Server):::, register the service as scoped in `Startup.ConfigureServices`:</span></span>
+* <span data-ttu-id="6f7e1-281">В Blazor Server зарегистрируйте службу с заданной областью (scoped) в `Startup.ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-281">In Blazor Server, register the service as scoped in `Startup.ConfigureServices`:</span></span>
 
   ```csharp
   services.AddScoped<NotifierService>();
@@ -550,11 +550,11 @@ public class NotifierService
 }
 ```
 
-<span data-ttu-id="6f7e1-283">В предыдущем примере `NotifierService` вызывает метод `OnNotify` компонента вне контекста синхронизации :::no-loc(Blazor):::.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-283">In the preceding example, `NotifierService` invokes the component's `OnNotify` method outside of :::no-loc(Blazor):::'s synchronization context.</span></span> <span data-ttu-id="6f7e1-284">`InvokeAsync` используется для переключения на подходящий контекст и постановки отрисовки в очередь.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-284">`InvokeAsync` is used to switch to the correct context and queue a render.</span></span>
+<span data-ttu-id="6f7e1-283">В предыдущем примере `NotifierService` вызывает метод `OnNotify` компонента вне контекста синхронизации Blazor.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-283">In the preceding example, `NotifierService` invokes the component's `OnNotify` method outside of Blazor's synchronization context.</span></span> <span data-ttu-id="6f7e1-284">`InvokeAsync` используется для переключения на подходящий контекст и постановки отрисовки в очередь.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-284">`InvokeAsync` is used to switch to the correct context and queue a render.</span></span>
 
 ## <a name="use-key-to-control-the-preservation-of-elements-and-components"></a><span data-ttu-id="6f7e1-285">Использование \@key для управления сохранением элементов и компонентов</span><span class="sxs-lookup"><span data-stu-id="6f7e1-285">Use \@key to control the preservation of elements and components</span></span>
 
-<span data-ttu-id="6f7e1-286">При отрисовке списка элементов или компонентов и последующем изменении элементов или компонентов алгоритм сравнения :::no-loc(Blazor)::: должен решить, какие из предыдущих элементов или компонентов можно оставить и как следует сопоставить с ними объекты модели.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-286">When rendering a list of elements or components and the elements or components subsequently change, :::no-loc(Blazor):::'s diffing algorithm must decide which of the previous elements or components can be retained and how model objects should map to them.</span></span> <span data-ttu-id="6f7e1-287">Обычно этот процесс выполняется автоматически, и его можно игнорировать, но в некоторых случаях может потребоваться управлять данным процессом.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-287">Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.</span></span>
+<span data-ttu-id="6f7e1-286">При отрисовке списка элементов или компонентов и последующем изменении элементов или компонентов алгоритм сравнения Blazor должен решить, какие из предыдущих элементов или компонентов можно оставить и как следует сопоставить с ними объекты модели.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-286">When rendering a list of elements or components and the elements or components subsequently change, Blazor's diffing algorithm must decide which of the previous elements or components can be retained and how model objects should map to them.</span></span> <span data-ttu-id="6f7e1-287">Обычно этот процесс выполняется автоматически, и его можно игнорировать, но в некоторых случаях может потребоваться управлять данным процессом.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-287">Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.</span></span>
 
 <span data-ttu-id="6f7e1-288">Рассмотрим следующий пример.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-288">Consider the following example:</span></span>
 
@@ -601,7 +601,7 @@ public class NotifierService
 
 <span data-ttu-id="6f7e1-305">Как правило, [`@key`][5] имеет смысл использовать при отрисовке списка (например, в блоке [foreach](/dotnet/csharp/language-reference/keywords/foreach-in)) и при наличии подходящего значения для определения [`@key`][5].</span><span class="sxs-lookup"><span data-stu-id="6f7e1-305">Typically, it makes sense to use [`@key`][5] whenever a list is rendered (for example, in a [foreach](/dotnet/csharp/language-reference/keywords/foreach-in) block) and a suitable value exists to define the [`@key`][5].</span></span>
 
-<span data-ttu-id="6f7e1-306">Можно также использовать [`@key`][5], чтобы запретить :::no-loc(Blazor)::: сохранять поддерево элементов или компонентов при изменении объекта:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-306">You can also use [`@key`][5] to prevent :::no-loc(Blazor)::: from preserving an element or component subtree when an object changes:</span></span>
+<span data-ttu-id="6f7e1-306">Можно также использовать [`@key`][5], чтобы запретить Blazor сохранять поддерево элементов или компонентов при изменении объекта:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-306">You can also use [`@key`][5] to prevent Blazor from preserving an element or component subtree when an object changes:</span></span>
 
 ```razor
 <div @key="currentPerson">
@@ -609,13 +609,13 @@ public class NotifierService
 </div>
 ```
 
-<span data-ttu-id="6f7e1-307">Если `@currentPerson` меняется, директива атрибута [`@key`][5] принуждает :::no-loc(Blazor)::: отменить весь блок элемента `<div>` с потомками и перестроить поддерево в пользовательском интерфейсе с использованием новых элементов и компонентов.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-307">If `@currentPerson` changes, the [`@key`][5] attribute directive forces :::no-loc(Blazor)::: to discard the entire `<div>` and its descendants and rebuild the subtree within the UI with new elements and components.</span></span> <span data-ttu-id="6f7e1-308">Это может быть полезно, если нужно гарантировать, что при изменении `@currentPerson` состояние пользовательского интерфейса не сохраняется.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-308">This can be useful if you need to guarantee that no UI state is preserved when `@currentPerson` changes.</span></span>
+<span data-ttu-id="6f7e1-307">Если `@currentPerson` меняется, директива атрибута [`@key`][5] принуждает Blazor отменить весь блок элемента `<div>` с потомками и перестроить поддерево в пользовательском интерфейсе с использованием новых элементов и компонентов.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-307">If `@currentPerson` changes, the [`@key`][5] attribute directive forces Blazor to discard the entire `<div>` and its descendants and rebuild the subtree within the UI with new elements and components.</span></span> <span data-ttu-id="6f7e1-308">Это может быть полезно, если нужно гарантировать, что при изменении `@currentPerson` состояние пользовательского интерфейса не сохраняется.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-308">This can be useful if you need to guarantee that no UI state is preserved when `@currentPerson` changes.</span></span>
 
 ### <a name="when-not-to-use-key"></a><span data-ttu-id="6f7e1-309">Условия для отказа от использования \@key</span><span class="sxs-lookup"><span data-stu-id="6f7e1-309">When not to use \@key</span></span>
 
 <span data-ttu-id="6f7e1-310">Сравнение с использованием [`@key`][5] подразумевает определенное снижение производительности.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-310">There's a performance cost when diffing with [`@key`][5].</span></span> <span data-ttu-id="6f7e1-311">Это снижение производительности незначительно, но указывать [`@key`][5] следует только в том случае, если управление правилами сохранения элементов или компонентов выгодно для приложения.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-311">The performance cost isn't large, but only specify [`@key`][5] if controlling the element or component preservation rules benefit the app.</span></span>
 
-<span data-ttu-id="6f7e1-312">Даже если [`@key`][5] не используется, :::no-loc(Blazor)::: сохраняет экземпляры дочерних элементов и компонентов в максимально возможной степени.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-312">Even if [`@key`][5] isn't used, :::no-loc(Blazor)::: preserves child element and component instances as much as possible.</span></span> <span data-ttu-id="6f7e1-313">Единственным преимуществом использования [`@key`][5] является контроль над тем, *как* экземпляры модели сопоставляются с сохраненными экземплярами компонентов, вместо выбора сопоставления с помощью алгоритма сравнения.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-313">The only advantage to using [`@key`][5] is control over *how* model instances are mapped to the preserved component instances, instead of the diffing algorithm selecting the mapping.</span></span>
+<span data-ttu-id="6f7e1-312">Даже если [`@key`][5] не используется, Blazor сохраняет экземпляры дочерних элементов и компонентов в максимально возможной степени.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-312">Even if [`@key`][5] isn't used, Blazor preserves child element and component instances as much as possible.</span></span> <span data-ttu-id="6f7e1-313">Единственным преимуществом использования [`@key`][5] является контроль над тем, *как* экземпляры модели сопоставляются с сохраненными экземплярами компонентов, вместо выбора сопоставления с помощью алгоритма сравнения.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-313">The only advantage to using [`@key`][5] is control over *how* model instances are mapped to the preserved component instances, instead of the diffing algorithm selecting the mapping.</span></span>
 
 ### <a name="what-values-to-use-for-key"></a><span data-ttu-id="6f7e1-314">Значения, которые следует использовать для \@key</span><span class="sxs-lookup"><span data-stu-id="6f7e1-314">What values to use for \@key</span></span>
 
@@ -624,11 +624,11 @@ public class NotifierService
 * <span data-ttu-id="6f7e1-316">Экземпляры объектов модели (например, экземпляр `Person`, как в предыдущем примере).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-316">Model object instances (for example, a `Person` instance as in the earlier example).</span></span> <span data-ttu-id="6f7e1-317">Это гарантирует сохранение на основе равенства ссылок на объекты.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-317">This ensures preservation based on object reference equality.</span></span>
 * <span data-ttu-id="6f7e1-318">Уникальные идентификаторы (например, значения первичного ключа типа `int`, `string` или `Guid`).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-318">Unique identifiers (for example, primary key values of type `int`, `string`, or `Guid`).</span></span>
 
-<span data-ttu-id="6f7e1-319">Убедитесь, что значения, используемые для [`@key`][5], не конфликтуют.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-319">Ensure that values used for [`@key`][5] don't clash.</span></span> <span data-ttu-id="6f7e1-320">Если в одном родительском элементе обнаруживаются конфликтующие значения, :::no-loc(Blazor)::: выдает исключение, поскольку не может детерминированно сопоставлять старые элементы или компоненты с новыми.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-320">If clashing values are detected within the same parent element, :::no-loc(Blazor)::: throws an exception because it can't deterministically map old elements or components to new elements or components.</span></span> <span data-ttu-id="6f7e1-321">Используйте только уникальные значения, такие как экземпляры объекта или значения первичного ключа.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-321">Only use distinct values, such as object instances or primary key values.</span></span>
+<span data-ttu-id="6f7e1-319">Убедитесь, что значения, используемые для [`@key`][5], не конфликтуют.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-319">Ensure that values used for [`@key`][5] don't clash.</span></span> <span data-ttu-id="6f7e1-320">Если в одном родительском элементе обнаруживаются конфликтующие значения, Blazor выдает исключение, поскольку не может детерминированно сопоставлять старые элементы или компоненты с новыми.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-320">If clashing values are detected within the same parent element, Blazor throws an exception because it can't deterministically map old elements or components to new elements or components.</span></span> <span data-ttu-id="6f7e1-321">Используйте только уникальные значения, такие как экземпляры объекта или значения первичного ключа.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-321">Only use distinct values, such as object instances or primary key values.</span></span>
 
 ## <a name="overwritten-parameters"></a><span data-ttu-id="6f7e1-322">Перезаписанные параметры</span><span class="sxs-lookup"><span data-stu-id="6f7e1-322">Overwritten parameters</span></span>
 
-<span data-ttu-id="6f7e1-323">Платформа :::no-loc(Blazor)::: обычно позволяет безопасно назначить параметр с родительского компонента на дочерний:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-323">The :::no-loc(Blazor)::: framework generally imposes safe parent-to-child parameter assignment:</span></span>
+<span data-ttu-id="6f7e1-323">Платформа Blazor обычно позволяет безопасно назначить параметр с родительского компонента на дочерний:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-323">The Blazor framework generally imposes safe parent-to-child parameter assignment:</span></span>
 
 * <span data-ttu-id="6f7e1-324">Параметры не перезаписываются неожиданно.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-324">Parameters aren't overwritten unexpectedly.</span></span>
 * <span data-ttu-id="6f7e1-325">Побочные эффекты сводятся к минимуму.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-325">Side-effects are minimized.</span></span> <span data-ttu-id="6f7e1-326">Например, дополнительные отрисовки избегаются, так как они могут создавать бесконечные циклы отрисовки.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-326">For example, additional renders are avoided because they may create infinite rendering loops.</span></span>
@@ -734,11 +734,11 @@ public class NotifierService
 }
 ```
 
-<span data-ttu-id="6f7e1-348">Дополнительные сведения см. в статье [Ошибка двусторонней привязки :::no-loc(Blazor)::: (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-348">For additional information, see [:::no-loc(Blazor)::: Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).</span></span> 
+<span data-ttu-id="6f7e1-348">Дополнительные сведения см. в статье [Ошибка двусторонней привязки Blazor (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-348">For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).</span></span> 
 
 ## <a name="apply-an-attribute"></a><span data-ttu-id="6f7e1-349">Применение атрибута</span><span class="sxs-lookup"><span data-stu-id="6f7e1-349">Apply an attribute</span></span>
 
-<span data-ttu-id="6f7e1-350">Атрибуты можно применять к компонентам :::no-loc(Razor)::: с помощью директивы [`@attribute`][7].</span><span class="sxs-lookup"><span data-stu-id="6f7e1-350">Attributes can be applied to :::no-loc(Razor)::: components with the [`@attribute`][7] directive.</span></span> <span data-ttu-id="6f7e1-351">В следующем примере атрибут [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) применяется к классу компонентов:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-351">The following example applies the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to the component class:</span></span>
+<span data-ttu-id="6f7e1-350">Атрибуты можно применять к компонентам Razor с помощью директивы [`@attribute`][7].</span><span class="sxs-lookup"><span data-stu-id="6f7e1-350">Attributes can be applied to Razor components with the [`@attribute`][7] directive.</span></span> <span data-ttu-id="6f7e1-351">В следующем примере атрибут [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) применяется к классу компонентов:</span><span class="sxs-lookup"><span data-stu-id="6f7e1-351">The following example applies the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to the component class:</span></span>
 
 ```razor
 @page "/"
@@ -795,9 +795,9 @@ public class NotifierService
 }
 ```
 
-## <a name="no-locrazor-templates"></a><span data-ttu-id="6f7e1-368">Шаблоны :::no-loc(Razor):::</span><span class="sxs-lookup"><span data-stu-id="6f7e1-368">:::no-loc(Razor)::: templates</span></span>
+## <a name="no-locrazor-templates"></a><span data-ttu-id="6f7e1-368">Шаблоны Razor</span><span class="sxs-lookup"><span data-stu-id="6f7e1-368">Razor templates</span></span>
 
-<span data-ttu-id="6f7e1-369">Фрагменты отрисовки можно определить с помощью синтаксиса шаблонов :::no-loc(Razor):::.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-369">Render fragments can be defined using :::no-loc(Razor)::: template syntax.</span></span> <span data-ttu-id="6f7e1-370">Шаблоны :::no-loc(Razor)::: позволяют определить фрагмент кода пользовательского интерфейса и подразумевают следующий формат.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-370">:::no-loc(Razor)::: templates are a way to define a UI snippet and assume the following format:</span></span>
+<span data-ttu-id="6f7e1-369">Фрагменты отрисовки можно определить с помощью синтаксиса шаблонов Razor.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-369">Render fragments can be defined using Razor template syntax.</span></span> <span data-ttu-id="6f7e1-370">Шаблоны Razor позволяют определить фрагмент кода пользовательского интерфейса и подразумевают следующий формат.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-370">Razor templates are a way to define a UI snippet and assume the following format:</span></span>
 
 ```razor
 @<{HTML tag}>...</{HTML tag}>
@@ -831,7 +831,7 @@ public class NotifierService
 
 ## <a name="static-assets"></a><span data-ttu-id="6f7e1-374">Статические ресурсы.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-374">Static assets</span></span>
 
-<span data-ttu-id="6f7e1-375">:::no-loc(Blazor)::: соответствует соглашению для приложений ASP.NET Core о размещении статических ресурсов в [папке `web root (wwwroot)`](xref:fundamentals/index#web-root) проекта.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-375">:::no-loc(Blazor)::: follows the convention of ASP.NET Core apps placing static assets under the project's [`web root (wwwroot)` folder](xref:fundamentals/index#web-root).</span></span>
+<span data-ttu-id="6f7e1-375">Blazor соответствует соглашению для приложений ASP.NET Core о размещении статических ресурсов в [папке `web root (wwwroot)`](xref:fundamentals/index#web-root) проекта.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-375">Blazor follows the convention of ASP.NET Core apps placing static assets under the project's [`web root (wwwroot)` folder](xref:fundamentals/index#web-root).</span></span>
 
 <span data-ttu-id="6f7e1-376">Используйте базовый относительный путь (`/`) для ссылки на корневой веб-каталог статического ресурса.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-376">Use a base-relative path (`/`) to refer to the web root for a static asset.</span></span> <span data-ttu-id="6f7e1-377">В следующем примере `logo.png` физически находится в папке `{PROJECT ROOT}/wwwroot/images`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-377">In the following example, `logo.png` is physically located in the `{PROJECT ROOT}/wwwroot/images` folder:</span></span>
 
@@ -839,17 +839,17 @@ public class NotifierService
 <img alt="Company logo" src="/images/logo.png" />
 ```
 
-<span data-ttu-id="6f7e1-378">Компоненты :::no-loc(Razor)::: **не** поддерживают нотацию тильды с косой чертой (`~/`).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-378">:::no-loc(Razor)::: components do **not** support tilde-slash notation (`~/`).</span></span>
+<span data-ttu-id="6f7e1-378">Компоненты Razor **не** поддерживают нотацию тильды с косой чертой (`~/`).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-378">Razor components do **not** support tilde-slash notation (`~/`).</span></span>
 
 <span data-ttu-id="6f7e1-379">Сведения о настройке базового пути приложения см. в разделе <xref:blazor/host-and-deploy/index#app-base-path>.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-379">For information on setting an app's base path, see <xref:blazor/host-and-deploy/index#app-base-path>.</span></span>
 
 ## <a name="tag-helpers-arent-supported-in-components"></a><span data-ttu-id="6f7e1-380">Вспомогательные функции тегов в компонентах не поддерживаются</span><span class="sxs-lookup"><span data-stu-id="6f7e1-380">Tag Helpers aren't supported in components</span></span>
 
-<span data-ttu-id="6f7e1-381">[`Tag Helpers`:::no-loc(Razor)::: не поддерживаются в компонентах ](xref:mvc/views/tag-helpers/intro) (файлы с расширением `.razor`).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-381">[`Tag Helpers`](xref:mvc/views/tag-helpers/intro) aren't supported in :::no-loc(Razor)::: components (`.razor` files).</span></span> <span data-ttu-id="6f7e1-382">Чтобы обеспечить функциональные возможности, аналогичные вспомогательным функциям тегов, в :::no-loc(Blazor):::, создайте компонент с теми же функциональными возможностями, что и вспомогательная функция тега, и используйте его вместо нее.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-382">To provide Tag Helper-like functionality in :::no-loc(Blazor):::, create a component with the same functionality as the Tag Helper and use the component instead.</span></span>
+<span data-ttu-id="6f7e1-381">[`Tag Helpers`Razor не поддерживаются в компонентах ](xref:mvc/views/tag-helpers/intro) (файлы с расширением `.razor`).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-381">[`Tag Helpers`](xref:mvc/views/tag-helpers/intro) aren't supported in Razor components (`.razor` files).</span></span> <span data-ttu-id="6f7e1-382">Чтобы обеспечить функциональные возможности, аналогичные вспомогательным функциям тегов, в Blazor, создайте компонент с теми же функциональными возможностями, что и вспомогательная функция тега, и используйте его вместо нее.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-382">To provide Tag Helper-like functionality in Blazor, create a component with the same functionality as the Tag Helper and use the component instead.</span></span>
 
 ## <a name="scalable-vector-graphics-svg-images"></a><span data-ttu-id="6f7e1-383">Изображения SVG</span><span class="sxs-lookup"><span data-stu-id="6f7e1-383">Scalable Vector Graphics (SVG) images</span></span>
 
-<span data-ttu-id="6f7e1-384">Так как :::no-loc(Blazor)::: выполняет рендеринг HTML-кода, поддерживаемые браузером изображения, включая изображения SVG (`.svg`), поддерживаются при использовании тега `<img>`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-384">Since :::no-loc(Blazor)::: renders HTML, browser-supported images, including Scalable Vector Graphics (SVG) images (`.svg`), are supported via the `<img>` tag:</span></span>
+<span data-ttu-id="6f7e1-384">Так как Blazor выполняет рендеринг HTML-кода, поддерживаемые браузером изображения, включая изображения SVG (`.svg`), поддерживаются при использовании тега `<img>`.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-384">Since Blazor renders HTML, browser-supported images, including Scalable Vector Graphics (SVG) images (`.svg`), are supported via the `<img>` tag:</span></span>
 
 ```html
 <img alt="Example image" src="some-image.svg" />
@@ -863,11 +863,11 @@ public class NotifierService
 }
 ```
 
-<span data-ttu-id="6f7e1-386">Однако встроенная разметка SVG не поддерживается во всех сценариях.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-386">However, inline SVG markup isn't supported in all scenarios.</span></span> <span data-ttu-id="6f7e1-387">Если поместить тег `<svg>` непосредственно в файл компонента (`.razor`), базовая отрисовка изображений будет доступной, но многие расширенные сценарии пока не поддерживаются.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-387">If you place an `<svg>` tag directly into a component file (`.razor`), basic image rendering is supported but many advanced scenarios aren't yet supported.</span></span> <span data-ttu-id="6f7e1-388">Например, теги `<use>` сейчас не учитываются, а с некоторыми тегами SVG невозможно использовать [`@bind`][10].</span><span class="sxs-lookup"><span data-stu-id="6f7e1-388">For example, `<use>` tags aren't currently respected, and [`@bind`][10] can't be used with some SVG tags.</span></span> <span data-ttu-id="6f7e1-389">Дополнительные сведения см. в [справке по SVG в :::no-loc(Blazor)::: (dotnet/aspnetcore#18271)](https://github.com/dotnet/aspnetcore/issues/18271).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-389">For more information, see [SVG support in :::no-loc(Blazor)::: (dotnet/aspnetcore #18271)](https://github.com/dotnet/aspnetcore/issues/18271).</span></span>
+<span data-ttu-id="6f7e1-386">Однако встроенная разметка SVG не поддерживается во всех сценариях.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-386">However, inline SVG markup isn't supported in all scenarios.</span></span> <span data-ttu-id="6f7e1-387">Если поместить тег `<svg>` непосредственно в файл компонента (`.razor`), базовая отрисовка изображений будет доступной, но многие расширенные сценарии пока не поддерживаются.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-387">If you place an `<svg>` tag directly into a component file (`.razor`), basic image rendering is supported but many advanced scenarios aren't yet supported.</span></span> <span data-ttu-id="6f7e1-388">Например, теги `<use>` сейчас не учитываются, а с некоторыми тегами SVG невозможно использовать [`@bind`][10].</span><span class="sxs-lookup"><span data-stu-id="6f7e1-388">For example, `<use>` tags aren't currently respected, and [`@bind`][10] can't be used with some SVG tags.</span></span> <span data-ttu-id="6f7e1-389">Дополнительные сведения см. в [справке по SVG в Blazor (dotnet/aspnetcore#18271)](https://github.com/dotnet/aspnetcore/issues/18271).</span><span class="sxs-lookup"><span data-stu-id="6f7e1-389">For more information, see [SVG support in Blazor (dotnet/aspnetcore #18271)](https://github.com/dotnet/aspnetcore/issues/18271).</span></span>
 
 ## <a name="additional-resources"></a><span data-ttu-id="6f7e1-390">Дополнительные ресурсы</span><span class="sxs-lookup"><span data-stu-id="6f7e1-390">Additional resources</span></span>
 
-* <span data-ttu-id="6f7e1-391"><xref:blazor/security/server/threat-mitigation>. Содержит рекомендации по созданию приложений :::no-loc(Blazor Server):::, которые должны соперничать в условиях нехватки ресурсов.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-391"><xref:blazor/security/server/threat-mitigation>: Includes guidance on building :::no-loc(Blazor Server)::: apps that must contend with resource exhaustion.</span></span>
+* <span data-ttu-id="6f7e1-391"><xref:blazor/security/server/threat-mitigation>. Содержит рекомендации по созданию приложений Blazor Server, которые должны соперничать в условиях нехватки ресурсов.</span><span class="sxs-lookup"><span data-stu-id="6f7e1-391"><xref:blazor/security/server/threat-mitigation>: Includes guidance on building Blazor Server apps that must contend with resource exhaustion.</span></span>
 
 <!--Reference links in article-->
 [1]: <xref:mvc/views/razor#code>

@@ -7,17 +7,17 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: data/ef-mvc/complex-data-model
 ms.openlocfilehash: cee9e9eb4c5435f3f63f7d1d04f131d88effe9f6
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -482,7 +482,7 @@ Done. To undo this action, use 'ef migrations remove'
 
 ## <a name="change-the-connection-string"></a><span data-ttu-id="3e1b3-354">Изменение строки подключения</span><span class="sxs-lookup"><span data-stu-id="3e1b3-354">Change the connection string</span></span>
 
-<span data-ttu-id="3e1b3-355">Теперь у вас есть новый код в классе `DbInitializer`, который добавляет начальные данные для новых сущностей в пустую базу данных.</span><span class="sxs-lookup"><span data-stu-id="3e1b3-355">You now have new code in the `DbInitializer` class that adds seed data for the new entities to an empty database.</span></span> <span data-ttu-id="3e1b3-356">Чтобы указать EF создать пустую базу данных, в файле *:::no-loc(appsettings.json):::* измените имя базы данных в строке подключения на ContosoUniversity3 или другое имя, которое вы еще не использовали на компьютере, с которым работаете.</span><span class="sxs-lookup"><span data-stu-id="3e1b3-356">To make EF create a new empty database, change the name of the database in the connection string in *:::no-loc(appsettings.json):::* to ContosoUniversity3 or some other name that you haven't used on the computer you're using.</span></span>
+<span data-ttu-id="3e1b3-355">Теперь у вас есть новый код в классе `DbInitializer`, который добавляет начальные данные для новых сущностей в пустую базу данных.</span><span class="sxs-lookup"><span data-stu-id="3e1b3-355">You now have new code in the `DbInitializer` class that adds seed data for the new entities to an empty database.</span></span> <span data-ttu-id="3e1b3-356">Чтобы указать EF создать пустую базу данных, в файле *appsettings.json* измените имя базы данных в строке подключения на ContosoUniversity3 или другое имя, которое вы еще не использовали на компьютере, с которым работаете.</span><span class="sxs-lookup"><span data-stu-id="3e1b3-356">To make EF create a new empty database, change the name of the database in the connection string in *appsettings.json* to ContosoUniversity3 or some other name that you haven't used on the computer you're using.</span></span>
 
 ```json
 {
@@ -491,7 +491,7 @@ Done. To undo this action, use 'ef migrations remove'
   },
 ```
 
-<span data-ttu-id="3e1b3-357">Сохраните изменения в файл *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="3e1b3-357">Save your change to *:::no-loc(appsettings.json):::*.</span></span>
+<span data-ttu-id="3e1b3-357">Сохраните изменения в файл *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="3e1b3-357">Save your change to *appsettings.json*.</span></span>
 
 > [!NOTE]
 > <span data-ttu-id="3e1b3-358">Вместо изменения имени базы данных можно удалить ее.</span><span class="sxs-lookup"><span data-stu-id="3e1b3-358">As an alternative to changing the database name, you can delete the database.</span></span> <span data-ttu-id="3e1b3-359">Воспользуйтесь **обозревателем объектов SQL Server** (SSOX) или командой интерфейса командной строки `database drop`:</span><span class="sxs-lookup"><span data-stu-id="3e1b3-359">Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:</span></span>

@@ -6,17 +6,17 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/03/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: grpc/aspnetcore
 ms.openlocfilehash: b120aa4ab6922445f2c53f3b1cb3bd5c159d8a84
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -94,9 +94,9 @@ ms.locfileid: "93057834"
 
 <span data-ttu-id="7cab5-133">Конечные точки Kestrel, используемые для gRPC, должны быть защищены с помощью TLS.</span><span class="sxs-lookup"><span data-stu-id="7cab5-133">Kestrel endpoints used for gRPC should be secured with TLS.</span></span> <span data-ttu-id="7cab5-134">При разработке конечная точка, защищенная с помощью TLS, автоматически создается в `https://localhost:5001` при наличии сертификата разработки ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="7cab5-134">In development, an endpoint secured with TLS is automatically created at `https://localhost:5001` when the ASP.NET Core development certificate is present.</span></span> <span data-ttu-id="7cab5-135">Настройка не требуется.</span><span class="sxs-lookup"><span data-stu-id="7cab5-135">No configuration is required.</span></span> <span data-ttu-id="7cab5-136">Префикс `https` проверяет, что конечная точка Kestrel использует TLS.</span><span class="sxs-lookup"><span data-stu-id="7cab5-136">An `https` prefix verifies the Kestrel endpoint is using TLS.</span></span>
 
-<span data-ttu-id="7cab5-137">В рабочей среде необходимо явно настроить TLS.</span><span class="sxs-lookup"><span data-stu-id="7cab5-137">In production, TLS must be explicitly configured.</span></span> <span data-ttu-id="7cab5-138">В следующем примере *:::no-loc(appsettings.json):::* предоставляется конечная точка HTTP/2, защищенная с помощью TLS:</span><span class="sxs-lookup"><span data-stu-id="7cab5-138">In the following *:::no-loc(appsettings.json):::* example, an HTTP/2 endpoint secured with TLS is provided:</span></span>
+<span data-ttu-id="7cab5-137">В рабочей среде необходимо явно настроить TLS.</span><span class="sxs-lookup"><span data-stu-id="7cab5-137">In production, TLS must be explicitly configured.</span></span> <span data-ttu-id="7cab5-138">В следующем примере *appsettings.json* предоставляется конечная точка HTTP/2, защищенная с помощью TLS:</span><span class="sxs-lookup"><span data-stu-id="7cab5-138">In the following *appsettings.json* example, an HTTP/2 endpoint secured with TLS is provided:</span></span>
 
-[!code-json[](~/grpc/aspnetcore/sample/:::no-loc(appsettings.json):::?highlight=4)]
+[!code-json[](~/grpc/aspnetcore/sample/appsettings.json?highlight=4)]
 
 <span data-ttu-id="7cab5-139">Кроме того, конечные точки Kestrel можно настроить в *Program.cs* :</span><span class="sxs-lookup"><span data-stu-id="7cab5-139">Alternatively, Kestrel endpoints can be configured in *Program.cs* :</span></span>
 

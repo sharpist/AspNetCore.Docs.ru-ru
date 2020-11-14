@@ -6,17 +6,17 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/08/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authorization/limitingidentitybyscheme
 ms.openlocfilehash: a5f2dff7b0e0d4f209ba445b2efb6fb261cbaab1
 ms.sourcegitcommit: fbd5427293d9ecccc388bd5fd305c2eb8ada7281
@@ -27,7 +27,7 @@ ms.locfileid: "94464020"
 ---
 # <a name="authorize-with-a-specific-scheme-in-aspnet-core"></a><span data-ttu-id="c7ce3-103">Авторизация с помощью определенной схемы в ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="c7ce3-103">Authorize with a specific scheme in ASP.NET Core</span></span>
 
-<span data-ttu-id="c7ce3-104">В некоторых сценариях, таких как одностраничные приложения (одностраничные приложения), обычно используется несколько методов проверки подлинности.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-104">In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods.</span></span> <span data-ttu-id="c7ce3-105">Например, приложение может использовать :::no-loc(cookie)::: проверку подлинности на основе проверки подлинности при входе и JWT Bearer для запросов JavaScript.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-105">For example, the app may use :::no-loc(cookie):::-based authentication to log in and JWT bearer authentication for JavaScript requests.</span></span> <span data-ttu-id="c7ce3-106">В некоторых случаях приложение может иметь несколько экземпляров обработчика проверки подлинности.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-106">In some cases, the app may have multiple instances of an authentication handler.</span></span> <span data-ttu-id="c7ce3-107">Например, два :::no-loc(cookie)::: обработчика, где один из них содержит базовое удостоверение, и один создается при активации многофакторной проверки подлинности (MFA).</span><span class="sxs-lookup"><span data-stu-id="c7ce3-107">For example, two :::no-loc(cookie)::: handlers where one contains a basic identity and one is created when a multi-factor authentication (MFA) has been triggered.</span></span> <span data-ttu-id="c7ce3-108">MFA может активироваться, так как пользователь запросил операцию, требующую дополнительной защиты.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-108">MFA may be triggered because the user requested an operation that requires extra security.</span></span> <span data-ttu-id="c7ce3-109">Дополнительные сведения о применении MFA, когда пользователь запрашивает ресурс, требующий MFA, см. в разделе "Защита от проблем GitHub" [с MFA](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195).</span><span class="sxs-lookup"><span data-stu-id="c7ce3-109">For more information on enforcing MFA when a user requests a resource that requires MFA, see the GitHub issue [Protect section with MFA](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195).</span></span>
+<span data-ttu-id="c7ce3-104">В некоторых сценариях, таких как одностраничные приложения (одностраничные приложения), обычно используется несколько методов проверки подлинности.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-104">In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods.</span></span> <span data-ttu-id="c7ce3-105">Например, приложение может использовать cookie проверку подлинности на основе проверки подлинности при входе и JWT Bearer для запросов JavaScript.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-105">For example, the app may use cookie-based authentication to log in and JWT bearer authentication for JavaScript requests.</span></span> <span data-ttu-id="c7ce3-106">В некоторых случаях приложение может иметь несколько экземпляров обработчика проверки подлинности.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-106">In some cases, the app may have multiple instances of an authentication handler.</span></span> <span data-ttu-id="c7ce3-107">Например, два cookie обработчика, где один из них содержит базовое удостоверение, и один создается при активации многофакторной проверки подлинности (MFA).</span><span class="sxs-lookup"><span data-stu-id="c7ce3-107">For example, two cookie handlers where one contains a basic identity and one is created when a multi-factor authentication (MFA) has been triggered.</span></span> <span data-ttu-id="c7ce3-108">MFA может активироваться, так как пользователь запросил операцию, требующую дополнительной защиты.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-108">MFA may be triggered because the user requested an operation that requires extra security.</span></span> <span data-ttu-id="c7ce3-109">Дополнительные сведения о применении MFA, когда пользователь запрашивает ресурс, требующий MFA, см. в разделе "Защита от проблем GitHub" [с MFA](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195).</span><span class="sxs-lookup"><span data-stu-id="c7ce3-109">For more information on enforcing MFA when a user requests a resource that requires MFA, see the GitHub issue [Protect section with MFA](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195).</span></span>
 
 <span data-ttu-id="c7ce3-110">Схема проверки подлинности называется, когда служба проверки подлинности настроена во время проверки подлинности.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-110">An authentication scheme is named when the authentication service is configured during authentication.</span></span> <span data-ttu-id="c7ce3-111">Пример:</span><span class="sxs-lookup"><span data-stu-id="c7ce3-111">For example:</span></span>
 
@@ -37,7 +37,7 @@ public void ConfigureServices(IServiceCollection services)
     // Code omitted for brevity
 
     services.AddAuthentication()
-        .Add:::no-loc(Cookie):::(options => {
+        .AddCookie(options => {
             options.LoginPath = "/Account/Unauthorized/";
             options.AccessDeniedPath = "/Account/Forbidden/";
         })
@@ -47,7 +47,7 @@ public void ConfigureServices(IServiceCollection services)
         });
 ```
 
-<span data-ttu-id="c7ce3-112">В приведенном выше коде были добавлены два обработчика проверки подлинности: один для :::no-loc(cookie)::: s и один для носителя.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-112">In the preceding code, two authentication handlers have been added: one for :::no-loc(cookie):::s and one for bearer.</span></span>
+<span data-ttu-id="c7ce3-112">В приведенном выше коде были добавлены два обработчика проверки подлинности: один для cookie s и один для носителя.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-112">In the preceding code, two authentication handlers have been added: one for cookies and one for bearer.</span></span>
 
 >[!NOTE]
 ><span data-ttu-id="c7ce3-113">При указании схемы по умолчанию `HttpContext.User` задается свойство, которому присваивается это удостоверение.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-113">Specifying the default scheme results in the `HttpContext.User` property being set to that identity.</span></span> <span data-ttu-id="c7ce3-114">Если такое поведение не требуется, отключите его, вызвав форму без параметров `AddAuthentication` .</span><span class="sxs-lookup"><span data-stu-id="c7ce3-114">If that behavior isn't desired, disable it by invoking the parameterless form of `AddAuthentication`.</span></span>
@@ -60,14 +60,14 @@ public void ConfigureServices(IServiceCollection services)
 [Authorize(AuthenticationSchemes = AuthSchemes)]
 public class MixedController : Controller
     // Requires the following imports:
-    // using Microsoft.AspNetCore.Authentication.:::no-loc(Cookie):::s;
+    // using Microsoft.AspNetCore.Authentication.Cookies;
     // using Microsoft.AspNetCore.Authentication.JwtBearer;
     private const string AuthSchemes =
-        :::no-loc(Cookie):::AuthenticationDefaults.AuthenticationScheme + "," +
+        CookieAuthenticationDefaults.AuthenticationScheme + "," +
         JwtBearerDefaults.AuthenticationScheme;
 ```
 
-<span data-ttu-id="c7ce3-120">В предыдущем примере :::no-loc(cookie)::: выполняются обработчики и носителя, а также возможность создания и добавления удостоверения для текущего пользователя.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-120">In the preceding example, both the :::no-loc(cookie)::: and bearer handlers run and have a chance to create and append an identity for the current user.</span></span> <span data-ttu-id="c7ce3-121">Если указать только одну схему, выполняется соответствующий обработчик.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-121">By specifying a single scheme only, the corresponding handler runs.</span></span>
+<span data-ttu-id="c7ce3-120">В предыдущем примере cookie выполняются обработчики и носителя, а также возможность создания и добавления удостоверения для текущего пользователя.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-120">In the preceding example, both the cookie and bearer handlers run and have a chance to create and append an identity for the current user.</span></span> <span data-ttu-id="c7ce3-121">Если указать только одну схему, выполняется соответствующий обработчик.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-121">By specifying a single scheme only, the corresponding handler runs.</span></span>
 
 ```csharp
 [Authorize(AuthenticationSchemes = 
@@ -75,7 +75,7 @@ public class MixedController : Controller
 public class MixedController : Controller
 ```
 
-<span data-ttu-id="c7ce3-122">В приведенном выше коде выполняется только обработчик со схемой "Bearer".</span><span class="sxs-lookup"><span data-stu-id="c7ce3-122">In the preceding code, only the handler with the "Bearer" scheme runs.</span></span> <span data-ttu-id="c7ce3-123">Все :::no-loc(cookie)::: удостоверения на основе данных игнорируются.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-123">Any :::no-loc(cookie):::-based identities are ignored.</span></span>
+<span data-ttu-id="c7ce3-122">В приведенном выше коде выполняется только обработчик со схемой "Bearer".</span><span class="sxs-lookup"><span data-stu-id="c7ce3-122">In the preceding code, only the handler with the "Bearer" scheme runs.</span></span> <span data-ttu-id="c7ce3-123">Все cookie удостоверения на основе данных игнорируются.</span><span class="sxs-lookup"><span data-stu-id="c7ce3-123">Any cookie-based identities are ignored.</span></span>
 
 ## <a name="selecting-the-scheme-with-policies"></a><span data-ttu-id="c7ce3-124">Выбор схемы с политиками</span><span class="sxs-lookup"><span data-stu-id="c7ce3-124">Selecting the scheme with policies</span></span>
 

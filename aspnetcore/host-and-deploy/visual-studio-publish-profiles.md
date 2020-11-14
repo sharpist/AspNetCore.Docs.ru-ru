@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/28/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: host-and-deploy/visual-studio-publish-profiles
 ms.openlocfilehash: 98dfd539171807cbf94d4ac8746458152c809495
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -42,7 +42,7 @@ ms.locfileid: "93057574"
 
 <span data-ttu-id="72dfd-109">В описанном выше элементе `<Project>` атрибут `Sdk` импортирует [свойства](/visualstudio/msbuild/msbuild-properties) и [целевые объекты](/visualstudio/msbuild/msbuild-targets) для MSBuild из файлов *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\ SDK.props* и *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets* , соответственно.</span><span class="sxs-lookup"><span data-stu-id="72dfd-109">The preceding `<Project>` element's `Sdk` attribute imports the MSBuild [properties](/visualstudio/msbuild/msbuild-properties) and [targets](/visualstudio/msbuild/msbuild-targets) from *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.props* and *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets* , respectively.</span></span> <span data-ttu-id="72dfd-110">По умолчанию `$(MSBuildSDKsPath)` (в Visual Studio 2019 Enterprise) находится в папке *%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Sdks*.</span><span class="sxs-lookup"><span data-stu-id="72dfd-110">The default location for `$(MSBuildSDKsPath)` (with Visual Studio 2019 Enterprise) is the *%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Sdks* folder.</span></span>
 
-<span data-ttu-id="72dfd-111">`Microsoft.NET.Sdk.Web` ([Веб-пакет SDK](xref:razor-pages/web-sdk)) зависит от других пакетов SDK, включая `Microsoft.NET.Sdk` ([пакет SDK для .NET Core](/dotnet/core/project-sdk/msbuild-props)) и `Microsoft.NET.Sdk.:::no-loc(Razor):::` ([пакет SDK для :::no-loc(Razor):::](xref:razor-pages/sdk)).</span><span class="sxs-lookup"><span data-stu-id="72dfd-111">`Microsoft.NET.Sdk.Web` ([Web SDK](xref:razor-pages/web-sdk)) depends on other SDKs, including `Microsoft.NET.Sdk` ([.NET Core SDK](/dotnet/core/project-sdk/msbuild-props)) and `Microsoft.NET.Sdk.:::no-loc(Razor):::` ([:::no-loc(Razor)::: SDK](xref:razor-pages/sdk)).</span></span> <span data-ttu-id="72dfd-112">Импортируются свойства и целевые объекты MSBuild, связанные с каждым из зависимых пакетов SDK.</span><span class="sxs-lookup"><span data-stu-id="72dfd-112">The MSBuild properties and targets associated with each dependent SDK are imported.</span></span> <span data-ttu-id="72dfd-113">Целевые объекты публикации импортируют подходящий набор целевых объектов в зависимости от используемых методов публикации.</span><span class="sxs-lookup"><span data-stu-id="72dfd-113">Publish targets import the appropriate set of targets based on the publish method used.</span></span>
+<span data-ttu-id="72dfd-111">`Microsoft.NET.Sdk.Web` ([Веб-пакет SDK](xref:razor-pages/web-sdk)) зависит от других пакетов SDK, включая `Microsoft.NET.Sdk` ([пакет SDK для .NET Core](/dotnet/core/project-sdk/msbuild-props)) и `Microsoft.NET.Sdk.Razor` ([пакет SDK для Razor](xref:razor-pages/sdk)).</span><span class="sxs-lookup"><span data-stu-id="72dfd-111">`Microsoft.NET.Sdk.Web` ([Web SDK](xref:razor-pages/web-sdk)) depends on other SDKs, including `Microsoft.NET.Sdk` ([.NET Core SDK](/dotnet/core/project-sdk/msbuild-props)) and `Microsoft.NET.Sdk.Razor` ([Razor SDK](xref:razor-pages/sdk)).</span></span> <span data-ttu-id="72dfd-112">Импортируются свойства и целевые объекты MSBuild, связанные с каждым из зависимых пакетов SDK.</span><span class="sxs-lookup"><span data-stu-id="72dfd-112">The MSBuild properties and targets associated with each dependent SDK are imported.</span></span> <span data-ttu-id="72dfd-113">Целевые объекты публикации импортируют подходящий набор целевых объектов в зависимости от используемых методов публикации.</span><span class="sxs-lookup"><span data-stu-id="72dfd-113">Publish targets import the appropriate set of targets based on the publish method used.</span></span>
 
 <span data-ttu-id="72dfd-114">Когда MSBuild или Visual Studio загружает проект, выполняются следующие обобщенные действия:</span><span class="sxs-lookup"><span data-stu-id="72dfd-114">When MSBuild or Visual Studio loads a project, the following high-level actions occur:</span></span>
 
@@ -58,13 +58,13 @@ ms.locfileid: "93057574"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<span data-ttu-id="72dfd-126">[Веб-пакет SDK](xref:razor-pages/web-sdk) импортирует [пакет SDK для :::no-loc(Razor):::](xref:razor-pages/sdk).</span><span class="sxs-lookup"><span data-stu-id="72dfd-126">The [Web SDK](xref:razor-pages/web-sdk) imports the [:::no-loc(Razor)::: SDK](xref:razor-pages/sdk).</span></span> <span data-ttu-id="72dfd-127">Это означает, что в список элементов `Content` дополнительно включаются файлы, соответствующие шаблонам `**\*.cshtml` и `**\*.razor`.</span><span class="sxs-lookup"><span data-stu-id="72dfd-127">As a result, files matching the patterns `**\*.cshtml` and `**\*.razor` are also included in the `Content` item list.</span></span>
+<span data-ttu-id="72dfd-126">[Веб-пакет SDK](xref:razor-pages/web-sdk) импортирует [пакет SDK для Razor](xref:razor-pages/sdk).</span><span class="sxs-lookup"><span data-stu-id="72dfd-126">The [Web SDK](xref:razor-pages/web-sdk) imports the [Razor SDK](xref:razor-pages/sdk).</span></span> <span data-ttu-id="72dfd-127">Это означает, что в список элементов `Content` дополнительно включаются файлы, соответствующие шаблонам `**\*.cshtml` и `**\*.razor`.</span><span class="sxs-lookup"><span data-stu-id="72dfd-127">As a result, files matching the patterns `**\*.cshtml` and `**\*.razor` are also included in the `Content` item list.</span></span>
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
-<span data-ttu-id="72dfd-128">[Веб-пакет SDK](xref:razor-pages/web-sdk) импортирует [пакет SDK для :::no-loc(Razor):::](xref:razor-pages/sdk).</span><span class="sxs-lookup"><span data-stu-id="72dfd-128">The [Web SDK](xref:razor-pages/web-sdk) imports the [:::no-loc(Razor)::: SDK](xref:razor-pages/sdk).</span></span> <span data-ttu-id="72dfd-129">Это означает, что в список элементов `Content` дополнительно включаются файлы, соответствующие шаблону `**\*.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="72dfd-129">As a result, files matching the `**\*.cshtml` pattern are also included in the `Content` item list.</span></span>
+<span data-ttu-id="72dfd-128">[Веб-пакет SDK](xref:razor-pages/web-sdk) импортирует [пакет SDK для Razor](xref:razor-pages/sdk).</span><span class="sxs-lookup"><span data-stu-id="72dfd-128">The [Web SDK](xref:razor-pages/web-sdk) imports the [Razor SDK](xref:razor-pages/sdk).</span></span> <span data-ttu-id="72dfd-129">Это означает, что в список элементов `Content` дополнительно включаются файлы, соответствующие шаблону `**\*.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="72dfd-129">As a result, files matching the `**\*.cshtml` pattern are also included in the `Content` item list.</span></span>
 
 ::: moniker-end
 
@@ -352,7 +352,7 @@ dotnet msbuild "AzureWebApp.csproj"
 * <span data-ttu-id="72dfd-259">Артефакты сборки</span><span class="sxs-lookup"><span data-stu-id="72dfd-259">Build artifacts</span></span>
 * <span data-ttu-id="72dfd-260">Файлы и папки, соответствующие следующим стандартным маскам:</span><span class="sxs-lookup"><span data-stu-id="72dfd-260">Folders and files matching the following globbing patterns:</span></span>
   * <span data-ttu-id="72dfd-261">`**\*.config` (например, *web.config* );</span><span class="sxs-lookup"><span data-stu-id="72dfd-261">`**\*.config` (for example, *web.config* )</span></span>
-  * <span data-ttu-id="72dfd-262">`**\*.json` (например, *:::no-loc(appsettings.json):::* ).</span><span class="sxs-lookup"><span data-stu-id="72dfd-262">`**\*.json` (for example, *:::no-loc(appsettings.json):::* )</span></span>
+  * <span data-ttu-id="72dfd-262">`**\*.json` (например, *appsettings.json* ).</span><span class="sxs-lookup"><span data-stu-id="72dfd-262">`**\*.json` (for example, *appsettings.json* )</span></span>
   * `wwwroot\**`
 
 <span data-ttu-id="72dfd-263">MSBuild поддерживает [стандартные маски](https://gruntjs.com/configuring-tasks#globbing-patterns).</span><span class="sxs-lookup"><span data-stu-id="72dfd-263">MSBuild supports [globbing patterns](https://gruntjs.com/configuring-tasks#globbing-patterns).</span></span> <span data-ttu-id="72dfd-264">Например, представленный ниже элемент `<Content>` запретит копирование текстовых файлов ( *.txt* ) из папки *wwwroot\content* и всех ее подпапок.</span><span class="sxs-lookup"><span data-stu-id="72dfd-264">For example, the following `<Content>` element suppresses the copying of text ( *.txt* ) files in the *wwwroot\content* folder and its subfolders:</span></span>

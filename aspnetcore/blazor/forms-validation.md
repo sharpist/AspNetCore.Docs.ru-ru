@@ -1,23 +1,23 @@
 ---
-title: 'Формы и проверка ASP.NET Core :::no-loc(Blazor):::'
+title: 'Формы и проверка ASP.NET Core Blazor'
 author: guardrex
-description: Узнайте, как использовать сценарии проверки форм и полей в :::no-loc(Blazor):::.
+description: Узнайте, как использовать сценарии проверки форм и полей в Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/17/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/forms-validation
 ms.openlocfilehash: fe232b40a2255732dd375cc266937576d5b2d5d9
 ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
@@ -26,11 +26,11 @@ ms.contentlocale: ru-RU
 ms.lasthandoff: 11/11/2020
 ms.locfileid: "94507828"
 ---
-# <a name="aspnet-core-no-locblazor-forms-and-validation"></a><span data-ttu-id="b7a01-103">Формы и проверка ASP.NET Core :::no-loc(Blazor):::</span><span class="sxs-lookup"><span data-stu-id="b7a01-103">ASP.NET Core :::no-loc(Blazor)::: forms and validation</span></span>
+# <a name="aspnet-core-no-locblazor-forms-and-validation"></a><span data-ttu-id="b7a01-103">Формы и проверка ASP.NET Core Blazor</span><span class="sxs-lookup"><span data-stu-id="b7a01-103">ASP.NET Core Blazor forms and validation</span></span>
 
 <span data-ttu-id="b7a01-104">Авторы: [Дэниел Рот](https://github.com/danroth27) (Daniel Roth), [Реми Бургарель](https://remibou.github.io/) (Rémi Bourgarel) и [Люк Лэтем](https://github.com/guardrex) (Luke Latham)</span><span class="sxs-lookup"><span data-stu-id="b7a01-104">By [Daniel Roth](https://github.com/danroth27), [Rémi Bourgarel](https://remibou.github.io/), and [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="b7a01-105">Формы и проверка поддерживаются в :::no-loc(Blazor)::: с помощью [заметок к данным](xref:mvc/models/validation).</span><span class="sxs-lookup"><span data-stu-id="b7a01-105">Forms and validation are supported in :::no-loc(Blazor)::: using [data annotations](xref:mvc/models/validation).</span></span>
+<span data-ttu-id="b7a01-105">Формы и проверка поддерживаются в Blazor с помощью [заметок к данным](xref:mvc/models/validation).</span><span class="sxs-lookup"><span data-stu-id="b7a01-105">Forms and validation are supported in Blazor using [data annotations](xref:mvc/models/validation).</span></span>
 
 <span data-ttu-id="b7a01-106">Следующий тип `ExampleModel` определяет логику проверки с помощью заметок к данным:</span><span class="sxs-lookup"><span data-stu-id="b7a01-106">The following `ExampleModel` type defines validation logic using data annotations:</span></span>
 
@@ -45,7 +45,7 @@ public class ExampleModel
 }
 ```
 
-<span data-ttu-id="b7a01-107">Форма определяется с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.</span><span class="sxs-lookup"><span data-stu-id="b7a01-107">A form is defined using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.</span></span> <span data-ttu-id="b7a01-108">В следующей форме показаны типичные элементы, компоненты и код :::no-loc(Razor)::::</span><span class="sxs-lookup"><span data-stu-id="b7a01-108">The following form demonstrates typical elements, components, and :::no-loc(Razor)::: code:</span></span>
+<span data-ttu-id="b7a01-107">Форма определяется с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.</span><span class="sxs-lookup"><span data-stu-id="b7a01-107">A form is defined using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.</span></span> <span data-ttu-id="b7a01-108">В следующей форме показаны типичные элементы, компоненты и код Razor:</span><span class="sxs-lookup"><span data-stu-id="b7a01-108">The following form demonstrates typical elements, components, and Razor code:</span></span>
 
 ```razor
 <EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
@@ -313,7 +313,7 @@ The birthday must be a date.
 
 <span data-ttu-id="b7a01-160">Компоненты проверяющего элемента управления поддерживают проверку форм путем управления <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> для класса <xref:Microsoft.AspNetCore.Components.Forms.EditContext> формы.</span><span class="sxs-lookup"><span data-stu-id="b7a01-160">Validator components support form validation by managing a <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> for a form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.</span></span>
 
-<span data-ttu-id="b7a01-161">Платформа :::no-loc(Blazor)::: предоставляет компонент <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> для прикрепления к формам поддержки проверки на основе [атрибутов проверки (заметок к данным)](xref:mvc/models/validation#validation-attributes).</span><span class="sxs-lookup"><span data-stu-id="b7a01-161">The :::no-loc(Blazor)::: framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes).</span></span> <span data-ttu-id="b7a01-162">Создайте настраиваемые компоненты проверяющего элемента управления, чтобы обрабатывать сообщения проверки для различных форм на одной странице или одной и той же формы на разных этапах обработки, например проверку на стороне клиента с последующей проверкой на стороне сервера.</span><span class="sxs-lookup"><span data-stu-id="b7a01-162">Create custom validator components to process validation messages for different forms on the same page or the same form at different steps of form processing, for example client-side validation followed by server-side validation.</span></span> <span data-ttu-id="b7a01-163">Показанный в этом разделе пример компонента проверяющего элемента управления (`CustomValidator`) используется в следующих разделах этой статьи.</span><span class="sxs-lookup"><span data-stu-id="b7a01-163">The validator component example shown in this section, `CustomValidator`, is used in the following sections of this article:</span></span>
+<span data-ttu-id="b7a01-161">Платформа Blazor предоставляет компонент <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> для прикрепления к формам поддержки проверки на основе [атрибутов проверки (заметок к данным)](xref:mvc/models/validation#validation-attributes).</span><span class="sxs-lookup"><span data-stu-id="b7a01-161">The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes).</span></span> <span data-ttu-id="b7a01-162">Создайте настраиваемые компоненты проверяющего элемента управления, чтобы обрабатывать сообщения проверки для различных форм на одной странице или одной и той же формы на разных этапах обработки, например проверку на стороне клиента с последующей проверкой на стороне сервера.</span><span class="sxs-lookup"><span data-stu-id="b7a01-162">Create custom validator components to process validation messages for different forms on the same page or the same form at different steps of form processing, for example client-side validation followed by server-side validation.</span></span> <span data-ttu-id="b7a01-163">Показанный в этом разделе пример компонента проверяющего элемента управления (`CustomValidator`) используется в следующих разделах этой статьи.</span><span class="sxs-lookup"><span data-stu-id="b7a01-163">The validator component example shown in this section, `CustomValidator`, is used in the following sections of this article:</span></span>
 
 * [<span data-ttu-id="b7a01-164">Проверка бизнес-логики</span><span class="sxs-lookup"><span data-stu-id="b7a01-164">Business logic validation</span></span>](#business-logic-validation)
 * [<span data-ttu-id="b7a01-165">Серверная проверка</span><span class="sxs-lookup"><span data-stu-id="b7a01-165">Server validation</span></span>](#server-validation)
@@ -337,7 +337,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-namespace :::no-loc(Blazor):::Sample.Client
+namespace BlazorSample.Client
 {
     public class CustomValidator : ComponentBase
     {
@@ -456,9 +456,9 @@ namespace :::no-loc(Blazor):::Sample.Client
 
 <span data-ttu-id="b7a01-203">Основу приведенного ниже примера составляют следующие компоненты.</span><span class="sxs-lookup"><span data-stu-id="b7a01-203">The following example is based on:</span></span>
 
-* <span data-ttu-id="b7a01-204">Размещенное решение :::no-loc(Blazor):::, созданное [шаблоном проекта :::no-loc(Blazor)::: Hosted](xref:blazor/hosting-models#blazor-webassembly).</span><span class="sxs-lookup"><span data-stu-id="b7a01-204">A hosted :::no-loc(Blazor)::: solution created by the [:::no-loc(Blazor)::: Hosted project template](xref:blazor/hosting-models#blazor-webassembly).</span></span> <span data-ttu-id="b7a01-205">Этот пример можно использовать с любыми защищенными размещенными решениями :::no-loc(Blazor):::, описанными в [документации по безопасности и :::no-loc(Identity):::](xref:blazor/security/webassembly/index#implementation-guidance).</span><span class="sxs-lookup"><span data-stu-id="b7a01-205">The example can be used with any of the secure hosted :::no-loc(Blazor)::: solutions described in the [Security and :::no-loc(Identity)::: documentation](xref:blazor/security/webassembly/index#implementation-guidance).</span></span>
+* <span data-ttu-id="b7a01-204">Размещенное решение Blazor, созданное [шаблоном проекта Blazor Hosted](xref:blazor/hosting-models#blazor-webassembly).</span><span class="sxs-lookup"><span data-stu-id="b7a01-204">A hosted Blazor solution created by the [Blazor Hosted project template](xref:blazor/hosting-models#blazor-webassembly).</span></span> <span data-ttu-id="b7a01-205">Этот пример можно использовать с любыми защищенными размещенными решениями Blazor, описанными в [документации по безопасности и Identity](xref:blazor/security/webassembly/index#implementation-guidance).</span><span class="sxs-lookup"><span data-stu-id="b7a01-205">The example can be used with any of the secure hosted Blazor solutions described in the [Security and Identity documentation](xref:blazor/security/webassembly/index#implementation-guidance).</span></span>
 * <span data-ttu-id="b7a01-206">Пример формы *Starfleet Starship Database* из предыдущего раздела [Встроенные компоненты форм](#built-in-forms-components).</span><span class="sxs-lookup"><span data-stu-id="b7a01-206">The *Starfleet Starship Database* form example in the preceding [Built-in forms components](#built-in-forms-components) section.</span></span>
-* <span data-ttu-id="b7a01-207">Компонент <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> платформы :::no-loc(Blazor):::.</span><span class="sxs-lookup"><span data-stu-id="b7a01-207">The :::no-loc(Blazor)::: framework's <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.</span></span>
+* <span data-ttu-id="b7a01-207">Компонент <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> платформы Blazor.</span><span class="sxs-lookup"><span data-stu-id="b7a01-207">The Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.</span></span>
 * <span data-ttu-id="b7a01-208">Компонент `CustomValidator`, показанный в разделе [Компоненты проверяющего элемента управления](#validator-components).</span><span class="sxs-lookup"><span data-stu-id="b7a01-208">The `CustomValidator` component shown in the [Validator components](#validator-components) section.</span></span>
 
 <span data-ttu-id="b7a01-209">В следующем примере серверный API проверяет, предоставлено ли значение для описания доставки (`Description`), если пользователь выбирает классификацию (`Classification`) доставки `Defense`.</span><span class="sxs-lookup"><span data-stu-id="b7a01-209">In the following example, the server API validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).</span></span>
@@ -481,9 +481,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using :::no-loc(Blazor):::Sample.Shared;
+using BlazorSample.Shared;
 
-namespace :::no-loc(Blazor):::Sample.Server.Controllers
+namespace BlazorSample.Server.Controllers
 {
     [Authorize]
     [ApiController]
@@ -593,7 +593,7 @@ services.AddControllersWithViews()
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using Microsoft.Extensions.Logging
-@using :::no-loc(Blazor):::Sample.Shared
+@using BlazorSample.Shared
 @attribute [Authorize]
 @inject HttpClient Http
 @inject ILogger<FormValidation> Logger
@@ -720,11 +720,11 @@ services.AddControllersWithViews()
 > <span data-ttu-id="b7a01-228">Вместо [компонентов проверки](#validator-components) можно использовать атрибуты проверки заметок к данным.</span><span class="sxs-lookup"><span data-stu-id="b7a01-228">As an alternative to [validation components](#validator-components), data annotation validation attributes can be used.</span></span> <span data-ttu-id="b7a01-229">Настраиваемые атрибуты, применяемые к модели формы, активируются с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>.</span><span class="sxs-lookup"><span data-stu-id="b7a01-229">Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.</span></span> <span data-ttu-id="b7a01-230">При использовании вместе с проверкой на стороне сервера атрибуты должны быть исполняемыми на сервере.</span><span class="sxs-lookup"><span data-stu-id="b7a01-230">When used with server-side validation, the attributes must be executable on the server.</span></span> <span data-ttu-id="b7a01-231">Дополнительные сведения см. в разделе <xref:mvc/models/validation#alternatives-to-built-in-attributes>.</span><span class="sxs-lookup"><span data-stu-id="b7a01-231">For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="b7a01-232">Метод проверки на стороне сервера в этом разделе подходит для любого из примеров размещенного решения :::no-loc(Blazor WebAssembly)::: в этом наборе документации.</span><span class="sxs-lookup"><span data-stu-id="b7a01-232">The server-side validation approach in this section is suitable for any of the :::no-loc(Blazor WebAssembly)::: hosted solution examples in this documentation set:</span></span>
+> <span data-ttu-id="b7a01-232">Метод проверки на стороне сервера в этом разделе подходит для любого из примеров размещенного решения Blazor WebAssembly в этом наборе документации.</span><span class="sxs-lookup"><span data-stu-id="b7a01-232">The server-side validation approach in this section is suitable for any of the Blazor WebAssembly hosted solution examples in this documentation set:</span></span>
 >
 > * [<span data-ttu-id="b7a01-233">Azure Active Directory (AAD)</span><span class="sxs-lookup"><span data-stu-id="b7a01-233">Azure Active Directory (AAD)</span></span>](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
 > * [<span data-ttu-id="b7a01-234">Azure Active Directory (AAD) B2C</span><span class="sxs-lookup"><span data-stu-id="b7a01-234">Azure Active Directory (AAD) B2C</span></span>](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
-> * [<span data-ttu-id="b7a01-235">Сервер :::no-loc(Identity):::</span><span class="sxs-lookup"><span data-stu-id="b7a01-235">:::no-loc(Identity)::: Server</span></span>](xref:blazor/security/webassembly/hosted-with-identity-server)
+> * [<span data-ttu-id="b7a01-235">Сервер Identity</span><span class="sxs-lookup"><span data-stu-id="b7a01-235">Identity Server</span></span>](xref:blazor/security/webassembly/hosted-with-identity-server)
 
 ## <a name="inputtext-based-on-the-input-event"></a><span data-ttu-id="b7a01-236">InputText на основе события ввода</span><span class="sxs-lookup"><span data-stu-id="b7a01-236">InputText based on the input event</span></span>
 
@@ -952,20 +952,20 @@ public enum Engine { Ion, Plasma, Fusion, Warp }
 * <span data-ttu-id="b7a01-261">Атрибуты HTML не могут иметь значение `null`.</span><span class="sxs-lookup"><span data-stu-id="b7a01-261">HTML attributes can't have `null` values.</span></span> <span data-ttu-id="b7a01-262">Ближайшим эквивалентом `null` в HTML является отсутствие атрибута HTML `value` в элементе `<option>`.</span><span class="sxs-lookup"><span data-stu-id="b7a01-262">The closest equivalent to `null` in HTML is absence of the HTML `value` attribute from the `<option>` element.</span></span>
 * <span data-ttu-id="b7a01-263">При выборе `<option>` без атрибута `value` браузер обрабатывает такое значение как *текстовое содержимое* элемента `<option>`.</span><span class="sxs-lookup"><span data-stu-id="b7a01-263">When selecting an `<option>` with no `value` attribute, the browser treats the value as the *text content* of that `<option>`'s element.</span></span>
 
-<span data-ttu-id="b7a01-264">Платформа :::no-loc(Blazor)::: не пытается блокировать поведение по умолчанию, так как для этого потребуется:</span><span class="sxs-lookup"><span data-stu-id="b7a01-264">The :::no-loc(Blazor)::: framework doesn't attempt to suppress the default behavior because it would involve:</span></span>
+<span data-ttu-id="b7a01-264">Платформа Blazor не пытается блокировать поведение по умолчанию, так как для этого потребуется:</span><span class="sxs-lookup"><span data-stu-id="b7a01-264">The Blazor framework doesn't attempt to suppress the default behavior because it would involve:</span></span>
 
 * <span data-ttu-id="b7a01-265">создать цепочку специальных решений в платформе;</span><span class="sxs-lookup"><span data-stu-id="b7a01-265">Creating a chain of special-case workarounds in the framework.</span></span>
 * <span data-ttu-id="b7a01-266">кардинально изменить текущее поведение платформы.</span><span class="sxs-lookup"><span data-stu-id="b7a01-266">Breaking changes to current framework behavior.</span></span>
 
 ::: moniker range=">= aspnetcore-5.0"
 
-<span data-ttu-id="b7a01-267">Приемлемым эквивалентом `null` в HTML является *пустая строка* (`value`).</span><span class="sxs-lookup"><span data-stu-id="b7a01-267">The most plausible `null` equivalent in HTML is an *empty string* `value`.</span></span> <span data-ttu-id="b7a01-268">Платформа :::no-loc(Blazor)::: преобразует `null` в пустую строку для двусторонней привязки к значению `<select>`.</span><span class="sxs-lookup"><span data-stu-id="b7a01-268">The :::no-loc(Blazor)::: framework handles `null` to empty string conversions for two-way binding to a `<select>`'s value.</span></span>
+<span data-ttu-id="b7a01-267">Приемлемым эквивалентом `null` в HTML является *пустая строка* (`value`).</span><span class="sxs-lookup"><span data-stu-id="b7a01-267">The most plausible `null` equivalent in HTML is an *empty string* `value`.</span></span> <span data-ttu-id="b7a01-268">Платформа Blazor преобразует `null` в пустую строку для двусторонней привязки к значению `<select>`.</span><span class="sxs-lookup"><span data-stu-id="b7a01-268">The Blazor framework handles `null` to empty string conversions for two-way binding to a `<select>`'s value.</span></span>
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-<span data-ttu-id="b7a01-269">Платформа :::no-loc(Blazor)::: не выполняет автоматическое преобразование `null` в пустую строку при попытке двусторонней привязки к значению элемента `<select>`.</span><span class="sxs-lookup"><span data-stu-id="b7a01-269">The :::no-loc(Blazor)::: framework doesn't automatically handle `null` to empty string conversions when attempting two-way binding to a `<select>`'s value.</span></span> <span data-ttu-id="b7a01-270">Дополнительные сведения см. в разделе [Исправление привязки `<select>` к значению NULL (dotnet/aspnetcore 23221)](https://github.com/dotnet/aspnetcore/pull/23221).</span><span class="sxs-lookup"><span data-stu-id="b7a01-270">For more information, see [Fix binding `<select>` to a null value (dotnet/aspnetcore #23221)](https://github.com/dotnet/aspnetcore/pull/23221).</span></span>
+<span data-ttu-id="b7a01-269">Платформа Blazor не выполняет автоматическое преобразование `null` в пустую строку при попытке двусторонней привязки к значению элемента `<select>`.</span><span class="sxs-lookup"><span data-stu-id="b7a01-269">The Blazor framework doesn't automatically handle `null` to empty string conversions when attempting two-way binding to a `<select>`'s value.</span></span> <span data-ttu-id="b7a01-270">Дополнительные сведения см. в разделе [Исправление привязки `<select>` к значению NULL (dotnet/aspnetcore 23221)](https://github.com/dotnet/aspnetcore/pull/23221).</span><span class="sxs-lookup"><span data-stu-id="b7a01-270">For more information, see [Fix binding `<select>` to a null value (dotnet/aspnetcore #23221)](https://github.com/dotnet/aspnetcore/pull/23221).</span></span>
 
 ::: moniker-end
 
@@ -973,7 +973,7 @@ public enum Engine { Ion, Plasma, Fusion, Warp }
 
 <span data-ttu-id="b7a01-272">Компонент <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> привязывает поддержку проверки с помощью заметок к данным к каскадному <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.</span><span class="sxs-lookup"><span data-stu-id="b7a01-272">The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attaches validation support using data annotations to the cascaded <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.</span></span> <span data-ttu-id="b7a01-273">Чтобы включить поддержку проверки с помощью заметок к данным, требуется это явное действие.</span><span class="sxs-lookup"><span data-stu-id="b7a01-273">Enabling support for validation using data annotations requires this explicit gesture.</span></span> <span data-ttu-id="b7a01-274">Чтобы использовать другую систему проверки, а не заметки к данным, замените <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> пользовательской реализацией.</span><span class="sxs-lookup"><span data-stu-id="b7a01-274">To use a different validation system than data annotations, replace the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> with a custom implementation.</span></span> <span data-ttu-id="b7a01-275">Реализация ASP.NET Core доступна для проверки в эталонном источнике: [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).</span><span class="sxs-lookup"><span data-stu-id="b7a01-275">The ASP.NET Core implementation is available for inspection in the reference source: [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).</span></span> <span data-ttu-id="b7a01-276">Предыдущие ссылки на источник ссылки предоставляют код из ветви `master` репозитория, которая представляет текущую разработку единицы продукта для следующего выпуска ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="b7a01-276">The preceding links to reference source provide code from the repository's `master` branch, which represents the product unit's current development for the next release of ASP.NET Core.</span></span> <span data-ttu-id="b7a01-277">Чтобы выбрать ветвь для другого выпуска, используйте селектор ветвей GitHub (например `release/3.1`).</span><span class="sxs-lookup"><span data-stu-id="b7a01-277">To select the branch for a different release, use the GitHub branch selector (for example `release/3.1`).</span></span>
 
-<span data-ttu-id="b7a01-278">:::no-loc(Blazor)::: выполняет два типа проверки данных:</span><span class="sxs-lookup"><span data-stu-id="b7a01-278">:::no-loc(Blazor)::: performs two types of validation:</span></span>
+<span data-ttu-id="b7a01-278">Blazor выполняет два типа проверки данных:</span><span class="sxs-lookup"><span data-stu-id="b7a01-278">Blazor performs two types of validation:</span></span>
 
 * <span data-ttu-id="b7a01-279">*Проверка поля* выполняется, когда пользователь выходит за пределы поля.</span><span class="sxs-lookup"><span data-stu-id="b7a01-279">*Field validation* is performed when the user tabs out of a field.</span></span> <span data-ttu-id="b7a01-280">Во время проверки поля компонент <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> связывает все результаты проверки с полем.</span><span class="sxs-lookup"><span data-stu-id="b7a01-280">During field validation, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component associates all reported validation results with the field.</span></span>
 * <span data-ttu-id="b7a01-281">*Проверка модели* выполняется, когда пользователь отправляет форму.</span><span class="sxs-lookup"><span data-stu-id="b7a01-281">*Model validation* is performed when the user submits the form.</span></span> <span data-ttu-id="b7a01-282">Во время проверки модели компонент <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> пытается определить поле на основе имени члена из результатов проверки.</span><span class="sxs-lookup"><span data-stu-id="b7a01-282">During model validation, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attempts to determine the field based on the member name that the validation result reports.</span></span> <span data-ttu-id="b7a01-283">Результаты проверки, не связанные с отдельным элементом, связаны с моделью, а не с полем.</span><span class="sxs-lookup"><span data-stu-id="b7a01-283">Validation results that aren't associated with an individual member are associated with the model rather than a field.</span></span>
@@ -1058,7 +1058,7 @@ private class MyFieldClassProvider : FieldCssClassProvider
 
 ::: moniker-end
 
-### <a name="no-locblazor-data-annotations-validation-package"></a><span data-ttu-id="b7a01-300">Пакет проверки заметок к данным в :::no-loc(Blazor):::</span><span class="sxs-lookup"><span data-stu-id="b7a01-300">:::no-loc(Blazor)::: data annotations validation package</span></span>
+### <a name="no-locblazor-data-annotations-validation-package"></a><span data-ttu-id="b7a01-300">Пакет проверки заметок к данным в Blazor</span><span class="sxs-lookup"><span data-stu-id="b7a01-300">Blazor data annotations validation package</span></span>
 
 <span data-ttu-id="b7a01-301">[`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) — это пакет, который выполняет проверку пропусков заполнения с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>.</span><span class="sxs-lookup"><span data-stu-id="b7a01-301">The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) is a package that fills validation experience gaps using the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.</span></span> <span data-ttu-id="b7a01-302">В настоящее время пакет является *экспериментальным*.</span><span class="sxs-lookup"><span data-stu-id="b7a01-302">The package is currently *experimental*.</span></span>
 
@@ -1067,11 +1067,11 @@ private class MyFieldClassProvider : FieldCssClassProvider
 
 ### <a name="compareproperty-attribute"></a><span data-ttu-id="b7a01-306">Атрибут [CompareProperty]</span><span class="sxs-lookup"><span data-stu-id="b7a01-306">[CompareProperty] attribute</span></span>
 
-<span data-ttu-id="b7a01-307"><xref:System.ComponentModel.DataAnnotations.CompareAttribute> плохо работает с компонентом <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>, так как он не связывает результат проверки с конкретным элементом.</span><span class="sxs-lookup"><span data-stu-id="b7a01-307">The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component because it doesn't associate the validation result with a specific member.</span></span> <span data-ttu-id="b7a01-308">Это может привести к несогласованному поведению при проверке на уровне полей и при проверке всей модели при отправке.</span><span class="sxs-lookup"><span data-stu-id="b7a01-308">This can result in inconsistent behavior between field-level validation and when the entire model is validated on a submit.</span></span> <span data-ttu-id="b7a01-309">*Экспериментальный* пакет [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) содержит дополнительный атрибут проверки `ComparePropertyAttribute`, который обходит эти ограничения.</span><span class="sxs-lookup"><span data-stu-id="b7a01-309">The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations.</span></span> <span data-ttu-id="b7a01-310">В приложении :::no-loc(Blazor)::: объект `[CompareProperty]` является непосредственной заменой атрибута [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute).</span><span class="sxs-lookup"><span data-stu-id="b7a01-310">In a :::no-loc(Blazor)::: app, `[CompareProperty]` is a direct replacement for the [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute) attribute.</span></span>
+<span data-ttu-id="b7a01-307"><xref:System.ComponentModel.DataAnnotations.CompareAttribute> плохо работает с компонентом <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>, так как он не связывает результат проверки с конкретным элементом.</span><span class="sxs-lookup"><span data-stu-id="b7a01-307">The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component because it doesn't associate the validation result with a specific member.</span></span> <span data-ttu-id="b7a01-308">Это может привести к несогласованному поведению при проверке на уровне полей и при проверке всей модели при отправке.</span><span class="sxs-lookup"><span data-stu-id="b7a01-308">This can result in inconsistent behavior between field-level validation and when the entire model is validated on a submit.</span></span> <span data-ttu-id="b7a01-309">*Экспериментальный* пакет [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) содержит дополнительный атрибут проверки `ComparePropertyAttribute`, который обходит эти ограничения.</span><span class="sxs-lookup"><span data-stu-id="b7a01-309">The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations.</span></span> <span data-ttu-id="b7a01-310">В приложении Blazor объект `[CompareProperty]` является непосредственной заменой атрибута [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute).</span><span class="sxs-lookup"><span data-stu-id="b7a01-310">In a Blazor app, `[CompareProperty]` is a direct replacement for the [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute) attribute.</span></span>
 
 ### <a name="nested-models-collection-types-and-complex-types"></a><span data-ttu-id="b7a01-311">Вложенные модели, типы коллекций и сложные типы</span><span class="sxs-lookup"><span data-stu-id="b7a01-311">Nested models, collection types, and complex types</span></span>
 
-<span data-ttu-id="b7a01-312">:::no-loc(Blazor)::: обеспечивает поддержку проверки входных данных формы с помощью заметок к данным со встроенным <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>.</span><span class="sxs-lookup"><span data-stu-id="b7a01-312">:::no-loc(Blazor)::: provides support for validating form input using data annotations with the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>.</span></span> <span data-ttu-id="b7a01-313">Однако <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> проверяет только свойства верхнего уровня модели, привязанной к форме, которые не являются свойствами типа коллекции или сложного типа.</span><span class="sxs-lookup"><span data-stu-id="b7a01-313">However, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> only validates top-level properties of the model bound to the form that aren't collection- or complex-type properties.</span></span>
+<span data-ttu-id="b7a01-312">Blazor обеспечивает поддержку проверки входных данных формы с помощью заметок к данным со встроенным <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>.</span><span class="sxs-lookup"><span data-stu-id="b7a01-312">Blazor provides support for validating form input using data annotations with the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>.</span></span> <span data-ttu-id="b7a01-313">Однако <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> проверяет только свойства верхнего уровня модели, привязанной к форме, которые не являются свойствами типа коллекции или сложного типа.</span><span class="sxs-lookup"><span data-stu-id="b7a01-313">However, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> only validates top-level properties of the model bound to the form that aren't collection- or complex-type properties.</span></span>
 
 <span data-ttu-id="b7a01-314">Чтобы проверить весь граф объектов привязанной модели, включая свойства типа коллекции и сложного типа, используйте `ObjectGraphDataAnnotationsValidator`, предоставляемый *экспериментальным* пакетом [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation):</span><span class="sxs-lookup"><span data-stu-id="b7a01-314">To validate the bound model's entire object graph, including collection- and complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) package:</span></span>
 

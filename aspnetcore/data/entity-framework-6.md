@@ -6,15 +6,15 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/14/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: data/entity-framework-6
 ms.openlocfilehash: 086418c161677f585b08ed360555c93d8575e701
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -107,7 +107,7 @@ ms.locfileid: "93059459"
 
 * <span data-ttu-id="79551-154">В проекте Core в файле *Startup.cs* зарегистрируйте контекст для внедрения зависимостей.</span><span class="sxs-lookup"><span data-stu-id="79551-154">In the Core project, in *Startup.cs* , register the context for DI.</span></span>    
 
-* <span data-ttu-id="79551-155">В проекте Core в файле *:::no-loc(appsettings.json):::* добавьте строку подключения.</span><span class="sxs-lookup"><span data-stu-id="79551-155">In the Core project, in *:::no-loc(appsettings.json):::* , add the connection string.</span></span>  
+* <span data-ttu-id="79551-155">В проекте Core в файле *appsettings.json* добавьте строку подключения.</span><span class="sxs-lookup"><span data-stu-id="79551-155">In the Core project, in *appsettings.json* , add the connection string.</span></span>  
 
 * <span data-ttu-id="79551-156">В проекте Core добавьте контроллер и представление (или представления), чтобы проверить возможность чтения и записи данных.</span><span class="sxs-lookup"><span data-stu-id="79551-156">In the Core project, add a controller and view(s) to verify that you can read and write data.</span></span> <span data-ttu-id="79551-157">(Обратите внимание, что функция формирования шаблонов ASP.NET Core MVC не будет работать с контекстом EF6, на который указывает ссылка из библиотеки классов.)</span><span class="sxs-lookup"><span data-stu-id="79551-157">(Note that ASP.NET Core MVC scaffolding won't work with the EF6 context referenced from the class library.)</span></span>
 
