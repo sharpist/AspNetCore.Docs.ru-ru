@@ -333,42 +333,6 @@
           items:
             - name: Обзор
               uid: blazor/components/index
-            - name: Встроенные компоненты
-              items:
-                - name: Приложение
-                  href: blazor/templates.md#blazor-project-structure
-                - name: Проверка подлинности
-                  href: blazor/security/webassembly/index.md#authentication-component
-                - name: AuthorizeView
-                  href: blazor/security/index.md#authorizeview-component
-                - name: InputCheckbox
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputDate
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputFile
-                  uid: blazor/file-uploads
-                - name: InputNumber
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputRadio
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputRadioGroup
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputSelect
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputText
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputTextArea
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: MainLayout
-                  href: blazor/layouts.md#mainlayout-component
-                - name: NavLink
-                  href: blazor/fundamentals/routing.md#navlink-component
-                - name: NavMenu
-                  href: blazor/fundamentals/routing.md#navlink-component
-                - name: Маршрутизатор
-                  href: blazor/fundamentals/routing.md#route-templates
-                - name: Virtualize
-                  uid: blazor/components/virtualization
             - name: Каскадные значения и параметры
               uid: blazor/components/cascading-values-and-parameters
             - name: 'привязка данных,'
@@ -467,6 +431,42 @@
           uid: blazor/blazor-server-ef-core
         - name: Сложные сценарии
           uid: blazor/advanced-scenarios
+        - name: Встроенные компоненты
+          items:
+            - name: Приложение
+              href: blazor/templates.md#blazor-project-structure
+            - name: Проверка подлинности
+              href: blazor/security/webassembly/index.md#authentication-component
+            - name: AuthorizeView
+              href: blazor/security/index.md#authorizeview-component
+            - name: InputCheckbox
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputDate
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputFile
+              uid: blazor/file-uploads
+            - name: InputNumber
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputRadio
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputRadioGroup
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputSelect
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputText
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputTextArea
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: MainLayout
+              href: blazor/layouts.md#mainlayout-component
+            - name: NavLink
+              href: blazor/fundamentals/routing.md#navlink-component
+            - name: NavMenu
+              href: blazor/fundamentals/routing.md#navlink-component
+            - name: Маршрутизатор
+              href: blazor/fundamentals/routing.md#route-templates
+            - name: Virtualize
+              uid: blazor/components/virtualization
     - name: Клиентская разработка
       items:
         - name: Одностраничные приложения
@@ -604,9 +604,9 @@
       uid: web-api/advanced/conventions
     - name: Обработка ошибок
       uid: web-api/handle-errors
-    - name: HTTP REPL
+    - name: Тестирование с помощью HttpRepl
       items:
-        - name: Тестирование интерфейсов API
+        - name: Обзор
           uid: web-api/http-repl
         - name: Телеметрия
           uid: web-api/http-repl/telemetry
