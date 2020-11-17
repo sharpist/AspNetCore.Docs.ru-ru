@@ -1,5 +1,25 @@
 ## <a name="troubleshoot"></a>Диагностика
 
+::: moniker range=">= aspnetcore-5.0"
+
+### <a name="common-errors"></a>Распространенные ошибки
+
+* Неавторизованный клиент для AAD
+
+  > Сведения: Не удалось выполнить авторизацию Microsoft.AspNetCore.Authorization.DefaultAuthorizationService[2]. Не выполнены такие требования: DenyAnonymousAuthorizationRequirement. Требуется пользователь, прошедший проверку подлинности.
+
+  Ошибка обратного вызова входа от AAD:
+
+  * Ошибка `unauthorized_client` (У вызывающей стороны нет прав на запись для ресурса: [subscriptions/])
+  * Описание: `AADB2C90058: The provided application is not configured to allow public clients.`
+
+  Чтобы устранить эту ошибку, сделайте следующее:
+
+  1. На портале Azure перейдите к [манифесту приложения](/azure/active-directory/develop/reference-app-manifest).
+  1. Задайте для атрибута [`allowPublicClient`](/azure/active-directory/develop/reference-app-manifest#allowpublicclient-attribute) значение `null` или `true`.
+
+::: moniker-end
+
 ### <a name="cookies-and-site-data"></a>Файлы cookie и данные сайта
 
 Файлы cookie и данные сайта могут сохраняться в разных обновлениях приложений и повлиять на тестирование и устранение неполадок. При внесении изменений в код приложения, изменений в учетную запись пользователя у поставщика или изменений конфигурации приложения поставщика очистите следующее:

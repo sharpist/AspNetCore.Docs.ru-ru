@@ -5,7 +5,7 @@ description: Узнайте, как использовать методы жиз
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/14/2020
+ms.date: 11/06/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: 30dfd9e821490d016d1d2be5c4cfd56818d46655
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 08fc393160e0a7396963901e2add3b44fc7b02b9
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056378"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94508031"
 ---
 # <a name="aspnet-core-no-locblazor-lifecycle"></a>Жизненный цикл ASP.NET Core Blazor
 
@@ -40,7 +40,7 @@ ms.locfileid: "93056378"
    * Создайте экземпляр компонента.
    * Выполните внедрение свойств. Выполните [`SetParametersAsync`](#before-parameters-are-set) .
    * Вызовите [`OnInitialized{Async}`](#component-initialization-methods). Если возвращается значение <xref:System.Threading.Tasks.Task>, ожидается <xref:System.Threading.Tasks.Task>, а затем компонент отрисовывается. Если значение <xref:System.Threading.Tasks.Task> не возвращается, компонент отрисовывается сразу.
-1. Вызовите [`OnParametersSet{Async}`](#after-parameters-are-set). Если возвращается значение <xref:System.Threading.Tasks.Task>, ожидается <xref:System.Threading.Tasks.Task>, а затем компонент отрисовывается. Если значение <xref:System.Threading.Tasks.Task> не возвращается, компонент отрисовывается сразу.
+1. Вызовите метод [`OnParametersSet{Async}`](#after-parameters-are-set) и выполните отрисовку компонента. Если метод `OnParametersSetAsync` возвращает значение <xref:System.Threading.Tasks.Task>, ожидается <xref:System.Threading.Tasks.Task>, а затем компонент отрисовывается.
 
 ![События жизненного цикла компонента Razor в Blazor](lifecycle/_static/lifecycle1.png)
 
@@ -109,7 +109,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Приложения Blazor Server, которые [предварительно отрисовывают свое содержимое](xref:blazor/fundamentals/additional-scenarios#render-mode), вызывают <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> **_дважды_** :
+Приложения Blazor Server, которые [предварительно отрисовывают свое содержимое](xref:blazor/fundamentals/additional-scenarios#render-mode), вызывают <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> **_дважды_**:
 
 * Один раз, когда компонент изначально отрисовывается статически как часть страницы.
 * Второй раз, когда браузер устанавливает соединение с сервером.
@@ -230,7 +230,7 @@ protected override bool ShouldRender()
 
 ## <a name="stateful-reconnection-after-prerendering"></a>Повторное подключение с отслеживанием состояния после предварительной отрисовки
 
-В приложении Blazor Server, если <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> имеет значение <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered>, компонент изначально отрисовывается статически как часть страницы. После того как браузер установит соединение с сервером, компонент отрисовывается *снова* и становится интерактивным. Если метод жизненного цикла [`OnInitialized{Async}`](#component-initialization-methods) для инициализации компонента присутствует, он выполняется *дважды* :
+В приложении Blazor Server, если <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> имеет значение <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered>, компонент изначально отрисовывается статически как часть страницы. После того как браузер установит соединение с сервером, компонент отрисовывается *снова* и становится интерактивным. Если метод жизненного цикла [`OnInitialized{Async}`](#component-initialization-methods) для инициализации компонента присутствует, он выполняется *дважды*:
 
 * Когда компонент предварительно отрисовывается статически.
 * После установления соединения с сервером.

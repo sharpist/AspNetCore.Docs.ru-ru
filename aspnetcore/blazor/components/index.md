@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: d78076eb29d6d09756e408b388fcf12b4b6460f6
-ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
+ms.openlocfilehash: d8838a458943599890420adec4551ad87e43d328
+ms.sourcegitcommit: e087b6a38e3d38625ebb567a973e75b4d79547b9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94507945"
+ms.lasthandoff: 11/15/2020
+ms.locfileid: "94637708"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
@@ -244,17 +244,31 @@ namespace BlazorSample
 
 Компоненты могут принимать параметры маршрута из шаблона маршрута, указанного в директиве [`@page`][9]. Маршрутизатор использует параметры маршрута для заполнения соответствующих параметров компонента.
 
+::: moniker range=">= aspnetcore-5.0"
+
+Поддерживаются необязательные параметры. В следующем примере необязательный параметр `text` назначает значение сегмента маршрута свойству `Text` компонента. Если сегмента нет, для `Text` устанавливается значение `fantastic`.
+
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](index/samples_snapshot/RouteParameter.razor?highlight=2,7-8)]
+[!code-razor[](index/samples_snapshot/RouteParameter-5x.razor?highlight=1,6-7)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+`Pages/RouteParameter.razor`:
+
+[!code-razor[](index/samples_snapshot/RouteParameter-3x.razor?highlight=2,7-8)]
 
 Необязательные параметры не поддерживаются, поэтому в предыдущем примере применяются две директивы [`@page`][9]. Первая позволяет переходить к компоненту без параметра. Вторая директива [`@page`][9] принимает параметр маршрута `{text}` и присваивает значение свойству `Text`.
+
+::: moniker-end
 
 Сведения об универсальных параметрах маршрута (`{*pageRoute}`), которые захватывают пути в нескольких папках, см. в разделе <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
 ### <a name="component-parameters"></a>Параметры компонентов
 
-Компоненты могут иметь *параметры* , определяемые с помощью открытых свойств в классе компонента с атрибутом [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute). Используйте атрибуты, чтобы указать аргументы для компонента в разметке.
+Компоненты могут иметь *параметры*, определяемые с помощью открытых свойств в классе компонента с атрибутом [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute). Используйте атрибуты, чтобы указать аргументы для компонента в разметке.
 
 `Components/ChildComponent.razor`:
 
@@ -266,8 +280,16 @@ namespace BlazorSample
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
+В соответствии с соглашением значение атрибута, состоящее из кода C#, назначается параметру с помощью [зарезервированного символа Razor `@`](xref:mvc/views/razor#razor-syntax):
+
+* Родительское поле или свойство `Title="@{FIELD OR PROPERTY}`, где заполнитель `{FIELD OR PROPERTY}` является полем C# или свойством родительского компонента.
+* Результат метода `Title="@{METHOD}"`, где заполнитель `{METHOD}` является методом C# родительского компонента.
+* [Неявное или явное выражение](xref:mvc/views/razor#implicit-razor-expressions) `Title="@({EXPRESSION})"`, где заполнитель `{EXPRESSION}` является выражением C#.
+  
+Для получения дополнительной информации см. <xref:mvc/views/razor>.
+
 > [!WARNING]
-> Не создавайте компоненты, записывающие их в собственные *параметры компонентов* , — используйте вместо этого закрытое поле. Дополнительные сведения см. в разделе [Перезаписанные параметры](#overwritten-parameters).
+> Не создавайте компоненты, записывающие их в собственные *параметры компонентов*, — используйте вместо этого закрытое поле. Дополнительные сведения см. в разделе [Перезаписанные параметры](#overwritten-parameters).
 
 ## <a name="child-content"></a>Дочернее содержимое
 
@@ -294,7 +316,7 @@ namespace BlazorSample
 > @for (int c = 0; c < 10; c++)
 > {
 >     var current = c;
->     <ChildComponent Param1="@c">
+>     <ChildComponent Title="@c">
 >         Child Content: Count: @current
 >     </ChildComponent>
 > }
@@ -305,7 +327,7 @@ namespace BlazorSample
 > ```razor
 > @foreach(var c in Enumerable.Range(0,10))
 > {
->     <ChildComponent Param1="@c">
+>     <ChildComponent Title="@c">
 >         Child Content: Count: @c
 >     </ChildComponent>
 > }
@@ -485,7 +507,7 @@ Blazor использует контекст синхронизации (<xref:S
 
 ### <a name="invoke-component-methods-externally-to-update-state"></a>Внешний вызов методов компонента для изменения состояния
 
-Если компонент нужно изменить на основе внешнего события, такого как таймер или другие уведомления, используйте метод `InvokeAsync`, который выполняет отправку в контекст синхронизации Blazor. Например, рассмотрим *службу уведомителя* , которая может уведомлять любой компонент, ожидающий передачи данных, об измененном состоянии:
+Если компонент нужно изменить на основе внешнего события, такого как таймер или другие уведомления, используйте метод `InvokeAsync`, который выполняет отправку в контекст синхронизации Blazor. Например, рассмотрим *службу уведомителя*, которая может уведомлять любой компонент, ожидающий передачи данных, об измененном состоянии:
 
 ```csharp
 public class NotifierService
@@ -650,7 +672,7 @@ public class NotifierService
 * Компонент выполняет запись непосредственно в параметр `Expanded`, который демонстрирует проблему с перезаписанными параметрами. Его следует избегать.
 
 ```razor
-<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
+<div @onclick="Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
         <h2 class="card-title">Toggle (<code>Expanded</code> = @Expanded)</h2>
 
@@ -702,7 +724,7 @@ public class NotifierService
 * Использует закрытое поле для поддержания внутреннего состояния переключения, в котором описывается, как избегать непосредственной записи в параметре.
 
 ```razor
-<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
+<div @onclick="Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
         <h2 class="card-title">Toggle (<code>expanded</code> = @expanded)</h2>
 
@@ -782,7 +804,7 @@ public class NotifierService
 Строки обычно визуализируются с помощью текстовых узлов модели DOM, что означает, что любая разметка, которую они могут содержать, игнорируется и обрабатывается как текстовый литерал. Для отрисовки необработанного HTML-кода заключите HTML-содержимое в значение `MarkupString`. Это значение анализируется как HTML или SVG и вставляется в модель DOM.
 
 > [!WARNING]
-> Отрисовка необработанного HTML-кода, созданного из любого ненадежного источника, является **угрозой безопасности** , и ее следует избегать!
+> Отрисовка необработанного HTML-кода, созданного из любого ненадежного источника, является **угрозой безопасности**, и ее следует избегать!
 
 В следующем примере показано использование типа `MarkupString` для добавления блока статического HTML-содержимого в визуализируемые выходные данные компонента:
 

@@ -5,7 +5,7 @@ description: Создание приложения чата, которое ис
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/01/2020
+ms.date: 11/11/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 81cbfb692ffbd0bb6335ccef6dd10ad6c20fb334
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: afbfc44db8cb833df7a79061f9bd73052859fec2
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052712"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94508179"
 ---
 # <a name="use-aspnet-core-no-locsignalr-with-no-locblazor-webassembly"></a>Использование SignalR для ASP.NET Core с Blazor WebAssembly
 
@@ -49,8 +49,7 @@ ms.locfileid: "93052712"
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-<!-- * [Visual Studio 2019 16.8 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload -->
-* [Visual Studio 2019 16.8 или более поздней версии (в предварительной версии)](https://visualstudio.microsoft.com/vs/preview/) с рабочей нагрузкой **ASP.NET и разработка веб-приложений**
+* [Visual Studio 2019 16.8 или более поздней версии](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) с рабочей нагрузкой **ASP.NET и разработка веб-приложений**
 * [!INCLUDE [.NET Core 5.0 SDK](~/includes/5.0-SDK.md)]
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
@@ -59,8 +58,7 @@ ms.locfileid: "93052712"
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-<!-- * [Visual Studio for Mac version 8.8 or later (in preview)](https://visualstudio.microsoft.com/vs/mac/) -->
-* [Visual Studio для Mac 8.8 или более поздней версии (в предварительной версии)](/visualstudio/releasenotes/vs2019-mac-preview-relnotes)
+* [Visual Studio для Mac 8.8 или более поздней версии](https://visualstudio.microsoft.com/vs/mac/)
 * [!INCLUDE [.NET Core 5.0 SDK](~/includes/5.0-SDK.md)]
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli/)
@@ -175,17 +173,17 @@ dotnet new blazorwasm --hosted --output BlazorSignalRApp
 
 1. Убедитесь, что в диалоговом окне **Управление пакетами NuGet** для параметра **Источник пакета** установлено значение `nuget.org`.
 
-1. Нажав кнопку **Обзор** , введите `Microsoft.AspNetCore.SignalR.Client` в поле поиска.
+1. Нажав кнопку **Обзор**, введите `Microsoft.AspNetCore.SignalR.Client` в поле поиска.
 
 1. В результатах поиска выберите пакет [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) и нажмите **Установить**.
 
-1. Если откроется диалоговое окно **Просмотр изменений** , нажмите кнопку **ОК**.
+1. Если откроется диалоговое окно **Просмотр изменений**, нажмите кнопку **ОК**.
 
-1. Если откроется диалоговое окно **Принятие условий лицензионного соглашения** , выберите **Я принимаю** , если принимаете условия.
+1. Если откроется диалоговое окно **Принятие условий лицензионного соглашения**, выберите **Я принимаю**, если принимаете условия.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code/)
 
-Во **встроенном терминале** ( **Просмотр** > **Терминал** на панели инструментов) выполните следующие команды:
+Во **встроенном терминале** (**Просмотр** > **Терминал** на панели инструментов) выполните следующие команды:
 
 ```dotnetcli
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
@@ -197,11 +195,11 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Убедитесь, что в диалоговом окне **Управление пакетами NuGet** в раскрывающемся меню источника установлено значение `nuget.org`.
 
-1. Нажав кнопку **Обзор** , введите `Microsoft.AspNetCore.SignalR.Client` в поле поиска.
+1. Нажав кнопку **Обзор**, введите `Microsoft.AspNetCore.SignalR.Client` в поле поиска.
 
 1. В результатах поиска установите флажок рядом с пакетом [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) и выберите **Добавить пакет**.
 
-1. Если откроется диалоговое окно **Принятие условий лицензионного соглашения** , выберите **Принять** , чтобы принять условия.
+1. Если откроется диалоговое окно **Принятие условий лицензионного соглашения**, выберите **Принять**, чтобы принять условия.
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli/)
 

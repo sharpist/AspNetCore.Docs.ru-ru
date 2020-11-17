@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: eef381367d7aa59dcc430c529746088d4488e700
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: fc2e81cf130732d515fb871227031493e297cf9f
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054935"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94507776"
 ---
 # <a name="aspnet-core-no-locblazor-templates"></a>Шаблоны ASP.NET Core Blazor
 
@@ -48,12 +48,27 @@ dotnet new blazorserver --help
 
 Приложение Blazor, создаваемое на основе шаблона проекта Blazor, состоит из следующих файлов и папок:
 
+::: moniker range=">= aspnetcore-5.0"
+
 * `Program.cs`. это точка входа в приложение, где настраиваются следующие элементы:
 
   * [Узел](xref:fundamentals/host/generic-host) ASP.NET Core (Blazor Server).
   * Узел WebAssembly (Blazor WebAssembly): код в этом файле используется только для приложений, созданных из шаблона Blazor WebAssembly (`blazorwasm`).
-    * Компонент `App` является корневым компонентом приложения. Компонент `App` указывается как элемент модели DOM `app` (`<app>...</app>`) в корневой коллекции компонентов (`builder.RootComponents.Add<App>("app")`).
+    * Компонент `App` является корневым компонентом приложения. Компонент `App` указывается как элемент модели DOM `app` (`<div id="app">Loading...</div>` в `wwwroot/index.html`) в корневой коллекции компонентов (`builder.RootComponents.Add<App>("#app")`).
     * [Службы](xref:blazor/fundamentals/dependency-injection) добавляются и настраиваются (например, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* `Program.cs`. это точка входа в приложение, где настраиваются следующие элементы:
+
+  * [Узел](xref:fundamentals/host/generic-host) ASP.NET Core (Blazor Server).
+  * Узел WebAssembly (Blazor WebAssembly): код в этом файле используется только для приложений, созданных из шаблона Blazor WebAssembly (`blazorwasm`).
+    * Компонент `App` является корневым компонентом приложения. Компонент `App` указывается как элемент модели DOM `app` (`<app>Loading...</app>` в `wwwroot/index.html`) в корневой коллекции компонентов (`builder.RootComponents.Add<App>("app")`).
+    * [Службы](xref:blazor/fundamentals/dependency-injection) добавляются и настраиваются (например, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
+
+::: moniker-end
 
 * `Startup.cs` (Blazor Server): Содержит логику для запуска приложения. В классе `Startup` определены два метода:
 
