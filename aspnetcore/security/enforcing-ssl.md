@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: e473da9a7cbd91a601ad4af0c7c02c7f576f348c
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: aa109aaa89003fd7566e7dc219ecc9799b077355
+ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051126"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94703674"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Принудительное применение HTTPS в ASP.NET Core
 
@@ -136,7 +136,7 @@ ms.locfileid: "93051126"
 
 ::: moniker-end
 
-* В среде разработки задайте URL-адрес HTTPS в *launchsettings.json* . При использовании IIS Express включите протокол HTTPS.
+* В среде разработки задайте URL-адрес HTTPS в *launchsettings.json*. При использовании IIS Express включите протокол HTTPS.
 
 * Настройте конечную точку HTTPS URL для общедоступного пограничной развертывания сервера [Kestrel](xref:fundamentals/servers/kestrel) или сервера [HTTP.sys](xref:fundamentals/servers/httpsys) . Приложение использует только **один HTTPS-порт** . По промежуточного слоя обнаруживает порт через <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .
 
@@ -162,7 +162,7 @@ ms.locfileid: "93051126"
 
 При развертывании в службе приложений Azure следуйте указаниям в [руководстве по связыванию существующего настраиваемого SSL-сертификата с Azure Web Apps](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
-### <a name="options"></a>Параметры
+### <a name="options"></a>Варианты
 
 Следующий выделенный код вызывает [аддхттпсредиректион](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) для настройки параметров промежуточного слоя:
 
@@ -193,7 +193,7 @@ ms.locfileid: "93051126"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-При настройке служб в *Startup.CS* :
+При настройке служб в *Startup.CS*:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -214,7 +214,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker range="<= aspnetcore-2.2"
 
-При настройке служб в *Startup.CS* :
+При настройке служб в *Startup.CS*:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -289,7 +289,7 @@ ASP.NET Core 2,1 и более поздних версий реализует HS
 ::: moniker-end
 
 
-* Задает параметр предварительной загрузки `Strict-Transport-Security` заголовка. Предварительная загрузка не является частью [спецификации RFC HSTS](https://tools.ietf.org/html/rfc6797), но поддерживается веб-браузерами для предварительной загрузки HSTS сайтов при новой установке. Дополнительные сведения см. в статье [https://hstspreload.org/](https://hstspreload.org/).
+* Задает параметр предварительной загрузки `Strict-Transport-Security` заголовка. Предварительная загрузка не является частью [спецификации RFC HSTS](https://tools.ietf.org/html/rfc6797), но поддерживается веб-браузерами для предварительной загрузки HSTS сайтов при новой установке. Дополнительные сведения см. в разделе [https://hstspreload.org/](https://hstspreload.org/).
 * Включает [инклудесубдомаин](https://tools.ietf.org/html/rfc6797#section-6.1.2), который применяет политику HSTS для размещения поддоменов.
 * Явно задает `max-age` `Strict-Transport-Security` для параметра заголовка значение 60 дней. Если значение не задано, по умолчанию используется значение 30 дней. Дополнительные сведения см. в разделе [директива max-age](https://tools.ietf.org/html/rfc6797#section-6.1.1).
 * Добавляет `example.com` в список узлов для исключения.
@@ -413,7 +413,7 @@ dotnet dev-certs https --trust
 ### <a name="docker---certificate-not-trusted"></a>DOCKER — сертификат не является доверенным
 
 * Удалите папку *\{ \Аппдата\роаминг\асп.нет\хттпс C:\Users User}* .
-* Очистите решение. Удалите папки *bin* и *obj* .
+* Очистите решение. Удалите папки *bin* и *obj*.
 * Перезапустите средство разработки. Например, Visual Studio, Visual Studio Code или Visual Studio для Mac.
 
 ### <a name="windows---certificate-not-trusted"></a>Windows — сертификат не является доверенным
@@ -450,6 +450,20 @@ dotnet dev-certs https --trust
 ### <a name="iis-express-ssl-certificate-used-with-visual-studio"></a>IIS Express SSL-сертификат, используемый в Visual Studio
 
 Чтобы устранить проблемы с сертификатом IIS Express, выберите **восстановить** в Visual Studio Installer. Дополнительные сведения см. в [этой статье об ошибке на GitHub](https://github.com/dotnet/aspnetcore/issues/16892).
+
+<a name="trust-ff"></a>
+
+### <a name="firefox-sec_error_inadequate_key_usage-certificate-error"></a>Браузер Firefox SEC_ERROR_INADEQUATE_KEY_USAGE ошибка сертификата
+
+Браузер Firefox использует собственное хранилище сертификатов и, таким образом, не доверяет сертификатам разработчика [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) или [Kestrel](xref:fundamentals/servers/kestrel) .
+
+Чтобы использовать Firefox с IIS Express или Kestrel, установите  `security.enterprise_roots.enabled` = `true`
+
+1. Введите `about:config` в браузере Firefox.
+1. Выберите **принять риск и продолжить** , если принять риск.
+1. Выберите " **отобразить все** "
+1. Параметр `security.enterprise_roots.enabled` = `true`
+1. Выйти и перезапустить Firefox
 
 ## <a name="additional-information"></a>Дополнительные сведения
 

@@ -5,7 +5,7 @@ description: Узнайте, как использовать глобально�
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc, devx-track-azurecli
-ms.date: 11/11/2020
+ms.date: 11/12/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: 8dd763d270a00c9a71913d68d6a039b2d98c3864
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: c661141c1bec93c0f7b6404964dc0bca2319b529
+ms.sourcegitcommit: 827e8be18cebbcc09b467c089e17fa6f5e430cb2
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570215"
+ms.lasthandoff: 11/15/2020
+ms.locfileid: "94634617"
 ---
 # <a name="test-web-apis-with-the-httprepl"></a>Тестирование веб-API с помощью HttpRepl
 
@@ -524,7 +524,7 @@ post <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-f
 
 Параметр маршрута, который требуется методу действия соответствующего контроллера.
 
-### <a name="options"></a>Параметры
+### <a name="options"></a>Варианты
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
@@ -594,7 +594,7 @@ put <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-fo
 
 Параметр маршрута, который требуется методу действия соответствующего контроллера.
 
-### <a name="options"></a>Параметры
+### <a name="options"></a>Варианты
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
@@ -709,7 +709,7 @@ delete <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:b
 
 Параметр маршрута, который требуется методу действия соответствующего контроллера.
 
-### <a name="options"></a>Параметры
+### <a name="options"></a>Варианты
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
@@ -796,7 +796,7 @@ patch <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-
 
 Параметр маршрута, который требуется методу действия соответствующего контроллера.
 
-### <a name="options"></a>Параметры
+### <a name="options"></a>Варианты
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
@@ -816,7 +816,7 @@ head <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:bod
 
 Параметр маршрута, который требуется методу действия соответствующего контроллера.
 
-### <a name="options"></a>Параметры
+### <a name="options"></a>Варианты
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
@@ -834,7 +834,7 @@ options <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:
 
 Параметр маршрута, который требуется методу действия соответствующего контроллера.
 
-### <a name="options"></a>Параметры
+### <a name="options"></a>Варианты
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
@@ -1127,3 +1127,6 @@ https://localhost:5001/>
 
 * [Запросы к REST API](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
 * [Репозиторий HttpRepl в GitHub](https://github.com/dotnet/HttpRepl)
+* [Настройка Visual Studio для запуска HttpRepl](https://devblogs.microsoft.com/aspnet/httprepl-a-command-line-tool-for-interacting-with-restful-http-services/#configure-visual-studio-for-windows-to-launch-httprepl-on-f5)
+* [Настройка Visual Studio Code для запуска HttpRepl](https://devblogs.microsoft.com/aspnet/httprepl-a-command-line-tool-for-interacting-with-restful-http-services/#configure-visual-studio-code-to-launch-httprepl-on-debug)
+* [Настройка Visual Studio для Mac для запуска HttpRepl](https://devblogs.microsoft.com/aspnet/httprepl-a-command-line-tool-for-interacting-with-restful-http-services/#configure-visual-studio-for-mac-to-launch-httprepl-as-a-custom-tool)
