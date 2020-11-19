@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 5849f4bfb9d0355177ceb5c2f4236c6d39dd9e92
-ms.sourcegitcommit: bb475e69cb647f22cf6d2c6f93d0836c160080d7
+ms.openlocfilehash: 7323cf11ad4556443def4068873e6805b449058a
+ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/06/2020
-ms.locfileid: "94340040"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94674021"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Использование Razor Pages с Entity Framework Core в ASP.NET Core: руководство 1 из 8
 
@@ -143,7 +143,9 @@ To run the app after downloading the completed project:
 
 ## <a name="set-up-the-site-style"></a>Настройка стиля сайта
 
-Скопируйте следующий код и вставьте его в файл *Pages/Shared/_Layout.cshtml*: [!code-cshtml[Main](intro/samples/cu50/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
+Скопируйте следующий код и вставьте его в файл *Pages/Shared/_Layout.cshtml*: 
+
+[!code-cshtml[Main](intro/samples/cu50/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
 
 Файл макета задает заголовок, нижний колонтитул и меню для сайта. Приведенный выше код вносит следующие изменения:
 

@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Kestrel
 uid: aspnetcore-5.0
-ms.openlocfilehash: e25549d557dd971d0f2f4d67a182574f07138acb
-ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
+ms.openlocfilehash: 84747e2d13275a23e83dc2dc0f666cb0c8d001b1
+ms.sourcegitcommit: 827e8be18cebbcc09b467c089e17fa6f5e430cb2
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94508127"
+ms.lasthandoff: 11/15/2020
+ms.locfileid: "94634630"
 ---
 # <a name="whats-new-in-aspnet-core-50"></a>Новые возможности в ASP.NET Core 5.0
 
@@ -453,8 +453,6 @@ public class Program
 Открыть проект ASP.NET Core в текстовом редакторе.
 * Выполните `dotnet watch`.
 * Сосредоточиться на изменениях кода, пока инструментарий обрабатывает перестроение, перезапуск и перезагрузку приложения.
-
-В будущем мы надеемся добавить функциональные возможности автоматического обновления в Visual Studio.
 
 ### <a name="console-logger-formatter"></a>Форматировщик средства ведения журнала консоли
 

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: 1c703cdbd168c2e83d09c40f7740689df8938dad
-ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
+ms.openlocfilehash: c96e7107c85bf36f55f6571c71c20d09bc94ddb3
+ms.sourcegitcommit: fb208f907249cc7aab029afff941a0266c187050
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94422769"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94688531"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Начало работы с MVC ASP.NET Core
 
@@ -75,7 +75,7 @@ ms.locfileid: "94422769"
     1. Щелкните **ASP.NET Core Web App (Model-View-Controller)** (Веб-приложение ASP.NET Core (модель — представление — контроллер)).
     1. **Создание**
 
-![Создание веб-приложения ASP.NET Core ](start-mvc/_static/5/mvc.png)
+![Создание веб-приложения ASP.NET Core ](start-mvc/_static/mvcVS19v16.9.png)
 
 Альтернативные подходы к созданию проекта см. в статье [Создание проекта в Visual Studio](/visualstudio/ide/create-new-project).
 
@@ -142,7 +142,7 @@ ms.locfileid: "94422769"
 
   Пример приложения приведен на следующем рисунке:
 
-  ![Домашняя или индексная страница](start-mvc/_static/home2.2.png)
+  ![Домашняя или индексная страница](start-mvc/_static/home50-vs.png)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -154,7 +154,7 @@ ms.locfileid: "94422769"
 
   Запуск приложения с помощью клавиш CTRL+F5 (режим без отладки) позволяет внести изменения в код, сохранить файл, обновить браузер и увидеть изменения в коде. Многие разработчики предпочитают использовать режим без отладки, чтобы быстро обновлять страницу и просматривать изменения.
 
-  ![Домашняя или индексная страница](start-mvc/_static/home2.2.png)
+  ![Домашняя или индексная страница](start-mvc/_static/home50-port5001.png)
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
