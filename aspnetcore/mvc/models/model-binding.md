@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: 49300d32096e577db9b13a0510cc310b91ddb51d
-ms.sourcegitcommit: 33f631a4427b9a422755601ac9119953db0b4a3e
+ms.openlocfilehash: 4de34a75da932b41190caa8434ac5be8cc0710fd
+ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/05/2020
-ms.locfileid: "93365357"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "94981938"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Привязка модели в ASP.NET Core
 
@@ -148,7 +148,7 @@ public class Pet
 }
 ```
 
-В предыдущем примере:
+В предшествующем примере:
 
 * Атрибут `[FromQuery]` не учитывается.
 * Свойство `Breed` не заполняется из параметра строки запроса. 
@@ -194,7 +194,7 @@ public class Pet
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-Проверка на стороне клиента приводит к перехвату большинства недопустимых данных, которые в противном случае были бы переданы в Razor форму страниц. Эта проверка затрудняет срабатывание выделенного выше кода. Пример приложения включает кнопку **Отправить с неверной датой** , которая помещает недопустимые данные в поле **Дата приема на работу** и отправляет форму. Эта кнопка показывает, как работает код для повторного отображения страницы, если возникла ошибка преобразования данных.
+Проверка на стороне клиента приводит к перехвату большинства недопустимых данных, которые в противном случае были бы переданы в Razor форму страниц. Эта проверка затрудняет срабатывание выделенного выше кода. Пример приложения включает кнопку **Отправить с неверной датой**, которая помещает недопустимые данные в поле **Дата приема на работу** и отправляет форму. Эта кнопка показывает, как работает код для повторного отображения страницы, если возникла ошибка преобразования данных.
 
 Когда страница отображается повторно приведенным выше кодом, недопустимые входные данные не отображаются в поле формы. Это связано с тем, что свойству модели задано значение NULL или значение по умолчанию. Недопустимые входные данные отображаются в сообщении об ошибке. Но если требуется повторно отобразить неправильные данные в поле формы, возможно, следует сделать свойство модели строкой и выполнить преобразование данных вручную.
 
@@ -211,14 +211,14 @@ public class Pet
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
-* [Перечисление](xref:System.ComponentModel.EnumConverter)
+* [Enum](xref:System.ComponentModel.EnumConverter)
 * [Устройства](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [URI](xref:System.UriTypeConverter)
-* [Версия](xref:System.ComponentModel.VersionConverter)
+* [Version](xref:System.ComponentModel.VersionConverter)
 
 ## <a name="complex-types"></a>Сложные типы
 
@@ -280,7 +280,7 @@ public IActionResult OnPost(
 * `[BindNever]`
 
 > [!WARNING]
-> Эти атрибуты влияют на привязку модели, если опубликованные данные формы являются источником значений. Они делают * **Not** _ на модули форматирования ввода, которые обрабатывают опубликованные тексты запросов JSON и XML. Форматировщики входных данных описываются [далее в этой статье](#input-formatters).
+> Эти атрибуты влияют на привязку модели, если опубликованные данные формы являются источником значений. Они делают ***Not** _ на модули форматирования ввода, которые обрабатывают опубликованные тексты запросов JSON и XML. Форматировщики входных данных описываются [далее в этой статье](#input-formatters).
 
 ### <a name="bind-attribute"></a>Атрибут [Bind]
 
@@ -325,7 +325,7 @@ public class Instructor
 
 ### <a name="bindrequired-attribute"></a>Атрибут [BindRequired]
 
-Может применяться только к свойствам модели, а не к параметрам метода. Приводит к тому, что привязка модели добавляет ошибку состояния модели, если привязка для свойства модели невозможна. Ниже приведен пример:
+Может применяться только к свойствам модели, а не к параметрам метода. Приводит к тому, что привязка модели добавляет ошибку состояния модели, если привязка для свойства модели невозможна. Пример:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
 
@@ -333,7 +333,7 @@ public class Instructor
 
 ### <a name="bindnever-attribute"></a>Атрибут [BindNever]
 
-Может применяться только к свойствам модели, а не к параметрам метода. Запрещает привязке модели задавать свойство модели. Ниже приведен пример:
+Может применяться только к свойствам модели, а не к параметрам метода. Запрещает привязке модели задавать свойство модели. Пример:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
@@ -488,7 +488,7 @@ Age: <input asp-for="Age" />
 
 ### <a name="cancellationtoken"></a>CancellationToken
 
-используется для отмены действия в асинхронных контроллерах.
+При необходимости действия могут быть привязаны `CancellationToken` как параметр. Это привязывает этот <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted> сигнал при прерывании соединения, лежащего в основе HTTP-запроса. Действия могут использовать этот параметр для отмены долго выполняющихся асинхронных операций, выполняемых в рамках действий контроллера.
 
 ### <a name="formcollection"></a>FormCollection
 
@@ -496,7 +496,7 @@ Age: <input asp-for="Age" />
 
 ## <a name="input-formatters"></a>Форматировщики входных данных
 
-Данные в тексте запроса могут быть в формате JSON, XML или другом формате. Для анализа этих данных модель привязки использует *форматировщик входных данных* , настроенный для обработки определенного типа содержимого. По умолчанию ASP.NET Core включает форматировщики входных данных на основе JSON для обработки данных JSON. Вы можете добавить другие форматировщики для других типов содержимого.
+Данные в тексте запроса могут быть в формате JSON, XML или другом формате. Для анализа этих данных модель привязки использует *форматировщик входных данных*, настроенный для обработки определенного типа содержимого. По умолчанию ASP.NET Core включает форматировщики входных данных на основе JSON для обработки данных JSON. Вы можете добавить другие форматировщики для других типов содержимого.
 
 ASP.NET Core выбирает форматировщики входных данных на основе атрибута [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute). Если атрибут отсутствует, используется [Заголовок Content-Type](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html).
 
@@ -554,7 +554,7 @@ ASP.NET Core выбирает форматировщики входных дан
 
 ## <a name="manual-model-binding"></a>Привязка модели вручную 
 
-Привязка модели может вызываться вручную с помощью метода <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>. Этот метод определен в классах `ControllerBase` и `PageModel`. Перегрузки метода позволяют задать поставщик префиксов и значений. Этот метод возвращает `false` при сбое привязки модели. Ниже приведен пример:
+Привязка модели может вызываться вручную с помощью метода <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>. Этот метод определен в классах `ControllerBase` и `PageModel`. Перегрузки метода позволяют задать поставщик префиксов и значений. Этот метод возвращает `false` при сбое привязки модели. Пример:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 
@@ -697,7 +697,7 @@ public class Pet
 }
 ```
 
-В предыдущем примере:
+В предшествующем примере:
 
 * Атрибут `[FromQuery]` не учитывается.
 * Свойство `Breed` не заполняется из параметра строки запроса. 
@@ -743,7 +743,7 @@ public class Pet
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-Проверка на стороне клиента приводит к перехвату большинства недопустимых данных, которые в противном случае были бы переданы в Razor форму страниц. Эта проверка затрудняет срабатывание выделенного выше кода. Пример приложения включает кнопку **Отправить с неверной датой** , которая помещает недопустимые данные в поле **Дата приема на работу** и отправляет форму. Эта кнопка показывает, как работает код для повторного отображения страницы, если возникла ошибка преобразования данных.
+Проверка на стороне клиента приводит к перехвату большинства недопустимых данных, которые в противном случае были бы переданы в Razor форму страниц. Эта проверка затрудняет срабатывание выделенного выше кода. Пример приложения включает кнопку **Отправить с неверной датой**, которая помещает недопустимые данные в поле **Дата приема на работу** и отправляет форму. Эта кнопка показывает, как работает код для повторного отображения страницы, если возникла ошибка преобразования данных.
 
 Когда страница отображается повторно приведенным выше кодом, недопустимые входные данные не отображаются в поле формы. Это связано с тем, что свойству модели задано значение NULL или значение по умолчанию. Недопустимые входные данные отображаются в сообщении об ошибке. Но если требуется повторно отобразить неправильные данные в поле формы, возможно, следует сделать свойство модели строкой и выполнить преобразование данных вручную.
 
@@ -760,14 +760,14 @@ public class Pet
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
-* [Перечисление](xref:System.ComponentModel.EnumConverter)
+* [Enum](xref:System.ComponentModel.EnumConverter)
 * [Устройства](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [URI](xref:System.UriTypeConverter)
-* [Версия](xref:System.ComponentModel.VersionConverter)
+* [Version](xref:System.ComponentModel.VersionConverter)
 
 ## <a name="complex-types"></a>Сложные типы
 
@@ -835,13 +835,13 @@ public IActionResult OnPost(
 
 ### <a name="bindrequired-attribute"></a>Атрибут [BindRequired]
 
-Может применяться только к свойствам модели, а не к параметрам метода. Приводит к тому, что привязка модели добавляет ошибку состояния модели, если привязка для свойства модели невозможна. Ниже приведен пример:
+Может применяться только к свойствам модели, а не к параметрам метода. Приводит к тому, что привязка модели добавляет ошибку состояния модели, если привязка для свойства модели невозможна. Пример:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
 
 ### <a name="bindnever-attribute"></a>Атрибут [BindNever]
 
-Может применяться только к свойствам модели, а не к параметрам метода. Запрещает привязке модели задавать свойство модели. Ниже приведен пример:
+Может применяться только к свойствам модели, а не к параметрам метода. Запрещает привязке модели задавать свойство модели. Пример:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
@@ -983,7 +983,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="input-formatters"></a>Форматировщики входных данных
 
-Данные в тексте запроса могут быть в формате JSON, XML или другом формате. Для анализа этих данных модель привязки использует *форматировщик входных данных* , настроенный для обработки определенного типа содержимого. По умолчанию ASP.NET Core включает форматировщики входных данных на основе JSON для обработки данных JSON. Вы можете добавить другие форматировщики для других типов содержимого.
+Данные в тексте запроса могут быть в формате JSON, XML или другом формате. Для анализа этих данных модель привязки использует *форматировщик входных данных*, настроенный для обработки определенного типа содержимого. По умолчанию ASP.NET Core включает форматировщики входных данных на основе JSON для обработки данных JSON. Вы можете добавить другие форматировщики для других типов содержимого.
 
 ASP.NET Core выбирает форматировщики входных данных на основе атрибута [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute). Если атрибут отсутствует, используется [Заголовок Content-Type](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html).
 
@@ -1023,7 +1023,7 @@ ASP.NET Core выбирает форматировщики входных дан
 
 ## <a name="manual-model-binding"></a>Привязка модели вручную
 
-Привязка модели может вызываться вручную с помощью метода <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>. Этот метод определен в классах `ControllerBase` и `PageModel`. Перегрузки метода позволяют задать поставщик префиксов и значений. Этот метод возвращает `false` при сбое привязки модели. Ниже приведен пример:
+Привязка модели может вызываться вручную с помощью метода <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>. Этот метод определен в классах `ControllerBase` и `PageModel`. Перегрузки метода позволяют задать поставщик префиксов и значений. Этот метод возвращает `false` при сбое привязки модели. Пример:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 

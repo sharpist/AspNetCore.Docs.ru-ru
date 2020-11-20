@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: aa109aaa89003fd7566e7dc219ecc9799b077355
-ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
+ms.openlocfilehash: 209d055f6205eceb9efb5434427c303345791809
+ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94703674"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "94981964"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Принудительное применение HTTPS в ASP.NET Core
 
@@ -162,7 +162,7 @@ ms.locfileid: "94703674"
 
 При развертывании в службе приложений Azure следуйте указаниям в [руководстве по связыванию существующего настраиваемого SSL-сертификата с Azure Web Apps](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
-### <a name="options"></a>Варианты
+### <a name="options"></a>Параметры
 
 Следующий выделенный код вызывает [аддхттпсредиректион](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) для настройки параметров промежуточного слоя:
 
@@ -464,6 +464,8 @@ dotnet dev-certs https --trust
 1. Выберите " **отобразить все** "
 1. Параметр `security.enterprise_roots.enabled` = `true`
 1. Выйти и перезапустить Firefox
+
+Дополнительные сведения см. [в разделе Настройка центров сертификации (CAS) в браузере Firefox](https://support.mozilla.org/kb/setting-certificate-authorities-firefox).
 
 ## <a name="additional-information"></a>Дополнительные сведения
 
