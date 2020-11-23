@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: 10a949831c180f51bc6bb9b8294150a558f9343c
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: fcd5524bed11cca2380ffd8956f437f742729b55
+ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060135"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95417623"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Поставщик конфигурации Azure Key Vault в ASP.NET Core
 
@@ -32,7 +32,7 @@ ms.locfileid: "93060135"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-В этом документе объясняется, как использовать поставщик конфигурации [Microsoft Azure Key Vault](https://azure.microsoft.com/services/key-vault/) для загрузки значений конфигурации приложения из Azure Key Vault секреты. Azure Key Vault — это облачная служба, которая помогает защитить криптографические ключи и секреты, используемые приложениями и службами. Распространенные сценарии использования Azure Key Vault с приложениями ASP.NET Core:
+В этом документе объясняется, как использовать поставщик конфигурации [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) для загрузки значений конфигурации приложения из Azure Key Vault секретов. Azure Key Vault — это облачная служба, которая помогает защитить криптографические ключи и секреты, используемые приложениями и службами. Распространенные сценарии использования Azure Key Vault с приложениями ASP.NET Core:
 
 * Управление доступом к конфиденциальным данным конфигурации.
 * Соблюдайте требования для FIPS 140-2 уровня 2 проверенных аппаратных модулей безопасности (HSM) при хранении данных конфигурации.
@@ -41,7 +41,7 @@ ms.locfileid: "93060135"
 
 ## <a name="packages"></a>Пакеты
 
-Добавьте ссылку на пакет в [Microsoft.Extensions.Configфигурации. Пакет AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) .
+Добавьте ссылку на пакет в [Azure.Extensions.AspNetCore.Configфигурации. Секретный](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.Configuration.Secrets/) пакет.
 
 ## <a name="sample-app"></a>Пример приложения
 
@@ -120,30 +120,30 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
 
 ## <a name="use-application-id-and-x509-certificate-for-non-azure-hosted-apps"></a>Использование идентификатора приложения и сертификата X. 509 для приложений, не размещенных в Azure
 
-Настройте Azure AD, Azure Key Vault и приложение для использования идентификатора Azure Active Directory приложения и сертификата X. 509 для проверки подлинности в хранилище ключей, **Если приложение размещено за пределами Azure** . См. дополнительные сведения о [ключах, секретах и сертификатах](/azure/key-vault/about-keys-secrets-and-certificates).
+Настройте Azure AD, Azure Key Vault и приложение для использования идентификатора Azure Active Directory приложения и сертификата X. 509 для проверки подлинности в хранилище ключей, **Если приложение размещено за пределами Azure**. См. дополнительные сведения о [ключах, секретах и сертификатах](/azure/key-vault/about-keys-secrets-and-certificates).
 
 > [!NOTE]
 > Хотя использование идентификатора приложения и сертификата X. 509 поддерживается для приложений, размещенных в Azure, мы рекомендуем использовать [управляемые удостоверения для ресурсов Azure](#use-managed-identities-for-azure-resources) при размещении приложения в Azure. Для управляемых удостоверений не требуется хранить сертификат в приложении или в среде разработки.
 
 В примере приложения используется идентификатор приложения и сертификат X. 509, если `#define` инструкция в верхней части файла *Program.CS* имеет значение `Certificate` .
 
-1. Создайте архивный сертификат PKCS # 12 ( *PFX* -файл). Для создания сертификатов можно использовать [MakeCert в Windows](/windows/desktop/seccrypto/makecert) и [OpenSSL](https://www.openssl.org/).
+1. Создайте архивный сертификат PKCS # 12 (*PFX*-файл). Для создания сертификатов можно использовать [MakeCert в Windows](/windows/desktop/seccrypto/makecert) и [OpenSSL](https://www.openssl.org/).
 1. Установите сертификат в личное хранилище сертификатов текущего пользователя. Пометка ключа как экспортируемого необязательна. Запишите отпечаток сертификата, который будет использоваться далее в этом процессе.
-1. Экспортируйте архивный сертификат PKCS # 12 ( *PFX* ) как сертификат в формате DER ( *CER* ).
-1. Зарегистрируйте приложение в Azure AD ( **Регистрация приложений** ).
-1. Отправьте сертификат в кодировке DER ( *CER* ) в Azure AD:
+1. Экспортируйте архивный сертификат PKCS # 12 (*PFX*) как сертификат в формате DER (*CER*).
+1. Зарегистрируйте приложение в Azure AD (**Регистрация приложений**).
+1. Отправьте сертификат в кодировке DER (*CER*) в Azure AD:
    1. Выберите приложение в Azure AD.
-   1. Перейдите к разделу **сертификаты & секреты** .
-   1. Выберите **отправить сертификат** , чтобы отправить сертификат, который содержит открытый ключ. Сертификат *. cer* , *. pem* или *. CRT* является приемлемым.
+   1. Перейдите к разделу **сертификаты & секреты**.
+   1. Выберите **отправить сертификат** , чтобы отправить сертификат, который содержит открытый ключ. Сертификат *. cer*, *. pem* или *. CRT* является приемлемым.
 1. Сохраните имя хранилища ключей, идентификатор приложения и отпечаток сертификата в *appsettings.json* файле приложения.
 1. Перейдите к **разделу хранилища ключей** в портал Azure.
 1. Выберите хранилище ключей, созданное в [хранилище секретов в рабочей среде с помощью Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) разделе.
-1. Выберите **Политики доступа** .
-1. Нажмите **Добавить политику доступа** .
+1. Выберите **Политики доступа**.
+1. Нажмите **Добавить политику доступа**.
 1. Откройте **разрешения для секрета** и предоставьте приложению разрешения **Get** и **List** .
-1. Щелкните **выбрать субъект** и выберите зарегистрированное приложение по имени. Нажмите кнопку **Выбрать** .
-1. Щелкните **ОК** .
-1. Щелкните **Сохранить** .
+1. Щелкните **выбрать субъект** и выберите зарегистрированное приложение по имени. Нажмите кнопку **Выбрать**.
+1. Щелкните **ОК**.
+1. Щелкните **Сохранить**.
 1. Разверните приложение.
 
 `Certificate`Пример приложения получает значения конфигурации из `IConfigurationRoot` с тем же именем, что и имя секрета:
@@ -153,9 +153,9 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-Сертификат X. 509 управляется ОС. Приложение вызывает <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> со значениями, предоставленными *appsettings.json* файлом:
+Сертификат X. 509 управляется ОС. Приложение вызывает **AddAzureKeyVault** со значениями, предоставленными *appsettings.json* файлом:
 
-[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=20-23)]
+[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=46-49)]
 
 Примеры значений
 
@@ -163,7 +163,7 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
 * Идентификатор приложения: `627e911e-43cc-61d4-992e-12db9c81b413`
 * Отпечаток сертификата: `fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
-*appsettings.json* :
+*appsettings.json*:
 
 [!code-json[](key-vault-configuration/samples/3.x/SampleApp/appsettings.json?highlight=10-12)]
 
@@ -191,15 +191,15 @@ az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-
 
 Пример приложения:
 
-* Создает экземпляр `AzureServiceTokenProvider` класса без строки подключения. Если строка подключения не указана, поставщик пытается получить маркер доступа из управляемых удостоверений для ресурсов Azure.
-* Новый объект <xref:Microsoft.Azure.KeyVault.KeyVaultClient> создается с помощью `AzureServiceTokenProvider` обратного вызова токена экземпляра.
-* <xref:Microsoft.Azure.KeyVault.KeyVaultClient>Экземпляр используется с реализацией по умолчанию <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> , которая загружает все секретные значения и заменяет двойные тире ( `--` ) на двоеточие ( `:` ) в именах ключей.
+* Создает экземпляр `DefaultAzureCredential` класса, учетные данные пытаются получить маркер доступа из среды для ресурсов Azure.
+* Новый объект [`Azure.Security.KeyVault.Secrets.Secrets`](/dotnet/api/azure.security.keyvault.secrets) создается с помощью `DefaultAzureCredential` экземпляра.
+* `Azure.Security.KeyVault.Secrets.Secrets`Экземпляр используется с реализацией по умолчанию `Azure.Extensions.Aspnetcore.Configuration.Secrets` , которая загружает все секретные значения и заменяет двойные тире ( `--` ) на двоеточие ( `:` ) в именах ключей.
 
-[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet2&highlight=13-21)]
+[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet2&highlight=12-14)]
 
 Пример значения имени хранилища ключей: `contosovault`
-    
-*appsettings.json* :
+
+*appsettings.json*:
 
 ```json
 {
@@ -215,11 +215,11 @@ az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-
 
 ## <a name="configuration-options"></a>Варианты настройки
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> может принимать <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions> :
+AddAzureKeyVault может принимать Азурекэйваултконфигуратионоптионс:
 
 ```csharp
-config.AddAzureKeyVault(
-    new AzureKeyVaultConfigurationOptions()
+config.AddAzureKeyVault(new SecretClient(new URI("Your Key Vault Endpoint"), new DefaultAzureCredential()),
+                        new AzureKeyVaultConfigurationOptions())
     {
         ...
     });
@@ -227,25 +227,23 @@ config.AddAzureKeyVault(
 
 | Свойство.         | Описание |
 | ---------------- | ----------- |
-| `Client`         | <xref:Microsoft.Azure.KeyVault.KeyVaultClient> для использования при извлечении значений. |
-| `Manager`        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> экземпляр, используемый для управления загрузкой секрета. |
+| `Manager`        | `Azure.Extensions.Aspnetcore.Configuration.Secrets` экземпляр, используемый для управления загрузкой секрета. |
 | `ReloadInterval` | `Timespan` ожидание между попытками опроса хранилища ключей на предмет изменений. Значение по умолчанию — `null` (конфигурация не перегружается). |
-| `Vault`          | URI хранилища ключей. |
 
 ## <a name="use-a-key-name-prefix"></a>Использование префикса имени ключа
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> предоставляет перегрузку, которая принимает реализацию <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> , которая позволяет управлять преобразованием секретов хранилища ключей в конфигурационные ключи. Например, можно реализовать интерфейс для загрузки секретных значений на основе значения префикса, которое вы задают при запуске приложения. Это позволяет, например, загружать секреты на основе версии приложения.
+AddAzureKeyVault предоставляет перегрузку, которая принимает реализацию `Azure.Extensions.Aspnetcore.Configuration.Secrets` , которая позволяет управлять преобразованием секретов хранилища ключей в конфигурационные ключи. Например, можно реализовать интерфейс для загрузки секретных значений на основе значения префикса, которое вы задают при запуске приложения. Это позволяет, например, загружать секреты на основе версии приложения.
 
 > [!WARNING]
 > Не используйте префиксы в секретах хранилища ключей, чтобы размещать секреты для нескольких приложений в одном хранилище ключей или для размещения секретов среды (например, для *разработки* и *рабочих* секретов) в одном хранилище. Мы рекомендуем использовать отдельные хранилища ключей для различных приложений и сред разработки и рабочей среды, чтобы изолировать среды приложений для обеспечения наивысшего уровня безопасности.
 
 В следующем примере в хранилище ключей устанавливается секрет (и используется средство диспетчера секретов для среды разработки) `5000-AppSecret` (точки не допускаются в именах секретов хранилища ключей). Этот секрет представляет секрет приложения для версии 5.0.0.0 приложения. Для другой версии приложения 5.1.0.0 секрет добавляется в хранилище ключей (и с помощью средства диспетчера секретов) для `5100-AppSecret` . Каждая версия приложения загружает значение секрета в своей конфигурации в виде `AppSecret` , отключая версию при загрузке секрета.
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> вызывается с настраиваемым <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> :
+AddAzureKeyVault вызывается с настраиваемым `Azure.Extensions.Aspnetcore.Configuration.Secrets` :
 
 [!code-csharp[](key-vault-configuration/samples_snapshot/Program.cs)]
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>Реализация реагирует на префиксы версий секретов, чтобы загрузить правильный секрет в конфигурацию:
+`Azure.Extensions.Aspnetcore.Configuration.Secrets`Реализация реагирует на префиксы версий секретов, чтобы загрузить правильный секрет в конфигурацию:
 
 * `Load` загружает секрет, если его имя начинается с префикса. Другие секреты не загружены.
 * `GetKey`:
@@ -295,7 +293,7 @@ config.AddAzureKeyVault(
 1. Если версия приложения изменена в файле проекта на, `5.1.0.0` а приложение запускается снова, возвращается значение секрета `5.1.0.0_secret_value_dev` в среде разработки и `5.1.0.0_secret_value_prod` в рабочем окружении.
 
 > [!NOTE]
-> Можно также предоставить собственную <xref:Microsoft.Azure.KeyVault.KeyVaultClient> реализацию для <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> . Настраиваемый клиент позволяет совместно использовать один экземпляр клиента в приложении.
+> Вы также можете предоставить собственную <xref:Azure.Security.KeyVault.Secrets.SecretClient> реализацию для AddAzureKeyVault. Настраиваемый клиент позволяет совместно использовать один экземпляр клиента в приложении.
 
 ## <a name="bind-an-array-to-a-class"></a>Привязка массива к классу
 
@@ -330,7 +328,7 @@ config.AddAzureKeyVault(
 
 Конфигурация, показанная в предыдущем JSON-файле, хранится в Azure Key Vault с использованием нотации двойного тире ( `--` ) и числовых сегментов.
 
-| Ключ | Значение |
+| Key | Значение |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
@@ -349,7 +347,7 @@ Configuration.Reload();
 
 ## <a name="disabled-and-expired-secrets"></a>Отключенные секреты и секреты с истекшим сроком действия
 
-При отключенных и истекших секретах создается исключение <xref:Microsoft.Azure.KeyVault.Models.KeyVaultErrorException> . Чтобы предотвратить создание приложения, укажите конфигурацию с помощью другого поставщика конфигурации или обновите закрытый или истекший секрет.
+При отключенных и истекших секретах создается исключение <xref:Azure.RequestFailedException> . Чтобы предотвратить создание приложения, укажите конфигурацию с помощью другого поставщика конфигурации или обновите закрытый или истекший секрет.
 
 ## <a name="troubleshoot"></a>Диагностика
 
@@ -360,7 +358,7 @@ Configuration.Reload();
 * Приложение не имеет прав доступа к хранилищу ключей.
 * Политика доступа не включает и не имеет `Get` `List` разрешений.
 * В хранилище ключей данные конфигурации (пара "имя-значение") неправильно именованы, отсутствуют, отключены или устарели.
-* Приложение имеет неправильное имя хранилища ключей ( `KeyVaultName` ), идентификатор приложения Azure AD ( `AzureADApplicationId` ) или отпечаток сертификата Azure AD ( `AzureADCertThumbprint` ).
+* Приложение имеет неправильное имя хранилища ключей ( `KeyVaultName` ), идентификатор приложения Azure AD ( `AzureADApplicationId` ) или отпечаток сертификата Azure AD ( `AzureADCertThumbprint` ) или Azure AD директорид ( `AzureADDirectoryId` ).
 * Неверный ключ конфигурации (имя) в приложении для загружаемого значения.
 * При добавлении политики доступа для приложения в хранилище ключей была создана политика, но кнопка **сохранить** не была выбрана в пользовательском интерфейсе **политик доступа** .
 
@@ -466,30 +464,30 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
 
 ## <a name="use-application-id-and-x509-certificate-for-non-azure-hosted-apps"></a>Использование идентификатора приложения и сертификата X. 509 для приложений, не размещенных в Azure
 
-Настройте Azure AD, Azure Key Vault и приложение для использования идентификатора Azure Active Directory приложения и сертификата X. 509 для проверки подлинности в хранилище ключей, **Если приложение размещено за пределами Azure** . См. дополнительные сведения о [ключах, секретах и сертификатах](/azure/key-vault/about-keys-secrets-and-certificates).
+Настройте Azure AD, Azure Key Vault и приложение для использования идентификатора Azure Active Directory приложения и сертификата X. 509 для проверки подлинности в хранилище ключей, **Если приложение размещено за пределами Azure**. См. дополнительные сведения о [ключах, секретах и сертификатах](/azure/key-vault/about-keys-secrets-and-certificates).
 
 > [!NOTE]
 > Хотя использование идентификатора приложения и сертификата X. 509 поддерживается для приложений, размещенных в Azure, мы рекомендуем использовать [управляемые удостоверения для ресурсов Azure](#use-managed-identities-for-azure-resources) при размещении приложения в Azure. Для управляемых удостоверений не требуется хранить сертификат в приложении или в среде разработки.
 
 В примере приложения используется идентификатор приложения и сертификат X. 509, если `#define` инструкция в верхней части файла *Program.CS* имеет значение `Certificate` .
 
-1. Создайте архивный сертификат PKCS # 12 ( *PFX* -файл). Для создания сертификатов можно использовать [MakeCert в Windows](/windows/desktop/seccrypto/makecert) и [OpenSSL](https://www.openssl.org/).
+1. Создайте архивный сертификат PKCS # 12 (*PFX*-файл). Для создания сертификатов можно использовать [MakeCert в Windows](/windows/desktop/seccrypto/makecert) и [OpenSSL](https://www.openssl.org/).
 1. Установите сертификат в личное хранилище сертификатов текущего пользователя. Пометка ключа как экспортируемого необязательна. Запишите отпечаток сертификата, который будет использоваться далее в этом процессе.
-1. Экспортируйте архивный сертификат PKCS # 12 ( *PFX* ) как сертификат в формате DER ( *CER* ).
-1. Зарегистрируйте приложение в Azure AD ( **Регистрация приложений** ).
-1. Отправьте сертификат в кодировке DER ( *CER* ) в Azure AD:
+1. Экспортируйте архивный сертификат PKCS # 12 (*PFX*) как сертификат в формате DER (*CER*).
+1. Зарегистрируйте приложение в Azure AD (**Регистрация приложений**).
+1. Отправьте сертификат в кодировке DER (*CER*) в Azure AD:
    1. Выберите приложение в Azure AD.
-   1. Перейдите к разделу **сертификаты & секреты** .
-   1. Выберите **отправить сертификат** , чтобы отправить сертификат, который содержит открытый ключ. Сертификат *. cer* , *. pem* или *. CRT* является приемлемым.
+   1. Перейдите к разделу **сертификаты & секреты**.
+   1. Выберите **отправить сертификат** , чтобы отправить сертификат, который содержит открытый ключ. Сертификат *. cer*, *. pem* или *. CRT* является приемлемым.
 1. Сохраните имя хранилища ключей, идентификатор приложения и отпечаток сертификата в *appsettings.json* файле приложения.
 1. Перейдите к **разделу хранилища ключей** в портал Azure.
 1. Выберите хранилище ключей, созданное в [хранилище секретов в рабочей среде с помощью Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) разделе.
-1. Выберите **Политики доступа** .
-1. Нажмите **Добавить политику доступа** .
+1. Выберите **Политики доступа**.
+1. Нажмите **Добавить политику доступа**.
 1. Откройте **разрешения для секрета** и предоставьте приложению разрешения **Get** и **List** .
-1. Щелкните **выбрать субъект** и выберите зарегистрированное приложение по имени. Нажмите кнопку **Выбрать** .
-1. Щелкните **ОК** .
-1. Щелкните **Сохранить** .
+1. Щелкните **выбрать субъект** и выберите зарегистрированное приложение по имени. Нажмите кнопку **Выбрать**.
+1. Щелкните **ОК**.
+1. Щелкните **Сохранить**.
 1. Разверните приложение.
 
 `Certificate`Пример приложения получает значения конфигурации из `IConfigurationRoot` с тем же именем, что и имя секрета:
@@ -509,7 +507,7 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
 * Идентификатор приложения: `627e911e-43cc-61d4-992e-12db9c81b413`
 * Отпечаток сертификата: `fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
-*appsettings.json* :
+*appsettings.json*:
 
 [!code-json[](key-vault-configuration/samples/2.x/SampleApp/appsettings.json?highlight=10-12)]
 
@@ -545,7 +543,7 @@ az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-
 
 Пример значения имени хранилища ключей: `contosovault`
     
-*appsettings.json* :
+*appsettings.json*:
 
 ```json
 {
@@ -657,7 +655,7 @@ az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-
 
 Конфигурация, показанная в предыдущем JSON-файле, хранится в Azure Key Vault с использованием нотации двойного тире ( `--` ) и числовых сегментов.
 
-| Ключ | Значение |
+| Key | Значение |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
@@ -702,4 +700,3 @@ Configuration.Reload();
 * [Руководство. Использование Azure Key Vault с виртуальной машиной Linux в Azure (.NET)](/azure/key-vault/tutorial-net-windows-virtual-machine)
 
 ::: moniker-end
-
