@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/web-api-javascript
-ms.openlocfilehash: 4a80e3e82a18e0066c7628c8f40401155538e32b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: c32c5befe0be3b1ad4bd87649d3cc74b0296a134
+ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061201"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94703713"
 ---
 # <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Учебник. Вызов веб-API ASP.NET Core с помощью JavaScript
 
@@ -64,6 +64,10 @@ ms.locfileid: "93061201"
 
     [!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
 
+1. Добавьте CSS-файл с именем *site.css* в папку *wwwroot/css*. Замените содержимое файла *site.css* следующими стилями:
+
+    [!code-css[](first-web-api/samples/3.0/TodoApi/wwwroot/css/site.css)]
+
 1. Добавьте файл JavaScript с именем *site.js* в папку *wwwroot/js*. Замените содержимое файла *site.js* следующим кодом:
 
     [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_SiteJs)]
@@ -71,13 +75,13 @@ ms.locfileid: "93061201"
 Может потребоваться изменение параметров запуска проекта ASP.NET Core для локального тестирования HTML-страницы:
 
 1. Откройте файл *Properties\launchSettings.json*.
-1. Удалите свойство `launchUrl`, чтобы приложение открылось через *index.html*  &mdash; файл проекта по умолчанию.
+1. Удалите свойство `launchUrl`, чтобы приложение открылось через *index.html* &mdash; файл проекта по умолчанию.
 
 В этом примере вызываются все методы CRUD в веб-API. Ниже приводится пояснение запросов веб-API.
 
 ### <a name="get-a-list-of-to-do-items"></a>Получение списка элементов задач
 
-В следующем коде HTTP-запрос GET направляется по пути *api/TodoItems* :
+В следующем коде HTTP-запрос GET направляется по пути *api/TodoItems*:
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_GetItems)]
 

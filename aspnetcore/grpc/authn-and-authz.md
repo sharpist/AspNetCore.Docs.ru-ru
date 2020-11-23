@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/authn-and-authz
-ms.openlocfilehash: 2efed6b76228227f032482346a36f528b3448de2
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 833114a12c8c1ac67097b3592cf410d7a69bb628
+ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053570"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94673982"
 ---
 # <a name="authentication-and-authorization-in-grpc-for-aspnet-core"></a>Проверка подлинности и авторизация в gRPC для ASP.NET Core
 
@@ -76,7 +76,7 @@ public override Task<BuyTicketsResponse> BuyTickets(
 
 На сервере проверка подлинности маркера носителя настраивается с помощью [По промежуточного слоя JWT Bearer](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer).
 
-В клиенте .NET gRPC маркер можно отправить с помощью вызовов в виде заголовка:
+В клиенте .NET gRPC маркер можно отправить с помощью вызовов с использованием коллекции `Metadata`. Записи в коллекции `Metadata` отправляются с помощью вызова gRPC в виде заголовков HTTP:
 
 ```csharp
 public bool DoAuthenticatedCall(
@@ -92,7 +92,9 @@ public bool DoAuthenticatedCall(
 }
 ```
 
-Настройка `ChannelCredentials` в канале — это альтернативный способ отправки маркера службе с вызовами gRPC. Учетные данные запускаются каждый раз при вызове gRPC, что позволяет избежать необходимости писать код в нескольких местах для самостоятельного передачи маркера.
+Настройка `ChannelCredentials` в канале — это альтернативный способ отправки маркера службе с вызовами gRPC. Класс `ChannelCredentials` может содержать класс `CallCredentials`, что позволяет автоматически задавать `Metadata`.
+
+Класс `CallCredentials` запускается каждый раз при вызове gRPC, что позволяет избежать необходимости писать код в нескольких местах для самостоятельной передачи маркера. Обратите внимание, что класс `CallCredentials` применяется только в том случае, если канал защищен с помощью TLS. Класс `CallCredentials` не применяется к незащищенным каналам без поддержки TLS.
 
 Учетные данные в следующем примере настраивают канал для отправки маркера при каждом вызове gRPC:
 

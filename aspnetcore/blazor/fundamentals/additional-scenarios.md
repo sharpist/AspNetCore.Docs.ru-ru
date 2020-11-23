@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: f8b6e65424948aaa7b28023497bbbf2a1ceb47dd
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: ef37c539d377f14a2744c3ead28234d8497df700
+ms.sourcegitcommit: e087b6a38e3d38625ebb567a973e75b4d79547b9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056053"
+ms.lasthandoff: 11/15/2020
+ms.locfileid: "94637682"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a>Конфигурация модели размещения ASP.NET Core Blazor
 
@@ -102,32 +102,21 @@ ms.locfileid: "93056053"
 
 ## <a name="render-mode"></a>Режим обработки
 
+::: moniker range=">= aspnetcore-5.0"
+
+*Этот раздел относится к размещенным Blazor WebAssembly и Blazor Server.*
+
+Приложения Blazor по умолчанию настроены на предварительную отрисовку пользовательского интерфейса на сервере. Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 *Этот раздел относится к Blazor Server.*
 
-Приложения Blazor Server по умолчанию настроены на предварительную отрисовку пользовательского интерфейса на сервере, прежде чем будет установлено подключение клиента с сервером. Настройка выполняется на странице Razor `_Host.cshtml`.
+Приложения Blazor Server по умолчанию настроены на предварительную отрисовку пользовательского интерфейса на сервере, прежде чем будет установлено подключение клиента с сервером. Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-```cshtml
-<body>
-    <app>
-      <component type="typeof(App)" render-mode="ServerPrerendered" />
-    </app>
-
-    <script src="_framework/blazor.server.js"></script>
-</body>
-```
-
-Параметр <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> настраивает одно из следующих поведений компонента:
-
-* компонент предварительно преобразуется в страницу;
-* компонент отображается как статический HTML на странице или включает необходимые сведения для начальной загрузки приложения Blazor из агента пользователя.
-
-| Режим обработки | Описание |
-| --- | --- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Преобразует компонент в статический HTML и включает метку приложения Blazor Server. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Отображает метку приложения Blazor Server. Выходные данные компонента не включаются. При запуске пользовательского агента эта метка используется для начальной загрузки приложения Blazor. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Преобразует компонент в статический HTML. |
-
-Отрисовка компонентов сервера из статической HTML-страницы не поддерживается.
+::: moniker-end
 
 ## <a name="initialize-the-no-locblazor-circuit"></a>Инициализация канала Blazor
 
@@ -389,3 +378,4 @@ When one of the framework components is used in a child component, the rendered 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
 * <xref:fundamentals/logging/index>
+* [События повторного подключения и события жизненного цикла Blazor Server](xref:blazor/components/lifecycle#blazor-server-reconnection-events)

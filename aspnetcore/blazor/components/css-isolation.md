@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/css-isolation
-ms.openlocfilehash: 628e7dc897912beaae0df792b82958517ac70ca4
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 4fec0fa750b9209849030d0d6b7de8f4e163d62f
+ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056326"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94570137"
 ---
 # <a name="aspnet-core-no-locblazor-css-isolation"></a>Изоляция CSS в ASP.NET Core Blazor
 
@@ -34,9 +34,9 @@ ms.locfileid: "93056326"
 
 ## <a name="enable-css-isolation"></a>Включение изоляции CSS 
 
-Чтобы определить стили, относящиеся к компоненту, создайте файл `razor.css`, соответствующий имени файла `.razor` для компонента. Этот файл `razor.css` будет *файлом CSS с областью действия*. 
+Чтобы определить стили, относящиеся к компоненту, создайте файл `.razor.css`, соответствующий имени файла `.razor` для компонента. Этот файл `.razor.css` будет *файлом CSS с областью действия*. 
 
-Для компонента `MyComponent`, имеющего файл `MyComponent.razor`, создайте файл с именем `MyComponent.razor.css` рядом с компонентом. Часть `MyComponent` в имени файла `razor.css` **не** учитывает регистр.
+Для компонента `MyComponent`, имеющего файл `MyComponent.razor`, создайте файл с именем `MyComponent.razor.css` рядом с компонентом. Часть `MyComponent` в имени файла `.razor.css` **не** учитывает регистр.
 
 Например, чтобы добавить изоляцию CSS в компонент `Counter` в шаблоне по умолчанию проекта Blazor, добавьте новый файл с именем `Counter.razor.css` в место расположения файла `Counter.razor`, а затем добавьте следующий код CSS:
 
@@ -86,7 +86,7 @@ h1[b-3xxtam6d07] {
 
 ## <a name="child-component-support"></a>Поддержка дочерних компонентов
 
-По умолчанию изоляция CSS применяется только к компоненту, привязанному с помощью формата `{COMPONENT NAME}.razor.css`, где заполнитель `{COMPONENT NAME}` обычно является именем компонента. Чтобы применить изменения к дочернему компоненту, используйте объединение `::deep` для всех элементов-потомков в файле `razor.css` родительского компонента. Объединение `::deep` выбирает элементы, которые являются *потомками* идентификатора области, созданного элементом. 
+По умолчанию изоляция CSS применяется только к компоненту, привязанному с помощью формата `{COMPONENT NAME}.razor.css`, где заполнитель `{COMPONENT NAME}` обычно является именем компонента. Чтобы применить изменения к дочернему компоненту, используйте объединение `::deep` для всех элементов-потомков в файле `.razor.css` родительского компонента. Объединение `::deep` выбирает элементы, которые являются *потомками* идентификатора области, созданного элементом. 
 
 В следующем примере показан родительский компонент с именем `Parent` и дочерний компонент с именем `Child`.
 
@@ -180,3 +180,24 @@ h1[b-3xxtam6d07] {
   <DisableScopedCssBundling>true</DisableScopedCssBundling>
 </PropertyGroup>
 ```
+
+## <a name="no-locrazor-class-library-rcl-support"></a>Поддержка библиотеки классов Razor (RCL)
+
+Когда [библиотека классов Razor (RCL)](xref:razor-pages/ui-class) предоставляет изолированные стили, атрибут `href` тега `<link>` указывает на `{STATIC WEB ASSET BASE PATH}/{ASSEMBLY NAME}.bundle.scp.css` со следующими заполнителями:
+
+* `{STATIC WEB ASSET BASE PATH}`: базовый путь к статическому веб-ресурсу.
+* `{ASSEMBLY NAME}`: имя сборки библиотеки классов.
+
+В следующем примере:
+
+* Базовый путь к статическому веб-ресурсу — `_content/ClassLib`.
+* Имя сборки библиотеки классов — `ClassLib`.
+
+```html
+<link href="_content/ClassLib/ClassLib.bundle.scp.css" rel="stylesheet">
+```
+
+Дополнительные сведения о RCL и библиотеках компонентов см. в следующих статьях:
+
+* <xref:razor-pages/ui-class>
+* <xref:blazor/components/class-libraries>.

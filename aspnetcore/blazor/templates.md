@@ -5,7 +5,7 @@ description: Сведения о шаблонах приложений Blazor и
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/04/2020
+ms.date: 11/17/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: fc2e81cf130732d515fb871227031493e297cf9f
-ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
+ms.openlocfilehash: 602ad2908d607703a3b77b2047d51d912645b043
+ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94507776"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94703726"
 ---
 # <a name="aspnet-core-no-locblazor-templates"></a>Шаблоны ASP.NET Core Blazor
 
@@ -91,16 +91,30 @@ dotnet new blazorserver --help
     * При первом запросе любой страницы приложения эта страница преобразовывается для просмотра и возвращается в ответе.
     * Загружается файл JavaScript `_framework/blazor.server.js`, который настраивает соединение SignalR в режиме реального времени между браузером и сервером.
     * На странице Host указывается место отрисовки корневого компонента `App` (`App.razor`).
-  * `Counter` (`Pages/Counter.razor`): Реализует страницу счетчика.
-  * `Error` (`Error.razor` — только для приложения Blazor Server). Отображается, когда в приложении происходит необработанное исключение.
-  * `FetchData` (`Pages/FetchData.razor`): Реализует страницу получения данных.
-  * `Index` (`Pages/Index.razor`): Реализует главную страницу приложения.
+  * Компонент `Counter` (`Pages/Counter.razor`): Реализует страницу счетчика.
+  * Компонент `Error` (`Error.razor` — только для приложения Blazor Server): Отображается, когда в приложении происходит необработанное исключение.
+  * Компонент `FetchData` (`Pages/FetchData.razor`): Реализует страницу получения данных.
+  * Компонент `Index` (`Pages/Index.razor`): Реализует главную страницу приложения.
   
 * `Properties/launchSettings.json`. Содержит [конфигурацию среды разработки](xref:fundamentals/environments#development-and-launchsettingsjson).
 
+::: moniker range=">= aspnetcore-5.0"
+
 * Папка `Shared`: Содержит другие компоненты пользовательского интерфейса (`.razor`), используемые приложением.
-  * `MainLayout` (`MainLayout.razor`): [Компонент макета](xref:blazor/layouts) приложения.
-  * `NavMenu` (`NavMenu.razor`): Реализует боковую панель навигации. Включает в себя [компонент `NavLink`](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), который служит для отрисовки навигационных ссылок на другие компоненты Razor. Компонент <xref:Microsoft.AspNetCore.Components.Routing.NavLink> автоматически указывает выбранное состояние при загрузке компонента, что помогает пользователю понять, какой компонент отображается в настоящее время.
+  * Компонент `MainLayout` (`MainLayout.razor`): [Компонент макета](xref:blazor/layouts) приложения.
+  * `MainLayout.razor.css`: Таблица стилей для основного макета приложения.
+  * Компонент `NavMenu` (`NavMenu.razor`): Реализует боковую панель навигации. Включает в себя [компонент `NavLink`](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), который служит для отрисовки навигационных ссылок на другие компоненты Razor. Компонент <xref:Microsoft.AspNetCore.Components.Routing.NavLink> автоматически указывает выбранное состояние при загрузке компонента, что помогает пользователю понять, какой компонент отображается в настоящее время.
+  * `NavMenu.razor.css`: Таблица стилей для меню навигации приложения.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* Папка `Shared`: Содержит другие компоненты пользовательского интерфейса (`.razor`), используемые приложением.
+  * Компонент `MainLayout` (`MainLayout.razor`): [Компонент макета](xref:blazor/layouts) приложения.
+  * Компонент `NavMenu` (`NavMenu.razor`): Реализует боковую панель навигации. Включает в себя [компонент `NavLink`](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), который служит для отрисовки навигационных ссылок на другие компоненты Razor. Компонент <xref:Microsoft.AspNetCore.Components.Routing.NavLink> автоматически указывает выбранное состояние при загрузке компонента, что помогает пользователю понять, какой компонент отображается в настоящее время.
+  
+::: moniker-end
 
 * `_Imports.razor`. Содержит стандартные директивы Razor, включаемые в компоненты приложения (`.razor`), например директивы [`@using`](xref:mvc/views/razor#using) для пространств имен.
 

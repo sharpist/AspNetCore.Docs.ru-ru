@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 ms.date: 10/27/2020
 uid: blazor/file-uploads
-ms.openlocfilehash: c0806c3a68a4d9e698925f6ec955dd2f53d7818f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 77c2874eef788b8083758c087913a7a04c55fa2b
+ms.sourcegitcommit: 54fdca99f30b18d69cf0753ca3c84c7dab8f2b0e
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056131"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94691174"
 ---
 # <a name="aspnet-core-no-locblazor-file-uploads"></a>Отправка файлов в ASP.NET Core Blazor
 
@@ -46,12 +46,15 @@ ms.locfileid: "93056131"
 Чтобы считать данные из выбранного пользователем файла, выполните указанные ниже действия.
 
 * Вызовите `Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream` для файла и считайте данные из возвращенного потока. Дополнительные сведения см. в разделе [Файловые потоки](#file-streams).
-* Значение <xref:System.IO.Stream>, возвращаемое `OpenReadStream`, определяет максимальный размер (в байтах) для считываемого потока (`Stream`). Как правило, считываются только файлы размером менее 524,288 КБ (512 КБ). При попытке считать любой файл больше этого размера будет возвращаться исключение. Это ограничение позволяет предотвратить случайное считывание больших файлов в память. При необходимости можно указать больший размер с помощью параметра `maxAllowedSize` в `Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream`.
+* Значение <xref:System.IO.Stream>, возвращаемое `OpenReadStream`, определяет максимальный размер (в байтах) для считываемого потока (`Stream`). По умолчанию считываются файлы размером менее 512 000 байт (500 КБ). При попытке считать любой файл больше этого размера будет возвращаться исключение. Это ограничение позволяет предотвратить случайное считывание больших файлов в память. При необходимости можно указать больший размер с помощью параметра `maxAllowedSize` в `Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream`.
 * Избегайте считывания входящего файлового потока непосредственно в память. Например, не копируйте байты файлов в <xref:System.IO.MemoryStream> и не считывайте файлы как массив байтов. Это может привести к проблемам с производительностью и безопасностью, особенно в Blazor Server. Вместо этого рекомендуется копировать байты файлов во внешнее хранилище, например в большой двоичный объект или файл на диске.
 
 Компонент, получающий файл изображения, может вызвать для файла удобный метод `RequestImageFileAsync`, чтобы изменить размер данных изображения в среде выполнения JavaScript браузера до передачи изображения в приложение.
 
 В приведенном ниже примере показана отправка нескольких файлов изображений в компоненте. `InputFileChangeEventArgs.GetMultipleFiles` позволяет считывать несколько файлов. Укажите максимальное число считываемых файлов, чтобы предотвратить отправку злоумышленником большего количества файлов, чем то, на которое рассчитано приложение. `InputFileChangeEventArgs.File` позволяет считывать только первый файл, если отправка нескольких файлов не поддерживается.
+
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs> находится в пространстве имен <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName>, которое обычно является одним из пространств имен в файле `_Imports.razor` приложения.
 
 ```razor
 <h3>Upload PNG images</h3>
@@ -75,7 +78,7 @@ ms.locfileid: "93056131"
 }
 
 @code {
-    IList<string> imageDataUrls = new List<string>();
+    private IList<string> imageDataUrls = new List<string>();
 
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {

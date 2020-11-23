@@ -1,10 +1,10 @@
 ---
-title: Руководство по Использование ASP.NET MVC с EF Core. Функции миграций
-description: В этом руководстве вы начинаете использовать функцию миграций EF Core для управления изменениями модели данных в приложении ASP.NET Core MVC.
+title: Учебник. Часть 5. Применение миграций к примеру приложения университета Contoso
+description: Часть 5 серии руководств по университету Contoso. Используйте функцию миграций EF Core для управления изменениями модели данных в приложении ASP.NET Core MVC.
 author: rick-anderson
 ms.author: riande
-ms.custom: mvc
-ms.date: 03/27/2019
+ms.custom: contperfq2
+ms.date: 11/13/2020
 ms.topic: tutorial
 no-loc:
 - appsettings.json
@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/migrations
-ms.openlocfilehash: 070c18db55956d79560904f53395b5001c7bce6d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: ab5be222416e61fcff90c5130ca91ad4a2a5c9b0
+ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054038"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94674008"
 ---
-# <a name="tutorial-using-the-migrations-feature---aspnet-mvc-with-ef-core"></a>Руководство по Использование ASP.NET MVC с EF Core. Функции миграций
+# <a name="tutorial-part-5-apply-migrations-to-the-contoso-university-sample"></a>Учебник. Часть 5. Применение миграций к примеру приложения университета Contoso
 
 В этом руководстве вы начинаете использовать функцию миграций EF Core для управления изменениями модели данных. В последующих руководствах вы добавите дополнительные миграции по мере изменения модели данных.
 
@@ -34,7 +34,6 @@ ms.locfileid: "93054038"
 
 > [!div class="checklist"]
 > * Дополнительные сведения о миграциях
-> * Изменение строки подключения
 > * Создание первоначальной миграции
 > * Обзор методов Up и Down
 > * Дополнительные сведения о моментальном снимке модели данных
@@ -52,22 +51,15 @@ ms.locfileid: "93054038"
 
 Для миграции можно использовать **консоль диспетчера пакетов** (PMC) или CLI.  Эти руководства демонстрируют использование команд интерфейса командной строки. Дополнительные сведения о PMC [приведены в конце этого руководства](#pmc).
 
-## <a name="change-the-connection-string"></a>Изменение строки подключения
+## <a name="drop-the-database"></a>Удалите базу данных:
 
-В файле *appsettings.json* измените имя базы данных в строке подключения на ContosoUniversity2 или другое имя, которое вы еще не использовали на компьютере, с которым работаете.
+База данных удаляется. Воспользуйтесь **обозревателем объектов SQL Server** (SSOX) или командой интерфейса командной строки `database drop`:
 
-[!code-json[](intro/samples/cu/appsettings2.json?range=1-4)]
+ ```dotnetcli
+ dotnet ef database drop
+ ```
 
-Это изменение настраивает проект, чтобы первая миграция создала базу данных. Это необязательно для начала работы с миграциями, но позднее вы поймете, почему так стоит сделать.
-
-> [!NOTE]
-> Вместо изменения имени базы данных можно удалить ее. Воспользуйтесь **обозревателем объектов SQL Server** (SSOX) или командой интерфейса командной строки `database drop`:
->
-> ```dotnetcli
-> dotnet ef database drop
-> ```
->
-> Следующий раздел описывает выполнение команд интерфейса командной строки.
+Следующий раздел описывает выполнение команд интерфейса командной строки.
 
 ## <a name="create-an-initial-migration"></a>Создание первоначальной миграции
 
@@ -94,11 +86,11 @@ dotnet ef migrations add InitialCreate
 
 ```console
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
-      Entity Framework Core 2.2.0-rtm-35687 initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+      Entity Framework Core initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
 Done. To undo this action, use 'ef migrations remove'
 ```
 
-Если отображается сообщение об ошибке " *Доступ к файлу... ContosoUniversity.dll невозможен, так как файл используется другим процессом* ", найдите значок IIS Express в области уведомлений Windows, щелкните его правой кнопкой мыши, а затем выберите **ContosoUniversity > Остановить сайт**.
+Если отображается сообщение об ошибке "*Доступ к файлу... ContosoUniversity.dll невозможен, так как файл используется другим процессом*", найдите значок IIS Express в области уведомлений Windows, щелкните его правой кнопкой мыши, а затем выберите **ContosoUniversity > Остановить сайт**.
 
 ## <a name="examine-up-and-down-methods"></a>Обзор методов Up и Down
 
@@ -132,7 +124,7 @@ dotnet ef database update
 
 ```text
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
-      Entity Framework Core 2.2.0-rtm-35687 initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+      Entity Framework Core initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (274ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
       CREATE DATABASE [ContosoUniversity2];
@@ -155,7 +147,7 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-      VALUES (N'20190327172701_InitialCreate', N'2.2.0-rtm-35687');
+      VALUES (N'20190327172701_InitialCreate', N'5.0-rtm');
 Done.
 ```
 
@@ -181,20 +173,9 @@ Done.
 
 ## <a name="get-the-code"></a>Получение кода
 
-[Скачайте или ознакомьтесь с готовым приложением.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Скачайте или ознакомьтесь с готовым приложением.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples)
 
 ## <a name="next-step"></a>Следующий шаг
-
-Изучив это руководство, вы:
-
-> [!div class="checklist"]
-> * Дополнительные сведения о миграциях
-> * Дополнительные сведения о пакетах миграции NuGet
-> * Изменение строки подключения
-> * Создание первоначальной миграции
-> * Обзор методов Up и Down
-> * Дополнительные сведения о моментальном снимке модели данных
-> * Применение миграции
 
 В следующем учебнике описаны более сложные вопросы, связанные с развертыванием модели данных. Попутно вы создадите и примените дополнительные миграции.
 

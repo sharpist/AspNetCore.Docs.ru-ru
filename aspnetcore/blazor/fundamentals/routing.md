@@ -5,7 +5,7 @@ description: Узнайте, как маршрутизировать запро�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/02/2020
+ms.date: 11/17/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: 8f0aa80d092b6678131a2b7152f21ecb8e168257
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.openlocfilehash: c4da8bf8447618c9a7a2d0f690164fe48a7ed006
+ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94430995"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94703700"
 ---
 # <a name="aspnet-core-no-locblazor-routing"></a>Маршрутизация ASP.NET Core Blazor
 
@@ -114,6 +114,30 @@ Blazor Server интегрирован с функцией [маршрутиза
 
 Маршрутизатор использует параметры маршрута для заполнения соответствующих параметров компонента с тем же именем (без учета регистра).
 
+::: moniker range=">= aspnetcore-5.0"
+
+Поддерживаются необязательные параметры. В следующем примере необязательный параметр `text` назначает значение сегмента маршрута свойству `Text` компонента. Если сегмента нет, для `Text` устанавливается значение `fantastic`:
+
+```razor
+@page "/RouteParameter/{text?}"
+
+<h1>Blazor is @Text!</h1>
+
+@code {
+    [Parameter]
+    public string Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Text = Text ?? "fantastic";
+    }
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ```razor
 @page "/RouteParameter"
 @page "/RouteParameter/{text}"
@@ -132,6 +156,17 @@ Blazor Server интегрирован с функцией [маршрутиза
 ```
 
 Необязательные параметры не поддерживаются. В предыдущем примере применяются две директивы `@page`. Первая позволяет переходить к компоненту без параметра. Вторая директива `@page` принимает параметр маршрута `{text}` и присваивает значение свойству `Text`.
+
+::: moniker-end
+
+Чтобы разрешить переход к тому же компоненту с другим значением необязательного параметра, используйте [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set) вместо [`OnInitialized`](xref:blazor/components/lifecycle#component-initialization-methods). Принимая во внимание предыдущий пример, используйте `OnParametersSet`, когда пользователь должен иметь возможность переходить от `/RouteParameter` к `/RouteParameter/awesome` или от `/RouteParameter/awesome` к `/RouteParameter`:
+
+```csharp
+protected override void OnParametersSet()
+{
+    Text = Text ?? "fantastic";
+}
+```
 
 ## <a name="route-constraints"></a>Ограничения маршрута
 
