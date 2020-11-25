@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: fcd5524bed11cca2380ffd8956f437f742729b55
-ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
+ms.openlocfilehash: 7f5cd3de38f1e45d9b188c513a0e62ca658b2992
+ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95417623"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96035909"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Поставщик конфигурации Azure Key Vault в ASP.NET Core
 
@@ -54,7 +54,7 @@ ms.locfileid: "95417623"
 
 ## <a name="secret-storage-in-the-development-environment"></a>Секретное хранилище в среде разработки
 
-Локальное задание секретов с помощью [средства диспетчера секретов](xref:security/app-secrets). Когда пример приложения выполняется на локальном компьютере в среде разработки, секреты загружаются из локального хранилища диспетчера секретов.
+Локальное задание секретов с помощью [средства диспетчера секретов](xref:security/app-secrets). Когда пример приложения выполняется на локальном компьютере в среде разработки, секреты загружаются из локального пользовательского хранилища секретов.
 
 Для средства диспетчера секретов требуется `<UserSecretsId>` свойство в файле проекта приложения. Задайте для свойства значение ( `{GUID}` ) любой уникальный GUID:
 
@@ -225,7 +225,7 @@ config.AddAzureKeyVault(new SecretClient(new URI("Your Key Vault Endpoint"), new
     });
 ```
 
-| Свойство.         | Описание |
+| Свойство         | Описание |
 | ---------------- | ----------- |
 | `Manager`        | `Azure.Extensions.Aspnetcore.Configuration.Secrets` экземпляр, используемый для управления загрузкой секрета. |
 | `ReloadInterval` | `Timespan` ожидание между попытками опроса хранилища ключей на предмет изменений. Значение по умолчанию — `null` (конфигурация не перегружается). |
@@ -328,7 +328,7 @@ AddAzureKeyVault вызывается с настраиваемым `Azure.Exten
 
 Конфигурация, показанная в предыдущем JSON-файле, хранится в Azure Key Vault с использованием нотации двойного тире ( `--` ) и числовых сегментов.
 
-| Key | Значение |
+| Клавиши | Значение |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
@@ -398,7 +398,7 @@ Configuration.Reload();
 
 ## <a name="secret-storage-in-the-development-environment"></a>Секретное хранилище в среде разработки
 
-Локальное задание секретов с помощью [средства диспетчера секретов](xref:security/app-secrets). Когда пример приложения выполняется на локальном компьютере в среде разработки, секреты загружаются из локального хранилища диспетчера секретов.
+Локальное задание секретов с помощью [средства диспетчера секретов](xref:security/app-secrets). Когда пример приложения выполняется на локальном компьютере в среде разработки, секреты загружаются из локального пользовательского хранилища секретов.
 
 Для средства диспетчера секретов требуется `<UserSecretsId>` свойство в файле проекта приложения. Задайте для свойства значение ( `{GUID}` ) любой уникальный GUID:
 
@@ -655,7 +655,7 @@ az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-
 
 Конфигурация, показанная в предыдущем JSON-файле, хранится в Azure Key Vault с использованием нотации двойного тире ( `--` ) и числовых сегментов.
 
-| Key | Значение |
+| Клавиши | Значение |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
