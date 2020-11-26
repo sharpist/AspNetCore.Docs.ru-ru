@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/social/index
-ms.openlocfilehash: 1f7c8cd0716f1ada3517add0d37a09e419f38774
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: ca5fd8f746e759d1994dde9a2a0d5b5fd6c88d1a
+ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053310"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "95870455"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Проверка подлинности Facebook, Google и внешних поставщиков в ASP.NET Core
 
 Авторы: [Валерий Новицкий](https://github.com/01binary) (Valeriy Novytskyy) и [Рик Андерсон](https://twitter.com/RickAndMSFT) (Rick Anderson)
 
-В этом учебнике показано создание приложения ASP.NET Core 3.0, позволяющего пользователям выполнять вход с помощью OAuth 2.0 и учетных данных от внешних поставщиков проверки подлинности.
+В этом руководстве показано создание приложения ASP.NET Core, позволяющего пользователям выполнять вход с помощью OAuth 2.0 и учетных данных от внешних поставщиков проверки подлинности.
 
 В следующих разделах рассматриваются такие поставщики, как [Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins) и [Майкрософт](xref:security/authentication/microsoft-logins), использующие созданный в рамках этой статьи начальный проект. В сторонних пакетах также доступны другие поставщики, такие как [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) и [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
 
@@ -47,7 +47,7 @@ ms.locfileid: "93053310"
 * Создайте новый проект.
 * Выберите **Веб-приложение ASP.NET Core** и нажмите **Далее**.
 * Укажите **Имя проекта** и подтвердите либо измените **Расположение**. Выберите **Создать**.
-* Выберите последнюю версию ASP.NET Core в раскрывающемся списке ( **ASP.NET Core {X.Y}** ), а затем выберите **Веб-приложение**.
+* Выберите последнюю версию ASP.NET Core в раскрывающемся списке (**ASP.NET Core {X.Y}** ), а затем выберите **Веб-приложение**.
 * В разделе **Проверка подлинности** выберите **Изменить** и в качестве типа проверки подлинности задайте **Индивидуальные учетные записи пользователей**. Нажмите кнопку **ОК**.
 * В окне **Создать веб-приложение ASP.NET Core** выберите **Создать**.
 

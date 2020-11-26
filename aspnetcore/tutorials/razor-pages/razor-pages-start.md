@@ -20,12 +20,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: b4dcbe9536107cdc5b0342782abc4bad0b89a8dc
-ms.sourcegitcommit: 342588e10ae0054a6d6dc0fd11dae481006be099
+ms.openlocfilehash: fa113a3e0a2a69fb4aa1318056dcfc6e261490f6
+ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/07/2020
-ms.locfileid: "94360968"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "96025034"
 ---
 # <a name="tutorial-get-started-with-no-locrazor-pages-in-aspnet-core"></a>Учебник. Начало работы с Razor Pages в ASP.NET Core
 
@@ -429,7 +429,6 @@ ms.locfileid: "94360968"
 * Нажмите клавиши CTRL+F5, чтобы выполнить запуск без отладчика.
 
   Запуск приложения с помощью клавиш <kbd>CTRL+F5</kbd> (режим без отладки) позволяет внести изменения в код, сохранить файл, обновить браузер и увидеть изменения в коде. Многие разработчики предпочитают использовать режим без отладки, чтобы быстро запустить приложение и просмотреть изменения.
-
 
   [!INCLUDE[](~/includes/trustCertVS.md)]
 
