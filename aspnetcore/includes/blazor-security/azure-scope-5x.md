@@ -1,11 +1,11 @@
-<span data-ttu-id="877f7-101">При работе с API сервера, зарегистрированным в AAD, и регистрации приложения AAD в клиенте, который использует [неподтвержденный домен издателя](/azure/active-directory/develop/howto-configure-publisher-domain), URI идентификатора для приложения API сервера будет в формате `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`, а не `api://{SERVER API APP CLIENT ID OR CUSTOM VALUE}`.</span><span class="sxs-lookup"><span data-stu-id="877f7-101">When working with a server API registered with AAD and the app's AAD registration is in an tenant that relies on an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), the App ID URI of your server API app isn't `api://{SERVER API APP CLIENT ID OR CUSTOM VALUE}` but instead is in the format `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`.</span></span> <span data-ttu-id="877f7-102">В таком случае область маркера доступа по умолчанию в `Program.Main` (`Program.cs`) приложения *`Client`* будет выглядеть следующим образом:</span><span class="sxs-lookup"><span data-stu-id="877f7-102">If that's the case, the default access token scope in `Program.Main` (`Program.cs`) of the *`Client`* app appears similar to the following:</span></span>
+<span data-ttu-id="1c070-101">При работе с API сервера, зарегистрированным в AAD, и регистрации приложения AAD в клиенте, который использует [неподтвержденный домен издателя](/azure/active-directory/develop/howto-configure-publisher-domain), URI идентификатора для приложения API сервера будет в формате `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`, а не `api://{SERVER API APP CLIENT ID OR CUSTOM VALUE}`.</span><span class="sxs-lookup"><span data-stu-id="1c070-101">When working with a server API registered with AAD and the app's AAD registration is in an tenant that relies on an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), the App ID URI of your server API app isn't `api://{SERVER API APP CLIENT ID OR CUSTOM VALUE}` but instead is in the format `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`.</span></span> <span data-ttu-id="1c070-102">В таком случае область маркера доступа по умолчанию в `Program.Main` (`Program.cs`) приложения *`Client`* будет выглядеть следующим образом:</span><span class="sxs-lookup"><span data-stu-id="1c070-102">If that's the case, the default access token scope in `Program.Main` (`Program.cs`) of the *`Client`* app appears similar to the following:</span></span>
 
 ```csharp
 options.ProviderOptions.DefaultAccessTokenScopes
     .Add("https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}/{DEFAULT SCOPE}");
 ```
 
-<span data-ttu-id="877f7-103">Чтобы настроить приложение API сервера для соответствующей аудитории, в файле параметров приложения API *`Server`* (`appsettings.json`) задайте для параметра `Audience` значение аудитории приложения, предоставленное на портале Azure.</span><span class="sxs-lookup"><span data-stu-id="877f7-103">To configure the server API app for a matching audience, set the `Audience` in the *`Server`* API app settings file (`appsettings.json`) to match the app's audience provided by the Azure portal:</span></span>
+<span data-ttu-id="1c070-103">Чтобы настроить приложение API сервера для соответствующей аудитории, в файле параметров приложения API *`Server`* (`appsettings.json`) задайте для параметра `Audience` значение аудитории приложения, предоставленное на портале Azure.</span><span class="sxs-lookup"><span data-stu-id="1c070-103">To configure the server API app for a matching audience, set the `Audience` in the *`Server`* API app settings file (`appsettings.json`) to match the app's audience provided by the Azure portal:</span></span>
 
 ```json
 {
@@ -18,18 +18,18 @@ options.ProviderOptions.DefaultAccessTokenScopes
 }
 ```
 
-<span data-ttu-id="877f7-104">В предыдущем примере конфигурации в конце значения `Audience` **не** указана область по умолчанию (`/{DEFAULT SCOPE}`).</span><span class="sxs-lookup"><span data-stu-id="877f7-104">In the preceding configuration, the end of the `Audience` value does **not** include the default scope `/{DEFAULT SCOPE}`.</span></span>
+<span data-ttu-id="1c070-104">В предыдущем примере конфигурации в конце значения `Audience` **не** указана область по умолчанию (`/{DEFAULT SCOPE}`).</span><span class="sxs-lookup"><span data-stu-id="1c070-104">In the preceding configuration, the end of the `Audience` value does **not** include the default scope `/{DEFAULT SCOPE}`.</span></span>
 
-<span data-ttu-id="877f7-105">Пример.</span><span class="sxs-lookup"><span data-stu-id="877f7-105">Example:</span></span>
+<span data-ttu-id="1c070-105">Пример.</span><span class="sxs-lookup"><span data-stu-id="1c070-105">Example:</span></span>
 
-<span data-ttu-id="877f7-106">`Program.Main` (`Program.cs`) приложения *`Client`* :</span><span class="sxs-lookup"><span data-stu-id="877f7-106">`Program.Main` (`Program.cs`) of the *`Client`* app:</span></span>
+<span data-ttu-id="1c070-106">`Program.Main` (`Program.cs`) приложения *`Client`* :</span><span class="sxs-lookup"><span data-stu-id="1c070-106">`Program.Main` (`Program.cs`) of the *`Client`* app:</span></span>
 
 ```csharp
 options.ProviderOptions.DefaultAccessTokenScopes
     .Add("https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
 ```
 
-<span data-ttu-id="877f7-107">Укажите в файле параметров приложения API *`Server`* (`appsettings.json`) соответствующее значение аудитории (`Audience`):</span><span class="sxs-lookup"><span data-stu-id="877f7-107">Configure the *`Server`* API app settings file (`appsettings.json`) with a matching audience (`Audience`):</span></span>
+<span data-ttu-id="1c070-107">Укажите в файле параметров приложения API *`Server`* (`appsettings.json`) соответствующее значение аудитории (`Audience`):</span><span class="sxs-lookup"><span data-stu-id="1c070-107">Configure the *`Server`* API app settings file (`appsettings.json`) with a matching audience (`Audience`):</span></span>
 
 ```json
 {
@@ -42,4 +42,4 @@ options.ProviderOptions.DefaultAccessTokenScopes
 }
 ```
 
-<span data-ttu-id="877f7-108">В предыдущем примере в конце значения `Audience` **не** указана область по умолчанию (`/API.Access`).</span><span class="sxs-lookup"><span data-stu-id="877f7-108">In the preceding example, the end of the `Audience` value does **not** include the default scope `/API.Access`.</span></span>
+<span data-ttu-id="1c070-108">В предыдущем примере в конце значения `Audience` **не** указана область по умолчанию (`/API.Access`).</span><span class="sxs-lookup"><span data-stu-id="1c070-108">In the preceding example, the end of the `Audience` value does **not** include the default scope `/API.Access`.</span></span>
