@@ -5,7 +5,7 @@ description: Сведения о том, как создавать и испол
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2020
+ms.date: 11/25/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,16 +19,16 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: cc4604f7f67a6648c96e099572ff27bfed838916
-ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
+ms.openlocfilehash: b87986442bb8127f03df1f7ecff8167cafa27fdf
+ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "94981873"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96035688"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
-Авторы: [Люк Латэм (Luke Latham)](https://github.com/guardrex), [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27) и Тобиас Бартщ [(Tobias Bartsch)](https://www.aveo-solutions.com/)
+Авторы: [Люк Латэм (Luke Latham)](https://github.com/guardrex), [Дэниэл Рот (Daniel Roth)](https://github.com/danroth27), [Скотт Эдди (Scott Addie)](https://github.com/scottaddie) и [Тобиас Бартщ (Tobias Bartsch)](https://www.aveo-solutions.com/)
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([как скачивать](xref:index#how-to-download-a-sample))
 
@@ -886,6 +886,64 @@ Blazor соответствует соглашению для приложени
 ```
 
 Однако встроенная разметка SVG не поддерживается во всех сценариях. Если поместить тег `<svg>` непосредственно в файл компонента (`.razor`), базовая отрисовка изображений будет доступной, но многие расширенные сценарии пока не поддерживаются. Например, теги `<use>` сейчас не учитываются, а с некоторыми тегами SVG невозможно использовать [`@bind`][10]. Дополнительные сведения см. в [справке по SVG в Blazor (dotnet/aspnetcore#18271)](https://github.com/dotnet/aspnetcore/issues/18271).
+
+## <a name="whitespace-rendering-behavior"></a>Поведение при отрисовке пробелов
+
+::: moniker range=">= aspnetcore-5.0"
+
+Если директива [`@preservewhitespace`](xref:mvc/views/razor#preservewhitespace) не используется со значением `true`, лишние пробелы будут удаляться по умолчанию, если:
+
+* Они находятся в начале или конце элемента.
+* Они находятся в начале или конце параметра `RenderFragment`. Например, когда дочернее содержимое передается другому компоненту.
+* Они находятся в начале или конце блока кода C#, например `@if` и `@foreach`.
+
+При использовании правила CSS, такого как `white-space: pre`, удаление пробелов может повлиять на отображаемые выходные данные. Чтобы отключить эту оптимизацию производительности и сохранить пробелы, выполните одно из следующих действий.
+
+* Добавьте директиву `@preservewhitespace true` в начало  `.razor`-файла, чтобы применить предпочтение к конкретному компоненту.
+* Добавьте директиву `@preservewhitespace true` внутрь файла `_Imports.razor`, чтобы применить предпочтение ко всему подкаталогу или проекту целиком.
+
+В большинстве случаев никаких действий не требуется, так как приложения, как правило, продолжают работать в обычном режиме (но быстрее). Если удаление пробелов приводит к возникновению проблем в конкретном компоненте, используйте `@preservewhitespace true` в таком компоненте, чтобы отключить эту оптимизацию.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Пробел сохраняется в исходном коде компонента. Текст, состоящий только из пробелов, отображается в модели DOM браузера даже при отсутствии визуального эффекта.
+
+Рассмотрим следующий код компонента Razor:
+
+```razor
+<ul>
+    @foreach (var item in Items)
+    {
+        <li>
+            @item.Text
+        </li>
+    }
+</ul>
+```
+
+В предыдущем примере отображается следующий ненужный пробел:
+
+* за пределами блока кода `@foreach`;
+* вокруг элемента `<li>`;
+* вокруг выходных данных `@item.Text`.
+
+Для списка, содержащего 100 элементов, создается 402 области пробелов. При этом ни один из дополнительных пробелов не будет визуально влиять на отображаемые выходные данные.
+
+При отображении статического кода HTML для компонентов пробелы внутри тега не сохраняются. Например, просмотрите исходный код следующего компонента в отображаемых выходных данных:
+
+```razor
+<img     alt="My image"   src="img.png"     />
+```
+
+Пробелы из предыдущей разметки Razor не сохраняются:
+
+```razor
+<img alt="My image" src="img.png" />
+```
+
+::: moniker-end
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

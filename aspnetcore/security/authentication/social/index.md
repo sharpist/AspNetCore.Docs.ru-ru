@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/social/index
-ms.openlocfilehash: ca5fd8f746e759d1994dde9a2a0d5b5fd6c88d1a
-ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
+ms.openlocfilehash: f7bc7c6a14d014f8c3c283fb09718b9191b7b478
+ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
 ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 11/25/2020
-ms.locfileid: "95870455"
+ms.locfileid: "96035831"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Проверка подлинности Facebook, Google и внешних поставщиков в ASP.NET Core
 
@@ -86,7 +86,7 @@ ms.locfileid: "95870455"
 
 ## <a name="use-secretmanager-to-store-tokens-assigned-by-login-providers"></a>Хранение маркеров безопасности, предоставленных поставщиками входа, с помощью SecretManager
 
-Поставщики входа социальных сетей назначают маркеры **идентификатора приложения** и **секрета приложения** в процессе регистрации. Точные имена маркеров зависят от поставщика. Эти маркеры соответствуют учетным данным, которые используются приложением для доступа к API. Маркеры предоставляют "секреты", которые можно подключить к конфигурации приложения с помощью [Secret Manager](xref:security/app-secrets#secret-manager) (Диспетчера секретов). Диспетчер секретов — более безопасная альтернатива хранению маркеров в файле конфигурации, например в *appsettings.json* .
+Поставщики входа социальных сетей назначают маркеры **идентификатора приложения** и **секрета приложения** в процессе регистрации. Точные имена маркеров зависят от поставщика. Эти маркеры соответствуют учетным данным, которые используются приложением для доступа к API. Маркеры предоставляют секреты пользователя, которые можно подключить к конфигурации приложения с помощью [диспетчера секретов](xref:security/app-secrets#secret-manager). Секреты пользователя — более безопасная альтернатива хранению маркеров в файле конфигурации, например в *appsettings.json* .
 
 > [!IMPORTANT]
 > Secret Manager предназначен только для разработки. Для хранения и защиты секретов Azure в ходе тестирования и непосредственной работы используйте [Поставщик конфигурации Azure Key Vault](xref:security/key-vault-configuration).
