@@ -5,7 +5,7 @@ description: Узнайте, как вызывать функции JavaScript �
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, devx-track-js
-ms.date: 10/20/2020
+ms.date: 11/25/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,16 +19,16 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: f5373f1905958ee5c51ee76bd07690d079fb50f5
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: c73de0e30b7b564915f30d75f754f89fecccdc78
+ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570020"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96035727"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Вызов функций JavaScript из методов .NET в ASP.NET Core Blazor
 
-Авторы: [Хавьер Кальварро Нельсон](https://github.com/javiercn) (Javier Calvarro Nelson), [Дэниэл Рот](https://github.com/danroth27) (Daniel Roth) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)
+Авторы: [Хавьер Кальварро Нельсон](https://github.com/javiercn) (Javier Calvarro Nelson), [Дэниел Рот](https://github.com/danroth27) (Daniel Roth), [Пранав Кришнамурти](https://github.com/pranavkm) (Pranav Krishnamoorthy) и [Люк Латэм](https://github.com/guardrex) (Luke Latham)
 
 Приложение Blazor может вызывать функции JavaScript из методов .NET и методы .NET из функций JavaScript. Такой подход называется *взаимодействием с JavaScript* (*JS*).
 
@@ -543,28 +543,6 @@ public async ValueTask<string> Prompt(string message)
 
 `IJSInProcessObjectReference` представляет ссылку на объект JavaScript, функции которого могут вызываться синхронно.
 
-`IJSUnmarshalledObjectReference` представляет ссылку на объект JavaScript, функции которого могут вызываться без дополнительных затрат, связанных с сериализацией данных .NET. Можно использовать в Blazor WebAssembly, когда важна производительность.
-
-```javascript
-window.unmarshalledInstance = {
-  helloWorld: function (personNamePointer) {
-    const personName = Blazor.platform.readStringField(value, 0);
-    return `Hello ${personName}`;
-  }
-};
-```
-
-```csharp
-var unmarshalledRuntime = (IJSUnmarshalledRuntime)js;
-var jsUnmarshalledReference = unmarshalledRuntime
-    .InvokeUnmarshalled<IJSUnmarshalledObjectReference>("unmarshalledInstance");
-
-string helloWorldString = jsUnmarshalledReference.InvokeUnmarshalled<string, string>(
-    "helloWorld");
-```
-
-В предыдущем примере служба <xref:Microsoft.JSInterop.IJSRuntime> внедряется в класс и назначается `js` (не показано).
-
 ## <a name="use-of-javascript-libraries-that-render-ui-dom-elements"></a>Использование библиотек JavaScript, отображающих пользовательский интерфейс (элементы DOM)
 
 Иногда может потребоваться использовать библиотеки JavaScript, которые создают видимые элементы пользовательского интерфейса в модели DOM браузера. На первый взгляд, это может показаться затруднительным, так как система сравнения Blazor предполагает наличие контроля над деревом элементов DOM и в ней возникают ошибки, если какой-либо внешний код изменяет дерево DOM и механизм применения различий становится недействительным. Это ограничение не относится лишь к Blazor. Такая же проблема возникает при использовании любой платформы пользовательского интерфейса на основе сравнения.
@@ -707,6 +685,158 @@ services.AddServerSideBlazor()
 ## <a name="js-modules"></a>Модули JS
 
 Для изоляции JS взаимодействие с JS работает с поддержкой по умолчанию браузера для [модулей EcmaScript (ESM)](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([спецификация ECMAScript](https://tc39.es/ecma262/#sec-modules)).
+
+## <a name="unmarshalled-js-interop"></a>Демаршалированные вызовы взаимодействия с JS
+
+Производительность компонентов Blazor WebAssembly может снизиться при сериализации объектов .NET для взаимодействия с JS и наличии одного из следующих условий:
+
+* Быстро сериализуется большой объем объектов .NET. Пример. Вызовы взаимодействия с JS выполняются на основе перемещения устройства ввода, например прокрутки колесика мыши.
+* Для взаимодействия с JS нужно сериализовать большие объекты .NET или много объектов .NET. Пример. Для вызовов взаимодействия с JS требуется сериализовать десятки файлов.
+
+<xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> представляет ссылку на объект JavaScript, функции которого могут вызываться без дополнительных затрат, связанных с сериализацией данных .NET.
+
+В следующем примере:
+
+* [Структура](/dotnet/csharp/language-reference/builtin-types/struct), содержащая строку и целое число, передается в JavaScript без сериализации.
+* Функции JavaScript обрабатывают данные и возвращают вызывающему объекту логическое значение или строку.
+* Строку JavaScript нельзя напрямую преобразовать в объект `string` .NET. Функция `unmarshalledFunctionReturnString` вызывает `BINDING.js_string_to_mono_string` для управления преобразованием строки JavaScript.
+
+> [!NOTE]
+> Следующие примеры не являются типичными вариантами использования для этого сценария, так как [структура](/dotnet/csharp/language-reference/builtin-types/struct), передаваемая в JavaScript, не приводит к ухудшению производительности компонента. В примере мы используем небольшой объект, только чтобы продемонстрировать концепцию передачи несериализованных данных .NET.
+
+Содержимое блока `<script>` в `wwwroot/index.html` или во внешнем файле JavaScript, на который указывает ссылка `wwwroot/index.html`:
+
+```javascript
+window.returnJSObjectReference = () => {
+    return {
+        unmarshalledFunctionReturnBoolean: function (fields) {
+            const name = Blazor.platform.readStringField(fields, 0);
+            const year = Blazor.platform.readInt32Field(fields, 8);
+
+            return name === "Brigadier Alistair Gordon Lethbridge-Stewart" &&
+                year === 1968;
+        },
+        unmarshalledFunctionReturnString: function (fields) {
+            const name = Blazor.platform.readStringField(fields, 0);
+            const year = Blazor.platform.readInt32Field(fields, 8);
+
+            return BINDING.js_string_to_mono_string(`Hello, ${name} (${year})!`);
+        }
+    };
+}
+```
+
+> [!WARNING]
+> Возможно, в одном из будущих выпусков .NET. имя и поведение функции `js_string_to_mono_string` изменится либо она будет удалена. Пример:
+>
+> * Скорее всего, функция будет переименована.
+> * Возможно, сама функция будет удалена, а вместо нее будет реализовано автоматическое преобразование строк платформой.
+
+`Pages/UnmarshalledJSInterop.razor` (URL-адрес: `/unmarshalled-js-interop`).
+
+```razor
+@page "/unmarshalled-js-interop"
+@using System.Runtime.InteropServices
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+<h1>Unmarshalled JS interop</h1>
+
+@if (callResultForBoolean)
+{
+    <p>JS interop was successful!</p>
+}
+
+@if (!string.IsNullOrEmpty(callResultForString))
+{
+    <p>@callResultForString</p>
+}
+
+<p>
+    <button @onclick="CallJSUnmarshalledForBoolean">
+        Call Unmarshalled JS & Return Boolean
+    </button>
+    <button @onclick="CallJSUnmarshalledForString">
+        Call Unmarshalled JS & Return String
+    </button>
+</p>
+
+<p>
+    <a href="https://www.doctorwho.tv">Doctor Who</a>
+    is a registered trademark of the <a href="https://www.bbc.com/">BBC</a>.
+</p>
+
+@code {
+    private bool callResultForBoolean;
+    private string callResultForString;
+
+    private void CallJSUnmarshalledForBoolean()
+    {
+        var unmarshalledRuntime = (IJSUnmarshalledRuntime)JS;
+
+        var jsUnmarshalledReference = unmarshalledRuntime
+            .InvokeUnmarshalled<IJSUnmarshalledObjectReference>(
+                "returnJSObjectReference");
+
+        callResultForBoolean = 
+            jsUnmarshalledReference.InvokeUnmarshalled<InteropStruct, bool>(
+                "unmarshalledFunctionReturnBoolean", GetStruct());
+    }
+
+    private void CallJSUnmarshalledForString()
+    {
+        var unmarshalledRuntime = (IJSUnmarshalledRuntime)JS;
+
+        var jsUnmarshalledReference = unmarshalledRuntime
+            .InvokeUnmarshalled<IJSUnmarshalledObjectReference>(
+                "returnJSObjectReference");
+
+        callResultForString = 
+            jsUnmarshalledReference.InvokeUnmarshalled<InteropStruct, string>(
+                "unmarshalledFunctionReturnString", GetStruct());
+    }
+
+    private InteropStruct GetStruct()
+    {
+        return new InteropStruct
+        {
+            Name = "Brigadier Alistair Gordon Lethbridge-Stewart",
+            Year = 1968,
+        };
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct InteropStruct
+    {
+        [FieldOffset(0)]
+        public string Name;
+
+        [FieldOffset(8)]
+        public int Year;
+    }
+}
+```
+
+Если экземпляр `IJSUnmarshalledObjectReference` не удален в коде C#, он может быть удален в JavaScript. Следующая функция `dispose` удаляет ссылку на объект при вызове из JavaScript:
+
+```javascript
+window.exampleJSObjectReferenceNotDisposedInCSharp = () => {
+    return {
+        dispose: function () {
+            DotNet.disposeJSObjectReference(this);
+        },
+
+        ...
+    };
+}
+```
+
+Типы массивов можно преобразовать из объектов JavaScript в объекты .NET с помощью `js_typed_array_to_array`, но при этом массив JavaScript должен быть типизированным. Массивы из JavaScript могут считываться в коде C# как массив объектов .NET (`object[]`).
+
+Можно преобразовать и другие типы данных, например массивы строк, но при этом нужно создать новый объект массива Mono (`mono_obj_array_new`) и задать его значение (`mono_obj_array_set`).
+
+> [!WARNING]
+> Возможно, в будущих выпусках .NET. функции JavaScript (такие как `js_typed_array_to_array`, `mono_obj_array_new` и `mono_obj_array_set`), предоставляемые платформой Blazor, будут удалены либо изменятся их имена или поведение.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

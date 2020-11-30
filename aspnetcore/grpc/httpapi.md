@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/httpapi
-ms.openlocfilehash: 45e2a1a5e6a9f00294147db769454b78c5b866e5
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 64d18114e2fe9ee10edb902a98a281c3cd9f3393
+ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059940"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95417582"
 ---
 # <a name="create-json-web-apis-from-grpc"></a>Создание веб-интерфейсов API JSON из gRPC
 
@@ -39,7 +39,7 @@ ms.locfileid: "93059940"
 
 gRPC — это современный способ обмена данными между приложениями. gRPC использует HTTP/2, потоковую передачу, Protobuf и контракты сообщений для создания высокопроизводительных служб в реальном времени.
 
-gRPC имеет единственное ограничение — его можно использовать не на каждой платформе. Браузеры не полностью поддерживают HTTP/2, поэтому REST и JSON являются основными способами передачи данных в браузерные приложения. Даже при всех преимуществах gRPC REST и JSON играют важную роль в современных приложениях. Создание веб-API gRPC * **и** _ JSON добавляет нежелательные затраты на разработку приложений.
+gRPC имеет единственное ограничение — его можно использовать не на каждой платформе. Браузеры не полностью поддерживают HTTP/2, поэтому REST и JSON являются основными способами передачи данных в браузерные приложения. Даже при всех преимуществах gRPC REST и JSON играют важную роль в современных приложениях. Создание веб-API gRPC ***и** _ JSON добавляет нежелательные затраты на разработку приложений.
 
 В этом документе рассматривается создание веб-API JSON с помощью служб gRPC.
 
@@ -133,11 +133,11 @@ API gRPC HTTP является экспериментом. Это решение
 
 ## <a name="grpc-gateway"></a>grpc-gateway
 
-[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) — еще одна технология создания API RESTful JSON из служб gRPC. Она использует такие же заметки в файлах *PROTO* , чтобы сопоставлять понятия HTTP со службами gRPC.
+[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) — еще одна технология создания API RESTful JSON из служб gRPC. Она использует такие же заметки в файлах *PROTO*, чтобы сопоставлять понятия HTTP со службами gRPC.
 
 Главное различие между grpc-gateway и API gRPC HTTP состоит в том, что grpc-gateway использует формирование кода для создания обратного прокси-сервера. Обратный прокси-сервер преобразует вызовы RESTful в gRPC, а затем отправляет их в службу gRPC.
 
-Сведения об установке и использовании grpc-gateway см. в [документации по grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/docs/usage.html).
+Сведения об установке и использовании grpc-gateway см. в [файле сведений для grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/#grpc-gateway).
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

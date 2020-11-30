@@ -4,7 +4,7 @@ author: rick-anderson
 description: Команда dotnet aspnet-codegenerator формирует шаблоны для проектов ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 07/04/2019
+ms.date: 11/16/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-ms.openlocfilehash: 88d761b09833a14de5af9f9610753174867aa09a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 8844b0014cac58f414d79df4c64bc0efac75bfe1
+ms.sourcegitcommit: d29535ea0b4197443fd884aaa6e5b4b763d04fc7
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059992"
+ms.lasthandoff: 11/19/2020
+ms.locfileid: "94920707"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
@@ -31,9 +31,9 @@ ms.locfileid: "93059992"
 
 Команда `dotnet aspnet-codegenerator` запускает подсистему формирования шаблонов ASP.NET Core. Команда `dotnet aspnet-codegenerator` нужна только для командной строки. Она не требуется для формирования шаблонов в Visual Studio.
 
-Эта статья относится к [пакету SDK для .NET Core 2.1](https://dotnet.microsoft.com/download/dotnet-core/2.1) и более поздних версий.
+## <a name="install-and-update-aspnet-codegenerator"></a>Установка и обновление aspnet-codegenerator
 
-## <a name="installing-aspnet-codegenerator"></a>Установка aspnet-codegenerator
+Установите [пакет SDK для .NET](https://dotnet.microsoft.com/download).
 
 `dotnet-aspnet-codegenerator` — [глобальное средство](/dotnet/core/tools/global-tools), которое нужно установить. Следующая команда позволяет установить последнюю стабильную версию средства `dotnet-aspnet-codegenerator`:
 
@@ -45,6 +45,17 @@ dotnet tool install -g dotnet-aspnet-codegenerator
 
 ```dotnetcli
 dotnet tool update -g dotnet-aspnet-codegenerator
+```
+
+## <a name="uninstall-aspnet-codegenerator"></a>Удаление aspnet-codegenerator
+
+Для устранения проблем, возможно, потребуется удалить `aspnet-codegenerator`. Например, если вы установили предварительную версию `aspnet-codegenerator`, удалите ее перед установкой выпущенной версии.
+
+Следующая команда позволяет удалить средство `dotnet-aspnet-codegenerator` и установить последнюю стабильную версию:
+
+```dotnetcli
+dotnet tool uninstall -g dotnet-aspnet-codegenerator
+dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
 ## <a name="synopsis"></a>Краткий обзор
@@ -168,7 +179,7 @@ dotnet aspnet-codegenerator controller -h
 * `Details`
 * `List`
 
-Например, в следующей команде используется шаблон Edit для создания *MyEdit.cshtml* и *MyEdit.cshtml.cs* :
+Например, в следующей команде используется шаблон Edit для создания *MyEdit.cshtml* и *MyEdit.cshtml.cs*:
 
 ```dotnetcli
 dotnet aspnet-codegenerator razorpage MyEdit Edit -m Movie -dc RazorPagesMovieContext -outDir Pages/Movies

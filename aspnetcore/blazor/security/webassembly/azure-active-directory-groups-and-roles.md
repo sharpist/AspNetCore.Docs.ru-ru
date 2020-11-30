@@ -19,16 +19,19 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
-ms.openlocfilehash: 680b44a705b66be0aab824487119cdb118b44d0f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: ded70f028b3021574ba260838837d9b23abd72f1
+ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055312"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "94981886"
 ---
 # <a name="azure-active-directory-aad-groups-administrator-roles-and-user-defined-roles"></a>Группы, роли администратора и определяемые пользователем роли в Azure Active Directory (AAD)
 
 Авторы: [Люк Латэм](https://github.com/javiercn) (Luke Latham) и [Хавьер Кальварро Нельсон](https://github.com/guardrex) (Javier Calvarro Nelson)
+
+> [!NOTE]
+> Эта статья относится к приложениям Blazor ASP.NET Core версии 3.1 с Microsoft Identity версии 1.0, но мы планируем ее обновить, чтобы она относилась к версии 5.0 с Identity версии 2.0. Дополнительные сведения см. в статье [Использование Blazor WASM с группами и ролями AAD или B2C (dotnet/AspNetCore.Docs #17683)](https://github.com/dotnet/AspNetCore.Docs/issues/17683).
 
 Azure Active Directory (AAD) предоставляет несколько подходов к авторизации, которые можно сочетать с ASP.NET Core Identity.
 
@@ -413,7 +416,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 
 ## <a name="authorization-configuration"></a>Настройка авторизации
 
-Создайте [политики](xref:security/authorization/policies) для каждой группы или роли в `Program.Main`. В следующем примере создается политика для роли AAD *Администратор выставления счетов* :
+Создайте [политики](xref:security/authorization/policies) для каждой группы или роли в `Program.Main`. В следующем примере создается политика для роли AAD *Администратор выставления счетов*:
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
@@ -506,7 +509,7 @@ builder.Services.AddAuthorizationCore(options =>
 > [!NOTE]
 > Сейчас это руководство не предусматривает авторизацию пользователей на основе [определяемых пользователем ролей AAD](#user-defined-roles).
 
-Рекомендации в этом разделе описывают настройку приложения API сервера в качестве [*управляющей программы*](/azure/active-directory/develop/scenario-daemon-overview) для вызова API Microsoft Graph. В этом подходе **не** :
+Рекомендации в этом разделе описывают настройку приложения API сервера в качестве [*управляющей программы*](/azure/active-directory/develop/scenario-daemon-overview) для вызова API Microsoft Graph. В этом подходе **не**:
 
 * требуется область `access_as_user`;
 * выполняется доступ API Graph от имени пользователя или клиента, выполняющего запрос API.
@@ -515,7 +518,7 @@ builder.Services.AddAuthorizationCore(options =>
 
 ### <a name="azure-configuration"></a>Конфигурация Azure
 
-* Убедитесь, что регистрации приложения *Server* предоставлена область API Graph **Приложение** (не **Делегат** ) с уровнем `Directory.Read.All`, которая является уровнем доступа с минимальным набором прав для групп безопасности. Убедитесь, что согласие администратора применяется к области после создания назначения области.
+* Убедитесь, что регистрации приложения *Server* предоставлена область API Graph **Приложение** (не **Делегат**) с уровнем `Directory.Read.All`, которая является уровнем доступа с минимальным набором прав для групп безопасности. Убедитесь, что согласие администратора применяется к области после создания назначения области.
 * Назначьте приложению *Server* новый секрет клиента. Запишите секрет для конфигурации приложения в разделе [Параметры приложения](#app-settings).
 
 ### <a name="app-settings"></a>Параметры приложения
@@ -758,7 +761,7 @@ options =>
 
 ### <a name="service-configuration"></a>Конфигурация службы
 
-Добавьте логику в метод `Startup.ConfigureServices` приложения *Server* , чтобы API Graph вызывал и реализовывал утверждения `group` для групп безопасности и ролей пользователя.
+Добавьте логику в метод `Startup.ConfigureServices` приложения *Server*, чтобы API Graph вызывал и реализовывал утверждения `group` для групп безопасности и ролей пользователя.
 
 > [!NOTE]
 > В примере кода в этом разделе используется библиотека проверки подлинности Active Directory (ADAL), которая основана на платформе Microsoft Identity Platform версии 1.0.

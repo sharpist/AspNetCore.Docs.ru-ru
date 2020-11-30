@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: 423745d734d8da2b8f3f974f9b4dd1a0265d4877
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: cc090b4e56745e6b010e4a7ee17332b0d3a95560
+ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054740"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95417387"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>Рекомендации по повышению производительности ASP.NET Core Blazor WebAssembly
 
@@ -298,7 +298,7 @@ public static RenderFragment SayHello = __builder =>
 Компонент `<CascadingValue>` принимает необязательный параметр с именем `IsFixed`.
 
  * Если значение `IsFixed` равно `false` (вариант по умолчанию), то каждый получатель каскадного значения настраивает подписку для получения уведомлений об изменениях. В этом примере каждый `[CascadingParameter]` обойдется **значительно дороже** обычного `[Parameter]` из-за затрат на отслеживания подписки.
- * Если значение `IsFixed` равно `true` (например, `<CascadingValue Value="@someValue" IsFixed="true">`), то получатели получают начальное значение, но *не настраивают* подписку для получения обновлений. Тогда каждый элемент `[CascadingParameter]` будет достаточно легким и **не дороже** , чем обычный `[Parameter]`.
+ * Если значение `IsFixed` равно `true` (например, `<CascadingValue Value="@someValue" IsFixed="true">`), то получатели получают начальное значение, но *не настраивают* подписку для получения обновлений. Тогда каждый элемент `[CascadingParameter]` будет достаточно легким и **не дороже**, чем обычный `[Parameter]`.
 
 Старайтесь везде, где возможно, использовать `IsFixed="true"` в каскадных значениях. Это не вызовет затруднений, если передаваемое значение не меняется со временем. В типичной ситуации, когда компонент передает `this` в виде каскадного значения, следует использовать `IsFixed="true"`:
 

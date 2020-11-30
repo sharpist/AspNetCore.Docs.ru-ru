@@ -1,0 +1,1 @@
+Сведения о доверии к браузеру Firefox см. в разделе [Ошибка сертификата браузера Firefox SEC_ERROR_INADEQUATE_KEY_USAGE](xref:security/enforcing-ssl#trust-ff).

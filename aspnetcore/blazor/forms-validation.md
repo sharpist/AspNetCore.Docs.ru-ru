@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: fe232b40a2255732dd375cc266937576d5b2d5d9
-ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
+ms.openlocfilehash: a8bbcbd6ac13ec064350a5b885423835baa4c4cc
+ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94507828"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "95870377"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>Формы и проверка ASP.NET Core Blazor
 
@@ -337,49 +337,46 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-namespace BlazorSample.Client
+public class CustomValidator : ComponentBase
 {
-    public class CustomValidator : ComponentBase
+    private ValidationMessageStore messageStore;
+
+    [CascadingParameter]
+    private EditContext CurrentEditContext { get; set; }
+
+    protected override void OnInitialized()
     {
-        private ValidationMessageStore messageStore;
-
-        [CascadingParameter]
-        private EditContext CurrentEditContext { get; set; }
-
-        protected override void OnInitialized()
+        if (CurrentEditContext == null)
         {
-            if (CurrentEditContext == null)
-            {
-                throw new InvalidOperationException(
-                    $"{nameof(CustomValidator)} requires a cascading " +
-                    $"parameter of type {nameof(EditContext)}. " +
-                    $"For example, you can use {nameof(CustomValidator)} " +
-                    $"inside an {nameof(EditForm)}.");
-            }
-
-            messageStore = new ValidationMessageStore(CurrentEditContext);
-
-            CurrentEditContext.OnValidationRequested += (s, e) => 
-                messageStore.Clear();
-            CurrentEditContext.OnFieldChanged += (s, e) => 
-                messageStore.Clear(e.FieldIdentifier);
+            throw new InvalidOperationException(
+                $"{nameof(CustomValidator)} requires a cascading " +
+                $"parameter of type {nameof(EditContext)}. " +
+                $"For example, you can use {nameof(CustomValidator)} " +
+                $"inside an {nameof(EditForm)}.");
         }
 
-        public void DisplayErrors(Dictionary<string, List<string>> errors)
-        {
-            foreach (var err in errors)
-            {
-                messageStore.Add(CurrentEditContext.Field(err.Key), err.Value);
-            }
+        messageStore = new ValidationMessageStore(CurrentEditContext);
 
-            CurrentEditContext.NotifyValidationStateChanged();
-        }
-
-        public void ClearErrors()
-        {
+        CurrentEditContext.OnValidationRequested += (s, e) => 
             messageStore.Clear();
-            CurrentEditContext.NotifyValidationStateChanged();
+        CurrentEditContext.OnFieldChanged += (s, e) => 
+            messageStore.Clear(e.FieldIdentifier);
+    }
+
+    public void DisplayErrors(Dictionary<string, List<string>> errors)
+    {
+        foreach (var err in errors)
+        {
+            messageStore.Add(CurrentEditContext.Field(err.Key), err.Value);
         }
+
+        CurrentEditContext.NotifyValidationStateChanged();
+    }
+
+    public void ClearErrors()
+    {
+        messageStore.Clear();
+        CurrentEditContext.NotifyValidationStateChanged();
     }
 }
 ```
@@ -451,7 +448,7 @@ namespace BlazorSample.Client
 * Обрабатывайте проверку на стороне клиента в форме с помощью компонента <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>.
 * Когда форма проходит проверку на стороне клиента (вызывается <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>), отправляйте <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> в API внутреннего сервера для обработки формы.
 * Обрабатывайте проверку модели на сервере.
-* Серверный API включает как встроенную платформенную проверку заметок к данным, так и настраиваемую логику проверки, предоставленную разработчиком. Если проверка на сервере пройдена, выполните обработку формы и отправьте обратно код состояния успеха ( *200 — OK* ). Если проверка завершается неудачно, возвращайте код состояния сбоя ( *400 — неверный запрос* ) и ошибки проверки полей.
+* Серверный API включает как встроенную платформенную проверку заметок к данным, так и настраиваемую логику проверки, предоставленную разработчиком. Если проверка на сервере пройдена, выполните обработку формы и отправьте обратно код состояния успеха (*200 — OK*). Если проверка завершается неудачно, возвращайте код состояния сбоя (*400 — неверный запрос*) и ошибки проверки полей.
 * Отключите форму в случае успешного выполнения или отобразите ошибки.
 
 Основу приведенного ниже примера составляют следующие компоненты.
@@ -483,7 +480,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BlazorSample.Shared;
 
-namespace BlazorSample.Server.Controllers
+namespace {ASSEMBLY NAME}.Controllers
 {
     [Authorize]
     [ApiController]
@@ -528,6 +525,8 @@ namespace BlazorSample.Server.Controllers
     }
 }
 ```
+
+Заполнитель `{ASSEMBLY NAME}` в предыдущем примере — это имя сборки приложения (например, `BlazorSample.Server`).
 
 Если на сервере возникает ошибка проверки привязки модели, то [`ApiController`](xref:web-api/index) (<xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>) обычно возвращает [ответ о неверном запросе по умолчанию](xref:web-api/index#default-badrequest-response) с <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. Этот ответ, помимо ошибок проверки, содержит дополнительные данные, как показано в следующем примере, когда все поля формы *Starfleet Starship Database* не отправляются и форма не проходит проверку.
 
@@ -811,7 +810,7 @@ public enum Color { ImperialRed, SpacecruiserGreen, StarshipBlue, VoyagerOrange 
 public enum Engine { Ion, Plasma, Fusion, Warp }
 ```
 
-Обновите форму *Starfleet Starship Database* , описанную в разделе [Встроенные компоненты форм](#built-in-forms-components). Добавьте компоненты для создания следующих элементов:
+Обновите форму *Starfleet Starship Database*, описанную в разделе [Встроенные компоненты форм](#built-in-forms-components). Добавьте компоненты для создания следующих элементов:
 
 * группы переключателей для выбора производителя корабля;
 * группы переключателей для выбора цвета и типа двигателя корабля.
@@ -1065,9 +1064,13 @@ private class MyFieldClassProvider : FieldCssClassProvider
 > [!NOTE]
 > Пакет [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) имеет последнюю версию *RC* на [Nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). В настоящее время продолжайте использовать *экспериментальный* пакет RC. В будущем выпуске сборка пакета может быть перемещена в платформу или в среду выполнения. Дополнительные обновления смотрите в [репозитории объявлений GitHub](https://github.com/aspnet/Announcements), [репозитории GitHub dotnet/aspnetcore](https://github.com/dotnet/aspnetcore) или в этом разделе.
 
-### <a name="compareproperty-attribute"></a>Атрибут [CompareProperty]
+::: moniker range="< aspnetcore-5.0"
+
+### <a name="compareproperty-attribute"></a>Атрибут `[CompareProperty]`
 
 <xref:System.ComponentModel.DataAnnotations.CompareAttribute> плохо работает с компонентом <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>, так как он не связывает результат проверки с конкретным элементом. Это может привести к несогласованному поведению при проверке на уровне полей и при проверке всей модели при отправке. *Экспериментальный* пакет [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) содержит дополнительный атрибут проверки `ComparePropertyAttribute`, который обходит эти ограничения. В приложении Blazor объект `[CompareProperty]` является непосредственной заменой атрибута [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute).
+
+::: moniker-end
 
 ### <a name="nested-models-collection-types-and-complex-types"></a>Вложенные модели, типы коллекций и сложные типы
 
@@ -1199,7 +1202,7 @@ public class ShipDescription
 }
 ```
 
-## <a name="troubleshoot"></a>Устранение неполадок
+## <a name="troubleshoot"></a>Диагностика
 
 > InvalidOperationException: EditForm requires a Model parameter, or an EditContext parameter, but not both (Для EditForm требуется указать параметр Model или EditContext, но не оба).
 

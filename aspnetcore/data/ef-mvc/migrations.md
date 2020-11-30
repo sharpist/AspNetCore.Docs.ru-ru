@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/migrations
-ms.openlocfilehash: ab5be222416e61fcff90c5130ca91ad4a2a5c9b0
-ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
+ms.openlocfilehash: 25ada6e3a210ed830514e69da7d5212264b4b91e
+ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94674008"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95417569"
 ---
 # <a name="tutorial-part-5-apply-migrations-to-the-contoso-university-sample"></a>Учебник. Часть 5. Применение миграций к примеру приложения университета Contoso
 
@@ -53,9 +53,10 @@ ms.locfileid: "94674008"
 
 ## <a name="drop-the-database"></a>Удалите базу данных:
 
-База данных удаляется. Воспользуйтесь **обозревателем объектов SQL Server** (SSOX) или командой интерфейса командной строки `database drop`:
+Установите средства EF Core в качестве [глобальных средств](/ef/core/miscellaneous/cli/dotnet) и удалите базу данных:
 
  ```dotnetcli
+ dotnet tool install --global dotnet-ef
  dotnet ef database drop
  ```
 
@@ -76,11 +77,8 @@ ms.locfileid: "94674008"
 Введите в командном окне следующую команду:
 
 ```dotnetcli
-dotnet tool install --global dotnet-ef
 dotnet ef migrations add InitialCreate
 ```
-
-`dotnet tool install --global dotnet-ef` устанавливает `dotnet ef` как [глобальное средство](/ef/core/miscellaneous/cli/dotnet).
 
 Приведенные выше команды выводят результат наподобие следующего:
 
