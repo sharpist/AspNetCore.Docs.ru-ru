@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 - Route-to-code
 uid: web-api/route-to-code
-ms.openlocfilehash: 49eaa3ceb47c41226b7a50782436ec270e6e1b7b
-ms.sourcegitcommit: 619200f2981656ede6d89adb6a22ad1a0e16da22
+ms.openlocfilehash: 1f5f532053f8f5ca7f73df8c1a910a484e2488d9
+ms.sourcegitcommit: 0bcc0d6df3145a0727da7c4be2f4bda8f27eeaa3
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96335599"
+ms.lasthandoff: 12/02/2020
+ms.locfileid: "96513100"
 ---
 # <a name="basic-json-apis-with-no-locroute-to-code-in-aspnet-core"></a>Базовые API-интерфейсы JSON с Route-to-code в ASP.NET Core
 
@@ -111,6 +111,21 @@ API-интерфейсы, использующие DI, должны исполь
 В `Startup.Configure` методе `Map` метод и статические методы другого класса вызываются в `UseEndpoints` :
 
 [!code-csharp[](route-to-code/sample/Startup5.cs?name=snippet)]
+
+## <a name="notable-missing-features-compared-to-web-api"></a>Важные отсутствующие компоненты по сравнению с веб-API
+
+Route-to-code предназначен для базовых API-интерфейсов JSON. Она не поддерживает многие дополнительные возможности, предоставляемые ASP.NET Core веб-API.
+
+Функции, не предоставляемые, Route-to-code включают:
+
+* Привязка модели
+* Проверка модели
+* OpenAPI/Swagger
+* Согласование содержимого
+* Внедрение зависимостей конструктора
+* `ProblemDetails` ([https://tools.ietf.org/html/rfc7807](RFC 7807))
+
+Рекомендуется использовать [веб-api ASP.NET Core](xref:web-api/index) для создания API, если для него требуются некоторые функции из предыдущего списка.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
