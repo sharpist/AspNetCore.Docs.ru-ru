@@ -1023,7 +1023,7 @@
   items:
     - name: Обзор
       uid: security/index
-    - name: Проверка подлинности
+    - name: Аутентификация
       items:
         - name: Обзор
           uid: security/authentication/index
@@ -1301,6 +1301,8 @@
       uid: mvc/compatibility-version
     - name: Написание ПО промежуточного слоя
       uid: fundamentals/middleware/write
+    - name: Базовые API-интерфейсы JSON с Route-to-code
+      uid: web-api/route-to-code
     - name: Операции запросов и ответов
       displayName: middleware
       uid: fundamentals/middleware/request-response
