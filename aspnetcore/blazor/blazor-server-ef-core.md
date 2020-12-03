@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/blazor-server-ef-core
-ms.openlocfilehash: bfc8f334b9229fed54e6b9841e4fb255ed18249a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 6a74b8c5668a37082f648ae74210d90684c4559c
+ms.sourcegitcommit: 43a540e703b9096921de27abc6b66bc0783fe905
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056625"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320113"
 ---
 # <a name="aspnet-core-no-locblazor-server-with-entity-framework-core-efcore"></a>ASP.NET Core Blazor Server и Entity Framework Core (EF Core)
 
@@ -65,7 +65,7 @@ EF Core опирается на <xref:Microsoft.EntityFrameworkCore.DbContext> 
 * По умолчанию рассмотрите возможность использования одного контекста для каждой операции. Контекст предназначен для быстрого создания экземпляров с низкими накладными расходами.
 
   ```csharp
-  var using context = new MyContext();
+  using var context = new MyContext();
 
   return await context.MyEntities.ToListAsync();
   ```
@@ -144,7 +144,7 @@ services.AddScoped<ApplicationDbContext>(p =>
 
 <h3 id="enable-sensitive-data-logging">Включение ведения журнала для конфиденциальных данных</h3>
 
-<xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> позволяет включить данные приложения в сообщения об исключениях и журналы платформы. Записанные в журнал данные могут содержать значения, присвоенные свойствам экземпляров сущностей, и значения параметров для команд, отправляемых в базу данных. Использовать <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> для записи данных в журнал **небезопасно** , так как этот метод может раскрывать пароли и другие личные сведения (PII) при записи инструкций SQL, выполняемых в базе данных.
+<xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> позволяет включить данные приложения в сообщения об исключениях и журналы платформы. Записанные в журнал данные могут содержать значения, присвоенные свойствам экземпляров сущностей, и значения параметров для команд, отправляемых в базу данных. Использовать <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> для записи данных в журнал **небезопасно**, так как этот метод может раскрывать пароли и другие личные сведения (PII) при записи инструкций SQL, выполняемых в базе данных.
 
 Мы рекомендуем включать метод <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> только на этапах разработки и тестирования.
 
@@ -196,7 +196,7 @@ EF Core опирается на <xref:Microsoft.EntityFrameworkCore.DbContext> 
 * По умолчанию рассмотрите возможность использования одного контекста для каждой операции. Контекст предназначен для быстрого создания экземпляров с низкими накладными расходами.
 
   ```csharp
-  var using context = new MyContext();
+  using var context = new MyContext();
 
   return await context.MyEntities.ToListAsync();
   ```
@@ -287,7 +287,7 @@ services.AddScoped<ApplicationDbContext>(p =>
 
 <h3 id="enable-sensitive-data-logging">Включение ведения журнала для конфиденциальных данных</h3>
 
-<xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> позволяет включить данные приложения в сообщения об исключениях и журналы платформы. Записанные в журнал данные могут содержать значения, присвоенные свойствам экземпляров сущностей, и значения параметров для команд, отправляемых в базу данных. Использовать <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> для записи данных в журнал **небезопасно** , так как этот метод может раскрывать пароли и другие личные сведения (PII) при записи инструкций SQL, выполняемых в базе данных.
+<xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> позволяет включить данные приложения в сообщения об исключениях и журналы платформы. Записанные в журнал данные могут содержать значения, присвоенные свойствам экземпляров сущностей, и значения параметров для команд, отправляемых в базу данных. Использовать <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> для записи данных в журнал **небезопасно**, так как этот метод может раскрывать пароли и другие личные сведения (PII) при записи инструкций SQL, выполняемых в базе данных.
 
 Мы рекомендуем включать метод <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> только на этапах разработки и тестирования.
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/request-response
-ms.openlocfilehash: cc701343cb3859f0f76ebc62bd54aa2e4431d522
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 5ad39821778ea58097169def85a940a06f1d036e
+ms.sourcegitcommit: 0bcc0d6df3145a0727da7c4be2f4bda8f27eeaa3
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061032"
+ms.lasthandoff: 12/02/2020
+ms.locfileid: "96513113"
 ---
 # <a name="request-and-response-operations-in-aspnet-core"></a>Операции запросов и ответов в ASP.NET Core
 
@@ -44,6 +44,8 @@ ms.locfileid: "93061032"
 Потоки не удаляются из платформы. С ними продолжают работать в .NET, и многие типы потоков не имеют эквивалентного конвейера, например `FileStreams` и `ResponseCompression`.
 
 ## <a name="stream-examples"></a>Примеры потоков
+
+<!-- see "fundamentals\middleware\request-response\static\TestPipes.JPG for testing sample -->
 
 Предположим, необходимо создать ПО промежуточного слоя, которое считывает весь текст запроса как список строк с разделением на новые строки. Реализация простого потока может выглядеть следующим образом:
 
