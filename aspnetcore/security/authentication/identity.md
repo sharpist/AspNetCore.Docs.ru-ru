@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: bfcef860beb07ab81dda1a10a1648491ae187bef
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: ad4184fce494ba06acf7e583a42a54d04d37ea20
+ms.sourcegitcommit: 92439194682dc788b8b5b3a08bd2184dc00e200b
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052023"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96556649"
 ---
 # <a name="introduction-to-no-locidentity-on-aspnet-core"></a>Введение в Identity ASP.NET Core
 
@@ -62,10 +62,10 @@ Identity обычно настраивается с помощью SQL Server б
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Выберите **файл** > **создать** > **проект** .
-* Выберите **Новое веб-приложение ASP.NET Core** . Присвойте проекту имя **APP1** , которое будет иметь то же пространство имен, что и загружаемый проект. Нажмите кнопку **ОК** .
-* Выберите ASP.NET Core **веб-приложение** , а затем щелкните **изменить проверку подлинности** .
-* Выберите **учетные записи отдельных пользователей** и нажмите кнопку **ОК** .
+* Выберите **файл** > **создать** > **проект**.
+* Выберите **Новое веб-приложение ASP.NET Core**. Присвойте проекту имя **APP1** , которое будет иметь то же пространство имен, что и загружаемый проект. Щелкните **ОК**.
+* Выберите ASP.NET Core **веб-приложение**, а затем щелкните **изменить проверку подлинности**.
+* Выберите **учетные записи отдельных пользователей** и нажмите кнопку **ОК**.
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli)
 
@@ -123,6 +123,10 @@ dotnet ef database update
 
 Службы добавляются в `ConfigureServices` . По стандартному шаблону сначала вызываются все методы `Add{Service}`, а затем все методы `services.Configure{Service}`.
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
 [!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configureservices&highlight=11-99)]
 
 Выделенный выше код настраивается Identity со значениями параметров по умолчанию. Доступ к службам предоставляется приложению посредством [внедрения зависимостей](xref:fundamentals/dependency-injection).
@@ -130,6 +134,22 @@ dotnet ef database update
 Identity включается путем вызова метода <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> . `UseAuthentication` добавляет по [промежуточного слоя](xref:fundamentals/middleware/index) проверки подлинности в конвейер запросов.
 
 [!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configure&highlight=19)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-csharp[](identity/sample/WebApp5x/Startup.cs?name=snippet_configureservices&highlight=12-99)]
+
+Приведенный выше код настраивается Identity со значениями параметров по умолчанию. Доступ к службам предоставляется приложению посредством [внедрения зависимостей](xref:fundamentals/dependency-injection).
+
+Identity включается путем вызова [усеаусентикатион](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_). `UseAuthentication` добавляет по [промежуточного слоя](xref:fundamentals/middleware/index) проверки подлинности в конвейер запросов.
+
+[!code-csharp[](identity/sample/WebApp5x/Startup.cs?name=snippet_configure&highlight=19)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 Созданное шаблоном приложение не использует [авторизацию](xref:security/authorization/secure-data). `app.UseAuthorization` включается, чтобы обеспечить его добавление в правильном порядке, если приложение добавляет авторизацию. `UseRouting`, `UseAuthentication` , `UseAuthorization` и `UseEndpoints` должны вызываться в порядке, показанном в приведенном выше коде.
 
@@ -143,7 +163,7 @@ Identity включается путем вызова метода <xref:Microso
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli)
 
-Если вы создали проект с именем " **APP1** ", выполните следующие команды. В противном случае используйте правильное пространство имен для `ApplicationDbContext` :
+Если вы создали проект с именем " **APP1**", выполните следующие команды. В противном случае используйте правильное пространство имен для `ApplicationDbContext` :
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
@@ -190,7 +210,7 @@ https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Ident
 
 [Сигнаутасинк](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) очищает утверждения пользователя, хранящиеся в cookie .
 
-Параметр POST указан в *страницах Pages/Shared/_LoginPartial. cshtml* :
+Параметр POST указан в *страницах Pages/Shared/_LoginPartial. cshtml*:
 
 [!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
@@ -296,10 +316,10 @@ Identity можно настроить с помощью SQL Server базы д�
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Выберите **файл** > **создать** > **проект** .
-* Выберите **Новое веб-приложение ASP.NET Core** . Присвойте проекту имя **APP1** , которое будет иметь то же пространство имен, что и загружаемый проект. Нажмите кнопку **ОК** .
-* Выберите ASP.NET Core **веб-приложение** , а затем щелкните **изменить проверку подлинности** .
-* Выберите **учетные записи отдельных пользователей** и нажмите кнопку **ОК** .
+* Выберите **файл** > **создать** > **проект**.
+* Выберите **Новое веб-приложение ASP.NET Core**. Присвойте проекту имя **APP1** , которое будет иметь то же пространство имен, что и загружаемый проект. Щелкните **ОК**.
+* Выберите ASP.NET Core **веб-приложение**, а затем щелкните **изменить проверку подлинности**.
+* Выберите **учетные записи отдельных пользователей** и нажмите кнопку **ОК**.
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli)
 
@@ -347,8 +367,6 @@ dotnet ef database update
 
 Службы добавляются в `ConfigureServices` . По стандартному шаблону сначала вызываются все методы `Add{Service}`, а затем все методы `services.Configure{Service}`.
 
-[!code-csharp[](identity/sample/WebApp1/Startup.cs?name=snippet_configureservices)]
-
 Приведенный выше код настраивается Identity со значениями параметров по умолчанию. Доступ к службам предоставляется приложению посредством [внедрения зависимостей](xref:fundamentals/dependency-injection).
 
 Identity включается путем вызова [усеаусентикатион](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_). `UseAuthentication` добавляет по [промежуточного слоя](xref:fundamentals/middleware/index) проверки подлинности в конвейер запросов.
@@ -367,7 +385,7 @@ Identity включается путем вызова [усеаусентика�
 
 # <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli)
 
-Если вы создали проект с именем " **APP1** ", выполните следующие команды. В противном случае используйте правильное пространство имен для `ApplicationDbContext` :
+Если вы создали проект с именем " **APP1**", выполните следующие команды. В противном случае используйте правильное пространство имен для `ApplicationDbContext` :
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
@@ -409,7 +427,7 @@ dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --fil
 
 [Сигнаутасинк](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) очищает утверждения пользователя, хранящиеся в cookie .
 
-Параметр POST указан в *страницах Pages/Shared/_LoginPartial. cshtml* :
+Параметр POST указан в *страницах Pages/Shared/_LoginPartial. cshtml*:
 
 [!code-cshtml[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 

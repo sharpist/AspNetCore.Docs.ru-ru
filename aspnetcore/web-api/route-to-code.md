@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 - Route-to-code
 uid: web-api/route-to-code
-ms.openlocfilehash: 1f5f532053f8f5ca7f73df8c1a910a484e2488d9
-ms.sourcegitcommit: 0bcc0d6df3145a0727da7c4be2f4bda8f27eeaa3
+ms.openlocfilehash: f8a3804a887ebfa0f5284d8991e903c978b18208
+ms.sourcegitcommit: 92439194682dc788b8b5b3a08bd2184dc00e200b
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 12/02/2020
-ms.locfileid: "96513100"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96556610"
 ---
 # <a name="basic-json-apis-with-no-locroute-to-code-in-aspnet-core"></a>Базовые API-интерфейсы JSON с Route-to-code в ASP.NET Core
 
@@ -76,14 +76,14 @@ ASP.NET Core предоставляет вспомогательные мето�
 
 Существует два способа настройки сериализации JSON.
 
-* Параметры сериализации по умолчанию можно настроить с помощью `JsonOptions` `Startup.ConfigureServices` метода.
-* `WriteAsJsonAsync` и `ReadFromJsonAsync` имеют перегрузки, принимающие `JsonSerializerOptions` объект. Этот `JsonSerializerOptions` объект переопределяет параметры по умолчанию.
+* Параметры сериализации по умолчанию можно настроить с помощью <xref:Microsoft.AspNetCore.Http.Json.JsonOptions> `Startup.ConfigureServices` метода.
+* `WriteAsJsonAsync` и `ReadFromJsonAsync` имеют перегрузки, принимающие <xref:System.Text.Json.JsonSerializerOptions> объект. Этот объект параметров переопределяет параметры по умолчанию.
 
 [!code-csharp[](route-to-code/sample/Startup6.cs?name=snippet)]
 
 ## <a name="authentication-and-authorization"></a>Аутентификация и авторизация
 
-Route-to-code поддерживает проверку подлинности и авторизацию. Атрибуты, такие как `[Authorize]` и `[AllowAnonymous]` , не могут быть помещены в конечные точки, сопоставленные с делегатом запроса. Вместо этого метаданные авторизации добавляются с помощью `RequireAuthorization` `AllowAnonymous` методов расширения и.
+Route-to-code поддерживает проверку подлинности и авторизацию. Атрибуты, такие как `[Authorize]` и `[AllowAnonymous]` , не могут быть помещены в конечные точки, сопоставленные с делегатом запроса. Вместо этого метаданные авторизации добавляются с помощью <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous%2A> методов расширения и.
 
 [!code-csharp[](route-to-code/sample/Startup.cs?name=snippet&highlight=30)]
 
@@ -123,7 +123,7 @@ Route-to-code предназначен для базовых API-интерфе�
 * OpenAPI/Swagger
 * Согласование содержимого
 * Внедрение зависимостей конструктора
-* `ProblemDetails` ([https://tools.ietf.org/html/rfc7807](RFC 7807))
+* `ProblemDetails` ([RFC 7807](https://tools.ietf.org/html/rfc7807))
 
 Рекомендуется использовать [веб-api ASP.NET Core](xref:web-api/index) для создания API, если для него требуются некоторые функции из предыдущего списка.
 
