@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/index
-ms.openlocfilehash: aa51e53284bc25629b3975ff0e6de967b9a2b866
-ms.sourcegitcommit: 0bcc0d6df3145a0727da7c4be2f4bda8f27eeaa3
+ms.openlocfilehash: bdeccf81a3bb620c2e1fe15a798d5a83375842c8
+ms.sourcegitcommit: 92439194682dc788b8b5b3a08bd2184dc00e200b
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 12/02/2020
-ms.locfileid: "96513126"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96556545"
 ---
 # <a name="aspnet-core-middleware"></a>ПО промежуточного слоя ASP.NET Core
 
@@ -113,9 +113,9 @@ app.UseResponseCompression();
 В приведенном ниже порядке объединяются статические файлы, чтобы разрешить кэширование сжатых статических файлов.
 
 ```csharp
-app.UseResponseCaching
-app.UseResponseCompression
-app.UseStaticFiles
+app.UseResponseCaching();
+app.UseResponseCompression();
+app.UseStaticFiles();
 ```
 
 Метод `Startup.Configure` добавляет компоненты ПО промежуточного слоя для распространенных сценариев приложений:
@@ -193,6 +193,8 @@ public void Configure(IApplicationBuilder app)
     // Static files aren't compressed by Static File Middleware.
     app.UseStaticFiles();
 
+    app.UseRouting();
+
     app.UseResponseCompression();
 
     app.UseEndpoints(endpoints =>
@@ -260,7 +262,7 @@ app.Map("/level1", level1App => {
 
 <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> также осуществляет ветвление конвейера запросов на основе результата заданного предиката. В отличие от `MapWhen`, эта ветвь снова объединяется с основным конвейером, если она не выполняется по сокращенной схеме или не содержит конечное ПО промежуточного слоя:
 
-[!code-csharp[](index/snapshot/Chain/StartupUseWhen.cs?highlight=25-26)]
+[!code-csharp[](index/snapshot/Chain/StartupUseWhen.cs?highlight=18-19)]
 
 В предыдущем примере ответ "Hello from main pipeline." записывается для всех запросов. Если запрос включает переменную строки запроса `branch`, ее значение регистрируется до того, как будет выполнено повторное объединение с основным конвейером.
 
