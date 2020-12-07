@@ -6,8 +6,6 @@ ms.author: riande
 ms.date: 11/11/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -20,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 6244ac8798fb470a88802389961968fb52bd3c0a
-ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
+ms.openlocfilehash: b2e840e20d034b42b2dc4a525b1dd76e44bbe3a8
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94550698"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420062"
 ---
 # <a name="part-2-add-a-model-to-a-no-locrazor-pages-app-in-aspnet-core"></a>Часть 2. Добавление модели в приложение Razor Pages в ASP.NET Core
 
@@ -143,11 +141,11 @@ ms.locfileid: "94550698"
 
 ## <a name="scaffold-the-movie-model"></a>Создание модели фильма
 
-В этом разделе создается модель фильма. То есть средство формирования шаблонов создает страницы для операций Create (Создание), Read (Чтение), Update (Обновление) и Delete (Удаление) (CRUD) для модели movie.
+В этом разделе создается модель фильма. То есть средство формирования шаблонов создает страницы для операций создания, чтения, обновления и удаления для модели фильма.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Создайте (с помощью Create) папку *Pages/Movies*:
+1. Создайте папку *Pages/Movies*:
    1. Щелкните правой кнопкой мыши папку *Pages* и выберите **Add**(Добавить) > **New Folder**(Новая папка).
    1. Назовите папку *Movies*.
 
@@ -196,7 +194,7 @@ ms.locfileid: "94550698"
 | `-dc`  | Класс `DbContext` для использования. |
 | `-udl` | Использование макета по умолчанию |
 | `-outDir` | Относительный путь к папке выходных данных для создания представлений |
-| `--referenceScriptLibraries` | Добавляет `_ValidationScriptsPartial` для страниц Edit (Изменение) и Create (Создание) |
+| `--referenceScriptLibraries` | Добавляет `_ValidationScriptsPartial` для страниц редактирования и создания |
 
 Чтобы получить справку по команде `aspnet-codegenerator razorpage`, используйте параметр `-h`:
 
@@ -214,7 +212,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-1. Создайте (с помощью Create) папку *Pages/Movies*:
+1. Создайте папку *Pages/Movies*:
    1. Щелкните папку *Pages* и выберите **Add**(Добавить) > **New Folder**(Новая папка).
    1. Назовите папку *Movies*.
 
@@ -248,7 +246,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 В процессе формирования шаблонов создаются и обновляются указанные ниже файлы.
 
-* *Pages/Movie*: Create(Создание), Delete(Удаление), Details (Сведения), Edit (Изменение) и Index(Индекс).
+* *Pages/Movies*: Create, Delete, Details, Edit и Index.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Обновленные возможности
@@ -261,7 +259,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 В процессе формирования шаблонов создаются указанные ниже файлы.
 
-* *Pages/Movie*: Create(Создание), Delete(Удаление), Details (Сведения), Edit (Изменение) и Index(Индекс).
+* *Pages/Movies*: Create, Delete, Details, Edit и Index.
 
 В следующем разделе приводится описание созданных файлов.
 
@@ -269,7 +267,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 В процессе формирования шаблонов создаются и обновляются указанные ниже файлы.
 
-* *Pages/Movie*: Create(Создание), Delete(Удаление), Details (Сведения), Edit (Изменение) и Index(Индекс).
+* *Pages/Movies*: Create, Delete, Details, Edit и Index.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Обновленные возможности
@@ -282,11 +280,11 @@ dotnet-aspnet-codegenerator razorpage -h
 
 <a name="pmc"></a>
 
-## <a name="no-loccreate-the-initial-database-schema-using-efs-migration-feature"></a>Использование командыCreate для создания начальной схемы базы данных с помощью функции миграции EF
+## <a name="create-the-initial-database-schema-using-efs-migration-feature"></a>Создание начальной схемы базы данных с помощью функции миграции EF
 
 Функция миграции в Entity Framework Core предоставляет следующие возможности:
 
-* Создание начальной схемы базы данных с помощью команды Create.
+* Создание начальной схемы базы данных.
 * Поэтапное обновление схемы базы данных, чтобы она соответствовала модели данных приложения.  Существующие данные в базе данных сохраняются.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
@@ -340,7 +338,7 @@ ASP.NET Core поддерживает [внедрение зависимосте
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-`RazorPagesMovieContext` координирует функции EF Core, такие как Create (Создание), Read (Чтение), Update (Обновление) и Delete (Удаление), для модели `Movie`. Контекст данных (`RazorPagesMovieContext`) получен из [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). Контекст данных указывает сущности, которые включаются в модель данных.
+`RazorPagesMovieContext` координирует функции EF Core, такие как Create (создание), Read (чтение), Update (обновление) и Delete (удаление) для модели `Movie`. Контекст данных (`RazorPagesMovieContext`) получен из [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). Контекст данных указывает сущности, которые включаются в модель данных.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Data/RazorPagesMovieContext.cs)]
 
@@ -369,14 +367,14 @@ ASP.NET Core поддерживает [внедрение зависимосте
 
    Вы пропустили [шаг миграции](#pmc).
 
-1. Протестируйте ссылку **Create** (Создание).
+1. Протестируйте ссылку **Создать**.
 
-   ![Экран "Страница Create"](model/_static/conan5.png)
+   ![Страница "Создать"](model/_static/conan5.png)
 
    > [!NOTE]
    > В поле `Price` нельзя вводить десятичные запятые. Чтобы обеспечить поддержку [проверки jQuery](https://jqueryvalidation.org/) для других языков, кроме английского, используйте вместо десятичной точки запятую (,), а для отображения данных в форматах для других языков, кроме английского, выполните глобализацию приложения. Инструкции по глобализации см. на [сайте GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
-1. Протестируйте ссылки **Edit** (Изменение), **Details** (Сведения) и **Delete (Удаление)** .
+1. Протестируйте ссылки **Изменить**, **Сведения** и **Удалить**.
 
 В следующем учебнике рассматриваются файлы, созданные с помощью формирования шаблонов.
 
@@ -509,11 +507,11 @@ using Microsoft.EntityFrameworkCore;
 
 ## <a name="scaffold-the-movie-model"></a>Создание модели фильма
 
-В этом разделе создается модель фильма. То есть средство формирования шаблонов создает страницы для операций Create (Создание), Read (Чтение), Update (Обновление) и Delete (Удаление) (CRUD) для модели movie.
+В этом разделе создается модель фильма. То есть средство формирования шаблонов создает страницы для операций создания, чтения, обновления и удаления для модели фильма.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Создайте (с помощью Create) папку *Pages/Movies*:
+Создайте папку *Pages/Movies*:
 
 * Щелкните правой кнопкой мыши папку *Pages* и выберите **Add**(Добавить) > **New Folder**(Новая папка).
 * Назовите папку *Movies*.
@@ -563,7 +561,7 @@ using Microsoft.EntityFrameworkCore;
 | `-dc`  | Класс `DbContext` для использования. |
 | `-udl` | Использование макета по умолчанию |
 | `-outDir` | Относительный путь к папке выходных данных для создания представлений |
-| `--referenceScriptLibraries` | Добавляет `_ValidationScriptsPartial` для страниц Edit (Изменение) и Create (Создание) |
+| `--referenceScriptLibraries` | Добавляет `_ValidationScriptsPartial` для страниц редактирования и создания |
 
 Чтобы получить справку по команде `aspnet-codegenerator razorpage`, используйте параметр `-h`:
 
@@ -581,7 +579,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-Создайте (с помощью Create) папку *Pages/Movies*:
+Создайте папку *Pages/Movies*:
 
 * Щелкните правой кнопкой мыши папку *Pages* и выберите **Add**(Добавить) > **New Folder**(Новая папка).
 * Назовите папку *Movies*.
@@ -628,7 +626,7 @@ dotnet tool install --global dotnet-ef
 
 В процессе формирования шаблонов создаются и обновляются указанные ниже файлы.
 
-* *Pages/Movie*: Create(Создание), Delete(Удаление), Details (Сведения), Edit (Изменение) и Index(Индекс).
+* *Pages/Movies*: Create, Delete, Details, Edit и Index.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Обновленные возможности
@@ -641,7 +639,7 @@ dotnet tool install --global dotnet-ef
 
 В процессе формирования шаблонов создаются и обновляются указанные ниже файлы.
 
-* *Pages/Movie*: Create(Создание), Delete(Удаление), Details (Сведения), Edit (Изменение) и Index(Индекс).
+* *Pages/Movies*: Create, Delete, Details, Edit и Index.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Обновленные возможности
@@ -654,7 +652,7 @@ dotnet tool install --global dotnet-ef
 
 В процессе формирования шаблонов создаются указанные ниже файлы.
 
-* *Pages/Movie*: Create(Создание), Delete(Удаление), Details (Сведения), Edit (Изменение) и Index(Индекс).
+* *Pages/Movies*: Create, Delete, Details, Edit и Index.
 
 В следующем разделе приводится описание созданных файлов.
 
@@ -701,7 +699,7 @@ dotnet ef database update
 
 Команда миграции формирует код для создания схемы исходной базы данных. Схема создается на основе модели, указанной в `DbContext`. Аргумент `InitialCreate` используется для присвоения имен миграциям. Можно использовать любое имя, однако по соглашению выбирается имя, которое описывает миграцию.
 
-Команда `update` выполняет метод `Up` в миграциях, которые не были применены. В этом случае команда `update` запускает метод `Up` в файле *Migrations/\<time-stamp>_InitialCreate.cs*, который создает базу данных.
+Команда `update` выполняет метод `Up` в миграциях, которые не были применены. В этом случае `update` запускает метод `Up` в файле *Migrations/\<time-stamp>_InitialCreate.cs*, который создает базу данных.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -715,7 +713,7 @@ ASP.NET Core поддерживает [внедрение зависимосте
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-`RazorPagesMovieContext` координирует функции EF Core, такие как Create (Создание), Read (Чтение), Update (Обновление) и Delete (Удаление), для модели `Movie`. Контекст данных (`RazorPagesMovieContext`) получен из [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). Контекст данных указывает сущности, которые включаются в модель данных.
+`RazorPagesMovieContext` координирует функции EF Core, такие как Create (создание), Read (чтение), Update (обновление) и Delete (удаление) для модели `Movie`. Контекст данных (`RazorPagesMovieContext`) получен из [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). Контекст данных указывает сущности, которые включаются в модель данных.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
 
@@ -744,14 +742,14 @@ Login failed for user 'User-name'.
 
 Вы пропустили [шаг миграции](#pmc).
 
-* Протестируйте ссылку **Create** (Создание).
+* Протестируйте ссылку **Создать**.
 
-  ![Экран "Страница Create"](model/_static/conan5.png)
+  ![Страница "Создать"](model/_static/conan5.png)
 
   > [!NOTE]
   > В поле `Price` нельзя вводить десятичные запятые. Чтобы обеспечить поддержку [проверки jQuery](https://jqueryvalidation.org/) для других языков, кроме английского, используйте вместо десятичной точки запятую (,), а для отображения данных в форматах для других языков, кроме английского, выполните глобализацию приложения. Инструкции по глобализации см. на [сайте GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
-* Протестируйте ссылки **Edit** (Изменение), **Details** (Сведения) и **Delete (Удаление)** .
+* Протестируйте ссылки **Изменить**, **Сведения** и **Удалить**.
 
 В следующем учебнике рассматриваются файлы, созданные с помощью формирования шаблонов.
 
@@ -895,11 +893,11 @@ using Microsoft.EntityFrameworkCore;
 
 ## <a name="scaffold-the-movie-model"></a>Создание модели фильма
 
-В этом разделе создается модель фильма. То есть средство формирования шаблонов создает страницы для операций Create (Создание), Read (Чтение), Update (Обновление) и Delete (Удаление) (CRUD) для модели movie.
+В этом разделе создается модель фильма. То есть средство формирования шаблонов создает страницы для операций создания, чтения, обновления и удаления для модели фильма.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Создайте (с помощью Create) папку *Pages/Movies*:
+Создайте папку *Pages/Movies*:
 
 * Щелкните правой кнопкой мыши папку *Pages* и выберите **Add**(Добавить) > **New Folder**(Новая папка).
 * Назовите папку *Movies*.
@@ -953,7 +951,7 @@ to use Data, it should not use models. That will make the namespace the same for
 | `-dc`  | Класс `DbContext` для использования. |
 | `-udl` | Использование макета по умолчанию |
 | `-outDir` | Относительный путь к папке выходных данных для создания представлений |
-| `--referenceScriptLibraries` | Добавляет `_ValidationScriptsPartial` для страниц Edit (Изменение) и Create (Создание) |
+| `--referenceScriptLibraries` | Добавляет `_ValidationScriptsPartial` для страниц редактирования и создания |
 
 Чтобы получить справку по команде `aspnet-codegenerator razorpage`, используйте параметр `-h`:
 
@@ -965,7 +963,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-Создайте (с помощью Create) папку *Pages/Movies*:
+Создайте папку *Pages/Movies*:
 
 * Щелкните папку *Pages* и выберите **Add**(Добавить) > **New Folder**(Новая папка).
 * Назовите папку *Movies*.
@@ -994,7 +992,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 ### <a name="files-created"></a>Создаваемые файлы
 
-* *Pages/Movie*: Create(Создание), Delete(Удаление), Details (Сведения), Edit (Изменение) и Index(Индекс).
+* *Pages/Movies*: Create, Delete, Details, Edit и Index.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="file-updated"></a>Обновляемые файлы
@@ -1058,7 +1056,7 @@ ASP.NET Core поддерживает [внедрение зависимосте
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
-`RazorPagesMovieContext` координирует функции EF Core, такие как Create (Создание), Read (Чтение), Update (Обновление) и Delete (Удаление) для модели `Movie`. Контекст данных (`RazorPagesMovieContext`) получен из [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). Контекст данных указывает сущности, которые включаются в модель данных.
+`RazorPagesMovieContext` координирует функции EF Core, такие как Create (создание), Read (чтение), Update (обновление) и Delete (удаление) для модели `Movie`. Контекст данных (`RazorPagesMovieContext`) получен из [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). Контекст данных указывает сущности, которые включаются в модель данных.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
@@ -1087,14 +1085,14 @@ Login failed for user 'User-name'.
 
 Вы пропустили [шаг миграции](#pmc).
 
-* Протестируйте ссылку **Create** (Создание).
+* Протестируйте ссылку **Создать**.
 
-  ![Экран "Страница Create"](model/_static/conan.png)
+  ![Страница "Создать"](model/_static/conan.png)
 
   > [!NOTE]
   > В поле `Price` нельзя вводить десятичные запятые. Чтобы обеспечить поддержку [проверки jQuery](https://jqueryvalidation.org/) для других языков, кроме английского, используйте вместо десятичной точки запятую (,), а для отображения данных в форматах для других языков, кроме английского, выполните глобализацию приложения. Инструкции по глобализации см. на [сайте GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
-* Протестируйте ссылки **Edit** (Изменение), **Details** (Сведения) и **Delete (Удаление)** .
+* Протестируйте ссылки **Изменить**, **Сведения** и **Удалить**.
 
 В следующем учебнике рассматриваются файлы, созданные с помощью формирования шаблонов.
 

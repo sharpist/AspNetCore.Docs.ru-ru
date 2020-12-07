@@ -6,8 +6,6 @@ ms.author: riande
 ms.date: 09/15/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -20,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: fa113a3e0a2a69fb4aa1318056dcfc6e261490f6
-ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
+ms.openlocfilehash: 4b8bd9c886e615add6b0d3e372843a8ddb33ae18
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "96025034"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420049"
 ---
 # <a name="tutorial-get-started-with-no-locrazor-pages-in-aspnet-core"></a>Учебник. Начало работы с Razor Pages в ASP.NET Core
 
@@ -43,7 +41,7 @@ ms.locfileid: "96025034"
 В этом учебнике рассмотрены следующие задачи.
 
 > [!div class="checklist"]
-> * Создание веб-приложения Razor Pages с помощью команды Create.
+> * Создание веб-приложения Razor Pages.
 > * Запустите приложение.
 > * Анализ файлов проекта.
 
@@ -67,28 +65,28 @@ ms.locfileid: "96025034"
 
 ---
 
-## <a name="no-loccreate-a-no-locrazor-pages-web-app"></a>Создание веб-приложения Razor Pages с помощью команды Create
+## <a name="create-a-no-locrazor-pages-web-app"></a>Создание веб-приложения Razor Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Запустите Visual Studio и щелкните **Create a new project** (Создать проект). Дополнительные сведения см. в статье [Создание проекта в Visual Studio](/visualstudio/ide/create-new-project) (с помощью команды Create).
+1. Запустите Visual Studio и щелкните **Создать проект** Дополнительные сведения см. в статье [Создание проекта в Visual Studio](/visualstudio/ide/create-new-project).
 
-   ![Экран "Создание проекта из начального окна с помощью Create"](razor-pages-start/_static/5/start-window-create-new-project.png)
+   ![Создание проекта в начальном окне](razor-pages-start/_static/5/start-window-create-new-project.png)
 
-1. В диалоговом окне **Create a new project** (Создать проект) выберите **Веб-приложение ASP.NET Core**, а затем — **Далее**.
+1. В диалоговом окне **Создать проект** выберите **Веб-приложение ASP.NET Core** и нажмите **Далее**.
 
     ![Новое веб-приложение ASP.NET Core](razor-pages-start/_static/5/np.png)
     
 1. В диалоговом окне **Настроить новый проект** введите `RazorPagesMovie` в поле **Имя проекта**. Важно присвоить проекту имя *RazorPagesMovie*, включая сопоставление регистра букв, чтобы пространство имени соответствовало при копировании и вставке примера кода.
 
-1. Выберите **Create**.
+1. Нажмите кнопку **создания**.
 
     ![Новое веб-приложение ASP.NET Core](razor-pages-start/_static/config.png)
 
-1. В диалоговом окне выберите **Create a new ASP.NET Core web application** (Создать веб-приложение ASP.NET Core), а затем выберите
+1. В диалоговом окне **Создайте веб-приложение ASP.NET Core** сделайте следующее:
     1. В раскрывающихся списках выберите **.NET Core** и **ASP.NET Core 5.0**.
     1. **Веб-приложение**.
-    1. **Create**.
+    1. **Create** (создать).
 
      ![Новое веб-приложение ASP.NET Core](razor-pages-start/_static/5/npx.png)
 
@@ -128,7 +126,7 @@ ms.locfileid: "96025034"
     1. Если отобразится запрос на выбор **целевой платформы**, выберите последнюю версию .NET 5.x.
     1. Выберите **Далее**.
 
-1. Назовите проект *RazorPagesMovie* и выберите **Create** .
+1. Укажите название проекта *RazorPagesMovie* и нажмите кнопку **Создать**.
 
     ![Имя проекта macOS](razor-pages-start/_static/RazorPagesMovie.png)
 
@@ -191,7 +189,7 @@ ms.locfileid: "96025034"
 В этом учебнике рассмотрены следующие задачи.
 
 > [!div class="checklist"]
-> * Создание веб-приложения Razor Pages с помощью команды Create.
+> * Создание веб-приложения Razor Pages.
 > * Запустите приложение.
 > * Анализ файлов проекта.
 
@@ -215,17 +213,17 @@ ms.locfileid: "96025034"
 
 ---
 
-## <a name="no-loccreate-a-no-locrazor-pages-web-app"></a>Создание веб-приложения Razor Pages с помощью команды Create
+## <a name="create-a-no-locrazor-pages-web-app"></a>Создание веб-приложения Razor Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * В Visual Studio в меню **Файл** щелкните **Создать** > **Проект**.
-* Создайте веб-приложение ASP.NET Core с мощью командыCreate и нажмите кнопку **Далее**.
+* Создайте веб-приложение ASP.NET Core и нажмите кнопку **Далее**.
   ![Новое веб-приложение ASP.NET Core](razor-pages-start/_static/np_2.1.png)
 * Присвойте проекту имя **RazorPagesMovie**. Очень важно, чтобы проект имел имя *RazorPagesMovie*, так как пространства имен при копировании и вставке кода должны совпасть.
   ![Новое веб-приложение ASP.NET Core](razor-pages-start/_static/config.png)
 
-* Выберите в раскрывающемся списке пункты **ASP.NET Core 3.1** и **Веб-приложение**, а затем нажмите кнопку **Create** (Создать).
+* Выберите в раскрывающемся списке пункт **ASP.NET Core 3.1**, затем — **Веб-приложение** и нажмите кнопку **Создать**.
 
 ![Новое веб-приложение ASP.NET Core](razor-pages-start/_static/3/npx.png)
 
@@ -270,7 +268,7 @@ ms.locfileid: "96025034"
 
   Выберите **Далее**.
 
-* Назовите проект **RazorPagesMovie**, а затем выберите **Create** .
+* Присвойте проекту имя **RazorPagesMovie** и нажмите **Создать**.
 
   ![Имя проекта macOS](razor-pages-start/_static/RazorPagesMovie.png)
 
@@ -333,7 +331,7 @@ ms.locfileid: "96025034"
 В этом учебнике рассмотрены следующие задачи.
 
 > [!div class="checklist"]
-> * Создание веб-приложения Razor Pages с помощью команды Create.
+> * Создание веб-приложения Razor Pages.
 > * Запустите приложение.
 > * Анализ файлов проекта.
 
@@ -357,13 +355,13 @@ ms.locfileid: "96025034"
 
 ---
 
-## <a name="no-loccreate-a-no-locrazor-pages-web-app"></a>Создание веб-приложения Razor Pages с помощью команды Create
+## <a name="create-a-no-locrazor-pages-web-app"></a>Создание веб-приложения Razor Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * В Visual Studio в меню **Файл** щелкните **Создать** > **Проект**.
 
-* Создайте веб-приложение ASP.NET Core с мощью командыCreate и нажмите кнопку **Далее**.
+* Создайте веб-приложение ASP.NET Core и нажмите кнопку **Далее**.
 
   ![Новое веб-приложение ASP.NET Core](razor-pages-start/_static/np_2.1.png)
 
@@ -371,7 +369,7 @@ ms.locfileid: "96025034"
 
   ![Новое веб-приложение ASP.NET Core](razor-pages-start/_static/config.png)
 
-* Выберите в раскрывающемся списке пункты **ASP.NET Core 2.2** и **Веб-приложение**, а затем нажмите кнопку **Create** (Создать).
+* Выберите в раскрывающемся списке пункт **ASP.NET Core 2.2**, затем — **Веб-приложение** и нажмите кнопку **Создать**.
 
 ![Новое веб-приложение ASP.NET Core](razor-pages-start/_static/np_2_2.2.png)
 
@@ -414,7 +412,7 @@ ms.locfileid: "96025034"
 
   Выберите **Далее**.
 
-* Назовите проект **RazorPagesMovie**, а затем выберите **Create** .
+* Присвойте проекту имя **RazorPagesMovie** и нажмите **Создать**.
 
   ![nameproj](razor-pages-start/_static/RazorPagesMovie.png)
 

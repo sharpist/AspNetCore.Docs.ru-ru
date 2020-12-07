@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: ab06f2d347d7f05e9c72a85e0c6e0fbc67fe48a7
-ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
+ms.openlocfilehash: ccbfc27eb89e23938a69f0ab4cb306d6a4136889
+ms.sourcegitcommit: fe2e3174c34bee1e425c6e52dd8f663fe52b8756
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94550716"
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "96175056"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Учебник. Создание веб-API с помощью ASP.NET Core
 
@@ -149,7 +149,7 @@ ms.locfileid: "94550716"
   Visual Studio запустит:
 
 * веб-сервер IIS Express;
-* браузер по умолчанию и перейдет к `https://localhost:<port>/https://localhost:5001/swagger/index.html`, где `<port>` — это номер порта, выбранный случайным образом.
+* браузер по умолчанию и перейдет к `https://localhost:<port>/swagger/index.html`, где `<port>` — это номер порта, выбранный случайным образом.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -174,7 +174,7 @@ ms.locfileid: "94550716"
 -->
 Swagger используется для создания полезной документации и страниц справки для веб-API. В этом учебнике рассматривается создание веб-API. Дополнительные сведения о Swagger: <xref:tutorials/web-api-help-pages-using-swagger>.
 
-Скопируйте и вставьте **URL-адрес запроса** в строку браузера: `https://localhost:<port>/WeatherForecast`
+Скопируйте и вставьте **URL-адрес запроса** в адресную строку браузера: `https://localhost:<port>/WeatherForecast`
 
 Возвращаемые данные JSON будут выглядеть примерно так:
 
@@ -270,10 +270,8 @@ Swagger используется для создания полезной док
 ### <a name="add-nuget-packages"></a>Добавление пакетов NuGet
 
 * В меню **Сервис** выберите **Диспетчер пакетов NuGet > Управление пакетами NuGet для решения**.
-* Откройте вкладку **Обзор** и в поле поиска введите **Microsoft.
-**EntityFrameworkCore.SqlServer**.
+* Перейдите на вкладку **Обзор** и введите **Microsoft.EntityFrameworkCore.SqlServer** в поле поиска.
 <!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Delete this line at RTM -->
-* Установите флажок **Включить предварительные выпуски** , чтобы был доступен релиз-кандидат версии 5.0. 
 * На панели слева выберите **Microsoft.EntityFrameworkCore.SqlServer**.
 * Установите флажок **Проект** на правой панели и выберите **Установить**.
 * Добавьте пакет NuGet **пакет NuGet Microsoft.EntityFrameworkCore.InMemory**, выполнив приведенные выше инструкции.
@@ -330,8 +328,8 @@ Swagger используется для создания полезной док
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool update -g Dotnet-aspnet-codegenerator
+dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet tool update -g dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
@@ -536,7 +534,7 @@ DTO можно использовать для следующего:
 
 Чтобы продемонстрировать подход с применением DTO, обновите класс `TodoItem`, включив в него поле секрета:
 
-[!code-csharp[](first-web-api/samples/5.x/TodoApiDTO/Models/TodoItem.cs?name=snippet&highlight=6)]
+[!code-csharp[](first-web-api/samples/5.x/TodoApiDTO/Models/TodoItem.cs?name=snippet&highlight=8)]
 
 Поле секрета должно быть скрыто в этом приложении, однако административное приложение может отобразить его.
 
@@ -1364,7 +1362,7 @@ DTO можно использовать для следующего:
 
 * Выполните построение проекта.
 * В Postman укажите метод HTTP `POST`.
-* Задайте для URI значение `https://localhost:<port>/api/TodoItem`. Например, `https://localhost:5001/api/TodoItem`.
+* Задайте для URI значение `https://localhost:<port>/api/Todo`. Например, `https://localhost:5001/api/Todo`.
 * Откройте вкладку **Тело**.
 * Установите переключатель **без обработки**.
 * Задайте тип **JSON (приложение/json)** .

@@ -4,14 +4,14 @@ author: codemillmatt
 description: Узнайте, как опубликовать веб-API ASP.NET Core в службе управления API Azure с помощью Visual Studio.
 ms.author: masoucou
 ms.custom: devx-track-csharp, mvc
-ms.date: 08/26/2020
+ms.date: 11/22/2020
 uid: tutorials/publish-to-azure-api-management-using-vs
-ms.openlocfilehash: 3cc6b8c0bd93f133151e1c8ad18a55b11975a9be
-ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
+ms.openlocfilehash: 395b5981a3018486235c38f032893f985ab71383
+ms.sourcegitcommit: 619200f2981656ede6d89adb6a22ad1a0e16da22
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88945516"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96332239"
 ---
 # <a name="publish-an-aspnet-core-web-api-to-azure-api-management-with-visual-studio"></a>Публикация веб-API ASP.NET Core в службе управления API Azure с помощью Visual Studio
 
@@ -108,11 +108,15 @@ ms.locfileid: "88945516"
 
 1. Откройте экземпляр службы управления API, созданный ранее на портале Azure. Выберите колонку **API-интерфейсов**.
 
-    ![Колонка API-интерфейсов, выбранная из экземпляра службы управления API](publish-to-azure-api-management-using-vs/_static/portal_api_overview.png)
+  ![Колонка API-интерфейсов, выбранная из экземпляра службы управления API](publish-to-azure-api-management-using-vs/_static/portal_api_overview.png)
+
+1. Выберите три точки рядом с **API Echo** и выберите **Удалить** во всплывающем меню, чтобы удалить его.
+
+  ![Удаление API Echo из экземпляра службы Управления API](publish-to-azure-api-management-using-vs/_static/portal_delete_echo.png)
 
 1. На панели **Добавить новый API** выберите плитку **Пустой API**.
 
-    ![Экран, на котором выделена плитка пустого API](publish-to-azure-api-management-using-vs/_static/portal_api_create_blank.png)
+  ![Экран, на котором выделена плитка пустого API](publish-to-azure-api-management-using-vs/_static/portal_api_create_blank.png)
 
 1. Введите следующие значения в диалоговом окне **Создание пустого API**, которое появляется.    
 

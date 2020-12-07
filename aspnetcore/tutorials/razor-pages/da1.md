@@ -6,8 +6,6 @@ ms.author: riande
 ms.date: 09/20/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -20,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/da1
-ms.openlocfilehash: 7146c1955a578502a63578de4f1abce932cb8b32
-ms.sourcegitcommit: 342588e10ae0054a6d6dc0fd11dae481006be099
+ms.openlocfilehash: 460950413d1dd2d3539c1d62b0eb11f6bb5144a9
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/07/2020
-ms.locfileid: "94360612"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96419971"
 ---
 # <a name="part-5-update-the-generated-pages-in-an-aspnet-core-app"></a>Часть 5. Изменение созданных страниц в приложении ASP.NET Core
 
@@ -55,7 +53,7 @@ ms.locfileid: "94360612"
 
 ![Окно браузера с указателем, наведенным на ссылку Edit (Изменить), и URL-адресом ссылки https://localhost:1234/Movies/Edit/5](~/tutorials/razor-pages/da1/edit7.png)
 
-Ссылки **Edit** (Изменение), **Details** (Сведения) и **Delete (Удаление)** создаются [Вспомогательной функцией привязки тегов](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) в файле *Pages/Movies/Index.cshtml*.
+Ссылки **Edit**, **Details** и **Delete** создаются [вспомогательной функцией тегов привязки](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) в файле *Pages/Movies/Index.cshtml*.
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
@@ -77,7 +75,7 @@ ms.locfileid: "94360612"
 
 ### <a name="add-route-template"></a>Добавление шаблона маршрута
 
-Обновите страницы Edit (Изменение), Details (Сведения) и Delete(Удаление) так, чтобы в Razor Pages использовался шаблон маршрута `{id:int}`. Измените директиву страницы для каждой из этих страниц c `@page` на `@page "{id:int}"`. Запустите приложение и просмотрите исходный код.
+Обновите страницы Razor Pages Edit, Details и Delete так, чтобы использовался шаблон маршрута `{id:int}`. Измените директиву страницы для каждой из этих страниц c `@page` на `@page "{id:int}"`. Запустите приложение и просмотрите исходный код.
 
 Созданный код HTML добавляет идентификатор в путь URL-адреса:
 
@@ -117,7 +115,7 @@ ms.locfileid: "94360612"
 
 1. Задайте точку останова в `catch (DbUpdateConcurrencyException)`.
 1. Выберите команду **Изменить** у фильма, внесите изменения, но не вводите **Сохранить**.
-1. В другом окне браузера выберите ссылку **Delete (Удаление)** для того же фильма, а затем удалите фильм.
+1. В другом окне браузера щелкните ссылку **Delete** для этого же фильма, а затем удалите его.
 1. В первом окне браузера опубликуйте изменения для фильма.
 
 Коду в рабочей среде может потребоваться обнаружение конфликтов параллелизма. Дополнительные сведения см. в статье [Обработка конфликтов параллелизма](xref:data/ef-rp/concurrency).
@@ -146,7 +144,7 @@ ms.locfileid: "94360612"
 * При наличии ошибок в состоянии модели, например `ReleaseDate` невозможно преобразовать в дату, форма отображается повторно с предоставленными значениями.
 * Если ошибки модели отсутствуют, данные фильма сохраняются.
 
-Методы HTTP GET на страницах Index, Create и Delete Razor соответствуют аналогичному шаблону. Метод HTTP POST `OnPostAsync` в CreateRazor Page соответствует аналогичному шаблону метода `OnPostAsync` в Edit Razor Page.
+Методы HTTP GET на страницах Razor Index, Create и Delete работают аналогично. Метод HTTP POST `OnPostAsync` на странице Razor Create работает аналогично методу `OnPostAsync` на странице Razor Edit.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
@@ -176,7 +174,7 @@ ms.locfileid: "94360612"
 
 ![Окно браузера с указателем, наведенным на ссылку Edit (Изменить), и URL-адресом ссылки http://localhost:1234/Movies/Edit/5](~/tutorials/razor-pages/da1/edit7.png)
 
-Ссылки **Edit** (Изменение), **Details** (Сведения) и **Delete (Удаление)** создаются [Вспомогательной функцией привязки тегов](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) в файле *Pages/Movies/Index.cshtml*.
+Ссылки **Edit**, **Details** и **Delete** создаются [вспомогательной функцией тегов привязки](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) в файле *Pages/Movies/Index.cshtml*.
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
@@ -194,7 +192,7 @@ ms.locfileid: "94360612"
 
 В динамически созданных ссылках идентификаторы фильмов передаются с помощью строки запроса. Например, `?id=1` в `https://localhost:5001/Movies/Details?id=1`.
 
-Обновите страницы Edit (Изменение), Details (Сведения) и Delete(Удаление) так, чтобы в Razor Pages использовался шаблон маршрута "{id:int}". Измените директиву страницы для каждой из этих страниц c `@page` на `@page "{id:int}"`. Запустите приложение и просмотрите исходный код. Созданный код HTML добавляет идентификатор в путь URL-адреса:
+Обновите страницы Razor Edit, Details и Delete так, чтобы использовался шаблон маршрута "{id:int}". Измените директиву страницы для каждой из этих страниц c `@page` на `@page "{id:int}"`. Запустите приложение и просмотрите исходный код. Созданный код HTML добавляет идентификатор в путь URL-адреса:
 
 ```html
 <td>
@@ -232,7 +230,7 @@ ms.locfileid: "94360612"
 
 * Задайте точку останова в `catch (DbUpdateConcurrencyException)`
 * Выберите команду **Изменить** у фильма, внесите изменения, но не вводите **Сохранить**.
-* В другом окне браузера выберите ссылку **Delete (Удаление)** для того же фильма, а затем удалите фильм.
+* В другом окне браузера щелкните ссылку **Delete** для этого же фильма, а затем удалите его.
 * В первом окне браузера опубликуйте изменения для фильма.
 
 Коду в рабочей среде может потребоваться обнаружение конфликтов параллелизма. Дополнительные сведения см. в статье [Обработка конфликтов параллелизма](xref:data/ef-rp/concurrency).
@@ -261,7 +259,7 @@ ms.locfileid: "94360612"
 * При наличии ошибок в состоянии модели, например `ReleaseDate` невозможно преобразовать в дату, форма отображается с предоставленными значениями.
 * Если ошибки модели отсутствуют, данные фильма сохраняются.
 
-Методы HTTP GET на страницах Index, Create и Delete Razor соответствуют аналогичному шаблону. Метод HTTP POST `OnPostAsync` в CreateRazor Page соответствует аналогичному шаблону метода `OnPostAsync` в Edit Razor Page.
+Методы HTTP GET на страницах Razor Index, Create и Delete работают аналогично. Метод HTTP POST `OnPostAsync` на странице Razor Create работает аналогично методу `OnPostAsync` на странице Razor Edit.
 
 В следующем учебнике будет добавлена функция поиска.
 

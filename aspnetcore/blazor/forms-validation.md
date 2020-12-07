@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: a8bbcbd6ac13ec064350a5b885423835baa4c4cc
-ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
+ms.openlocfilehash: 979e2615080a4f07b6091f0498fc7efa62ea1563
+ms.sourcegitcommit: 43a540e703b9096921de27abc6b66bc0783fe905
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "95870377"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320074"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>Формы и проверка ASP.NET Core Blazor
 
@@ -729,20 +729,15 @@ services.AddControllersWithViews()
 
 Используйте компонент <xref:Microsoft.AspNetCore.Components.Forms.InputText>, чтобы создать пользовательский компонент, использующий событие `input`, а не событие `change`.
 
-В следующем примере компонент `CustomInputText` наследует компонент `InputText` платформы задает привязку события (<xref:Microsoft.AspNetCore.Components.EventCallbackFactoryBinderExtensions.CreateBinder%2A>) к событию `oninput`.
+В следующем примере компонент `CustomInputText` наследует компонент `InputText` платформы и задает привязку для события `oninput`.
 
 `Shared/CustomInputText.razor`:
 
 ```razor
 @inherits InputText
 
-<input 
-    @attributes="AdditionalAttributes" 
-    class="@CssClass" 
-    value="@CurrentValue"
-    @oninput="EventCallback.Factory.CreateBinder<string>(
-         this, __value => CurrentValueAsString = __value, 
-         CurrentValueAsString)" />
+<input @attributes="AdditionalAttributes" class="@CssClass" 
+    @bind="CurrentValueAsString" @bind:event="oninput" />
 ```
 
 Компонент `CustomInputText` можно использовать везде, где используется <xref:Microsoft.AspNetCore.Components.Forms.InputText>:

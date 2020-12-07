@@ -6,8 +6,6 @@ ms.author: riande
 ms.date: 09/26/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -20,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: 2c5bc221901d9e41984fb591755a8ad94e7e1420
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: 6627825239d815d2c8bcad98e22340f07f921ab9
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570241"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420023"
 ---
 # <a name="part-4-of-tutorial-series-on-no-locrazor-pages"></a>Часть 4 серии руководств по Razor Pages
 
@@ -118,7 +116,7 @@ LocalDB — это упрощенная версия ядра СУБД SQL Serv
 
 ## <a name="seed-the-database"></a>Заполнение базы данных
 
-Создайте класс (с помощью Create) с именем `SeedData` в папке *Models* со следующим кодом:
+Создайте класс `SeedData` в папке *Models* со следующим кодом:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
 
@@ -154,7 +152,7 @@ if (context.Movie.Any())
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Удалите все записи из базы данных с помощью команды Delete. Используйте ссылки удаления в браузере или в [SSOX](xref:tutorials/razor-pages/new-field#ssox).
+1. Удалите все записи в базе данных. Используйте ссылки удаления в браузере или в [SSOX](xref:tutorials/razor-pages/new-field#ssox).
 
 1. Необходимо выполнить инициализацию (вызывать методы в классе `Startup`), чтобы запустить метод заполнения. Для этого следует остановить и перезапустить IIS Express. Закройте и перезапустите службы IIS с помощью любого из перечисленных ниже подходов.
 
@@ -169,7 +167,7 @@ if (context.Movie.Any())
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio для Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Удалите все записи в базе данных для запуска метода заполнения, использовав команду Delete. Остановите и запустите приложение, чтобы начать заполнение базы данных.
+Удалите все записи в базе данных для запуска метода Seed. Остановите и запустите приложение, чтобы начать заполнение базы данных.
 
 ---
 
@@ -272,7 +270,7 @@ LocalDB — это упрощенная версия ядра СУБД SQL Serv
 
 ## <a name="seed-the-database"></a>Заполнение базы данных
 
-Создайте класс (с помощью Create) с именем `SeedData` в папке *Models* со следующим кодом:
+Создайте класс `SeedData` в папке *Models* со следующим кодом:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
 
@@ -308,7 +306,7 @@ if (context.Movie.Any())
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Удалите все записи из базы данных с помощью команды Delete. Используйте ссылки удаления в браузере или в [SSOX](xref:tutorials/razor-pages/new-field#ssox).
+* Удалите все записи в базе данных. Используйте ссылки удаления в браузере или в [SSOX](xref:tutorials/razor-pages/new-field#ssox).
 * Необходимо выполнить инициализацию (вызывать методы в классе `Startup`), чтобы запустить метод заполнения. Для этого следует остановить и перезапустить IIS Express. Закройте и перезапустите службы IIS с помощью любого из перечисленных ниже подходов.
 
   * Щелкните правой кнопкой мыши значок IIS Express в области уведомлений и выберите **Выйти** или **Остановить сайт**.
@@ -322,7 +320,7 @@ if (context.Movie.Any())
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio для Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Удалите все записи в базе данных для запуска метода заполнения, использовав команду Delete. Остановите и запустите приложение, чтобы начать заполнение базы данных.
+Удалите все записи в базе данных для запуска метода Seed. Остановите и запустите приложение, чтобы начать заполнение базы данных.
 
 ---
 
@@ -416,7 +414,7 @@ LocalDB — это упрощенная версия ядра СУБД SQL Serv
 
 ## <a name="seed-the-database"></a>Заполнение базы данных
 
-Создайте класс (с помощью Create) с именем `SeedData` в папке *Models* со следующим кодом:
+Создайте класс `SeedData` в папке *Models* со следующим кодом:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedData.cs?name=snippet_1)]
 
@@ -452,7 +450,7 @@ SqlException: Не удается открыть базу данных "RazorPag
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Удалите все записи из базы данных с помощью команды Delete. Это можно сделать с помощью ссылок удаления в браузере или из [SSOX](xref:tutorials/razor-pages/new-field#ssox).
+* Удалите все записи в базе данных. Это можно сделать с помощью ссылок удаления в браузере или из [SSOX](xref:tutorials/razor-pages/new-field#ssox).
 * Необходимо выполнить инициализацию (вызывать методы в классе `Startup`), чтобы запустить метод заполнения. Для этого следует остановить и перезапустить IIS Express. Воспользуйтесь одним из перечисленных ниже подходов.
 
   * Щелкните правой кнопкой мыши значок IIS Express в области уведомлений и выберите **Выйти** или **Остановить сайт**.
@@ -466,11 +464,11 @@ SqlException: Не удается открыть базу данных "RazorPag
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Удалите все записи в базе данных для запуска метода заполнения, использовав команду Delete. Остановите и запустите приложение, чтобы начать заполнение базы данных.
+Удалите все записи в базе данных для запуска метода Seed. Остановите и запустите приложение, чтобы начать заполнение базы данных.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-Удалите все записи в базе данных для запуска метода заполнения, использовав команду Delete. Остановите и запустите приложение, чтобы начать заполнение базы данных.
+Удалите все записи в базе данных для запуска метода Seed. Остановите и запустите приложение, чтобы начать заполнение базы данных.
 
 ---
 
