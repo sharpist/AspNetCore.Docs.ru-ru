@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: b87986442bb8127f03df1f7ecff8167cafa27fdf
-ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
+ms.openlocfilehash: a2738ab40e2a463a0166ce8916ed6f1b05ea1d08
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "96035688"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855382"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Создание и использование компонентов Razor ASP.NET Core
 
@@ -274,6 +274,13 @@ namespace BlazorSample
 
 [!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=2,11-12)]
 
+Параметрам компонента может быть присвоено значение по умолчанию:
+
+```csharp
+[Parameter]
+public string Title { get; set; } = "Panel Title from Child";
+```
+
 В следующем примере из примера приложения `ParentComponent` задает значение свойства `Title` для `ChildComponent`.
 
 `Pages/ParentComponent.razor`:
@@ -461,7 +468,7 @@ public IDictionary<string, object> AdditionalAttributes { get; set; }
 }
 ```
 
-При отрисовке компонента поле `loginDialog` заполняется экземпляром дочернего компонента `MyLoginDialog`. Затем можно вызывать методы .NET в экземпляре компонента.
+При отрисовке компонента поле `loginDialog` заполняется экземпляром дочернего компонента `CustomLoginDialog`. Затем можно вызывать методы .NET в экземпляре компонента.
 
 > [!IMPORTANT]
 > Переменная `loginDialog` заполняется только после отрисовки компонента, а ее выходные данные включают элемент `MyLoginDialog`. Пока компонент не будет преобразован для просмотра, ссылка на него не используется.

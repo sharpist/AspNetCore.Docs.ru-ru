@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 9dcb1c4a19e50a57f1a1918cfcf775b49fa89b11
-ms.sourcegitcommit: 43a540e703b9096921de27abc6b66bc0783fe905
+ms.openlocfilehash: 0e81397d210518854939c6941e7f6da43ed48389
+ms.sourcegitcommit: 6af9016d1ffc2dffbb2454c7da29c880034cefcd
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96320152"
+ms.lasthandoff: 12/10/2020
+ms.locfileid: "96855512"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Использование Razor Pages с Entity Framework Core в ASP.NET Core: руководство 1 из 8
 
@@ -479,7 +479,7 @@ Drop-Database -Confirm
 
 Во время выполнения асинхронный код использует немного больше служебных ресурсов. Однако при низком объеме трафика этим можно пренебречь. Тем не менее в случае большого объема трафика это дает существенный выигрыш в производительности.
 
-В следующем коде для асинхронного выполнения используются ключевое слово [async](/dotnet/csharp/language-reference/keywords/async), возвращаемое значение `Task<T>`, ключевое слово `await` и метод `ToListAsync`.
+В следующем коде для асинхронного выполнения используются ключевое слово [async](/dotnet/csharp/language-reference/keywords/async), возвращаемое значение `Task`, ключевое слово `await` и метод `ToListAsync`.
 
 ```csharp
 public async Task OnGetAsync()
@@ -491,7 +491,7 @@ public async Task OnGetAsync()
 * Ключевое слово `async` указывает компилятору:
   * создавать обратные вызовы для частей тела метода;
   * создавать возвращаемый объект [Task](/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
-* Тип возвращаемого значения `Task<T>` представляет текущую операцию.
+* Тип возвращаемого значения `Task` представляет текущую операцию.
 * Ключевое слово `await` предписывает компилятору разделить метод на две части. Первая часть завершается операцией, которая запускается в асинхронном режиме. Вторая часть помещается в метод обратного вызова, который вызывается при завершении операции.
 * `ToListAsync` является асинхронной версией метода расширения `ToList`.
 
