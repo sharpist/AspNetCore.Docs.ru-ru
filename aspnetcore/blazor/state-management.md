@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/state-management
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 7e79836e3dd1da175a62a84e11dfd30fee7b2f1b
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: 24f845bc1d98331f2ee54710d17beb6ffa95ad88
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570150"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855421"
 ---
 # <a name="aspnet-core-no-locblazor-state-management"></a>Управление состоянием ASP.NET Core Blazor
 
@@ -43,6 +43,9 @@ ms.locfileid: "94570150"
 * Значения, заданные через вызовы [взаимодействия с JavaScript](xref:blazor/call-javascript-from-dotnet).
 
 Когда пользователь закрывает и повторно открывает браузер или перезагружает страницу, данные о состоянии пользователя, содержащиеся в памяти браузера, утрачиваются.
+
+> [!NOTE]
+> [Защищенное хранилище браузера](xref:blazor/state-management?pivots=server#aspnet-core-protected-browser-storage) (пространство имен <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage?displayProperty=fullName>) использует защиту данных ASP.NET Core и поддерживается только для приложений Blazor Server.
 
 ## <a name="persist-state-across-browser-sessions"></a>Сохранение состояния в сеансах браузера
 
@@ -277,7 +280,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Если параметры компонента включают состояние навигации, вызовите `ProtectedSessionStore.GetAsync` и назначьте отличный от `null` результат в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, а не в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> вызывается только один раз при первом создании экземпляра компонента. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> не вызывается позже, если пользователь переходит на другой URL-адрес, оставаясь на той же странице. Для получения дополнительной информации см. <xref:blazor/components/lifecycle>.
+Если параметры компонента включают состояние навигации, вызовите `ProtectedSessionStore.GetAsync` и назначьте отличный от `null` результат в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, а не в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> вызывается только один раз при первом создании экземпляра компонента. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> не вызывается позже, если пользователь переходит на другой URL-адрес, оставаясь на той же странице. Дополнительные сведения см. в разделе <xref:blazor/components/lifecycle>.
 
 > [!WARNING]
 > Примеры в этом разделе работают только в том случае, если на сервере не включена предварительная отрисовка. При включенной предварительной отрисовке выводится сообщение об ошибке, объясняющее, что вызовы взаимодействия с JavaScript осуществить невозможно, поскольку выполняется предварительная отрисовка компонента.
@@ -522,7 +525,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Если параметры компонента включают состояние навигации, вызовите `ProtectedSessionStore.GetAsync` и назначьте результат в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, а не в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> вызывается только один раз при первом создании экземпляра компонента. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> не вызывается позже, если пользователь переходит на другой URL-адрес, оставаясь на той же странице. Для получения дополнительной информации см. <xref:blazor/components/lifecycle>.
+Если параметры компонента включают состояние навигации, вызовите `ProtectedSessionStore.GetAsync` и назначьте результат в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, а не в <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> вызывается только один раз при первом создании экземпляра компонента. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> не вызывается позже, если пользователь переходит на другой URL-адрес, оставаясь на той же странице. Дополнительные сведения см. в разделе <xref:blazor/components/lifecycle>.
 
 > [!WARNING]
 > Примеры в этом разделе работают только в том случае, если на сервере не включена предварительная отрисовка. При включенной предварительной отрисовке выводится сообщение об ошибке, объясняющее, что вызовы взаимодействия с JavaScript осуществить невозможно, поскольку выполняется предварительная отрисовка компонента.

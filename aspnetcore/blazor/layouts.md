@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: 9462b73ad67394e79de08e7d2b13bf6a3145a04e
-ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
+ms.openlocfilehash: c6f9815f473380f96092d663cdd785fd19109701
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94507971"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855304"
 ---
 # <a name="aspnet-core-no-locblazor-layouts"></a>Макеты Blazor в ASP.NET Core
 
@@ -34,9 +34,9 @@ ms.locfileid: "94507971"
 
 Технически макет представляет собой просто другой компонент. Макет определяется в шаблоне Razor или в коде C# и может использовать [привязки данных](xref:blazor/components/data-binding), [внедрения зависимостей](xref:blazor/fundamentals/dependency-injection) и другие сценарии компонентов.
 
-Чтобы превратить *компонент* в *макет* , компонент:
+Чтобы преобразовать компонент в макет, сделайте следующее:
 
-* Наследует от <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, который определяет свойство <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> для отображаемого содержимого внутри макета.
+* Создайте компонент, производный от <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>. <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> определяет свойство <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> для отображаемого содержимого внутри макета.
 * Использует синтаксис `@Body` Razor для указания расположения в разметке макета, в которой отображается содержимое.
 
 В следующем примере кода показан шаблон Razor компонента макета `MainLayout.razor`. Макет наследует <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> и задает `@Body` между панелью навигации и нижним колонтитулом:
@@ -81,7 +81,7 @@ ms.locfileid: "94507971"
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterList.razor?highlight=1)]
 
-Указание макета непосредственно в компоненте переопределяет *макет по умолчанию* , заданный в маршрутизаторе, или директиву `@layout`, импортированную из файла `_Imports.razor`.
+Указание макета непосредственно в компоненте переопределяет *макет по умолчанию*, заданный в маршрутизаторе, или директиву `@layout`, импортированную из файла `_Imports.razor`.
 
 ## <a name="centralized-layout-selection"></a>Централизованный выбор макетов
 
@@ -120,7 +120,7 @@ ms.locfileid: "94507971"
 
 ## <a name="share-a-no-locrazor-pages-layout-with-integrated-components"></a>Совместное использование макета Razor Pages с интегрированными компонентами
 
-Если маршрутизируемые компоненты интегрированы в приложение Razor Pages, общий макет приложения можно использовать с компонентами. Для получения дополнительной информации см. <xref:blazor/components/prerendering-and-integration>.
+Если маршрутизируемые компоненты интегрированы в приложение Razor Pages, общий макет приложения можно использовать с компонентами. Дополнительные сведения см. в разделе <xref:blazor/components/prerendering-and-integration>.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: a83637bb2690407dac5994bb63c765fcfa97462f
-ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
+ms.openlocfilehash: 3bfd623a206f260d24e2c9009acdb3b205b7ab2d
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "94981899"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855408"
 ---
 # <a name="aspnet-core-no-locblazor-routing"></a>Маршрутизация ASP.NET Core Blazor
 
@@ -57,7 +57,7 @@ Blazor Server интегрирован с функцией [маршрутиза
 </Router>
 ```
 
-При компиляции файла `.razor` с директивой `@page` созданный класс предоставляет атрибут <xref:Microsoft.AspNetCore.Components.RouteAttribute> для указания шаблона маршрута.
+При компиляции файла `.razor` с директивой `@page` созданный класс предоставляет атрибут <xref:Microsoft.AspNetCore.Components.RouteAttribute> для указания шаблона маршрута. При загрузке приложения выполняется проверка сборки, указанной как `AppAssembly`, для сбора сведений обо всех компонентах с <xref:Microsoft.AspNetCore.Components.RouteAttribute>.
 
 В среде выполнения компонент <xref:Microsoft.AspNetCore.Components.RouteView> выполняет следующие операции:
 

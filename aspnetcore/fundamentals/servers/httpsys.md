@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: ca8aa126a44ea417017f0be0372e818a95ad8413
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 9c65abd5a055bb677a14921296316e7e03760bc2
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053752"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855369"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Реализация веб-сервера HTTP.sys в ASP.NET Core
 
@@ -98,10 +98,11 @@ HTTP.sys делегирует задачи в проверку подлинно�
 
 | Свойство. | Описание | Значение по умолчанию |
 | -------- | ----------- | :-----: |
-| [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Указывает, разрешен ли синхронные операции ввода-вывода для `HttpContext.Request.Body` и `HttpContext.Response.Body`. | `false` |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO> | Указывает, разрешен ли синхронные операции ввода-вывода для `HttpContext.Request.Body` и `HttpContext.Response.Body`. | `false` |
 | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Разрешает анонимные запросы. | `true` |
 | [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Указывает разрешенные схемы аутентификации. Может быть изменен в любое время до удаления прослушивателя. Предоставляет значения, полученные при [перечислении AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): `Basic`, `Kerberos`, `Negotiate`, `None` и `NTLM`. | `None` |
-| [EnableResponseCaching](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching) | Выполняет попытку кэшировать [режим ядра](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) для ответов с допустимыми заголовками. Ответ не может включать заголовки `Set-Cookie`, `Vary` или `Pragma`. Он должен включать заголовок `Cache-Control` со значением `public`, а также значение `shared-max-age` или `max-age` заголовок `Expires`. | `true` |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching> | Выполняет попытку кэшировать [режим ядра](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) для ответов с допустимыми заголовками. Ответ не может включать заголовки `Set-Cookie`, `Vary` или `Pragma`. Он должен включать заголовок `Cache-Control` со значением `public`, а также значение `shared-max-age` или `max-age` заголовок `Expires`. | `true` |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Http503Verbosity> | Поведение HTTP.sys при отклонении запросов в соответствии с условиями регулирования. | [Http503VerbosityLevel.<br>Basic](xref:Microsoft.AspNetCore.Server.HttpSys.Http503VerbosityLevel) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxAccepts> | Максимальное число одновременных попыток. | 5 &times; [Environment.<br>ProcessorCount](xref:System.Environment.ProcessorCount) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | Максимальное число попыток установить одновременное подключение. Использует `-1` для бесконечных циклов. Использует `null` для работы с параметром реестра на уровне компьютера. | `null`<br>(уровень компьютер<br>значение) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | См. раздел <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30 000 000 байт.<br>(~28,6 МБ). |
@@ -109,8 +110,8 @@ HTTP.sys делегирует задачи в проверку подлинно�
 | `RequestQueueMode` | Указывает, отвечает ли сервер за создание и настройку очереди запросов или он должен подключаться к существующей очереди.<br>Большинство имеющихся параметров конфигурации не применяются при подключении к существующей очереди. | `RequestQueueMode.Create` |
 | `RequestQueueName` | Имя очереди запросов HTTP.sys. | `null` (анонимная очередь) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Указывает, следует ли вызывать исключение или завершать работу нормально, когда запись текста ответа завершается ошибкой из-за отключения клиента. | `false`<br>Нормальное завершение. |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Предоставляет конфигурацию <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> HTTP.sys, которую также можно настроить в реестре. Дополнительные сведения о каждом параметре, включая значения по умолчанию, см. здесь:<ul><li>[TimeoutManager.DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody) — время, выделенное API сервера HTTP для очистки текста сущности при активном подключении.</li><li>[TimeoutManager.EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody) — время, выделенное на получение текста сущности запроса.</li><li>[TimeoutManager.HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait) — время, выделенное для API сервера HTTP для выполнения синтаксического анализа заголовка запроса.</li><li>[TimeoutManager.IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection) — время, допустимое для неактивного подключения.</li><li>[TimeoutManager.MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond) — минимальная скорость отправки ответа.</li><li>[TimeoutManager.RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue) — время, выделенное для пребывания запроса в очереди до его получения приложением.</li></ul> |  |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> | Указывает <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection> для регистрации с использованием HTTP.sys. Удобнее всего использовать параметр [UrlPrefixCollection.Add](xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection.Add*), который добавляет префикс к коллекции. Могут быть изменены в любое время до удаления прослушивателя. |  |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Предоставляет конфигурацию <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> HTTP.sys, которую также можно настроить в реестре. Дополнительные сведения о каждом параметре, включая значения по умолчанию, см. здесь:<ul><li><xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody?displayProperty=nameWithType> — время, выделенное API сервера HTTP для очистки текста сущности при активном подключении.</li><li><xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody?displayProperty=nameWithType> — время, выделенное на получение текста сущности запроса.</li><li><xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait?displayProperty=nameWithType> — время, выделенное для API сервера HTTP для выполнения синтаксического анализа заголовка запроса.</li><li><xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection?displayProperty=nameWithType> — время, допустимое для неактивного подключения.</li><li><xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond?displayProperty=nameWithType> — минимальная скорость отправки ответа.</li><li><xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue?displayProperty=nameWithType> — время, выделенное для пребывания запроса в очереди до его получения приложением.</li></ul> |  |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> | Указывает <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection> для регистрации с использованием HTTP.sys. Удобнее всего использовать параметр <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection.Add%2A?displayProperty=nameWithType>, который добавляет префикс к коллекции. Могут быть изменены в любое время до удаления прослушивателя. |  |
 
 <a name="maxrequestbodysize"></a>
 
@@ -254,7 +255,7 @@ public IActionResult MyActionMethod()
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Дополнительные сведения см. в справочной документации по *netsh.exe* :
+   Дополнительные сведения см. в справочной документации по *netsh.exe*:
 
    * [Команды netsh для протокола HTTP](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [Строки UrlPrefix](/windows/win32/http/urlprefix-strings)
@@ -522,7 +523,7 @@ public IActionResult MyActionMethod()
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Дополнительные сведения см. в справочной документации по *netsh.exe* :
+   Дополнительные сведения см. в справочной документации по *netsh.exe*:
 
    * [Команды netsh для протокола HTTP](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [Строки UrlPrefix](/windows/win32/http/urlprefix-strings)
@@ -775,7 +776,7 @@ public IActionResult MyActionMethod()
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Дополнительные сведения см. в справочной документации по *netsh.exe* :
+   Дополнительные сведения см. в справочной документации по *netsh.exe*:
 
    * [Команды netsh для протокола HTTP](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [Строки UrlPrefix](/windows/win32/http/urlprefix-strings)
@@ -1028,7 +1029,7 @@ public IActionResult MyActionMethod()
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Дополнительные сведения см. в справочной документации по *netsh.exe* :
+   Дополнительные сведения см. в справочной документации по *netsh.exe*:
 
    * [Команды netsh для протокола HTTP](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [Строки UrlPrefix](/windows/win32/http/urlprefix-strings)

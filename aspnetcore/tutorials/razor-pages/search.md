@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: 3b95fe117895555ebcd44f971e7bb9d1173e1697
-ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
+ms.openlocfilehash: 1e571966b78f93e29e7901dd9648fbe3aca52726
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96419984"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855486"
 ---
 # <a name="part-6-add-search-to-aspnet-core-no-locrazor-pages"></a>Часть 6. Добавление поиска в Razor Pages в ASP.NET Core
 
@@ -70,7 +70,7 @@ var movies = from m in _context.Movie
              select m;
 ```
 
-Этот запрос *только* определяется в этой точке и **не** выполняется для базы данных.
+Этот запрос только ***определяется** _ в этой точке и _*_не_*_ выполняется для базы данных.
 
 Если свойство `SearchString` не равно NULL и не пусто, запрос фильмов изменяется для фильтрации по строке поиска:
 
@@ -95,7 +95,7 @@ var movies = from m in _context.Movie
 
 ![Экран "Представление Index, в URL-адрес которого добавлено слово ghost, возвращает два фильма: Ghostbusters и Ghostbusters 2"](search/_static/g2.png)
 
-Среда выполнения ASP.NET Core использует [привязку модели](xref:mvc/models/model-binding), чтобы присвоить значение свойства `SearchString` по строке запроса (`?searchString=Ghost`) или данным маршрута (`https://localhost:5001/Movies/Ghost`). Привязка модели: **_без_* _ учета регистра.
+Среда выполнения ASP.NET Core использует [привязку модели](xref:mvc/models/model-binding), чтобы присвоить значение свойства `SearchString` по строке запроса (`?searchString=Ghost`) или данным маршрута (`https://localhost:5001/Movies/Ghost`). Привязка модели: _*_без_*_ учета регистра.
 
 Однако пользователи не могут изменять URL-адрес для поиска фильма. На этом шаге добавляется пользовательский интерфейс для поиска фильмов. Если было добавлено ограничение маршрута `"{searchString?}"`, удалите его.
 
