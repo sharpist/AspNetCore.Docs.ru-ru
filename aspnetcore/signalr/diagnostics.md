@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 6e5e9d866a1e03e69856cc63dcfe30284048dd6d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 49029bbd53b98425a05bdb82517238e3aa2e3b1f
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061318"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97506634"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Ведение журнала и диагностика в ASP.NET Core SignalR
 
@@ -117,7 +117,7 @@ Visual Studio отображает выходные данные журнала 
 
 Чтобы получить журналы из клиента .NET, можно использовать `ConfigureLogging` метод для `HubConnectionBuilder` . Это работает так же, как `ConfigureLogging` и метод в `WebHostBuilder` и `HostBuilder` . Вы можете настроить те же поставщики ведения журналов, которые используются в ASP.NET Core. Однако необходимо вручную установить и включить пакеты NuGet для отдельных поставщиков ведения журнала.
 
-Сведения о добавлении ведения журнала клиента .NET в Blazor WebAssembly приложение см <xref:blazor/fundamentals/logging#blazor-webassembly-signalr-net-client-logging> . в разделе.
+Сведения о добавлении ведения журнала клиента .NET в Blazor WebAssembly приложение см <xref:blazor/fundamentals/logging#signalr-net-client-logging> . в разделе.
 
 ### <a name="console-logging"></a>Журнал консоли
 
@@ -200,7 +200,7 @@ tcpdump -i [interface] -w trace.pcap
 
 ![Параметр "Сохранить как HAR с содержимым" на вкладке "сеть" средств разработки Google Chrome](diagnostics/chrome-har-export.png)
 
-### <a name="mozilla-firefox"></a>Mozilla Firefox;
+### <a name="mozilla-firefox"></a>Mozilla Firefox
 
 1. Нажмите клавишу F12, чтобы открыть средства разработки
 2. Перейдите на вкладку Сеть.
@@ -226,7 +226,7 @@ tcpdump -i [interface] -w trace.pcap
 
 SignalR метрики сервера указываются в <xref:Microsoft.AspNetCore.Http.Connections> источнике событий.
 
-| name                    | Описание                 |
+| Имя                    | Описание                 |
 |-------------------------|-----------------------------|
 | `connections-started`   | Всего запущенных подключений   |
 | `connections-stopped`   | Всего остановленных подключений   |
