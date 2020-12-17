@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: affca6c9b585b91787f94a13144d07bedfefdd37
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.openlocfilehash: 3402117334548f9d90880d4f536e8baa288e7bc9
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431693"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97506985"
 ---
 # <a name="prerender-and-integrate-aspnet-core-no-locrazor-components"></a>Компоненты Razor для предварительной визуализации и интеграции ASP.NET Core
 
@@ -308,6 +308,8 @@ builder.RootComponents.Add<Counter>("#my-counter");
    </Router>
    ```
 
+   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 1. Добавьте файл `_Host.cshtml` в папку `Pages` со следующим содержимым:
 
    ```cshtml
@@ -376,6 +378,8 @@ builder.RootComponents.Add<Counter>("#my-counter");
        </NotFound>
    </Router>
    ```
+
+   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 1. Добавьте файл `_Host.cshtml` в папку `Views/Home` со следующим содержимым:
 
@@ -460,7 +464,7 @@ builder.RootComponents.Add<Counter>("#my-counter");
 }
 ```
 
-Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+Дополнительные сведения см. в разделе <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ### <a name="render-noninteractive-components"></a>Отрисовка неинтерактивных компонентов
 
@@ -483,7 +487,7 @@ builder.RootComponents.Add<Counter>("#my-counter");
 }
 ```
 
-Для получения дополнительной информации см. <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+Дополнительные сведения см. в разделе <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ## <a name="component-namespaces"></a>Пространства имен компонентов
 
@@ -498,6 +502,6 @@ builder.RootComponents.Add<Counter>("#my-counter");
 
 Файл `_ViewImports.cshtml` находится в папке `Pages` приложения Razor Pages или в папке `Views` приложения MVC.
 
-Для получения дополнительной информации см. <xref:blazor/components/index#namespaces>.
+Дополнительные сведения см. в разделе <xref:blazor/components/index#namespaces>.
 
 ::: zone-end
