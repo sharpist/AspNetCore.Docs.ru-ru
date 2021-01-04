@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 7edba338716a0545390ec53775f69eaef141d389
-ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
+ms.openlocfilehash: 5983cbc1e0256f7cf8e85fb07f9ba1bbc1bf08db
+ms.sourcegitcommit: c321518bfe367280ef262aecaada287f17fe1bc5
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96855291"
+ms.lasthandoff: 12/10/2020
+ms.locfileid: "97011875"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Размещение и развертывание ASP.NET Core Blazor WebAssembly
 
@@ -910,9 +910,7 @@ Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
 
 Если веб-сервер возвращает ответы, которые не соответствуют ожидаемым хэшам SHA-256, в консоли разработчика в браузере отобразятся такие сообщения об ошибке:
 
-```
-Failed to find a valid digest in the 'integrity' attribute for resource 'https://myapp.example.com/_framework/MyBlazorApp.dll' with computed SHA-256 integrity 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. The resource has been blocked.
-```
+> Не удалось найти допустимый дайджест в атрибуте integrity для ресурса https://myapp.example.com/\_framework/MyBlazor App.dll с вычисленной целостностью SHA-256 "IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY=". Ресурс заблокирован.
 
 В большинстве случаев это *не* указывает на проблемы с проверкой целостности. Скорее всего, существует другая проблема, а проверка целостности просто указывает на это.
 
@@ -961,6 +959,13 @@ Failed to find a valid digest in the 'integrity' attribute for resource 'https:/
 
 * `{BASE URL}`: URL-адрес развернутого приложения.
 * `{PUBLISH OUTPUT FOLDER}`: путь к папке `publish` приложения или расположению, где приложение опубликовано для развертывания.
+
+> [!NOTE]
+> Чтобы клонировать репозиторий GitHub `dotnet/AspNetCore.Docs` в систему, использующую средство поиска вирусов [Bitdefender](https://www.bitdefender.com), добавьте в Bitdefender исключение для скрипта `integrity.ps1`. Добавьте это исключение в Bitdefender перед клонированием репозитория, чтобы избежать помещения скрипта на карантин средством поиска вирусов. Ниже представлен типичный путь к скрипту для клонированного репозитория в системе Windows. При необходимости измените путь. Заполнитель `{USER}` — это сегмент пути пользователя.
+>
+> ```
+> C:\Users\{USER}\Documents\GitHub\AspNetCore.Docs\aspnetcore\blazor\host-and-deploy\webassembly\_samples\integrity.ps1
+> ```
 
 ### <a name="disable-integrity-checking-for-non-pwa-apps"></a>Отключение проверки целостности для приложений, не относящихся к PWA
 

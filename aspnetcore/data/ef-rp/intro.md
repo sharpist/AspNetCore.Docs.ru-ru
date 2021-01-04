@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 0e81397d210518854939c6941e7f6da43ed48389
-ms.sourcegitcommit: 6af9016d1ffc2dffbb2454c7da29c880034cefcd
+ms.openlocfilehash: 86b57a9cad27673b72ad174a18741f5528f9f78a
+ms.sourcegitcommit: c321518bfe367280ef262aecaada287f17fe1bc5
 ms.translationtype: HT
 ms.contentlocale: ru-RU
 ms.lasthandoff: 12/10/2020
-ms.locfileid: "96855512"
+ms.locfileid: "97011862"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Использование Razor Pages с Entity Framework Core в ASP.NET Core: руководство 1 из 8
 
@@ -237,7 +237,8 @@ EF Core воспринимает свойство как внешний ключ
   * В раскрывающемся списке **Класс модели** выберите **Student (ContosoUniversity.Models)** .
   * В строке **Класс контекста данных** щелкните знак плюса ( **+** ).
     * Измените имя контекста данных так, чтобы оно заканчивалось на `SchoolContext`, а не на `ContosoUniversityContext`. Новое имя контекста: `ContosoUniversity.Data.SchoolContext`.
-   * Нажмите **Добавить**.
+    * Выберите **Добавить**, чтобы завершить добавление класса контекста данных.
+   * Выберите **Добавить**, чтобы закрыть диалоговое окно **Добавление Razor Pages**.
 
 Следующие пакеты устанавливаются автоматически:
 
