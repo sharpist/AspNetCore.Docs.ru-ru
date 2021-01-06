@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-identity-server
-ms.openlocfilehash: 147f1d6cdea0b9992b8be333db4cb06e30c7feaf
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 80196945bc6891d5517d7da0e07ca1b0debddd28
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055221"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97854693"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-no-locidentity-server"></a>Защита размещенного приложения ASP.NET Core Blazor WebAssembly с помощью Identity Server
 
@@ -39,9 +39,9 @@ ms.locfileid: "93055221"
 
 Чтобы создать новый проект Blazor WebAssembly с механизмом аутентификации, выполните следующие действия:
 
-1. Выбрав шаблон **Приложение Blazor WebAssembly** в диалоговом окне **Создание веб-приложения ASP.NET Core** , щелкните **Изменить** в разделе **Проверка подлинности**.
+1. Выбрав шаблон **Приложение Blazor WebAssembly** в диалоговом окне **Создание веб-приложения ASP.NET Core**, щелкните **Изменить** в разделе **Проверка подлинности**.
 
-1. Выберите **Учетные записи отдельных пользователей** с параметром **Хранить учетные записи пользователей в приложении** , чтобы хранить пользователей в приложении с помощью системы [Identity](xref:security/authentication/identity) ASP.NET Core.
+1. Выберите **Учетные записи отдельных пользователей** с параметром **Хранить учетные записи пользователей в приложении**, чтобы хранить пользователей в приложении с помощью системы [Identity](xref:security/authentication/identity) ASP.NET Core.
 
 1. Установите флажок **С размещением в ASP.NET Core** в разделе **Дополнительно**.
 
@@ -215,19 +215,19 @@ builder.Services.AddApiAuthorization();
 
 ### <a name="imports-file"></a>Файл импорта
 
-[!INCLUDE[](~/includes/blazor-security/imports-file-hosted.md)]
+[!INCLUDE[](~/blazor/includes/security/imports-file-hosted.md)]
 
 ### <a name="index-page"></a>Страница индексов
 
-[!INCLUDE[](~/includes/blazor-security/index-page-authentication.md)]
+[!INCLUDE[](~/blazor/includes/security/index-page-authentication.md)]
 
 ### <a name="app-component"></a>Компонент приложения
 
-[!INCLUDE[](~/includes/blazor-security/app-component.md)]
+[!INCLUDE[](~/blazor/includes/security/app-component.md)]
 
 ### <a name="redirecttologin-component"></a>Компонент RedirectToLogin
 
-[!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/includes/security/redirecttologin-component.md)]
 
 ### <a name="logindisplay-component"></a>Компонент LoginDisplay
 
@@ -271,11 +271,11 @@ builder.Services.AddApiAuthorization();
 
 ### <a name="authentication-component"></a>Компонент проверки подлинности
 
-[!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
+[!INCLUDE[](~/blazor/includes/security/authentication-component.md)]
 
 ### <a name="fetchdata-component"></a>Компонент FetchData
 
-[!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
+[!INCLUDE[](~/blazor/includes/security/fetchdata-component.md)]
 
 ## <a name="run-the-app"></a>Запуск приложения
 
@@ -466,7 +466,7 @@ services.AddTransient<IProfileService, ProfileService>();
 
 Для `User.Identity.Name` в приложении *`Client`* указывается имя пользователя, которое обычно является адресом электронной почты для входа.
 
-[!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
+[!INCLUDE[](~/blazor/includes/security/usermanager-signinmanager.md)]
 
 ## <a name="host-in-azure-app-service-with-a-custom-domain"></a>Размещение в Службе приложений Azure с использованием личного домена
 
@@ -504,15 +504,15 @@ services.AddTransient<IProfileService, ProfileService>();
 1. В области **Сертификаты** хранилища ключей импортируйте сертификат сайта PFX. Запишите отпечаток сертификата, который будет использоваться позже в конфигурации приложения.
 1. В Azure Key Vault создайте самозаверяющий сертификат для подписывания токена Identity Server. Укажите **имя сертификата** и **субъект**. **Субъект** указывается в формате `CN={COMMON NAME}`, где заполнитель `{COMMON NAME}` — это общее имя сертификата. Общим именем может быть любая буквенно-цифровая строка. Например, `CN=IdentityServerSigning` — допустимый **субъект** сертификата. В разделе **Расширенная настройка политик** оставьте значения по умолчанию. Запишите отпечаток сертификата, который будет использоваться позже в конфигурации приложения.
 1. Перейдите к Службе приложений Azure на портале Azure и создайте Службу приложений со следующей конфигурацией:
-   * **Опубликовать**  — `Code`;
-   * **Стек времени выполнения**  — среда выполнения приложения;
-   * **Номер SKU и размер**  — уровень Службы приложений не ниже `Basic B1`.  Для использования личных доменов Службе приложений требуется уровень служб `Basic B1` или более высокий.
+   * **Опубликовать** — `Code`;
+   * **Стек времени выполнения** — среда выполнения приложения;
+   * **Номер SKU и размер** — уровень Службы приложений не ниже `Basic B1`.  Для использования личных доменов Службе приложений требуется уровень служб `Basic B1` или более высокий.
 1. После того как в Azure будет создана Служба приложений, откройте **конфигурацию приложения** и добавьте новый параметр, указав записанные ранее отпечатки сертификатов. Ключ параметра — `WEBSITE_LOAD_CERTIFICATES`. В значении параметра разделяйте отпечатки запятыми, как показано в следующем примере.
    * Ключ: `WEBSITE_LOAD_CERTIFICATES`.
    * Значение: `57443A552A46DB...D55E28D412B943565,29F43A772CB6AF...1D04F0C67F85FB0B1`
 
    На портале Azure параметры приложения сохраняются в два шага: сохраните параметр `WEBSITE_LOAD_CERTIFICATES`, а затем в верхней части колонки нажмите кнопку **Сохранить**.
-1. Выберите **параметры TLS/SSL** приложения. Выберите **Сертификаты закрытых ключей (PFX)** . Дважды выполните процесс **Импорт сертификата Key Vault** , чтобы импортировать и сертификат сайта для обмена данными по протоколу HTTPS, и самозаверяющий сертификат сайта для подписывания токена Identity Server.
+1. Выберите **параметры TLS/SSL** приложения. Выберите **Сертификаты закрытых ключей (PFX)** . Дважды выполните процесс **Импорт сертификата Key Vault**, чтобы импортировать и сертификат сайта для обмена данными по протоколу HTTPS, и самозаверяющий сертификат сайта для подписывания токена Identity Server.
 1. Перейдите к колонке **Личные домены**. На веб-сайте регистратора своего домена используйте **IP-адрес** и **идентификатор проверки личного домена** для настройки домена. Типичная конфигурация домена включает в себя следующие параметры:
    * **запись A** с **узлом** `@` и значением IP-адреса с портала Azure;
    * **запись TXT** с **узлом** `asuid` и значением идентификатора проверки, созданным Azure и предоставленным на портале Azure.
@@ -522,7 +522,7 @@ services.AddTransient<IProfileService, ProfileService>();
 
    На распространение изменений регистрации домена на серверах доменных имен (DNS) в Интернете после их обработки регистратором домена может потребоваться несколько дней. Если записи домена не были обновлены в течение трех рабочих дней, убедитесь в том, что они были правильно заданы на сайте регистратора, и обратитесь в его службу поддержки клиентов.
 1. В колонке **Личные домены** **СОСТОЯНИЕ SSL** домена должно иметь значение `Not Secure`. Щелкните ссылку **Добавить привязку**. Выберите HTTPS-сертификат сайта из хранилища ключей для привязки личного домена.
-1. В Visual Studio откройте файл параметров приложения для *серверного* проекта (`appsettings.json` или `appsettings.Production.json`). В конфигурации Identity Server добавьте приведенный ниже раздел `Key`. Укажите **субъект** самозаверяющего сертификата для ключа `Name`. В следующем примере в хранилище ключей сертификату присвоено общее имя `IdentityServerSigning`, поэтому **субъект**  — `CN=IdentityServerSigning`.
+1. В Visual Studio откройте файл параметров приложения для *серверного* проекта (`appsettings.json` или `appsettings.Production.json`). В конфигурации Identity Server добавьте приведенный ниже раздел `Key`. Укажите **субъект** самозаверяющего сертификата для ключа `Name`. В следующем примере в хранилище ключей сертификату присвоено общее имя `IdentityServerSigning`, поэтому **субъект** — `CN=IdentityServerSigning`.
 
    ```json
    "IdentityServer": {
@@ -539,7 +539,7 @@ services.AddTransient<IProfileService, ProfileService>();
    ```
 
 1. В Visual Studio создайте [профиль публикации](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) Службы приложений Azure для *серверного* проекта. В строке меню выберите **Сборка** > **Опубликовать** > **Создать** > **Azure** > **Служба приложений Azure** (Windows или Linux). Когда Visual Studio подключится к подписке Azure, вы сможете настроить **представление** ресурсов Azure по **типу ресурса**. В списке **Веб-приложение** найдите Службу приложений для приложения и выберите ее. Нажмите кнопку **Готово**.
-1. Когда в Visual Studio снова отобразится окно **Публикация** , зависимости хранилища ключей и службы базы данных SQL Server будут обнаружены автоматически.
+1. Когда в Visual Studio снова отобразится окно **Публикация**, зависимости хранилища ключей и службы базы данных SQL Server будут обнаружены автоматически.
 
    Для службы хранилища ключей не требуется изменять настройки по умолчанию.
 
@@ -567,7 +567,7 @@ services.AddTransient<IProfileService, ProfileService>();
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
 
-[!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
+[!INCLUDE[](~/blazor/includes/security/troubleshoot.md)]
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: 87626ff30589de82a04c95634fc0dcbcf2eeac18
-ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
+ms.openlocfilehash: 6659b075f54292d9546466919f6842b920e6ece1
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 12/15/2020
-ms.locfileid: "97507011"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97808742"
 ---
 # <a name="build-a-no-locblazor-todo-list-app"></a>Создание приложения Blazor со списком дел
 
@@ -83,7 +83,7 @@ ms.locfileid: "97507011"
 
    `Pages/Todo.razor`:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo0.razor?highlight=1)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo0.razor?highlight=1)]
 
    Сохраните файл `Pages/Todo.razor`.
 
@@ -116,11 +116,11 @@ ms.locfileid: "97507011"
 
    `Pages/Todo.razor`:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo2.razor?highlight=5-10,13)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo2.razor?highlight=5-10,13)]
 
 1. Приложению необходимы элементы пользовательского интерфейса для добавления элементов в список дел. Добавьте текстовое поле (`<input>`) и кнопку (`<button>`) под неупорядоченным списком (`<ul>...</ul>`).
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo3.razor?highlight=12-13)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo3.razor?highlight=12-13)]
 
 1. Сохраните файл `TodoItem.cs` и обновленный файл `Pages/Todo.razor`. При сохранении файлов в командной оболочке будет автоматически выполнена повторная сборка приложения. Браузер временно утратит подключение к приложению, но когда подключение будет восстановлено, браузер перезагрузит страницу.
 
@@ -128,11 +128,11 @@ ms.locfileid: "97507011"
 
 1. Добавьте метод `AddTodo` в компонент `Todo` и зарегистрируйте его для нажатий кнопки с помощью атрибута `@onclick`. Теперь при нажатии кнопки вызывается метод C# `AddTodo`:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo4.razor?highlight=2,7-10)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo4.razor?highlight=2,7-10)]
 
 1. Чтобы получить заголовок нового элемента списка дел, добавьте строковое поле `newTodo` в начало блока `@code`.
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo5.razor?highlight=3)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo5.razor?highlight=3)]
 
    Измените текстовый элемент `<input>`, чтобы привязать `newTodo` с помощью атрибута `@bind`.
 
@@ -142,13 +142,13 @@ ms.locfileid: "97507011"
 
 1. Обновите метод `AddTodo`, чтобы добавить `TodoItem` с указываемым названием в список. Очистите значение текстового поля, задав пустую строку в качестве значения для `newTodo`.
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo6.razor?highlight=19-26)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo6.razor?highlight=19-26)]
 
-1. Сохраните файл `Pages/ToDo.razor`. В командной оболочке будет автоматически выполнена повторная сборка приложения. После повторного подключения браузера к приложению страница в браузере перезагрузится.
+1. Сохраните файл `Pages/Todo.razor`. В командной оболочке будет автоматически выполнена повторная сборка приложения. После повторного подключения браузера к приложению страница в браузере перезагрузится.
 
 1. Вы можете сделать текст заголовка для каждого элемента списка дел редактируемым, а по дополнительному флажку пользователь сможет отслеживать завершение задач. Добавьте флажок для каждого элемента списка дел и привяжите его значение к свойству `IsDone`. Замените `@todo.Title` элементом `<input>`, который привязан к `todo.Title` с помощью `@bind`.
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo7.razor?highlight=4-7)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo7.razor?highlight=4-7)]
 
 1. Обновите заголовок `<h3>`, чтобы в нем отображалось количество незавершенных дел в списке (`IsDone` имеет значение `false`).
 
@@ -160,7 +160,7 @@ ms.locfileid: "97507011"
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/Todo1.razor)]
 
-1. Сохраните файл `Pages/ToDo.razor`. В командной оболочке будет автоматически выполнена повторная сборка приложения. После повторного подключения браузера к приложению страница в браузере перезагрузится.
+1. Сохраните файл `Pages/Todo.razor`. В командной оболочке будет автоматически выполнена повторная сборка приложения. После повторного подключения браузера к приложению страница в браузере перезагрузится.
 
 1. Добавьте элементы, измените их и пометьте элементы списка дел как завершенные, чтобы протестировать компонент.
 
