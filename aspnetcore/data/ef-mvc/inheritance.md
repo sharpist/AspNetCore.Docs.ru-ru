@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: data/ef-mvc/inheritance
 ms.openlocfilehash: 581a31bad4069523699fbbac63862c9dff12034d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054220"
 ---
 # <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF Core. Реализация наследования
@@ -159,7 +159,7 @@ dotnet ef database update
 
 ![Таблица Person в окне SSOX](inheritance/_static/ssox-person-table.png)
 
-Щелкните таблицу Person правой кнопкой мыши и выберите команду **Показать данные таблицы** , чтобы просмотреть столбец дискриминатора.
+Щелкните таблицу Person правой кнопкой мыши и выберите команду **Показать данные таблицы**, чтобы просмотреть столбец дискриминатора.
 
 ![Таблица Person в окне SSOX — данные таблицы](inheritance/_static/ssox-person-data.png)
 

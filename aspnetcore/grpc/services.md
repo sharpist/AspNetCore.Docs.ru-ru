@@ -19,15 +19,15 @@ no-loc:
 - SignalR
 uid: grpc/services
 ms.openlocfilehash: cc9fc50871cbad1f2ddf63d3c13c3253f24a995b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93058744"
 ---
 # <a name="create-grpc-services-and-methods"></a>Создание служб и методов gRPC
 
-Автор: [Джеймс Ньютон-Кинг](https://twitter.com/jamesnk) (James Newton-King)
+Автор: [Джеймс Ньютон-Кинг (James Newton-King)](https://twitter.com/jamesnk)
 
 В этом документе объясняется, как создать службы и методы gRPC в C#. Будут рассмотрены следующие задачи:
 
@@ -39,7 +39,7 @@ ms.locfileid: "93058744"
 
 [Службы gRPC на языке C#](xref:grpc/basics) предоставляют подход к разработке API на основе контракта gRPC. Службы и сообщения определяются в файлах *.proto*. Затем средства C# создают код из файлов *.proto*. Для ресурсов на стороне сервера абстрактный базовый тип создается для каждой службы вместе с классами для любых сообщений.
 
-Следующий файл *.proto* :
+Следующий файл *.proto*:
 
 * Определяет службу `Greeter`.
 * Служба `Greeter` определяет вызов `SayHello`.

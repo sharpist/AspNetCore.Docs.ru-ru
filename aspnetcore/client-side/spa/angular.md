@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: spa/angular
 ms.openlocfilehash: 2fff0d60b71bbbab9347dbe74cad023264247388
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054571"
 ---
 # <a name="use-the-angular-project-template-with-aspnet-core"></a>Использование шаблона проекта Angular с ASP.NET Core
@@ -70,7 +70,7 @@ Now listening on: http://localhost:<port>
 
 ---
 
-Шаблон проекта создает приложение ASP.NET Core и приложение Angular. Приложение ASP.NET Core предназначено для использования в таких сферах как: получение доступа к данным, авторизация и других проблемных вопросах на стороне сервера.Приложение ASP.NET Core предназначено для доступа к данным, авторизации и других задач на стороне сервера. Приложение Angular, размещенное в подкаталоге *ClientApp* , предназначено для всех задач, связанных с пользовательским интерфейсом.
+Шаблон проекта создает приложение ASP.NET Core и приложение Angular. Приложение ASP.NET Core предназначено для использования в таких сферах как: получение доступа к данным, авторизация и других проблемных вопросах на стороне сервера.Приложение ASP.NET Core предназначено для доступа к данным, авторизации и других задач на стороне сервера. Приложение Angular, размещенное в подкаталоге *ClientApp*, предназначено для всех задач, связанных с пользовательским интерфейсом.
 
 ## <a name="add-pages-images-styles-modules-etc"></a>Добавление страниц, изображений, стилей, модулей и т. д.
 
@@ -80,7 +80,7 @@ Now listening on: http://localhost:<port>
 
 ## <a name="run-ng-commands"></a>Выполнение команд ng
 
-В командной строке перейдите в подкаталог *ClientApp* :
+В командной строке перейдите в подкаталог *ClientApp*:
 
 ```console
 cd ClientApp

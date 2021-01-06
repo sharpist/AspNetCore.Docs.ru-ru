@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: tutorials/get-started-with-swashbuckle
 ms.openlocfilehash: 9fbd4bc5e91d8f05afc99a4f04c706399f83a518
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93057613"
 ---
 # <a name="get-started-with-swashbuckle-and-aspnet-core"></a>Начало работы с Swashbuckle и ASP.NET Core
@@ -181,7 +181,7 @@ XML-комментарии можно включить следующим обр
 ::: moniker range=">= aspnetcore-2.0"
 
 * В **обозревателе решений** щелкните проект правой кнопкой мыши и выберите команду **Изменить <имя_проекта>.csproj**.
-* Вручную добавьте выделенные строки в файл *.csproj* :
+* Вручную добавьте выделенные строки в файл *.csproj*:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
 
@@ -199,7 +199,7 @@ XML-комментарии можно включить следующим обр
 ::: moniker range=">= aspnetcore-2.0"
 
 * В *панели решения* нажмите **Управление** и выберите имя проекта. Перейдите в раздел **Сервис** > **Изменить файл**.
-* Вручную добавьте выделенные строки в файл *.csproj* :
+* Вручную добавьте выделенные строки в файл *.csproj*:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
 
@@ -207,14 +207,14 @@ XML-комментарии можно включить следующим обр
 
 ::: moniker range="<= aspnetcore-1.1"
 
-* Откройте диалоговое окно **Параметры проекта**  > **Сборка**  > **Компилятор**.
+* Откройте диалоговое окно **Параметры проекта** > **Сборка** > **Компилятор**.
 * Установите флажок **Сформировать XML-документацию** в разделе **Общие параметры**
 
 ::: moniker-end
 
 #### <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Вручную добавьте выделенные строки в файл *.csproj* :
+Вручную добавьте выделенные строки в файл *.csproj*:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -230,7 +230,7 @@ XML-комментарии можно включить следующим обр
 
 #### <a name="net-core-cli"></a>[Интерфейс командной строки .NET Core](#tab/netcore-cli)
 
-Вручную добавьте выделенные строки в файл *.csproj* :
+Вручную добавьте выделенные строки в файл *.csproj*:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -409,7 +409,7 @@ namespace TodoApi
 },
 ```
 
-Добавьте к контроллеру API атрибут `[Produces("application/json")]`. Он позволяет объявить, что действия контроллера поддерживают тип содержимого ответа *application/json* :
+Добавьте к контроллеру API атрибут `[Produces("application/json")]`. Он позволяет объявить, что действия контроллера поддерживают тип содержимого ответа *application/json*:
 
 ::: moniker range="<= aspnetcore-2.0"
 

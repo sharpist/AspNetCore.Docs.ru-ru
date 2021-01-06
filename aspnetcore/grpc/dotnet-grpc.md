@@ -19,17 +19,17 @@ no-loc:
 - SignalR
 uid: grpc/dotnet-grpc
 ms.openlocfilehash: f34e1543d9695e138a85db3b79e013cf5fb6d138
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93059914"
 ---
 # <a name="manage-protobuf-references-with-dotnet-grpc"></a>Управление ссылками protobuf с помощью .NET gRPC
 
 Автор: [John Luo](https://github.com/juntaoluo) (Джон Луо)
 
-`dotnet-grpc` — это глобальное средство .NET Core для управления ссылками [Protobuf ( *.proto* )](xref:grpc/basics#proto-file) в рамках проекта gRPC .NET. Это средство можно использовать для добавления, обновления, удаления и перечисления ссылок Protobuf.
+`dotnet-grpc` — это глобальное средство .NET Core для управления ссылками [Protobuf ( *.proto*)](xref:grpc/basics#proto-file) в рамках проекта gRPC .NET. Это средство можно использовать для добавления, обновления, удаления и перечисления ссылок Protobuf.
 
 ## <a name="installation"></a>Установка
 
@@ -41,7 +41,7 @@ dotnet tool install -g dotnet-grpc
 
 ## <a name="add-references"></a>Добавление ссылок
 
-`dotnet-grpc` можно использовать для добавления ссылок Protobuf в качестве элементов `<Protobuf />` в файл *CSPROJ* :
+`dotnet-grpc` можно использовать для добавления ссылок Protobuf в качестве элементов `<Protobuf />` в файл *CSPROJ*:
 
 ```xml
 <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
@@ -116,7 +116,7 @@ dotnet-grpc add-url [options] <url>
 Команда `remove` используется для удаления ссылок Protobuf из файла *CSPROJ*. В качестве аргументов эта команда принимает URL-адреса источника и аргументы пути. Средство:
 
 * удаляет только ссылку Protobuf;
-* не удаляет файл *PROTO* , даже если он был первоначально скачан с удаленного URL-адреса.
+* не удаляет файл *PROTO*, даже если он был первоначально скачан с удаленного URL-адреса.
 
 ### <a name="usage"></a>Использование
 

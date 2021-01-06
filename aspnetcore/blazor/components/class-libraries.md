@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: blazor/components/class-libraries
 ms.openlocfilehash: 24a5b93a18cfe36c50d9739ba56d12aca41615c0
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/12/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94570163"
 ---
 # <a name="aspnet-core-no-locrazor-components-class-libraries"></a>Библиотеки классов компонентов Razor в ASP.NET Core
@@ -52,7 +52,7 @@ ms.locfileid: "94570163"
    1. Выберите файл проекта RCL (`.csproj`).
 1. Добавьте ссылку на RCL из приложения.
    1. Щелкните проект приложения правой кнопкой мыши. Выберите **Добавить** > **Ссылка**.
-   1. Выберите проект RCL. Щелкните **ОК**.
+   1. Выберите проект RCL. Нажмите кнопку **ОК**.
 
 > [!NOTE]
 > Если при создании библиотеки RCL на основе шаблона был установлен флажок **Представления и страницы поддержки**, также добавьте в корневой каталог созданного проекта файл `_Imports.razor` со следующим содержимым, чтобы включить разработку компонента Razor:

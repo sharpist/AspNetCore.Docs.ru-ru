@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: spa/react
 ms.openlocfilehash: 6c3539d96329489189f49a3af0c718791824be6b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054454"
 ---
 # <a name="use-the-react-project-template-with-aspnet-core"></a>Использование шаблона проекта React с ASP.NET Core
@@ -63,7 +63,7 @@ cd my-new-app
 
 ---
 
-На основе шаблона проекта будут созданы приложения ASP.NET Core и React. Приложение ASP.NET Core выполняет такие функции, как получение доступа к данным, авторизация и другие процессы на стороне сервера. Приложение React, которое находится в подкаталоге *ClientApp* , выполняет все задачи, связанные с пользовательским интерфейсом.
+На основе шаблона проекта будут созданы приложения ASP.NET Core и React. Приложение ASP.NET Core выполняет такие функции, как получение доступа к данным, авторизация и другие процессы на стороне сервера. Приложение React, которое находится в подкаталоге *ClientApp*, выполняет все задачи, связанные с пользовательским интерфейсом.
 
 ## <a name="add-pages-images-styles-modules-etc"></a>Например, добавление страниц, изображений, стилей, модулей, и т. д
 

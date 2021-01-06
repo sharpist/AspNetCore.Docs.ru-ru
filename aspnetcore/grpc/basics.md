@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: grpc/basics
 ms.openlocfilehash: 4968ac889cd3b4e0780ce73dc729d0107a416932
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93061019"
 ---
 # <a name="grpc-services-with-c"></a>Службы gRPC на языке C\#
@@ -40,7 +40,7 @@ ms.locfileid: "93061019"
 
 Дополнительные сведения о синтаксисе файлов protobuf см. в разделе <xref:grpc/protobuf>.
 
-Например, рассмотрим файл *greet.proto* , используемый в разделе о [начале работы со службами gRPC](xref:tutorials/grpc/grpc-start):
+Например, рассмотрим файл *greet.proto*, используемый в разделе о [начале работы со службами gRPC](xref:tutorials/grpc/grpc-start):
 
 * Определяет службу `Greeter`.
 * Служба `Greeter` определяет вызов `SayHello`.
@@ -90,7 +90,7 @@ ms.locfileid: "93061019"
 
 [!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet)]
 
-По умолчанию серверные и клиентские ресурсы создаются для каждого файла *\*.proto* , включаемого в группу элементов `<Protobuf>`. Чтобы гарантировать, что в серверном проекте создаются только серверные ресурсы, атрибуту `GrpcServices` присваивается значение `Server`.
+По умолчанию серверные и клиентские ресурсы создаются для каждого файла *\*.proto*, включаемого в группу элементов `<Protobuf>`. Чтобы гарантировать, что в серверном проекте создаются только серверные ресурсы, атрибуту `GrpcServices` присваивается значение `Server`.
 
 [!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-9)]
 

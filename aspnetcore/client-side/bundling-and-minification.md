@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: client-side/bundling-and-minification
 ms.openlocfilehash: 7dd11ceb7a7c01ce1042f50595013b7fe7f1cd5c
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054844"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Объединение и минификация статических ресурсов в ASP.NET Core
@@ -84,7 +84,7 @@ ms.locfileid: "93054844"
 
 ::: moniker range="<= aspnetcore-2.0"
 
-В ASP.NET Core 2.0 и более ранних версиях шаблоны проектов MVC и Razor Pages предоставляют файл конфигурации *bundleconfig.json* , который определяет параметры для каждого пакета:
+В ASP.NET Core 2.0 и более ранних версиях шаблоны проектов MVC и Razor Pages предоставляют файл конфигурации *bundleconfig.json*, который определяет параметры для каждого пакета:
 
 ::: moniker-end
 
@@ -96,28 +96,28 @@ ms.locfileid: "93054844"
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/bundleconfig.json)]
 
-В файле *bundleconfig.json* определяются параметры для каждого пакета. В предыдущем примере для настраиваемого файла JavaScript ( *wwwroot/JS/site.js* ) и таблицы стилей ( *wwwroot/CSS/site. CSS* ) определена конфигурация одного пакета.
+В файле *bundleconfig.json* определяются параметры для каждого пакета. В предыдущем примере для настраиваемого файла JavaScript (*wwwroot/JS/site.js*) и таблицы стилей (*wwwroot/CSS/site. CSS*) определена конфигурация одного пакета.
 
 Доступные варианты конфигурации:
 
 * `outputFileName`. имя файла пакета для вывода. Может содержать относительный путь из файла *bundleconfig.json*. **обязательный параметр**
-* `inputFiles`. массив файлов для объединения. Это относительные пути к файлу конфигурации. **Необязательный параметр** ; *пустое значение приводит к пустому выходному файлу. Поддерживаются шаблоны [глобализации](https://www.tldp.org/LDP/abs/html/globbingref.html).
-* `minify`. параметры минификации для типа выходных данных. **Необязательный параметр** ; *значение по умолчанию — `minify: { enabled: true }`*
+* `inputFiles`. массив файлов для объединения. Это относительные пути к файлу конфигурации. **Необязательный параметр**; *пустое значение приводит к пустому выходному файлу. Поддерживаются шаблоны [глобализации](https://www.tldp.org/LDP/abs/html/globbingref.html).
+* `minify`. параметры минификации для типа выходных данных. **Необязательный параметр**; *значение по умолчанию — `minify: { enabled: true }`*
   * Параметры конфигурации доступны для каждого типа выходного файла.
     * [Уменьшитель CSS](https://github.com/madskristensen/BundlerMinifier/wiki/cssminifier)
     * [Уменьшитель JavaScript](https://github.com/madskristensen/BundlerMinifier/wiki/JavaScript-Minifier-settings)
     * [Уменьшитель HTML](https://github.com/madskristensen/BundlerMinifier/wiki)
-* `includeInProject`. флаг, указывающий, добавлять ли созданные файлы в файл проекта. **Необязательный параметр** ; *значение по умолчанию — false*
-* `sourceMap`. флаг, указывающий, создавать ли сопоставитель с исходным кодом для объединенного файла. **Необязательный параметр** ; *значение по умолчанию — false*
+* `includeInProject`. флаг, указывающий, добавлять ли созданные файлы в файл проекта. **Необязательный параметр**; *значение по умолчанию — false*
+* `sourceMap`. флаг, указывающий, создавать ли сопоставитель с исходным кодом для объединенного файла. **Необязательный параметр**; *значение по умолчанию — false*
 * `sourceMapRootPath`. корневой путь для хранения созданного файла сопоставителя с исходным кодом.
 
 ## <a name="add-files-to-workflow"></a>Добавление файлов в рабочий процесс
 
-Рассмотрим пример, в котором добавляется дополнительный файл *custom.css* , похожий на следующий:
+Рассмотрим пример, в котором добавляется дополнительный файл *custom.css*, похожий на следующий:
 
 [!code-css[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/css/custom.css)]
 
-Чтобы уменьшить *custom.css* и объединить его с файлом *site.css* в файл *site.min.css* , добавьте относительный путь к файлу *bundleconfig.json* :
+Чтобы уменьшить *custom.css* и объединить его с файлом *site.css* в файл *site.min.css*, добавьте относительный путь к файлу *bundleconfig.json*:
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/bundleconfig2.json?highlight=6)]
 
@@ -179,7 +179,7 @@ ms.locfileid: "93054844"
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/package.json?range=5-13)]
 
-Установите зависимости, выполнив следующую команду на том же уровне, что и файл *package.json* :
+Установите зависимости, выполнив следующую команду на том же уровне, что и файл *package.json*:
 
 ```bash
 npm i
@@ -191,7 +191,7 @@ npm i
 npm i -g gulp-cli
 ```
 
-Скопируйте файл *gulpfile.js* , представленный ниже, в корневую папку проекта:
+Скопируйте файл *gulpfile.js*, представленный ниже, в корневую папку проекта:
 
 [!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?range=1-11,14-)]
 

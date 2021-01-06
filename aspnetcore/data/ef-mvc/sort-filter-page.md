@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: data/ef-mvc/sort-filter-page
 ms.openlocfilehash: 8e425d413471912c763c4892a90e9d12039efec4
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93053986"
 ---
 # <a name="tutorial-add-sorting-filtering-and-paging---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF Core. Добавление сортировки, фильтрации и разбиения на страницы
@@ -115,7 +115,7 @@ ms.locfileid: "93053986"
 
 Для добавления кнопки и поля поиска этот код использует [вспомогательную функцию тега](xref:mvc/views/tag-helpers/intro) `<form>`. По умолчанию вспомогательная функция тега `<form>` отправляет данные формы с помощью запроса POST, это означает, что параметры передаются в теле сообщения HTTP, а не в URL-адресе в виде строки запросов. При указании метода HTTP GET данные формы передаются в URL-адресе в виде строк запроса, что позволяет добавлять URL-адреса в закладки. Руководства консорциума W3C рекомендуют использовать метод GET, когда действие не приводит к обновлению.
 
-Для проверки работы фильтра запустите приложение, выберите вкладку **Students** , введите строку поиска и нажмите Search.
+Для проверки работы фильтра запустите приложение, выберите вкладку **Students**, введите строку поиска и нажмите Search.
 
 ![Страница указателя учащихся с фильтрацией](sort-filter-page/_static/filtering.png)
 
@@ -127,7 +127,7 @@ http://localhost:5813/Students?SearchString=an
 
 Если вы добавите эту страницу в закладки, то при открытии закладки будет открываться уже отфильтрованный список. Формирование строки запроса обеспечивает добавление `method="get"` в тег `form`.
 
-На данном этапе, если нажать ссылку сортировки в заголовке столбца, то значение фильтра, которое мы ввели в поле **Search** , будет потеряно. Мы исправим это в следующем разделе.
+На данном этапе, если нажать ссылку сортировки в заголовке столбца, то значение фильтра, которое мы ввели в поле **Search**, будет потеряно. Мы исправим это в следующем разделе.
 
 ## <a name="add-paging-to-students-index"></a>Добавление разбиения по страницам в указатель учащихся
 
@@ -236,7 +236,7 @@ return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pa
 
 ### <a name="modify-the-home-controller"></a>Изменение контроллера Home
 
-Добавьте следующие директивы using в начало файла *HomeController.cs* :
+Добавьте следующие директивы using в начало файла *HomeController.cs*:
 
 [!code-csharp[](intro/samples/cu/Controllers/HomeController.cs?name=snippet_Usings1)]
 

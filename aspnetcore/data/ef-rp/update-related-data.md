@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: data/ef-rp/update-related-data
 ms.openlocfilehash: 3ec88a862697c540a1a98e733c31d76922f81f7c
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93060538"
 ---
 # <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Часть 7. Razor Pages с EF Core в ASP.NET Core — обновление связанных данных
@@ -57,7 +57,7 @@ ms.locfileid: "93060538"
 
 ![Создание курса](update-related-data/_static/ddl30.png)
 
-Измените файл *Pages/Courses/Create.cshtml.cs* , используя следующий код:
+Измените файл *Pages/Courses/Create.cshtml.cs*, используя следующий код:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Create.cshtml.cs?highlight=7,18,27-41)]
 
@@ -71,7 +71,7 @@ ms.locfileid: "93060538"
 
 ### <a name="update-the-course-create-no-locrazor-page"></a>Обновление страницы Razor создания курсов
 
-Измените файл *Pages/Courses/Create.cshtml* , используя следующий код:
+Измените файл *Pages/Courses/Create.cshtml*, используя следующий код:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Create.cshtml?highlight=29-34)]
 
@@ -90,7 +90,7 @@ ms.locfileid: "93060538"
 
 ### <a name="update-the-course-edit-page-model"></a>Обновление модели для страницы редактирования курсов
 
-Измените файл *Pages/Courses/Edit.cshtml.cs* , используя следующий код:
+Измените файл *Pages/Courses/Edit.cshtml.cs*, используя следующий код:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40-66)]
 
@@ -98,7 +98,7 @@ ms.locfileid: "93060538"
 
 ### <a name="update-the-course-edit-no-locrazor-page"></a>Обновление страницы Razor редактирования курсов
 
-Измените файл *Pages/Courses/Edit.cshtml* , используя следующий код:
+Измените файл *Pages/Courses/Edit.cshtml*, используя следующий код:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Edit.cshtml?highlight=17-20,32-35)]
 
@@ -116,17 +116,17 @@ ms.locfileid: "93060538"
 
 ### <a name="update-the-course-page-models"></a>Обновление моделей для страниц курсов
 
-Измените файл *Pages/Courses/Delete.cshtml.cs* , используя следующий код, чтобы добавить `AsNoTracking`:
+Измените файл *Pages/Courses/Delete.cshtml.cs*, используя следующий код, чтобы добавить `AsNoTracking`:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Delete.cshtml.cs?highlight=29)]
 
-Внесите такое же изменение в файл *Pages/Courses/Details.cshtml.cs* :
+Внесите такое же изменение в файл *Pages/Courses/Details.cshtml.cs*:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=28)]
 
 ### <a name="update-the-course-no-locrazor-pages"></a>Обновление страницы Razor курсов
 
-Измените файл *Pages/Courses/Delete.cshtml* , используя следующий код:
+Измените файл *Pages/Courses/Delete.cshtml*, используя следующий код:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Delete.cshtml?highlight=15-20,37)]
 
@@ -156,7 +156,7 @@ ms.locfileid: "93060538"
 
 ### <a name="create-an-instructor-page-model-base-class"></a>Создание базового класса модели для страницы преподавателя
 
-Создайте базовый класс *Pages/Instructors/InstructorCoursesPageModel.cs* :
+Создайте базовый класс *Pages/Instructors/InstructorCoursesPageModel.cs*:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_All)]
 
@@ -188,7 +188,7 @@ ms.locfileid: "93060538"
 
 ### <a name="update-the-instructor-edit-page-model"></a>Обновление модели для страницы редактирования преподавателя
 
-Измените файл *Pages/Instructors/Edit.cshtml.cs* , используя следующий код:
+Измените файл *Pages/Instructors/Edit.cshtml.cs*, используя следующий код:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Edit.cshtml.cs?name=snippet_All&highlight=9,28-32,38,42-77)]
 
@@ -203,7 +203,7 @@ ms.locfileid: "93060538"
 
 ### <a name="update-the-instructor-edit-no-locrazor-page"></a>Обновление страницы Razor редактирования преподавателя
 
-Измените файл *Pages/Instructors/Edit.cshtml* , используя следующий код:
+Измените файл *Pages/Instructors/Edit.cshtml*, используя следующий код:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Instructors/Edit.cshtml?highlight=29-59)]
 
@@ -227,7 +227,7 @@ ms.locfileid: "93060538"
 
 ## <a name="update-the-instructor-delete-page"></a>Обновление страницы удаления преподавателя
 
-Измените файл *Pages/Instructors/Delete.cshtml.cs* , используя следующий код:
+Измените файл *Pages/Instructors/Delete.cshtml.cs*, используя следующий код:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Delete.cshtml.cs?highlight=45-61)]
 
@@ -288,7 +288,7 @@ ms.locfileid: "93060538"
 
 ### <a name="update-the-courses-create-page"></a>Обновление страницы создания курсов
 
-Измените файл *Pages/Courses/Create.cshtml* , используя следующий код:
+Измените файл *Pages/Courses/Create.cshtml*, используя следующий код:
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?highlight=29-34)]
 
@@ -313,7 +313,7 @@ ms.locfileid: "93060538"
 
 Изменения аналогичны внесенным в модель страницы Create. В приведенном выше коде `PopulateDepartmentsDropDownList` передает идентификатор кафедры, по которому выбирается кафедра, заданная в раскрывающемся списке.
 
-Обновите файл *Pages/Courses/Edit.cshtml* , используя следующую разметку:
+Обновите файл *Pages/Courses/Edit.cshtml*, используя следующую разметку:
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Edit.cshtml?highlight=17-20,32-35)]
 
@@ -333,7 +333,7 @@ ms.locfileid: "93060538"
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 
-Обновите метод `OnGetAsync` в файле *Pages/Courses/Details.cshtml.cs* :
+Обновите метод `OnGetAsync` в файле *Pages/Courses/Details.cshtml.cs*:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Details.cshtml.cs?name=snippet)]
 
@@ -373,7 +373,7 @@ ms.locfileid: "93060538"
 
 ### <a name="update-the-instructor-edit-page"></a>Обновление страницы редактирования преподавателя
 
-Обновите файл *Pages/Instructors/Edit.cshtml* , указав расположение кабинета:
+Обновите файл *Pages/Instructors/Edit.cshtml*, указав расположение кабинета:
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Edit1.cshtml?highlight=29-33)]
 
@@ -400,7 +400,7 @@ ms.locfileid: "93060538"
 
 Класс `AssignedCourseData` содержит данные для создания флажков, определяющих назначенные преподавателю курсы.
 
-Создайте базовый класс *Pages/Instructors/InstructorCoursesPageModel.cshtml.cs* :
+Создайте базовый класс *Pages/Instructors/InstructorCoursesPageModel.cshtml.cs*:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/InstructorCoursesPageModel.cshtml.cs)]
 

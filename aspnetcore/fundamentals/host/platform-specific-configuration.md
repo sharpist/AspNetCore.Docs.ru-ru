@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/configuration/platform-specific-configuration
 ms.openlocfilehash: c12487875db69472ee328dfc7a611ee99974c770
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93061058"
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Использование начальных сборок размещения в ASP.NET Core
@@ -113,13 +113,13 @@ ms.locfileid: "93061058"
 
 Метод `ServiceKeyInjection` класса <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> использует <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> для добавления улучшений в приложение.
 
-*HostingStartupLibrary/ServiceKeyInjection.cs* :
+*HostingStartupLibrary/ServiceKeyInjection.cs*:
 
 [!code-csharp[](platform-specific-configuration/samples/3.x/HostingStartupLibrary/ServiceKeyInjection.cs?name=snippet1)]
 
 Страница индекса приложения считывает и отображает значения конфигурации для двух ключей, устанавливаемых начальной сборкой размещения библиотеки класса:
 
-*HostingStartupApp/Pages/Index.cshtml.cs* :
+*HostingStartupApp/Pages/Index.cshtml.cs*:
 
 [!code-csharp[](platform-specific-configuration/samples/3.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6,11-12)]
 
@@ -128,13 +128,13 @@ ms.locfileid: "93061058"
 * Содержит класс размещения при запуске `ServiceKeyInjection`, который реализует `IHostingStartup`. `ServiceKeyInjection` добавляет пару строк службы в конфигурацию приложения.
 * Включает атрибут `HostingStartup`.
 
-*HostingStartupPackage/ServiceKeyInjection.cs* :
+*HostingStartupPackage/ServiceKeyInjection.cs*:
 
 [!code-csharp[](platform-specific-configuration/samples/3.x/HostingStartupPackage/ServiceKeyInjection.cs?name=snippet1)]
 
 Страница индекса приложения считывает и отображает значения конфигурации для двух ключей, устанавливаемых начальной сборкой размещения пакета:
 
-*HostingStartupApp/Pages/Index.cshtml.cs* :
+*HostingStartupApp/Pages/Index.cshtml.cs*:
 
 [!code-csharp[](platform-specific-configuration/samples/3.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=7-8,13-14)]
 
@@ -170,7 +170,7 @@ ms.locfileid: "93061058"
 
 [!code-csharp[](platform-specific-configuration/samples-snapshot/3.x/StartupEnhancement.cs?name=snippet2&highlight=3,5)]
 
-При создании проекта `IHostingStartup` файл зависимостей ( *.deps.json* ) задает расположение `runtime` для сборки в папке *bin* :
+При создании проекта `IHostingStartup` файл зависимостей ( *.deps.json*) задает расположение `runtime` для сборки в папке *bin*:
 
 [!code-json[](platform-specific-configuration/samples-snapshot/3.x/StartupEnhancement1.deps.json?range=2-13&highlight=8)]
 
@@ -248,7 +248,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 Ниже приведены варианты активации размещения при запуске:
 
-* [Хранилище среды выполнения.](#runtime-store) Для активации не требуется ссылка во время компиляции. Пример приложения помещает начальную сборку размещения и файлы зависимостей в папку *deployment* , чтобы облегчить развертывание размещения при запуске в среде с несколькими компьютерами. Папка *deployment* также включает сценарий PowerShell, который создает или изменяет переменные среды в системе развертывания, чтобы включить размещение при запуске.
+* [Хранилище среды выполнения.](#runtime-store) Для активации не требуется ссылка во время компиляции. Пример приложения помещает начальную сборку размещения и файлы зависимостей в папку *deployment*, чтобы облегчить развертывание размещения при запуске в среде с несколькими компьютерами. Папка *deployment* также включает сценарий PowerShell, который создает или изменяет переменные среды в системе развертывания, чтобы включить размещение при запуске.
 * Ссылки во время компиляции, необходимые для активации
   * [Пакет NuGet](#nuget-package)
   * [Папка bin проекта](#project-bin-folder)
@@ -263,7 +263,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 dotnet store --manifest {MANIFEST FILE} --runtime {RUNTIME IDENTIFIER} --output {OUTPUT LOCATION} --skip-optimization
 ```
 
-В примере приложения (проект *RuntimeStore* ) используется такая команда:
+В примере приложения (проект *RuntimeStore*) используется такая команда:
 
 ```dotnetcli
 dotnet store --manifest store.manifest.csproj --runtime win7-x64 --output ./deployment/store --skip-optimization
@@ -340,7 +340,7 @@ dotnet store --manifest store.manifest.csproj --runtime win7-x64 --output ./depl
 * `{SHARED FRAMEWORK VERSION}`. Минимальная версия общей платформы.
 * `{ENHANCEMENT ASSEMBLY NAME}`. Имя сборки расширения.
 
-В примере приложения (проект *RuntimeStore* ) файл дополнительных зависимостей помещается в следующее расположение:
+В примере приложения (проект *RuntimeStore*) файл дополнительных зависимостей помещается в следующее расположение:
 
 ```
 deployment/additionalDeps/shared/Microsoft.AspNetCore.App/3.0.0/StartupDiagnostics.deps.json
@@ -348,7 +348,7 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/3.0.0/StartupDiagnosti
 
 Чтобы среда выполнения могла обнаружить хранилище среды выполнения, расположение файла дополнительных зависимостей добавляется к переменной среды `DOTNET_ADDITIONAL_DEPS`.
 
-В примере приложения (проект *RuntimeStore* ) для сборки хранилища среды выполнения и создания файла дополнительных зависимостей используется скрипт [PowerShell](/powershell/scripting/powershell-scripting).
+В примере приложения (проект *RuntimeStore*) для сборки хранилища среды выполнения и создания файла дополнительных зависимостей используется скрипт [PowerShell](/powershell/scripting/powershell-scripting).
 
 Примеры установки переменных среды для различных операционных систем см. в разделе [Использование нескольких сред](xref:fundamentals/environments).
 
@@ -364,7 +364,7 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/3.0.0/StartupDiagnosti
 
 Расширение размещения при запуске можно указать в пакете NuGet. Пакет содержит атрибут `HostingStartup`. Типы размещения при запуске, предоставляемые пакетом, становятся доступными для приложения с использованием одного из следующих методов:
 
-* Файл проекта расширенного приложения создает ссылку на пакет для размещения при запуске в файле проекта приложения (ссылка во время компиляции). Со ссылкой во время компиляции начальная сборка размещения и все ее зависимости включаются в файл зависимостей приложения ( *.deps.json* ). Этот подход применяется к пакету начальной сборки размещения, опубликованному на [nuget.org](https://www.nuget.org/).
+* Файл проекта расширенного приложения создает ссылку на пакет для размещения при запуске в файле проекта приложения (ссылка во время компиляции). Со ссылкой во время компиляции начальная сборка размещения и все ее зависимости включаются в файл зависимостей приложения ( *.deps.json*). Этот подход применяется к пакету начальной сборки размещения, опубликованному на [nuget.org](https://www.nuget.org/).
 * Файл зависимостей размещения при запуске становится доступным для расширенного приложения, как описано в разделе [Хранилище среды выполнения](#runtime-store) (без ссылок во время компиляции).
 
 Дополнительные сведения о пакетах NuGet и хранилище среды выполнения см. в разделах:
@@ -377,12 +377,12 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/3.0.0/StartupDiagnosti
 
 Расширение размещения при запуске может быть представлено сборкой, разворачиваемой в папке *bin* расширенного приложения. Типы размещения при запуске, предоставляемые сборкой, становятся доступными для приложения с использованием одного из следующих методов:
 
-* Файл проекта расширенного приложения создает ссылку сборки на размещение при запуске (ссылка во время компиляции). Со ссылкой во время компиляции начальная сборка размещения и все ее зависимости включаются в файл зависимостей приложения ( *.deps.json* ). Этот подход применяется при вызове сценария развертывания для создания ссылки времени компиляции на сборку запуска размещения ( *DLL* -файл) и перемещения сборки в одно из следующих мест:
+* Файл проекта расширенного приложения создает ссылку сборки на размещение при запуске (ссылка во время компиляции). Со ссылкой во время компиляции начальная сборка размещения и все ее зависимости включаются в файл зависимостей приложения ( *.deps.json*). Этот подход применяется при вызове сценария развертывания для создания ссылки времени компиляции на сборку запуска размещения (*DLL*-файл) и перемещения сборки в одно из следующих мест:
   * Проект, который будет использовать ее.
   * Расположение, доступное использующему проекту.
 * Файл зависимостей размещения при запуске становится доступным для расширенного приложения, как описано в разделе [Хранилище среды выполнения](#runtime-store) (без ссылок во время компиляции).
 * При нацеливании на .NET Framework сборка загружается в контексте загрузки по умолчанию, что для .NET Framework означает, что сборка находится в одном из следующих расположений:
-  * Базовый путь приложения. Папка *bin* , в которой находится исполняемый файл приложения ( *.exe* ).
+  * Базовый путь приложения. Папка *bin*, в которой находится исполняемый файл приложения ( *.exe*).
   * Глобальный кэш сборок. В глобальном кэше сборок сохраняются сборки, которые могут использоваться несколькими приложениями .NET Framework. Дополнительные сведения см. в разделе [Практическое руководство. Установка сборки в глобальный кэш сборок](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) в документации по .NET Framework.
 
 ## <a name="sample-code"></a>Пример кода
@@ -390,9 +390,9 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/3.0.0/StartupDiagnosti
 В [примере кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([инструкции по скачиванию примера](xref:index#how-to-download-a-sample)) показаны сценарии реализации размещения при запуске:
 
 * В каждой из двух сборок начального размещения (библиотеки классов) устанавливаются две пары "ключ-значение", хранящиеся в памяти:
-  * Пакет NuGet ( *HostingStartupPackage* )
-  * Библиотека классов ( *HostingStartupLibrary* )
-* Размещения при запуске активируется из сборки среды выполнения, развертываемой из хранилища ( *StartupDiagnostics* ). Эта сборка добавляет два вида ПО промежуточного слоя, которые предоставляют диагностические сведения о следующих показателях:
+  * Пакет NuGet (*HostingStartupPackage*)
+  * Библиотека классов (*HostingStartupLibrary*)
+* Размещения при запуске активируется из сборки среды выполнения, развертываемой из хранилища (*StartupDiagnostics*). Эта сборка добавляет два вида ПО промежуточного слоя, которые предоставляют диагностические сведения о следующих показателях:
   * Зарегистрированные службы
   * Адрес (схема, узел, базовый путь, путь, строка запроса)
   * Подключение (удаленный IP-адрес, удаленный порт, локальный IP-адрес, локальный порт, сертификат клиента)
@@ -405,7 +405,7 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/3.0.0/StartupDiagnosti
 
 1. Скомпилируйте пакет *HostingStartupPackage* с помощью команды [dotnet pack](/dotnet/core/tools/dotnet-pack).
 1. Добавьте имя сборки пакета *HostingStartupPackage* в переменную среды `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
-1. Скомпилируйте и запустите приложение. Ссылка на пакет появится в расширенном приложении (ссылка во время компиляции). Объект `<PropertyGroup>` в файле проекта приложения определяет выходные данные проекта пакета ( *../ HostingStartupPackage/bin/Debug* ) в качестве источника пакета. Это позволяет приложению использовать пакет без отправки пакета на сайт [nuget.org](https://www.nuget.org/). Дополнительные сведения см. в примечаниях в файле проекта HostingStartupApp.
+1. Скомпилируйте и запустите приложение. Ссылка на пакет появится в расширенном приложении (ссылка во время компиляции). Объект `<PropertyGroup>` в файле проекта приложения определяет выходные данные проекта пакета ( *../ HostingStartupPackage/bin/Debug*) в качестве источника пакета. Это позволяет приложению использовать пакет без отправки пакета на сайт [nuget.org](https://www.nuget.org/). Дополнительные сведения см. в примечаниях в файле проекта HostingStartupApp.
 
    ```xml
    <PropertyGroup>
@@ -426,7 +426,7 @@ dotnet nuget locals all --clear
 1. Скомпилируйте библиотеку классов *HostingStartupLibrary* с помощью команды [dotnet build](/dotnet/core/tools/dotnet-build).
 1. Добавьте имя сборки библиотеки классов *HostingStartupLibrary* в переменную среды `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
 1. Разверните сборку библиотеки классов в папку *bin* приложения. Для этого скопируйте файл *HostingStartupLibrary.dll* из выходной папки компиляции библиотеки в папку *bin/Debug* приложения.
-1. Скомпилируйте и запустите приложение. `<ItemGroup>` в файле проекта приложения ссылается на сборку библиотеки класса ( *.\bin\Debug\netcoreapp3.0\HostingStartupLibrary.dll* ) (ссылка во время компиляции). Дополнительные сведения см. в примечаниях в файле проекта HostingStartupApp.
+1. Скомпилируйте и запустите приложение. `<ItemGroup>` в файле проекта приложения ссылается на сборку библиотеки класса ( *.\bin\Debug\netcoreapp3.0\HostingStartupLibrary.dll*) (ссылка во время компиляции). Дополнительные сведения см. в примечаниях в файле проекта HostingStartupApp.
 
    ```xml
    <ItemGroup>
@@ -442,12 +442,12 @@ dotnet nuget locals all --clear
 **Активация из сборки среды выполнения, развернутой в хранилище**
 
 1. В проекте *StartupDiagnostics* используется [PowerShell](/powershell/scripting/powershell-scripting) для изменения файла *StartupDiagnostics.deps.json*. PowerShell устанавливается по умолчанию в Windows начиная с Windows 7 с пакетом обновления 1 (SP1) и Windows Server 2008 R2 с пакетом обновления 1 (SP1). Для установки PowerShell на других платформах см. раздел [Установка разных версий PowerShell](/powershell/scripting/install/installing-powershell).
-1. Выполните сценарий *build.ps1* , находящийся в папке *RuntimeStore*. Скрипт выполняет следующее:
+1. Выполните сценарий *build.ps1*, находящийся в папке *RuntimeStore*. Скрипт выполняет следующее:
    * Генерирует пакет `StartupDiagnostics` в папке *obj\packages*.
    * Создает хранилище среды выполнения для `StartupDiagnostics` в папке *store*. Для размещения при запуске, развернутом в Windows, команда `dotnet store` в сценарии использует [идентификатор среды выполнения (RID)](/dotnet/core/rid-catalog) `win7-x64`. При выполнении размещения при запуске для другой среды выполнения укажите соответствующий RID в строке 37 скрипта. Хранилище среды выполнения для `StartupDiagnostics` позже будет перемещено в хранилище среды выполнения пользователя или системы на компьютере, где будет израсходована сборка. Пользовательское место установки хранилища среды выполнения для сборки `StartupDiagnostics` — *.dotnet/store/x64/netcoreapp3.0/startupdiagnostics/1.0.0/lib/netcoreapp3.0/StartupDiagnostics.dll*.
    * Генерирует `additionalDeps` для `StartupDiagnostics` в папке *additionalDeps*. Дополнительные зависимости позднее будут перенесены в дополнительные зависимости пользователя или системы. Расположением установки дополнительных зависимостей пользователя `StartupDiagnostics` является *.dotnet/x64/additionalDeps/StartupDiagnostics/shared/Microsoft.NETCore.App/3.0.0/StartupDiagnostics.deps.json*.
    * Размещает файл *deploy.ps1* в папке для *развертывания*.
-1. Выполните сценарий *deploy.ps1* , находящийся в папке *deployment*. Скрипт присоединяет:
+1. Выполните сценарий *deploy.ps1*, находящийся в папке *deployment*. Скрипт присоединяет:
    * `StartupDiagnostics` к переменной среды `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
    * Путь размещения начальных зависимостей (в папке *развертывания* проекта "RuntimeStore") к переменной среды `DOTNET_ADDITIONAL_DEPS`.
    * Путь хранилища среды выполнения (в папке *развертывания* проекта "RuntimeStore") к переменной среды `DOTNET_SHARED_STORE`.
@@ -511,13 +511,13 @@ dotnet nuget locals all --clear
 
 Метод `ServiceKeyInjection` класса <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> использует <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> для добавления улучшений в приложение.
 
-*HostingStartupLibrary/ServiceKeyInjection.cs* :
+*HostingStartupLibrary/ServiceKeyInjection.cs*:
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupLibrary/ServiceKeyInjection.cs?name=snippet1)]
 
 Страница индекса приложения считывает и отображает значения конфигурации для двух ключей, устанавливаемых начальной сборкой размещения библиотеки класса:
 
-*HostingStartupApp/Pages/Index.cshtml.cs* :
+*HostingStartupApp/Pages/Index.cshtml.cs*:
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6,11-12)]
 
@@ -526,13 +526,13 @@ dotnet nuget locals all --clear
 * Содержит класс размещения при запуске `ServiceKeyInjection`, который реализует `IHostingStartup`. `ServiceKeyInjection` добавляет пару строк службы в конфигурацию приложения.
 * Включает атрибут `HostingStartup`.
 
-*HostingStartupPackage/ServiceKeyInjection.cs* :
+*HostingStartupPackage/ServiceKeyInjection.cs*:
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupPackage/ServiceKeyInjection.cs?name=snippet1)]
 
 Страница индекса приложения считывает и отображает значения конфигурации для двух ключей, устанавливаемых начальной сборкой размещения пакета:
 
-*HostingStartupApp/Pages/Index.cshtml.cs* :
+*HostingStartupApp/Pages/Index.cshtml.cs*:
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=7-8,13-14)]
 
@@ -568,7 +568,7 @@ dotnet nuget locals all --clear
 
 [!code-csharp[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.cs?name=snippet2&highlight=3,5)]
 
-При создании проекта `IHostingStartup` файл зависимостей ( *.deps.json* ) задает расположение `runtime` для сборки в папке *bin* :
+При создании проекта `IHostingStartup` файл зависимостей ( *.deps.json*) задает расположение `runtime` для сборки в папке *bin*:
 
 [!code-json[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement1.deps.json?range=2-13&highlight=8)]
 
@@ -634,7 +634,7 @@ HostingStartupLibrary;HostingStartupPackage;StartupDiagnostics
 
 Ниже приведены варианты активации размещения при запуске:
 
-* [Хранилище среды выполнения.](#runtime-store) Для активации не требуется ссылка во время компиляции. Пример приложения помещает начальную сборку размещения и файлы зависимостей в папку *deployment* , чтобы облегчить развертывание размещения при запуске в среде с несколькими компьютерами. Папка *deployment* также включает сценарий PowerShell, который создает или изменяет переменные среды в системе развертывания, чтобы включить размещение при запуске.
+* [Хранилище среды выполнения.](#runtime-store) Для активации не требуется ссылка во время компиляции. Пример приложения помещает начальную сборку размещения и файлы зависимостей в папку *deployment*, чтобы облегчить развертывание размещения при запуске в среде с несколькими компьютерами. Папка *deployment* также включает сценарий PowerShell, который создает или изменяет переменные среды в системе развертывания, чтобы включить размещение при запуске.
 * Ссылки во время компиляции, необходимые для активации
   * [Пакет NuGet](#nuget-package)
   * [Папка bin проекта](#project-bin-folder)
@@ -649,7 +649,7 @@ HostingStartupLibrary;HostingStartupPackage;StartupDiagnostics
 dotnet store --manifest {MANIFEST FILE} --runtime {RUNTIME IDENTIFIER} --output {OUTPUT LOCATION} --skip-optimization
 ```
 
-В примере приложения (проект *RuntimeStore* ) используется такая команда:
+В примере приложения (проект *RuntimeStore*) используется такая команда:
 
 ```dotnetcli
 dotnet store --manifest store.manifest.csproj --runtime win7-x64 --output ./deployment/store --skip-optimization
@@ -726,7 +726,7 @@ dotnet store --manifest store.manifest.csproj --runtime win7-x64 --output ./depl
 * `{SHARED FRAMEWORK VERSION}`. Минимальная версия общей платформы.
 * `{ENHANCEMENT ASSEMBLY NAME}`. Имя сборки расширения.
 
-В примере приложения (проект *RuntimeStore* ) файл дополнительных зависимостей помещается в следующее расположение:
+В примере приложения (проект *RuntimeStore*) файл дополнительных зависимостей помещается в следующее расположение:
 
 ```
 deployment/additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnostics.deps.json
@@ -734,7 +734,7 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnosti
 
 Чтобы среда выполнения могла обнаружить хранилище среды выполнения, расположение файла дополнительных зависимостей добавляется к переменной среды `DOTNET_ADDITIONAL_DEPS`.
 
-В примере приложения (проект *RuntimeStore* ) для сборки хранилища среды выполнения и создания файла дополнительных зависимостей используется скрипт [PowerShell](/powershell/scripting/powershell-scripting).
+В примере приложения (проект *RuntimeStore*) для сборки хранилища среды выполнения и создания файла дополнительных зависимостей используется скрипт [PowerShell](/powershell/scripting/powershell-scripting).
 
 Примеры установки переменных среды для различных операционных систем см. в разделе [Использование нескольких сред](xref:fundamentals/environments).
 
@@ -750,7 +750,7 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnosti
 
 Расширение размещения при запуске можно указать в пакете NuGet. Пакет содержит атрибут `HostingStartup`. Типы размещения при запуске, предоставляемые пакетом, становятся доступными для приложения с использованием одного из следующих методов:
 
-* Файл проекта расширенного приложения создает ссылку на пакет для размещения при запуске в файле проекта приложения (ссылка во время компиляции). Со ссылкой во время компиляции начальная сборка размещения и все ее зависимости включаются в файл зависимостей приложения ( *.deps.json* ). Этот подход применяется к пакету начальной сборки размещения, опубликованному на [nuget.org](https://www.nuget.org/).
+* Файл проекта расширенного приложения создает ссылку на пакет для размещения при запуске в файле проекта приложения (ссылка во время компиляции). Со ссылкой во время компиляции начальная сборка размещения и все ее зависимости включаются в файл зависимостей приложения ( *.deps.json*). Этот подход применяется к пакету начальной сборки размещения, опубликованному на [nuget.org](https://www.nuget.org/).
 * Файл зависимостей размещения при запуске становится доступным для расширенного приложения, как описано в разделе [Хранилище среды выполнения](#runtime-store) (без ссылок во время компиляции).
 
 Дополнительные сведения о пакетах NuGet и хранилище среды выполнения см. в разделах:
@@ -763,12 +763,12 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnosti
 
 Расширение размещения при запуске может быть представлено сборкой, разворачиваемой в папке *bin* расширенного приложения. Типы размещения при запуске, предоставляемые сборкой, становятся доступными для приложения с использованием одного из следующих методов:
 
-* Файл проекта расширенного приложения создает ссылку сборки на размещение при запуске (ссылка во время компиляции). Со ссылкой во время компиляции начальная сборка размещения и все ее зависимости включаются в файл зависимостей приложения ( *.deps.json* ). Этот подход применяется при вызове сценария развертывания для создания ссылки времени компиляции на сборку запуска размещения ( *DLL* -файл) и перемещения сборки в одно из следующих мест:
+* Файл проекта расширенного приложения создает ссылку сборки на размещение при запуске (ссылка во время компиляции). Со ссылкой во время компиляции начальная сборка размещения и все ее зависимости включаются в файл зависимостей приложения ( *.deps.json*). Этот подход применяется при вызове сценария развертывания для создания ссылки времени компиляции на сборку запуска размещения (*DLL*-файл) и перемещения сборки в одно из следующих мест:
   * Проект, который будет использовать ее.
   * Расположение, доступное использующему проекту.
 * Файл зависимостей размещения при запуске становится доступным для расширенного приложения, как описано в разделе [Хранилище среды выполнения](#runtime-store) (без ссылок во время компиляции).
 * При нацеливании на .NET Framework сборка загружается в контексте загрузки по умолчанию, что для .NET Framework означает, что сборка находится в одном из следующих расположений:
-  * Базовый путь приложения. Папка *bin* , в которой находится исполняемый файл приложения ( *.exe* ).
+  * Базовый путь приложения. Папка *bin*, в которой находится исполняемый файл приложения ( *.exe*).
   * Глобальный кэш сборок. В глобальном кэше сборок сохраняются сборки, которые могут использоваться несколькими приложениями .NET Framework. Дополнительные сведения см. в разделе [Практическое руководство. Установка сборки в глобальный кэш сборок](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) в документации по .NET Framework.
 
 ## <a name="sample-code"></a>Пример кода
@@ -776,9 +776,9 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnosti
 В [примере кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([инструкции по скачиванию примера](xref:index#how-to-download-a-sample)) показаны сценарии реализации размещения при запуске:
 
 * В каждой из двух сборок начального размещения (библиотеки классов) устанавливаются две пары "ключ-значение", хранящиеся в памяти:
-  * Пакет NuGet ( *HostingStartupPackage* )
-  * Библиотека классов ( *HostingStartupLibrary* )
-* Размещения при запуске активируется из сборки среды выполнения, развертываемой из хранилища ( *StartupDiagnostics* ). Эта сборка добавляет два вида ПО промежуточного слоя, которые предоставляют диагностические сведения о следующих показателях:
+  * Пакет NuGet (*HostingStartupPackage*)
+  * Библиотека классов (*HostingStartupLibrary*)
+* Размещения при запуске активируется из сборки среды выполнения, развертываемой из хранилища (*StartupDiagnostics*). Эта сборка добавляет два вида ПО промежуточного слоя, которые предоставляют диагностические сведения о следующих показателях:
   * Зарегистрированные службы
   * Адрес (схема, узел, базовый путь, путь, строка запроса)
   * Подключение (удаленный IP-адрес, удаленный порт, локальный IP-адрес, локальный порт, сертификат клиента)
@@ -791,7 +791,7 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnosti
 
 1. Скомпилируйте пакет *HostingStartupPackage* с помощью команды [dotnet pack](/dotnet/core/tools/dotnet-pack).
 1. Добавьте имя сборки пакета *HostingStartupPackage* в переменную среды `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
-1. Скомпилируйте и запустите приложение. Ссылка на пакет появится в расширенном приложении (ссылка во время компиляции). Объект `<PropertyGroup>` в файле проекта приложения определяет выходные данные проекта пакета ( *../ HostingStartupPackage/bin/Debug* ) в качестве источника пакета. Это позволяет приложению использовать пакет без отправки пакета на сайт [nuget.org](https://www.nuget.org/). Дополнительные сведения см. в примечаниях в файле проекта HostingStartupApp.
+1. Скомпилируйте и запустите приложение. Ссылка на пакет появится в расширенном приложении (ссылка во время компиляции). Объект `<PropertyGroup>` в файле проекта приложения определяет выходные данные проекта пакета ( *../ HostingStartupPackage/bin/Debug*) в качестве источника пакета. Это позволяет приложению использовать пакет без отправки пакета на сайт [nuget.org](https://www.nuget.org/). Дополнительные сведения см. в примечаниях в файле проекта HostingStartupApp.
 
    ```xml
    <PropertyGroup>
@@ -812,7 +812,7 @@ dotnet nuget locals all --clear
 1. Скомпилируйте библиотеку классов *HostingStartupLibrary* с помощью команды [dotnet build](/dotnet/core/tools/dotnet-build).
 1. Добавьте имя сборки библиотеки классов *HostingStartupLibrary* в переменную среды `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
 1. Разверните сборку библиотеки классов в папку *bin* приложения. Для этого скопируйте файл *HostingStartupLibrary.dll* из выходной папки компиляции библиотеки в папку *bin/Debug* приложения.
-1. Скомпилируйте и запустите приложение. `<ItemGroup>` в файле проекта приложения ссылается на сборку библиотеки класса ( *.\bin\Debug\netcoreapp2.1\HostingStartupLibrary.dll* ) (ссылка во время компиляции). Дополнительные сведения см. в примечаниях в файле проекта HostingStartupApp.
+1. Скомпилируйте и запустите приложение. `<ItemGroup>` в файле проекта приложения ссылается на сборку библиотеки класса ( *.\bin\Debug\netcoreapp2.1\HostingStartupLibrary.dll*) (ссылка во время компиляции). Дополнительные сведения см. в примечаниях в файле проекта HostingStartupApp.
 
    ```xml
    <ItemGroup>
@@ -828,12 +828,12 @@ dotnet nuget locals all --clear
 **Активация из сборки среды выполнения, развернутой в хранилище**
 
 1. В проекте *StartupDiagnostics* используется [PowerShell](/powershell/scripting/powershell-scripting) для изменения файла *StartupDiagnostics.deps.json*. PowerShell устанавливается по умолчанию в Windows начиная с Windows 7 с пакетом обновления 1 (SP1) и Windows Server 2008 R2 с пакетом обновления 1 (SP1). Для установки PowerShell на других платформах см. раздел [Установка разных версий PowerShell](/powershell/scripting/install/installing-powershell).
-1. Выполните сценарий *build.ps1* , находящийся в папке *RuntimeStore*. Скрипт выполняет следующее:
+1. Выполните сценарий *build.ps1*, находящийся в папке *RuntimeStore*. Скрипт выполняет следующее:
    * Генерирует пакет `StartupDiagnostics` в папке *obj\packages*.
    * Создает хранилище среды выполнения для `StartupDiagnostics` в папке *store*. Для размещения при запуске, развернутом в Windows, команда `dotnet store` в сценарии использует [идентификатор среды выполнения (RID)](/dotnet/core/rid-catalog) `win7-x64`. При выполнении размещения при запуске для другой среды выполнения укажите соответствующий RID в строке 37 скрипта. Хранилище среды выполнения для `StartupDiagnostics` позже будет перемещено в хранилище среды выполнения пользователя или системы на компьютере, где будет израсходована сборка. Пользовательское место установки хранилища среды выполнения для сборки `StartupDiagnostics` — *.dotnet/store/x64/netcoreapp2.2/startupdiagnostics/1.0.0/lib/netcoreapp2.2/StartupDiagnostics.dll*.
    * Генерирует `additionalDeps` для `StartupDiagnostics` в папке *additionalDeps*. Дополнительные зависимости позднее будут перенесены в дополнительные зависимости пользователя или системы. Расположением установки дополнительных зависимостей пользователя `StartupDiagnostics` является *.dotnet/x64/additionalDeps/StartupDiagnostics/shared/Microsoft.NETCore.App/2.2.0/StartupDiagnostics.deps.json*.
    * Размещает файл *deploy.ps1* в папке для *развертывания*.
-1. Выполните сценарий *deploy.ps1* , находящийся в папке *deployment*. Скрипт присоединяет:
+1. Выполните сценарий *deploy.ps1*, находящийся в папке *deployment*. Скрипт присоединяет:
    * `StartupDiagnostics` к переменной среды `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
    * Путь размещения начальных зависимостей (в папке *развертывания* проекта "RuntimeStore") к переменной среды `DOTNET_ADDITIONAL_DEPS`.
    * Путь хранилища среды выполнения (в папке *развертывания* проекта "RuntimeStore") к переменной среды `DOTNET_SHARED_STORE`.

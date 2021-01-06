@@ -17,10 +17,10 @@ no-loc:
 - SignalR
 uid: fundamentals/static-files
 ms.openlocfilehash: 2e25af03a8a6aaff5b343885711c6ebb68340fac
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93057860"
 ---
 # <a name="static-files-in-aspnet-core"></a>Статические файлы в ASP.NET Core
@@ -58,7 +58,7 @@ ms.locfileid: "93057860"
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/Startup.cs?name=snippet_Configure&highlight=15)]
 
-Эта перегрузка метода `UseStaticFiles` не принимает параметров, она помечает файлы в [корневом каталоге документов](xref:fundamentals/index#web-root) как обслуживаемые. Следующая разметка ссылается на *wwwroot/images/MyImage.jpg* :
+Эта перегрузка метода `UseStaticFiles` не принимает параметров, она помечает файлы в [корневом каталоге документов](xref:fundamentals/index#web-root) как обслуживаемые. Следующая разметка ссылается на *wwwroot/images/MyImage.jpg*:
 
 ```html
 <img src="~/images/MyImage.jpg" class="img" alt="My image" />
@@ -84,7 +84,7 @@ ms.locfileid: "93057860"
 
 В приведенном выше коде доступ к иерархии каталога *MyStaticFiles* представляется через сегмент URI *StaticFiles*. Запрос к `https://<hostname>/StaticFiles/images/red-rose.jpg` обслуживает файл *red-rose.jpg*.
 
-Следующая разметка ссылается на *MyStaticFiles/images/red-rose.jpg* :
+Следующая разметка ссылается на *MyStaticFiles/images/red-rose.jpg*:
 
 ```html
 <img src="~/StaticFiles/images/red-rose.jpg" class="img" alt="A red rose" />
@@ -158,7 +158,7 @@ ms.locfileid: "93057860"
 
 Первый найденный файл из списка будет обслужен, как будто был введен полный URI. URL-адрес в браузере будет соответствовать запрошенному URI.
 
-Следующий код позволяет изменить имя файла по умолчанию на *mydefault.html* :
+Следующий код позволяет изменить имя файла по умолчанию на *mydefault.html*:
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupDefault.cs?name=snippet_DefaultFiles)]
 
@@ -266,7 +266,7 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 > [!WARNING]
 > Если обработчик статических файлов IIS включен **и** модуль ASP.NET Core настроен неправильно, то статические файлы будут обслуживаться. Это может случиться, если, например, не был развернут файл *web.config*.
 
-* Размещайте файлы с кодом, включая файлы *.cs* и *.cshtml* , за пределами [корневого веб-каталога](xref:fundamentals/index#web-root) проекта приложения. Таким образом, в приложении создается логическое разделение между клиентским содержимым и серверным кодом. Это предотвращает утечку серверного кода.
+* Размещайте файлы с кодом, включая файлы *.cs* и *.cshtml*, за пределами [корневого веб-каталога](xref:fundamentals/index#web-root) проекта приложения. Таким образом, в приложении создается логическое разделение между клиентским содержимым и серверным кодом. Это предотвращает утечку серверного кода.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 
@@ -285,7 +285,7 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 
 ## <a name="serve-static-files"></a>Обслуживание статических файлов
 
-Статические файлы хранятся в [корневом каталоге документов](xref:fundamentals/index#web-root) проекта. Каталог по умолчанию — *{корневой_каталог_содержимого}/wwwroot* , но его можно изменить с помощью метода <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A>. Дополнительные сведения см. в разделах [Корневой каталог содержимого](xref:fundamentals/index#content-root) и [Корневой веб-каталог](xref:fundamentals/index#web-root).
+Статические файлы хранятся в [корневом каталоге документов](xref:fundamentals/index#web-root) проекта. Каталог по умолчанию — *{корневой_каталог_содержимого}/wwwroot*, но его можно изменить с помощью метода <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A>. Дополнительные сведения см. в разделах [Корневой каталог содержимого](xref:fundamentals/index#content-root) и [Корневой веб-каталог](xref:fundamentals/index#web-root).
 
 Веб-узел приложения должен знать о расположении корневого каталога содержимого.
 
@@ -300,7 +300,7 @@ app.UseFileServer(enableDirectoryBrowsing: true);
   * `images`
   * `js`
 
-Формат URI для доступа к файлу во вложенной папке *images* : *http://\<server_address>/images/\<image_file_name>* . Например, *http://localhost:9189/images/banner3.svg* .
+Формат URI для доступа к файлу во вложенной папке *images*: *http://\<server_address>/images/\<image_file_name>* . Например, *http://localhost:9189/images/banner3.svg* .
 
 Если код предназначен для .NET Framework, добавьте в проект пакет [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/). Если код предназначен для .NET Core, то этот пакет уже включен в метапакет [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app).
 
@@ -312,7 +312,7 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?name=snippet_ConfigureMethod&highlight=3)]
 
-Эта перегрузка метода `UseStaticFiles` не принимает параметров, она помечает файлы в [корневом каталоге документов](xref:fundamentals/index#web-root) как обслуживаемые. Следующая разметка ссылается на *wwwroot/images/banner1.svg* :
+Эта перегрузка метода `UseStaticFiles` не принимает параметров, она помечает файлы в [корневом каталоге документов](xref:fundamentals/index#web-root) как обслуживаемые. Следующая разметка ссылается на *wwwroot/images/banner1.svg*:
 
 [!code-cshtml[](static-files/samples/1.x/StaticFilesSample/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
 
@@ -330,13 +330,13 @@ app.UseFileServer(enableDirectoryBrowsing: true);
   * `images`
     * `banner1.svg`
 
-В запросе можно получить доступ к файлу *banner1.svg* , настроив ПО промежуточного слоя для статических файлов следующим образом:
+В запросе можно получить доступ к файлу *banner1.svg*, настроив ПО промежуточного слоя для статических файлов следующим образом:
 
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupTwoStaticFiles.cs?name=snippet_ConfigureMethod&highlight=5-10)]
 
 В приведенном выше коде доступ к иерархии каталога *MyStaticFiles* представляется через сегмент URI *StaticFiles*. Запрос *http://\<server_address>/StaticFiles/images/banner1.svg* обслуживает файл *banner1.svg*.
 
-Следующая разметка ссылается на *MyStaticFiles/images/banner1.svg* :
+Следующая разметка ссылается на *MyStaticFiles/images/banner1.svg*:
 
 [!code-cshtml[](static-files/samples/1.x/StaticFilesSample/Views/Home/Index.cshtml?name=snippet_static_file_outside)]
 
@@ -355,9 +355,9 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 
 ## <a name="static-file-authorization"></a>Авторизация статических файлов
 
-ПО промежуточного слоя для статических файлов не предоставляет возможности авторизации. Все обслуживаемые им файлы, включая расположенные в *wwwroot* , находятся в открытом доступе. Для обслуживания файлов с авторизацией:
+ПО промежуточного слоя для статических файлов не предоставляет возможности авторизации. Все обслуживаемые им файлы, включая расположенные в *wwwroot*, находятся в открытом доступе. Для обслуживания файлов с авторизацией:
 
-* Сохраните файлы в любом каталоге за пределами каталога *wwwroot* , к которому имеет доступ ПО промежуточного слоя для статических файлов.
+* Сохраните файлы в любом каталоге за пределами каталога *wwwroot*, к которому имеет доступ ПО промежуточного слоя для статических файлов.
 * Обслуживайте их через метод действия, к которому применима авторизация. Получите объект <xref:Microsoft.AspNetCore.Mvc.FileResult>:
 
   [!code-csharp[](static-files/samples/1.x/StaticFilesSample/Controllers/HomeController.cs?name=snippet_BannerImageAction)]
@@ -372,13 +372,13 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupBrowse.cs?name=snippet_ConfigureServicesMethod&highlight=3)]
 
-Приведенный выше код разрешает просмотр папки *wwwroot/images* с помощью URL-адреса *http://\<server_address>/MyImages* , со ссылками на все файлы и папки:
+Приведенный выше код разрешает просмотр папки *wwwroot/images* с помощью URL-адреса *http://\<server_address>/MyImages*, со ссылками на все файлы и папки:
 
 ![просмотр каталогов](static-files/_static/dir-browse.png)
 
 Информацию об угрозе безопасности при включении просмотра каталогов см. в разделе [Особенности](#considerations).
 
-Обратите внимание на два вызова метода `UseStaticFiles` в следующем примере. Первый вызов включает обслуживание статических файлов в папке *wwwroot*. Второй вызов включает просмотр папки *wwwroot/images* с помощью URL-адреса *http://\<server_address>/MyImages* :
+Обратите внимание на два вызова метода `UseStaticFiles` в следующем примере. Первый вызов включает обслуживание статических файлов в папке *wwwroot*. Второй вызов включает просмотр папки *wwwroot/images* с помощью URL-адреса *http://\<server_address>/MyImages*:
 
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupBrowse.cs?name=snippet_ConfigureMethod&highlight=3,5)]
 
@@ -400,7 +400,7 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 
 Первый найденный файл из списка будет обслужен, как будто был введен полный URI. URL-адрес в браузере будет соответствовать запрошенному URI.
 
-Следующий код позволяет изменить имя файла по умолчанию на *mydefault.html* :
+Следующий код позволяет изменить имя файла по умолчанию на *mydefault.html*:
 
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupDefault.cs?name=snippet_ConfigureMethod)]
 
@@ -497,7 +497,7 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 > [!WARNING]
 > Если обработчик статических файлов IIS включен **и** модуль ASP.NET Core настроен неправильно, то статические файлы будут обслуживаться. Это может случиться, если, например, не был развернут файл *web.config*.
 
-* Размещайте файлы с кодом (включая *CS* и *CSHTML* ) за пределами [корневого каталога документов](xref:fundamentals/index#web-root) проекта приложения. Таким образом, в приложении создается логическое разделение между клиентским содержимым и серверным кодом. Это предотвращает утечку серверного кода.
+* Размещайте файлы с кодом (включая *CS* и *CSHTML*) за пределами [корневого каталога документов](xref:fundamentals/index#web-root) проекта приложения. Таким образом, в приложении создается логическое разделение между клиентским содержимым и серверным кодом. Это предотвращает утечку серверного кода.
 
 ## <a name="additional-resources"></a>Дополнительные ресурсы
 

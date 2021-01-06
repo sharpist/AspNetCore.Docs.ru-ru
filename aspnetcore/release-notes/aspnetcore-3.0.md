@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: aspnetcore-3.0
 ms.openlocfilehash: 235daac5c08248ca2052de6b44e66a8162ce23ad
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93051243"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>Новые возможности в ASP.NET Core 3.0
@@ -219,7 +219,7 @@ public class ChatHub : Hub
 
 Для создания политики `DomainRestricted` может потребоваться сделать следующее:
 
-* добавить новую политику в *Startup.cs* ;
+* добавить новую политику в *Startup.cs*;
 * предоставить настраиваемое требование `DomainRestrictedRequirement` в качестве параметра;
 * зарегистрировать `DomainRestricted` с помощью ПО промежуточного слоя авторизации.
 

@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: tutorials/grpc/grpc-start
 ms.openlocfilehash: 9388a2f814008ebb50171f85b8baccf6dadfac27
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93057028"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>Учебник. Создание клиента и сервера gRPC в ASP.NET Core
@@ -62,11 +62,11 @@ ms.locfileid: "93057028"
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Запустите Visual Studio и щелкните **Создать проект** или в меню **Файл** в Visual Studio выберите **Создать** > **Проект**.
-* В диалоговом окне **Создание проекта** выберите **Служба gRPC** и нажмите кнопку **Далее** :
+* В диалоговом окне **Создание проекта** выберите **Служба gRPC** и нажмите кнопку **Далее**:
 
   ![Диалоговое окно создания нового проекта в Visual Studio](~/tutorials/grpc/grpc-start/static/cnp.png)
 
-* Присвойте проекту имя **GrpcGreeter**. Для проекта необходимо установить имя *GrpcGreeter* , чтобы при копировании и вставке кода совпадали пространства имен.
+* Присвойте проекту имя **GrpcGreeter**. Для проекта необходимо установить имя *GrpcGreeter*, чтобы при копировании и вставке кода совпадали пространства имен.
 * Выберите **Создать**.
 * В диалоговом окне **Создать службу gRPC** сделайте следующее:
   * Шаблон **gRPC Service** выбран.
@@ -97,7 +97,7 @@ ms.locfileid: "93057028"
   ![Диалоговое окно создания нового проекта в macOS](~/tutorials/grpc/grpc-start/static/cnp-mac.png)
 
 * Выберите **.NET Core 3.1** в качестве целевой платформы и нажмите кнопку **Далее**.
-* Присвойте проекту имя **GrpcGreeter**. Для проекта необходимо установить имя *GrpcGreeter* , чтобы при копировании и вставке кода совпадали пространства имен.
+* Присвойте проекту имя **GrpcGreeter**. Для проекта необходимо установить имя *GrpcGreeter*, чтобы при копировании и вставке кода совпадали пространства имен.
 * Выберите **Создать**.
 ---
 
@@ -123,13 +123,13 @@ info: Microsoft.Hosting.Lifetime[0]
 
 ### <a name="examine-the-project-files"></a>Анализ файлов проекта
 
-Файлы проекта *GrpcGreeter* :
+Файлы проекта *GrpcGreeter*:
 
-* *greet.proto* : Файл *Protos/greet.proto* определяет службу gRPC `Greeter` и используется для создания ресурсов сервера gRPC. Дополнительные сведения см. в разделе [Введение в gRPC](xref:grpc/index).
+* *greet.proto*: Файл *Protos/greet.proto* определяет службу gRPC `Greeter` и используется для создания ресурсов сервера gRPC. Дополнительные сведения см. в разделе [Введение в gRPC](xref:grpc/index).
 * Папка *Services* содержит реализацию службы `Greeter`.
-* *appSettings.json* : содержит данные конфигурации, такие как протокол, используемый в Kestrel. Для получения дополнительной информации см. <xref:fundamentals/configuration/index>.
-* *Program.cs* : содержит точку входа для службы gRPC. Для получения дополнительной информации см. <xref:fundamentals/host/generic-host>.
-* *Startup.cs* : содержит код, задающий поведение приложения. Дополнительные сведения: [Запуск приложения](xref:fundamentals/startup).
+* *appSettings.json*: содержит данные конфигурации, такие как протокол, используемый в Kestrel. Для получения дополнительной информации см. <xref:fundamentals/configuration/index>.
+* *Program.cs*: содержит точку входа для службы gRPC. Для получения дополнительной информации см. <xref:fundamentals/host/generic-host>.
+* *Startup.cs*: содержит код, задающий поведение приложения. Дополнительные сведения: [Запуск приложения](xref:fundamentals/startup).
 
 ## <a name="create-the-grpc-client-in-a-net-console-app"></a>Создание клиента gRPC в консольном приложении .NET
 
@@ -152,7 +152,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio для Mac](#tab/visual-studio-mac)
 
-Чтобы создать консольное приложение с именем *GrpcGreeterClient* , см. руководство по [созданию полного решения .NET Core в macOS с помощью Visual Studio для Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution).
+Чтобы создать консольное приложение с именем *GrpcGreeterClient*, см. руководство по [созданию полного решения .NET Core в macOS с помощью Visual Studio для Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution).
 
 ---
 
@@ -218,7 +218,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
   option csharp_namespace = "GrpcGreeterClient";
   ```
 
-* Измените файл проекта *GrpcGreeterClient.csproj* :
+* Измените файл проекта *GrpcGreeterClient.csproj*:
 
   # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -234,7 +234,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
   ---
 
-* Добавьте группу элементов с элементом `<Protobuf>`, ссылающимся на файл *greet.proto* :
+* Добавьте группу элементов с элементом `<Protobuf>`, ссылающимся на файл *greet.proto*:
 
   ```xml
   <ItemGroup>

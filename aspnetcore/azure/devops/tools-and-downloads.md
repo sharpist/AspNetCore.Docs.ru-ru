@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: azure/devops/tools-and-downloads
 ms.openlocfilehash: 8c7f10a6b6f8504efaba6054533aba034982820c
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93056573"
 ---
 # <a name="tools-and-downloads"></a>Инструменты и файлы для скачивания
@@ -40,7 +40,7 @@ ms.locfileid: "93056573"
 Требуются следующие средства:
 
 * [Git](https://git-scm.com/downloads) &mdash; для использования данного руководства рекомендуется понимание основных принципов Git. Изучите [документацию по Git](https://git-scm.com/doc), в частности [git remote](https://git-scm.com/docs/git-remote) и [git push](https://git-scm.com/docs/git-push).
-* [Пакет SDK для .NET Core](https://dotnet.microsoft.com/download/) &mdash; для создания и запуска примера приложения требуется версия 2.1.300 или более поздняя. Если Visual Studio был установлен вместе с рабочей нагрузкой **.NET Core для разработки кроссплатформенных приложений** , то пакет SDK для .NET Core уже установлен.
+* [Пакет SDK для .NET Core](https://dotnet.microsoft.com/download/) &mdash; для создания и запуска примера приложения требуется версия 2.1.300 или более поздняя. Если Visual Studio был установлен вместе с рабочей нагрузкой **.NET Core для разработки кроссплатформенных приложений**, то пакет SDK для .NET Core уже установлен.
 
     Проверьте установку пакета SDK для .NET Core. Откройте окно командной оболочки и выполните следующую команду:
 

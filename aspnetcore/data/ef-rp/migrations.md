@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: data/ef-rp/migrations
 ms.openlocfilehash: e6d1b9f041e892aaa37840c28fdb3153bf098b0d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93061110"
 ---
 # <a name="part-4-no-locrazor-pages-with-ef-core-migrations-in-aspnet-core"></a>Часть 4. Миграции Razor Pages с EF Core в ASP.NET Core
@@ -46,7 +46,7 @@ ms.locfileid: "93061110"
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Используйте **обозреватель объектов SQL Server** , чтобы удалить базу данных, или выполните следующую команду в **консоли диспетчера пакетов** (PMC):
+Используйте **обозреватель объектов SQL Server**, чтобы удалить базу данных, или выполните следующую команду в **консоли диспетчера пакетов** (PMC):
 
 ```powershell
 Drop-Database

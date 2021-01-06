@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: tutorials/first-mvc-app/search
 ms.openlocfilehash: 657072803f59feb99de8b31ddb3a6433d832aa30
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93059628"
 ---
 # <a name="part-7-add-search-to-an-aspnet-core-mvc-app"></a>Часть 7. Добавление поиска в приложение MVC ASP.NET Core
@@ -30,7 +30,7 @@ ms.locfileid: "93059628"
 
 В этом разделе вы добавите в метод действия `Index` возможности поиска, которые позволяют выполнять поиск фильмов по *жанру* или *названию*.
 
-Обновите метод `Index`, находящийся в файле *Controllers/ MoviesController.cs* , добавив следующий код:
+Обновите метод `Index`, находящийся в файле *Controllers/ MoviesController.cs*, добавив следующий код:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
 
@@ -119,7 +119,7 @@ var movies = from m in _context.Movie
 
 ## <a name="add-search-by-genre"></a>Добавление поиска по жанру
 
-Добавьте следующий класс `MovieGenreViewModel` в папку *Models* :
+Добавьте следующий класс `MovieGenreViewModel` в папку *Models*:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieGenreViewModel.cs)]
 

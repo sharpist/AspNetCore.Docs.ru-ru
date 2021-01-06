@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/host/hosted-services
 ms.openlocfilehash: b8d6ec079ed39fb3a2c314816ebae6cea0847a36
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93061084"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Фоновые задачи с размещенными службами в ASP.NET Core
@@ -54,7 +54,7 @@ ms.locfileid: "93061084"
 
 ## <a name="package"></a>Пакет
 
-Приложение, основанное на шаблоне рабочей службы, использует пакет SDK для `Microsoft.NET.Sdk.Worker` и имеет явную ссылку на пакет [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting). Например, ознакомьтесь с файлом проекта в примере приложения ( *BackgroundTasksSample csproj* ).
+Приложение, основанное на шаблоне рабочей службы, использует пакет SDK для `Microsoft.NET.Sdk.Worker` и имеет явную ссылку на пакет [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting). Например, ознакомьтесь с файлом проекта в примере приложения (*BackgroundTasksSample csproj*).
 
 Для веб-приложений, использующих пакет SDK `Microsoft.NET.Sdk.Web`, ссылка на пакет [Microsoft. Extensions. Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) указывается неявным образом из общей платформы. Явная ссылка на пакет в файле проекта приложения не требуется.
 
@@ -128,7 +128,7 @@ ms.locfileid: "93061084"
 
 <xref:System.Threading.Timer> не ждет завершения предыдущего метода `DoWork`, поэтому приведенный подход может подойти не для всех сценариев. [Interlocked.Increment](xref:System.Threading.Interlocked.Increment*) используется для увеличения значений счетчика выполнения в виде атомарной операции. Благодаря этому несколько потоков не будут обновлять `executionCount` одновременно.
 
-Служба регистрируется в `IHostBuilder.ConfigureServices` ( *Program.cs* ) с использованием метода расширения `AddHostedService`:
+Служба регистрируется в `IHostBuilder.ConfigureServices` (*Program.cs*) с использованием метода расширения `AddHostedService`:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet1)]
 
@@ -147,7 +147,7 @@ ms.locfileid: "93061084"
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=19,22-35)]
 
-Службы регистрируются в `IHostBuilder.ConfigureServices` ( *Program.cs* ). Размещенная служба регистрируется с использованием метода расширения `AddHostedService`:
+Службы регистрируются в `IHostBuilder.ConfigureServices` (*Program.cs*). Размещенная служба регистрируется с использованием метода расширения `AddHostedService`:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet2)]
 
@@ -175,7 +175,7 @@ ms.locfileid: "93061084"
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/MonitorLoop.cs?name=snippet_Monitor&highlight=7,33)]
 
-Службы регистрируются в `IHostBuilder.ConfigureServices` ( *Program.cs* ). Размещенная служба регистрируется с использованием метода расширения `AddHostedService`:
+Службы регистрируются в `IHostBuilder.ConfigureServices` (*Program.cs*). Размещенная служба регистрируется с использованием метода расширения `AddHostedService`:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
 

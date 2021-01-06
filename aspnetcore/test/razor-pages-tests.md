@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: test/razor-pages-tests
 ms.openlocfilehash: 2486eb8c9fd0fc33ea77b0fedd99795218d7f4ca
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93058042"
 ---
 # <a name="no-locrazor-pages-unit-tests-in-aspnet-core"></a>Модульные тесты Razor Pages в ASP.NET Core
@@ -52,7 +52,7 @@ ASP.NET Core поддерживает модульные тесты прилож
 | Приложение для сообщений | *src/RazorPagesTestSample*         | Позволяет пользователю добавлять сообщение, удалять одно сообщение, удалять все сообщения и анализировать сообщения (найти среднее количество слов на сообщение). |
 | Тестирование приложения.    | *tests/RazorPagesTestSample.Tests* | Используется для модульного тестирования модели DAL и индексной страницы приложения для сообщений. |
 
-Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](/visualstudio/test/unit-test-your-code) или [Visual Studio для Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в папке *tests/RazorPagesTestSample.Tests* :
+Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](/visualstudio/test/unit-test-your-code) или [Visual Studio для Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в папке *tests/RazorPagesTestSample.Tests*:
 
 ```dotnetcli
 dotnet test
@@ -62,10 +62,10 @@ dotnet test
 
 Приложение для сообщений — это система сообщений Razor Pages со следующими характеристиками:
 
-* Индексная страница приложения ( *Pages/Index.cshtml* и *Pages/Index.cshtml.cs* ) предоставляет методы пользовательского интерфейса и модели страницы для управления добавлением, удалением и анализом сообщений (поиск среднего числа слов на сообщение).
-* Сообщение описывается классом `Message` ( *Data/Message.cs* ) с двумя свойствами: `Id` (ключ) и `Text` (сообщение). Свойство `Text` является обязательным и ограничено 200 символами.
+* Индексная страница приложения (*Pages/Index.cshtml* и *Pages/Index.cshtml.cs*) предоставляет методы пользовательского интерфейса и модели страницы для управления добавлением, удалением и анализом сообщений (поиск среднего числа слов на сообщение).
+* Сообщение описывается классом `Message` (*Data/Message.cs*) с двумя свойствами: `Id` (ключ) и `Text` (сообщение). Свойство `Text` является обязательным и ограничено 200 символами.
 * Сообщения хранятся с помощью [базы данных Entity Framework в памяти](/ef/core/providers/in-memory/)&#8224;.
-* Приложение содержит слой DAL в своем классе контекста базы данных — `AppDbContext` ( *Data/AppDbContext.cs* ). Методы DAL помечаются как `virtual`, что позволяет макетирование методов для использования в тестах.
+* Приложение содержит слой DAL в своем классе контекста базы данных — `AppDbContext` (*Data/AppDbContext.cs*). Методы DAL помечаются как `virtual`, что позволяет макетирование методов для использования в тестах.
 * Если база данных пуста при запуске приложения, то хранилище сообщений инициализируется тремя сообщениями. Эти *начальные сообщения* также используются в тестах.
 
 &#8224;В разделе документации о EF [Тестирование с помощью InMemory](/ef/core/miscellaneous/testing/in-memory) объясняется, как использовать базу данных в памяти для тестов с помощью MSTest. В этом разделе используется платформа тестирования [xUnit](https://xunit.github.io/). Концепции тестирования и реализации тестов в разных платформах тестирования похожи, но не идентичны.
@@ -85,7 +85,7 @@ dotnet test
 
 ## <a name="unit-tests-of-the-data-access-layer-dal"></a>Модульные тесты уровня доступа к данным (DAL)
 
-Приложение для сообщений имеет DAL с четырьмя методами, содержащимися в классе `AppDbContext` ( *src/RazorPagesTestSample/Data/AppDbContext.cs* ). Каждый метод содержит один или два модульных теста в приложении для тестирования.
+Приложение для сообщений имеет DAL с четырьмя методами, содержащимися в классе `AppDbContext` (*src/RazorPagesTestSample/Data/AppDbContext.cs*). Каждый метод содержит один или два модульных теста в приложении для тестирования.
 
 | Метод DAL               | Функция                                                                   |
 | ------------------------ | -------------------------------------------------------------------------- |
@@ -106,7 +106,7 @@ using (var db = new AppDbContext(optionsBuilder.Options))
 }
 ```
 
-Проблема этого подхода заключается в том, что каждый тест получает базу данных в том состоянии, в котором ее оставил предыдущий тест. Это может быть проблемой при попытке написания атомарных модульных тестов, которые не должны мешать друг другу. Чтобы заставить `AppDbContext` использовать новый контекст базы данных для каждого теста, укажите экземпляр `DbContextOptions`, основанный на новом поставщике служб. В приложении для тестирования показано, как это сделать с помощью метода `TestDbContextOptions` класса `Utilities` ( *tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs* ).
+Проблема этого подхода заключается в том, что каждый тест получает базу данных в том состоянии, в котором ее оставил предыдущий тест. Это может быть проблемой при попытке написания атомарных модульных тестов, которые не должны мешать друг другу. Чтобы заставить `AppDbContext` использовать новый контекст базы данных для каждого теста, укажите экземпляр `DbContextOptions`, основанный на новом поставщике служб. В приложении для тестирования показано, как это сделать с помощью метода `TestDbContextOptions` класса `Utilities` (*tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs*).
 
 [!code-csharp[](razor-pages-tests/samples/3.x/tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs?name=snippet1)]
 
@@ -119,13 +119,13 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 }
 ```
 
-Каждый метод тестирования в классе `DataAccessLayerTest` ( *UnitTests/DataAccessLayerTest.cs* ) соответствует аналогичному шаблону "размещение-действие-утверждение".
+Каждый метод тестирования в классе `DataAccessLayerTest` (*UnitTests/DataAccessLayerTest.cs*) соответствует аналогичному шаблону "размещение-действие-утверждение".
 
 1. Размещение: база данных настраивается для тестирования и (или) определяется ожидаемый результат.
 1. Действие: выполняется тестирование.
 1. Утверждение: утверждения выполняются, чтобы определить, является ли результат теста успешным.
 
-Например, метод `DeleteMessageAsync` отвечает за удаление одного сообщения, идентифицируемого по `Id` ( *src/RazorPagesTestSample/Data/AppDbContext.cs* ).
+Например, метод `DeleteMessageAsync` отвечает за удаление одного сообщения, идентифицируемого по `Id` (*src/RazorPagesTestSample/Data/AppDbContext.cs*).
 
 [!code-csharp[](razor-pages-tests/samples/3.x/src/RazorPagesTestSample/Data/AppDbContext.cs?name=snippet4)]
 
@@ -166,7 +166,7 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 | `OnPostDeleteMessageAsync` | Выполняет метод `DeleteMessageAsync`, чтобы удалить сообщение с указанным `Id`. |
 | `OnPostAnalyzeMessagesAsync` | Если в базе данных содержится одно или несколько сообщений, вычисляет среднее количество слов на сообщение. |
 
-Методы модели страницы проверяются с помощью семи тестов в классе `IndexPageTests` ( *tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs* ). В тестах используется привычный шаблон "размещение-утверждение-действие". Эти тесты выполняют следующие задачи:
+Методы модели страницы проверяются с помощью семи тестов в классе `IndexPageTests` (*tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs*). В тестах используется привычный шаблон "размещение-утверждение-действие". Эти тесты выполняют следующие задачи:
 
 * определение правильности поведения методов, если [ModelState](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary) является недопустимым;
 * подтверждение того, что методы выдают правильный <xref:Microsoft.AspNetCore.Mvc.IActionResult>;
@@ -180,11 +180,11 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 
 Когда метод `OnGetAsync` выполняется на шаге действия, он вызывает метод `GetMessagesAsync` модели страницы.
 
-Шаг действия модульного теста ( *tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs* ):
+Шаг действия модульного теста (*tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs*):
 
 [!code-csharp[](razor-pages-tests/samples/3.x/tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs?name=snippet2)]
 
-Метод `OnGetAsync` модели страницы `IndexPage` ( *src/RazorPagesTestSample/Pages/Index.cshtml.cs* ):
+Метод `OnGetAsync` модели страницы `IndexPage` (*src/RazorPagesTestSample/Pages/Index.cshtml.cs*):
 
 [!code-csharp[](razor-pages-tests/samples/3.x/src/RazorPagesTestSample/Pages/Index.cshtml.cs?name=snippet1&highlight=3)]
 
@@ -236,7 +236,7 @@ ASP.NET Core поддерживает модульные тесты прилож
 | Приложение для сообщений | *src/RazorPagesTestSample*         | Позволяет пользователю добавлять сообщение, удалять одно сообщение, удалять все сообщения и анализировать сообщения (найти среднее количество слов на сообщение). |
 | Тестирование приложения.    | *tests/RazorPagesTestSample.Tests* | Используется для модульного тестирования модели DAL и индексной страницы приложения для сообщений. |
 
-Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](/visualstudio/test/unit-test-your-code) или [Visual Studio для Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в папке *tests/RazorPagesTestSample.Tests* :
+Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](/visualstudio/test/unit-test-your-code) или [Visual Studio для Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в папке *tests/RazorPagesTestSample.Tests*:
 
 ```dotnetcli
 dotnet test
@@ -246,10 +246,10 @@ dotnet test
 
 Приложение для сообщений — это система сообщений Razor Pages со следующими характеристиками:
 
-* Индексная страница приложения ( *Pages/Index.cshtml* и *Pages/Index.cshtml.cs* ) предоставляет методы пользовательского интерфейса и модели страницы для управления добавлением, удалением и анализом сообщений (поиск среднего числа слов на сообщение).
-* Сообщение описывается классом `Message` ( *Data/Message.cs* ) с двумя свойствами: `Id` (ключ) и `Text` (сообщение). Свойство `Text` является обязательным и ограничено 200 символами.
+* Индексная страница приложения (*Pages/Index.cshtml* и *Pages/Index.cshtml.cs*) предоставляет методы пользовательского интерфейса и модели страницы для управления добавлением, удалением и анализом сообщений (поиск среднего числа слов на сообщение).
+* Сообщение описывается классом `Message` (*Data/Message.cs*) с двумя свойствами: `Id` (ключ) и `Text` (сообщение). Свойство `Text` является обязательным и ограничено 200 символами.
 * Сообщения хранятся с помощью [базы данных Entity Framework в памяти](/ef/core/providers/in-memory/)&#8224;.
-* Приложение содержит слой DAL в своем классе контекста базы данных — `AppDbContext` ( *Data/AppDbContext.cs* ). Методы DAL помечаются как `virtual`, что позволяет макетирование методов для использования в тестах.
+* Приложение содержит слой DAL в своем классе контекста базы данных — `AppDbContext` (*Data/AppDbContext.cs*). Методы DAL помечаются как `virtual`, что позволяет макетирование методов для использования в тестах.
 * Если база данных пуста при запуске приложения, то хранилище сообщений инициализируется тремя сообщениями. Эти *начальные сообщения* также используются в тестах.
 
 &#8224;В разделе документации о EF [Тестирование с помощью InMemory](/ef/core/miscellaneous/testing/in-memory) объясняется, как использовать базу данных в памяти для тестов с помощью MSTest. В этом разделе используется платформа тестирования [xUnit](https://xunit.github.io/). Концепции тестирования и реализации тестов в разных платформах тестирования похожи, но не идентичны.
@@ -269,7 +269,7 @@ dotnet test
 
 ## <a name="unit-tests-of-the-data-access-layer-dal"></a>Модульные тесты уровня доступа к данным (DAL)
 
-Приложение для сообщений имеет DAL с четырьмя методами, содержащимися в классе `AppDbContext` ( *src/RazorPagesTestSample/Data/AppDbContext.cs* ). Каждый метод содержит один или два модульных теста в приложении для тестирования.
+Приложение для сообщений имеет DAL с четырьмя методами, содержащимися в классе `AppDbContext` (*src/RazorPagesTestSample/Data/AppDbContext.cs*). Каждый метод содержит один или два модульных теста в приложении для тестирования.
 
 | Метод DAL               | Функция                                                                   |
 | ------------------------ | -------------------------------------------------------------------------- |
@@ -290,7 +290,7 @@ using (var db = new AppDbContext(optionsBuilder.Options))
 }
 ```
 
-Проблема этого подхода заключается в том, что каждый тест получает базу данных в том состоянии, в котором ее оставил предыдущий тест. Это может быть проблемой при попытке написания атомарных модульных тестов, которые не должны мешать друг другу. Чтобы заставить `AppDbContext` использовать новый контекст базы данных для каждого теста, укажите экземпляр `DbContextOptions`, основанный на новом поставщике служб. В приложении для тестирования показано, как это сделать с помощью метода `TestDbContextOptions` класса `Utilities` ( *tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs* ).
+Проблема этого подхода заключается в том, что каждый тест получает базу данных в том состоянии, в котором ее оставил предыдущий тест. Это может быть проблемой при попытке написания атомарных модульных тестов, которые не должны мешать друг другу. Чтобы заставить `AppDbContext` использовать новый контекст базы данных для каждого теста, укажите экземпляр `DbContextOptions`, основанный на новом поставщике служб. В приложении для тестирования показано, как это сделать с помощью метода `TestDbContextOptions` класса `Utilities` (*tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs*).
 
 [!code-csharp[](razor-pages-tests/samples/2.x/tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs?name=snippet1)]
 
@@ -303,13 +303,13 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 }
 ```
 
-Каждый метод тестирования в классе `DataAccessLayerTest` ( *UnitTests/DataAccessLayerTest.cs* ) соответствует аналогичному шаблону "размещение-действие-утверждение".
+Каждый метод тестирования в классе `DataAccessLayerTest` (*UnitTests/DataAccessLayerTest.cs*) соответствует аналогичному шаблону "размещение-действие-утверждение".
 
 1. Размещение: база данных настраивается для тестирования и (или) определяется ожидаемый результат.
 1. Действие: выполняется тестирование.
 1. Утверждение: утверждения выполняются, чтобы определить, является ли результат теста успешным.
 
-Например, метод `DeleteMessageAsync` отвечает за удаление одного сообщения, идентифицируемого по `Id` ( *src/RazorPagesTestSample/Data/AppDbContext.cs* ).
+Например, метод `DeleteMessageAsync` отвечает за удаление одного сообщения, идентифицируемого по `Id` (*src/RazorPagesTestSample/Data/AppDbContext.cs*).
 
 [!code-csharp[](razor-pages-tests/samples/2.x/src/RazorPagesTestSample/Data/AppDbContext.cs?name=snippet4)]
 
@@ -350,7 +350,7 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 | `OnPostDeleteMessageAsync` | Выполняет метод `DeleteMessageAsync`, чтобы удалить сообщение с указанным `Id`. |
 | `OnPostAnalyzeMessagesAsync` | Если в базе данных содержится одно или несколько сообщений, вычисляет среднее количество слов на сообщение. |
 
-Методы модели страницы проверяются с помощью семи тестов в классе `IndexPageTests` ( *tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs* ). В тестах используется привычный шаблон "размещение-утверждение-действие". Эти тесты выполняют следующие задачи:
+Методы модели страницы проверяются с помощью семи тестов в классе `IndexPageTests` (*tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs*). В тестах используется привычный шаблон "размещение-утверждение-действие". Эти тесты выполняют следующие задачи:
 
 * определение правильности поведения методов, если [ModelState](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary) является недопустимым;
 * подтверждение того, что методы выдают правильный <xref:Microsoft.AspNetCore.Mvc.IActionResult>;
@@ -364,11 +364,11 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 
 Когда метод `OnGetAsync` выполняется на шаге действия, он вызывает метод `GetMessagesAsync` модели страницы.
 
-Шаг действия модульного теста ( *tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs* ):
+Шаг действия модульного теста (*tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs*):
 
 [!code-csharp[](razor-pages-tests/samples/2.x/tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs?name=snippet2)]
 
-Метод `OnGetAsync` модели страницы `IndexPage` ( *src/RazorPagesTestSample/Pages/Index.cshtml.cs* ):
+Метод `OnGetAsync` модели страницы `IndexPage` (*src/RazorPagesTestSample/Pages/Index.cshtml.cs*):
 
 [!code-csharp[](razor-pages-tests/samples/2.x/src/RazorPagesTestSample/Pages/Index.cshtml.cs?name=snippet1&highlight=3)]
 
@@ -393,6 +393,6 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 * [Getting started with xUnit.net: Using .NET Core with the .NET SDK command line](https://xunit.github.io/docs/getting-started-dotnet-core) (Начало работы с xUnit.net. Использование .NET Core с командной строкой пакета SDK для .NET)
 * [Moq](https://github.com/moq/moq4)
 * [Moq Quickstart](https://github.com/Moq/moq4/wiki/Quickstart) (Краткое руководство по Moq)
-* [JustMockLite](https://github.com/telerik/JustMockLite): платформа макетирования для разработчиков на .NET. ( *Не поддерживается и не обслуживается Майкрософт.* )
+* [JustMockLite](https://github.com/telerik/JustMockLite): платформа макетирования для разработчиков на .NET. (*Не поддерживается и не обслуживается Майкрософт.* )
 
 ::: moniker-end

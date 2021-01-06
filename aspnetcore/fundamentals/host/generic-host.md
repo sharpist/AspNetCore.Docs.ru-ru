@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/host/generic-host
 ms.openlocfilehash: 263c7713166005dfdec8ede6bfa9b03b730dede7
-ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/25/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "96035818"
 ---
 # <a name="net-generic-host-in-aspnet-core"></a>Универсальный узел .NET в ASP.NET Core
@@ -1098,7 +1098,7 @@ var host = new HostBuilder()
 
 Свойство [IHostingEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ApplicationName*) задается в конфигурации узла во время создания узла. Чтобы явно задать значение, используйте [HostDefaults.ApplicationKey](xref:Microsoft.Extensions.Hosting.HostDefaults.ApplicationKey).
 
-**Ключ:** `applicationName`  
+**Ключ**: `applicationName`  
 **Тип**: `string`  
 **По умолчанию**: имя сборки, содержащей точку входа приложения.  
 **Задается с помощью**: `HostBuilderContext.HostingEnvironment.ApplicationName`  

@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: fundamentals/dependency-injection
 ms.openlocfilehash: 3f7cce475b5c7b0fcbb93644b2c39acd637a6f9d
-ms.sourcegitcommit: 98f92d766d4f343d7e717b542c1b08da29e789c1
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/13/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94595484"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Внедрение зависимостей в ASP.NET Core
@@ -544,7 +544,7 @@ public void Configure(IApplicationBuilder app, IOptions<MyOptions> options)
 }
 ```
 
-Для получения дополнительной информации см. <xref:fundamentals/startup>.
+Дополнительные сведения см. в разделе <xref:fundamentals/startup>.
 
 ## <a name="framework-provided-services"></a>Платформенные службы
 
@@ -606,7 +606,7 @@ public void ConfigureServices(IServiceCollection services)
 В приложениях, обрабатывающих запросы, службы с заданной областью удаляются в конце запроса.
 
 > [!WARNING]
-> При использовании такой службы в ПО промежуточного слоя внедрите ее в метод `Invoke` или `InvokeAsync`. Не внедряйте службу с помощью [внедрения через конструктор](xref:mvc/controllers/dependency-injection#constructor-injection), поскольку в таком случае служба будет вести себя как одноэлементный объект. Для получения дополнительной информации см. <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
+> При использовании такой службы в ПО промежуточного слоя внедрите ее в метод `Invoke` или `InvokeAsync`. Не внедряйте службу с помощью [внедрения через конструктор](xref:mvc/controllers/dependency-injection#constructor-injection), поскольку в таком случае служба будет вести себя как одноэлементный объект. Дополнительные сведения см. в разделе <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
 
 ### <a name="singleton"></a>Одноэлементный
 
@@ -621,11 +621,11 @@ public void ConfigureServices(IServiceCollection services)
 
 Методы расширения регистрации службы предлагают перегрузки, которые полезны в определенных сценариях.
 
-| Метод | Автоматически<br>объект<br>удаление | Несколько<br>реализации | Передача аргументов |
+| Метод | Автоматически<br>object<br>удаление | Несколько<br>реализации | Передача аргументов |
 | ------ | :-----------------------------: | :-------------------------: | :-------: |
-| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Пример.<br>`services.AddSingleton<IMyDep, MyDep>();` | Да | Да | Нет |
+| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Пример<br>`services.AddSingleton<IMyDep, MyDep>();` | Да | Да | Нет |
 | `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Да | Да | Да |
-| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Пример.<br>`services.AddSingleton<MyDep>();` | Да | Нет | Нет |
+| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Пример<br>`services.AddSingleton<MyDep>();` | Да | Нет | Нет |
 | `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | Нет | Да | Да |
 | `AddSingleton(new {IMPLEMENTATION})`<br>Примеры:<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));` | Нет | Нет | Да |
 
@@ -835,7 +835,7 @@ public class Program
 
 Службы с заданной областью удаляются создавшим их контейнером. Если служба с заданной областью создается в корневом контейнере, время существования службы повышается до уровня одноэлементного объекта, поскольку она удаляется только корневым контейнером при завершении работы приложения или сервера. Проверка областей службы перехватывает эти ситуации при вызове `BuildServiceProvider`.
 
-Для получения дополнительной информации см. <xref:fundamentals/host/web-host#scope-validation>.   
+Дополнительные сведения см. в разделе <xref:fundamentals/host/web-host#scope-validation>.   
 
 ## <a name="request-services"></a>Службы запросов
 

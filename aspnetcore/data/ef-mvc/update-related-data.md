@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: data/ef-mvc/update-related-data
 ms.openlocfilehash: f41d0b1d7ba46ef4867e0d160dc61f21042ce403
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93053947"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Учебник. Использование ASP.NET MVC с EF Core. Обновление связанных данных
@@ -173,7 +173,7 @@ ms.locfileid: "93053947"
 
 ### <a name="update-the-instructor-edit-view"></a>Обновление представления редактирования преподавателя
 
-В конце *Views/Instructors/Edit.cshtml* , перед кнопкой **Save** (Сохранить), добавьте новое поле для редактирования расположения кабинета:
+В конце *Views/Instructors/Edit.cshtml*, перед кнопкой **Save** (Сохранить), добавьте новое поле для редактирования расположения кабинета:
 
 [!code-cshtml[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=30-34)]
 

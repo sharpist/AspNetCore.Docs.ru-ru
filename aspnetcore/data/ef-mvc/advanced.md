@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: data/ef-mvc/advanced
 ms.openlocfilehash: 386be395399bf4131e4b6c8cac8221f994e8b7c5
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054389"
 ---
 # <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Учебник. Сведения о сложных сценариях для ASP.NET MVC с EF Core
@@ -133,7 +133,7 @@ ms.locfileid: "93054389"
 
 Запустите приложение в режиме отладки и перейдите на страницу Details (Сведения) для учащегося.
 
-Перейдите в **окно вывода** , в котором отображаются результаты отладки. В нем будет показан запрос:
+Перейдите в **окно вывода**, в котором отображаются результаты отладки. В нем будет показан запрос:
 
 ```
 Microsoft.EntityFrameworkCore.Database.Command:Information: Executed DbCommand (56ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
@@ -243,7 +243,7 @@ _context.ChangeTracker.AutoDetectChangesEnabled = false;
 
 Проще всего в этом случае переименовать базу данных в файле *appsettings.json* . В следующий раз при выполнении команды `database update` будет создана новая база данных.
 
-Чтобы удалить базу данных в средстве SSOX, щелкните ее правой кнопкой мыши, выберите **Удалить** , а затем в диалоговом окне **Удаление базы данных** выберите **Закрыть существующие соединения** и нажмите кнопку **ОК**.
+Чтобы удалить базу данных в средстве SSOX, щелкните ее правой кнопкой мыши, выберите **Удалить**, а затем в диалоговом окне **Удаление базы данных** выберите **Закрыть существующие соединения** и нажмите кнопку **ОК**.
 
 Чтобы удалить базу данных с помощью интерфейса командной строки, выполните команду `database drop`:
 

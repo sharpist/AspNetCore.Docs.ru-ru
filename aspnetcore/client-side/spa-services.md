@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: client-side/spa-services
 ms.openlocfilehash: 1b9f5b4b4e066cdd3dd5fbfa666c7a087949979f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054649"
 ---
 # <a name="use-javascript-services-to-create-single-page-applications-in-aspnet-core"></a>Создание одностраничных приложений в ASP.NET Core с помощью служб JavaScript
@@ -115,7 +115,7 @@ npm i -S aspnet-prerendering
 
 ### <a name="asp-prerender-module-tag-helper"></a>Вспомогательная функция тегов asp-prerender-module
 
-Вспомогательная функция тегов `asp-prerender-module`, используемая в предыдущем примере кода, выполняет файл *ClientApp/dist/main-server.js* на сервере с помощью Node.js. Чтобы было понятно, уточним, что файл *main-server.js*  — это артефакт, получаемый в результате выполнения задачи транспилирования TypeScript в JavaScript в процессе сборки [Webpack](https://webpack.github.io/). В Webpack определен псевдоним точки входа `main-server`. Обход схемы зависимостей для этого псевдонима начинается с файла *ClientApp/boot-server.ts* :
+Вспомогательная функция тегов `asp-prerender-module`, используемая в предыдущем примере кода, выполняет файл *ClientApp/dist/main-server.js* на сервере с помощью Node.js. Чтобы было понятно, уточним, что файл *main-server.js* — это артефакт, получаемый в результате выполнения задачи транспилирования TypeScript в JavaScript в процессе сборки [Webpack](https://webpack.github.io/). В Webpack определен псевдоним точки входа `main-server`. Обход схемы зависимостей для этого псевдонима начинается с файла *ClientApp/boot-server.ts*:
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=53)]
 
@@ -161,7 +161,7 @@ npm i -D aspnet-webpack
 
 ### <a name="webpack-dev-middleware-configuration"></a>Настройка ПО промежуточного слоя Webpack для разработки
 
-ПО промежуточного слоя Webpack для разработки регистрируется в конвейере HTTP-запросов с помощью следующего кода в методе `Configure` в файле *Startup.cs* :
+ПО промежуточного слоя Webpack для разработки регистрируется в конвейере HTTP-запросов с помощью следующего кода в методе `Configure` в файле *Startup.cs*:
 
 [!code-csharp[](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=snippet_WebpackMiddlewareRegistration&highlight=4)]
 
@@ -253,10 +253,10 @@ dotnet new angular
 
 Существует два основных режима конфигурации среды выполнения:
 
-* **Разработка** :
+* **Разработка**:
   * включает сопоставители с исходным кодом для упрощения отладки;
   * не оптимизирует производительность кода на стороне клиента.
-* **Рабочая среда** :
+* **Рабочая среда**:
   * исключает сопоставители с исходным кодом;
   * оптимизирует код на стороне клиента посредством объединения и минификации.
 
@@ -280,7 +280,7 @@ dotnet run
 
 ### <a name="run-with-visual-studio-2017"></a>Запуск с помощью Visual Studio 2017
 
-Откройте файл *CSPROJ* , созданный с помощью команды [dotnet new](/dotnet/core/tools/dotnet-new). Необходимые пакеты NuGet и npm восстанавливаются автоматически при открытии проекта: Процесс восстановления может занять несколько минут. По его завершении приложение будет готово к запуску. Нажмите зеленую кнопку запуска или клавиши `Ctrl + F5`, и в браузере откроется целевая страница приложения. Приложение запускается на узле localhost в соответствии с [режимом конфигурации среды выполнения](#set-the-runtime-configuration-mode).
+Откройте файл *CSPROJ*, созданный с помощью команды [dotnet new](/dotnet/core/tools/dotnet-new). Необходимые пакеты NuGet и npm восстанавливаются автоматически при открытии проекта: Процесс восстановления может занять несколько минут. По его завершении приложение будет готово к запуску. Нажмите зеленую кнопку запуска или клавиши `Ctrl + F5`, и в браузере откроется целевая страница приложения. Приложение запускается на узле localhost в соответствии с [режимом конфигурации среды выполнения](#set-the-runtime-configuration-mode).
 
 ## <a name="test-the-app"></a>Тестирование приложения
 

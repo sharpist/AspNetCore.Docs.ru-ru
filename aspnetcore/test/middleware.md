@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: test/middleware
 ms.openlocfilehash: 2dd5fa127af4432c612bb654d50eb4147aea6868
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93051438"
 ---
 # <a name="test-aspnet-core-middleware"></a>Тестирование ПО промежуточного слоя ASP.NET Core
@@ -68,7 +68,7 @@ ms.locfileid: "93051438"
 
 Утвердите результат. Сначала следует сделать утверждение, противоположное ожидаемому результату. Первое выполнение с ложноположительным утверждением подтверждает, что тест завершается ошибкой, если ПО промежуточного слоя выполняется правильно. Запустите тест и убедитесь, что тест не пройден.
 
-В следующем примере ПО промежуточного слоя должно вернуть код состояния 404 ( *Не найдено* ) при запросе корневой конечной точки. Выполните первый тестовый запуск с `Assert.NotEqual( ... );`, который должен завершиться ошибкой.
+В следующем примере ПО промежуточного слоя должно вернуть код состояния 404 (*Не найдено*) при запросе корневой конечной точки. Выполните первый тестовый запуск с `Assert.NotEqual( ... );`, который должен завершиться ошибкой.
 
 [!code-csharp[](middleware/samples_snapshot/3.x/false-failure-check.cs?highlight=22)]
 
@@ -129,20 +129,20 @@ public async Task TestMiddleware_ExpectedResponse()
 
 <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> разрешает прямую настройку объекта <xref:Microsoft.AspNetCore.Http.HttpContext> вместо использования абстракций <xref:System.Net.Http.HttpClient>. Используйте <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> для управления структурами, доступными только на сервере, например [HttpContext.Items](xref:Microsoft.AspNetCore.Http.HttpContext.Items) или [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features).
 
-Как и в предыдущем примере, где ожидалась ошибка *404 — не найдено* , проверьте противоположность каждой инструкции `Assert` в предыдущем тесте. Проверка покажет, что тест действительно завершается ошибкой, если ПО промежуточного слоя работает нормально. Убедившись, что тест дает ложноположительный результат, установите окончательные инструкции `Assert` для ожидаемых условий и значений теста. Запустите тест еще раз, чтобы убедиться, что он пройден.
+Как и в предыдущем примере, где ожидалась ошибка *404 — не найдено*, проверьте противоположность каждой инструкции `Assert` в предыдущем тесте. Проверка покажет, что тест действительно завершается ошибкой, если ПО промежуточного слоя работает нормально. Убедившись, что тест дает ложноположительный результат, установите окончательные инструкции `Assert` для ожидаемых условий и значений теста. Запустите тест еще раз, чтобы убедиться, что он пройден.
 
 ## <a name="testserver-limitations"></a>Ограничения TestServer
 
 TestServer:
 
 * используется для репликации поведения сервера для проверки ПО промежуточного слоя.
-* * **Не** _ пытается выполнить репликацию всего поведения <xref:System.Net.Http.HttpClient>.
+* ***Не** _ пытается выполнить репликацию всего поведения <xref:System.Net.Http.HttpClient>.
 _ Пытается предоставить клиенту максимально возможный контроль над сервером и обеспечить максимальную возможность отслеживания того, что происходит на сервере. Например, он может вызывать исключения, которые обычно не вызываются `HttpClient`, чтобы напрямую передавать состояние сервера.
 * Не задает некоторые связанные с транспортом заголовки по умолчанию, так как они обычно не относятся к ПО промежуточного слоя. Дополнительные сведения см. в следующем разделе.
 
 ### <a name="content-length-and-transfer-encoding-headers"></a>Заголовки Content-Length и Transfer-Encoding
 
-TestServer * **не** _ задает связанные с транспортировкой запросы или заголовки ответа, такие как [Content-Length](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length) и [Transfer-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Transfer-Encoding). Приложения не должны зависеть от этих заголовков, так как их использование определяется клиентом, сценарием и протоколом. Если `Content-Length` и `Transfer-Encoding` требуются для тестирования конкретного сценария, их можно указать в тесте при создании <xref:System.Net.Http.HttpRequestMessage> или <xref:Microsoft.AspNetCore.Http.HttpContext>. См. сведения см. в следующих проблемах GitHub:
+TestServer ***не** _ задает связанные с транспортировкой запросы или заголовки ответа, такие как [Content-Length](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length) и [Transfer-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Transfer-Encoding). Приложения не должны зависеть от этих заголовков, так как их использование определяется клиентом, сценарием и протоколом. Если `Content-Length` и `Transfer-Encoding` требуются для тестирования конкретного сценария, их можно указать в тесте при создании <xref:System.Net.Http.HttpRequestMessage> или <xref:Microsoft.AspNetCore.Http.HttpContext>. См. сведения см. в следующих проблемах GitHub:
 
 _ [dotnet/aspnetcore#21677](https://github.com/dotnet/aspnetcore/issues/21677)
 * [dotnet/aspnetcore#18463](https://github.com/dotnet/aspnetcore/issues/18463)

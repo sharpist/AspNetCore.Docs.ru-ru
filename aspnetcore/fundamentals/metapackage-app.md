@@ -19,17 +19,17 @@ no-loc:
 - SignalR
 uid: fundamentals/metapackage-app
 ms.openlocfilehash: 225bb1f55c099a476319191726c5a661f9a4893a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93057808"
 ---
 # <a name="microsoftaspnetcoreapp-for-aspnet-core"></a>Метапакет Microsoft.AspNetCore.App для ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
- Общая платформа ASP.NET Core (`Microsoft.AspNetCore.App`) содержит сборки, разработанные и поддерживаемые корпорацией Майкрософт. `Microsoft.AspNetCore.App` устанавливается при установке [пакета SDK для .NET Core 3.0 или более поздней версии](https://dotnet.microsoft.com/download/dotnet-core/3.0). *Общая платформа*  — это набор сборок ( *DLL* -файлы), которые установлены на компьютере, содержащий компонент среды выполнения и целевой пакет. Дополнительную информацию см. в этой публикации об [общей платформе](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
+ Общая платформа ASP.NET Core (`Microsoft.AspNetCore.App`) содержит сборки, разработанные и поддерживаемые корпорацией Майкрософт. `Microsoft.AspNetCore.App` устанавливается при установке [пакета SDK для .NET Core 3.0 или более поздней версии](https://dotnet.microsoft.com/download/dotnet-core/3.0). *Общая платформа* — это набор сборок (*DLL*-файлы), которые установлены на компьютере, содержащий компонент среды выполнения и целевой пакет. Дополнительную информацию см. в этой публикации об [общей платформе](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
 * Проекты, предназначенные для пакета SDK `Microsoft.NET.Sdk.Web`, неявно ссылаются на платформу `Microsoft.AspNetCore.App`.
 

@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: tutorials/signalr-typescript-webpack
 ms.openlocfilehash: 949276bf4aae33c3af3fd1b8219a83868095f378
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93056846"
 ---
 # <a name="use-aspnet-core-no-locsignalr-with-typescript-and-webpack"></a>Использование ASP.NET Core SignalR с TypeScript и webpack
@@ -83,7 +83,7 @@ ms.locfileid: "93056846"
 
 1. В **обозревателе решений** (справа) щелкните правой кнопкой мыши имя проекта и выберите пункт **Управление пакетами NuGet**. На вкладке **Обзор** найдите `Microsoft.TypeScript.MSBuild`, а затем нажмите кнопку **Установить** справа, чтобы установить пакет.
 
-Visual Studio добавляет пакет NuGet в узел **Зависимости** в **обозревателе решений** , разрешая компиляцию TypeScript в проекте.
+Visual Studio добавляет пакет NuGet в узел **Зависимости** в **обозревателе решений**, разрешая компиляцию TypeScript в проекте.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -111,7 +111,7 @@ dotnet add package Microsoft.TypeScript.MSBuild
 
 Далее следует настроить преобразование TypeScript в JavaScript и создание пакета ресурсов на стороне клиента.
 
-1. В корневом элементе проекта выполните следующую команду, чтобы создать файл *package.json* :
+1. В корневом элементе проекта выполните следующую команду, чтобы создать файл *package.json*:
 
     ```console
     npm init -y
@@ -214,7 +214,7 @@ dotnet add package Microsoft.TypeScript.MSBuild
 
     [!code-csharp[ChatHub](signalr-typescript-webpack/sample/3.x/snippets/ChatHub.cs?name=snippet_ChatHubStubClass)]
 
-1. Добавьте следующий оператор `using` в самое начало файла *Startup.cs* , чтобы разрешить ссылку `ChatHub`:
+1. Добавьте следующий оператор `using` в самое начало файла *Startup.cs*, чтобы разрешить ссылку `ChatHub`:
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_HubsNamespace)]
 
@@ -233,7 +233,7 @@ dotnet add package Microsoft.TypeScript.MSBuild
      * [Клиент TypeScript SignalR](https://www.npmjs.com/package/@microsoft/signalr), который позволяет клиенту отправлять сообщения на сервер.
      * Определения типа TypeScript для Node.js, обеспечивающие проверку типов Node.js во время компиляции.
 
-1. Добавьте выделенный код в файл *src/index.ts* :
+1. Добавьте выделенный код в файл *src/index.ts*:
 
     [!code-typescript[index.ts](signalr-typescript-webpack/sample/3.x/snippets/index2.ts?name=snippet_IndexTsPhase2File&highlight=2,9-23)]
 
@@ -241,7 +241,7 @@ dotnet add package Microsoft.TypeScript.MSBuild
 
     SignalR обеспечивает обмен сообщениями между клиентом и сервером. Каждому сообщению присваивается определенное имя. Например, сообщения с именем `messageReceived` могут выполнять логику отображения новых сообщений в соответствующей зоне. Прослушивание определенных сообщений реализуется с помощью функции `on`. Возможно прослушивание любого числа имен сообщений. Кроме того, можно передавать параметры сообщения, например имя его автора или содержимое полученного сообщения. После того как клиент получает сообщение, создается новый элемент `div`, в атрибуте `innerHTML` которого содержатся имя автора и содержимое сообщения. Этот элемент добавляется в основной элемент `div`, который используется для отображения сообщений.
 
-1. Теперь клиент может принимать сообщения. Далее следует настроить его для отправки сообщений. Добавьте выделенный код в файл *src/index.ts* :
+1. Теперь клиент может принимать сообщения. Далее следует настроить его для отправки сообщений. Добавьте выделенный код в файл *src/index.ts*:
 
     [!code-typescript[index.ts](signalr-typescript-webpack/sample/3.x/src/index.ts?highlight=34-35)]
 
@@ -265,7 +265,7 @@ dotnet add package Microsoft.TypeScript.MSBuild
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
-1. Выберите **Отладка** > **Запуск без отладки** , чтобы запустить приложение в браузере, не присоединяя отладчик. Файл *wwwroot/index.html* обрабатывается по адресу `http://localhost:<port_number>`.
+1. Выберите **Отладка** > **Запуск без отладки**, чтобы запустить приложение в браузере, не присоединяя отладчик. Файл *wwwroot/index.html* обрабатывается по адресу `http://localhost:<port_number>`.
 
    Если во время компиляции возникают ошибки, попробуйте закрыть и снова открыть решение. 
 
@@ -275,7 +275,7 @@ dotnet add package Microsoft.TypeScript.MSBuild
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-1. Запустите средство Webpack в режиме *release* , выполнив следующую команду в корневом элементе проекта:
+1. Запустите средство Webpack в режиме *release*, выполнив следующую команду в корневом элементе проекта:
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
@@ -351,13 +351,13 @@ dotnet new web -o SignalRWebPack
 
 Далее следует настроить преобразование TypeScript в JavaScript и создание пакета ресурсов на стороне клиента.
 
-1. В корневом элементе проекта выполните следующую команду, чтобы создать файл *package.json* :
+1. В корневом элементе проекта выполните следующую команду, чтобы создать файл *package.json*:
 
     ```console
     npm init -y
     ```
 
-1. Добавьте выделенное свойство в файл *package.json* :
+1. Добавьте выделенное свойство в файл *package.json*:
 
     [!code-json[package.json](signalr-typescript-webpack/sample/2.x/snippets/package1.json?highlight=4)]
 
@@ -454,7 +454,7 @@ dotnet new web -o SignalRWebPack
 
     [!code-csharp[ChatHub](signalr-typescript-webpack/sample/2.x/snippets/ChatHub.cs?name=snippet_ChatHubStubClass)]
 
-1. Добавьте следующий код в самое начало файла *Startup.cs* , чтобы разрешить ссылку `ChatHub`:
+1. Добавьте следующий код в самое начало файла *Startup.cs*, чтобы разрешить ссылку `ChatHub`:
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_HubsNamespace)]
 
@@ -470,7 +470,7 @@ dotnet new web -o SignalRWebPack
 
     Команда выше устанавливает [клиент TypeScript SignalR](https://www.npmjs.com/package/@microsoft/signalr), который позволяет клиенту отправлять сообщения на сервер.
 
-1. Добавьте выделенный код в файл *src/index.ts* :
+1. Добавьте выделенный код в файл *src/index.ts*:
 
     [!code-typescript[index.ts](signalr-typescript-webpack/sample/2.x/snippets/index2.ts?name=snippet_IndexTsPhase2File&highlight=2,9-23)]
 
@@ -478,7 +478,7 @@ dotnet new web -o SignalRWebPack
 
     SignalR обеспечивает обмен сообщениями между клиентом и сервером. Каждому сообщению присваивается определенное имя. Например, сообщения с именем `messageReceived` могут выполнять логику отображения новых сообщений в соответствующей зоне. Прослушивание определенных сообщений реализуется с помощью функции `on`. Возможно прослушивание любого числа имен сообщений. Кроме того, можно передавать параметры сообщения, например имя его автора или содержимое полученного сообщения. После того как клиент получает сообщение, создается новый элемент `div`, в атрибуте `innerHTML` которого содержатся имя автора и содержимое сообщения. Новое сообщение добавляется в основной элемент `div`, который используется для отображения сообщений.
 
-1. Теперь клиент может принимать сообщения. Далее следует настроить его для отправки сообщений. Добавьте выделенный код в файл *src/index.ts* :
+1. Теперь клиент может принимать сообщения. Далее следует настроить его для отправки сообщений. Добавьте выделенный код в файл *src/index.ts*:
 
     [!code-typescript[index.ts](signalr-typescript-webpack/sample/2.x/src/index.ts?highlight=34-35)]
 
@@ -502,7 +502,7 @@ dotnet new web -o SignalRWebPack
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
-1. Выберите **Отладка** > **Запуск без отладки** , чтобы запустить приложение в браузере, не присоединяя отладчик. Файл *wwwroot/index.html* обрабатывается по адресу `http://localhost:<port_number>`.
+1. Выберите **Отладка** > **Запуск без отладки**, чтобы запустить приложение в браузере, не присоединяя отладчик. Файл *wwwroot/index.html* обрабатывается по адресу `http://localhost:<port_number>`.
 
 1. Откройте другой экземпляр любого браузера. Вставьте URL-адрес в адресную строку.
 
@@ -510,7 +510,7 @@ dotnet new web -o SignalRWebPack
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-1. Запустите средство Webpack в режиме *release* , выполнив следующую команду в корневом элементе проекта:
+1. Запустите средство Webpack в режиме *release*, выполнив следующую команду в корневом элементе проекта:
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 

@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/metapackage
 ms.openlocfilehash: b739398c2a440f21c8bdfdc1f4d8e25412358a6a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93060694"
 ---
 # <a name="microsoftaspnetcoreall-metapackage-for-aspnet-core-20"></a>Метапакет Microsoft.AspNetCore.All для ASP.NET Core 2.0
@@ -39,7 +39,7 @@ ms.locfileid: "93060694"
 
 Для этой функции нужен ASP.NET Core 2.x, нацеленный на .NET Core 2.x.
 
-[Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) является метапакетом, который ссылается на общую платформу. *Общая платформа*  — это набор сборок ( *DLL* -файлов), которые не находятся в папках приложения. Чтобы запустить приложение, необходимо установить на компьютере общую платформу. Дополнительную информацию см. в этой публикации об [общей платформе](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
+[Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) является метапакетом, который ссылается на общую платформу. *Общая платформа* — это набор сборок (*DLL*-файлов), которые не находятся в папках приложения. Чтобы запустить приложение, необходимо установить на компьютере общую платформу. Дополнительную информацию см. в этой публикации об [общей платформе](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
 Общая платформа, на которую ссылается `Microsoft.AspNetCore.All`, включает в себя следующее:
 

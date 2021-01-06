@@ -19,17 +19,17 @@ no-loc:
 - SignalR
 uid: fundamentals/change-tokens
 ms.openlocfilehash: f20d44c7767b284f727ce19a46224dae0cf6a5e1
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93053778"
 ---
 # <a name="detect-changes-with-change-tokens-in-aspnet-core"></a>Обнаружение изменений с помощью токенов изменений в ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
-*Токен изменений*  — это низкоуровневый стандартный блок общего назначения, используемый для отслеживания изменений.
+*Токен изменений* — это низкоуровневый стандартный блок общего назначения, используемый для отслеживания изменений.
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([как скачивать](xref:index#how-to-download-a-sample))
 
@@ -67,7 +67,7 @@ ms.locfileid: "93053778"
 
 ## <a name="monitor-for-configuration-changes"></a>Отслеживание изменений конфигурации
 
-По умолчанию шаблоны ASP.NET Core используют [файлы конфигурации JSON](xref:fundamentals/configuration/index#json-configuration-provider) ( *appsettings.json* , *appsettings.Development.json* и *appsettings.Production.json* ) для загрузки параметров конфигурации приложения.
+По умолчанию шаблоны ASP.NET Core используют [файлы конфигурации JSON](xref:fundamentals/configuration/index#json-configuration-provider) ( *appsettings.json* , *appsettings.Development.json* и *appsettings.Production.json*) для загрузки параметров конфигурации приложения.
 
 Эти файлы настраиваются с помощью метода расширения [AddJsonFile(IConfigurationBuilder, String, Boolean, Boolean)](xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*) в <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>, который принимает параметр `reloadOnChange`. `reloadOnChange` указывает, нужно ли перезагружать конфигурацию при изменении файла. Этот параметр отображается в удобном методе <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> класса <xref:Microsoft.Extensions.Hosting.Host>:
 
@@ -85,7 +85,7 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 
 `FileSystemWatcher` файла конфигурации может активировать несколько обратных вызовов токена для одного изменения файла конфигурации. Чтобы пользовательский код выполнялся один раз при активации нескольких обратных вызовов токена, реализация в примере проверяет хэши файлов. В примере используется хэширование файлов SHA1. Повторная попытка реализуется посредством экспоненциальной задержки. Повторная попытка нужна, так как может возникать блокировка файлов, препятствующая вычислению нового хэша в файле.
 
-*Utilities/Utilities.cs* :
+*Utilities/Utilities.cs*:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Utilities/Utilities.cs?name=snippet1)]
 
@@ -101,7 +101,7 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Startup.cs?name=snippet3)]
 
-`state` обратного вызова используется для передачи `IWebHostEnvironment`. Это удобно для определения правильного JSON-файла конфигурации *appsettings* , который требуется отслеживать (например, *appsettings.Development.json* при работе в среде разработки). Хэши файлов используются для предотвращения многократного выполнения оператора `WriteConsole` из-за нескольких обратных вызовов токена при всего одном изменении файла конфигурации.
+`state` обратного вызова используется для передачи `IWebHostEnvironment`. Это удобно для определения правильного JSON-файла конфигурации *appsettings*, который требуется отслеживать (например, *appsettings.Development.json* при работе в среде разработки). Хэши файлов используются для предотвращения многократного выполнения оператора `WriteConsole` из-за нескольких обратных вызовов токена при всего одном изменении файла конфигурации.
 
 Эта система выполняется, пока запущено приложение, и не может быть отключена пользователем.
 
@@ -115,7 +115,7 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 
 Этот пример задает интерфейс `IConfigurationMonitor`.
 
-*Extensions/ConfigurationMonitor.cs* :
+*Extensions/ConfigurationMonitor.cs*:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Extensions/ConfigurationMonitor.cs?name=snippet1)]
 
@@ -141,7 +141,7 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 
 Страница индекса позволяет пользователю управлять отслеживанием конфигурации. Экземпляр `IConfigurationMonitor` внедряется в `IndexModel`.
 
-*Pages/Index.cshtml.cs* :
+*Pages/Index.cshtml.cs*:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Pages/Index.cshtml.cs?name=snippet1)]
 
@@ -153,7 +153,7 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 
 Кнопки пользовательского интерфейса для включения и отключения отслеживания.
 
-*Pages/Index.cshtml* :
+*Pages/Index.cshtml*:
 
 [!code-cshtml[](change-tokens/samples/3.x/SampleApp/Pages/Index.cshtml?name=snippet_Buttons)]
 
@@ -170,11 +170,11 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 * возврата содержимого файла;
 * реализации алгоритма повторных попыток с экспоненциальной задержкой, чтобы охватить ситуации, когда блокировка файла временно препятствует его считыванию.
 
-*Utilities/Utilities.cs* :
+*Utilities/Utilities.cs*:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Utilities/Utilities.cs?name=snippet2)]
 
-Для обработки поиска кэшированных файлов создается `FileService`. Направленный в службу вызов метода `GetFileContent` пытается получить содержимое файла из кэша в памяти и вернуть его вызывающему объекту ( *Services/FileService.cs* ).
+Для обработки поиска кэшированных файлов создается `FileService`. Направленный в службу вызов метода `GetFileContent` пытается получить содержимое файла из кэша в памяти и вернуть его вызывающему объекту (*Services/FileService.cs*).
 
 Если кэшированное содержимое не удается найти по ключу кэша, выполняются следующие действия:
 
@@ -194,7 +194,7 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 
 Страничная модель загружает содержимое файла с помощью службы.
 
-На странице индексов используется метод `OnGet` ( *Pages/Index.cshtml.cs* ):
+На странице индексов используется метод `OnGet` (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Pages/Index.cshtml.cs?name=snippet3)]
 
@@ -227,7 +227,7 @@ var compositeChangeToken =
 
 ::: moniker range="< aspnetcore-3.0"
 
-*Токен изменений*  — это низкоуровневый стандартный блок общего назначения, используемый для отслеживания изменений.
+*Токен изменений* — это низкоуровневый стандартный блок общего назначения, используемый для отслеживания изменений.
 
 [Просмотреть или скачать образец кода](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([как скачивать](xref:index#how-to-download-a-sample))
 
@@ -265,7 +265,7 @@ var compositeChangeToken =
 
 ## <a name="monitor-for-configuration-changes"></a>Отслеживание изменений конфигурации
 
-По умолчанию шаблоны ASP.NET Core используют [файлы конфигурации JSON](xref:fundamentals/configuration/index#json-configuration-provider) ( *appsettings.json* , *appsettings.Development.json* и *appsettings.Production.json* ) для загрузки параметров конфигурации приложения.
+По умолчанию шаблоны ASP.NET Core используют [файлы конфигурации JSON](xref:fundamentals/configuration/index#json-configuration-provider) ( *appsettings.json* , *appsettings.Development.json* и *appsettings.Production.json*) для загрузки параметров конфигурации приложения.
 
 Эти файлы настраиваются с помощью метода расширения [AddJsonFile(IConfigurationBuilder, String, Boolean, Boolean)](xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*) в <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>, который принимает параметр `reloadOnChange`. `reloadOnChange` указывает, нужно ли перезагружать конфигурацию при изменении файла. Этот параметр отображается в удобном методе <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> класса <xref:Microsoft.AspNetCore.WebHost>:
 
@@ -283,7 +283,7 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 
 `FileSystemWatcher` файла конфигурации может активировать несколько обратных вызовов токена для одного изменения файла конфигурации. Чтобы пользовательский код выполнялся один раз при активации нескольких обратных вызовов токена, реализация в примере проверяет хэши файлов. В примере используется хэширование файлов SHA1. Повторная попытка реализуется посредством экспоненциальной задержки. Повторная попытка нужна, так как может возникать блокировка файлов, препятствующая вычислению нового хэша в файле.
 
-*Utilities/Utilities.cs* :
+*Utilities/Utilities.cs*:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Utilities/Utilities.cs?name=snippet1)]
 
@@ -299,7 +299,7 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Startup.cs?name=snippet3)]
 
-`state` обратного вызова используется для передачи `IHostingEnvironment`. Это удобно для определения правильного JSON-файла конфигурации *appsettings* , который требуется отслеживать (например, *appsettings.Development.json* при работе в среде разработки). Хэши файлов используются для предотвращения многократного выполнения оператора `WriteConsole` из-за нескольких обратных вызовов токена при всего одном изменении файла конфигурации.
+`state` обратного вызова используется для передачи `IHostingEnvironment`. Это удобно для определения правильного JSON-файла конфигурации *appsettings*, который требуется отслеживать (например, *appsettings.Development.json* при работе в среде разработки). Хэши файлов используются для предотвращения многократного выполнения оператора `WriteConsole` из-за нескольких обратных вызовов токена при всего одном изменении файла конфигурации.
 
 Эта система выполняется, пока запущено приложение, и не может быть отключена пользователем.
 
@@ -313,7 +313,7 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 
 Этот пример задает интерфейс `IConfigurationMonitor`.
 
-*Extensions/ConfigurationMonitor.cs* :
+*Extensions/ConfigurationMonitor.cs*:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Extensions/ConfigurationMonitor.cs?name=snippet1)]
 
@@ -339,7 +339,7 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 
 Страница индекса позволяет пользователю управлять отслеживанием конфигурации. Экземпляр `IConfigurationMonitor` внедряется в `IndexModel`.
 
-*Pages/Index.cshtml.cs* :
+*Pages/Index.cshtml.cs*:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Pages/Index.cshtml.cs?name=snippet1)]
 
@@ -351,7 +351,7 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 
 Кнопки пользовательского интерфейса для включения и отключения отслеживания.
 
-*Pages/Index.cshtml* :
+*Pages/Index.cshtml*:
 
 [!code-cshtml[](change-tokens/samples/2.x/SampleApp/Pages/Index.cshtml?name=snippet_Buttons)]
 
@@ -368,11 +368,11 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 * возврата содержимого файла;
 * реализации алгоритма повторных попыток с экспоненциальной задержкой, чтобы охватить ситуации, когда блокировка файла временно препятствует его считыванию.
 
-*Utilities/Utilities.cs* :
+*Utilities/Utilities.cs*:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Utilities/Utilities.cs?name=snippet2)]
 
-Для обработки поиска кэшированных файлов создается `FileService`. Направленный в службу вызов метода `GetFileContent` пытается получить содержимое файла из кэша в памяти и вернуть его вызывающему объекту ( *Services/FileService.cs* ).
+Для обработки поиска кэшированных файлов создается `FileService`. Направленный в службу вызов метода `GetFileContent` пытается получить содержимое файла из кэша в памяти и вернуть его вызывающему объекту (*Services/FileService.cs*).
 
 Если кэшированное содержимое не удается найти по ключу кэша, выполняются следующие действия:
 
@@ -392,7 +392,7 @@ config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 
 Страничная модель загружает содержимое файла с помощью службы.
 
-На странице индексов используется метод `OnGet` ( *Pages/Index.cshtml.cs* ):
+На странице индексов используется метод `OnGet` (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Pages/Index.cshtml.cs?name=snippet3)]
 

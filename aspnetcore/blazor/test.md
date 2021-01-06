@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: blazor/test
 ms.openlocfilehash: cd4aee66fd6df6cc0ce520d8ca66e0a2cf130eff
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054870"
 ---
 # <a name="test-components-in-aspnet-core-no-locblazor"></a>Тестирование компонентов в ASP.NET Core Blazor

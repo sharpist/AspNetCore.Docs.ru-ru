@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: tutorials/dotnet-watch
 ms.openlocfilehash: 27420fe00ba6375e15b67fb359be06df055eff1f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93060044"
 ---
 # <a name="develop-aspnet-core-apps-using-a-file-watcher"></a>Разработка приложений ASP.NET Core с использованием наблюдателя файлов
@@ -63,7 +63,7 @@ Application started. Press Ctrl+C to shut down.
 
 Средство наблюдения за файлами `dotnet watch` входит в версию 2.1.300 пакета SDK для .NET Core. Выполните следующие действия при использовании более ранней версии пакета SDK для .NET Core.
 
-1. Добавьте ссылку на пакет `Microsoft.DotNet.Watcher.Tools` в *CSPROJ* -файл:
+1. Добавьте ссылку на пакет `Microsoft.DotNet.Watcher.Tools` в *CSPROJ*-файл:
 
     ```xml
     <ItemGroup>
@@ -95,7 +95,7 @@ Application started. Press Ctrl+C to shut down.
 ::: moniker range=">= aspnetcore-5.0"
 При выполнении `dotnet watch run` в веб-приложении запускается браузер с переходом по URL-адресу приложения, когда оно будет готово. Для этого `dotnet watch` считывает выходные данные из консоли приложения и ожидает, когда <xref:Microsoft.AspNetCore.WebHost> выведет сообщение о готовности.
 
-`dotnet watch` обновляет содержимое в браузере при обнаружении изменений в отслеживаемых файлах. Для этого команда watch вставляет в приложение ПО промежуточного слоя, которое изменяет ответы HTML, создаваемые приложением. ПО промежуточного слоя добавляет на страницу блок скрипта JavaScript, позволяющий `dotnet watch` давать команду на обновление содержимого в браузере. В настоящее время изменения в любых отслеживаемых файлах, включая статическое содержимое, такое как файлы *HTML* и *CSS* , приводят к повторной сборке приложения.
+`dotnet watch` обновляет содержимое в браузере при обнаружении изменений в отслеживаемых файлах. Для этого команда watch вставляет в приложение ПО промежуточного слоя, которое изменяет ответы HTML, создаваемые приложением. ПО промежуточного слоя добавляет на страницу блок скрипта JavaScript, позволяющий `dotnet watch` давать команду на обновление содержимого в браузере. В настоящее время изменения в любых отслеживаемых файлах, включая статическое содержимое, такое как файлы *HTML* и *CSS*, приводят к повторной сборке приложения.
 
 `dotnet watch`:
 
@@ -107,7 +107,7 @@ Application started. Press Ctrl+C to shut down.
 ::: moniker-end
 
 > [!NOTE]
-> Можно использовать `dotnet watch --project <PROJECT>`, чтобы указать проект для наблюдения. Например, при выполнении `dotnet watch --project WebApp run` из корневой папки примера приложения также будет запущен проект *WebApp* , в том числе для наблюдения.
+> Можно использовать `dotnet watch --project <PROJECT>`, чтобы указать проект для наблюдения. Например, при выполнении `dotnet watch --project WebApp run` из корневой папки примера приложения также будет запущен проект *WebApp*, в том числе для наблюдения.
 
 ## <a name="make-changes-with-dotnet-watch"></a>Изменения с помощью `dotnet watch`
 
@@ -161,7 +161,7 @@ public static int Product(int a, int b)
 
 ## <a name="opt-out-of-files-to-be-watched"></a>Удаление файлов из списка наблюдения
 
-Можно настроить `dotnet-watch` так, чтобы игнорировать параметры по умолчанию. Чтобы пропускать определенные файлы, добавьте атрибут `Watch="false"` в определение элемента в файле *.csproj* :
+Можно настроить `dotnet-watch` так, чтобы игнорировать параметры по умолчанию. Чтобы пропускать определенные файлы, добавьте атрибут `Watch="false"` в определение элемента в файле *.csproj*:
 
 ```xml
 <ItemGroup>

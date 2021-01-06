@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
 ms.openlocfilehash: b4850821317b6907452793ef09194844c90c0137
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93050775"
 ---
 # <a name="part-6-controller-methods-and-views-in-aspnet-core"></a>Часть 6. Методы и представления контроллера в ASP.NET Core
@@ -58,7 +58,7 @@ ms.locfileid: "93050775"
 </td>
 ```
 
-Повторите вызов формата [routing](xref:mvc/controllers/routing), настроенный в файле *Startup.cs* :
+Повторите вызов формата [routing](xref:mvc/controllers/routing), настроенный в файле *Startup.cs*:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
@@ -108,7 +108,7 @@ ASP.NET Core преобразует `https://localhost:5001/Movies/Edit/4` в з
 
 Атрибут `HttpPost` указывает на то, что этот метод `Edit` может вызываться *только* для запросов `POST`. Вы могли бы применить атрибут `[HttpGet]` к первому методу редактирования, однако это необязательно, поскольку значение `[HttpGet]` задается по умолчанию.
 
-Атрибут `ValidateAntiForgeryToken` используется для [защиты от подделки запросов](xref:security/anti-request-forgery) и используется совместно с соответствующим маркером безопасности, который создается в файле представления редактирования ( *Views/Movies/Edit.cshtml* ). В файле представления редактирования для создания маркера защиты от подделки используется [вспомогательная функция тега Form](xref:mvc/views/working-with-forms).
+Атрибут `ValidateAntiForgeryToken` используется для [защиты от подделки запросов](xref:security/anti-request-forgery) и используется совместно с соответствующим маркером безопасности, который создается в файле представления редактирования (*Views/Movies/Edit.cshtml*). В файле представления редактирования для создания маркера защиты от подделки используется [вспомогательная функция тега Form](xref:mvc/views/working-with-forms).
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/Edit.cshtml?range=9)]
 

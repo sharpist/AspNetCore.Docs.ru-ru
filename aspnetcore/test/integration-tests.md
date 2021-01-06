@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: test/integration-tests
 ms.openlocfilehash: f1ce6a209ef3ca85abe0a6f1ac61d85bec52d17a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93050827"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Интеграционные тесты на платформе ASP.NET Core
@@ -84,13 +84,13 @@ ms.locfileid: "93050827"
 * Тестовый проект создает тестовый веб-узел для ТС и использует клиент тестового сервера для обработки запросов и ответов с помощью ТС.
 * Средство запуска тестов используется для выполнения тестов и передачи результатов тестов.
 
-Интеграционные тесты придерживаются последовательности событий из обычных шагов теста *Подготовка* , *Выполнение* и *Проверка*.
+Интеграционные тесты придерживаются последовательности событий из обычных шагов теста *Подготовка*, *Выполнение* и *Проверка*.
 
 1. Настраивается веб-узел ТС.
 1. Создается клиент тестового сервера для отправки запросов к приложению.
-1. Выполняется шаг теста *Подготовка* : тестовое приложение готовит запрос.
-1. Выполняется шаг теста *Выполнение* : клиент отправляет запрос и получает ответ.
-1. Выполняется шаг теста *Проверка* : *фактический* ответ определяется как *правильный* или *ошибочный* на основе *ожидаемого* ответа.
+1. Выполняется шаг теста *Подготовка*: тестовое приложение готовит запрос.
+1. Выполняется шаг теста *Выполнение*: клиент отправляет запрос и получает ответ.
+1. Выполняется шаг теста *Проверка*: *фактический* ответ определяется как *правильный* или *ошибочный* на основе *ожидаемого* ответа.
 1. Процесс продолжается до тех пор, пока не будут выполнены все тесты.
 1. Выводятся результаты теста.
 
@@ -100,7 +100,7 @@ ms.locfileid: "93050827"
 
 Пакет `Microsoft.AspNetCore.Mvc.Testing` выполняет следующие задачи:
 
-* Копирует файл зависимостей ( *DEPS* ) из ТС в папку *bin* тестового проекта.
+* Копирует файл зависимостей (*DEPS*) из ТС в папку *bin* тестового проекта.
 * Задает [корневой каталог](xref:fundamentals/index#content-root) содержимого в корне проекта ТС, чтобы при выполнении тестов были найдены статические файлы и страницы или представления.
 * Предоставляет класс [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) для упрощения начальной загрузки ТС с `TestServer`.
 
@@ -140,7 +140,7 @@ ms.locfileid: "93050827"
 
 [WebApplicationFactory\<TEntryPoint>](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) используется для создания [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver) для интеграционных тестов. `TEntryPoint` — это класс точки входа ТС, обычно класс `Startup`.
 
-Тестовые классы реализуют интерфейс *средства тестирования* ( [IClassFixture](https://xunit.github.io/docs/shared-context#class-fixture)), чтобы указать, что класс содержит тесты, и предоставить экземпляры общего объекта между тестами в классе.
+Тестовые классы реализуют интерфейс *средства тестирования* ([IClassFixture](https://xunit.github.io/docs/shared-context#class-fixture)), чтобы указать, что класс содержит тесты, и предоставить экземпляры общего объекта между тестами в классе.
 
 Следующий тестовый класс, `BasicTests`, использует `WebApplicationFactory` для начальной загрузки ТС и предоставляет [HttpClient](/dotnet/api/system.net.http.httpclient) тестовому методу `Get_EndpointsReturnSuccessAndCorrectContentType`. Метод проверяет, что код состояния ответа свидетельствует о выполнении (коды состояния в диапазоне от 200 до 299) и что заголовок `Content-Type` имеет значение `text/html; charset=utf-8` для нескольких страниц приложения.
 
@@ -195,7 +195,7 @@ ms.locfileid: "93050827"
 1. Проанализировать файл cookie для защиты от подделки и запросить маркер проверки из ответа.
 1. Выполните запрос POST с файлом cookie для защиты от подделки и запросом маркера проверки на месте.
 
-Вспомогательные методы расширения `SendAsync` ( *Helpers/HttpClientExtensions.cs* ) и вспомогательный метод `GetDocumentAsync` ( *Helpers/HtmlHelpers.cs* ) в [примере приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) используют средство синтаксического анализа [AngleSharp](https://anglesharp.github.io/) для обработки защиты от подделки с помощью следующих методов:
+Вспомогательные методы расширения `SendAsync` (*Helpers/HttpClientExtensions.cs*) и вспомогательный метод `GetDocumentAsync` (*Helpers/HtmlHelpers.cs*) в [примере приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) используют средство синтаксического анализа [AngleSharp](https://anglesharp.github.io/) для обработки защиты от подделки с помощью следующих методов:
 
 * `GetDocumentAsync`. Получает [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) и возвращает `IHtmlDocument`. `GetDocumentAsync` использует фабрику, которая подготавливает *виртуальный ответ* на основе исходного `HttpResponseMessage`. Дополнительные сведения см. в [документации по AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
 * Методы расширения `SendAsync` для `HttpClient` составляют [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) и вызывают [SendAsync (HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) для отправки запросов к ТС. Перегрузки для `SendAsync` принимают HTML-форму (`IHtmlFormElement`) и следующие элементы:
@@ -246,23 +246,23 @@ _client = _factory.CreateClient(clientOptions);
 
 Пример ТС включает службу с заданной областью, которая возвращает цитату. Цитата внедряется в скрытое поле на странице индекса при запросе страницы индекса.
 
-*Services/IQuoteService.cs* :
+*Services/IQuoteService.cs*:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Services/IQuoteService.cs?name=snippet1)]
 
-*Services/QuoteService.cs* :
+*Services/QuoteService.cs*:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Services/QuoteService.cs?name=snippet1)]
 
-*Startup.cs* :
+*Startup.cs*:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet2)]
 
-*Pages/Index.cshtml.cs* :
+*Pages/Index.cshtml.cs*:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Pages/Index.cshtml.cs?name=snippet1&highlight=4,9,20,26)]
 
-*Pages/Index.cs* :
+*Pages/Index.cs*:
 
 [!code-cshtml[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Pages/Index.cshtml?name=snippet_Quote)]
 
@@ -275,7 +275,7 @@ _client = _factory.CreateClient(clientOptions);
 
 Чтобы протестировать службу и внедрение цитат в интеграционный тест, служба имитации будет внедрена в ТС тестом. Служба имитации заменяет `QuoteService` приложения службой, предоставляемой тестовым приложением, с именем `TestQuoteService`:
 
-*IntegrationTests.IndexPageTests.cs* :
+*IntegrationTests.IndexPageTests.cs*:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet4)]
 
@@ -343,7 +343,7 @@ protected override IWebHostBuilder CreateWebHostBuilder() =>
 
 ## <a name="how-the-test-infrastructure-infers-the-app-content-root-path"></a>Определение тестовой инфраструктурой пути к корневому каталогу содержимого приложения
 
-Конструктор `WebApplicationFactory` выводит путь к [корневому каталогу содержимого приложения](xref:fundamentals/index#content-root), выполняя поиск [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) в сборке, содержащей интеграционные тесты с ключом, равным сборке `TEntryPoint` `System.Reflection.Assembly.FullName`. Если атрибут с правильным ключом не найден, `WebApplicationFactory` возвращается к поиску файла решения ( *SLN* ) и добавляет имя сборки `TEntryPoint` в каталог решения. Корневой каталог приложения (корневой путь к содержимому) используется для обнаружения представлений и файлов содержимого.
+Конструктор `WebApplicationFactory` выводит путь к [корневому каталогу содержимого приложения](xref:fundamentals/index#content-root), выполняя поиск [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) в сборке, содержащей интеграционные тесты с ключом, равным сборке `TEntryPoint` `System.Reflection.Assembly.FullName`. Если атрибут с правильным ключом не найден, `WebApplicationFactory` возвращается к поиску файла решения (*SLN*) и добавляет имя сборки `TEntryPoint` в каталог решения. Корневой каталог приложения (корневой путь к содержимому) используется для обнаружения представлений и файлов содержимого.
 
 ## <a name="disable-shadow-copying"></a>Отключение теневого копирования
 
@@ -370,7 +370,7 @@ protected override IWebHostBuilder CreateWebHostBuilder() =>
 | Приложение для сообщений (ТС) | *src/RazorPagesProject* | Позволяет пользователю добавлять, удалять сообщения (по одному или все) и анализировать их. |
 | Тестирование приложения. | *tests/RazorPagesProject.Tests* | Используется для тестирования интеграции ТС. |
 
-Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](https://visualstudio.microsoft.com). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в каталоге *tests/RazorPagesProject.Tests* :
+Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](https://visualstudio.microsoft.com). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в каталоге *tests/RazorPagesProject.Tests*:
 
 ```console
 dotnet test
@@ -380,10 +380,10 @@ dotnet test
 
 Тестируемая система (ТС) — это система сообщений Razor Pages со следующими характеристиками:
 
-* Страница индекса приложения ( *Pages/Index.cshtml* и *Pages/Index.cshtml.cs* ) предоставляет методы пользовательского интерфейса и модели страницы для управления добавлением, удалением и анализом сообщений (поиск среднего числа слов на сообщение).
-* Сообщение описывается классом `Message` ( *Data/Message.cs* ) с двумя свойствами: `Id` (ключ) и `Text` (сообщение). Свойство `Text` является обязательным и ограничено 200 символами.
+* Страница индекса приложения (*Pages/Index.cshtml* и *Pages/Index.cshtml.cs*) предоставляет методы пользовательского интерфейса и модели страницы для управления добавлением, удалением и анализом сообщений (поиск среднего числа слов на сообщение).
+* Сообщение описывается классом `Message` (*Data/Message.cs*) с двумя свойствами: `Id` (ключ) и `Text` (сообщение). Свойство `Text` является обязательным и ограничено 200 символами.
 * Сообщения хранятся с помощью [базы данных Entity Framework в памяти](/ef/core/providers/in-memory/)&#8224;.
-* Приложение содержит слой доступа к данным DAL в своем классе контекста базы данных — `AppDbContext` ( *Data/AppDbContext.cs* ).
+* Приложение содержит слой доступа к данным DAL в своем классе контекста базы данных — `AppDbContext` (*Data/AppDbContext.cs*).
 * Если база данных пуста при запуске приложения, то хранилище сообщений инициализируется тремя сообщениями.
 * Приложение включает `/SecurePage`, доступ к которому может получить только пользователь, прошедший проверку подлинности.
 
@@ -408,7 +408,7 @@ dotnet test
 
 Перед выполнением интеграционных тестов обычно требуется небольшой набор данных в базе данных. Например, при удалении теста вызывается удаление записей базы данных, поэтому в базе данных должна иметься по крайней мере одна запись, чтобы запрос на удаление был выполнен успешно.
 
-Пример приложения заполняет базу данных тремя сообщениями в *Utilities.cs* , которые могут использоваться тестами при выполнении:
+Пример приложения заполняет базу данных тремя сообщениями в *Utilities.cs*, которые могут использоваться тестами при выполнении:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/Helpers/Utilities.cs?name=snippet1)]
 
@@ -472,13 +472,13 @@ dotnet test
 * Тестовый проект создает тестовый веб-узел для ТС и использует клиент тестового сервера для обработки запросов и ответов с помощью ТС.
 * Средство запуска тестов используется для выполнения тестов и передачи результатов тестов.
 
-Интеграционные тесты придерживаются последовательности событий из обычных шагов теста *Подготовка* , *Выполнение* и *Проверка*.
+Интеграционные тесты придерживаются последовательности событий из обычных шагов теста *Подготовка*, *Выполнение* и *Проверка*.
 
 1. Настраивается веб-узел ТС.
 1. Создается клиент тестового сервера для отправки запросов к приложению.
-1. Выполняется шаг теста *Подготовка* : тестовое приложение готовит запрос.
-1. Выполняется шаг теста *Выполнение* : клиент отправляет запрос и получает ответ.
-1. Выполняется шаг теста *Проверка* : *фактический* ответ определяется как *правильный* или *ошибочный* на основе *ожидаемого* ответа.
+1. Выполняется шаг теста *Подготовка*: тестовое приложение готовит запрос.
+1. Выполняется шаг теста *Выполнение*: клиент отправляет запрос и получает ответ.
+1. Выполняется шаг теста *Проверка*: *фактический* ответ определяется как *правильный* или *ошибочный* на основе *ожидаемого* ответа.
 1. Процесс продолжается до тех пор, пока не будут выполнены все тесты.
 1. Выводятся результаты теста.
 
@@ -488,7 +488,7 @@ dotnet test
 
 Пакет `Microsoft.AspNetCore.Mvc.Testing` выполняет следующие задачи:
 
-* Копирует файл зависимостей ( *DEPS* ) из ТС в папку *bin* тестового проекта.
+* Копирует файл зависимостей (*DEPS*) из ТС в папку *bin* тестового проекта.
 * Задает [корневой каталог](xref:fundamentals/index#content-root) содержимого в корне проекта ТС, чтобы при выполнении тестов были найдены статические файлы и страницы или представления.
 * Предоставляет класс [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) для упрощения начальной загрузки ТС с `TestServer`.
 
@@ -522,7 +522,7 @@ dotnet test
 
 [WebApplicationFactory\<TEntryPoint>](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) используется для создания [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver) для интеграционных тестов. `TEntryPoint` — это класс точки входа ТС, обычно класс `Startup`.
 
-Тестовые классы реализуют интерфейс *средства тестирования* ( [IClassFixture](https://xunit.github.io/docs/shared-context#class-fixture)), чтобы указать, что класс содержит тесты, и предоставить экземпляры общего объекта между тестами в классе.
+Тестовые классы реализуют интерфейс *средства тестирования* ([IClassFixture](https://xunit.github.io/docs/shared-context#class-fixture)), чтобы указать, что класс содержит тесты, и предоставить экземпляры общего объекта между тестами в классе.
 
 Следующий тестовый класс, `BasicTests`, использует `WebApplicationFactory` для начальной загрузки ТС и предоставляет [HttpClient](/dotnet/api/system.net.http.httpclient) тестовому методу `Get_EndpointsReturnSuccessAndCorrectContentType`. Метод проверяет, что код состояния ответа свидетельствует о выполнении (коды состояния в диапазоне от 200 до 299) и что заголовок `Content-Type` имеет значение `text/html; charset=utf-8` для нескольких страниц приложения.
 
@@ -558,7 +558,7 @@ dotnet test
 1. Проанализировать файл cookie для защиты от подделки и запросить маркер проверки из ответа.
 1. Выполните запрос POST с файлом cookie для защиты от подделки и запросом маркера проверки на месте.
 
-Вспомогательные методы расширения `SendAsync` ( *Helpers/HttpClientExtensions.cs* ) и вспомогательный метод `GetDocumentAsync` ( *Helpers/HtmlHelpers.cs* ) в [примере приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) используют средство синтаксического анализа [AngleSharp](https://anglesharp.github.io/) для обработки защиты от подделки с помощью следующих методов:
+Вспомогательные методы расширения `SendAsync` (*Helpers/HttpClientExtensions.cs*) и вспомогательный метод `GetDocumentAsync` (*Helpers/HtmlHelpers.cs*) в [примере приложения](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) используют средство синтаксического анализа [AngleSharp](https://anglesharp.github.io/) для обработки защиты от подделки с помощью следующих методов:
 
 * `GetDocumentAsync`. Получает [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) и возвращает `IHtmlDocument`. `GetDocumentAsync` использует фабрику, которая подготавливает *виртуальный ответ* на основе исходного `HttpResponseMessage`. Дополнительные сведения см. в [документации по AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
 * Методы расширения `SendAsync` для `HttpClient` составляют [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) и вызывают [SendAsync (HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) для отправки запросов к ТС. Перегрузки для `SendAsync` принимают HTML-форму (`IHtmlFormElement`) и следующие элементы:
@@ -609,23 +609,23 @@ _client = _factory.CreateClient(clientOptions);
 
 Пример ТС включает службу с заданной областью, которая возвращает цитату. Цитата внедряется в скрытое поле на странице индекса при запросе страницы индекса.
 
-*Services/IQuoteService.cs* :
+*Services/IQuoteService.cs*:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Services/IQuoteService.cs?name=snippet1)]
 
-*Services/QuoteService.cs* :
+*Services/QuoteService.cs*:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Services/QuoteService.cs?name=snippet1)]
 
-*Startup.cs* :
+*Startup.cs*:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet2)]
 
-*Pages/Index.cshtml.cs* :
+*Pages/Index.cshtml.cs*:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Pages/Index.cshtml.cs?name=snippet1&highlight=4,9,20,26)]
 
-*Pages/Index.cs* :
+*Pages/Index.cs*:
 
 [!code-cshtml[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Pages/Index.cshtml?name=snippet_Quote)]
 
@@ -638,7 +638,7 @@ _client = _factory.CreateClient(clientOptions);
 
 Чтобы протестировать службу и внедрение цитат в интеграционный тест, служба имитации будет внедрена в ТС тестом. Служба имитации заменяет `QuoteService` приложения службой, предоставляемой тестовым приложением, с именем `TestQuoteService`:
 
-*IntegrationTests.IndexPageTests.cs* :
+*IntegrationTests.IndexPageTests.cs*:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet4)]
 
@@ -724,7 +724,7 @@ public class CustomWebApplicationFactory<TStartup>
 
 ## <a name="how-the-test-infrastructure-infers-the-app-content-root-path"></a>Определение тестовой инфраструктурой пути к корневому каталогу содержимого приложения
 
-Конструктор `WebApplicationFactory` выводит путь к [корневому каталогу содержимого приложения](xref:fundamentals/index#content-root), выполняя поиск [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) в сборке, содержащей интеграционные тесты с ключом, равным сборке `TEntryPoint` `System.Reflection.Assembly.FullName`. Если атрибут с правильным ключом не найден, `WebApplicationFactory` возвращается к поиску файла решения ( *SLN* ) и добавляет имя сборки `TEntryPoint` в каталог решения. Корневой каталог приложения (корневой путь к содержимому) используется для обнаружения представлений и файлов содержимого.
+Конструктор `WebApplicationFactory` выводит путь к [корневому каталогу содержимого приложения](xref:fundamentals/index#content-root), выполняя поиск [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) в сборке, содержащей интеграционные тесты с ключом, равным сборке `TEntryPoint` `System.Reflection.Assembly.FullName`. Если атрибут с правильным ключом не найден, `WebApplicationFactory` возвращается к поиску файла решения (*SLN*) и добавляет имя сборки `TEntryPoint` в каталог решения. Корневой каталог приложения (корневой путь к содержимому) используется для обнаружения представлений и файлов содержимого.
 
 ## <a name="disable-shadow-copying"></a>Отключение теневого копирования
 
@@ -761,7 +761,7 @@ public class CustomWebApplicationFactory<TStartup>
 | Приложение для сообщений (ТС) | *src/RazorPagesProject* | Позволяет пользователю добавлять, удалять сообщения (по одному или все) и анализировать их. |
 | Тестирование приложения. | *tests/RazorPagesProject.Tests* | Используется для тестирования интеграции ТС. |
 
-Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](https://visualstudio.microsoft.com). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в каталоге *tests/RazorPagesProject.Tests* :
+Тесты можно выполнять с помощью встроенных функций тестирования интегрированной среды разработки, таких как [Visual Studio](https://visualstudio.microsoft.com). При использовании [Visual Studio Code](https://code.visualstudio.com/) или командной строки выполните следующую команду в командной строке в каталоге *tests/RazorPagesProject.Tests*:
 
 ```dotnetcli
 dotnet test
@@ -771,10 +771,10 @@ dotnet test
 
 Тестируемая система (ТС) — это система сообщений Razor Pages со следующими характеристиками:
 
-* Страница индекса приложения ( *Pages/Index.cshtml* и *Pages/Index.cshtml.cs* ) предоставляет методы пользовательского интерфейса и модели страницы для управления добавлением, удалением и анализом сообщений (поиск среднего числа слов на сообщение).
-* Сообщение описывается классом `Message` ( *Data/Message.cs* ) с двумя свойствами: `Id` (ключ) и `Text` (сообщение). Свойство `Text` является обязательным и ограничено 200 символами.
+* Страница индекса приложения (*Pages/Index.cshtml* и *Pages/Index.cshtml.cs*) предоставляет методы пользовательского интерфейса и модели страницы для управления добавлением, удалением и анализом сообщений (поиск среднего числа слов на сообщение).
+* Сообщение описывается классом `Message` (*Data/Message.cs*) с двумя свойствами: `Id` (ключ) и `Text` (сообщение). Свойство `Text` является обязательным и ограничено 200 символами.
 * Сообщения хранятся с помощью [базы данных Entity Framework в памяти](/ef/core/providers/in-memory/)&#8224;.
-* Приложение содержит слой доступа к данным DAL в своем классе контекста базы данных — `AppDbContext` ( *Data/AppDbContext.cs* ).
+* Приложение содержит слой доступа к данным DAL в своем классе контекста базы данных — `AppDbContext` (*Data/AppDbContext.cs*).
 * Если база данных пуста при запуске приложения, то хранилище сообщений инициализируется тремя сообщениями.
 * Приложение включает `/SecurePage`, доступ к которому может получить только пользователь, прошедший проверку подлинности.
 
@@ -799,7 +799,7 @@ dotnet test
 
 Перед выполнением интеграционных тестов обычно требуется небольшой набор данных в базе данных. Например, при удалении теста вызывается удаление записей базы данных, поэтому в базе данных должна иметься по крайней мере одна запись, чтобы запрос на удаление был выполнен успешно.
 
-Пример приложения заполняет базу данных тремя сообщениями в *Utilities.cs* , которые могут использоваться тестами при выполнении:
+Пример приложения заполняет базу данных тремя сообщениями в *Utilities.cs*, которые могут использоваться тестами при выполнении:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/Helpers/Utilities.cs?name=snippet1)]
 
