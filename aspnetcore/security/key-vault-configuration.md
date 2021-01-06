@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: 7f5cd3de38f1e45d9b188c513a0e62ca658b2992
-ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
+ms.openlocfilehash: 4b035fe59b8576eb387ddce67943386ccab55492
+ms.sourcegitcommit: 8dfcd2b4be936950c228b4d98430622a04254cd7
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "96035909"
+ms.lasthandoff: 12/26/2020
+ms.locfileid: "97792078"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Поставщик конфигурации Azure Key Vault в ASP.NET Core
 
@@ -41,7 +41,10 @@ ms.locfileid: "96035909"
 
 ## <a name="packages"></a>Пакеты
 
-Добавьте ссылку на пакет в [Azure.Extensions.AspNetCore.Configфигурации. Секретный](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.Configuration.Secrets/) пакет.
+Добавьте ссылки на пакеты для следующих пакетов:
+
+* [Azure.Extensions.AspNetCore.Configuration.Secrets](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.Configuration.Secrets)
+* [Службы.Identity](https://www.nuget.org/packages/Azure.Identity)
 
 ## <a name="sample-app"></a>Пример приложения
 
@@ -142,7 +145,7 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
 1. Нажмите **Добавить политику доступа**.
 1. Откройте **разрешения для секрета** и предоставьте приложению разрешения **Get** и **List** .
 1. Щелкните **выбрать субъект** и выберите зарегистрированное приложение по имени. Нажмите кнопку **Выбрать**.
-1. Щелкните **ОК**.
+1. Нажмите кнопку **ОК**.
 1. Щелкните **Сохранить**.
 1. Разверните приложение.
 
@@ -193,7 +196,7 @@ az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-
 
 * Создает экземпляр `DefaultAzureCredential` класса, учетные данные пытаются получить маркер доступа из среды для ресурсов Azure.
 * Новый объект [`Azure.Security.KeyVault.Secrets.Secrets`](/dotnet/api/azure.security.keyvault.secrets) создается с помощью `DefaultAzureCredential` экземпляра.
-* `Azure.Security.KeyVault.Secrets.Secrets`Экземпляр используется с реализацией по умолчанию `Azure.Extensions.Aspnetcore.Configuration.Secrets` , которая загружает все секретные значения и заменяет двойные тире ( `--` ) на двоеточие ( `:` ) в именах ключей.
+* `Azure.Security.KeyVault.Secrets.Secrets`Экземпляр используется с реализацией по умолчанию `Azure.Extensions.AspNetCore.Configuration.Secrets` , которая загружает все секретные значения и заменяет двойные тире ( `--` ) на двоеточие ( `:` ) в именах ключей.
 
 [!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet2&highlight=12-14)]
 
@@ -227,23 +230,23 @@ config.AddAzureKeyVault(new SecretClient(new URI("Your Key Vault Endpoint"), new
 
 | Свойство         | Описание |
 | ---------------- | ----------- |
-| `Manager`        | `Azure.Extensions.Aspnetcore.Configuration.Secrets` экземпляр, используемый для управления загрузкой секрета. |
+| `Manager`        | `Azure.Extensions.AspNetCore.Configuration.Secrets` экземпляр, используемый для управления загрузкой секрета. |
 | `ReloadInterval` | `Timespan` ожидание между попытками опроса хранилища ключей на предмет изменений. Значение по умолчанию — `null` (конфигурация не перегружается). |
 
 ## <a name="use-a-key-name-prefix"></a>Использование префикса имени ключа
 
-AddAzureKeyVault предоставляет перегрузку, которая принимает реализацию `Azure.Extensions.Aspnetcore.Configuration.Secrets` , которая позволяет управлять преобразованием секретов хранилища ключей в конфигурационные ключи. Например, можно реализовать интерфейс для загрузки секретных значений на основе значения префикса, которое вы задают при запуске приложения. Это позволяет, например, загружать секреты на основе версии приложения.
+AddAzureKeyVault предоставляет перегрузку, которая принимает реализацию `Azure.Extensions.AspNetCore.Configuration.Secrets` , которая позволяет управлять преобразованием секретов хранилища ключей в конфигурационные ключи. Например, можно реализовать интерфейс для загрузки секретных значений на основе значения префикса, которое вы задают при запуске приложения. Это позволяет, например, загружать секреты на основе версии приложения.
 
 > [!WARNING]
 > Не используйте префиксы в секретах хранилища ключей, чтобы размещать секреты для нескольких приложений в одном хранилище ключей или для размещения секретов среды (например, для *разработки* и *рабочих* секретов) в одном хранилище. Мы рекомендуем использовать отдельные хранилища ключей для различных приложений и сред разработки и рабочей среды, чтобы изолировать среды приложений для обеспечения наивысшего уровня безопасности.
 
 В следующем примере в хранилище ключей устанавливается секрет (и используется средство диспетчера секретов для среды разработки) `5000-AppSecret` (точки не допускаются в именах секретов хранилища ключей). Этот секрет представляет секрет приложения для версии 5.0.0.0 приложения. Для другой версии приложения 5.1.0.0 секрет добавляется в хранилище ключей (и с помощью средства диспетчера секретов) для `5100-AppSecret` . Каждая версия приложения загружает значение секрета в своей конфигурации в виде `AppSecret` , отключая версию при загрузке секрета.
 
-AddAzureKeyVault вызывается с настраиваемым `Azure.Extensions.Aspnetcore.Configuration.Secrets` :
+AddAzureKeyVault вызывается с настраиваемым `Azure.Extensions.AspNetCore.Configuration.Secrets` :
 
 [!code-csharp[](key-vault-configuration/samples_snapshot/Program.cs)]
 
-`Azure.Extensions.Aspnetcore.Configuration.Secrets`Реализация реагирует на префиксы версий секретов, чтобы загрузить правильный секрет в конфигурацию:
+`Azure.Extensions.AspNetCore.Configuration.Secrets`Реализация реагирует на префиксы версий секретов, чтобы загрузить правильный секрет в конфигурацию:
 
 * `Load` загружает секрет, если его имя начинается с префикса. Другие секреты не загружены.
 * `GetKey`:
@@ -328,7 +331,7 @@ AddAzureKeyVault вызывается с настраиваемым `Azure.Exten
 
 Конфигурация, показанная в предыдущем JSON-файле, хранится в Azure Key Vault с использованием нотации двойного тире ( `--` ) и числовых сегментов.
 
-| Клавиши | Значение |
+| Ключ | Значение |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
@@ -486,7 +489,7 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
 1. Нажмите **Добавить политику доступа**.
 1. Откройте **разрешения для секрета** и предоставьте приложению разрешения **Get** и **List** .
 1. Щелкните **выбрать субъект** и выберите зарегистрированное приложение по имени. Нажмите кнопку **Выбрать**.
-1. Щелкните **ОК**.
+1. Нажмите кнопку **ОК**.
 1. Щелкните **Сохранить**.
 1. Разверните приложение.
 
@@ -655,7 +658,7 @@ az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-
 
 Конфигурация, показанная в предыдущем JSON-файле, хранится в Azure Key Vault с использованием нотации двойного тире ( `--` ) и числовых сегментов.
 
-| Клавиши | Значение |
+| Ключ | Значение |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |

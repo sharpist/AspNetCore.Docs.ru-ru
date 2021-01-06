@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/version-differences
-ms.openlocfilehash: c4c0ff83cb789e9aa35085496daa461404615726
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: c37f0a3c528b6285fbf35f41eed781fb76c68de4
+ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
 ms.translationtype: MT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061214"
+ms.lasthandoff: 01/03/2021
+ms.locfileid: "97854604"
 ---
 # <a name="differences-between-aspnet-no-locsignalr-and-aspnet-core-no-locsignalr"></a>Различия между ASP.NET SignalR и ASP.NET Core SignalR
 
@@ -35,11 +35,11 @@ ASP.NET Core SignalR несовместим с клиентами или сер�
 
 |                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
-| **Пакет NuGet сервера** | [Microsoft. AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | Отсутствует. Входит в состав общей платформы [Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) . |
+| **Пакет NuGet сервера** | [Microsoft. AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | Нет. Входит в состав общей платформы [Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) . |
 | **Клиентские пакеты NuGet** | [Microsoft. AspNet. SignalR . Компьютера](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft. AspNet. SignalR . JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft. AspNetCore. SignalR . Компьютера](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
 | **Пакет NPM клиента JavaScript** | [SignalR](https://www.npmjs.com/package/signalr) | [`@microsoft/signalr`](https://www.npmjs.com/package/@microsoft/signalr) |
 | **Клиент Java** | [Репозиторий GitHub](https://github.com/SignalR/java-client) (не рекомендуется)  | Пакет Maven [com. Microsoft. SignalR](https://search.maven.org/artifact/com.microsoft.signalr/signalr) |
-| **Тип серверного приложения** | ASP.NET (System. Web) или OWIN Self-Host | ASP.NET Core |
+| **Тип серверного приложения** | ASP.NET (System. Web) или OWIN Self-Host | ASP.NET Core |
 | **Поддерживаемые серверные платформы** | .NET Framework 4,5 или более поздней версии | .NET Core 3,0 или более поздней версии |
 
 ::: moniker-end
@@ -52,7 +52,7 @@ ASP.NET Core SignalR несовместим с клиентами или сер�
 | **Клиентские пакеты NuGet** | [Microsoft. AspNet. SignalR . Компьютера](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft. AspNet. SignalR . JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft. AspNetCore. SignalR . Компьютера](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
 | **Пакет NPM клиента JavaScript** | [SignalR](https://www.npmjs.com/package/signalr) | [`@aspnet/signalr`](https://www.npmjs.com/package/@aspnet/signalr) |
 | **Клиент Java** | [Репозиторий GitHub](https://github.com/SignalR/java-client) (не рекомендуется)  | Пакет Maven [com. Microsoft. SignalR](https://search.maven.org/artifact/com.microsoft.signalr/signalr) |
-| **Тип серверного приложения** | ASP.NET (System. Web) или OWIN Self-Host | ASP.NET Core |
+| **Тип серверного приложения** | ASP.NET (System. Web) или OWIN Self-Host | ASP.NET Core |
 | **Поддерживаемые серверные платформы** | .NET Framework 4,5 или более поздней версии | .NET Framework 4.6.1 или более поздней версии<br>.NET Core 2,1 или более поздней версии |
 
 ::: moniker-end
@@ -203,8 +203,8 @@ npm install @aspnet/signalr
 
 ### <a name="internet-explorer-support"></a>Поддержка Internet Explorer
 
-ASP.NET Core SignalR поддерживает Microsoft Internet Explorer 11 или более поздней версии, тогда как ASP.NET SignalR поддерживает Microsoft Internet Explorer 8 или более поздней версии.
-Дополнительные сведения о поддержке браузеров можно найти на странице [Поддерживаемые платформы](xref:signalr/supported-platforms#javascript-client).
+ASP.NET Core SignalR не поддерживает Microsoft Internet Explorer, тогда как ASP.NET SignalR поддерживает Microsoft Internet Explorer 8 или более поздней версии.
+Дополнительные сведения см. в разделе <xref:signalr/supported-platforms#javascript-client>.
 
 ### <a name="javascript-client-method-syntax"></a>Синтаксис клиентского метода JavaScript
 
@@ -286,7 +286,7 @@ ASP.NET SignalR поддерживает SQL Server и Redis. ASP.NET Core Signa
 * [SignalR Масштабирование с помощью Redis](/aspnet/signalr/overview/performance/scaleout-with-redis)
 * [SignalR Масштабирование с помощью SQL Server](/aspnet/signalr/overview/performance/scaleout-with-sql-server)
 
-### <a name="aspnet-core"></a>ASP.NET Core
+### <a name="aspnet-core"></a>ASP.NET Core
 
 * [SignalRСлужба Azure](/azure/azure-signalr/)
 * [Объединительная плата Redis](xref:signalr/redis-backplane)
