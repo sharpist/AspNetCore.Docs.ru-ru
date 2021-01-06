@@ -5,7 +5,7 @@
 Класс `Movie` содержит:
 
 * Поле `Id`, которое является обязательным для первичного ключа базы данных.
-* `[DataType(DataType.Date)]`.  Атрибут [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) указывает тип данных (`Date`). С этим атрибутом:
+* `[DataType(DataType.Date)]`:  Атрибут [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) указывает тип данных (`Date`). С этим атрибутом:
 
   * пользователю не требуется вводить сведения о времени в поле даты.
   * Отображается только дата, а не время.

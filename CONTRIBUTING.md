@@ -34,7 +34,7 @@
 ![description of image for alt attribute](configuration/index/_static/imagename.png)
 ```
 
-Все изображения должны иметь [замещающий текст](https://wikipedia.org/wiki/Alt_attribute). Советы о том, как задать замещающий текст, см. в сетевых ресурсах, например [WebAIM: замещающий текст](https://webaim.org/techniques/alttext/).
+Все изображения должны иметь [замещающий текст](https://wikipedia.org/wiki/Alt_attribute). Советы по заданию замещающего текста см. в сетевых ресурсах, например [WebAIM: замещающий текст](https://webaim.org/techniques/alttext/).
 
 Имена файлов Markdown и имена файлов изображений должны состоять из символов нижнего регистра.
 
@@ -147,7 +147,7 @@ DocFX требует:
 
 * В браузере перейдите на адрес `http://localhost:8080/group1-dest/`.
 
-## <a name="voice-and-tone"></a>Стиль
+## <a name="voice-and-tone"></a>Стиль и тон
 
 Наши документы должны быть понятными для самой широкой аудитории. С этой целью мы предлагаем рекомендации по стилю и просим наших авторов следовать им. Дополнительные сведения см. в разделе [Рекомендации по стилю](https://github.com/dotnet/docs/blob/master/styleguide/voice-tone.md) в репозитории .NET.
 
@@ -155,6 +155,6 @@ DocFX требует:
 
 [Руководство по стилю Майкрософт](https://docs.microsoft.com/style-guide/welcome/) предоставляет рекомендации по стилю и терминологии для всех технических текстов, включая документацию по ASP.NET Core.
 
-## <a name="redirects"></a>Перенаправление
+## <a name="redirects"></a>Перенаправления
 
 Если вы удаляете статью, измените ее имя файла или переместите ее в другую папку, создайте перенаправление, чтобы пользователи, добавившие статью в закладки, не получали ошибку *404 Не найдено*. Добавьте перенаправление [в главный файл перенаправления](https://github.com/dotnet/AspNetCore.Docs/blob/master/.openpublishing.redirection.json).
