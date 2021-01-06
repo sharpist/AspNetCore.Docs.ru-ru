@@ -1,1 +1,1 @@
-[<span data-ttu-id="7627a-101">Пакет SDK для .NET Core 2.0. или более поздней версии</span><span class="sxs-lookup"><span data-stu-id="7627a-101">.NET Core SDK 2.0 or later</span></span>](https://dotnet.microsoft.com/download)
+[<span data-ttu-id="ae8c2-101">Пакет SDK для .NET Core 2.0. или более поздней версии</span><span class="sxs-lookup"><span data-stu-id="ae8c2-101">.NET Core SDK 2.0 or later</span></span>](https://dotnet.microsoft.com/download)
